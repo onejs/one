@@ -21,7 +21,7 @@ export class ObservationRegistrar extends SDKHandle {
    * init()
    * @availability iOS 17.0+
    */
-  static init(): ObservationRegistrar { return callSDK<ObservationRegistrar>("Observation_5d69670f0307b385", 341583797773736, undefined, []); }
+  static init(): ObservationRegistrar { return callSDK<ObservationRegistrar>("Observation_6be9a005889899ab", 341583797773736, undefined, []); }
   declare readonly $type: { "s:11Observation0A9RegistrarV": true };
 }
 
@@ -34,7 +34,7 @@ export class Observations<Element = unknown, Failure = unknown> extends SDKHandl
    * func makeAsyncIterator() -> Observations<Element, Failure>.Iterator
    * @availability iOS 26.0+
    */
-  makeAsyncIterator(): Observations_Iterator<number, NativeError> { return callSDK<Observations_Iterator<number, NativeError>>("Observation_5d69670f0307b385", 1984271926018789, this, []); }
+  makeAsyncIterator(): Observations_Iterator<number, NativeError> { return callSDK<Observations_Iterator<number, NativeError>>("Observation_6be9a005889899ab", 1984271926018789, this, []); }
   declare readonly $type: { "s:11Observation12ObservationsV": true };
   declare readonly $element: Element;
 }
@@ -62,7 +62,7 @@ export class Observations_Iterator<Element = unknown, Failure = unknown> extends
    * mutating func next(isolation iterationIsolation: isolated (any Actor)? = #isolation) async throws(Failure) -> Element?
    * @availability iOS 26.0+
    */
-  next(): Promise<(number) | null> { return callSDKAsync<(number) | null>("Observation_5d69670f0307b385", 709726601392048, this, []); }
+  next(): Promise<(number) | null> { return callSDKAsync<(number) | null>("Observation_6be9a005889899ab", 709726601392048, this, []); }
   declare readonly $type: { "s:11Observation12ObservationsV8IteratorV": true };
 }
 
@@ -91,22 +91,22 @@ export class ObservationTracking_Event_Kind extends SDKHandle {
    * static var `deinit`: ObservationTracking.Event.Kind { get }
    * @availability iOS 27.0+
    */
-  static get deinit(): ObservationTracking_Event_Kind { return callSDK<ObservationTracking_Event_Kind>("Observation_5d69670f0307b385", 1275163025830655, undefined, []); }
+  static get deinit(): ObservationTracking_Event_Kind { return callSDK<ObservationTracking_Event_Kind>("Observation_6be9a005889899ab", 1275163025830655, undefined, []); }
   /**
    * static var didSet: ObservationTracking.Event.Kind { get }
    * @availability iOS 27.0+
    */
-  static get didSet(): ObservationTracking_Event_Kind { return callSDK<ObservationTracking_Event_Kind>("Observation_5d69670f0307b385", 3197905161782214, undefined, []); }
+  static get didSet(): ObservationTracking_Event_Kind { return callSDK<ObservationTracking_Event_Kind>("Observation_6be9a005889899ab", 3197905161782214, undefined, []); }
   /**
    * static var initial: ObservationTracking.Event.Kind { get }
    * @availability iOS 27.0+
    */
-  static get initial(): ObservationTracking_Event_Kind { return callSDK<ObservationTracking_Event_Kind>("Observation_5d69670f0307b385", 4112715976227972, undefined, []); }
+  static get initial(): ObservationTracking_Event_Kind { return callSDK<ObservationTracking_Event_Kind>("Observation_6be9a005889899ab", 4112715976227972, undefined, []); }
   /**
    * static var willSet: ObservationTracking.Event.Kind { get }
    * @availability iOS 27.0+
    */
-  static get willSet(): ObservationTracking_Event_Kind { return callSDK<ObservationTracking_Event_Kind>("Observation_5d69670f0307b385", 2336648040036196, undefined, []); }
+  static get willSet(): ObservationTracking_Event_Kind { return callSDK<ObservationTracking_Event_Kind>("Observation_6be9a005889899ab", 2336648040036196, undefined, []); }
   declare readonly $type: { "s:11Observation0A8TrackingV5EventV4KindV": true };
 }
 
@@ -119,72 +119,72 @@ export class ObservationTracking_Options extends SDKHandle {
    * func intersection(_ other: ObservationTracking.Options) -> ObservationTracking.Options
    * @availability iOS 27.0+
    */
-  intersection(other: ObservationTracking_Options): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_5d69670f0307b385", 754432030693717, this, [other]); }
+  intersection(other: ObservationTracking_Options): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_6be9a005889899ab", 754432030693717, this, [other]); }
   /**
    * mutating func formIntersection(_ other: ObservationTracking.Options)
    * @availability iOS 27.0+
    */
-  formIntersection(other: ObservationTracking_Options): void { return callSDK<void>("Observation_5d69670f0307b385", 624390217122684, this, [other]); }
+  formIntersection(other: ObservationTracking_Options): void { return callSDK<void>("Observation_6be9a005889899ab", 624390217122684, this, [other]); }
   /**
    * func symmetricDifference(_ other: ObservationTracking.Options) -> ObservationTracking.Options
    * @availability iOS 27.0+
    */
-  symmetricDifference(other: ObservationTracking_Options): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_5d69670f0307b385", 2229575388447275, this, [other]); }
+  symmetricDifference(other: ObservationTracking_Options): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_6be9a005889899ab", 2229575388447275, this, [other]); }
   /**
    * mutating func formSymmetricDifference(_ other: ObservationTracking.Options)
    * @availability iOS 27.0+
    */
-  formSymmetricDifference(other: ObservationTracking_Options): void { return callSDK<void>("Observation_5d69670f0307b385", 460979504493747, this, [other]); }
+  formSymmetricDifference(other: ObservationTracking_Options): void { return callSDK<void>("Observation_6be9a005889899ab", 460979504493747, this, [other]); }
   /**
    * func union(_ other: ObservationTracking.Options) -> ObservationTracking.Options
    * @availability iOS 27.0+
    */
-  union(other: ObservationTracking_Options): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_5d69670f0307b385", 97653837743253, this, [other]); }
+  union(other: ObservationTracking_Options): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_6be9a005889899ab", 97653837743253, this, [other]); }
   /**
    * static var `deinit`: ObservationTracking.Options { get }
    * @availability iOS 27.0+
    */
-  static get deinit(): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_5d69670f0307b385", 4238791735568346, undefined, []); }
+  static get deinit(): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_6be9a005889899ab", 4238791735568346, undefined, []); }
   /**
    * static var didSet: ObservationTracking.Options { get }
    * @availability iOS 27.0+
    */
-  static get didSet(): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_5d69670f0307b385", 2245766682476339, undefined, []); }
+  static get didSet(): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_6be9a005889899ab", 2245766682476339, undefined, []); }
   /**
    * @discardableResult mutating func insert(_ newMember: ObservationTracking.Options) -> (inserted: Bool, memberAfterInsert: ObservationTracking.Options)
    * @availability iOS 27.0+
    */
-  insert(newMember: ObservationTracking_Options): { "inserted": boolean; "memberAfterInsert": ObservationTracking_Options } { return callSDK<{ "inserted": boolean; "memberAfterInsert": ObservationTracking_Options }>("Observation_5d69670f0307b385", 3450558788762916, this, [newMember]); }
+  insert(newMember: ObservationTracking_Options): { "inserted": boolean; "memberAfterInsert": ObservationTracking_Options } { return callSDK<{ "inserted": boolean; "memberAfterInsert": ObservationTracking_Options }>("Observation_6be9a005889899ab", 3450558788762916, this, [newMember]); }
   /**
    * @discardableResult mutating func remove(_ member: ObservationTracking.Options) -> ObservationTracking.Options?
    * @availability iOS 27.0+
    */
-  remove(member: ObservationTracking_Options): $SDK3 { return callSDK<$SDK3>("Observation_5d69670f0307b385", 393973356665226, this, [member]); }
+  remove(member: ObservationTracking_Options): $SDK3 { return callSDK<$SDK3>("Observation_6be9a005889899ab", 393973356665226, this, [member]); }
   /**
    * @discardableResult mutating func update(with newMember: ObservationTracking.Options) -> ObservationTracking.Options?
    * @availability iOS 27.0+
    */
-  update(newMember: ObservationTracking_Options): $SDK3 { return callSDK<$SDK3>("Observation_5d69670f0307b385", 2097043728966486, this, [newMember]); }
+  update(newMember: ObservationTracking_Options): $SDK3 { return callSDK<$SDK3>("Observation_6be9a005889899ab", 2097043728966486, this, [newMember]); }
   /**
    * static var willSet: ObservationTracking.Options { get }
    * @availability iOS 27.0+
    */
-  static get willSet(): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_5d69670f0307b385", 3746984565905398, undefined, []); }
+  static get willSet(): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_6be9a005889899ab", 3746984565905398, undefined, []); }
   /**
    * func contains(_ member: ObservationTracking.Options) -> Bool
    * @availability iOS 27.0+
    */
-  contains(member: ObservationTracking_Options): boolean { return callSDK<boolean>("Observation_5d69670f0307b385", 2636780584635772, this, [member]); }
+  contains(member: ObservationTracking_Options): boolean { return callSDK<boolean>("Observation_6be9a005889899ab", 2636780584635772, this, [member]); }
   /**
    * mutating func formUnion(_ other: ObservationTracking.Options)
    * @availability iOS 27.0+
    */
-  formUnion(other: ObservationTracking_Options): void { return callSDK<void>("Observation_5d69670f0307b385", 462538487681180, this, [other]); }
+  formUnion(other: ObservationTracking_Options): void { return callSDK<void>("Observation_6be9a005889899ab", 462538487681180, this, [other]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_5d69670f0307b385", 5986080335781, undefined, []); }
+  static init(): ObservationTracking_Options { return callSDK<ObservationTracking_Options>("Observation_6be9a005889899ab", 5986080335781, undefined, []); }
   declare readonly $type: { "s:11Observation0A8TrackingV7OptionsV": true };
 }
 
@@ -209,12 +209,12 @@ export class ObservationTracking_Token extends SDKHandle {
 }
 
 registerSDKProtocol("s:11Observation10ObservableP", {});
-registerSDKClass("Observation.ObservationRegistrar", ObservationRegistrar, { module: "Observation_5d69670f0307b385", properties: {} });
-registerSDKClass("Observation.Observations", Observations, { module: "Observation_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":1984271926018789}} });
-registerSDKClass("Observation.Observations.Iteration", Observations_Iteration, { module: "Observation_5d69670f0307b385", properties: {} });
-registerSDKClass("Observation.Observations.Iterator", Observations_Iterator, { module: "Observation_5d69670f0307b385", properties: {}, methods: {"next":{"id":709726601392048}} });
-registerSDKClass("Observation.ObservationTracking", ObservationTracking, { module: "Observation_5d69670f0307b385", properties: {} });
-registerSDKClass("Observation.ObservationTracking.Event", ObservationTracking_Event, { module: "Observation_5d69670f0307b385", properties: {} });
-registerSDKClass("Observation.ObservationTracking.Event.Kind", ObservationTracking_Event_Kind, { module: "Observation_5d69670f0307b385", properties: {} });
-registerSDKClass("Observation.ObservationTracking.Options", ObservationTracking_Options, { module: "Observation_5d69670f0307b385", properties: {}, methods: {"intersection":{"id":754432030693717},"formIntersection":{"id":624390217122684},"symmetricDifference":{"id":2229575388447275},"formSymmetricDifference":{"id":460979504493747},"union":{"id":97653837743253},"insert":{"id":3450558788762916},"remove":{"id":393973356665226},"update":{"id":2097043728966486},"contains":{"id":2636780584635772},"formUnion":{"id":462538487681180}} });
-registerSDKClass("Observation.ObservationTracking.Token", ObservationTracking_Token, { module: "Observation_5d69670f0307b385", properties: {} });
+registerSDKClass("Observation.ObservationRegistrar", ObservationRegistrar, { module: "Observation_6be9a005889899ab", properties: {} });
+registerSDKClass("Observation.Observations", Observations, { module: "Observation_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":1984271926018789}} });
+registerSDKClass("Observation.Observations.Iteration", Observations_Iteration, { module: "Observation_6be9a005889899ab", properties: {} });
+registerSDKClass("Observation.Observations.Iterator", Observations_Iterator, { module: "Observation_6be9a005889899ab", properties: {}, methods: {"next":{"id":709726601392048}} });
+registerSDKClass("Observation.ObservationTracking", ObservationTracking, { module: "Observation_6be9a005889899ab", properties: {} });
+registerSDKClass("Observation.ObservationTracking.Event", ObservationTracking_Event, { module: "Observation_6be9a005889899ab", properties: {} });
+registerSDKClass("Observation.ObservationTracking.Event.Kind", ObservationTracking_Event_Kind, { module: "Observation_6be9a005889899ab", properties: {} });
+registerSDKClass("Observation.ObservationTracking.Options", ObservationTracking_Options, { module: "Observation_6be9a005889899ab", properties: {}, methods: {"intersection":{"id":754432030693717},"formIntersection":{"id":624390217122684},"symmetricDifference":{"id":2229575388447275},"formSymmetricDifference":{"id":460979504493747},"union":{"id":97653837743253},"insert":{"id":3450558788762916},"remove":{"id":393973356665226},"update":{"id":2097043728966486},"contains":{"id":2636780584635772},"formUnion":{"id":462538487681180}} });
+registerSDKClass("Observation.ObservationTracking.Token", ObservationTracking_Token, { module: "Observation_6be9a005889899ab", properties: {} });

@@ -15,17 +15,17 @@ export class USDPlayer extends SDKHandle {
    * final func importCustomIBLTexture(data: Data) throws -> USDPlayer.TextureData
    * @availability iOS 27.0+
    */
-  importCustomIBLTexture(data: ArrayBuffer): USDPlayer_TextureData { return callSDK<USDPlayer_TextureData>("_USDKit_RealityKit_5d69670f0307b385", 3544327409638138, this, [data]); }
+  importCustomIBLTexture(data: ArrayBuffer): USDPlayer_TextureData { return callSDK<USDPlayer_TextureData>("_USDKit_RealityKit_6be9a005889899ab", 3544327409638138, this, [data]); }
   /**
    * convenience init(stage: USDStage, gpuFamily: MTLGPUFamily)
    * @availability iOS 27.0+
    */
-  static initStageGpuFamily(stage: _USDKit_USDStage, gpuFamily: _Metal_MTLGPUFamily): USDPlayer { return callSDK<USDPlayer>("_USDKit_RealityKit_5d69670f0307b385", 900296172798047, undefined, [stage, gpuFamily]); }
+  static initStageGpuFamily(stage: _USDKit_USDStage, gpuFamily: _Metal_MTLGPUFamily): USDPlayer { return callSDK<USDPlayer>("_USDKit_RealityKit_6be9a005889899ab", 900296172798047, undefined, [stage, gpuFamily]); }
   /**
    * convenience init(stage: USDStage)
    * @availability iOS 27.0+
    */
-  static initStage(stage: _USDKit_USDStage): USDPlayer { return callSDK<USDPlayer>("_USDKit_RealityKit_5d69670f0307b385", 4117683508820318, undefined, [stage]); }
+  static initStage(stage: _USDKit_USDStage): USDPlayer { return callSDK<USDPlayer>("_USDKit_RealityKit_6be9a005889899ab", 4117683508820318, undefined, [stage]); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC": true };
 }
 
@@ -38,22 +38,22 @@ export class USDPlayer_DeformationData extends SDKHandle {
    * let blendShapes: USDPlayer.DeformationData.BlendShapeData?
    * @availability iOS 27.0+
    */
-  get blendShapes(): (USDPlayer_DeformationData_BlendShapeData) | null { return callSDK<(USDPlayer_DeformationData_BlendShapeData) | null>("_USDKit_RealityKit_5d69670f0307b385", 808018479666320, this, []); }
+  get blendShapes(): (USDPlayer_DeformationData_BlendShapeData) | null { return callSDK<(USDPlayer_DeformationData_BlendShapeData) | null>("_USDKit_RealityKit_6be9a005889899ab", 808018479666320, this, []); }
   /**
    * let renormalization: USDPlayer.DeformationData.RenormalizationData?
    * @availability iOS 27.0+
    */
-  get renormalization(): (USDPlayer_DeformationData_RenormalizationData) | null { return callSDK<(USDPlayer_DeformationData_RenormalizationData) | null>("_USDKit_RealityKit_5d69670f0307b385", 1687796065903076, this, []); }
+  get renormalization(): (USDPlayer_DeformationData_RenormalizationData) | null { return callSDK<(USDPlayer_DeformationData_RenormalizationData) | null>("_USDKit_RealityKit_6be9a005889899ab", 1687796065903076, this, []); }
   /**
    * let id: USDPlayer.DeformationID
    * @availability iOS 27.0+
    */
-  get id(): USDPlayer_DeformationID { return callSDK<USDPlayer_DeformationID>("_USDKit_RealityKit_5d69670f0307b385", 2748042483412106, this, []); }
+  get id(): USDPlayer_DeformationID { return callSDK<USDPlayer_DeformationID>("_USDKit_RealityKit_6be9a005889899ab", 2748042483412106, this, []); }
   /**
    * let skinning: USDPlayer.DeformationData.SkinningData?
    * @availability iOS 27.0+
    */
-  get skinning(): (USDPlayer_DeformationData_SkinningData) | null { return callSDK<(USDPlayer_DeformationData_SkinningData) | null>("_USDKit_RealityKit_5d69670f0307b385", 823880923667034, this, []); }
+  get skinning(): (USDPlayer_DeformationData_SkinningData) | null { return callSDK<(USDPlayer_DeformationData_SkinningData) | null>("_USDKit_RealityKit_6be9a005889899ab", 823880923667034, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV": true };
 }
 
@@ -66,12 +66,12 @@ export class USDPlayer_DeformationData_BlendShapeData extends SDKHandle {
    * let positionOffsets: [[SIMD3<Float>]]
    * @availability iOS 27.0+
    */
-  get positionOffsets(): Array<Array<SDKHandle>> { return callSDK<Array<Array<SDKHandle>>>("_USDKit_RealityKit_5d69670f0307b385", 3621541444755347, this, []); }
+  get positionOffsets(): Array<Array<SDKHandle>> { return callSDK<Array<Array<SDKHandle>>>("_USDKit_RealityKit_6be9a005889899ab", 3621541444755347, this, []); }
   /**
    * let weights: [Float]
    * @availability iOS 27.0+
    */
-  get weights(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_5d69670f0307b385", 2200680436989919, this, []); }
+  get weights(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_6be9a005889899ab", 2200680436989919, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV010BlendShapeF0V": true };
 }
 
@@ -84,12 +84,12 @@ export class USDPlayer_DeformationData_BlendShapeData_Update extends SDKHandle {
    * let positionOffsets: [[SIMD3<Float>]]?
    * @availability iOS 27.0+
    */
-  get positionOffsets(): (Array<Array<SDKHandle>>) | null { return callSDK<(Array<Array<SDKHandle>>) | null>("_USDKit_RealityKit_5d69670f0307b385", 76533379626285, this, []); }
+  get positionOffsets(): (Array<Array<SDKHandle>>) | null { return callSDK<(Array<Array<SDKHandle>>) | null>("_USDKit_RealityKit_6be9a005889899ab", 76533379626285, this, []); }
   /**
    * let weights: [Float]?
    * @availability iOS 27.0+
    */
-  get weights(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_5d69670f0307b385", 1764525631213350, this, []); }
+  get weights(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_6be9a005889899ab", 1764525631213350, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV010BlendShapeF0V6UpdateV": true };
 }
 
@@ -102,17 +102,17 @@ export class USDPlayer_DeformationData_RenormalizationData extends SDKHandle {
    * let vertexAdjacencies: [UInt32]
    * @availability iOS 27.0+
    */
-  get vertexAdjacencies(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_5d69670f0307b385", 4040885171405305, this, []); }
+  get vertexAdjacencies(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_6be9a005889899ab", 4040885171405305, this, []); }
   /**
    * let vertexIndicesPerTriangle: [UInt32]
    * @availability iOS 27.0+
    */
-  get vertexIndicesPerTriangle(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_5d69670f0307b385", 1771748458874142, this, []); }
+  get vertexIndicesPerTriangle(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_6be9a005889899ab", 1771748458874142, this, []); }
   /**
    * let vertexAdjacencyEndIndices: [UInt32]
    * @availability iOS 27.0+
    */
-  get vertexAdjacencyEndIndices(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_5d69670f0307b385", 3020112622655628, this, []); }
+  get vertexAdjacencyEndIndices(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_6be9a005889899ab", 3020112622655628, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV015RenormalizationF0V": true };
 }
 
@@ -125,17 +125,17 @@ export class USDPlayer_DeformationData_RenormalizationData_Update extends SDKHan
    * let vertexAdjacencies: [UInt32]?
    * @availability iOS 27.0+
    */
-  get vertexAdjacencies(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_5d69670f0307b385", 3047634052425384, this, []); }
+  get vertexAdjacencies(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_6be9a005889899ab", 3047634052425384, this, []); }
   /**
    * let vertexIndicesPerTriangle: [UInt32]?
    * @availability iOS 27.0+
    */
-  get vertexIndicesPerTriangle(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_5d69670f0307b385", 2664095974309033, this, []); }
+  get vertexIndicesPerTriangle(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_6be9a005889899ab", 2664095974309033, this, []); }
   /**
    * let vertexAdjacencyEndIndices: [UInt32]?
    * @availability iOS 27.0+
    */
-  get vertexAdjacencyEndIndices(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_5d69670f0307b385", 1715738125591423, this, []); }
+  get vertexAdjacencyEndIndices(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_6be9a005889899ab", 1715738125591423, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV015RenormalizationF0V6UpdateV": true };
 }
 
@@ -148,32 +148,32 @@ export class USDPlayer_DeformationData_SkinningData extends SDKHandle {
    * let jointTransforms: [float4x4]
    * @availability iOS 27.0+
    */
-  get jointTransforms(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("_USDKit_RealityKit_5d69670f0307b385", 3034127416436395, this, []); }
+  get jointTransforms(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("_USDKit_RealityKit_6be9a005889899ab", 3034127416436395, this, []); }
   /**
    * let influenceWeights: [Float]
    * @availability iOS 27.0+
    */
-  get influenceWeights(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_5d69670f0307b385", 2815034999088813, this, []); }
+  get influenceWeights(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_6be9a005889899ab", 2815034999088813, this, []); }
   /**
    * let inverseBindPoses: [float4x4]
    * @availability iOS 27.0+
    */
-  get inverseBindPoses(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("_USDKit_RealityKit_5d69670f0307b385", 2042816431619048, this, []); }
+  get inverseBindPoses(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("_USDKit_RealityKit_6be9a005889899ab", 2042816431619048, this, []); }
   /**
    * let geometryBindTransform: float4x4
    * @availability iOS 27.0+
    */
-  get geometryBindTransform(): SDKHandle { return callSDK<SDKHandle>("_USDKit_RealityKit_5d69670f0307b385", 3730497763834380, this, []); }
+  get geometryBindTransform(): SDKHandle { return callSDK<SDKHandle>("_USDKit_RealityKit_6be9a005889899ab", 3730497763834380, this, []); }
   /**
    * let influenceJointIndices: [UInt32]
    * @availability iOS 27.0+
    */
-  get influenceJointIndices(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_5d69670f0307b385", 1114322856593978, this, []); }
+  get influenceJointIndices(): Array<number> { return callSDK<Array<number>>("_USDKit_RealityKit_6be9a005889899ab", 1114322856593978, this, []); }
   /**
    * let influencePerVertexCount: UInt8
    * @availability iOS 27.0+
    */
-  get influencePerVertexCount(): number { return callSDK<number>("_USDKit_RealityKit_5d69670f0307b385", 320854561584487, this, []); }
+  get influencePerVertexCount(): number { return callSDK<number>("_USDKit_RealityKit_6be9a005889899ab", 320854561584487, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV08SkinningF0V": true };
 }
 
@@ -186,27 +186,27 @@ export class USDPlayer_DeformationData_SkinningData_Update extends SDKHandle {
    * let jointTransforms: [float4x4]?
    * @availability iOS 27.0+
    */
-  get jointTransforms(): $SDK4 { return callSDK<$SDK4>("_USDKit_RealityKit_5d69670f0307b385", 3876369681296352, this, []); }
+  get jointTransforms(): $SDK4 { return callSDK<$SDK4>("_USDKit_RealityKit_6be9a005889899ab", 3876369681296352, this, []); }
   /**
    * let influenceWeights: [Float]?
    * @availability iOS 27.0+
    */
-  get influenceWeights(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_5d69670f0307b385", 1797696614960716, this, []); }
+  get influenceWeights(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_6be9a005889899ab", 1797696614960716, this, []); }
   /**
    * let inverseBindPoses: [float4x4]?
    * @availability iOS 27.0+
    */
-  get inverseBindPoses(): $SDK4 { return callSDK<$SDK4>("_USDKit_RealityKit_5d69670f0307b385", 4096120214955909, this, []); }
+  get inverseBindPoses(): $SDK4 { return callSDK<$SDK4>("_USDKit_RealityKit_6be9a005889899ab", 4096120214955909, this, []); }
   /**
    * let geometryBindTransform: float4x4?
    * @availability iOS 27.0+
    */
-  get geometryBindTransform(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("_USDKit_RealityKit_5d69670f0307b385", 2451409728359649, this, []); }
+  get geometryBindTransform(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("_USDKit_RealityKit_6be9a005889899ab", 2451409728359649, this, []); }
   /**
    * let influenceJointIndices: [UInt32]?
    * @availability iOS 27.0+
    */
-  get influenceJointIndices(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_5d69670f0307b385", 2583522093743099, this, []); }
+  get influenceJointIndices(): (Array<number>) | null { return callSDK<(Array<number>) | null>("_USDKit_RealityKit_6be9a005889899ab", 2583522093743099, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV08SkinningF0V6UpdateV": true };
 }
 
@@ -219,22 +219,22 @@ export class USDPlayer_DeformationData_Update extends SDKHandle {
    * let blendShapes: USDPlayer.DeformationData.BlendShapeData.Update?
    * @availability iOS 27.0+
    */
-  get blendShapes(): (USDPlayer_DeformationData_BlendShapeData_Update) | null { return callSDK<(USDPlayer_DeformationData_BlendShapeData_Update) | null>("_USDKit_RealityKit_5d69670f0307b385", 606455624587616, this, []); }
+  get blendShapes(): (USDPlayer_DeformationData_BlendShapeData_Update) | null { return callSDK<(USDPlayer_DeformationData_BlendShapeData_Update) | null>("_USDKit_RealityKit_6be9a005889899ab", 606455624587616, this, []); }
   /**
    * let renormalization: USDPlayer.DeformationData.RenormalizationData.Update?
    * @availability iOS 27.0+
    */
-  get renormalization(): (USDPlayer_DeformationData_RenormalizationData_Update) | null { return callSDK<(USDPlayer_DeformationData_RenormalizationData_Update) | null>("_USDKit_RealityKit_5d69670f0307b385", 3934592953938099, this, []); }
+  get renormalization(): (USDPlayer_DeformationData_RenormalizationData_Update) | null { return callSDK<(USDPlayer_DeformationData_RenormalizationData_Update) | null>("_USDKit_RealityKit_6be9a005889899ab", 3934592953938099, this, []); }
   /**
    * let id: USDPlayer.DeformationID
    * @availability iOS 27.0+
    */
-  get id(): USDPlayer_DeformationID { return callSDK<USDPlayer_DeformationID>("_USDKit_RealityKit_5d69670f0307b385", 2164140650277139, this, []); }
+  get id(): USDPlayer_DeformationID { return callSDK<USDPlayer_DeformationID>("_USDKit_RealityKit_6be9a005889899ab", 2164140650277139, this, []); }
   /**
    * let skinning: USDPlayer.DeformationData.SkinningData.Update?
    * @availability iOS 27.0+
    */
-  get skinning(): (USDPlayer_DeformationData_SkinningData_Update) | null { return callSDK<(USDPlayer_DeformationData_SkinningData_Update) | null>("_USDKit_RealityKit_5d69670f0307b385", 2654744742173994, this, []); }
+  get skinning(): (USDPlayer_DeformationData_SkinningData_Update) | null { return callSDK<(USDPlayer_DeformationData_SkinningData_Update) | null>("_USDKit_RealityKit_6be9a005889899ab", 2654744742173994, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV6UpdateV": true };
 }
 
@@ -247,7 +247,7 @@ export class USDPlayer_DeformationID extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("_USDKit_RealityKit_5d69670f0307b385", 4243421896223345, this, []); }
+  get description(): string { return callSDK<string>("_USDKit_RealityKit_6be9a005889899ab", 4243421896223345, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC13DeformationIDV": true };
 }
 
@@ -268,22 +268,22 @@ export class USDPlayer_MaterialData extends SDKHandle {
    * var shaderGraph: ShaderGraph { get }
    * @availability iOS 27.0+
    */
-  get shaderGraph(): SDKHandle { return callSDK<SDKHandle>("_USDKit_RealityKit_5d69670f0307b385", 2179536689482480, this, []); }
+  get shaderGraph(): SDKHandle { return callSDK<SDKHandle>("_USDKit_RealityKit_6be9a005889899ab", 2179536689482480, this, []); }
   /**
    * let assignedTextures: [String : USDPlayer.TextureID]
    * @availability iOS 27.0+
    */
-  get assignedTextures(): Record<string, USDPlayer_TextureID> { return callSDK<Record<string, USDPlayer_TextureID>>("_USDKit_RealityKit_5d69670f0307b385", 1180398681624076, this, []); }
+  get assignedTextures(): Record<string, USDPlayer_TextureID> { return callSDK<Record<string, USDPlayer_TextureID>>("_USDKit_RealityKit_6be9a005889899ab", 1180398681624076, this, []); }
   /**
    * let id: USDPlayer.MaterialID
    * @availability iOS 27.0+
    */
-  get id(): USDPlayer_MaterialID { return callSDK<USDPlayer_MaterialID>("_USDKit_RealityKit_5d69670f0307b385", 3205926993338947, this, []); }
+  get id(): USDPlayer_MaterialID { return callSDK<USDPlayer_MaterialID>("_USDKit_RealityKit_6be9a005889899ab", 3205926993338947, this, []); }
   /**
    * let primPath: String
    * @availability iOS 27.0+
    */
-  get primPath(): string { return callSDK<string>("_USDKit_RealityKit_5d69670f0307b385", 4050504447740803, this, []); }
+  get primPath(): string { return callSDK<string>("_USDKit_RealityKit_6be9a005889899ab", 4050504447740803, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC12MaterialDataV": true };
 }
 
@@ -296,12 +296,12 @@ export class USDPlayer_MaterialData_Update extends SDKHandle {
    * let assignedTextures: [String : USDPlayer.TextureID]?
    * @availability iOS 27.0+
    */
-  get assignedTextures(): (Record<string, USDPlayer_TextureID>) | null { return callSDK<(Record<string, USDPlayer_TextureID>) | null>("_USDKit_RealityKit_5d69670f0307b385", 678685493228811, this, []); }
+  get assignedTextures(): (Record<string, USDPlayer_TextureID>) | null { return callSDK<(Record<string, USDPlayer_TextureID>) | null>("_USDKit_RealityKit_6be9a005889899ab", 678685493228811, this, []); }
   /**
    * let id: USDPlayer.MaterialID
    * @availability iOS 27.0+
    */
-  get id(): USDPlayer_MaterialID { return callSDK<USDPlayer_MaterialID>("_USDKit_RealityKit_5d69670f0307b385", 368493427455023, this, []); }
+  get id(): USDPlayer_MaterialID { return callSDK<USDPlayer_MaterialID>("_USDKit_RealityKit_6be9a005889899ab", 368493427455023, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC12MaterialDataV6UpdateV": true };
 }
 
@@ -314,7 +314,7 @@ export class USDPlayer_MaterialID extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("_USDKit_RealityKit_5d69670f0307b385", 1379716113835279, this, []); }
+  get description(): string { return callSDK<string>("_USDKit_RealityKit_6be9a005889899ab", 1379716113835279, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC10MaterialIDV": true };
 }
 
@@ -327,47 +327,47 @@ export class USDPlayer_MeshData extends SDKHandle {
    * let indexData: Data
    * @availability iOS 27.0+
    */
-  get indexData(): ArrayBuffer { return callSDK<ArrayBuffer>("_USDKit_RealityKit_5d69670f0307b385", 1650336877834712, this, []); }
+  get indexData(): ArrayBuffer { return callSDK<ArrayBuffer>("_USDKit_RealityKit_6be9a005889899ab", 1650336877834712, this, []); }
   /**
    * let vertexData: [Data]
    * @availability iOS 27.0+
    */
-  get vertexData(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("_USDKit_RealityKit_5d69670f0307b385", 1687575518084874, this, []); }
+  get vertexData(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("_USDKit_RealityKit_6be9a005889899ab", 1687575518084874, this, []); }
   /**
    * let descriptor: LowLevelMesh.Descriptor
    * @availability iOS 27.0+
    */
-  get descriptor(): _RealityFoundation_LowLevelMesh_Descriptor { return callSDK<_RealityFoundation_LowLevelMesh_Descriptor>("_USDKit_RealityKit_5d69670f0307b385", 3577021279364876, this, []); }
+  get descriptor(): _RealityFoundation_LowLevelMesh_Descriptor { return callSDK<_RealityFoundation_LowLevelMesh_Descriptor>("_USDKit_RealityKit_6be9a005889899ab", 3577021279364876, this, []); }
   /**
    * let assignedMaterials: [USDPlayer.MaterialID]
    * @availability iOS 27.0+
    */
-  get assignedMaterials(): Array<USDPlayer_MaterialID> { return callSDK<Array<USDPlayer_MaterialID>>("_USDKit_RealityKit_5d69670f0307b385", 2544581387428866, this, []); }
+  get assignedMaterials(): Array<USDPlayer_MaterialID> { return callSDK<Array<USDPlayer_MaterialID>>("_USDKit_RealityKit_6be9a005889899ab", 2544581387428866, this, []); }
   /**
    * let instanceTransforms: [float4x4]
    * @availability iOS 27.0+
    */
-  get instanceTransforms(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("_USDKit_RealityKit_5d69670f0307b385", 529191415931893, this, []); }
+  get instanceTransforms(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("_USDKit_RealityKit_6be9a005889899ab", 529191415931893, this, []); }
   /**
    * let id: USDPlayer.MeshID
    * @availability iOS 27.0+
    */
-  get id(): USDPlayer_MeshID { return callSDK<USDPlayer_MeshID>("_USDKit_RealityKit_5d69670f0307b385", 756759930759197, this, []); }
+  get id(): USDPlayer_MeshID { return callSDK<USDPlayer_MeshID>("_USDKit_RealityKit_6be9a005889899ab", 756759930759197, this, []); }
   /**
    * let parts: [LowLevelMesh.Part]
    * @availability iOS 27.0+
    */
-  get parts(): Array<_RealityFoundation_LowLevelMesh_Part> { return callSDK<Array<_RealityFoundation_LowLevelMesh_Part>>("_USDKit_RealityKit_5d69670f0307b385", 788282468576817, this, []); }
+  get parts(): Array<_RealityFoundation_LowLevelMesh_Part> { return callSDK<Array<_RealityFoundation_LowLevelMesh_Part>>("_USDKit_RealityKit_6be9a005889899ab", 788282468576817, this, []); }
   /**
    * let meshType: USDPlayer.MeshData.MeshType
    * @availability iOS 27.0+
    */
-  get meshType(): USDPlayer_MeshData_MeshType { return callSDK<USDPlayer_MeshData_MeshType>("_USDKit_RealityKit_5d69670f0307b385", 793102956510611, this, []); }
+  get meshType(): USDPlayer_MeshData_MeshType { return callSDK<USDPlayer_MeshData_MeshType>("_USDKit_RealityKit_6be9a005889899ab", 793102956510611, this, []); }
   /**
    * let primPath: String
    * @availability iOS 27.0+
    */
-  get primPath(): string { return callSDK<string>("_USDKit_RealityKit_5d69670f0307b385", 2722491460260793, this, []); }
+  get primPath(): string { return callSDK<string>("_USDKit_RealityKit_6be9a005889899ab", 2722491460260793, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC8MeshDataV": true };
 }
 
@@ -388,37 +388,37 @@ export class USDPlayer_MeshData_Update extends SDKHandle {
    * let indexData: Data?
    * @availability iOS 27.0+
    */
-  get indexData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("_USDKit_RealityKit_5d69670f0307b385", 196478612287736, this, []); }
+  get indexData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("_USDKit_RealityKit_6be9a005889899ab", 196478612287736, this, []); }
   /**
    * let vertexData: [Data]?
    * @availability iOS 27.0+
    */
-  get vertexData(): (Array<ArrayBuffer>) | null { return callSDK<(Array<ArrayBuffer>) | null>("_USDKit_RealityKit_5d69670f0307b385", 989758491852520, this, []); }
+  get vertexData(): (Array<ArrayBuffer>) | null { return callSDK<(Array<ArrayBuffer>) | null>("_USDKit_RealityKit_6be9a005889899ab", 989758491852520, this, []); }
   /**
    * let assignedMaterials: [USDPlayer.MaterialID]?
    * @availability iOS 27.0+
    */
-  get assignedMaterials(): (Array<USDPlayer_MaterialID>) | null { return callSDK<(Array<USDPlayer_MaterialID>) | null>("_USDKit_RealityKit_5d69670f0307b385", 965076645733381, this, []); }
+  get assignedMaterials(): (Array<USDPlayer_MaterialID>) | null { return callSDK<(Array<USDPlayer_MaterialID>) | null>("_USDKit_RealityKit_6be9a005889899ab", 965076645733381, this, []); }
   /**
    * let instanceTransforms: [float4x4]?
    * @availability iOS 27.0+
    */
-  get instanceTransforms(): $SDK4 { return callSDK<$SDK4>("_USDKit_RealityKit_5d69670f0307b385", 1505641319142802, this, []); }
+  get instanceTransforms(): $SDK4 { return callSDK<$SDK4>("_USDKit_RealityKit_6be9a005889899ab", 1505641319142802, this, []); }
   /**
    * let id: USDPlayer.MeshID
    * @availability iOS 27.0+
    */
-  get id(): USDPlayer_MeshID { return callSDK<USDPlayer_MeshID>("_USDKit_RealityKit_5d69670f0307b385", 3206284612859997, this, []); }
+  get id(): USDPlayer_MeshID { return callSDK<USDPlayer_MeshID>("_USDKit_RealityKit_6be9a005889899ab", 3206284612859997, this, []); }
   /**
    * let parts: [LowLevelMesh.Part]?
    * @availability iOS 27.0+
    */
-  get parts(): (Array<_RealityFoundation_LowLevelMesh_Part>) | null { return callSDK<(Array<_RealityFoundation_LowLevelMesh_Part>) | null>("_USDKit_RealityKit_5d69670f0307b385", 1996340428623538, this, []); }
+  get parts(): (Array<_RealityFoundation_LowLevelMesh_Part>) | null { return callSDK<(Array<_RealityFoundation_LowLevelMesh_Part>) | null>("_USDKit_RealityKit_6be9a005889899ab", 1996340428623538, this, []); }
   /**
    * let meshType: USDPlayer.MeshData.MeshType?
    * @availability iOS 27.0+
    */
-  get meshType(): (USDPlayer_MeshData_MeshType) | null { return callSDK<(USDPlayer_MeshData_MeshType) | null>("_USDKit_RealityKit_5d69670f0307b385", 671891592173241, this, []); }
+  get meshType(): (USDPlayer_MeshData_MeshType) | null { return callSDK<(USDPlayer_MeshData_MeshType) | null>("_USDKit_RealityKit_6be9a005889899ab", 671891592173241, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC8MeshDataV6UpdateV": true };
 }
 
@@ -431,7 +431,7 @@ export class USDPlayer_MeshID extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("_USDKit_RealityKit_5d69670f0307b385", 33533265288486, this, []); }
+  get description(): string { return callSDK<string>("_USDKit_RealityKit_6be9a005889899ab", 33533265288486, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC6MeshIDV": true };
 }
 
@@ -444,27 +444,27 @@ export class USDPlayer_TextureData extends SDKHandle {
    * let descriptor: LowLevelTexture.Descriptor
    * @availability iOS 27.0+
    */
-  get descriptor(): _RealityFoundation_LowLevelTexture_Descriptor { return callSDK<_RealityFoundation_LowLevelTexture_Descriptor>("_USDKit_RealityKit_5d69670f0307b385", 4442382344014309, this, []); }
+  get descriptor(): _RealityFoundation_LowLevelTexture_Descriptor { return callSDK<_RealityFoundation_LowLevelTexture_Descriptor>("_USDKit_RealityKit_6be9a005889899ab", 4442382344014309, this, []); }
   /**
    * let id: USDPlayer.TextureID
    * @availability iOS 27.0+
    */
-  get id(): USDPlayer_TextureID { return callSDK<USDPlayer_TextureID>("_USDKit_RealityKit_5d69670f0307b385", 4091392891736837, this, []); }
+  get id(): USDPlayer_TextureID { return callSDK<USDPlayer_TextureID>("_USDKit_RealityKit_6be9a005889899ab", 4091392891736837, this, []); }
   /**
    * let data: Data
    * @availability iOS 27.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("_USDKit_RealityKit_5d69670f0307b385", 4286248718765619, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("_USDKit_RealityKit_6be9a005889899ab", 4286248718765619, this, []); }
   /**
    * let layout: [USDPlayer.TextureLevelInfo]
    * @availability iOS 27.0+
    */
-  get layout(): Array<USDPlayer_TextureLevelInfo> { return callSDK<Array<USDPlayer_TextureLevelInfo>>("_USDKit_RealityKit_5d69670f0307b385", 2145473847991859, this, []); }
+  get layout(): Array<USDPlayer_TextureLevelInfo> { return callSDK<Array<USDPlayer_TextureLevelInfo>>("_USDKit_RealityKit_6be9a005889899ab", 2145473847991859, this, []); }
   /**
    * let assetPath: String
    * @availability iOS 27.0+
    */
-  get assetPath(): string { return callSDK<string>("_USDKit_RealityKit_5d69670f0307b385", 2115294047664851, this, []); }
+  get assetPath(): string { return callSDK<string>("_USDKit_RealityKit_6be9a005889899ab", 2115294047664851, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC11TextureDataV": true };
 }
 
@@ -477,7 +477,7 @@ export class USDPlayer_TextureID extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("_USDKit_RealityKit_5d69670f0307b385", 4221822310486939, this, []); }
+  get description(): string { return callSDK<string>("_USDKit_RealityKit_6be9a005889899ab", 4221822310486939, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC9TextureIDV": true };
 }
 
@@ -490,17 +490,17 @@ export class USDPlayer_TextureLevelInfo extends SDKHandle {
    * let dataOffset: Int
    * @availability iOS 27.0+
    */
-  get dataOffset(): number { return callSDK<number>("_USDKit_RealityKit_5d69670f0307b385", 2194340835185269, this, []); }
+  get dataOffset(): number { return callSDK<number>("_USDKit_RealityKit_6be9a005889899ab", 2194340835185269, this, []); }
   /**
    * let byteCountPerRow: Int
    * @availability iOS 27.0+
    */
-  get byteCountPerRow(): number { return callSDK<number>("_USDKit_RealityKit_5d69670f0307b385", 836601332684352, this, []); }
+  get byteCountPerRow(): number { return callSDK<number>("_USDKit_RealityKit_6be9a005889899ab", 836601332684352, this, []); }
   /**
    * let byteCountPerImage: Int
    * @availability iOS 27.0+
    */
-  get byteCountPerImage(): number { return callSDK<number>("_USDKit_RealityKit_5d69670f0307b385", 359544615603691, this, []); }
+  get byteCountPerImage(): number { return callSDK<number>("_USDKit_RealityKit_6be9a005889899ab", 359544615603691, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit9USDPlayerC16TextureLevelInfoV": true };
 }
 
@@ -513,7 +513,7 @@ export class USDRenderError extends SDKHandle {
    * var errorDescription: String? { get }
    * @availability iOS 27.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("_USDKit_RealityKit_5d69670f0307b385", 1797854790214620, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("_USDKit_RealityKit_6be9a005889899ab", 1797854790214620, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit14USDRenderErrorV": true };
 }
 
@@ -526,43 +526,43 @@ export class USDStageComponent extends SDKHandle {
    * @MainActor init(allowsHitTesting: Bool = true)
    * @availability iOS 27.0+
    */
-  static initAllowsHitTesting(allowsHitTesting?: boolean): Promise<USDStageComponent> { return callSDKAsync<USDStageComponent>("_USDKit_RealityKit_5d69670f0307b385", 1554147110711237, undefined, [allowsHitTesting]); }
+  static initAllowsHitTesting(allowsHitTesting?: boolean): Promise<USDStageComponent> { return callSDKAsync<USDStageComponent>("_USDKit_RealityKit_6be9a005889899ab", 1554147110711237, undefined, [allowsHitTesting]); }
   /**
    * let allowsHitTesting: Bool
    * @availability iOS 27.0+
    */
-  get allowsHitTesting(): boolean { return callSDK<boolean>("_USDKit_RealityKit_5d69670f0307b385", 1315967275580188, this, []); }
+  get allowsHitTesting(): boolean { return callSDK<boolean>("_USDKit_RealityKit_6be9a005889899ab", 1315967275580188, this, []); }
   /**
    * let rendersAutomatically: Bool
    * @availability iOS 27.0+
    */
-  get rendersAutomatically(): boolean { return callSDK<boolean>("_USDKit_RealityKit_5d69670f0307b385", 3989019361380168, this, []); }
+  get rendersAutomatically(): boolean { return callSDK<boolean>("_USDKit_RealityKit_6be9a005889899ab", 3989019361380168, this, []); }
   /**
    * @MainActor static func waitForRenderCompletion(on entity: Entity) async -> USDStageComponent.RenderResult
    * @availability iOS 27.0+
    */
-  static waitForRenderCompletion(entity: _RealityFoundation_Entity): Promise<USDStageComponent_RenderResult> { return callSDKAsync<USDStageComponent_RenderResult>("_USDKit_RealityKit_5d69670f0307b385", 3945949487630906, undefined, [entity]); }
+  static waitForRenderCompletion(entity: _RealityFoundation_Entity): Promise<USDStageComponent_RenderResult> { return callSDKAsync<USDStageComponent_RenderResult>("_USDKit_RealityKit_6be9a005889899ab", 3945949487630906, undefined, [entity]); }
   /**
    * var stage: USDStage? { get }
    * @availability iOS 27.0+
    */
-  get stage(): (_USDKit_USDStage) | null { return callSDK<(_USDKit_USDStage) | null>("_USDKit_RealityKit_5d69670f0307b385", 4219954281455356, this, []); }
+  get stage(): (_USDKit_USDStage) | null { return callSDK<(_USDKit_USDStage) | null>("_USDKit_RealityKit_6be9a005889899ab", 4219954281455356, this, []); }
   /**
    * nonisolated(nonsending) static func render(_ stage: USDStage, to entity: Entity, at timeCode: USDStage.TimeCode = .default) async -> USDStageComponent.RenderResult
    * @availability iOS 27.0+
    */
-  static render(stage: _USDKit_USDStage, entity: _RealityFoundation_Entity, timeCode?: _USDKit_USDStage_TimeCode): Promise<USDStageComponent_RenderResult> { return callSDKAsync<USDStageComponent_RenderResult>("_USDKit_RealityKit_5d69670f0307b385", 4476480688348806, undefined, [stage, entity, timeCode]); }
+  static render(stage: _USDKit_USDStage, entity: _RealityFoundation_Entity, timeCode?: _USDKit_USDStage_TimeCode): Promise<USDStageComponent_RenderResult> { return callSDKAsync<USDStageComponent_RenderResult>("_USDKit_RealityKit_6be9a005889899ab", 4476480688348806, undefined, [stage, entity, timeCode]); }
   /**
    * var timeCode: USDStage.TimeCode { get set }
    * @availability iOS 27.0+
    */
-  get timeCode(): _USDKit_USDStage_TimeCode { return callSDK<_USDKit_USDStage_TimeCode>("_USDKit_RealityKit_5d69670f0307b385", 2596307084385770, this, []); }
-  set timeCode(value: _USDKit_USDStage_TimeCode) { callSDK<void>("_USDKit_RealityKit_5d69670f0307b385", 527551109051173, this, [value]); }
+  get timeCode(): _USDKit_USDStage_TimeCode { return callSDK<_USDKit_USDStage_TimeCode>("_USDKit_RealityKit_6be9a005889899ab", 2596307084385770, this, []); }
+  set timeCode(value: _USDKit_USDStage_TimeCode) { callSDK<void>("_USDKit_RealityKit_6be9a005889899ab", 527551109051173, this, [value]); }
   /**
    * @MainActor init(_ stage: USDStage, timeCode: USDStage.TimeCode = .default, allowsHitTesting: Bool = true) async
    * @availability iOS 27.0+
    */
-  static initTimeCodeAllowsHitTesting(stage: _USDKit_USDStage, timeCode?: _USDKit_USDStage_TimeCode, allowsHitTesting?: boolean): Promise<USDStageComponent> { return callSDKAsync<USDStageComponent>("_USDKit_RealityKit_5d69670f0307b385", 1284150881224280, undefined, [stage, timeCode, allowsHitTesting]); }
+  static initTimeCodeAllowsHitTesting(stage: _USDKit_USDStage, timeCode?: _USDKit_USDStage_TimeCode, allowsHitTesting?: boolean): Promise<USDStageComponent> { return callSDKAsync<USDStageComponent>("_USDKit_RealityKit_6be9a005889899ab", 1284150881224280, undefined, [stage, timeCode, allowsHitTesting]); }
   declare readonly $type: { "s:18_USDKit_RealityKit17USDStageComponentV": true };
 }
 
@@ -575,12 +575,12 @@ export class USDStageComponent_RenderResult extends SDKHandle {
    * let errors: [USDRenderError]
    * @availability iOS 27.0+
    */
-  get errors(): Array<USDRenderError> { return callSDK<Array<USDRenderError>>("_USDKit_RealityKit_5d69670f0307b385", 1676641864283362, this, []); }
+  get errors(): Array<USDRenderError> { return callSDK<Array<USDRenderError>>("_USDKit_RealityKit_6be9a005889899ab", 1676641864283362, this, []); }
   /**
    * let status: USDStageComponent.RenderResult.Status
    * @availability iOS 27.0+
    */
-  get status(): USDStageComponent_RenderResult_Status { return callSDK<USDStageComponent_RenderResult_Status>("_USDKit_RealityKit_5d69670f0307b385", 1415213963226454, this, []); }
+  get status(): USDStageComponent_RenderResult_Status { return callSDK<USDStageComponent_RenderResult_Status>("_USDKit_RealityKit_6be9a005889899ab", 1415213963226454, this, []); }
   declare readonly $type: { "s:18_USDKit_RealityKit17USDStageComponentV12RenderResultV": true };
 }
 
@@ -590,27 +590,27 @@ export class USDStageComponent_RenderResult extends SDKHandle {
  */
 export type USDStageComponent_RenderResult_Status = "completed" | "failed";
 
-registerSDKClass("_USDKit_RealityKit.USDPlayer", USDPlayer, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {}, methods: {"importCustomIBLTexture":{"id":3544327409638138}} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData", USDPlayer_DeformationData, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.BlendShapeData", USDPlayer_DeformationData_BlendShapeData, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.BlendShapeData.Update", USDPlayer_DeformationData_BlendShapeData_Update, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.RenormalizationData", USDPlayer_DeformationData_RenormalizationData, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.RenormalizationData.Update", USDPlayer_DeformationData_RenormalizationData_Update, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.SkinningData", USDPlayer_DeformationData_SkinningData, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.SkinningData.Update", USDPlayer_DeformationData_SkinningData_Update, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.Update", USDPlayer_DeformationData_Update, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationID", USDPlayer_DeformationID, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.FrameUpdate", USDPlayer_FrameUpdate, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.MaterialData", USDPlayer_MaterialData, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.MaterialData.Update", USDPlayer_MaterialData_Update, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.MaterialID", USDPlayer_MaterialID, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.MeshData", USDPlayer_MeshData, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.MeshData.MeshType", USDPlayer_MeshData_MeshType, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.MeshData.Update", USDPlayer_MeshData_Update, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.MeshID", USDPlayer_MeshID, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.TextureData", USDPlayer_TextureData, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.TextureID", USDPlayer_TextureID, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDPlayer.TextureLevelInfo", USDPlayer_TextureLevelInfo, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDRenderError", USDRenderError, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDStageComponent", USDStageComponent, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
-registerSDKClass("_USDKit_RealityKit.USDStageComponent.RenderResult", USDStageComponent_RenderResult, { module: "_USDKit_RealityKit_5d69670f0307b385", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer", USDPlayer, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {}, methods: {"importCustomIBLTexture":{"id":3544327409638138}} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData", USDPlayer_DeformationData, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.BlendShapeData", USDPlayer_DeformationData_BlendShapeData, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.BlendShapeData.Update", USDPlayer_DeformationData_BlendShapeData_Update, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.RenormalizationData", USDPlayer_DeformationData_RenormalizationData, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.RenormalizationData.Update", USDPlayer_DeformationData_RenormalizationData_Update, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.SkinningData", USDPlayer_DeformationData_SkinningData, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.SkinningData.Update", USDPlayer_DeformationData_SkinningData_Update, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationData.Update", USDPlayer_DeformationData_Update, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.DeformationID", USDPlayer_DeformationID, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.FrameUpdate", USDPlayer_FrameUpdate, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.MaterialData", USDPlayer_MaterialData, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.MaterialData.Update", USDPlayer_MaterialData_Update, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.MaterialID", USDPlayer_MaterialID, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.MeshData", USDPlayer_MeshData, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.MeshData.MeshType", USDPlayer_MeshData_MeshType, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.MeshData.Update", USDPlayer_MeshData_Update, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.MeshID", USDPlayer_MeshID, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.TextureData", USDPlayer_TextureData, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.TextureID", USDPlayer_TextureID, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDPlayer.TextureLevelInfo", USDPlayer_TextureLevelInfo, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDRenderError", USDRenderError, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDStageComponent", USDStageComponent, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_USDKit_RealityKit.USDStageComponent.RenderResult", USDStageComponent_RenderResult, { module: "_USDKit_RealityKit_6be9a005889899ab", properties: {} });

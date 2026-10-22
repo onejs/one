@@ -6,6 +6,13 @@ installed SDK's public symbol graphs, compiles each framework's Swift bindings,
 creates its TypeScript facade and emits declarations. Twitter is excluded because
 its deprecated module explicitly rejects Swift imports.
 
+App framework tables compile together in one `OneSDKBindings` module. Multiple
+frameworks can extend the same generic native type, so opening protocols and
+their dispatch methods carry the framework name. Each table calls its own
+witnesses while keeping the native receiver's generic parameters and writing
+mutated values back to the original handle. These internal names do not change
+callable IDs or which APIs a framework exposes.
+
 To emit declarations from an existing directory of generated `.ts` facades, run
 `bun run generate:ios-types --facades /path/to/facades`. This mode does not load
 Xcode or the SDK. The TypeScript compiler removes implementations and registrations;

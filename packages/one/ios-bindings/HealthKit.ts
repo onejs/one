@@ -91,7 +91,7 @@ export class BufferedAsyncByteIterator extends SDKHandle {
    * mutating func next() async throws -> UInt8?
    * @availability iOS 16.0+
    */
-  next(): Promise<(number) | null> { return callSDKAsync<(number) | null>("HealthKit_5d69670f0307b385", 1684066755675652, this, []); }
+  next(): Promise<(number) | null> { return callSDKAsync<(number) | null>("HealthKit_6be9a005889899ab", 1684066755675652, this, []); }
   declare readonly $type: { "s:9HealthKit25BufferedAsyncByteIteratorV": true };
 }
 
@@ -112,7 +112,7 @@ export const HKActivityMoveMode = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (HKActivityMoveMode) | null { return callSDK<(HKActivityMoveMode) | null>("HealthKit_5d69670f0307b385", 3689381016371749, undefined, [rawValue]); }
+  init(rawValue: number): (HKActivityMoveMode) | null { return callSDK<(HKActivityMoveMode) | null>("HealthKit_6be9a005889899ab", 3689381016371749, undefined, [rawValue]); }
 };
 
 /**
@@ -121,12 +121,12 @@ export const HKActivityMoveMode = {
  */
 export class HKActivityMoveModeObject extends SDKHandle {
   /** init() */
-  static init(): HKActivityMoveModeObject { return callSDK<HKActivityMoveModeObject>("HealthKit_5d69670f0307b385", 1078066499163553, undefined, []); }
+  static init(): HKActivityMoveModeObject { return callSDK<HKActivityMoveModeObject>("HealthKit_6be9a005889899ab", 1078066499163553, undefined, []); }
   /**
    * var activityMoveMode: HKActivityMoveMode { get }
    * @availability iOS 14.0+
    */
-  get activityMoveMode(): HKActivityMoveMode { return callSDK<HKActivityMoveMode>("HealthKit_5d69670f0307b385", 3185928496563519, this, []); }
+  get activityMoveMode(): HKActivityMoveMode { return callSDK<HKActivityMoveMode>("HealthKit_6be9a005889899ab", 3185928496563519, this, []); }
   declare readonly $type: { "c:objc(cs)HKActivityMoveModeObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activityMoveMode": true };
 }
@@ -140,83 +140,83 @@ export class HKActivitySummary extends SDKHandle {
    * func dateComponents(for calendar: Calendar) -> DateComponents
    * @availability iOS 9.3+
    */
-  dateComponents(calendar: _Foundation_Calendar): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HealthKit_5d69670f0307b385", 3060218198694333, this, [calendar]); }
+  dateComponents(calendar: _Foundation_Calendar): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HealthKit_6be9a005889899ab", 3060218198694333, this, [calendar]); }
   /** init() */
-  static init(): HKActivitySummary { return callSDK<HKActivitySummary>("HealthKit_5d69670f0307b385", 1593273095038344, undefined, []); }
+  static init(): HKActivitySummary { return callSDK<HKActivitySummary>("HealthKit_6be9a005889899ab", 1593273095038344, undefined, []); }
   /**
    * var activeEnergyBurned: HKQuantity { get set }
    * @availability iOS 9.3+
    */
-  get activeEnergyBurned(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 293237665625478, this, []); }
-  set activeEnergyBurned(value: HKQuantity) { callSDK<void>("HealthKit_5d69670f0307b385", 4402822223896902, this, [value]); }
+  get activeEnergyBurned(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 293237665625478, this, []); }
+  set activeEnergyBurned(value: HKQuantity) { callSDK<void>("HealthKit_6be9a005889899ab", 4402822223896902, this, [value]); }
   /**
    * var activeEnergyBurnedGoal: HKQuantity { get set }
    * @availability iOS 9.3+
    */
-  get activeEnergyBurnedGoal(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 3650578404040620, this, []); }
-  set activeEnergyBurnedGoal(value: HKQuantity) { callSDK<void>("HealthKit_5d69670f0307b385", 3970013827516061, this, [value]); }
+  get activeEnergyBurnedGoal(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 3650578404040620, this, []); }
+  set activeEnergyBurnedGoal(value: HKQuantity) { callSDK<void>("HealthKit_6be9a005889899ab", 3970013827516061, this, [value]); }
   /**
    * var activityMoveMode: HKActivityMoveMode { get set }
    * @availability iOS 14.0+
    */
-  get activityMoveMode(): HKActivityMoveMode { return callSDK<HKActivityMoveMode>("HealthKit_5d69670f0307b385", 2713402507301967, this, []); }
-  set activityMoveMode(value: HKActivityMoveMode) { callSDK<void>("HealthKit_5d69670f0307b385", 673558574873360, this, [value]); }
+  get activityMoveMode(): HKActivityMoveMode { return callSDK<HKActivityMoveMode>("HealthKit_6be9a005889899ab", 2713402507301967, this, []); }
+  set activityMoveMode(value: HKActivityMoveMode) { callSDK<void>("HealthKit_6be9a005889899ab", 673558574873360, this, [value]); }
   /**
    * var appleExerciseTime: HKQuantity { get set }
    * @availability iOS 9.3+
    */
-  get appleExerciseTime(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 1440724282143384, this, []); }
-  set appleExerciseTime(value: HKQuantity) { callSDK<void>("HealthKit_5d69670f0307b385", 69742935004314, this, [value]); }
+  get appleExerciseTime(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 1440724282143384, this, []); }
+  set appleExerciseTime(value: HKQuantity) { callSDK<void>("HealthKit_6be9a005889899ab", 69742935004314, this, [value]); }
   /**
    * var appleExerciseTimeGoal: HKQuantity { get set }
    * @availability iOS 9.3+
    * @deprecated iOS 100000.0
    */
-  get appleExerciseTimeGoal(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 1419122986692193, this, []); }
-  set appleExerciseTimeGoal(value: HKQuantity) { callSDK<void>("HealthKit_5d69670f0307b385", 530213190516700, this, [value]); }
+  get appleExerciseTimeGoal(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 1419122986692193, this, []); }
+  set appleExerciseTimeGoal(value: HKQuantity) { callSDK<void>("HealthKit_6be9a005889899ab", 530213190516700, this, [value]); }
   /**
    * var appleMoveTime: HKQuantity { get set }
    * @availability iOS 14.0+
    */
-  get appleMoveTime(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 2327289301528608, this, []); }
-  set appleMoveTime(value: HKQuantity) { callSDK<void>("HealthKit_5d69670f0307b385", 2185862532137502, this, [value]); }
+  get appleMoveTime(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 2327289301528608, this, []); }
+  set appleMoveTime(value: HKQuantity) { callSDK<void>("HealthKit_6be9a005889899ab", 2185862532137502, this, [value]); }
   /**
    * var appleMoveTimeGoal: HKQuantity { get set }
    * @availability iOS 14.0+
    */
-  get appleMoveTimeGoal(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 2458629106466871, this, []); }
-  set appleMoveTimeGoal(value: HKQuantity) { callSDK<void>("HealthKit_5d69670f0307b385", 22993305934380, this, [value]); }
+  get appleMoveTimeGoal(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 2458629106466871, this, []); }
+  set appleMoveTimeGoal(value: HKQuantity) { callSDK<void>("HealthKit_6be9a005889899ab", 22993305934380, this, [value]); }
   /**
    * var appleStandHours: HKQuantity { get set }
    * @availability iOS 9.3+
    */
-  get appleStandHours(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 3172999438774144, this, []); }
-  set appleStandHours(value: HKQuantity) { callSDK<void>("HealthKit_5d69670f0307b385", 3930960059540056, this, [value]); }
+  get appleStandHours(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 3172999438774144, this, []); }
+  set appleStandHours(value: HKQuantity) { callSDK<void>("HealthKit_6be9a005889899ab", 3930960059540056, this, [value]); }
   /**
    * var appleStandHoursGoal: HKQuantity { get set }
    * @availability iOS 9.3+
    * @deprecated iOS 100000.0
    */
-  get appleStandHoursGoal(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 119229636962022, this, []); }
-  set appleStandHoursGoal(value: HKQuantity) { callSDK<void>("HealthKit_5d69670f0307b385", 4185270835033080, this, [value]); }
+  get appleStandHoursGoal(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 119229636962022, this, []); }
+  set appleStandHoursGoal(value: HKQuantity) { callSDK<void>("HealthKit_6be9a005889899ab", 4185270835033080, this, [value]); }
   /**
    * var exerciseTimeGoal: HKQuantity? { get set }
    * @availability iOS 16.0+
    */
-  get exerciseTimeGoal(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 592744444008240, this, []); }
-  set exerciseTimeGoal(value: (HKQuantity) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 2954068795976777, this, [value]); }
+  get exerciseTimeGoal(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 592744444008240, this, []); }
+  set exerciseTimeGoal(value: (HKQuantity) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 2954068795976777, this, [value]); }
   /**
    * var isPaused: Bool { get set }
    * @availability iOS 18.0+
    */
-  get isPaused(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 3355695429450891, this, []); }
-  set isPaused(value: boolean) { callSDK<void>("HealthKit_5d69670f0307b385", 4178836094845983, this, [value]); }
+  get isPaused(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 3355695429450891, this, []); }
+  set isPaused(value: boolean) { callSDK<void>("HealthKit_6be9a005889899ab", 4178836094845983, this, [value]); }
   /**
    * var standHoursGoal: HKQuantity? { get set }
    * @availability iOS 16.0+
    */
-  get standHoursGoal(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 1351644220076700, this, []); }
-  set standHoursGoal(value: (HKQuantity) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 2110787432690714, this, [value]); }
+  get standHoursGoal(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 1351644220076700, this, []); }
+  set standHoursGoal(value: (HKQuantity) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 2110787432690714, this, [value]); }
   declare readonly $type: { "c:objc(cs)HKActivitySummary": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activeEnergyBurned": true; "activeEnergyBurnedGoal": true; "activityMoveMode": true; "appleExerciseTime": true; "appleExerciseTimeGoal": true; "appleMoveTime": true; "appleMoveTimeGoal": true; "appleStandHours": true; "appleStandHoursGoal": true; "exerciseTimeGoal": true; "isPaused": true; "standHoursGoal": true };
 }
@@ -230,247 +230,247 @@ export class HKQuery extends SDKHandle {
    * class func predicate(forActivitySummariesBetweenStart startDateComponents: DateComponents, end endDateComponents: DateComponents) -> NSPredicate
    * @availability iOS 9.3+
    */
-  static predicateForActivitySummariesBetweenStartEnd(startDateComponents: _Foundation_DateComponents, endDateComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 1777418665829182, undefined, [startDateComponents, endDateComponents]); }
+  static predicateForActivitySummariesBetweenStartEnd(startDateComponents: _Foundation_DateComponents, endDateComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 1777418665829182, undefined, [startDateComponents, endDateComponents]); }
   /**
    * class func predicateForActivitySummary(with dateComponents: DateComponents) -> NSPredicate
    * @availability iOS 9.3+
    */
-  static predicateForActivitySummary(dateComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3557757533997863, undefined, [dateComponents]); }
+  static predicateForActivitySummary(dateComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3557757533997863, undefined, [dateComponents]); }
   /**
    * class func predicateForCategorySamples(with operatorType: NSComparisonPredicate.Operator, value: Int) -> NSPredicate
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  static predicateForCategorySamples(operatorType: _Foundation_NSComparisonPredicate_Operator, value: number): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 862556636194931, undefined, [operatorType, value]); }
+  static predicateForCategorySamples(operatorType: _Foundation_NSComparisonPredicate_Operator, value: number): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 862556636194931, undefined, [operatorType, value]); }
   /**
    * class func predicateForClinicalRecords(from source: HKSource, fhirResourceType resourceType: HKFHIRResourceType, identifier: String) -> NSPredicate
    * @availability iOS 12.0+
    */
-  static predicateForClinicalRecordsFromFhirResourceTypeIdentifier(source: HKSource, resourceType: HKFHIRResourceType, identifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 362085502410575, undefined, [source, resourceType, identifier]); }
+  static predicateForClinicalRecordsFromFhirResourceTypeIdentifier(source: HKSource, resourceType: HKFHIRResourceType, identifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 362085502410575, undefined, [source, resourceType, identifier]); }
   /**
    * class func predicateForClinicalRecords(withFHIRResourceType resourceType: HKFHIRResourceType) -> NSPredicate
    * @availability iOS 12.0+
    */
-  static predicateForClinicalRecordsWithFHIRResourceType(resourceType: HKFHIRResourceType): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 821269336962928, undefined, [resourceType]); }
+  static predicateForClinicalRecordsWithFHIRResourceType(resourceType: HKFHIRResourceType): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 821269336962928, undefined, [resourceType]); }
   /**
    * class func predicateForElectrocardiograms(classification: HKElectrocardiogram.Classification) -> NSPredicate
    * @availability iOS 14.0+
    */
-  static predicateForElectrocardiogramsClassification(classification: HKElectrocardiogram_Classification): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3439220416037007, undefined, [classification]); }
+  static predicateForElectrocardiogramsClassification(classification: HKElectrocardiogram_Classification): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3439220416037007, undefined, [classification]); }
   /**
    * class func predicateForElectrocardiograms(symptomsStatus: HKElectrocardiogram.SymptomsStatus) -> NSPredicate
    * @availability iOS 14.0+
    */
-  static predicateForElectrocardiogramsSymptomsStatus(symptomsStatus: HKElectrocardiogram_SymptomsStatus): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3976170657040453, undefined, [symptomsStatus]); }
+  static predicateForElectrocardiogramsSymptomsStatus(symptomsStatus: HKElectrocardiogram_SymptomsStatus): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3976170657040453, undefined, [symptomsStatus]); }
   /**
    * class func predicateForMedicationDoseEvent(medicationConceptIdentifier: HKHealthConceptIdentifier) -> NSPredicate
    * @availability iOS 26.0+
    */
-  static predicateForMedicationDoseEventMedicationConceptIdentifier(medicationConceptIdentifier: HKHealthConceptIdentifier): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 1651408275717484, undefined, [medicationConceptIdentifier]); }
+  static predicateForMedicationDoseEventMedicationConceptIdentifier(medicationConceptIdentifier: HKHealthConceptIdentifier): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 1651408275717484, undefined, [medicationConceptIdentifier]); }
   /**
    * class func predicateForMedicationDoseEvent(medicationConceptIdentifiers: Set<HKHealthConceptIdentifier>) -> NSPredicate
    * @availability iOS 26.0+
    */
-  static predicateForMedicationDoseEventMedicationConceptIdentifiers(medicationConceptIdentifiers: Array<HKHealthConceptIdentifier>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 1287291777270419, undefined, [medicationConceptIdentifiers]); }
+  static predicateForMedicationDoseEventMedicationConceptIdentifiers(medicationConceptIdentifiers: Array<HKHealthConceptIdentifier>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 1287291777270419, undefined, [medicationConceptIdentifiers]); }
   /**
    * class func predicateForMedicationDoseEvent(scheduledDate: Date) -> NSPredicate
    * @availability iOS 26.0+
    */
-  static predicateForMedicationDoseEventScheduledDate(scheduledDate: globalThis.Date): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3853440541389763, undefined, [scheduledDate]); }
+  static predicateForMedicationDoseEventScheduledDate(scheduledDate: globalThis.Date): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3853440541389763, undefined, [scheduledDate]); }
   /**
    * class func predicateForMedicationDoseEvent(scheduledDates: Set<Date>) -> NSPredicate
    * @availability iOS 26.0+
    */
-  static predicateForMedicationDoseEventScheduledDates(scheduledDates: Array<globalThis.Date>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 1422739267951657, undefined, [scheduledDates]); }
+  static predicateForMedicationDoseEventScheduledDates(scheduledDates: Array<globalThis.Date>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 1422739267951657, undefined, [scheduledDates]); }
   /**
    * class func predicateForMedicationDoseEvent(scheduledStart startDate: Date?, end endDate: Date?) -> NSPredicate
    * @availability iOS 26.0+
    */
-  static predicateForMedicationDoseEventScheduledStartEnd(startDate?: $SDK1, endDate?: $SDK1): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 1796521807432295, undefined, [startDate, endDate]); }
+  static predicateForMedicationDoseEventScheduledStartEnd(startDate?: $SDK1, endDate?: $SDK1): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 1796521807432295, undefined, [startDate, endDate]); }
   /**
    * class func predicateForMedicationDoseEvent(status: HKMedicationDoseEvent.LogStatus) -> NSPredicate
    * @availability iOS 26.0+
    */
-  static predicateForMedicationDoseEventStatus(status: HKMedicationDoseEvent_LogStatus): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 580159746042946, undefined, [status]); }
+  static predicateForMedicationDoseEventStatus(status: HKMedicationDoseEvent_LogStatus): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 580159746042946, undefined, [status]); }
   /**
    * class func predicateForMedicationDoseEvent(statuses: Set<NSNumber>) -> NSPredicate
    * @availability iOS 26.0+
    */
-  static predicateForMedicationDoseEventStatuses(statuses: Array<_Foundation_NSNumber>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 880923468901691, undefined, [statuses]); }
+  static predicateForMedicationDoseEventStatuses(statuses: Array<_Foundation_NSNumber>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 880923468901691, undefined, [statuses]); }
   /** class func predicateForObject(with UUID: UUID) -> NSPredicate */
-  static predicateForObject(UUID: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3176100257139347, undefined, [UUID]); }
+  static predicateForObject(UUID: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3176100257139347, undefined, [UUID]); }
   /**
    * class func predicateForObjectsAssociated(electrocardiogram: HKElectrocardiogram) -> NSPredicate
    * @availability iOS 14.0+
    */
-  static predicateForObjectsAssociated(electrocardiogram: HKElectrocardiogram): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 2421552368462355, undefined, [electrocardiogram]); }
+  static predicateForObjectsAssociated(electrocardiogram: HKElectrocardiogram): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 2421552368462355, undefined, [electrocardiogram]); }
   /**
    * class func predicateForObjects(from devices: Set<HKDevice>) -> NSPredicate
    * @availability iOS 9.0+
    */
-  static predicateForObjectsFrom(devices: Array<HKDevice>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 2302686681828768, undefined, [devices]); }
+  static predicateForObjectsFrom(devices: Array<HKDevice>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 2302686681828768, undefined, [devices]); }
   /** class func predicateForObjects(from source: HKSource) -> NSPredicate */
-  static predicateForObjectsFrom84340(source: HKSource): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3452161234091810, undefined, [source]); }
+  static predicateForObjectsFrom84340(source: HKSource): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3452161234091810, undefined, [source]); }
   /**
    * class func predicateForObjects(from sourceRevisions: Set<HKSourceRevision>) -> NSPredicate
    * @availability iOS 9.0+
    */
-  static predicateForObjectsFrom12058(sourceRevisions: Array<HKSourceRevision>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3847221838454537, undefined, [sourceRevisions]); }
+  static predicateForObjectsFrom12058(sourceRevisions: Array<HKSourceRevision>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3847221838454537, undefined, [sourceRevisions]); }
   /** class func predicateForObjects(from sources: Set<HKSource>) -> NSPredicate */
-  static predicateForObjectsFrom41455(sources: Array<HKSource>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 540522453213386, undefined, [sources]); }
+  static predicateForObjectsFrom41455(sources: Array<HKSource>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 540522453213386, undefined, [sources]); }
   /** class func predicateForObjects(from workout: HKWorkout) -> NSPredicate */
-  static predicateForObjectsFrom74200(workout: HKWorkout): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3784758025754448, undefined, [workout]); }
+  static predicateForObjectsFrom74200(workout: HKWorkout): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3784758025754448, undefined, [workout]); }
   /**
    * class func predicateForObjects(withDeviceProperty key: String, allowedValues: Set<String>) -> NSPredicate
    * @availability iOS 9.0+
    */
-  static predicateForObjectsWithDevicePropertyAllowedValues(key: string, allowedValues: Array<string>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 1483105670862924, undefined, [key, allowedValues]); }
+  static predicateForObjectsWithDevicePropertyAllowedValues(key: string, allowedValues: Array<string>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 1483105670862924, undefined, [key, allowedValues]); }
   /** class func predicateForObjects(withMetadataKey key: String) -> NSPredicate */
-  static predicateForObjectsWithMetadataKey(key: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3954102918588408, undefined, [key]); }
+  static predicateForObjectsWithMetadataKey(key: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3954102918588408, undefined, [key]); }
   /** class func predicateForObjects(withMetadataKey key: String, allowedValues: [Any]) -> NSPredicate */
-  static predicateForObjectsWithMetadataKeyAllowedValues(key: string, allowedValues: Array<unknown>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3695336321064404, undefined, [key, allowedValues]); }
+  static predicateForObjectsWithMetadataKeyAllowedValues(key: string, allowedValues: Array<unknown>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3695336321064404, undefined, [key, allowedValues]); }
   /** class func predicateForObjects(withMetadataKey key: String, operatorType: NSComparisonPredicate.Operator, value: Any) -> NSPredicate */
-  static predicateForObjectsWithMetadataKeyOperatorTypeValue(key: string, operatorType: _Foundation_NSComparisonPredicate_Operator, value: unknown): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 595831445890325, undefined, [key, operatorType, value]); }
+  static predicateForObjectsWithMetadataKeyOperatorTypeValue(key: string, operatorType: _Foundation_NSComparisonPredicate_Operator, value: unknown): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 595831445890325, undefined, [key, operatorType, value]); }
   /** class func predicateForObjectsWithNoCorrelation() -> NSPredicate */
-  static predicateForObjectsWithNoCorrelation(): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 2328505242131922, undefined, []); }
+  static predicateForObjectsWithNoCorrelation(): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 2328505242131922, undefined, []); }
   /** class func predicateForObjects(with UUIDs: Set<UUID>) -> NSPredicate */
-  static predicateForObjectsWith(UUIDs: Array<string>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 784766258914012, undefined, [UUIDs]); }
+  static predicateForObjectsWith(UUIDs: Array<string>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 784766258914012, undefined, [UUIDs]); }
   /** class func predicateForQuantitySamples(with operatorType: NSComparisonPredicate.Operator, quantity: HKQuantity) -> NSPredicate */
-  static predicateForQuantitySamples(operatorType: _Foundation_NSComparisonPredicate_Operator, quantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 4428741442352767, undefined, [operatorType, quantity]); }
+  static predicateForQuantitySamples(operatorType: _Foundation_NSComparisonPredicate_Operator, quantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 4428741442352767, undefined, [operatorType, quantity]); }
   /** class func predicateForSamples(withStart startDate: Date?, end endDate: Date?, options: HKQueryOptions = []) -> NSPredicate */
-  static predicateForSamples(startDate?: $SDK1, endDate?: $SDK1, options?: HKQueryOptions): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3132121816787265, undefined, [startDate, endDate, options]); }
+  static predicateForSamples(startDate?: $SDK1, endDate?: $SDK1, options?: HKQueryOptions): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3132121816787265, undefined, [startDate, endDate, options]); }
   /** class func predicateForStatesOfMind(with association: HKStateOfMind.Association) -> NSPredicate */
-  static predicateForStatesOfMindWith(association: HKStateOfMind_Association): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 2409192031938582, undefined, [association]); }
+  static predicateForStatesOfMindWith(association: HKStateOfMind_Association): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 2409192031938582, undefined, [association]); }
   /** class func predicateForStatesOfMind(with kind: HKStateOfMind.Kind) -> NSPredicate */
-  static predicateForStatesOfMindWith92358(kind: HKStateOfMind_Kind): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3346973657147251, undefined, [kind]); }
+  static predicateForStatesOfMindWith92358(kind: HKStateOfMind_Kind): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3346973657147251, undefined, [kind]); }
   /** class func predicateForStatesOfMind(with label: HKStateOfMind.Label) -> NSPredicate */
-  static predicateForStatesOfMindWith55314(label: HKStateOfMind_Label): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 4432556912037273, undefined, [label]); }
+  static predicateForStatesOfMindWith55314(label: HKStateOfMind_Label): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 4432556912037273, undefined, [label]); }
   /** class func predicateForStatesOfMind(withValence valence: Double, operatorType: NSComparisonPredicate.Operator) -> NSPredicate */
-  static predicateForStatesOfMindWithValenceOperatorType(valence: number, operatorType: _Foundation_NSComparisonPredicate_Operator): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 2423273354652863, undefined, [valence, operatorType]); }
+  static predicateForStatesOfMindWithValenceOperatorType(valence: number, operatorType: _Foundation_NSComparisonPredicate_Operator): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 2423273354652863, undefined, [valence, operatorType]); }
   /**
    * class func predicateForUserAnnotatedMedications(hasSchedule: Bool) -> NSPredicate
    * @availability iOS 26.0+
    */
-  static predicateForUserAnnotatedMedicationsHasSchedule(hasSchedule: boolean): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3417068737967935, undefined, [hasSchedule]); }
+  static predicateForUserAnnotatedMedicationsHasSchedule(hasSchedule: boolean): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3417068737967935, undefined, [hasSchedule]); }
   /**
    * class func predicateForUserAnnotatedMedications(isArchived: Bool) -> NSPredicate
    * @availability iOS 26.0+
    */
-  static predicateForUserAnnotatedMedicationsIsArchived(isArchived: boolean): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 2483319141300631, undefined, [isArchived]); }
+  static predicateForUserAnnotatedMedicationsIsArchived(isArchived: boolean): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 2483319141300631, undefined, [isArchived]); }
   /**
    * class func predicateForVerifiableClinicalRecords(withRelevantDateWithin dateInterval: DateInterval) -> NSPredicate
    * @availability iOS 15.0+
    */
-  static predicateForVerifiableClinicalRecords(dateInterval: _Foundation_DateInterval): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 63968332620993, undefined, [dateInterval]); }
+  static predicateForVerifiableClinicalRecords(dateInterval: _Foundation_DateInterval): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 63968332620993, undefined, [dateInterval]); }
   /**
    * class func predicateForWorkoutActivities(operatorType: NSComparisonPredicate.Operator, duration: TimeInterval) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutActivitiesOperatorTypeDuration(operatorType: _Foundation_NSComparisonPredicate_Operator, duration: number): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 4176771430615389, undefined, [operatorType, duration]); }
+  static predicateForWorkoutActivitiesOperatorTypeDuration(operatorType: _Foundation_NSComparisonPredicate_Operator, duration: number): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 4176771430615389, undefined, [operatorType, duration]); }
   /**
    * class func predicateForWorkoutActivities(operatorType: NSComparisonPredicate.Operator, quantityType: HKQuantityType, averageQuantity: HKQuantity) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutActivitiesOperatorTypeQuantityTypeAverageQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, averageQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 1317366187412552, undefined, [operatorType, quantityType, averageQuantity]); }
+  static predicateForWorkoutActivitiesOperatorTypeQuantityTypeAverageQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, averageQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 1317366187412552, undefined, [operatorType, quantityType, averageQuantity]); }
   /**
    * class func predicateForWorkoutActivities(operatorType: NSComparisonPredicate.Operator, quantityType: HKQuantityType, maximumQuantity: HKQuantity) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutActivitiesOperatorTypeQuantityTypeMaximumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, maximumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 2796921269578782, undefined, [operatorType, quantityType, maximumQuantity]); }
+  static predicateForWorkoutActivitiesOperatorTypeQuantityTypeMaximumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, maximumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 2796921269578782, undefined, [operatorType, quantityType, maximumQuantity]); }
   /**
    * class func predicateForWorkoutActivities(operatorType: NSComparisonPredicate.Operator, quantityType: HKQuantityType, minimumQuantity: HKQuantity) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutActivitiesOperatorTypeQuantityTypeMinimumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, minimumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 258188414243006, undefined, [operatorType, quantityType, minimumQuantity]); }
+  static predicateForWorkoutActivitiesOperatorTypeQuantityTypeMinimumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, minimumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 258188414243006, undefined, [operatorType, quantityType, minimumQuantity]); }
   /**
    * class func predicateForWorkoutActivities(operatorType: NSComparisonPredicate.Operator, quantityType: HKQuantityType, sumQuantity: HKQuantity) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutActivitiesOperatorTypeQuantityTypeSumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, sumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 2627927754973562, undefined, [operatorType, quantityType, sumQuantity]); }
+  static predicateForWorkoutActivitiesOperatorTypeQuantityTypeSumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, sumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 2627927754973562, undefined, [operatorType, quantityType, sumQuantity]); }
   /**
    * class func predicateForWorkoutActivities(start startDate: Date?, end endDate: Date?, options: HKQueryOptions = []) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutActivitiesStartEndOptions(startDate?: $SDK1, endDate?: $SDK1, options?: HKQueryOptions): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3609884553191218, undefined, [startDate, endDate, options]); }
+  static predicateForWorkoutActivitiesStartEndOptions(startDate?: $SDK1, endDate?: $SDK1, options?: HKQueryOptions): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3609884553191218, undefined, [startDate, endDate, options]); }
   /**
    * class func predicateForWorkoutActivities(workoutActivityType: HKWorkoutActivityType) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutActivitiesWorkoutActivityType(workoutActivityType: HKWorkoutActivityType): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3911188215187383, undefined, [workoutActivityType]); }
+  static predicateForWorkoutActivitiesWorkoutActivityType(workoutActivityType: HKWorkoutActivityType): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3911188215187383, undefined, [workoutActivityType]); }
   /**
    * class func predicateForWorkoutEffortSamplesRelated(workout: HKWorkout, activity: HKWorkoutActivity?) -> NSPredicate
    * @availability iOS 18.0+
    */
-  static predicateForWorkoutEffortSamplesRelated(workout: HKWorkout, activity?: $SDK3): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3821240417226543, undefined, [workout, activity]); }
+  static predicateForWorkoutEffortSamplesRelated(workout: HKWorkout, activity?: $SDK3): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3821240417226543, undefined, [workout, activity]); }
   /**
    * class func predicateForWorkouts(activityPredicate: NSPredicate) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutsActivityPredicate(activityPredicate: _Foundation_NSPredicate): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 1041234060277018, undefined, [activityPredicate]); }
+  static predicateForWorkoutsActivityPredicate(activityPredicate: _Foundation_NSPredicate): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 1041234060277018, undefined, [activityPredicate]); }
   /** class func predicateForWorkouts(with operatorType: NSComparisonPredicate.Operator, duration: TimeInterval) -> NSPredicate */
-  static predicateForWorkoutsWithDuration(operatorType: _Foundation_NSComparisonPredicate_Operator, duration: number): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 2795786541494028, undefined, [operatorType, duration]); }
+  static predicateForWorkoutsWithDuration(operatorType: _Foundation_NSComparisonPredicate_Operator, duration: number): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 2795786541494028, undefined, [operatorType, duration]); }
   /**
    * class func predicateForWorkouts(operatorType: NSComparisonPredicate.Operator, quantityType: HKQuantityType, averageQuantity: HKQuantity) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutsOperatorTypeQuantityTypeAverageQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, averageQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 642323734125763, undefined, [operatorType, quantityType, averageQuantity]); }
+  static predicateForWorkoutsOperatorTypeQuantityTypeAverageQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, averageQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 642323734125763, undefined, [operatorType, quantityType, averageQuantity]); }
   /**
    * class func predicateForWorkouts(operatorType: NSComparisonPredicate.Operator, quantityType: HKQuantityType, maximumQuantity: HKQuantity) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutsOperatorTypeQuantityTypeMaximumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, maximumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3108078676360355, undefined, [operatorType, quantityType, maximumQuantity]); }
+  static predicateForWorkoutsOperatorTypeQuantityTypeMaximumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, maximumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3108078676360355, undefined, [operatorType, quantityType, maximumQuantity]); }
   /**
    * class func predicateForWorkouts(operatorType: NSComparisonPredicate.Operator, quantityType: HKQuantityType, minimumQuantity: HKQuantity) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutsOperatorTypeQuantityTypeMinimumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, minimumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 365993575146237, undefined, [operatorType, quantityType, minimumQuantity]); }
+  static predicateForWorkoutsOperatorTypeQuantityTypeMinimumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, minimumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 365993575146237, undefined, [operatorType, quantityType, minimumQuantity]); }
   /**
    * class func predicateForWorkouts(operatorType: NSComparisonPredicate.Operator, quantityType: HKQuantityType, sumQuantity: HKQuantity) -> NSPredicate
    * @availability iOS 16.0+
    */
-  static predicateForWorkoutsOperatorTypeQuantityTypeSumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, sumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3827222700287668, undefined, [operatorType, quantityType, sumQuantity]); }
+  static predicateForWorkoutsOperatorTypeQuantityTypeSumQuantity(operatorType: _Foundation_NSComparisonPredicate_Operator, quantityType: HKQuantityType, sumQuantity: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3827222700287668, undefined, [operatorType, quantityType, sumQuantity]); }
   /**
    * class func predicateForWorkouts(with operatorType: NSComparisonPredicate.Operator, totalDistance: HKQuantity) -> NSPredicate
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  static predicateForWorkoutsWithTotalDistance(operatorType: _Foundation_NSComparisonPredicate_Operator, totalDistance: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 944311208234684, undefined, [operatorType, totalDistance]); }
+  static predicateForWorkoutsWithTotalDistance(operatorType: _Foundation_NSComparisonPredicate_Operator, totalDistance: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 944311208234684, undefined, [operatorType, totalDistance]); }
   /**
    * class func predicateForWorkouts(with operatorType: NSComparisonPredicate.Operator, totalEnergyBurned: HKQuantity) -> NSPredicate
    * @availability iOS 8.0+
    * @deprecated iOS 18.0
    */
-  static predicateForWorkoutsWithTotalEnergyBurned(operatorType: _Foundation_NSComparisonPredicate_Operator, totalEnergyBurned: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 1456371615478552, undefined, [operatorType, totalEnergyBurned]); }
+  static predicateForWorkoutsWithTotalEnergyBurned(operatorType: _Foundation_NSComparisonPredicate_Operator, totalEnergyBurned: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 1456371615478552, undefined, [operatorType, totalEnergyBurned]); }
   /**
    * class func predicateForWorkouts(with operatorType: NSComparisonPredicate.Operator, totalFlightsClimbed: HKQuantity) -> NSPredicate
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  static predicateForWorkoutsWithTotalFlightsClimbed(operatorType: _Foundation_NSComparisonPredicate_Operator, totalFlightsClimbed: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 3414212989041644, undefined, [operatorType, totalFlightsClimbed]); }
+  static predicateForWorkoutsWithTotalFlightsClimbed(operatorType: _Foundation_NSComparisonPredicate_Operator, totalFlightsClimbed: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 3414212989041644, undefined, [operatorType, totalFlightsClimbed]); }
   /**
    * class func predicateForWorkouts(with operatorType: NSComparisonPredicate.Operator, totalSwimmingStrokeCount: HKQuantity) -> NSPredicate
    * @availability iOS 10.0+
    * @deprecated iOS 18.0
    */
-  static predicateForWorkoutsWithTotalSwimmingStrokeCount(operatorType: _Foundation_NSComparisonPredicate_Operator, totalSwimmingStrokeCount: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 1609431529482759, undefined, [operatorType, totalSwimmingStrokeCount]); }
+  static predicateForWorkoutsWithTotalSwimmingStrokeCount(operatorType: _Foundation_NSComparisonPredicate_Operator, totalSwimmingStrokeCount: HKQuantity): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 1609431529482759, undefined, [operatorType, totalSwimmingStrokeCount]); }
   /** class func predicateForWorkouts(with workoutActivityType: HKWorkoutActivityType) -> NSPredicate */
-  static predicateForWorkoutsWith(workoutActivityType: HKWorkoutActivityType): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_5d69670f0307b385", 2757281402746098, undefined, [workoutActivityType]); }
+  static predicateForWorkoutsWith(workoutActivityType: HKWorkoutActivityType): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HealthKit_6be9a005889899ab", 2757281402746098, undefined, [workoutActivityType]); }
   /**
    * var objectType: HKObjectType? { get }
    * @availability iOS 9.3+
    */
-  get objectType(): (HKObjectType) | null { return callSDK<(HKObjectType) | null>("HealthKit_5d69670f0307b385", 1844743802310491, this, []); }
+  get objectType(): (HKObjectType) | null { return callSDK<(HKObjectType) | null>("HealthKit_6be9a005889899ab", 1844743802310491, this, []); }
   /**
    * var predicate: NSPredicate? { get }
    * @availability iOS 8.0+
    */
-  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_5d69670f0307b385", 4063575293186351, this, []); }
+  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_6be9a005889899ab", 4063575293186351, this, []); }
   /**
    * var sampleType: HKSampleType? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 9.3
    */
-  get sampleType(): (HKSampleType) | null { return callSDK<(HKSampleType) | null>("HealthKit_5d69670f0307b385", 890532763077424, this, []); }
+  get sampleType(): (HKSampleType) | null { return callSDK<(HKSampleType) | null>("HealthKit_6be9a005889899ab", 890532763077424, this, []); }
   declare readonly $type: { "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -478,10 +478,10 @@ export class HKQuery extends SDKHandle {
 /** class HKActivitySummaryQuery */
 export class HKActivitySummaryQuery extends HKQuery {
   /** init(predicate: NSPredicate?, resultsHandler handler: @escaping @Sendable (HKActivitySummaryQuery, [HKActivitySummary]?, (any Error)?) -> Void) */
-  static init(predicate: $SDK4, handler: ((arg0: HKActivitySummaryQuery, arg1: (Array<HKActivitySummary>) | null, arg2: (NativeError) | null) => void)): HKActivitySummaryQuery { return callSDK<HKActivitySummaryQuery>("HealthKit_5d69670f0307b385", 3630964544586816, undefined, [predicate, handler], [null,{"callback":{"out":[]}}]); }
+  static init(predicate: $SDK4, handler: ((arg0: HKActivitySummaryQuery, arg1: (Array<HKActivitySummary>) | null, arg2: (NativeError) | null) => void)): HKActivitySummaryQuery { return callSDK<HKActivitySummaryQuery>("HealthKit_6be9a005889899ab", 3630964544586816, undefined, [predicate, handler], [null,{"callback":{"out":[]}}]); }
   /** var updateHandler: (@Sendable (HKActivitySummaryQuery, [HKActivitySummary]?, (any Error)?) -> Void)? { get set } */
-  get updateHandler(): (((arg0: HKActivitySummaryQuery, arg1: (Array<HKActivitySummary>) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: HKActivitySummaryQuery, arg1: (Array<HKActivitySummary>) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("HealthKit_5d69670f0307b385", 1875656586338859, this, []); }
-  set updateHandler(value: (((arg0: HKActivitySummaryQuery, arg1: (Array<HKActivitySummary>) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 1382160464505768, this, [value], [{"callback":{"out":[]}}]); }
+  get updateHandler(): (((arg0: HKActivitySummaryQuery, arg1: (Array<HKActivitySummary>) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: HKActivitySummaryQuery, arg1: (Array<HKActivitySummary>) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("HealthKit_6be9a005889899ab", 1875656586338859, this, []); }
+  set updateHandler(value: (((arg0: HKActivitySummaryQuery, arg1: (Array<HKActivitySummary>) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 1382160464505768, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKActivitySummaryQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -495,23 +495,23 @@ export class HKActivitySummaryQueryDescriptor extends SDKHandle {
    * func result(for healthStore: HKHealthStore) async throws -> [HKActivitySummary]
    * @availability iOS 15.4+
    */
-  result(healthStore: HKHealthStore): Promise<$SDK8> { return callSDKAsync<$SDK8>("HealthKit_5d69670f0307b385", 2368047419119683, this, [healthStore]); }
+  result(healthStore: HKHealthStore): Promise<$SDK8> { return callSDKAsync<$SDK8>("HealthKit_6be9a005889899ab", 2368047419119683, this, [healthStore]); }
   /**
    * func results(for healthStore: HKHealthStore) -> HKActivitySummaryQueryDescriptor.Results
    * @availability iOS 15.4+
    */
-  results(healthStore: HKHealthStore): HKActivitySummaryQueryDescriptor_Results { return callSDK<HKActivitySummaryQueryDescriptor_Results>("HealthKit_5d69670f0307b385", 1808228614804167, this, [healthStore]); }
+  results(healthStore: HKHealthStore): HKActivitySummaryQueryDescriptor_Results { return callSDK<HKActivitySummaryQueryDescriptor_Results>("HealthKit_6be9a005889899ab", 1808228614804167, this, [healthStore]); }
   /**
    * init(predicate: NSPredicate?)
    * @availability iOS 15.4+
    */
-  static init(predicate?: $SDK4): HKActivitySummaryQueryDescriptor { return callSDK<HKActivitySummaryQueryDescriptor>("HealthKit_5d69670f0307b385", 1277739633791084, undefined, [predicate]); }
+  static init(predicate?: $SDK4): HKActivitySummaryQueryDescriptor { return callSDK<HKActivitySummaryQueryDescriptor>("HealthKit_6be9a005889899ab", 1277739633791084, undefined, [predicate]); }
   /**
    * var predicate: NSPredicate?
    * @availability iOS 15.4+
    */
-  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_5d69670f0307b385", 775095564384419, this, []); }
-  set predicate(value: $SDK4) { callSDK<void>("HealthKit_5d69670f0307b385", 3662594770729399, this, [value]); }
+  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_6be9a005889899ab", 775095564384419, this, []); }
+  set predicate(value: $SDK4) { callSDK<void>("HealthKit_6be9a005889899ab", 3662594770729399, this, [value]); }
   declare readonly $type: { "s:9HealthKit32HKActivitySummaryQueryDescriptorV": true };
 }
 
@@ -530,7 +530,7 @@ export class HKActivitySummaryQueryDescriptor_Results extends SDKHandle {
    * func makeAsyncIterator() -> HKActivitySummaryQueryDescriptor.Results.Iterator
    * @availability iOS 15.4+
    */
-  makeAsyncIterator(): HKActivitySummaryQueryDescriptor_Results_Iterator { return callSDK<HKActivitySummaryQueryDescriptor_Results_Iterator>("HealthKit_5d69670f0307b385", 2705262782266747, this, []); }
+  makeAsyncIterator(): HKActivitySummaryQueryDescriptor_Results_Iterator { return callSDK<HKActivitySummaryQueryDescriptor_Results_Iterator>("HealthKit_6be9a005889899ab", 2705262782266747, this, []); }
   declare readonly $type: { "s:9HealthKit32HKActivitySummaryQueryDescriptorV7ResultsV": true };
   declare readonly $element: $SDK8;
 }
@@ -556,7 +556,7 @@ export class HKActivitySummaryQueryDescriptor_Results_Iterator extends SDKHandle
    * mutating func next() async throws -> HKActivitySummaryQueryDescriptor.Results.Element?
    * @availability iOS 15.4+
    */
-  next(): Promise<(Array<HKActivitySummary>) | null> { return callSDKAsync<(Array<HKActivitySummary>) | null>("HealthKit_5d69670f0307b385", 4445386132888004, this, []); }
+  next(): Promise<(Array<HKActivitySummary>) | null> { return callSDKAsync<(Array<HKActivitySummary>) | null>("HealthKit_6be9a005889899ab", 4445386132888004, this, []); }
   declare readonly $type: { "s:9HealthKit32HKActivitySummaryQueryDescriptorV7ResultsV8IteratorV": true };
 }
 
@@ -581,93 +581,93 @@ export class HKObjectType extends SDKHandle {
    * class func activitySummaryType() -> HKActivitySummaryType
    * @availability iOS 9.3+
    */
-  static activitySummaryType(): HKActivitySummaryType { return callSDK<HKActivitySummaryType>("HealthKit_5d69670f0307b385", 3248410821125962, undefined, []); }
+  static activitySummaryType(): HKActivitySummaryType { return callSDK<HKActivitySummaryType>("HealthKit_6be9a005889899ab", 3248410821125962, undefined, []); }
   /**
    * class func audiogramSampleType() -> HKAudiogramSampleType
    * @availability iOS 13.0+
    */
-  static audiogramSampleType(): HKAudiogramSampleType { return callSDK<HKAudiogramSampleType>("HealthKit_5d69670f0307b385", 1769332338865098, undefined, []); }
+  static audiogramSampleType(): HKAudiogramSampleType { return callSDK<HKAudiogramSampleType>("HealthKit_6be9a005889899ab", 1769332338865098, undefined, []); }
   /**
    * class func categoryType(forIdentifier identifier: HKCategoryTypeIdentifier) -> HKCategoryType?
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  static categoryType(identifier: HKCategoryTypeIdentifier): (HKCategoryType) | null { return callSDK<(HKCategoryType) | null>("HealthKit_5d69670f0307b385", 1410436666203572, undefined, [identifier]); }
+  static categoryType(identifier: HKCategoryTypeIdentifier): (HKCategoryType) | null { return callSDK<(HKCategoryType) | null>("HealthKit_6be9a005889899ab", 1410436666203572, undefined, [identifier]); }
   /**
    * class func characteristicType(forIdentifier identifier: HKCharacteristicTypeIdentifier) -> HKCharacteristicType?
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  static characteristicType(identifier: HKCharacteristicTypeIdentifier): (HKCharacteristicType) | null { return callSDK<(HKCharacteristicType) | null>("HealthKit_5d69670f0307b385", 3189947933257195, undefined, [identifier]); }
+  static characteristicType(identifier: HKCharacteristicTypeIdentifier): (HKCharacteristicType) | null { return callSDK<(HKCharacteristicType) | null>("HealthKit_6be9a005889899ab", 3189947933257195, undefined, [identifier]); }
   /**
    * class func clinicalType(forIdentifier identifier: HKClinicalTypeIdentifier) -> HKClinicalType?
    * @availability iOS 12.0+
    * @deprecated iOS 100000.0
    */
-  static clinicalType(identifier: HKClinicalTypeIdentifier): (HKClinicalType) | null { return callSDK<(HKClinicalType) | null>("HealthKit_5d69670f0307b385", 3858111879627058, undefined, [identifier]); }
+  static clinicalType(identifier: HKClinicalTypeIdentifier): (HKClinicalType) | null { return callSDK<(HKClinicalType) | null>("HealthKit_6be9a005889899ab", 3858111879627058, undefined, [identifier]); }
   /**
    * class func correlationType(forIdentifier identifier: HKCorrelationTypeIdentifier) -> HKCorrelationType?
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  static correlationType(identifier: HKCorrelationTypeIdentifier): (HKCorrelationType) | null { return callSDK<(HKCorrelationType) | null>("HealthKit_5d69670f0307b385", 3107603133296983, undefined, [identifier]); }
+  static correlationType(identifier: HKCorrelationTypeIdentifier): (HKCorrelationType) | null { return callSDK<(HKCorrelationType) | null>("HealthKit_6be9a005889899ab", 3107603133296983, undefined, [identifier]); }
   /**
    * class func documentType(forIdentifier identifier: HKDocumentTypeIdentifier) -> HKDocumentType?
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  static documentType(identifier: HKDocumentTypeIdentifier): (HKDocumentType) | null { return callSDK<(HKDocumentType) | null>("HealthKit_5d69670f0307b385", 4354590927735899, undefined, [identifier]); }
+  static documentType(identifier: HKDocumentTypeIdentifier): (HKDocumentType) | null { return callSDK<(HKDocumentType) | null>("HealthKit_6be9a005889899ab", 4354590927735899, undefined, [identifier]); }
   /**
    * class func electrocardiogramType() -> HKElectrocardiogramType
    * @availability iOS 14.0+
    */
-  static electrocardiogramType(): HKElectrocardiogramType { return callSDK<HKElectrocardiogramType>("HealthKit_5d69670f0307b385", 3170602810129067, undefined, []); }
+  static electrocardiogramType(): HKElectrocardiogramType { return callSDK<HKElectrocardiogramType>("HealthKit_6be9a005889899ab", 3170602810129067, undefined, []); }
   /**
    * class func medicationDoseEventType() -> HKMedicationDoseEventType
    * @availability iOS 26.0+
    */
-  static medicationDoseEventType(): HKMedicationDoseEventType { return callSDK<HKMedicationDoseEventType>("HealthKit_5d69670f0307b385", 2012374406515479, undefined, []); }
+  static medicationDoseEventType(): HKMedicationDoseEventType { return callSDK<HKMedicationDoseEventType>("HealthKit_6be9a005889899ab", 2012374406515479, undefined, []); }
   /**
    * class func quantityType(forIdentifier identifier: HKQuantityTypeIdentifier) -> HKQuantityType?
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  static quantityType(identifier: HKQuantityTypeIdentifier): (HKQuantityType) | null { return callSDK<(HKQuantityType) | null>("HealthKit_5d69670f0307b385", 2628661476713092, undefined, [identifier]); }
+  static quantityType(identifier: HKQuantityTypeIdentifier): (HKQuantityType) | null { return callSDK<(HKQuantityType) | null>("HealthKit_6be9a005889899ab", 2628661476713092, undefined, [identifier]); }
   /**
    * class func seriesType(forIdentifier identifier: String) -> HKSeriesType?
    * @availability iOS 11.0+
    */
-  static seriesType(identifier: string): (HKSeriesType) | null { return callSDK<(HKSeriesType) | null>("HealthKit_5d69670f0307b385", 2658077209677707, undefined, [identifier]); }
+  static seriesType(identifier: string): (HKSeriesType) | null { return callSDK<(HKSeriesType) | null>("HealthKit_6be9a005889899ab", 2658077209677707, undefined, [identifier]); }
   /**
    * class func stateOfMindType() -> HKStateOfMindType
    * @availability iOS 18.0+
    */
-  static stateOfMindType(): HKStateOfMindType { return callSDK<HKStateOfMindType>("HealthKit_5d69670f0307b385", 1387671825185300, undefined, []); }
+  static stateOfMindType(): HKStateOfMindType { return callSDK<HKStateOfMindType>("HealthKit_6be9a005889899ab", 1387671825185300, undefined, []); }
   /**
    * class func userAnnotatedMedicationType() -> HKUserAnnotatedMedicationType
    * @availability iOS 26.0+
    */
-  static userAnnotatedMedicationType(): HKUserAnnotatedMedicationType { return callSDK<HKUserAnnotatedMedicationType>("HealthKit_5d69670f0307b385", 1970724313955322, undefined, []); }
+  static userAnnotatedMedicationType(): HKUserAnnotatedMedicationType { return callSDK<HKUserAnnotatedMedicationType>("HealthKit_6be9a005889899ab", 1970724313955322, undefined, []); }
   /**
    * class func visionPrescriptionType() -> HKPrescriptionType
    * @availability iOS 16.0+
    */
-  static visionPrescriptionType(): HKPrescriptionType { return callSDK<HKPrescriptionType>("HealthKit_5d69670f0307b385", 2557848918991, undefined, []); }
+  static visionPrescriptionType(): HKPrescriptionType { return callSDK<HKPrescriptionType>("HealthKit_6be9a005889899ab", 2557848918991, undefined, []); }
   /**
    * class func workoutType() -> HKWorkoutType
    * @availability iOS 8.0+
    */
-  static workoutType(): HKWorkoutType { return callSDK<HKWorkoutType>("HealthKit_5d69670f0307b385", 2550615161998149, undefined, []); }
+  static workoutType(): HKWorkoutType { return callSDK<HKWorkoutType>("HealthKit_6be9a005889899ab", 2550615161998149, undefined, []); }
   /**
    * func requiresPerObjectAuthorization() -> Bool
    * @availability iOS 16.0+
    */
-  requiresPerObjectAuthorization(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 865262736849135, this, []); }
+  requiresPerObjectAuthorization(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 865262736849135, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 8.0+
    */
-  get identifier(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 397222689754597, this, []); }
+  get identifier(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 397222689754597, this, []); }
   declare readonly $type: { "c:objc(cs)HKObjectType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -687,24 +687,24 @@ export class HKAnchoredObjectQuery extends HKQuery {
    * init(queryDescriptors: [HKQueryDescriptor], anchor: HKQueryAnchor?, limit: Int, resultsHandler handler: @escaping @Sendable (HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, (any Error)?) -> Void)
    * @availability iOS 15.0+
    */
-  static initQueryDescriptorsAnchorLimitResultsHandler(queryDescriptors: $SDK12, anchor: (HKQueryAnchor) | null, limit: number, handler: $SDK13): HKAnchoredObjectQuery { return callSDK<HKAnchoredObjectQuery>("HealthKit_5d69670f0307b385", 3366405678606545, undefined, [queryDescriptors, anchor, limit, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initQueryDescriptorsAnchorLimitResultsHandler(queryDescriptors: $SDK12, anchor: (HKQueryAnchor) | null, limit: number, handler: $SDK13): HKAnchoredObjectQuery { return callSDK<HKAnchoredObjectQuery>("HealthKit_6be9a005889899ab", 3366405678606545, undefined, [queryDescriptors, anchor, limit, handler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(type: HKSampleType, predicate: NSPredicate?, anchor: Int, limit: Int, completionHandler handler: @escaping @Sendable (HKAnchoredObjectQuery, [HKSample]?, Int, (any Error)?) -> Void)
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  static initTypePredicateAnchorLimitCompletionHandler(type: HKSampleType, predicate: $SDK4, anchor: number, limit: number, handler: ((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: number, arg3: (NativeError) | null) => void)): HKAnchoredObjectQuery { return callSDK<HKAnchoredObjectQuery>("HealthKit_5d69670f0307b385", 2183863928569855, undefined, [type, predicate, anchor, limit, handler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static initTypePredicateAnchorLimitCompletionHandler(type: HKSampleType, predicate: $SDK4, anchor: number, limit: number, handler: ((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: number, arg3: (NativeError) | null) => void)): HKAnchoredObjectQuery { return callSDK<HKAnchoredObjectQuery>("HealthKit_6be9a005889899ab", 2183863928569855, undefined, [type, predicate, anchor, limit, handler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(type: HKSampleType, predicate: NSPredicate?, anchor: HKQueryAnchor?, limit: Int, resultsHandler handler: @escaping @Sendable (HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, (any Error)?) -> Void)
    * @availability iOS 9.0+
    */
-  static initTypePredicateAnchorLimitResultsHandler(type: HKSampleType, predicate: $SDK4, anchor: (HKQueryAnchor) | null, limit: number, handler: $SDK13): HKAnchoredObjectQuery { return callSDK<HKAnchoredObjectQuery>("HealthKit_5d69670f0307b385", 632574961933103, undefined, [type, predicate, anchor, limit, handler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static initTypePredicateAnchorLimitResultsHandler(type: HKSampleType, predicate: $SDK4, anchor: (HKQueryAnchor) | null, limit: number, handler: $SDK13): HKAnchoredObjectQuery { return callSDK<HKAnchoredObjectQuery>("HealthKit_6be9a005889899ab", 632574961933103, undefined, [type, predicate, anchor, limit, handler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * var updateHandler: (@Sendable (HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, (any Error)?) -> Void)? { get set }
    * @availability iOS 9.0+
    */
-  get updateHandler(): (((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: (Array<HKDeletedObject>) | null, arg3: (HKQueryAnchor) | null, arg4: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: (Array<HKDeletedObject>) | null, arg3: (HKQueryAnchor) | null, arg4: (NativeError) | null) => Promise<void>)) | null>("HealthKit_5d69670f0307b385", 2231684017986729, this, []); }
-  set updateHandler(value: (((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: (Array<HKDeletedObject>) | null, arg3: (HKQueryAnchor) | null, arg4: (NativeError) | null) => void)) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 229970731549001, this, [value], [{"callback":{"out":[]}}]); }
+  get updateHandler(): (((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: (Array<HKDeletedObject>) | null, arg3: (HKQueryAnchor) | null, arg4: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: (Array<HKDeletedObject>) | null, arg3: (HKQueryAnchor) | null, arg4: (NativeError) | null) => Promise<void>)) | null>("HealthKit_6be9a005889899ab", 2231684017986729, this, []); }
+  set updateHandler(value: (((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: (Array<HKDeletedObject>) | null, arg3: (HKQueryAnchor) | null, arg4: (NativeError) | null) => void)) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 229970731549001, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKAnchoredObjectQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -718,35 +718,35 @@ export class HKAnchoredObjectQueryDescriptor<Sample = unknown> extends SDKHandle
    * init(predicates: [HKSamplePredicate<Sample>], anchor: HKQueryAnchor?, limit: Int? = nil)
    * @availability iOS 15.4+
    */
-  static init(predicates: $SDK18, anchor?: (HKQueryAnchor) | null, limit?: (number) | null): HKAnchoredObjectQueryDescriptor<HKSample> { return callSDK<HKAnchoredObjectQueryDescriptor<HKSample>>("HealthKit_5d69670f0307b385", 1512591246873255, undefined, [predicates, anchor, limit]); }
+  static init(predicates: $SDK18, anchor?: (HKQueryAnchor) | null, limit?: (number) | null): HKAnchoredObjectQueryDescriptor<HKSample> { return callSDK<HKAnchoredObjectQueryDescriptor<HKSample>>("HealthKit_6be9a005889899ab", 1512591246873255, undefined, [predicates, anchor, limit]); }
   /**
    * var predicates: [HKSamplePredicate<Sample>] { get set }
    * @availability iOS 15.4+
    */
-  get predicates(): $SDK18 { return callSDK<$SDK18>("HealthKit_5d69670f0307b385", 3703909785430933, this, []); }
-  set predicates(value: $SDK18) { callSDK<void>("HealthKit_5d69670f0307b385", 3835031055606997, this, [value]); }
+  get predicates(): $SDK18 { return callSDK<$SDK18>("HealthKit_6be9a005889899ab", 3703909785430933, this, []); }
+  set predicates(value: $SDK18) { callSDK<void>("HealthKit_6be9a005889899ab", 3835031055606997, this, [value]); }
   /**
    * var limit: Int?
    * @availability iOS 15.4+
    */
-  get limit(): (number) | null { return callSDK<(number) | null>("HealthKit_5d69670f0307b385", 1174596214959148, this, []); }
-  set limit(value: (number) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 3060026986745196, this, [value]); }
+  get limit(): (number) | null { return callSDK<(number) | null>("HealthKit_6be9a005889899ab", 1174596214959148, this, []); }
+  set limit(value: (number) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 3060026986745196, this, [value]); }
   /**
    * var anchor: HKQueryAnchor?
    * @availability iOS 15.4+
    */
-  get anchor(): (HKQueryAnchor) | null { return callSDK<(HKQueryAnchor) | null>("HealthKit_5d69670f0307b385", 2875132602098682, this, []); }
-  set anchor(value: (HKQueryAnchor) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 591522532489642, this, [value]); }
+  get anchor(): (HKQueryAnchor) | null { return callSDK<(HKQueryAnchor) | null>("HealthKit_6be9a005889899ab", 2875132602098682, this, []); }
+  set anchor(value: (HKQueryAnchor) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 591522532489642, this, [value]); }
   /**
    * func result(for healthStore: HKHealthStore) async throws -> HKAnchoredObjectQueryDescriptor<Sample>.Result
    * @availability iOS 15.4+
    */
-  result(healthStore: HKHealthStore): Promise<HKAnchoredObjectQueryDescriptor_Result<HKSample>> { return callSDKAsync<HKAnchoredObjectQueryDescriptor_Result<HKSample>>("HealthKit_5d69670f0307b385", 2899620714985588, this, [healthStore]); }
+  result(healthStore: HKHealthStore): Promise<HKAnchoredObjectQueryDescriptor_Result<HKSample>> { return callSDKAsync<HKAnchoredObjectQueryDescriptor_Result<HKSample>>("HealthKit_6be9a005889899ab", 2899620714985588, this, [healthStore]); }
   /**
    * func results(for healthStore: HKHealthStore) -> HKAnchoredObjectQueryDescriptor<Sample>.Results
    * @availability iOS 15.4+
    */
-  results(healthStore: HKHealthStore): HKAnchoredObjectQueryDescriptor_Results<HKSample> { return callSDK<HKAnchoredObjectQueryDescriptor_Results<HKSample>>("HealthKit_5d69670f0307b385", 907519106038798, this, [healthStore]); }
+  results(healthStore: HKHealthStore): HKAnchoredObjectQueryDescriptor_Results<HKSample> { return callSDK<HKAnchoredObjectQueryDescriptor_Results<HKSample>>("HealthKit_6be9a005889899ab", 907519106038798, this, [healthStore]); }
   declare readonly $type: { "s:9HealthKit31HKAnchoredObjectQueryDescriptorV": true };
 }
 
@@ -765,17 +765,17 @@ export class HKAnchoredObjectQueryDescriptor_Result<Sample = unknown> extends SD
    * let addedSamples: [Sample]
    * @availability iOS 15.4+
    */
-  get addedSamples(): Array<HKSample> { return callSDK<Array<HKSample>>("HealthKit_5d69670f0307b385", 2398480903180240, this, []); }
+  get addedSamples(): Array<HKSample> { return callSDK<Array<HKSample>>("HealthKit_6be9a005889899ab", 2398480903180240, this, []); }
   /**
    * let deletedObjects: [HKDeletedObject]
    * @availability iOS 15.4+
    */
-  get deletedObjects(): Array<HKDeletedObject> { return callSDK<Array<HKDeletedObject>>("HealthKit_5d69670f0307b385", 3405648393809712, this, []); }
+  get deletedObjects(): Array<HKDeletedObject> { return callSDK<Array<HKDeletedObject>>("HealthKit_6be9a005889899ab", 3405648393809712, this, []); }
   /**
    * let newAnchor: HKQueryAnchor
    * @availability iOS 15.4+
    */
-  get newAnchor(): HKQueryAnchor { return callSDK<HKQueryAnchor>("HealthKit_5d69670f0307b385", 2940775184777305, this, []); }
+  get newAnchor(): HKQueryAnchor { return callSDK<HKQueryAnchor>("HealthKit_6be9a005889899ab", 2940775184777305, this, []); }
   declare readonly $type: { "s:9HealthKit31HKAnchoredObjectQueryDescriptorV6ResultV": true };
 }
 
@@ -788,7 +788,7 @@ export class HKAnchoredObjectQueryDescriptor_Results<Sample = unknown> extends S
    * func makeAsyncIterator() -> HKAnchoredObjectQueryDescriptor<Sample>.Results.Iterator
    * @availability iOS 15.4+
    */
-  makeAsyncIterator(): HKAnchoredObjectQueryDescriptor_Results_Iterator<HKSample> { return callSDK<HKAnchoredObjectQueryDescriptor_Results_Iterator<HKSample>>("HealthKit_5d69670f0307b385", 2082021132396731, this, []); }
+  makeAsyncIterator(): HKAnchoredObjectQueryDescriptor_Results_Iterator<HKSample> { return callSDK<HKAnchoredObjectQueryDescriptor_Results_Iterator<HKSample>>("HealthKit_6be9a005889899ab", 2082021132396731, this, []); }
   declare readonly $type: { "s:9HealthKit31HKAnchoredObjectQueryDescriptorV7ResultsV": true };
   declare readonly $element: HKAnchoredObjectQueryDescriptor_Results_Element<unknown>;
 }
@@ -814,7 +814,7 @@ export class HKAnchoredObjectQueryDescriptor_Results_Iterator<Sample = unknown> 
    * mutating func next() async throws -> HKAnchoredObjectQueryDescriptor<Sample>.Results.Element?
    * @availability iOS 15.4+
    */
-  next(): Promise<(HKAnchoredObjectQueryDescriptor_Result<HKSample>) | null> { return callSDKAsync<(HKAnchoredObjectQueryDescriptor_Result<HKSample>) | null>("HealthKit_5d69670f0307b385", 1813582149946810, this, []); }
+  next(): Promise<(HKAnchoredObjectQueryDescriptor_Result<HKSample>) | null> { return callSDKAsync<(HKAnchoredObjectQueryDescriptor_Result<HKSample>) | null>("HealthKit_6be9a005889899ab", 1813582149946810, this, []); }
   declare readonly $type: { "s:9HealthKit31HKAnchoredObjectQueryDescriptorV7ResultsV8IteratorV": true };
 }
 
@@ -841,7 +841,7 @@ export const HKAppleECGAlgorithmVersion = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (HKAppleECGAlgorithmVersion) | null { return callSDK<(HKAppleECGAlgorithmVersion) | null>("HealthKit_5d69670f0307b385", 1433454388331997, undefined, [rawValue]); }
+  init(rawValue: number): (HKAppleECGAlgorithmVersion) | null { return callSDK<(HKAppleECGAlgorithmVersion) | null>("HealthKit_6be9a005889899ab", 1433454388331997, undefined, [rawValue]); }
 };
 
 /**
@@ -855,22 +855,22 @@ export const HKAppleSleepingBreathingDisturbancesClassification = {
    * var minimum: HKQuantity { get }
    * @availability iOS 18.0+
    */
-  getMinimum($self: HKAppleSleepingBreathingDisturbancesClassification): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 4016222063795480, $self, []); },
+  getMinimum($self: HKAppleSleepingBreathingDisturbancesClassification): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 4016222063795480, $self, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  initRawValue(rawValue: number): (HKAppleSleepingBreathingDisturbancesClassification) | null { return callSDK<(HKAppleSleepingBreathingDisturbancesClassification) | null>("HealthKit_5d69670f0307b385", 3608658314480072, undefined, [rawValue]); },
+  initRawValue(rawValue: number): (HKAppleSleepingBreathingDisturbancesClassification) | null { return callSDK<(HKAppleSleepingBreathingDisturbancesClassification) | null>("HealthKit_6be9a005889899ab", 3608658314480072, undefined, [rawValue]); },
   /**
    * init?(classifying appleSleepingBreathingDisturbances: HKQuantity)
    * @availability iOS 18.0+
    */
-  initClassifying(appleSleepingBreathingDisturbances: HKQuantity): (HKAppleSleepingBreathingDisturbancesClassification) | null { return callSDK<(HKAppleSleepingBreathingDisturbancesClassification) | null>("HealthKit_5d69670f0307b385", 590778165884387, undefined, [appleSleepingBreathingDisturbances]); },
+  initClassifying(appleSleepingBreathingDisturbances: HKQuantity): (HKAppleSleepingBreathingDisturbancesClassification) | null { return callSDK<(HKAppleSleepingBreathingDisturbancesClassification) | null>("HealthKit_6be9a005889899ab", 590778165884387, undefined, [appleSleepingBreathingDisturbances]); },
   /**
    * static var allCases: [HKAppleSleepingBreathingDisturbancesClassification] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): $SDK27 { return callSDK<$SDK27>("HealthKit_5d69670f0307b385", 2980916300748534, undefined, []); }
+  get allCases(): $SDK27 { return callSDK<$SDK27>("HealthKit_6be9a005889899ab", 2980916300748534, undefined, []); }
 };
 
 /**
@@ -890,27 +890,27 @@ export const HKAppleWalkingSteadinessClassification = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: number): (HKAppleWalkingSteadinessClassification) | null { return callSDK<(HKAppleWalkingSteadinessClassification) | null>("HealthKit_5d69670f0307b385", 4045093025241092, undefined, [rawValue]); },
+  initRawValue(rawValue: number): (HKAppleWalkingSteadinessClassification) | null { return callSDK<(HKAppleWalkingSteadinessClassification) | null>("HealthKit_6be9a005889899ab", 4045093025241092, undefined, [rawValue]); },
   /**
    * init(for appleWalkingSteadiness: HKQuantity) throws
    * @availability iOS 15.0+
    */
-  initFor(appleWalkingSteadiness: HKQuantity): HKAppleWalkingSteadinessClassification { return callSDK<HKAppleWalkingSteadinessClassification>("HealthKit_5d69670f0307b385", 319979832957441, undefined, [appleWalkingSteadiness]); },
+  initFor(appleWalkingSteadiness: HKQuantity): HKAppleWalkingSteadinessClassification { return callSDK<HKAppleWalkingSteadinessClassification>("HealthKit_6be9a005889899ab", 319979832957441, undefined, [appleWalkingSteadiness]); },
   /**
    * var maximum: HKQuantity { get }
    * @availability iOS 15.0+
    */
-  getMaximum($self: HKAppleWalkingSteadinessClassification): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 3507325653734667, $self, []); },
+  getMaximum($self: HKAppleWalkingSteadinessClassification): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 3507325653734667, $self, []); },
   /**
    * var minimum: HKQuantity { get }
    * @availability iOS 15.0+
    */
-  getMinimum($self: HKAppleWalkingSteadinessClassification): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 39109932576950, $self, []); },
+  getMinimum($self: HKAppleWalkingSteadinessClassification): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 39109932576950, $self, []); },
   /**
    * static var allCases: [HKAppleWalkingSteadinessClassification] { get }
    * @availability iOS 15.0+
    */
-  get allCases(): $SDK28 { return callSDK<$SDK28>("HealthKit_5d69670f0307b385", 1976071612283928, undefined, []); }
+  get allCases(): $SDK28 { return callSDK<$SDK28>("HealthKit_6be9a005889899ab", 1976071612283928, undefined, []); }
 };
 
 /**
@@ -952,32 +952,32 @@ export class HKAttachment extends SDKHandle {
    * var contentType: UTType { get }
    * @availability iOS 16.0+
    */
-  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("HealthKit_5d69670f0307b385", 4053593745455472, this, []); }
+  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("HealthKit_6be9a005889899ab", 4053593745455472, this, []); }
   /**
    * var creationDate: Date { get }
    * @availability iOS 16.0+
    */
-  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 3026992943112276, this, []); }
+  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 3026992943112276, this, []); }
   /**
    * var identifier: UUID { get }
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 1218343812620062, this, []); }
+  get identifier(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 1218343812620062, this, []); }
   /**
    * var metadata: [String : Any]? { get }
    * @availability iOS 16.0+
    */
-  get metadata(): $SDK29 { return callSDK<$SDK29>("HealthKit_5d69670f0307b385", 303169792880205, this, []); }
+  get metadata(): $SDK29 { return callSDK<$SDK29>("HealthKit_6be9a005889899ab", 303169792880205, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 16.0+
    */
-  get name(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 4450848020413148, this, []); }
+  get name(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 4450848020413148, this, []); }
   /**
    * var size: Int { get }
    * @availability iOS 16.0+
    */
-  get size(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 4159811958797006, this, []); }
+  get size(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 4159811958797006, this, []); }
   declare readonly $type: { "c:objc(cs)HKAttachment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentType": true; "creationDate": true; "identifier": true; "metadata": true; "name": true; "size": true };
 }
@@ -991,7 +991,7 @@ export class HKAttachment_AsyncBytes extends SDKHandle {
    * func makeAsyncIterator() -> BufferedAsyncByteIterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): BufferedAsyncByteIterator { return callSDK<BufferedAsyncByteIterator>("HealthKit_5d69670f0307b385", 2797273080093132, this, []); }
+  makeAsyncIterator(): BufferedAsyncByteIterator { return callSDK<BufferedAsyncByteIterator>("HealthKit_6be9a005889899ab", 2797273080093132, this, []); }
   declare readonly $type: { "s:So12HKAttachmentC9HealthKitE10AsyncBytesV": true };
   declare readonly $element: number;
 }
@@ -1017,22 +1017,22 @@ export class HKAttachmentDataReader extends SDKHandle {
    * var attachment: HKAttachment { get }
    * @availability iOS 16.0+
    */
-  get attachment(): HKAttachment { return callSDK<HKAttachment>("HealthKit_5d69670f0307b385", 961816046727318, this, []); }
+  get attachment(): HKAttachment { return callSDK<HKAttachment>("HealthKit_6be9a005889899ab", 961816046727318, this, []); }
   /**
    * var data: Data { get async throws }
    * @availability iOS 16.0+
    */
-  get data(): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("HealthKit_5d69670f0307b385", 1466585421432250, this, []); }
+  get data(): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("HealthKit_6be9a005889899ab", 1466585421432250, this, []); }
   /**
    * var bytes: HKAttachment.AsyncBytes { get }
    * @availability iOS 16.0+
    */
-  get bytes(): HKAttachment_AsyncBytes { return callSDK<HKAttachment_AsyncBytes>("HealthKit_5d69670f0307b385", 867692574671709, this, []); }
+  get bytes(): HKAttachment_AsyncBytes { return callSDK<HKAttachment_AsyncBytes>("HealthKit_6be9a005889899ab", 867692574671709, this, []); }
   /**
    * var progress: Progress { get }
    * @availability iOS 16.0+
    */
-  get progress(): _Foundation_Progress { return callSDK<_Foundation_Progress>("HealthKit_5d69670f0307b385", 4201508276100445, this, []); }
+  get progress(): _Foundation_Progress { return callSDK<_Foundation_Progress>("HealthKit_6be9a005889899ab", 4201508276100445, this, []); }
   declare readonly $type: { "s:9HealthKit22HKAttachmentDataReaderC": true };
 }
 
@@ -1045,42 +1045,42 @@ export class HKAttachmentStore extends SDKHandle {
    * func attachments(for object: HKObject) async throws -> [HKAttachment]
    * @availability iOS 16.0+
    */
-  getAttachments(object: HKObject, completion: ((arg0: (Array<HKAttachment>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 4187472206435661, this, [object, completion], [null,{"callback":{"out":[]}}]); }
+  getAttachments(object: HKObject, completion: ((arg0: (Array<HKAttachment>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 4187472206435661, this, [object, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func getData(for attachment: HKAttachment, completion: @escaping (Data?, (any Error)?) -> Void) -> Progress
    * @availability iOS 16.0+
    */
-  getData(attachment: HKAttachment, completion: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("HealthKit_5d69670f0307b385", 536511254203442, this, [attachment, completion], [null,{"callback":{"out":[]}}]); }
+  getData(attachment: HKAttachment, completion: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("HealthKit_6be9a005889899ab", 536511254203442, this, [attachment, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * init(healthStore: HKHealthStore)
    * @availability iOS 16.0+
    */
-  static init(healthStore: HKHealthStore): HKAttachmentStore { return callSDK<HKAttachmentStore>("HealthKit_5d69670f0307b385", 2643957350136231, undefined, [healthStore]); }
+  static init(healthStore: HKHealthStore): HKAttachmentStore { return callSDK<HKAttachmentStore>("HealthKit_6be9a005889899ab", 2643957350136231, undefined, [healthStore]); }
   /**
    * func removeAttachment(_ attachment: HKAttachment, from object: HKObject) async throws
    * @availability iOS 16.0+
    */
-  removeAttachment(attachment: HKAttachment, object: HKObject, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 493052617021214, this, [attachment, object, completion], [null,null,{"callback":{"out":[]}}]); }
+  removeAttachment(attachment: HKAttachment, object: HKObject, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 493052617021214, this, [attachment, object, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func streamData(for attachment: HKAttachment, dataHandler: @escaping (Data?, (any Error)?, Bool) -> Void) -> Progress
    * @availability iOS 16.0+
    */
-  streamData(attachment: HKAttachment, dataHandler: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null, arg2: boolean) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("HealthKit_5d69670f0307b385", 4329347944189948, this, [attachment, dataHandler], [null,{"callback":{"out":[]}}]); }
+  streamData(attachment: HKAttachment, dataHandler: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null, arg2: boolean) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("HealthKit_6be9a005889899ab", 4329347944189948, this, [attachment, dataHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func dataReader(for attachment: HKAttachment) -> HKAttachmentDataReader
    * @availability iOS 16.0+
    */
-  dataReader(attachment: HKAttachment): HKAttachmentDataReader { return callSDK<HKAttachmentDataReader>("HealthKit_5d69670f0307b385", 783842587516915, this, [attachment]); }
+  dataReader(attachment: HKAttachment): HKAttachmentDataReader { return callSDK<HKAttachmentDataReader>("HealthKit_6be9a005889899ab", 783842587516915, this, [attachment]); }
   /**
    * @preconcurrency func addAttachment(to object: HKObject, name: String, contentType: UTType, url: URL, metadata: [String : Any] = [:], completion: @escaping @Sendable (HKAttachment?, (any Error)?) -> Void)
    * @availability iOS 16.0+
    */
-  addAttachmentToNameContentTypeUrlMetadataCompletion(object: HKObject, name: string, contentType: _UniformTypeIdentifiers_UTType, url: string, metadata: Record<string, unknown>, completion: ((arg0: (HKAttachment) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 914636212322660, this, [object, name, contentType, url, metadata, completion], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  addAttachmentToNameContentTypeUrlMetadataCompletion(object: HKObject, name: string, contentType: _UniformTypeIdentifiers_UTType, url: string, metadata: Record<string, unknown>, completion: ((arg0: (HKAttachment) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 914636212322660, this, [object, name, contentType, url, metadata, completion], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func addAttachment(to object: HKObject, name: String, contentType: UTType, url: URL, metadata: [String : Any] = [:]) async throws -> HKAttachment
    * @availability iOS 16.0+
    */
-  addAttachmentToNameContentTypeUrlMetadata(object: HKObject, name: string, contentType: _UniformTypeIdentifiers_UTType, url: string, metadata?: Record<string, unknown>): Promise<HKAttachment> { return callSDKAsync<HKAttachment>("HealthKit_5d69670f0307b385", 146769282557422, this, [object, name, contentType, url, metadata]); }
+  addAttachmentToNameContentTypeUrlMetadata(object: HKObject, name: string, contentType: _UniformTypeIdentifiers_UTType, url: string, metadata?: Record<string, unknown>): Promise<HKAttachment> { return callSDKAsync<HKAttachment>("HealthKit_6be9a005889899ab", 146769282557422, this, [object, name, contentType, url, metadata]); }
   declare readonly $type: { "c:objc(cs)HKAttachmentStore": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1095,7 +1095,7 @@ export const HKAudiogramConductionType = {
    * init?(rawValue: Int)
    * @availability iOS 18.1+
    */
-  init(rawValue: number): (HKAudiogramConductionType) | null { return callSDK<(HKAudiogramConductionType) | null>("HealthKit_5d69670f0307b385", 2170226537546389, undefined, [rawValue]); }
+  init(rawValue: number): (HKAudiogramConductionType) | null { return callSDK<(HKAudiogramConductionType) | null>("HealthKit_6be9a005889899ab", 2170226537546389, undefined, [rawValue]); }
 };
 
 /**
@@ -1107,28 +1107,28 @@ export class HKObject extends SDKHandle {
    * var uuid: UUID { get }
    * @availability iOS 8.0+
    */
-  get uuid(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 2439709153122257, this, []); }
+  get uuid(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 2439709153122257, this, []); }
   /**
    * var device: HKDevice? { get }
    * @availability iOS 9.0+
    */
-  get device(): (HKDevice) | null { return callSDK<(HKDevice) | null>("HealthKit_5d69670f0307b385", 1307329011557833, this, []); }
+  get device(): (HKDevice) | null { return callSDK<(HKDevice) | null>("HealthKit_6be9a005889899ab", 1307329011557833, this, []); }
   /**
    * var metadata: [String : Any]? { get }
    * @availability iOS 8.0+
    */
-  get metadata(): $SDK29 { return callSDK<$SDK29>("HealthKit_5d69670f0307b385", 2767295721390738, this, []); }
+  get metadata(): $SDK29 { return callSDK<$SDK29>("HealthKit_6be9a005889899ab", 2767295721390738, this, []); }
   /**
    * var source: HKSource { get }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get source(): HKSource { return callSDK<HKSource>("HealthKit_5d69670f0307b385", 1943567560616243, this, []); }
+  get source(): HKSource { return callSDK<HKSource>("HealthKit_6be9a005889899ab", 1943567560616243, this, []); }
   /**
    * var sourceRevision: HKSourceRevision { get }
    * @availability iOS 9.0+
    */
-  get sourceRevision(): HKSourceRevision { return callSDK<HKSourceRevision>("HealthKit_5d69670f0307b385", 99324498625935, this, []); }
+  get sourceRevision(): HKSourceRevision { return callSDK<HKSourceRevision>("HealthKit_6be9a005889899ab", 99324498625935, this, []); }
   declare readonly $type: { "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true };
 }
@@ -1142,22 +1142,22 @@ export class HKSample extends HKObject {
    * var endDate: Date { get }
    * @availability iOS 8.0+
    */
-  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 875277085200561, this, []); }
+  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 875277085200561, this, []); }
   /**
    * var hasUndeterminedDuration: Bool { get }
    * @availability iOS 14.3+
    */
-  get hasUndeterminedDuration(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 4024417129304501, this, []); }
+  get hasUndeterminedDuration(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 4024417129304501, this, []); }
   /**
    * @NSCopying var sampleType: HKSampleType { get }
    * @availability iOS 8.0+
    */
-  get sampleType(): HKSampleType { return callSDK<HKSampleType>("HealthKit_5d69670f0307b385", 131605399474920, this, []); }
+  get sampleType(): HKSampleType { return callSDK<HKSampleType>("HealthKit_6be9a005889899ab", 131605399474920, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 8.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 2362235417899693, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 2362235417899693, this, []); }
   declare readonly $type: { "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true };
 }
@@ -1171,18 +1171,18 @@ export class HKAudiogramSample extends HKSample {
    * convenience init(sensitivityPoints: [HKAudiogramSensitivityPoint], start startDate: Date, end endDate: Date, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 18.1+
    */
-  static initSensitivityPointsStartEndDeviceMetadata(sensitivityPoints: $SDK35, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK29): HKAudiogramSample { return callSDK<HKAudiogramSample>("HealthKit_5d69670f0307b385", 270445135913883, undefined, [sensitivityPoints, startDate, endDate, device, metadata]); }
+  static initSensitivityPointsStartEndDeviceMetadata(sensitivityPoints: $SDK35, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK29): HKAudiogramSample { return callSDK<HKAudiogramSample>("HealthKit_6be9a005889899ab", 270445135913883, undefined, [sensitivityPoints, startDate, endDate, device, metadata]); }
   /**
    * convenience init(sensitivityPoints: [HKAudiogramSensitivityPoint], start startDate: Date, end endDate: Date, metadata: [String : Any]?)
    * @availability iOS 13.0+
    * @deprecated iOS 18.1
    */
-  static initSensitivityPointsStartEndMetadata(sensitivityPoints: $SDK35, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKAudiogramSample { return callSDK<HKAudiogramSample>("HealthKit_5d69670f0307b385", 2736885803203424, undefined, [sensitivityPoints, startDate, endDate, metadata]); }
+  static initSensitivityPointsStartEndMetadata(sensitivityPoints: $SDK35, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKAudiogramSample { return callSDK<HKAudiogramSample>("HealthKit_6be9a005889899ab", 2736885803203424, undefined, [sensitivityPoints, startDate, endDate, metadata]); }
   /**
    * var sensitivityPoints: [HKAudiogramSensitivityPoint] { get }
    * @availability iOS 13.0+
    */
-  get sensitivityPoints(): $SDK35 { return callSDK<$SDK35>("HealthKit_5d69670f0307b385", 380450935743988, this, []); }
+  get sensitivityPoints(): $SDK35 { return callSDK<$SDK35>("HealthKit_6be9a005889899ab", 380450935743988, this, []); }
   declare readonly $type: { "c:objc(cs)HKAudiogramSample": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "sensitivityPoints": true };
 }
@@ -1196,27 +1196,27 @@ export class HKSampleType extends HKObjectType {
    * var allowsRecalibrationForEstimates: Bool { get }
    * @availability iOS 15.0+
    */
-  get allowsRecalibrationForEstimates(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 3207716555215400, this, []); }
+  get allowsRecalibrationForEstimates(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 3207716555215400, this, []); }
   /**
    * var isMaximumDurationRestricted: Bool { get }
    * @availability iOS 13.0+
    */
-  get isMaximumDurationRestricted(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 1615546353057751, this, []); }
+  get isMaximumDurationRestricted(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 1615546353057751, this, []); }
   /**
    * var isMinimumDurationRestricted: Bool { get }
    * @availability iOS 13.0+
    */
-  get isMinimumDurationRestricted(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 1984088748532562, this, []); }
+  get isMinimumDurationRestricted(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 1984088748532562, this, []); }
   /**
    * var maximumAllowedDuration: TimeInterval { get }
    * @availability iOS 13.0+
    */
-  get maximumAllowedDuration(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 3770773534256646, this, []); }
+  get maximumAllowedDuration(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 3770773534256646, this, []); }
   /**
    * var minimumAllowedDuration: TimeInterval { get }
    * @availability iOS 13.0+
    */
-  get minimumAllowedDuration(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 495968126175175, this, []); }
+  get minimumAllowedDuration(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 495968126175175, this, []); }
   declare readonly $type: { "c:objc(cs)HKSampleType": true; "c:objc(cs)HKObjectType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "allowsRecalibrationForEstimates": true; "isMaximumDurationRestricted": true; "isMinimumDurationRestricted": true; "maximumAllowedDuration": true; "minimumAllowedDuration": true };
 }
@@ -1240,34 +1240,34 @@ export class HKAudiogramSensitivityPoint extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 18.1
    */
-  static initFrequencyLeftEarSensitivityRightEarSensitivity(frequency: HKQuantity, leftEarSensitivity?: (HKQuantity) | null, rightEarSensitivity?: (HKQuantity) | null): HKAudiogramSensitivityPoint { return callSDK<HKAudiogramSensitivityPoint>("HealthKit_5d69670f0307b385", 4502275662575549, undefined, [frequency, leftEarSensitivity, rightEarSensitivity]); }
+  static initFrequencyLeftEarSensitivityRightEarSensitivity(frequency: HKQuantity, leftEarSensitivity?: (HKQuantity) | null, rightEarSensitivity?: (HKQuantity) | null): HKAudiogramSensitivityPoint { return callSDK<HKAudiogramSensitivityPoint>("HealthKit_6be9a005889899ab", 4502275662575549, undefined, [frequency, leftEarSensitivity, rightEarSensitivity]); }
   /**
    * convenience init(frequency: HKQuantity, tests: [HKAudiogramSensitivityTest]) throws
    * @availability iOS 18.1+
    */
-  static initFrequencyTests(frequency: HKQuantity, tests: $SDK36): HKAudiogramSensitivityPoint { return callSDK<HKAudiogramSensitivityPoint>("HealthKit_5d69670f0307b385", 4014497467092897, undefined, [frequency, tests]); }
+  static initFrequencyTests(frequency: HKQuantity, tests: $SDK36): HKAudiogramSensitivityPoint { return callSDK<HKAudiogramSensitivityPoint>("HealthKit_6be9a005889899ab", 4014497467092897, undefined, [frequency, tests]); }
   /**
    * @NSCopying var frequency: HKQuantity { get }
    * @availability iOS 13.0+
    */
-  get frequency(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 4424760613882952, this, []); }
+  get frequency(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 4424760613882952, this, []); }
   /**
    * @NSCopying var leftEarSensitivity: HKQuantity? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 18.1
    */
-  get leftEarSensitivity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 422085456137377, this, []); }
+  get leftEarSensitivity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 422085456137377, this, []); }
   /**
    * @NSCopying var rightEarSensitivity: HKQuantity? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 18.1
    */
-  get rightEarSensitivity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 82456229302156, this, []); }
+  get rightEarSensitivity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 82456229302156, this, []); }
   /**
    * var tests: [HKAudiogramSensitivityTest] { get }
    * @availability iOS 18.1+
    */
-  get tests(): $SDK36 { return callSDK<$SDK36>("HealthKit_5d69670f0307b385", 502277110275446, this, []); }
+  get tests(): $SDK36 { return callSDK<$SDK36>("HealthKit_6be9a005889899ab", 502277110275446, this, []); }
   declare readonly $type: { "c:objc(cs)HKAudiogramSensitivityPoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frequency": true; "leftEarSensitivity": true; "rightEarSensitivity": true; "tests": true };
 }
@@ -1281,17 +1281,17 @@ export class HKAudiogramSensitivityPointClampingRange extends SDKHandle {
    * convenience init(lowerBound: NSNumber?, upperBound: NSNumber?) throws
    * @availability iOS 18.1+
    */
-  static init(lowerBound?: (_Foundation_NSNumber) | null, upperBound?: (_Foundation_NSNumber) | null): HKAudiogramSensitivityPointClampingRange { return callSDK<HKAudiogramSensitivityPointClampingRange>("HealthKit_5d69670f0307b385", 778710168091589, undefined, [lowerBound, upperBound]); }
+  static init(lowerBound?: (_Foundation_NSNumber) | null, upperBound?: (_Foundation_NSNumber) | null): HKAudiogramSensitivityPointClampingRange { return callSDK<HKAudiogramSensitivityPointClampingRange>("HealthKit_6be9a005889899ab", 778710168091589, undefined, [lowerBound, upperBound]); }
   /**
    * @NSCopying var lowerBound: HKQuantity? { get }
    * @availability iOS 18.1+
    */
-  get lowerBound(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 2532578034328151, this, []); }
+  get lowerBound(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 2532578034328151, this, []); }
   /**
    * @NSCopying var upperBound: HKQuantity? { get }
    * @availability iOS 18.1+
    */
-  get upperBound(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 71767120862181, this, []); }
+  get upperBound(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 71767120862181, this, []); }
   declare readonly $type: { "c:objc(cs)HKAudiogramSensitivityPointClampingRange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "lowerBound": true; "upperBound": true };
 }
@@ -1305,32 +1305,32 @@ export class HKAudiogramSensitivityTest extends SDKHandle {
    * init(sensitivity: HKQuantity, type: HKAudiogramConductionType, masked: Bool, side: HKAudiogramSensitivityTestSide, clampingRange: HKAudiogramSensitivityPointClampingRange?) throws
    * @availability iOS 18.1+
    */
-  static init(sensitivity: HKQuantity, type: HKAudiogramConductionType, masked: boolean, side: HKAudiogramSensitivityTestSide, clampingRange?: $SDK38): HKAudiogramSensitivityTest { return callSDK<HKAudiogramSensitivityTest>("HealthKit_5d69670f0307b385", 2321445170194052, undefined, [sensitivity, type, masked, side, clampingRange]); }
+  static init(sensitivity: HKQuantity, type: HKAudiogramConductionType, masked: boolean, side: HKAudiogramSensitivityTestSide, clampingRange?: $SDK38): HKAudiogramSensitivityTest { return callSDK<HKAudiogramSensitivityTest>("HealthKit_6be9a005889899ab", 2321445170194052, undefined, [sensitivity, type, masked, side, clampingRange]); }
   /**
    * @NSCopying var clampingRange: HKAudiogramSensitivityPointClampingRange? { get }
    * @availability iOS 18.1+
    */
-  get clampingRange(): $SDK38 { return callSDK<$SDK38>("HealthKit_5d69670f0307b385", 3942473272895738, this, []); }
+  get clampingRange(): $SDK38 { return callSDK<$SDK38>("HealthKit_6be9a005889899ab", 3942473272895738, this, []); }
   /**
    * var masked: Bool { get }
    * @availability iOS 18.1+
    */
-  get masked(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 1456068135075464, this, []); }
+  get masked(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 1456068135075464, this, []); }
   /**
    * @NSCopying var sensitivity: HKQuantity { get }
    * @availability iOS 18.1+
    */
-  get sensitivity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 751621208382704, this, []); }
+  get sensitivity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 751621208382704, this, []); }
   /**
    * var side: HKAudiogramSensitivityTestSide { get }
    * @availability iOS 18.1+
    */
-  get side(): HKAudiogramSensitivityTestSide { return callSDK<HKAudiogramSensitivityTestSide>("HealthKit_5d69670f0307b385", 544406906577323, this, []); }
+  get side(): HKAudiogramSensitivityTestSide { return callSDK<HKAudiogramSensitivityTestSide>("HealthKit_6be9a005889899ab", 544406906577323, this, []); }
   /**
    * var type: HKAudiogramConductionType { get }
    * @availability iOS 18.1+
    */
-  get type(): HKAudiogramConductionType { return callSDK<HKAudiogramConductionType>("HealthKit_5d69670f0307b385", 1432631294660610, this, []); }
+  get type(): HKAudiogramConductionType { return callSDK<HKAudiogramConductionType>("HealthKit_6be9a005889899ab", 1432631294660610, this, []); }
   declare readonly $type: { "c:objc(cs)HKAudiogramSensitivityTest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "clampingRange": true; "masked": true; "sensitivity": true; "side": true; "type": true };
 }
@@ -1346,7 +1346,7 @@ export const HKAudiogramSensitivityTestSide = {
    * init?(rawValue: Int)
    * @availability iOS 18.1+
    */
-  init(rawValue: number): (HKAudiogramSensitivityTestSide) | null { return callSDK<(HKAudiogramSensitivityTestSide) | null>("HealthKit_5d69670f0307b385", 2438740015359158, undefined, [rawValue]); }
+  init(rawValue: number): (HKAudiogramSensitivityTestSide) | null { return callSDK<(HKAudiogramSensitivityTestSide) | null>("HealthKit_6be9a005889899ab", 2438740015359158, undefined, [rawValue]); }
 };
 
 /**
@@ -1360,7 +1360,7 @@ export const HKAuthorizationRequestStatus = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (HKAuthorizationRequestStatus) | null { return callSDK<(HKAuthorizationRequestStatus) | null>("HealthKit_5d69670f0307b385", 2962137786489461, undefined, [rawValue]); }
+  init(rawValue: number): (HKAuthorizationRequestStatus) | null { return callSDK<(HKAuthorizationRequestStatus) | null>("HealthKit_6be9a005889899ab", 2962137786489461, undefined, [rawValue]); }
 };
 
 /**
@@ -1374,7 +1374,7 @@ export const HKAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKAuthorizationStatus) | null { return callSDK<(HKAuthorizationStatus) | null>("HealthKit_5d69670f0307b385", 476445417687836, undefined, [rawValue]); }
+  init(rawValue: number): (HKAuthorizationStatus) | null { return callSDK<(HKAuthorizationStatus) | null>("HealthKit_6be9a005889899ab", 476445417687836, undefined, [rawValue]); }
 };
 
 /**
@@ -1388,7 +1388,7 @@ export const HKBiologicalSex = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKBiologicalSex) | null { return callSDK<(HKBiologicalSex) | null>("HealthKit_5d69670f0307b385", 1605874597693868, undefined, [rawValue]); }
+  init(rawValue: number): (HKBiologicalSex) | null { return callSDK<(HKBiologicalSex) | null>("HealthKit_6be9a005889899ab", 1605874597693868, undefined, [rawValue]); }
 };
 
 /**
@@ -1397,12 +1397,12 @@ export const HKBiologicalSex = {
  */
 export class HKBiologicalSexObject extends SDKHandle {
   /** init() */
-  static init(): HKBiologicalSexObject { return callSDK<HKBiologicalSexObject>("HealthKit_5d69670f0307b385", 4364716047040332, undefined, []); }
+  static init(): HKBiologicalSexObject { return callSDK<HKBiologicalSexObject>("HealthKit_6be9a005889899ab", 4364716047040332, undefined, []); }
   /**
    * var biologicalSex: HKBiologicalSex { get }
    * @availability iOS 8.0+
    */
-  get biologicalSex(): HKBiologicalSex { return callSDK<HKBiologicalSex>("HealthKit_5d69670f0307b385", 374326847130019, this, []); }
+  get biologicalSex(): HKBiologicalSex { return callSDK<HKBiologicalSex>("HealthKit_6be9a005889899ab", 374326847130019, this, []); }
   declare readonly $type: { "c:objc(cs)HKBiologicalSexObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "biologicalSex": true };
 }
@@ -1418,7 +1418,7 @@ export const HKBloodGlucoseMealTime = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (HKBloodGlucoseMealTime) | null { return callSDK<(HKBloodGlucoseMealTime) | null>("HealthKit_5d69670f0307b385", 1203050592393738, undefined, [rawValue]); }
+  init(rawValue: number): (HKBloodGlucoseMealTime) | null { return callSDK<(HKBloodGlucoseMealTime) | null>("HealthKit_6be9a005889899ab", 1203050592393738, undefined, [rawValue]); }
 };
 
 /**
@@ -1432,7 +1432,7 @@ export const HKBloodType = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKBloodType) | null { return callSDK<(HKBloodType) | null>("HealthKit_5d69670f0307b385", 3597875552061667, undefined, [rawValue]); }
+  init(rawValue: number): (HKBloodType) | null { return callSDK<(HKBloodType) | null>("HealthKit_6be9a005889899ab", 3597875552061667, undefined, [rawValue]); }
 };
 
 /**
@@ -1441,12 +1441,12 @@ export const HKBloodType = {
  */
 export class HKBloodTypeObject extends SDKHandle {
   /** init() */
-  static init(): HKBloodTypeObject { return callSDK<HKBloodTypeObject>("HealthKit_5d69670f0307b385", 582284248185981, undefined, []); }
+  static init(): HKBloodTypeObject { return callSDK<HKBloodTypeObject>("HealthKit_6be9a005889899ab", 582284248185981, undefined, []); }
   /**
    * var bloodType: HKBloodType { get }
    * @availability iOS 8.0+
    */
-  get bloodType(): HKBloodType { return callSDK<HKBloodType>("HealthKit_5d69670f0307b385", 2558831182484397, this, []); }
+  get bloodType(): HKBloodType { return callSDK<HKBloodType>("HealthKit_6be9a005889899ab", 2558831182484397, this, []); }
   declare readonly $type: { "c:objc(cs)HKBloodTypeObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bloodType": true };
 }
@@ -1462,7 +1462,7 @@ export const HKBodyTemperatureSensorLocation = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKBodyTemperatureSensorLocation) | null { return callSDK<(HKBodyTemperatureSensorLocation) | null>("HealthKit_5d69670f0307b385", 1112312511841425, undefined, [rawValue]); }
+  init(rawValue: number): (HKBodyTemperatureSensorLocation) | null { return callSDK<(HKBodyTemperatureSensorLocation) | null>("HealthKit_6be9a005889899ab", 1112312511841425, undefined, [rawValue]); }
 };
 
 /**
@@ -1474,27 +1474,27 @@ export class HKCategorySample extends HKSample {
    * convenience init(type: HKCategoryType, value: Int, start startDate: Date, end endDate: Date)
    * @availability iOS 8.0+
    */
-  static initTypeValueStartEnd(type: HKCategoryType, value: number, startDate: globalThis.Date, endDate: globalThis.Date): HKCategorySample { return callSDK<HKCategorySample>("HealthKit_5d69670f0307b385", 2351720853169237, undefined, [type, value, startDate, endDate]); }
+  static initTypeValueStartEnd(type: HKCategoryType, value: number, startDate: globalThis.Date, endDate: globalThis.Date): HKCategorySample { return callSDK<HKCategorySample>("HealthKit_6be9a005889899ab", 2351720853169237, undefined, [type, value, startDate, endDate]); }
   /**
    * convenience init(type: HKCategoryType, value: Int, start startDate: Date, end endDate: Date, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 9.0+
    */
-  static initTypeValueStartEndDeviceMetadata(type: HKCategoryType, value: number, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK29): HKCategorySample { return callSDK<HKCategorySample>("HealthKit_5d69670f0307b385", 1212310140948259, undefined, [type, value, startDate, endDate, device, metadata]); }
+  static initTypeValueStartEndDeviceMetadata(type: HKCategoryType, value: number, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK29): HKCategorySample { return callSDK<HKCategorySample>("HealthKit_6be9a005889899ab", 1212310140948259, undefined, [type, value, startDate, endDate, device, metadata]); }
   /**
    * convenience init(type: HKCategoryType, value: Int, start startDate: Date, end endDate: Date, metadata: [String : Any]?)
    * @availability iOS 8.0+
    */
-  static initTypeValueStartEndMetadata(type: HKCategoryType, value: number, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKCategorySample { return callSDK<HKCategorySample>("HealthKit_5d69670f0307b385", 2723242242970770, undefined, [type, value, startDate, endDate, metadata]); }
+  static initTypeValueStartEndMetadata(type: HKCategoryType, value: number, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKCategorySample { return callSDK<HKCategorySample>("HealthKit_6be9a005889899ab", 2723242242970770, undefined, [type, value, startDate, endDate, metadata]); }
   /**
    * var categoryType: HKCategoryType { get }
    * @availability iOS 8.0+
    */
-  get categoryType(): HKCategoryType { return callSDK<HKCategoryType>("HealthKit_5d69670f0307b385", 1354414405878613, this, []); }
+  get categoryType(): HKCategoryType { return callSDK<HKCategoryType>("HealthKit_6be9a005889899ab", 1354414405878613, this, []); }
   /**
    * var value: Int { get }
    * @availability iOS 8.0+
    */
-  get value(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 744407102785415, this, []); }
+  get value(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 744407102785415, this, []); }
   declare readonly $type: { "c:objc(cs)HKCategorySample": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "categoryType": true; "value": true };
 }
@@ -1508,7 +1508,7 @@ export class HKCategoryType extends HKSampleType {
    * convenience init(_ identifier: HKCategoryTypeIdentifier)
    * @availability iOS 15.0+
    */
-  static init(identifier: HKCategoryTypeIdentifier): HKCategoryType { return callSDK<HKCategoryType>("HealthKit_5d69670f0307b385", 481980728777728, undefined, [identifier]); }
+  static init(identifier: HKCategoryTypeIdentifier): HKCategoryType { return callSDK<HKCategoryType>("HealthKit_6be9a005889899ab", 481980728777728, undefined, [identifier]); }
   declare readonly $type: { "c:objc(cs)HKCategoryType": true; "c:objc(cs)HKSampleType": true; "c:objc(cs)HKObjectType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "allowsRecalibrationForEstimates": true; "isMaximumDurationRestricted": true; "isMinimumDurationRestricted": true; "maximumAllowedDuration": true; "minimumAllowedDuration": true };
 }
@@ -1521,365 +1521,365 @@ export const HKCategoryTypeIdentifier = {
    * static let abdominalCramps: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get abdominalCramps(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3343675301589510, undefined, []); },
+  get abdominalCramps(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3343675301589510, undefined, []); },
   /**
    * static let acne: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get acne(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1991787692148582, undefined, []); },
+  get acne(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1991787692148582, undefined, []); },
   /**
    * static let appetiteChanges: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get appetiteChanges(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1698410831489089, undefined, []); },
+  get appetiteChanges(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1698410831489089, undefined, []); },
   /**
    * static let appleStandHour: HKCategoryTypeIdentifier
    * @availability iOS 9.0+
    */
-  get appleStandHour(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 928303543289089, undefined, []); },
+  get appleStandHour(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 928303543289089, undefined, []); },
   /**
    * static let appleWalkingSteadinessEvent: HKCategoryTypeIdentifier
    * @availability iOS 15.0+
    */
-  get appleWalkingSteadinessEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 355123372455039, undefined, []); },
+  get appleWalkingSteadinessEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 355123372455039, undefined, []); },
   /**
    * static let audioExposureEvent: HKCategoryTypeIdentifier
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get audioExposureEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2216449016333342, undefined, []); },
+  get audioExposureEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2216449016333342, undefined, []); },
   /**
    * static let bladderIncontinence: HKCategoryTypeIdentifier
    * @availability iOS 14.0+
    */
-  get bladderIncontinence(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 764297553956196, undefined, []); },
+  get bladderIncontinence(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 764297553956196, undefined, []); },
   /**
    * static let bleedingAfterMenopause: HKCategoryTypeIdentifier
    * @availability iOS 27.0+
    */
-  get bleedingAfterMenopause(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 115308437866069, undefined, []); },
+  get bleedingAfterMenopause(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 115308437866069, undefined, []); },
   /**
    * static let bleedingAfterPregnancy: HKCategoryTypeIdentifier
    * @availability iOS 18.0+
    */
-  get bleedingAfterPregnancy(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 742878848938549, undefined, []); },
+  get bleedingAfterPregnancy(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 742878848938549, undefined, []); },
   /**
    * static let bleedingDuringPregnancy: HKCategoryTypeIdentifier
    * @availability iOS 18.0+
    */
-  get bleedingDuringPregnancy(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3240256607501826, undefined, []); },
+  get bleedingDuringPregnancy(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3240256607501826, undefined, []); },
   /**
    * static let bloating: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get bloating(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 4466813598496617, undefined, []); },
+  get bloating(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 4466813598496617, undefined, []); },
   /**
    * static let breastPain: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get breastPain(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 4101497062671403, undefined, []); },
+  get breastPain(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 4101497062671403, undefined, []); },
   /**
    * static let cervicalMucusQuality: HKCategoryTypeIdentifier
    * @availability iOS 9.0+
    */
-  get cervicalMucusQuality(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1504395195401792, undefined, []); },
+  get cervicalMucusQuality(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1504395195401792, undefined, []); },
   /**
    * static let chestTightnessOrPain: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get chestTightnessOrPain(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2868632883821651, undefined, []); },
+  get chestTightnessOrPain(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2868632883821651, undefined, []); },
   /**
    * static let chills: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get chills(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1490501229920723, undefined, []); },
+  get chills(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1490501229920723, undefined, []); },
   /**
    * static let constipation: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get constipation(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2473668367709164, undefined, []); },
+  get constipation(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2473668367709164, undefined, []); },
   /**
    * static let contraceptive: HKCategoryTypeIdentifier
    * @availability iOS 14.3+
    */
-  get contraceptive(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 51900081013782, undefined, []); },
+  get contraceptive(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 51900081013782, undefined, []); },
   /**
    * static let coughing: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get coughing(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2832711444194901, undefined, []); },
+  get coughing(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2832711444194901, undefined, []); },
   /**
    * static let diarrhea: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get diarrhea(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1033448696519623, undefined, []); },
+  get diarrhea(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1033448696519623, undefined, []); },
   /**
    * static let dizziness: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get dizziness(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 595985027284521, undefined, []); },
+  get dizziness(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 595985027284521, undefined, []); },
   /**
    * static let drySkin: HKCategoryTypeIdentifier
    * @availability iOS 14.0+
    */
-  get drySkin(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3057421974095508, undefined, []); },
+  get drySkin(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3057421974095508, undefined, []); },
   /**
    * static let environmentalAudioExposureEvent: HKCategoryTypeIdentifier
    * @availability iOS 14.0+
    */
-  get environmentalAudioExposureEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1563306029222298, undefined, []); },
+  get environmentalAudioExposureEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1563306029222298, undefined, []); },
   /**
    * static let fainting: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get fainting(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3701713817592119, undefined, []); },
+  get fainting(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3701713817592119, undefined, []); },
   /**
    * static let fatigue: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get fatigue(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1723887566384260, undefined, []); },
+  get fatigue(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1723887566384260, undefined, []); },
   /**
    * static let fever: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get fever(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 4318862789479983, undefined, []); },
+  get fever(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 4318862789479983, undefined, []); },
   /**
    * static let generalizedBodyAche: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get generalizedBodyAche(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3770695336449986, undefined, []); },
+  get generalizedBodyAche(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3770695336449986, undefined, []); },
   /**
    * static let hairLoss: HKCategoryTypeIdentifier
    * @availability iOS 14.0+
    */
-  get hairLoss(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3473597943376065, undefined, []); },
+  get hairLoss(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3473597943376065, undefined, []); },
   /**
    * static let handwashingEvent: HKCategoryTypeIdentifier
    * @availability iOS 14.0+
    */
-  get handwashingEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 312672270688388, undefined, []); },
+  get handwashingEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 312672270688388, undefined, []); },
   /**
    * static let headache: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get headache(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2491820220538215, undefined, []); },
+  get headache(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2491820220538215, undefined, []); },
   /**
    * static let headphoneAudioExposureEvent: HKCategoryTypeIdentifier
    * @availability iOS 14.2+
    */
-  get headphoneAudioExposureEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 541520259132897, undefined, []); },
+  get headphoneAudioExposureEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 541520259132897, undefined, []); },
   /**
    * static let heartburn: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get heartburn(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 820701644183831, undefined, []); },
+  get heartburn(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 820701644183831, undefined, []); },
   /**
    * static let highHeartRateEvent: HKCategoryTypeIdentifier
    * @availability iOS 12.2+
    */
-  get highHeartRateEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3472609015620665, undefined, []); },
+  get highHeartRateEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3472609015620665, undefined, []); },
   /**
    * static let hotFlashes: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get hotFlashes(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3891518580387322, undefined, []); },
+  get hotFlashes(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3891518580387322, undefined, []); },
   /**
    * static let hypertensionEvent: HKCategoryTypeIdentifier
    * @availability iOS 26.2+
    */
-  get hypertensionEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3207156550455041, undefined, []); },
+  get hypertensionEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3207156550455041, undefined, []); },
   /**
    * static let infrequentMenstrualCycles: HKCategoryTypeIdentifier
    * @availability iOS 16.0+
    */
-  get infrequentMenstrualCycles(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1982440549884352, undefined, []); },
+  get infrequentMenstrualCycles(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1982440549884352, undefined, []); },
   /**
    * static let intermenstrualBleeding: HKCategoryTypeIdentifier
    * @availability iOS 9.0+
    */
-  get intermenstrualBleeding(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 548932856715108, undefined, []); },
+  get intermenstrualBleeding(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 548932856715108, undefined, []); },
   /**
    * static let irregularHeartRhythmEvent: HKCategoryTypeIdentifier
    * @availability iOS 12.2+
    */
-  get irregularHeartRhythmEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 4262865253342926, undefined, []); },
+  get irregularHeartRhythmEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 4262865253342926, undefined, []); },
   /**
    * static let irregularMenstrualCycles: HKCategoryTypeIdentifier
    * @availability iOS 16.0+
    */
-  get irregularMenstrualCycles(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1607260135411899, undefined, []); },
+  get irregularMenstrualCycles(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1607260135411899, undefined, []); },
   /**
    * static let lactation: HKCategoryTypeIdentifier
    * @availability iOS 14.3+
    */
-  get lactation(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 677072493974141, undefined, []); },
+  get lactation(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 677072493974141, undefined, []); },
   /**
    * static let lossOfSmell: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get lossOfSmell(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3842937282149813, undefined, []); },
+  get lossOfSmell(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3842937282149813, undefined, []); },
   /**
    * static let lossOfTaste: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get lossOfTaste(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2607831340930327, undefined, []); },
+  get lossOfTaste(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2607831340930327, undefined, []); },
   /**
    * static let lowCardioFitnessEvent: HKCategoryTypeIdentifier
    * @availability iOS 14.3+
    */
-  get lowCardioFitnessEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 634976651373098, undefined, []); },
+  get lowCardioFitnessEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 634976651373098, undefined, []); },
   /**
    * static let lowHeartRateEvent: HKCategoryTypeIdentifier
    * @availability iOS 12.2+
    */
-  get lowHeartRateEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1854320154978528, undefined, []); },
+  get lowHeartRateEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1854320154978528, undefined, []); },
   /**
    * static let lowerBackPain: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get lowerBackPain(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3547911513923379, undefined, []); },
+  get lowerBackPain(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3547911513923379, undefined, []); },
   /**
    * static let memoryLapse: HKCategoryTypeIdentifier
    * @availability iOS 14.0+
    */
-  get memoryLapse(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2460297268265749, undefined, []); },
+  get memoryLapse(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2460297268265749, undefined, []); },
   /**
    * static let menopausalState: HKCategoryTypeIdentifier
    * @availability iOS 27.0+
    */
-  get menopausalState(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2236719914956698, undefined, []); },
+  get menopausalState(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2236719914956698, undefined, []); },
   /**
    * static let menstrualFlow: HKCategoryTypeIdentifier
    * @availability iOS 9.0+
    */
-  get menstrualFlow(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2728337855787897, undefined, []); },
+  get menstrualFlow(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2728337855787897, undefined, []); },
   /**
    * static let mindfulSession: HKCategoryTypeIdentifier
    * @availability iOS 10.0+
    */
-  get mindfulSession(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1670832550335203, undefined, []); },
+  get mindfulSession(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1670832550335203, undefined, []); },
   /**
    * static let moodChanges: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get moodChanges(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1674817546949599, undefined, []); },
+  get moodChanges(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1674817546949599, undefined, []); },
   /**
    * static let nausea: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get nausea(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 4437623131382877, undefined, []); },
+  get nausea(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 4437623131382877, undefined, []); },
   /**
    * static let nightSweats: HKCategoryTypeIdentifier
    * @availability iOS 14.0+
    */
-  get nightSweats(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3335023135292800, undefined, []); },
+  get nightSweats(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3335023135292800, undefined, []); },
   /**
    * static let ovulationTestResult: HKCategoryTypeIdentifier
    * @availability iOS 9.0+
    */
-  get ovulationTestResult(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3511173074512852, undefined, []); },
+  get ovulationTestResult(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3511173074512852, undefined, []); },
   /**
    * static let pelvicPain: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get pelvicPain(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2077588207419053, undefined, []); },
+  get pelvicPain(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2077588207419053, undefined, []); },
   /**
    * static let persistentIntermenstrualBleeding: HKCategoryTypeIdentifier
    * @availability iOS 16.0+
    */
-  get persistentIntermenstrualBleeding(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3468180498578438, undefined, []); },
+  get persistentIntermenstrualBleeding(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3468180498578438, undefined, []); },
   /**
    * static let pregnancy: HKCategoryTypeIdentifier
    * @availability iOS 14.3+
    */
-  get pregnancy(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1229709203426931, undefined, []); },
+  get pregnancy(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1229709203426931, undefined, []); },
   /**
    * static let pregnancyTestResult: HKCategoryTypeIdentifier
    * @availability iOS 15.0+
    */
-  get pregnancyTestResult(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 702438946740033, undefined, []); },
+  get pregnancyTestResult(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 702438946740033, undefined, []); },
   /**
    * static let progesteroneTestResult: HKCategoryTypeIdentifier
    * @availability iOS 15.0+
    */
-  get progesteroneTestResult(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2783955223577661, undefined, []); },
+  get progesteroneTestResult(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2783955223577661, undefined, []); },
   /**
    * static let prolongedMenstrualPeriods: HKCategoryTypeIdentifier
    * @availability iOS 16.0+
    */
-  get prolongedMenstrualPeriods(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1923521376329771, undefined, []); },
+  get prolongedMenstrualPeriods(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1923521376329771, undefined, []); },
   /**
    * static let rapidPoundingOrFlutteringHeartbeat: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get rapidPoundingOrFlutteringHeartbeat(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1243704113790946, undefined, []); },
+  get rapidPoundingOrFlutteringHeartbeat(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1243704113790946, undefined, []); },
   /**
    * static let runnyNose: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get runnyNose(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 4252865592557409, undefined, []); },
+  get runnyNose(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 4252865592557409, undefined, []); },
   /**
    * static let sexualActivity: HKCategoryTypeIdentifier
    * @availability iOS 9.0+
    */
-  get sexualActivity(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 2157002976104279, undefined, []); },
+  get sexualActivity(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 2157002976104279, undefined, []); },
   /**
    * static let shortnessOfBreath: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get shortnessOfBreath(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1197195633240175, undefined, []); },
+  get shortnessOfBreath(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1197195633240175, undefined, []); },
   /**
    * static let sinusCongestion: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get sinusCongestion(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 1904850173973917, undefined, []); },
+  get sinusCongestion(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 1904850173973917, undefined, []); },
   /**
    * static let skippedHeartbeat: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get skippedHeartbeat(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 4339663343005669, undefined, []); },
+  get skippedHeartbeat(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 4339663343005669, undefined, []); },
   /**
    * static let sleepAnalysis: HKCategoryTypeIdentifier
    * @availability iOS 8.0+
    */
-  get sleepAnalysis(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3817412696508332, undefined, []); },
+  get sleepAnalysis(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3817412696508332, undefined, []); },
   /**
    * static let sleepApneaEvent: HKCategoryTypeIdentifier
    * @availability iOS 18.0+
    */
-  get sleepApneaEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3022610908010200, undefined, []); },
+  get sleepApneaEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3022610908010200, undefined, []); },
   /**
    * static let sleepChanges: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get sleepChanges(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 4043319522564031, undefined, []); },
+  get sleepChanges(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 4043319522564031, undefined, []); },
   /**
    * static let soreThroat: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get soreThroat(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 746748995417319, undefined, []); },
+  get soreThroat(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 746748995417319, undefined, []); },
   /**
    * static let toothbrushingEvent: HKCategoryTypeIdentifier
    * @availability iOS 13.0+
    */
-  get toothbrushingEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 978843860291343, undefined, []); },
+  get toothbrushingEvent(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 978843860291343, undefined, []); },
   /**
    * static let vaginalDryness: HKCategoryTypeIdentifier
    * @availability iOS 14.0+
    */
-  get vaginalDryness(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3232914829128297, undefined, []); },
+  get vaginalDryness(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3232914829128297, undefined, []); },
   /**
    * static let vomiting: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get vomiting(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 3296636929745833, undefined, []); },
+  get vomiting(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 3296636929745833, undefined, []); },
   /**
    * static let wheezing: HKCategoryTypeIdentifier
    * @availability iOS 13.6+
    */
-  get wheezing(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 483574655177240, undefined, []); },
+  get wheezing(): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 483574655177240, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_5d69670f0307b385", 305856440497178, undefined, [rawValue]); }
+  init(rawValue: string): HKCategoryTypeIdentifier { return callSDK<HKCategoryTypeIdentifier>("HealthKit_6be9a005889899ab", 305856440497178, undefined, [rawValue]); }
 };
 
 /**
@@ -1893,7 +1893,7 @@ export const HKCategoryValue = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (HKCategoryValue) | null { return callSDK<(HKCategoryValue) | null>("HealthKit_5d69670f0307b385", 2189714943576135, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValue) | null { return callSDK<(HKCategoryValue) | null>("HealthKit_6be9a005889899ab", 2189714943576135, undefined, [rawValue]); }
 };
 
 /**
@@ -1907,7 +1907,7 @@ export const HKCategoryValueAppetiteChanges = {
    * init?(rawValue: Int)
    * @availability iOS 13.6+
    */
-  init(rawValue: number): (HKCategoryValueAppetiteChanges) | null { return callSDK<(HKCategoryValueAppetiteChanges) | null>("HealthKit_5d69670f0307b385", 3892439926334193, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueAppetiteChanges) | null { return callSDK<(HKCategoryValueAppetiteChanges) | null>("HealthKit_6be9a005889899ab", 3892439926334193, undefined, [rawValue]); }
 };
 
 /**
@@ -1921,7 +1921,7 @@ export const HKCategoryValueAppleStandHour = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (HKCategoryValueAppleStandHour) | null { return callSDK<(HKCategoryValueAppleStandHour) | null>("HealthKit_5d69670f0307b385", 1754571834604229, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueAppleStandHour) | null { return callSDK<(HKCategoryValueAppleStandHour) | null>("HealthKit_6be9a005889899ab", 1754571834604229, undefined, [rawValue]); }
 };
 
 /**
@@ -1935,7 +1935,7 @@ export const HKCategoryValueAppleWalkingSteadinessEvent = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (HKCategoryValueAppleWalkingSteadinessEvent) | null { return callSDK<(HKCategoryValueAppleWalkingSteadinessEvent) | null>("HealthKit_5d69670f0307b385", 2213206160414395, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueAppleWalkingSteadinessEvent) | null { return callSDK<(HKCategoryValueAppleWalkingSteadinessEvent) | null>("HealthKit_6be9a005889899ab", 2213206160414395, undefined, [rawValue]); }
 };
 
 /**
@@ -1951,7 +1951,7 @@ export const HKCategoryValueAudioExposureEvent = {
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  init(rawValue: number): (HKCategoryValueAudioExposureEvent) | null { return callSDK<(HKCategoryValueAudioExposureEvent) | null>("HealthKit_5d69670f0307b385", 2967863376413884, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueAudioExposureEvent) | null { return callSDK<(HKCategoryValueAudioExposureEvent) | null>("HealthKit_6be9a005889899ab", 2967863376413884, undefined, [rawValue]); }
 };
 
 /**
@@ -1965,7 +1965,7 @@ export const HKCategoryValueCervicalMucusQuality = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (HKCategoryValueCervicalMucusQuality) | null { return callSDK<(HKCategoryValueCervicalMucusQuality) | null>("HealthKit_5d69670f0307b385", 1452469900462684, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueCervicalMucusQuality) | null { return callSDK<(HKCategoryValueCervicalMucusQuality) | null>("HealthKit_6be9a005889899ab", 1452469900462684, undefined, [rawValue]); }
 };
 
 /**
@@ -1979,7 +1979,7 @@ export const HKCategoryValueContraceptive = {
    * init?(rawValue: Int)
    * @availability iOS 14.3+
    */
-  init(rawValue: number): (HKCategoryValueContraceptive) | null { return callSDK<(HKCategoryValueContraceptive) | null>("HealthKit_5d69670f0307b385", 1554169179660449, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueContraceptive) | null { return callSDK<(HKCategoryValueContraceptive) | null>("HealthKit_6be9a005889899ab", 1554169179660449, undefined, [rawValue]); }
 };
 
 /**
@@ -1993,7 +1993,7 @@ export const HKCategoryValueEnvironmentalAudioExposureEvent = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (HKCategoryValueEnvironmentalAudioExposureEvent) | null { return callSDK<(HKCategoryValueEnvironmentalAudioExposureEvent) | null>("HealthKit_5d69670f0307b385", 1608508975214760, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueEnvironmentalAudioExposureEvent) | null { return callSDK<(HKCategoryValueEnvironmentalAudioExposureEvent) | null>("HealthKit_6be9a005889899ab", 1608508975214760, undefined, [rawValue]); }
 };
 
 /**
@@ -2007,7 +2007,7 @@ export const HKCategoryValueHeadphoneAudioExposureEvent = {
    * init?(rawValue: Int)
    * @availability iOS 14.2+
    */
-  init(rawValue: number): (HKCategoryValueHeadphoneAudioExposureEvent) | null { return callSDK<(HKCategoryValueHeadphoneAudioExposureEvent) | null>("HealthKit_5d69670f0307b385", 152245815485618, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueHeadphoneAudioExposureEvent) | null { return callSDK<(HKCategoryValueHeadphoneAudioExposureEvent) | null>("HealthKit_6be9a005889899ab", 152245815485618, undefined, [rawValue]); }
 };
 
 /**
@@ -2021,7 +2021,7 @@ export const HKCategoryValueLowCardioFitnessEvent = {
    * init?(rawValue: Int)
    * @availability iOS 14.3+
    */
-  init(rawValue: number): (HKCategoryValueLowCardioFitnessEvent) | null { return callSDK<(HKCategoryValueLowCardioFitnessEvent) | null>("HealthKit_5d69670f0307b385", 1035402268159117, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueLowCardioFitnessEvent) | null { return callSDK<(HKCategoryValueLowCardioFitnessEvent) | null>("HealthKit_6be9a005889899ab", 1035402268159117, undefined, [rawValue]); }
 };
 
 /**
@@ -2035,7 +2035,7 @@ export const HKCategoryValueMenopausalState = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (HKCategoryValueMenopausalState) | null { return callSDK<(HKCategoryValueMenopausalState) | null>("HealthKit_5d69670f0307b385", 1701239436408594, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueMenopausalState) | null { return callSDK<(HKCategoryValueMenopausalState) | null>("HealthKit_6be9a005889899ab", 1701239436408594, undefined, [rawValue]); }
 };
 
 /**
@@ -2051,7 +2051,7 @@ export const HKCategoryValueMenstrualFlow = {
    * @availability iOS 9.0+
    * @deprecated iOS 18.0
    */
-  init(rawValue: number): (HKCategoryValueMenstrualFlow) | null { return callSDK<(HKCategoryValueMenstrualFlow) | null>("HealthKit_5d69670f0307b385", 2155901400585504, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueMenstrualFlow) | null { return callSDK<(HKCategoryValueMenstrualFlow) | null>("HealthKit_6be9a005889899ab", 2155901400585504, undefined, [rawValue]); }
 };
 
 /**
@@ -2066,12 +2066,12 @@ export const HKCategoryValueOvulationTestResult = {
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  get positive(): HKCategoryValueOvulationTestResult { return callSDK<HKCategoryValueOvulationTestResult>("HealthKit_5d69670f0307b385", 711774708124273, undefined, []); },
+  get positive(): HKCategoryValueOvulationTestResult { return callSDK<HKCategoryValueOvulationTestResult>("HealthKit_6be9a005889899ab", 711774708124273, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (HKCategoryValueOvulationTestResult) | null { return callSDK<(HKCategoryValueOvulationTestResult) | null>("HealthKit_5d69670f0307b385", 1102732714323370, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueOvulationTestResult) | null { return callSDK<(HKCategoryValueOvulationTestResult) | null>("HealthKit_6be9a005889899ab", 1102732714323370, undefined, [rawValue]); }
 };
 
 /**
@@ -2093,7 +2093,7 @@ export const HKCategoryValuePregnancyTestResult = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (HKCategoryValuePregnancyTestResult) | null { return callSDK<(HKCategoryValuePregnancyTestResult) | null>("HealthKit_5d69670f0307b385", 1704206633756466, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValuePregnancyTestResult) | null { return callSDK<(HKCategoryValuePregnancyTestResult) | null>("HealthKit_6be9a005889899ab", 1704206633756466, undefined, [rawValue]); }
 };
 
 /**
@@ -2107,7 +2107,7 @@ export const HKCategoryValuePresence = {
    * init?(rawValue: Int)
    * @availability iOS 13.6+
    */
-  init(rawValue: number): (HKCategoryValuePresence) | null { return callSDK<(HKCategoryValuePresence) | null>("HealthKit_5d69670f0307b385", 671408932979673, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValuePresence) | null { return callSDK<(HKCategoryValuePresence) | null>("HealthKit_6be9a005889899ab", 671408932979673, undefined, [rawValue]); }
 };
 
 /**
@@ -2121,7 +2121,7 @@ export const HKCategoryValueProgesteroneTestResult = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (HKCategoryValueProgesteroneTestResult) | null { return callSDK<(HKCategoryValueProgesteroneTestResult) | null>("HealthKit_5d69670f0307b385", 903569017381151, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueProgesteroneTestResult) | null { return callSDK<(HKCategoryValueProgesteroneTestResult) | null>("HealthKit_6be9a005889899ab", 903569017381151, undefined, [rawValue]); }
 };
 
 /**
@@ -2135,7 +2135,7 @@ export const HKCategoryValueSeverity = {
    * init?(rawValue: Int)
    * @availability iOS 13.6+
    */
-  init(rawValue: number): (HKCategoryValueSeverity) | null { return callSDK<(HKCategoryValueSeverity) | null>("HealthKit_5d69670f0307b385", 1419065273537001, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueSeverity) | null { return callSDK<(HKCategoryValueSeverity) | null>("HealthKit_6be9a005889899ab", 1419065273537001, undefined, [rawValue]); }
 };
 
 /**
@@ -2150,17 +2150,17 @@ export const HKCategoryValueSleepAnalysis = {
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get asleep(): HKCategoryValueSleepAnalysis { return callSDK<HKCategoryValueSleepAnalysis>("HealthKit_5d69670f0307b385", 3583260740651756, undefined, []); },
+  get asleep(): HKCategoryValueSleepAnalysis { return callSDK<HKCategoryValueSleepAnalysis>("HealthKit_6be9a005889899ab", 3583260740651756, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKCategoryValueSleepAnalysis) | null { return callSDK<(HKCategoryValueSleepAnalysis) | null>("HealthKit_5d69670f0307b385", 2818151237694169, undefined, [rawValue]); },
+  init(rawValue: number): (HKCategoryValueSleepAnalysis) | null { return callSDK<(HKCategoryValueSleepAnalysis) | null>("HealthKit_6be9a005889899ab", 2818151237694169, undefined, [rawValue]); },
   /**
    * static var allAsleepValues: Set<HKCategoryValueSleepAnalysis> { get }
    * @availability iOS 16.0+
    */
-  get allAsleepValues(): Array<HKCategoryValueSleepAnalysis> { return callSDK<Array<HKCategoryValueSleepAnalysis>>("HealthKit_5d69670f0307b385", 2783096612411066, undefined, []); }
+  get allAsleepValues(): Array<HKCategoryValueSleepAnalysis> { return callSDK<Array<HKCategoryValueSleepAnalysis>>("HealthKit_6be9a005889899ab", 2783096612411066, undefined, []); }
 };
 
 /**
@@ -2174,7 +2174,7 @@ export const HKCategoryValueVaginalBleeding = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HKCategoryValueVaginalBleeding) | null { return callSDK<(HKCategoryValueVaginalBleeding) | null>("HealthKit_5d69670f0307b385", 2680619187861682, undefined, [rawValue]); }
+  init(rawValue: number): (HKCategoryValueVaginalBleeding) | null { return callSDK<(HKCategoryValueVaginalBleeding) | null>("HealthKit_6be9a005889899ab", 2680619187861682, undefined, [rawValue]); }
 };
 
 /**
@@ -2183,32 +2183,32 @@ export const HKCategoryValueVaginalBleeding = {
  */
 export class HKCDADocument extends SDKHandle {
   /** init() */
-  static init(): HKCDADocument { return callSDK<HKCDADocument>("HealthKit_5d69670f0307b385", 433479624671939, undefined, []); }
+  static init(): HKCDADocument { return callSDK<HKCDADocument>("HealthKit_6be9a005889899ab", 433479624671939, undefined, []); }
   /**
    * var authorName: String { get }
    * @availability iOS 10.0+
    */
-  get authorName(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 2322668355503693, this, []); }
+  get authorName(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 2322668355503693, this, []); }
   /**
    * var custodianName: String { get }
    * @availability iOS 10.0+
    */
-  get custodianName(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 2960184782775662, this, []); }
+  get custodianName(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 2960184782775662, this, []); }
   /**
    * var documentData: Data? { get }
    * @availability iOS 10.0+
    */
-  get documentData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("HealthKit_5d69670f0307b385", 3536445119657207, this, []); }
+  get documentData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("HealthKit_6be9a005889899ab", 3536445119657207, this, []); }
   /**
    * var patientName: String { get }
    * @availability iOS 10.0+
    */
-  get patientName(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 2535336123395528, this, []); }
+  get patientName(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 2535336123395528, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 10.0+
    */
-  get title(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 2008193326259302, this, []); }
+  get title(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 2008193326259302, this, []); }
   declare readonly $type: { "c:objc(cs)HKCDADocument": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorName": true; "custodianName": true; "documentData": true; "patientName": true; "title": true };
 }
@@ -2222,7 +2222,7 @@ export class HKDocumentSample extends HKSample {
    * var documentType: HKDocumentType { get }
    * @availability iOS 10.0+
    */
-  get documentType(): HKDocumentType { return callSDK<HKDocumentType>("HealthKit_5d69670f0307b385", 2171649000699006, this, []); }
+  get documentType(): HKDocumentType { return callSDK<HKDocumentType>("HealthKit_6be9a005889899ab", 2171649000699006, this, []); }
   declare readonly $type: { "c:objc(cs)HKDocumentSample": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "documentType": true };
 }
@@ -2236,12 +2236,12 @@ export class HKCDADocumentSample extends HKDocumentSample {
    * convenience init(data documentData: Data, start startDate: Date, end endDate: Date, metadata: [String : Any]?) throws
    * @availability iOS 10.0+
    */
-  static init(documentData: ArrayBuffer, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKCDADocumentSample { return callSDK<HKCDADocumentSample>("HealthKit_5d69670f0307b385", 91382114764345, undefined, [documentData, startDate, endDate, metadata]); }
+  static init(documentData: ArrayBuffer, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKCDADocumentSample { return callSDK<HKCDADocumentSample>("HealthKit_6be9a005889899ab", 91382114764345, undefined, [documentData, startDate, endDate, metadata]); }
   /**
    * var document: HKCDADocument? { get }
    * @availability iOS 10.0+
    */
-  get document(): (HKCDADocument) | null { return callSDK<(HKCDADocument) | null>("HealthKit_5d69670f0307b385", 76441252768540, this, []); }
+  get document(): (HKCDADocument) | null { return callSDK<(HKCDADocument) | null>("HealthKit_6be9a005889899ab", 76441252768540, this, []); }
   declare readonly $type: { "c:objc(cs)HKCDADocumentSample": true; "c:objc(cs)HKDocumentSample": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "documentType": true; "document": true };
 }
@@ -2255,7 +2255,7 @@ export class HKCharacteristicType extends HKObjectType {
    * convenience init(_ identifier: HKCharacteristicTypeIdentifier)
    * @availability iOS 15.0+
    */
-  static init(identifier: HKCharacteristicTypeIdentifier): HKCharacteristicType { return callSDK<HKCharacteristicType>("HealthKit_5d69670f0307b385", 215795258383281, undefined, [identifier]); }
+  static init(identifier: HKCharacteristicTypeIdentifier): HKCharacteristicType { return callSDK<HKCharacteristicType>("HealthKit_6be9a005889899ab", 215795258383281, undefined, [identifier]); }
   declare readonly $type: { "c:objc(cs)HKCharacteristicType": true; "c:objc(cs)HKObjectType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -2268,34 +2268,34 @@ export const HKCharacteristicTypeIdentifier = {
    * static let activityMoveMode: HKCharacteristicTypeIdentifier
    * @availability iOS 14.0+
    */
-  get activityMoveMode(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_5d69670f0307b385", 4196607621499658, undefined, []); },
+  get activityMoveMode(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_6be9a005889899ab", 4196607621499658, undefined, []); },
   /**
    * static let biologicalSex: HKCharacteristicTypeIdentifier
    * @availability iOS 8.0+
    */
-  get biologicalSex(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_5d69670f0307b385", 1194891402382347, undefined, []); },
+  get biologicalSex(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_6be9a005889899ab", 1194891402382347, undefined, []); },
   /**
    * static let bloodType: HKCharacteristicTypeIdentifier
    * @availability iOS 8.0+
    */
-  get bloodType(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_5d69670f0307b385", 3957753306588770, undefined, []); },
+  get bloodType(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_6be9a005889899ab", 3957753306588770, undefined, []); },
   /**
    * static let dateOfBirth: HKCharacteristicTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dateOfBirth(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_5d69670f0307b385", 2653249051074943, undefined, []); },
+  get dateOfBirth(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_6be9a005889899ab", 2653249051074943, undefined, []); },
   /**
    * static let fitzpatrickSkinType: HKCharacteristicTypeIdentifier
    * @availability iOS 9.0+
    */
-  get fitzpatrickSkinType(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_5d69670f0307b385", 3538170737337048, undefined, []); },
+  get fitzpatrickSkinType(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_6be9a005889899ab", 3538170737337048, undefined, []); },
   /**
    * static let wheelchairUse: HKCharacteristicTypeIdentifier
    * @availability iOS 10.0+
    */
-  get wheelchairUse(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_5d69670f0307b385", 3216373194592227, undefined, []); },
+  get wheelchairUse(): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_6be9a005889899ab", 3216373194592227, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_5d69670f0307b385", 4196311863206159, undefined, [rawValue]); }
+  init(rawValue: string): HKCharacteristicTypeIdentifier { return callSDK<HKCharacteristicTypeIdentifier>("HealthKit_6be9a005889899ab", 4196311863206159, undefined, [rawValue]); }
 };
 
 /**
@@ -2307,22 +2307,22 @@ export class HKClinicalCoding extends SDKHandle {
    * init(system: String, version: String?, code: String)
    * @availability iOS 26.0+
    */
-  static init(system: string, version: (string) | null, code: string): HKClinicalCoding { return callSDK<HKClinicalCoding>("HealthKit_5d69670f0307b385", 3950188185665545, undefined, [system, version, code]); }
+  static init(system: string, version: (string) | null, code: string): HKClinicalCoding { return callSDK<HKClinicalCoding>("HealthKit_6be9a005889899ab", 3950188185665545, undefined, [system, version, code]); }
   /**
    * var code: String { get }
    * @availability iOS 26.0+
    */
-  get code(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 4263420109500405, this, []); }
+  get code(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 4263420109500405, this, []); }
   /**
    * var system: String { get }
    * @availability iOS 26.0+
    */
-  get system(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 1691029064550719, this, []); }
+  get system(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 1691029064550719, this, []); }
   /**
    * var version: String? { get }
    * @availability iOS 26.0+
    */
-  get version(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 3011777053810910, this, []); }
+  get version(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 3011777053810910, this, []); }
   declare readonly $type: { "c:objc(cs)HKClinicalCoding": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "code": true; "system": true; "version": true };
 }
@@ -2336,17 +2336,17 @@ export class HKClinicalRecord extends HKSample {
    * @NSCopying var fhirResource: HKFHIRResource? { get }
    * @availability iOS 12.0+
    */
-  get fhirResource(): (HKFHIRResource) | null { return callSDK<(HKFHIRResource) | null>("HealthKit_5d69670f0307b385", 1817266705874272, this, []); }
+  get fhirResource(): (HKFHIRResource) | null { return callSDK<(HKFHIRResource) | null>("HealthKit_6be9a005889899ab", 1817266705874272, this, []); }
   /**
    * @NSCopying var clinicalType: HKClinicalType { get }
    * @availability iOS 12.0+
    */
-  get clinicalType(): HKClinicalType { return callSDK<HKClinicalType>("HealthKit_5d69670f0307b385", 690106776000671, this, []); }
+  get clinicalType(): HKClinicalType { return callSDK<HKClinicalType>("HealthKit_6be9a005889899ab", 690106776000671, this, []); }
   /**
    * var displayName: String { get }
    * @availability iOS 12.0+
    */
-  get displayName(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 3535406360606114, this, []); }
+  get displayName(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 3535406360606114, this, []); }
   declare readonly $type: { "c:objc(cs)HKClinicalRecord": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "fhirResource": true; "clinicalType": true; "displayName": true };
 }
@@ -2360,7 +2360,7 @@ export class HKClinicalType extends HKSampleType {
    * convenience init(_ identifier: HKClinicalTypeIdentifier)
    * @availability iOS 15.0+
    */
-  static init(identifier: HKClinicalTypeIdentifier): HKClinicalType { return callSDK<HKClinicalType>("HealthKit_5d69670f0307b385", 398920797482552, undefined, [identifier]); }
+  static init(identifier: HKClinicalTypeIdentifier): HKClinicalType { return callSDK<HKClinicalType>("HealthKit_6be9a005889899ab", 398920797482552, undefined, [identifier]); }
   declare readonly $type: { "c:objc(cs)HKClinicalType": true; "c:objc(cs)HKSampleType": true; "c:objc(cs)HKObjectType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "allowsRecalibrationForEstimates": true; "isMaximumDurationRestricted": true; "isMinimumDurationRestricted": true; "maximumAllowedDuration": true; "minimumAllowedDuration": true };
 }
@@ -2376,52 +2376,52 @@ export const HKClinicalTypeIdentifier = {
    * static let allergyRecord: HKClinicalTypeIdentifier
    * @availability iOS 12.0+
    */
-  get allergyRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_5d69670f0307b385", 3396300918408217, undefined, []); },
+  get allergyRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_6be9a005889899ab", 3396300918408217, undefined, []); },
   /**
    * static let clinicalNoteRecord: HKClinicalTypeIdentifier
    * @availability iOS 16.4+
    */
-  get clinicalNoteRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_5d69670f0307b385", 4217307834709447, undefined, []); },
+  get clinicalNoteRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_6be9a005889899ab", 4217307834709447, undefined, []); },
   /**
    * static let conditionRecord: HKClinicalTypeIdentifier
    * @availability iOS 12.0+
    */
-  get conditionRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_5d69670f0307b385", 4294554617337104, undefined, []); },
+  get conditionRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_6be9a005889899ab", 4294554617337104, undefined, []); },
   /**
    * static let coverageRecord: HKClinicalTypeIdentifier
    * @availability iOS 14.0+
    */
-  get coverageRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_5d69670f0307b385", 2245199674356757, undefined, []); },
+  get coverageRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_6be9a005889899ab", 2245199674356757, undefined, []); },
   /**
    * static let immunizationRecord: HKClinicalTypeIdentifier
    * @availability iOS 12.0+
    */
-  get immunizationRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_5d69670f0307b385", 1587025773213505, undefined, []); },
+  get immunizationRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_6be9a005889899ab", 1587025773213505, undefined, []); },
   /**
    * static let labResultRecord: HKClinicalTypeIdentifier
    * @availability iOS 12.0+
    */
-  get labResultRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_5d69670f0307b385", 3461176169123208, undefined, []); },
+  get labResultRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_6be9a005889899ab", 3461176169123208, undefined, []); },
   /**
    * static let medicationRecord: HKClinicalTypeIdentifier
    * @availability iOS 12.0+
    */
-  get medicationRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_5d69670f0307b385", 1898555995882984, undefined, []); },
+  get medicationRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_6be9a005889899ab", 1898555995882984, undefined, []); },
   /**
    * static let procedureRecord: HKClinicalTypeIdentifier
    * @availability iOS 12.0+
    */
-  get procedureRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_5d69670f0307b385", 2192440609673194, undefined, []); },
+  get procedureRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_6be9a005889899ab", 2192440609673194, undefined, []); },
   /**
    * static let vitalSignRecord: HKClinicalTypeIdentifier
    * @availability iOS 12.0+
    */
-  get vitalSignRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_5d69670f0307b385", 1879855013423777, undefined, []); },
+  get vitalSignRecord(): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_6be9a005889899ab", 1879855013423777, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 12.0+
    */
-  init(rawValue: string): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_5d69670f0307b385", 1473708143556208, undefined, [rawValue]); }
+  init(rawValue: string): HKClinicalTypeIdentifier { return callSDK<HKClinicalTypeIdentifier>("HealthKit_6be9a005889899ab", 1473708143556208, undefined, [rawValue]); }
 };
 
 /**
@@ -2433,22 +2433,22 @@ export class HKLensSpecification extends SDKHandle {
    * @NSCopying var addPower: HKQuantity? { get }
    * @availability iOS 16.0+
    */
-  get addPower(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 3430681693064198, this, []); }
+  get addPower(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 3430681693064198, this, []); }
   /**
    * @NSCopying var axis: HKQuantity? { get }
    * @availability iOS 16.0+
    */
-  get axis(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 1789012205314134, this, []); }
+  get axis(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 1789012205314134, this, []); }
   /**
    * @NSCopying var cylinder: HKQuantity? { get }
    * @availability iOS 16.0+
    */
-  get cylinder(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 3934140452965180, this, []); }
+  get cylinder(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 3934140452965180, this, []); }
   /**
    * @NSCopying var sphere: HKQuantity { get }
    * @availability iOS 16.0+
    */
-  get sphere(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 4248750954458553, this, []); }
+  get sphere(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 4248750954458553, this, []); }
   declare readonly $type: { "c:objc(cs)HKLensSpecification": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addPower": true; "axis": true; "cylinder": true; "sphere": true };
 }
@@ -2462,17 +2462,17 @@ export class HKContactsLensSpecification extends HKLensSpecification {
    * init(sphere: HKQuantity, cylinder: HKQuantity?, axis: HKQuantity?, addPower: HKQuantity?, baseCurve: HKQuantity?, diameter: HKQuantity?)
    * @availability iOS 16.0+
    */
-  static init(sphere: HKQuantity, cylinder?: (HKQuantity) | null, axis?: (HKQuantity) | null, addPower?: (HKQuantity) | null, baseCurve?: (HKQuantity) | null, diameter?: (HKQuantity) | null): HKContactsLensSpecification { return callSDK<HKContactsLensSpecification>("HealthKit_5d69670f0307b385", 4119121911521677, undefined, [sphere, cylinder, axis, addPower, baseCurve, diameter]); }
+  static init(sphere: HKQuantity, cylinder?: (HKQuantity) | null, axis?: (HKQuantity) | null, addPower?: (HKQuantity) | null, baseCurve?: (HKQuantity) | null, diameter?: (HKQuantity) | null): HKContactsLensSpecification { return callSDK<HKContactsLensSpecification>("HealthKit_6be9a005889899ab", 4119121911521677, undefined, [sphere, cylinder, axis, addPower, baseCurve, diameter]); }
   /**
    * @NSCopying var baseCurve: HKQuantity? { get }
    * @availability iOS 16.0+
    */
-  get baseCurve(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 4110085254436301, this, []); }
+  get baseCurve(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 4110085254436301, this, []); }
   /**
    * @NSCopying var diameter: HKQuantity? { get }
    * @availability iOS 16.0+
    */
-  get diameter(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 821587528516811, this, []); }
+  get diameter(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 821587528516811, this, []); }
   declare readonly $type: { "c:objc(cs)HKContactsLensSpecification": true; "c:objc(cs)HKLensSpecification": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addPower": true; "axis": true; "cylinder": true; "sphere": true; "baseCurve": true; "diameter": true };
 }
@@ -2486,22 +2486,22 @@ export class HKVisionPrescription extends HKSample {
    * convenience init(type: HKVisionPrescriptionType, dateIssued: Date, expirationDate: Date?, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 16.0+
    */
-  static init(type: HKVisionPrescriptionType, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK29): HKVisionPrescription { return callSDK<HKVisionPrescription>("HealthKit_5d69670f0307b385", 2637533195428593, undefined, [type, dateIssued, expirationDate, device, metadata]); }
+  static init(type: HKVisionPrescriptionType, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK29): HKVisionPrescription { return callSDK<HKVisionPrescription>("HealthKit_6be9a005889899ab", 2637533195428593, undefined, [type, dateIssued, expirationDate, device, metadata]); }
   /**
    * var dateIssued: Date { get }
    * @availability iOS 16.0+
    */
-  get dateIssued(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 1639439914355983, this, []); }
+  get dateIssued(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 1639439914355983, this, []); }
   /**
    * var expirationDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get expirationDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_5d69670f0307b385", 3248409254180365, this, []); }
+  get expirationDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_6be9a005889899ab", 3248409254180365, this, []); }
   /**
    * var prescriptionType: HKVisionPrescriptionType { get }
    * @availability iOS 16.0+
    */
-  get prescriptionType(): HKVisionPrescriptionType { return callSDK<HKVisionPrescriptionType>("HealthKit_5d69670f0307b385", 1853071781165483, this, []); }
+  get prescriptionType(): HKVisionPrescriptionType { return callSDK<HKVisionPrescriptionType>("HealthKit_6be9a005889899ab", 1853071781165483, this, []); }
   declare readonly $type: { "c:objc(cs)HKVisionPrescription": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "dateIssued": true; "expirationDate": true; "prescriptionType": true };
 }
@@ -2515,22 +2515,22 @@ export class HKContactsPrescription extends (HKVisionPrescription as unknown as 
    * convenience init(rightEyeSpecification: HKContactsLensSpecification?, leftEyeSpecification: HKContactsLensSpecification?, brand: String, dateIssued: Date, expirationDate: Date?, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 16.0+
    */
-  static init(rightEyeSpecification: $SDK40, leftEyeSpecification: $SDK40, brand: string, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK29): HKContactsPrescription { return callSDK<HKContactsPrescription>("HealthKit_5d69670f0307b385", 1181370904920559, undefined, [rightEyeSpecification, leftEyeSpecification, brand, dateIssued, expirationDate, device, metadata]); }
+  static init(rightEyeSpecification: $SDK40, leftEyeSpecification: $SDK40, brand: string, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK29): HKContactsPrescription { return callSDK<HKContactsPrescription>("HealthKit_6be9a005889899ab", 1181370904920559, undefined, [rightEyeSpecification, leftEyeSpecification, brand, dateIssued, expirationDate, device, metadata]); }
   /**
    * var brand: String { get }
    * @availability iOS 16.0+
    */
-  get brand(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 2702242468410923, this, []); }
+  get brand(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 2702242468410923, this, []); }
   /**
    * @NSCopying var leftEye: HKContactsLensSpecification? { get }
    * @availability iOS 16.0+
    */
-  get leftEye(): $SDK40 { return callSDK<$SDK40>("HealthKit_5d69670f0307b385", 1106737343149510, this, []); }
+  get leftEye(): $SDK40 { return callSDK<$SDK40>("HealthKit_6be9a005889899ab", 1106737343149510, this, []); }
   /**
    * @NSCopying var rightEye: HKContactsLensSpecification? { get }
    * @availability iOS 16.0+
    */
-  get rightEye(): $SDK40 { return callSDK<$SDK40>("HealthKit_5d69670f0307b385", 2306182399375681, this, []); }
+  get rightEye(): $SDK40 { return callSDK<$SDK40>("HealthKit_6be9a005889899ab", 2306182399375681, this, []); }
   declare readonly $type: { "c:objc(cs)HKContactsPrescription": true; "c:objc(cs)HKVisionPrescription": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "dateIssued": true; "expirationDate": true; "prescriptionType": true; "brand": true; "leftEye": true; "rightEye": true };
 }
@@ -2544,32 +2544,32 @@ export class HKCorrelation extends HKSample {
    * convenience init(type correlationType: HKCorrelationType, start startDate: Date, end endDate: Date, objects: Set<HKSample>)
    * @availability iOS 8.0+
    */
-  static initTypeStartEndObjects(correlationType: HKCorrelationType, startDate: globalThis.Date, endDate: globalThis.Date, objects: Array<HKSample>): HKCorrelation { return callSDK<HKCorrelation>("HealthKit_5d69670f0307b385", 3793623737639392, undefined, [correlationType, startDate, endDate, objects]); }
+  static initTypeStartEndObjects(correlationType: HKCorrelationType, startDate: globalThis.Date, endDate: globalThis.Date, objects: Array<HKSample>): HKCorrelation { return callSDK<HKCorrelation>("HealthKit_6be9a005889899ab", 3793623737639392, undefined, [correlationType, startDate, endDate, objects]); }
   /**
    * convenience init(type correlationType: HKCorrelationType, start startDate: Date, end endDate: Date, objects: Set<HKSample>, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 9.0+
    */
-  static initTypeStartEndObjectsDeviceMetadata(correlationType: HKCorrelationType, startDate: globalThis.Date, endDate: globalThis.Date, objects: Array<HKSample>, device?: (HKDevice) | null, metadata?: $SDK29): HKCorrelation { return callSDK<HKCorrelation>("HealthKit_5d69670f0307b385", 913561214689600, undefined, [correlationType, startDate, endDate, objects, device, metadata]); }
+  static initTypeStartEndObjectsDeviceMetadata(correlationType: HKCorrelationType, startDate: globalThis.Date, endDate: globalThis.Date, objects: Array<HKSample>, device?: (HKDevice) | null, metadata?: $SDK29): HKCorrelation { return callSDK<HKCorrelation>("HealthKit_6be9a005889899ab", 913561214689600, undefined, [correlationType, startDate, endDate, objects, device, metadata]); }
   /**
    * convenience init(type correlationType: HKCorrelationType, start startDate: Date, end endDate: Date, objects: Set<HKSample>, metadata: [String : Any]?)
    * @availability iOS 8.0+
    */
-  static initTypeStartEndObjectsMetadata(correlationType: HKCorrelationType, startDate: globalThis.Date, endDate: globalThis.Date, objects: Array<HKSample>, metadata?: $SDK29): HKCorrelation { return callSDK<HKCorrelation>("HealthKit_5d69670f0307b385", 154979260131858, undefined, [correlationType, startDate, endDate, objects, metadata]); }
+  static initTypeStartEndObjectsMetadata(correlationType: HKCorrelationType, startDate: globalThis.Date, endDate: globalThis.Date, objects: Array<HKSample>, metadata?: $SDK29): HKCorrelation { return callSDK<HKCorrelation>("HealthKit_6be9a005889899ab", 154979260131858, undefined, [correlationType, startDate, endDate, objects, metadata]); }
   /**
    * func objects(for objectType: HKObjectType) -> Set<HKSample>
    * @availability iOS 8.0+
    */
-  objectsFor(objectType: HKObjectType): Array<HKSample> { return callSDK<Array<HKSample>>("HealthKit_5d69670f0307b385", 1257917162134289, this, [objectType]); }
+  objectsFor(objectType: HKObjectType): Array<HKSample> { return callSDK<Array<HKSample>>("HealthKit_6be9a005889899ab", 1257917162134289, this, [objectType]); }
   /**
    * var correlationType: HKCorrelationType { get }
    * @availability iOS 8.0+
    */
-  get correlationType(): HKCorrelationType { return callSDK<HKCorrelationType>("HealthKit_5d69670f0307b385", 1081644845801243, this, []); }
+  get correlationType(): HKCorrelationType { return callSDK<HKCorrelationType>("HealthKit_6be9a005889899ab", 1081644845801243, this, []); }
   /**
    * var objects: Set<HKSample> { get }
    * @availability iOS 8.0+
    */
-  get objects(): Array<HKSample> { return callSDK<Array<HKSample>>("HealthKit_5d69670f0307b385", 4124982371390656, this, []); }
+  get objects(): Array<HKSample> { return callSDK<Array<HKSample>>("HealthKit_6be9a005889899ab", 4124982371390656, this, []); }
   declare readonly $type: { "c:objc(cs)HKCorrelation": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "correlationType": true; "objects": true };
 }
@@ -2583,17 +2583,17 @@ export class HKCorrelationQuery extends HKQuery {
    * init(type correlationType: HKCorrelationType, predicate: NSPredicate?, samplePredicates: [HKSampleType : NSPredicate]?, completion: @escaping @Sendable (HKCorrelationQuery, [HKCorrelation]?, (any Error)?) -> Void)
    * @availability iOS 8.0+
    */
-  static init(correlationType: HKCorrelationType, predicate: $SDK4, samplePredicates: $SDK41, completion: ((arg0: HKCorrelationQuery, arg1: (Array<HKCorrelation>) | null, arg2: (NativeError) | null) => void)): HKCorrelationQuery { return callSDK<HKCorrelationQuery>("HealthKit_5d69670f0307b385", 2459836918397087, undefined, [correlationType, predicate, samplePredicates, completion], [null,null,null,{"callback":{"out":[]}}]); }
+  static init(correlationType: HKCorrelationType, predicate: $SDK4, samplePredicates: $SDK41, completion: ((arg0: HKCorrelationQuery, arg1: (Array<HKCorrelation>) | null, arg2: (NativeError) | null) => void)): HKCorrelationQuery { return callSDK<HKCorrelationQuery>("HealthKit_6be9a005889899ab", 2459836918397087, undefined, [correlationType, predicate, samplePredicates, completion], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @NSCopying var correlationType: HKCorrelationType { get }
    * @availability iOS 8.0+
    */
-  get correlationType(): HKCorrelationType { return callSDK<HKCorrelationType>("HealthKit_5d69670f0307b385", 1917106441426040, this, []); }
+  get correlationType(): HKCorrelationType { return callSDK<HKCorrelationType>("HealthKit_6be9a005889899ab", 1917106441426040, this, []); }
   /**
    * var samplePredicates: [HKSampleType : NSPredicate]? { get }
    * @availability iOS 8.0+
    */
-  get samplePredicates(): $SDK41 { return callSDK<$SDK41>("HealthKit_5d69670f0307b385", 4359202979928652, this, []); }
+  get samplePredicates(): $SDK41 { return callSDK<$SDK41>("HealthKit_6be9a005889899ab", 4359202979928652, this, []); }
   declare readonly $type: { "c:objc(cs)HKCorrelationQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true; "correlationType": true; "samplePredicates": true };
 }
@@ -2607,7 +2607,7 @@ export class HKCorrelationType extends HKSampleType {
    * convenience init(_ identifier: HKCorrelationTypeIdentifier)
    * @availability iOS 15.0+
    */
-  static init(identifier: HKCorrelationTypeIdentifier): HKCorrelationType { return callSDK<HKCorrelationType>("HealthKit_5d69670f0307b385", 3897084708311218, undefined, [identifier]); }
+  static init(identifier: HKCorrelationTypeIdentifier): HKCorrelationType { return callSDK<HKCorrelationType>("HealthKit_6be9a005889899ab", 3897084708311218, undefined, [identifier]); }
   declare readonly $type: { "c:objc(cs)HKCorrelationType": true; "c:objc(cs)HKSampleType": true; "c:objc(cs)HKObjectType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "allowsRecalibrationForEstimates": true; "isMaximumDurationRestricted": true; "isMinimumDurationRestricted": true; "maximumAllowedDuration": true; "minimumAllowedDuration": true };
 }
@@ -2620,14 +2620,14 @@ export const HKCorrelationTypeIdentifier = {
    * static let bloodPressure: HKCorrelationTypeIdentifier
    * @availability iOS 8.0+
    */
-  get bloodPressure(): HKCorrelationTypeIdentifier { return callSDK<HKCorrelationTypeIdentifier>("HealthKit_5d69670f0307b385", 1943935829409030, undefined, []); },
+  get bloodPressure(): HKCorrelationTypeIdentifier { return callSDK<HKCorrelationTypeIdentifier>("HealthKit_6be9a005889899ab", 1943935829409030, undefined, []); },
   /**
    * static let food: HKCorrelationTypeIdentifier
    * @availability iOS 8.0+
    */
-  get food(): HKCorrelationTypeIdentifier { return callSDK<HKCorrelationTypeIdentifier>("HealthKit_5d69670f0307b385", 885974273511634, undefined, []); },
+  get food(): HKCorrelationTypeIdentifier { return callSDK<HKCorrelationTypeIdentifier>("HealthKit_6be9a005889899ab", 885974273511634, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): HKCorrelationTypeIdentifier { return callSDK<HKCorrelationTypeIdentifier>("HealthKit_5d69670f0307b385", 822721221148122, undefined, [rawValue]); }
+  init(rawValue: string): HKCorrelationTypeIdentifier { return callSDK<HKCorrelationTypeIdentifier>("HealthKit_6be9a005889899ab", 822721221148122, undefined, [rawValue]); }
 };
 
 /**
@@ -2639,32 +2639,32 @@ export class HKQuantitySample extends HKSample {
    * convenience init(type quantityType: HKQuantityType, quantity: HKQuantity, start startDate: Date, end endDate: Date)
    * @availability iOS 8.0+
    */
-  static initTypeQuantityStartEnd(quantityType: HKQuantityType, quantity: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date): HKQuantitySample { return callSDK<HKQuantitySample>("HealthKit_5d69670f0307b385", 3973423103652499, undefined, [quantityType, quantity, startDate, endDate]); }
+  static initTypeQuantityStartEnd(quantityType: HKQuantityType, quantity: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date): HKQuantitySample { return callSDK<HKQuantitySample>("HealthKit_6be9a005889899ab", 3973423103652499, undefined, [quantityType, quantity, startDate, endDate]); }
   /**
    * convenience init(type quantityType: HKQuantityType, quantity: HKQuantity, start startDate: Date, end endDate: Date, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 9.0+
    */
-  static initTypeQuantityStartEndDeviceMetadata(quantityType: HKQuantityType, quantity: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK29): HKQuantitySample { return callSDK<HKQuantitySample>("HealthKit_5d69670f0307b385", 2890512371669195, undefined, [quantityType, quantity, startDate, endDate, device, metadata]); }
+  static initTypeQuantityStartEndDeviceMetadata(quantityType: HKQuantityType, quantity: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK29): HKQuantitySample { return callSDK<HKQuantitySample>("HealthKit_6be9a005889899ab", 2890512371669195, undefined, [quantityType, quantity, startDate, endDate, device, metadata]); }
   /**
    * convenience init(type quantityType: HKQuantityType, quantity: HKQuantity, start startDate: Date, end endDate: Date, metadata: [String : Any]?)
    * @availability iOS 8.0+
    */
-  static initTypeQuantityStartEndMetadata(quantityType: HKQuantityType, quantity: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKQuantitySample { return callSDK<HKQuantitySample>("HealthKit_5d69670f0307b385", 1130606406130724, undefined, [quantityType, quantity, startDate, endDate, metadata]); }
+  static initTypeQuantityStartEndMetadata(quantityType: HKQuantityType, quantity: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKQuantitySample { return callSDK<HKQuantitySample>("HealthKit_6be9a005889899ab", 1130606406130724, undefined, [quantityType, quantity, startDate, endDate, metadata]); }
   /**
    * var count: Int { get }
    * @availability iOS 12.0+
    */
-  get count(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 68957455759735, this, []); }
+  get count(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 68957455759735, this, []); }
   /**
    * @NSCopying var quantity: HKQuantity { get }
    * @availability iOS 8.0+
    */
-  get quantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 224935914450104, this, []); }
+  get quantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 224935914450104, this, []); }
   /**
    * @NSCopying var quantityType: HKQuantityType { get }
    * @availability iOS 8.0+
    */
-  get quantityType(): HKQuantityType { return callSDK<HKQuantityType>("HealthKit_5d69670f0307b385", 2724929568331362, this, []); }
+  get quantityType(): HKQuantityType { return callSDK<HKQuantityType>("HealthKit_6be9a005889899ab", 2724929568331362, this, []); }
   declare readonly $type: { "c:objc(cs)HKQuantitySample": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "count": true; "quantity": true; "quantityType": true };
 }
@@ -2678,7 +2678,7 @@ export class HKCumulativeQuantitySample extends HKQuantitySample {
    * @NSCopying var sumQuantity: HKQuantity { get }
    * @availability iOS 13.0+
    */
-  get sumQuantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 1444209044033206, this, []); }
+  get sumQuantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 1444209044033206, this, []); }
   declare readonly $type: { "c:objc(cs)HKCumulativeQuantitySample": true; "c:objc(cs)HKQuantitySample": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "count": true; "quantity": true; "quantityType": true; "sumQuantity": true };
 }
@@ -2694,7 +2694,7 @@ export class HKCumulativeQuantitySeriesSample extends HKCumulativeQuantitySample
    * @availability iOS 12.0+
    * @deprecated iOS 13.0
    */
-  get sum(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 2263758293087729, this, []); }
+  get sum(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 2263758293087729, this, []); }
   declare readonly $type: { "c:objc(cs)HKCumulativeQuantitySeriesSample": true; "c:objc(cs)HKCumulativeQuantitySample": true; "c:objc(cs)HKQuantitySample": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "count": true; "quantity": true; "quantityType": true; "sumQuantity": true; "sum": true };
 }
@@ -2710,7 +2710,7 @@ export const HKCyclingFunctionalThresholdPowerTestType = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (HKCyclingFunctionalThresholdPowerTestType) | null { return callSDK<(HKCyclingFunctionalThresholdPowerTestType) | null>("HealthKit_5d69670f0307b385", 365137752277169, undefined, [rawValue]); }
+  init(rawValue: number): (HKCyclingFunctionalThresholdPowerTestType) | null { return callSDK<(HKCyclingFunctionalThresholdPowerTestType) | null>("HealthKit_6be9a005889899ab", 365137752277169, undefined, [rawValue]); }
 };
 
 /**
@@ -2722,12 +2722,12 @@ export class HKDeletedObject extends SDKHandle {
    * var uuid: UUID { get }
    * @availability iOS 9.0+
    */
-  get uuid(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 2480129378727808, this, []); }
+  get uuid(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 2480129378727808, this, []); }
   /**
    * var metadata: [String : Any]? { get }
    * @availability iOS 11.0+
    */
-  get metadata(): $SDK29 { return callSDK<$SDK29>("HealthKit_5d69670f0307b385", 511072240997822, this, []); }
+  get metadata(): $SDK29 { return callSDK<$SDK29>("HealthKit_6be9a005889899ab", 511072240997822, this, []); }
   declare readonly $type: { "c:objc(cs)HKDeletedObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "metadata": true };
 }
@@ -2741,52 +2741,52 @@ export class HKDevice extends SDKHandle {
    * class func local() -> HKDevice
    * @availability iOS 9.0+
    */
-  static local(): HKDevice { return callSDK<HKDevice>("HealthKit_5d69670f0307b385", 4020280425415273, undefined, []); }
+  static local(): HKDevice { return callSDK<HKDevice>("HealthKit_6be9a005889899ab", 4020280425415273, undefined, []); }
   /**
    * init(name: String?, manufacturer: String?, model: String?, hardwareVersion: String?, firmwareVersion: String?, softwareVersion: String?, localIdentifier: String?, udiDeviceIdentifier UDIDeviceIdentifier: String?)
    * @availability iOS 9.0+
    */
-  static init(name?: (string) | null, manufacturer?: (string) | null, model?: (string) | null, hardwareVersion?: (string) | null, firmwareVersion?: (string) | null, softwareVersion?: (string) | null, localIdentifier?: (string) | null, UDIDeviceIdentifier?: (string) | null): HKDevice { return callSDK<HKDevice>("HealthKit_5d69670f0307b385", 789443816830368, undefined, [name, manufacturer, model, hardwareVersion, firmwareVersion, softwareVersion, localIdentifier, UDIDeviceIdentifier]); }
+  static init(name?: (string) | null, manufacturer?: (string) | null, model?: (string) | null, hardwareVersion?: (string) | null, firmwareVersion?: (string) | null, softwareVersion?: (string) | null, localIdentifier?: (string) | null, UDIDeviceIdentifier?: (string) | null): HKDevice { return callSDK<HKDevice>("HealthKit_6be9a005889899ab", 789443816830368, undefined, [name, manufacturer, model, hardwareVersion, firmwareVersion, softwareVersion, localIdentifier, UDIDeviceIdentifier]); }
   /**
    * var udiDeviceIdentifier: String? { get }
    * @availability iOS 9.0+
    */
-  get udiDeviceIdentifier(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 1192856299393879, this, []); }
+  get udiDeviceIdentifier(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 1192856299393879, this, []); }
   /**
    * var firmwareVersion: String? { get }
    * @availability iOS 9.0+
    */
-  get firmwareVersion(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 3016294460257538, this, []); }
+  get firmwareVersion(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 3016294460257538, this, []); }
   /**
    * var hardwareVersion: String? { get }
    * @availability iOS 9.0+
    */
-  get hardwareVersion(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 956012989883628, this, []); }
+  get hardwareVersion(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 956012989883628, this, []); }
   /**
    * var localIdentifier: String? { get }
    * @availability iOS 9.0+
    */
-  get localIdentifier(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 1176445808670711, this, []); }
+  get localIdentifier(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 1176445808670711, this, []); }
   /**
    * var manufacturer: String? { get }
    * @availability iOS 9.0+
    */
-  get manufacturer(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 32471188692528, this, []); }
+  get manufacturer(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 32471188692528, this, []); }
   /**
    * var model: String? { get }
    * @availability iOS 9.0+
    */
-  get model(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 2488209028187331, this, []); }
+  get model(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 2488209028187331, this, []); }
   /**
    * var name: String? { get }
    * @availability iOS 9.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 3833133948631652, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 3833133948631652, this, []); }
   /**
    * var softwareVersion: String? { get }
    * @availability iOS 9.0+
    */
-  get softwareVersion(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 942866051810118, this, []); }
+  get softwareVersion(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 942866051810118, this, []); }
   declare readonly $type: { "c:objc(cs)HKDevice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "udiDeviceIdentifier": true; "firmwareVersion": true; "hardwareVersion": true; "localIdentifier": true; "manufacturer": true; "model": true; "name": true; "softwareVersion": true };
 }
@@ -2802,7 +2802,7 @@ export const HKDevicePlacementSide = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (HKDevicePlacementSide) | null { return callSDK<(HKDevicePlacementSide) | null>("HealthKit_5d69670f0307b385", 757575273096859, undefined, [rawValue]); }
+  init(rawValue: number): (HKDevicePlacementSide) | null { return callSDK<(HKDevicePlacementSide) | null>("HealthKit_6be9a005889899ab", 757575273096859, undefined, [rawValue]); }
 };
 
 /**
@@ -2814,27 +2814,27 @@ export class HKDiscreteQuantitySample extends HKQuantitySample {
    * @NSCopying var averageQuantity: HKQuantity { get }
    * @availability iOS 13.0+
    */
-  get averageQuantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 251202415528912, this, []); }
+  get averageQuantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 251202415528912, this, []); }
   /**
    * @NSCopying var maximumQuantity: HKQuantity { get }
    * @availability iOS 13.0+
    */
-  get maximumQuantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 1575435525198875, this, []); }
+  get maximumQuantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 1575435525198875, this, []); }
   /**
    * @NSCopying var minimumQuantity: HKQuantity { get }
    * @availability iOS 13.0+
    */
-  get minimumQuantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 2471498291836840, this, []); }
+  get minimumQuantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 2471498291836840, this, []); }
   /**
    * @NSCopying var mostRecentQuantity: HKQuantity { get }
    * @availability iOS 13.0+
    */
-  get mostRecentQuantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 4201890708167905, this, []); }
+  get mostRecentQuantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 4201890708167905, this, []); }
   /**
    * var mostRecentQuantityDateInterval: DateInterval { get }
    * @availability iOS 13.0+
    */
-  get mostRecentQuantityDateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("HealthKit_5d69670f0307b385", 1415997363059887, this, []); }
+  get mostRecentQuantityDateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("HealthKit_6be9a005889899ab", 1415997363059887, this, []); }
   declare readonly $type: { "c:objc(cs)HKDiscreteQuantitySample": true; "c:objc(cs)HKQuantitySample": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "count": true; "quantity": true; "quantityType": true; "averageQuantity": true; "maximumQuantity": true; "minimumQuantity": true; "mostRecentQuantity": true; "mostRecentQuantityDateInterval": true };
 }
@@ -2848,22 +2848,22 @@ export class HKDocumentQuery extends HKQuery {
    * init(documentType: HKDocumentType, predicate: NSPredicate?, limit: Int, sortDescriptors: [NSSortDescriptor]?, includeDocumentData: Bool, resultsHandler: @escaping @Sendable (HKDocumentQuery, [HKDocumentSample]?, Bool, (any Error)?) -> Void)
    * @availability iOS 10.0+
    */
-  static init(documentType: HKDocumentType, predicate: $SDK4, limit: number, sortDescriptors: $SDK43, includeDocumentData: boolean, resultsHandler: ((arg0: HKDocumentQuery, arg1: (Array<HKDocumentSample>) | null, arg2: boolean, arg3: (NativeError) | null) => void)): HKDocumentQuery { return callSDK<HKDocumentQuery>("HealthKit_5d69670f0307b385", 2038551649493301, undefined, [documentType, predicate, limit, sortDescriptors, includeDocumentData, resultsHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  static init(documentType: HKDocumentType, predicate: $SDK4, limit: number, sortDescriptors: $SDK43, includeDocumentData: boolean, resultsHandler: ((arg0: HKDocumentQuery, arg1: (Array<HKDocumentSample>) | null, arg2: boolean, arg3: (NativeError) | null) => void)): HKDocumentQuery { return callSDK<HKDocumentQuery>("HealthKit_6be9a005889899ab", 2038551649493301, undefined, [documentType, predicate, limit, sortDescriptors, includeDocumentData, resultsHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * var includeDocumentData: Bool { get }
    * @availability iOS 10.0+
    */
-  get includeDocumentData(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 4426571869104637, this, []); }
+  get includeDocumentData(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 4426571869104637, this, []); }
   /**
    * var limit: Int { get }
    * @availability iOS 10.0+
    */
-  get limit(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 1911719208588981, this, []); }
+  get limit(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 1911719208588981, this, []); }
   /**
    * var sortDescriptors: [NSSortDescriptor]? { get }
    * @availability iOS 10.0+
    */
-  get sortDescriptors(): $SDK43 { return callSDK<$SDK43>("HealthKit_5d69670f0307b385", 1967202041717964, this, []); }
+  get sortDescriptors(): $SDK43 { return callSDK<$SDK43>("HealthKit_6be9a005889899ab", 1967202041717964, this, []); }
   declare readonly $type: { "c:objc(cs)HKDocumentQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true; "includeDocumentData": true; "limit": true; "sortDescriptors": true };
 }
@@ -2877,7 +2877,7 @@ export class HKDocumentType extends HKSampleType {
    * convenience init(_ identifier: HKDocumentTypeIdentifier)
    * @availability iOS 15.0+
    */
-  static init(identifier: HKDocumentTypeIdentifier): HKDocumentType { return callSDK<HKDocumentType>("HealthKit_5d69670f0307b385", 546989501660113, undefined, [identifier]); }
+  static init(identifier: HKDocumentTypeIdentifier): HKDocumentType { return callSDK<HKDocumentType>("HealthKit_6be9a005889899ab", 546989501660113, undefined, [identifier]); }
   declare readonly $type: { "c:objc(cs)HKDocumentType": true; "c:objc(cs)HKSampleType": true; "c:objc(cs)HKObjectType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "allowsRecalibrationForEstimates": true; "isMaximumDurationRestricted": true; "isMinimumDurationRestricted": true; "maximumAllowedDuration": true; "minimumAllowedDuration": true };
 }
@@ -2890,9 +2890,9 @@ export const HKDocumentTypeIdentifier = {
    * static let CDA: HKDocumentTypeIdentifier
    * @availability iOS 10.0+
    */
-  get CDA(): HKDocumentTypeIdentifier { return callSDK<HKDocumentTypeIdentifier>("HealthKit_5d69670f0307b385", 763056532423829, undefined, []); },
+  get CDA(): HKDocumentTypeIdentifier { return callSDK<HKDocumentTypeIdentifier>("HealthKit_6be9a005889899ab", 763056532423829, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): HKDocumentTypeIdentifier { return callSDK<HKDocumentTypeIdentifier>("HealthKit_5d69670f0307b385", 1877921239148107, undefined, [rawValue]); }
+  init(rawValue: string): HKDocumentTypeIdentifier { return callSDK<HKDocumentTypeIdentifier>("HealthKit_6be9a005889899ab", 1877921239148107, undefined, [rawValue]); }
 };
 
 /**
@@ -2904,27 +2904,27 @@ export class HKElectrocardiogram extends HKSample {
    * @NSCopying var averageHeartRate: HKQuantity? { get }
    * @availability iOS 14.0+
    */
-  get averageHeartRate(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 2863473701438660, this, []); }
+  get averageHeartRate(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 2863473701438660, this, []); }
   /**
    * var classification: HKElectrocardiogram.Classification { get }
    * @availability iOS 14.0+
    */
-  get classification(): HKElectrocardiogram_Classification { return callSDK<HKElectrocardiogram_Classification>("HealthKit_5d69670f0307b385", 2464065607973692, this, []); }
+  get classification(): HKElectrocardiogram_Classification { return callSDK<HKElectrocardiogram_Classification>("HealthKit_6be9a005889899ab", 2464065607973692, this, []); }
   /**
    * var numberOfVoltageMeasurements: Int { get }
    * @availability iOS 14.0+
    */
-  get numberOfVoltageMeasurements(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 4124274479753067, this, []); }
+  get numberOfVoltageMeasurements(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 4124274479753067, this, []); }
   /**
    * @NSCopying var samplingFrequency: HKQuantity? { get }
    * @availability iOS 14.0+
    */
-  get samplingFrequency(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 2188634648678877, this, []); }
+  get samplingFrequency(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 2188634648678877, this, []); }
   /**
    * var symptomsStatus: HKElectrocardiogram.SymptomsStatus { get }
    * @availability iOS 14.0+
    */
-  get symptomsStatus(): HKElectrocardiogram_SymptomsStatus { return callSDK<HKElectrocardiogram_SymptomsStatus>("HealthKit_5d69670f0307b385", 1257541373541428, this, []); }
+  get symptomsStatus(): HKElectrocardiogram_SymptomsStatus { return callSDK<HKElectrocardiogram_SymptomsStatus>("HealthKit_6be9a005889899ab", 1257541373541428, this, []); }
   declare readonly $type: { "c:objc(cs)HKElectrocardiogram": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "averageHeartRate": true; "classification": true; "numberOfVoltageMeasurements": true; "samplingFrequency": true; "symptomsStatus": true };
 }
@@ -2940,7 +2940,7 @@ export const HKElectrocardiogram_Classification = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (HKElectrocardiogram_Classification) | null { return callSDK<(HKElectrocardiogram_Classification) | null>("HealthKit_5d69670f0307b385", 2778930862376342, undefined, [rawValue]); }
+  init(rawValue: number): (HKElectrocardiogram_Classification) | null { return callSDK<(HKElectrocardiogram_Classification) | null>("HealthKit_6be9a005889899ab", 2778930862376342, undefined, [rawValue]); }
 };
 
 /**
@@ -2954,7 +2954,7 @@ export const HKElectrocardiogram_Lead = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (HKElectrocardiogram_Lead) | null { return callSDK<(HKElectrocardiogram_Lead) | null>("HealthKit_5d69670f0307b385", 3196149180608113, undefined, [rawValue]); }
+  init(rawValue: number): (HKElectrocardiogram_Lead) | null { return callSDK<(HKElectrocardiogram_Lead) | null>("HealthKit_6be9a005889899ab", 3196149180608113, undefined, [rawValue]); }
 };
 
 /**
@@ -2968,7 +2968,7 @@ export const HKElectrocardiogram_SymptomsStatus = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (HKElectrocardiogram_SymptomsStatus) | null { return callSDK<(HKElectrocardiogram_SymptomsStatus) | null>("HealthKit_5d69670f0307b385", 937458804053682, undefined, [rawValue]); }
+  init(rawValue: number): (HKElectrocardiogram_SymptomsStatus) | null { return callSDK<(HKElectrocardiogram_SymptomsStatus) | null>("HealthKit_6be9a005889899ab", 937458804053682, undefined, [rawValue]); }
 };
 
 /**
@@ -2977,17 +2977,17 @@ export const HKElectrocardiogram_SymptomsStatus = {
  */
 export class HKElectrocardiogram_VoltageMeasurement extends SDKHandle {
   /** init() */
-  static init(): HKElectrocardiogram_VoltageMeasurement { return callSDK<HKElectrocardiogram_VoltageMeasurement>("HealthKit_5d69670f0307b385", 4289154059969753, undefined, []); }
+  static init(): HKElectrocardiogram_VoltageMeasurement { return callSDK<HKElectrocardiogram_VoltageMeasurement>("HealthKit_6be9a005889899ab", 4289154059969753, undefined, []); }
   /**
    * func quantity(for lead: HKElectrocardiogram.Lead) -> HKQuantity?
    * @availability iOS 14.0+
    */
-  quantity(lead: HKElectrocardiogram_Lead): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 334176176613062, this, [lead]); }
+  quantity(lead: HKElectrocardiogram_Lead): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 334176176613062, this, [lead]); }
   /**
    * var timeSinceSampleStart: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get timeSinceSampleStart(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 378324077588715, this, []); }
+  get timeSinceSampleStart(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 378324077588715, this, []); }
   declare readonly $type: { "c:objc(cs)HKElectrocardiogramVoltageMeasurement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timeSinceSampleStart": true };
 }
@@ -2995,12 +2995,12 @@ export class HKElectrocardiogram_VoltageMeasurement extends SDKHandle {
 /** class HKElectrocardiogramQuery */
 export class HKElectrocardiogramQuery extends HKQuery {
   /** init(electrocardiogram: HKElectrocardiogram, dataHandler: @escaping (HKElectrocardiogramQuery, HKElectrocardiogram.VoltageMeasurement?, Bool, (any Error)?) -> Void) */
-  static initElectrocardiogramDataHandler(electrocardiogram: HKElectrocardiogram, dataHandler: ((arg0: HKElectrocardiogramQuery, arg1: (HKElectrocardiogram_VoltageMeasurement) | null, arg2: boolean, arg3: (NativeError) | null) => void)): HKElectrocardiogramQuery { return callSDK<HKElectrocardiogramQuery>("HealthKit_5d69670f0307b385", 489774996348863, undefined, [electrocardiogram, dataHandler], [null,{"callback":{"out":[]}}]); }
+  static initElectrocardiogramDataHandler(electrocardiogram: HKElectrocardiogram, dataHandler: ((arg0: HKElectrocardiogramQuery, arg1: (HKElectrocardiogram_VoltageMeasurement) | null, arg2: boolean, arg3: (NativeError) | null) => void)): HKElectrocardiogramQuery { return callSDK<HKElectrocardiogramQuery>("HealthKit_6be9a005889899ab", 489774996348863, undefined, [electrocardiogram, dataHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * convenience init(_ ecg: HKElectrocardiogram, dataHandler: @escaping (HKElectrocardiogramQuery, HKElectrocardiogramQuery.Result) -> Void)
    * @availability iOS 14.0+
    */
-  static initDataHandler(ecg: HKElectrocardiogram, dataHandler: ((arg0: HKElectrocardiogramQuery, arg1: HKElectrocardiogramQuery_Result) => void)): HKElectrocardiogramQuery { return callSDK<HKElectrocardiogramQuery>("HealthKit_5d69670f0307b385", 1115112710842474, undefined, [ecg, dataHandler], [null,{"callback":{"out":[]}}]); }
+  static initDataHandler(ecg: HKElectrocardiogram, dataHandler: ((arg0: HKElectrocardiogramQuery, arg1: HKElectrocardiogramQuery_Result) => void)): HKElectrocardiogramQuery { return callSDK<HKElectrocardiogramQuery>("HealthKit_6be9a005889899ab", 1115112710842474, undefined, [ecg, dataHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKElectrocardiogramQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -3022,18 +3022,18 @@ export class HKElectrocardiogramQueryDescriptor extends SDKHandle {
    * var electrocardiogram: HKElectrocardiogram
    * @availability iOS 15.4+
    */
-  get electrocardiogram(): HKElectrocardiogram { return callSDK<HKElectrocardiogram>("HealthKit_5d69670f0307b385", 3401937731959067, this, []); }
-  set electrocardiogram(value: HKElectrocardiogram) { callSDK<void>("HealthKit_5d69670f0307b385", 787236696183152, this, [value]); }
+  get electrocardiogram(): HKElectrocardiogram { return callSDK<HKElectrocardiogram>("HealthKit_6be9a005889899ab", 3401937731959067, this, []); }
+  set electrocardiogram(value: HKElectrocardiogram) { callSDK<void>("HealthKit_6be9a005889899ab", 787236696183152, this, [value]); }
   /**
    * func results(for healthStore: HKHealthStore) -> HKElectrocardiogramQueryDescriptor.Results
    * @availability iOS 15.4+
    */
-  results(healthStore: HKHealthStore): HKElectrocardiogramQueryDescriptor_Results { return callSDK<HKElectrocardiogramQueryDescriptor_Results>("HealthKit_5d69670f0307b385", 1142628265917774, this, [healthStore]); }
+  results(healthStore: HKHealthStore): HKElectrocardiogramQueryDescriptor_Results { return callSDK<HKElectrocardiogramQueryDescriptor_Results>("HealthKit_6be9a005889899ab", 1142628265917774, this, [healthStore]); }
   /**
    * init(_ electrocardiogram: HKElectrocardiogram)
    * @availability iOS 15.4+
    */
-  static init(electrocardiogram: HKElectrocardiogram): HKElectrocardiogramQueryDescriptor { return callSDK<HKElectrocardiogramQueryDescriptor>("HealthKit_5d69670f0307b385", 2592823212253470, undefined, [electrocardiogram]); }
+  static init(electrocardiogram: HKElectrocardiogram): HKElectrocardiogramQueryDescriptor { return callSDK<HKElectrocardiogramQueryDescriptor>("HealthKit_6be9a005889899ab", 2592823212253470, undefined, [electrocardiogram]); }
   declare readonly $type: { "s:9HealthKit34HKElectrocardiogramQueryDescriptorV": true };
 }
 
@@ -3046,7 +3046,7 @@ export class HKElectrocardiogramQueryDescriptor_Results extends SDKHandle {
    * func makeAsyncIterator() -> HKElectrocardiogramQueryDescriptor.Results.Iterator
    * @availability iOS 15.4+
    */
-  makeAsyncIterator(): HKElectrocardiogramQueryDescriptor_Results_Iterator { return callSDK<HKElectrocardiogramQueryDescriptor_Results_Iterator>("HealthKit_5d69670f0307b385", 3390647470122250, this, []); }
+  makeAsyncIterator(): HKElectrocardiogramQueryDescriptor_Results_Iterator { return callSDK<HKElectrocardiogramQueryDescriptor_Results_Iterator>("HealthKit_6be9a005889899ab", 3390647470122250, this, []); }
   declare readonly $type: { "s:9HealthKit34HKElectrocardiogramQueryDescriptorV7ResultsV": true };
   declare readonly $element: HKElectrocardiogram_VoltageMeasurement;
 }
@@ -3072,7 +3072,7 @@ export class HKElectrocardiogramQueryDescriptor_Results_Iterator extends SDKHand
    * mutating func next() async throws -> HKElectrocardiogramQueryDescriptor.Results.Element?
    * @availability iOS 15.4+
    */
-  next(): Promise<(HKElectrocardiogram_VoltageMeasurement) | null> { return callSDKAsync<(HKElectrocardiogram_VoltageMeasurement) | null>("HealthKit_5d69670f0307b385", 1270968339173450, this, []); }
+  next(): Promise<(HKElectrocardiogram_VoltageMeasurement) | null> { return callSDKAsync<(HKElectrocardiogram_VoltageMeasurement) | null>("HealthKit_6be9a005889899ab", 1270968339173450, this, []); }
   declare readonly $type: { "s:9HealthKit34HKElectrocardiogramQueryDescriptorV7ResultsV8IteratorV": true };
 }
 
@@ -3106,93 +3106,93 @@ export class HKError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 8.0+
    */
-  static get errorDomain(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 1207364472742931, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 1207364472742931, undefined, []); }
   /**
    * static var errorNoData: HKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get errorNoData(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 1418448958446491, undefined, []); }
+  static get errorNoData(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 1418448958446491, undefined, []); }
   /**
    * static var unknownError: HKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get unknownError(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 3845638779814787, undefined, []); }
+  static get unknownError(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 3845638779814787, undefined, []); }
   /**
    * static var errorUserCanceled: HKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get errorUserCanceled(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 465171549746754, undefined, []); }
+  static get errorUserCanceled(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 465171549746754, undefined, []); }
   /**
    * static var errorInvalidArgument: HKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get errorInvalidArgument(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 1328263590303293, undefined, []); }
+  static get errorInvalidArgument(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 1328263590303293, undefined, []); }
   /**
    * static var errorDataSizeExceeded: HKError.Code { get }
    * @availability iOS 17.0+
    */
-  static get errorDataSizeExceeded(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 4021007589551, undefined, []); }
+  static get errorDataSizeExceeded(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 4021007589551, undefined, []); }
   /**
    * static var errorAuthorizationDenied: HKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get errorAuthorizationDenied(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 4159955206385260, undefined, []); }
+  static get errorAuthorizationDenied(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 4159955206385260, undefined, []); }
   /**
    * static var errorDatabaseInaccessible: HKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get errorDatabaseInaccessible(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 4171041614628366, undefined, []); }
+  static get errorDatabaseInaccessible(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 4171041614628366, undefined, []); }
   /**
    * static var errorHealthDataRestricted: HKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get errorHealthDataRestricted(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 1851795775313324, undefined, []); }
+  static get errorHealthDataRestricted(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 1851795775313324, undefined, []); }
   /**
    * static var errorHealthDataUnavailable: HKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get errorHealthDataUnavailable(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 3128377364863476, undefined, []); }
+  static get errorHealthDataUnavailable(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 3128377364863476, undefined, []); }
   /**
    * static var errorUserExitedWorkoutSession: HKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get errorUserExitedWorkoutSession(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 182432963843861, undefined, []); }
+  static get errorUserExitedWorkoutSession(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 182432963843861, undefined, []); }
   /**
    * static var errorWorkoutActivityNotAllowed: HKError.Code { get }
    * @availability iOS 17.0+
    */
-  static get errorWorkoutActivityNotAllowed(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 1731126617945411, undefined, []); }
+  static get errorWorkoutActivityNotAllowed(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 1731126617945411, undefined, []); }
   /**
    * static var errorAuthorizationNotDetermined: HKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get errorAuthorizationNotDetermined(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 897276513328639, undefined, []); }
+  static get errorAuthorizationNotDetermined(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 897276513328639, undefined, []); }
   /**
    * static var errorRequiredAuthorizationDenied: HKError.Code { get }
    * @availability iOS 12.0+
    */
-  static get errorRequiredAuthorizationDenied(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 665428112389198, undefined, []); }
+  static get errorRequiredAuthorizationDenied(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 665428112389198, undefined, []); }
   /**
    * static var errorAnotherWorkoutSessionStarted: HKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get errorAnotherWorkoutSessionStarted(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 3752756523651691, undefined, []); }
+  static get errorAnotherWorkoutSessionStarted(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 3752756523651691, undefined, []); }
   /**
    * static var errorNotPermissibleForGuestUserMode: HKError.Code { get }
    * @availability iOS 18.0+
    */
-  static get errorNotPermissibleForGuestUserMode(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 2513189686233072, undefined, []); }
+  static get errorNotPermissibleForGuestUserMode(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 2513189686233072, undefined, []); }
   /**
    * static var errorBackgroundWorkoutSessionNotAllowed: HKError.Code { get }
    * @availability iOS 17.0+
    */
-  static get errorBackgroundWorkoutSessionNotAllowed(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 2699591679941704, undefined, []); }
+  static get errorBackgroundWorkoutSessionNotAllowed(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 2699591679941704, undefined, []); }
   /**
    * static var noError: HKError.Code { get }
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  static get noError(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 1017214859174163, undefined, []); }
+  static get noError(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 1017214859174163, undefined, []); }
   declare readonly $type: { "s:SC11HKErrorCodeLeV": true };
 }
 
@@ -3208,12 +3208,12 @@ export const HKError_Code = {
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  get noError(): HKError_Code { return callSDK<HKError_Code>("HealthKit_5d69670f0307b385", 1005519292922448, undefined, []); },
+  get noError(): HKError_Code { return callSDK<HKError_Code>("HealthKit_6be9a005889899ab", 1005519292922448, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKError_Code) | null { return callSDK<(HKError_Code) | null>("HealthKit_5d69670f0307b385", 2149232711935446, undefined, [rawValue]); }
+  init(rawValue: number): (HKError_Code) | null { return callSDK<(HKError_Code) | null>("HealthKit_6be9a005889899ab", 2149232711935446, undefined, [rawValue]); }
 };
 
 /** struct HKFHIRRelease */
@@ -3224,19 +3224,19 @@ export const HKFHIRRelease = {
    * static let dstu2: HKFHIRRelease
    * @availability iOS 14.0+
    */
-  get dstu2(): HKFHIRRelease { return callSDK<HKFHIRRelease>("HealthKit_5d69670f0307b385", 1298612627665416, undefined, []); },
+  get dstu2(): HKFHIRRelease { return callSDK<HKFHIRRelease>("HealthKit_6be9a005889899ab", 1298612627665416, undefined, []); },
   /**
    * static let r4: HKFHIRRelease
    * @availability iOS 14.0+
    */
-  get r4(): HKFHIRRelease { return callSDK<HKFHIRRelease>("HealthKit_5d69670f0307b385", 3208278319485440, undefined, []); },
+  get r4(): HKFHIRRelease { return callSDK<HKFHIRRelease>("HealthKit_6be9a005889899ab", 3208278319485440, undefined, []); },
   /**
    * static let unknown: HKFHIRRelease
    * @availability iOS 14.0+
    */
-  get unknown(): HKFHIRRelease { return callSDK<HKFHIRRelease>("HealthKit_5d69670f0307b385", 2891259531371851, undefined, []); },
+  get unknown(): HKFHIRRelease { return callSDK<HKFHIRRelease>("HealthKit_6be9a005889899ab", 2891259531371851, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): HKFHIRRelease { return callSDK<HKFHIRRelease>("HealthKit_5d69670f0307b385", 1084636015010455, undefined, [rawValue]); }
+  init(rawValue: string): HKFHIRRelease { return callSDK<HKFHIRRelease>("HealthKit_6be9a005889899ab", 1084636015010455, undefined, [rawValue]); }
 };
 
 /**
@@ -3248,27 +3248,27 @@ export class HKFHIRResource extends SDKHandle {
    * @NSCopying var fhirVersion: HKFHIRVersion { get }
    * @availability iOS 14.0+
    */
-  get fhirVersion(): HKFHIRVersion { return callSDK<HKFHIRVersion>("HealthKit_5d69670f0307b385", 1430836967458987, this, []); }
+  get fhirVersion(): HKFHIRVersion { return callSDK<HKFHIRVersion>("HealthKit_6be9a005889899ab", 1430836967458987, this, []); }
   /**
    * var data: Data { get }
    * @availability iOS 12.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("HealthKit_5d69670f0307b385", 1522197405457388, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("HealthKit_6be9a005889899ab", 1522197405457388, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 12.0+
    */
-  get identifier(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 4028778748487105, this, []); }
+  get identifier(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 4028778748487105, this, []); }
   /**
    * var resourceType: HKFHIRResourceType { get }
    * @availability iOS 12.0+
    */
-  get resourceType(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 685911293002625, this, []); }
+  get resourceType(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 685911293002625, this, []); }
   /**
    * var sourceURL: URL? { get }
    * @availability iOS 12.0+
    */
-  get sourceURL(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 811225271619909, this, []); }
+  get sourceURL(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 811225271619909, this, []); }
   declare readonly $type: { "c:objc(cs)HKFHIRResource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fhirVersion": true; "data": true; "identifier": true; "resourceType": true; "sourceURL": true };
 }
@@ -3284,67 +3284,67 @@ export const HKFHIRResourceType = {
    * static let allergyIntolerance: HKFHIRResourceType
    * @availability iOS 12.0+
    */
-  get allergyIntolerance(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 2424122418767590, undefined, []); },
+  get allergyIntolerance(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 2424122418767590, undefined, []); },
   /**
    * static let condition: HKFHIRResourceType
    * @availability iOS 12.0+
    */
-  get condition(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 3000396043003595, undefined, []); },
+  get condition(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 3000396043003595, undefined, []); },
   /**
    * static let coverage: HKFHIRResourceType
    * @availability iOS 14.0+
    */
-  get coverage(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 3572084785347073, undefined, []); },
+  get coverage(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 3572084785347073, undefined, []); },
   /**
    * static let diagnosticReport: HKFHIRResourceType
    * @availability iOS 16.4+
    */
-  get diagnosticReport(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 1892404308557717, undefined, []); },
+  get diagnosticReport(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 1892404308557717, undefined, []); },
   /**
    * static let documentReference: HKFHIRResourceType
    * @availability iOS 16.4+
    */
-  get documentReference(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 1753835038733128, undefined, []); },
+  get documentReference(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 1753835038733128, undefined, []); },
   /**
    * static let immunization: HKFHIRResourceType
    * @availability iOS 12.0+
    */
-  get immunization(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 2712785881450178, undefined, []); },
+  get immunization(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 2712785881450178, undefined, []); },
   /**
    * static let medicationDispense: HKFHIRResourceType
    * @availability iOS 12.0+
    */
-  get medicationDispense(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 3726991808017825, undefined, []); },
+  get medicationDispense(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 3726991808017825, undefined, []); },
   /**
    * static let medicationOrder: HKFHIRResourceType
    * @availability iOS 12.0+
    */
-  get medicationOrder(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 2514323790035091, undefined, []); },
+  get medicationOrder(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 2514323790035091, undefined, []); },
   /**
    * static let medicationRequest: HKFHIRResourceType
    * @availability iOS 14.0+
    */
-  get medicationRequest(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 4046007689756399, undefined, []); },
+  get medicationRequest(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 4046007689756399, undefined, []); },
   /**
    * static let medicationStatement: HKFHIRResourceType
    * @availability iOS 12.0+
    */
-  get medicationStatement(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 4167829597487446, undefined, []); },
+  get medicationStatement(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 4167829597487446, undefined, []); },
   /**
    * static let observation: HKFHIRResourceType
    * @availability iOS 12.0+
    */
-  get observation(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 1978226989608114, undefined, []); },
+  get observation(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 1978226989608114, undefined, []); },
   /**
    * static let procedure: HKFHIRResourceType
    * @availability iOS 12.0+
    */
-  get procedure(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 3439639233868137, undefined, []); },
+  get procedure(): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 3439639233868137, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 12.0+
    */
-  init(rawValue: string): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_5d69670f0307b385", 1485328702136508, undefined, [rawValue]); }
+  init(rawValue: string): HKFHIRResourceType { return callSDK<HKFHIRResourceType>("HealthKit_6be9a005889899ab", 1485328702136508, undefined, [rawValue]); }
 };
 
 /**
@@ -3356,42 +3356,42 @@ export class HKFHIRVersion extends SDKHandle {
    * class func primaryDSTU2() -> Self
    * @availability iOS 14.0+
    */
-  static primaryDSTU2(): HKFHIRVersion { return callSDK<HKFHIRVersion>("HealthKit_5d69670f0307b385", 3841939412236268, undefined, []); }
+  static primaryDSTU2(): HKFHIRVersion { return callSDK<HKFHIRVersion>("HealthKit_6be9a005889899ab", 3841939412236268, undefined, []); }
   /**
    * class func primaryR4() -> Self
    * @availability iOS 14.0+
    */
-  static primaryR4(): HKFHIRVersion { return callSDK<HKFHIRVersion>("HealthKit_5d69670f0307b385", 3235437509584295, undefined, []); }
+  static primaryR4(): HKFHIRVersion { return callSDK<HKFHIRVersion>("HealthKit_6be9a005889899ab", 3235437509584295, undefined, []); }
   /**
    * convenience init(fromVersionString versionString: String) throws
    * @availability iOS 14.0+
    */
-  static init(versionString: string): HKFHIRVersion { return callSDK<HKFHIRVersion>("HealthKit_5d69670f0307b385", 639236729913729, undefined, [versionString]); }
+  static init(versionString: string): HKFHIRVersion { return callSDK<HKFHIRVersion>("HealthKit_6be9a005889899ab", 639236729913729, undefined, [versionString]); }
   /**
    * var fhirRelease: HKFHIRRelease { get }
    * @availability iOS 14.0+
    */
-  get fhirRelease(): HKFHIRRelease { return callSDK<HKFHIRRelease>("HealthKit_5d69670f0307b385", 634662439509312, this, []); }
+  get fhirRelease(): HKFHIRRelease { return callSDK<HKFHIRRelease>("HealthKit_6be9a005889899ab", 634662439509312, this, []); }
   /**
    * var majorVersion: Int { get }
    * @availability iOS 14.0+
    */
-  get majorVersion(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 2145001555274980, this, []); }
+  get majorVersion(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 2145001555274980, this, []); }
   /**
    * var minorVersion: Int { get }
    * @availability iOS 14.0+
    */
-  get minorVersion(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 568186107865285, this, []); }
+  get minorVersion(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 568186107865285, this, []); }
   /**
    * var patchVersion: Int { get }
    * @availability iOS 14.0+
    */
-  get patchVersion(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 4218742546320225, this, []); }
+  get patchVersion(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 4218742546320225, this, []); }
   /**
    * var stringRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get stringRepresentation(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 3678312822913626, this, []); }
+  get stringRepresentation(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 3678312822913626, this, []); }
   declare readonly $type: { "c:objc(cs)HKFHIRVersion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fhirRelease": true; "majorVersion": true; "minorVersion": true; "patchVersion": true; "stringRepresentation": true };
 }
@@ -3407,7 +3407,7 @@ export const HKFitzpatrickSkinType = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (HKFitzpatrickSkinType) | null { return callSDK<(HKFitzpatrickSkinType) | null>("HealthKit_5d69670f0307b385", 3123926987096697, undefined, [rawValue]); }
+  init(rawValue: number): (HKFitzpatrickSkinType) | null { return callSDK<(HKFitzpatrickSkinType) | null>("HealthKit_6be9a005889899ab", 3123926987096697, undefined, [rawValue]); }
 };
 
 /**
@@ -3416,12 +3416,12 @@ export const HKFitzpatrickSkinType = {
  */
 export class HKFitzpatrickSkinTypeObject extends SDKHandle {
   /** init() */
-  static init(): HKFitzpatrickSkinTypeObject { return callSDK<HKFitzpatrickSkinTypeObject>("HealthKit_5d69670f0307b385", 580270783133044, undefined, []); }
+  static init(): HKFitzpatrickSkinTypeObject { return callSDK<HKFitzpatrickSkinTypeObject>("HealthKit_6be9a005889899ab", 580270783133044, undefined, []); }
   /**
    * var skinType: HKFitzpatrickSkinType { get }
    * @availability iOS 9.0+
    */
-  get skinType(): HKFitzpatrickSkinType { return callSDK<HKFitzpatrickSkinType>("HealthKit_5d69670f0307b385", 2765444926726167, this, []); }
+  get skinType(): HKFitzpatrickSkinType { return callSDK<HKFitzpatrickSkinType>("HealthKit_6be9a005889899ab", 2765444926726167, this, []); }
   declare readonly $type: { "c:objc(cs)HKFitzpatrickSkinTypeObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "skinType": true };
 }
@@ -3435,7 +3435,7 @@ export class HKScoredAssessment extends HKSample {
    * var score: Int { get }
    * @availability iOS 18.0+
    */
-  get score(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 3097785645823214, this, []); }
+  get score(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 3097785645823214, this, []); }
   declare readonly $type: { "c:objc(cs)HKScoredAssessment": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "score": true };
 }
@@ -3449,17 +3449,17 @@ export class HKGAD7Assessment extends HKScoredAssessment {
    * var risk: HKGAD7Assessment.Risk { get }
    * @availability iOS 18.0+
    */
-  get risk(): HKGAD7Assessment_Risk { return callSDK<HKGAD7Assessment_Risk>("HealthKit_5d69670f0307b385", 890542945937765, this, []); }
+  get risk(): HKGAD7Assessment_Risk { return callSDK<HKGAD7Assessment_Risk>("HealthKit_6be9a005889899ab", 890542945937765, this, []); }
   /**
    * convenience init(date: Date, answers: [HKGAD7Assessment.Answer], metadata: [String : Any]? = [:])
    * @availability iOS 18.0+
    */
-  static init(date: globalThis.Date, answers: $SDK48, metadata?: $SDK29): HKGAD7Assessment { return callSDK<HKGAD7Assessment>("HealthKit_5d69670f0307b385", 351999205969203, undefined, [date, answers, metadata]); }
+  static init(date: globalThis.Date, answers: $SDK48, metadata?: $SDK29): HKGAD7Assessment { return callSDK<HKGAD7Assessment>("HealthKit_6be9a005889899ab", 351999205969203, undefined, [date, answers, metadata]); }
   /**
    * var answers: [HKGAD7Assessment.Answer] { get }
    * @availability iOS 18.0+
    */
-  get answers(): $SDK48 { return callSDK<$SDK48>("HealthKit_5d69670f0307b385", 699958963292579, this, []); }
+  get answers(): $SDK48 { return callSDK<$SDK48>("HealthKit_6be9a005889899ab", 699958963292579, this, []); }
   declare readonly $type: { "c:objc(cs)HKGAD7Assessment": true; "c:objc(cs)HKScoredAssessment": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "score": true; "risk": true };
 }
@@ -3475,7 +3475,7 @@ export const HKGAD7Assessment_Answer = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HKGAD7Assessment_Answer) | null { return callSDK<(HKGAD7Assessment_Answer) | null>("HealthKit_5d69670f0307b385", 3904549138865633, undefined, [rawValue]); }
+  init(rawValue: number): (HKGAD7Assessment_Answer) | null { return callSDK<(HKGAD7Assessment_Answer) | null>("HealthKit_6be9a005889899ab", 3904549138865633, undefined, [rawValue]); }
 };
 
 /**
@@ -3489,7 +3489,7 @@ export const HKGAD7Assessment_Risk = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HKGAD7Assessment_Risk) | null { return callSDK<(HKGAD7Assessment_Risk) | null>("HealthKit_5d69670f0307b385", 675349225597598, undefined, [rawValue]); }
+  init(rawValue: number): (HKGAD7Assessment_Risk) | null { return callSDK<(HKGAD7Assessment_Risk) | null>("HealthKit_6be9a005889899ab", 675349225597598, undefined, [rawValue]); }
 };
 
 /**
@@ -3501,27 +3501,27 @@ export class HKGlassesLensSpecification extends HKLensSpecification {
    * init(sphere: HKQuantity, cylinder: HKQuantity?, axis: HKQuantity?, addPower: HKQuantity?, vertexDistance: HKQuantity?, prism: HKVisionPrism?, farPupillaryDistance: HKQuantity?, nearPupillaryDistance: HKQuantity?)
    * @availability iOS 16.0+
    */
-  static init(sphere: HKQuantity, cylinder?: (HKQuantity) | null, axis?: (HKQuantity) | null, addPower?: (HKQuantity) | null, vertexDistance?: (HKQuantity) | null, prism?: (HKVisionPrism) | null, farPupillaryDistance?: (HKQuantity) | null, nearPupillaryDistance?: (HKQuantity) | null): HKGlassesLensSpecification { return callSDK<HKGlassesLensSpecification>("HealthKit_5d69670f0307b385", 2750718698517014, undefined, [sphere, cylinder, axis, addPower, vertexDistance, prism, farPupillaryDistance, nearPupillaryDistance]); }
+  static init(sphere: HKQuantity, cylinder?: (HKQuantity) | null, axis?: (HKQuantity) | null, addPower?: (HKQuantity) | null, vertexDistance?: (HKQuantity) | null, prism?: (HKVisionPrism) | null, farPupillaryDistance?: (HKQuantity) | null, nearPupillaryDistance?: (HKQuantity) | null): HKGlassesLensSpecification { return callSDK<HKGlassesLensSpecification>("HealthKit_6be9a005889899ab", 2750718698517014, undefined, [sphere, cylinder, axis, addPower, vertexDistance, prism, farPupillaryDistance, nearPupillaryDistance]); }
   /**
    * @NSCopying var farPupillaryDistance: HKQuantity? { get }
    * @availability iOS 16.0+
    */
-  get farPupillaryDistance(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 2032556050871375, this, []); }
+  get farPupillaryDistance(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 2032556050871375, this, []); }
   /**
    * @NSCopying var nearPupillaryDistance: HKQuantity? { get }
    * @availability iOS 16.0+
    */
-  get nearPupillaryDistance(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 330126421693363, this, []); }
+  get nearPupillaryDistance(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 330126421693363, this, []); }
   /**
    * @NSCopying var prism: HKVisionPrism? { get }
    * @availability iOS 16.0+
    */
-  get prism(): (HKVisionPrism) | null { return callSDK<(HKVisionPrism) | null>("HealthKit_5d69670f0307b385", 1818856178943648, this, []); }
+  get prism(): (HKVisionPrism) | null { return callSDK<(HKVisionPrism) | null>("HealthKit_6be9a005889899ab", 1818856178943648, this, []); }
   /**
    * @NSCopying var vertexDistance: HKQuantity? { get }
    * @availability iOS 16.0+
    */
-  get vertexDistance(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 1100689326372123, this, []); }
+  get vertexDistance(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 1100689326372123, this, []); }
   declare readonly $type: { "c:objc(cs)HKGlassesLensSpecification": true; "c:objc(cs)HKLensSpecification": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addPower": true; "axis": true; "cylinder": true; "sphere": true; "farPupillaryDistance": true; "nearPupillaryDistance": true; "prism": true; "vertexDistance": true };
 }
@@ -3535,17 +3535,17 @@ export class HKGlassesPrescription extends (HKVisionPrescription as unknown as O
    * convenience init(rightEyeSpecification: HKGlassesLensSpecification?, leftEyeSpecification: HKGlassesLensSpecification?, dateIssued: Date, expirationDate: Date?, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 16.0+
    */
-  static init(rightEyeSpecification: $SDK49, leftEyeSpecification: $SDK49, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK29): HKGlassesPrescription { return callSDK<HKGlassesPrescription>("HealthKit_5d69670f0307b385", 743419754751026, undefined, [rightEyeSpecification, leftEyeSpecification, dateIssued, expirationDate, device, metadata]); }
+  static init(rightEyeSpecification: $SDK49, leftEyeSpecification: $SDK49, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK29): HKGlassesPrescription { return callSDK<HKGlassesPrescription>("HealthKit_6be9a005889899ab", 743419754751026, undefined, [rightEyeSpecification, leftEyeSpecification, dateIssued, expirationDate, device, metadata]); }
   /**
    * @NSCopying var leftEye: HKGlassesLensSpecification? { get }
    * @availability iOS 16.0+
    */
-  get leftEye(): $SDK49 { return callSDK<$SDK49>("HealthKit_5d69670f0307b385", 393287540586164, this, []); }
+  get leftEye(): $SDK49 { return callSDK<$SDK49>("HealthKit_6be9a005889899ab", 393287540586164, this, []); }
   /**
    * @NSCopying var rightEye: HKGlassesLensSpecification? { get }
    * @availability iOS 16.0+
    */
-  get rightEye(): $SDK49 { return callSDK<$SDK49>("HealthKit_5d69670f0307b385", 1784679479010765, this, []); }
+  get rightEye(): $SDK49 { return callSDK<$SDK49>("HealthKit_6be9a005889899ab", 1784679479010765, this, []); }
   declare readonly $type: { "c:objc(cs)HKGlassesPrescription": true; "c:objc(cs)HKVisionPrescription": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "dateIssued": true; "expirationDate": true; "prescriptionType": true; "leftEye": true; "rightEye": true };
 }
@@ -3561,12 +3561,12 @@ export const HKHealthConceptDomain = {
    * static let medication: HKHealthConceptDomain
    * @availability iOS 26.0+
    */
-  get medication(): HKHealthConceptDomain { return callSDK<HKHealthConceptDomain>("HealthKit_5d69670f0307b385", 2766380303638037, undefined, []); },
+  get medication(): HKHealthConceptDomain { return callSDK<HKHealthConceptDomain>("HealthKit_6be9a005889899ab", 2766380303638037, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): HKHealthConceptDomain { return callSDK<HKHealthConceptDomain>("HealthKit_5d69670f0307b385", 1035541778612441, undefined, [rawValue]); }
+  init(rawValue: string): HKHealthConceptDomain { return callSDK<HKHealthConceptDomain>("HealthKit_6be9a005889899ab", 1035541778612441, undefined, [rawValue]); }
 };
 
 /**
@@ -3578,7 +3578,7 @@ export class HKHealthConceptIdentifier extends SDKHandle {
    * var domain: HKHealthConceptDomain { get }
    * @availability iOS 26.0+
    */
-  get domain(): HKHealthConceptDomain { return callSDK<HKHealthConceptDomain>("HealthKit_5d69670f0307b385", 4139300586245706, this, []); }
+  get domain(): HKHealthConceptDomain { return callSDK<HKHealthConceptDomain>("HealthKit_6be9a005889899ab", 4139300586245706, this, []); }
   declare readonly $type: { "c:objc(cs)HKHealthConceptIdentifier": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "domain": true };
 }
@@ -3592,189 +3592,189 @@ export class HKHealthStore extends SDKHandle {
    * class func isHealthDataAvailable() -> Bool
    * @availability iOS 8.0+
    */
-  static isHealthDataAvailable(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 3977331555770573, undefined, []); }
+  static isHealthDataAvailable(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 3977331555770573, undefined, []); }
   /**
    * func activityMoveMode() throws -> HKActivityMoveModeObject
    * @availability iOS 14.0+
    */
-  activityMoveMode(): HKActivityMoveModeObject { return callSDK<HKActivityMoveModeObject>("HealthKit_5d69670f0307b385", 3379710253388352, this, []); }
+  activityMoveMode(): HKActivityMoveModeObject { return callSDK<HKActivityMoveModeObject>("HealthKit_6be9a005889899ab", 3379710253388352, this, []); }
   /**
    * func addSamples(_ samples: [HKSample], to workout: HKWorkout) async throws
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  add(samples: Array<HKSample>, workout: HKWorkout, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3140711603726999, this, [samples, workout, completion], [null,null,{"callback":{"out":[]}}]); }
+  add(samples: Array<HKSample>, workout: HKWorkout, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3140711603726999, this, [samples, workout, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func authorizationStatus(for type: HKObjectType) -> HKAuthorizationStatus
    * @availability iOS 8.0+
    */
-  authorizationStatus(type: HKObjectType): HKAuthorizationStatus { return callSDK<HKAuthorizationStatus>("HealthKit_5d69670f0307b385", 460903999075037, this, [type]); }
+  authorizationStatus(type: HKObjectType): HKAuthorizationStatus { return callSDK<HKAuthorizationStatus>("HealthKit_6be9a005889899ab", 460903999075037, this, [type]); }
   /**
    * func biologicalSex() throws -> HKBiologicalSexObject
    * @availability iOS 8.0+
    */
-  biologicalSex(): HKBiologicalSexObject { return callSDK<HKBiologicalSexObject>("HealthKit_5d69670f0307b385", 2818560088739374, this, []); }
+  biologicalSex(): HKBiologicalSexObject { return callSDK<HKBiologicalSexObject>("HealthKit_6be9a005889899ab", 2818560088739374, this, []); }
   /**
    * func bloodType() throws -> HKBloodTypeObject
    * @availability iOS 8.0+
    */
-  bloodType(): HKBloodTypeObject { return callSDK<HKBloodTypeObject>("HealthKit_5d69670f0307b385", 2715408121436172, this, []); }
+  bloodType(): HKBloodTypeObject { return callSDK<HKBloodTypeObject>("HealthKit_6be9a005889899ab", 2715408121436172, this, []); }
   /**
    * func dateOfBirthComponents() throws -> DateComponents
    * @availability iOS 10.0+
    */
-  dateOfBirthComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HealthKit_5d69670f0307b385", 12199780736928, this, []); }
+  dateOfBirthComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HealthKit_6be9a005889899ab", 12199780736928, this, []); }
   /**
    * func dateOfBirth() throws -> Date
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  dateOfBirth(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 3199719110017460, this, []); }
+  dateOfBirth(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 3199719110017460, this, []); }
   /**
    * func delete(_ object: HKObject) async throws
    * @availability iOS 8.0+
    */
-  deleteWithCompletion(object: HKObject, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 779829753535511, this, [object, completion], [null,{"callback":{"out":[]}}]); }
+  deleteWithCompletion(object: HKObject, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 779829753535511, this, [object, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func delete(_ objects: [HKObject]) async throws
    * @availability iOS 9.0+
    */
-  deleteWithCompletion64175(objects: Array<HKObject>, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1318462801765631, this, [objects, completion], [null,{"callback":{"out":[]}}]); }
+  deleteWithCompletion64175(objects: Array<HKObject>, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1318462801765631, this, [objects, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func deleteObjects(of objectType: HKObjectType, predicate: NSPredicate) async throws -> Int
    * @availability iOS 9.0+
    */
-  deleteObjects(objectType: HKObjectType, predicate: _Foundation_NSPredicate, completion: ((arg0: boolean, arg1: number, arg2: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 715998180361291, this, [objectType, predicate, completion], [null,null,{"callback":{"out":[]}}]); }
+  deleteObjects(objectType: HKObjectType, predicate: _Foundation_NSPredicate, completion: ((arg0: boolean, arg1: number, arg2: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 715998180361291, this, [objectType, predicate, completion], [null,null,{"callback":{"out":[]}}]); }
   /** func disableAllBackgroundDelivery() async throws */
-  disableAllBackgroundDelivery(completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1566036988973298, this, [completion], [{"callback":{"out":[]}}]); }
+  disableAllBackgroundDelivery(completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1566036988973298, this, [completion], [{"callback":{"out":[]}}]); }
   /** func disableBackgroundDelivery(for type: HKObjectType) async throws */
-  disableBackgroundDelivery(type: HKObjectType, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1774880026223056, this, [type, completion], [null,{"callback":{"out":[]}}]); }
+  disableBackgroundDelivery(type: HKObjectType, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1774880026223056, this, [type, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func earliestPermittedSampleDate() -> Date
    * @availability iOS 9.0+
    */
-  earliestPermittedSampleDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 3497015170605558, this, []); }
+  earliestPermittedSampleDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 3497015170605558, this, []); }
   /** func enableBackgroundDelivery(for type: HKObjectType, frequency: HKUpdateFrequency) async throws */
-  enableBackgroundDelivery(type: HKObjectType, frequency: HKUpdateFrequency, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 4390893173613616, this, [type, frequency, completion], [null,null,{"callback":{"out":[]}}]); }
+  enableBackgroundDelivery(type: HKObjectType, frequency: HKUpdateFrequency, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 4390893173613616, this, [type, frequency, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func execute(_ query: HKQuery)
    * @availability iOS 8.0+
    */
-  execute(query: HKQuery): void { return callSDK<void>("HealthKit_5d69670f0307b385", 4202883680172875, this, [query]); }
+  execute(query: HKQuery): void { return callSDK<void>("HealthKit_6be9a005889899ab", 4202883680172875, this, [query]); }
   /**
    * func fitzpatrickSkinType() throws -> HKFitzpatrickSkinTypeObject
    * @availability iOS 9.0+
    */
-  fitzpatrickSkinType(): HKFitzpatrickSkinTypeObject { return callSDK<HKFitzpatrickSkinTypeObject>("HealthKit_5d69670f0307b385", 4367724627794244, this, []); }
+  fitzpatrickSkinType(): HKFitzpatrickSkinTypeObject { return callSDK<HKFitzpatrickSkinTypeObject>("HealthKit_6be9a005889899ab", 4367724627794244, this, []); }
   /**
    * func getEarliestAuthorizedSampleDate(for types: Set<HKObjectType>, completion: @escaping @Sendable ([HKObjectType : Date]?, (any Error)?) -> Void)
    * @availability iOS 27.0+
    */
-  getEarliestAuthorizedSampleDate(types: Array<HKObjectType>, completion: ((arg0: (NativeMap<HKObjectType, globalThis.Date>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1893117783265484, this, [types, completion], [null,{"callback":{"out":[]}}]); }
+  getEarliestAuthorizedSampleDate(types: Array<HKObjectType>, completion: ((arg0: (NativeMap<HKObjectType, globalThis.Date>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1893117783265484, this, [types, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func statusForAuthorizationRequest(toShare typesToShare: Set<HKSampleType>, read typesToRead: Set<HKObjectType>) async throws -> HKAuthorizationRequestStatus
    * @availability iOS 12.0+
    */
-  getRequestStatusForAuthorization(typesToShare: Array<HKSampleType>, typesToRead: Array<HKObjectType>, completion: ((arg0: HKAuthorizationRequestStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1773014428355338, this, [typesToShare, typesToRead, completion], [null,null,{"callback":{"out":[]}}]); }
+  getRequestStatusForAuthorization(typesToShare: Array<HKSampleType>, typesToRead: Array<HKObjectType>, completion: ((arg0: HKAuthorizationRequestStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1773014428355338, this, [typesToShare, typesToRead, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func handleAuthorizationForExtension() async throws
    * @availability iOS 9.0+
    */
-  handleAuthorizationForExtension(completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 2504388691564856, this, [completion], [{"callback":{"out":[]}}]); }
+  handleAuthorizationForExtension(completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 2504388691564856, this, [completion], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): HKHealthStore { return callSDK<HKHealthStore>("HealthKit_5d69670f0307b385", 3658215095811888, undefined, []); }
+  static init(): HKHealthStore { return callSDK<HKHealthStore>("HealthKit_6be9a005889899ab", 3658215095811888, undefined, []); }
   /**
    * func preferredUnits(for quantityTypes: Set<HKQuantityType>) async throws -> [HKQuantityType : HKUnit]
    * @availability iOS 8.2+
    */
-  preferredUnits(quantityTypes: Array<HKQuantityType>, completion: ((arg0: NativeMap<HKQuantityType, HKUnit>, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 31686417104436, this, [quantityTypes, completion], [null,{"callback":{"out":[]}}]); }
+  preferredUnits(quantityTypes: Array<HKQuantityType>, completion: ((arg0: NativeMap<HKQuantityType, HKUnit>, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 31686417104436, this, [quantityTypes, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func recalibrateEstimates(sampleType: HKSampleType, date: Date) async throws
    * @availability iOS 15.0+
    */
-  recalibrateEstimates(sampleType: HKSampleType, date: globalThis.Date, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 2244974282957826, this, [sampleType, date, completion], [null,null,{"callback":{"out":[]}}]); }
+  recalibrateEstimates(sampleType: HKSampleType, date: globalThis.Date, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 2244974282957826, this, [sampleType, date, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func recoverActiveWorkoutSession() async throws -> HKWorkoutSession?
    * @availability iOS 26.0+
    */
-  recoverActiveWorkoutSession(completion: ((arg0: (HKWorkoutSession) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3231910180728091, this, [completion], [{"callback":{"out":[]}}]); }
+  recoverActiveWorkoutSession(completion: ((arg0: (HKWorkoutSession) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3231910180728091, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func relateWorkoutEffortSample(_ sample: HKSample, with workout: HKWorkout, activity: HKWorkoutActivity?) async throws -> Bool
    * @availability iOS 18.0+
    */
-  relateWorkoutEffortSample(sample: HKSample, workout: HKWorkout, activity: $SDK3, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1517679471136866, this, [sample, workout, activity, completion], [null,null,null,{"callback":{"out":[]}}]); }
+  relateWorkoutEffortSample(sample: HKSample, workout: HKWorkout, activity: $SDK3, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1517679471136866, this, [sample, workout, activity, completion], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func requestAuthorization(toShare typesToShare: Set<HKSampleType>?, read typesToRead: Set<HKObjectType>?, completion: @escaping @Sendable (Bool, (any Error)?) -> Void)
    * @availability iOS 8.0+
    */
-  requestAuthorizationToShareReadCompletion(typesToShare: (Array<HKSampleType>) | null, typesToRead: (Array<HKObjectType>) | null, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 189404140422522, this, [typesToShare, typesToRead, completion], [null,null,{"callback":{"out":[]}}]); }
+  requestAuthorizationToShareReadCompletion(typesToShare: (Array<HKSampleType>) | null, typesToRead: (Array<HKObjectType>) | null, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 189404140422522, this, [typesToShare, typesToRead, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func requestPerObjectReadAuthorization(for objectType: HKObjectType, predicate: NSPredicate?) async throws
    * @availability iOS 16.0+
    */
-  requestPerObjectReadAuthorization(objectType: HKObjectType, predicate: $SDK4, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 413435082156583, this, [objectType, predicate, completion], [null,null,{"callback":{"out":[]}}]); }
+  requestPerObjectReadAuthorization(objectType: HKObjectType, predicate: $SDK4, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 413435082156583, this, [objectType, predicate, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func save(_ object: HKObject) async throws
    * @availability iOS 8.0+
    */
-  saveWithCompletion(object: HKObject, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1490840841134737, this, [object, completion], [null,{"callback":{"out":[]}}]); }
+  saveWithCompletion(object: HKObject, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1490840841134737, this, [object, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func save(_ objects: [HKObject]) async throws
    * @availability iOS 8.0+
    */
-  saveWithCompletion30981(objects: Array<HKObject>, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 2670701534841606, this, [objects, completion], [null,{"callback":{"out":[]}}]); }
+  saveWithCompletion30981(objects: Array<HKObject>, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 2670701534841606, this, [objects, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func splitTotalEnergy(_ totalEnergy: HKQuantity, start startDate: Date, end endDate: Date, resultsHandler: @escaping @Sendable (HKQuantity?, HKQuantity?, (any Error)?) -> Void)
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  splitTotalEnergy(totalEnergy: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date, resultsHandler: ((arg0: (HKQuantity) | null, arg1: (HKQuantity) | null, arg2: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3139117700901325, this, [totalEnergy, startDate, endDate, resultsHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  splitTotalEnergy(totalEnergy: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date, resultsHandler: ((arg0: (HKQuantity) | null, arg1: (HKQuantity) | null, arg2: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3139117700901325, this, [totalEnergy, startDate, endDate, resultsHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func startWatchApp(toHandle workoutConfiguration: HKWorkoutConfiguration) async throws
    * @availability iOS 10.0+
    */
-  startWatchApp(workoutConfiguration: HKWorkoutConfiguration, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 572039605347313, this, [workoutConfiguration, completion], [null,{"callback":{"out":[]}}]); }
+  startWatchApp(workoutConfiguration: HKWorkoutConfiguration, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 572039605347313, this, [workoutConfiguration, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func stop(_ query: HKQuery)
    * @availability iOS 8.0+
    */
-  stop(query: HKQuery): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1568689082267246, this, [query]); }
+  stop(query: HKQuery): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1568689082267246, this, [query]); }
   /**
    * func supportsHealthRecords() -> Bool
    * @availability iOS 12.0+
    */
-  supportsHealthRecords(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 1554979216869899, this, []); }
+  supportsHealthRecords(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 1554979216869899, this, []); }
   /**
    * func unrelateWorkoutEffortSample(_ sample: HKSample, from workout: HKWorkout, activity: HKWorkoutActivity?) async throws -> Bool
    * @availability iOS 18.0+
    */
-  unrelateWorkoutEffortSample(sample: HKSample, workout: HKWorkout, activity: $SDK3, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3201380510361885, this, [sample, workout, activity, completion], [null,null,null,{"callback":{"out":[]}}]); }
+  unrelateWorkoutEffortSample(sample: HKSample, workout: HKWorkout, activity: $SDK3, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3201380510361885, this, [sample, workout, activity, completion], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func wheelchairUse() throws -> HKWheelchairUseObject
    * @availability iOS 10.0+
    */
-  wheelchairUse(): HKWheelchairUseObject { return callSDK<HKWheelchairUseObject>("HealthKit_5d69670f0307b385", 2995414235202632, this, []); }
+  wheelchairUse(): HKWheelchairUseObject { return callSDK<HKWheelchairUseObject>("HealthKit_6be9a005889899ab", 2995414235202632, this, []); }
   /**
    * var workoutSessionMirroringStartHandler: (@Sendable (HKWorkoutSession) -> Void)? { get set }
    * @availability iOS 17.0+
    */
-  get workoutSessionMirroringStartHandler(): (((arg0: HKWorkoutSession) => Promise<void>)) | null { return callSDK<(((arg0: HKWorkoutSession) => Promise<void>)) | null>("HealthKit_5d69670f0307b385", 369457656535644, this, []); }
-  set workoutSessionMirroringStartHandler(value: (((arg0: HKWorkoutSession) => void)) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 2919175410086082, this, [value], [{"callback":{"out":[]}}]); }
+  get workoutSessionMirroringStartHandler(): (((arg0: HKWorkoutSession) => Promise<void>)) | null { return callSDK<(((arg0: HKWorkoutSession) => Promise<void>)) | null>("HealthKit_6be9a005889899ab", 369457656535644, this, []); }
+  set workoutSessionMirroringStartHandler(value: (((arg0: HKWorkoutSession) => void)) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 2919175410086082, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * func requestAuthorization(toShare typesToShare: Set<HKSampleType>, read typesToRead: Set<HKObjectType>) async throws
    * @availability iOS 15.0+
    */
-  requestAuthorizationToShareRead(typesToShare: Array<HKSampleType>, typesToRead: Array<HKObjectType>): Promise<void> { return callSDKAsync<void>("HealthKit_5d69670f0307b385", 3729090671907363, this, [typesToShare, typesToRead]); }
+  requestAuthorizationToShareRead(typesToShare: Array<HKSampleType>, typesToRead: Array<HKObjectType>): Promise<void> { return callSDKAsync<void>("HealthKit_6be9a005889899ab", 3729090671907363, this, [typesToShare, typesToRead]); }
   /**
    * func earliestAuthorizedSampleDate(for types: Set<HKObjectType>) async throws -> [HKObjectType : Date]
    * @availability iOS 27.0+
    */
-  earliestAuthorizedSampleDate(types: Array<HKObjectType>): Promise<NativeMap<HKObjectType, globalThis.Date>> { return callSDKAsync<NativeMap<HKObjectType, globalThis.Date>>("HealthKit_5d69670f0307b385", 3695575491995674, this, [types]); }
+  earliestAuthorizedSampleDate(types: Array<HKObjectType>): Promise<NativeMap<HKObjectType, globalThis.Date>> { return callSDKAsync<NativeMap<HKObjectType, globalThis.Date>>("HealthKit_6be9a005889899ab", 3695575491995674, this, [types]); }
   /**
    * func preferredWorkoutZoneConfiguration(for quantityType: HKQuantityType) async throws -> HKWorkoutZoneConfiguration?
    * @availability iOS 27.0+
    */
-  preferredWorkoutZoneConfiguration(quantityType: HKQuantityType): Promise<$SDK61> { return callSDKAsync<$SDK61>("HealthKit_5d69670f0307b385", 1874740987279307, this, [quantityType]); }
+  preferredWorkoutZoneConfiguration(quantityType: HKQuantityType): Promise<$SDK61> { return callSDKAsync<$SDK61>("HealthKit_6be9a005889899ab", 1874740987279307, this, [quantityType]); }
   declare readonly $type: { "c:objc(cs)HKHealthStore": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3787,12 +3787,12 @@ export class HKHealthStore_HKUserPreferencesDidChangeMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> HKHealthStore.HKUserPreferencesDidChangeMessage?
    * @availability iOS 26.4+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(HKHealthStore_HKUserPreferencesDidChangeMessage) | null> { return callSDKAsync<(HKHealthStore_HKUserPreferencesDidChangeMessage) | null>("HealthKit_5d69670f0307b385", 3996314771913302, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(HKHealthStore_HKUserPreferencesDidChangeMessage) | null> { return callSDKAsync<(HKHealthStore_HKUserPreferencesDidChangeMessage) | null>("HealthKit_6be9a005889899ab", 3996314771913302, undefined, [notification]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.4+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("HealthKit_5d69670f0307b385", 3904528462884881, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("HealthKit_6be9a005889899ab", 3904528462884881, undefined, []); }
   declare readonly $type: { "s:So13HKHealthStoreC9HealthKitE33HKUserPreferencesDidChangeMessageV": true };
 }
 
@@ -3805,7 +3805,7 @@ export type HKHealthStore_HKUserPreferencesDidChangeMessage_Subject = HKHealthSt
 /** class HKSeriesBuilder */
 export class HKSeriesBuilder extends SDKHandle {
   /** func discard() */
-  discard(): void { return callSDK<void>("HealthKit_5d69670f0307b385", 171825536469656, this, []); }
+  discard(): void { return callSDK<void>("HealthKit_6be9a005889899ab", 171825536469656, this, []); }
   declare readonly $type: { "c:objc(cs)HKSeriesBuilder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3818,34 +3818,34 @@ export class HKHeartbeatSeriesBuilder extends HKSeriesBuilder {
    * class var maximumCount: Int { get }
    * @availability iOS 13.0+
    */
-  static get maximumCount(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 4205336116482486, undefined, []); }
+  static get maximumCount(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 4205336116482486, undefined, []); }
   /**
    * func addHeartbeat(at timeIntervalSinceStart: TimeInterval, precededByGap: Bool) async throws
    * @availability iOS 13.0+
    */
-  addHeartbeatWithTimeInterval(timeIntervalSinceStart: number, precededByGap: boolean, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1303987364997552, this, [timeIntervalSinceStart, precededByGap, completion], [null,null,{"callback":{"out":[]}}]); }
+  addHeartbeatWithTimeInterval(timeIntervalSinceStart: number, precededByGap: boolean, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1303987364997552, this, [timeIntervalSinceStart, precededByGap, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func addMetadata(_ metadata: [String : Any]) async throws
    * @availability iOS 13.0+
    */
-  addMetadata(metadata: Record<string, unknown>, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 914889938633896, this, [metadata, completion], [null,{"callback":{"out":[]}}]); }
+  addMetadata(metadata: Record<string, unknown>, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 914889938633896, this, [metadata, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func finishSeries() async throws -> HKHeartbeatSeriesSample
    * @availability iOS 13.0+
    */
-  finishSeries(completion: ((arg0: (HKHeartbeatSeriesSample) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1900325891705169, this, [completion], [{"callback":{"out":[]}}]); }
+  finishSeries(completion: ((arg0: (HKHeartbeatSeriesSample) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1900325891705169, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * init(healthStore: HKHealthStore, device: HKDevice?, start startDate: Date)
    * @availability iOS 13.0+
    */
-  static init(healthStore: HKHealthStore, device: (HKDevice) | null, startDate: globalThis.Date): HKHeartbeatSeriesBuilder { return callSDK<HKHeartbeatSeriesBuilder>("HealthKit_5d69670f0307b385", 3307413915772349, undefined, [healthStore, device, startDate]); }
+  static init(healthStore: HKHealthStore, device: (HKDevice) | null, startDate: globalThis.Date): HKHeartbeatSeriesBuilder { return callSDK<HKHeartbeatSeriesBuilder>("HealthKit_6be9a005889899ab", 3307413915772349, undefined, [healthStore, device, startDate]); }
   declare readonly $type: { "c:objc(cs)HKHeartbeatSeriesBuilder": true; "c:objc(cs)HKSeriesBuilder": true; "c:objc(cs)NSObject": true };
 }
 
 /** class HKHeartbeatSeriesQuery */
 export class HKHeartbeatSeriesQuery extends HKQuery {
   /** init(heartbeatSeries: HKHeartbeatSeriesSample, dataHandler: @escaping @Sendable (HKHeartbeatSeriesQuery, TimeInterval, Bool, Bool, (any Error)?) -> Void) */
-  static init(heartbeatSeries: HKHeartbeatSeriesSample, dataHandler: ((arg0: HKHeartbeatSeriesQuery, arg1: number, arg2: boolean, arg3: boolean, arg4: (NativeError) | null) => void)): HKHeartbeatSeriesQuery { return callSDK<HKHeartbeatSeriesQuery>("HealthKit_5d69670f0307b385", 3373890097484478, undefined, [heartbeatSeries, dataHandler], [null,{"callback":{"out":[]}}]); }
+  static init(heartbeatSeries: HKHeartbeatSeriesSample, dataHandler: ((arg0: HKHeartbeatSeriesQuery, arg1: number, arg2: boolean, arg3: boolean, arg4: (NativeError) | null) => void)): HKHeartbeatSeriesQuery { return callSDK<HKHeartbeatSeriesQuery>("HealthKit_6be9a005889899ab", 3373890097484478, undefined, [heartbeatSeries, dataHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKHeartbeatSeriesQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -3859,18 +3859,18 @@ export class HKHeartbeatSeriesQueryDescriptor extends SDKHandle {
    * var sample: HKHeartbeatSeriesSample
    * @availability iOS 15.4+
    */
-  get sample(): HKHeartbeatSeriesSample { return callSDK<HKHeartbeatSeriesSample>("HealthKit_5d69670f0307b385", 2712984207568777, this, []); }
-  set sample(value: HKHeartbeatSeriesSample) { callSDK<void>("HealthKit_5d69670f0307b385", 2357447588158378, this, [value]); }
+  get sample(): HKHeartbeatSeriesSample { return callSDK<HKHeartbeatSeriesSample>("HealthKit_6be9a005889899ab", 2712984207568777, this, []); }
+  set sample(value: HKHeartbeatSeriesSample) { callSDK<void>("HealthKit_6be9a005889899ab", 2357447588158378, this, [value]); }
   /**
    * func results(for healthStore: HKHealthStore) -> HKHeartbeatSeriesQueryDescriptor.Results
    * @availability iOS 15.4+
    */
-  results(healthStore: HKHealthStore): HKHeartbeatSeriesQueryDescriptor_Results { return callSDK<HKHeartbeatSeriesQueryDescriptor_Results>("HealthKit_5d69670f0307b385", 2433293068003120, this, [healthStore]); }
+  results(healthStore: HKHealthStore): HKHeartbeatSeriesQueryDescriptor_Results { return callSDK<HKHeartbeatSeriesQueryDescriptor_Results>("HealthKit_6be9a005889899ab", 2433293068003120, this, [healthStore]); }
   /**
    * init(_ sample: HKHeartbeatSeriesSample)
    * @availability iOS 15.4+
    */
-  static init(sample: HKHeartbeatSeriesSample): HKHeartbeatSeriesQueryDescriptor { return callSDK<HKHeartbeatSeriesQueryDescriptor>("HealthKit_5d69670f0307b385", 4134526707494922, undefined, [sample]); }
+  static init(sample: HKHeartbeatSeriesSample): HKHeartbeatSeriesQueryDescriptor { return callSDK<HKHeartbeatSeriesQueryDescriptor>("HealthKit_6be9a005889899ab", 4134526707494922, undefined, [sample]); }
   declare readonly $type: { "s:9HealthKit32HKHeartbeatSeriesQueryDescriptorV": true };
 }
 
@@ -3883,12 +3883,12 @@ export class HKHeartbeatSeriesQueryDescriptor_Heartbeat extends SDKHandle {
    * let precededByGap: Bool
    * @availability iOS 15.4+
    */
-  get precededByGap(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 2698260945596193, this, []); }
+  get precededByGap(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 2698260945596193, this, []); }
   /**
    * let timeIntervalSinceStart: TimeInterval
    * @availability iOS 15.4+
    */
-  get timeIntervalSinceStart(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 2448718064837575, this, []); }
+  get timeIntervalSinceStart(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 2448718064837575, this, []); }
   declare readonly $type: { "s:9HealthKit32HKHeartbeatSeriesQueryDescriptorV9HeartbeatV": true };
 }
 
@@ -3901,7 +3901,7 @@ export class HKHeartbeatSeriesQueryDescriptor_Results extends SDKHandle {
    * func makeAsyncIterator() -> HKHeartbeatSeriesQueryDescriptor.Results.Iterator
    * @availability iOS 15.4+
    */
-  makeAsyncIterator(): HKHeartbeatSeriesQueryDescriptor_Results_Iterator { return callSDK<HKHeartbeatSeriesQueryDescriptor_Results_Iterator>("HealthKit_5d69670f0307b385", 69884614187213, this, []); }
+  makeAsyncIterator(): HKHeartbeatSeriesQueryDescriptor_Results_Iterator { return callSDK<HKHeartbeatSeriesQueryDescriptor_Results_Iterator>("HealthKit_6be9a005889899ab", 69884614187213, this, []); }
   declare readonly $type: { "s:9HealthKit32HKHeartbeatSeriesQueryDescriptorV7ResultsV": true };
   declare readonly $element: HKHeartbeatSeriesQueryDescriptor_Heartbeat;
 }
@@ -3927,7 +3927,7 @@ export class HKHeartbeatSeriesQueryDescriptor_Results_Iterator extends SDKHandle
    * mutating func next() async throws -> HKHeartbeatSeriesQueryDescriptor.Results.Element?
    * @availability iOS 15.4+
    */
-  next(): Promise<(HKHeartbeatSeriesQueryDescriptor_Heartbeat) | null> { return callSDKAsync<(HKHeartbeatSeriesQueryDescriptor_Heartbeat) | null>("HealthKit_5d69670f0307b385", 335237674632119, this, []); }
+  next(): Promise<(HKHeartbeatSeriesQueryDescriptor_Heartbeat) | null> { return callSDKAsync<(HKHeartbeatSeriesQueryDescriptor_Heartbeat) | null>("HealthKit_6be9a005889899ab", 335237674632119, this, []); }
   declare readonly $type: { "s:9HealthKit32HKHeartbeatSeriesQueryDescriptorV7ResultsV8IteratorV": true };
 }
 
@@ -3946,7 +3946,7 @@ export type HKHeartbeatSeriesQueryDescriptor_Sequence = HKHeartbeatSeriesQueryDe
 /** class HKSeriesSample */
 export class HKSeriesSample extends HKSample {
   /** var count: Int { get } */
-  get count(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 1557292318369880, this, []); }
+  get count(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 1557292318369880, this, []); }
   declare readonly $type: { "c:objc(cs)HKSeriesSample": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "count": true };
 }
@@ -3971,7 +3971,7 @@ export const HKHeartRateMotionContext = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (HKHeartRateMotionContext) | null { return callSDK<(HKHeartRateMotionContext) | null>("HealthKit_5d69670f0307b385", 3437257908799099, undefined, [rawValue]); }
+  init(rawValue: number): (HKHeartRateMotionContext) | null { return callSDK<(HKHeartRateMotionContext) | null>("HealthKit_6be9a005889899ab", 3437257908799099, undefined, [rawValue]); }
 };
 
 /**
@@ -3985,7 +3985,7 @@ export const HKHeartRateRecoveryTestType = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (HKHeartRateRecoveryTestType) | null { return callSDK<(HKHeartRateRecoveryTestType) | null>("HealthKit_5d69670f0307b385", 3004473496374430, undefined, [rawValue]); }
+  init(rawValue: number): (HKHeartRateRecoveryTestType) | null { return callSDK<(HKHeartRateRecoveryTestType) | null>("HealthKit_6be9a005889899ab", 3004473496374430, undefined, [rawValue]); }
 };
 
 /**
@@ -3999,7 +3999,7 @@ export const HKHeartRateSensorLocation = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKHeartRateSensorLocation) | null { return callSDK<(HKHeartRateSensorLocation) | null>("HealthKit_5d69670f0307b385", 1959623826876865, undefined, [rawValue]); }
+  init(rawValue: number): (HKHeartRateSensorLocation) | null { return callSDK<(HKHeartRateSensorLocation) | null>("HealthKit_6be9a005889899ab", 1959623826876865, undefined, [rawValue]); }
 };
 
 /**
@@ -4013,7 +4013,7 @@ export const HKInsulinDeliveryReason = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (HKInsulinDeliveryReason) | null { return callSDK<(HKInsulinDeliveryReason) | null>("HealthKit_5d69670f0307b385", 3776393040274450, undefined, [rawValue]); }
+  init(rawValue: number): (HKInsulinDeliveryReason) | null { return callSDK<(HKInsulinDeliveryReason) | null>("HealthKit_6be9a005889899ab", 3776393040274450, undefined, [rawValue]); }
 };
 
 /**
@@ -4025,127 +4025,127 @@ export class HKWorkoutBuilder extends SDKHandle {
    * func addMetadata(_ metadata: [String : Any]) async throws
    * @availability iOS 12.0+
    */
-  addMetadata(metadata: Record<string, unknown>, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 2515633417806928, this, [metadata, completion], [null,{"callback":{"out":[]}}]); }
+  addMetadata(metadata: Record<string, unknown>, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 2515633417806928, this, [metadata, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func addSamples(_ samples: [HKSample]) async throws
    * @availability iOS 12.0+
    */
-  add(samples: Array<HKSample>, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3009005146601407, this, [samples, completion], [null,{"callback":{"out":[]}}]); }
+  add(samples: Array<HKSample>, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3009005146601407, this, [samples, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func addWorkoutActivity(_ workoutActivity: HKWorkoutActivity) async throws
    * @availability iOS 16.0+
    */
-  addWorkoutActivity(workoutActivity: HKWorkoutActivity, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1659426459946873, this, [workoutActivity, completion], [null,{"callback":{"out":[]}}]); }
+  addWorkoutActivity(workoutActivity: HKWorkoutActivity, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1659426459946873, this, [workoutActivity, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func addWorkoutEvents(_ workoutEvents: [HKWorkoutEvent]) async throws
    * @availability iOS 12.0+
    */
-  addWorkoutEvents(workoutEvents: Array<HKWorkoutEvent>, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3715128080995652, this, [workoutEvents, completion], [null,{"callback":{"out":[]}}]); }
+  addWorkoutEvents(workoutEvents: Array<HKWorkoutEvent>, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3715128080995652, this, [workoutEvents, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func beginCollection(at startDate: Date) async throws
    * @availability iOS 12.0+
    */
-  beginCollection(startDate: globalThis.Date, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 752593078856305, this, [startDate, completion], [null,{"callback":{"out":[]}}]); }
+  beginCollection(startDate: globalThis.Date, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 752593078856305, this, [startDate, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func discardWorkout()
    * @availability iOS 12.0+
    */
-  discardWorkout(): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1040093182708560, this, []); }
+  discardWorkout(): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1040093182708560, this, []); }
   /**
    * func elapsedTime(at date: Date) -> TimeInterval
    * @availability iOS 12.0+
    */
-  elapsedTime(date: globalThis.Date): number { return callSDK<number>("HealthKit_5d69670f0307b385", 3793032682101385, this, [date]); }
+  elapsedTime(date: globalThis.Date): number { return callSDK<number>("HealthKit_6be9a005889899ab", 3793032682101385, this, [date]); }
   /**
    * func endCollection(at endDate: Date) async throws
    * @availability iOS 12.0+
    */
-  endCollection(endDate: globalThis.Date, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1002198518927918, this, [endDate, completion], [null,{"callback":{"out":[]}}]); }
+  endCollection(endDate: globalThis.Date, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1002198518927918, this, [endDate, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func finishWorkout() async throws -> HKWorkout?
    * @availability iOS 12.0+
    */
-  finishWorkout(completion: ((arg0: (HKWorkout) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 266955147493516, this, [completion], [{"callback":{"out":[]}}]); }
+  finishWorkout(completion: ((arg0: (HKWorkout) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 266955147493516, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * init(healthStore: HKHealthStore, configuration: HKWorkoutConfiguration, device: HKDevice?)
    * @availability iOS 12.0+
    */
-  static init(healthStore: HKHealthStore, configuration: HKWorkoutConfiguration, device?: (HKDevice) | null): HKWorkoutBuilder { return callSDK<HKWorkoutBuilder>("HealthKit_5d69670f0307b385", 1016949461666346, undefined, [healthStore, configuration, device]); }
+  static init(healthStore: HKHealthStore, configuration: HKWorkoutConfiguration, device?: (HKDevice) | null): HKWorkoutBuilder { return callSDK<HKWorkoutBuilder>("HealthKit_6be9a005889899ab", 1016949461666346, undefined, [healthStore, configuration, device]); }
   /**
    * func seriesBuilder(for seriesType: HKSeriesType) -> HKSeriesBuilder?
    * @availability iOS 12.0+
    */
-  seriesBuilder(seriesType: HKSeriesType): (HKSeriesBuilder) | null { return callSDK<(HKSeriesBuilder) | null>("HealthKit_5d69670f0307b385", 3082200704662015, this, [seriesType]); }
+  seriesBuilder(seriesType: HKSeriesType): (HKSeriesBuilder) | null { return callSDK<(HKSeriesBuilder) | null>("HealthKit_6be9a005889899ab", 3082200704662015, this, [seriesType]); }
   /**
    * func statistics(for quantityType: HKQuantityType) -> HKStatistics?
    * @availability iOS 12.0+
    */
-  statistics(quantityType: HKQuantityType): (HKStatistics) | null { return callSDK<(HKStatistics) | null>("HealthKit_5d69670f0307b385", 1396952208492681, this, [quantityType]); }
+  statistics(quantityType: HKQuantityType): (HKStatistics) | null { return callSDK<(HKStatistics) | null>("HealthKit_6be9a005889899ab", 1396952208492681, this, [quantityType]); }
   /**
    * func updateActivity(uuid UUID: UUID, adding metadata: [String : Any]) async throws
    * @availability iOS 16.0+
    */
-  updateActivityUuidAddingCompletion(UUID: string, metadata: Record<string, unknown>, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 987737773664969, this, [UUID, metadata, completion], [null,null,{"callback":{"out":[]}}]); }
+  updateActivityUuidAddingCompletion(UUID: string, metadata: Record<string, unknown>, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 987737773664969, this, [UUID, metadata, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func updateActivity(uuid UUID: UUID, end endDate: Date) async throws
    * @availability iOS 16.0+
    */
-  updateActivityUuidEndCompletion(UUID: string, endDate: globalThis.Date, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3022263576540619, this, [UUID, endDate, completion], [null,null,{"callback":{"out":[]}}]); }
+  updateActivityUuidEndCompletion(UUID: string, endDate: globalThis.Date, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3022263576540619, this, [UUID, endDate, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var allStatistics: [HKQuantityType : HKStatistics] { get }
    * @availability iOS 16.0+
    */
-  get allStatistics(): $SDK68 { return callSDK<$SDK68>("HealthKit_5d69670f0307b385", 282405718238432, this, []); }
+  get allStatistics(): $SDK68 { return callSDK<$SDK68>("HealthKit_6be9a005889899ab", 282405718238432, this, []); }
   /**
    * @NSCopying var device: HKDevice? { get }
    * @availability iOS 12.0+
    */
-  get device(): (HKDevice) | null { return callSDK<(HKDevice) | null>("HealthKit_5d69670f0307b385", 4367295193437188, this, []); }
+  get device(): (HKDevice) | null { return callSDK<(HKDevice) | null>("HealthKit_6be9a005889899ab", 4367295193437188, this, []); }
   /**
    * var endDate: Date? { get }
    * @availability iOS 12.0+
    */
-  get endDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_5d69670f0307b385", 2605530384600354, this, []); }
+  get endDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_6be9a005889899ab", 2605530384600354, this, []); }
   /**
    * var metadata: [String : Any] { get }
    * @availability iOS 12.0+
    */
-  get metadata(): Record<string, unknown> { return callSDK<Record<string, unknown>>("HealthKit_5d69670f0307b385", 4406913189853095, this, []); }
+  get metadata(): Record<string, unknown> { return callSDK<Record<string, unknown>>("HealthKit_6be9a005889899ab", 4406913189853095, this, []); }
   /**
    * var startDate: Date? { get }
    * @availability iOS 12.0+
    */
-  get startDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_5d69670f0307b385", 1848501873264813, this, []); }
+  get startDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_6be9a005889899ab", 1848501873264813, this, []); }
   /**
    * var workoutActivities: [HKWorkoutActivity] { get }
    * @availability iOS 16.0+
    */
-  get workoutActivities(): Array<HKWorkoutActivity> { return callSDK<Array<HKWorkoutActivity>>("HealthKit_5d69670f0307b385", 2644416678440340, this, []); }
+  get workoutActivities(): Array<HKWorkoutActivity> { return callSDK<Array<HKWorkoutActivity>>("HealthKit_6be9a005889899ab", 2644416678440340, this, []); }
   /**
    * @NSCopying var workoutConfiguration: HKWorkoutConfiguration { get }
    * @availability iOS 12.0+
    */
-  get workoutConfiguration(): HKWorkoutConfiguration { return callSDK<HKWorkoutConfiguration>("HealthKit_5d69670f0307b385", 4159633852926368, this, []); }
+  get workoutConfiguration(): HKWorkoutConfiguration { return callSDK<HKWorkoutConfiguration>("HealthKit_6be9a005889899ab", 4159633852926368, this, []); }
   /**
    * var workoutEvents: [HKWorkoutEvent] { get }
    * @availability iOS 12.0+
    */
-  get workoutEvents(): Array<HKWorkoutEvent> { return callSDK<Array<HKWorkoutEvent>>("HealthKit_5d69670f0307b385", 771285590332518, this, []); }
+  get workoutEvents(): Array<HKWorkoutEvent> { return callSDK<Array<HKWorkoutEvent>>("HealthKit_6be9a005889899ab", 771285590332518, this, []); }
   /**
    * func zoneConfiguration(for quantityType: HKQuantityType) async throws -> HKWorkoutZoneConfiguration?
    * @availability iOS 27.0+
    */
-  zoneConfiguration(quantityType: HKQuantityType): Promise<$SDK61> { return callSDKAsync<$SDK61>("HealthKit_5d69670f0307b385", 949813436460084, this, [quantityType]); }
+  zoneConfiguration(quantityType: HKQuantityType): Promise<$SDK61> { return callSDKAsync<$SDK61>("HealthKit_6be9a005889899ab", 949813436460084, this, [quantityType]); }
   /**
    * func setCustomZoneConfiguration(_ configuration: HKWorkoutZoneConfiguration?, for quantityType: HKQuantityType) async throws
    * @availability iOS 27.0+
    */
-  setCustomZoneConfiguration(configuration: $SDK61, quantityType: HKQuantityType): Promise<void> { return callSDKAsync<void>("HealthKit_5d69670f0307b385", 1646976751223123, this, [configuration, quantityType]); }
+  setCustomZoneConfiguration(configuration: $SDK61, quantityType: HKQuantityType): Promise<void> { return callSDKAsync<void>("HealthKit_6be9a005889899ab", 1646976751223123, this, [configuration, quantityType]); }
   /**
    * func zoneGroup(for quantityType: HKQuantityType) -> HKWorkoutZoneGroup?
    * @availability iOS 27.0+
    */
-  zoneGroup(quantityType: HKQuantityType): $SDK70 { return callSDK<$SDK70>("HealthKit_5d69670f0307b385", 1340834807332466, this, [quantityType]); }
+  zoneGroup(quantityType: HKQuantityType): $SDK70 { return callSDK<$SDK70>("HealthKit_6be9a005889899ab", 1340834807332466, this, [quantityType]); }
   declare readonly $type: { "c:objc(cs)HKWorkoutBuilder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allStatistics": true; "device": true; "endDate": true; "metadata": true; "startDate": true; "workoutActivities": true; "workoutConfiguration": true; "workoutEvents": true };
 }
@@ -4159,40 +4159,40 @@ export class HKLiveWorkoutBuilder extends (HKWorkoutBuilder as unknown as Omit<t
    * @NSCopying var currentWorkoutActivity: HKWorkoutActivity? { get }
    * @availability iOS 26.0+
    */
-  get currentWorkoutActivity(): $SDK3 { return callSDK<$SDK3>("HealthKit_5d69670f0307b385", 1611888921077465, this, []); }
+  get currentWorkoutActivity(): $SDK3 { return callSDK<$SDK3>("HealthKit_6be9a005889899ab", 1611888921077465, this, []); }
   /**
    * var dataSource: HKLiveWorkoutDataSource? { get set }
    * @availability iOS 26.0+
    */
-  get dataSource(): $SDK71 { return callSDK<$SDK71>("HealthKit_5d69670f0307b385", 2056922718098590, this, []); }
-  set dataSource(value: $SDK71) { callSDK<void>("HealthKit_5d69670f0307b385", 1969870352064794, this, [value]); }
+  get dataSource(): $SDK71 { return callSDK<$SDK71>("HealthKit_6be9a005889899ab", 2056922718098590, this, []); }
+  set dataSource(value: $SDK71) { callSDK<void>("HealthKit_6be9a005889899ab", 1969870352064794, this, [value]); }
   /**
    * weak var delegate: (any HKLiveWorkoutBuilderDelegate)? { get set }
    * @availability iOS 26.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HealthKit_5d69670f0307b385", 2241215979056260, this, []); }
-  set delegate(value: (Implements<HKLiveWorkoutBuilderDelegate> | SDKHandle) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 1555410443069720, this, [value], [{"protocol":"c:objc(pl)HKLiveWorkoutBuilderDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HealthKit_6be9a005889899ab", 2241215979056260, this, []); }
+  set delegate(value: (Implements<HKLiveWorkoutBuilderDelegate> | SDKHandle) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 1555410443069720, this, [value], [{"protocol":"c:objc(pl)HKLiveWorkoutBuilderDelegate"}]); }
   /**
    * var elapsedTime: TimeInterval { get }
    * @availability iOS 26.0+
    */
-  get elapsedTime(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 2170141853494450, this, []); }
+  get elapsedTime(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 2170141853494450, this, []); }
   /**
    * var shouldCollectWorkoutEvents: Bool { get set }
    * @availability iOS 26.0+
    */
-  get shouldCollectWorkoutEvents(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 3196221344854110, this, []); }
-  set shouldCollectWorkoutEvents(value: boolean) { callSDK<void>("HealthKit_5d69670f0307b385", 1623005315632091, this, [value]); }
+  get shouldCollectWorkoutEvents(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 3196221344854110, this, []); }
+  set shouldCollectWorkoutEvents(value: boolean) { callSDK<void>("HealthKit_6be9a005889899ab", 1623005315632091, this, [value]); }
   /**
    * weak var workoutSession: HKWorkoutSession? { get }
    * @availability iOS 26.0+
    */
-  get workoutSession(): (HKWorkoutSession) | null { return callSDK<(HKWorkoutSession) | null>("HealthKit_5d69670f0307b385", 168998525894445, this, []); }
+  get workoutSession(): (HKWorkoutSession) | null { return callSDK<(HKWorkoutSession) | null>("HealthKit_6be9a005889899ab", 168998525894445, this, []); }
   /**
    * func elapsedTime(at date: Date) -> TimeInterval
    * @availability iOS 12.0+
    */
-  elapsedTime76675(date: globalThis.Date): number { return callSDK<number>("HealthKit_5d69670f0307b385", 3793032682101385, this, [date]); }
+  elapsedTime76675(date: globalThis.Date): number { return callSDK<number>("HealthKit_6be9a005889899ab", 3793032682101385, this, [date]); }
   declare readonly $type: { "c:objc(cs)HKLiveWorkoutBuilder": true; "c:objc(cs)HKWorkoutBuilder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allStatistics": true; "device": true; "endDate": true; "metadata": true; "startDate": true; "workoutActivities": true; "workoutConfiguration": true; "workoutEvents": true; "currentWorkoutActivity": true; "dataSource": true; "delegate": true; "elapsedTime": true; "shouldCollectWorkoutEvents": true; "workoutSession": true };
 }
@@ -4238,22 +4238,22 @@ export class HKLiveWorkoutDataSource extends SDKHandle {
    * func disableCollection(for quantityType: HKQuantityType)
    * @availability iOS 26.0+
    */
-  disableCollection(quantityType: HKQuantityType): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1973032651713262, this, [quantityType]); }
+  disableCollection(quantityType: HKQuantityType): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1973032651713262, this, [quantityType]); }
   /**
    * func enableCollection(for quantityType: HKQuantityType, predicate: NSPredicate?)
    * @availability iOS 26.0+
    */
-  enableCollection(quantityType: HKQuantityType, predicate?: $SDK4): void { return callSDK<void>("HealthKit_5d69670f0307b385", 2116608925616921, this, [quantityType, predicate]); }
+  enableCollection(quantityType: HKQuantityType, predicate?: $SDK4): void { return callSDK<void>("HealthKit_6be9a005889899ab", 2116608925616921, this, [quantityType, predicate]); }
   /**
    * init(healthStore: HKHealthStore, workoutConfiguration configuration: HKWorkoutConfiguration?)
    * @availability iOS 26.0+
    */
-  static init(healthStore: HKHealthStore, configuration?: (HKWorkoutConfiguration) | null): HKLiveWorkoutDataSource { return callSDK<HKLiveWorkoutDataSource>("HealthKit_5d69670f0307b385", 3549002196779170, undefined, [healthStore, configuration]); }
+  static init(healthStore: HKHealthStore, configuration?: (HKWorkoutConfiguration) | null): HKLiveWorkoutDataSource { return callSDK<HKLiveWorkoutDataSource>("HealthKit_6be9a005889899ab", 3549002196779170, undefined, [healthStore, configuration]); }
   /**
    * var typesToCollect: Set<HKQuantityType> { get }
    * @availability iOS 26.0+
    */
-  get typesToCollect(): Array<HKQuantityType> { return callSDK<Array<HKQuantityType>>("HealthKit_5d69670f0307b385", 2246497067354870, this, []); }
+  get typesToCollect(): Array<HKQuantityType> { return callSDK<Array<HKQuantityType>>("HealthKit_6be9a005889899ab", 2246497067354870, this, []); }
   declare readonly $type: { "c:objc(cs)HKLiveWorkoutDataSource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "typesToCollect": true };
 }
@@ -4267,22 +4267,22 @@ export class HKLiveWorkoutZoneUpdate extends SDKHandle {
    * var lastSampleProcessedDate: Date? { get }
    * @availability iOS 27.0+
    */
-  get lastSampleProcessedDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_5d69670f0307b385", 2036852469742262, this, []); }
+  get lastSampleProcessedDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_6be9a005889899ab", 2036852469742262, this, []); }
   /**
    * @nonobjc final var currentZoneDuration: HKWorkoutZoneDuration? { get }
    * @availability iOS 27.0+
    */
-  get currentZoneDuration(): $SDK75 { return callSDK<$SDK75>("HealthKit_5d69670f0307b385", 3366885730309956, this, []); }
+  get currentZoneDuration(): $SDK75 { return callSDK<$SDK75>("HealthKit_6be9a005889899ab", 3366885730309956, this, []); }
   /**
    * @nonobjc final var previousZoneDuration: HKWorkoutZoneDuration? { get }
    * @availability iOS 27.0+
    */
-  get previousZoneDuration(): $SDK75 { return callSDK<$SDK75>("HealthKit_5d69670f0307b385", 1134520464225678, this, []); }
+  get previousZoneDuration(): $SDK75 { return callSDK<$SDK75>("HealthKit_6be9a005889899ab", 1134520464225678, this, []); }
   /**
    * @nonobjc final var zoneGroup: HKWorkoutZoneGroup? { get }
    * @availability iOS 27.0+
    */
-  get zoneGroup(): $SDK70 { return callSDK<$SDK70>("HealthKit_5d69670f0307b385", 3531951700515907, this, []); }
+  get zoneGroup(): $SDK70 { return callSDK<$SDK70>("HealthKit_6be9a005889899ab", 3531951700515907, this, []); }
   declare readonly $type: { "c:objc(cs)HKLiveWorkoutZoneUpdate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "lastSampleProcessedDate": true };
 }
@@ -4296,22 +4296,22 @@ export class HKMedicationConcept extends SDKHandle {
    * var displayText: String { get }
    * @availability iOS 26.0+
    */
-  get displayText(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 678681733804012, this, []); }
+  get displayText(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 678681733804012, this, []); }
   /**
    * var generalForm: HKMedicationGeneralForm { get }
    * @availability iOS 26.0+
    */
-  get generalForm(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 4015697793233401, this, []); }
+  get generalForm(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 4015697793233401, this, []); }
   /**
    * @NSCopying var identifier: HKHealthConceptIdentifier { get }
    * @availability iOS 26.0+
    */
-  get identifier(): HKHealthConceptIdentifier { return callSDK<HKHealthConceptIdentifier>("HealthKit_5d69670f0307b385", 3144887977459434, this, []); }
+  get identifier(): HKHealthConceptIdentifier { return callSDK<HKHealthConceptIdentifier>("HealthKit_6be9a005889899ab", 3144887977459434, this, []); }
   /**
    * var relatedCodings: Set<HKClinicalCoding> { get }
    * @availability iOS 26.0+
    */
-  get relatedCodings(): Array<HKClinicalCoding> { return callSDK<Array<HKClinicalCoding>>("HealthKit_5d69670f0307b385", 4000873314901267, this, []); }
+  get relatedCodings(): Array<HKClinicalCoding> { return callSDK<Array<HKClinicalCoding>>("HealthKit_6be9a005889899ab", 4000873314901267, this, []); }
   declare readonly $type: { "c:objc(cs)HKMedicationConcept": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "displayText": true; "generalForm": true; "identifier": true; "relatedCodings": true };
 }
@@ -4325,42 +4325,42 @@ export class HKMedicationDoseEvent extends HKSample {
    * var logStatus: HKMedicationDoseEvent.LogStatus { get }
    * @availability iOS 26.0+
    */
-  get logStatus(): HKMedicationDoseEvent_LogStatus { return callSDK<HKMedicationDoseEvent_LogStatus>("HealthKit_5d69670f0307b385", 4326437112356656, this, []); }
+  get logStatus(): HKMedicationDoseEvent_LogStatus { return callSDK<HKMedicationDoseEvent_LogStatus>("HealthKit_6be9a005889899ab", 4326437112356656, this, []); }
   /**
    * @NSCopying var medicationConceptIdentifier: HKHealthConceptIdentifier { get }
    * @availability iOS 26.0+
    */
-  get medicationConceptIdentifier(): HKHealthConceptIdentifier { return callSDK<HKHealthConceptIdentifier>("HealthKit_5d69670f0307b385", 3590527088386994, this, []); }
+  get medicationConceptIdentifier(): HKHealthConceptIdentifier { return callSDK<HKHealthConceptIdentifier>("HealthKit_6be9a005889899ab", 3590527088386994, this, []); }
   /**
    * @NSCopying var medicationDoseEventType: HKMedicationDoseEventType { get }
    * @availability iOS 26.0+
    */
-  get medicationDoseEventType(): HKMedicationDoseEventType { return callSDK<HKMedicationDoseEventType>("HealthKit_5d69670f0307b385", 2816383519249894, this, []); }
+  get medicationDoseEventType(): HKMedicationDoseEventType { return callSDK<HKMedicationDoseEventType>("HealthKit_6be9a005889899ab", 2816383519249894, this, []); }
   /**
    * var scheduleType: HKMedicationDoseEvent.ScheduleType { get }
    * @availability iOS 26.0+
    */
-  get scheduleType(): HKMedicationDoseEvent_ScheduleType { return callSDK<HKMedicationDoseEvent_ScheduleType>("HealthKit_5d69670f0307b385", 1883202651581593, this, []); }
+  get scheduleType(): HKMedicationDoseEvent_ScheduleType { return callSDK<HKMedicationDoseEvent_ScheduleType>("HealthKit_6be9a005889899ab", 1883202651581593, this, []); }
   /**
    * var scheduledDate: Date? { get }
    * @availability iOS 26.0+
    */
-  get scheduledDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_5d69670f0307b385", 4446253459340080, this, []); }
+  get scheduledDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_6be9a005889899ab", 4446253459340080, this, []); }
   /**
    * @NSCopying var unit: HKUnit { get }
    * @availability iOS 26.0+
    */
-  get unit(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 25278575825497, this, []); }
+  get unit(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 25278575825497, this, []); }
   /**
    * var scheduledDoseQuantity: Double? { get }
    * @availability iOS 26.0+
    */
-  get scheduledDoseQuantity(): (number) | null { return callSDK<(number) | null>("HealthKit_5d69670f0307b385", 2533278728306073, this, []); }
+  get scheduledDoseQuantity(): (number) | null { return callSDK<(number) | null>("HealthKit_6be9a005889899ab", 2533278728306073, this, []); }
   /**
    * var doseQuantity: Double? { get }
    * @availability iOS 26.0+
    */
-  get doseQuantity(): (number) | null { return callSDK<(number) | null>("HealthKit_5d69670f0307b385", 3303804081136919, this, []); }
+  get doseQuantity(): (number) | null { return callSDK<(number) | null>("HealthKit_6be9a005889899ab", 3303804081136919, this, []); }
   declare readonly $type: { "c:objc(cs)HKMedicationDoseEvent": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "logStatus": true; "medicationConceptIdentifier": true; "medicationDoseEventType": true; "scheduleType": true; "scheduledDate": true; "unit": true };
 }
@@ -4376,7 +4376,7 @@ export const HKMedicationDoseEvent_LogStatus = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (HKMedicationDoseEvent_LogStatus) | null { return callSDK<(HKMedicationDoseEvent_LogStatus) | null>("HealthKit_5d69670f0307b385", 1706728687312601, undefined, [rawValue]); }
+  init(rawValue: number): (HKMedicationDoseEvent_LogStatus) | null { return callSDK<(HKMedicationDoseEvent_LogStatus) | null>("HealthKit_6be9a005889899ab", 1706728687312601, undefined, [rawValue]); }
 };
 
 /**
@@ -4390,7 +4390,7 @@ export const HKMedicationDoseEvent_ScheduleType = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (HKMedicationDoseEvent_ScheduleType) | null { return callSDK<(HKMedicationDoseEvent_ScheduleType) | null>("HealthKit_5d69670f0307b385", 491300680149449, undefined, [rawValue]); }
+  init(rawValue: number): (HKMedicationDoseEvent_ScheduleType) | null { return callSDK<(HKMedicationDoseEvent_ScheduleType) | null>("HealthKit_6be9a005889899ab", 491300680149449, undefined, [rawValue]); }
 };
 
 /**
@@ -4407,43 +4407,43 @@ export type HKMedicationGeneralForm = "capsule" | "cream" | "device" | "drops" |
 
 export const HKMedicationGeneralForm = {
   /** static let capsule: HKMedicationGeneralForm */
-  get capsule(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 2615854377970247, undefined, []); },
+  get capsule(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 2615854377970247, undefined, []); },
   /** static let cream: HKMedicationGeneralForm */
-  get cream(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 2746621088244166, undefined, []); },
+  get cream(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 2746621088244166, undefined, []); },
   /** static let device: HKMedicationGeneralForm */
-  get device(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 1532448144036755, undefined, []); },
+  get device(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 1532448144036755, undefined, []); },
   /** static let drops: HKMedicationGeneralForm */
-  get drops(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 977420115625001, undefined, []); },
+  get drops(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 977420115625001, undefined, []); },
   /** static let foam: HKMedicationGeneralForm */
-  get foam(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 1690715114675119, undefined, []); },
+  get foam(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 1690715114675119, undefined, []); },
   /** static let gel: HKMedicationGeneralForm */
-  get gel(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 990987866314386, undefined, []); },
+  get gel(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 990987866314386, undefined, []); },
   /** static let inhaler: HKMedicationGeneralForm */
-  get inhaler(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 1255885830946622, undefined, []); },
+  get inhaler(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 1255885830946622, undefined, []); },
   /** static let injection: HKMedicationGeneralForm */
-  get injection(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 1808846309172869, undefined, []); },
+  get injection(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 1808846309172869, undefined, []); },
   /** static let liquid: HKMedicationGeneralForm */
-  get liquid(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 1916787318979020, undefined, []); },
+  get liquid(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 1916787318979020, undefined, []); },
   /** static let lotion: HKMedicationGeneralForm */
-  get lotion(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 2082910725053470, undefined, []); },
+  get lotion(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 2082910725053470, undefined, []); },
   /** static let ointment: HKMedicationGeneralForm */
-  get ointment(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 3073745964552163, undefined, []); },
+  get ointment(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 3073745964552163, undefined, []); },
   /** static let patch: HKMedicationGeneralForm */
-  get patch(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 2687546205234433, undefined, []); },
+  get patch(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 2687546205234433, undefined, []); },
   /** static let powder: HKMedicationGeneralForm */
-  get powder(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 3240154641943457, undefined, []); },
+  get powder(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 3240154641943457, undefined, []); },
   /** static let spray: HKMedicationGeneralForm */
-  get spray(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 2413195786412762, undefined, []); },
+  get spray(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 2413195786412762, undefined, []); },
   /** static let suppository: HKMedicationGeneralForm */
-  get suppository(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 857012391279512, undefined, []); },
+  get suppository(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 857012391279512, undefined, []); },
   /** static let tablet: HKMedicationGeneralForm */
-  get tablet(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 2699161015100565, undefined, []); },
+  get tablet(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 2699161015100565, undefined, []); },
   /** static let topical: HKMedicationGeneralForm */
-  get topical(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 4139146505516965, undefined, []); },
+  get topical(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 4139146505516965, undefined, []); },
   /** static let unknown: HKMedicationGeneralForm */
-  get unknown(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 639845745156606, undefined, []); },
+  get unknown(): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 639845745156606, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_5d69670f0307b385", 506774170820956, undefined, [rawValue]); }
+  init(rawValue: string): HKMedicationGeneralForm { return callSDK<HKMedicationGeneralForm>("HealthKit_6be9a005889899ab", 506774170820956, undefined, [rawValue]); }
 };
 
 /**
@@ -4457,7 +4457,7 @@ export const HKMetricPrefix = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKMetricPrefix) | null { return callSDK<(HKMetricPrefix) | null>("HealthKit_5d69670f0307b385", 3364588368882074, undefined, [rawValue]); }
+  init(rawValue: number): (HKMetricPrefix) | null { return callSDK<(HKMetricPrefix) | null>("HealthKit_6be9a005889899ab", 3364588368882074, undefined, [rawValue]); }
 };
 
 /**
@@ -4469,12 +4469,12 @@ export class HKObserverQuery extends HKQuery {
    * init(queryDescriptors: [HKQueryDescriptor], updateHandler: @escaping @Sendable (HKObserverQuery, Set<HKSampleType>?, @escaping HKObserverQueryCompletionHandler, (any Error)?) -> Void)
    * @availability iOS 15.0+
    */
-  static initQueryDescriptorsUpdateHandler(queryDescriptors: $SDK12, updateHandler: ((arg0: HKObserverQuery, arg1: (Array<HKSampleType>) | null, arg2: (() => Promise<void>), arg3: (NativeError) | null) => void)): HKObserverQuery { return callSDK<HKObserverQuery>("HealthKit_5d69670f0307b385", 1650598796895141, undefined, [queryDescriptors, updateHandler], [null,{"callback":{"out":[]}}]); }
+  static initQueryDescriptorsUpdateHandler(queryDescriptors: $SDK12, updateHandler: ((arg0: HKObserverQuery, arg1: (Array<HKSampleType>) | null, arg2: (() => Promise<void>), arg3: (NativeError) | null) => void)): HKObserverQuery { return callSDK<HKObserverQuery>("HealthKit_6be9a005889899ab", 1650598796895141, undefined, [queryDescriptors, updateHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(sampleType: HKSampleType, predicate: NSPredicate?, updateHandler: @escaping @Sendable (HKObserverQuery, @escaping HKObserverQueryCompletionHandler, (any Error)?) -> Void)
    * @availability iOS 8.0+
    */
-  static initSampleTypePredicateUpdateHandler(sampleType: HKSampleType, predicate: $SDK4, updateHandler: ((arg0: HKObserverQuery, arg1: (() => Promise<void>), arg2: (NativeError) | null) => void)): HKObserverQuery { return callSDK<HKObserverQuery>("HealthKit_5d69670f0307b385", 1758895421567191, undefined, [sampleType, predicate, updateHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initSampleTypePredicateUpdateHandler(sampleType: HKSampleType, predicate: $SDK4, updateHandler: ((arg0: HKObserverQuery, arg1: (() => Promise<void>), arg2: (NativeError) | null) => void)): HKObserverQuery { return callSDK<HKObserverQuery>("HealthKit_6be9a005889899ab", 1758895421567191, undefined, [sampleType, predicate, updateHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKObserverQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -4491,17 +4491,17 @@ export class HKPHQ9Assessment extends HKScoredAssessment {
    * var risk: HKPHQ9Assessment.Risk { get }
    * @availability iOS 18.0+
    */
-  get risk(): HKPHQ9Assessment_Risk { return callSDK<HKPHQ9Assessment_Risk>("HealthKit_5d69670f0307b385", 3715952719464799, this, []); }
+  get risk(): HKPHQ9Assessment_Risk { return callSDK<HKPHQ9Assessment_Risk>("HealthKit_6be9a005889899ab", 3715952719464799, this, []); }
   /**
    * convenience init(date: Date, answers: [HKPHQ9Assessment.Answer], metadata: [String : Any]? = [:])
    * @availability iOS 18.0+
    */
-  static init(date: globalThis.Date, answers: $SDK78, metadata?: $SDK29): HKPHQ9Assessment { return callSDK<HKPHQ9Assessment>("HealthKit_5d69670f0307b385", 4000130099406723, undefined, [date, answers, metadata]); }
+  static init(date: globalThis.Date, answers: $SDK78, metadata?: $SDK29): HKPHQ9Assessment { return callSDK<HKPHQ9Assessment>("HealthKit_6be9a005889899ab", 4000130099406723, undefined, [date, answers, metadata]); }
   /**
    * var answers: [HKPHQ9Assessment.Answer] { get }
    * @availability iOS 18.0+
    */
-  get answers(): $SDK78 { return callSDK<$SDK78>("HealthKit_5d69670f0307b385", 1424771553189403, this, []); }
+  get answers(): $SDK78 { return callSDK<$SDK78>("HealthKit_6be9a005889899ab", 1424771553189403, this, []); }
   declare readonly $type: { "c:objc(cs)HKPHQ9Assessment": true; "c:objc(cs)HKScoredAssessment": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "score": true; "risk": true };
 }
@@ -4517,7 +4517,7 @@ export const HKPHQ9Assessment_Answer = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HKPHQ9Assessment_Answer) | null { return callSDK<(HKPHQ9Assessment_Answer) | null>("HealthKit_5d69670f0307b385", 767127768248070, undefined, [rawValue]); }
+  init(rawValue: number): (HKPHQ9Assessment_Answer) | null { return callSDK<(HKPHQ9Assessment_Answer) | null>("HealthKit_6be9a005889899ab", 767127768248070, undefined, [rawValue]); }
 };
 
 /**
@@ -4531,7 +4531,7 @@ export const HKPHQ9Assessment_Risk = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HKPHQ9Assessment_Risk) | null { return callSDK<(HKPHQ9Assessment_Risk) | null>("HealthKit_5d69670f0307b385", 2571092845235806, undefined, [rawValue]); }
+  init(rawValue: number): (HKPHQ9Assessment_Risk) | null { return callSDK<(HKPHQ9Assessment_Risk) | null>("HealthKit_6be9a005889899ab", 2571092845235806, undefined, [rawValue]); }
 };
 
 /**
@@ -4545,7 +4545,7 @@ export const HKPhysicalEffortEstimationType = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (HKPhysicalEffortEstimationType) | null { return callSDK<(HKPhysicalEffortEstimationType) | null>("HealthKit_5d69670f0307b385", 3997182009571997, undefined, [rawValue]); }
+  init(rawValue: number): (HKPhysicalEffortEstimationType) | null { return callSDK<(HKPhysicalEffortEstimationType) | null>("HealthKit_6be9a005889899ab", 3997182009571997, undefined, [rawValue]); }
 };
 
 /**
@@ -4568,7 +4568,7 @@ export const HKPrismBase = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (HKPrismBase) | null { return callSDK<(HKPrismBase) | null>("HealthKit_5d69670f0307b385", 2821796449034032, undefined, [rawValue]); }
+  init(rawValue: number): (HKPrismBase) | null { return callSDK<(HKPrismBase) | null>("HealthKit_6be9a005889899ab", 2821796449034032, undefined, [rawValue]); }
 };
 
 /**
@@ -4580,22 +4580,22 @@ export class HKQuantity extends SDKHandle {
    * convenience init(unit: HKUnit, doubleValue value: Double)
    * @availability iOS 8.0+
    */
-  static init(unit: HKUnit, value: number): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 4124360330754468, undefined, [unit, value]); }
+  static init(unit: HKUnit, value: number): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 4124360330754468, undefined, [unit, value]); }
   /**
    * func compare(_ quantity: HKQuantity) -> ComparisonResult
    * @availability iOS 8.0+
    */
-  compare(quantity: HKQuantity): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("HealthKit_5d69670f0307b385", 1860599677752957, this, [quantity]); }
+  compare(quantity: HKQuantity): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("HealthKit_6be9a005889899ab", 1860599677752957, this, [quantity]); }
   /**
    * func doubleValue(for unit: HKUnit) -> Double
    * @availability iOS 8.0+
    */
-  doubleValue(unit: HKUnit): number { return callSDK<number>("HealthKit_5d69670f0307b385", 3053409173372338, this, [unit]); }
+  doubleValue(unit: HKUnit): number { return callSDK<number>("HealthKit_6be9a005889899ab", 3053409173372338, this, [unit]); }
   /**
    * func `is`(compatibleWith unit: HKUnit) -> Bool
    * @availability iOS 8.0+
    */
-  is(unit: HKUnit): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 3920155205747544, this, [unit]); }
+  is(unit: HKUnit): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 3920155205747544, this, [unit]); }
   declare readonly $type: { "c:objc(cs)HKQuantity": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4611,12 +4611,12 @@ export const HKQuantityAggregationStyle = {
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get discrete(): HKQuantityAggregationStyle { return callSDK<HKQuantityAggregationStyle>("HealthKit_5d69670f0307b385", 4390386144853043, undefined, []); },
+  get discrete(): HKQuantityAggregationStyle { return callSDK<HKQuantityAggregationStyle>("HealthKit_6be9a005889899ab", 4390386144853043, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKQuantityAggregationStyle) | null { return callSDK<(HKQuantityAggregationStyle) | null>("HealthKit_5d69670f0307b385", 1260504553827191, undefined, [rawValue]); }
+  init(rawValue: number): (HKQuantityAggregationStyle) | null { return callSDK<(HKQuantityAggregationStyle) | null>("HealthKit_6be9a005889899ab", 1260504553827191, undefined, [rawValue]); }
 };
 
 /**
@@ -4628,47 +4628,47 @@ export class HKQuantitySeriesSampleBuilder extends SDKHandle {
    * func discard()
    * @availability iOS 12.0+
    */
-  discard(): void { return callSDK<void>("HealthKit_5d69670f0307b385", 910049793522562, this, []); }
+  discard(): void { return callSDK<void>("HealthKit_6be9a005889899ab", 910049793522562, this, []); }
   /**
    * func finishSeries(metadata: [String : Any]?) async throws -> [HKQuantitySample]
    * @availability iOS 12.0+
    */
-  finishSeriesMetadataCompletion(metadata: $SDK29, completion: $SDK79): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3792258133526024, this, [metadata, completion], [null,{"callback":{"out":[]}}]); }
+  finishSeriesMetadataCompletion(metadata: $SDK29, completion: $SDK79): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3792258133526024, this, [metadata, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func finishSeries(metadata: [String : Any]?, endDate: Date?) async throws -> [HKQuantitySample]
    * @availability iOS 12.0+
    */
-  finishSeriesMetadataEndDateCompletion(metadata: $SDK29, endDate: $SDK1, completion: $SDK79): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3423187347060989, this, [metadata, endDate, completion], [null,null,{"callback":{"out":[]}}]); }
+  finishSeriesMetadataEndDateCompletion(metadata: $SDK29, endDate: $SDK1, completion: $SDK79): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3423187347060989, this, [metadata, endDate, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(healthStore: HKHealthStore, quantityType: HKQuantityType, startDate: Date, device: HKDevice?)
    * @availability iOS 12.0+
    */
-  static init(healthStore: HKHealthStore, quantityType: HKQuantityType, startDate: globalThis.Date, device?: (HKDevice) | null): HKQuantitySeriesSampleBuilder { return callSDK<HKQuantitySeriesSampleBuilder>("HealthKit_5d69670f0307b385", 573096134541335, undefined, [healthStore, quantityType, startDate, device]); }
+  static init(healthStore: HKHealthStore, quantityType: HKQuantityType, startDate: globalThis.Date, device?: (HKDevice) | null): HKQuantitySeriesSampleBuilder { return callSDK<HKQuantitySeriesSampleBuilder>("HealthKit_6be9a005889899ab", 573096134541335, undefined, [healthStore, quantityType, startDate, device]); }
   /**
    * func insert(_ quantity: HKQuantity, at date: Date) throws
    * @availability iOS 12.0+
    */
-  insertAt(quantity: HKQuantity, date: globalThis.Date): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3077840208240636, this, [quantity, date]); }
+  insertAt(quantity: HKQuantity, date: globalThis.Date): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3077840208240636, this, [quantity, date]); }
   /**
    * func insert(_ quantity: HKQuantity, for dateInterval: DateInterval) throws
    * @availability iOS 13.0+
    */
-  insertFor(quantity: HKQuantity, dateInterval: _Foundation_DateInterval): void { return callSDK<void>("HealthKit_5d69670f0307b385", 2065530115398239, this, [quantity, dateInterval]); }
+  insertFor(quantity: HKQuantity, dateInterval: _Foundation_DateInterval): void { return callSDK<void>("HealthKit_6be9a005889899ab", 2065530115398239, this, [quantity, dateInterval]); }
   /**
    * @NSCopying var device: HKDevice? { get }
    * @availability iOS 12.0+
    */
-  get device(): (HKDevice) | null { return callSDK<(HKDevice) | null>("HealthKit_5d69670f0307b385", 3518998730962623, this, []); }
+  get device(): (HKDevice) | null { return callSDK<(HKDevice) | null>("HealthKit_6be9a005889899ab", 3518998730962623, this, []); }
   /**
    * @NSCopying var quantityType: HKQuantityType { get }
    * @availability iOS 12.0+
    */
-  get quantityType(): HKQuantityType { return callSDK<HKQuantityType>("HealthKit_5d69670f0307b385", 967283028568650, this, []); }
+  get quantityType(): HKQuantityType { return callSDK<HKQuantityType>("HealthKit_6be9a005889899ab", 967283028568650, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 12.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 3275699943314331, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 3275699943314331, this, []); }
   declare readonly $type: { "c:objc(cs)HKQuantitySeriesSampleBuilder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "device": true; "quantityType": true; "startDate": true };
 }
@@ -4679,25 +4679,25 @@ export class HKQuantitySeriesSampleQuery extends HKQuery {
    * init(quantityType: HKQuantityType, predicate: NSPredicate?, quantityHandler: @escaping @Sendable (HKQuantitySeriesSampleQuery, HKQuantity?, DateInterval?, HKQuantitySample?, Bool, (any Error)?) -> Void)
    * @availability iOS 13.0+
    */
-  static initQuantityTypePredicateQuantityHandler(quantityType: HKQuantityType, predicate: $SDK4, quantityHandler: ((arg0: HKQuantitySeriesSampleQuery, arg1: (HKQuantity) | null, arg2: (_Foundation_DateInterval) | null, arg3: (HKQuantitySample) | null, arg4: boolean, arg5: (NativeError) | null) => void)): HKQuantitySeriesSampleQuery { return callSDK<HKQuantitySeriesSampleQuery>("HealthKit_5d69670f0307b385", 2948426357053525, undefined, [quantityType, predicate, quantityHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initQuantityTypePredicateQuantityHandler(quantityType: HKQuantityType, predicate: $SDK4, quantityHandler: ((arg0: HKQuantitySeriesSampleQuery, arg1: (HKQuantity) | null, arg2: (_Foundation_DateInterval) | null, arg3: (HKQuantitySample) | null, arg4: boolean, arg5: (NativeError) | null) => void)): HKQuantitySeriesSampleQuery { return callSDK<HKQuantitySeriesSampleQuery>("HealthKit_6be9a005889899ab", 2948426357053525, undefined, [quantityType, predicate, quantityHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(sample quantitySample: HKQuantitySample, quantityHandler: @escaping @Sendable (HKQuantitySeriesSampleQuery, HKQuantity?, Date?, Bool, (any Error)?) -> Void)
    * @availability iOS 12.0+
    * @deprecated iOS 13.0
    */
-  static initSampleQuantityHandler(quantitySample: HKQuantitySample, quantityHandler: ((arg0: HKQuantitySeriesSampleQuery, arg1: (HKQuantity) | null, arg2: (globalThis.Date) | null, arg3: boolean, arg4: (NativeError) | null) => void)): HKQuantitySeriesSampleQuery { return callSDK<HKQuantitySeriesSampleQuery>("HealthKit_5d69670f0307b385", 2959988686418513, undefined, [quantitySample, quantityHandler], [null,{"callback":{"out":[]}}]); }
+  static initSampleQuantityHandler(quantitySample: HKQuantitySample, quantityHandler: ((arg0: HKQuantitySeriesSampleQuery, arg1: (HKQuantity) | null, arg2: (globalThis.Date) | null, arg3: boolean, arg4: (NativeError) | null) => void)): HKQuantitySeriesSampleQuery { return callSDK<HKQuantitySeriesSampleQuery>("HealthKit_6be9a005889899ab", 2959988686418513, undefined, [quantitySample, quantityHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var includeSample: Bool { get set }
    * @availability iOS 13.0+
    */
-  get includeSample(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 3825901825943743, this, []); }
-  set includeSample(value: boolean) { callSDK<void>("HealthKit_5d69670f0307b385", 4167512219829126, this, [value]); }
+  get includeSample(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 3825901825943743, this, []); }
+  set includeSample(value: boolean) { callSDK<void>("HealthKit_6be9a005889899ab", 4167512219829126, this, [value]); }
   /**
    * var orderByQuantitySampleStartDate: Bool { get set }
    * @availability iOS 13.0+
    */
-  get orderByQuantitySampleStartDate(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 2277712420314209, this, []); }
-  set orderByQuantitySampleStartDate(value: boolean) { callSDK<void>("HealthKit_5d69670f0307b385", 1453208936239542, this, [value]); }
+  get orderByQuantitySampleStartDate(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 2277712420314209, this, []); }
+  set orderByQuantitySampleStartDate(value: boolean) { callSDK<void>("HealthKit_6be9a005889899ab", 1453208936239542, this, [value]); }
   declare readonly $type: { "c:objc(cs)HKQuantitySeriesSampleQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true; "includeSample": true; "orderByQuantitySampleStartDate": true };
 }
@@ -4711,24 +4711,24 @@ export class HKQuantitySeriesSampleQueryDescriptor extends SDKHandle {
    * var options: HKQuantitySeriesSampleQueryDescriptor.Options
    * @availability iOS 15.4+
    */
-  get options(): HKQuantitySeriesSampleQueryDescriptor_Options { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Options>("HealthKit_5d69670f0307b385", 3680480238767755, this, []); }
-  set options(value: HKQuantitySeriesSampleQueryDescriptor_Options) { callSDK<void>("HealthKit_5d69670f0307b385", 2230257194137153, this, [value]); }
+  get options(): HKQuantitySeriesSampleQueryDescriptor_Options { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Options>("HealthKit_6be9a005889899ab", 3680480238767755, this, []); }
+  set options(value: HKQuantitySeriesSampleQueryDescriptor_Options) { callSDK<void>("HealthKit_6be9a005889899ab", 2230257194137153, this, [value]); }
   /**
    * func results(for healthStore: HKHealthStore) -> HKQuantitySeriesSampleQueryDescriptor.Results
    * @availability iOS 15.4+
    */
-  results(healthStore: HKHealthStore): HKQuantitySeriesSampleQueryDescriptor_Results { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Results>("HealthKit_5d69670f0307b385", 1274051597903036, this, [healthStore]); }
+  results(healthStore: HKHealthStore): HKQuantitySeriesSampleQueryDescriptor_Results { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Results>("HealthKit_6be9a005889899ab", 1274051597903036, this, [healthStore]); }
   /**
    * init(predicate: HKSamplePredicate<HKQuantitySample>, options: HKQuantitySeriesSampleQueryDescriptor.Options = [])
    * @availability iOS 15.4+
    */
-  static init(predicate: $SDK82, options?: HKQuantitySeriesSampleQueryDescriptor_Options): HKQuantitySeriesSampleQueryDescriptor { return callSDK<HKQuantitySeriesSampleQueryDescriptor>("HealthKit_5d69670f0307b385", 3974410407535387, undefined, [predicate, options]); }
+  static init(predicate: $SDK82, options?: HKQuantitySeriesSampleQueryDescriptor_Options): HKQuantitySeriesSampleQueryDescriptor { return callSDK<HKQuantitySeriesSampleQueryDescriptor>("HealthKit_6be9a005889899ab", 3974410407535387, undefined, [predicate, options]); }
   /**
    * var predicate: HKSamplePredicate<HKQuantitySample>
    * @availability iOS 15.4+
    */
-  get predicate(): $SDK82 { return callSDK<$SDK82>("HealthKit_5d69670f0307b385", 1308219220274205, this, []); }
-  set predicate(value: $SDK82) { callSDK<void>("HealthKit_5d69670f0307b385", 2991131676353613, this, [value]); }
+  get predicate(): $SDK82 { return callSDK<$SDK82>("HealthKit_6be9a005889899ab", 1308219220274205, this, []); }
+  set predicate(value: $SDK82) { callSDK<void>("HealthKit_6be9a005889899ab", 2991131676353613, this, [value]); }
   declare readonly $type: { "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV": true };
 }
 
@@ -4743,22 +4743,22 @@ export const HKQuantitySeriesSampleQueryDescriptor_Options = {
    * static let orderByQuantitySampleStartDate: HKQuantitySeriesSampleQueryDescriptor.Options
    * @availability iOS 15.4+
    */
-  get orderByQuantitySampleStartDate(): HKQuantitySeriesSampleQueryDescriptor_Options { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Options>("HealthKit_5d69670f0307b385", 2502930014685490, undefined, []); },
+  get orderByQuantitySampleStartDate(): HKQuantitySeriesSampleQueryDescriptor_Options { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Options>("HealthKit_6be9a005889899ab", 2502930014685490, undefined, []); },
   /**
    * static let includeSample: HKQuantitySeriesSampleQueryDescriptor.Options
    * @availability iOS 15.4+
    */
-  get includeSample(): HKQuantitySeriesSampleQueryDescriptor_Options { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Options>("HealthKit_5d69670f0307b385", 941760761702171, undefined, []); },
+  get includeSample(): HKQuantitySeriesSampleQueryDescriptor_Options { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Options>("HealthKit_6be9a005889899ab", 941760761702171, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 15.4+
    */
-  init(rawValue: number): HKQuantitySeriesSampleQueryDescriptor_Options { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Options>("HealthKit_5d69670f0307b385", 4356771507680923, undefined, [rawValue]); },
+  init(rawValue: number): HKQuantitySeriesSampleQueryDescriptor_Options { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Options>("HealthKit_6be9a005889899ab", 4356771507680923, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 15.4+
    */
-  getRawValue($self: HKQuantitySeriesSampleQueryDescriptor_Options): number { return callSDK<number>("HealthKit_5d69670f0307b385", 3182384138711516, $self, []); }
+  getRawValue($self: HKQuantitySeriesSampleQueryDescriptor_Options): number { return callSDK<number>("HealthKit_6be9a005889899ab", 3182384138711516, $self, []); }
 };
 
 /**
@@ -4788,17 +4788,17 @@ export class HKQuantitySeriesSampleQueryDescriptor_Result extends SDKHandle {
    * let dateInterval: DateInterval
    * @availability iOS 15.4+
    */
-  get dateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("HealthKit_5d69670f0307b385", 2665049663864561, this, []); }
+  get dateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("HealthKit_6be9a005889899ab", 2665049663864561, this, []); }
   /**
    * let sample: HKQuantitySample?
    * @availability iOS 15.4+
    */
-  get sample(): (HKQuantitySample) | null { return callSDK<(HKQuantitySample) | null>("HealthKit_5d69670f0307b385", 2573660285170114, this, []); }
+  get sample(): (HKQuantitySample) | null { return callSDK<(HKQuantitySample) | null>("HealthKit_6be9a005889899ab", 2573660285170114, this, []); }
   /**
    * let quantity: HKQuantity
    * @availability iOS 15.4+
    */
-  get quantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 143596047296231, this, []); }
+  get quantity(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 143596047296231, this, []); }
   declare readonly $type: { "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV6ResultV": true };
 }
 
@@ -4811,7 +4811,7 @@ export class HKQuantitySeriesSampleQueryDescriptor_Results extends SDKHandle {
    * func makeAsyncIterator() -> HKQuantitySeriesSampleQueryDescriptor.Results.Iterator
    * @availability iOS 15.4+
    */
-  makeAsyncIterator(): HKQuantitySeriesSampleQueryDescriptor_Results_Iterator { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Results_Iterator>("HealthKit_5d69670f0307b385", 1097978409292504, this, []); }
+  makeAsyncIterator(): HKQuantitySeriesSampleQueryDescriptor_Results_Iterator { return callSDK<HKQuantitySeriesSampleQueryDescriptor_Results_Iterator>("HealthKit_6be9a005889899ab", 1097978409292504, this, []); }
   declare readonly $type: { "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV7ResultsV": true };
   declare readonly $element: HKQuantitySeriesSampleQueryDescriptor_Result;
 }
@@ -4837,7 +4837,7 @@ export class HKQuantitySeriesSampleQueryDescriptor_Results_Iterator extends SDKH
    * mutating func next() async throws -> HKQuantitySeriesSampleQueryDescriptor.Results.Element?
    * @availability iOS 15.4+
    */
-  next(): Promise<(HKQuantitySeriesSampleQueryDescriptor_Result) | null> { return callSDKAsync<(HKQuantitySeriesSampleQueryDescriptor_Result) | null>("HealthKit_5d69670f0307b385", 38813566733183, this, []); }
+  next(): Promise<(HKQuantitySeriesSampleQueryDescriptor_Result) | null> { return callSDKAsync<(HKQuantitySeriesSampleQueryDescriptor_Result) | null>("HealthKit_6be9a005889899ab", 38813566733183, this, []); }
   declare readonly $type: { "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV7ResultsV8IteratorV": true };
 }
 
@@ -4862,17 +4862,17 @@ export class HKQuantityType extends HKSampleType {
    * func `is`(compatibleWith unit: HKUnit) -> Bool
    * @availability iOS 8.0+
    */
-  is(unit: HKUnit): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 2378324316552497, this, [unit]); }
+  is(unit: HKUnit): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 2378324316552497, this, [unit]); }
   /**
    * var aggregationStyle: HKQuantityAggregationStyle { get }
    * @availability iOS 8.0+
    */
-  get aggregationStyle(): HKQuantityAggregationStyle { return callSDK<HKQuantityAggregationStyle>("HealthKit_5d69670f0307b385", 1181520806066667, this, []); }
+  get aggregationStyle(): HKQuantityAggregationStyle { return callSDK<HKQuantityAggregationStyle>("HealthKit_6be9a005889899ab", 1181520806066667, this, []); }
   /**
    * convenience init(_ identifier: HKQuantityTypeIdentifier)
    * @availability iOS 15.0+
    */
-  static init(identifier: HKQuantityTypeIdentifier): HKQuantityType { return callSDK<HKQuantityType>("HealthKit_5d69670f0307b385", 595473478821770, undefined, [identifier]); }
+  static init(identifier: HKQuantityTypeIdentifier): HKQuantityType { return callSDK<HKQuantityType>("HealthKit_6be9a005889899ab", 595473478821770, undefined, [identifier]); }
   declare readonly $type: { "c:objc(cs)HKQuantityType": true; "c:objc(cs)HKSampleType": true; "c:objc(cs)HKObjectType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "allowsRecalibrationForEstimates": true; "isMaximumDurationRestricted": true; "isMinimumDurationRestricted": true; "maximumAllowedDuration": true; "minimumAllowedDuration": true; "aggregationStyle": true };
 }
@@ -4885,609 +4885,609 @@ export const HKQuantityTypeIdentifier = {
    * static let activeEnergyBurned: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get activeEnergyBurned(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1229395379464032, undefined, []); },
+  get activeEnergyBurned(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1229395379464032, undefined, []); },
   /**
    * static let appleExerciseTime: HKQuantityTypeIdentifier
    * @availability iOS 9.3+
    */
-  get appleExerciseTime(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 220516575392388, undefined, []); },
+  get appleExerciseTime(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 220516575392388, undefined, []); },
   /**
    * static let appleMoveTime: HKQuantityTypeIdentifier
    * @availability iOS 14.5+
    */
-  get appleMoveTime(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1292369516692043, undefined, []); },
+  get appleMoveTime(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1292369516692043, undefined, []); },
   /**
    * static let appleSleepingBreathingDisturbances: HKQuantityTypeIdentifier
    * @availability iOS 18.0+
    */
-  get appleSleepingBreathingDisturbances(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 553719493516517, undefined, []); },
+  get appleSleepingBreathingDisturbances(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 553719493516517, undefined, []); },
   /**
    * static let appleSleepingWristTemperature: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get appleSleepingWristTemperature(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3424793644944309, undefined, []); },
+  get appleSleepingWristTemperature(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3424793644944309, undefined, []); },
   /**
    * static let appleStandTime: HKQuantityTypeIdentifier
    * @availability iOS 13.0+
    */
-  get appleStandTime(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1515995839631037, undefined, []); },
+  get appleStandTime(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1515995839631037, undefined, []); },
   /**
    * static let appleWalkingSteadiness: HKQuantityTypeIdentifier
    * @availability iOS 15.0+
    */
-  get appleWalkingSteadiness(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 333912212005534, undefined, []); },
+  get appleWalkingSteadiness(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 333912212005534, undefined, []); },
   /**
    * static let atrialFibrillationBurden: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get atrialFibrillationBurden(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3573318445754488, undefined, []); },
+  get atrialFibrillationBurden(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3573318445754488, undefined, []); },
   /**
    * static let basalBodyTemperature: HKQuantityTypeIdentifier
    * @availability iOS 9.0+
    */
-  get basalBodyTemperature(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2757403061425529, undefined, []); },
+  get basalBodyTemperature(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2757403061425529, undefined, []); },
   /**
    * static let basalEnergyBurned: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get basalEnergyBurned(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 535066393654166, undefined, []); },
+  get basalEnergyBurned(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 535066393654166, undefined, []); },
   /**
    * static let bloodAlcoholContent: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get bloodAlcoholContent(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 106265450691443, undefined, []); },
+  get bloodAlcoholContent(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 106265450691443, undefined, []); },
   /**
    * static let bloodGlucose: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get bloodGlucose(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2781586462656291, undefined, []); },
+  get bloodGlucose(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2781586462656291, undefined, []); },
   /**
    * static let bloodPressureDiastolic: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get bloodPressureDiastolic(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1772759578853427, undefined, []); },
+  get bloodPressureDiastolic(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1772759578853427, undefined, []); },
   /**
    * static let bloodPressureSystolic: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get bloodPressureSystolic(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2603718804701390, undefined, []); },
+  get bloodPressureSystolic(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2603718804701390, undefined, []); },
   /**
    * static let bodyFatPercentage: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get bodyFatPercentage(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 490851418252217, undefined, []); },
+  get bodyFatPercentage(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 490851418252217, undefined, []); },
   /**
    * static let bodyMass: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get bodyMass(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 700302885487008, undefined, []); },
+  get bodyMass(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 700302885487008, undefined, []); },
   /**
    * static let bodyMassIndex: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get bodyMassIndex(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3136270628748623, undefined, []); },
+  get bodyMassIndex(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3136270628748623, undefined, []); },
   /**
    * static let bodyTemperature: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get bodyTemperature(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 154015887572827, undefined, []); },
+  get bodyTemperature(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 154015887572827, undefined, []); },
   /**
    * static let crossCountrySkiingSpeed: HKQuantityTypeIdentifier
    * @availability iOS 18.0+
    */
-  get crossCountrySkiingSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4046683941285274, undefined, []); },
+  get crossCountrySkiingSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4046683941285274, undefined, []); },
   /**
    * static let cyclingCadence: HKQuantityTypeIdentifier
    * @availability iOS 17.0+
    */
-  get cyclingCadence(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 513969639773357, undefined, []); },
+  get cyclingCadence(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 513969639773357, undefined, []); },
   /**
    * static let cyclingFunctionalThresholdPower: HKQuantityTypeIdentifier
    * @availability iOS 17.0+
    */
-  get cyclingFunctionalThresholdPower(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3146591885527066, undefined, []); },
+  get cyclingFunctionalThresholdPower(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3146591885527066, undefined, []); },
   /**
    * static let cyclingPower: HKQuantityTypeIdentifier
    * @availability iOS 17.0+
    */
-  get cyclingPower(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2778414138693988, undefined, []); },
+  get cyclingPower(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2778414138693988, undefined, []); },
   /**
    * static let cyclingSpeed: HKQuantityTypeIdentifier
    * @availability iOS 17.0+
    */
-  get cyclingSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1846430338398454, undefined, []); },
+  get cyclingSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1846430338398454, undefined, []); },
   /**
    * static let dietaryBiotin: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryBiotin(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3726499061707108, undefined, []); },
+  get dietaryBiotin(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3726499061707108, undefined, []); },
   /**
    * static let dietaryCaffeine: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryCaffeine(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 652986521699059, undefined, []); },
+  get dietaryCaffeine(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 652986521699059, undefined, []); },
   /**
    * static let dietaryCalcium: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryCalcium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2179658420370816, undefined, []); },
+  get dietaryCalcium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2179658420370816, undefined, []); },
   /**
    * static let dietaryCarbohydrates: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryCarbohydrates(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3578811988019944, undefined, []); },
+  get dietaryCarbohydrates(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3578811988019944, undefined, []); },
   /**
    * static let dietaryChloride: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryChloride(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1237319257645212, undefined, []); },
+  get dietaryChloride(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1237319257645212, undefined, []); },
   /**
    * static let dietaryCholesterol: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryCholesterol(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 400151161040870, undefined, []); },
+  get dietaryCholesterol(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 400151161040870, undefined, []); },
   /**
    * static let dietaryChromium: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryChromium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 896540648871131, undefined, []); },
+  get dietaryChromium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 896540648871131, undefined, []); },
   /**
    * static let dietaryCopper: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryCopper(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3773640118909055, undefined, []); },
+  get dietaryCopper(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3773640118909055, undefined, []); },
   /**
    * static let dietaryEnergyConsumed: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryEnergyConsumed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 532416151663220, undefined, []); },
+  get dietaryEnergyConsumed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 532416151663220, undefined, []); },
   /**
    * static let dietaryFatMonounsaturated: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryFatMonounsaturated(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 304053015073889, undefined, []); },
+  get dietaryFatMonounsaturated(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 304053015073889, undefined, []); },
   /**
    * static let dietaryFatPolyunsaturated: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryFatPolyunsaturated(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2254484369163577, undefined, []); },
+  get dietaryFatPolyunsaturated(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2254484369163577, undefined, []); },
   /**
    * static let dietaryFatSaturated: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryFatSaturated(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1441522761303483, undefined, []); },
+  get dietaryFatSaturated(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1441522761303483, undefined, []); },
   /**
    * static let dietaryFatTotal: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryFatTotal(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2490193421999615, undefined, []); },
+  get dietaryFatTotal(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2490193421999615, undefined, []); },
   /**
    * static let dietaryFiber: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryFiber(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4403488688640211, undefined, []); },
+  get dietaryFiber(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4403488688640211, undefined, []); },
   /**
    * static let dietaryFolate: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryFolate(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 46305928059832, undefined, []); },
+  get dietaryFolate(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 46305928059832, undefined, []); },
   /**
    * static let dietaryIodine: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryIodine(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 60004595416375, undefined, []); },
+  get dietaryIodine(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 60004595416375, undefined, []); },
   /**
    * static let dietaryIron: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryIron(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1868090551636361, undefined, []); },
+  get dietaryIron(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1868090551636361, undefined, []); },
   /**
    * static let dietaryMagnesium: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryMagnesium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2749821943472714, undefined, []); },
+  get dietaryMagnesium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2749821943472714, undefined, []); },
   /**
    * static let dietaryManganese: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryManganese(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4047952170693439, undefined, []); },
+  get dietaryManganese(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4047952170693439, undefined, []); },
   /**
    * static let dietaryMolybdenum: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryMolybdenum(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1667196849444302, undefined, []); },
+  get dietaryMolybdenum(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1667196849444302, undefined, []); },
   /**
    * static let dietaryNiacin: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryNiacin(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2458654692708140, undefined, []); },
+  get dietaryNiacin(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2458654692708140, undefined, []); },
   /**
    * static let dietaryPantothenicAcid: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryPantothenicAcid(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3659825617149739, undefined, []); },
+  get dietaryPantothenicAcid(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3659825617149739, undefined, []); },
   /**
    * static let dietaryPhosphorus: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryPhosphorus(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 910102929459501, undefined, []); },
+  get dietaryPhosphorus(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 910102929459501, undefined, []); },
   /**
    * static let dietaryPotassium: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryPotassium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1637169219202213, undefined, []); },
+  get dietaryPotassium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1637169219202213, undefined, []); },
   /**
    * static let dietaryProtein: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryProtein(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 320060864637719, undefined, []); },
+  get dietaryProtein(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 320060864637719, undefined, []); },
   /**
    * static let dietaryRiboflavin: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryRiboflavin(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1870847135320502, undefined, []); },
+  get dietaryRiboflavin(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1870847135320502, undefined, []); },
   /**
    * static let dietarySelenium: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietarySelenium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4275010099787636, undefined, []); },
+  get dietarySelenium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4275010099787636, undefined, []); },
   /**
    * static let dietarySodium: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietarySodium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3471024582442863, undefined, []); },
+  get dietarySodium(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3471024582442863, undefined, []); },
   /**
    * static let dietarySugar: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietarySugar(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2257031366929329, undefined, []); },
+  get dietarySugar(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2257031366929329, undefined, []); },
   /**
    * static let dietaryThiamin: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryThiamin(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 832280850765264, undefined, []); },
+  get dietaryThiamin(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 832280850765264, undefined, []); },
   /**
    * static let dietaryVitaminA: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryVitaminA(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3909035151157597, undefined, []); },
+  get dietaryVitaminA(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3909035151157597, undefined, []); },
   /**
    * static let dietaryVitaminB12: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryVitaminB12(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 74195078266004, undefined, []); },
+  get dietaryVitaminB12(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 74195078266004, undefined, []); },
   /**
    * static let dietaryVitaminB6: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryVitaminB6(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1288964360120273, undefined, []); },
+  get dietaryVitaminB6(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1288964360120273, undefined, []); },
   /**
    * static let dietaryVitaminC: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryVitaminC(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2286928687788804, undefined, []); },
+  get dietaryVitaminC(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2286928687788804, undefined, []); },
   /**
    * static let dietaryVitaminD: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryVitaminD(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1019145447273730, undefined, []); },
+  get dietaryVitaminD(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1019145447273730, undefined, []); },
   /**
    * static let dietaryVitaminE: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryVitaminE(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3852629656362494, undefined, []); },
+  get dietaryVitaminE(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3852629656362494, undefined, []); },
   /**
    * static let dietaryVitaminK: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryVitaminK(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3617187886291153, undefined, []); },
+  get dietaryVitaminK(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3617187886291153, undefined, []); },
   /**
    * static let dietaryWater: HKQuantityTypeIdentifier
    * @availability iOS 9.0+
    */
-  get dietaryWater(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 520087170794556, undefined, []); },
+  get dietaryWater(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 520087170794556, undefined, []); },
   /**
    * static let dietaryZinc: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get dietaryZinc(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1682122746857098, undefined, []); },
+  get dietaryZinc(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1682122746857098, undefined, []); },
   /**
    * static let distanceCrossCountrySkiing: HKQuantityTypeIdentifier
    * @availability iOS 18.0+
    */
-  get distanceCrossCountrySkiing(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3835898739362700, undefined, []); },
+  get distanceCrossCountrySkiing(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3835898739362700, undefined, []); },
   /**
    * static let distanceCycling: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get distanceCycling(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4410154374067682, undefined, []); },
+  get distanceCycling(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4410154374067682, undefined, []); },
   /**
    * static let distanceDownhillSnowSports: HKQuantityTypeIdentifier
    * @availability iOS 11.2+
    */
-  get distanceDownhillSnowSports(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3428478065813858, undefined, []); },
+  get distanceDownhillSnowSports(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3428478065813858, undefined, []); },
   /**
    * static let distancePaddleSports: HKQuantityTypeIdentifier
    * @availability iOS 18.0+
    */
-  get distancePaddleSports(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2138944128413249, undefined, []); },
+  get distancePaddleSports(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2138944128413249, undefined, []); },
   /**
    * static let distanceRowing: HKQuantityTypeIdentifier
    * @availability iOS 18.0+
    */
-  get distanceRowing(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2783320756856818, undefined, []); },
+  get distanceRowing(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2783320756856818, undefined, []); },
   /**
    * static let distanceSkatingSports: HKQuantityTypeIdentifier
    * @availability iOS 18.0+
    */
-  get distanceSkatingSports(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1819591340213932, undefined, []); },
+  get distanceSkatingSports(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1819591340213932, undefined, []); },
   /**
    * static let distanceSwimming: HKQuantityTypeIdentifier
    * @availability iOS 10.0+
    */
-  get distanceSwimming(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2734841778409508, undefined, []); },
+  get distanceSwimming(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2734841778409508, undefined, []); },
   /**
    * static let distanceWalkingRunning: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get distanceWalkingRunning(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4230847883019188, undefined, []); },
+  get distanceWalkingRunning(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4230847883019188, undefined, []); },
   /**
    * static let distanceWheelchair: HKQuantityTypeIdentifier
    * @availability iOS 10.0+
    */
-  get distanceWheelchair(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4452969585528415, undefined, []); },
+  get distanceWheelchair(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4452969585528415, undefined, []); },
   /**
    * static let electrodermalActivity: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get electrodermalActivity(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3047631471285805, undefined, []); },
+  get electrodermalActivity(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3047631471285805, undefined, []); },
   /**
    * static let environmentalAudioExposure: HKQuantityTypeIdentifier
    * @availability iOS 13.0+
    */
-  get environmentalAudioExposure(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 235047329483349, undefined, []); },
+  get environmentalAudioExposure(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 235047329483349, undefined, []); },
   /**
    * static let environmentalSoundReduction: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get environmentalSoundReduction(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3453561687720082, undefined, []); },
+  get environmentalSoundReduction(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3453561687720082, undefined, []); },
   /**
    * static let estimatedWorkoutEffortScore: HKQuantityTypeIdentifier
    * @availability iOS 18.0+
    */
-  get estimatedWorkoutEffortScore(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1194016745993187, undefined, []); },
+  get estimatedWorkoutEffortScore(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1194016745993187, undefined, []); },
   /**
    * static let flightsClimbed: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get flightsClimbed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 429734251854162, undefined, []); },
+  get flightsClimbed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 429734251854162, undefined, []); },
   /**
    * static let forcedExpiratoryVolume1: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get forcedExpiratoryVolume1(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3124552664963141, undefined, []); },
+  get forcedExpiratoryVolume1(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3124552664963141, undefined, []); },
   /**
    * static let forcedVitalCapacity: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get forcedVitalCapacity(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3836290507852691, undefined, []); },
+  get forcedVitalCapacity(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3836290507852691, undefined, []); },
   /**
    * static let headphoneAudioExposure: HKQuantityTypeIdentifier
    * @availability iOS 13.0+
    */
-  get headphoneAudioExposure(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 874561621615516, undefined, []); },
+  get headphoneAudioExposure(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 874561621615516, undefined, []); },
   /**
    * static let heartRate: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get heartRate(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1865146112589483, undefined, []); },
+  get heartRate(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1865146112589483, undefined, []); },
   /**
    * static let heartRateRecoveryOneMinute: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get heartRateRecoveryOneMinute(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1227672590206075, undefined, []); },
+  get heartRateRecoveryOneMinute(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1227672590206075, undefined, []); },
   /**
    * static let heartRateVariabilityRMSSD: HKQuantityTypeIdentifier
    * @availability iOS 27.0+
    */
-  get heartRateVariabilityRMSSD(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4396200904890249, undefined, []); },
+  get heartRateVariabilityRMSSD(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4396200904890249, undefined, []); },
   /**
    * static let heartRateVariabilitySDNN: HKQuantityTypeIdentifier
    * @availability iOS 11.0+
    */
-  get heartRateVariabilitySDNN(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2028534359514155, undefined, []); },
+  get heartRateVariabilitySDNN(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2028534359514155, undefined, []); },
   /**
    * static let height: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get height(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 511262669285186, undefined, []); },
+  get height(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 511262669285186, undefined, []); },
   /**
    * static let inhalerUsage: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get inhalerUsage(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2781192061518718, undefined, []); },
+  get inhalerUsage(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2781192061518718, undefined, []); },
   /**
    * static let insulinDelivery: HKQuantityTypeIdentifier
    * @availability iOS 11.0+
    */
-  get insulinDelivery(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3596370621722017, undefined, []); },
+  get insulinDelivery(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3596370621722017, undefined, []); },
   /**
    * static let leanBodyMass: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get leanBodyMass(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 654182151074917, undefined, []); },
+  get leanBodyMass(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 654182151074917, undefined, []); },
   /**
    * static let nikeFuel: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get nikeFuel(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3184885620284783, undefined, []); },
+  get nikeFuel(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3184885620284783, undefined, []); },
   /**
    * static let numberOfAlcoholicBeverages: HKQuantityTypeIdentifier
    * @availability iOS 15.0+
    */
-  get numberOfAlcoholicBeverages(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2025821263551896, undefined, []); },
+  get numberOfAlcoholicBeverages(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2025821263551896, undefined, []); },
   /**
    * static let numberOfTimesFallen: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get numberOfTimesFallen(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1087828783321276, undefined, []); },
+  get numberOfTimesFallen(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1087828783321276, undefined, []); },
   /**
    * static let oxygenSaturation: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get oxygenSaturation(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3651465855516610, undefined, []); },
+  get oxygenSaturation(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3651465855516610, undefined, []); },
   /**
    * static let paddleSportsSpeed: HKQuantityTypeIdentifier
    * @availability iOS 18.0+
    */
-  get paddleSportsSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2055271987556026, undefined, []); },
+  get paddleSportsSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2055271987556026, undefined, []); },
   /**
    * static let peakExpiratoryFlowRate: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get peakExpiratoryFlowRate(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 991552226613490, undefined, []); },
+  get peakExpiratoryFlowRate(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 991552226613490, undefined, []); },
   /**
    * static let peripheralPerfusionIndex: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get peripheralPerfusionIndex(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1211277066851315, undefined, []); },
+  get peripheralPerfusionIndex(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1211277066851315, undefined, []); },
   /**
    * static let physicalEffort: HKQuantityTypeIdentifier
    * @availability iOS 17.0+
    */
-  get physicalEffort(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1589124242988728, undefined, []); },
+  get physicalEffort(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1589124242988728, undefined, []); },
   /**
    * static let pushCount: HKQuantityTypeIdentifier
    * @availability iOS 10.0+
    */
-  get pushCount(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4190132877845490, undefined, []); },
+  get pushCount(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4190132877845490, undefined, []); },
   /**
    * static let respiratoryRate: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get respiratoryRate(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1509412940789819, undefined, []); },
+  get respiratoryRate(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1509412940789819, undefined, []); },
   /**
    * static let restingHeartRate: HKQuantityTypeIdentifier
    * @availability iOS 11.0+
    */
-  get restingHeartRate(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1226878255202465, undefined, []); },
+  get restingHeartRate(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1226878255202465, undefined, []); },
   /**
    * static let rowingSpeed: HKQuantityTypeIdentifier
    * @availability iOS 18.0+
    */
-  get rowingSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4440904532920055, undefined, []); },
+  get rowingSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4440904532920055, undefined, []); },
   /**
    * static let runningGroundContactTime: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get runningGroundContactTime(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2027742188213426, undefined, []); },
+  get runningGroundContactTime(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2027742188213426, undefined, []); },
   /**
    * static let runningPower: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get runningPower(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3217098679509736, undefined, []); },
+  get runningPower(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3217098679509736, undefined, []); },
   /**
    * static let runningSpeed: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get runningSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4262741753242711, undefined, []); },
+  get runningSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4262741753242711, undefined, []); },
   /**
    * static let runningStrideLength: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get runningStrideLength(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 635622404653258, undefined, []); },
+  get runningStrideLength(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 635622404653258, undefined, []); },
   /**
    * static let runningVerticalOscillation: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get runningVerticalOscillation(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3852019807453386, undefined, []); },
+  get runningVerticalOscillation(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3852019807453386, undefined, []); },
   /**
    * static let sixMinuteWalkTestDistance: HKQuantityTypeIdentifier
    * @availability iOS 14.0+
    */
-  get sixMinuteWalkTestDistance(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4378198644375460, undefined, []); },
+  get sixMinuteWalkTestDistance(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4378198644375460, undefined, []); },
   /**
    * static let stairAscentSpeed: HKQuantityTypeIdentifier
    * @availability iOS 14.0+
    */
-  get stairAscentSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3586682323358149, undefined, []); },
+  get stairAscentSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3586682323358149, undefined, []); },
   /**
    * static let stairDescentSpeed: HKQuantityTypeIdentifier
    * @availability iOS 14.0+
    */
-  get stairDescentSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3501222054981696, undefined, []); },
+  get stairDescentSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3501222054981696, undefined, []); },
   /**
    * static let stepCount: HKQuantityTypeIdentifier
    * @availability iOS 8.0+
    */
-  get stepCount(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1087924544445269, undefined, []); },
+  get stepCount(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1087924544445269, undefined, []); },
   /**
    * static let swimmingStrokeCount: HKQuantityTypeIdentifier
    * @availability iOS 10.0+
    */
-  get swimmingStrokeCount(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2144271745929156, undefined, []); },
+  get swimmingStrokeCount(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2144271745929156, undefined, []); },
   /**
    * static let timeInDaylight: HKQuantityTypeIdentifier
    * @availability iOS 17.0+
    */
-  get timeInDaylight(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1890952476535897, undefined, []); },
+  get timeInDaylight(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1890952476535897, undefined, []); },
   /**
    * static let uvExposure: HKQuantityTypeIdentifier
    * @availability iOS 9.0+
    */
-  get uvExposure(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 768225578243305, undefined, []); },
+  get uvExposure(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 768225578243305, undefined, []); },
   /**
    * static let underwaterDepth: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get underwaterDepth(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4452151752273945, undefined, []); },
+  get underwaterDepth(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4452151752273945, undefined, []); },
   /**
    * static let vo2Max: HKQuantityTypeIdentifier
    * @availability iOS 11.0+
    */
-  get vo2Max(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 860878741313574, undefined, []); },
+  get vo2Max(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 860878741313574, undefined, []); },
   /**
    * static let waistCircumference: HKQuantityTypeIdentifier
    * @availability iOS 11.0+
    */
-  get waistCircumference(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 3699726956522533, undefined, []); },
+  get waistCircumference(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 3699726956522533, undefined, []); },
   /**
    * static let walkingAsymmetryPercentage: HKQuantityTypeIdentifier
    * @availability iOS 14.0+
    */
-  get walkingAsymmetryPercentage(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1795972036554574, undefined, []); },
+  get walkingAsymmetryPercentage(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1795972036554574, undefined, []); },
   /**
    * static let walkingDoubleSupportPercentage: HKQuantityTypeIdentifier
    * @availability iOS 14.0+
    */
-  get walkingDoubleSupportPercentage(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1676063936242579, undefined, []); },
+  get walkingDoubleSupportPercentage(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1676063936242579, undefined, []); },
   /**
    * static let walkingHeartRateAverage: HKQuantityTypeIdentifier
    * @availability iOS 11.0+
    */
-  get walkingHeartRateAverage(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2881502099817294, undefined, []); },
+  get walkingHeartRateAverage(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2881502099817294, undefined, []); },
   /**
    * static let walkingSpeed: HKQuantityTypeIdentifier
    * @availability iOS 14.0+
    */
-  get walkingSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 1983810474448147, undefined, []); },
+  get walkingSpeed(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 1983810474448147, undefined, []); },
   /**
    * static let walkingStepLength: HKQuantityTypeIdentifier
    * @availability iOS 14.0+
    */
-  get walkingStepLength(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 781815049642474, undefined, []); },
+  get walkingStepLength(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 781815049642474, undefined, []); },
   /**
    * static let waterTemperature: HKQuantityTypeIdentifier
    * @availability iOS 16.0+
    */
-  get waterTemperature(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 2545307843308260, undefined, []); },
+  get waterTemperature(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 2545307843308260, undefined, []); },
   /**
    * static let workoutEffortScore: HKQuantityTypeIdentifier
    * @availability iOS 18.0+
    */
-  get workoutEffortScore(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4192629332359649, undefined, []); },
+  get workoutEffortScore(): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4192629332359649, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_5d69670f0307b385", 4081751206138455, undefined, [rawValue]); }
+  init(rawValue: string): HKQuantityTypeIdentifier { return callSDK<HKQuantityTypeIdentifier>("HealthKit_6be9a005889899ab", 4081751206138455, undefined, [rawValue]); }
 };
 
 /**
@@ -5499,7 +5499,7 @@ export class HKQueryAnchor extends SDKHandle {
    * convenience init(fromValue value: Int)
    * @availability iOS 9.0+
    */
-  static init(value: number): HKQueryAnchor { return callSDK<HKQueryAnchor>("HealthKit_5d69670f0307b385", 1312851768112164, undefined, [value]); }
+  static init(value: number): HKQueryAnchor { return callSDK<HKQueryAnchor>("HealthKit_6be9a005889899ab", 1312851768112164, undefined, [value]); }
   declare readonly $type: { "c:objc(cs)HKQueryAnchor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -5512,17 +5512,17 @@ export class HKQueryDescriptor extends SDKHandle {
    * init(sampleType: HKSampleType, predicate: NSPredicate?)
    * @availability iOS 15.0+
    */
-  static init(sampleType: HKSampleType, predicate?: $SDK4): HKQueryDescriptor { return callSDK<HKQueryDescriptor>("HealthKit_5d69670f0307b385", 890898444801427, undefined, [sampleType, predicate]); }
+  static init(sampleType: HKSampleType, predicate?: $SDK4): HKQueryDescriptor { return callSDK<HKQueryDescriptor>("HealthKit_6be9a005889899ab", 890898444801427, undefined, [sampleType, predicate]); }
   /**
    * @NSCopying var predicate: NSPredicate? { get }
    * @availability iOS 15.0+
    */
-  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_5d69670f0307b385", 2999992424162115, this, []); }
+  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_6be9a005889899ab", 2999992424162115, this, []); }
   /**
    * @NSCopying var sampleType: HKSampleType { get }
    * @availability iOS 15.0+
    */
-  get sampleType(): HKSampleType { return callSDK<HKSampleType>("HealthKit_5d69670f0307b385", 3173580774600460, this, []); }
+  get sampleType(): HKSampleType { return callSDK<HKSampleType>("HealthKit_6be9a005889899ab", 3173580774600460, this, []); }
   declare readonly $type: { "c:objc(cs)HKQueryDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "predicate": true; "sampleType": true };
 }
@@ -5538,17 +5538,17 @@ export const HKQueryOptions = {
    * static var strictEndDate: HKQueryOptions { get }
    * @availability iOS 8.0+
    */
-  get strictEndDate(): HKQueryOptions { return callSDK<HKQueryOptions>("HealthKit_5d69670f0307b385", 44757010382149, undefined, []); },
+  get strictEndDate(): HKQueryOptions { return callSDK<HKQueryOptions>("HealthKit_6be9a005889899ab", 44757010382149, undefined, []); },
   /**
    * static var strictStartDate: HKQueryOptions { get }
    * @availability iOS 8.0+
    */
-  get strictStartDate(): HKQueryOptions { return callSDK<HKQueryOptions>("HealthKit_5d69670f0307b385", 299171290707713, undefined, []); },
+  get strictStartDate(): HKQueryOptions { return callSDK<HKQueryOptions>("HealthKit_6be9a005889899ab", 299171290707713, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): HKQueryOptions { return callSDK<HKQueryOptions>("HealthKit_5d69670f0307b385", 2072098218071068, undefined, [rawValue]); }
+  init(rawValue: number): HKQueryOptions { return callSDK<HKQueryOptions>("HealthKit_6be9a005889899ab", 2072098218071068, undefined, [rawValue]); }
 };
 
 /**
@@ -5560,82 +5560,82 @@ export class HKSamplePredicate<Sample = unknown> extends SDKHandle {
    * nonisolated(unsafe) let nsPredicate: NSPredicate?
    * @availability iOS 15.4+
    */
-  get nsPredicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_5d69670f0307b385", 2368279731365477, this, []); }
+  get nsPredicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_6be9a005889899ab", 2368279731365477, this, []); }
   /**
    * let sampleType: HKSampleType
    * @availability iOS 15.4+
    */
-  get sampleType(): HKSampleType { return callSDK<HKSampleType>("HealthKit_5d69670f0307b385", 1330302134975726, this, []); }
+  get sampleType(): HKSampleType { return callSDK<HKSampleType>("HealthKit_6be9a005889899ab", 1330302134975726, this, []); }
   /**
    * static func correlation(type correlationType: HKCorrelationType, predicate: NSPredicate? = nil) -> HKSamplePredicate<HKCorrelation>
    * @availability iOS 15.4+
    */
-  static correlation(correlationType: HKCorrelationType, predicate?: $SDK4): HKSamplePredicate<HKCorrelation> { return callSDK<HKSamplePredicate<HKCorrelation>>("HealthKit_5d69670f0307b385", 1753381070477991, undefined, [correlationType, predicate]); }
+  static correlation(correlationType: HKCorrelationType, predicate?: $SDK4): HKSamplePredicate<HKCorrelation> { return callSDK<HKSamplePredicate<HKCorrelation>>("HealthKit_6be9a005889899ab", 1753381070477991, undefined, [correlationType, predicate]); }
   /**
    * static func stateOfMind(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKStateOfMind>
    * @availability iOS 18.0+
    */
-  static stateOfMind(predicate?: $SDK4): HKSamplePredicate<HKStateOfMind> { return callSDK<HKSamplePredicate<HKStateOfMind>>("HealthKit_5d69670f0307b385", 1385366258916435, undefined, [predicate]); }
+  static stateOfMind(predicate?: $SDK4): HKSamplePredicate<HKStateOfMind> { return callSDK<HKSamplePredicate<HKStateOfMind>>("HealthKit_6be9a005889899ab", 1385366258916435, undefined, [predicate]); }
   /**
    * static func workoutRoute(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKWorkoutRoute>
    * @availability iOS 15.4+
    */
-  static workoutRoute(predicate?: $SDK4): HKSamplePredicate<HKWorkoutRoute> { return callSDK<HKSamplePredicate<HKWorkoutRoute>>("HealthKit_5d69670f0307b385", 637422891853263, undefined, [predicate]); }
+  static workoutRoute(predicate?: $SDK4): HKSamplePredicate<HKWorkoutRoute> { return callSDK<HKSamplePredicate<HKWorkoutRoute>>("HealthKit_6be9a005889899ab", 637422891853263, undefined, [predicate]); }
   /**
    * static func categorySample(type categoryType: HKCategoryType, predicate: NSPredicate? = nil) -> HKSamplePredicate<HKCategorySample>
    * @availability iOS 15.4+
    */
-  static categorySample(categoryType: HKCategoryType, predicate?: $SDK4): HKSamplePredicate<HKCategorySample> { return callSDK<HKSamplePredicate<HKCategorySample>>("HealthKit_5d69670f0307b385", 1351428075915441, undefined, [categoryType, predicate]); }
+  static categorySample(categoryType: HKCategoryType, predicate?: $SDK4): HKSamplePredicate<HKCategorySample> { return callSDK<HKSamplePredicate<HKCategorySample>>("HealthKit_6be9a005889899ab", 1351428075915441, undefined, [categoryType, predicate]); }
   /**
    * static func clinicalRecord(type clinicalType: HKClinicalType, predicate: NSPredicate? = nil) -> HKSamplePredicate<HKClinicalRecord>
    * @availability iOS 15.4+
    */
-  static clinicalRecord(clinicalType: HKClinicalType, predicate?: $SDK4): HKSamplePredicate<HKClinicalRecord> { return callSDK<HKSamplePredicate<HKClinicalRecord>>("HealthKit_5d69670f0307b385", 2633527029545691, undefined, [clinicalType, predicate]); }
+  static clinicalRecord(clinicalType: HKClinicalType, predicate?: $SDK4): HKSamplePredicate<HKClinicalRecord> { return callSDK<HKSamplePredicate<HKClinicalRecord>>("HealthKit_6be9a005889899ab", 2633527029545691, undefined, [clinicalType, predicate]); }
   /**
    * static func gad7Assessment(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKGAD7Assessment>
    * @availability iOS 18.0+
    */
-  static gad7Assessment(predicate?: $SDK4): HKSamplePredicate<HKGAD7Assessment> { return callSDK<HKSamplePredicate<HKGAD7Assessment>>("HealthKit_5d69670f0307b385", 3661722991941772, undefined, [predicate]); }
+  static gad7Assessment(predicate?: $SDK4): HKSamplePredicate<HKGAD7Assessment> { return callSDK<HKSamplePredicate<HKGAD7Assessment>>("HealthKit_6be9a005889899ab", 3661722991941772, undefined, [predicate]); }
   /**
    * static func phq9Assessment(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKPHQ9Assessment>
    * @availability iOS 18.0+
    */
-  static phq9Assessment(predicate?: $SDK4): HKSamplePredicate<HKPHQ9Assessment> { return callSDK<HKSamplePredicate<HKPHQ9Assessment>>("HealthKit_5d69670f0307b385", 381787159863796, undefined, [predicate]); }
+  static phq9Assessment(predicate?: $SDK4): HKSamplePredicate<HKPHQ9Assessment> { return callSDK<HKSamplePredicate<HKPHQ9Assessment>>("HealthKit_6be9a005889899ab", 381787159863796, undefined, [predicate]); }
   /**
    * static func quantitySample(type quantityType: HKQuantityType, predicate: NSPredicate? = nil) -> HKSamplePredicate<HKQuantitySample>
    * @availability iOS 15.4+
    */
-  static quantitySample(quantityType: HKQuantityType, predicate?: $SDK4): $SDK82 { return callSDK<$SDK82>("HealthKit_5d69670f0307b385", 911471256131716, undefined, [quantityType, predicate]); }
+  static quantitySample(quantityType: HKQuantityType, predicate?: $SDK4): $SDK82 { return callSDK<$SDK82>("HealthKit_6be9a005889899ab", 911471256131716, undefined, [quantityType, predicate]); }
   /**
    * static func heartbeatSeries(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKHeartbeatSeriesSample>
    * @availability iOS 15.4+
    */
-  static heartbeatSeries(predicate?: $SDK4): HKSamplePredicate<HKHeartbeatSeriesSample> { return callSDK<HKSamplePredicate<HKHeartbeatSeriesSample>>("HealthKit_5d69670f0307b385", 1636520620594564, undefined, [predicate]); }
+  static heartbeatSeries(predicate?: $SDK4): HKSamplePredicate<HKHeartbeatSeriesSample> { return callSDK<HKSamplePredicate<HKHeartbeatSeriesSample>>("HealthKit_6be9a005889899ab", 1636520620594564, undefined, [predicate]); }
   /**
    * static func electrocardiogram(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKElectrocardiogram>
    * @availability iOS 15.4+
    */
-  static electrocardiogram(predicate?: $SDK4): HKSamplePredicate<HKElectrocardiogram> { return callSDK<HKSamplePredicate<HKElectrocardiogram>>("HealthKit_5d69670f0307b385", 2218093573148263, undefined, [predicate]); }
+  static electrocardiogram(predicate?: $SDK4): HKSamplePredicate<HKElectrocardiogram> { return callSDK<HKSamplePredicate<HKElectrocardiogram>>("HealthKit_6be9a005889899ab", 2218093573148263, undefined, [predicate]); }
   /**
    * static func visionPrescription(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKVisionPrescription>
    * @availability iOS 16.0+
    */
-  static visionPrescription(predicate?: $SDK4): HKSamplePredicate<HKVisionPrescription> { return callSDK<HKSamplePredicate<HKVisionPrescription>>("HealthKit_5d69670f0307b385", 3046372554987525, undefined, [predicate]); }
+  static visionPrescription(predicate?: $SDK4): HKSamplePredicate<HKVisionPrescription> { return callSDK<HKSamplePredicate<HKVisionPrescription>>("HealthKit_6be9a005889899ab", 3046372554987525, undefined, [predicate]); }
   /**
    * static func sample(type sampleType: HKSampleType, predicate: NSPredicate? = nil) -> HKSamplePredicate<HKSample>
    * @availability iOS 15.4+
    */
-  static sample(sampleType: HKSampleType, predicate?: $SDK4): $SDK95 { return callSDK<$SDK95>("HealthKit_5d69670f0307b385", 2130081656299266, undefined, [sampleType, predicate]); }
+  static sample(sampleType: HKSampleType, predicate?: $SDK4): $SDK95 { return callSDK<$SDK95>("HealthKit_6be9a005889899ab", 2130081656299266, undefined, [sampleType, predicate]); }
   /**
    * static func workout(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKWorkout>
    * @availability iOS 15.4+
    */
-  static workout(predicate?: $SDK4): HKSamplePredicate<HKWorkout> { return callSDK<HKSamplePredicate<HKWorkout>>("HealthKit_5d69670f0307b385", 2284460615827080, undefined, [predicate]); }
+  static workout(predicate?: $SDK4): HKSamplePredicate<HKWorkout> { return callSDK<HKSamplePredicate<HKWorkout>>("HealthKit_6be9a005889899ab", 2284460615827080, undefined, [predicate]); }
   /**
    * static func audiogram(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKAudiogramSample>
    * @availability iOS 15.4+
    */
-  static audiogram(predicate?: $SDK4): HKSamplePredicate<HKAudiogramSample> { return callSDK<HKSamplePredicate<HKAudiogramSample>>("HealthKit_5d69670f0307b385", 1072628170793096, undefined, [predicate]); }
+  static audiogram(predicate?: $SDK4): HKSamplePredicate<HKAudiogramSample> { return callSDK<HKSamplePredicate<HKAudiogramSample>>("HealthKit_6be9a005889899ab", 1072628170793096, undefined, [predicate]); }
   declare readonly $type: { "s:9HealthKit17HKSamplePredicateV": true };
 }
 
@@ -5645,18 +5645,18 @@ export class HKSampleQuery extends HKQuery {
    * init(queryDescriptors: [HKQueryDescriptor], limit: Int, resultsHandler: @escaping @Sendable (HKSampleQuery, [HKSample]?, (any Error)?) -> Void)
    * @availability iOS 15.0+
    */
-  static initQueryDescriptorsLimitResultsHandler(queryDescriptors: $SDK12, limit: number, resultsHandler: $SDK98): HKSampleQuery { return callSDK<HKSampleQuery>("HealthKit_5d69670f0307b385", 1560672472865087, undefined, [queryDescriptors, limit, resultsHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initQueryDescriptorsLimitResultsHandler(queryDescriptors: $SDK12, limit: number, resultsHandler: $SDK98): HKSampleQuery { return callSDK<HKSampleQuery>("HealthKit_6be9a005889899ab", 1560672472865087, undefined, [queryDescriptors, limit, resultsHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(queryDescriptors: [HKQueryDescriptor], limit: Int, sortDescriptors: [NSSortDescriptor], resultsHandler: @escaping @Sendable (HKSampleQuery, [HKSample]?, (any Error)?) -> Void)
    * @availability iOS 15.0+
    */
-  static initQueryDescriptorsLimitSortDescriptorsResultsHandler(queryDescriptors: $SDK12, limit: number, sortDescriptors: Array<_Foundation_NSSortDescriptor>, resultsHandler: $SDK98): HKSampleQuery { return callSDK<HKSampleQuery>("HealthKit_5d69670f0307b385", 520391799699071, undefined, [queryDescriptors, limit, sortDescriptors, resultsHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initQueryDescriptorsLimitSortDescriptorsResultsHandler(queryDescriptors: $SDK12, limit: number, sortDescriptors: Array<_Foundation_NSSortDescriptor>, resultsHandler: $SDK98): HKSampleQuery { return callSDK<HKSampleQuery>("HealthKit_6be9a005889899ab", 520391799699071, undefined, [queryDescriptors, limit, sortDescriptors, resultsHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /** init(sampleType: HKSampleType, predicate: NSPredicate?, limit: Int, sortDescriptors: [NSSortDescriptor]?, resultsHandler: @escaping @Sendable (HKSampleQuery, [HKSample]?, (any Error)?) -> Void) */
-  static initSampleTypePredicateLimitSortDescriptorsResultsHandler(sampleType: HKSampleType, predicate: $SDK4, limit: number, sortDescriptors: $SDK43, resultsHandler: $SDK98): HKSampleQuery { return callSDK<HKSampleQuery>("HealthKit_5d69670f0307b385", 1037362965685518, undefined, [sampleType, predicate, limit, sortDescriptors, resultsHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static initSampleTypePredicateLimitSortDescriptorsResultsHandler(sampleType: HKSampleType, predicate: $SDK4, limit: number, sortDescriptors: $SDK43, resultsHandler: $SDK98): HKSampleQuery { return callSDK<HKSampleQuery>("HealthKit_6be9a005889899ab", 1037362965685518, undefined, [sampleType, predicate, limit, sortDescriptors, resultsHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /** var limit: Int { get } */
-  get limit(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 2191905641851085, this, []); }
+  get limit(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 2191905641851085, this, []); }
   /** var sortDescriptors: [NSSortDescriptor]? { get } */
-  get sortDescriptors(): $SDK43 { return callSDK<$SDK43>("HealthKit_5d69670f0307b385", 3744967824300839, this, []); }
+  get sortDescriptors(): $SDK43 { return callSDK<$SDK43>("HealthKit_6be9a005889899ab", 3744967824300839, this, []); }
   declare readonly $type: { "c:objc(cs)HKSampleQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true; "limit": true; "sortDescriptors": true };
 }
@@ -5670,30 +5670,30 @@ export class HKSampleQueryDescriptor<Sample = unknown> extends SDKHandle {
    * init(predicates: [HKSamplePredicate<Sample>], sortDescriptors: [SortDescriptor<Sample>], limit: Int? = nil)
    * @availability iOS 15.4+
    */
-  static init(predicates: $SDK18, sortDescriptors: $SDK101, limit?: (number) | null): HKSampleQueryDescriptor<HKSample> { return callSDK<HKSampleQueryDescriptor<HKSample>>("HealthKit_5d69670f0307b385", 3336716038196287, undefined, [predicates, sortDescriptors, limit]); }
+  static init(predicates: $SDK18, sortDescriptors: $SDK101, limit?: (number) | null): HKSampleQueryDescriptor<HKSample> { return callSDK<HKSampleQueryDescriptor<HKSample>>("HealthKit_6be9a005889899ab", 3336716038196287, undefined, [predicates, sortDescriptors, limit]); }
   /**
    * var predicates: [HKSamplePredicate<Sample>] { get set }
    * @availability iOS 15.4+
    */
-  get predicates(): $SDK18 { return callSDK<$SDK18>("HealthKit_5d69670f0307b385", 3238359996197463, this, []); }
-  set predicates(value: $SDK18) { callSDK<void>("HealthKit_5d69670f0307b385", 3600451204986436, this, [value]); }
+  get predicates(): $SDK18 { return callSDK<$SDK18>("HealthKit_6be9a005889899ab", 3238359996197463, this, []); }
+  set predicates(value: $SDK18) { callSDK<void>("HealthKit_6be9a005889899ab", 3600451204986436, this, [value]); }
   /**
    * var sortDescriptors: [SortDescriptor<Sample>]
    * @availability iOS 15.4+
    */
-  get sortDescriptors(): $SDK101 { return callSDK<$SDK101>("HealthKit_5d69670f0307b385", 4487397658175534, this, []); }
-  set sortDescriptors(value: $SDK101) { callSDK<void>("HealthKit_5d69670f0307b385", 282276102039638, this, [value]); }
+  get sortDescriptors(): $SDK101 { return callSDK<$SDK101>("HealthKit_6be9a005889899ab", 4487397658175534, this, []); }
+  set sortDescriptors(value: $SDK101) { callSDK<void>("HealthKit_6be9a005889899ab", 282276102039638, this, [value]); }
   /**
    * var limit: Int?
    * @availability iOS 15.4+
    */
-  get limit(): (number) | null { return callSDK<(number) | null>("HealthKit_5d69670f0307b385", 1635965806342031, this, []); }
-  set limit(value: (number) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 1143416033235170, this, [value]); }
+  get limit(): (number) | null { return callSDK<(number) | null>("HealthKit_6be9a005889899ab", 1635965806342031, this, []); }
+  set limit(value: (number) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 1143416033235170, this, [value]); }
   /**
    * func result(for healthStore: HKHealthStore) async throws -> [Sample]
    * @availability iOS 15.4+
    */
-  result(healthStore: HKHealthStore): Promise<Array<HKSample>> { return callSDKAsync<Array<HKSample>>("HealthKit_5d69670f0307b385", 1242036277259619, this, [healthStore]); }
+  result(healthStore: HKHealthStore): Promise<Array<HKSample>> { return callSDKAsync<Array<HKSample>>("HealthKit_6be9a005889899ab", 1242036277259619, this, [healthStore]); }
   declare readonly $type: { "s:9HealthKit23HKSampleQueryDescriptorV": true };
 }
 
@@ -5712,7 +5712,7 @@ export class HKScoredAssessmentType extends HKSampleType {
    * convenience init(_ identifier: HKScoredAssessmentTypeIdentifier)
    * @availability iOS 18.0+
    */
-  static init(identifier: HKScoredAssessmentTypeIdentifier): HKScoredAssessmentType { return callSDK<HKScoredAssessmentType>("HealthKit_5d69670f0307b385", 4162549633690467, undefined, [identifier]); }
+  static init(identifier: HKScoredAssessmentTypeIdentifier): HKScoredAssessmentType { return callSDK<HKScoredAssessmentType>("HealthKit_6be9a005889899ab", 4162549633690467, undefined, [identifier]); }
   declare readonly $type: { "c:objc(cs)HKScoredAssessmentType": true; "c:objc(cs)HKSampleType": true; "c:objc(cs)HKObjectType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "allowsRecalibrationForEstimates": true; "isMaximumDurationRestricted": true; "isMinimumDurationRestricted": true; "maximumAllowedDuration": true; "minimumAllowedDuration": true };
 }
@@ -5725,14 +5725,14 @@ export const HKScoredAssessmentTypeIdentifier = {
    * static let GAD7: HKScoredAssessmentTypeIdentifier
    * @availability iOS 18.0+
    */
-  get GAD7(): HKScoredAssessmentTypeIdentifier { return callSDK<HKScoredAssessmentTypeIdentifier>("HealthKit_5d69670f0307b385", 2121775517982059, undefined, []); },
+  get GAD7(): HKScoredAssessmentTypeIdentifier { return callSDK<HKScoredAssessmentTypeIdentifier>("HealthKit_6be9a005889899ab", 2121775517982059, undefined, []); },
   /**
    * static let PHQ9: HKScoredAssessmentTypeIdentifier
    * @availability iOS 18.0+
    */
-  get PHQ9(): HKScoredAssessmentTypeIdentifier { return callSDK<HKScoredAssessmentTypeIdentifier>("HealthKit_5d69670f0307b385", 414137784656324, undefined, []); },
+  get PHQ9(): HKScoredAssessmentTypeIdentifier { return callSDK<HKScoredAssessmentTypeIdentifier>("HealthKit_6be9a005889899ab", 414137784656324, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): HKScoredAssessmentTypeIdentifier { return callSDK<HKScoredAssessmentTypeIdentifier>("HealthKit_5d69670f0307b385", 1384733650249748, undefined, [rawValue]); }
+  init(rawValue: string): HKScoredAssessmentTypeIdentifier { return callSDK<HKScoredAssessmentTypeIdentifier>("HealthKit_6be9a005889899ab", 1384733650249748, undefined, [rawValue]); }
 };
 
 /**
@@ -5744,12 +5744,12 @@ export class HKSeriesType extends HKSampleType {
    * class func heartbeat() -> Self
    * @availability iOS 13.0+
    */
-  static heartbeat(): HKSeriesType { return callSDK<HKSeriesType>("HealthKit_5d69670f0307b385", 3145079059453095, undefined, []); }
+  static heartbeat(): HKSeriesType { return callSDK<HKSeriesType>("HealthKit_6be9a005889899ab", 3145079059453095, undefined, []); }
   /**
    * class func workoutRoute() -> Self
    * @availability iOS 11.0+
    */
-  static workoutRoute(): HKSeriesType { return callSDK<HKSeriesType>("HealthKit_5d69670f0307b385", 3948248614717294, undefined, []); }
+  static workoutRoute(): HKSeriesType { return callSDK<HKSeriesType>("HealthKit_6be9a005889899ab", 3948248614717294, undefined, []); }
   declare readonly $type: { "c:objc(cs)HKSeriesType": true; "c:objc(cs)HKSampleType": true; "c:objc(cs)HKObjectType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "allowsRecalibrationForEstimates": true; "isMaximumDurationRestricted": true; "isMinimumDurationRestricted": true; "maximumAllowedDuration": true; "minimumAllowedDuration": true };
 }
@@ -5763,17 +5763,17 @@ export class HKSource extends SDKHandle {
    * class func `default`() -> HKSource
    * @availability iOS 8.0+
    */
-  static default(): HKSource { return callSDK<HKSource>("HealthKit_5d69670f0307b385", 1769775524094552, undefined, []); }
+  static default(): HKSource { return callSDK<HKSource>("HealthKit_6be9a005889899ab", 1769775524094552, undefined, []); }
   /**
    * var bundleIdentifier: String { get }
    * @availability iOS 8.0+
    */
-  get bundleIdentifier(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 1464176582252646, this, []); }
+  get bundleIdentifier(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 1464176582252646, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 3549909159755750, this, []); }
+  get name(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 3549909159755750, this, []); }
   declare readonly $type: { "c:objc(cs)HKSource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bundleIdentifier": true; "name": true };
 }
@@ -5781,7 +5781,7 @@ export class HKSource extends SDKHandle {
 /** class HKSourceQuery */
 export class HKSourceQuery extends HKQuery {
   /** init(sampleType: HKSampleType, samplePredicate objectPredicate: NSPredicate?, completionHandler: @escaping @Sendable (HKSourceQuery, Set<HKSource>?, (any Error)?) -> Void) */
-  static init(sampleType: HKSampleType, objectPredicate: $SDK4, completionHandler: ((arg0: HKSourceQuery, arg1: (Array<HKSource>) | null, arg2: (NativeError) | null) => void)): HKSourceQuery { return callSDK<HKSourceQuery>("HealthKit_5d69670f0307b385", 4289019496065613, undefined, [sampleType, objectPredicate, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static init(sampleType: HKSampleType, objectPredicate: $SDK4, completionHandler: ((arg0: HKSourceQuery, arg1: (Array<HKSource>) | null, arg2: (NativeError) | null) => void)): HKSourceQuery { return callSDK<HKSourceQuery>("HealthKit_6be9a005889899ab", 4289019496065613, undefined, [sampleType, objectPredicate, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKSourceQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -5795,18 +5795,18 @@ export class HKSourceQueryDescriptor<Sample = unknown> extends SDKHandle {
    * func result(for healthStore: HKHealthStore) async throws -> [HKSource]
    * @availability iOS 15.4+
    */
-  result(healthStore: HKHealthStore): Promise<Array<HKSource>> { return callSDKAsync<Array<HKSource>>("HealthKit_5d69670f0307b385", 3282055221165046, this, [healthStore]); }
+  result(healthStore: HKHealthStore): Promise<Array<HKSource>> { return callSDKAsync<Array<HKSource>>("HealthKit_6be9a005889899ab", 3282055221165046, this, [healthStore]); }
   /**
    * var predicate: HKSamplePredicate<Sample>
    * @availability iOS 15.4+
    */
-  get predicate(): $SDK95 { return callSDK<$SDK95>("HealthKit_5d69670f0307b385", 2765903558060710, this, []); }
-  set predicate(value: $SDK95) { callSDK<void>("HealthKit_5d69670f0307b385", 1675635164162071, this, [value]); }
+  get predicate(): $SDK95 { return callSDK<$SDK95>("HealthKit_6be9a005889899ab", 2765903558060710, this, []); }
+  set predicate(value: $SDK95) { callSDK<void>("HealthKit_6be9a005889899ab", 1675635164162071, this, [value]); }
   /**
    * init(predicate: HKSamplePredicate<Sample>)
    * @availability iOS 15.4+
    */
-  static init(predicate: $SDK95): HKSourceQueryDescriptor<HKSample> { return callSDK<HKSourceQueryDescriptor<HKSample>>("HealthKit_5d69670f0307b385", 2069924362398153, undefined, [predicate]); }
+  static init(predicate: $SDK95): HKSourceQueryDescriptor<HKSample> { return callSDK<HKSourceQueryDescriptor<HKSample>>("HealthKit_6be9a005889899ab", 2069924362398153, undefined, [predicate]); }
   declare readonly $type: { "s:9HealthKit23HKSourceQueryDescriptorV": true };
 }
 
@@ -5825,32 +5825,32 @@ export class HKSourceRevision extends SDKHandle {
    * init(source: HKSource, version: String?)
    * @availability iOS 9.0+
    */
-  static initSourceVersion(source: HKSource, version?: (string) | null): HKSourceRevision { return callSDK<HKSourceRevision>("HealthKit_5d69670f0307b385", 788497158899234, undefined, [source, version]); }
+  static initSourceVersion(source: HKSource, version?: (string) | null): HKSourceRevision { return callSDK<HKSourceRevision>("HealthKit_6be9a005889899ab", 788497158899234, undefined, [source, version]); }
   /**
    * init(source: HKSource, version: String?, productType: String?, operatingSystemVersion: OperatingSystemVersion)
    * @availability iOS 11.0+
    */
-  static initSourceVersionProductTypeOperatingSystemVersion(source: HKSource, version: (string) | null, productType: (string) | null, operatingSystemVersion: _Foundation_OperatingSystemVersion): HKSourceRevision { return callSDK<HKSourceRevision>("HealthKit_5d69670f0307b385", 2069633358459523, undefined, [source, version, productType, operatingSystemVersion]); }
+  static initSourceVersionProductTypeOperatingSystemVersion(source: HKSource, version: (string) | null, productType: (string) | null, operatingSystemVersion: _Foundation_OperatingSystemVersion): HKSourceRevision { return callSDK<HKSourceRevision>("HealthKit_6be9a005889899ab", 2069633358459523, undefined, [source, version, productType, operatingSystemVersion]); }
   /**
    * var operatingSystemVersion: OperatingSystemVersion { get }
    * @availability iOS 11.0+
    */
-  get operatingSystemVersion(): _Foundation_OperatingSystemVersion { return callSDK<_Foundation_OperatingSystemVersion>("HealthKit_5d69670f0307b385", 2307001186277086, this, []); }
+  get operatingSystemVersion(): _Foundation_OperatingSystemVersion { return callSDK<_Foundation_OperatingSystemVersion>("HealthKit_6be9a005889899ab", 2307001186277086, this, []); }
   /**
    * var productType: String? { get }
    * @availability iOS 11.0+
    */
-  get productType(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 706633619939090, this, []); }
+  get productType(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 706633619939090, this, []); }
   /**
    * var source: HKSource { get }
    * @availability iOS 9.0+
    */
-  get source(): HKSource { return callSDK<HKSource>("HealthKit_5d69670f0307b385", 1555761771076965, this, []); }
+  get source(): HKSource { return callSDK<HKSource>("HealthKit_6be9a005889899ab", 1555761771076965, this, []); }
   /**
    * var version: String? { get }
    * @availability iOS 9.0+
    */
-  get version(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 945768793539816, this, []); }
+  get version(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 945768793539816, this, []); }
   declare readonly $type: { "c:objc(cs)HKSourceRevision": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "operatingSystemVersion": true; "productType": true; "source": true; "version": true };
 }
@@ -5864,32 +5864,32 @@ export class HKStateOfMind extends HKSample {
    * var kind: HKStateOfMind.Kind { get }
    * @availability iOS 18.0+
    */
-  get kind(): HKStateOfMind_Kind { return callSDK<HKStateOfMind_Kind>("HealthKit_5d69670f0307b385", 3481203685548473, this, []); }
+  get kind(): HKStateOfMind_Kind { return callSDK<HKStateOfMind_Kind>("HealthKit_6be9a005889899ab", 3481203685548473, this, []); }
   /**
    * var valence: Double { get }
    * @availability iOS 18.0+
    */
-  get valence(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 3951724519618078, this, []); }
+  get valence(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 3951724519618078, this, []); }
   /**
    * var valenceClassification: HKStateOfMind.ValenceClassification { get }
    * @availability iOS 18.0+
    */
-  get valenceClassification(): HKStateOfMind_ValenceClassification { return callSDK<HKStateOfMind_ValenceClassification>("HealthKit_5d69670f0307b385", 433030274807977, this, []); }
+  get valenceClassification(): HKStateOfMind_ValenceClassification { return callSDK<HKStateOfMind_ValenceClassification>("HealthKit_6be9a005889899ab", 433030274807977, this, []); }
   /**
    * var associations: [HKStateOfMind.Association] { get }
    * @availability iOS 18.0+
    */
-  get associations(): Array<HKStateOfMind_Association> { return callSDK<Array<HKStateOfMind_Association>>("HealthKit_5d69670f0307b385", 887079043214254, this, []); }
+  get associations(): Array<HKStateOfMind_Association> { return callSDK<Array<HKStateOfMind_Association>>("HealthKit_6be9a005889899ab", 887079043214254, this, []); }
   /**
    * convenience init(date: Date, kind: HKStateOfMind.Kind, valence: Double, labels: [HKStateOfMind.Label], associations: [HKStateOfMind.Association], metadata: [String : Any]? = [:])
    * @availability iOS 18.0+
    */
-  static init(date: globalThis.Date, kind: HKStateOfMind_Kind, valence: number, labels: Array<HKStateOfMind_Label>, associations: Array<HKStateOfMind_Association>, metadata?: $SDK29): HKStateOfMind { return callSDK<HKStateOfMind>("HealthKit_5d69670f0307b385", 618788549078615, undefined, [date, kind, valence, labels, associations, metadata]); }
+  static init(date: globalThis.Date, kind: HKStateOfMind_Kind, valence: number, labels: Array<HKStateOfMind_Label>, associations: Array<HKStateOfMind_Association>, metadata?: $SDK29): HKStateOfMind { return callSDK<HKStateOfMind>("HealthKit_6be9a005889899ab", 618788549078615, undefined, [date, kind, valence, labels, associations, metadata]); }
   /**
    * var labels: [HKStateOfMind.Label] { get }
    * @availability iOS 18.0+
    */
-  get labels(): Array<HKStateOfMind_Label> { return callSDK<Array<HKStateOfMind_Label>>("HealthKit_5d69670f0307b385", 2113216634289654, this, []); }
+  get labels(): Array<HKStateOfMind_Label> { return callSDK<Array<HKStateOfMind_Label>>("HealthKit_6be9a005889899ab", 2113216634289654, this, []); }
   declare readonly $type: { "c:objc(cs)HKStateOfMind": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "kind": true; "valence": true; "valenceClassification": true };
 }
@@ -5905,7 +5905,7 @@ export const HKStateOfMind_Association = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HKStateOfMind_Association) | null { return callSDK<(HKStateOfMind_Association) | null>("HealthKit_5d69670f0307b385", 4328226218934620, undefined, [rawValue]); }
+  init(rawValue: number): (HKStateOfMind_Association) | null { return callSDK<(HKStateOfMind_Association) | null>("HealthKit_6be9a005889899ab", 4328226218934620, undefined, [rawValue]); }
 };
 
 /**
@@ -5919,7 +5919,7 @@ export const HKStateOfMind_Kind = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HKStateOfMind_Kind) | null { return callSDK<(HKStateOfMind_Kind) | null>("HealthKit_5d69670f0307b385", 2511073476205250, undefined, [rawValue]); }
+  init(rawValue: number): (HKStateOfMind_Kind) | null { return callSDK<(HKStateOfMind_Kind) | null>("HealthKit_6be9a005889899ab", 2511073476205250, undefined, [rawValue]); }
 };
 
 /**
@@ -5933,7 +5933,7 @@ export const HKStateOfMind_Label = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HKStateOfMind_Label) | null { return callSDK<(HKStateOfMind_Label) | null>("HealthKit_5d69670f0307b385", 3186143904348613, undefined, [rawValue]); }
+  init(rawValue: number): (HKStateOfMind_Label) | null { return callSDK<(HKStateOfMind_Label) | null>("HealthKit_6be9a005889899ab", 3186143904348613, undefined, [rawValue]); }
 };
 
 /**
@@ -5947,12 +5947,12 @@ export const HKStateOfMind_ValenceClassification = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  initRawValue(rawValue: number): (HKStateOfMind_ValenceClassification) | null { return callSDK<(HKStateOfMind_ValenceClassification) | null>("HealthKit_5d69670f0307b385", 3667318776441731, undefined, [rawValue]); },
+  initRawValue(rawValue: number): (HKStateOfMind_ValenceClassification) | null { return callSDK<(HKStateOfMind_ValenceClassification) | null>("HealthKit_6be9a005889899ab", 3667318776441731, undefined, [rawValue]); },
   /**
    * init?(valence: Double)
    * @availability iOS 18.0+
    */
-  initValence(valence: number): (HKStateOfMind_ValenceClassification) | null { return callSDK<(HKStateOfMind_ValenceClassification) | null>("HealthKit_5d69670f0307b385", 1907157480044349, undefined, [valence]); }
+  initValence(valence: number): (HKStateOfMind_ValenceClassification) | null { return callSDK<(HKStateOfMind_ValenceClassification) | null>("HealthKit_6be9a005889899ab", 1907157480044349, undefined, [valence]); }
 };
 
 /**
@@ -5973,92 +5973,92 @@ export class HKStatistics extends SDKHandle {
    * func averageQuantity() -> HKQuantity?
    * @availability iOS 8.0+
    */
-  averageQuantity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 1442236875574677, this, []); }
+  averageQuantity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 1442236875574677, this, []); }
   /**
    * func averageQuantity(for source: HKSource) -> HKQuantity?
    * @availability iOS 8.0+
    */
-  averageQuantityFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 4283061183024299, this, [source]); }
+  averageQuantityFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 4283061183024299, this, [source]); }
   /**
    * func duration() -> HKQuantity?
    * @availability iOS 13.0+
    */
-  duration(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 557844297196374, this, []); }
+  duration(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 557844297196374, this, []); }
   /**
    * func duration(for source: HKSource) -> HKQuantity?
    * @availability iOS 13.0+
    */
-  durationFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 4362297273000878, this, [source]); }
+  durationFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 4362297273000878, this, [source]); }
   /**
    * func maximumQuantity() -> HKQuantity?
    * @availability iOS 8.0+
    */
-  maximumQuantity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 4230305050094300, this, []); }
+  maximumQuantity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 4230305050094300, this, []); }
   /**
    * func maximumQuantity(for source: HKSource) -> HKQuantity?
    * @availability iOS 8.0+
    */
-  maximumQuantityFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 961840495733417, this, [source]); }
+  maximumQuantityFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 961840495733417, this, [source]); }
   /**
    * func minimumQuantity() -> HKQuantity?
    * @availability iOS 8.0+
    */
-  minimumQuantity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 80125375275276, this, []); }
+  minimumQuantity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 80125375275276, this, []); }
   /**
    * func minimumQuantity(for source: HKSource) -> HKQuantity?
    * @availability iOS 8.0+
    */
-  minimumQuantityFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 3746278403461354, this, [source]); }
+  minimumQuantityFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 3746278403461354, this, [source]); }
   /**
    * func mostRecentQuantity() -> HKQuantity?
    * @availability iOS 12.0+
    */
-  mostRecentQuantity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 3851258886765018, this, []); }
+  mostRecentQuantity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 3851258886765018, this, []); }
   /**
    * func mostRecentQuantityDateInterval() -> DateInterval?
    * @availability iOS 12.0+
    */
-  mostRecentQuantityDateInterval(): $SDK106 { return callSDK<$SDK106>("HealthKit_5d69670f0307b385", 489908293848566, this, []); }
+  mostRecentQuantityDateInterval(): $SDK106 { return callSDK<$SDK106>("HealthKit_6be9a005889899ab", 489908293848566, this, []); }
   /**
    * func mostRecentQuantityDateInterval(for source: HKSource) -> DateInterval?
    * @availability iOS 12.0+
    */
-  mostRecentQuantityDateIntervalFor(source: HKSource): $SDK106 { return callSDK<$SDK106>("HealthKit_5d69670f0307b385", 3309789928080041, this, [source]); }
+  mostRecentQuantityDateIntervalFor(source: HKSource): $SDK106 { return callSDK<$SDK106>("HealthKit_6be9a005889899ab", 3309789928080041, this, [source]); }
   /**
    * func mostRecentQuantity(for source: HKSource) -> HKQuantity?
    * @availability iOS 12.0+
    */
-  mostRecentQuantityFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 3422246868718079, this, [source]); }
+  mostRecentQuantityFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 3422246868718079, this, [source]); }
   /**
    * func sumQuantity() -> HKQuantity?
    * @availability iOS 8.0+
    */
-  sumQuantity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 3080593829141051, this, []); }
+  sumQuantity(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 3080593829141051, this, []); }
   /**
    * func sumQuantity(for source: HKSource) -> HKQuantity?
    * @availability iOS 8.0+
    */
-  sumQuantityFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 1639664626089924, this, [source]); }
+  sumQuantityFor(source: HKSource): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 1639664626089924, this, [source]); }
   /**
    * var endDate: Date { get }
    * @availability iOS 8.0+
    */
-  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 3261203045004805, this, []); }
+  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 3261203045004805, this, []); }
   /**
    * var quantityType: HKQuantityType { get }
    * @availability iOS 8.0+
    */
-  get quantityType(): HKQuantityType { return callSDK<HKQuantityType>("HealthKit_5d69670f0307b385", 4165874430009365, this, []); }
+  get quantityType(): HKQuantityType { return callSDK<HKQuantityType>("HealthKit_6be9a005889899ab", 4165874430009365, this, []); }
   /**
    * var sources: [HKSource]? { get }
    * @availability iOS 8.0+
    */
-  get sources(): (Array<HKSource>) | null { return callSDK<(Array<HKSource>) | null>("HealthKit_5d69670f0307b385", 3380902169586220, this, []); }
+  get sources(): (Array<HKSource>) | null { return callSDK<(Array<HKSource>) | null>("HealthKit_6be9a005889899ab", 3380902169586220, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 8.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 2282531883641097, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 2282531883641097, this, []); }
   declare readonly $type: { "c:objc(cs)HKStatistics": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endDate": true; "quantityType": true; "sources": true; "startDate": true };
 }
@@ -6072,36 +6072,36 @@ export class HKStatisticsCollection extends SDKHandle {
    * func sources() -> Set<HKSource>
    * @availability iOS 8.0+
    */
-  sources(): Array<HKSource> { return callSDK<Array<HKSource>>("HealthKit_5d69670f0307b385", 1369466412163317, this, []); }
+  sources(): Array<HKSource> { return callSDK<Array<HKSource>>("HealthKit_6be9a005889899ab", 1369466412163317, this, []); }
   /**
    * func statistics() -> [HKStatistics]
    * @availability iOS 8.0+
    */
-  statistics(): Array<HKStatistics> { return callSDK<Array<HKStatistics>>("HealthKit_5d69670f0307b385", 899549487580855, this, []); }
+  statistics(): Array<HKStatistics> { return callSDK<Array<HKStatistics>>("HealthKit_6be9a005889899ab", 899549487580855, this, []); }
   /**
    * func statistics(for date: Date) -> HKStatistics?
    * @availability iOS 8.0+
    */
-  statisticsFor(date: globalThis.Date): (HKStatistics) | null { return callSDK<(HKStatistics) | null>("HealthKit_5d69670f0307b385", 716379094173718, this, [date]); }
+  statisticsFor(date: globalThis.Date): (HKStatistics) | null { return callSDK<(HKStatistics) | null>("HealthKit_6be9a005889899ab", 716379094173718, this, [date]); }
   declare readonly $type: { "c:objc(cs)HKStatisticsCollection": true; "c:objc(cs)NSObject": true };
 }
 
 /** class HKStatisticsCollectionQuery */
 export class HKStatisticsCollectionQuery extends HKQuery {
   /** init(quantityType: HKQuantityType, quantitySamplePredicate: NSPredicate?, options: HKStatisticsOptions = [], anchorDate: Date, intervalComponents: DateComponents) */
-  static init(quantityType: HKQuantityType, quantitySamplePredicate: $SDK4, options: HKStatisticsOptions, anchorDate: globalThis.Date, intervalComponents: _Foundation_DateComponents): HKStatisticsCollectionQuery { return callSDK<HKStatisticsCollectionQuery>("HealthKit_5d69670f0307b385", 1104964536010720, undefined, [quantityType, quantitySamplePredicate, options, anchorDate, intervalComponents]); }
+  static init(quantityType: HKQuantityType, quantitySamplePredicate: $SDK4, options: HKStatisticsOptions, anchorDate: globalThis.Date, intervalComponents: _Foundation_DateComponents): HKStatisticsCollectionQuery { return callSDK<HKStatisticsCollectionQuery>("HealthKit_6be9a005889899ab", 1104964536010720, undefined, [quantityType, quantitySamplePredicate, options, anchorDate, intervalComponents]); }
   /** var anchorDate: Date { get } */
-  get anchorDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 13930102230493, this, []); }
+  get anchorDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 13930102230493, this, []); }
   /** var initialResultsHandler: (@Sendable (HKStatisticsCollectionQuery, HKStatisticsCollection?, (any Error)?) -> Void)? { get set } */
-  get initialResultsHandler(): (((arg0: HKStatisticsCollectionQuery, arg1: (HKStatisticsCollection) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: HKStatisticsCollectionQuery, arg1: (HKStatisticsCollection) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("HealthKit_5d69670f0307b385", 2391059763382337, this, []); }
-  set initialResultsHandler(value: (((arg0: HKStatisticsCollectionQuery, arg1: (HKStatisticsCollection) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 2045084534454601, this, [value], [{"callback":{"out":[]}}]); }
+  get initialResultsHandler(): (((arg0: HKStatisticsCollectionQuery, arg1: (HKStatisticsCollection) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: HKStatisticsCollectionQuery, arg1: (HKStatisticsCollection) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("HealthKit_6be9a005889899ab", 2391059763382337, this, []); }
+  set initialResultsHandler(value: (((arg0: HKStatisticsCollectionQuery, arg1: (HKStatisticsCollection) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 2045084534454601, this, [value], [{"callback":{"out":[]}}]); }
   /** var intervalComponents: DateComponents { get } */
-  get intervalComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HealthKit_5d69670f0307b385", 3213920344474201, this, []); }
+  get intervalComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HealthKit_6be9a005889899ab", 3213920344474201, this, []); }
   /** var options: HKStatisticsOptions { get } */
-  get options(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 4027931477985440, this, []); }
+  get options(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 4027931477985440, this, []); }
   /** var statisticsUpdateHandler: (@Sendable (HKStatisticsCollectionQuery, HKStatistics?, HKStatisticsCollection?, (any Error)?) -> Void)? { get set } */
-  get statisticsUpdateHandler(): (((arg0: HKStatisticsCollectionQuery, arg1: (HKStatistics) | null, arg2: (HKStatisticsCollection) | null, arg3: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: HKStatisticsCollectionQuery, arg1: (HKStatistics) | null, arg2: (HKStatisticsCollection) | null, arg3: (NativeError) | null) => Promise<void>)) | null>("HealthKit_5d69670f0307b385", 1777978323105669, this, []); }
-  set statisticsUpdateHandler(value: (((arg0: HKStatisticsCollectionQuery, arg1: (HKStatistics) | null, arg2: (HKStatisticsCollection) | null, arg3: (NativeError) | null) => void)) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 1492241247910752, this, [value], [{"callback":{"out":[]}}]); }
+  get statisticsUpdateHandler(): (((arg0: HKStatisticsCollectionQuery, arg1: (HKStatistics) | null, arg2: (HKStatisticsCollection) | null, arg3: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: HKStatisticsCollectionQuery, arg1: (HKStatistics) | null, arg2: (HKStatisticsCollection) | null, arg3: (NativeError) | null) => Promise<void>)) | null>("HealthKit_6be9a005889899ab", 1777978323105669, this, []); }
+  set statisticsUpdateHandler(value: (((arg0: HKStatisticsCollectionQuery, arg1: (HKStatistics) | null, arg2: (HKStatisticsCollection) | null, arg3: (NativeError) | null) => void)) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 1492241247910752, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKStatisticsCollectionQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true; "anchorDate": true; "intervalComponents": true; "options": true };
 }
@@ -6115,41 +6115,41 @@ export class HKStatisticsCollectionQueryDescriptor extends SDKHandle {
    * var anchorDate: Date
    * @availability iOS 15.4+
    */
-  get anchorDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 772891490912395, this, []); }
-  set anchorDate(value: globalThis.Date) { callSDK<void>("HealthKit_5d69670f0307b385", 807160819848073, this, [value]); }
+  get anchorDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 772891490912395, this, []); }
+  set anchorDate(value: globalThis.Date) { callSDK<void>("HealthKit_6be9a005889899ab", 807160819848073, this, [value]); }
   /**
    * var intervalComponents: DateComponents
    * @availability iOS 15.4+
    */
-  get intervalComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HealthKit_5d69670f0307b385", 2624322588968345, this, []); }
-  set intervalComponents(value: _Foundation_DateComponents) { callSDK<void>("HealthKit_5d69670f0307b385", 286148263005898, this, [value]); }
+  get intervalComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HealthKit_6be9a005889899ab", 2624322588968345, this, []); }
+  set intervalComponents(value: _Foundation_DateComponents) { callSDK<void>("HealthKit_6be9a005889899ab", 286148263005898, this, [value]); }
   /**
    * func result(for healthStore: HKHealthStore) async throws -> HKStatisticsCollection
    * @availability iOS 15.4+
    */
-  result(healthStore: HKHealthStore): Promise<HKStatisticsCollection> { return callSDKAsync<HKStatisticsCollection>("HealthKit_5d69670f0307b385", 1505389373372187, this, [healthStore]); }
+  result(healthStore: HKHealthStore): Promise<HKStatisticsCollection> { return callSDKAsync<HKStatisticsCollection>("HealthKit_6be9a005889899ab", 1505389373372187, this, [healthStore]); }
   /**
    * var options: HKStatisticsOptions
    * @availability iOS 15.4+
    */
-  get options(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 358241679798891, this, []); }
-  set options(value: HKStatisticsOptions) { callSDK<void>("HealthKit_5d69670f0307b385", 1733591944091446, this, [value]); }
+  get options(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 358241679798891, this, []); }
+  set options(value: HKStatisticsOptions) { callSDK<void>("HealthKit_6be9a005889899ab", 1733591944091446, this, [value]); }
   /**
    * func results(for healthStore: HKHealthStore) -> HKStatisticsCollectionQueryDescriptor.Results
    * @availability iOS 15.4+
    */
-  results(healthStore: HKHealthStore): HKStatisticsCollectionQueryDescriptor_Results { return callSDK<HKStatisticsCollectionQueryDescriptor_Results>("HealthKit_5d69670f0307b385", 2555133436297087, this, [healthStore]); }
+  results(healthStore: HKHealthStore): HKStatisticsCollectionQueryDescriptor_Results { return callSDK<HKStatisticsCollectionQueryDescriptor_Results>("HealthKit_6be9a005889899ab", 2555133436297087, this, [healthStore]); }
   /**
    * init(predicate: HKSamplePredicate<HKQuantitySample>, options: HKStatisticsOptions, anchorDate: Date, intervalComponents: DateComponents)
    * @availability iOS 15.4+
    */
-  static init(predicate: $SDK82, options: HKStatisticsOptions, anchorDate: globalThis.Date, intervalComponents: _Foundation_DateComponents): HKStatisticsCollectionQueryDescriptor { return callSDK<HKStatisticsCollectionQueryDescriptor>("HealthKit_5d69670f0307b385", 2470978674258810, undefined, [predicate, options, anchorDate, intervalComponents]); }
+  static init(predicate: $SDK82, options: HKStatisticsOptions, anchorDate: globalThis.Date, intervalComponents: _Foundation_DateComponents): HKStatisticsCollectionQueryDescriptor { return callSDK<HKStatisticsCollectionQueryDescriptor>("HealthKit_6be9a005889899ab", 2470978674258810, undefined, [predicate, options, anchorDate, intervalComponents]); }
   /**
    * var predicate: HKSamplePredicate<HKQuantitySample>
    * @availability iOS 15.4+
    */
-  get predicate(): $SDK82 { return callSDK<$SDK82>("HealthKit_5d69670f0307b385", 1870269818180955, this, []); }
-  set predicate(value: $SDK82) { callSDK<void>("HealthKit_5d69670f0307b385", 4462828788341363, this, [value]); }
+  get predicate(): $SDK82 { return callSDK<$SDK82>("HealthKit_6be9a005889899ab", 1870269818180955, this, []); }
+  set predicate(value: $SDK82) { callSDK<void>("HealthKit_6be9a005889899ab", 4462828788341363, this, [value]); }
   declare readonly $type: { "s:9HealthKit37HKStatisticsCollectionQueryDescriptorV": true };
 }
 
@@ -6168,12 +6168,12 @@ export class HKStatisticsCollectionQueryDescriptor_Result extends SDKHandle {
    * let statisticsCollection: HKStatisticsCollection
    * @availability iOS 15.4+
    */
-  get statisticsCollection(): HKStatisticsCollection { return callSDK<HKStatisticsCollection>("HealthKit_5d69670f0307b385", 2511881967729120, this, []); }
+  get statisticsCollection(): HKStatisticsCollection { return callSDK<HKStatisticsCollection>("HealthKit_6be9a005889899ab", 2511881967729120, this, []); }
   /**
    * let updatedStatistics: [HKStatistics]?
    * @availability iOS 15.4+
    */
-  get updatedStatistics(): (Array<HKStatistics>) | null { return callSDK<(Array<HKStatistics>) | null>("HealthKit_5d69670f0307b385", 1679643977189164, this, []); }
+  get updatedStatistics(): (Array<HKStatistics>) | null { return callSDK<(Array<HKStatistics>) | null>("HealthKit_6be9a005889899ab", 1679643977189164, this, []); }
   declare readonly $type: { "s:9HealthKit37HKStatisticsCollectionQueryDescriptorV6ResultV": true };
 }
 
@@ -6186,7 +6186,7 @@ export class HKStatisticsCollectionQueryDescriptor_Results extends SDKHandle {
    * func makeAsyncIterator() -> HKStatisticsCollectionQueryDescriptor.Results.Iterator
    * @availability iOS 15.4+
    */
-  makeAsyncIterator(): HKStatisticsCollectionQueryDescriptor_Results_Iterator { return callSDK<HKStatisticsCollectionQueryDescriptor_Results_Iterator>("HealthKit_5d69670f0307b385", 3507878337247872, this, []); }
+  makeAsyncIterator(): HKStatisticsCollectionQueryDescriptor_Results_Iterator { return callSDK<HKStatisticsCollectionQueryDescriptor_Results_Iterator>("HealthKit_6be9a005889899ab", 3507878337247872, this, []); }
   declare readonly $type: { "s:9HealthKit37HKStatisticsCollectionQueryDescriptorV7ResultsV": true };
   declare readonly $element: HKStatisticsCollectionQueryDescriptor_Result;
 }
@@ -6212,7 +6212,7 @@ export class HKStatisticsCollectionQueryDescriptor_Results_Iterator extends SDKH
    * mutating func next() async throws -> HKStatisticsCollectionQueryDescriptor.Results.Element?
    * @availability iOS 15.4+
    */
-  next(): Promise<(HKStatisticsCollectionQueryDescriptor_Result) | null> { return callSDKAsync<(HKStatisticsCollectionQueryDescriptor_Result) | null>("HealthKit_5d69670f0307b385", 447698572199748, this, []); }
+  next(): Promise<(HKStatisticsCollectionQueryDescriptor_Result) | null> { return callSDKAsync<(HKStatisticsCollectionQueryDescriptor_Result) | null>("HealthKit_6be9a005889899ab", 447698572199748, this, []); }
   declare readonly $type: { "s:9HealthKit37HKStatisticsCollectionQueryDescriptorV7ResultsV8IteratorV": true };
 }
 
@@ -6239,54 +6239,54 @@ export const HKStatisticsOptions = {
    * static var cumulativeSum: HKStatisticsOptions { get }
    * @availability iOS 8.0+
    */
-  get cumulativeSum(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 1693683998331641, undefined, []); },
+  get cumulativeSum(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 1693683998331641, undefined, []); },
   /**
    * static var discreteAverage: HKStatisticsOptions { get }
    * @availability iOS 8.0+
    */
-  get discreteAverage(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 1529151245156000, undefined, []); },
+  get discreteAverage(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 1529151245156000, undefined, []); },
   /**
    * static var discreteMax: HKStatisticsOptions { get }
    * @availability iOS 8.0+
    */
-  get discreteMax(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 2282800926613698, undefined, []); },
+  get discreteMax(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 2282800926613698, undefined, []); },
   /**
    * static var discreteMin: HKStatisticsOptions { get }
    * @availability iOS 8.0+
    */
-  get discreteMin(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 3259431326369130, undefined, []); },
+  get discreteMin(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 3259431326369130, undefined, []); },
   /**
    * static var discreteMostRecent: HKStatisticsOptions { get }
    * @availability iOS 12.0+
    * @deprecated iOS 13.0
    */
-  get discreteMostRecent(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 3371318443276426, undefined, []); },
+  get discreteMostRecent(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 3371318443276426, undefined, []); },
   /**
    * static var duration: HKStatisticsOptions { get }
    * @availability iOS 13.0+
    */
-  get duration(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 3187758413523213, undefined, []); },
+  get duration(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 3187758413523213, undefined, []); },
   /**
    * static var mostRecent: HKStatisticsOptions { get }
    * @availability iOS 13.0+
    */
-  get mostRecent(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 1152515921785683, undefined, []); },
+  get mostRecent(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 1152515921785683, undefined, []); },
   /**
    * static var separateBySource: HKStatisticsOptions { get }
    * @availability iOS 8.0+
    */
-  get separateBySource(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 3820877344376949, undefined, []); },
+  get separateBySource(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 3820877344376949, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 87196939891350, undefined, [rawValue]); }
+  init(rawValue: number): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 87196939891350, undefined, [rawValue]); }
 };
 
 /** class HKStatisticsQuery */
 export class HKStatisticsQuery extends HKQuery {
   /** init(quantityType: HKQuantityType, quantitySamplePredicate: NSPredicate?, options: HKStatisticsOptions = [], completionHandler handler: @escaping @Sendable (HKStatisticsQuery, HKStatistics?, (any Error)?) -> Void) */
-  static init(quantityType: HKQuantityType, quantitySamplePredicate: $SDK4, options: HKStatisticsOptions, handler: ((arg0: HKStatisticsQuery, arg1: (HKStatistics) | null, arg2: (NativeError) | null) => void)): HKStatisticsQuery { return callSDK<HKStatisticsQuery>("HealthKit_5d69670f0307b385", 1190194768256828, undefined, [quantityType, quantitySamplePredicate, options, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  static init(quantityType: HKQuantityType, quantitySamplePredicate: $SDK4, options: HKStatisticsOptions, handler: ((arg0: HKStatisticsQuery, arg1: (HKStatistics) | null, arg2: (NativeError) | null) => void)): HKStatisticsQuery { return callSDK<HKStatisticsQuery>("HealthKit_6be9a005889899ab", 1190194768256828, undefined, [quantityType, quantitySamplePredicate, options, handler], [null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKStatisticsQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -6300,24 +6300,24 @@ export class HKStatisticsQueryDescriptor extends SDKHandle {
    * func result(for healthStore: HKHealthStore) async throws -> HKStatistics?
    * @availability iOS 15.4+
    */
-  result(healthStore: HKHealthStore): Promise<(HKStatistics) | null> { return callSDKAsync<(HKStatistics) | null>("HealthKit_5d69670f0307b385", 122617622603379, this, [healthStore]); }
+  result(healthStore: HKHealthStore): Promise<(HKStatistics) | null> { return callSDKAsync<(HKStatistics) | null>("HealthKit_6be9a005889899ab", 122617622603379, this, [healthStore]); }
   /**
    * var options: HKStatisticsOptions
    * @availability iOS 15.4+
    */
-  get options(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_5d69670f0307b385", 558955557169804, this, []); }
-  set options(value: HKStatisticsOptions) { callSDK<void>("HealthKit_5d69670f0307b385", 4213714079366611, this, [value]); }
+  get options(): HKStatisticsOptions { return callSDK<HKStatisticsOptions>("HealthKit_6be9a005889899ab", 558955557169804, this, []); }
+  set options(value: HKStatisticsOptions) { callSDK<void>("HealthKit_6be9a005889899ab", 4213714079366611, this, [value]); }
   /**
    * init(predicate: HKSamplePredicate<HKQuantitySample>, options: HKStatisticsOptions)
    * @availability iOS 15.4+
    */
-  static init(predicate: $SDK82, options: HKStatisticsOptions): HKStatisticsQueryDescriptor { return callSDK<HKStatisticsQueryDescriptor>("HealthKit_5d69670f0307b385", 1320490130282581, undefined, [predicate, options]); }
+  static init(predicate: $SDK82, options: HKStatisticsOptions): HKStatisticsQueryDescriptor { return callSDK<HKStatisticsQueryDescriptor>("HealthKit_6be9a005889899ab", 1320490130282581, undefined, [predicate, options]); }
   /**
    * var predicate: HKSamplePredicate<HKQuantitySample>
    * @availability iOS 15.4+
    */
-  get predicate(): $SDK82 { return callSDK<$SDK82>("HealthKit_5d69670f0307b385", 1640493542791422, this, []); }
-  set predicate(value: $SDK82) { callSDK<void>("HealthKit_5d69670f0307b385", 17192553751136, this, [value]); }
+  get predicate(): $SDK82 { return callSDK<$SDK82>("HealthKit_6be9a005889899ab", 1640493542791422, this, []); }
+  set predicate(value: $SDK82) { callSDK<void>("HealthKit_6be9a005889899ab", 17192553751136, this, [value]); }
   declare readonly $type: { "s:9HealthKit27HKStatisticsQueryDescriptorV": true };
 }
 
@@ -6338,7 +6338,7 @@ export const HKSwimmingStrokeStyle = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HKSwimmingStrokeStyle) | null { return callSDK<(HKSwimmingStrokeStyle) | null>("HealthKit_5d69670f0307b385", 788032924324584, undefined, [rawValue]); }
+  init(rawValue: number): (HKSwimmingStrokeStyle) | null { return callSDK<(HKSwimmingStrokeStyle) | null>("HealthKit_6be9a005889899ab", 788032924324584, undefined, [rawValue]); }
 };
 
 /**
@@ -6350,232 +6350,232 @@ export class HKUnit extends SDKHandle {
    * class func appleEffortScore() -> Self
    * @availability iOS 18.0+
    */
-  static appleEffortScore(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2476203117310622, undefined, []); }
+  static appleEffortScore(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2476203117310622, undefined, []); }
   /** class func atmosphere() -> Self */
-  static atmosphere(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2998162185229085, undefined, []); }
+  static atmosphere(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2998162185229085, undefined, []); }
   /**
    * class func calorie() -> Self
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  static calorie(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2564117375887906, undefined, []); }
+  static calorie(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2564117375887906, undefined, []); }
   /** class func centimeterOfWater() -> Self */
-  static centimeterOfWater(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2211278728168887, undefined, []); }
+  static centimeterOfWater(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2211278728168887, undefined, []); }
   /** class func count() -> Self */
-  static count(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 124931227987143, undefined, []); }
+  static count(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 124931227987143, undefined, []); }
   /**
    * class func cupImperial() -> Self
    * @availability iOS 9.0+
    */
-  static cupImperial(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2141725009374208, undefined, []); }
+  static cupImperial(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2141725009374208, undefined, []); }
   /**
    * class func cupUS() -> Self
    * @availability iOS 9.0+
    */
-  static cupUS(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2649368985162221, undefined, []); }
+  static cupUS(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2649368985162221, undefined, []); }
   /** class func day() -> Self */
-  static day(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 1593397506745785, undefined, []); }
+  static day(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 1593397506745785, undefined, []); }
   /**
    * class func decibelAWeightedSoundPressureLevel() -> Self
    * @availability iOS 13.0+
    */
-  static decibelAWeightedSoundPressureLevel(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3161693358098148, undefined, []); }
+  static decibelAWeightedSoundPressureLevel(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3161693358098148, undefined, []); }
   /**
    * class func decibelHearingLevel() -> Self
    * @availability iOS 13.0+
    */
-  static decibelHearingLevel(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3038288833961940, undefined, []); }
+  static decibelHearingLevel(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3038288833961940, undefined, []); }
   /**
    * class func degreeAngle() -> Self
    * @availability iOS 16.0+
    */
-  static degreeAngle(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2142175902269770, undefined, []); }
+  static degreeAngle(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2142175902269770, undefined, []); }
   /** class func degreeCelsius() -> Self */
-  static degreeCelsius(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 201721394055004, undefined, []); }
+  static degreeCelsius(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 201721394055004, undefined, []); }
   /** class func degreeFahrenheit() -> Self */
-  static degreeFahrenheit(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2174667441669731, undefined, []); }
+  static degreeFahrenheit(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2174667441669731, undefined, []); }
   /**
    * class func diopter() -> Self
    * @availability iOS 16.0+
    */
-  static diopter(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2317613852685955, undefined, []); }
+  static diopter(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2317613852685955, undefined, []); }
   /**
    * class func energyFormatterUnit(from unit: HKUnit) -> EnergyFormatter.Unit
    * @availability iOS 8.0+
    */
-  static energyFormatterUnit(unit: HKUnit): _Foundation_EnergyFormatter_Unit { return callSDK<_Foundation_EnergyFormatter_Unit>("HealthKit_5d69670f0307b385", 1401049361348755, undefined, [unit]); }
+  static energyFormatterUnit(unit: HKUnit): _Foundation_EnergyFormatter_Unit { return callSDK<_Foundation_EnergyFormatter_Unit>("HealthKit_6be9a005889899ab", 1401049361348755, undefined, [unit]); }
   /** class func fluidOunceImperial() -> Self */
-  static fluidOunceImperial(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 1183501811447179, undefined, []); }
+  static fluidOunceImperial(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 1183501811447179, undefined, []); }
   /** class func fluidOunceUS() -> Self */
-  static fluidOunceUS(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3465639131351911, undefined, []); }
+  static fluidOunceUS(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3465639131351911, undefined, []); }
   /** class func foot() -> Self */
-  static foot(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 808441408264144, undefined, []); }
+  static foot(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 808441408264144, undefined, []); }
   /** class func gram() -> Self */
-  static gram(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3774931524722904, undefined, []); }
+  static gram(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3774931524722904, undefined, []); }
   /** class func gramUnit(with prefix: HKMetricPrefix) -> Self */
-  static gramUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 4239399872742229, undefined, [prefix]); }
+  static gramUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 4239399872742229, undefined, [prefix]); }
   /**
    * class func hertz() -> Self
    * @availability iOS 13.0+
    */
-  static hertz(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 4123760900097653, undefined, []); }
+  static hertz(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 4123760900097653, undefined, []); }
   /**
    * class func hertzUnit(with prefix: HKMetricPrefix) -> Self
    * @availability iOS 13.0+
    */
-  static hertzUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 639562804585405, undefined, [prefix]); }
+  static hertzUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 639562804585405, undefined, [prefix]); }
   /** class func hour() -> Self */
-  static hour(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3799364275591186, undefined, []); }
+  static hour(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3799364275591186, undefined, []); }
   /** class func inch() -> Self */
-  static inch(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3374421177919155, undefined, []); }
+  static inch(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3374421177919155, undefined, []); }
   /**
    * class func inchesOfMercury() -> Self
    * @availability iOS 14.0+
    */
-  static inchesOfMercury(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2807357217105090, undefined, []); }
+  static inchesOfMercury(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2807357217105090, undefined, []); }
   /**
    * class func internationalUnit() -> Self
    * @availability iOS 11.0+
    */
-  static internationalUnit(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3171970717564692, undefined, []); }
+  static internationalUnit(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3171970717564692, undefined, []); }
   /** class func joule() -> Self */
-  static joule(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2422494405607812, undefined, []); }
+  static joule(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2422494405607812, undefined, []); }
   /** class func jouleUnit(with prefix: HKMetricPrefix) -> Self */
-  static jouleUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 1890367617796802, undefined, [prefix]); }
+  static jouleUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 1890367617796802, undefined, [prefix]); }
   /** class func kelvin() -> Self */
-  static kelvin(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3608528784277697, undefined, []); }
+  static kelvin(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3608528784277697, undefined, []); }
   /** class func kilocalorie() -> Self */
-  static kilocalorie(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 533228177951036, undefined, []); }
+  static kilocalorie(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 533228177951036, undefined, []); }
   /**
    * class func largeCalorie() -> Self
    * @availability iOS 11.0+
    */
-  static largeCalorie(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2787615481591349, undefined, []); }
+  static largeCalorie(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2787615481591349, undefined, []); }
   /**
    * class func lengthFormatterUnit(from unit: HKUnit) -> LengthFormatter.Unit
    * @availability iOS 8.0+
    */
-  static lengthFormatterUnit(unit: HKUnit): _Foundation_LengthFormatter_Unit { return callSDK<_Foundation_LengthFormatter_Unit>("HealthKit_5d69670f0307b385", 148384075574977, undefined, [unit]); }
+  static lengthFormatterUnit(unit: HKUnit): _Foundation_LengthFormatter_Unit { return callSDK<_Foundation_LengthFormatter_Unit>("HealthKit_6be9a005889899ab", 148384075574977, undefined, [unit]); }
   /** class func liter() -> Self */
-  static liter(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2589990654074713, undefined, []); }
+  static liter(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2589990654074713, undefined, []); }
   /** class func literUnit(with prefix: HKMetricPrefix) -> Self */
-  static literUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 4373331128810553, undefined, [prefix]); }
+  static literUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 4373331128810553, undefined, [prefix]); }
   /**
    * class func lux() -> Self
    * @availability iOS 17.0+
    */
-  static lux(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3796761549803564, undefined, []); }
+  static lux(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3796761549803564, undefined, []); }
   /**
    * class func luxUnit(with prefix: HKMetricPrefix) -> Self
    * @availability iOS 17.0+
    */
-  static luxUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 757957210464198, undefined, [prefix]); }
+  static luxUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 757957210464198, undefined, [prefix]); }
   /**
    * class func massFormatterUnit(from unit: HKUnit) -> MassFormatter.Unit
    * @availability iOS 8.0+
    */
-  static massFormatterUnit(unit: HKUnit): _Foundation_MassFormatter_Unit { return callSDK<_Foundation_MassFormatter_Unit>("HealthKit_5d69670f0307b385", 2003089875738969, undefined, [unit]); }
+  static massFormatterUnit(unit: HKUnit): _Foundation_MassFormatter_Unit { return callSDK<_Foundation_MassFormatter_Unit>("HealthKit_6be9a005889899ab", 2003089875738969, undefined, [unit]); }
   /** class func meter() -> Self */
-  static meter(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2429173269842672, undefined, []); }
+  static meter(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2429173269842672, undefined, []); }
   /** class func meterUnit(with prefix: HKMetricPrefix) -> Self */
-  static meterUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 741629619308373, undefined, [prefix]); }
+  static meterUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 741629619308373, undefined, [prefix]); }
   /** class func mile() -> Self */
-  static mile(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 1522428481295680, undefined, []); }
+  static mile(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 1522428481295680, undefined, []); }
   /** class func millimeterOfMercury() -> Self */
-  static millimeterOfMercury(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 4280504433993832, undefined, []); }
+  static millimeterOfMercury(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 4280504433993832, undefined, []); }
   /** class func minute() -> Self */
-  static minute(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3489440881861186, undefined, []); }
+  static minute(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3489440881861186, undefined, []); }
   /** class func moleUnit(with prefix: HKMetricPrefix, molarMass gramsPerMole: Double) -> Self */
-  static moleUnitWithMolarMass(prefix: HKMetricPrefix, gramsPerMole: number): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 626316696797740, undefined, [prefix, gramsPerMole]); }
+  static moleUnitWithMolarMass(prefix: HKMetricPrefix, gramsPerMole: number): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 626316696797740, undefined, [prefix, gramsPerMole]); }
   /** class func moleUnit(withMolarMass gramsPerMole: Double) -> Self */
-  static moleUnitWithMolarMass80621(gramsPerMole: number): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 241802789188739, undefined, [gramsPerMole]); }
+  static moleUnitWithMolarMass80621(gramsPerMole: number): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 241802789188739, undefined, [gramsPerMole]); }
   /** class func ounce() -> Self */
-  static ounce(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 1460302634942162, undefined, []); }
+  static ounce(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 1460302634942162, undefined, []); }
   /** class func pascal() -> Self */
-  static pascal(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 1168184252674052, undefined, []); }
+  static pascal(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 1168184252674052, undefined, []); }
   /** class func pascalUnit(with prefix: HKMetricPrefix) -> Self */
-  static pascalUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3122531226955353, undefined, [prefix]); }
+  static pascalUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3122531226955353, undefined, [prefix]); }
   /** class func percent() -> Self */
-  static percent(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2240361565025500, undefined, []); }
+  static percent(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2240361565025500, undefined, []); }
   /** class func pintImperial() -> Self */
-  static pintImperial(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2635953453488164, undefined, []); }
+  static pintImperial(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2635953453488164, undefined, []); }
   /** class func pintUS() -> Self */
-  static pintUS(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3769245838970298, undefined, []); }
+  static pintUS(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3769245838970298, undefined, []); }
   /** class func pound() -> Self */
-  static pound(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 1111923254814793, undefined, []); }
+  static pound(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 1111923254814793, undefined, []); }
   /**
    * class func prismDiopter() -> Self
    * @availability iOS 16.0+
    */
-  static prismDiopter(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3092338196646229, undefined, []); }
+  static prismDiopter(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3092338196646229, undefined, []); }
   /**
    * class func radianAngle() -> Self
    * @availability iOS 16.0+
    */
-  static radianAngle(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2707859568312507, undefined, []); }
+  static radianAngle(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2707859568312507, undefined, []); }
   /**
    * class func radianAngleUnit(with prefix: HKMetricPrefix) -> Self
    * @availability iOS 16.0+
    */
-  static radianAngleUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2453693627047937, undefined, [prefix]); }
+  static radianAngleUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2453693627047937, undefined, [prefix]); }
   /** class func second() -> Self */
-  static second(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3562336991225555, undefined, []); }
+  static second(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3562336991225555, undefined, []); }
   /** class func secondUnit(with prefix: HKMetricPrefix) -> Self */
-  static secondUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 277651667593859, undefined, [prefix]); }
+  static secondUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 277651667593859, undefined, [prefix]); }
   /** class func siemen() -> Self */
-  static siemen(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2865154417147618, undefined, []); }
+  static siemen(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2865154417147618, undefined, []); }
   /** class func siemenUnit(with prefix: HKMetricPrefix) -> Self */
-  static siemenUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2139812259976965, undefined, [prefix]); }
+  static siemenUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2139812259976965, undefined, [prefix]); }
   /**
    * class func smallCalorie() -> Self
    * @availability iOS 11.0+
    */
-  static smallCalorie(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3022854064203378, undefined, []); }
+  static smallCalorie(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3022854064203378, undefined, []); }
   /** class func stone() -> Self */
-  static stone(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2945236793011856, undefined, []); }
+  static stone(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2945236793011856, undefined, []); }
   /**
    * class func volt() -> Self
    * @availability iOS 14.0+
    */
-  static volt(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3941250053971901, undefined, []); }
+  static volt(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3941250053971901, undefined, []); }
   /**
    * class func voltUnit(with prefix: HKMetricPrefix) -> Self
    * @availability iOS 14.0+
    */
-  static voltUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3148889276235660, undefined, [prefix]); }
+  static voltUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3148889276235660, undefined, [prefix]); }
   /**
    * class func watt() -> Self
    * @availability iOS 16.0+
    */
-  static watt(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2317546314987604, undefined, []); }
+  static watt(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2317546314987604, undefined, []); }
   /**
    * class func wattUnit(with prefix: HKMetricPrefix) -> Self
    * @availability iOS 16.0+
    */
-  static wattUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 1599468638283265, undefined, [prefix]); }
+  static wattUnit(prefix: HKMetricPrefix): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 1599468638283265, undefined, [prefix]); }
   /**
    * class func yard() -> Self
    * @availability iOS 9.0+
    */
-  static yard(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 2370467373317259, undefined, []); }
+  static yard(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 2370467373317259, undefined, []); }
   /**
    * func isNull() -> Bool
    * @availability iOS 8.0+
    */
-  isNull(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 1657032799827550, this, []); }
+  isNull(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 1657032799827550, this, []); }
   /** func reciprocal() -> HKUnit */
-  reciprocal(): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 3550096086866380, this, []); }
+  reciprocal(): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 3550096086866380, this, []); }
   /** func unitDivided(by unit: HKUnit) -> HKUnit */
-  unitDivided(unit: HKUnit): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 343513331063186, this, [unit]); }
+  unitDivided(unit: HKUnit): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 343513331063186, this, [unit]); }
   /** func unitMultiplied(by unit: HKUnit) -> HKUnit */
-  unitMultiplied(unit: HKUnit): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 4013530680563305, this, [unit]); }
+  unitMultiplied(unit: HKUnit): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 4013530680563305, this, [unit]); }
   /** func unitRaised(toPower power: Int) -> HKUnit */
-  unitRaised(power: number): HKUnit { return callSDK<HKUnit>("HealthKit_5d69670f0307b385", 1193565913132611, this, [power]); }
+  unitRaised(power: number): HKUnit { return callSDK<HKUnit>("HealthKit_6be9a005889899ab", 1193565913132611, this, [power]); }
   /**
    * var unitString: String { get }
    * @availability iOS 8.0+
    */
-  get unitString(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 1329535769297436, this, []); }
+  get unitString(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 1329535769297436, this, []); }
   declare readonly $type: { "c:objc(cs)HKUnit": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "unitString": true };
 }
@@ -6591,7 +6591,7 @@ export const HKUpdateFrequency = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKUpdateFrequency) | null { return callSDK<(HKUpdateFrequency) | null>("HealthKit_5d69670f0307b385", 983950716250071, undefined, [rawValue]); }
+  init(rawValue: number): (HKUpdateFrequency) | null { return callSDK<(HKUpdateFrequency) | null>("HealthKit_6be9a005889899ab", 983950716250071, undefined, [rawValue]); }
 };
 
 /**
@@ -6603,22 +6603,22 @@ export class HKUserAnnotatedMedication extends SDKHandle {
    * var hasSchedule: Bool { get }
    * @availability iOS 26.0+
    */
-  get hasSchedule(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 2132266096003329, this, []); }
+  get hasSchedule(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 2132266096003329, this, []); }
   /**
    * var isArchived: Bool { get }
    * @availability iOS 26.0+
    */
-  get isArchived(): boolean { return callSDK<boolean>("HealthKit_5d69670f0307b385", 338740513644575, this, []); }
+  get isArchived(): boolean { return callSDK<boolean>("HealthKit_6be9a005889899ab", 338740513644575, this, []); }
   /**
    * @NSCopying var medication: HKMedicationConcept { get }
    * @availability iOS 26.0+
    */
-  get medication(): HKMedicationConcept { return callSDK<HKMedicationConcept>("HealthKit_5d69670f0307b385", 563538516417284, this, []); }
+  get medication(): HKMedicationConcept { return callSDK<HKMedicationConcept>("HealthKit_6be9a005889899ab", 563538516417284, this, []); }
   /**
    * var nickname: String? { get }
    * @availability iOS 26.0+
    */
-  get nickname(): (string) | null { return callSDK<(string) | null>("HealthKit_5d69670f0307b385", 783556080609631, this, []); }
+  get nickname(): (string) | null { return callSDK<(string) | null>("HealthKit_6be9a005889899ab", 783556080609631, this, []); }
   declare readonly $type: { "c:objc(cs)HKUserAnnotatedMedication": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasSchedule": true; "isArchived": true; "medication": true; "nickname": true };
 }
@@ -6632,7 +6632,7 @@ export class HKUserAnnotatedMedicationQuery extends HKQuery {
    * init(predicate: NSPredicate?, limit: Int, resultsHandler: @escaping (HKUserAnnotatedMedicationQuery, HKUserAnnotatedMedication?, Bool, (any Error)?) -> Void)
    * @availability iOS 26.0+
    */
-  static init(predicate: $SDK4, limit: number, resultsHandler: ((arg0: HKUserAnnotatedMedicationQuery, arg1: (HKUserAnnotatedMedication) | null, arg2: boolean, arg3: (NativeError) | null) => void)): HKUserAnnotatedMedicationQuery { return callSDK<HKUserAnnotatedMedicationQuery>("HealthKit_5d69670f0307b385", 3786817257855903, undefined, [predicate, limit, resultsHandler], [null,null,{"callback":{"out":[]}}]); }
+  static init(predicate: $SDK4, limit: number, resultsHandler: ((arg0: HKUserAnnotatedMedicationQuery, arg1: (HKUserAnnotatedMedication) | null, arg2: boolean, arg3: (NativeError) | null) => void)): HKUserAnnotatedMedicationQuery { return callSDK<HKUserAnnotatedMedicationQuery>("HealthKit_6be9a005889899ab", 3786817257855903, undefined, [predicate, limit, resultsHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKUserAnnotatedMedicationQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -6646,24 +6646,24 @@ export class HKUserAnnotatedMedicationQueryDescriptor extends SDKHandle {
    * var limit: Int?
    * @availability iOS 26.0+
    */
-  get limit(): (number) | null { return callSDK<(number) | null>("HealthKit_5d69670f0307b385", 1864238425700361, this, []); }
-  set limit(value: (number) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 1962131282511860, this, [value]); }
+  get limit(): (number) | null { return callSDK<(number) | null>("HealthKit_6be9a005889899ab", 1864238425700361, this, []); }
+  set limit(value: (number) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 1962131282511860, this, [value]); }
   /**
    * func result(for healthStore: HKHealthStore) async throws -> [HKUserAnnotatedMedication]
    * @availability iOS 26.0+
    */
-  result(healthStore: HKHealthStore): Promise<Array<HKUserAnnotatedMedication>> { return callSDKAsync<Array<HKUserAnnotatedMedication>>("HealthKit_5d69670f0307b385", 1455092634791851, this, [healthStore]); }
+  result(healthStore: HKHealthStore): Promise<Array<HKUserAnnotatedMedication>> { return callSDKAsync<Array<HKUserAnnotatedMedication>>("HealthKit_6be9a005889899ab", 1455092634791851, this, [healthStore]); }
   /**
    * init(predicate: NSPredicate? = nil, limit: Int? = nil)
    * @availability iOS 26.0+
    */
-  static init(predicate?: $SDK4, limit?: (number) | null): HKUserAnnotatedMedicationQueryDescriptor { return callSDK<HKUserAnnotatedMedicationQueryDescriptor>("HealthKit_5d69670f0307b385", 4450201295071058, undefined, [predicate, limit]); }
+  static init(predicate?: $SDK4, limit?: (number) | null): HKUserAnnotatedMedicationQueryDescriptor { return callSDK<HKUserAnnotatedMedicationQueryDescriptor>("HealthKit_6be9a005889899ab", 4450201295071058, undefined, [predicate, limit]); }
   /**
    * var predicate: NSPredicate?
    * @availability iOS 26.0+
    */
-  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_5d69670f0307b385", 2542585430802308, this, []); }
-  set predicate(value: $SDK4) { callSDK<void>("HealthKit_5d69670f0307b385", 2267018841693111, this, [value]); }
+  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_6be9a005889899ab", 2542585430802308, this, []); }
+  set predicate(value: $SDK4) { callSDK<void>("HealthKit_6be9a005889899ab", 2267018841693111, this, [value]); }
   declare readonly $type: { "s:9HealthKit40HKUserAnnotatedMedicationQueryDescriptorV": true };
 }
 
@@ -6693,7 +6693,7 @@ export const HKUserMotionContext = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (HKUserMotionContext) | null { return callSDK<(HKUserMotionContext) | null>("HealthKit_5d69670f0307b385", 3462808801867305, undefined, [rawValue]); }
+  init(rawValue: number): (HKUserMotionContext) | null { return callSDK<(HKUserMotionContext) | null>("HealthKit_6be9a005889899ab", 3462808801867305, undefined, [rawValue]); }
 };
 
 /**
@@ -6706,52 +6706,52 @@ export class HKVerifiableClinicalRecord extends HKSample {
    * @availability iOS 15.0+
    * @deprecated iOS 15.4
    */
-  get jwsRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("HealthKit_5d69670f0307b385", 1654089160329054, this, []); }
+  get jwsRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("HealthKit_6be9a005889899ab", 1654089160329054, this, []); }
   /**
    * var dataRepresentation: Data { get }
    * @availability iOS 15.4+
    */
-  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("HealthKit_5d69670f0307b385", 195012730579200, this, []); }
+  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("HealthKit_6be9a005889899ab", 195012730579200, this, []); }
   /**
    * var expirationDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get expirationDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_5d69670f0307b385", 1229938972942052, this, []); }
+  get expirationDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_6be9a005889899ab", 1229938972942052, this, []); }
   /**
    * var issuedDate: Date { get }
    * @availability iOS 15.0+
    */
-  get issuedDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 3982876816075817, this, []); }
+  get issuedDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 3982876816075817, this, []); }
   /**
    * var issuerIdentifier: String { get }
    * @availability iOS 15.0+
    */
-  get issuerIdentifier(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 3153975816108788, this, []); }
+  get issuerIdentifier(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 3153975816108788, this, []); }
   /**
    * var itemNames: [String] { get }
    * @availability iOS 15.0+
    */
-  get itemNames(): Array<string> { return callSDK<Array<string>>("HealthKit_5d69670f0307b385", 1356649494743629, this, []); }
+  get itemNames(): Array<string> { return callSDK<Array<string>>("HealthKit_6be9a005889899ab", 1356649494743629, this, []); }
   /**
    * var recordTypes: [String] { get }
    * @availability iOS 15.0+
    */
-  get recordTypes(): Array<string> { return callSDK<Array<string>>("HealthKit_5d69670f0307b385", 2058391032733324, this, []); }
+  get recordTypes(): Array<string> { return callSDK<Array<string>>("HealthKit_6be9a005889899ab", 2058391032733324, this, []); }
   /**
    * var relevantDate: Date { get }
    * @availability iOS 15.0+
    */
-  get relevantDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 2260613561681367, this, []); }
+  get relevantDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 2260613561681367, this, []); }
   /**
    * var sourceType: HKVerifiableClinicalRecordSourceType? { get }
    * @availability iOS 15.4+
    */
-  get sourceType(): (HKVerifiableClinicalRecordSourceType) | null { return callSDK<(HKVerifiableClinicalRecordSourceType) | null>("HealthKit_5d69670f0307b385", 865692623485740, this, []); }
+  get sourceType(): (HKVerifiableClinicalRecordSourceType) | null { return callSDK<(HKVerifiableClinicalRecordSourceType) | null>("HealthKit_6be9a005889899ab", 865692623485740, this, []); }
   /**
    * @NSCopying var subject: HKVerifiableClinicalRecordSubject { get }
    * @availability iOS 15.0+
    */
-  get subject(): HKVerifiableClinicalRecordSubject { return callSDK<HKVerifiableClinicalRecordSubject>("HealthKit_5d69670f0307b385", 3294519389081746, this, []); }
+  get subject(): HKVerifiableClinicalRecordSubject { return callSDK<HKVerifiableClinicalRecordSubject>("HealthKit_6be9a005889899ab", 3294519389081746, this, []); }
   declare readonly $type: { "c:objc(cs)HKVerifiableClinicalRecord": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "jwsRepresentation": true; "dataRepresentation": true; "expirationDate": true; "issuedDate": true; "issuerIdentifier": true; "itemNames": true; "recordTypes": true; "relevantDate": true; "sourceType": true; "subject": true };
 }
@@ -6767,45 +6767,45 @@ export const HKVerifiableClinicalRecordCredentialType = {
    * static let covid19: HKVerifiableClinicalRecordCredentialType
    * @availability iOS 15.4+
    */
-  get covid19(): HKVerifiableClinicalRecordCredentialType { return callSDK<HKVerifiableClinicalRecordCredentialType>("HealthKit_5d69670f0307b385", 2259664434139357, undefined, []); },
+  get covid19(): HKVerifiableClinicalRecordCredentialType { return callSDK<HKVerifiableClinicalRecordCredentialType>("HealthKit_6be9a005889899ab", 2259664434139357, undefined, []); },
   /**
    * static let immunization: HKVerifiableClinicalRecordCredentialType
    * @availability iOS 15.4+
    */
-  get immunization(): HKVerifiableClinicalRecordCredentialType { return callSDK<HKVerifiableClinicalRecordCredentialType>("HealthKit_5d69670f0307b385", 3463549421681850, undefined, []); },
+  get immunization(): HKVerifiableClinicalRecordCredentialType { return callSDK<HKVerifiableClinicalRecordCredentialType>("HealthKit_6be9a005889899ab", 3463549421681850, undefined, []); },
   /**
    * static let laboratory: HKVerifiableClinicalRecordCredentialType
    * @availability iOS 15.4+
    */
-  get laboratory(): HKVerifiableClinicalRecordCredentialType { return callSDK<HKVerifiableClinicalRecordCredentialType>("HealthKit_5d69670f0307b385", 1907469589054694, undefined, []); },
+  get laboratory(): HKVerifiableClinicalRecordCredentialType { return callSDK<HKVerifiableClinicalRecordCredentialType>("HealthKit_6be9a005889899ab", 1907469589054694, undefined, []); },
   /**
    * static let recovery: HKVerifiableClinicalRecordCredentialType
    * @availability iOS 15.4+
    */
-  get recovery(): HKVerifiableClinicalRecordCredentialType { return callSDK<HKVerifiableClinicalRecordCredentialType>("HealthKit_5d69670f0307b385", 4302400140528312, undefined, []); },
+  get recovery(): HKVerifiableClinicalRecordCredentialType { return callSDK<HKVerifiableClinicalRecordCredentialType>("HealthKit_6be9a005889899ab", 4302400140528312, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.4+
    */
-  init(rawValue: string): HKVerifiableClinicalRecordCredentialType { return callSDK<HKVerifiableClinicalRecordCredentialType>("HealthKit_5d69670f0307b385", 1004500006118356, undefined, [rawValue]); }
+  init(rawValue: string): HKVerifiableClinicalRecordCredentialType { return callSDK<HKVerifiableClinicalRecordCredentialType>("HealthKit_6be9a005889899ab", 1004500006118356, undefined, [rawValue]); }
 };
 
 /** class HKVerifiableClinicalRecordQuery */
 export class HKVerifiableClinicalRecordQuery extends HKQuery {
   /** init(recordTypes: [String], predicate: NSPredicate?, resultsHandler: @escaping @Sendable (HKVerifiableClinicalRecordQuery, [HKVerifiableClinicalRecord]?, (any Error)?) -> Void) */
-  static initRecordTypesPredicateResultsHandler(recordTypes: Array<string>, predicate: $SDK4, resultsHandler: $SDK118): HKVerifiableClinicalRecordQuery { return callSDK<HKVerifiableClinicalRecordQuery>("HealthKit_5d69670f0307b385", 1070133321538857, undefined, [recordTypes, predicate, resultsHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initRecordTypesPredicateResultsHandler(recordTypes: Array<string>, predicate: $SDK4, resultsHandler: $SDK118): HKVerifiableClinicalRecordQuery { return callSDK<HKVerifiableClinicalRecordQuery>("HealthKit_6be9a005889899ab", 1070133321538857, undefined, [recordTypes, predicate, resultsHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(recordTypes: [String], sourceTypes: [HKVerifiableClinicalRecordSourceType], predicate: NSPredicate?, resultsHandler: @escaping @Sendable (HKVerifiableClinicalRecordQuery, [HKVerifiableClinicalRecord]?, (any Error)?) -> Void)
    * @availability iOS 15.4+
    */
-  static initRecordTypesSourceTypesPredicateResultsHandler(recordTypes: Array<string>, sourceTypes: $SDK119, predicate: $SDK4, resultsHandler: $SDK118): HKVerifiableClinicalRecordQuery { return callSDK<HKVerifiableClinicalRecordQuery>("HealthKit_5d69670f0307b385", 1581246466570230, undefined, [recordTypes, sourceTypes, predicate, resultsHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initRecordTypesSourceTypesPredicateResultsHandler(recordTypes: Array<string>, sourceTypes: $SDK119, predicate: $SDK4, resultsHandler: $SDK118): HKVerifiableClinicalRecordQuery { return callSDK<HKVerifiableClinicalRecordQuery>("HealthKit_6be9a005889899ab", 1581246466570230, undefined, [recordTypes, sourceTypes, predicate, resultsHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /** var recordTypes: [String] { get } */
-  get recordTypes(): Array<string> { return callSDK<Array<string>>("HealthKit_5d69670f0307b385", 1904174578697582, this, []); }
+  get recordTypes(): Array<string> { return callSDK<Array<string>>("HealthKit_6be9a005889899ab", 1904174578697582, this, []); }
   /**
    * var sourceTypes: [HKVerifiableClinicalRecordSourceType] { get }
    * @availability iOS 15.4+
    */
-  get sourceTypes(): $SDK119 { return callSDK<$SDK119>("HealthKit_5d69670f0307b385", 1916625901856541, this, []); }
+  get sourceTypes(): $SDK119 { return callSDK<$SDK119>("HealthKit_6be9a005889899ab", 1916625901856541, this, []); }
   declare readonly $type: { "c:objc(cs)HKVerifiableClinicalRecordQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true; "recordTypes": true; "sourceTypes": true };
 }
@@ -6819,30 +6819,30 @@ export class HKVerifiableClinicalRecordQueryDescriptor extends SDKHandle {
    * init(recordTypes: [HKVerifiableClinicalRecordCredentialType], sourceTypes: [HKVerifiableClinicalRecordSourceType], predicate: NSPredicate? = nil)
    * @availability iOS 15.4+
    */
-  static init(recordTypes: $SDK120, sourceTypes: $SDK119, predicate?: $SDK4): HKVerifiableClinicalRecordQueryDescriptor { return callSDK<HKVerifiableClinicalRecordQueryDescriptor>("HealthKit_5d69670f0307b385", 910867308769857, undefined, [recordTypes, sourceTypes, predicate]); }
+  static init(recordTypes: $SDK120, sourceTypes: $SDK119, predicate?: $SDK4): HKVerifiableClinicalRecordQueryDescriptor { return callSDK<HKVerifiableClinicalRecordQueryDescriptor>("HealthKit_6be9a005889899ab", 910867308769857, undefined, [recordTypes, sourceTypes, predicate]); }
   /**
    * var recordTypes: [HKVerifiableClinicalRecordCredentialType]
    * @availability iOS 15.4+
    */
-  get recordTypes(): $SDK120 { return callSDK<$SDK120>("HealthKit_5d69670f0307b385", 822698798392954, this, []); }
-  set recordTypes(value: $SDK120) { callSDK<void>("HealthKit_5d69670f0307b385", 236637755533583, this, [value]); }
+  get recordTypes(): $SDK120 { return callSDK<$SDK120>("HealthKit_6be9a005889899ab", 822698798392954, this, []); }
+  set recordTypes(value: $SDK120) { callSDK<void>("HealthKit_6be9a005889899ab", 236637755533583, this, [value]); }
   /**
    * var sourceTypes: [HKVerifiableClinicalRecordSourceType]
    * @availability iOS 15.4+
    */
-  get sourceTypes(): $SDK119 { return callSDK<$SDK119>("HealthKit_5d69670f0307b385", 2594313986403446, this, []); }
-  set sourceTypes(value: $SDK119) { callSDK<void>("HealthKit_5d69670f0307b385", 1868841266776991, this, [value]); }
+  get sourceTypes(): $SDK119 { return callSDK<$SDK119>("HealthKit_6be9a005889899ab", 2594313986403446, this, []); }
+  set sourceTypes(value: $SDK119) { callSDK<void>("HealthKit_6be9a005889899ab", 1868841266776991, this, [value]); }
   /**
    * func result(for healthStore: HKHealthStore) async throws -> [HKVerifiableClinicalRecord]
    * @availability iOS 15.4+
    */
-  result(healthStore: HKHealthStore): Promise<$SDK121> { return callSDKAsync<$SDK121>("HealthKit_5d69670f0307b385", 282334604289979, this, [healthStore]); }
+  result(healthStore: HKHealthStore): Promise<$SDK121> { return callSDKAsync<$SDK121>("HealthKit_6be9a005889899ab", 282334604289979, this, [healthStore]); }
   /**
    * var predicate: NSPredicate?
    * @availability iOS 15.4+
    */
-  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_5d69670f0307b385", 4005934352878383, this, []); }
-  set predicate(value: $SDK4) { callSDK<void>("HealthKit_5d69670f0307b385", 3924714869642167, this, [value]); }
+  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_6be9a005889899ab", 4005934352878383, this, []); }
+  set predicate(value: $SDK4) { callSDK<void>("HealthKit_6be9a005889899ab", 3924714869642167, this, [value]); }
   declare readonly $type: { "s:9HealthKit41HKVerifiableClinicalRecordQueryDescriptorV": true };
 }
 
@@ -6863,17 +6863,17 @@ export const HKVerifiableClinicalRecordSourceType = {
    * static let euDigitalCOVIDCertificate: HKVerifiableClinicalRecordSourceType
    * @availability iOS 15.4+
    */
-  get euDigitalCOVIDCertificate(): HKVerifiableClinicalRecordSourceType { return callSDK<HKVerifiableClinicalRecordSourceType>("HealthKit_5d69670f0307b385", 3570317461850385, undefined, []); },
+  get euDigitalCOVIDCertificate(): HKVerifiableClinicalRecordSourceType { return callSDK<HKVerifiableClinicalRecordSourceType>("HealthKit_6be9a005889899ab", 3570317461850385, undefined, []); },
   /**
    * static let smartHealthCard: HKVerifiableClinicalRecordSourceType
    * @availability iOS 15.4+
    */
-  get smartHealthCard(): HKVerifiableClinicalRecordSourceType { return callSDK<HKVerifiableClinicalRecordSourceType>("HealthKit_5d69670f0307b385", 3217728389373747, undefined, []); },
+  get smartHealthCard(): HKVerifiableClinicalRecordSourceType { return callSDK<HKVerifiableClinicalRecordSourceType>("HealthKit_6be9a005889899ab", 3217728389373747, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.4+
    */
-  init(rawValue: string): HKVerifiableClinicalRecordSourceType { return callSDK<HKVerifiableClinicalRecordSourceType>("HealthKit_5d69670f0307b385", 2145977922615209, undefined, [rawValue]); }
+  init(rawValue: string): HKVerifiableClinicalRecordSourceType { return callSDK<HKVerifiableClinicalRecordSourceType>("HealthKit_6be9a005889899ab", 2145977922615209, undefined, [rawValue]); }
 };
 
 /**
@@ -6885,12 +6885,12 @@ export class HKVerifiableClinicalRecordSubject extends SDKHandle {
    * var dateOfBirthComponents: DateComponents? { get }
    * @availability iOS 15.0+
    */
-  get dateOfBirthComponents(): (_Foundation_DateComponents) | null { return callSDK<(_Foundation_DateComponents) | null>("HealthKit_5d69670f0307b385", 3095126165533867, this, []); }
+  get dateOfBirthComponents(): (_Foundation_DateComponents) | null { return callSDK<(_Foundation_DateComponents) | null>("HealthKit_6be9a005889899ab", 3095126165533867, this, []); }
   /**
    * var fullName: String { get }
    * @availability iOS 15.0+
    */
-  get fullName(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 3868074142326653, this, []); }
+  get fullName(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 3868074142326653, this, []); }
   declare readonly $type: { "c:objc(cs)HKVerifiableClinicalRecordSubject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateOfBirthComponents": true; "fullName": true };
 }
@@ -6906,7 +6906,7 @@ export const HKVisionEye = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (HKVisionEye) | null { return callSDK<(HKVisionEye) | null>("HealthKit_5d69670f0307b385", 3497756805120112, undefined, [rawValue]); }
+  init(rawValue: number): (HKVisionEye) | null { return callSDK<(HKVisionEye) | null>("HealthKit_6be9a005889899ab", 3497756805120112, undefined, [rawValue]); }
 };
 
 /**
@@ -6920,7 +6920,7 @@ export const HKVisionPrescriptionType = {
    * init?(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (HKVisionPrescriptionType) | null { return callSDK<(HKVisionPrescriptionType) | null>("HealthKit_5d69670f0307b385", 3822457589099069, undefined, [rawValue]); }
+  init(rawValue: number): (HKVisionPrescriptionType) | null { return callSDK<(HKVisionPrescriptionType) | null>("HealthKit_6be9a005889899ab", 3822457589099069, undefined, [rawValue]); }
 };
 
 /**
@@ -6932,47 +6932,47 @@ export class HKVisionPrism extends SDKHandle {
    * init(amount: HKQuantity, angle: HKQuantity, eye: HKVisionEye)
    * @availability iOS 16.0+
    */
-  static initAmountAngleEye(amount: HKQuantity, angle: HKQuantity, eye: HKVisionEye): HKVisionPrism { return callSDK<HKVisionPrism>("HealthKit_5d69670f0307b385", 283255378825377, undefined, [amount, angle, eye]); }
+  static initAmountAngleEye(amount: HKQuantity, angle: HKQuantity, eye: HKVisionEye): HKVisionPrism { return callSDK<HKVisionPrism>("HealthKit_6be9a005889899ab", 283255378825377, undefined, [amount, angle, eye]); }
   /**
    * init(verticalAmount: HKQuantity, verticalBase: HKPrismBase, horizontalAmount: HKQuantity, horizontalBase: HKPrismBase, eye: HKVisionEye)
    * @availability iOS 16.0+
    */
-  static initVerticalAmountVerticalBaseHorizontalAmountHorizontalBaseEye(verticalAmount: HKQuantity, verticalBase: HKPrismBase, horizontalAmount: HKQuantity, horizontalBase: HKPrismBase, eye: HKVisionEye): HKVisionPrism { return callSDK<HKVisionPrism>("HealthKit_5d69670f0307b385", 3795700667073019, undefined, [verticalAmount, verticalBase, horizontalAmount, horizontalBase, eye]); }
+  static initVerticalAmountVerticalBaseHorizontalAmountHorizontalBaseEye(verticalAmount: HKQuantity, verticalBase: HKPrismBase, horizontalAmount: HKQuantity, horizontalBase: HKPrismBase, eye: HKVisionEye): HKVisionPrism { return callSDK<HKVisionPrism>("HealthKit_6be9a005889899ab", 3795700667073019, undefined, [verticalAmount, verticalBase, horizontalAmount, horizontalBase, eye]); }
   /**
    * @NSCopying var amount: HKQuantity { get }
    * @availability iOS 16.0+
    */
-  get amount(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 259176961113861, this, []); }
+  get amount(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 259176961113861, this, []); }
   /**
    * @NSCopying var angle: HKQuantity { get }
    * @availability iOS 16.0+
    */
-  get angle(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 3020399181043824, this, []); }
+  get angle(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 3020399181043824, this, []); }
   /**
    * var eye: HKVisionEye { get }
    * @availability iOS 16.0+
    */
-  get eye(): HKVisionEye { return callSDK<HKVisionEye>("HealthKit_5d69670f0307b385", 750151113146699, this, []); }
+  get eye(): HKVisionEye { return callSDK<HKVisionEye>("HealthKit_6be9a005889899ab", 750151113146699, this, []); }
   /**
    * @NSCopying var horizontalAmount: HKQuantity { get }
    * @availability iOS 16.0+
    */
-  get horizontalAmount(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 4268325212152737, this, []); }
+  get horizontalAmount(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 4268325212152737, this, []); }
   /**
    * var horizontalBase: HKPrismBase { get }
    * @availability iOS 16.0+
    */
-  get horizontalBase(): HKPrismBase { return callSDK<HKPrismBase>("HealthKit_5d69670f0307b385", 215072696215105, this, []); }
+  get horizontalBase(): HKPrismBase { return callSDK<HKPrismBase>("HealthKit_6be9a005889899ab", 215072696215105, this, []); }
   /**
    * @NSCopying var verticalAmount: HKQuantity { get }
    * @availability iOS 16.0+
    */
-  get verticalAmount(): HKQuantity { return callSDK<HKQuantity>("HealthKit_5d69670f0307b385", 2895548878671962, this, []); }
+  get verticalAmount(): HKQuantity { return callSDK<HKQuantity>("HealthKit_6be9a005889899ab", 2895548878671962, this, []); }
   /**
    * var verticalBase: HKPrismBase { get }
    * @availability iOS 16.0+
    */
-  get verticalBase(): HKPrismBase { return callSDK<HKPrismBase>("HealthKit_5d69670f0307b385", 1645666502414330, this, []); }
+  get verticalBase(): HKPrismBase { return callSDK<HKPrismBase>("HealthKit_6be9a005889899ab", 1645666502414330, this, []); }
   declare readonly $type: { "c:objc(cs)HKVisionPrism": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "amount": true; "angle": true; "eye": true; "horizontalAmount": true; "horizontalBase": true; "verticalAmount": true; "verticalBase": true };
 }
@@ -6988,7 +6988,7 @@ export const HKVO2MaxTestType = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (HKVO2MaxTestType) | null { return callSDK<(HKVO2MaxTestType) | null>("HealthKit_5d69670f0307b385", 2834107091751330, undefined, [rawValue]); }
+  init(rawValue: number): (HKVO2MaxTestType) | null { return callSDK<(HKVO2MaxTestType) | null>("HealthKit_6be9a005889899ab", 2834107091751330, undefined, [rawValue]); }
 };
 
 /**
@@ -7002,7 +7002,7 @@ export const HKWaterSalinity = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (HKWaterSalinity) | null { return callSDK<(HKWaterSalinity) | null>("HealthKit_5d69670f0307b385", 4307659834017038, undefined, [rawValue]); }
+  init(rawValue: number): (HKWaterSalinity) | null { return callSDK<(HKWaterSalinity) | null>("HealthKit_6be9a005889899ab", 4307659834017038, undefined, [rawValue]); }
 };
 
 /**
@@ -7016,7 +7016,7 @@ export const HKWeatherCondition = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HKWeatherCondition) | null { return callSDK<(HKWeatherCondition) | null>("HealthKit_5d69670f0307b385", 1338790800533460, undefined, [rawValue]); }
+  init(rawValue: number): (HKWeatherCondition) | null { return callSDK<(HKWeatherCondition) | null>("HealthKit_6be9a005889899ab", 1338790800533460, undefined, [rawValue]); }
 };
 
 /**
@@ -7030,7 +7030,7 @@ export const HKWheelchairUse = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HKWheelchairUse) | null { return callSDK<(HKWheelchairUse) | null>("HealthKit_5d69670f0307b385", 1473224754111190, undefined, [rawValue]); }
+  init(rawValue: number): (HKWheelchairUse) | null { return callSDK<(HKWheelchairUse) | null>("HealthKit_6be9a005889899ab", 1473224754111190, undefined, [rawValue]); }
 };
 
 /**
@@ -7039,12 +7039,12 @@ export const HKWheelchairUse = {
  */
 export class HKWheelchairUseObject extends SDKHandle {
   /** init() */
-  static init(): HKWheelchairUseObject { return callSDK<HKWheelchairUseObject>("HealthKit_5d69670f0307b385", 364039023507954, undefined, []); }
+  static init(): HKWheelchairUseObject { return callSDK<HKWheelchairUseObject>("HealthKit_6be9a005889899ab", 364039023507954, undefined, []); }
   /**
    * var wheelchairUse: HKWheelchairUse { get }
    * @availability iOS 10.0+
    */
-  get wheelchairUse(): HKWheelchairUse { return callSDK<HKWheelchairUse>("HealthKit_5d69670f0307b385", 2978084471554777, this, []); }
+  get wheelchairUse(): HKWheelchairUse { return callSDK<HKWheelchairUse>("HealthKit_6be9a005889899ab", 2978084471554777, this, []); }
   declare readonly $type: { "c:objc(cs)HKWheelchairUseObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "wheelchairUse": true };
 }
@@ -7059,107 +7059,107 @@ export class HKWorkout extends HKSample {
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  static initActivityTypeStartEnd(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date): HKWorkout { return callSDK<HKWorkout>("HealthKit_5d69670f0307b385", 811809863669735, undefined, [workoutActivityType, startDate, endDate]); }
+  static initActivityTypeStartEnd(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date): HKWorkout { return callSDK<HKWorkout>("HealthKit_6be9a005889899ab", 811809863669735, undefined, [workoutActivityType, startDate, endDate]); }
   /**
    * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, duration: TimeInterval, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 9.0+
    * @deprecated iOS 17.0
    */
-  static initActivityTypeStartEndDurationTotalEnergyBurnedTotalDistanceDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, duration: number, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_5d69670f0307b385", 1645514820697668, undefined, [workoutActivityType, startDate, endDate, duration, totalEnergyBurned, totalDistance, device, metadata]); }
+  static initActivityTypeStartEndDurationTotalEnergyBurnedTotalDistanceDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, duration: number, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_6be9a005889899ab", 1645514820697668, undefined, [workoutActivityType, startDate, endDate, duration, totalEnergyBurned, totalDistance, device, metadata]); }
   /**
    * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, duration: TimeInterval, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, metadata: [String : Any]?)
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  static initActivityTypeStartEndDurationTotalEnergyBurnedTotalDistanceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, duration: number, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_5d69670f0307b385", 2733454192515087, undefined, [workoutActivityType, startDate, endDate, duration, totalEnergyBurned, totalDistance, metadata]); }
+  static initActivityTypeStartEndDurationTotalEnergyBurnedTotalDistanceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, duration: number, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_6be9a005889899ab", 2733454192515087, undefined, [workoutActivityType, startDate, endDate, duration, totalEnergyBurned, totalDistance, metadata]); }
   /**
    * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, workoutEvents: [HKWorkoutEvent]?, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 9.0+
    * @deprecated iOS 17.0
    */
-  static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_5d69670f0307b385", 4137255206730445, undefined, [workoutActivityType, startDate, endDate, workoutEvents, totalEnergyBurned, totalDistance, device, metadata]); }
+  static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_6be9a005889899ab", 4137255206730445, undefined, [workoutActivityType, startDate, endDate, workoutEvents, totalEnergyBurned, totalDistance, device, metadata]); }
   /**
    * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, workoutEvents: [HKWorkoutEvent]?, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, metadata: [String : Any]?)
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_5d69670f0307b385", 4150199093581610, undefined, [workoutActivityType, startDate, endDate, workoutEvents, totalEnergyBurned, totalDistance, metadata]); }
+  static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_6be9a005889899ab", 4150199093581610, undefined, [workoutActivityType, startDate, endDate, workoutEvents, totalEnergyBurned, totalDistance, metadata]); }
   /**
    * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, workoutEvents: [HKWorkoutEvent]?, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, totalFlightsClimbed: HKQuantity?, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 11.0+
    * @deprecated iOS 17.0
    */
-  static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceTotalFlightsClimbedDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, totalFlightsClimbed?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_5d69670f0307b385", 1354971001437569, undefined, [workoutActivityType, startDate, endDate, workoutEvents, totalEnergyBurned, totalDistance, totalFlightsClimbed, device, metadata]); }
+  static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceTotalFlightsClimbedDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, totalFlightsClimbed?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_6be9a005889899ab", 1354971001437569, undefined, [workoutActivityType, startDate, endDate, workoutEvents, totalEnergyBurned, totalDistance, totalFlightsClimbed, device, metadata]); }
   /**
    * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, workoutEvents: [HKWorkoutEvent]?, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, totalSwimmingStrokeCount: HKQuantity?, device: HKDevice?, metadata: [String : Any]?)
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceTotalSwimmingStrokeCountDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, totalSwimmingStrokeCount?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_5d69670f0307b385", 4501369826897908, undefined, [workoutActivityType, startDate, endDate, workoutEvents, totalEnergyBurned, totalDistance, totalSwimmingStrokeCount, device, metadata]); }
+  static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceTotalSwimmingStrokeCountDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, totalSwimmingStrokeCount?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout { return callSDK<HKWorkout>("HealthKit_6be9a005889899ab", 4501369826897908, undefined, [workoutActivityType, startDate, endDate, workoutEvents, totalEnergyBurned, totalDistance, totalSwimmingStrokeCount, device, metadata]); }
   /**
    * func statistics(for quantityType: HKQuantityType) -> HKStatistics?
    * @availability iOS 16.0+
    */
-  statistics(quantityType: HKQuantityType): (HKStatistics) | null { return callSDK<(HKStatistics) | null>("HealthKit_5d69670f0307b385", 676224619994114, this, [quantityType]); }
+  statistics(quantityType: HKQuantityType): (HKStatistics) | null { return callSDK<(HKStatistics) | null>("HealthKit_6be9a005889899ab", 676224619994114, this, [quantityType]); }
   /**
    * var allStatistics: [HKQuantityType : HKStatistics] { get }
    * @availability iOS 16.0+
    */
-  get allStatistics(): $SDK68 { return callSDK<$SDK68>("HealthKit_5d69670f0307b385", 2400392716594337, this, []); }
+  get allStatistics(): $SDK68 { return callSDK<$SDK68>("HealthKit_6be9a005889899ab", 2400392716594337, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 8.0+
    */
-  get duration(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 3707391448116888, this, []); }
+  get duration(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 3707391448116888, this, []); }
   /**
    * var totalDistance: HKQuantity? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  get totalDistance(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 2561532490805374, this, []); }
+  get totalDistance(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 2561532490805374, this, []); }
   /**
    * var totalEnergyBurned: HKQuantity? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 18.0
    */
-  get totalEnergyBurned(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 1905184703479713, this, []); }
+  get totalEnergyBurned(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 1905184703479713, this, []); }
   /**
    * var totalFlightsClimbed: HKQuantity? { get }
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get totalFlightsClimbed(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 3686384422903039, this, []); }
+  get totalFlightsClimbed(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 3686384422903039, this, []); }
   /**
    * var totalSwimmingStrokeCount: HKQuantity? { get }
    * @availability iOS 10.0+
    * @deprecated iOS 18.0
    */
-  get totalSwimmingStrokeCount(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 4122669502881514, this, []); }
+  get totalSwimmingStrokeCount(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 4122669502881514, this, []); }
   /**
    * var workoutActivities: [HKWorkoutActivity] { get }
    * @availability iOS 16.0+
    */
-  get workoutActivities(): Array<HKWorkoutActivity> { return callSDK<Array<HKWorkoutActivity>>("HealthKit_5d69670f0307b385", 3754699134480603, this, []); }
+  get workoutActivities(): Array<HKWorkoutActivity> { return callSDK<Array<HKWorkoutActivity>>("HealthKit_6be9a005889899ab", 3754699134480603, this, []); }
   /**
    * var workoutActivityType: HKWorkoutActivityType { get }
    * @availability iOS 8.0+
    */
-  get workoutActivityType(): HKWorkoutActivityType { return callSDK<HKWorkoutActivityType>("HealthKit_5d69670f0307b385", 4145112288934636, this, []); }
+  get workoutActivityType(): HKWorkoutActivityType { return callSDK<HKWorkoutActivityType>("HealthKit_6be9a005889899ab", 4145112288934636, this, []); }
   /**
    * var workoutEvents: [HKWorkoutEvent]? { get }
    * @availability iOS 8.0+
    */
-  get workoutEvents(): $SDK123 { return callSDK<$SDK123>("HealthKit_5d69670f0307b385", 2502740530569937, this, []); }
+  get workoutEvents(): $SDK123 { return callSDK<$SDK123>("HealthKit_6be9a005889899ab", 2502740530569937, this, []); }
   /**
    * var zoneGroupsByType: [HKQuantityType : HKWorkoutZoneGroup]? { get }
    * @availability iOS 27.0+
    */
-  get zoneGroupsByType(): $SDK124 { return callSDK<$SDK124>("HealthKit_5d69670f0307b385", 595448356722283, this, []); }
+  get zoneGroupsByType(): $SDK124 { return callSDK<$SDK124>("HealthKit_6be9a005889899ab", 595448356722283, this, []); }
   /**
    * func zoneGroup(for quantityType: HKQuantityType) -> HKWorkoutZoneGroup?
    * @availability iOS 27.0+
    */
-  zoneGroup(quantityType: HKQuantityType): $SDK70 { return callSDK<$SDK70>("HealthKit_5d69670f0307b385", 2700918762302354, this, [quantityType]); }
+  zoneGroup(quantityType: HKQuantityType): $SDK70 { return callSDK<$SDK70>("HealthKit_6be9a005889899ab", 2700918762302354, this, [quantityType]); }
   declare readonly $type: { "c:objc(cs)HKWorkout": true; "c:objc(cs)HKSample": true; "c:objc(cs)HKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "device": true; "metadata": true; "source": true; "sourceRevision": true; "endDate": true; "hasUndeterminedDuration": true; "sampleType": true; "startDate": true; "allStatistics": true; "duration": true; "totalDistance": true; "totalEnergyBurned": true; "totalFlightsClimbed": true; "totalSwimmingStrokeCount": true; "workoutActivities": true; "workoutActivityType": true; "workoutEvents": true };
 }
@@ -7173,62 +7173,62 @@ export class HKWorkoutActivity extends SDKHandle {
    * init(workoutConfiguration: HKWorkoutConfiguration, start startDate: Date, end endDate: Date?, metadata: [String : Any]?)
    * @availability iOS 16.0+
    */
-  static init(workoutConfiguration: HKWorkoutConfiguration, startDate: globalThis.Date, endDate?: $SDK1, metadata?: $SDK29): HKWorkoutActivity { return callSDK<HKWorkoutActivity>("HealthKit_5d69670f0307b385", 4044576081908999, undefined, [workoutConfiguration, startDate, endDate, metadata]); }
+  static init(workoutConfiguration: HKWorkoutConfiguration, startDate: globalThis.Date, endDate?: $SDK1, metadata?: $SDK29): HKWorkoutActivity { return callSDK<HKWorkoutActivity>("HealthKit_6be9a005889899ab", 4044576081908999, undefined, [workoutConfiguration, startDate, endDate, metadata]); }
   /**
    * func statistics(for quantityType: HKQuantityType) -> HKStatistics?
    * @availability iOS 16.0+
    */
-  statistics(quantityType: HKQuantityType): (HKStatistics) | null { return callSDK<(HKStatistics) | null>("HealthKit_5d69670f0307b385", 3050432007297183, this, [quantityType]); }
+  statistics(quantityType: HKQuantityType): (HKStatistics) | null { return callSDK<(HKStatistics) | null>("HealthKit_6be9a005889899ab", 3050432007297183, this, [quantityType]); }
   /**
    * var uuid: UUID { get }
    * @availability iOS 16.0+
    */
-  get uuid(): string { return callSDK<string>("HealthKit_5d69670f0307b385", 4119483946469385, this, []); }
+  get uuid(): string { return callSDK<string>("HealthKit_6be9a005889899ab", 4119483946469385, this, []); }
   /**
    * var allStatistics: [HKQuantityType : HKStatistics] { get }
    * @availability iOS 16.0+
    */
-  get allStatistics(): $SDK68 { return callSDK<$SDK68>("HealthKit_5d69670f0307b385", 4111023182627802, this, []); }
+  get allStatistics(): $SDK68 { return callSDK<$SDK68>("HealthKit_6be9a005889899ab", 4111023182627802, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 16.0+
    */
-  get duration(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 2346096176692317, this, []); }
+  get duration(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 2346096176692317, this, []); }
   /**
    * var endDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get endDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_5d69670f0307b385", 1480151567848074, this, []); }
+  get endDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_6be9a005889899ab", 1480151567848074, this, []); }
   /**
    * var metadata: [String : Any]? { get }
    * @availability iOS 16.0+
    */
-  get metadata(): $SDK29 { return callSDK<$SDK29>("HealthKit_5d69670f0307b385", 3931074976270548, this, []); }
+  get metadata(): $SDK29 { return callSDK<$SDK29>("HealthKit_6be9a005889899ab", 3931074976270548, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 16.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 3641365320777641, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 3641365320777641, this, []); }
   /**
    * @NSCopying var workoutConfiguration: HKWorkoutConfiguration { get }
    * @availability iOS 16.0+
    */
-  get workoutConfiguration(): HKWorkoutConfiguration { return callSDK<HKWorkoutConfiguration>("HealthKit_5d69670f0307b385", 3037245294766579, this, []); }
+  get workoutConfiguration(): HKWorkoutConfiguration { return callSDK<HKWorkoutConfiguration>("HealthKit_6be9a005889899ab", 3037245294766579, this, []); }
   /**
    * var workoutEvents: [HKWorkoutEvent] { get }
    * @availability iOS 16.0+
    */
-  get workoutEvents(): Array<HKWorkoutEvent> { return callSDK<Array<HKWorkoutEvent>>("HealthKit_5d69670f0307b385", 2455279655880044, this, []); }
+  get workoutEvents(): Array<HKWorkoutEvent> { return callSDK<Array<HKWorkoutEvent>>("HealthKit_6be9a005889899ab", 2455279655880044, this, []); }
   /**
    * var zoneGroupsByType: [HKQuantityType : HKWorkoutZoneGroup]? { get }
    * @availability iOS 27.0+
    */
-  get zoneGroupsByType(): $SDK124 { return callSDK<$SDK124>("HealthKit_5d69670f0307b385", 4120664131067895, this, []); }
+  get zoneGroupsByType(): $SDK124 { return callSDK<$SDK124>("HealthKit_6be9a005889899ab", 4120664131067895, this, []); }
   /**
    * func zoneGroup(for quantityType: HKQuantityType) -> HKWorkoutZoneGroup?
    * @availability iOS 27.0+
    */
-  zoneGroup(quantityType: HKQuantityType): $SDK70 { return callSDK<$SDK70>("HealthKit_5d69670f0307b385", 1002743537764945, this, [quantityType]); }
+  zoneGroup(quantityType: HKQuantityType): $SDK70 { return callSDK<$SDK70>("HealthKit_6be9a005889899ab", 1002743537764945, this, [quantityType]); }
   declare readonly $type: { "c:objc(cs)HKWorkoutActivity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "allStatistics": true; "duration": true; "endDate": true; "metadata": true; "startDate": true; "workoutConfiguration": true; "workoutEvents": true };
 }
@@ -7244,7 +7244,7 @@ export const HKWorkoutActivityType = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKWorkoutActivityType) | null { return callSDK<(HKWorkoutActivityType) | null>("HealthKit_5d69670f0307b385", 2006358115088305, undefined, [rawValue]); }
+  init(rawValue: number): (HKWorkoutActivityType) | null { return callSDK<(HKWorkoutActivityType) | null>("HealthKit_6be9a005889899ab", 2006358115088305, undefined, [rawValue]); }
 };
 
 /**
@@ -7253,31 +7253,31 @@ export const HKWorkoutActivityType = {
  */
 export class HKWorkoutConfiguration extends SDKHandle {
   /** init() */
-  static init(): HKWorkoutConfiguration { return callSDK<HKWorkoutConfiguration>("HealthKit_5d69670f0307b385", 2072289647389001, undefined, []); }
+  static init(): HKWorkoutConfiguration { return callSDK<HKWorkoutConfiguration>("HealthKit_6be9a005889899ab", 2072289647389001, undefined, []); }
   /**
    * var activityType: HKWorkoutActivityType { get set }
    * @availability iOS 10.0+
    */
-  get activityType(): HKWorkoutActivityType { return callSDK<HKWorkoutActivityType>("HealthKit_5d69670f0307b385", 2049080499453680, this, []); }
-  set activityType(value: HKWorkoutActivityType) { callSDK<void>("HealthKit_5d69670f0307b385", 1769426001287247, this, [value]); }
+  get activityType(): HKWorkoutActivityType { return callSDK<HKWorkoutActivityType>("HealthKit_6be9a005889899ab", 2049080499453680, this, []); }
+  set activityType(value: HKWorkoutActivityType) { callSDK<void>("HealthKit_6be9a005889899ab", 1769426001287247, this, [value]); }
   /**
    * @NSCopying var lapLength: HKQuantity? { get set }
    * @availability iOS 10.0+
    */
-  get lapLength(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 4356059943031919, this, []); }
-  set lapLength(value: (HKQuantity) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 4393610659504657, this, [value]); }
+  get lapLength(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 4356059943031919, this, []); }
+  set lapLength(value: (HKQuantity) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 4393610659504657, this, [value]); }
   /**
    * var locationType: HKWorkoutSessionLocationType { get set }
    * @availability iOS 10.0+
    */
-  get locationType(): HKWorkoutSessionLocationType { return callSDK<HKWorkoutSessionLocationType>("HealthKit_5d69670f0307b385", 2642680887744348, this, []); }
-  set locationType(value: HKWorkoutSessionLocationType) { callSDK<void>("HealthKit_5d69670f0307b385", 1864851281885712, this, [value]); }
+  get locationType(): HKWorkoutSessionLocationType { return callSDK<HKWorkoutSessionLocationType>("HealthKit_6be9a005889899ab", 2642680887744348, this, []); }
+  set locationType(value: HKWorkoutSessionLocationType) { callSDK<void>("HealthKit_6be9a005889899ab", 1864851281885712, this, [value]); }
   /**
    * var swimmingLocationType: HKWorkoutSwimmingLocationType { get set }
    * @availability iOS 10.0+
    */
-  get swimmingLocationType(): HKWorkoutSwimmingLocationType { return callSDK<HKWorkoutSwimmingLocationType>("HealthKit_5d69670f0307b385", 3229643335618699, this, []); }
-  set swimmingLocationType(value: HKWorkoutSwimmingLocationType) { callSDK<void>("HealthKit_5d69670f0307b385", 4203413953277817, this, [value]); }
+  get swimmingLocationType(): HKWorkoutSwimmingLocationType { return callSDK<HKWorkoutSwimmingLocationType>("HealthKit_6be9a005889899ab", 3229643335618699, this, []); }
+  set swimmingLocationType(value: HKWorkoutSwimmingLocationType) { callSDK<void>("HealthKit_6be9a005889899ab", 4203413953277817, this, [value]); }
   declare readonly $type: { "c:objc(cs)HKWorkoutConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activityType": true; "lapLength": true; "locationType": true; "swimmingLocationType": true };
 }
@@ -7288,22 +7288,22 @@ export class HKWorkoutConfiguration extends SDKHandle {
  */
 export class HKWorkoutEffortRelationship extends SDKHandle {
   /** init() */
-  static init(): HKWorkoutEffortRelationship { return callSDK<HKWorkoutEffortRelationship>("HealthKit_5d69670f0307b385", 3772869946354038, undefined, []); }
+  static init(): HKWorkoutEffortRelationship { return callSDK<HKWorkoutEffortRelationship>("HealthKit_6be9a005889899ab", 3772869946354038, undefined, []); }
   /**
    * @NSCopying var activity: HKWorkoutActivity? { get }
    * @availability iOS 18.0+
    */
-  get activity(): $SDK3 { return callSDK<$SDK3>("HealthKit_5d69670f0307b385", 3580615893357493, this, []); }
+  get activity(): $SDK3 { return callSDK<$SDK3>("HealthKit_6be9a005889899ab", 3580615893357493, this, []); }
   /**
    * var samples: [HKSample]? { get }
    * @availability iOS 18.0+
    */
-  get samples(): (Array<HKSample>) | null { return callSDK<(Array<HKSample>) | null>("HealthKit_5d69670f0307b385", 2793197539186789, this, []); }
+  get samples(): (Array<HKSample>) | null { return callSDK<(Array<HKSample>) | null>("HealthKit_6be9a005889899ab", 2793197539186789, this, []); }
   /**
    * @NSCopying var workout: HKWorkout { get }
    * @availability iOS 18.0+
    */
-  get workout(): HKWorkout { return callSDK<HKWorkout>("HealthKit_5d69670f0307b385", 3092119263132338, this, []); }
+  get workout(): HKWorkout { return callSDK<HKWorkout>("HealthKit_6be9a005889899ab", 3092119263132338, this, []); }
   declare readonly $type: { "c:objc(cs)HKWorkoutEffortRelationship": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activity": true; "samples": true; "workout": true };
 }
@@ -7317,7 +7317,7 @@ export class HKWorkoutEffortRelationshipQuery extends HKQuery {
    * init(predicate: NSPredicate?, anchor: HKQueryAnchor?, options: HKWorkoutEffortRelationshipQueryOptions, resultsHandler: @escaping @Sendable (HKWorkoutEffortRelationshipQuery, [HKWorkoutEffortRelationship]?, HKQueryAnchor?, (any Error)?) -> Void)
    * @availability iOS 18.0+
    */
-  static init(predicate: $SDK4, anchor: (HKQueryAnchor) | null, options: HKWorkoutEffortRelationshipQueryOptions, resultsHandler: ((arg0: HKWorkoutEffortRelationshipQuery, arg1: (Array<HKWorkoutEffortRelationship>) | null, arg2: (HKQueryAnchor) | null, arg3: (NativeError) | null) => void)): HKWorkoutEffortRelationshipQuery { return callSDK<HKWorkoutEffortRelationshipQuery>("HealthKit_5d69670f0307b385", 4097673612573489, undefined, [predicate, anchor, options, resultsHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static init(predicate: $SDK4, anchor: (HKQueryAnchor) | null, options: HKWorkoutEffortRelationshipQueryOptions, resultsHandler: ((arg0: HKWorkoutEffortRelationshipQuery, arg1: (Array<HKWorkoutEffortRelationship>) | null, arg2: (HKQueryAnchor) | null, arg3: (NativeError) | null) => void)): HKWorkoutEffortRelationshipQuery { return callSDK<HKWorkoutEffortRelationshipQuery>("HealthKit_6be9a005889899ab", 4097673612573489, undefined, [predicate, anchor, options, resultsHandler], [null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKWorkoutEffortRelationshipQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -7331,35 +7331,35 @@ export class HKWorkoutEffortRelationshipQueryDescriptor extends SDKHandle {
    * var anchor: HKQueryAnchor?
    * @availability iOS 18.0+
    */
-  get anchor(): (HKQueryAnchor) | null { return callSDK<(HKQueryAnchor) | null>("HealthKit_5d69670f0307b385", 3715324173996207, this, []); }
-  set anchor(value: (HKQueryAnchor) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 3597865409504867, this, [value]); }
+  get anchor(): (HKQueryAnchor) | null { return callSDK<(HKQueryAnchor) | null>("HealthKit_6be9a005889899ab", 3715324173996207, this, []); }
+  set anchor(value: (HKQueryAnchor) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 3597865409504867, this, [value]); }
   /**
    * var option: HKWorkoutEffortRelationshipQueryOptions
    * @availability iOS 18.0+
    */
-  get option(): HKWorkoutEffortRelationshipQueryOptions { return callSDK<HKWorkoutEffortRelationshipQueryOptions>("HealthKit_5d69670f0307b385", 3274798718997533, this, []); }
-  set option(value: HKWorkoutEffortRelationshipQueryOptions) { callSDK<void>("HealthKit_5d69670f0307b385", 2663693289311332, this, [value]); }
+  get option(): HKWorkoutEffortRelationshipQueryOptions { return callSDK<HKWorkoutEffortRelationshipQueryOptions>("HealthKit_6be9a005889899ab", 3274798718997533, this, []); }
+  set option(value: HKWorkoutEffortRelationshipQueryOptions) { callSDK<void>("HealthKit_6be9a005889899ab", 2663693289311332, this, [value]); }
   /**
    * func result(for healthStore: HKHealthStore) async throws -> HKWorkoutEffortRelationshipQueryDescriptor.Result
    * @availability iOS 18.0+
    */
-  result(healthStore: HKHealthStore): Promise<HKWorkoutEffortRelationshipQueryDescriptor_Result> { return callSDKAsync<HKWorkoutEffortRelationshipQueryDescriptor_Result>("HealthKit_5d69670f0307b385", 2296125599915087, this, [healthStore]); }
+  result(healthStore: HKHealthStore): Promise<HKWorkoutEffortRelationshipQueryDescriptor_Result> { return callSDKAsync<HKWorkoutEffortRelationshipQueryDescriptor_Result>("HealthKit_6be9a005889899ab", 2296125599915087, this, [healthStore]); }
   /**
    * func results(for healthStore: HKHealthStore) -> HKWorkoutEffortRelationshipQueryDescriptor.Results
    * @availability iOS 18.0+
    */
-  results(healthStore: HKHealthStore): HKWorkoutEffortRelationshipQueryDescriptor_Results { return callSDK<HKWorkoutEffortRelationshipQueryDescriptor_Results>("HealthKit_5d69670f0307b385", 1395284342156676, this, [healthStore]); }
+  results(healthStore: HKHealthStore): HKWorkoutEffortRelationshipQueryDescriptor_Results { return callSDK<HKWorkoutEffortRelationshipQueryDescriptor_Results>("HealthKit_6be9a005889899ab", 1395284342156676, this, [healthStore]); }
   /**
    * init(predicate: NSPredicate?, anchor: HKQueryAnchor?, option: HKWorkoutEffortRelationshipQueryOptions)
    * @availability iOS 18.0+
    */
-  static init(predicate: $SDK4, anchor: (HKQueryAnchor) | null, option: HKWorkoutEffortRelationshipQueryOptions): HKWorkoutEffortRelationshipQueryDescriptor { return callSDK<HKWorkoutEffortRelationshipQueryDescriptor>("HealthKit_5d69670f0307b385", 4088473715445474, undefined, [predicate, anchor, option]); }
+  static init(predicate: $SDK4, anchor: (HKQueryAnchor) | null, option: HKWorkoutEffortRelationshipQueryOptions): HKWorkoutEffortRelationshipQueryDescriptor { return callSDK<HKWorkoutEffortRelationshipQueryDescriptor>("HealthKit_6be9a005889899ab", 4088473715445474, undefined, [predicate, anchor, option]); }
   /**
    * var predicate: NSPredicate?
    * @availability iOS 18.0+
    */
-  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_5d69670f0307b385", 4362733146989912, this, []); }
-  set predicate(value: $SDK4) { callSDK<void>("HealthKit_5d69670f0307b385", 4050849098823871, this, [value]); }
+  get predicate(): $SDK4 { return callSDK<$SDK4>("HealthKit_6be9a005889899ab", 4362733146989912, this, []); }
+  set predicate(value: $SDK4) { callSDK<void>("HealthKit_6be9a005889899ab", 4050849098823871, this, [value]); }
   declare readonly $type: { "s:9HealthKit42HKWorkoutEffortRelationshipQueryDescriptorV": true };
 }
 
@@ -7378,12 +7378,12 @@ export class HKWorkoutEffortRelationshipQueryDescriptor_Result extends SDKHandle
    * let relationships: [HKWorkoutEffortRelationship]
    * @availability iOS 18.0+
    */
-  get relationships(): Array<HKWorkoutEffortRelationship> { return callSDK<Array<HKWorkoutEffortRelationship>>("HealthKit_5d69670f0307b385", 1866500342406342, this, []); }
+  get relationships(): Array<HKWorkoutEffortRelationship> { return callSDK<Array<HKWorkoutEffortRelationship>>("HealthKit_6be9a005889899ab", 1866500342406342, this, []); }
   /**
    * let newAnchor: HKQueryAnchor
    * @availability iOS 18.0+
    */
-  get newAnchor(): HKQueryAnchor { return callSDK<HKQueryAnchor>("HealthKit_5d69670f0307b385", 2543279697148545, this, []); }
+  get newAnchor(): HKQueryAnchor { return callSDK<HKQueryAnchor>("HealthKit_6be9a005889899ab", 2543279697148545, this, []); }
   declare readonly $type: { "s:9HealthKit42HKWorkoutEffortRelationshipQueryDescriptorV6ResultV": true };
 }
 
@@ -7396,7 +7396,7 @@ export class HKWorkoutEffortRelationshipQueryDescriptor_Results extends SDKHandl
    * func makeAsyncIterator() -> HKWorkoutEffortRelationshipQueryDescriptor.Results.Iterator
    * @availability iOS 18.0+
    */
-  makeAsyncIterator(): HKWorkoutEffortRelationshipQueryDescriptor_Results_Iterator { return callSDK<HKWorkoutEffortRelationshipQueryDescriptor_Results_Iterator>("HealthKit_5d69670f0307b385", 3253203812879207, this, []); }
+  makeAsyncIterator(): HKWorkoutEffortRelationshipQueryDescriptor_Results_Iterator { return callSDK<HKWorkoutEffortRelationshipQueryDescriptor_Results_Iterator>("HealthKit_6be9a005889899ab", 3253203812879207, this, []); }
   declare readonly $type: { "s:9HealthKit42HKWorkoutEffortRelationshipQueryDescriptorV7ResultsV": true };
   declare readonly $element: HKWorkoutEffortRelationshipQueryDescriptor_Result;
 }
@@ -7422,7 +7422,7 @@ export class HKWorkoutEffortRelationshipQueryDescriptor_Results_Iterator extends
    * mutating func next() async throws -> HKWorkoutEffortRelationshipQueryDescriptor.Results.Element?
    * @availability iOS 18.0+
    */
-  next(): Promise<(HKWorkoutEffortRelationshipQueryDescriptor_Result) | null> { return callSDKAsync<(HKWorkoutEffortRelationshipQueryDescriptor_Result) | null>("HealthKit_5d69670f0307b385", 1140453275517621, this, []); }
+  next(): Promise<(HKWorkoutEffortRelationshipQueryDescriptor_Result) | null> { return callSDKAsync<(HKWorkoutEffortRelationshipQueryDescriptor_Result) | null>("HealthKit_6be9a005889899ab", 1140453275517621, this, []); }
   declare readonly $type: { "s:9HealthKit42HKWorkoutEffortRelationshipQueryDescriptorV7ResultsV8IteratorV": true };
 }
 
@@ -7449,7 +7449,7 @@ export const HKWorkoutEffortRelationshipQueryOptions = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HKWorkoutEffortRelationshipQueryOptions) | null { return callSDK<(HKWorkoutEffortRelationshipQueryOptions) | null>("HealthKit_5d69670f0307b385", 1632701406229365, undefined, [rawValue]); }
+  init(rawValue: number): (HKWorkoutEffortRelationshipQueryOptions) | null { return callSDK<(HKWorkoutEffortRelationshipQueryOptions) | null>("HealthKit_6be9a005889899ab", 1632701406229365, undefined, [rawValue]); }
 };
 
 /**
@@ -7462,39 +7462,39 @@ export class HKWorkoutEvent extends SDKHandle {
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  static initTypeDate(type: HKWorkoutEventType, date: globalThis.Date): HKWorkoutEvent { return callSDK<HKWorkoutEvent>("HealthKit_5d69670f0307b385", 1011754855172613, undefined, [type, date]); }
+  static initTypeDate(type: HKWorkoutEventType, date: globalThis.Date): HKWorkoutEvent { return callSDK<HKWorkoutEvent>("HealthKit_6be9a005889899ab", 1011754855172613, undefined, [type, date]); }
   /**
    * convenience init(type: HKWorkoutEventType, date: Date, metadata: [String : Any])
    * @availability iOS 10.0+
    * @deprecated iOS 11.0
    */
-  static initTypeDateMetadata(type: HKWorkoutEventType, date: globalThis.Date, metadata: Record<string, unknown>): HKWorkoutEvent { return callSDK<HKWorkoutEvent>("HealthKit_5d69670f0307b385", 3833206902917833, undefined, [type, date, metadata]); }
+  static initTypeDateMetadata(type: HKWorkoutEventType, date: globalThis.Date, metadata: Record<string, unknown>): HKWorkoutEvent { return callSDK<HKWorkoutEvent>("HealthKit_6be9a005889899ab", 3833206902917833, undefined, [type, date, metadata]); }
   /**
    * convenience init(type: HKWorkoutEventType, dateInterval: DateInterval, metadata: [String : Any]?)
    * @availability iOS 11.0+
    */
-  static initTypeDateIntervalMetadata(type: HKWorkoutEventType, dateInterval: _Foundation_DateInterval, metadata?: $SDK29): HKWorkoutEvent { return callSDK<HKWorkoutEvent>("HealthKit_5d69670f0307b385", 1339095188208125, undefined, [type, dateInterval, metadata]); }
+  static initTypeDateIntervalMetadata(type: HKWorkoutEventType, dateInterval: _Foundation_DateInterval, metadata?: $SDK29): HKWorkoutEvent { return callSDK<HKWorkoutEvent>("HealthKit_6be9a005889899ab", 1339095188208125, undefined, [type, dateInterval, metadata]); }
   /**
    * var date: Date { get }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_5d69670f0307b385", 1773681690609923, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("HealthKit_6be9a005889899ab", 1773681690609923, this, []); }
   /**
    * var dateInterval: DateInterval { get }
    * @availability iOS 11.0+
    */
-  get dateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("HealthKit_5d69670f0307b385", 2679038162345894, this, []); }
+  get dateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("HealthKit_6be9a005889899ab", 2679038162345894, this, []); }
   /**
    * var metadata: [String : Any]? { get }
    * @availability iOS 10.0+
    */
-  get metadata(): $SDK29 { return callSDK<$SDK29>("HealthKit_5d69670f0307b385", 2144909864299175, this, []); }
+  get metadata(): $SDK29 { return callSDK<$SDK29>("HealthKit_6be9a005889899ab", 2144909864299175, this, []); }
   /**
    * var type: HKWorkoutEventType { get }
    * @availability iOS 8.0+
    */
-  get type(): HKWorkoutEventType { return callSDK<HKWorkoutEventType>("HealthKit_5d69670f0307b385", 1812081073413935, this, []); }
+  get type(): HKWorkoutEventType { return callSDK<HKWorkoutEventType>("HealthKit_6be9a005889899ab", 1812081073413935, this, []); }
   declare readonly $type: { "c:objc(cs)HKWorkoutEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "date": true; "dateInterval": true; "metadata": true; "type": true };
 }
@@ -7510,7 +7510,7 @@ export const HKWorkoutEventType = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HKWorkoutEventType) | null { return callSDK<(HKWorkoutEventType) | null>("HealthKit_5d69670f0307b385", 1273953173485692, undefined, [rawValue]); }
+  init(rawValue: number): (HKWorkoutEventType) | null { return callSDK<(HKWorkoutEventType) | null>("HealthKit_6be9a005889899ab", 1273953173485692, undefined, [rawValue]); }
 };
 
 /**
@@ -7531,34 +7531,34 @@ export class HKWorkoutRouteBuilder extends HKSeriesBuilder {
    * func addMetadata(_ metadata: [String : Any]) async throws
    * @availability iOS 11.0+
    */
-  addMetadata(metadata: Record<string, unknown>, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3649805797664346, this, [metadata, completion], [null,{"callback":{"out":[]}}]); }
+  addMetadata(metadata: Record<string, unknown>, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3649805797664346, this, [metadata, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func finishRoute(with workout: HKWorkout, metadata: [String : Any]?) async throws -> HKWorkoutRoute
    * @availability iOS 11.0+
    */
-  finishRoute(workout: HKWorkout, metadata: $SDK29, completion: ((arg0: (HKWorkoutRoute) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3419483705578632, this, [workout, metadata, completion], [null,null,{"callback":{"out":[]}}]); }
+  finishRoute(workout: HKWorkout, metadata: $SDK29, completion: ((arg0: (HKWorkoutRoute) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3419483705578632, this, [workout, metadata, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(healthStore: HKHealthStore, device: HKDevice?)
    * @availability iOS 11.0+
    */
-  static init(healthStore: HKHealthStore, device?: (HKDevice) | null): HKWorkoutRouteBuilder { return callSDK<HKWorkoutRouteBuilder>("HealthKit_5d69670f0307b385", 2247604883855807, undefined, [healthStore, device]); }
+  static init(healthStore: HKHealthStore, device?: (HKDevice) | null): HKWorkoutRouteBuilder { return callSDK<HKWorkoutRouteBuilder>("HealthKit_6be9a005889899ab", 2247604883855807, undefined, [healthStore, device]); }
   /**
    * func insertRouteData(_ routeData: [CLLocation]) async throws
    * @availability iOS 11.0+
    */
-  insertRouteData(routeData: Array<__LocationEssentials_CLLocation>, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 2576546266919205, this, [routeData, completion], [null,{"callback":{"out":[]}}]); }
+  insertRouteData(routeData: Array<__LocationEssentials_CLLocation>, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 2576546266919205, this, [routeData, completion], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKWorkoutRouteBuilder": true; "c:objc(cs)HKSeriesBuilder": true; "c:objc(cs)NSObject": true };
 }
 
 /** class HKWorkoutRouteQuery */
 export class HKWorkoutRouteQuery extends HKQuery {
   /** init(route workoutRoute: HKWorkoutRoute, dataHandler: @escaping @Sendable (HKWorkoutRouteQuery, [CLLocation]?, Bool, (any Error)?) -> Void) */
-  static initRouteDataHandler(workoutRoute: HKWorkoutRoute, dataHandler: $SDK131): HKWorkoutRouteQuery { return callSDK<HKWorkoutRouteQuery>("HealthKit_5d69670f0307b385", 2800692511874892, undefined, [workoutRoute, dataHandler], [null,{"callback":{"out":[]}}]); }
+  static initRouteDataHandler(workoutRoute: HKWorkoutRoute, dataHandler: $SDK131): HKWorkoutRouteQuery { return callSDK<HKWorkoutRouteQuery>("HealthKit_6be9a005889899ab", 2800692511874892, undefined, [workoutRoute, dataHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(route workoutRoute: HKWorkoutRoute, dateInterval: DateInterval, dataHandler: @escaping @Sendable (HKWorkoutRouteQuery, [CLLocation]?, Bool, (any Error)?) -> Void)
    * @availability iOS 16.0+
    */
-  static initRouteDateIntervalDataHandler(workoutRoute: HKWorkoutRoute, dateInterval: _Foundation_DateInterval, dataHandler: $SDK131): HKWorkoutRouteQuery { return callSDK<HKWorkoutRouteQuery>("HealthKit_5d69670f0307b385", 2445730248564491, undefined, [workoutRoute, dateInterval, dataHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initRouteDateIntervalDataHandler(workoutRoute: HKWorkoutRoute, dateInterval: _Foundation_DateInterval, dataHandler: $SDK131): HKWorkoutRouteQuery { return callSDK<HKWorkoutRouteQuery>("HealthKit_6be9a005889899ab", 2445730248564491, undefined, [workoutRoute, dateInterval, dataHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HKWorkoutRouteQuery": true; "c:objc(cs)HKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectType": true; "predicate": true; "sampleType": true };
 }
@@ -7572,18 +7572,18 @@ export class HKWorkoutRouteQueryDescriptor extends SDKHandle {
    * var workoutRoute: HKWorkoutRoute
    * @availability iOS 15.4+
    */
-  get workoutRoute(): HKWorkoutRoute { return callSDK<HKWorkoutRoute>("HealthKit_5d69670f0307b385", 4062499667741842, this, []); }
-  set workoutRoute(value: HKWorkoutRoute) { callSDK<void>("HealthKit_5d69670f0307b385", 3580530744154701, this, [value]); }
+  get workoutRoute(): HKWorkoutRoute { return callSDK<HKWorkoutRoute>("HealthKit_6be9a005889899ab", 4062499667741842, this, []); }
+  set workoutRoute(value: HKWorkoutRoute) { callSDK<void>("HealthKit_6be9a005889899ab", 3580530744154701, this, [value]); }
   /**
    * func results(for healthStore: HKHealthStore) -> HKWorkoutRouteQueryDescriptor.Results
    * @availability iOS 15.4+
    */
-  results(healthStore: HKHealthStore): HKWorkoutRouteQueryDescriptor_Results { return callSDK<HKWorkoutRouteQueryDescriptor_Results>("HealthKit_5d69670f0307b385", 2736651307553842, this, [healthStore]); }
+  results(healthStore: HKHealthStore): HKWorkoutRouteQueryDescriptor_Results { return callSDK<HKWorkoutRouteQueryDescriptor_Results>("HealthKit_6be9a005889899ab", 2736651307553842, this, [healthStore]); }
   /**
    * init(_ workoutRoute: HKWorkoutRoute)
    * @availability iOS 15.4+
    */
-  static init(workoutRoute: HKWorkoutRoute): HKWorkoutRouteQueryDescriptor { return callSDK<HKWorkoutRouteQueryDescriptor>("HealthKit_5d69670f0307b385", 1642223555315842, undefined, [workoutRoute]); }
+  static init(workoutRoute: HKWorkoutRoute): HKWorkoutRouteQueryDescriptor { return callSDK<HKWorkoutRouteQueryDescriptor>("HealthKit_6be9a005889899ab", 1642223555315842, undefined, [workoutRoute]); }
   declare readonly $type: { "s:9HealthKit29HKWorkoutRouteQueryDescriptorV": true };
 }
 
@@ -7596,7 +7596,7 @@ export class HKWorkoutRouteQueryDescriptor_Results extends SDKHandle {
    * func makeAsyncIterator() -> HKWorkoutRouteQueryDescriptor.Results.Iterator
    * @availability iOS 15.4+
    */
-  makeAsyncIterator(): HKWorkoutRouteQueryDescriptor_Results_Iterator { return callSDK<HKWorkoutRouteQueryDescriptor_Results_Iterator>("HealthKit_5d69670f0307b385", 2335383110047075, this, []); }
+  makeAsyncIterator(): HKWorkoutRouteQueryDescriptor_Results_Iterator { return callSDK<HKWorkoutRouteQueryDescriptor_Results_Iterator>("HealthKit_6be9a005889899ab", 2335383110047075, this, []); }
   declare readonly $type: { "s:9HealthKit29HKWorkoutRouteQueryDescriptorV7ResultsV": true };
   declare readonly $element: __LocationEssentials_CLLocation;
 }
@@ -7622,7 +7622,7 @@ export class HKWorkoutRouteQueryDescriptor_Results_Iterator extends SDKHandle {
    * mutating func next() async throws -> HKWorkoutRouteQueryDescriptor.Results.Element?
    * @availability iOS 15.4+
    */
-  next(): Promise<(__LocationEssentials_CLLocation) | null> { return callSDKAsync<(__LocationEssentials_CLLocation) | null>("HealthKit_5d69670f0307b385", 4429398872170097, this, []); }
+  next(): Promise<(__LocationEssentials_CLLocation) | null> { return callSDKAsync<(__LocationEssentials_CLLocation) | null>("HealthKit_6be9a005889899ab", 4429398872170097, this, []); }
   declare readonly $type: { "s:9HealthKit29HKWorkoutRouteQueryDescriptorV7ResultsV8IteratorV": true };
 }
 
@@ -7647,103 +7647,103 @@ export class HKWorkoutSession extends SDKHandle {
    * func associatedWorkoutBuilder() -> HKLiveWorkoutBuilder
    * @availability iOS 26.0+
    */
-  associatedWorkoutBuilder(): HKLiveWorkoutBuilder { return callSDK<HKLiveWorkoutBuilder>("HealthKit_5d69670f0307b385", 661328599256226, this, []); }
+  associatedWorkoutBuilder(): HKLiveWorkoutBuilder { return callSDK<HKLiveWorkoutBuilder>("HealthKit_6be9a005889899ab", 661328599256226, this, []); }
   /**
    * func beginNewActivity(configuration workoutConfiguration: HKWorkoutConfiguration, date: Date, metadata: [String : Any]?)
    * @availability iOS 17.0+
    */
-  beginNewActivity(workoutConfiguration: HKWorkoutConfiguration, date: globalThis.Date, metadata?: $SDK29): void { return callSDK<void>("HealthKit_5d69670f0307b385", 618711286608813, this, [workoutConfiguration, date, metadata]); }
+  beginNewActivity(workoutConfiguration: HKWorkoutConfiguration, date: globalThis.Date, metadata?: $SDK29): void { return callSDK<void>("HealthKit_6be9a005889899ab", 618711286608813, this, [workoutConfiguration, date, metadata]); }
   /**
    * func end()
    * @availability iOS 17.0+
    */
-  end(): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1818703624666984, this, []); }
+  end(): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1818703624666984, this, []); }
   /**
    * func endCurrentActivity(on date: Date)
    * @availability iOS 17.0+
    */
-  endCurrentActivity(date: globalThis.Date): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3616978344206506, this, [date]); }
+  endCurrentActivity(date: globalThis.Date): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3616978344206506, this, [date]); }
   /**
    * init(healthStore: HKHealthStore, configuration workoutConfiguration: HKWorkoutConfiguration) throws
    * @availability iOS 26.0+
    */
-  static init(healthStore: HKHealthStore, workoutConfiguration: HKWorkoutConfiguration): HKWorkoutSession { return callSDK<HKWorkoutSession>("HealthKit_5d69670f0307b385", 741513759638720, undefined, [healthStore, workoutConfiguration]); }
+  static init(healthStore: HKHealthStore, workoutConfiguration: HKWorkoutConfiguration): HKWorkoutSession { return callSDK<HKWorkoutSession>("HealthKit_6be9a005889899ab", 741513759638720, undefined, [healthStore, workoutConfiguration]); }
   /**
    * func pause()
    * @availability iOS 17.0+
    */
-  pause(): void { return callSDK<void>("HealthKit_5d69670f0307b385", 2995596795046738, this, []); }
+  pause(): void { return callSDK<void>("HealthKit_6be9a005889899ab", 2995596795046738, this, []); }
   /**
    * func prepare()
    * @availability iOS 17.0+
    */
-  prepare(): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1368577619806031, this, []); }
+  prepare(): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1368577619806031, this, []); }
   /**
    * func resume()
    * @availability iOS 17.0+
    */
-  resume(): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1727952312113481, this, []); }
+  resume(): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1727952312113481, this, []); }
   /**
    * func sendToRemoteWorkoutSession(data: Data) async throws
    * @availability iOS 17.0+
    */
-  sendToRemoteWorkoutSession(data: ArrayBuffer, completion: $SDK32): void { return callSDK<void>("HealthKit_5d69670f0307b385", 1832207512740618, this, [data, completion], [null,{"callback":{"out":[]}}]); }
+  sendToRemoteWorkoutSession(data: ArrayBuffer, completion: $SDK32): void { return callSDK<void>("HealthKit_6be9a005889899ab", 1832207512740618, this, [data, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func startActivity(with date: Date?)
    * @availability iOS 17.0+
    */
-  startActivity(date?: $SDK1): void { return callSDK<void>("HealthKit_5d69670f0307b385", 2640124047063863, this, [date]); }
+  startActivity(date?: $SDK1): void { return callSDK<void>("HealthKit_6be9a005889899ab", 2640124047063863, this, [date]); }
   /**
    * func stopActivity(with date: Date?)
    * @availability iOS 17.0+
    */
-  stopActivity(date?: $SDK1): void { return callSDK<void>("HealthKit_5d69670f0307b385", 3367952778445597, this, [date]); }
+  stopActivity(date?: $SDK1): void { return callSDK<void>("HealthKit_6be9a005889899ab", 3367952778445597, this, [date]); }
   /**
    * var activityType: HKWorkoutActivityType { get }
    * @availability iOS 17.0+
    */
-  get activityType(): HKWorkoutActivityType { return callSDK<HKWorkoutActivityType>("HealthKit_5d69670f0307b385", 1112134914170062, this, []); }
+  get activityType(): HKWorkoutActivityType { return callSDK<HKWorkoutActivityType>("HealthKit_6be9a005889899ab", 1112134914170062, this, []); }
   /**
    * @NSCopying var currentActivity: HKWorkoutActivity { get }
    * @availability iOS 17.0+
    */
-  get currentActivity(): HKWorkoutActivity { return callSDK<HKWorkoutActivity>("HealthKit_5d69670f0307b385", 3902035173915699, this, []); }
+  get currentActivity(): HKWorkoutActivity { return callSDK<HKWorkoutActivity>("HealthKit_6be9a005889899ab", 3902035173915699, this, []); }
   /**
    * weak var delegate: (any HKWorkoutSessionDelegate)? { get set }
    * @availability iOS 17.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HealthKit_5d69670f0307b385", 3308904192042852, this, []); }
-  set delegate(value: (Implements<HKWorkoutSessionDelegate> | SDKHandle) | null) { callSDK<void>("HealthKit_5d69670f0307b385", 4011292084849945, this, [value], [{"protocol":"c:objc(pl)HKWorkoutSessionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HealthKit_6be9a005889899ab", 3308904192042852, this, []); }
+  set delegate(value: (Implements<HKWorkoutSessionDelegate> | SDKHandle) | null) { callSDK<void>("HealthKit_6be9a005889899ab", 4011292084849945, this, [value], [{"protocol":"c:objc(pl)HKWorkoutSessionDelegate"}]); }
   /**
    * var endDate: Date? { get }
    * @availability iOS 17.0+
    */
-  get endDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_5d69670f0307b385", 1967765867357940, this, []); }
+  get endDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_6be9a005889899ab", 1967765867357940, this, []); }
   /**
    * var locationType: HKWorkoutSessionLocationType { get }
    * @availability iOS 17.0+
    */
-  get locationType(): HKWorkoutSessionLocationType { return callSDK<HKWorkoutSessionLocationType>("HealthKit_5d69670f0307b385", 506881068618001, this, []); }
+  get locationType(): HKWorkoutSessionLocationType { return callSDK<HKWorkoutSessionLocationType>("HealthKit_6be9a005889899ab", 506881068618001, this, []); }
   /**
    * var startDate: Date? { get }
    * @availability iOS 17.0+
    */
-  get startDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_5d69670f0307b385", 3534775872745171, this, []); }
+  get startDate(): $SDK1 { return callSDK<$SDK1>("HealthKit_6be9a005889899ab", 3534775872745171, this, []); }
   /**
    * var state: HKWorkoutSessionState { get }
    * @availability iOS 17.0+
    */
-  get state(): HKWorkoutSessionState { return callSDK<HKWorkoutSessionState>("HealthKit_5d69670f0307b385", 4220414839983439, this, []); }
+  get state(): HKWorkoutSessionState { return callSDK<HKWorkoutSessionState>("HealthKit_6be9a005889899ab", 4220414839983439, this, []); }
   /**
    * var type: HKWorkoutSessionType { get }
    * @availability iOS 17.0+
    */
-  get type(): HKWorkoutSessionType { return callSDK<HKWorkoutSessionType>("HealthKit_5d69670f0307b385", 114741582203837, this, []); }
+  get type(): HKWorkoutSessionType { return callSDK<HKWorkoutSessionType>("HealthKit_6be9a005889899ab", 114741582203837, this, []); }
   /**
    * @NSCopying var workoutConfiguration: HKWorkoutConfiguration { get }
    * @availability iOS 17.0+
    */
-  get workoutConfiguration(): HKWorkoutConfiguration { return callSDK<HKWorkoutConfiguration>("HealthKit_5d69670f0307b385", 1187141634095319, this, []); }
+  get workoutConfiguration(): HKWorkoutConfiguration { return callSDK<HKWorkoutConfiguration>("HealthKit_6be9a005889899ab", 1187141634095319, this, []); }
   declare readonly $type: { "c:objc(cs)HKWorkoutSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activityType": true; "currentActivity": true; "delegate": true; "endDate": true; "locationType": true; "startDate": true; "state": true; "type": true; "workoutConfiguration": true };
 }
@@ -7801,7 +7801,7 @@ export const HKWorkoutSessionLocationType = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HKWorkoutSessionLocationType) | null { return callSDK<(HKWorkoutSessionLocationType) | null>("HealthKit_5d69670f0307b385", 3914741984239030, undefined, [rawValue]); }
+  init(rawValue: number): (HKWorkoutSessionLocationType) | null { return callSDK<(HKWorkoutSessionLocationType) | null>("HealthKit_6be9a005889899ab", 3914741984239030, undefined, [rawValue]); }
 };
 
 /**
@@ -7815,7 +7815,7 @@ export const HKWorkoutSessionState = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (HKWorkoutSessionState) | null { return callSDK<(HKWorkoutSessionState) | null>("HealthKit_5d69670f0307b385", 8436206340860, undefined, [rawValue]); }
+  init(rawValue: number): (HKWorkoutSessionState) | null { return callSDK<(HKWorkoutSessionState) | null>("HealthKit_6be9a005889899ab", 8436206340860, undefined, [rawValue]); }
 };
 
 /**
@@ -7829,7 +7829,7 @@ export const HKWorkoutSessionType = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (HKWorkoutSessionType) | null { return callSDK<(HKWorkoutSessionType) | null>("HealthKit_5d69670f0307b385", 2407458415857413, undefined, [rawValue]); }
+  init(rawValue: number): (HKWorkoutSessionType) | null { return callSDK<(HKWorkoutSessionType) | null>("HealthKit_6be9a005889899ab", 2407458415857413, undefined, [rawValue]); }
 };
 
 /**
@@ -7843,7 +7843,7 @@ export const HKWorkoutSwimmingLocationType = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HKWorkoutSwimmingLocationType) | null { return callSDK<(HKWorkoutSwimmingLocationType) | null>("HealthKit_5d69670f0307b385", 2735749441296768, undefined, [rawValue]); }
+  init(rawValue: number): (HKWorkoutSwimmingLocationType) | null { return callSDK<(HKWorkoutSwimmingLocationType) | null>("HealthKit_6be9a005889899ab", 2735749441296768, undefined, [rawValue]); }
 };
 
 /**
@@ -7864,17 +7864,17 @@ export class HKWorkoutZone extends SDKHandle {
    * let index: Int
    * @availability iOS 27.0+
    */
-  get index(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 440271890884130, this, []); }
+  get index(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 440271890884130, this, []); }
   /**
    * var maximum: HKQuantity? { get }
    * @availability iOS 27.0+
    */
-  get maximum(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 1436941203130222, this, []); }
+  get maximum(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 1436941203130222, this, []); }
   /**
    * var minimum: HKQuantity? { get }
    * @availability iOS 27.0+
    */
-  get minimum(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_5d69670f0307b385", 3828316302282285, this, []); }
+  get minimum(): (HKQuantity) | null { return callSDK<(HKQuantity) | null>("HealthKit_6be9a005889899ab", 3828316302282285, this, []); }
   declare readonly $type: { "s:9HealthKit13HKWorkoutZoneV": true };
 }
 
@@ -7887,22 +7887,22 @@ export class HKWorkoutZoneConfiguration extends SDKHandle {
    * init(quantityType: HKQuantityType, zoneBoundaries: [HKQuantity]) throws
    * @availability iOS 27.0+
    */
-  static init(quantityType: HKQuantityType, zoneBoundaries: Array<HKQuantity>): HKWorkoutZoneConfiguration { return callSDK<HKWorkoutZoneConfiguration>("HealthKit_5d69670f0307b385", 3007786881939789, undefined, [quantityType, zoneBoundaries]); }
+  static init(quantityType: HKQuantityType, zoneBoundaries: Array<HKQuantity>): HKWorkoutZoneConfiguration { return callSDK<HKWorkoutZoneConfiguration>("HealthKit_6be9a005889899ab", 3007786881939789, undefined, [quantityType, zoneBoundaries]); }
   /**
    * var quantityType: HKQuantityType { get }
    * @availability iOS 27.0+
    */
-  get quantityType(): HKQuantityType { return callSDK<HKQuantityType>("HealthKit_5d69670f0307b385", 520646162174832, this, []); }
+  get quantityType(): HKQuantityType { return callSDK<HKQuantityType>("HealthKit_6be9a005889899ab", 520646162174832, this, []); }
   /**
    * let zones: [HKWorkoutZone]
    * @availability iOS 27.0+
    */
-  get zones(): Array<HKWorkoutZone> { return callSDK<Array<HKWorkoutZone>>("HealthKit_5d69670f0307b385", 2784423042524884, this, []); }
+  get zones(): Array<HKWorkoutZone> { return callSDK<Array<HKWorkoutZone>>("HealthKit_6be9a005889899ab", 2784423042524884, this, []); }
   /**
    * let source: HKWorkoutZoneConfiguration.Source
    * @availability iOS 27.0+
    */
-  get source(): HKWorkoutZoneConfiguration_Source { return callSDK<HKWorkoutZoneConfiguration_Source>("HealthKit_5d69670f0307b385", 1097657278295130, this, []); }
+  get source(): HKWorkoutZoneConfiguration_Source { return callSDK<HKWorkoutZoneConfiguration_Source>("HealthKit_6be9a005889899ab", 1097657278295130, this, []); }
   declare readonly $type: { "s:9HealthKit26HKWorkoutZoneConfigurationV": true };
 }
 
@@ -7921,12 +7921,12 @@ export class HKWorkoutZoneDuration extends SDKHandle {
    * let zone: HKWorkoutZone
    * @availability iOS 27.0+
    */
-  get zone(): HKWorkoutZone { return callSDK<HKWorkoutZone>("HealthKit_5d69670f0307b385", 2011753393333542, this, []); }
+  get zone(): HKWorkoutZone { return callSDK<HKWorkoutZone>("HealthKit_6be9a005889899ab", 2011753393333542, this, []); }
   /**
    * let duration: TimeInterval
    * @availability iOS 27.0+
    */
-  get duration(): number { return callSDK<number>("HealthKit_5d69670f0307b385", 1015279903537606, this, []); }
+  get duration(): number { return callSDK<number>("HealthKit_6be9a005889899ab", 1015279903537606, this, []); }
   declare readonly $type: { "s:9HealthKit21HKWorkoutZoneDurationV": true };
 }
 
@@ -7939,12 +7939,12 @@ export class HKWorkoutZoneGroup extends SDKHandle {
    * let configuration: HKWorkoutZoneConfiguration
    * @availability iOS 27.0+
    */
-  get configuration(): HKWorkoutZoneConfiguration { return callSDK<HKWorkoutZoneConfiguration>("HealthKit_5d69670f0307b385", 3238733888981643, this, []); }
+  get configuration(): HKWorkoutZoneConfiguration { return callSDK<HKWorkoutZoneConfiguration>("HealthKit_6be9a005889899ab", 3238733888981643, this, []); }
   /**
    * let zoneDurations: [HKWorkoutZoneDuration]
    * @availability iOS 27.0+
    */
-  get zoneDurations(): Array<HKWorkoutZoneDuration> { return callSDK<Array<HKWorkoutZoneDuration>>("HealthKit_5d69670f0307b385", 1416529390766289, this, []); }
+  get zoneDurations(): Array<HKWorkoutZoneDuration> { return callSDK<Array<HKWorkoutZoneDuration>>("HealthKit_6be9a005889899ab", 1416529390766289, this, []); }
   declare readonly $type: { "s:9HealthKit18HKWorkoutZoneGroupV": true };
 }
 
@@ -7955,1102 +7955,1102 @@ export const NSNotification_Name = {
    * static let HKUserPreferencesDidChange: NSNotification.Name
    * @availability iOS 8.2+
    */
-  get HKUserPreferencesDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("HealthKit_5d69670f0307b385", 1752437921615134, undefined, []); }
+  get HKUserPreferencesDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("HealthKit_6be9a005889899ab", 1752437921615134, undefined, []); }
 };
 
 /**
  * let HKDataTypeIdentifierHeartbeatSeries: String
  * @availability iOS 13.0+
  */
-export const HKDataTypeIdentifierHeartbeatSeries: string = callSDK<string>("HealthKit_5d69670f0307b385", 4454717638090290, undefined, []);
+export const HKDataTypeIdentifierHeartbeatSeries: string = callSDK<string>("HealthKit_6be9a005889899ab", 4454717638090290, undefined, []);
 
 /**
  * let HKDataTypeIdentifierStateOfMind: String
  * @availability iOS 18.0+
  */
-export const HKDataTypeIdentifierStateOfMind: string = callSDK<string>("HealthKit_5d69670f0307b385", 2240215476939326, undefined, []);
+export const HKDataTypeIdentifierStateOfMind: string = callSDK<string>("HealthKit_6be9a005889899ab", 2240215476939326, undefined, []);
 
 /**
  * let HKDataTypeIdentifierUserAnnotatedMedicationConcept: String
  * @availability iOS 26.0+
  */
-export const HKDataTypeIdentifierUserAnnotatedMedicationConcept: string = callSDK<string>("HealthKit_5d69670f0307b385", 1263169601463979, undefined, []);
+export const HKDataTypeIdentifierUserAnnotatedMedicationConcept: string = callSDK<string>("HealthKit_6be9a005889899ab", 1263169601463979, undefined, []);
 
 /**
  * let HKDetailedCDAValidationErrorKey: String
  * @availability iOS 10.0+
  */
-export const HKDetailedCDAValidationErrorKey: string = callSDK<string>("HealthKit_5d69670f0307b385", 4493804972898793, undefined, []);
+export const HKDetailedCDAValidationErrorKey: string = callSDK<string>("HealthKit_6be9a005889899ab", 4493804972898793, undefined, []);
 
 /**
  * let HKDevicePropertyKeyFirmwareVersion: String
  * @availability iOS 9.0+
  */
-export const HKDevicePropertyKeyFirmwareVersion: string = callSDK<string>("HealthKit_5d69670f0307b385", 3486511151105506, undefined, []);
+export const HKDevicePropertyKeyFirmwareVersion: string = callSDK<string>("HealthKit_6be9a005889899ab", 3486511151105506, undefined, []);
 
 /**
  * let HKDevicePropertyKeyHardwareVersion: String
  * @availability iOS 9.0+
  */
-export const HKDevicePropertyKeyHardwareVersion: string = callSDK<string>("HealthKit_5d69670f0307b385", 485451540285029, undefined, []);
+export const HKDevicePropertyKeyHardwareVersion: string = callSDK<string>("HealthKit_6be9a005889899ab", 485451540285029, undefined, []);
 
 /**
  * let HKDevicePropertyKeyLocalIdentifier: String
  * @availability iOS 9.0+
  */
-export const HKDevicePropertyKeyLocalIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 2231728726264281, undefined, []);
+export const HKDevicePropertyKeyLocalIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 2231728726264281, undefined, []);
 
 /**
  * let HKDevicePropertyKeyManufacturer: String
  * @availability iOS 9.0+
  */
-export const HKDevicePropertyKeyManufacturer: string = callSDK<string>("HealthKit_5d69670f0307b385", 337329512956872, undefined, []);
+export const HKDevicePropertyKeyManufacturer: string = callSDK<string>("HealthKit_6be9a005889899ab", 337329512956872, undefined, []);
 
 /**
  * let HKDevicePropertyKeyModel: String
  * @availability iOS 9.0+
  */
-export const HKDevicePropertyKeyModel: string = callSDK<string>("HealthKit_5d69670f0307b385", 2740369482818661, undefined, []);
+export const HKDevicePropertyKeyModel: string = callSDK<string>("HealthKit_6be9a005889899ab", 2740369482818661, undefined, []);
 
 /**
  * let HKDevicePropertyKeyName: String
  * @availability iOS 9.0+
  */
-export const HKDevicePropertyKeyName: string = callSDK<string>("HealthKit_5d69670f0307b385", 4474403567432429, undefined, []);
+export const HKDevicePropertyKeyName: string = callSDK<string>("HealthKit_6be9a005889899ab", 4474403567432429, undefined, []);
 
 /**
  * let HKDevicePropertyKeySoftwareVersion: String
  * @availability iOS 9.0+
  */
-export const HKDevicePropertyKeySoftwareVersion: string = callSDK<string>("HealthKit_5d69670f0307b385", 18878173454956, undefined, []);
+export const HKDevicePropertyKeySoftwareVersion: string = callSDK<string>("HealthKit_6be9a005889899ab", 18878173454956, undefined, []);
 
 /**
  * let HKDevicePropertyKeyUDIDeviceIdentifier: String
  * @availability iOS 9.0+
  */
-export const HKDevicePropertyKeyUDIDeviceIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 3150288602479374, undefined, []);
+export const HKDevicePropertyKeyUDIDeviceIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 3150288602479374, undefined, []);
 
 /**
  * let HKErrorDomain: String
  * @availability iOS 8.0+
  */
-export const HKErrorDomain: string = callSDK<string>("HealthKit_5d69670f0307b385", 424774619334841, undefined, []);
+export const HKErrorDomain: string = callSDK<string>("HealthKit_6be9a005889899ab", 424774619334841, undefined, []);
 
 /**
  * let HKMedicationDoseEventTypeIdentifierMedicationDoseEvent: String
  * @availability iOS 26.0+
  */
-export const HKMedicationDoseEventTypeIdentifierMedicationDoseEvent: string = callSDK<string>("HealthKit_5d69670f0307b385", 1217192762924799, undefined, []);
+export const HKMedicationDoseEventTypeIdentifierMedicationDoseEvent: string = callSDK<string>("HealthKit_6be9a005889899ab", 1217192762924799, undefined, []);
 
 /**
  * let HKMetadataKeyActivityType: String
  * @availability iOS 17.0+
  */
-export const HKMetadataKeyActivityType: string = callSDK<string>("HealthKit_5d69670f0307b385", 1319363694190118, undefined, []);
+export const HKMetadataKeyActivityType: string = callSDK<string>("HealthKit_6be9a005889899ab", 1319363694190118, undefined, []);
 
 /**
  * let HKMetadataKeyAlgorithmVersion: String
  * @availability iOS 15.0+
  */
-export const HKMetadataKeyAlgorithmVersion: string = callSDK<string>("HealthKit_5d69670f0307b385", 3476386492829679, undefined, []);
+export const HKMetadataKeyAlgorithmVersion: string = callSDK<string>("HealthKit_6be9a005889899ab", 3476386492829679, undefined, []);
 
 /**
  * let HKMetadataKeyAlpineSlopeGrade: String
  * @availability iOS 11.2+
  */
-export const HKMetadataKeyAlpineSlopeGrade: string = callSDK<string>("HealthKit_5d69670f0307b385", 3171908673582601, undefined, []);
+export const HKMetadataKeyAlpineSlopeGrade: string = callSDK<string>("HealthKit_6be9a005889899ab", 3171908673582601, undefined, []);
 
 /**
  * let HKMetadataKeyAppleDeviceCalibrated: String
  * @availability iOS 14.0+
  */
-export const HKMetadataKeyAppleDeviceCalibrated: string = callSDK<string>("HealthKit_5d69670f0307b385", 4299878180291469, undefined, []);
+export const HKMetadataKeyAppleDeviceCalibrated: string = callSDK<string>("HealthKit_6be9a005889899ab", 4299878180291469, undefined, []);
 
 /**
  * let HKMetadataKeyAppleECGAlgorithmVersion: String
  * @availability iOS 14.0+
  */
-export const HKMetadataKeyAppleECGAlgorithmVersion: string = callSDK<string>("HealthKit_5d69670f0307b385", 1224779279469623, undefined, []);
+export const HKMetadataKeyAppleECGAlgorithmVersion: string = callSDK<string>("HealthKit_6be9a005889899ab", 1224779279469623, undefined, []);
 
 /**
  * let HKMetadataKeyAppleFitnessPlusCatalogIdentifier: String
  * @availability iOS 18.2+
  */
-export const HKMetadataKeyAppleFitnessPlusCatalogIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 1454929846460046, undefined, []);
+export const HKMetadataKeyAppleFitnessPlusCatalogIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 1454929846460046, undefined, []);
 
 /**
  * let HKMetadataKeyAppleFitnessPlusSession: String
  * @availability iOS 17.0+
  */
-export const HKMetadataKeyAppleFitnessPlusSession: string = callSDK<string>("HealthKit_5d69670f0307b385", 1701821293928294, undefined, []);
+export const HKMetadataKeyAppleFitnessPlusSession: string = callSDK<string>("HealthKit_6be9a005889899ab", 1701821293928294, undefined, []);
 
 /**
  * let HKMetadataKeyAudioExposureDuration: String
  * @availability iOS 14.2+
  */
-export const HKMetadataKeyAudioExposureDuration: string = callSDK<string>("HealthKit_5d69670f0307b385", 3592801107384944, undefined, []);
+export const HKMetadataKeyAudioExposureDuration: string = callSDK<string>("HealthKit_6be9a005889899ab", 3592801107384944, undefined, []);
 
 /**
  * let HKMetadataKeyAudioExposureLevel: String
  * @availability iOS 13.0+
  */
-export const HKMetadataKeyAudioExposureLevel: string = callSDK<string>("HealthKit_5d69670f0307b385", 3781076504866872, undefined, []);
+export const HKMetadataKeyAudioExposureLevel: string = callSDK<string>("HealthKit_6be9a005889899ab", 3781076504866872, undefined, []);
 
 /**
  * let HKMetadataKeyAverageMETs: String
  * @availability iOS 13.0+
  */
-export const HKMetadataKeyAverageMETs: string = callSDK<string>("HealthKit_5d69670f0307b385", 3737946075328434, undefined, []);
+export const HKMetadataKeyAverageMETs: string = callSDK<string>("HealthKit_6be9a005889899ab", 3737946075328434, undefined, []);
 
 /**
  * let HKMetadataKeyAverageSpeed: String
  * @availability iOS 11.2+
  */
-export const HKMetadataKeyAverageSpeed: string = callSDK<string>("HealthKit_5d69670f0307b385", 2968965904772987, undefined, []);
+export const HKMetadataKeyAverageSpeed: string = callSDK<string>("HealthKit_6be9a005889899ab", 2968965904772987, undefined, []);
 
 /**
  * let HKMetadataKeyBarometricPressure: String
  * @availability iOS 14.0+
  */
-export const HKMetadataKeyBarometricPressure: string = callSDK<string>("HealthKit_5d69670f0307b385", 1685510705340874, undefined, []);
+export const HKMetadataKeyBarometricPressure: string = callSDK<string>("HealthKit_6be9a005889899ab", 1685510705340874, undefined, []);
 
 /**
  * let HKMetadataKeyBloodGlucoseMealTime: String
  * @availability iOS 11.0+
  */
-export const HKMetadataKeyBloodGlucoseMealTime: string = callSDK<string>("HealthKit_5d69670f0307b385", 3998577450226541, undefined, []);
+export const HKMetadataKeyBloodGlucoseMealTime: string = callSDK<string>("HealthKit_6be9a005889899ab", 3998577450226541, undefined, []);
 
 /**
  * let HKMetadataKeyBodyTemperatureSensorLocation: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyBodyTemperatureSensorLocation: string = callSDK<string>("HealthKit_5d69670f0307b385", 3347454094622332, undefined, []);
+export const HKMetadataKeyBodyTemperatureSensorLocation: string = callSDK<string>("HealthKit_6be9a005889899ab", 3347454094622332, undefined, []);
 
 /**
  * let HKMetadataKeyCoachedWorkout: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyCoachedWorkout: string = callSDK<string>("HealthKit_5d69670f0307b385", 504324172500066, undefined, []);
+export const HKMetadataKeyCoachedWorkout: string = callSDK<string>("HealthKit_6be9a005889899ab", 504324172500066, undefined, []);
 
 /**
  * let HKMetadataKeyCrossTrainerDistance: String
  * @availability iOS 12.0+
  */
-export const HKMetadataKeyCrossTrainerDistance: string = callSDK<string>("HealthKit_5d69670f0307b385", 4502992144439364, undefined, []);
+export const HKMetadataKeyCrossTrainerDistance: string = callSDK<string>("HealthKit_6be9a005889899ab", 4502992144439364, undefined, []);
 
 /**
  * let HKMetadataKeyCyclingFunctionalThresholdPowerTestType: String
  * @availability iOS 17.0+
  */
-export const HKMetadataKeyCyclingFunctionalThresholdPowerTestType: string = callSDK<string>("HealthKit_5d69670f0307b385", 2350110199606473, undefined, []);
+export const HKMetadataKeyCyclingFunctionalThresholdPowerTestType: string = callSDK<string>("HealthKit_6be9a005889899ab", 2350110199606473, undefined, []);
 
 /**
  * let HKMetadataKeyDateOfEarliestDataUsedForEstimate: String
  * @availability iOS 15.0+
  */
-export const HKMetadataKeyDateOfEarliestDataUsedForEstimate: string = callSDK<string>("HealthKit_5d69670f0307b385", 4004169432222777, undefined, []);
+export const HKMetadataKeyDateOfEarliestDataUsedForEstimate: string = callSDK<string>("HealthKit_6be9a005889899ab", 4004169432222777, undefined, []);
 
 /**
  * let HKMetadataKeyDeviceManufacturerName: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyDeviceManufacturerName: string = callSDK<string>("HealthKit_5d69670f0307b385", 4011788692208016, undefined, []);
+export const HKMetadataKeyDeviceManufacturerName: string = callSDK<string>("HealthKit_6be9a005889899ab", 4011788692208016, undefined, []);
 
 /**
  * let HKMetadataKeyDeviceName: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyDeviceName: string = callSDK<string>("HealthKit_5d69670f0307b385", 3318959622488581, undefined, []);
+export const HKMetadataKeyDeviceName: string = callSDK<string>("HealthKit_6be9a005889899ab", 3318959622488581, undefined, []);
 
 /**
  * let HKMetadataKeyDevicePlacementSide: String
  * @availability iOS 14.0+
  */
-export const HKMetadataKeyDevicePlacementSide: string = callSDK<string>("HealthKit_5d69670f0307b385", 957839058399896, undefined, []);
+export const HKMetadataKeyDevicePlacementSide: string = callSDK<string>("HealthKit_6be9a005889899ab", 957839058399896, undefined, []);
 
 /**
  * let HKMetadataKeyDeviceSerialNumber: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyDeviceSerialNumber: string = callSDK<string>("HealthKit_5d69670f0307b385", 2498215976065854, undefined, []);
+export const HKMetadataKeyDeviceSerialNumber: string = callSDK<string>("HealthKit_6be9a005889899ab", 2498215976065854, undefined, []);
 
 /**
  * let HKMetadataKeyDigitalSignature: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyDigitalSignature: string = callSDK<string>("HealthKit_5d69670f0307b385", 1786661114074685, undefined, []);
+export const HKMetadataKeyDigitalSignature: string = callSDK<string>("HealthKit_6be9a005889899ab", 1786661114074685, undefined, []);
 
 /**
  * let HKMetadataKeyElevationAscended: String
  * @availability iOS 11.2+
  */
-export const HKMetadataKeyElevationAscended: string = callSDK<string>("HealthKit_5d69670f0307b385", 3057558851102895, undefined, []);
+export const HKMetadataKeyElevationAscended: string = callSDK<string>("HealthKit_6be9a005889899ab", 3057558851102895, undefined, []);
 
 /**
  * let HKMetadataKeyElevationDescended: String
  * @availability iOS 11.2+
  */
-export const HKMetadataKeyElevationDescended: string = callSDK<string>("HealthKit_5d69670f0307b385", 3072674483103680, undefined, []);
+export const HKMetadataKeyElevationDescended: string = callSDK<string>("HealthKit_6be9a005889899ab", 3072674483103680, undefined, []);
 
 /**
  * let HKMetadataKeyExternalUUID: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyExternalUUID: string = callSDK<string>("HealthKit_5d69670f0307b385", 3766065289298765, undefined, []);
+export const HKMetadataKeyExternalUUID: string = callSDK<string>("HealthKit_6be9a005889899ab", 3766065289298765, undefined, []);
 
 /**
  * let HKMetadataKeyFitnessMachineDuration: String
  * @availability iOS 12.0+
  */
-export const HKMetadataKeyFitnessMachineDuration: string = callSDK<string>("HealthKit_5d69670f0307b385", 2728485777731781, undefined, []);
+export const HKMetadataKeyFitnessMachineDuration: string = callSDK<string>("HealthKit_6be9a005889899ab", 2728485777731781, undefined, []);
 
 /**
  * let HKMetadataKeyFoodType: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyFoodType: string = callSDK<string>("HealthKit_5d69670f0307b385", 2777489977609840, undefined, []);
+export const HKMetadataKeyFoodType: string = callSDK<string>("HealthKit_6be9a005889899ab", 2777489977609840, undefined, []);
 
 /**
  * let HKMetadataKeyGlassesPrescriptionDescription: String
  * @availability iOS 16.0+
  */
-export const HKMetadataKeyGlassesPrescriptionDescription: string = callSDK<string>("HealthKit_5d69670f0307b385", 3502394418461885, undefined, []);
+export const HKMetadataKeyGlassesPrescriptionDescription: string = callSDK<string>("HealthKit_6be9a005889899ab", 3502394418461885, undefined, []);
 
 /**
  * let HKMetadataKeyGroupFitness: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyGroupFitness: string = callSDK<string>("HealthKit_5d69670f0307b385", 784668371615628, undefined, []);
+export const HKMetadataKeyGroupFitness: string = callSDK<string>("HealthKit_6be9a005889899ab", 784668371615628, undefined, []);
 
 /**
  * let HKMetadataKeyHeadphoneGain: String
  * @availability iOS 16.4+
  */
-export const HKMetadataKeyHeadphoneGain: string = callSDK<string>("HealthKit_5d69670f0307b385", 724368054271546, undefined, []);
+export const HKMetadataKeyHeadphoneGain: string = callSDK<string>("HealthKit_6be9a005889899ab", 724368054271546, undefined, []);
 
 /**
  * let HKMetadataKeyHeartRateEventThreshold: String
  * @availability iOS 12.2+
  */
-export const HKMetadataKeyHeartRateEventThreshold: string = callSDK<string>("HealthKit_5d69670f0307b385", 3968065871892413, undefined, []);
+export const HKMetadataKeyHeartRateEventThreshold: string = callSDK<string>("HealthKit_6be9a005889899ab", 3968065871892413, undefined, []);
 
 /**
  * let HKMetadataKeyHeartRateMotionContext: String
  * @availability iOS 11.0+
  */
-export const HKMetadataKeyHeartRateMotionContext: string = callSDK<string>("HealthKit_5d69670f0307b385", 35232060208850, undefined, []);
+export const HKMetadataKeyHeartRateMotionContext: string = callSDK<string>("HealthKit_6be9a005889899ab", 35232060208850, undefined, []);
 
 /**
  * let HKMetadataKeyHeartRateRecoveryActivityDuration: String
  * @availability iOS 16.0+
  */
-export const HKMetadataKeyHeartRateRecoveryActivityDuration: string = callSDK<string>("HealthKit_5d69670f0307b385", 1209666475552737, undefined, []);
+export const HKMetadataKeyHeartRateRecoveryActivityDuration: string = callSDK<string>("HealthKit_6be9a005889899ab", 1209666475552737, undefined, []);
 
 /**
  * let HKMetadataKeyHeartRateRecoveryActivityType: String
  * @availability iOS 16.0+
  */
-export const HKMetadataKeyHeartRateRecoveryActivityType: string = callSDK<string>("HealthKit_5d69670f0307b385", 3096215454469343, undefined, []);
+export const HKMetadataKeyHeartRateRecoveryActivityType: string = callSDK<string>("HealthKit_6be9a005889899ab", 3096215454469343, undefined, []);
 
 /**
  * let HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate: String
  * @availability iOS 16.0+
  */
-export const HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate: string = callSDK<string>("HealthKit_5d69670f0307b385", 445754978849909, undefined, []);
+export const HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate: string = callSDK<string>("HealthKit_6be9a005889899ab", 445754978849909, undefined, []);
 
 /**
  * let HKMetadataKeyHeartRateRecoveryTestType: String
  * @availability iOS 16.0+
  */
-export const HKMetadataKeyHeartRateRecoveryTestType: string = callSDK<string>("HealthKit_5d69670f0307b385", 1144743504288456, undefined, []);
+export const HKMetadataKeyHeartRateRecoveryTestType: string = callSDK<string>("HealthKit_6be9a005889899ab", 1144743504288456, undefined, []);
 
 /**
  * let HKMetadataKeyHeartRateSensorLocation: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyHeartRateSensorLocation: string = callSDK<string>("HealthKit_5d69670f0307b385", 2027584474886193, undefined, []);
+export const HKMetadataKeyHeartRateSensorLocation: string = callSDK<string>("HealthKit_6be9a005889899ab", 2027584474886193, undefined, []);
 
 /**
  * let HKMetadataKeyIndoorBikeDistance: String
  * @availability iOS 12.0+
  */
-export const HKMetadataKeyIndoorBikeDistance: string = callSDK<string>("HealthKit_5d69670f0307b385", 1251076944255070, undefined, []);
+export const HKMetadataKeyIndoorBikeDistance: string = callSDK<string>("HealthKit_6be9a005889899ab", 1251076944255070, undefined, []);
 
 /**
  * let HKMetadataKeyIndoorWorkout: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyIndoorWorkout: string = callSDK<string>("HealthKit_5d69670f0307b385", 2919798591461632, undefined, []);
+export const HKMetadataKeyIndoorWorkout: string = callSDK<string>("HealthKit_6be9a005889899ab", 2919798591461632, undefined, []);
 
 /**
  * let HKMetadataKeyInsulinDeliveryReason: String
  * @availability iOS 11.0+
  */
-export const HKMetadataKeyInsulinDeliveryReason: string = callSDK<string>("HealthKit_5d69670f0307b385", 2599476805923698, undefined, []);
+export const HKMetadataKeyInsulinDeliveryReason: string = callSDK<string>("HealthKit_6be9a005889899ab", 2599476805923698, undefined, []);
 
 /**
  * let HKMetadataKeyLapLength: String
  * @availability iOS 10.0+
  */
-export const HKMetadataKeyLapLength: string = callSDK<string>("HealthKit_5d69670f0307b385", 410052124712680, undefined, []);
+export const HKMetadataKeyLapLength: string = callSDK<string>("HealthKit_6be9a005889899ab", 410052124712680, undefined, []);
 
 /**
  * let HKMetadataKeyLowCardioFitnessEventThreshold: String
  * @availability iOS 14.3+
  */
-export const HKMetadataKeyLowCardioFitnessEventThreshold: string = callSDK<string>("HealthKit_5d69670f0307b385", 1472219223625376, undefined, []);
+export const HKMetadataKeyLowCardioFitnessEventThreshold: string = callSDK<string>("HealthKit_6be9a005889899ab", 1472219223625376, undefined, []);
 
 /**
  * let HKMetadataKeyMaximumLightIntensity: String
  * @availability iOS 17.0+
  */
-export const HKMetadataKeyMaximumLightIntensity: string = callSDK<string>("HealthKit_5d69670f0307b385", 45084899040048, undefined, []);
+export const HKMetadataKeyMaximumLightIntensity: string = callSDK<string>("HealthKit_6be9a005889899ab", 45084899040048, undefined, []);
 
 /**
  * let HKMetadataKeyMaximumSpeed: String
  * @availability iOS 11.2+
  */
-export const HKMetadataKeyMaximumSpeed: string = callSDK<string>("HealthKit_5d69670f0307b385", 1029432834943196, undefined, []);
+export const HKMetadataKeyMaximumSpeed: string = callSDK<string>("HealthKit_6be9a005889899ab", 1029432834943196, undefined, []);
 
 /**
  * let HKMetadataKeyMenstrualCycleStart: String
  * @availability iOS 9.0+
  */
-export const HKMetadataKeyMenstrualCycleStart: string = callSDK<string>("HealthKit_5d69670f0307b385", 2408908490964985, undefined, []);
+export const HKMetadataKeyMenstrualCycleStart: string = callSDK<string>("HealthKit_6be9a005889899ab", 2408908490964985, undefined, []);
 
 /**
  * let HKMetadataKeyPhysicalEffortEstimationType: String
  * @availability iOS 17.0+
  */
-export const HKMetadataKeyPhysicalEffortEstimationType: string = callSDK<string>("HealthKit_5d69670f0307b385", 227735148124987, undefined, []);
+export const HKMetadataKeyPhysicalEffortEstimationType: string = callSDK<string>("HealthKit_6be9a005889899ab", 227735148124987, undefined, []);
 
 /**
  * let HKMetadataKeyQuantityClampedToLowerBound: String
  * @availability iOS 16.0+
  */
-export const HKMetadataKeyQuantityClampedToLowerBound: string = callSDK<string>("HealthKit_5d69670f0307b385", 2272082107304433, undefined, []);
+export const HKMetadataKeyQuantityClampedToLowerBound: string = callSDK<string>("HealthKit_6be9a005889899ab", 2272082107304433, undefined, []);
 
 /**
  * let HKMetadataKeyQuantityClampedToUpperBound: String
  * @availability iOS 16.0+
  */
-export const HKMetadataKeyQuantityClampedToUpperBound: string = callSDK<string>("HealthKit_5d69670f0307b385", 2140914367993497, undefined, []);
+export const HKMetadataKeyQuantityClampedToUpperBound: string = callSDK<string>("HealthKit_6be9a005889899ab", 2140914367993497, undefined, []);
 
 /**
  * let HKMetadataKeyReferenceRangeLowerLimit: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyReferenceRangeLowerLimit: string = callSDK<string>("HealthKit_5d69670f0307b385", 1297657997518977, undefined, []);
+export const HKMetadataKeyReferenceRangeLowerLimit: string = callSDK<string>("HealthKit_6be9a005889899ab", 1297657997518977, undefined, []);
 
 /**
  * let HKMetadataKeyReferenceRangeUpperLimit: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyReferenceRangeUpperLimit: string = callSDK<string>("HealthKit_5d69670f0307b385", 509163736517110, undefined, []);
+export const HKMetadataKeyReferenceRangeUpperLimit: string = callSDK<string>("HealthKit_6be9a005889899ab", 509163736517110, undefined, []);
 
 /**
  * let HKMetadataKeySWOLFScore: String
  * @availability iOS 16.0+
  */
-export const HKMetadataKeySWOLFScore: string = callSDK<string>("HealthKit_5d69670f0307b385", 1149244981308831, undefined, []);
+export const HKMetadataKeySWOLFScore: string = callSDK<string>("HealthKit_6be9a005889899ab", 1149244981308831, undefined, []);
 
 /**
  * let HKMetadataKeySessionEstimate: String
  * @availability iOS 16.0+
  */
-export const HKMetadataKeySessionEstimate: string = callSDK<string>("HealthKit_5d69670f0307b385", 1681379806912349, undefined, []);
+export const HKMetadataKeySessionEstimate: string = callSDK<string>("HealthKit_6be9a005889899ab", 1681379806912349, undefined, []);
 
 /**
  * let HKMetadataKeySexualActivityProtectionUsed: String
  * @availability iOS 9.0+
  */
-export const HKMetadataKeySexualActivityProtectionUsed: string = callSDK<string>("HealthKit_5d69670f0307b385", 981278672376839, undefined, []);
+export const HKMetadataKeySexualActivityProtectionUsed: string = callSDK<string>("HealthKit_6be9a005889899ab", 981278672376839, undefined, []);
 
 /**
  * let HKMetadataKeySwimmingLocationType: String
  * @availability iOS 10.0+
  */
-export const HKMetadataKeySwimmingLocationType: string = callSDK<string>("HealthKit_5d69670f0307b385", 3949328848361555, undefined, []);
+export const HKMetadataKeySwimmingLocationType: string = callSDK<string>("HealthKit_6be9a005889899ab", 3949328848361555, undefined, []);
 
 /**
  * let HKMetadataKeySwimmingStrokeStyle: String
  * @availability iOS 10.0+
  */
-export const HKMetadataKeySwimmingStrokeStyle: string = callSDK<string>("HealthKit_5d69670f0307b385", 1236700010739624, undefined, []);
+export const HKMetadataKeySwimmingStrokeStyle: string = callSDK<string>("HealthKit_6be9a005889899ab", 1236700010739624, undefined, []);
 
 /**
  * let HKMetadataKeySyncIdentifier: String
  * @availability iOS 11.0+
  */
-export const HKMetadataKeySyncIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 1371189272415547, undefined, []);
+export const HKMetadataKeySyncIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 1371189272415547, undefined, []);
 
 /**
  * let HKMetadataKeySyncVersion: String
  * @availability iOS 11.0+
  */
-export const HKMetadataKeySyncVersion: string = callSDK<string>("HealthKit_5d69670f0307b385", 3236356747742191, undefined, []);
+export const HKMetadataKeySyncVersion: string = callSDK<string>("HealthKit_6be9a005889899ab", 3236356747742191, undefined, []);
 
 /**
  * let HKMetadataKeyTimeZone: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyTimeZone: string = callSDK<string>("HealthKit_5d69670f0307b385", 3344462627860002, undefined, []);
+export const HKMetadataKeyTimeZone: string = callSDK<string>("HealthKit_6be9a005889899ab", 3344462627860002, undefined, []);
 
 /**
  * let HKMetadataKeyUDIDeviceIdentifier: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyUDIDeviceIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 2217001224664352, undefined, []);
+export const HKMetadataKeyUDIDeviceIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 2217001224664352, undefined, []);
 
 /**
  * let HKMetadataKeyUDIProductionIdentifier: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyUDIProductionIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 1928535874749984, undefined, []);
+export const HKMetadataKeyUDIProductionIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 1928535874749984, undefined, []);
 
 /**
  * let HKMetadataKeyUserMotionContext: String
  * @availability iOS 16.0+
  */
-export const HKMetadataKeyUserMotionContext: string = callSDK<string>("HealthKit_5d69670f0307b385", 1062395637017856, undefined, []);
+export const HKMetadataKeyUserMotionContext: string = callSDK<string>("HealthKit_6be9a005889899ab", 1062395637017856, undefined, []);
 
 /**
  * let HKMetadataKeyVO2MaxTestType: String
  * @availability iOS 11.0+
  */
-export const HKMetadataKeyVO2MaxTestType: string = callSDK<string>("HealthKit_5d69670f0307b385", 78817386592963, undefined, []);
+export const HKMetadataKeyVO2MaxTestType: string = callSDK<string>("HealthKit_6be9a005889899ab", 78817386592963, undefined, []);
 
 /**
  * let HKMetadataKeyVO2MaxValue: String
  * @availability iOS 14.3+
  */
-export const HKMetadataKeyVO2MaxValue: string = callSDK<string>("HealthKit_5d69670f0307b385", 3762436517042610, undefined, []);
+export const HKMetadataKeyVO2MaxValue: string = callSDK<string>("HealthKit_6be9a005889899ab", 3762436517042610, undefined, []);
 
 /**
  * let HKMetadataKeyWasTakenInLab: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyWasTakenInLab: string = callSDK<string>("HealthKit_5d69670f0307b385", 699322231016876, undefined, []);
+export const HKMetadataKeyWasTakenInLab: string = callSDK<string>("HealthKit_6be9a005889899ab", 699322231016876, undefined, []);
 
 /**
  * let HKMetadataKeyWasUserEntered: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyWasUserEntered: string = callSDK<string>("HealthKit_5d69670f0307b385", 506643334291687, undefined, []);
+export const HKMetadataKeyWasUserEntered: string = callSDK<string>("HealthKit_6be9a005889899ab", 506643334291687, undefined, []);
 
 /**
  * let HKMetadataKeyWaterSalinity: String
  * @availability iOS 17.0+
  */
-export const HKMetadataKeyWaterSalinity: string = callSDK<string>("HealthKit_5d69670f0307b385", 2209639410084678, undefined, []);
+export const HKMetadataKeyWaterSalinity: string = callSDK<string>("HealthKit_6be9a005889899ab", 2209639410084678, undefined, []);
 
 /**
  * let HKMetadataKeyWeatherCondition: String
  * @availability iOS 10.0+
  */
-export const HKMetadataKeyWeatherCondition: string = callSDK<string>("HealthKit_5d69670f0307b385", 1026270532476471, undefined, []);
+export const HKMetadataKeyWeatherCondition: string = callSDK<string>("HealthKit_6be9a005889899ab", 1026270532476471, undefined, []);
 
 /**
  * let HKMetadataKeyWeatherHumidity: String
  * @availability iOS 10.0+
  */
-export const HKMetadataKeyWeatherHumidity: string = callSDK<string>("HealthKit_5d69670f0307b385", 4096990729842989, undefined, []);
+export const HKMetadataKeyWeatherHumidity: string = callSDK<string>("HealthKit_6be9a005889899ab", 4096990729842989, undefined, []);
 
 /**
  * let HKMetadataKeyWeatherTemperature: String
  * @availability iOS 10.0+
  */
-export const HKMetadataKeyWeatherTemperature: string = callSDK<string>("HealthKit_5d69670f0307b385", 1018601418123446, undefined, []);
+export const HKMetadataKeyWeatherTemperature: string = callSDK<string>("HealthKit_6be9a005889899ab", 1018601418123446, undefined, []);
 
 /**
  * let HKMetadataKeyWorkoutBrandName: String
  * @availability iOS 8.0+
  */
-export const HKMetadataKeyWorkoutBrandName: string = callSDK<string>("HealthKit_5d69670f0307b385", 2133096668273800, undefined, []);
+export const HKMetadataKeyWorkoutBrandName: string = callSDK<string>("HealthKit_6be9a005889899ab", 2133096668273800, undefined, []);
 
 /** var HKObjectQueryNoLimit: Int { get } */
-export const HKObjectQueryNoLimit: number = callSDK<number>("HealthKit_5d69670f0307b385", 2509322973494721, undefined, []);
+export const HKObjectQueryNoLimit: number = callSDK<number>("HealthKit_6be9a005889899ab", 2509322973494721, undefined, []);
 
 /**
  * let HKPredicateKeyPathAverage: String
  * @availability iOS 13.0+
  */
-export const HKPredicateKeyPathAverage: string = callSDK<string>("HealthKit_5d69670f0307b385", 2430845530591329, undefined, []);
+export const HKPredicateKeyPathAverage: string = callSDK<string>("HealthKit_6be9a005889899ab", 2430845530591329, undefined, []);
 
 /**
  * let HKPredicateKeyPathAverageHeartRate: String
  * @availability iOS 14.0+
  */
-export const HKPredicateKeyPathAverageHeartRate: string = callSDK<string>("HealthKit_5d69670f0307b385", 410881057737910, undefined, []);
+export const HKPredicateKeyPathAverageHeartRate: string = callSDK<string>("HealthKit_6be9a005889899ab", 410881057737910, undefined, []);
 
 /**
  * let HKPredicateKeyPathCDAAuthorName: String
  * @availability iOS 10.0+
  */
-export const HKPredicateKeyPathCDAAuthorName: string = callSDK<string>("HealthKit_5d69670f0307b385", 2991784713222728, undefined, []);
+export const HKPredicateKeyPathCDAAuthorName: string = callSDK<string>("HealthKit_6be9a005889899ab", 2991784713222728, undefined, []);
 
 /**
  * let HKPredicateKeyPathCDACustodianName: String
  * @availability iOS 10.0+
  */
-export const HKPredicateKeyPathCDACustodianName: string = callSDK<string>("HealthKit_5d69670f0307b385", 2823557187132098, undefined, []);
+export const HKPredicateKeyPathCDACustodianName: string = callSDK<string>("HealthKit_6be9a005889899ab", 2823557187132098, undefined, []);
 
 /**
  * let HKPredicateKeyPathCDAPatientName: String
  * @availability iOS 10.0+
  */
-export const HKPredicateKeyPathCDAPatientName: string = callSDK<string>("HealthKit_5d69670f0307b385", 1642289111991898, undefined, []);
+export const HKPredicateKeyPathCDAPatientName: string = callSDK<string>("HealthKit_6be9a005889899ab", 1642289111991898, undefined, []);
 
 /**
  * let HKPredicateKeyPathCDATitle: String
  * @availability iOS 10.0+
  */
-export const HKPredicateKeyPathCDATitle: string = callSDK<string>("HealthKit_5d69670f0307b385", 118673977358915, undefined, []);
+export const HKPredicateKeyPathCDATitle: string = callSDK<string>("HealthKit_6be9a005889899ab", 118673977358915, undefined, []);
 
 /**
  * let HKPredicateKeyPathCategoryValue: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathCategoryValue: string = callSDK<string>("HealthKit_5d69670f0307b385", 3269416130984282, undefined, []);
+export const HKPredicateKeyPathCategoryValue: string = callSDK<string>("HealthKit_6be9a005889899ab", 3269416130984282, undefined, []);
 
 /**
  * let HKPredicateKeyPathClinicalRecordFHIRResourceIdentifier: String
  * @availability iOS 12.0+
  */
-export const HKPredicateKeyPathClinicalRecordFHIRResourceIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 1134068719358252, undefined, []);
+export const HKPredicateKeyPathClinicalRecordFHIRResourceIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 1134068719358252, undefined, []);
 
 /**
  * let HKPredicateKeyPathClinicalRecordFHIRResourceType: String
  * @availability iOS 12.0+
  */
-export const HKPredicateKeyPathClinicalRecordFHIRResourceType: string = callSDK<string>("HealthKit_5d69670f0307b385", 1136585035674896, undefined, []);
+export const HKPredicateKeyPathClinicalRecordFHIRResourceType: string = callSDK<string>("HealthKit_6be9a005889899ab", 1136585035674896, undefined, []);
 
 /**
  * let HKPredicateKeyPathCorrelation: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathCorrelation: string = callSDK<string>("HealthKit_5d69670f0307b385", 3779792139953462, undefined, []);
+export const HKPredicateKeyPathCorrelation: string = callSDK<string>("HealthKit_6be9a005889899ab", 3779792139953462, undefined, []);
 
 /**
  * let HKPredicateKeyPathCount: String
  * @availability iOS 13.0+
  */
-export const HKPredicateKeyPathCount: string = callSDK<string>("HealthKit_5d69670f0307b385", 3250330298224113, undefined, []);
+export const HKPredicateKeyPathCount: string = callSDK<string>("HealthKit_6be9a005889899ab", 3250330298224113, undefined, []);
 
 /**
  * let HKPredicateKeyPathDateComponents: String
  * @availability iOS 9.3+
  */
-export const HKPredicateKeyPathDateComponents: string = callSDK<string>("HealthKit_5d69670f0307b385", 2304778008411797, undefined, []);
+export const HKPredicateKeyPathDateComponents: string = callSDK<string>("HealthKit_6be9a005889899ab", 2304778008411797, undefined, []);
 
 /**
  * let HKPredicateKeyPathDevice: String
  * @availability iOS 9.0+
  */
-export const HKPredicateKeyPathDevice: string = callSDK<string>("HealthKit_5d69670f0307b385", 3607291749480471, undefined, []);
+export const HKPredicateKeyPathDevice: string = callSDK<string>("HealthKit_6be9a005889899ab", 3607291749480471, undefined, []);
 
 /**
  * let HKPredicateKeyPathECGClassification: String
  * @availability iOS 14.0+
  */
-export const HKPredicateKeyPathECGClassification: string = callSDK<string>("HealthKit_5d69670f0307b385", 320258034566969, undefined, []);
+export const HKPredicateKeyPathECGClassification: string = callSDK<string>("HealthKit_6be9a005889899ab", 320258034566969, undefined, []);
 
 /**
  * let HKPredicateKeyPathECGSymptomsStatus: String
  * @availability iOS 14.0+
  */
-export const HKPredicateKeyPathECGSymptomsStatus: string = callSDK<string>("HealthKit_5d69670f0307b385", 4319960825824802, undefined, []);
+export const HKPredicateKeyPathECGSymptomsStatus: string = callSDK<string>("HealthKit_6be9a005889899ab", 4319960825824802, undefined, []);
 
 /**
  * let HKPredicateKeyPathEndDate: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathEndDate: string = callSDK<string>("HealthKit_5d69670f0307b385", 4109174638421657, undefined, []);
+export const HKPredicateKeyPathEndDate: string = callSDK<string>("HealthKit_6be9a005889899ab", 4109174638421657, undefined, []);
 
 /**
  * let HKPredicateKeyPathLogOrigin: String
  * @availability iOS 26.0+
  */
-export const HKPredicateKeyPathLogOrigin: string = callSDK<string>("HealthKit_5d69670f0307b385", 2937732605760140, undefined, []);
+export const HKPredicateKeyPathLogOrigin: string = callSDK<string>("HealthKit_6be9a005889899ab", 2937732605760140, undefined, []);
 
 /**
  * let HKPredicateKeyPathMax: String
  * @availability iOS 13.0+
  */
-export const HKPredicateKeyPathMax: string = callSDK<string>("HealthKit_5d69670f0307b385", 2593729937139937, undefined, []);
+export const HKPredicateKeyPathMax: string = callSDK<string>("HealthKit_6be9a005889899ab", 2593729937139937, undefined, []);
 
 /**
  * let HKPredicateKeyPathMedicationConceptIdentifier: String
  * @availability iOS 26.0+
  */
-export const HKPredicateKeyPathMedicationConceptIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 1520306937773622, undefined, []);
+export const HKPredicateKeyPathMedicationConceptIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 1520306937773622, undefined, []);
 
 /**
  * let HKPredicateKeyPathMetadata: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathMetadata: string = callSDK<string>("HealthKit_5d69670f0307b385", 2518264785484524, undefined, []);
+export const HKPredicateKeyPathMetadata: string = callSDK<string>("HealthKit_6be9a005889899ab", 2518264785484524, undefined, []);
 
 /**
  * let HKPredicateKeyPathMin: String
  * @availability iOS 13.0+
  */
-export const HKPredicateKeyPathMin: string = callSDK<string>("HealthKit_5d69670f0307b385", 100906418951254, undefined, []);
+export const HKPredicateKeyPathMin: string = callSDK<string>("HealthKit_6be9a005889899ab", 100906418951254, undefined, []);
 
 /**
  * let HKPredicateKeyPathMostRecent: String
  * @availability iOS 13.0+
  */
-export const HKPredicateKeyPathMostRecent: string = callSDK<string>("HealthKit_5d69670f0307b385", 650894033216915, undefined, []);
+export const HKPredicateKeyPathMostRecent: string = callSDK<string>("HealthKit_6be9a005889899ab", 650894033216915, undefined, []);
 
 /**
  * let HKPredicateKeyPathMostRecentDuration: String
  * @availability iOS 13.0+
  */
-export const HKPredicateKeyPathMostRecentDuration: string = callSDK<string>("HealthKit_5d69670f0307b385", 1236409817656745, undefined, []);
+export const HKPredicateKeyPathMostRecentDuration: string = callSDK<string>("HealthKit_6be9a005889899ab", 1236409817656745, undefined, []);
 
 /**
  * let HKPredicateKeyPathMostRecentEndDate: String
  * @availability iOS 13.0+
  */
-export const HKPredicateKeyPathMostRecentEndDate: string = callSDK<string>("HealthKit_5d69670f0307b385", 968537345841694, undefined, []);
+export const HKPredicateKeyPathMostRecentEndDate: string = callSDK<string>("HealthKit_6be9a005889899ab", 968537345841694, undefined, []);
 
 /**
  * let HKPredicateKeyPathMostRecentStartDate: String
  * @availability iOS 13.0+
  */
-export const HKPredicateKeyPathMostRecentStartDate: string = callSDK<string>("HealthKit_5d69670f0307b385", 3711597152297774, undefined, []);
+export const HKPredicateKeyPathMostRecentStartDate: string = callSDK<string>("HealthKit_6be9a005889899ab", 3711597152297774, undefined, []);
 
 /**
  * let HKPredicateKeyPathQuantity: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathQuantity: string = callSDK<string>("HealthKit_5d69670f0307b385", 929366854436341, undefined, []);
+export const HKPredicateKeyPathQuantity: string = callSDK<string>("HealthKit_6be9a005889899ab", 929366854436341, undefined, []);
 
 /**
  * let HKPredicateKeyPathScheduledDate: String
  * @availability iOS 26.0+
  */
-export const HKPredicateKeyPathScheduledDate: string = callSDK<string>("HealthKit_5d69670f0307b385", 1295116412540094, undefined, []);
+export const HKPredicateKeyPathScheduledDate: string = callSDK<string>("HealthKit_6be9a005889899ab", 1295116412540094, undefined, []);
 
 /**
  * let HKPredicateKeyPathSource: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathSource: string = callSDK<string>("HealthKit_5d69670f0307b385", 443675498141978, undefined, []);
+export const HKPredicateKeyPathSource: string = callSDK<string>("HealthKit_6be9a005889899ab", 443675498141978, undefined, []);
 
 /**
  * let HKPredicateKeyPathSourceRevision: String
  * @availability iOS 9.0+
  */
-export const HKPredicateKeyPathSourceRevision: string = callSDK<string>("HealthKit_5d69670f0307b385", 1954671580815987, undefined, []);
+export const HKPredicateKeyPathSourceRevision: string = callSDK<string>("HealthKit_6be9a005889899ab", 1954671580815987, undefined, []);
 
 /**
  * let HKPredicateKeyPathStartDate: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathStartDate: string = callSDK<string>("HealthKit_5d69670f0307b385", 3487125817598742, undefined, []);
+export const HKPredicateKeyPathStartDate: string = callSDK<string>("HealthKit_6be9a005889899ab", 3487125817598742, undefined, []);
 
 /**
  * let HKPredicateKeyPathStatus: String
  * @availability iOS 26.0+
  */
-export const HKPredicateKeyPathStatus: string = callSDK<string>("HealthKit_5d69670f0307b385", 26272177884465, undefined, []);
+export const HKPredicateKeyPathStatus: string = callSDK<string>("HealthKit_6be9a005889899ab", 26272177884465, undefined, []);
 
 /**
  * let HKPredicateKeyPathSum: String
  * @availability iOS 12.0+
  */
-export const HKPredicateKeyPathSum: string = callSDK<string>("HealthKit_5d69670f0307b385", 2097362325770347, undefined, []);
+export const HKPredicateKeyPathSum: string = callSDK<string>("HealthKit_6be9a005889899ab", 2097362325770347, undefined, []);
 
 /**
  * let HKPredicateKeyPathUUID: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathUUID: string = callSDK<string>("HealthKit_5d69670f0307b385", 4203516771898357, undefined, []);
+export const HKPredicateKeyPathUUID: string = callSDK<string>("HealthKit_6be9a005889899ab", 4203516771898357, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkout: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathWorkout: string = callSDK<string>("HealthKit_5d69670f0307b385", 2656204162423597, undefined, []);
+export const HKPredicateKeyPathWorkout: string = callSDK<string>("HealthKit_6be9a005889899ab", 2656204162423597, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutActivity: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutActivity: string = callSDK<string>("HealthKit_5d69670f0307b385", 1605495627580574, undefined, []);
+export const HKPredicateKeyPathWorkoutActivity: string = callSDK<string>("HealthKit_6be9a005889899ab", 1605495627580574, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutActivityAverageQuantity: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutActivityAverageQuantity: string = callSDK<string>("HealthKit_5d69670f0307b385", 2627146244928063, undefined, []);
+export const HKPredicateKeyPathWorkoutActivityAverageQuantity: string = callSDK<string>("HealthKit_6be9a005889899ab", 2627146244928063, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutActivityDuration: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutActivityDuration: string = callSDK<string>("HealthKit_5d69670f0307b385", 3943878960613675, undefined, []);
+export const HKPredicateKeyPathWorkoutActivityDuration: string = callSDK<string>("HealthKit_6be9a005889899ab", 3943878960613675, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutActivityEndDate: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutActivityEndDate: string = callSDK<string>("HealthKit_5d69670f0307b385", 2656934896018036, undefined, []);
+export const HKPredicateKeyPathWorkoutActivityEndDate: string = callSDK<string>("HealthKit_6be9a005889899ab", 2656934896018036, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutActivityMaximumQuantity: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutActivityMaximumQuantity: string = callSDK<string>("HealthKit_5d69670f0307b385", 961007627679451, undefined, []);
+export const HKPredicateKeyPathWorkoutActivityMaximumQuantity: string = callSDK<string>("HealthKit_6be9a005889899ab", 961007627679451, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutActivityMinimumQuantity: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutActivityMinimumQuantity: string = callSDK<string>("HealthKit_5d69670f0307b385", 2216805405203078, undefined, []);
+export const HKPredicateKeyPathWorkoutActivityMinimumQuantity: string = callSDK<string>("HealthKit_6be9a005889899ab", 2216805405203078, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutActivityStartDate: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutActivityStartDate: string = callSDK<string>("HealthKit_5d69670f0307b385", 2393379984182312, undefined, []);
+export const HKPredicateKeyPathWorkoutActivityStartDate: string = callSDK<string>("HealthKit_6be9a005889899ab", 2393379984182312, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutActivitySumQuantity: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutActivitySumQuantity: string = callSDK<string>("HealthKit_5d69670f0307b385", 2682995593268501, undefined, []);
+export const HKPredicateKeyPathWorkoutActivitySumQuantity: string = callSDK<string>("HealthKit_6be9a005889899ab", 2682995593268501, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutActivityType: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutActivityType: string = callSDK<string>("HealthKit_5d69670f0307b385", 2714635303938864, undefined, []);
+export const HKPredicateKeyPathWorkoutActivityType: string = callSDK<string>("HealthKit_6be9a005889899ab", 2714635303938864, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutAverageQuantity: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutAverageQuantity: string = callSDK<string>("HealthKit_5d69670f0307b385", 145674946050893, undefined, []);
+export const HKPredicateKeyPathWorkoutAverageQuantity: string = callSDK<string>("HealthKit_6be9a005889899ab", 145674946050893, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutDuration: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathWorkoutDuration: string = callSDK<string>("HealthKit_5d69670f0307b385", 2943744754836891, undefined, []);
+export const HKPredicateKeyPathWorkoutDuration: string = callSDK<string>("HealthKit_6be9a005889899ab", 2943744754836891, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutEffortRelationship: String
  * @availability iOS 18.0+
  */
-export const HKPredicateKeyPathWorkoutEffortRelationship: string = callSDK<string>("HealthKit_5d69670f0307b385", 1310939152868030, undefined, []);
+export const HKPredicateKeyPathWorkoutEffortRelationship: string = callSDK<string>("HealthKit_6be9a005889899ab", 1310939152868030, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutMaximumQuantity: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutMaximumQuantity: string = callSDK<string>("HealthKit_5d69670f0307b385", 2330399673747382, undefined, []);
+export const HKPredicateKeyPathWorkoutMaximumQuantity: string = callSDK<string>("HealthKit_6be9a005889899ab", 2330399673747382, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutMinimumQuantity: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutMinimumQuantity: string = callSDK<string>("HealthKit_5d69670f0307b385", 3515823396681927, undefined, []);
+export const HKPredicateKeyPathWorkoutMinimumQuantity: string = callSDK<string>("HealthKit_6be9a005889899ab", 3515823396681927, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutSumQuantity: String
  * @availability iOS 16.0+
  */
-export const HKPredicateKeyPathWorkoutSumQuantity: string = callSDK<string>("HealthKit_5d69670f0307b385", 4178956222257941, undefined, []);
+export const HKPredicateKeyPathWorkoutSumQuantity: string = callSDK<string>("HealthKit_6be9a005889899ab", 4178956222257941, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutTotalDistance: String
  * @availability iOS 8.0+
  * @deprecated iOS 100000.0
  */
-export const HKPredicateKeyPathWorkoutTotalDistance: string = callSDK<string>("HealthKit_5d69670f0307b385", 1808683669456886, undefined, []);
+export const HKPredicateKeyPathWorkoutTotalDistance: string = callSDK<string>("HealthKit_6be9a005889899ab", 1808683669456886, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutTotalEnergyBurned: String
  * @availability iOS 8.0+
  * @deprecated iOS 18.0
  */
-export const HKPredicateKeyPathWorkoutTotalEnergyBurned: string = callSDK<string>("HealthKit_5d69670f0307b385", 2846425229016877, undefined, []);
+export const HKPredicateKeyPathWorkoutTotalEnergyBurned: string = callSDK<string>("HealthKit_6be9a005889899ab", 2846425229016877, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutTotalFlightsClimbed: String
  * @availability iOS 11.0+
  * @deprecated iOS 18.0
  */
-export const HKPredicateKeyPathWorkoutTotalFlightsClimbed: string = callSDK<string>("HealthKit_5d69670f0307b385", 1014572945829542, undefined, []);
+export const HKPredicateKeyPathWorkoutTotalFlightsClimbed: string = callSDK<string>("HealthKit_6be9a005889899ab", 1014572945829542, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutTotalSwimmingStrokeCount: String
  * @availability iOS 10.0+
  * @deprecated iOS 18.0
  */
-export const HKPredicateKeyPathWorkoutTotalSwimmingStrokeCount: string = callSDK<string>("HealthKit_5d69670f0307b385", 2855343665042784, undefined, []);
+export const HKPredicateKeyPathWorkoutTotalSwimmingStrokeCount: string = callSDK<string>("HealthKit_6be9a005889899ab", 2855343665042784, undefined, []);
 
 /**
  * let HKPredicateKeyPathWorkoutType: String
  * @availability iOS 8.0+
  */
-export const HKPredicateKeyPathWorkoutType: string = callSDK<string>("HealthKit_5d69670f0307b385", 1607051584466859, undefined, []);
+export const HKPredicateKeyPathWorkoutType: string = callSDK<string>("HealthKit_6be9a005889899ab", 1607051584466859, undefined, []);
 
 /**
  * let HKSampleSortIdentifierEndDate: String
  * @availability iOS 8.0+
  */
-export const HKSampleSortIdentifierEndDate: string = callSDK<string>("HealthKit_5d69670f0307b385", 4111843944010738, undefined, []);
+export const HKSampleSortIdentifierEndDate: string = callSDK<string>("HealthKit_6be9a005889899ab", 4111843944010738, undefined, []);
 
 /**
  * let HKSampleSortIdentifierStartDate: String
  * @availability iOS 8.0+
  */
-export const HKSampleSortIdentifierStartDate: string = callSDK<string>("HealthKit_5d69670f0307b385", 2732860219601411, undefined, []);
+export const HKSampleSortIdentifierStartDate: string = callSDK<string>("HealthKit_6be9a005889899ab", 2732860219601411, undefined, []);
 
 /**
  * let HKSourceRevisionAnyOperatingSystem: OperatingSystemVersion
  * @availability iOS 11.0+
  */
-export const HKSourceRevisionAnyOperatingSystem: _Foundation_OperatingSystemVersion = callSDK<_Foundation_OperatingSystemVersion>("HealthKit_5d69670f0307b385", 4341506807384362, undefined, []);
+export const HKSourceRevisionAnyOperatingSystem: _Foundation_OperatingSystemVersion = callSDK<_Foundation_OperatingSystemVersion>("HealthKit_6be9a005889899ab", 4341506807384362, undefined, []);
 
 /**
  * let HKSourceRevisionAnyProductType: String
  * @availability iOS 11.0+
  */
-export const HKSourceRevisionAnyProductType: string = callSDK<string>("HealthKit_5d69670f0307b385", 1188705818311069, undefined, []);
+export const HKSourceRevisionAnyProductType: string = callSDK<string>("HealthKit_6be9a005889899ab", 1188705818311069, undefined, []);
 
 /**
  * let HKSourceRevisionAnyVersion: String
  * @availability iOS 11.0+
  */
-export const HKSourceRevisionAnyVersion: string = callSDK<string>("HealthKit_5d69670f0307b385", 1942357495008757, undefined, []);
+export const HKSourceRevisionAnyVersion: string = callSDK<string>("HealthKit_6be9a005889899ab", 1942357495008757, undefined, []);
 
 /**
  * let HKUserAnnotatedMedicationPredicateKeyPathHasSchedule: String
  * @availability iOS 26.0+
  */
-export const HKUserAnnotatedMedicationPredicateKeyPathHasSchedule: string = callSDK<string>("HealthKit_5d69670f0307b385", 4023055922076507, undefined, []);
+export const HKUserAnnotatedMedicationPredicateKeyPathHasSchedule: string = callSDK<string>("HealthKit_6be9a005889899ab", 4023055922076507, undefined, []);
 
 /**
  * let HKUserAnnotatedMedicationPredicateKeyPathIsArchived: String
  * @availability iOS 26.0+
  */
-export const HKUserAnnotatedMedicationPredicateKeyPathIsArchived: string = callSDK<string>("HealthKit_5d69670f0307b385", 1550820620744418, undefined, []);
+export const HKUserAnnotatedMedicationPredicateKeyPathIsArchived: string = callSDK<string>("HealthKit_6be9a005889899ab", 1550820620744418, undefined, []);
 
 /**
  * let HKVisionPrescriptionTypeIdentifier: String
  * @availability iOS 16.0+
  */
-export const HKVisionPrescriptionTypeIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 568756941536275, undefined, []);
+export const HKVisionPrescriptionTypeIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 568756941536275, undefined, []);
 
 /**
  * let HKWorkoutRouteTypeIdentifier: String
  * @availability iOS 11.0+
  */
-export const HKWorkoutRouteTypeIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 3349302046901721, undefined, []);
+export const HKWorkoutRouteTypeIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 3349302046901721, undefined, []);
 
 /**
  * let HKWorkoutSortIdentifierDuration: String
  * @availability iOS 8.0+
  */
-export const HKWorkoutSortIdentifierDuration: string = callSDK<string>("HealthKit_5d69670f0307b385", 1735310640169198, undefined, []);
+export const HKWorkoutSortIdentifierDuration: string = callSDK<string>("HealthKit_6be9a005889899ab", 1735310640169198, undefined, []);
 
 /**
  * let HKWorkoutSortIdentifierTotalDistance: String
  * @availability iOS 8.0+
  */
-export const HKWorkoutSortIdentifierTotalDistance: string = callSDK<string>("HealthKit_5d69670f0307b385", 1222478995727323, undefined, []);
+export const HKWorkoutSortIdentifierTotalDistance: string = callSDK<string>("HealthKit_6be9a005889899ab", 1222478995727323, undefined, []);
 
 /**
  * let HKWorkoutSortIdentifierTotalEnergyBurned: String
  * @availability iOS 8.0+
  */
-export const HKWorkoutSortIdentifierTotalEnergyBurned: string = callSDK<string>("HealthKit_5d69670f0307b385", 3848848084935264, undefined, []);
+export const HKWorkoutSortIdentifierTotalEnergyBurned: string = callSDK<string>("HealthKit_6be9a005889899ab", 3848848084935264, undefined, []);
 
 /**
  * let HKWorkoutSortIdentifierTotalFlightsClimbed: String
  * @availability iOS 11.0+
  */
-export const HKWorkoutSortIdentifierTotalFlightsClimbed: string = callSDK<string>("HealthKit_5d69670f0307b385", 550555717403101, undefined, []);
+export const HKWorkoutSortIdentifierTotalFlightsClimbed: string = callSDK<string>("HealthKit_6be9a005889899ab", 550555717403101, undefined, []);
 
 /**
  * let HKWorkoutSortIdentifierTotalSwimmingStrokeCount: String
  * @availability iOS 10.0+
  */
-export const HKWorkoutSortIdentifierTotalSwimmingStrokeCount: string = callSDK<string>("HealthKit_5d69670f0307b385", 3637787124547344, undefined, []);
+export const HKWorkoutSortIdentifierTotalSwimmingStrokeCount: string = callSDK<string>("HealthKit_6be9a005889899ab", 3637787124547344, undefined, []);
 
 /**
  * let HKWorkoutTypeIdentifier: String
  * @availability iOS 8.0+
  */
-export const HKWorkoutTypeIdentifier: string = callSDK<string>("HealthKit_5d69670f0307b385", 1110510537130575, undefined, []);
+export const HKWorkoutTypeIdentifier: string = callSDK<string>("HealthKit_6be9a005889899ab", 1110510537130575, undefined, []);
 
 /** var HKAnchoredObjectQueryNoAnchor: Int32 { get } */
-export const HKAnchoredObjectQueryNoAnchor: number = callSDK<number>("HealthKit_5d69670f0307b385", 1502327436176425, undefined, []);
+export const HKAnchoredObjectQueryNoAnchor: number = callSDK<number>("HealthKit_6be9a005889899ab", 1502327436176425, undefined, []);
 
 /** var HKUnitMolarMassBloodGlucose: Double { get } */
-export const HKUnitMolarMassBloodGlucose: number = callSDK<number>("HealthKit_5d69670f0307b385", 687485885030308, undefined, []);
+export const HKUnitMolarMassBloodGlucose: number = callSDK<number>("HealthKit_6be9a005889899ab", 687485885030308, undefined, []);
 
-registerSDKClass("HealthKit.BufferedAsyncByteIterator", BufferedAsyncByteIterator, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":1684066755675652}} });
-registerSDKClass("HKActivityMoveModeObject", HKActivityMoveModeObject, { module: "HealthKit_5d69670f0307b385", properties: {"activityMoveMode":3185928496563519} });
-registerSDKClass("HKActivitySummary", HKActivitySummary, { module: "HealthKit_5d69670f0307b385", properties: {"activeEnergyBurned":293237665625478,"activeEnergyBurnedGoal":3650578404040620,"activityMoveMode":2713402507301967,"appleExerciseTime":1440724282143384,"appleExerciseTimeGoal":1419122986692193,"appleMoveTime":2327289301528608,"appleMoveTimeGoal":2458629106466871,"appleStandHours":3172999438774144,"appleStandHoursGoal":119229636962022,"exerciseTimeGoal":592744444008240,"isPaused":3355695429450891,"standHoursGoal":1351644220076700}, methods: {"dateComponents":{"id":3060218198694333}} });
-registerSDKClass("HKQuery", HKQuery, { module: "HealthKit_5d69670f0307b385", properties: {"objectType":1844743802310491,"predicate":4063575293186351,"sampleType":890532763077424} });
-registerSDKClass("HKActivitySummaryQuery", HKActivitySummaryQuery, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKActivitySummaryQueryDescriptor", HKActivitySummaryQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"result":{"id":2368047419119683},"results":{"id":1808228614804167}} });
-registerSDKClass("HealthKit.HKActivitySummaryQueryDescriptor.Results", HKActivitySummaryQueryDescriptor_Results, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":2705262782266747}} });
-registerSDKClass("HealthKit.HKActivitySummaryQueryDescriptor.Results.Iterator", HKActivitySummaryQueryDescriptor_Results_Iterator, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":4445386132888004}} });
-registerSDKClass("HKObjectType", HKObjectType, { module: "HealthKit_5d69670f0307b385", properties: {"identifier":397222689754597}, methods: {"requiresPerObjectAuthorization":{"id":865262736849135}} });
-registerSDKClass("HKActivitySummaryType", HKActivitySummaryType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKAnchoredObjectQuery", HKAnchoredObjectQuery, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKAnchoredObjectQueryDescriptor", HKAnchoredObjectQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"result":{"id":2899620714985588},"results":{"id":907519106038798}} });
-registerSDKClass("HealthKit.HKAnchoredObjectQueryDescriptor.Result", HKAnchoredObjectQueryDescriptor_Result, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKAnchoredObjectQueryDescriptor.Results", HKAnchoredObjectQueryDescriptor_Results, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":2082021132396731}} });
-registerSDKClass("HealthKit.HKAnchoredObjectQueryDescriptor.Results.Iterator", HKAnchoredObjectQueryDescriptor_Results_Iterator, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":1813582149946810}} });
+registerSDKClass("HealthKit.BufferedAsyncByteIterator", BufferedAsyncByteIterator, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":1684066755675652}} });
+registerSDKClass("HKActivityMoveModeObject", HKActivityMoveModeObject, { module: "HealthKit_6be9a005889899ab", properties: {"activityMoveMode":3185928496563519} });
+registerSDKClass("HKActivitySummary", HKActivitySummary, { module: "HealthKit_6be9a005889899ab", properties: {"activeEnergyBurned":293237665625478,"activeEnergyBurnedGoal":3650578404040620,"activityMoveMode":2713402507301967,"appleExerciseTime":1440724282143384,"appleExerciseTimeGoal":1419122986692193,"appleMoveTime":2327289301528608,"appleMoveTimeGoal":2458629106466871,"appleStandHours":3172999438774144,"appleStandHoursGoal":119229636962022,"exerciseTimeGoal":592744444008240,"isPaused":3355695429450891,"standHoursGoal":1351644220076700}, methods: {"dateComponents":{"id":3060218198694333}} });
+registerSDKClass("HKQuery", HKQuery, { module: "HealthKit_6be9a005889899ab", properties: {"objectType":1844743802310491,"predicate":4063575293186351,"sampleType":890532763077424} });
+registerSDKClass("HKActivitySummaryQuery", HKActivitySummaryQuery, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKActivitySummaryQueryDescriptor", HKActivitySummaryQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"result":{"id":2368047419119683},"results":{"id":1808228614804167}} });
+registerSDKClass("HealthKit.HKActivitySummaryQueryDescriptor.Results", HKActivitySummaryQueryDescriptor_Results, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":2705262782266747}} });
+registerSDKClass("HealthKit.HKActivitySummaryQueryDescriptor.Results.Iterator", HKActivitySummaryQueryDescriptor_Results_Iterator, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":4445386132888004}} });
+registerSDKClass("HKObjectType", HKObjectType, { module: "HealthKit_6be9a005889899ab", properties: {"identifier":397222689754597}, methods: {"requiresPerObjectAuthorization":{"id":865262736849135}} });
+registerSDKClass("HKActivitySummaryType", HKActivitySummaryType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKAnchoredObjectQuery", HKAnchoredObjectQuery, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKAnchoredObjectQueryDescriptor", HKAnchoredObjectQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"result":{"id":2899620714985588},"results":{"id":907519106038798}} });
+registerSDKClass("HealthKit.HKAnchoredObjectQueryDescriptor.Result", HKAnchoredObjectQueryDescriptor_Result, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKAnchoredObjectQueryDescriptor.Results", HKAnchoredObjectQueryDescriptor_Results, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":2082021132396731}} });
+registerSDKClass("HealthKit.HKAnchoredObjectQueryDescriptor.Results.Iterator", HKAnchoredObjectQueryDescriptor_Results_Iterator, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":1813582149946810}} });
 registerSDKProtocol("s:9HealthKit12HKAsyncQueryP", {"resultFor":"result(for:)"});
 registerSDKProtocol("s:9HealthKit20HKAsyncSequenceQueryP", {"resultsFor":"results(for:)"});
-registerSDKClass("HKAttachment", HKAttachment, { module: "HealthKit_5d69670f0307b385", properties: {"contentType":4053593745455472,"creationDate":3026992943112276,"identifier":1218343812620062,"metadata":303169792880205,"name":4450848020413148,"size":4159811958797006} });
-registerSDKClass("HealthKit.HKAttachment.AsyncBytes", HKAttachment_AsyncBytes, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":2797273080093132}} });
-registerSDKClass("HealthKit.HKAttachmentDataReader", HKAttachmentDataReader, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKAttachmentStore", HKAttachmentStore, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"getAttachments":{"id":4187472206435661,"hints":[null,{"callback":{"out":[]}}]},"getData":{"id":536511254203442,"hints":[null,{"callback":{"out":[]}}]},"removeAttachment":{"id":493052617021214,"hints":[null,null,{"callback":{"out":[]}}]},"streamData":{"id":4329347944189948,"hints":[null,{"callback":{"out":[]}}]},"dataReader":{"id":783842587516915},"addAttachmentToNameContentTypeUrlMetadataCompletion":{"id":914636212322660,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"addAttachmentToNameContentTypeUrlMetadata":{"id":146769282557422}} });
-registerSDKClass("HKObject", HKObject, { module: "HealthKit_5d69670f0307b385", properties: {"uuid":2439709153122257,"device":1307329011557833,"metadata":2767295721390738,"source":1943567560616243,"sourceRevision":99324498625935} });
-registerSDKClass("HKSample", HKSample, { module: "HealthKit_5d69670f0307b385", properties: {"endDate":875277085200561,"hasUndeterminedDuration":4024417129304501,"sampleType":131605399474920,"startDate":2362235417899693} });
-registerSDKClass("HKAudiogramSample", HKAudiogramSample, { module: "HealthKit_5d69670f0307b385", properties: {"sensitivityPoints":380450935743988} });
-registerSDKClass("HKSampleType", HKSampleType, { module: "HealthKit_5d69670f0307b385", properties: {"allowsRecalibrationForEstimates":3207716555215400,"isMaximumDurationRestricted":1615546353057751,"isMinimumDurationRestricted":1984088748532562,"maximumAllowedDuration":3770773534256646,"minimumAllowedDuration":495968126175175} });
-registerSDKClass("HKAudiogramSampleType", HKAudiogramSampleType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKAudiogramSensitivityPoint", HKAudiogramSensitivityPoint, { module: "HealthKit_5d69670f0307b385", properties: {"frequency":4424760613882952,"leftEarSensitivity":422085456137377,"rightEarSensitivity":82456229302156,"tests":502277110275446} });
-registerSDKClass("HKAudiogramSensitivityPointClampingRange", HKAudiogramSensitivityPointClampingRange, { module: "HealthKit_5d69670f0307b385", properties: {"lowerBound":2532578034328151,"upperBound":71767120862181} });
-registerSDKClass("HKAudiogramSensitivityTest", HKAudiogramSensitivityTest, { module: "HealthKit_5d69670f0307b385", properties: {"clampingRange":3942473272895738,"masked":1456068135075464,"sensitivity":751621208382704,"side":544406906577323,"type":1432631294660610} });
-registerSDKClass("HKBiologicalSexObject", HKBiologicalSexObject, { module: "HealthKit_5d69670f0307b385", properties: {"biologicalSex":374326847130019} });
-registerSDKClass("HKBloodTypeObject", HKBloodTypeObject, { module: "HealthKit_5d69670f0307b385", properties: {"bloodType":2558831182484397} });
-registerSDKClass("HKCategorySample", HKCategorySample, { module: "HealthKit_5d69670f0307b385", properties: {"categoryType":1354414405878613,"value":744407102785415} });
-registerSDKClass("HKCategoryType", HKCategoryType, { module: "HealthKit_5d69670f0307b385", properties: {} });
+registerSDKClass("HKAttachment", HKAttachment, { module: "HealthKit_6be9a005889899ab", properties: {"contentType":4053593745455472,"creationDate":3026992943112276,"identifier":1218343812620062,"metadata":303169792880205,"name":4450848020413148,"size":4159811958797006} });
+registerSDKClass("HealthKit.HKAttachment.AsyncBytes", HKAttachment_AsyncBytes, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":2797273080093132}} });
+registerSDKClass("HealthKit.HKAttachmentDataReader", HKAttachmentDataReader, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKAttachmentStore", HKAttachmentStore, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"getAttachments":{"id":4187472206435661,"hints":[null,{"callback":{"out":[]}}]},"getData":{"id":536511254203442,"hints":[null,{"callback":{"out":[]}}]},"removeAttachment":{"id":493052617021214,"hints":[null,null,{"callback":{"out":[]}}]},"streamData":{"id":4329347944189948,"hints":[null,{"callback":{"out":[]}}]},"dataReader":{"id":783842587516915},"addAttachmentToNameContentTypeUrlMetadataCompletion":{"id":914636212322660,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"addAttachmentToNameContentTypeUrlMetadata":{"id":146769282557422}} });
+registerSDKClass("HKObject", HKObject, { module: "HealthKit_6be9a005889899ab", properties: {"uuid":2439709153122257,"device":1307329011557833,"metadata":2767295721390738,"source":1943567560616243,"sourceRevision":99324498625935} });
+registerSDKClass("HKSample", HKSample, { module: "HealthKit_6be9a005889899ab", properties: {"endDate":875277085200561,"hasUndeterminedDuration":4024417129304501,"sampleType":131605399474920,"startDate":2362235417899693} });
+registerSDKClass("HKAudiogramSample", HKAudiogramSample, { module: "HealthKit_6be9a005889899ab", properties: {"sensitivityPoints":380450935743988} });
+registerSDKClass("HKSampleType", HKSampleType, { module: "HealthKit_6be9a005889899ab", properties: {"allowsRecalibrationForEstimates":3207716555215400,"isMaximumDurationRestricted":1615546353057751,"isMinimumDurationRestricted":1984088748532562,"maximumAllowedDuration":3770773534256646,"minimumAllowedDuration":495968126175175} });
+registerSDKClass("HKAudiogramSampleType", HKAudiogramSampleType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKAudiogramSensitivityPoint", HKAudiogramSensitivityPoint, { module: "HealthKit_6be9a005889899ab", properties: {"frequency":4424760613882952,"leftEarSensitivity":422085456137377,"rightEarSensitivity":82456229302156,"tests":502277110275446} });
+registerSDKClass("HKAudiogramSensitivityPointClampingRange", HKAudiogramSensitivityPointClampingRange, { module: "HealthKit_6be9a005889899ab", properties: {"lowerBound":2532578034328151,"upperBound":71767120862181} });
+registerSDKClass("HKAudiogramSensitivityTest", HKAudiogramSensitivityTest, { module: "HealthKit_6be9a005889899ab", properties: {"clampingRange":3942473272895738,"masked":1456068135075464,"sensitivity":751621208382704,"side":544406906577323,"type":1432631294660610} });
+registerSDKClass("HKBiologicalSexObject", HKBiologicalSexObject, { module: "HealthKit_6be9a005889899ab", properties: {"biologicalSex":374326847130019} });
+registerSDKClass("HKBloodTypeObject", HKBloodTypeObject, { module: "HealthKit_6be9a005889899ab", properties: {"bloodType":2558831182484397} });
+registerSDKClass("HKCategorySample", HKCategorySample, { module: "HealthKit_6be9a005889899ab", properties: {"categoryType":1354414405878613,"value":744407102785415} });
+registerSDKClass("HKCategoryType", HKCategoryType, { module: "HealthKit_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:9HealthKit33HKCategoryValuePredicateProvidingP", {});
-registerSDKClass("HKCDADocument", HKCDADocument, { module: "HealthKit_5d69670f0307b385", properties: {"authorName":2322668355503693,"custodianName":2960184782775662,"documentData":3536445119657207,"patientName":2535336123395528,"title":2008193326259302} });
-registerSDKClass("HKDocumentSample", HKDocumentSample, { module: "HealthKit_5d69670f0307b385", properties: {"documentType":2171649000699006} });
-registerSDKClass("HKCDADocumentSample", HKCDADocumentSample, { module: "HealthKit_5d69670f0307b385", properties: {"document":76441252768540} });
-registerSDKClass("HKCharacteristicType", HKCharacteristicType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKClinicalCoding", HKClinicalCoding, { module: "HealthKit_5d69670f0307b385", properties: {"code":4263420109500405,"system":1691029064550719,"version":3011777053810910} });
-registerSDKClass("HKClinicalRecord", HKClinicalRecord, { module: "HealthKit_5d69670f0307b385", properties: {"fhirResource":1817266705874272,"clinicalType":690106776000671,"displayName":3535406360606114} });
-registerSDKClass("HKClinicalType", HKClinicalType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKLensSpecification", HKLensSpecification, { module: "HealthKit_5d69670f0307b385", properties: {"addPower":3430681693064198,"axis":1789012205314134,"cylinder":3934140452965180,"sphere":4248750954458553} });
-registerSDKClass("HKContactsLensSpecification", HKContactsLensSpecification, { module: "HealthKit_5d69670f0307b385", properties: {"baseCurve":4110085254436301,"diameter":821587528516811} });
-registerSDKClass("HKVisionPrescription", HKVisionPrescription, { module: "HealthKit_5d69670f0307b385", properties: {"dateIssued":1639439914355983,"expirationDate":3248409254180365,"prescriptionType":1853071781165483} });
-registerSDKClass("HKContactsPrescription", HKContactsPrescription, { module: "HealthKit_5d69670f0307b385", properties: {"brand":2702242468410923,"leftEye":1106737343149510,"rightEye":2306182399375681} });
-registerSDKClass("HKCorrelation", HKCorrelation, { module: "HealthKit_5d69670f0307b385", properties: {"correlationType":1081644845801243,"objects":4124982371390656}, methods: {"objectsFor":{"id":1257917162134289}} });
-registerSDKClass("HKCorrelationQuery", HKCorrelationQuery, { module: "HealthKit_5d69670f0307b385", properties: {"correlationType":1917106441426040,"samplePredicates":4359202979928652} });
-registerSDKClass("HKCorrelationType", HKCorrelationType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKQuantitySample", HKQuantitySample, { module: "HealthKit_5d69670f0307b385", properties: {"count":68957455759735,"quantity":224935914450104,"quantityType":2724929568331362} });
-registerSDKClass("HKCumulativeQuantitySample", HKCumulativeQuantitySample, { module: "HealthKit_5d69670f0307b385", properties: {"sumQuantity":1444209044033206} });
-registerSDKClass("HKCumulativeQuantitySeriesSample", HKCumulativeQuantitySeriesSample, { module: "HealthKit_5d69670f0307b385", properties: {"sum":2263758293087729} });
-registerSDKClass("HKDeletedObject", HKDeletedObject, { module: "HealthKit_5d69670f0307b385", properties: {"uuid":2480129378727808,"metadata":511072240997822} });
-registerSDKClass("HKDevice", HKDevice, { module: "HealthKit_5d69670f0307b385", properties: {"udiDeviceIdentifier":1192856299393879,"firmwareVersion":3016294460257538,"hardwareVersion":956012989883628,"localIdentifier":1176445808670711,"manufacturer":32471188692528,"model":2488209028187331,"name":3833133948631652,"softwareVersion":942866051810118} });
-registerSDKClass("HKDiscreteQuantitySample", HKDiscreteQuantitySample, { module: "HealthKit_5d69670f0307b385", properties: {"averageQuantity":251202415528912,"maximumQuantity":1575435525198875,"minimumQuantity":2471498291836840,"mostRecentQuantity":4201890708167905,"mostRecentQuantityDateInterval":1415997363059887} });
-registerSDKClass("HKDocumentQuery", HKDocumentQuery, { module: "HealthKit_5d69670f0307b385", properties: {"includeDocumentData":4426571869104637,"limit":1911719208588981,"sortDescriptors":1967202041717964} });
-registerSDKClass("HKDocumentType", HKDocumentType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKElectrocardiogram", HKElectrocardiogram, { module: "HealthKit_5d69670f0307b385", properties: {"averageHeartRate":2863473701438660,"classification":2464065607973692,"numberOfVoltageMeasurements":4124274479753067,"samplingFrequency":2188634648678877,"symptomsStatus":1257541373541428} });
-registerSDKClass("HKElectrocardiogramVoltageMeasurement", HKElectrocardiogram_VoltageMeasurement, { module: "HealthKit_5d69670f0307b385", properties: {"timeSinceSampleStart":378324077588715}, methods: {"quantity":{"id":334176176613062}} });
-registerSDKClass("HKElectrocardiogramQuery", HKElectrocardiogramQuery, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKElectrocardiogramQuery.Result", HKElectrocardiogramQuery_Result, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKElectrocardiogramQueryDescriptor", HKElectrocardiogramQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"results":{"id":1142628265917774}} });
-registerSDKClass("HealthKit.HKElectrocardiogramQueryDescriptor.Results", HKElectrocardiogramQueryDescriptor_Results, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":3390647470122250}} });
-registerSDKClass("HealthKit.HKElectrocardiogramQueryDescriptor.Results.Iterator", HKElectrocardiogramQueryDescriptor_Results_Iterator, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":1270968339173450}} });
-registerSDKClass("HKElectrocardiogramType", HKElectrocardiogramType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKError", HKError, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKFHIRResource", HKFHIRResource, { module: "HealthKit_5d69670f0307b385", properties: {"fhirVersion":1430836967458987,"data":1522197405457388,"identifier":4028778748487105,"resourceType":685911293002625,"sourceURL":811225271619909} });
-registerSDKClass("HKFHIRVersion", HKFHIRVersion, { module: "HealthKit_5d69670f0307b385", properties: {"fhirRelease":634662439509312,"majorVersion":2145001555274980,"minorVersion":568186107865285,"patchVersion":4218742546320225,"stringRepresentation":3678312822913626} });
-registerSDKClass("HKFitzpatrickSkinTypeObject", HKFitzpatrickSkinTypeObject, { module: "HealthKit_5d69670f0307b385", properties: {"skinType":2765444926726167} });
-registerSDKClass("HKScoredAssessment", HKScoredAssessment, { module: "HealthKit_5d69670f0307b385", properties: {"score":3097785645823214} });
-registerSDKClass("HKGAD7Assessment", HKGAD7Assessment, { module: "HealthKit_5d69670f0307b385", properties: {"risk":890542945937765} });
-registerSDKClass("HKGlassesLensSpecification", HKGlassesLensSpecification, { module: "HealthKit_5d69670f0307b385", properties: {"farPupillaryDistance":2032556050871375,"nearPupillaryDistance":330126421693363,"prism":1818856178943648,"vertexDistance":1100689326372123} });
-registerSDKClass("HKGlassesPrescription", HKGlassesPrescription, { module: "HealthKit_5d69670f0307b385", properties: {"leftEye":393287540586164,"rightEye":1784679479010765} });
-registerSDKClass("HKHealthConceptIdentifier", HKHealthConceptIdentifier, { module: "HealthKit_5d69670f0307b385", properties: {"domain":4139300586245706} });
-registerSDKClass("HKHealthStore", HKHealthStore, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"activityMoveMode":{"id":3379710253388352},"add":{"id":3140711603726999,"hints":[null,null,{"callback":{"out":[]}}]},"authorizationStatus":{"id":460903999075037},"biologicalSex":{"id":2818560088739374},"bloodType":{"id":2715408121436172},"dateOfBirthComponents":{"id":12199780736928},"dateOfBirth":{"id":3199719110017460},"deleteWithCompletion":{"id":779829753535511,"hints":[null,{"callback":{"out":[]}}]},"deleteWithCompletion64175":{"id":1318462801765631,"hints":[null,{"callback":{"out":[]}}]},"deleteObjects":{"id":715998180361291,"hints":[null,null,{"callback":{"out":[]}}]},"disableAllBackgroundDelivery":{"id":1566036988973298,"hints":[{"callback":{"out":[]}}]},"disableBackgroundDelivery":{"id":1774880026223056,"hints":[null,{"callback":{"out":[]}}]},"earliestPermittedSampleDate":{"id":3497015170605558},"enableBackgroundDelivery":{"id":4390893173613616,"hints":[null,null,{"callback":{"out":[]}}]},"execute":{"id":4202883680172875},"fitzpatrickSkinType":{"id":4367724627794244},"getEarliestAuthorizedSampleDate":{"id":1893117783265484,"hints":[null,{"callback":{"out":[]}}]},"getRequestStatusForAuthorization":{"id":1773014428355338,"hints":[null,null,{"callback":{"out":[]}}]},"handleAuthorizationForExtension":{"id":2504388691564856,"hints":[{"callback":{"out":[]}}]},"preferredUnits":{"id":31686417104436,"hints":[null,{"callback":{"out":[]}}]},"recalibrateEstimates":{"id":2244974282957826,"hints":[null,null,{"callback":{"out":[]}}]},"recoverActiveWorkoutSession":{"id":3231910180728091,"hints":[{"callback":{"out":[]}}]},"relateWorkoutEffortSample":{"id":1517679471136866,"hints":[null,null,null,{"callback":{"out":[]}}]},"requestAuthorizationToShareReadCompletion":{"id":189404140422522,"hints":[null,null,{"callback":{"out":[]}}]},"requestPerObjectReadAuthorization":{"id":413435082156583,"hints":[null,null,{"callback":{"out":[]}}]},"saveWithCompletion":{"id":1490840841134737,"hints":[null,{"callback":{"out":[]}}]},"saveWithCompletion30981":{"id":2670701534841606,"hints":[null,{"callback":{"out":[]}}]},"splitTotalEnergy":{"id":3139117700901325,"hints":[null,null,null,{"callback":{"out":[]}}]},"startWatchApp":{"id":572039605347313,"hints":[null,{"callback":{"out":[]}}]},"stop":{"id":1568689082267246},"supportsHealthRecords":{"id":1554979216869899},"unrelateWorkoutEffortSample":{"id":3201380510361885,"hints":[null,null,null,{"callback":{"out":[]}}]},"wheelchairUse":{"id":2995414235202632},"requestAuthorizationToShareRead":{"id":3729090671907363},"earliestAuthorizedSampleDate":{"id":3695575491995674},"preferredWorkoutZoneConfiguration":{"id":1874740987279307}} });
-registerSDKClass("HealthKit.HKHealthStore.HKUserPreferencesDidChangeMessage", HKHealthStore_HKUserPreferencesDidChangeMessage, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKSeriesBuilder", HKSeriesBuilder, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"discard":{"id":171825536469656}} });
-registerSDKClass("HKHeartbeatSeriesBuilder", HKHeartbeatSeriesBuilder, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"addHeartbeatWithTimeInterval":{"id":1303987364997552,"hints":[null,null,{"callback":{"out":[]}}]},"addMetadata":{"id":914889938633896,"hints":[null,{"callback":{"out":[]}}]},"finishSeries":{"id":1900325891705169,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("HKHeartbeatSeriesQuery", HKHeartbeatSeriesQuery, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKHeartbeatSeriesQueryDescriptor", HKHeartbeatSeriesQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"results":{"id":2433293068003120}} });
-registerSDKClass("HealthKit.HKHeartbeatSeriesQueryDescriptor.Heartbeat", HKHeartbeatSeriesQueryDescriptor_Heartbeat, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKHeartbeatSeriesQueryDescriptor.Results", HKHeartbeatSeriesQueryDescriptor_Results, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":69884614187213}} });
-registerSDKClass("HealthKit.HKHeartbeatSeriesQueryDescriptor.Results.Iterator", HKHeartbeatSeriesQueryDescriptor_Results_Iterator, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":335237674632119}} });
-registerSDKClass("HKSeriesSample", HKSeriesSample, { module: "HealthKit_5d69670f0307b385", properties: {"count":1557292318369880} });
-registerSDKClass("HKHeartbeatSeriesSample", HKHeartbeatSeriesSample, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKWorkoutBuilder", HKWorkoutBuilder, { module: "HealthKit_5d69670f0307b385", properties: {"allStatistics":282405718238432,"device":4367295193437188,"endDate":2605530384600354,"metadata":4406913189853095,"startDate":1848501873264813,"workoutActivities":2644416678440340,"workoutConfiguration":4159633852926368,"workoutEvents":771285590332518}, methods: {"addMetadata":{"id":2515633417806928,"hints":[null,{"callback":{"out":[]}}]},"add":{"id":3009005146601407,"hints":[null,{"callback":{"out":[]}}]},"addWorkoutActivity":{"id":1659426459946873,"hints":[null,{"callback":{"out":[]}}]},"addWorkoutEvents":{"id":3715128080995652,"hints":[null,{"callback":{"out":[]}}]},"beginCollection":{"id":752593078856305,"hints":[null,{"callback":{"out":[]}}]},"discardWorkout":{"id":1040093182708560},"elapsedTime":{"id":3793032682101385},"endCollection":{"id":1002198518927918,"hints":[null,{"callback":{"out":[]}}]},"finishWorkout":{"id":266955147493516,"hints":[{"callback":{"out":[]}}]},"seriesBuilder":{"id":3082200704662015},"statistics":{"id":1396952208492681},"updateActivityUuidAddingCompletion":{"id":987737773664969,"hints":[null,null,{"callback":{"out":[]}}]},"updateActivityUuidEndCompletion":{"id":3022263576540619,"hints":[null,null,{"callback":{"out":[]}}]},"zoneConfiguration":{"id":949813436460084},"setCustomZoneConfiguration":{"id":1646976751223123},"zoneGroup":{"id":1340834807332466}} });
-registerSDKClass("HKLiveWorkoutBuilder", HKLiveWorkoutBuilder, { module: "HealthKit_5d69670f0307b385", properties: {"currentWorkoutActivity":1611888921077465,"dataSource":2056922718098590,"delegate":2241215979056260,"elapsedTime":2170141853494450,"shouldCollectWorkoutEvents":3196221344854110,"workoutSession":168998525894445}, methods: {"elapsedTime76675":{"id":3793032682101385}} });
+registerSDKClass("HKCDADocument", HKCDADocument, { module: "HealthKit_6be9a005889899ab", properties: {"authorName":2322668355503693,"custodianName":2960184782775662,"documentData":3536445119657207,"patientName":2535336123395528,"title":2008193326259302} });
+registerSDKClass("HKDocumentSample", HKDocumentSample, { module: "HealthKit_6be9a005889899ab", properties: {"documentType":2171649000699006} });
+registerSDKClass("HKCDADocumentSample", HKCDADocumentSample, { module: "HealthKit_6be9a005889899ab", properties: {"document":76441252768540} });
+registerSDKClass("HKCharacteristicType", HKCharacteristicType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKClinicalCoding", HKClinicalCoding, { module: "HealthKit_6be9a005889899ab", properties: {"code":4263420109500405,"system":1691029064550719,"version":3011777053810910} });
+registerSDKClass("HKClinicalRecord", HKClinicalRecord, { module: "HealthKit_6be9a005889899ab", properties: {"fhirResource":1817266705874272,"clinicalType":690106776000671,"displayName":3535406360606114} });
+registerSDKClass("HKClinicalType", HKClinicalType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKLensSpecification", HKLensSpecification, { module: "HealthKit_6be9a005889899ab", properties: {"addPower":3430681693064198,"axis":1789012205314134,"cylinder":3934140452965180,"sphere":4248750954458553} });
+registerSDKClass("HKContactsLensSpecification", HKContactsLensSpecification, { module: "HealthKit_6be9a005889899ab", properties: {"baseCurve":4110085254436301,"diameter":821587528516811} });
+registerSDKClass("HKVisionPrescription", HKVisionPrescription, { module: "HealthKit_6be9a005889899ab", properties: {"dateIssued":1639439914355983,"expirationDate":3248409254180365,"prescriptionType":1853071781165483} });
+registerSDKClass("HKContactsPrescription", HKContactsPrescription, { module: "HealthKit_6be9a005889899ab", properties: {"brand":2702242468410923,"leftEye":1106737343149510,"rightEye":2306182399375681} });
+registerSDKClass("HKCorrelation", HKCorrelation, { module: "HealthKit_6be9a005889899ab", properties: {"correlationType":1081644845801243,"objects":4124982371390656}, methods: {"objectsFor":{"id":1257917162134289}} });
+registerSDKClass("HKCorrelationQuery", HKCorrelationQuery, { module: "HealthKit_6be9a005889899ab", properties: {"correlationType":1917106441426040,"samplePredicates":4359202979928652} });
+registerSDKClass("HKCorrelationType", HKCorrelationType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKQuantitySample", HKQuantitySample, { module: "HealthKit_6be9a005889899ab", properties: {"count":68957455759735,"quantity":224935914450104,"quantityType":2724929568331362} });
+registerSDKClass("HKCumulativeQuantitySample", HKCumulativeQuantitySample, { module: "HealthKit_6be9a005889899ab", properties: {"sumQuantity":1444209044033206} });
+registerSDKClass("HKCumulativeQuantitySeriesSample", HKCumulativeQuantitySeriesSample, { module: "HealthKit_6be9a005889899ab", properties: {"sum":2263758293087729} });
+registerSDKClass("HKDeletedObject", HKDeletedObject, { module: "HealthKit_6be9a005889899ab", properties: {"uuid":2480129378727808,"metadata":511072240997822} });
+registerSDKClass("HKDevice", HKDevice, { module: "HealthKit_6be9a005889899ab", properties: {"udiDeviceIdentifier":1192856299393879,"firmwareVersion":3016294460257538,"hardwareVersion":956012989883628,"localIdentifier":1176445808670711,"manufacturer":32471188692528,"model":2488209028187331,"name":3833133948631652,"softwareVersion":942866051810118} });
+registerSDKClass("HKDiscreteQuantitySample", HKDiscreteQuantitySample, { module: "HealthKit_6be9a005889899ab", properties: {"averageQuantity":251202415528912,"maximumQuantity":1575435525198875,"minimumQuantity":2471498291836840,"mostRecentQuantity":4201890708167905,"mostRecentQuantityDateInterval":1415997363059887} });
+registerSDKClass("HKDocumentQuery", HKDocumentQuery, { module: "HealthKit_6be9a005889899ab", properties: {"includeDocumentData":4426571869104637,"limit":1911719208588981,"sortDescriptors":1967202041717964} });
+registerSDKClass("HKDocumentType", HKDocumentType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKElectrocardiogram", HKElectrocardiogram, { module: "HealthKit_6be9a005889899ab", properties: {"averageHeartRate":2863473701438660,"classification":2464065607973692,"numberOfVoltageMeasurements":4124274479753067,"samplingFrequency":2188634648678877,"symptomsStatus":1257541373541428} });
+registerSDKClass("HKElectrocardiogramVoltageMeasurement", HKElectrocardiogram_VoltageMeasurement, { module: "HealthKit_6be9a005889899ab", properties: {"timeSinceSampleStart":378324077588715}, methods: {"quantity":{"id":334176176613062}} });
+registerSDKClass("HKElectrocardiogramQuery", HKElectrocardiogramQuery, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKElectrocardiogramQuery.Result", HKElectrocardiogramQuery_Result, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKElectrocardiogramQueryDescriptor", HKElectrocardiogramQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"results":{"id":1142628265917774}} });
+registerSDKClass("HealthKit.HKElectrocardiogramQueryDescriptor.Results", HKElectrocardiogramQueryDescriptor_Results, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":3390647470122250}} });
+registerSDKClass("HealthKit.HKElectrocardiogramQueryDescriptor.Results.Iterator", HKElectrocardiogramQueryDescriptor_Results_Iterator, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":1270968339173450}} });
+registerSDKClass("HKElectrocardiogramType", HKElectrocardiogramType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKError", HKError, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKFHIRResource", HKFHIRResource, { module: "HealthKit_6be9a005889899ab", properties: {"fhirVersion":1430836967458987,"data":1522197405457388,"identifier":4028778748487105,"resourceType":685911293002625,"sourceURL":811225271619909} });
+registerSDKClass("HKFHIRVersion", HKFHIRVersion, { module: "HealthKit_6be9a005889899ab", properties: {"fhirRelease":634662439509312,"majorVersion":2145001555274980,"minorVersion":568186107865285,"patchVersion":4218742546320225,"stringRepresentation":3678312822913626} });
+registerSDKClass("HKFitzpatrickSkinTypeObject", HKFitzpatrickSkinTypeObject, { module: "HealthKit_6be9a005889899ab", properties: {"skinType":2765444926726167} });
+registerSDKClass("HKScoredAssessment", HKScoredAssessment, { module: "HealthKit_6be9a005889899ab", properties: {"score":3097785645823214} });
+registerSDKClass("HKGAD7Assessment", HKGAD7Assessment, { module: "HealthKit_6be9a005889899ab", properties: {"risk":890542945937765} });
+registerSDKClass("HKGlassesLensSpecification", HKGlassesLensSpecification, { module: "HealthKit_6be9a005889899ab", properties: {"farPupillaryDistance":2032556050871375,"nearPupillaryDistance":330126421693363,"prism":1818856178943648,"vertexDistance":1100689326372123} });
+registerSDKClass("HKGlassesPrescription", HKGlassesPrescription, { module: "HealthKit_6be9a005889899ab", properties: {"leftEye":393287540586164,"rightEye":1784679479010765} });
+registerSDKClass("HKHealthConceptIdentifier", HKHealthConceptIdentifier, { module: "HealthKit_6be9a005889899ab", properties: {"domain":4139300586245706} });
+registerSDKClass("HKHealthStore", HKHealthStore, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"activityMoveMode":{"id":3379710253388352},"add":{"id":3140711603726999,"hints":[null,null,{"callback":{"out":[]}}]},"authorizationStatus":{"id":460903999075037},"biologicalSex":{"id":2818560088739374},"bloodType":{"id":2715408121436172},"dateOfBirthComponents":{"id":12199780736928},"dateOfBirth":{"id":3199719110017460},"deleteWithCompletion":{"id":779829753535511,"hints":[null,{"callback":{"out":[]}}]},"deleteWithCompletion64175":{"id":1318462801765631,"hints":[null,{"callback":{"out":[]}}]},"deleteObjects":{"id":715998180361291,"hints":[null,null,{"callback":{"out":[]}}]},"disableAllBackgroundDelivery":{"id":1566036988973298,"hints":[{"callback":{"out":[]}}]},"disableBackgroundDelivery":{"id":1774880026223056,"hints":[null,{"callback":{"out":[]}}]},"earliestPermittedSampleDate":{"id":3497015170605558},"enableBackgroundDelivery":{"id":4390893173613616,"hints":[null,null,{"callback":{"out":[]}}]},"execute":{"id":4202883680172875},"fitzpatrickSkinType":{"id":4367724627794244},"getEarliestAuthorizedSampleDate":{"id":1893117783265484,"hints":[null,{"callback":{"out":[]}}]},"getRequestStatusForAuthorization":{"id":1773014428355338,"hints":[null,null,{"callback":{"out":[]}}]},"handleAuthorizationForExtension":{"id":2504388691564856,"hints":[{"callback":{"out":[]}}]},"preferredUnits":{"id":31686417104436,"hints":[null,{"callback":{"out":[]}}]},"recalibrateEstimates":{"id":2244974282957826,"hints":[null,null,{"callback":{"out":[]}}]},"recoverActiveWorkoutSession":{"id":3231910180728091,"hints":[{"callback":{"out":[]}}]},"relateWorkoutEffortSample":{"id":1517679471136866,"hints":[null,null,null,{"callback":{"out":[]}}]},"requestAuthorizationToShareReadCompletion":{"id":189404140422522,"hints":[null,null,{"callback":{"out":[]}}]},"requestPerObjectReadAuthorization":{"id":413435082156583,"hints":[null,null,{"callback":{"out":[]}}]},"saveWithCompletion":{"id":1490840841134737,"hints":[null,{"callback":{"out":[]}}]},"saveWithCompletion30981":{"id":2670701534841606,"hints":[null,{"callback":{"out":[]}}]},"splitTotalEnergy":{"id":3139117700901325,"hints":[null,null,null,{"callback":{"out":[]}}]},"startWatchApp":{"id":572039605347313,"hints":[null,{"callback":{"out":[]}}]},"stop":{"id":1568689082267246},"supportsHealthRecords":{"id":1554979216869899},"unrelateWorkoutEffortSample":{"id":3201380510361885,"hints":[null,null,null,{"callback":{"out":[]}}]},"wheelchairUse":{"id":2995414235202632},"requestAuthorizationToShareRead":{"id":3729090671907363},"earliestAuthorizedSampleDate":{"id":3695575491995674},"preferredWorkoutZoneConfiguration":{"id":1874740987279307}} });
+registerSDKClass("HealthKit.HKHealthStore.HKUserPreferencesDidChangeMessage", HKHealthStore_HKUserPreferencesDidChangeMessage, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKSeriesBuilder", HKSeriesBuilder, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"discard":{"id":171825536469656}} });
+registerSDKClass("HKHeartbeatSeriesBuilder", HKHeartbeatSeriesBuilder, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"addHeartbeatWithTimeInterval":{"id":1303987364997552,"hints":[null,null,{"callback":{"out":[]}}]},"addMetadata":{"id":914889938633896,"hints":[null,{"callback":{"out":[]}}]},"finishSeries":{"id":1900325891705169,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("HKHeartbeatSeriesQuery", HKHeartbeatSeriesQuery, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKHeartbeatSeriesQueryDescriptor", HKHeartbeatSeriesQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"results":{"id":2433293068003120}} });
+registerSDKClass("HealthKit.HKHeartbeatSeriesQueryDescriptor.Heartbeat", HKHeartbeatSeriesQueryDescriptor_Heartbeat, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKHeartbeatSeriesQueryDescriptor.Results", HKHeartbeatSeriesQueryDescriptor_Results, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":69884614187213}} });
+registerSDKClass("HealthKit.HKHeartbeatSeriesQueryDescriptor.Results.Iterator", HKHeartbeatSeriesQueryDescriptor_Results_Iterator, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":335237674632119}} });
+registerSDKClass("HKSeriesSample", HKSeriesSample, { module: "HealthKit_6be9a005889899ab", properties: {"count":1557292318369880} });
+registerSDKClass("HKHeartbeatSeriesSample", HKHeartbeatSeriesSample, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKWorkoutBuilder", HKWorkoutBuilder, { module: "HealthKit_6be9a005889899ab", properties: {"allStatistics":282405718238432,"device":4367295193437188,"endDate":2605530384600354,"metadata":4406913189853095,"startDate":1848501873264813,"workoutActivities":2644416678440340,"workoutConfiguration":4159633852926368,"workoutEvents":771285590332518}, methods: {"addMetadata":{"id":2515633417806928,"hints":[null,{"callback":{"out":[]}}]},"add":{"id":3009005146601407,"hints":[null,{"callback":{"out":[]}}]},"addWorkoutActivity":{"id":1659426459946873,"hints":[null,{"callback":{"out":[]}}]},"addWorkoutEvents":{"id":3715128080995652,"hints":[null,{"callback":{"out":[]}}]},"beginCollection":{"id":752593078856305,"hints":[null,{"callback":{"out":[]}}]},"discardWorkout":{"id":1040093182708560},"elapsedTime":{"id":3793032682101385},"endCollection":{"id":1002198518927918,"hints":[null,{"callback":{"out":[]}}]},"finishWorkout":{"id":266955147493516,"hints":[{"callback":{"out":[]}}]},"seriesBuilder":{"id":3082200704662015},"statistics":{"id":1396952208492681},"updateActivityUuidAddingCompletion":{"id":987737773664969,"hints":[null,null,{"callback":{"out":[]}}]},"updateActivityUuidEndCompletion":{"id":3022263576540619,"hints":[null,null,{"callback":{"out":[]}}]},"zoneConfiguration":{"id":949813436460084},"setCustomZoneConfiguration":{"id":1646976751223123},"zoneGroup":{"id":1340834807332466}} });
+registerSDKClass("HKLiveWorkoutBuilder", HKLiveWorkoutBuilder, { module: "HealthKit_6be9a005889899ab", properties: {"currentWorkoutActivity":1611888921077465,"dataSource":2056922718098590,"delegate":2241215979056260,"elapsedTime":2170141853494450,"shouldCollectWorkoutEvents":3196221344854110,"workoutSession":168998525894445}, methods: {"elapsedTime76675":{"id":3793032682101385}} });
 registerSDKProtocol("c:objc(pl)HKLiveWorkoutBuilderDelegate", {"workoutBuilderDidCollectDataOf":"workoutBuilder(_:didCollectDataOf:)","workoutBuilderDidCollectEvent":"workoutBuilderDidCollectEvent(_:)","workoutBuilderDidBegin":"workoutBuilder(_:didBegin:)","workoutBuilderDidEnd":"workoutBuilder(_:didEnd:)","workoutBuilderDidUpdateWorkoutZone":"workoutBuilder(_:didUpdateWorkoutZone:)"});
-registerSDKClass("HKLiveWorkoutDataSource", HKLiveWorkoutDataSource, { module: "HealthKit_5d69670f0307b385", properties: {"typesToCollect":2246497067354870}, methods: {"disableCollection":{"id":1973032651713262},"enableCollection":{"id":2116608925616921}} });
-registerSDKClass("HKLiveWorkoutZoneUpdate", HKLiveWorkoutZoneUpdate, { module: "HealthKit_5d69670f0307b385", properties: {"lastSampleProcessedDate":2036852469742262} });
-registerSDKClass("HKMedicationConcept", HKMedicationConcept, { module: "HealthKit_5d69670f0307b385", properties: {"displayText":678681733804012,"generalForm":4015697793233401,"identifier":3144887977459434,"relatedCodings":4000873314901267} });
-registerSDKClass("HKMedicationDoseEvent", HKMedicationDoseEvent, { module: "HealthKit_5d69670f0307b385", properties: {"logStatus":4326437112356656,"medicationConceptIdentifier":3590527088386994,"medicationDoseEventType":2816383519249894,"scheduleType":1883202651581593,"scheduledDate":4446253459340080,"unit":25278575825497} });
-registerSDKClass("HKMedicationDoseEventType", HKMedicationDoseEventType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKObserverQuery", HKObserverQuery, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKPHQ9Assessment", HKPHQ9Assessment, { module: "HealthKit_5d69670f0307b385", properties: {"risk":3715952719464799} });
-registerSDKClass("HKPrescriptionType", HKPrescriptionType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKQuantity", HKQuantity, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"compare":{"id":1860599677752957},"doubleValue":{"id":3053409173372338},"is":{"id":3920155205747544}} });
-registerSDKClass("HKQuantitySeriesSampleBuilder", HKQuantitySeriesSampleBuilder, { module: "HealthKit_5d69670f0307b385", properties: {"device":3518998730962623,"quantityType":967283028568650,"startDate":3275699943314331}, methods: {"discard":{"id":910049793522562},"finishSeriesMetadataCompletion":{"id":3792258133526024,"hints":[null,{"callback":{"out":[]}}]},"finishSeriesMetadataEndDateCompletion":{"id":3423187347060989,"hints":[null,null,{"callback":{"out":[]}}]},"insertAt":{"id":3077840208240636},"insertFor":{"id":2065530115398239}} });
-registerSDKClass("HKQuantitySeriesSampleQuery", HKQuantitySeriesSampleQuery, { module: "HealthKit_5d69670f0307b385", properties: {"includeSample":3825901825943743,"orderByQuantitySampleStartDate":2277712420314209} });
-registerSDKClass("HealthKit.HKQuantitySeriesSampleQueryDescriptor", HKQuantitySeriesSampleQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"results":{"id":1274051597903036}} });
-registerSDKClass("HealthKit.HKQuantitySeriesSampleQueryDescriptor.Result", HKQuantitySeriesSampleQueryDescriptor_Result, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKQuantitySeriesSampleQueryDescriptor.Results", HKQuantitySeriesSampleQueryDescriptor_Results, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":1097978409292504}} });
-registerSDKClass("HealthKit.HKQuantitySeriesSampleQueryDescriptor.Results.Iterator", HKQuantitySeriesSampleQueryDescriptor_Results_Iterator, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":38813566733183}} });
-registerSDKClass("HKQuantityType", HKQuantityType, { module: "HealthKit_5d69670f0307b385", properties: {"aggregationStyle":1181520806066667}, methods: {"is":{"id":2378324316552497}} });
-registerSDKClass("HKQueryAnchor", HKQueryAnchor, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKQueryDescriptor", HKQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {"predicate":2999992424162115,"sampleType":3173580774600460} });
-registerSDKClass("HealthKit.HKSamplePredicate", HKSamplePredicate, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKSampleQuery", HKSampleQuery, { module: "HealthKit_5d69670f0307b385", properties: {"limit":2191905641851085,"sortDescriptors":3744967824300839} });
-registerSDKClass("HealthKit.HKSampleQueryDescriptor", HKSampleQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"result":{"id":1242036277259619}} });
-registerSDKClass("HKScoredAssessmentType", HKScoredAssessmentType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKSeriesType", HKSeriesType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKSource", HKSource, { module: "HealthKit_5d69670f0307b385", properties: {"bundleIdentifier":1464176582252646,"name":3549909159755750} });
-registerSDKClass("HKSourceQuery", HKSourceQuery, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKSourceQueryDescriptor", HKSourceQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"result":{"id":3282055221165046}} });
-registerSDKClass("HKSourceRevision", HKSourceRevision, { module: "HealthKit_5d69670f0307b385", properties: {"operatingSystemVersion":2307001186277086,"productType":706633619939090,"source":1555761771076965,"version":945768793539816} });
-registerSDKClass("HKStateOfMind", HKStateOfMind, { module: "HealthKit_5d69670f0307b385", properties: {"kind":3481203685548473,"valence":3951724519618078,"valenceClassification":433030274807977} });
-registerSDKClass("HKStateOfMindType", HKStateOfMindType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKStatistics", HKStatistics, { module: "HealthKit_5d69670f0307b385", properties: {"endDate":3261203045004805,"quantityType":4165874430009365,"sources":3380902169586220,"startDate":2282531883641097}, methods: {"averageQuantity":{"id":1442236875574677},"averageQuantityFor":{"id":4283061183024299},"duration":{"id":557844297196374},"durationFor":{"id":4362297273000878},"maximumQuantity":{"id":4230305050094300},"maximumQuantityFor":{"id":961840495733417},"minimumQuantity":{"id":80125375275276},"minimumQuantityFor":{"id":3746278403461354},"mostRecentQuantity":{"id":3851258886765018},"mostRecentQuantityDateInterval":{"id":489908293848566},"mostRecentQuantityDateIntervalFor":{"id":3309789928080041},"mostRecentQuantityFor":{"id":3422246868718079},"sumQuantity":{"id":3080593829141051},"sumQuantityFor":{"id":1639664626089924}} });
-registerSDKClass("HKStatisticsCollection", HKStatisticsCollection, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"sources":{"id":1369466412163317},"statistics":{"id":899549487580855},"statisticsFor":{"id":716379094173718}} });
-registerSDKClass("HKStatisticsCollectionQuery", HKStatisticsCollectionQuery, { module: "HealthKit_5d69670f0307b385", properties: {"anchorDate":13930102230493,"intervalComponents":3213920344474201,"options":4027931477985440} });
-registerSDKClass("HealthKit.HKStatisticsCollectionQueryDescriptor", HKStatisticsCollectionQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"result":{"id":1505389373372187},"results":{"id":2555133436297087}} });
-registerSDKClass("HealthKit.HKStatisticsCollectionQueryDescriptor.Result", HKStatisticsCollectionQueryDescriptor_Result, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKStatisticsCollectionQueryDescriptor.Results", HKStatisticsCollectionQueryDescriptor_Results, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":3507878337247872}} });
-registerSDKClass("HealthKit.HKStatisticsCollectionQueryDescriptor.Results.Iterator", HKStatisticsCollectionQueryDescriptor_Results_Iterator, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":447698572199748}} });
-registerSDKClass("HKStatisticsQuery", HKStatisticsQuery, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKStatisticsQueryDescriptor", HKStatisticsQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"result":{"id":122617622603379}} });
-registerSDKClass("HKUnit", HKUnit, { module: "HealthKit_5d69670f0307b385", properties: {"unitString":1329535769297436}, methods: {"isNull":{"id":1657032799827550},"reciprocal":{"id":3550096086866380},"unitDivided":{"id":343513331063186},"unitMultiplied":{"id":4013530680563305},"unitRaised":{"id":1193565913132611}} });
-registerSDKClass("HKUserAnnotatedMedication", HKUserAnnotatedMedication, { module: "HealthKit_5d69670f0307b385", properties: {"hasSchedule":2132266096003329,"isArchived":338740513644575,"medication":563538516417284,"nickname":783556080609631} });
-registerSDKClass("HKUserAnnotatedMedicationQuery", HKUserAnnotatedMedicationQuery, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKUserAnnotatedMedicationQueryDescriptor", HKUserAnnotatedMedicationQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"result":{"id":1455092634791851}} });
-registerSDKClass("HKUserAnnotatedMedicationType", HKUserAnnotatedMedicationType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKVerifiableClinicalRecord", HKVerifiableClinicalRecord, { module: "HealthKit_5d69670f0307b385", properties: {"jwsRepresentation":1654089160329054,"dataRepresentation":195012730579200,"expirationDate":1229938972942052,"issuedDate":3982876816075817,"issuerIdentifier":3153975816108788,"itemNames":1356649494743629,"recordTypes":2058391032733324,"relevantDate":2260613561681367,"sourceType":865692623485740,"subject":3294519389081746} });
-registerSDKClass("HKVerifiableClinicalRecordQuery", HKVerifiableClinicalRecordQuery, { module: "HealthKit_5d69670f0307b385", properties: {"recordTypes":1904174578697582,"sourceTypes":1916625901856541} });
-registerSDKClass("HealthKit.HKVerifiableClinicalRecordQueryDescriptor", HKVerifiableClinicalRecordQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"result":{"id":282334604289979}} });
-registerSDKClass("HKVerifiableClinicalRecordSubject", HKVerifiableClinicalRecordSubject, { module: "HealthKit_5d69670f0307b385", properties: {"dateOfBirthComponents":3095126165533867,"fullName":3868074142326653} });
-registerSDKClass("HKVisionPrism", HKVisionPrism, { module: "HealthKit_5d69670f0307b385", properties: {"amount":259176961113861,"angle":3020399181043824,"eye":750151113146699,"horizontalAmount":4268325212152737,"horizontalBase":215072696215105,"verticalAmount":2895548878671962,"verticalBase":1645666502414330} });
-registerSDKClass("HKWheelchairUseObject", HKWheelchairUseObject, { module: "HealthKit_5d69670f0307b385", properties: {"wheelchairUse":2978084471554777} });
-registerSDKClass("HKWorkout", HKWorkout, { module: "HealthKit_5d69670f0307b385", properties: {"allStatistics":2400392716594337,"duration":3707391448116888,"totalDistance":2561532490805374,"totalEnergyBurned":1905184703479713,"totalFlightsClimbed":3686384422903039,"totalSwimmingStrokeCount":4122669502881514,"workoutActivities":3754699134480603,"workoutActivityType":4145112288934636,"workoutEvents":2502740530569937}, methods: {"statistics":{"id":676224619994114},"zoneGroup":{"id":2700918762302354}} });
-registerSDKClass("HKWorkoutActivity", HKWorkoutActivity, { module: "HealthKit_5d69670f0307b385", properties: {"uuid":4119483946469385,"allStatistics":4111023182627802,"duration":2346096176692317,"endDate":1480151567848074,"metadata":3931074976270548,"startDate":3641365320777641,"workoutConfiguration":3037245294766579,"workoutEvents":2455279655880044}, methods: {"statistics":{"id":3050432007297183},"zoneGroup":{"id":1002743537764945}} });
-registerSDKClass("HKWorkoutConfiguration", HKWorkoutConfiguration, { module: "HealthKit_5d69670f0307b385", properties: {"activityType":2049080499453680,"lapLength":4356059943031919,"locationType":2642680887744348,"swimmingLocationType":3229643335618699} });
-registerSDKClass("HKWorkoutEffortRelationship", HKWorkoutEffortRelationship, { module: "HealthKit_5d69670f0307b385", properties: {"activity":3580615893357493,"samples":2793197539186789,"workout":3092119263132338} });
-registerSDKClass("HKWorkoutEffortRelationshipQuery", HKWorkoutEffortRelationshipQuery, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKWorkoutEffortRelationshipQueryDescriptor", HKWorkoutEffortRelationshipQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"result":{"id":2296125599915087},"results":{"id":1395284342156676}} });
-registerSDKClass("HealthKit.HKWorkoutEffortRelationshipQueryDescriptor.Result", HKWorkoutEffortRelationshipQueryDescriptor_Result, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKWorkoutEffortRelationshipQueryDescriptor.Results", HKWorkoutEffortRelationshipQueryDescriptor_Results, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":3253203812879207}} });
-registerSDKClass("HealthKit.HKWorkoutEffortRelationshipQueryDescriptor.Results.Iterator", HKWorkoutEffortRelationshipQueryDescriptor_Results_Iterator, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":1140453275517621}} });
-registerSDKClass("HKWorkoutEvent", HKWorkoutEvent, { module: "HealthKit_5d69670f0307b385", properties: {"date":1773681690609923,"dateInterval":2679038162345894,"metadata":2144909864299175,"type":1812081073413935} });
-registerSDKClass("HKWorkoutRoute", HKWorkoutRoute, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HKWorkoutRouteBuilder", HKWorkoutRouteBuilder, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"addMetadata":{"id":3649805797664346,"hints":[null,{"callback":{"out":[]}}]},"finishRoute":{"id":3419483705578632,"hints":[null,null,{"callback":{"out":[]}}]},"insertRouteData":{"id":2576546266919205,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HKWorkoutRouteQuery", HKWorkoutRouteQuery, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKWorkoutRouteQueryDescriptor", HKWorkoutRouteQueryDescriptor, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"results":{"id":2736651307553842}} });
-registerSDKClass("HealthKit.HKWorkoutRouteQueryDescriptor.Results", HKWorkoutRouteQueryDescriptor_Results, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":2335383110047075}} });
-registerSDKClass("HealthKit.HKWorkoutRouteQueryDescriptor.Results.Iterator", HKWorkoutRouteQueryDescriptor_Results_Iterator, { module: "HealthKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":4429398872170097}} });
-registerSDKClass("HKWorkoutSession", HKWorkoutSession, { module: "HealthKit_5d69670f0307b385", properties: {"activityType":1112134914170062,"currentActivity":3902035173915699,"delegate":3308904192042852,"endDate":1967765867357940,"locationType":506881068618001,"startDate":3534775872745171,"state":4220414839983439,"type":114741582203837,"workoutConfiguration":1187141634095319}, methods: {"associatedWorkoutBuilder":{"id":661328599256226},"beginNewActivity":{"id":618711286608813},"end":{"id":1818703624666984},"endCurrentActivity":{"id":3616978344206506},"pause":{"id":2995596795046738},"prepare":{"id":1368577619806031},"resume":{"id":1727952312113481},"sendToRemoteWorkoutSession":{"id":1832207512740618,"hints":[null,{"callback":{"out":[]}}]},"startActivity":{"id":2640124047063863},"stopActivity":{"id":3367952778445597}} });
+registerSDKClass("HKLiveWorkoutDataSource", HKLiveWorkoutDataSource, { module: "HealthKit_6be9a005889899ab", properties: {"typesToCollect":2246497067354870}, methods: {"disableCollection":{"id":1973032651713262},"enableCollection":{"id":2116608925616921}} });
+registerSDKClass("HKLiveWorkoutZoneUpdate", HKLiveWorkoutZoneUpdate, { module: "HealthKit_6be9a005889899ab", properties: {"lastSampleProcessedDate":2036852469742262} });
+registerSDKClass("HKMedicationConcept", HKMedicationConcept, { module: "HealthKit_6be9a005889899ab", properties: {"displayText":678681733804012,"generalForm":4015697793233401,"identifier":3144887977459434,"relatedCodings":4000873314901267} });
+registerSDKClass("HKMedicationDoseEvent", HKMedicationDoseEvent, { module: "HealthKit_6be9a005889899ab", properties: {"logStatus":4326437112356656,"medicationConceptIdentifier":3590527088386994,"medicationDoseEventType":2816383519249894,"scheduleType":1883202651581593,"scheduledDate":4446253459340080,"unit":25278575825497} });
+registerSDKClass("HKMedicationDoseEventType", HKMedicationDoseEventType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKObserverQuery", HKObserverQuery, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKPHQ9Assessment", HKPHQ9Assessment, { module: "HealthKit_6be9a005889899ab", properties: {"risk":3715952719464799} });
+registerSDKClass("HKPrescriptionType", HKPrescriptionType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKQuantity", HKQuantity, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"compare":{"id":1860599677752957},"doubleValue":{"id":3053409173372338},"is":{"id":3920155205747544}} });
+registerSDKClass("HKQuantitySeriesSampleBuilder", HKQuantitySeriesSampleBuilder, { module: "HealthKit_6be9a005889899ab", properties: {"device":3518998730962623,"quantityType":967283028568650,"startDate":3275699943314331}, methods: {"discard":{"id":910049793522562},"finishSeriesMetadataCompletion":{"id":3792258133526024,"hints":[null,{"callback":{"out":[]}}]},"finishSeriesMetadataEndDateCompletion":{"id":3423187347060989,"hints":[null,null,{"callback":{"out":[]}}]},"insertAt":{"id":3077840208240636},"insertFor":{"id":2065530115398239}} });
+registerSDKClass("HKQuantitySeriesSampleQuery", HKQuantitySeriesSampleQuery, { module: "HealthKit_6be9a005889899ab", properties: {"includeSample":3825901825943743,"orderByQuantitySampleStartDate":2277712420314209} });
+registerSDKClass("HealthKit.HKQuantitySeriesSampleQueryDescriptor", HKQuantitySeriesSampleQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"results":{"id":1274051597903036}} });
+registerSDKClass("HealthKit.HKQuantitySeriesSampleQueryDescriptor.Result", HKQuantitySeriesSampleQueryDescriptor_Result, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKQuantitySeriesSampleQueryDescriptor.Results", HKQuantitySeriesSampleQueryDescriptor_Results, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":1097978409292504}} });
+registerSDKClass("HealthKit.HKQuantitySeriesSampleQueryDescriptor.Results.Iterator", HKQuantitySeriesSampleQueryDescriptor_Results_Iterator, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":38813566733183}} });
+registerSDKClass("HKQuantityType", HKQuantityType, { module: "HealthKit_6be9a005889899ab", properties: {"aggregationStyle":1181520806066667}, methods: {"is":{"id":2378324316552497}} });
+registerSDKClass("HKQueryAnchor", HKQueryAnchor, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKQueryDescriptor", HKQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {"predicate":2999992424162115,"sampleType":3173580774600460} });
+registerSDKClass("HealthKit.HKSamplePredicate", HKSamplePredicate, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKSampleQuery", HKSampleQuery, { module: "HealthKit_6be9a005889899ab", properties: {"limit":2191905641851085,"sortDescriptors":3744967824300839} });
+registerSDKClass("HealthKit.HKSampleQueryDescriptor", HKSampleQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"result":{"id":1242036277259619}} });
+registerSDKClass("HKScoredAssessmentType", HKScoredAssessmentType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKSeriesType", HKSeriesType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKSource", HKSource, { module: "HealthKit_6be9a005889899ab", properties: {"bundleIdentifier":1464176582252646,"name":3549909159755750} });
+registerSDKClass("HKSourceQuery", HKSourceQuery, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKSourceQueryDescriptor", HKSourceQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"result":{"id":3282055221165046}} });
+registerSDKClass("HKSourceRevision", HKSourceRevision, { module: "HealthKit_6be9a005889899ab", properties: {"operatingSystemVersion":2307001186277086,"productType":706633619939090,"source":1555761771076965,"version":945768793539816} });
+registerSDKClass("HKStateOfMind", HKStateOfMind, { module: "HealthKit_6be9a005889899ab", properties: {"kind":3481203685548473,"valence":3951724519618078,"valenceClassification":433030274807977} });
+registerSDKClass("HKStateOfMindType", HKStateOfMindType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKStatistics", HKStatistics, { module: "HealthKit_6be9a005889899ab", properties: {"endDate":3261203045004805,"quantityType":4165874430009365,"sources":3380902169586220,"startDate":2282531883641097}, methods: {"averageQuantity":{"id":1442236875574677},"averageQuantityFor":{"id":4283061183024299},"duration":{"id":557844297196374},"durationFor":{"id":4362297273000878},"maximumQuantity":{"id":4230305050094300},"maximumQuantityFor":{"id":961840495733417},"minimumQuantity":{"id":80125375275276},"minimumQuantityFor":{"id":3746278403461354},"mostRecentQuantity":{"id":3851258886765018},"mostRecentQuantityDateInterval":{"id":489908293848566},"mostRecentQuantityDateIntervalFor":{"id":3309789928080041},"mostRecentQuantityFor":{"id":3422246868718079},"sumQuantity":{"id":3080593829141051},"sumQuantityFor":{"id":1639664626089924}} });
+registerSDKClass("HKStatisticsCollection", HKStatisticsCollection, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"sources":{"id":1369466412163317},"statistics":{"id":899549487580855},"statisticsFor":{"id":716379094173718}} });
+registerSDKClass("HKStatisticsCollectionQuery", HKStatisticsCollectionQuery, { module: "HealthKit_6be9a005889899ab", properties: {"anchorDate":13930102230493,"intervalComponents":3213920344474201,"options":4027931477985440} });
+registerSDKClass("HealthKit.HKStatisticsCollectionQueryDescriptor", HKStatisticsCollectionQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"result":{"id":1505389373372187},"results":{"id":2555133436297087}} });
+registerSDKClass("HealthKit.HKStatisticsCollectionQueryDescriptor.Result", HKStatisticsCollectionQueryDescriptor_Result, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKStatisticsCollectionQueryDescriptor.Results", HKStatisticsCollectionQueryDescriptor_Results, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":3507878337247872}} });
+registerSDKClass("HealthKit.HKStatisticsCollectionQueryDescriptor.Results.Iterator", HKStatisticsCollectionQueryDescriptor_Results_Iterator, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":447698572199748}} });
+registerSDKClass("HKStatisticsQuery", HKStatisticsQuery, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKStatisticsQueryDescriptor", HKStatisticsQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"result":{"id":122617622603379}} });
+registerSDKClass("HKUnit", HKUnit, { module: "HealthKit_6be9a005889899ab", properties: {"unitString":1329535769297436}, methods: {"isNull":{"id":1657032799827550},"reciprocal":{"id":3550096086866380},"unitDivided":{"id":343513331063186},"unitMultiplied":{"id":4013530680563305},"unitRaised":{"id":1193565913132611}} });
+registerSDKClass("HKUserAnnotatedMedication", HKUserAnnotatedMedication, { module: "HealthKit_6be9a005889899ab", properties: {"hasSchedule":2132266096003329,"isArchived":338740513644575,"medication":563538516417284,"nickname":783556080609631} });
+registerSDKClass("HKUserAnnotatedMedicationQuery", HKUserAnnotatedMedicationQuery, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKUserAnnotatedMedicationQueryDescriptor", HKUserAnnotatedMedicationQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"result":{"id":1455092634791851}} });
+registerSDKClass("HKUserAnnotatedMedicationType", HKUserAnnotatedMedicationType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKVerifiableClinicalRecord", HKVerifiableClinicalRecord, { module: "HealthKit_6be9a005889899ab", properties: {"jwsRepresentation":1654089160329054,"dataRepresentation":195012730579200,"expirationDate":1229938972942052,"issuedDate":3982876816075817,"issuerIdentifier":3153975816108788,"itemNames":1356649494743629,"recordTypes":2058391032733324,"relevantDate":2260613561681367,"sourceType":865692623485740,"subject":3294519389081746} });
+registerSDKClass("HKVerifiableClinicalRecordQuery", HKVerifiableClinicalRecordQuery, { module: "HealthKit_6be9a005889899ab", properties: {"recordTypes":1904174578697582,"sourceTypes":1916625901856541} });
+registerSDKClass("HealthKit.HKVerifiableClinicalRecordQueryDescriptor", HKVerifiableClinicalRecordQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"result":{"id":282334604289979}} });
+registerSDKClass("HKVerifiableClinicalRecordSubject", HKVerifiableClinicalRecordSubject, { module: "HealthKit_6be9a005889899ab", properties: {"dateOfBirthComponents":3095126165533867,"fullName":3868074142326653} });
+registerSDKClass("HKVisionPrism", HKVisionPrism, { module: "HealthKit_6be9a005889899ab", properties: {"amount":259176961113861,"angle":3020399181043824,"eye":750151113146699,"horizontalAmount":4268325212152737,"horizontalBase":215072696215105,"verticalAmount":2895548878671962,"verticalBase":1645666502414330} });
+registerSDKClass("HKWheelchairUseObject", HKWheelchairUseObject, { module: "HealthKit_6be9a005889899ab", properties: {"wheelchairUse":2978084471554777} });
+registerSDKClass("HKWorkout", HKWorkout, { module: "HealthKit_6be9a005889899ab", properties: {"allStatistics":2400392716594337,"duration":3707391448116888,"totalDistance":2561532490805374,"totalEnergyBurned":1905184703479713,"totalFlightsClimbed":3686384422903039,"totalSwimmingStrokeCount":4122669502881514,"workoutActivities":3754699134480603,"workoutActivityType":4145112288934636,"workoutEvents":2502740530569937}, methods: {"statistics":{"id":676224619994114},"zoneGroup":{"id":2700918762302354}} });
+registerSDKClass("HKWorkoutActivity", HKWorkoutActivity, { module: "HealthKit_6be9a005889899ab", properties: {"uuid":4119483946469385,"allStatistics":4111023182627802,"duration":2346096176692317,"endDate":1480151567848074,"metadata":3931074976270548,"startDate":3641365320777641,"workoutConfiguration":3037245294766579,"workoutEvents":2455279655880044}, methods: {"statistics":{"id":3050432007297183},"zoneGroup":{"id":1002743537764945}} });
+registerSDKClass("HKWorkoutConfiguration", HKWorkoutConfiguration, { module: "HealthKit_6be9a005889899ab", properties: {"activityType":2049080499453680,"lapLength":4356059943031919,"locationType":2642680887744348,"swimmingLocationType":3229643335618699} });
+registerSDKClass("HKWorkoutEffortRelationship", HKWorkoutEffortRelationship, { module: "HealthKit_6be9a005889899ab", properties: {"activity":3580615893357493,"samples":2793197539186789,"workout":3092119263132338} });
+registerSDKClass("HKWorkoutEffortRelationshipQuery", HKWorkoutEffortRelationshipQuery, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKWorkoutEffortRelationshipQueryDescriptor", HKWorkoutEffortRelationshipQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"result":{"id":2296125599915087},"results":{"id":1395284342156676}} });
+registerSDKClass("HealthKit.HKWorkoutEffortRelationshipQueryDescriptor.Result", HKWorkoutEffortRelationshipQueryDescriptor_Result, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKWorkoutEffortRelationshipQueryDescriptor.Results", HKWorkoutEffortRelationshipQueryDescriptor_Results, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":3253203812879207}} });
+registerSDKClass("HealthKit.HKWorkoutEffortRelationshipQueryDescriptor.Results.Iterator", HKWorkoutEffortRelationshipQueryDescriptor_Results_Iterator, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":1140453275517621}} });
+registerSDKClass("HKWorkoutEvent", HKWorkoutEvent, { module: "HealthKit_6be9a005889899ab", properties: {"date":1773681690609923,"dateInterval":2679038162345894,"metadata":2144909864299175,"type":1812081073413935} });
+registerSDKClass("HKWorkoutRoute", HKWorkoutRoute, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HKWorkoutRouteBuilder", HKWorkoutRouteBuilder, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"addMetadata":{"id":3649805797664346,"hints":[null,{"callback":{"out":[]}}]},"finishRoute":{"id":3419483705578632,"hints":[null,null,{"callback":{"out":[]}}]},"insertRouteData":{"id":2576546266919205,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HKWorkoutRouteQuery", HKWorkoutRouteQuery, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKWorkoutRouteQueryDescriptor", HKWorkoutRouteQueryDescriptor, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"results":{"id":2736651307553842}} });
+registerSDKClass("HealthKit.HKWorkoutRouteQueryDescriptor.Results", HKWorkoutRouteQueryDescriptor_Results, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":2335383110047075}} });
+registerSDKClass("HealthKit.HKWorkoutRouteQueryDescriptor.Results.Iterator", HKWorkoutRouteQueryDescriptor_Results_Iterator, { module: "HealthKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":4429398872170097}} });
+registerSDKClass("HKWorkoutSession", HKWorkoutSession, { module: "HealthKit_6be9a005889899ab", properties: {"activityType":1112134914170062,"currentActivity":3902035173915699,"delegate":3308904192042852,"endDate":1967765867357940,"locationType":506881068618001,"startDate":3534775872745171,"state":4220414839983439,"type":114741582203837,"workoutConfiguration":1187141634095319}, methods: {"associatedWorkoutBuilder":{"id":661328599256226},"beginNewActivity":{"id":618711286608813},"end":{"id":1818703624666984},"endCurrentActivity":{"id":3616978344206506},"pause":{"id":2995596795046738},"prepare":{"id":1368577619806031},"resume":{"id":1727952312113481},"sendToRemoteWorkoutSession":{"id":1832207512740618,"hints":[null,{"callback":{"out":[]}}]},"startActivity":{"id":2640124047063863},"stopActivity":{"id":3367952778445597}} });
 registerSDKProtocol("c:objc(pl)HKWorkoutSessionDelegate", {"workoutSessionDidChangeToFromDate":"workoutSession(_:didChangeTo:from:date:)","workoutSessionDidFailWithError":"workoutSession(_:didFailWithError:)","workoutSessionDidGenerate":"workoutSession(_:didGenerate:)","workoutSessionDidBeginActivityWithDate":"workoutSession(_:didBeginActivityWith:date:)","workoutSessionDidEndActivityWithDate":"workoutSession(_:didEndActivityWith:date:)","workoutSessionDidReceiveDataFromRemoteWorkoutSession":"workoutSession(_:didReceiveDataFromRemoteWorkoutSession:)","workoutSessionDidDisconnectFromRemoteDeviceWithError":"workoutSession(_:didDisconnectFromRemoteDeviceWithError:)"});
-registerSDKClass("HKWorkoutType", HKWorkoutType, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKWorkoutZone", HKWorkoutZone, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKWorkoutZoneConfiguration", HKWorkoutZoneConfiguration, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKWorkoutZoneDuration", HKWorkoutZoneDuration, { module: "HealthKit_5d69670f0307b385", properties: {} });
-registerSDKClass("HealthKit.HKWorkoutZoneGroup", HKWorkoutZoneGroup, { module: "HealthKit_5d69670f0307b385", properties: {} });
+registerSDKClass("HKWorkoutType", HKWorkoutType, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKWorkoutZone", HKWorkoutZone, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKWorkoutZoneConfiguration", HKWorkoutZoneConfiguration, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKWorkoutZoneDuration", HKWorkoutZoneDuration, { module: "HealthKit_6be9a005889899ab", properties: {} });
+registerSDKClass("HealthKit.HKWorkoutZoneGroup", HKWorkoutZoneGroup, { module: "HealthKit_6be9a005889899ab", properties: {} });

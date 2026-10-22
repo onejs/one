@@ -11,72 +11,72 @@ export class OSSystemExtensionError extends SDKHandle {
    * static var unknownExtensionCategory: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get unknownExtensionCategory(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 3972221743037212, undefined, []); }
+  static get unknownExtensionCategory(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 3972221743037212, undefined, []); }
   /**
    * static var duplicateExtensionIdentifer: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get duplicateExtensionIdentifer(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 2439555658092140, undefined, []); }
+  static get duplicateExtensionIdentifer(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 2439555658092140, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 18.4+
    */
-  static get errorDomain(): string { return callSDK<string>("SystemExtensions_5d69670f0307b385", 3393763599604862, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("SystemExtensions_6be9a005889899ab", 3393763599604862, undefined, []); }
   /**
    * static var requestCanceled: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get requestCanceled(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 3056581284353214, undefined, []); }
+  static get requestCanceled(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 3056581284353214, undefined, []); }
   /**
    * static var validationFailed: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get validationFailed(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 4281356943398286, undefined, []); }
+  static get validationFailed(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 4281356943398286, undefined, []); }
   /**
    * static var extensionNotFound: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get extensionNotFound(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 1920252960542811, undefined, []); }
+  static get extensionNotFound(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 1920252960542811, undefined, []); }
   /**
    * static var requestSuperseded: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get requestSuperseded(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 3448597098424078, undefined, []); }
+  static get requestSuperseded(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 3448597098424078, undefined, []); }
   /**
    * static var missingEntitlement: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get missingEntitlement(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 2242879811271776, undefined, []); }
+  static get missingEntitlement(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 2242879811271776, undefined, []); }
   /**
    * static var codeSignatureInvalid: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get codeSignatureInvalid(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 2180679413357207, undefined, []); }
+  static get codeSignatureInvalid(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 2180679413357207, undefined, []); }
   /**
    * static var authorizationRequired: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get authorizationRequired(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 3772109707921340, undefined, []); }
+  static get authorizationRequired(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 3772109707921340, undefined, []); }
   /**
    * static var forbiddenBySystemPolicy: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get forbiddenBySystemPolicy(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 791466410443142, undefined, []); }
+  static get forbiddenBySystemPolicy(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 791466410443142, undefined, []); }
   /**
    * static var extensionMissingIdentifier: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get extensionMissingIdentifier(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 1302765849164939, undefined, []); }
+  static get extensionMissingIdentifier(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 1302765849164939, undefined, []); }
   /**
    * static var unsupportedParentBundleLocation: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get unsupportedParentBundleLocation(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 963544630603762, undefined, []); }
+  static get unsupportedParentBundleLocation(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 963544630603762, undefined, []); }
   /**
    * static var unknown: OSSystemExtensionError.Code { get }
    * @availability iOS 18.4+
    */
-  static get unknown(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_5d69670f0307b385", 4360460891206097, undefined, []); }
+  static get unknown(): OSSystemExtensionError_Code { return callSDK<OSSystemExtensionError_Code>("SystemExtensions_6be9a005889899ab", 4360460891206097, undefined, []); }
   declare readonly $type: { "s:SC26OSSystemExtensionErrorCodeLeV": true };
 }
 
@@ -91,7 +91,7 @@ export const OSSystemExtensionError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): (OSSystemExtensionError_Code) | null { return callSDK<(OSSystemExtensionError_Code) | null>("SystemExtensions_5d69670f0307b385", 1677423957422198, undefined, [rawValue]); }
+  init(rawValue: number): (OSSystemExtensionError_Code) | null { return callSDK<(OSSystemExtensionError_Code) | null>("SystemExtensions_6be9a005889899ab", 1677423957422198, undefined, [rawValue]); }
 };
 
 /**
@@ -100,27 +100,27 @@ export const OSSystemExtensionError_Code = {
  */
 export class OSSystemExtensionProperties extends SDKHandle {
   /** init() */
-  static init(): OSSystemExtensionProperties { return callSDK<OSSystemExtensionProperties>("SystemExtensions_5d69670f0307b385", 4060467971625340, undefined, []); }
+  static init(): OSSystemExtensionProperties { return callSDK<OSSystemExtensionProperties>("SystemExtensions_6be9a005889899ab", 4060467971625340, undefined, []); }
   /**
    * var bundleIdentifier: String { get }
    * @availability iOS 18.4+
    */
-  get bundleIdentifier(): string { return callSDK<string>("SystemExtensions_5d69670f0307b385", 3259612960145555, this, []); }
+  get bundleIdentifier(): string { return callSDK<string>("SystemExtensions_6be9a005889899ab", 3259612960145555, this, []); }
   /**
    * var bundleShortVersion: String { get }
    * @availability iOS 18.4+
    */
-  get bundleShortVersion(): string { return callSDK<string>("SystemExtensions_5d69670f0307b385", 2042075713413825, this, []); }
+  get bundleShortVersion(): string { return callSDK<string>("SystemExtensions_6be9a005889899ab", 2042075713413825, this, []); }
   /**
    * var bundleVersion: String { get }
    * @availability iOS 18.4+
    */
-  get bundleVersion(): string { return callSDK<string>("SystemExtensions_5d69670f0307b385", 4309129987580165, this, []); }
+  get bundleVersion(): string { return callSDK<string>("SystemExtensions_6be9a005889899ab", 4309129987580165, this, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 18.4+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("SystemExtensions_5d69670f0307b385", 3679052056909458, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("SystemExtensions_6be9a005889899ab", 3679052056909458, this, []); }
   declare readonly $type: { "c:objc(cs)OSSystemExtensionProperties": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bundleIdentifier": true; "bundleShortVersion": true; "bundleVersion": true; "isEnabled": true };
 }
@@ -134,14 +134,14 @@ export class OSSystemExtensionsWorkspace extends SDKHandle {
    * class var shared: OSSystemExtensionsWorkspace { get }
    * @availability iOS 18.4+
    */
-  static get shared(): OSSystemExtensionsWorkspace { return callSDK<OSSystemExtensionsWorkspace>("SystemExtensions_5d69670f0307b385", 2956238420566793, undefined, []); }
+  static get shared(): OSSystemExtensionsWorkspace { return callSDK<OSSystemExtensionsWorkspace>("SystemExtensions_6be9a005889899ab", 2956238420566793, undefined, []); }
   /** init() */
-  static init(): OSSystemExtensionsWorkspace { return callSDK<OSSystemExtensionsWorkspace>("SystemExtensions_5d69670f0307b385", 197068138212757, undefined, []); }
+  static init(): OSSystemExtensionsWorkspace { return callSDK<OSSystemExtensionsWorkspace>("SystemExtensions_6be9a005889899ab", 197068138212757, undefined, []); }
   /**
    * func systemExtensions(forApplicationWithBundleID bundleID: String) throws -> Set<OSSystemExtensionProperties>
    * @availability iOS 18.4+
    */
-  systemExtensions(bundleID: string): Array<OSSystemExtensionProperties> { return callSDK<Array<OSSystemExtensionProperties>>("SystemExtensions_5d69670f0307b385", 4373429701692411, this, [bundleID]); }
+  systemExtensions(bundleID: string): Array<OSSystemExtensionProperties> { return callSDK<Array<OSSystemExtensionProperties>>("SystemExtensions_6be9a005889899ab", 4373429701692411, this, [bundleID]); }
   declare readonly $type: { "c:objc(cs)OSSystemExtensionsWorkspace": true; "c:objc(cs)NSObject": true };
 }
 
@@ -149,20 +149,20 @@ export class OSSystemExtensionsWorkspace extends SDKHandle {
  * let NSSystemExtensionUsageDescriptionKey: String
  * @availability iOS 18.4+
  */
-export const NSSystemExtensionUsageDescriptionKey: string = callSDK<string>("SystemExtensions_5d69670f0307b385", 1664573278803151, undefined, []);
+export const NSSystemExtensionUsageDescriptionKey: string = callSDK<string>("SystemExtensions_6be9a005889899ab", 1664573278803151, undefined, []);
 
 /**
  * let OSBundleUsageDescriptionKey: String
  * @availability iOS 18.4+
  */
-export const OSBundleUsageDescriptionKey: string = callSDK<string>("SystemExtensions_5d69670f0307b385", 4365055530446019, undefined, []);
+export const OSBundleUsageDescriptionKey: string = callSDK<string>("SystemExtensions_6be9a005889899ab", 4365055530446019, undefined, []);
 
 /**
  * let OSSystemExtensionErrorDomain: String
  * @availability iOS 18.4+
  */
-export const OSSystemExtensionErrorDomain: string = callSDK<string>("SystemExtensions_5d69670f0307b385", 3194743697368525, undefined, []);
+export const OSSystemExtensionErrorDomain: string = callSDK<string>("SystemExtensions_6be9a005889899ab", 3194743697368525, undefined, []);
 
-registerSDKClass("SystemExtensions.OSSystemExtensionError", OSSystemExtensionError, { module: "SystemExtensions_5d69670f0307b385", properties: {} });
-registerSDKClass("OSSystemExtensionProperties", OSSystemExtensionProperties, { module: "SystemExtensions_5d69670f0307b385", properties: {"bundleIdentifier":3259612960145555,"bundleShortVersion":2042075713413825,"bundleVersion":4309129987580165,"isEnabled":3679052056909458} });
-registerSDKClass("OSSystemExtensionsWorkspace", OSSystemExtensionsWorkspace, { module: "SystemExtensions_5d69670f0307b385", properties: {}, methods: {"systemExtensions":{"id":4373429701692411}} });
+registerSDKClass("SystemExtensions.OSSystemExtensionError", OSSystemExtensionError, { module: "SystemExtensions_6be9a005889899ab", properties: {} });
+registerSDKClass("OSSystemExtensionProperties", OSSystemExtensionProperties, { module: "SystemExtensions_6be9a005889899ab", properties: {"bundleIdentifier":3259612960145555,"bundleShortVersion":2042075713413825,"bundleVersion":4309129987580165,"isEnabled":3679052056909458} });
+registerSDKClass("OSSystemExtensionsWorkspace", OSSystemExtensionsWorkspace, { module: "SystemExtensions_6be9a005889899ab", properties: {}, methods: {"systemExtensions":{"id":4373429701692411}} });

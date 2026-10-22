@@ -28,19 +28,19 @@ export type CellularDataRestrictionDidUpdateNotifier = ((arg0: CTCellularDataRes
  */
 export class CTCall extends SDKHandle {
   /** init() */
-  static init(): CTCall { return callSDK<CTCall>("CoreTelephony_5d69670f0307b385", 4039390668972991, undefined, []); }
+  static init(): CTCall { return callSDK<CTCall>("CoreTelephony_6be9a005889899ab", 4039390668972991, undefined, []); }
   /**
    * var callID: String { get }
    * @availability iOS 4.0+
    * @deprecated iOS 10.0
    */
-  get callID(): string { return callSDK<string>("CoreTelephony_5d69670f0307b385", 3938900649438783, this, []); }
+  get callID(): string { return callSDK<string>("CoreTelephony_6be9a005889899ab", 3938900649438783, this, []); }
   /**
    * var callState: String { get }
    * @availability iOS 4.0+
    * @deprecated iOS 10.0
    */
-  get callState(): string { return callSDK<string>("CoreTelephony_5d69670f0307b385", 3554629624098360, this, []); }
+  get callState(): string { return callSDK<string>("CoreTelephony_6be9a005889899ab", 3554629624098360, this, []); }
   declare readonly $type: { "c:objc(cs)CTCall": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "callID": true; "callState": true };
 }
@@ -52,20 +52,20 @@ export class CTCall extends SDKHandle {
  */
 export class CTCallCenter extends SDKHandle {
   /** init() */
-  static init(): CTCallCenter { return callSDK<CTCallCenter>("CoreTelephony_5d69670f0307b385", 2234588801259755, undefined, []); }
+  static init(): CTCallCenter { return callSDK<CTCallCenter>("CoreTelephony_6be9a005889899ab", 2234588801259755, undefined, []); }
   /**
    * var callEventHandler: ((CTCall) -> Void)? { get set }
    * @availability iOS 4.0+
    * @deprecated iOS 10.0
    */
-  get callEventHandler(): (((arg0: CTCall) => Promise<void>)) | null { return callSDK<(((arg0: CTCall) => Promise<void>)) | null>("CoreTelephony_5d69670f0307b385", 1470406179216469, this, []); }
-  set callEventHandler(value: (((arg0: CTCall) => void)) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 765427985902162, this, [value], [{"callback":{"out":[]}}]); }
+  get callEventHandler(): (((arg0: CTCall) => Promise<void>)) | null { return callSDK<(((arg0: CTCall) => Promise<void>)) | null>("CoreTelephony_6be9a005889899ab", 1470406179216469, this, []); }
+  set callEventHandler(value: (((arg0: CTCall) => void)) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 765427985902162, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var currentCalls: Set<CTCall>? { get }
    * @availability iOS 4.0+
    * @deprecated iOS 10.0
    */
-  get currentCalls(): (Array<CTCall>) | null { return callSDK<(Array<CTCall>) | null>("CoreTelephony_5d69670f0307b385", 186675295707400, this, []); }
+  get currentCalls(): (Array<CTCall>) | null { return callSDK<(Array<CTCall>) | null>("CoreTelephony_6be9a005889899ab", 186675295707400, this, []); }
   declare readonly $type: { "c:objc(cs)CTCallCenter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentCalls": true };
 }
@@ -77,37 +77,37 @@ export class CTCallCenter extends SDKHandle {
  */
 export class CTCarrier extends SDKHandle {
   /** init() */
-  static init(): CTCarrier { return callSDK<CTCarrier>("CoreTelephony_5d69670f0307b385", 2022887070029418, undefined, []); }
+  static init(): CTCarrier { return callSDK<CTCarrier>("CoreTelephony_6be9a005889899ab", 2022887070029418, undefined, []); }
   /**
    * var allowsVOIP: Bool { get }
    * @availability iOS 4.0+
    * @deprecated iOS 16.0
    */
-  get allowsVOIP(): boolean { return callSDK<boolean>("CoreTelephony_5d69670f0307b385", 2138136257735837, this, []); }
+  get allowsVOIP(): boolean { return callSDK<boolean>("CoreTelephony_6be9a005889899ab", 2138136257735837, this, []); }
   /**
    * var carrierName: String? { get }
    * @availability iOS 4.0+
    * @deprecated iOS 16.0
    */
-  get carrierName(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 711776669509808, this, []); }
+  get carrierName(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 711776669509808, this, []); }
   /**
    * var isoCountryCode: String? { get }
    * @availability iOS 4.0+
    * @deprecated iOS 16.0
    */
-  get isoCountryCode(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 139864939486411, this, []); }
+  get isoCountryCode(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 139864939486411, this, []); }
   /**
    * var mobileCountryCode: String? { get }
    * @availability iOS 4.0+
    * @deprecated iOS 16.0
    */
-  get mobileCountryCode(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 1587502154424350, this, []); }
+  get mobileCountryCode(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 1587502154424350, this, []); }
   /**
    * var mobileNetworkCode: String? { get }
    * @availability iOS 4.0+
    * @deprecated iOS 16.0
    */
-  get mobileNetworkCode(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 3205329210096280, this, []); }
+  get mobileNetworkCode(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 3205329210096280, this, []); }
   declare readonly $type: { "c:objc(cs)CTCarrier": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsVOIP": true; "carrierName": true; "isoCountryCode": true; "mobileCountryCode": true; "mobileNetworkCode": true };
 }
@@ -118,18 +118,18 @@ export class CTCarrier extends SDKHandle {
  */
 export class CTCellularData extends SDKHandle {
   /** init() */
-  static init(): CTCellularData { return callSDK<CTCellularData>("CoreTelephony_5d69670f0307b385", 1063472043963430, undefined, []); }
+  static init(): CTCellularData { return callSDK<CTCellularData>("CoreTelephony_6be9a005889899ab", 1063472043963430, undefined, []); }
   /**
    * var cellularDataRestrictionDidUpdateNotifier: CellularDataRestrictionDidUpdateNotifier? { get set }
    * @availability iOS 9.0+
    */
-  get cellularDataRestrictionDidUpdateNotifier(): (((arg0: CTCellularDataRestrictedState) => Promise<void>)) | null { return callSDK<(((arg0: CTCellularDataRestrictedState) => Promise<void>)) | null>("CoreTelephony_5d69670f0307b385", 3075438848341604, this, []); }
-  set cellularDataRestrictionDidUpdateNotifier(value: (((arg0: CTCellularDataRestrictedState) => void)) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 1052583873078418, this, [value], [{"callback":{"out":[]}}]); }
+  get cellularDataRestrictionDidUpdateNotifier(): (((arg0: CTCellularDataRestrictedState) => Promise<void>)) | null { return callSDK<(((arg0: CTCellularDataRestrictedState) => Promise<void>)) | null>("CoreTelephony_6be9a005889899ab", 3075438848341604, this, []); }
+  set cellularDataRestrictionDidUpdateNotifier(value: (((arg0: CTCellularDataRestrictedState) => void)) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 1052583873078418, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var restrictedState: CTCellularDataRestrictedState { get }
    * @availability iOS 9.0+
    */
-  get restrictedState(): CTCellularDataRestrictedState { return callSDK<CTCellularDataRestrictedState>("CoreTelephony_5d69670f0307b385", 898348127406947, this, []); }
+  get restrictedState(): CTCellularDataRestrictedState { return callSDK<CTCellularDataRestrictedState>("CoreTelephony_6be9a005889899ab", 898348127406947, this, []); }
   declare readonly $type: { "c:objc(cs)CTCellularData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "restrictedState": true };
 }
@@ -139,7 +139,7 @@ export type CTCellularDataRestrictedState = "restrictedStateUnknown" | "restrict
 
 export const CTCellularDataRestrictedState = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (CTCellularDataRestrictedState) | null { return callSDK<(CTCellularDataRestrictedState) | null>("CoreTelephony_5d69670f0307b385", 1900679444259874, undefined, [rawValue]); }
+  init(rawValue: number): (CTCellularDataRestrictedState) | null { return callSDK<(CTCellularDataRestrictedState) | null>("CoreTelephony_6be9a005889899ab", 1900679444259874, undefined, [rawValue]); }
 };
 
 /**
@@ -153,7 +153,7 @@ export const CTCellularPlanCapability = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (CTCellularPlanCapability) | null { return callSDK<(CTCellularPlanCapability) | null>("CoreTelephony_5d69670f0307b385", 1496745834049498, undefined, [rawValue]); }
+  init(rawValue: number): (CTCellularPlanCapability) | null { return callSDK<(CTCellularPlanCapability) | null>("CoreTelephony_6be9a005889899ab", 1496745834049498, undefined, [rawValue]); }
 };
 
 /**
@@ -162,31 +162,31 @@ export const CTCellularPlanCapability = {
  */
 export class CTCellularPlanProperties extends SDKHandle {
   /** init() */
-  static init(): CTCellularPlanProperties { return callSDK<CTCellularPlanProperties>("CoreTelephony_5d69670f0307b385", 4389909559952669, undefined, []); }
+  static init(): CTCellularPlanProperties { return callSDK<CTCellularPlanProperties>("CoreTelephony_6be9a005889899ab", 4389909559952669, undefined, []); }
   /**
    * var associatedIccid: String? { get set }
    * @availability iOS 26.0+
    */
-  get associatedIccid(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 4379455784179824, this, []); }
-  set associatedIccid(value: (string) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 621509889433868, this, [value]); }
+  get associatedIccid(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 4379455784179824, this, []); }
+  set associatedIccid(value: (string) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 621509889433868, this, [value]); }
   /**
    * var lifecycleProperties: CTCellularPlanProperties.lifecycle? { get set }
    * @availability iOS 26.4+
    */
-  get lifecycleProperties(): $SDK5 { return callSDK<$SDK5>("CoreTelephony_5d69670f0307b385", 4263981679620016, this, []); }
-  set lifecycleProperties(value: $SDK5) { callSDK<void>("CoreTelephony_5d69670f0307b385", 1851091149639036, this, [value]); }
+  get lifecycleProperties(): $SDK5 { return callSDK<$SDK5>("CoreTelephony_6be9a005889899ab", 4263981679620016, this, []); }
+  set lifecycleProperties(value: $SDK5) { callSDK<void>("CoreTelephony_6be9a005889899ab", 1851091149639036, this, [value]); }
   /**
    * var simCapability: CTCellularPlanCapability { get set }
    * @availability iOS 26.0+
    */
-  get simCapability(): CTCellularPlanCapability { return callSDK<CTCellularPlanCapability>("CoreTelephony_5d69670f0307b385", 3799077452882702, this, []); }
-  set simCapability(value: CTCellularPlanCapability) { callSDK<void>("CoreTelephony_5d69670f0307b385", 4154739401333016, this, [value]); }
+  get simCapability(): CTCellularPlanCapability { return callSDK<CTCellularPlanCapability>("CoreTelephony_6be9a005889899ab", 3799077452882702, this, []); }
+  set simCapability(value: CTCellularPlanCapability) { callSDK<void>("CoreTelephony_6be9a005889899ab", 4154739401333016, this, [value]); }
   /**
    * var supportedRegionCodes: [Locale.Region] { get set }
    * @availability iOS 26.0+
    */
-  get supportedRegionCodes(): $SDK6 { return callSDK<$SDK6>("CoreTelephony_5d69670f0307b385", 3626177701105317, this, []); }
-  set supportedRegionCodes(value: $SDK6) { callSDK<void>("CoreTelephony_5d69670f0307b385", 3806895707296241, this, [value]); }
+  get supportedRegionCodes(): $SDK6 { return callSDK<$SDK6>("CoreTelephony_6be9a005889899ab", 3626177701105317, this, []); }
+  set supportedRegionCodes(value: $SDK6) { callSDK<void>("CoreTelephony_6be9a005889899ab", 3806895707296241, this, [value]); }
   declare readonly $type: { "c:objc(cs)CTCellularPlanProperties": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "associatedIccid": true; "lifecycleProperties": true; "simCapability": true };
 }
@@ -197,13 +197,13 @@ export class CTCellularPlanProperties extends SDKHandle {
  */
 export class CTCellularPlanProperties_lifecycle extends SDKHandle {
   /** init() */
-  static init(): CTCellularPlanProperties_lifecycle { return callSDK<CTCellularPlanProperties_lifecycle>("CoreTelephony_5d69670f0307b385", 2575576331160934, undefined, []); }
+  static init(): CTCellularPlanProperties_lifecycle { return callSDK<CTCellularPlanProperties_lifecycle>("CoreTelephony_6be9a005889899ab", 2575576331160934, undefined, []); }
   /**
    * var expirationDate: DateComponents { get set }
    * @availability iOS 26.0+
    */
-  get expirationDate(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("CoreTelephony_5d69670f0307b385", 2864199474939422, this, []); }
-  set expirationDate(value: _Foundation_DateComponents) { callSDK<void>("CoreTelephony_5d69670f0307b385", 169599663401533, this, [value]); }
+  get expirationDate(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("CoreTelephony_6be9a005889899ab", 2864199474939422, this, []); }
+  set expirationDate(value: _Foundation_DateComponents) { callSDK<void>("CoreTelephony_6be9a005889899ab", 169599663401533, this, [value]); }
   declare readonly $type: { "c:objc(cs)CTCellularPlanLifecycleProperties": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "expirationDate": true };
 }
@@ -217,29 +217,29 @@ export class CTCellularPlanProvisioning extends SDKHandle {
    * func addPlan(with request: CTCellularPlanProvisioningRequest) async -> CTCellularPlanProvisioningAddPlanResult
    * @availability iOS 12.0+
    */
-  addPlanWithCompletionHandler(request: CTCellularPlanProvisioningRequest, completionHandler: $SDK7): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 2736392798863330, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
+  addPlanWithCompletionHandler(request: CTCellularPlanProvisioningRequest, completionHandler: $SDK7): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 2736392798863330, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func addPlan(request: CTCellularPlanProvisioningRequest, properties: CTCellularPlanProperties?) async -> CTCellularPlanProvisioningAddPlanResult
    * @availability iOS 26.0+
    */
-  addPlanRequestPropertiesCompletionHandler(request: CTCellularPlanProvisioningRequest, properties: (CTCellularPlanProperties) | null, completionHandler: $SDK7): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 610267410075214, this, [request, properties, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  addPlanRequestPropertiesCompletionHandler(request: CTCellularPlanProvisioningRequest, properties: (CTCellularPlanProperties) | null, completionHandler: $SDK7): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 610267410075214, this, [request, properties, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): CTCellularPlanProvisioning { return callSDK<CTCellularPlanProvisioning>("CoreTelephony_5d69670f0307b385", 660447901923529, undefined, []); }
+  static init(): CTCellularPlanProvisioning { return callSDK<CTCellularPlanProvisioning>("CoreTelephony_6be9a005889899ab", 660447901923529, undefined, []); }
   /**
    * func supportsCellularPlan() -> Bool
    * @availability iOS 12.0+
    */
-  supportsCellularPlan(): boolean { return callSDK<boolean>("CoreTelephony_5d69670f0307b385", 1410200857221442, this, []); }
+  supportsCellularPlan(): boolean { return callSDK<boolean>("CoreTelephony_6be9a005889899ab", 1410200857221442, this, []); }
   /**
    * func update(_ properties: CTCellularPlanProperties) async throws
    * @availability iOS 26.0+
    */
-  update(properties: CTCellularPlanProperties, completionHandler: $SDK9): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 4325752097684010, this, [properties, completionHandler], [null,{"callback":{"out":[]}}]); }
+  update(properties: CTCellularPlanProperties, completionHandler: $SDK9): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 4325752097684010, this, [properties, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var supportsEmbeddedSIM: Bool { get }
    * @availability iOS 16.0+
    */
-  get supportsEmbeddedSIM(): boolean { return callSDK<boolean>("CoreTelephony_5d69670f0307b385", 3802452123491786, this, []); }
+  get supportsEmbeddedSIM(): boolean { return callSDK<boolean>("CoreTelephony_6be9a005889899ab", 3802452123491786, this, []); }
   declare readonly $type: { "c:objc(cs)CTCellularPlanProvisioning": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "supportsEmbeddedSIM": true };
 }
@@ -255,7 +255,7 @@ export const CTCellularPlanProvisioningAddPlanResult = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (CTCellularPlanProvisioningAddPlanResult) | null { return callSDK<(CTCellularPlanProvisioningAddPlanResult) | null>("CoreTelephony_5d69670f0307b385", 2393420420322752, undefined, [rawValue]); }
+  init(rawValue: number): (CTCellularPlanProvisioningAddPlanResult) | null { return callSDK<(CTCellularPlanProvisioningAddPlanResult) | null>("CoreTelephony_6be9a005889899ab", 2393420420322752, undefined, [rawValue]); }
 };
 
 /**
@@ -264,43 +264,43 @@ export const CTCellularPlanProvisioningAddPlanResult = {
  */
 export class CTCellularPlanProvisioningRequest extends SDKHandle {
   /** init() */
-  static init(): CTCellularPlanProvisioningRequest { return callSDK<CTCellularPlanProvisioningRequest>("CoreTelephony_5d69670f0307b385", 368980640246944, undefined, []); }
+  static init(): CTCellularPlanProvisioningRequest { return callSDK<CTCellularPlanProvisioningRequest>("CoreTelephony_6be9a005889899ab", 368980640246944, undefined, []); }
   /**
    * var eid: String? { get set }
    * @availability iOS 12.0+
    */
-  get eid(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 1942974968948381, this, []); }
-  set eid(value: (string) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 2008845147725571, this, [value]); }
+  get eid(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 1942974968948381, this, []); }
+  set eid(value: (string) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 2008845147725571, this, [value]); }
   /**
    * var iccid: String? { get set }
    * @availability iOS 12.0+
    */
-  get iccid(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 367886846822223, this, []); }
-  set iccid(value: (string) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 3646041222348154, this, [value]); }
+  get iccid(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 367886846822223, this, []); }
+  set iccid(value: (string) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 3646041222348154, this, [value]); }
   /**
    * var oid: String? { get set }
    * @availability iOS 12.0+
    */
-  get oid(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 1091470408881404, this, []); }
-  set oid(value: (string) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 1618768026309061, this, [value]); }
+  get oid(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 1091470408881404, this, []); }
+  set oid(value: (string) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 1618768026309061, this, [value]); }
   /**
    * var address: String { get set }
    * @availability iOS 12.0+
    */
-  get address(): string { return callSDK<string>("CoreTelephony_5d69670f0307b385", 1759537192376472, this, []); }
-  set address(value: string) { callSDK<void>("CoreTelephony_5d69670f0307b385", 3041076381406913, this, [value]); }
+  get address(): string { return callSDK<string>("CoreTelephony_6be9a005889899ab", 1759537192376472, this, []); }
+  set address(value: string) { callSDK<void>("CoreTelephony_6be9a005889899ab", 3041076381406913, this, [value]); }
   /**
    * var confirmationCode: String? { get set }
    * @availability iOS 12.0+
    */
-  get confirmationCode(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 4349798334370505, this, []); }
-  set confirmationCode(value: (string) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 2778544705023513, this, [value]); }
+  get confirmationCode(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 4349798334370505, this, []); }
+  set confirmationCode(value: (string) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 2778544705023513, this, [value]); }
   /**
    * var matchingID: String? { get set }
    * @availability iOS 12.0+
    */
-  get matchingID(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 3521615665084619, this, []); }
-  set matchingID(value: (string) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 809652795826644, this, [value]); }
+  get matchingID(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 3521615665084619, this, []); }
+  set matchingID(value: (string) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 809652795826644, this, [value]); }
   declare readonly $type: { "c:objc(cs)CTCellularPlanProvisioningRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "eid": true; "iccid": true; "oid": true; "address": true; "confirmationCode": true; "matchingID": true };
 }
@@ -314,29 +314,29 @@ export class CTCellularPlanStatus extends SDKHandle {
    * class func checkValidity(ofToken token: String) async throws -> Bool
    * @availability iOS 26.0+
    */
-  static checkValidity(token: string, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 1864157749567624, undefined, [token, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static checkValidity(token: string, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 1864157749567624, undefined, [token, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func authorizationStatus(forPhoneNumber phoneNumber: String) async throws -> CTCellularPlanStatusAuthorization
    * @availability iOS 27.0+
    */
-  static getAuthorizationStatus(phoneNumber: string, completionHandler: $SDK11): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 3874610164832751, undefined, [phoneNumber, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static getAuthorizationStatus(phoneNumber: string, completionHandler: $SDK11): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 3874610164832751, undefined, [phoneNumber, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func hint(forPhoneNumber phoneNumber: String) async throws -> (CTCellularPlanStatusAvailability, CTCellularPlanStatusAvailabilityConfidence)
    * @availability iOS 27.0+
    */
-  static getHintForPhoneNumber(phoneNumber: string, completionHandler: ((arg0: CTCellularPlanStatusAvailability, arg1: CTCellularPlanStatusAvailabilityConfidence, arg2: (NativeError) | null) => void)): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 294330640633929, undefined, [phoneNumber, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static getHintForPhoneNumber(phoneNumber: string, completionHandler: ((arg0: CTCellularPlanStatusAvailability, arg1: CTCellularPlanStatusAvailabilityConfidence, arg2: (NativeError) | null) => void)): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 294330640633929, undefined, [phoneNumber, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func token() async throws -> String
    * @availability iOS 26.0+
    */
-  static getTokenWithCompletion(completionHandler: ((arg0: (string) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 1912641522256981, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static getTokenWithCompletion(completionHandler: ((arg0: (string) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 1912641522256981, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func requestAuthorization(forPhoneNumber phoneNumber: String) async throws -> CTCellularPlanStatusAuthorization
    * @availability iOS 27.0+
    */
-  static requestAuthorization(phoneNumber: string, completionHandler: $SDK11): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 1939071830659184, undefined, [phoneNumber, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static requestAuthorization(phoneNumber: string, completionHandler: $SDK11): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 1939071830659184, undefined, [phoneNumber, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): CTCellularPlanStatus { return callSDK<CTCellularPlanStatus>("CoreTelephony_5d69670f0307b385", 3107842877076872, undefined, []); }
+  static init(): CTCellularPlanStatus { return callSDK<CTCellularPlanStatus>("CoreTelephony_6be9a005889899ab", 3107842877076872, undefined, []); }
   declare readonly $type: { "c:objc(cs)CTCellularPlanStatus": true; "c:objc(cs)NSObject": true };
 }
 
@@ -351,7 +351,7 @@ export const CTCellularPlanStatusAuthorization = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (CTCellularPlanStatusAuthorization) | null { return callSDK<(CTCellularPlanStatusAuthorization) | null>("CoreTelephony_5d69670f0307b385", 197603791764220, undefined, [rawValue]); }
+  init(rawValue: number): (CTCellularPlanStatusAuthorization) | null { return callSDK<(CTCellularPlanStatusAuthorization) | null>("CoreTelephony_6be9a005889899ab", 197603791764220, undefined, [rawValue]); }
 };
 
 /**
@@ -365,7 +365,7 @@ export const CTCellularPlanStatusAvailability = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (CTCellularPlanStatusAvailability) | null { return callSDK<(CTCellularPlanStatusAvailability) | null>("CoreTelephony_5d69670f0307b385", 601299406724875, undefined, [rawValue]); }
+  init(rawValue: number): (CTCellularPlanStatusAvailability) | null { return callSDK<(CTCellularPlanStatusAvailability) | null>("CoreTelephony_6be9a005889899ab", 601299406724875, undefined, [rawValue]); }
 };
 
 /**
@@ -379,21 +379,21 @@ export const CTCellularPlanStatusAvailabilityConfidence = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (CTCellularPlanStatusAvailabilityConfidence) | null { return callSDK<(CTCellularPlanStatusAvailabilityConfidence) | null>("CoreTelephony_5d69670f0307b385", 2908771017950516, undefined, [rawValue]); }
+  init(rawValue: number): (CTCellularPlanStatusAvailabilityConfidence) | null { return callSDK<(CTCellularPlanStatusAvailabilityConfidence) | null>("CoreTelephony_6be9a005889899ab", 2908771017950516, undefined, [rawValue]); }
 };
 
 /** struct CTError */
 export class CTError extends SDKHandle {
   /** var domain: Int32 */
-  get domain(): number { return callSDK<number>("CoreTelephony_5d69670f0307b385", 1359488022938055, this, []); }
-  set domain(value: number) { callSDK<void>("CoreTelephony_5d69670f0307b385", 2509690295749492, this, [value]); }
+  get domain(): number { return callSDK<number>("CoreTelephony_6be9a005889899ab", 1359488022938055, this, []); }
+  set domain(value: number) { callSDK<void>("CoreTelephony_6be9a005889899ab", 2509690295749492, this, [value]); }
   /** var error: Int32 */
-  get error(): number { return callSDK<number>("CoreTelephony_5d69670f0307b385", 3676497398890524, this, []); }
-  set error(value: number) { callSDK<void>("CoreTelephony_5d69670f0307b385", 1532500529408896, this, [value]); }
+  get error(): number { return callSDK<number>("CoreTelephony_6be9a005889899ab", 3676497398890524, this, []); }
+  set error(value: number) { callSDK<void>("CoreTelephony_6be9a005889899ab", 1532500529408896, this, [value]); }
   /** init(domain: Int32, error: Int32) */
-  static initDomainError(domain: number, error: number): CTError { return callSDK<CTError>("CoreTelephony_5d69670f0307b385", 1676705398681644, undefined, [domain, error]); }
+  static initDomainError(domain: number, error: number): CTError { return callSDK<CTError>("CoreTelephony_6be9a005889899ab", 1676705398681644, undefined, [domain, error]); }
   /** init() */
-  static init(): CTError { return callSDK<CTError>("CoreTelephony_5d69670f0307b385", 805422160362406, undefined, []); }
+  static init(): CTError { return callSDK<CTError>("CoreTelephony_6be9a005889899ab", 805422160362406, undefined, []); }
   declare readonly $type: { "c:@SA@CTError": true };
 }
 
@@ -406,30 +406,30 @@ export class CTQuickSwitchManager extends SDKHandle {
    * class func registerForLaunchOnQuickSwitchStateEvents() async throws
    * @availability iOS 27.0+
    */
-  static registerForLaunch(completionHandler: $SDK9): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 4301948567209242, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static registerForLaunch(completionHandler: $SDK9): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 4301948567209242, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func unregisterForLaunchOnQuickSwitchStateEvents() async throws
    * @availability iOS 27.0+
    */
-  static unregisterForLaunch(completionHandler: $SDK9): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 118026934071730, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static unregisterForLaunch(completionHandler: $SDK9): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 118026934071730, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var deviceState: CTQuickSwitchState { get async throws }
    * @availability iOS 27.0+
    */
-  getDeviceState(completionHandler: $SDK14): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 4238922453693188, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getDeviceState(completionHandler: $SDK14): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 4238922453693188, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func phoneNumberState(forSuffix phoneNumberSuffix: String) async throws -> CTQuickSwitchState
    * @availability iOS 27.0+
    */
-  getPhoneNumberState(phoneNumberSuffix: string, completionHandler: $SDK14): void { return callSDK<void>("CoreTelephony_5d69670f0307b385", 3833926677003502, this, [phoneNumberSuffix, completionHandler], [null,{"callback":{"out":[]}}]); }
+  getPhoneNumberState(phoneNumberSuffix: string, completionHandler: $SDK14): void { return callSDK<void>("CoreTelephony_6be9a005889899ab", 3833926677003502, this, [phoneNumberSuffix, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): CTQuickSwitchManager { return callSDK<CTQuickSwitchManager>("CoreTelephony_5d69670f0307b385", 3251719165597700, undefined, []); }
+  static init(): CTQuickSwitchManager { return callSDK<CTQuickSwitchManager>("CoreTelephony_6be9a005889899ab", 3251719165597700, undefined, []); }
   /**
    * weak var delegate: (any CTQuickSwitchManager.Delegate)? { get set }
    * @availability iOS 27.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreTelephony_5d69670f0307b385", 2345390284192164, this, []); }
-  set delegate(value: (Implements<CTQuickSwitchManager_Delegate> | SDKHandle) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 526129668363890, this, [value], [{"protocol":"c:objc(pl)CTQuickSwitchManagerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreTelephony_6be9a005889899ab", 2345390284192164, this, []); }
+  set delegate(value: (Implements<CTQuickSwitchManager_Delegate> | SDKHandle) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 526129668363890, this, [value], [{"protocol":"c:objc(pl)CTQuickSwitchManagerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)CTQuickSwitchManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -457,7 +457,7 @@ export const CTQuickSwitchState = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (CTQuickSwitchState) | null { return callSDK<(CTQuickSwitchState) | null>("CoreTelephony_5d69670f0307b385", 2606330738122327, undefined, [rawValue]); }
+  init(rawValue: number): (CTQuickSwitchState) | null { return callSDK<(CTQuickSwitchState) | null>("CoreTelephony_6be9a005889899ab", 2606330738122327, undefined, [rawValue]); }
 };
 
 /**
@@ -469,27 +469,27 @@ export class CTSlicingManager extends SDKHandle {
    * final var activeSlices: [CTSlicingManager.Slice] { get async throws }
    * @availability iOS 26.3+
    */
-  get activeSlices(): Promise<Array<CTSlicingManager_Slice>> { return callSDKAsync<Array<CTSlicingManager_Slice>>("CoreTelephony_5d69670f0307b385", 3485139406876014, this, []); }
+  get activeSlices(): Promise<Array<CTSlicingManager_Slice>> { return callSDKAsync<Array<CTSlicingManager_Slice>>("CoreTelephony_6be9a005889899ab", 3485139406876014, this, []); }
   /**
    * final func disableSlicing() async throws
    * @availability iOS 26.3+
    */
-  disableSlicing(): Promise<void> { return callSDKAsync<void>("CoreTelephony_5d69670f0307b385", 2594811947937507, this, []); }
+  disableSlicing(): Promise<void> { return callSDKAsync<void>("CoreTelephony_6be9a005889899ab", 2594811947937507, this, []); }
   /**
    * final var availableSliceAppCategories: [CTSlicingManager.AppCategory] { get async throws }
    * @availability iOS 26.3+
    */
-  get availableSliceAppCategories(): Promise<$SDK17> { return callSDKAsync<$SDK17>("CoreTelephony_5d69670f0307b385", 1230728011490091, this, []); }
+  get availableSliceAppCategories(): Promise<$SDK17> { return callSDKAsync<$SDK17>("CoreTelephony_6be9a005889899ab", 1230728011490091, this, []); }
   /**
    * final func activatePreferredSliceForCategory(_ appCategory: CTSlicingManager.AppCategory) async throws
    * @availability iOS 26.3+
    */
-  activatePreferredSliceForCategory(appCategory: CTSlicingManager_AppCategory): Promise<void> { return callSDKAsync<void>("CoreTelephony_5d69670f0307b385", 4013772617360076, this, [appCategory]); }
+  activatePreferredSliceForCategory(appCategory: CTSlicingManager_AppCategory): Promise<void> { return callSDKAsync<void>("CoreTelephony_6be9a005889899ab", 4013772617360076, this, [appCategory]); }
   /**
    * static let shared: CTSlicingManager
    * @availability iOS 26.3+
    */
-  static get shared(): CTSlicingManager { return callSDK<CTSlicingManager>("CoreTelephony_5d69670f0307b385", 405430722986705, undefined, []); }
+  static get shared(): CTSlicingManager { return callSDK<CTSlicingManager>("CoreTelephony_6be9a005889899ab", 405430722986705, undefined, []); }
   declare readonly $type: { "s:13CoreTelephony16CTSlicingManagerC": true };
 }
 
@@ -504,22 +504,22 @@ export const CTSlicingManager_AppCategory = {
    * var description: String { get }
    * @availability iOS 26.3+
    */
-  getDescription($self: CTSlicingManager_AppCategory): string { return callSDK<string>("CoreTelephony_5d69670f0307b385", 3003388267966900, $self, []); },
+  getDescription($self: CTSlicingManager_AppCategory): string { return callSDK<string>("CoreTelephony_6be9a005889899ab", 3003388267966900, $self, []); },
   /**
    * static var allCases: [CTSlicingManager.AppCategory] { get }
    * @availability iOS 26.3+
    */
-  get allCases(): $SDK17 { return callSDK<$SDK17>("CoreTelephony_5d69670f0307b385", 1680093777351038, undefined, []); },
+  get allCases(): $SDK17 { return callSDK<$SDK17>("CoreTelephony_6be9a005889899ab", 1680093777351038, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 26.3+
    */
-  init(rawValue: number): (CTSlicingManager_AppCategory) | null { return callSDK<(CTSlicingManager_AppCategory) | null>("CoreTelephony_5d69670f0307b385", 3607033466252371, undefined, [rawValue]); },
+  init(rawValue: number): (CTSlicingManager_AppCategory) | null { return callSDK<(CTSlicingManager_AppCategory) | null>("CoreTelephony_6be9a005889899ab", 3607033466252371, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 26.3+
    */
-  getRawValue($self: CTSlicingManager_AppCategory): number { return callSDK<number>("CoreTelephony_5d69670f0307b385", 4378022581345916, $self, []); }
+  getRawValue($self: CTSlicingManager_AppCategory): number { return callSDK<number>("CoreTelephony_6be9a005889899ab", 4378022581345916, $self, []); }
 };
 
 /**
@@ -543,17 +543,17 @@ export class CTSlicingManager_Slice extends SDKHandle {
    * let appCategory: CTSlicingManager.AppCategory
    * @availability iOS 26.3+
    */
-  get appCategory(): CTSlicingManager_AppCategory { return callSDK<CTSlicingManager_AppCategory>("CoreTelephony_5d69670f0307b385", 1367727764218898, this, []); }
+  get appCategory(): CTSlicingManager_AppCategory { return callSDK<CTSlicingManager_AppCategory>("CoreTelephony_6be9a005889899ab", 1367727764218898, this, []); }
   /**
    * let trafficClass: CTSlicingManager.TrafficClass?
    * @availability iOS 26.3+
    */
-  get trafficClass(): (CTSlicingManager_TrafficClass) | null { return callSDK<(CTSlicingManager_TrafficClass) | null>("CoreTelephony_5d69670f0307b385", 3070331545677516, this, []); }
+  get trafficClass(): (CTSlicingManager_TrafficClass) | null { return callSDK<(CTSlicingManager_TrafficClass) | null>("CoreTelephony_6be9a005889899ab", 3070331545677516, this, []); }
   /**
    * let networkInterfaceName: String
    * @availability iOS 26.3+
    */
-  get networkInterfaceName(): string { return callSDK<string>("CoreTelephony_5d69670f0307b385", 2114904639571356, this, []); }
+  get networkInterfaceName(): string { return callSDK<string>("CoreTelephony_6be9a005889899ab", 2114904639571356, this, []); }
   declare readonly $type: { "s:13CoreTelephony16CTSlicingManagerC5SliceV": true };
 }
 
@@ -568,12 +568,12 @@ export const CTSlicingManager_TrafficClass = {
    * var description: String { get }
    * @availability iOS 26.3+
    */
-  getDescription($self: CTSlicingManager_TrafficClass): string { return callSDK<string>("CoreTelephony_5d69670f0307b385", 3433019515926316, $self, []); },
+  getDescription($self: CTSlicingManager_TrafficClass): string { return callSDK<string>("CoreTelephony_6be9a005889899ab", 3433019515926316, $self, []); },
   /**
    * nonisolated static var allCases: [CTSlicingManager.TrafficClass] { get }
    * @availability iOS 26.3+
    */
-  get allCases(): $SDK19 { return callSDK<$SDK19>("CoreTelephony_5d69670f0307b385", 218386079720768, undefined, []); }
+  get allCases(): $SDK19 { return callSDK<$SDK19>("CoreTelephony_6be9a005889899ab", 218386079720768, undefined, []); }
 };
 
 /**
@@ -588,33 +588,33 @@ export type CTSlicingManager_TrafficClass_AllCases = $SDK19;
  */
 export class CTSubscriber extends SDKHandle {
   /** init() */
-  static init(): CTSubscriber { return callSDK<CTSubscriber>("CoreTelephony_5d69670f0307b385", 3106859539131666, undefined, []); }
+  static init(): CTSubscriber { return callSDK<CTSubscriber>("CoreTelephony_6be9a005889899ab", 3106859539131666, undefined, []); }
   /**
    * func refreshCarrierToken() -> Bool
    * @availability iOS 6.0+
    */
-  refreshCarrierToken(): boolean { return callSDK<boolean>("CoreTelephony_5d69670f0307b385", 2692203737322404, this, []); }
+  refreshCarrierToken(): boolean { return callSDK<boolean>("CoreTelephony_6be9a005889899ab", 2692203737322404, this, []); }
   /**
    * var isSIMInserted: Bool { get }
    * @availability iOS 18.0+
    */
-  get isSIMInserted(): boolean { return callSDK<boolean>("CoreTelephony_5d69670f0307b385", 2390651973419329, this, []); }
+  get isSIMInserted(): boolean { return callSDK<boolean>("CoreTelephony_6be9a005889899ab", 2390651973419329, this, []); }
   /**
    * var carrierToken: Data? { get }
    * @availability iOS 7.0+
    */
-  get carrierToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreTelephony_5d69670f0307b385", 1803505184126342, this, []); }
+  get carrierToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreTelephony_6be9a005889899ab", 1803505184126342, this, []); }
   /**
    * weak var delegate: (any CTSubscriberDelegate)? { get set }
    * @availability iOS 12.1+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreTelephony_5d69670f0307b385", 4445838033246590, this, []); }
-  set delegate(value: (Implements<CTSubscriberDelegate> | SDKHandle) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 2512103483696722, this, [value], [{"protocol":"c:objc(pl)CTSubscriberDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreTelephony_6be9a005889899ab", 4445838033246590, this, []); }
+  set delegate(value: (Implements<CTSubscriberDelegate> | SDKHandle) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 2512103483696722, this, [value], [{"protocol":"c:objc(pl)CTSubscriberDelegate"}]); }
   /**
    * var identifier: String { get }
    * @availability iOS 12.1+
    */
-  get identifier(): string { return callSDK<string>("CoreTelephony_5d69670f0307b385", 4356502668925538, this, []); }
+  get identifier(): string { return callSDK<string>("CoreTelephony_6be9a005889899ab", 4356502668925538, this, []); }
   declare readonly $type: { "c:objc(cs)CTSubscriber": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isSIMInserted": true; "carrierToken": true; "delegate": true; "identifier": true };
 }
@@ -641,14 +641,14 @@ export class CTSubscriberInfo extends SDKHandle {
    * @availability iOS 6.0+
    * @deprecated iOS 12.1
    */
-  static subscriber(): CTSubscriber { return callSDK<CTSubscriber>("CoreTelephony_5d69670f0307b385", 164329148053867, undefined, []); }
+  static subscriber(): CTSubscriber { return callSDK<CTSubscriber>("CoreTelephony_6be9a005889899ab", 164329148053867, undefined, []); }
   /**
    * class func subscribers() -> [CTSubscriber]
    * @availability iOS 12.1+
    */
-  static subscribers(): Array<CTSubscriber> { return callSDK<Array<CTSubscriber>>("CoreTelephony_5d69670f0307b385", 4433253684269528, undefined, []); }
+  static subscribers(): Array<CTSubscriber> { return callSDK<Array<CTSubscriber>>("CoreTelephony_6be9a005889899ab", 4433253684269528, undefined, []); }
   /** init() */
-  static init(): CTSubscriberInfo { return callSDK<CTSubscriberInfo>("CoreTelephony_5d69670f0307b385", 117496304598067, undefined, []); }
+  static init(): CTSubscriberInfo { return callSDK<CTSubscriberInfo>("CoreTelephony_6be9a005889899ab", 117496304598067, undefined, []); }
   declare readonly $type: { "c:objc(cs)CTSubscriberInfo": true; "c:objc(cs)NSObject": true };
 }
 
@@ -658,55 +658,55 @@ export class CTSubscriberInfo extends SDKHandle {
  */
 export class CTTelephonyNetworkInfo extends SDKHandle {
   /** init() */
-  static init(): CTTelephonyNetworkInfo { return callSDK<CTTelephonyNetworkInfo>("CoreTelephony_5d69670f0307b385", 4346557979825810, undefined, []); }
+  static init(): CTTelephonyNetworkInfo { return callSDK<CTTelephonyNetworkInfo>("CoreTelephony_6be9a005889899ab", 4346557979825810, undefined, []); }
   /**
    * var currentRadioAccessTechnology: String? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 12.0
    */
-  get currentRadioAccessTechnology(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 2936690088725934, this, []); }
+  get currentRadioAccessTechnology(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 2936690088725934, this, []); }
   /**
    * var dataServiceIdentifier: String? { get }
    * @availability iOS 13.0+
    */
-  get dataServiceIdentifier(): (string) | null { return callSDK<(string) | null>("CoreTelephony_5d69670f0307b385", 677599539648333, this, []); }
+  get dataServiceIdentifier(): (string) | null { return callSDK<(string) | null>("CoreTelephony_6be9a005889899ab", 677599539648333, this, []); }
   /**
    * weak var delegate: (any CTTelephonyNetworkInfoDelegate)? { get set }
    * @availability iOS 13.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreTelephony_5d69670f0307b385", 3300384827067316, this, []); }
-  set delegate(value: (Implements<CTTelephonyNetworkInfoDelegate> | SDKHandle) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 2258342557313210, this, [value], [{"protocol":"c:objc(pl)CTTelephonyNetworkInfoDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreTelephony_6be9a005889899ab", 3300384827067316, this, []); }
+  set delegate(value: (Implements<CTTelephonyNetworkInfoDelegate> | SDKHandle) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 2258342557313210, this, [value], [{"protocol":"c:objc(pl)CTTelephonyNetworkInfoDelegate"}]); }
   /**
    * var serviceCurrentRadioAccessTechnology: [String : String]? { get }
    * @availability iOS 12.0+
    */
-  get serviceCurrentRadioAccessTechnology(): (Record<string, string>) | null { return callSDK<(Record<string, string>) | null>("CoreTelephony_5d69670f0307b385", 2202369970038972, this, []); }
+  get serviceCurrentRadioAccessTechnology(): (Record<string, string>) | null { return callSDK<(Record<string, string>) | null>("CoreTelephony_6be9a005889899ab", 2202369970038972, this, []); }
   /**
    * var serviceSubscriberCellularProviders: [String : CTCarrier]? { get }
    * @availability iOS 12.0+
    * @deprecated iOS 16.0
    */
-  get serviceSubscriberCellularProviders(): (Record<string, CTCarrier>) | null { return callSDK<(Record<string, CTCarrier>) | null>("CoreTelephony_5d69670f0307b385", 3757718597264408, this, []); }
+  get serviceSubscriberCellularProviders(): (Record<string, CTCarrier>) | null { return callSDK<(Record<string, CTCarrier>) | null>("CoreTelephony_6be9a005889899ab", 3757718597264408, this, []); }
   /**
    * var serviceSubscriberCellularProvidersDidUpdateNotifier: ((String) -> Void)? { get set }
    * @availability iOS 12.0+
    * @deprecated iOS 16.0
    */
-  get serviceSubscriberCellularProvidersDidUpdateNotifier(): (((arg0: string) => Promise<void>)) | null { return callSDK<(((arg0: string) => Promise<void>)) | null>("CoreTelephony_5d69670f0307b385", 3078868434469069, this, []); }
-  set serviceSubscriberCellularProvidersDidUpdateNotifier(value: (((arg0: string) => void)) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 3727004839637772, this, [value], [{"callback":{"out":[]}}]); }
+  get serviceSubscriberCellularProvidersDidUpdateNotifier(): (((arg0: string) => Promise<void>)) | null { return callSDK<(((arg0: string) => Promise<void>)) | null>("CoreTelephony_6be9a005889899ab", 3078868434469069, this, []); }
+  set serviceSubscriberCellularProvidersDidUpdateNotifier(value: (((arg0: string) => void)) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 3727004839637772, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var subscriberCellularProvider: CTCarrier? { get }
    * @availability iOS 4.0+
    * @deprecated iOS 12.0
    */
-  get subscriberCellularProvider(): (CTCarrier) | null { return callSDK<(CTCarrier) | null>("CoreTelephony_5d69670f0307b385", 1691612482958073, this, []); }
+  get subscriberCellularProvider(): (CTCarrier) | null { return callSDK<(CTCarrier) | null>("CoreTelephony_6be9a005889899ab", 1691612482958073, this, []); }
   /**
    * var subscriberCellularProviderDidUpdateNotifier: ((CTCarrier) -> Void)? { get set }
    * @availability iOS 4.0+
    * @deprecated iOS 12.0
    */
-  get subscriberCellularProviderDidUpdateNotifier(): (((arg0: CTCarrier) => Promise<void>)) | null { return callSDK<(((arg0: CTCarrier) => Promise<void>)) | null>("CoreTelephony_5d69670f0307b385", 3211984475623238, this, []); }
-  set subscriberCellularProviderDidUpdateNotifier(value: (((arg0: CTCarrier) => void)) | null) { callSDK<void>("CoreTelephony_5d69670f0307b385", 1343915903115942, this, [value], [{"callback":{"out":[]}}]); }
+  get subscriberCellularProviderDidUpdateNotifier(): (((arg0: CTCarrier) => Promise<void>)) | null { return callSDK<(((arg0: CTCarrier) => Promise<void>)) | null>("CoreTelephony_6be9a005889899ab", 3211984475623238, this, []); }
+  set subscriberCellularProviderDidUpdateNotifier(value: (((arg0: CTCarrier) => void)) | null) { callSDK<void>("CoreTelephony_6be9a005889899ab", 1343915903115942, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CTTelephonyNetworkInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentRadioAccessTechnology": true; "dataServiceIdentifier": true; "delegate": true; "serviceCurrentRadioAccessTechnology": true; "serviceSubscriberCellularProviders": true; "subscriberCellularProvider": true };
 }
@@ -720,23 +720,23 @@ export class CTTelephonyNetworkInfo_RadioAccessTechnologyDidChangeMessage extend
    * static func makeMessage(_ notification: Notification) -> CTTelephonyNetworkInfo.RadioAccessTechnologyDidChangeMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): (CTTelephonyNetworkInfo_RadioAccessTechnologyDidChangeMessage) | null { return callSDK<(CTTelephonyNetworkInfo_RadioAccessTechnologyDidChangeMessage) | null>("CoreTelephony_5d69670f0307b385", 1859660488466002, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): (CTTelephonyNetworkInfo_RadioAccessTechnologyDidChangeMessage) | null { return callSDK<(CTTelephonyNetworkInfo_RadioAccessTechnologyDidChangeMessage) | null>("CoreTelephony_6be9a005889899ab", 1859660488466002, undefined, [notification]); }
   /**
    * static func makeNotification(_ message: CTTelephonyNetworkInfo.RadioAccessTechnologyDidChangeMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: CTTelephonyNetworkInfo_RadioAccessTechnologyDidChangeMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreTelephony_5d69670f0307b385", 3074005613075022, undefined, [message]); }
+  static makeNotification(message: CTTelephonyNetworkInfo_RadioAccessTechnologyDidChangeMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreTelephony_6be9a005889899ab", 3074005613075022, undefined, [message]); }
   /**
    * var serviceIdentifier: String
    * @availability iOS 27.0+
    */
-  get serviceIdentifier(): string { return callSDK<string>("CoreTelephony_5d69670f0307b385", 10095333902961, this, []); }
-  set serviceIdentifier(value: string) { callSDK<void>("CoreTelephony_5d69670f0307b385", 2479954230585472, this, [value]); }
+  get serviceIdentifier(): string { return callSDK<string>("CoreTelephony_6be9a005889899ab", 10095333902961, this, []); }
+  set serviceIdentifier(value: string) { callSDK<void>("CoreTelephony_6be9a005889899ab", 2479954230585472, this, [value]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreTelephony_5d69670f0307b385", 151012881205439, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreTelephony_6be9a005889899ab", 151012881205439, undefined, []); }
   declare readonly $type: { "s:So22CTTelephonyNetworkInfoC13CoreTelephonyE37RadioAccessTechnologyDidChangeMessageV": true };
 }
 
@@ -766,12 +766,12 @@ export const NSNotification_Name = {
    * @availability iOS 7.0+
    * @deprecated iOS 12.0
    */
-  get CTRadioAccessTechnologyDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreTelephony_5d69670f0307b385", 2738704441297213, undefined, []); },
+  get CTRadioAccessTechnologyDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreTelephony_6be9a005889899ab", 2738704441297213, undefined, []); },
   /**
    * static let CTServiceRadioAccessTechnologyDidChange: NSNotification.Name
    * @availability iOS 12.0+
    */
-  get CTServiceRadioAccessTechnologyDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreTelephony_5d69670f0307b385", 252173917908304, undefined, []); }
+  get CTServiceRadioAccessTechnologyDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreTelephony_6be9a005889899ab", 252173917908304, undefined, []); }
 };
 
 /**
@@ -779,140 +779,140 @@ export const NSNotification_Name = {
  * @availability iOS 4.0+
  * @deprecated iOS 10.0
  */
-export const CTCallStateConnected: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 832445640009789, undefined, []);
+export const CTCallStateConnected: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 832445640009789, undefined, []);
 
 /**
  * let CTCallStateDialing: String
  * @availability iOS 4.0+
  * @deprecated iOS 10.0
  */
-export const CTCallStateDialing: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 2295010260346914, undefined, []);
+export const CTCallStateDialing: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 2295010260346914, undefined, []);
 
 /**
  * let CTCallStateDisconnected: String
  * @availability iOS 4.0+
  * @deprecated iOS 10.0
  */
-export const CTCallStateDisconnected: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 2173955424069838, undefined, []);
+export const CTCallStateDisconnected: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 2173955424069838, undefined, []);
 
 /**
  * let CTCallStateIncoming: String
  * @availability iOS 4.0+
  * @deprecated iOS 10.0
  */
-export const CTCallStateIncoming: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 623081169991587, undefined, []);
+export const CTCallStateIncoming: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 623081169991587, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyCDMA1x: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyCDMA1x: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 290874870839725, undefined, []);
+export const CTRadioAccessTechnologyCDMA1x: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 290874870839725, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyCDMAEVDORev0: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyCDMAEVDORev0: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 801085527090431, undefined, []);
+export const CTRadioAccessTechnologyCDMAEVDORev0: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 801085527090431, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyCDMAEVDORevA: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyCDMAEVDORevA: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 1741266426767928, undefined, []);
+export const CTRadioAccessTechnologyCDMAEVDORevA: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 1741266426767928, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyCDMAEVDORevB: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyCDMAEVDORevB: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 3015784704977682, undefined, []);
+export const CTRadioAccessTechnologyCDMAEVDORevB: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 3015784704977682, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyEdge: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyEdge: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 4294280320357047, undefined, []);
+export const CTRadioAccessTechnologyEdge: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 4294280320357047, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyGPRS: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyGPRS: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 538017783583425, undefined, []);
+export const CTRadioAccessTechnologyGPRS: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 538017783583425, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyHSDPA: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyHSDPA: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 3221095472352806, undefined, []);
+export const CTRadioAccessTechnologyHSDPA: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 3221095472352806, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyHSUPA: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyHSUPA: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 2568368521582151, undefined, []);
+export const CTRadioAccessTechnologyHSUPA: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 2568368521582151, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyLTE: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyLTE: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 1458175762236490, undefined, []);
+export const CTRadioAccessTechnologyLTE: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 1458175762236490, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyNR: String
  * @availability iOS 14.1+
  */
-export const CTRadioAccessTechnologyNR: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 3498131076975783, undefined, []);
+export const CTRadioAccessTechnologyNR: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 3498131076975783, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyNRNSA: String
  * @availability iOS 14.1+
  */
-export const CTRadioAccessTechnologyNRNSA: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 1982909368749876, undefined, []);
+export const CTRadioAccessTechnologyNRNSA: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 1982909368749876, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyWCDMA: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyWCDMA: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 1625666329697585, undefined, []);
+export const CTRadioAccessTechnologyWCDMA: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 1625666329697585, undefined, []);
 
 /**
  * let CTRadioAccessTechnologyeHRPD: String
  * @availability iOS 7.0+
  */
-export const CTRadioAccessTechnologyeHRPD: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 1155124597932403, undefined, []);
+export const CTRadioAccessTechnologyeHRPD: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 1155124597932403, undefined, []);
 
 /**
  * let CTSubscriberTokenRefreshed: String
  * @availability iOS 7.0+
  * @deprecated iOS 12.1
  */
-export const CTSubscriberTokenRefreshed: string = callSDK<string>("CoreTelephony_5d69670f0307b385", 327312862237288, undefined, []);
+export const CTSubscriberTokenRefreshed: string = callSDK<string>("CoreTelephony_6be9a005889899ab", 327312862237288, undefined, []);
 
 /** var kCTErrorDomainMach: Int { get } */
-export const kCTErrorDomainMach: number = callSDK<number>("CoreTelephony_5d69670f0307b385", 1844814458504553, undefined, []);
+export const kCTErrorDomainMach: number = callSDK<number>("CoreTelephony_6be9a005889899ab", 1844814458504553, undefined, []);
 
 /** var kCTErrorDomainNoError: Int { get } */
-export const kCTErrorDomainNoError: number = callSDK<number>("CoreTelephony_5d69670f0307b385", 2482242668145863, undefined, []);
+export const kCTErrorDomainNoError: number = callSDK<number>("CoreTelephony_6be9a005889899ab", 2482242668145863, undefined, []);
 
 /** var kCTErrorDomainPOSIX: Int { get } */
-export const kCTErrorDomainPOSIX: number = callSDK<number>("CoreTelephony_5d69670f0307b385", 1024028766092533, undefined, []);
+export const kCTErrorDomainPOSIX: number = callSDK<number>("CoreTelephony_6be9a005889899ab", 1024028766092533, undefined, []);
 
-registerSDKClass("CTCall", CTCall, { module: "CoreTelephony_5d69670f0307b385", properties: {"callID":3938900649438783,"callState":3554629624098360} });
-registerSDKClass("CTCallCenter", CTCallCenter, { module: "CoreTelephony_5d69670f0307b385", properties: {"currentCalls":186675295707400} });
-registerSDKClass("CTCarrier", CTCarrier, { module: "CoreTelephony_5d69670f0307b385", properties: {"allowsVOIP":2138136257735837,"carrierName":711776669509808,"isoCountryCode":139864939486411,"mobileCountryCode":1587502154424350,"mobileNetworkCode":3205329210096280} });
-registerSDKClass("CTCellularData", CTCellularData, { module: "CoreTelephony_5d69670f0307b385", properties: {"restrictedState":898348127406947} });
-registerSDKClass("CTCellularPlanProperties", CTCellularPlanProperties, { module: "CoreTelephony_5d69670f0307b385", properties: {"associatedIccid":4379455784179824,"lifecycleProperties":4263981679620016,"simCapability":3799077452882702} });
-registerSDKClass("CTCellularPlanLifecycleProperties", CTCellularPlanProperties_lifecycle, { module: "CoreTelephony_5d69670f0307b385", properties: {"expirationDate":2864199474939422} });
-registerSDKClass("CTCellularPlanProvisioning", CTCellularPlanProvisioning, { module: "CoreTelephony_5d69670f0307b385", properties: {"supportsEmbeddedSIM":3802452123491786}, methods: {"addPlanWithCompletionHandler":{"id":2736392798863330,"hints":[null,{"callback":{"out":[]}}]},"addPlanRequestPropertiesCompletionHandler":{"id":610267410075214,"hints":[null,null,{"callback":{"out":[]}}]},"supportsCellularPlan":{"id":1410200857221442},"update":{"id":4325752097684010,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CTCellularPlanProvisioningRequest", CTCellularPlanProvisioningRequest, { module: "CoreTelephony_5d69670f0307b385", properties: {"eid":1942974968948381,"iccid":367886846822223,"oid":1091470408881404,"address":1759537192376472,"confirmationCode":4349798334370505,"matchingID":3521615665084619} });
-registerSDKClass("CTCellularPlanStatus", CTCellularPlanStatus, { module: "CoreTelephony_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreTelephony.CTError", CTError, { module: "CoreTelephony_5d69670f0307b385", properties: {} });
-registerSDKClass("CTQuickSwitchManager", CTQuickSwitchManager, { module: "CoreTelephony_5d69670f0307b385", properties: {"delegate":2345390284192164}, methods: {"getDeviceState":{"id":4238922453693188,"hints":[{"callback":{"out":[]}}]},"getPhoneNumberState":{"id":3833926677003502,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CTCall", CTCall, { module: "CoreTelephony_6be9a005889899ab", properties: {"callID":3938900649438783,"callState":3554629624098360} });
+registerSDKClass("CTCallCenter", CTCallCenter, { module: "CoreTelephony_6be9a005889899ab", properties: {"currentCalls":186675295707400} });
+registerSDKClass("CTCarrier", CTCarrier, { module: "CoreTelephony_6be9a005889899ab", properties: {"allowsVOIP":2138136257735837,"carrierName":711776669509808,"isoCountryCode":139864939486411,"mobileCountryCode":1587502154424350,"mobileNetworkCode":3205329210096280} });
+registerSDKClass("CTCellularData", CTCellularData, { module: "CoreTelephony_6be9a005889899ab", properties: {"restrictedState":898348127406947} });
+registerSDKClass("CTCellularPlanProperties", CTCellularPlanProperties, { module: "CoreTelephony_6be9a005889899ab", properties: {"associatedIccid":4379455784179824,"lifecycleProperties":4263981679620016,"simCapability":3799077452882702} });
+registerSDKClass("CTCellularPlanLifecycleProperties", CTCellularPlanProperties_lifecycle, { module: "CoreTelephony_6be9a005889899ab", properties: {"expirationDate":2864199474939422} });
+registerSDKClass("CTCellularPlanProvisioning", CTCellularPlanProvisioning, { module: "CoreTelephony_6be9a005889899ab", properties: {"supportsEmbeddedSIM":3802452123491786}, methods: {"addPlanWithCompletionHandler":{"id":2736392798863330,"hints":[null,{"callback":{"out":[]}}]},"addPlanRequestPropertiesCompletionHandler":{"id":610267410075214,"hints":[null,null,{"callback":{"out":[]}}]},"supportsCellularPlan":{"id":1410200857221442},"update":{"id":4325752097684010,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CTCellularPlanProvisioningRequest", CTCellularPlanProvisioningRequest, { module: "CoreTelephony_6be9a005889899ab", properties: {"eid":1942974968948381,"iccid":367886846822223,"oid":1091470408881404,"address":1759537192376472,"confirmationCode":4349798334370505,"matchingID":3521615665084619} });
+registerSDKClass("CTCellularPlanStatus", CTCellularPlanStatus, { module: "CoreTelephony_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreTelephony.CTError", CTError, { module: "CoreTelephony_6be9a005889899ab", properties: {} });
+registerSDKClass("CTQuickSwitchManager", CTQuickSwitchManager, { module: "CoreTelephony_6be9a005889899ab", properties: {"delegate":2345390284192164}, methods: {"getDeviceState":{"id":4238922453693188,"hints":[{"callback":{"out":[]}}]},"getPhoneNumberState":{"id":3833926677003502,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)CTQuickSwitchManagerDelegate", {"quickSwitchManagerDidChangeTo":"quickSwitchManager(_:didChangeTo:)"});
-registerSDKClass("CoreTelephony.CTSlicingManager", CTSlicingManager, { module: "CoreTelephony_5d69670f0307b385", properties: {}, methods: {"disableSlicing":{"id":2594811947937507},"activatePreferredSliceForCategory":{"id":4013772617360076}} });
-registerSDKClass("CoreTelephony.CTSlicingManager.Slice", CTSlicingManager_Slice, { module: "CoreTelephony_5d69670f0307b385", properties: {} });
-registerSDKClass("CTSubscriber", CTSubscriber, { module: "CoreTelephony_5d69670f0307b385", properties: {"isSIMInserted":2390651973419329,"carrierToken":1803505184126342,"delegate":4445838033246590,"identifier":4356502668925538}, methods: {"refreshCarrierToken":{"id":2692203737322404}} });
+registerSDKClass("CoreTelephony.CTSlicingManager", CTSlicingManager, { module: "CoreTelephony_6be9a005889899ab", properties: {}, methods: {"disableSlicing":{"id":2594811947937507},"activatePreferredSliceForCategory":{"id":4013772617360076}} });
+registerSDKClass("CoreTelephony.CTSlicingManager.Slice", CTSlicingManager_Slice, { module: "CoreTelephony_6be9a005889899ab", properties: {} });
+registerSDKClass("CTSubscriber", CTSubscriber, { module: "CoreTelephony_6be9a005889899ab", properties: {"isSIMInserted":2390651973419329,"carrierToken":1803505184126342,"delegate":4445838033246590,"identifier":4356502668925538}, methods: {"refreshCarrierToken":{"id":2692203737322404}} });
 registerSDKProtocol("c:objc(pl)CTSubscriberDelegate", {"subscriberTokenRefreshed":"subscriberTokenRefreshed(_:)"});
-registerSDKClass("CTSubscriberInfo", CTSubscriberInfo, { module: "CoreTelephony_5d69670f0307b385", properties: {} });
-registerSDKClass("CTTelephonyNetworkInfo", CTTelephonyNetworkInfo, { module: "CoreTelephony_5d69670f0307b385", properties: {"currentRadioAccessTechnology":2936690088725934,"dataServiceIdentifier":677599539648333,"delegate":3300384827067316,"serviceCurrentRadioAccessTechnology":2202369970038972,"serviceSubscriberCellularProviders":3757718597264408,"subscriberCellularProvider":1691612482958073} });
-registerSDKClass("CoreTelephony.CTTelephonyNetworkInfo.RadioAccessTechnologyDidChangeMessage", CTTelephonyNetworkInfo_RadioAccessTechnologyDidChangeMessage, { module: "CoreTelephony_5d69670f0307b385", properties: {} });
+registerSDKClass("CTSubscriberInfo", CTSubscriberInfo, { module: "CoreTelephony_6be9a005889899ab", properties: {} });
+registerSDKClass("CTTelephonyNetworkInfo", CTTelephonyNetworkInfo, { module: "CoreTelephony_6be9a005889899ab", properties: {"currentRadioAccessTechnology":2936690088725934,"dataServiceIdentifier":677599539648333,"delegate":3300384827067316,"serviceCurrentRadioAccessTechnology":2202369970038972,"serviceSubscriberCellularProviders":3757718597264408,"subscriberCellularProvider":1691612482958073} });
+registerSDKClass("CoreTelephony.CTTelephonyNetworkInfo.RadioAccessTechnologyDidChangeMessage", CTTelephonyNetworkInfo_RadioAccessTechnologyDidChangeMessage, { module: "CoreTelephony_6be9a005889899ab", properties: {} });
 registerSDKProtocol("c:objc(pl)CTTelephonyNetworkInfoDelegate", {"dataServiceIdentifierDidChange":"dataServiceIdentifierDidChange(_:)"});

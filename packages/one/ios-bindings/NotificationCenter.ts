@@ -61,20 +61,20 @@ export class NSExtensionContext extends SDKHandle {
    * @availability iOS 10.0+
    * @deprecated iOS 14.0
    */
-  widgetMaximumSize(displayMode: NCWidgetDisplayMode): $SDK0 { return callSDK<$SDK0>("NotificationCenter_5d69670f0307b385", 585962764870024, this, [displayMode]); }
+  widgetMaximumSize(displayMode: NCWidgetDisplayMode): $SDK0 { return callSDK<$SDK0>("NotificationCenter_6be9a005889899ab", 585962764870024, this, [displayMode]); }
   /**
    * var widgetActiveDisplayMode: NCWidgetDisplayMode { get }
    * @availability iOS 10.0+
    * @deprecated iOS 14.0
    */
-  get widgetActiveDisplayMode(): NCWidgetDisplayMode { return callSDK<NCWidgetDisplayMode>("NotificationCenter_5d69670f0307b385", 129840253669180, this, []); }
+  get widgetActiveDisplayMode(): NCWidgetDisplayMode { return callSDK<NCWidgetDisplayMode>("NotificationCenter_6be9a005889899ab", 129840253669180, this, []); }
   /**
    * var widgetLargestAvailableDisplayMode: NCWidgetDisplayMode { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 14.0
    */
-  get widgetLargestAvailableDisplayMode(): NCWidgetDisplayMode { return callSDK<NCWidgetDisplayMode>("NotificationCenter_5d69670f0307b385", 3905065489311307, this, []); }
-  set widgetLargestAvailableDisplayMode(value: NCWidgetDisplayMode) { callSDK<void>("NotificationCenter_5d69670f0307b385", 4379176231490399, this, [value]); }
+  get widgetLargestAvailableDisplayMode(): NCWidgetDisplayMode { return callSDK<NCWidgetDisplayMode>("NotificationCenter_6be9a005889899ab", 3905065489311307, this, []); }
+  set widgetLargestAvailableDisplayMode(value: NCWidgetDisplayMode) { callSDK<void>("NotificationCenter_6be9a005889899ab", 4379176231490399, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSExtensionContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "widgetActiveDisplayMode": true; "widgetLargestAvailableDisplayMode": true };
 }
@@ -85,29 +85,29 @@ export class UIVibrancyEffect extends SDKHandle {
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  static notificationCenter(): Promise<_UIKit_UIVibrancyEffect> { return callSDKAsync<_UIKit_UIVibrancyEffect>("NotificationCenter_5d69670f0307b385", 3435060692275652, undefined, []); }
+  static notificationCenter(): Promise<_UIKit_UIVibrancyEffect> { return callSDKAsync<_UIKit_UIVibrancyEffect>("NotificationCenter_6be9a005889899ab", 3435060692275652, undefined, []); }
   /**
    * class func widgetEffect(forVibrancyStyle vibrancyStyle: UIVibrancyEffectStyle) -> UIVibrancyEffect
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  static widgetEffect(vibrancyStyle: _UIKit_UIVibrancyEffectStyle): Promise<_UIKit_UIVibrancyEffect> { return callSDKAsync<_UIKit_UIVibrancyEffect>("NotificationCenter_5d69670f0307b385", 580402718336756, undefined, [vibrancyStyle]); }
+  static widgetEffect(vibrancyStyle: _UIKit_UIVibrancyEffectStyle): Promise<_UIKit_UIVibrancyEffect> { return callSDKAsync<_UIKit_UIVibrancyEffect>("NotificationCenter_6be9a005889899ab", 580402718336756, undefined, [vibrancyStyle]); }
   /**
    * class func widgetPrimary() -> UIVibrancyEffect
    * @availability iOS 10.0+
    * @deprecated iOS 13.0
    */
-  static widgetPrimary(): Promise<_UIKit_UIVibrancyEffect> { return callSDKAsync<_UIKit_UIVibrancyEffect>("NotificationCenter_5d69670f0307b385", 4042005756416284, undefined, []); }
+  static widgetPrimary(): Promise<_UIKit_UIVibrancyEffect> { return callSDKAsync<_UIKit_UIVibrancyEffect>("NotificationCenter_6be9a005889899ab", 4042005756416284, undefined, []); }
   /**
    * class func widgetSecondary() -> UIVibrancyEffect
    * @availability iOS 10.0+
    * @deprecated iOS 13.0
    */
-  static widgetSecondary(): Promise<_UIKit_UIVibrancyEffect> { return callSDKAsync<_UIKit_UIVibrancyEffect>("NotificationCenter_5d69670f0307b385", 1040616787762631, undefined, []); }
+  static widgetSecondary(): Promise<_UIKit_UIVibrancyEffect> { return callSDKAsync<_UIKit_UIVibrancyEffect>("NotificationCenter_6be9a005889899ab", 1040616787762631, undefined, []); }
   declare readonly $type: { "c:objc(cs)UIVibrancyEffect": true; "c:objc(cs)UIVisualEffect": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("NCWidgetController", NCWidgetController, { module: "NotificationCenter_5d69670f0307b385", properties: {} });
+registerSDKClass("NCWidgetController", NCWidgetController, { module: "NotificationCenter_6be9a005889899ab", properties: {} });
 registerSDKProtocol("c:objc(pl)NCWidgetProviding", {"widgetPerformUpdate":"widgetPerformUpdate()","widgetActiveDisplayModeDidChangeWithMaximumSize":"widgetActiveDisplayModeDidChange(_:withMaximumSize:)","widgetMarginInsetsForProposedMarginInsets":"widgetMarginInsets(forProposedMarginInsets:)"});
-registerSDKClass("NSExtensionContext", NSExtensionContext, { module: "NotificationCenter_5d69670f0307b385", properties: {"widgetActiveDisplayMode":129840253669180,"widgetLargestAvailableDisplayMode":3905065489311307}, methods: {"widgetMaximumSize":{"id":585962764870024}} }, true);
-registerSDKClass("UIVibrancyEffect", UIVibrancyEffect, { module: "NotificationCenter_5d69670f0307b385", properties: {} }, true);
+registerSDKClass("NSExtensionContext", NSExtensionContext, { module: "NotificationCenter_6be9a005889899ab", properties: {"widgetActiveDisplayMode":129840253669180,"widgetLargestAvailableDisplayMode":3905065489311307}, methods: {"widgetMaximumSize":{"id":585962764870024}} }, true);
+registerSDKClass("UIVibrancyEffect", UIVibrancyEffect, { module: "NotificationCenter_6be9a005889899ab", properties: {} }, true);

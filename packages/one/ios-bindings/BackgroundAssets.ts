@@ -20,42 +20,42 @@ export class AssetPack extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 1234612371087738, this, []); }
+  get description(): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 1234612371087738, this, []); }
   /**
    * let downloadSize: Int
    * @availability iOS 26.0+
    */
-  get downloadSize(): number { return callSDK<number>("BackgroundAssets_5d69670f0307b385", 1086390447195180, this, []); }
+  get downloadSize(): number { return callSDK<number>("BackgroundAssets_6be9a005889899ab", 1086390447195180, this, []); }
   /**
    * let id: String
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 3260490284650560, this, []); }
+  get id(): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 3260490284650560, this, []); }
   /**
    * init(from decoder: any Decoder, configuration: AssetPack.DecodingConfiguration) throws
    * @availability iOS 26.0+
    */
-  static init(decoder: SDKHandle, configuration: AssetPackManifest_DecodingConfiguration): AssetPack { return callSDK<AssetPack>("BackgroundAssets_5d69670f0307b385", 4263687559011507, undefined, [decoder, configuration]); }
+  static init(decoder: SDKHandle, configuration: AssetPackManifest_DecodingConfiguration): AssetPack { return callSDK<AssetPack>("BackgroundAssets_6be9a005889899ab", 4263687559011507, undefined, [decoder, configuration]); }
   /**
    * let version: Int
    * @availability iOS 26.0+
    */
-  get version(): number { return callSDK<number>("BackgroundAssets_5d69670f0307b385", 896355834470603, this, []); }
+  get version(): number { return callSDK<number>("BackgroundAssets_6be9a005889899ab", 896355834470603, this, []); }
   /**
    * func download(for contentRequest: BAContentRequest?) -> BADownload
    * @availability iOS 26.0+
    */
-  download(contentRequest?: (BAContentRequest) | null): BADownload { return callSDK<BADownload>("BackgroundAssets_5d69670f0307b385", 3241689802572852, this, [contentRequest]); }
+  download(contentRequest?: (BAContentRequest) | null): BADownload { return callSDK<BADownload>("BackgroundAssets_6be9a005889899ab", 3241689802572852, this, [contentRequest]); }
   /**
    * let language: Locale.Language?
    * @availability iOS 27.0+
    */
-  get language(): $SDK1 { return callSDK<$SDK1>("BackgroundAssets_5d69670f0307b385", 494216491061564, this, []); }
+  get language(): $SDK1 { return callSDK<$SDK1>("BackgroundAssets_6be9a005889899ab", 494216491061564, this, []); }
   /**
    * let userInfo: Data?
    * @availability iOS 26.0+
    */
-  get userInfo(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("BackgroundAssets_5d69670f0307b385", 4206403519849395, this, []); }
+  get userInfo(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("BackgroundAssets_6be9a005889899ab", 4206403519849395, this, []); }
   declare readonly $type: { "s:16BackgroundAssets9AssetPackV": true };
 }
 
@@ -82,47 +82,47 @@ export const AssetPack_Status = {
    * static let downloaded: AssetPack.Status
    * @availability iOS 26.0+
    */
-  get downloaded(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 2371640564259559, undefined, []); },
+  get downloaded(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 2371640564259559, undefined, []); },
   /**
    * static let downloading: AssetPack.Status
    * @availability iOS 26.0+
    */
-  get downloading(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 3433843799117029, undefined, []); },
+  get downloading(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 3433843799117029, undefined, []); },
   /**
    * static let updateAvailable: AssetPack.Status
    * @availability iOS 26.0+
    */
-  get updateAvailable(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 1162516225671434, undefined, []); },
+  get updateAvailable(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 1162516225671434, undefined, []); },
   /**
    * static let downloadAvailable: AssetPack.Status
    * @availability iOS 26.0+
    */
-  get downloadAvailable(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 3188441916976669, undefined, []); },
+  get downloadAvailable(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 3188441916976669, undefined, []); },
   /**
    * static let obsolete: AssetPack.Status
    * @availability iOS 26.0+
    */
-  get obsolete(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 2947952725476027, undefined, []); },
+  get obsolete(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 2947952725476027, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 2718884641017351, undefined, [rawValue]); },
+  init(rawValue: number): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 2718884641017351, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 26.0+
    */
-  getRawValue($self: AssetPack_Status): number { return callSDK<number>("BackgroundAssets_5d69670f0307b385", 1385295735763499, $self, []); },
+  getRawValue($self: AssetPack_Status): number { return callSDK<number>("BackgroundAssets_6be9a005889899ab", 1385295735763499, $self, []); },
   /**
    * static let upToDate: AssetPack.Status
    * @availability iOS 26.0+
    */
-  get upToDate(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 2322941322842495, undefined, []); },
+  get upToDate(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 2322941322842495, undefined, []); },
   /**
    * static let outOfDate: AssetPack.Status
    * @availability iOS 26.0+
    */
-  get outOfDate(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 2107773076622207, undefined, []); }
+  get outOfDate(): AssetPack_Status { return callSDK<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 2107773076622207, undefined, []); }
 };
 
 /**
@@ -153,127 +153,127 @@ export class AssetPackManager extends SDKHandle {
    * @availability iOS 26.0+
    * @deprecated iOS 27.0
    */
-  get allAssetPacks(): Promise<Array<AssetPack>> { return callSDKAsync<Array<AssetPack>>("BackgroundAssets_5d69670f0307b385", 1226926596395129, this, []); }
+  get allAssetPacks(): Promise<Array<AssetPack>> { return callSDKAsync<Array<AssetPack>>("BackgroundAssets_6be9a005889899ab", 1226926596395129, this, []); }
   /**
    * func assetPack(withID id: String) async throws -> AssetPack
    * @availability iOS 26.0+
    * @deprecated iOS 27.0
    */
-  assetPack(id: string): Promise<AssetPack> { return callSDKAsync<AssetPack>("BackgroundAssets_5d69670f0307b385", 3233458991047078, this, [id]); }
+  assetPack(id: string): Promise<AssetPack> { return callSDKAsync<AssetPack>("BackgroundAssets_6be9a005889899ab", 3233458991047078, this, [id]); }
   /**
    * nonisolated func assetPackIsAvailableLocally(withID assetPackID: String) -> Bool
    * @availability iOS 26.4+
    */
-  assetPackIsAvailableLocally(assetPackID: string): boolean { return callSDK<boolean>("BackgroundAssets_5d69670f0307b385", 4425263434188211, this, [assetPackID]); }
+  assetPackIsAvailableLocally(assetPackID: string): boolean { return callSDK<boolean>("BackgroundAssets_6be9a005889899ab", 4425263434188211, this, [assetPackID]); }
   /**
    * nonisolated func descriptor(for path: FilePath, searchingInAssetPackWithID assetPackID: String? = nil) throws -> FileDescriptor
    * @availability iOS 26.0+
    */
-  descriptorForSearchingInAssetPackWithID(path: _System_FilePath, assetPackID?: (string) | null): _System_FileDescriptor { return callSDK<_System_FileDescriptor>("BackgroundAssets_5d69670f0307b385", 2282866979568887, this, [path, assetPackID]); }
+  descriptorForSearchingInAssetPackWithID(path: _System_FilePath, assetPackID?: (string) | null): _System_FileDescriptor { return callSDK<_System_FileDescriptor>("BackgroundAssets_6be9a005889899ab", 2282866979568887, this, [path, assetPackID]); }
   /**
    * nonisolated func descriptor(for path: FilePath, asLocalizedFor language: Locale.Language) throws -> FileDescriptor
    * @availability iOS 27.0+
    */
-  descriptorForAsLocalizedFor(path: _System_FilePath, language: _Foundation_Locale_Language): _System_FileDescriptor { return callSDK<_System_FileDescriptor>("BackgroundAssets_5d69670f0307b385", 3543086733856185, this, [path, language]); }
+  descriptorForAsLocalizedFor(path: _System_FilePath, language: _Foundation_Locale_Language): _System_FileDescriptor { return callSDK<_System_FileDescriptor>("BackgroundAssets_6be9a005889899ab", 3543086733856185, this, [path, language]); }
   /**
    * func localStatus(ofAssetPackWithID assetPackID: String) async -> AssetPack.Status
    * @availability iOS 26.4+
    */
-  localStatus(assetPackID: string): Promise<AssetPack_Status> { return callSDKAsync<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 512755303809466, this, [assetPackID]); }
+  localStatus(assetPackID: string): Promise<AssetPack_Status> { return callSDKAsync<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 512755303809466, this, [assetPackID]); }
   /**
    * nonisolated func statusUpdates(forAssetPackWithID assetPackID: String) -> some Sendable & AsyncSequence<AssetPackManager.DownloadStatusUpdate, Never>
   
    * @availability iOS 26.0+
    */
-  statusUpdates(assetPackID: string): (SDKHandle) & (SDKHandle) { return callSDK<(SDKHandle) & (SDKHandle)>("BackgroundAssets_5d69670f0307b385", 2036851081268333, this, [assetPackID]); }
+  statusUpdates(assetPackID: string): (SDKHandle) & (SDKHandle) { return callSDK<(SDKHandle) & (SDKHandle)>("BackgroundAssets_6be9a005889899ab", 2036851081268333, this, [assetPackID]); }
   /**
    * @discardableResult func checkForUpdates() async throws -> (updatingIDs: Set<String>, removedIDs: Set<String>)
    * @availability iOS 26.0+
    */
-  checkForUpdates(): Promise<{ "updatingIDs": Array<string>; "removedIDs": Array<string> }> { return callSDKAsync<{ "updatingIDs": Array<string>; "removedIDs": Array<string> }>("BackgroundAssets_5d69670f0307b385", 2614059268704364, this, []); }
+  checkForUpdates(): Promise<{ "updatingIDs": Array<string>; "removedIDs": Array<string> }> { return callSDKAsync<{ "updatingIDs": Array<string>; "removedIDs": Array<string> }>("BackgroundAssets_6be9a005889899ab", 2614059268704364, this, []); }
   /**
    * nonisolated final var unownedExecutor: UnownedSerialExecutor { get }
    * @availability iOS 26.0+
    */
-  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("BackgroundAssets_5d69670f0307b385", 1532474378218102, this, []); }
+  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("BackgroundAssets_6be9a005889899ab", 1532474378218102, this, []); }
   /**
    * nonisolated var resolvedLanguage: Locale.Language? { get set }
    * @availability iOS 27.0+
    */
-  get resolvedLanguage(): $SDK1 { return callSDK<$SDK1>("BackgroundAssets_5d69670f0307b385", 4017344289971258, this, []); }
-  set resolvedLanguage(value: $SDK1) { callSDK<void>("BackgroundAssets_5d69670f0307b385", 1711315214298500, this, [value]); }
+  get resolvedLanguage(): $SDK1 { return callSDK<$SDK1>("BackgroundAssets_6be9a005889899ab", 4017344289971258, this, []); }
+  set resolvedLanguage(value: $SDK1) { callSDK<void>("BackgroundAssets_6be9a005889899ab", 1711315214298500, this, [value]); }
   /**
    * func ensureLocalAvailability(of assetPack: AssetPack, requireLatestVersion shouldUpdate: Bool = false) async throws
    * @availability iOS 26.4+
    */
-  ensureLocalAvailabilityOfRequireLatestVersion(assetPack: AssetPack, shouldUpdate?: boolean): Promise<void> { return callSDKAsync<void>("BackgroundAssets_5d69670f0307b385", 1676416849683818, this, [assetPack, shouldUpdate]); }
+  ensureLocalAvailabilityOfRequireLatestVersion(assetPack: AssetPack, shouldUpdate?: boolean): Promise<void> { return callSDKAsync<void>("BackgroundAssets_6be9a005889899ab", 1676416849683818, this, [assetPack, shouldUpdate]); }
   /**
    * func ensureLocalAvailability(of assetPacks: Set<AssetPack>, requireLatestVersions shouldUpdate: Bool = false) async throws
    * @availability iOS 27.0+
    */
-  ensureLocalAvailabilityOfRequireLatestVersions(assetPacks: Array<AssetPack>, shouldUpdate?: boolean): Promise<void> { return callSDKAsync<void>("BackgroundAssets_5d69670f0307b385", 1804240448647058, this, [assetPacks, shouldUpdate]); }
+  ensureLocalAvailabilityOfRequireLatestVersions(assetPacks: Array<AssetPack>, shouldUpdate?: boolean): Promise<void> { return callSDKAsync<void>("BackgroundAssets_6be9a005889899ab", 1804240448647058, this, [assetPacks, shouldUpdate]); }
   /**
    * func ensureLocalAvailability(of assetPack: AssetPack) async throws
    * @availability iOS 26.0+
    * @deprecated iOS 26.4
    */
-  ensureLocalAvailabilityOf(assetPack: AssetPack): Promise<void> { return callSDKAsync<void>("BackgroundAssets_5d69670f0307b385", 4116867182031352, this, [assetPack]); }
+  ensureLocalAvailabilityOf(assetPack: AssetPack): Promise<void> { return callSDKAsync<void>("BackgroundAssets_6be9a005889899ab", 4116867182031352, this, [assetPack]); }
   /**
    * var locallyAvailableLanguages: [Locale.Language] { get async }
    * @availability iOS 27.0+
    */
-  get locallyAvailableLanguages(): Promise<$SDK4> { return callSDKAsync<$SDK4>("BackgroundAssets_5d69670f0307b385", 3891163445994090, this, []); }
+  get locallyAvailableLanguages(): Promise<$SDK4> { return callSDKAsync<$SDK4>("BackgroundAssets_6be9a005889899ab", 3891163445994090, this, []); }
   /**
    * func reconcilePreferredLanguages() async throws
    * @availability iOS 27.0+
    */
-  reconcilePreferredLanguages(): Promise<void> { return callSDKAsync<void>("BackgroundAssets_5d69670f0307b385", 962661566583169, this, []); }
+  reconcilePreferredLanguages(): Promise<void> { return callSDKAsync<void>("BackgroundAssets_6be9a005889899ab", 962661566583169, this, []); }
   /**
    * nonisolated func url(for path: FilePath) throws -> URL
    * @availability iOS 26.0+
    */
-  urlFor(path: _System_FilePath): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 2836060186122581, this, [path]); }
+  urlFor(path: _System_FilePath): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 2836060186122581, this, [path]); }
   /**
    * nonisolated func url(for path: FilePath, asLocalizedFor language: Locale.Language) throws -> URL
    * @availability iOS 27.0+
    */
-  urlForAsLocalizedFor(path: _System_FilePath, language: _Foundation_Locale_Language): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 4089712427944993, this, [path, language]); }
+  urlForAsLocalizedFor(path: _System_FilePath, language: _Foundation_Locale_Language): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 4089712427944993, this, [path, language]); }
   /**
    * func remove(assetPackWithID assetPackID: String) async throws
    * @availability iOS 26.0+
    */
-  remove(assetPackID: string): Promise<void> { return callSDKAsync<void>("BackgroundAssets_5d69670f0307b385", 2566725932309945, this, [assetPackID]); }
+  remove(assetPackID: string): Promise<void> { return callSDKAsync<void>("BackgroundAssets_6be9a005889899ab", 2566725932309945, this, [assetPackID]); }
   /**
    * static let shared: AssetPackManager
    * @availability iOS 26.0+
    */
-  static get shared(): AssetPackManager { return callSDK<AssetPackManager>("BackgroundAssets_5d69670f0307b385", 3460868500063682, undefined, []); }
+  static get shared(): AssetPackManager { return callSDK<AssetPackManager>("BackgroundAssets_6be9a005889899ab", 3460868500063682, undefined, []); }
   /**
    * func status(ofAssetPackWithID assetPackID: String) async throws -> AssetPack.Status
    * @availability iOS 26.0+
    * @deprecated iOS 26.4
    */
-  statusOfAssetPackWithID(assetPackID: string): Promise<AssetPack_Status> { return callSDKAsync<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 3933900210733770, this, [assetPackID]); }
+  statusOfAssetPackWithID(assetPackID: string): Promise<AssetPack_Status> { return callSDKAsync<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 3933900210733770, this, [assetPackID]); }
   /**
    * func status(relativeTo assetPack: AssetPack) async throws -> AssetPack.Status
    * @availability iOS 26.4+
    */
-  statusRelativeTo(assetPack: AssetPack): Promise<AssetPack_Status> { return callSDKAsync<AssetPack_Status>("BackgroundAssets_5d69670f0307b385", 1701439989343075, this, [assetPack]); }
+  statusRelativeTo(assetPack: AssetPack): Promise<AssetPack_Status> { return callSDKAsync<AssetPack_Status>("BackgroundAssets_6be9a005889899ab", 1701439989343075, this, [assetPack]); }
   /**
    * nonisolated func contents(at path: FilePath, searchingInAssetPackWithID assetPackID: String? = nil, options: Data.ReadingOptions = .mappedIfSafe) throws -> Data
    * @availability iOS 26.0+
    */
-  contentsAtSearchingInAssetPackWithIDOptions(path: _System_FilePath, assetPackID?: (string) | null, options?: _Foundation_NSData_ReadingOptions): ArrayBuffer { return callSDK<ArrayBuffer>("BackgroundAssets_5d69670f0307b385", 1982235231514023, this, [path, assetPackID, options]); }
+  contentsAtSearchingInAssetPackWithIDOptions(path: _System_FilePath, assetPackID?: (string) | null, options?: _Foundation_NSData_ReadingOptions): ArrayBuffer { return callSDK<ArrayBuffer>("BackgroundAssets_6be9a005889899ab", 1982235231514023, this, [path, assetPackID, options]); }
   /**
    * nonisolated func contents(at path: FilePath, asLocalizedFor language: Locale.Language, options: Data.ReadingOptions = .mappedIfSafe) throws -> Data
    * @availability iOS 27.0+
    */
-  contentsAtAsLocalizedForOptions(path: _System_FilePath, language: _Foundation_Locale_Language, options?: _Foundation_NSData_ReadingOptions): ArrayBuffer { return callSDK<ArrayBuffer>("BackgroundAssets_5d69670f0307b385", 586953460943061, this, [path, language, options]); }
+  contentsAtAsLocalizedForOptions(path: _System_FilePath, language: _Foundation_Locale_Language, options?: _Foundation_NSData_ReadingOptions): ArrayBuffer { return callSDK<ArrayBuffer>("BackgroundAssets_6be9a005889899ab", 586953460943061, this, [path, language, options]); }
   /**
    * var manifest: AssetPackManifest { get async throws }
    * @availability iOS 27.0+
    */
-  get manifest(): Promise<AssetPackManifest> { return callSDKAsync<AssetPackManifest>("BackgroundAssets_5d69670f0307b385", 1318077530177114, this, []); }
+  get manifest(): Promise<AssetPackManifest> { return callSDKAsync<AssetPackManifest>("BackgroundAssets_6be9a005889899ab", 1318077530177114, this, []); }
   declare readonly $type: { "s:16BackgroundAssets16AssetPackManagerC": true };
 }
 
@@ -286,7 +286,7 @@ export class AssetPackManager_DownloadStatusUpdate extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 4301517971407261, this, []); }
+  get description(): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 4301517971407261, this, []); }
   declare readonly $type: { "s:16BackgroundAssets16AssetPackManagerC20DownloadStatusUpdateO": true };
 }
 
@@ -299,22 +299,22 @@ export class AssetPackManager_LocalAvailabilityError extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 731001001447146, this, []); }
+  get description(): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 731001001447146, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 27.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("BackgroundAssets_5d69670f0307b385", 1249612637011002, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("BackgroundAssets_6be9a005889899ab", 1249612637011002, this, []); }
   /**
    * let failures: [AssetPack : any Error]
    * @availability iOS 27.0+
    */
-  get failures(): NativeMap<AssetPack, NativeError> { return callSDK<NativeMap<AssetPack, NativeError>>("BackgroundAssets_5d69670f0307b385", 1706139308488061, this, []); }
+  get failures(): NativeMap<AssetPack, NativeError> { return callSDK<NativeMap<AssetPack, NativeError>>("BackgroundAssets_6be9a005889899ab", 1706139308488061, this, []); }
   /**
    * let successes: Set<AssetPack>
    * @availability iOS 27.0+
    */
-  get successes(): Array<AssetPack> { return callSDK<Array<AssetPack>>("BackgroundAssets_5d69670f0307b385", 1579359842711759, this, []); }
+  get successes(): Array<AssetPack> { return callSDK<Array<AssetPack>>("BackgroundAssets_6be9a005889899ab", 1579359842711759, this, []); }
   declare readonly $type: { "s:16BackgroundAssets16AssetPackManagerC22LocalAvailabilityErrorV": true };
 }
 
@@ -327,62 +327,62 @@ export class AssetPackManifest extends SDKHandle {
    * func assetPack(withID id: String) -> AssetPack?
    * @availability iOS 27.0+
    */
-  assetPack(id: string): (AssetPack) | null { return callSDK<(AssetPack) | null>("BackgroundAssets_5d69670f0307b385", 2357382121137518, this, [id]); }
+  assetPack(id: string): (AssetPack) | null { return callSDK<(AssetPack) | null>("BackgroundAssets_6be9a005889899ab", 2357382121137518, this, [id]); }
   /**
    * func localizedAssetPacks(for language: Locale.Language) -> Set<AssetPack>
    * @availability iOS 27.0+
    */
-  localizedAssetPacksFor(language: _Foundation_Locale_Language): Array<AssetPack> { return callSDK<Array<AssetPack>>("BackgroundAssets_5d69670f0307b385", 4182768186582331, this, [language]); }
+  localizedAssetPacksFor(language: _Foundation_Locale_Language): Array<AssetPack> { return callSDK<Array<AssetPack>>("BackgroundAssets_6be9a005889899ab", 4182768186582331, this, [language]); }
   /**
    * var localizedAssetPacks: Set<AssetPack> { get }
    * @availability iOS 27.0+
    */
-  get localizedAssetPacks(): Array<AssetPack> { return callSDK<Array<AssetPack>>("BackgroundAssets_5d69670f0307b385", 3313186863710467, this, []); }
+  get localizedAssetPacks(): Array<AssetPack> { return callSDK<Array<AssetPack>>("BackgroundAssets_6be9a005889899ab", 3313186863710467, this, []); }
   /**
    * let assetPacks: Set<AssetPack>
    * @availability iOS 26.0+
    */
-  get assetPacks(): Array<AssetPack> { return callSDK<Array<AssetPack>>("BackgroundAssets_5d69670f0307b385", 1184216953724744, this, []); }
+  get assetPacks(): Array<AssetPack> { return callSDK<Array<AssetPack>>("BackgroundAssets_6be9a005889899ab", 1184216953724744, this, []); }
   /**
    * init(contentsOf url: URL, appGroupID: String) throws
    * @availability iOS 26.0+
    */
-  static initContentsOfAppGroupID(url: string, appGroupID: string): AssetPackManifest { return callSDK<AssetPackManifest>("BackgroundAssets_5d69670f0307b385", 4138212173563229, undefined, [url, appGroupID]); }
+  static initContentsOfAppGroupID(url: string, appGroupID: string): AssetPackManifest { return callSDK<AssetPackManifest>("BackgroundAssets_6be9a005889899ab", 4138212173563229, undefined, [url, appGroupID]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 2299259510291396, this, []); }
+  get description(): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 2299259510291396, this, []); }
   /**
    * func allDownloads(for contentRequest: BAContentRequest?) -> Set<BADownload>
    * @availability iOS 26.0+
    */
-  allDownloads(contentRequest?: (BAContentRequest) | null): Array<BADownload> { return callSDK<Array<BADownload>>("BackgroundAssets_5d69670f0307b385", 3950586063613809, this, [contentRequest]); }
+  allDownloads(contentRequest?: (BAContentRequest) | null): Array<BADownload> { return callSDK<Array<BADownload>>("BackgroundAssets_6be9a005889899ab", 3950586063613809, this, [contentRequest]); }
   /**
    * var primaryLanguage: Locale.Language? { get }
    * @availability iOS 27.0+
    */
-  get primaryLanguage(): $SDK1 { return callSDK<$SDK1>("BackgroundAssets_5d69670f0307b385", 2135595053065144, this, []); }
+  get primaryLanguage(): $SDK1 { return callSDK<$SDK1>("BackgroundAssets_6be9a005889899ab", 2135595053065144, this, []); }
   /**
    * var resolvedLanguage: Locale.Language? { get }
    * @availability iOS 27.0+
    */
-  get resolvedLanguage(): $SDK1 { return callSDK<$SDK1>("BackgroundAssets_5d69670f0307b385", 2574972046459746, this, []); }
+  get resolvedLanguage(): $SDK1 { return callSDK<$SDK1>("BackgroundAssets_6be9a005889899ab", 2574972046459746, this, []); }
   /**
    * var availableLanguages: [Locale.Language] { get }
    * @availability iOS 27.0+
    */
-  get availableLanguages(): $SDK4 { return callSDK<$SDK4>("BackgroundAssets_5d69670f0307b385", 2207418516782224, this, []); }
+  get availableLanguages(): $SDK4 { return callSDK<$SDK4>("BackgroundAssets_6be9a005889899ab", 2207418516782224, this, []); }
   /**
    * init(from data: Data, appGroupID: String) throws
    * @availability iOS 26.0+
    */
-  static initFromAppGroupID(data: ArrayBuffer, appGroupID: string): AssetPackManifest { return callSDK<AssetPackManifest>("BackgroundAssets_5d69670f0307b385", 3753985362583341, undefined, [data, appGroupID]); }
+  static initFromAppGroupID(data: ArrayBuffer, appGroupID: string): AssetPackManifest { return callSDK<AssetPackManifest>("BackgroundAssets_6be9a005889899ab", 3753985362583341, undefined, [data, appGroupID]); }
   /**
    * init(from decoder: any Decoder, configuration: AssetPackManifest.DecodingConfiguration) throws
    * @availability iOS 26.0+
    */
-  static initFromConfiguration(decoder: SDKHandle, configuration: AssetPackManifest_DecodingConfiguration): AssetPackManifest { return callSDK<AssetPackManifest>("BackgroundAssets_5d69670f0307b385", 1349143652395398, undefined, [decoder, configuration]); }
+  static initFromConfiguration(decoder: SDKHandle, configuration: AssetPackManifest_DecodingConfiguration): AssetPackManifest { return callSDK<AssetPackManifest>("BackgroundAssets_6be9a005889899ab", 1349143652395398, undefined, [decoder, configuration]); }
   declare readonly $type: { "s:16BackgroundAssets17AssetPackManifestV": true };
 }
 
@@ -395,7 +395,7 @@ export class AssetPackManifest_DecodingConfiguration extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 1324085309304771, this, []); }
+  get description(): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 1324085309304771, this, []); }
   declare readonly $type: { "s:16BackgroundAssets17AssetPackManifestV21DecodingConfigurationV": true };
 }
 
@@ -408,12 +408,12 @@ export class BAAppExtensionInfo extends SDKHandle {
    * var restrictedDownloadSizeRemaining: Int? { get }
    * @availability iOS 16.1+
    */
-  get restrictedDownloadSizeRemaining(): (number) | null { return callSDK<(number) | null>("BackgroundAssets_5d69670f0307b385", 3702011350900221, this, []); }
+  get restrictedDownloadSizeRemaining(): (number) | null { return callSDK<(number) | null>("BackgroundAssets_6be9a005889899ab", 3702011350900221, this, []); }
   /**
    * var restrictedEssentialDownloadSizeRemaining: Int? { get }
    * @availability iOS 16.4+
    */
-  get restrictedEssentialDownloadSizeRemaining(): (number) | null { return callSDK<(number) | null>("BackgroundAssets_5d69670f0307b385", 3283724738469885, this, []); }
+  get restrictedEssentialDownloadSizeRemaining(): (number) | null { return callSDK<(number) | null>("BackgroundAssets_6be9a005889899ab", 3283724738469885, this, []); }
   declare readonly $type: { "c:objc(cs)BAAppExtensionInfo": true; "c:objc(cs)NSObject": true };
 }
 
@@ -428,7 +428,7 @@ export const BAContentRequest = {
    * init?(rawValue: Int)
    * @availability iOS 16.1+
    */
-  init(rawValue: number): (BAContentRequest) | null { return callSDK<(BAContentRequest) | null>("BackgroundAssets_5d69670f0307b385", 2947668172716425, undefined, [rawValue]); }
+  init(rawValue: number): (BAContentRequest) | null { return callSDK<(BAContentRequest) | null>("BackgroundAssets_6be9a005889899ab", 2947668172716425, undefined, [rawValue]); }
 };
 
 /**
@@ -440,32 +440,32 @@ export class BADownload extends SDKHandle {
    * func removingEssential() -> Self
    * @availability iOS 16.4+
    */
-  removingEssential(): BADownload { return callSDK<BADownload>("BackgroundAssets_5d69670f0307b385", 286486152731885, this, []); }
+  removingEssential(): BADownload { return callSDK<BADownload>("BackgroundAssets_6be9a005889899ab", 286486152731885, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 16.1+
    */
-  get identifier(): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 3527712312296155, this, []); }
+  get identifier(): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 3527712312296155, this, []); }
   /**
    * var isEssential: Bool { get }
    * @availability iOS 16.4+
    */
-  get isEssential(): boolean { return callSDK<boolean>("BackgroundAssets_5d69670f0307b385", 3160975798604404, this, []); }
+  get isEssential(): boolean { return callSDK<boolean>("BackgroundAssets_6be9a005889899ab", 3160975798604404, this, []); }
   /**
    * var priority: BADownload.Priority { get }
    * @availability iOS 16.1+
    */
-  get priority(): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_5d69670f0307b385", 4452640991012095, this, []); }
+  get priority(): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_6be9a005889899ab", 4452640991012095, this, []); }
   /**
    * var state: BADownload.State { get }
    * @availability iOS 16.1+
    */
-  get state(): BADownload_State { return callSDK<BADownload_State>("BackgroundAssets_5d69670f0307b385", 2928451813012227, this, []); }
+  get state(): BADownload_State { return callSDK<BADownload_State>("BackgroundAssets_6be9a005889899ab", 2928451813012227, this, []); }
   /**
    * var uniqueIdentifier: String { get }
    * @availability iOS 16.1+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 4094397243225178, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 4094397243225178, this, []); }
   declare readonly $type: { "c:objc(cs)BADownload": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "isEssential": true; "priority": true; "state": true; "uniqueIdentifier": true };
 }
@@ -478,21 +478,21 @@ export const BADownload_Priority = {
    * static let `default`: BADownload.Priority
    * @availability iOS 16.1+
    */
-  get default(): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_5d69670f0307b385", 1988181203014415, undefined, []); },
+  get default(): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_6be9a005889899ab", 1988181203014415, undefined, []); },
   /**
    * static let max: BADownload.Priority
    * @availability iOS 16.1+
    */
-  get max(): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_5d69670f0307b385", 506598689102606, undefined, []); },
+  get max(): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_6be9a005889899ab", 506598689102606, undefined, []); },
   /**
    * static let min: BADownload.Priority
    * @availability iOS 16.1+
    */
-  get min(): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_5d69670f0307b385", 4390264002748806, undefined, []); },
+  get min(): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_6be9a005889899ab", 4390264002748806, undefined, []); },
   /** init(rawValue: Int) */
-  initRawValue(rawValue: number): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_5d69670f0307b385", 3419767548813971, undefined, [rawValue]); },
+  initRawValue(rawValue: number): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_6be9a005889899ab", 3419767548813971, undefined, [rawValue]); },
   /** init(_ rawValue: Int) */
-  init(rawValue: number): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_5d69670f0307b385", 989944469516798, undefined, [rawValue]); }
+  init(rawValue: number): BADownload_Priority { return callSDK<BADownload_Priority>("BackgroundAssets_6be9a005889899ab", 989944469516798, undefined, [rawValue]); }
 };
 
 /** enum State */
@@ -500,7 +500,7 @@ export type BADownload_State = "failed" | "created" | "waiting" | "downloading" 
 
 export const BADownload_State = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (BADownload_State) | null { return callSDK<(BADownload_State) | null>("BackgroundAssets_5d69670f0307b385", 1140886211406785, undefined, [rawValue]); }
+  init(rawValue: number): (BADownload_State) | null { return callSDK<(BADownload_State) | null>("BackgroundAssets_6be9a005889899ab", 1140886211406785, undefined, [rawValue]); }
 };
 
 /**
@@ -554,50 +554,50 @@ export class BADownloadManager extends SDKHandle {
    * class var shared: BADownloadManager { get }
    * @availability iOS 16.1+
    */
-  static get shared(): BADownloadManager { return callSDK<BADownloadManager>("BackgroundAssets_5d69670f0307b385", 2309753665475755, undefined, []); }
+  static get shared(): BADownloadManager { return callSDK<BADownloadManager>("BackgroundAssets_6be9a005889899ab", 2309753665475755, undefined, []); }
   /**
    * func cancel(_ download: BADownload) throws
    * @availability iOS 16.1+
    */
-  cancel(download: BADownload): void { return callSDK<void>("BackgroundAssets_5d69670f0307b385", 1857700338803000, this, [download]); }
+  cancel(download: BADownload): void { return callSDK<void>("BackgroundAssets_6be9a005889899ab", 1857700338803000, this, [download]); }
   /**
    * func fetchCurrentDownloads() throws -> [BADownload]
    * @availability iOS 16.4+
    */
-  fetchCurrentDownloads(): Array<BADownload> { return callSDK<Array<BADownload>>("BackgroundAssets_5d69670f0307b385", 2997446806380967, this, []); }
+  fetchCurrentDownloads(): Array<BADownload> { return callSDK<Array<BADownload>>("BackgroundAssets_6be9a005889899ab", 2997446806380967, this, []); }
   /**
    * var currentDownloads: [BADownload] { get async throws }
    * @availability iOS 16.1+
    */
-  fetchCurrentDownloadsCompletionHandler(completionHandler: ((arg0: Array<BADownload>, arg1: (NativeError) | null) => void)): void { return callSDK<void>("BackgroundAssets_5d69670f0307b385", 4419468269525510, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchCurrentDownloadsCompletionHandler(completionHandler: ((arg0: Array<BADownload>, arg1: (NativeError) | null) => void)): void { return callSDK<void>("BackgroundAssets_6be9a005889899ab", 4419468269525510, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func withExclusiveControl(_ performHandler: @escaping (Bool, (any Error)?) -> Void)
    * @availability iOS 16.1+
    * @deprecated iOS 27.0
    */
-  withExclusiveControl(performHandler: $SDK8): void { return callSDK<void>("BackgroundAssets_5d69670f0307b385", 3240168964740184, this, [performHandler], [{"callback":{"out":[]}}]); }
+  withExclusiveControl(performHandler: $SDK8): void { return callSDK<void>("BackgroundAssets_6be9a005889899ab", 3240168964740184, this, [performHandler], [{"callback":{"out":[]}}]); }
   /**
    * func withExclusiveControl(beforeDate date: Date, perform performHandler: @escaping (Bool, (any Error)?) -> Void)
    * @availability iOS 16.1+
    * @deprecated iOS 27.0
    */
-  withExclusiveControlBeforeDatePerform(date: globalThis.Date, performHandler: $SDK8): void { return callSDK<void>("BackgroundAssets_5d69670f0307b385", 463371612454473, this, [date, performHandler], [null,{"callback":{"out":[]}}]); }
+  withExclusiveControlBeforeDatePerform(date: globalThis.Date, performHandler: $SDK8): void { return callSDK<void>("BackgroundAssets_6be9a005889899ab", 463371612454473, this, [date, performHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func scheduleDownload(_ download: BADownload) throws
    * @availability iOS 16.1+
    */
-  scheduleDownload(download: BADownload): void { return callSDK<void>("BackgroundAssets_5d69670f0307b385", 501987424001995, this, [download]); }
+  scheduleDownload(download: BADownload): void { return callSDK<void>("BackgroundAssets_6be9a005889899ab", 501987424001995, this, [download]); }
   /**
    * func startForegroundDownload(_ download: BADownload) throws
    * @availability iOS 16.1+
    */
-  startForegroundDownload(download: BADownload): void { return callSDK<void>("BackgroundAssets_5d69670f0307b385", 766155108193413, this, [download]); }
+  startForegroundDownload(download: BADownload): void { return callSDK<void>("BackgroundAssets_6be9a005889899ab", 766155108193413, this, [download]); }
   /**
    * weak var delegate: (any BADownloadManagerDelegate)? { get set }
    * @availability iOS 16.1+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("BackgroundAssets_5d69670f0307b385", 719987301296312, this, []); }
-  set delegate(value: (Implements<BADownloadManagerDelegate> | SDKHandle) | null) { callSDK<void>("BackgroundAssets_5d69670f0307b385", 576474313623121, this, [value], [{"protocol":"c:objc(pl)BADownloadManagerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("BackgroundAssets_6be9a005889899ab", 719987301296312, this, []); }
+  set delegate(value: (Implements<BADownloadManagerDelegate> | SDKHandle) | null) { callSDK<void>("BackgroundAssets_6be9a005889899ab", 576474313623121, this, [value], [{"protocol":"c:objc(pl)BADownloadManagerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)BADownloadManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -645,7 +645,7 @@ export const BAErrorCode = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (BAErrorCode) | null { return callSDK<(BAErrorCode) | null>("BackgroundAssets_5d69670f0307b385", 477774809459146, undefined, [rawValue]); }
+  init(rawValue: number): (BAErrorCode) | null { return callSDK<(BAErrorCode) | null>("BackgroundAssets_6be9a005889899ab", 477774809459146, undefined, [rawValue]); }
 };
 
 /**
@@ -658,23 +658,23 @@ export class BAURLDownload extends BADownload {
    * @availability iOS 16.1+
    * @deprecated iOS 16.4
    */
-  static initIdentifierRequestApplicationGroupIdentifier(identifier: string, request: _Foundation_URLRequest, applicationGroupIdentifier: string): BAURLDownload { return callSDK<BAURLDownload>("BackgroundAssets_5d69670f0307b385", 2697806817837661, undefined, [identifier, request, applicationGroupIdentifier]); }
+  static initIdentifierRequestApplicationGroupIdentifier(identifier: string, request: _Foundation_URLRequest, applicationGroupIdentifier: string): BAURLDownload { return callSDK<BAURLDownload>("BackgroundAssets_6be9a005889899ab", 2697806817837661, undefined, [identifier, request, applicationGroupIdentifier]); }
   /**
    * convenience init(identifier: String, request: URLRequest, applicationGroupIdentifier: String, priority: BADownload.Priority)
    * @availability iOS 16.1+
    * @deprecated iOS 16.4
    */
-  static initIdentifierRequestApplicationGroupIdentifierPriority(identifier: string, request: _Foundation_URLRequest, applicationGroupIdentifier: string, priority: BADownload_Priority): BAURLDownload { return callSDK<BAURLDownload>("BackgroundAssets_5d69670f0307b385", 2811168690956546, undefined, [identifier, request, applicationGroupIdentifier, priority]); }
+  static initIdentifierRequestApplicationGroupIdentifierPriority(identifier: string, request: _Foundation_URLRequest, applicationGroupIdentifier: string, priority: BADownload_Priority): BAURLDownload { return callSDK<BAURLDownload>("BackgroundAssets_6be9a005889899ab", 2811168690956546, undefined, [identifier, request, applicationGroupIdentifier, priority]); }
   /**
    * init(identifier: String, request: URLRequest, essential: Bool, fileSize: Int, applicationGroupIdentifier: String, priority: BADownload.Priority)
    * @availability iOS 16.4+
    */
-  static initIdentifierRequestEssentialFileSizeApplicationGroupIdentifierPriority(identifier: string, request: _Foundation_URLRequest, essential: boolean, fileSize: number, applicationGroupIdentifier: string, priority: BADownload_Priority): BAURLDownload { return callSDK<BAURLDownload>("BackgroundAssets_5d69670f0307b385", 647001202676309, undefined, [identifier, request, essential, fileSize, applicationGroupIdentifier, priority]); }
+  static initIdentifierRequestEssentialFileSizeApplicationGroupIdentifierPriority(identifier: string, request: _Foundation_URLRequest, essential: boolean, fileSize: number, applicationGroupIdentifier: string, priority: BADownload_Priority): BAURLDownload { return callSDK<BAURLDownload>("BackgroundAssets_6be9a005889899ab", 647001202676309, undefined, [identifier, request, essential, fileSize, applicationGroupIdentifier, priority]); }
   /**
    * convenience init(identifier: String, request: URLRequest, fileSize: Int, applicationGroupIdentifier: String)
    * @availability iOS 16.4+
    */
-  static initIdentifierRequestFileSizeApplicationGroupIdentifier(identifier: string, request: _Foundation_URLRequest, fileSize: number, applicationGroupIdentifier: string): BAURLDownload { return callSDK<BAURLDownload>("BackgroundAssets_5d69670f0307b385", 2496657810360486, undefined, [identifier, request, fileSize, applicationGroupIdentifier]); }
+  static initIdentifierRequestFileSizeApplicationGroupIdentifier(identifier: string, request: _Foundation_URLRequest, fileSize: number, applicationGroupIdentifier: string): BAURLDownload { return callSDK<BAURLDownload>("BackgroundAssets_6be9a005889899ab", 2496657810360486, undefined, [identifier, request, fileSize, applicationGroupIdentifier]); }
   declare readonly $type: { "c:objc(cs)BAURLDownload": true; "c:objc(cs)BADownload": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "isEssential": true; "priority": true; "state": true; "uniqueIdentifier": true };
 }
@@ -688,12 +688,12 @@ export class ManagedBackgroundAssetsError extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("BackgroundAssets_5d69670f0307b385", 3049308987980638, this, []); }
+  get description(): string { return callSDK<string>("BackgroundAssets_6be9a005889899ab", 3049308987980638, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 26.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("BackgroundAssets_5d69670f0307b385", 3541319929007566, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("BackgroundAssets_6be9a005889899ab", 3541319929007566, this, []); }
   declare readonly $type: { "s:16BackgroundAssets07ManagedaB5ErrorO": true };
 }
 
@@ -740,20 +740,20 @@ export interface ManagedDownloaderExtension {
  * let BAErrorDomain: String
  * @availability iOS 17.0+
  */
-export const BAErrorDomain: string = callSDK<string>("BackgroundAssets_5d69670f0307b385", 2580956855150583, undefined, []);
+export const BAErrorDomain: string = callSDK<string>("BackgroundAssets_6be9a005889899ab", 2580956855150583, undefined, []);
 
-registerSDKClass("BackgroundAssets.AssetPack", AssetPack, { module: "BackgroundAssets_5d69670f0307b385", properties: {}, methods: {"download":{"id":3241689802572852}} });
-registerSDKClass("BackgroundAssets.AssetPackManager", AssetPackManager, { module: "BackgroundAssets_5d69670f0307b385", properties: {}, methods: {"assetPack":{"id":3233458991047078},"assetPackIsAvailableLocally":{"id":4425263434188211},"descriptorForSearchingInAssetPackWithID":{"id":2282866979568887},"descriptorForAsLocalizedFor":{"id":3543086733856185},"localStatus":{"id":512755303809466},"statusUpdates":{"id":2036851081268333},"checkForUpdates":{"id":2614059268704364},"ensureLocalAvailabilityOfRequireLatestVersion":{"id":1676416849683818},"ensureLocalAvailabilityOfRequireLatestVersions":{"id":1804240448647058},"ensureLocalAvailabilityOf":{"id":4116867182031352},"reconcilePreferredLanguages":{"id":962661566583169},"urlFor":{"id":2836060186122581},"urlForAsLocalizedFor":{"id":4089712427944993},"remove":{"id":2566725932309945},"statusOfAssetPackWithID":{"id":3933900210733770},"statusRelativeTo":{"id":1701439989343075},"contentsAtSearchingInAssetPackWithIDOptions":{"id":1982235231514023},"contentsAtAsLocalizedForOptions":{"id":586953460943061}} });
-registerSDKClass("BackgroundAssets.AssetPackManager.DownloadStatusUpdate", AssetPackManager_DownloadStatusUpdate, { module: "BackgroundAssets_5d69670f0307b385", properties: {} });
-registerSDKClass("BackgroundAssets.AssetPackManager.LocalAvailabilityError", AssetPackManager_LocalAvailabilityError, { module: "BackgroundAssets_5d69670f0307b385", properties: {} });
-registerSDKClass("BackgroundAssets.AssetPackManifest", AssetPackManifest, { module: "BackgroundAssets_5d69670f0307b385", properties: {}, methods: {"assetPack":{"id":2357382121137518},"localizedAssetPacksFor":{"id":4182768186582331},"allDownloads":{"id":3950586063613809}} });
-registerSDKClass("BackgroundAssets.AssetPackManifest.DecodingConfiguration", AssetPackManifest_DecodingConfiguration, { module: "BackgroundAssets_5d69670f0307b385", properties: {} });
-registerSDKClass("BAAppExtensionInfo", BAAppExtensionInfo, { module: "BackgroundAssets_5d69670f0307b385", properties: {} });
-registerSDKClass("BADownload", BADownload, { module: "BackgroundAssets_5d69670f0307b385", properties: {"identifier":3527712312296155,"isEssential":3160975798604404,"priority":4452640991012095,"state":2928451813012227,"uniqueIdentifier":4094397243225178}, methods: {"removingEssential":{"id":286486152731885}} });
+registerSDKClass("BackgroundAssets.AssetPack", AssetPack, { module: "BackgroundAssets_6be9a005889899ab", properties: {}, methods: {"download":{"id":3241689802572852}} });
+registerSDKClass("BackgroundAssets.AssetPackManager", AssetPackManager, { module: "BackgroundAssets_6be9a005889899ab", properties: {}, methods: {"assetPack":{"id":3233458991047078},"assetPackIsAvailableLocally":{"id":4425263434188211},"descriptorForSearchingInAssetPackWithID":{"id":2282866979568887},"descriptorForAsLocalizedFor":{"id":3543086733856185},"localStatus":{"id":512755303809466},"statusUpdates":{"id":2036851081268333},"checkForUpdates":{"id":2614059268704364},"ensureLocalAvailabilityOfRequireLatestVersion":{"id":1676416849683818},"ensureLocalAvailabilityOfRequireLatestVersions":{"id":1804240448647058},"ensureLocalAvailabilityOf":{"id":4116867182031352},"reconcilePreferredLanguages":{"id":962661566583169},"urlFor":{"id":2836060186122581},"urlForAsLocalizedFor":{"id":4089712427944993},"remove":{"id":2566725932309945},"statusOfAssetPackWithID":{"id":3933900210733770},"statusRelativeTo":{"id":1701439989343075},"contentsAtSearchingInAssetPackWithIDOptions":{"id":1982235231514023},"contentsAtAsLocalizedForOptions":{"id":586953460943061}} });
+registerSDKClass("BackgroundAssets.AssetPackManager.DownloadStatusUpdate", AssetPackManager_DownloadStatusUpdate, { module: "BackgroundAssets_6be9a005889899ab", properties: {} });
+registerSDKClass("BackgroundAssets.AssetPackManager.LocalAvailabilityError", AssetPackManager_LocalAvailabilityError, { module: "BackgroundAssets_6be9a005889899ab", properties: {} });
+registerSDKClass("BackgroundAssets.AssetPackManifest", AssetPackManifest, { module: "BackgroundAssets_6be9a005889899ab", properties: {}, methods: {"assetPack":{"id":2357382121137518},"localizedAssetPacksFor":{"id":4182768186582331},"allDownloads":{"id":3950586063613809}} });
+registerSDKClass("BackgroundAssets.AssetPackManifest.DecodingConfiguration", AssetPackManifest_DecodingConfiguration, { module: "BackgroundAssets_6be9a005889899ab", properties: {} });
+registerSDKClass("BAAppExtensionInfo", BAAppExtensionInfo, { module: "BackgroundAssets_6be9a005889899ab", properties: {} });
+registerSDKClass("BADownload", BADownload, { module: "BackgroundAssets_6be9a005889899ab", properties: {"identifier":3527712312296155,"isEssential":3160975798604404,"priority":4452640991012095,"state":2928451813012227,"uniqueIdentifier":4094397243225178}, methods: {"removingEssential":{"id":286486152731885}} });
 registerSDKProtocol("s:16BackgroundAssets21BADownloaderExtensionP", {"init":"init()","downloadsForManifestURLExtensionInfo":"downloads(for:manifestURL:extensionInfo:)","backgroundDownloadDidReceive":"backgroundDownload(_:didReceive:)","backgroundDownloadFailedWithError":"backgroundDownload(_:failedWithError:)","backgroundDownloadFinishedWithFileURL":"backgroundDownload(_:finishedWithFileURL:)","extensionWillTerminate":"extensionWillTerminate()"});
 registerSDKProtocol("s:16BackgroundAssets34BADownloaderExtensionConfigurationP", {"acceptConnection":"accept(connection:)"});
-registerSDKClass("BADownloadManager", BADownloadManager, { module: "BackgroundAssets_5d69670f0307b385", properties: {"delegate":719987301296312}, methods: {"cancel":{"id":1857700338803000},"fetchCurrentDownloads":{"id":2997446806380967},"fetchCurrentDownloadsCompletionHandler":{"id":4419468269525510,"hints":[{"callback":{"out":[]}}]},"withExclusiveControl":{"id":3240168964740184,"hints":[{"callback":{"out":[]}}]},"withExclusiveControlBeforeDatePerform":{"id":463371612454473,"hints":[null,{"callback":{"out":[]}}]},"scheduleDownload":{"id":501987424001995},"startForegroundDownload":{"id":766155108193413}} });
+registerSDKClass("BADownloadManager", BADownloadManager, { module: "BackgroundAssets_6be9a005889899ab", properties: {"delegate":719987301296312}, methods: {"cancel":{"id":1857700338803000},"fetchCurrentDownloads":{"id":2997446806380967},"fetchCurrentDownloadsCompletionHandler":{"id":4419468269525510,"hints":[{"callback":{"out":[]}}]},"withExclusiveControl":{"id":3240168964740184,"hints":[{"callback":{"out":[]}}]},"withExclusiveControlBeforeDatePerform":{"id":463371612454473,"hints":[null,{"callback":{"out":[]}}]},"scheduleDownload":{"id":501987424001995},"startForegroundDownload":{"id":766155108193413}} });
 registerSDKProtocol("c:objc(pl)BADownloadManagerDelegate", {"downloadDidBegin":"downloadDidBegin(_:)","downloadDidPause":"downloadDidPause(_:)","downloadDidWriteBytesTotalBytesWrittenTotalBytesExpectedToWrite":"download(_:didWriteBytes:totalBytesWritten:totalBytesExpectedToWrite:)","downloadFailedWithError":"download(_:failedWithError:)","downloadFinishedWithFileURL":"download(_:finishedWithFileURL:)"});
-registerSDKClass("BAURLDownload", BAURLDownload, { module: "BackgroundAssets_5d69670f0307b385", properties: {} });
-registerSDKClass("BackgroundAssets.ManagedBackgroundAssetsError", ManagedBackgroundAssetsError, { module: "BackgroundAssets_5d69670f0307b385", properties: {} });
+registerSDKClass("BAURLDownload", BAURLDownload, { module: "BackgroundAssets_6be9a005889899ab", properties: {} });
+registerSDKClass("BackgroundAssets.ManagedBackgroundAssetsError", ManagedBackgroundAssetsError, { module: "BackgroundAssets_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:16BackgroundAssets26ManagedDownloaderExtensionP", {"init":"init()","downloadsForManifestURLExtensionInfo":"downloads(for:manifestURL:extensionInfo:)","backgroundDownloadDidReceive":"backgroundDownload(_:didReceive:)","backgroundDownloadFailedWithError":"backgroundDownload(_:failedWithError:)","backgroundDownloadFinishedWithFileURL":"backgroundDownload(_:finishedWithFileURL:)","extensionWillTerminate":"extensionWillTerminate()","shouldDownload":"shouldDownload(_:)"});

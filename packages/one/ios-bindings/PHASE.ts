@@ -41,7 +41,7 @@ export class PHASEDefinition extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 15.0+
    */
-  get identifier(): string { return callSDK<string>("PHASE_5d69670f0307b385", 114802283916056, this, []); }
+  get identifier(): string { return callSDK<string>("PHASE_6be9a005889899ab", 114802283916056, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -55,14 +55,14 @@ export class PHASEMixerDefinition extends PHASEDefinition {
    * var gain: Double { get set }
    * @availability iOS 15.0+
    */
-  get gain(): number { return callSDK<number>("PHASE_5d69670f0307b385", 4194227650243410, this, []); }
-  set gain(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 1167696619633848, this, [value]); }
+  get gain(): number { return callSDK<number>("PHASE_6be9a005889899ab", 4194227650243410, this, []); }
+  set gain(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 1167696619633848, this, [value]); }
   /**
    * var gainMetaParameterDefinition: PHASENumberMetaParameterDefinition? { get set }
    * @availability iOS 15.0+
    */
-  get gainMetaParameterDefinition(): $SDK0 { return callSDK<$SDK0>("PHASE_5d69670f0307b385", 2427043139216101, this, []); }
-  set gainMetaParameterDefinition(value: $SDK0) { callSDK<void>("PHASE_5d69670f0307b385", 3386960413662289, this, [value]); }
+  get gainMetaParameterDefinition(): $SDK0 { return callSDK<$SDK0>("PHASE_6be9a005889899ab", 2427043139216101, this, []); }
+  set gainMetaParameterDefinition(value: $SDK0) { callSDK<void>("PHASE_6be9a005889899ab", 3386960413662289, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEMixerDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "gain": true; "gainMetaParameterDefinition": true };
 }
@@ -76,22 +76,22 @@ export class PHASEAmbientMixerDefinition extends PHASEMixerDefinition {
    * init(channelLayout layout: AVAudioChannelLayout, orientation: simd_quatf)
    * @availability iOS 15.0+
    */
-  static initChannelLayoutOrientation(layout: _AVFAudio_AVAudioChannelLayout, orientation: SDKHandle): PHASEAmbientMixerDefinition { return callSDK<PHASEAmbientMixerDefinition>("PHASE_5d69670f0307b385", 3596441102382923, undefined, [layout, orientation]); }
+  static initChannelLayoutOrientation(layout: _AVFAudio_AVAudioChannelLayout, orientation: SDKHandle): PHASEAmbientMixerDefinition { return callSDK<PHASEAmbientMixerDefinition>("PHASE_6be9a005889899ab", 3596441102382923, undefined, [layout, orientation]); }
   /**
    * convenience init(channelLayout layout: AVAudioChannelLayout, orientation: simd_quatf, identifier: String)
    * @availability iOS 15.0+
    */
-  static initChannelLayoutOrientationIdentifier(layout: _AVFAudio_AVAudioChannelLayout, orientation: SDKHandle, identifier: string): PHASEAmbientMixerDefinition { return callSDK<PHASEAmbientMixerDefinition>("PHASE_5d69670f0307b385", 1454533546519123, undefined, [layout, orientation, identifier]); }
+  static initChannelLayoutOrientationIdentifier(layout: _AVFAudio_AVAudioChannelLayout, orientation: SDKHandle, identifier: string): PHASEAmbientMixerDefinition { return callSDK<PHASEAmbientMixerDefinition>("PHASE_6be9a005889899ab", 1454533546519123, undefined, [layout, orientation, identifier]); }
   /**
    * var inputChannelLayout: AVAudioChannelLayout { get }
    * @availability iOS 15.0+
    */
-  get inputChannelLayout(): _AVFAudio_AVAudioChannelLayout { return callSDK<_AVFAudio_AVAudioChannelLayout>("PHASE_5d69670f0307b385", 1397366680243412, this, []); }
+  get inputChannelLayout(): _AVFAudio_AVAudioChannelLayout { return callSDK<_AVFAudio_AVAudioChannelLayout>("PHASE_6be9a005889899ab", 1397366680243412, this, []); }
   /**
    * var orientation: simd_quatf { get }
    * @availability iOS 15.0+
    */
-  get orientation(): SDKHandle { return callSDK<SDKHandle>("PHASE_5d69670f0307b385", 198193426733306, this, []); }
+  get orientation(): SDKHandle { return callSDK<SDKHandle>("PHASE_6be9a005889899ab", 198193426733306, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEAmbientMixerDefinition": true; "c:objc(cs)PHASEMixerDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "gain": true; "gainMetaParameterDefinition": true; "inputChannelLayout": true; "orientation": true };
 }
@@ -105,7 +105,7 @@ export class PHASEAsset extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 15.0+
    */
-  get identifier(): string { return callSDK<string>("PHASE_5d69670f0307b385", 4416614351962884, this, []); }
+  get identifier(): string { return callSDK<string>("PHASE_6be9a005889899ab", 4416614351962884, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEAsset": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -115,25 +115,25 @@ export type PHASEAsset_AssetType = "resident" | "streamed";
 
 export const PHASEAsset_AssetType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASEAsset_AssetType) | null { return callSDK<(PHASEAsset_AssetType) | null>("PHASE_5d69670f0307b385", 3979663729708052, undefined, [rawValue]); }
+  init(rawValue: number): (PHASEAsset_AssetType) | null { return callSDK<(PHASEAsset_AssetType) | null>("PHASE_6be9a005889899ab", 3979663729708052, undefined, [rawValue]); }
 };
 
 /** struct PHASEAssetError */
 export class PHASEAssetError extends SDKHandle {
   /** static var generalError: PHASEAssetError.Code { get } */
-  static get generalError(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_5d69670f0307b385", 2496450649728080, undefined, []); }
+  static get generalError(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_6be9a005889899ab", 2496450649728080, undefined, []); }
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("PHASE_5d69670f0307b385", 1679790325843482, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PHASE_6be9a005889899ab", 1679790325843482, undefined, []); }
   /** static var failedToLoad: PHASEAssetError.Code { get } */
-  static get failedToLoad(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_5d69670f0307b385", 727698185451646, undefined, []); }
+  static get failedToLoad(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_6be9a005889899ab", 727698185451646, undefined, []); }
   /** static var alreadyExists: PHASEAssetError.Code { get } */
-  static get alreadyExists(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_5d69670f0307b385", 4137006803642128, undefined, []); }
+  static get alreadyExists(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_6be9a005889899ab", 4137006803642128, undefined, []); }
   /** static var badParameters: PHASEAssetError.Code { get } */
-  static get badParameters(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_5d69670f0307b385", 4120308806521633, undefined, []); }
+  static get badParameters(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_6be9a005889899ab", 4120308806521633, undefined, []); }
   /** static var memoryAllocation: PHASEAssetError.Code { get } */
-  static get memoryAllocation(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_5d69670f0307b385", 2246921531354931, undefined, []); }
+  static get memoryAllocation(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_6be9a005889899ab", 2246921531354931, undefined, []); }
   /** static var invalidEngineInstance: PHASEAssetError.Code { get } */
-  static get invalidEngineInstance(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_5d69670f0307b385", 4198765613600644, undefined, []); }
+  static get invalidEngineInstance(): PHASEAssetError_Code { return callSDK<PHASEAssetError_Code>("PHASE_6be9a005889899ab", 4198765613600644, undefined, []); }
   declare readonly $type: { "s:SC15PHASEAssetErrorLeV": true };
 }
 
@@ -142,7 +142,7 @@ export type PHASEAssetError_Code = "failedToLoad" | "invalidEngineInstance" | "b
 
 export const PHASEAssetError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASEAssetError_Code) | null { return callSDK<(PHASEAssetError_Code) | null>("PHASE_5d69670f0307b385", 3400724716060876, undefined, [rawValue]); }
+  init(rawValue: number): (PHASEAssetError_Code) | null { return callSDK<(PHASEAssetError_Code) | null>("PHASE_6be9a005889899ab", 3400724716060876, undefined, [rawValue]); }
 };
 
 /**
@@ -154,37 +154,37 @@ export class PHASEAssetRegistry extends SDKHandle {
    * func asset(forIdentifier identifier: String) -> PHASEAsset?
    * @availability iOS 15.0+
    */
-  asset(identifier: string): (PHASEAsset) | null { return callSDK<(PHASEAsset) | null>("PHASE_5d69670f0307b385", 3719651385717229, this, [identifier]); }
+  asset(identifier: string): (PHASEAsset) | null { return callSDK<(PHASEAsset) | null>("PHASE_6be9a005889899ab", 3719651385717229, this, [identifier]); }
   /**
    * func registerGlobalMetaParameter(metaParameterDefinition: PHASEMetaParameterDefinition) throws -> PHASEGlobalMetaParameterAsset
    * @availability iOS 15.0+
    */
-  registerGlobalMetaParameter(metaParameterDefinition: PHASEMetaParameterDefinition): PHASEGlobalMetaParameterAsset { return callSDK<PHASEGlobalMetaParameterAsset>("PHASE_5d69670f0307b385", 1749902135258661, this, [metaParameterDefinition]); }
+  registerGlobalMetaParameter(metaParameterDefinition: PHASEMetaParameterDefinition): PHASEGlobalMetaParameterAsset { return callSDK<PHASEGlobalMetaParameterAsset>("PHASE_6be9a005889899ab", 1749902135258661, this, [metaParameterDefinition]); }
   /**
    * func registerSoundAsset(url: URL, identifier: String?, assetType: PHASEAsset.AssetType, channelLayout: AVAudioChannelLayout?, normalizationMode: PHASENormalizationMode) throws -> PHASESoundAsset
    * @availability iOS 15.0+
    */
-  registerSoundAssetUrlIdentifierAssetTypeChannelLayoutNormalizationMode(url: string, identifier: (string) | null, assetType: PHASEAsset_AssetType, channelLayout: (_AVFAudio_AVAudioChannelLayout) | null, normalizationMode: PHASENormalizationMode): PHASESoundAsset { return callSDK<PHASESoundAsset>("PHASE_5d69670f0307b385", 1227237133674097, this, [url, identifier, assetType, channelLayout, normalizationMode]); }
+  registerSoundAssetUrlIdentifierAssetTypeChannelLayoutNormalizationMode(url: string, identifier: (string) | null, assetType: PHASEAsset_AssetType, channelLayout: (_AVFAudio_AVAudioChannelLayout) | null, normalizationMode: PHASENormalizationMode): PHASESoundAsset { return callSDK<PHASESoundAsset>("PHASE_6be9a005889899ab", 1227237133674097, this, [url, identifier, assetType, channelLayout, normalizationMode]); }
   /**
    * func registerSoundAsset(data: Data, identifier: String?, format: AVAudioFormat, normalizationMode: PHASENormalizationMode) throws -> PHASESoundAsset
    * @availability iOS 15.0+
    */
-  registerSoundAssetDataIdentifierFormatNormalizationMode(data: ArrayBuffer, identifier: (string) | null, format: _AVFAudio_AVAudioFormat, normalizationMode: PHASENormalizationMode): PHASESoundAsset { return callSDK<PHASESoundAsset>("PHASE_5d69670f0307b385", 3380890336323406, this, [data, identifier, format, normalizationMode]); }
+  registerSoundAssetDataIdentifierFormatNormalizationMode(data: ArrayBuffer, identifier: (string) | null, format: _AVFAudio_AVAudioFormat, normalizationMode: PHASENormalizationMode): PHASESoundAsset { return callSDK<PHASESoundAsset>("PHASE_6be9a005889899ab", 3380890336323406, this, [data, identifier, format, normalizationMode]); }
   /**
    * func registerSoundEventAsset(rootNode: PHASESoundEventNodeDefinition, identifier: String?) throws -> PHASESoundEventNodeAsset
    * @availability iOS 15.0+
    */
-  registerSoundEventAsset(rootNode: PHASESoundEventNodeDefinition, identifier?: (string) | null): PHASESoundEventNodeAsset { return callSDK<PHASESoundEventNodeAsset>("PHASE_5d69670f0307b385", 3684343291260403, this, [rootNode, identifier]); }
+  registerSoundEventAsset(rootNode: PHASESoundEventNodeDefinition, identifier?: (string) | null): PHASESoundEventNodeAsset { return callSDK<PHASESoundEventNodeAsset>("PHASE_6be9a005889899ab", 3684343291260403, this, [rootNode, identifier]); }
   /**
    * func unregisterAsset(identifier: String) async -> Bool
    * @availability iOS 15.0+
    */
-  unregisterAsset(identifier: string, handler?: (((arg0: boolean) => void)) | null): void { return callSDK<void>("PHASE_5d69670f0307b385", 1533525928841979, this, [identifier, handler], [null,{"callback":{"out":[]}}]); }
+  unregisterAsset(identifier: string, handler?: (((arg0: boolean) => void)) | null): void { return callSDK<void>("PHASE_6be9a005889899ab", 1533525928841979, this, [identifier, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * var globalMetaParameters: [String : PHASEMetaParameter] { get }
    * @availability iOS 15.0+
    */
-  get globalMetaParameters(): $SDK3 { return callSDK<$SDK3>("PHASE_5d69670f0307b385", 1419510217043626, this, []); }
+  get globalMetaParameters(): $SDK3 { return callSDK<$SDK3>("PHASE_6be9a005889899ab", 1419510217043626, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEAssetRegistry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "globalMetaParameters": true };
 }
@@ -200,17 +200,17 @@ export const PHASEAutomaticHeadTrackingFlags = {
    * static var orientation: PHASEAutomaticHeadTrackingFlags { get }
    * @availability iOS 18.0+
    */
-  get orientation(): PHASEAutomaticHeadTrackingFlags { return callSDK<PHASEAutomaticHeadTrackingFlags>("PHASE_5d69670f0307b385", 1380828788823936, undefined, []); },
+  get orientation(): PHASEAutomaticHeadTrackingFlags { return callSDK<PHASEAutomaticHeadTrackingFlags>("PHASE_6be9a005889899ab", 1380828788823936, undefined, []); },
   /**
    * static var position: PHASEAutomaticHeadTrackingFlags { get }
    * @availability iOS 18.0+
    */
-  get position(): PHASEAutomaticHeadTrackingFlags { return callSDK<PHASEAutomaticHeadTrackingFlags>("PHASE_5d69670f0307b385", 4324239551655253, undefined, []); },
+  get position(): PHASEAutomaticHeadTrackingFlags { return callSDK<PHASEAutomaticHeadTrackingFlags>("PHASE_6be9a005889899ab", 4324239551655253, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): PHASEAutomaticHeadTrackingFlags { return callSDK<PHASEAutomaticHeadTrackingFlags>("PHASE_5d69670f0307b385", 310115904495157, undefined, [rawValue]); }
+  init(rawValue: number): PHASEAutomaticHeadTrackingFlags { return callSDK<PHASEAutomaticHeadTrackingFlags>("PHASE_6be9a005889899ab", 310115904495157, undefined, [rawValue]); }
 };
 
 /**
@@ -222,7 +222,7 @@ export class PHASESoundEventNodeDefinition extends PHASEDefinition {
    * var children: [PHASESoundEventNodeDefinition] { get }
    * @availability iOS 15.0+
    */
-  get children(): Array<PHASESoundEventNodeDefinition> { return callSDK<Array<PHASESoundEventNodeDefinition>>("PHASE_5d69670f0307b385", 1782137143418572, this, []); }
+  get children(): Array<PHASESoundEventNodeDefinition> { return callSDK<Array<PHASESoundEventNodeDefinition>>("PHASE_6be9a005889899ab", 1782137143418572, this, []); }
   declare readonly $type: { "c:objc(cs)PHASESoundEventNodeDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "children": true };
 }
@@ -236,52 +236,52 @@ export class PHASEBlendNodeDefinition extends PHASESoundEventNodeDefinition {
    * func addRangeForInputValuesAbove(value: Double, fullGainAtValue: Double, fadeCurveType: PHASECurveType, subtree: PHASESoundEventNodeDefinition)
    * @availability iOS 15.0+
    */
-  addRangeForInputValuesAbove(value: number, fullGainAtValue: number, fadeCurveType: PHASECurveType, subtree: PHASESoundEventNodeDefinition): void { return callSDK<void>("PHASE_5d69670f0307b385", 3118301556891232, this, [value, fullGainAtValue, fadeCurveType, subtree]); }
+  addRangeForInputValuesAbove(value: number, fullGainAtValue: number, fadeCurveType: PHASECurveType, subtree: PHASESoundEventNodeDefinition): void { return callSDK<void>("PHASE_6be9a005889899ab", 3118301556891232, this, [value, fullGainAtValue, fadeCurveType, subtree]); }
   /**
    * func addRangeForInputValuesBelow(value: Double, fullGainAtValue: Double, fadeCurveType: PHASECurveType, subtree: PHASESoundEventNodeDefinition)
    * @availability iOS 15.0+
    */
-  addRangeForInputValuesBelow(value: number, fullGainAtValue: number, fadeCurveType: PHASECurveType, subtree: PHASESoundEventNodeDefinition): void { return callSDK<void>("PHASE_5d69670f0307b385", 652199020105528, this, [value, fullGainAtValue, fadeCurveType, subtree]); }
+  addRangeForInputValuesBelow(value: number, fullGainAtValue: number, fadeCurveType: PHASECurveType, subtree: PHASESoundEventNodeDefinition): void { return callSDK<void>("PHASE_6be9a005889899ab", 652199020105528, this, [value, fullGainAtValue, fadeCurveType, subtree]); }
   /**
    * func addRangeForInputValuesBetween(lowValue: Double, highValue: Double, fullGainAtLowValue: Double, fullGainAtHighValue: Double, lowFadeCurveType: PHASECurveType, highFadeCurveType: PHASECurveType, subtree: PHASESoundEventNodeDefinition)
    * @availability iOS 15.0+
    */
-  addRangeForInputValuesBetween(lowValue: number, highValue: number, fullGainAtLowValue: number, fullGainAtHighValue: number, lowFadeCurveType: PHASECurveType, highFadeCurveType: PHASECurveType, subtree: PHASESoundEventNodeDefinition): void { return callSDK<void>("PHASE_5d69670f0307b385", 1993670923977831, this, [lowValue, highValue, fullGainAtLowValue, fullGainAtHighValue, lowFadeCurveType, highFadeCurveType, subtree]); }
+  addRangeForInputValuesBetween(lowValue: number, highValue: number, fullGainAtLowValue: number, fullGainAtHighValue: number, lowFadeCurveType: PHASECurveType, highFadeCurveType: PHASECurveType, subtree: PHASESoundEventNodeDefinition): void { return callSDK<void>("PHASE_6be9a005889899ab", 1993670923977831, this, [lowValue, highValue, fullGainAtLowValue, fullGainAtHighValue, lowFadeCurveType, highFadeCurveType, subtree]); }
   /**
    * func addRange(envelope: PHASEEnvelope, subtree: PHASESoundEventNodeDefinition)
    * @availability iOS 15.0+
    */
-  addRange(envelope: PHASEEnvelope, subtree: PHASESoundEventNodeDefinition): void { return callSDK<void>("PHASE_5d69670f0307b385", 3121906563340562, this, [envelope, subtree]); }
+  addRange(envelope: PHASEEnvelope, subtree: PHASESoundEventNodeDefinition): void { return callSDK<void>("PHASE_6be9a005889899ab", 3121906563340562, this, [envelope, subtree]); }
   /**
    * init(spatialMixerDefinition: PHASESpatialMixerDefinition)
    * @availability iOS 15.0+
    */
-  static initSpatialMixerDefinition(spatialMixerDefinition: PHASESpatialMixerDefinition): PHASEBlendNodeDefinition { return callSDK<PHASEBlendNodeDefinition>("PHASE_5d69670f0307b385", 3298167244707072, undefined, [spatialMixerDefinition]); }
+  static initSpatialMixerDefinition(spatialMixerDefinition: PHASESpatialMixerDefinition): PHASEBlendNodeDefinition { return callSDK<PHASEBlendNodeDefinition>("PHASE_6be9a005889899ab", 3298167244707072, undefined, [spatialMixerDefinition]); }
   /**
    * convenience init(spatialMixerDefinition: PHASESpatialMixerDefinition, identifier: String)
    * @availability iOS 15.0+
    */
-  static initSpatialMixerDefinitionIdentifier(spatialMixerDefinition: PHASESpatialMixerDefinition, identifier: string): PHASEBlendNodeDefinition { return callSDK<PHASEBlendNodeDefinition>("PHASE_5d69670f0307b385", 117430367876521, undefined, [spatialMixerDefinition, identifier]); }
+  static initSpatialMixerDefinitionIdentifier(spatialMixerDefinition: PHASESpatialMixerDefinition, identifier: string): PHASEBlendNodeDefinition { return callSDK<PHASEBlendNodeDefinition>("PHASE_6be9a005889899ab", 117430367876521, undefined, [spatialMixerDefinition, identifier]); }
   /**
    * init(blendMetaParameterDefinition: PHASENumberMetaParameterDefinition)
    * @availability iOS 15.0+
    */
-  static initBlendMetaParameterDefinition(blendMetaParameterDefinition: PHASENumberMetaParameterDefinition): PHASEBlendNodeDefinition { return callSDK<PHASEBlendNodeDefinition>("PHASE_5d69670f0307b385", 3857742157741676, undefined, [blendMetaParameterDefinition]); }
+  static initBlendMetaParameterDefinition(blendMetaParameterDefinition: PHASENumberMetaParameterDefinition): PHASEBlendNodeDefinition { return callSDK<PHASEBlendNodeDefinition>("PHASE_6be9a005889899ab", 3857742157741676, undefined, [blendMetaParameterDefinition]); }
   /**
    * convenience init(blendMetaParameterDefinition: PHASENumberMetaParameterDefinition, identifier: String)
    * @availability iOS 15.0+
    */
-  static initBlendMetaParameterDefinitionIdentifier(blendMetaParameterDefinition: PHASENumberMetaParameterDefinition, identifier: string): PHASEBlendNodeDefinition { return callSDK<PHASEBlendNodeDefinition>("PHASE_5d69670f0307b385", 3945747159103401, undefined, [blendMetaParameterDefinition, identifier]); }
+  static initBlendMetaParameterDefinitionIdentifier(blendMetaParameterDefinition: PHASENumberMetaParameterDefinition, identifier: string): PHASEBlendNodeDefinition { return callSDK<PHASEBlendNodeDefinition>("PHASE_6be9a005889899ab", 3945747159103401, undefined, [blendMetaParameterDefinition, identifier]); }
   /**
    * var blendParameterDefinition: PHASENumberMetaParameterDefinition? { get }
    * @availability iOS 15.0+
    */
-  get blendParameterDefinition(): $SDK0 { return callSDK<$SDK0>("PHASE_5d69670f0307b385", 1988125449880106, this, []); }
+  get blendParameterDefinition(): $SDK0 { return callSDK<$SDK0>("PHASE_6be9a005889899ab", 1988125449880106, this, []); }
   /**
    * var spatialMixerDefinitionForDistance: PHASESpatialMixerDefinition? { get }
    * @availability iOS 15.0+
    */
-  get spatialMixerDefinitionForDistance(): (PHASESpatialMixerDefinition) | null { return callSDK<(PHASESpatialMixerDefinition) | null>("PHASE_5d69670f0307b385", 1494844877206002, this, []); }
+  get spatialMixerDefinitionForDistance(): (PHASESpatialMixerDefinition) | null { return callSDK<(PHASESpatialMixerDefinition) | null>("PHASE_6be9a005889899ab", 1494844877206002, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEBlendNodeDefinition": true; "c:objc(cs)PHASESoundEventNodeDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "children": true; "blendParameterDefinition": true; "spatialMixerDefinitionForDistance": true };
 }
@@ -291,7 +291,7 @@ export type PHASECalibrationMode = "none" | "relativeSpl" | "absoluteSpl";
 
 export const PHASECalibrationMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASECalibrationMode) | null { return callSDK<(PHASECalibrationMode) | null>("PHASE_5d69670f0307b385", 3687774125670731, undefined, [rawValue]); }
+  init(rawValue: number): (PHASECalibrationMode) | null { return callSDK<(PHASECalibrationMode) | null>("PHASE_6be9a005889899ab", 3687774125670731, undefined, [rawValue]); }
 };
 
 /**
@@ -311,12 +311,12 @@ export class PHASECardioidDirectivityModelParameters extends PHASEDirectivityMod
    * init(subbandParameters: [PHASECardioidDirectivityModelSubbandParameters])
    * @availability iOS 15.0+
    */
-  static init(subbandParameters: $SDK6): PHASECardioidDirectivityModelParameters { return callSDK<PHASECardioidDirectivityModelParameters>("PHASE_5d69670f0307b385", 3324866706670782, undefined, [subbandParameters]); }
+  static init(subbandParameters: $SDK6): PHASECardioidDirectivityModelParameters { return callSDK<PHASECardioidDirectivityModelParameters>("PHASE_6be9a005889899ab", 3324866706670782, undefined, [subbandParameters]); }
   /**
    * var subbandParameters: [PHASECardioidDirectivityModelSubbandParameters] { get }
    * @availability iOS 15.0+
    */
-  get subbandParameters(): $SDK6 { return callSDK<$SDK6>("PHASE_5d69670f0307b385", 12346104097808, this, []); }
+  get subbandParameters(): $SDK6 { return callSDK<$SDK6>("PHASE_6be9a005889899ab", 12346104097808, this, []); }
   declare readonly $type: { "c:objc(cs)PHASECardioidDirectivityModelParameters": true; "c:objc(cs)PHASEDirectivityModelParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subbandParameters": true };
 }
@@ -330,25 +330,25 @@ export class PHASECardioidDirectivityModelSubbandParameters extends SDKHandle {
    * init()
    * @availability iOS 15.0+
    */
-  static init(): PHASECardioidDirectivityModelSubbandParameters { return callSDK<PHASECardioidDirectivityModelSubbandParameters>("PHASE_5d69670f0307b385", 2867560949113370, undefined, []); }
+  static init(): PHASECardioidDirectivityModelSubbandParameters { return callSDK<PHASECardioidDirectivityModelSubbandParameters>("PHASE_6be9a005889899ab", 2867560949113370, undefined, []); }
   /**
    * var frequency: Double { get set }
    * @availability iOS 15.0+
    */
-  get frequency(): number { return callSDK<number>("PHASE_5d69670f0307b385", 4388363561819931, this, []); }
-  set frequency(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 3433527933173584, this, [value]); }
+  get frequency(): number { return callSDK<number>("PHASE_6be9a005889899ab", 4388363561819931, this, []); }
+  set frequency(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 3433527933173584, this, [value]); }
   /**
    * var pattern: Double { get set }
    * @availability iOS 15.0+
    */
-  get pattern(): number { return callSDK<number>("PHASE_5d69670f0307b385", 2221998861607652, this, []); }
-  set pattern(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 2449856956195647, this, [value]); }
+  get pattern(): number { return callSDK<number>("PHASE_6be9a005889899ab", 2221998861607652, this, []); }
+  set pattern(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 2449856956195647, this, [value]); }
   /**
    * var sharpness: Double { get set }
    * @availability iOS 15.0+
    */
-  get sharpness(): number { return callSDK<number>("PHASE_5d69670f0307b385", 449816994243083, this, []); }
-  set sharpness(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 1889922453275736, this, [value]); }
+  get sharpness(): number { return callSDK<number>("PHASE_6be9a005889899ab", 449816994243083, this, []); }
+  set sharpness(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 1889922453275736, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASECardioidDirectivityModelSubbandParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frequency": true; "pattern": true; "sharpness": true };
 }
@@ -362,17 +362,17 @@ export class PHASEChannelMixerDefinition extends PHASEMixerDefinition {
    * init(channelLayout layout: AVAudioChannelLayout)
    * @availability iOS 15.0+
    */
-  static initChannelLayout(layout: _AVFAudio_AVAudioChannelLayout): PHASEChannelMixerDefinition { return callSDK<PHASEChannelMixerDefinition>("PHASE_5d69670f0307b385", 3419666312305882, undefined, [layout]); }
+  static initChannelLayout(layout: _AVFAudio_AVAudioChannelLayout): PHASEChannelMixerDefinition { return callSDK<PHASEChannelMixerDefinition>("PHASE_6be9a005889899ab", 3419666312305882, undefined, [layout]); }
   /**
    * convenience init(channelLayout layout: AVAudioChannelLayout, identifier: String)
    * @availability iOS 15.0+
    */
-  static initChannelLayoutIdentifier(layout: _AVFAudio_AVAudioChannelLayout, identifier: string): PHASEChannelMixerDefinition { return callSDK<PHASEChannelMixerDefinition>("PHASE_5d69670f0307b385", 1271934580826954, undefined, [layout, identifier]); }
+  static initChannelLayoutIdentifier(layout: _AVFAudio_AVAudioChannelLayout, identifier: string): PHASEChannelMixerDefinition { return callSDK<PHASEChannelMixerDefinition>("PHASE_6be9a005889899ab", 1271934580826954, undefined, [layout, identifier]); }
   /**
    * var inputChannelLayout: AVAudioChannelLayout { get }
    * @availability iOS 15.0+
    */
-  get inputChannelLayout(): _AVFAudio_AVAudioChannelLayout { return callSDK<_AVFAudio_AVAudioChannelLayout>("PHASE_5d69670f0307b385", 1729193380053710, this, []); }
+  get inputChannelLayout(): _AVFAudio_AVAudioChannelLayout { return callSDK<_AVFAudio_AVAudioChannelLayout>("PHASE_6be9a005889899ab", 1729193380053710, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEChannelMixerDefinition": true; "c:objc(cs)PHASEMixerDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "gain": true; "gainMetaParameterDefinition": true; "inputChannelLayout": true };
 }
@@ -386,12 +386,12 @@ export class PHASEConeDirectivityModelParameters extends PHASEDirectivityModelPa
    * init(subbandParameters: [PHASEConeDirectivityModelSubbandParameters])
    * @availability iOS 15.0+
    */
-  static init(subbandParameters: $SDK7): PHASEConeDirectivityModelParameters { return callSDK<PHASEConeDirectivityModelParameters>("PHASE_5d69670f0307b385", 4150202384065515, undefined, [subbandParameters]); }
+  static init(subbandParameters: $SDK7): PHASEConeDirectivityModelParameters { return callSDK<PHASEConeDirectivityModelParameters>("PHASE_6be9a005889899ab", 4150202384065515, undefined, [subbandParameters]); }
   /**
    * var subbandParameters: [PHASEConeDirectivityModelSubbandParameters] { get }
    * @availability iOS 15.0+
    */
-  get subbandParameters(): $SDK7 { return callSDK<$SDK7>("PHASE_5d69670f0307b385", 2392523053758162, this, []); }
+  get subbandParameters(): $SDK7 { return callSDK<$SDK7>("PHASE_6be9a005889899ab", 2392523053758162, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEConeDirectivityModelParameters": true; "c:objc(cs)PHASEDirectivityModelParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subbandParameters": true };
 }
@@ -405,34 +405,34 @@ export class PHASEConeDirectivityModelSubbandParameters extends SDKHandle {
    * init()
    * @availability iOS 15.0+
    */
-  static init(): PHASEConeDirectivityModelSubbandParameters { return callSDK<PHASEConeDirectivityModelSubbandParameters>("PHASE_5d69670f0307b385", 2401424395039729, undefined, []); }
+  static init(): PHASEConeDirectivityModelSubbandParameters { return callSDK<PHASEConeDirectivityModelSubbandParameters>("PHASE_6be9a005889899ab", 2401424395039729, undefined, []); }
   /**
    * func setAngles(innerAngle: Double, outerAngle: Double)
    * @availability iOS 15.0+
    */
-  setAngles(innerAngle: number, outerAngle: number): void { return callSDK<void>("PHASE_5d69670f0307b385", 60396296510653, this, [innerAngle, outerAngle]); }
+  setAngles(innerAngle: number, outerAngle: number): void { return callSDK<void>("PHASE_6be9a005889899ab", 60396296510653, this, [innerAngle, outerAngle]); }
   /**
    * var frequency: Double { get set }
    * @availability iOS 15.0+
    */
-  get frequency(): number { return callSDK<number>("PHASE_5d69670f0307b385", 3544648557009056, this, []); }
-  set frequency(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 3206075557750968, this, [value]); }
+  get frequency(): number { return callSDK<number>("PHASE_6be9a005889899ab", 3544648557009056, this, []); }
+  set frequency(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 3206075557750968, this, [value]); }
   /**
    * var innerAngle: Double { get }
    * @availability iOS 15.0+
    */
-  get innerAngle(): number { return callSDK<number>("PHASE_5d69670f0307b385", 1767415113447909, this, []); }
+  get innerAngle(): number { return callSDK<number>("PHASE_6be9a005889899ab", 1767415113447909, this, []); }
   /**
    * var outerAngle: Double { get }
    * @availability iOS 15.0+
    */
-  get outerAngle(): number { return callSDK<number>("PHASE_5d69670f0307b385", 2683698597179041, this, []); }
+  get outerAngle(): number { return callSDK<number>("PHASE_6be9a005889899ab", 2683698597179041, this, []); }
   /**
    * var outerGain: Double { get set }
    * @availability iOS 15.0+
    */
-  get outerGain(): number { return callSDK<number>("PHASE_5d69670f0307b385", 3116788431517471, this, []); }
-  set outerGain(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 2917729914761874, this, [value]); }
+  get outerGain(): number { return callSDK<number>("PHASE_6be9a005889899ab", 3116788431517471, this, []); }
+  set outerGain(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 2917729914761874, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEConeDirectivityModelSubbandParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frequency": true; "innerAngle": true; "outerAngle": true; "outerGain": true };
 }
@@ -446,22 +446,22 @@ export class PHASEContainerNodeDefinition extends PHASESoundEventNodeDefinition 
    * class func new() -> Self
    * @availability iOS 15.0+
    */
-  static new(): PHASEContainerNodeDefinition { return callSDK<PHASEContainerNodeDefinition>("PHASE_5d69670f0307b385", 1199502933622146, undefined, []); }
+  static new(): PHASEContainerNodeDefinition { return callSDK<PHASEContainerNodeDefinition>("PHASE_6be9a005889899ab", 1199502933622146, undefined, []); }
   /**
    * func addSubtree(_ subtree: PHASESoundEventNodeDefinition)
    * @availability iOS 15.0+
    */
-  addSubtree(subtree: PHASESoundEventNodeDefinition): void { return callSDK<void>("PHASE_5d69670f0307b385", 1187393230229299, this, [subtree]); }
+  addSubtree(subtree: PHASESoundEventNodeDefinition): void { return callSDK<void>("PHASE_6be9a005889899ab", 1187393230229299, this, [subtree]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): PHASEContainerNodeDefinition { return callSDK<PHASEContainerNodeDefinition>("PHASE_5d69670f0307b385", 4033141854445250, undefined, []); }
+  static init(): PHASEContainerNodeDefinition { return callSDK<PHASEContainerNodeDefinition>("PHASE_6be9a005889899ab", 4033141854445250, undefined, []); }
   /**
    * init(identifier: String)
    * @availability iOS 15.0+
    */
-  static initIdentifier(identifier: string): PHASEContainerNodeDefinition { return callSDK<PHASEContainerNodeDefinition>("PHASE_5d69670f0307b385", 690937689297871, undefined, [identifier]); }
+  static initIdentifier(identifier: string): PHASEContainerNodeDefinition { return callSDK<PHASEContainerNodeDefinition>("PHASE_6be9a005889899ab", 690937689297871, undefined, [identifier]); }
   declare readonly $type: { "c:objc(cs)PHASEContainerNodeDefinition": true; "c:objc(cs)PHASESoundEventNodeDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "children": true };
 }
@@ -471,7 +471,7 @@ export type PHASECullOption = "terminate" | "sleepWakeAtZero" | "sleepWakeAtRand
 
 export const PHASECullOption = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASECullOption) | null { return callSDK<(PHASECullOption) | null>("PHASE_5d69670f0307b385", 421661540513017, undefined, [rawValue]); }
+  init(rawValue: number): (PHASECullOption) | null { return callSDK<(PHASECullOption) | null>("PHASE_6be9a005889899ab", 421661540513017, undefined, [rawValue]); }
 };
 
 /** enum PHASECurveType */
@@ -479,7 +479,7 @@ export type PHASECurveType = "linear" | "squared" | "inverseSquared" | "cubed" |
 
 export const PHASECurveType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASECurveType) | null { return callSDK<(PHASECurveType) | null>("PHASE_5d69670f0307b385", 3262557684143228, undefined, [rawValue]); }
+  init(rawValue: number): (PHASECurveType) | null { return callSDK<(PHASECurveType) | null>("PHASE_6be9a005889899ab", 3262557684143228, undefined, [rawValue]); }
 };
 
 /**
@@ -491,12 +491,12 @@ export class PHASEDistanceModelFadeOutParameters extends SDKHandle {
    * init(cullDistance: Double)
    * @availability iOS 15.0+
    */
-  static init(cullDistance: number): PHASEDistanceModelFadeOutParameters { return callSDK<PHASEDistanceModelFadeOutParameters>("PHASE_5d69670f0307b385", 3898314110739622, undefined, [cullDistance]); }
+  static init(cullDistance: number): PHASEDistanceModelFadeOutParameters { return callSDK<PHASEDistanceModelFadeOutParameters>("PHASE_6be9a005889899ab", 3898314110739622, undefined, [cullDistance]); }
   /**
    * var cullDistance: Double { get }
    * @availability iOS 15.0+
    */
-  get cullDistance(): number { return callSDK<number>("PHASE_5d69670f0307b385", 1649535424243290, this, []); }
+  get cullDistance(): number { return callSDK<number>("PHASE_6be9a005889899ab", 1649535424243290, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEDistanceModelFadeOutParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cullDistance": true };
 }
@@ -510,8 +510,8 @@ export class PHASEDistanceModelParameters extends SDKHandle {
    * var fadeOutParameters: PHASEDistanceModelFadeOutParameters? { get set }
    * @availability iOS 15.0+
    */
-  get fadeOutParameters(): $SDK8 { return callSDK<$SDK8>("PHASE_5d69670f0307b385", 259029043942778, this, []); }
-  set fadeOutParameters(value: $SDK8) { callSDK<void>("PHASE_5d69670f0307b385", 2663034108616553, this, [value]); }
+  get fadeOutParameters(): $SDK8 { return callSDK<$SDK8>("PHASE_6be9a005889899ab", 259029043942778, this, []); }
+  set fadeOutParameters(value: $SDK8) { callSDK<void>("PHASE_6be9a005889899ab", 2663034108616553, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEDistanceModelParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fadeOutParameters": true };
 }
@@ -525,62 +525,62 @@ export class PHASEDucker extends SDKHandle {
    * func activate()
    * @availability iOS 15.0+
    */
-  activate(): void { return callSDK<void>("PHASE_5d69670f0307b385", 4440933650109001, this, []); }
+  activate(): void { return callSDK<void>("PHASE_6be9a005889899ab", 4440933650109001, this, []); }
   /**
    * func deactivate()
    * @availability iOS 15.0+
    */
-  deactivate(): void { return callSDK<void>("PHASE_5d69670f0307b385", 3866663954907657, this, []); }
+  deactivate(): void { return callSDK<void>("PHASE_6be9a005889899ab", 3866663954907657, this, []); }
   /**
    * init(engine: PHASEEngine, sourceGroups: Set<PHASEGroup>, targetGroups: Set<PHASEGroup>, gain: Double, attackTime: Double, releaseTime: Double, attackCurve: PHASECurveType, releaseCurve: PHASECurveType)
    * @availability iOS 15.0+
    */
-  static init(engine: PHASEEngine, sourceGroups: Array<PHASEGroup>, targetGroups: Array<PHASEGroup>, gain: number, attackTime: number, releaseTime: number, attackCurve: PHASECurveType, releaseCurve: PHASECurveType): PHASEDucker { return callSDK<PHASEDucker>("PHASE_5d69670f0307b385", 4246438168690282, undefined, [engine, sourceGroups, targetGroups, gain, attackTime, releaseTime, attackCurve, releaseCurve]); }
+  static init(engine: PHASEEngine, sourceGroups: Array<PHASEGroup>, targetGroups: Array<PHASEGroup>, gain: number, attackTime: number, releaseTime: number, attackCurve: PHASECurveType, releaseCurve: PHASECurveType): PHASEDucker { return callSDK<PHASEDucker>("PHASE_6be9a005889899ab", 4246438168690282, undefined, [engine, sourceGroups, targetGroups, gain, attackTime, releaseTime, attackCurve, releaseCurve]); }
   /**
    * var isActive: Bool { get }
    * @availability iOS 15.0+
    */
-  get isActive(): boolean { return callSDK<boolean>("PHASE_5d69670f0307b385", 3239467589875616, this, []); }
+  get isActive(): boolean { return callSDK<boolean>("PHASE_6be9a005889899ab", 3239467589875616, this, []); }
   /**
    * var attackCurve: PHASECurveType { get }
    * @availability iOS 15.0+
    */
-  get attackCurve(): PHASECurveType { return callSDK<PHASECurveType>("PHASE_5d69670f0307b385", 3179718966710120, this, []); }
+  get attackCurve(): PHASECurveType { return callSDK<PHASECurveType>("PHASE_6be9a005889899ab", 3179718966710120, this, []); }
   /**
    * var attackTime: Double { get }
    * @availability iOS 15.0+
    */
-  get attackTime(): number { return callSDK<number>("PHASE_5d69670f0307b385", 1013222407938186, this, []); }
+  get attackTime(): number { return callSDK<number>("PHASE_6be9a005889899ab", 1013222407938186, this, []); }
   /**
    * var gain: Double { get }
    * @availability iOS 15.0+
    */
-  get gain(): number { return callSDK<number>("PHASE_5d69670f0307b385", 3745147297710292, this, []); }
+  get gain(): number { return callSDK<number>("PHASE_6be9a005889899ab", 3745147297710292, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 15.0+
    */
-  get identifier(): string { return callSDK<string>("PHASE_5d69670f0307b385", 3693857846004441, this, []); }
+  get identifier(): string { return callSDK<string>("PHASE_6be9a005889899ab", 3693857846004441, this, []); }
   /**
    * var releaseCurve: PHASECurveType { get }
    * @availability iOS 15.0+
    */
-  get releaseCurve(): PHASECurveType { return callSDK<PHASECurveType>("PHASE_5d69670f0307b385", 361477253619777, this, []); }
+  get releaseCurve(): PHASECurveType { return callSDK<PHASECurveType>("PHASE_6be9a005889899ab", 361477253619777, this, []); }
   /**
    * var releaseTime: Double { get }
    * @availability iOS 15.0+
    */
-  get releaseTime(): number { return callSDK<number>("PHASE_5d69670f0307b385", 3202266917262940, this, []); }
+  get releaseTime(): number { return callSDK<number>("PHASE_6be9a005889899ab", 3202266917262940, this, []); }
   /**
    * var sourceGroups: Set<PHASEGroup> { get }
    * @availability iOS 15.0+
    */
-  get sourceGroups(): Array<PHASEGroup> { return callSDK<Array<PHASEGroup>>("PHASE_5d69670f0307b385", 2400983683362670, this, []); }
+  get sourceGroups(): Array<PHASEGroup> { return callSDK<Array<PHASEGroup>>("PHASE_6be9a005889899ab", 2400983683362670, this, []); }
   /**
    * var targetGroups: Set<PHASEGroup> { get }
    * @availability iOS 15.0+
    */
-  get targetGroups(): Array<PHASEGroup> { return callSDK<Array<PHASEGroup>>("PHASE_5d69670f0307b385", 1255748952621223, this, []); }
+  get targetGroups(): Array<PHASEGroup> { return callSDK<Array<PHASEGroup>>("PHASE_6be9a005889899ab", 1255748952621223, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEDucker": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isActive": true; "attackCurve": true; "attackTime": true; "gain": true; "identifier": true; "releaseCurve": true; "releaseTime": true; "sourceGroups": true; "targetGroups": true };
 }
@@ -594,97 +594,97 @@ export class PHASEEngine extends SDKHandle {
    * init(updateMode: PHASEEngine.UpdateMode)
    * @availability iOS 15.0+
    */
-  static init(updateMode: PHASEEngine_UpdateMode): PHASEEngine { return callSDK<PHASEEngine>("PHASE_5d69670f0307b385", 1638925366607718, undefined, [updateMode]); }
+  static init(updateMode: PHASEEngine_UpdateMode): PHASEEngine { return callSDK<PHASEEngine>("PHASE_6be9a005889899ab", 1638925366607718, undefined, [updateMode]); }
   /**
    * func pause()
    * @availability iOS 15.0+
    */
-  pause(): void { return callSDK<void>("PHASE_5d69670f0307b385", 2738322645006640, this, []); }
+  pause(): void { return callSDK<void>("PHASE_6be9a005889899ab", 2738322645006640, this, []); }
   /**
    * func start() throws
    * @availability iOS 15.0+
    */
-  start(): void { return callSDK<void>("PHASE_5d69670f0307b385", 2663530243974563, this, []); }
+  start(): void { return callSDK<void>("PHASE_6be9a005889899ab", 2663530243974563, this, []); }
   /**
    * func stop()
    * @availability iOS 15.0+
    */
-  stop(): void { return callSDK<void>("PHASE_5d69670f0307b385", 671698521937560, this, []); }
+  stop(): void { return callSDK<void>("PHASE_6be9a005889899ab", 671698521937560, this, []); }
   /**
    * func update()
    * @availability iOS 15.0+
    */
-  update(): void { return callSDK<void>("PHASE_5d69670f0307b385", 4320463060014591, this, []); }
+  update(): void { return callSDK<void>("PHASE_6be9a005889899ab", 4320463060014591, this, []); }
   /**
    * var activeGroupPreset: PHASEGroupPreset? { get }
    * @availability iOS 15.0+
    */
-  get activeGroupPreset(): (PHASEGroupPreset) | null { return callSDK<(PHASEGroupPreset) | null>("PHASE_5d69670f0307b385", 3232305263931686, this, []); }
+  get activeGroupPreset(): (PHASEGroupPreset) | null { return callSDK<(PHASEGroupPreset) | null>("PHASE_6be9a005889899ab", 3232305263931686, this, []); }
   /**
    * var assetRegistry: PHASEAssetRegistry { get }
    * @availability iOS 15.0+
    */
-  get assetRegistry(): PHASEAssetRegistry { return callSDK<PHASEAssetRegistry>("PHASE_5d69670f0307b385", 1181061992205840, this, []); }
+  get assetRegistry(): PHASEAssetRegistry { return callSDK<PHASEAssetRegistry>("PHASE_6be9a005889899ab", 1181061992205840, this, []); }
   /**
    * var defaultMedium: PHASEMedium { get set }
    * @availability iOS 15.0+
    */
-  get defaultMedium(): PHASEMedium { return callSDK<PHASEMedium>("PHASE_5d69670f0307b385", 4070074779107611, this, []); }
-  set defaultMedium(value: PHASEMedium) { callSDK<void>("PHASE_5d69670f0307b385", 1628431654874772, this, [value]); }
+  get defaultMedium(): PHASEMedium { return callSDK<PHASEMedium>("PHASE_6be9a005889899ab", 4070074779107611, this, []); }
+  set defaultMedium(value: PHASEMedium) { callSDK<void>("PHASE_6be9a005889899ab", 1628431654874772, this, [value]); }
   /**
    * var defaultReverbPreset: PHASEReverbPreset { get set }
    * @availability iOS 15.0+
    */
-  get defaultReverbPreset(): PHASEReverbPreset { return callSDK<PHASEReverbPreset>("PHASE_5d69670f0307b385", 1115907137812969, this, []); }
-  set defaultReverbPreset(value: PHASEReverbPreset) { callSDK<void>("PHASE_5d69670f0307b385", 3972798608314035, this, [value]); }
+  get defaultReverbPreset(): PHASEReverbPreset { return callSDK<PHASEReverbPreset>("PHASE_6be9a005889899ab", 1115907137812969, this, []); }
+  set defaultReverbPreset(value: PHASEReverbPreset) { callSDK<void>("PHASE_6be9a005889899ab", 3972798608314035, this, [value]); }
   /**
    * var duckers: [PHASEDucker] { get }
    * @availability iOS 15.0+
    */
-  get duckers(): Array<PHASEDucker> { return callSDK<Array<PHASEDucker>>("PHASE_5d69670f0307b385", 1384296591835479, this, []); }
+  get duckers(): Array<PHASEDucker> { return callSDK<Array<PHASEDucker>>("PHASE_6be9a005889899ab", 1384296591835479, this, []); }
   /**
    * var groups: [String : PHASEGroup] { get }
    * @availability iOS 15.0+
    */
-  get groups(): Record<string, PHASEGroup> { return callSDK<Record<string, PHASEGroup>>("PHASE_5d69670f0307b385", 2723134797675221, this, []); }
+  get groups(): Record<string, PHASEGroup> { return callSDK<Record<string, PHASEGroup>>("PHASE_6be9a005889899ab", 2723134797675221, this, []); }
   /**
    * var lastRenderTime: AVAudioTime? { get }
    * @availability iOS 26.0+
    */
-  get lastRenderTime(): $SDK11 { return callSDK<$SDK11>("PHASE_5d69670f0307b385", 1707265579233440, this, []); }
+  get lastRenderTime(): $SDK11 { return callSDK<$SDK11>("PHASE_6be9a005889899ab", 1707265579233440, this, []); }
   /**
    * var outputSpatializationMode: PHASESpatializationMode { get set }
    * @availability iOS 15.0+
    */
-  get outputSpatializationMode(): PHASESpatializationMode { return callSDK<PHASESpatializationMode>("PHASE_5d69670f0307b385", 534139922435351, this, []); }
-  set outputSpatializationMode(value: PHASESpatializationMode) { callSDK<void>("PHASE_5d69670f0307b385", 4398148393670340, this, [value]); }
+  get outputSpatializationMode(): PHASESpatializationMode { return callSDK<PHASESpatializationMode>("PHASE_6be9a005889899ab", 534139922435351, this, []); }
+  set outputSpatializationMode(value: PHASESpatializationMode) { callSDK<void>("PHASE_6be9a005889899ab", 4398148393670340, this, [value]); }
   /**
    * var renderingState: PHASESoundEvent.RenderingState { get }
    * @availability iOS 15.0+
    */
-  get renderingState(): PHASESoundEvent_RenderingState { return callSDK<PHASESoundEvent_RenderingState>("PHASE_5d69670f0307b385", 5039215154712, this, []); }
+  get renderingState(): PHASESoundEvent_RenderingState { return callSDK<PHASESoundEvent_RenderingState>("PHASE_6be9a005889899ab", 5039215154712, this, []); }
   /**
    * var rootObject: PHASEObject { get }
    * @availability iOS 15.0+
    */
-  get rootObject(): PHASEObject { return callSDK<PHASEObject>("PHASE_5d69670f0307b385", 2451920310934259, this, []); }
+  get rootObject(): PHASEObject { return callSDK<PHASEObject>("PHASE_6be9a005889899ab", 2451920310934259, this, []); }
   /**
    * var soundEvents: [PHASESoundEvent] { get }
    * @availability iOS 15.0+
    */
-  get soundEvents(): Array<PHASESoundEvent> { return callSDK<Array<PHASESoundEvent>>("PHASE_5d69670f0307b385", 272143559161221, this, []); }
+  get soundEvents(): Array<PHASESoundEvent> { return callSDK<Array<PHASESoundEvent>>("PHASE_6be9a005889899ab", 272143559161221, this, []); }
   /**
    * var unitsPerMeter: Double { get set }
    * @availability iOS 15.0+
    */
-  get unitsPerMeter(): number { return callSDK<number>("PHASE_5d69670f0307b385", 102661109489113, this, []); }
-  set unitsPerMeter(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 3764255352166435, this, [value]); }
+  get unitsPerMeter(): number { return callSDK<number>("PHASE_6be9a005889899ab", 102661109489113, this, []); }
+  set unitsPerMeter(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 3764255352166435, this, [value]); }
   /**
    * var unitsPerSecond: Double { get set }
    * @availability iOS 15.0+
    */
-  get unitsPerSecond(): number { return callSDK<number>("PHASE_5d69670f0307b385", 2918305265711568, this, []); }
-  set unitsPerSecond(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 446755435350030, this, [value]); }
+  get unitsPerSecond(): number { return callSDK<number>("PHASE_6be9a005889899ab", 2918305265711568, this, []); }
+  set unitsPerSecond(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 446755435350030, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEEngine": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activeGroupPreset": true; "assetRegistry": true; "defaultMedium": true; "defaultReverbPreset": true; "duckers": true; "groups": true; "lastRenderTime": true; "outputSpatializationMode": true; "renderingState": true; "rootObject": true; "soundEvents": true; "unitsPerMeter": true; "unitsPerSecond": true };
 }
@@ -694,7 +694,7 @@ export type PHASEEngine_UpdateMode = "automatic" | "manual";
 
 export const PHASEEngine_UpdateMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASEEngine_UpdateMode) | null { return callSDK<(PHASEEngine_UpdateMode) | null>("PHASE_5d69670f0307b385", 1067327437343835, undefined, [rawValue]); }
+  init(rawValue: number): (PHASEEngine_UpdateMode) | null { return callSDK<(PHASEEngine_UpdateMode) | null>("PHASE_6be9a005889899ab", 1067327437343835, undefined, [rawValue]); }
 };
 
 /**
@@ -706,32 +706,32 @@ export class PHASEEnvelope extends SDKHandle {
    * func evaluate(x: Double) -> Double
    * @availability iOS 15.0+
    */
-  evaluate(x: number): number { return callSDK<number>("PHASE_5d69670f0307b385", 1568461223057760, this, [x]); }
+  evaluate(x: number): number { return callSDK<number>("PHASE_6be9a005889899ab", 1568461223057760, this, [x]); }
   /**
    * init?(startPoint: simd_double2, segments: [PHASEEnvelopeSegment])
    * @availability iOS 15.0+
    */
-  static init(startPoint: SDKHandle, segments: Array<PHASEEnvelopeSegment>): (PHASEEnvelope) | null { return callSDK<(PHASEEnvelope) | null>("PHASE_5d69670f0307b385", 2776763703220311, undefined, [startPoint, segments]); }
+  static init(startPoint: SDKHandle, segments: Array<PHASEEnvelopeSegment>): (PHASEEnvelope) | null { return callSDK<(PHASEEnvelope) | null>("PHASE_6be9a005889899ab", 2776763703220311, undefined, [startPoint, segments]); }
   /**
    * var domain: PHASENumericPair { get }
    * @availability iOS 15.0+
    */
-  get domain(): PHASENumericPair { return callSDK<PHASENumericPair>("PHASE_5d69670f0307b385", 54283399742621, this, []); }
+  get domain(): PHASENumericPair { return callSDK<PHASENumericPair>("PHASE_6be9a005889899ab", 54283399742621, this, []); }
   /**
    * var range: PHASENumericPair { get }
    * @availability iOS 15.0+
    */
-  get range(): PHASENumericPair { return callSDK<PHASENumericPair>("PHASE_5d69670f0307b385", 90507024609414, this, []); }
+  get range(): PHASENumericPair { return callSDK<PHASENumericPair>("PHASE_6be9a005889899ab", 90507024609414, this, []); }
   /**
    * var segments: [PHASEEnvelopeSegment] { get }
    * @availability iOS 15.0+
    */
-  get segments(): Array<PHASEEnvelopeSegment> { return callSDK<Array<PHASEEnvelopeSegment>>("PHASE_5d69670f0307b385", 2383052165169295, this, []); }
+  get segments(): Array<PHASEEnvelopeSegment> { return callSDK<Array<PHASEEnvelopeSegment>>("PHASE_6be9a005889899ab", 2383052165169295, this, []); }
   /**
    * var startPoint: simd_double2 { get }
    * @availability iOS 15.0+
    */
-  get startPoint(): SDKHandle { return callSDK<SDKHandle>("PHASE_5d69670f0307b385", 3877395093728004, this, []); }
+  get startPoint(): SDKHandle { return callSDK<SDKHandle>("PHASE_6be9a005889899ab", 3877395093728004, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEEnvelope": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "domain": true; "range": true; "segments": true; "startPoint": true };
 }
@@ -745,12 +745,12 @@ export class PHASEEnvelopeDistanceModelParameters extends PHASEDistanceModelPara
    * init(envelope: PHASEEnvelope)
    * @availability iOS 15.0+
    */
-  static init(envelope: PHASEEnvelope): PHASEEnvelopeDistanceModelParameters { return callSDK<PHASEEnvelopeDistanceModelParameters>("PHASE_5d69670f0307b385", 3712285396076145, undefined, [envelope]); }
+  static init(envelope: PHASEEnvelope): PHASEEnvelopeDistanceModelParameters { return callSDK<PHASEEnvelopeDistanceModelParameters>("PHASE_6be9a005889899ab", 3712285396076145, undefined, [envelope]); }
   /**
    * var envelope: PHASEEnvelope { get }
    * @availability iOS 15.0+
    */
-  get envelope(): PHASEEnvelope { return callSDK<PHASEEnvelope>("PHASE_5d69670f0307b385", 2609523000848159, this, []); }
+  get envelope(): PHASEEnvelope { return callSDK<PHASEEnvelope>("PHASE_6be9a005889899ab", 2609523000848159, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEEnvelopeDistanceModelParameters": true; "c:objc(cs)PHASEDistanceModelParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fadeOutParameters": true; "envelope": true };
 }
@@ -764,19 +764,19 @@ export class PHASEEnvelopeSegment extends SDKHandle {
    * init(endPoint: simd_double2, curveType: PHASECurveType)
    * @availability iOS 15.0+
    */
-  static init(endPoint: SDKHandle, curveType: PHASECurveType): PHASEEnvelopeSegment { return callSDK<PHASEEnvelopeSegment>("PHASE_5d69670f0307b385", 1468317798073788, undefined, [endPoint, curveType]); }
+  static init(endPoint: SDKHandle, curveType: PHASECurveType): PHASEEnvelopeSegment { return callSDK<PHASEEnvelopeSegment>("PHASE_6be9a005889899ab", 1468317798073788, undefined, [endPoint, curveType]); }
   /**
    * var curveType: PHASECurveType { get set }
    * @availability iOS 15.0+
    */
-  get curveType(): PHASECurveType { return callSDK<PHASECurveType>("PHASE_5d69670f0307b385", 2959594413616125, this, []); }
-  set curveType(value: PHASECurveType) { callSDK<void>("PHASE_5d69670f0307b385", 1607081752362974, this, [value]); }
+  get curveType(): PHASECurveType { return callSDK<PHASECurveType>("PHASE_6be9a005889899ab", 2959594413616125, this, []); }
+  set curveType(value: PHASECurveType) { callSDK<void>("PHASE_6be9a005889899ab", 1607081752362974, this, [value]); }
   /**
    * var endPoint: simd_double2 { get set }
    * @availability iOS 15.0+
    */
-  get endPoint(): SDKHandle { return callSDK<SDKHandle>("PHASE_5d69670f0307b385", 1035118575259157, this, []); }
-  set endPoint(value: SDKHandle) { callSDK<void>("PHASE_5d69670f0307b385", 1475994832757330, this, [value]); }
+  get endPoint(): SDKHandle { return callSDK<SDKHandle>("PHASE_6be9a005889899ab", 1035118575259157, this, []); }
+  set endPoint(value: SDKHandle) { callSDK<void>("PHASE_6be9a005889899ab", 1475994832757330, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEEnvelopeSegment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "curveType": true; "endPoint": true };
 }
@@ -784,11 +784,11 @@ export class PHASEEnvelopeSegment extends SDKHandle {
 /** struct PHASEError */
 export class PHASEError extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("PHASE_5d69670f0307b385", 3639414138003750, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PHASE_6be9a005889899ab", 3639414138003750, undefined, []); }
   /** static var invalidObject: PHASEError.Code { get } */
-  static get invalidObject(): PHASEError_Code { return callSDK<PHASEError_Code>("PHASE_5d69670f0307b385", 359841261913917, undefined, []); }
+  static get invalidObject(): PHASEError_Code { return callSDK<PHASEError_Code>("PHASE_6be9a005889899ab", 359841261913917, undefined, []); }
   /** static var initializeFailed: PHASEError.Code { get } */
-  static get initializeFailed(): PHASEError_Code { return callSDK<PHASEError_Code>("PHASE_5d69670f0307b385", 1372488710521241, undefined, []); }
+  static get initializeFailed(): PHASEError_Code { return callSDK<PHASEError_Code>("PHASE_6be9a005889899ab", 1372488710521241, undefined, []); }
   declare readonly $type: { "s:SC10PHASEErrorLeV": true };
 }
 
@@ -797,7 +797,7 @@ export type PHASEError_Code = "initializeFailed" | "invalidObject";
 
 export const PHASEError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASEError_Code) | null { return callSDK<(PHASEError_Code) | null>("PHASE_5d69670f0307b385", 2345202684746270, undefined, [rawValue]); }
+  init(rawValue: number): (PHASEError_Code) | null { return callSDK<(PHASEError_Code) | null>("PHASE_6be9a005889899ab", 2345202684746270, undefined, [rawValue]); }
 };
 
 /**
@@ -809,46 +809,46 @@ export class PHASEGeneratorNodeDefinition extends PHASESoundEventNodeDefinition 
    * func setCalibrationMode(calibrationMode: PHASECalibrationMode, level: Double)
    * @availability iOS 15.0+
    */
-  setCalibrationMode(calibrationMode: PHASECalibrationMode, level: number): void { return callSDK<void>("PHASE_5d69670f0307b385", 1500472368255502, this, [calibrationMode, level]); }
+  setCalibrationMode(calibrationMode: PHASECalibrationMode, level: number): void { return callSDK<void>("PHASE_6be9a005889899ab", 1500472368255502, this, [calibrationMode, level]); }
   /**
    * var calibrationMode: PHASECalibrationMode { get }
    * @availability iOS 15.0+
    */
-  get calibrationMode(): PHASECalibrationMode { return callSDK<PHASECalibrationMode>("PHASE_5d69670f0307b385", 1532198381541974, this, []); }
+  get calibrationMode(): PHASECalibrationMode { return callSDK<PHASECalibrationMode>("PHASE_6be9a005889899ab", 1532198381541974, this, []); }
   /**
    * var gainMetaParameterDefinition: PHASENumberMetaParameterDefinition? { get set }
    * @availability iOS 15.0+
    */
-  get gainMetaParameterDefinition(): $SDK0 { return callSDK<$SDK0>("PHASE_5d69670f0307b385", 440596503821524, this, []); }
-  set gainMetaParameterDefinition(value: $SDK0) { callSDK<void>("PHASE_5d69670f0307b385", 1148730296588976, this, [value]); }
+  get gainMetaParameterDefinition(): $SDK0 { return callSDK<$SDK0>("PHASE_6be9a005889899ab", 440596503821524, this, []); }
+  set gainMetaParameterDefinition(value: $SDK0) { callSDK<void>("PHASE_6be9a005889899ab", 1148730296588976, this, [value]); }
   /**
    * weak var group: PHASEGroup? { get set }
    * @availability iOS 15.0+
    */
-  get group(): (PHASEGroup) | null { return callSDK<(PHASEGroup) | null>("PHASE_5d69670f0307b385", 3234608734773559, this, []); }
-  set group(value: (PHASEGroup) | null) { callSDK<void>("PHASE_5d69670f0307b385", 619860427300740, this, [value]); }
+  get group(): (PHASEGroup) | null { return callSDK<(PHASEGroup) | null>("PHASE_6be9a005889899ab", 3234608734773559, this, []); }
+  set group(value: (PHASEGroup) | null) { callSDK<void>("PHASE_6be9a005889899ab", 619860427300740, this, [value]); }
   /**
    * var level: Double { get }
    * @availability iOS 15.0+
    */
-  get level(): number { return callSDK<number>("PHASE_5d69670f0307b385", 2039765392107705, this, []); }
+  get level(): number { return callSDK<number>("PHASE_6be9a005889899ab", 2039765392107705, this, []); }
   /**
    * var mixerDefinition: PHASEMixerDefinition { get }
    * @availability iOS 15.0+
    */
-  get mixerDefinition(): PHASEMixerDefinition { return callSDK<PHASEMixerDefinition>("PHASE_5d69670f0307b385", 4123609234285218, this, []); }
+  get mixerDefinition(): PHASEMixerDefinition { return callSDK<PHASEMixerDefinition>("PHASE_6be9a005889899ab", 4123609234285218, this, []); }
   /**
    * var rate: Double { get set }
    * @availability iOS 15.0+
    */
-  get rate(): number { return callSDK<number>("PHASE_5d69670f0307b385", 4329242951466153, this, []); }
-  set rate(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 3249239896531164, this, [value]); }
+  get rate(): number { return callSDK<number>("PHASE_6be9a005889899ab", 4329242951466153, this, []); }
+  set rate(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 3249239896531164, this, [value]); }
   /**
    * var rateMetaParameterDefinition: PHASENumberMetaParameterDefinition? { get set }
    * @availability iOS 15.0+
    */
-  get rateMetaParameterDefinition(): $SDK0 { return callSDK<$SDK0>("PHASE_5d69670f0307b385", 294839619913829, this, []); }
-  set rateMetaParameterDefinition(value: $SDK0) { callSDK<void>("PHASE_5d69670f0307b385", 4332720238020998, this, [value]); }
+  get rateMetaParameterDefinition(): $SDK0 { return callSDK<$SDK0>("PHASE_6be9a005889899ab", 294839619913829, this, []); }
+  set rateMetaParameterDefinition(value: $SDK0) { callSDK<void>("PHASE_6be9a005889899ab", 4332720238020998, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEGeneratorNodeDefinition": true; "c:objc(cs)PHASESoundEventNodeDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "children": true; "calibrationMode": true; "gainMetaParameterDefinition": true; "group": true; "level": true; "mixerDefinition": true; "rate": true; "rateMetaParameterDefinition": true };
 }
@@ -862,13 +862,13 @@ export class PHASEGeometricSpreadingDistanceModelParameters extends PHASEDistanc
    * init()
    * @availability iOS 15.0+
    */
-  static init(): PHASEGeometricSpreadingDistanceModelParameters { return callSDK<PHASEGeometricSpreadingDistanceModelParameters>("PHASE_5d69670f0307b385", 972156106931778, undefined, []); }
+  static init(): PHASEGeometricSpreadingDistanceModelParameters { return callSDK<PHASEGeometricSpreadingDistanceModelParameters>("PHASE_6be9a005889899ab", 972156106931778, undefined, []); }
   /**
    * var rolloffFactor: Double { get set }
    * @availability iOS 15.0+
    */
-  get rolloffFactor(): number { return callSDK<number>("PHASE_5d69670f0307b385", 3171975401151376, this, []); }
-  set rolloffFactor(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 2647497431564168, this, [value]); }
+  get rolloffFactor(): number { return callSDK<number>("PHASE_6be9a005889899ab", 3171975401151376, this, []); }
+  set rolloffFactor(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 2647497431564168, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEGeometricSpreadingDistanceModelParameters": true; "c:objc(cs)PHASEDistanceModelParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fadeOutParameters": true; "rolloffFactor": true };
 }
@@ -891,74 +891,74 @@ export class PHASEGroup extends SDKHandle {
    * func fadeGain(gain: Double, duration: Double, curveType: PHASECurveType)
    * @availability iOS 15.0+
    */
-  fadeGain(gain: number, duration: number, curveType: PHASECurveType): void { return callSDK<void>("PHASE_5d69670f0307b385", 2020889422847968, this, [gain, duration, curveType]); }
+  fadeGain(gain: number, duration: number, curveType: PHASECurveType): void { return callSDK<void>("PHASE_6be9a005889899ab", 2020889422847968, this, [gain, duration, curveType]); }
   /**
    * func fadeRate(rate: Double, duration: Double, curveType: PHASECurveType)
    * @availability iOS 15.0+
    */
-  fadeRate(rate: number, duration: number, curveType: PHASECurveType): void { return callSDK<void>("PHASE_5d69670f0307b385", 3711299498840146, this, [rate, duration, curveType]); }
+  fadeRate(rate: number, duration: number, curveType: PHASECurveType): void { return callSDK<void>("PHASE_6be9a005889899ab", 3711299498840146, this, [rate, duration, curveType]); }
   /**
    * init(identifier: String)
    * @availability iOS 15.0+
    */
-  static init(identifier: string): PHASEGroup { return callSDK<PHASEGroup>("PHASE_5d69670f0307b385", 1009387486498112, undefined, [identifier]); }
+  static init(identifier: string): PHASEGroup { return callSDK<PHASEGroup>("PHASE_6be9a005889899ab", 1009387486498112, undefined, [identifier]); }
   /**
    * func mute()
    * @availability iOS 15.0+
    */
-  mute(): void { return callSDK<void>("PHASE_5d69670f0307b385", 3293395904459433, this, []); }
+  mute(): void { return callSDK<void>("PHASE_6be9a005889899ab", 3293395904459433, this, []); }
   /**
    * func register(engine: PHASEEngine)
    * @availability iOS 15.0+
    */
-  register(engine: PHASEEngine): void { return callSDK<void>("PHASE_5d69670f0307b385", 4074103582886503, this, [engine]); }
+  register(engine: PHASEEngine): void { return callSDK<void>("PHASE_6be9a005889899ab", 4074103582886503, this, [engine]); }
   /**
    * func solo()
    * @availability iOS 15.0+
    */
-  solo(): void { return callSDK<void>("PHASE_5d69670f0307b385", 686889318513951, this, []); }
+  solo(): void { return callSDK<void>("PHASE_6be9a005889899ab", 686889318513951, this, []); }
   /**
    * func unmute()
    * @availability iOS 15.0+
    */
-  unmute(): void { return callSDK<void>("PHASE_5d69670f0307b385", 3076857159206686, this, []); }
+  unmute(): void { return callSDK<void>("PHASE_6be9a005889899ab", 3076857159206686, this, []); }
   /**
    * func unregisterFromEngine()
    * @availability iOS 15.0+
    */
-  unregisterFromEngine(): void { return callSDK<void>("PHASE_5d69670f0307b385", 1210949368720981, this, []); }
+  unregisterFromEngine(): void { return callSDK<void>("PHASE_6be9a005889899ab", 1210949368720981, this, []); }
   /**
    * func unsolo()
    * @availability iOS 15.0+
    */
-  unsolo(): void { return callSDK<void>("PHASE_5d69670f0307b385", 1964892826146118, this, []); }
+  unsolo(): void { return callSDK<void>("PHASE_6be9a005889899ab", 1964892826146118, this, []); }
   /**
    * var gain: Double { get set }
    * @availability iOS 15.0+
    */
-  get gain(): number { return callSDK<number>("PHASE_5d69670f0307b385", 3380159471561518, this, []); }
-  set gain(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 163189064168128, this, [value]); }
+  get gain(): number { return callSDK<number>("PHASE_6be9a005889899ab", 3380159471561518, this, []); }
+  set gain(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 163189064168128, this, [value]); }
   /**
    * var identifier: String { get }
    * @availability iOS 15.0+
    */
-  get identifier(): string { return callSDK<string>("PHASE_5d69670f0307b385", 3332051230635668, this, []); }
+  get identifier(): string { return callSDK<string>("PHASE_6be9a005889899ab", 3332051230635668, this, []); }
   /**
    * var isMuted: Bool { get }
    * @availability iOS 15.0+
    */
-  get isMuted(): boolean { return callSDK<boolean>("PHASE_5d69670f0307b385", 917288214984130, this, []); }
+  get isMuted(): boolean { return callSDK<boolean>("PHASE_6be9a005889899ab", 917288214984130, this, []); }
   /**
    * var rate: Double { get set }
    * @availability iOS 15.0+
    */
-  get rate(): number { return callSDK<number>("PHASE_5d69670f0307b385", 873548375772890, this, []); }
-  set rate(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 3026617589866438, this, [value]); }
+  get rate(): number { return callSDK<number>("PHASE_6be9a005889899ab", 873548375772890, this, []); }
+  set rate(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 3026617589866438, this, [value]); }
   /**
    * var isSoloed: Bool { get }
    * @availability iOS 15.0+
    */
-  get isSoloed(): boolean { return callSDK<boolean>("PHASE_5d69670f0307b385", 2092363167317062, this, []); }
+  get isSoloed(): boolean { return callSDK<boolean>("PHASE_6be9a005889899ab", 2092363167317062, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEGroup": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "gain": true; "identifier": true; "isMuted": true; "rate": true; "isSoloed": true };
 }
@@ -972,42 +972,42 @@ export class PHASEGroupPreset extends SDKHandle {
    * func activate()
    * @availability iOS 15.0+
    */
-  activate(): void { return callSDK<void>("PHASE_5d69670f0307b385", 2395977196460098, this, []); }
+  activate(): void { return callSDK<void>("PHASE_6be9a005889899ab", 2395977196460098, this, []); }
   /**
    * func activate(timeToTargetOverride: Double)
    * @availability iOS 15.0+
    */
-  activateTimeToTargetOverride(timeToTargetOverride: number): void { return callSDK<void>("PHASE_5d69670f0307b385", 3463425097299361, this, [timeToTargetOverride]); }
+  activateTimeToTargetOverride(timeToTargetOverride: number): void { return callSDK<void>("PHASE_6be9a005889899ab", 3463425097299361, this, [timeToTargetOverride]); }
   /**
    * func deactivate()
    * @availability iOS 15.0+
    */
-  deactivate(): void { return callSDK<void>("PHASE_5d69670f0307b385", 1051020701382255, this, []); }
+  deactivate(): void { return callSDK<void>("PHASE_6be9a005889899ab", 1051020701382255, this, []); }
   /**
    * func deactivate(timeToResetOverride: Double)
    * @availability iOS 15.0+
    */
-  deactivateTimeToResetOverride(timeToResetOverride: number): void { return callSDK<void>("PHASE_5d69670f0307b385", 2567699642508412, this, [timeToResetOverride]); }
+  deactivateTimeToResetOverride(timeToResetOverride: number): void { return callSDK<void>("PHASE_6be9a005889899ab", 2567699642508412, this, [timeToResetOverride]); }
   /**
    * init(engine: PHASEEngine, settings: [String : PHASEGroupPresetSetting], timeToTarget: Double, timeToReset: Double)
    * @availability iOS 15.0+
    */
-  static init(engine: PHASEEngine, settings: $SDK13, timeToTarget: number, timeToReset: number): PHASEGroupPreset { return callSDK<PHASEGroupPreset>("PHASE_5d69670f0307b385", 3347411895848360, undefined, [engine, settings, timeToTarget, timeToReset]); }
+  static init(engine: PHASEEngine, settings: $SDK13, timeToTarget: number, timeToReset: number): PHASEGroupPreset { return callSDK<PHASEGroupPreset>("PHASE_6be9a005889899ab", 3347411895848360, undefined, [engine, settings, timeToTarget, timeToReset]); }
   /**
    * var settings: [String : PHASEGroupPresetSetting] { get }
    * @availability iOS 15.0+
    */
-  get settings(): $SDK13 { return callSDK<$SDK13>("PHASE_5d69670f0307b385", 2349896926525201, this, []); }
+  get settings(): $SDK13 { return callSDK<$SDK13>("PHASE_6be9a005889899ab", 2349896926525201, this, []); }
   /**
    * var timeToReset: Double { get }
    * @availability iOS 15.0+
    */
-  get timeToReset(): number { return callSDK<number>("PHASE_5d69670f0307b385", 3973088498981909, this, []); }
+  get timeToReset(): number { return callSDK<number>("PHASE_6be9a005889899ab", 3973088498981909, this, []); }
   /**
    * var timeToTarget: Double { get }
    * @availability iOS 15.0+
    */
-  get timeToTarget(): number { return callSDK<number>("PHASE_5d69670f0307b385", 952787683698912, this, []); }
+  get timeToTarget(): number { return callSDK<number>("PHASE_6be9a005889899ab", 952787683698912, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEGroupPreset": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "settings": true; "timeToReset": true; "timeToTarget": true };
 }
@@ -1021,27 +1021,27 @@ export class PHASEGroupPresetSetting extends SDKHandle {
    * init(gain: Double, rate: Double, gainCurveType: PHASECurveType, rateCurveType: PHASECurveType)
    * @availability iOS 15.0+
    */
-  static init(gain: number, rate: number, gainCurveType: PHASECurveType, rateCurveType: PHASECurveType): PHASEGroupPresetSetting { return callSDK<PHASEGroupPresetSetting>("PHASE_5d69670f0307b385", 4490375134035182, undefined, [gain, rate, gainCurveType, rateCurveType]); }
+  static init(gain: number, rate: number, gainCurveType: PHASECurveType, rateCurveType: PHASECurveType): PHASEGroupPresetSetting { return callSDK<PHASEGroupPresetSetting>("PHASE_6be9a005889899ab", 4490375134035182, undefined, [gain, rate, gainCurveType, rateCurveType]); }
   /**
    * var gain: Double { get }
    * @availability iOS 15.0+
    */
-  get gain(): number { return callSDK<number>("PHASE_5d69670f0307b385", 1305143430167105, this, []); }
+  get gain(): number { return callSDK<number>("PHASE_6be9a005889899ab", 1305143430167105, this, []); }
   /**
    * var gainCurveType: PHASECurveType { get }
    * @availability iOS 15.0+
    */
-  get gainCurveType(): PHASECurveType { return callSDK<PHASECurveType>("PHASE_5d69670f0307b385", 3287949546062093, this, []); }
+  get gainCurveType(): PHASECurveType { return callSDK<PHASECurveType>("PHASE_6be9a005889899ab", 3287949546062093, this, []); }
   /**
    * var rate: Double { get }
    * @availability iOS 15.0+
    */
-  get rate(): number { return callSDK<number>("PHASE_5d69670f0307b385", 1985399755708547, this, []); }
+  get rate(): number { return callSDK<number>("PHASE_6be9a005889899ab", 1985399755708547, this, []); }
   /**
    * var rateCurveType: PHASECurveType { get }
    * @availability iOS 15.0+
    */
-  get rateCurveType(): PHASECurveType { return callSDK<PHASECurveType>("PHASE_5d69670f0307b385", 1659381670126839, this, []); }
+  get rateCurveType(): PHASECurveType { return callSDK<PHASECurveType>("PHASE_6be9a005889899ab", 1659381670126839, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEGroupPresetSetting": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "gain": true; "gainCurveType": true; "rate": true; "rateCurveType": true };
 }
@@ -1055,59 +1055,59 @@ export class PHASEObject extends SDKHandle {
    * class var forward: simd_float3 { get }
    * @availability iOS 15.0+
    */
-  static get forward(): SDKHandle { return callSDK<SDKHandle>("PHASE_5d69670f0307b385", 2530600804369301, undefined, []); }
+  static get forward(): SDKHandle { return callSDK<SDKHandle>("PHASE_6be9a005889899ab", 2530600804369301, undefined, []); }
   /**
    * class var right: simd_float3 { get }
    * @availability iOS 15.0+
    */
-  static get right(): SDKHandle { return callSDK<SDKHandle>("PHASE_5d69670f0307b385", 613000525112665, undefined, []); }
+  static get right(): SDKHandle { return callSDK<SDKHandle>("PHASE_6be9a005889899ab", 613000525112665, undefined, []); }
   /**
    * class var up: simd_float3 { get }
    * @availability iOS 15.0+
    */
-  static get up(): SDKHandle { return callSDK<SDKHandle>("PHASE_5d69670f0307b385", 4144118973664642, undefined, []); }
+  static get up(): SDKHandle { return callSDK<SDKHandle>("PHASE_6be9a005889899ab", 4144118973664642, undefined, []); }
   /**
    * func addChild(_ child: PHASEObject) throws
    * @availability iOS 15.0+
    */
-  addChild(child: PHASEObject): void { return callSDK<void>("PHASE_5d69670f0307b385", 162130346717601, this, [child]); }
+  addChild(child: PHASEObject): void { return callSDK<void>("PHASE_6be9a005889899ab", 162130346717601, this, [child]); }
   /**
    * init(engine: PHASEEngine)
    * @availability iOS 15.0+
    */
-  static init(engine: PHASEEngine): PHASEObject { return callSDK<PHASEObject>("PHASE_5d69670f0307b385", 1043624322035673, undefined, [engine]); }
+  static init(engine: PHASEEngine): PHASEObject { return callSDK<PHASEObject>("PHASE_6be9a005889899ab", 1043624322035673, undefined, [engine]); }
   /**
    * func removeChild(_ child: PHASEObject)
    * @availability iOS 15.0+
    */
-  removeChild(child: PHASEObject): void { return callSDK<void>("PHASE_5d69670f0307b385", 1104187945237703, this, [child]); }
+  removeChild(child: PHASEObject): void { return callSDK<void>("PHASE_6be9a005889899ab", 1104187945237703, this, [child]); }
   /**
    * func removeChildren()
    * @availability iOS 15.0+
    */
-  removeChildren(): void { return callSDK<void>("PHASE_5d69670f0307b385", 3531461593395573, this, []); }
+  removeChildren(): void { return callSDK<void>("PHASE_6be9a005889899ab", 3531461593395573, this, []); }
   /**
    * var children: [PHASEObject] { get }
    * @availability iOS 15.0+
    */
-  get children(): Array<PHASEObject> { return callSDK<Array<PHASEObject>>("PHASE_5d69670f0307b385", 3869328291019235, this, []); }
+  get children(): Array<PHASEObject> { return callSDK<Array<PHASEObject>>("PHASE_6be9a005889899ab", 3869328291019235, this, []); }
   /**
    * weak var parent: PHASEObject? { get }
    * @availability iOS 15.0+
    */
-  get parent(): (PHASEObject) | null { return callSDK<(PHASEObject) | null>("PHASE_5d69670f0307b385", 1628117507801303, this, []); }
+  get parent(): (PHASEObject) | null { return callSDK<(PHASEObject) | null>("PHASE_6be9a005889899ab", 1628117507801303, this, []); }
   /**
    * var transform: simd_float4x4 { get set }
    * @availability iOS 15.0+
    */
-  get transform(): SDKHandle { return callSDK<SDKHandle>("PHASE_5d69670f0307b385", 3586265893676971, this, []); }
-  set transform(value: SDKHandle) { callSDK<void>("PHASE_5d69670f0307b385", 550926294406882, this, [value]); }
+  get transform(): SDKHandle { return callSDK<SDKHandle>("PHASE_6be9a005889899ab", 3586265893676971, this, []); }
+  set transform(value: SDKHandle) { callSDK<void>("PHASE_6be9a005889899ab", 550926294406882, this, [value]); }
   /**
    * var worldTransform: simd_float4x4 { get set }
    * @availability iOS 15.0+
    */
-  get worldTransform(): SDKHandle { return callSDK<SDKHandle>("PHASE_5d69670f0307b385", 1724510461662061, this, []); }
-  set worldTransform(value: SDKHandle) { callSDK<void>("PHASE_5d69670f0307b385", 3397002699447451, this, [value]); }
+  get worldTransform(): SDKHandle { return callSDK<SDKHandle>("PHASE_6be9a005889899ab", 1724510461662061, this, []); }
+  set worldTransform(value: SDKHandle) { callSDK<void>("PHASE_6be9a005889899ab", 3397002699447451, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "parent": true; "transform": true; "worldTransform": true };
 }
@@ -1121,19 +1121,19 @@ export class PHASEListener extends (PHASEObject as unknown as Omit<typeof PHASEO
    * init(engine: PHASEEngine)
    * @availability iOS 15.0+
    */
-  static init(engine: PHASEEngine): PHASEListener { return callSDK<PHASEListener>("PHASE_5d69670f0307b385", 3956726580325606, undefined, [engine]); }
+  static init(engine: PHASEEngine): PHASEListener { return callSDK<PHASEListener>("PHASE_6be9a005889899ab", 3956726580325606, undefined, [engine]); }
   /**
    * var automaticHeadTrackingFlags: PHASEAutomaticHeadTrackingFlags { get set }
    * @availability iOS 18.0+
    */
-  get automaticHeadTrackingFlags(): PHASEAutomaticHeadTrackingFlags { return callSDK<PHASEAutomaticHeadTrackingFlags>("PHASE_5d69670f0307b385", 554819532820480, this, []); }
-  set automaticHeadTrackingFlags(value: PHASEAutomaticHeadTrackingFlags) { callSDK<void>("PHASE_5d69670f0307b385", 3631193776782931, this, [value]); }
+  get automaticHeadTrackingFlags(): PHASEAutomaticHeadTrackingFlags { return callSDK<PHASEAutomaticHeadTrackingFlags>("PHASE_6be9a005889899ab", 554819532820480, this, []); }
+  set automaticHeadTrackingFlags(value: PHASEAutomaticHeadTrackingFlags) { callSDK<void>("PHASE_6be9a005889899ab", 3631193776782931, this, [value]); }
   /**
    * var gain: Double { get set }
    * @availability iOS 15.0+
    */
-  get gain(): number { return callSDK<number>("PHASE_5d69670f0307b385", 3868864961468216, this, []); }
-  set gain(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 67518105695357, this, [value]); }
+  get gain(): number { return callSDK<number>("PHASE_6be9a005889899ab", 3868864961468216, this, []); }
+  set gain(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 67518105695357, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEListener": true; "c:objc(cs)PHASEObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "parent": true; "transform": true; "worldTransform": true; "automaticHeadTrackingFlags": true; "gain": true };
 }
@@ -1147,7 +1147,7 @@ export class PHASEMetaParameterDefinition extends PHASEDefinition {
    * var value: Any { get }
    * @availability iOS 15.0+
    */
-  get value(): unknown { return callSDK<unknown>("PHASE_5d69670f0307b385", 2608147434225192, this, []); }
+  get value(): unknown { return callSDK<unknown>("PHASE_6be9a005889899ab", 2608147434225192, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEMetaParameterDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "value": true };
 }
@@ -1161,32 +1161,32 @@ export class PHASENumberMetaParameterDefinition extends PHASEMetaParameterDefini
    * convenience init(value: Double)
    * @availability iOS 15.0+
    */
-  static initValue(value: number): PHASENumberMetaParameterDefinition { return callSDK<PHASENumberMetaParameterDefinition>("PHASE_5d69670f0307b385", 4161038564160867, undefined, [value]); }
+  static initValue(value: number): PHASENumberMetaParameterDefinition { return callSDK<PHASENumberMetaParameterDefinition>("PHASE_6be9a005889899ab", 4161038564160867, undefined, [value]); }
   /**
    * convenience init(value: Double, identifier: String)
    * @availability iOS 15.0+
    */
-  static initValueIdentifier(value: number, identifier: string): PHASENumberMetaParameterDefinition { return callSDK<PHASENumberMetaParameterDefinition>("PHASE_5d69670f0307b385", 1402912821351716, undefined, [value, identifier]); }
+  static initValueIdentifier(value: number, identifier: string): PHASENumberMetaParameterDefinition { return callSDK<PHASENumberMetaParameterDefinition>("PHASE_6be9a005889899ab", 1402912821351716, undefined, [value, identifier]); }
   /**
    * init(value: Double, minimum: Double, maximum: Double)
    * @availability iOS 15.0+
    */
-  static initValueMinimumMaximum(value: number, minimum: number, maximum: number): PHASENumberMetaParameterDefinition { return callSDK<PHASENumberMetaParameterDefinition>("PHASE_5d69670f0307b385", 1216522329943563, undefined, [value, minimum, maximum]); }
+  static initValueMinimumMaximum(value: number, minimum: number, maximum: number): PHASENumberMetaParameterDefinition { return callSDK<PHASENumberMetaParameterDefinition>("PHASE_6be9a005889899ab", 1216522329943563, undefined, [value, minimum, maximum]); }
   /**
    * convenience init(value: Double, minimum: Double, maximum: Double, identifier: String)
    * @availability iOS 15.0+
    */
-  static initValueMinimumMaximumIdentifier(value: number, minimum: number, maximum: number, identifier: string): PHASENumberMetaParameterDefinition { return callSDK<PHASENumberMetaParameterDefinition>("PHASE_5d69670f0307b385", 1047147201949331, undefined, [value, minimum, maximum, identifier]); }
+  static initValueMinimumMaximumIdentifier(value: number, minimum: number, maximum: number, identifier: string): PHASENumberMetaParameterDefinition { return callSDK<PHASENumberMetaParameterDefinition>("PHASE_6be9a005889899ab", 1047147201949331, undefined, [value, minimum, maximum, identifier]); }
   /**
    * var maximum: Double { get }
    * @availability iOS 15.0+
    */
-  get maximum(): number { return callSDK<number>("PHASE_5d69670f0307b385", 577227741214285, this, []); }
+  get maximum(): number { return callSDK<number>("PHASE_6be9a005889899ab", 577227741214285, this, []); }
   /**
    * var minimum: Double { get }
    * @availability iOS 15.0+
    */
-  get minimum(): number { return callSDK<number>("PHASE_5d69670f0307b385", 4256754084027978, this, []); }
+  get minimum(): number { return callSDK<number>("PHASE_6be9a005889899ab", 4256754084027978, this, []); }
   declare readonly $type: { "c:objc(cs)PHASENumberMetaParameterDefinition": true; "c:objc(cs)PHASEMetaParameterDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "value": true; "maximum": true; "minimum": true };
 }
@@ -1200,22 +1200,22 @@ export class PHASEMappedMetaParameterDefinition extends PHASENumberMetaParameter
    * init(inputMetaParameterDefinition: PHASENumberMetaParameterDefinition, envelope: PHASEEnvelope)
    * @availability iOS 15.0+
    */
-  static initInputMetaParameterDefinitionEnvelope(inputMetaParameterDefinition: PHASENumberMetaParameterDefinition, envelope: PHASEEnvelope): PHASEMappedMetaParameterDefinition { return callSDK<PHASEMappedMetaParameterDefinition>("PHASE_5d69670f0307b385", 1701624204918533, undefined, [inputMetaParameterDefinition, envelope]); }
+  static initInputMetaParameterDefinitionEnvelope(inputMetaParameterDefinition: PHASENumberMetaParameterDefinition, envelope: PHASEEnvelope): PHASEMappedMetaParameterDefinition { return callSDK<PHASEMappedMetaParameterDefinition>("PHASE_6be9a005889899ab", 1701624204918533, undefined, [inputMetaParameterDefinition, envelope]); }
   /**
    * convenience init(inputMetaParameterDefinition: PHASENumberMetaParameterDefinition, envelope: PHASEEnvelope, identifier: String)
    * @availability iOS 15.0+
    */
-  static initInputMetaParameterDefinitionEnvelopeIdentifier(inputMetaParameterDefinition: PHASENumberMetaParameterDefinition, envelope: PHASEEnvelope, identifier: string): PHASEMappedMetaParameterDefinition { return callSDK<PHASEMappedMetaParameterDefinition>("PHASE_5d69670f0307b385", 1276485966330000, undefined, [inputMetaParameterDefinition, envelope, identifier]); }
+  static initInputMetaParameterDefinitionEnvelopeIdentifier(inputMetaParameterDefinition: PHASENumberMetaParameterDefinition, envelope: PHASEEnvelope, identifier: string): PHASEMappedMetaParameterDefinition { return callSDK<PHASEMappedMetaParameterDefinition>("PHASE_6be9a005889899ab", 1276485966330000, undefined, [inputMetaParameterDefinition, envelope, identifier]); }
   /**
    * var envelope: PHASEEnvelope { get }
    * @availability iOS 15.0+
    */
-  get envelope(): PHASEEnvelope { return callSDK<PHASEEnvelope>("PHASE_5d69670f0307b385", 2512230717155472, this, []); }
+  get envelope(): PHASEEnvelope { return callSDK<PHASEEnvelope>("PHASE_6be9a005889899ab", 2512230717155472, this, []); }
   /**
    * var inputMetaParameterDefinition: PHASENumberMetaParameterDefinition { get }
    * @availability iOS 15.0+
    */
-  get inputMetaParameterDefinition(): PHASENumberMetaParameterDefinition { return callSDK<PHASENumberMetaParameterDefinition>("PHASE_5d69670f0307b385", 1292599663914255, this, []); }
+  get inputMetaParameterDefinition(): PHASENumberMetaParameterDefinition { return callSDK<PHASENumberMetaParameterDefinition>("PHASE_6be9a005889899ab", 1292599663914255, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEMappedMetaParameterDefinition": true; "c:objc(cs)PHASENumberMetaParameterDefinition": true; "c:objc(cs)PHASEMetaParameterDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "value": true; "maximum": true; "minimum": true; "envelope": true; "inputMetaParameterDefinition": true };
 }
@@ -1229,7 +1229,7 @@ export class PHASEMaterial extends SDKHandle {
    * init(engine: PHASEEngine, preset: PHASEMaterialPreset)
    * @availability iOS 15.0+
    */
-  static init(engine: PHASEEngine, preset: PHASEMaterialPreset): PHASEMaterial { return callSDK<PHASEMaterial>("PHASE_5d69670f0307b385", 2814563954663517, undefined, [engine, preset]); }
+  static init(engine: PHASEEngine, preset: PHASEMaterialPreset): PHASEMaterial { return callSDK<PHASEMaterial>("PHASE_6be9a005889899ab", 2814563954663517, undefined, [engine, preset]); }
   declare readonly $type: { "c:objc(cs)PHASEMaterial": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1238,7 +1238,7 @@ export type PHASEMaterialPreset = "cardboard" | "glass" | "brick" | "concrete" |
 
 export const PHASEMaterialPreset = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASEMaterialPreset) | null { return callSDK<(PHASEMaterialPreset) | null>("PHASE_5d69670f0307b385", 2732529112963711, undefined, [rawValue]); }
+  init(rawValue: number): (PHASEMaterialPreset) | null { return callSDK<(PHASEMaterialPreset) | null>("PHASE_6be9a005889899ab", 2732529112963711, undefined, [rawValue]); }
 };
 
 /**
@@ -1250,7 +1250,7 @@ export class PHASEMedium extends SDKHandle {
    * init(engine: PHASEEngine, preset: PHASEMedium.Preset)
    * @availability iOS 15.0+
    */
-  static init(engine: PHASEEngine, preset: PHASEMedium_Preset): PHASEMedium { return callSDK<PHASEMedium>("PHASE_5d69670f0307b385", 1016915824619065, undefined, [engine, preset]); }
+  static init(engine: PHASEEngine, preset: PHASEMedium_Preset): PHASEMedium { return callSDK<PHASEMedium>("PHASE_6be9a005889899ab", 1016915824619065, undefined, [engine, preset]); }
   declare readonly $type: { "c:objc(cs)PHASEMedium": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1259,7 +1259,7 @@ export type PHASEMedium_Preset = "air";
 
 export const PHASEMedium_Preset = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASEMedium_Preset) | null { return callSDK<(PHASEMedium_Preset) | null>("PHASE_5d69670f0307b385", 3362448037708337, undefined, [rawValue]); }
+  init(rawValue: number): (PHASEMedium_Preset) | null { return callSDK<(PHASEMedium_Preset) | null>("PHASE_6be9a005889899ab", 3362448037708337, undefined, [rawValue]); }
 };
 
 /**
@@ -1271,13 +1271,13 @@ export class PHASEMetaParameter extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 15.0+
    */
-  get identifier(): string { return callSDK<string>("PHASE_5d69670f0307b385", 976428749776962, this, []); }
+  get identifier(): string { return callSDK<string>("PHASE_6be9a005889899ab", 976428749776962, this, []); }
   /**
    * var value: Any { get set }
    * @availability iOS 15.0+
    */
-  get value(): unknown { return callSDK<unknown>("PHASE_5d69670f0307b385", 1135195317516103, this, []); }
-  set value(value: unknown) { callSDK<void>("PHASE_5d69670f0307b385", 2261583775014339, this, [value]); }
+  get value(): unknown { return callSDK<unknown>("PHASE_6be9a005889899ab", 1135195317516103, this, []); }
+  set value(value: unknown) { callSDK<void>("PHASE_6be9a005889899ab", 2261583775014339, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEMetaParameter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "value": true };
 }
@@ -1291,17 +1291,17 @@ export class PHASEMixer extends SDKHandle {
    * var gain: Double { get }
    * @availability iOS 15.0+
    */
-  get gain(): number { return callSDK<number>("PHASE_5d69670f0307b385", 1379212377651079, this, []); }
+  get gain(): number { return callSDK<number>("PHASE_6be9a005889899ab", 1379212377651079, this, []); }
   /**
    * var gainMetaParameter: PHASEMetaParameter? { get }
    * @availability iOS 15.0+
    */
-  get gainMetaParameter(): (PHASEMetaParameter) | null { return callSDK<(PHASEMetaParameter) | null>("PHASE_5d69670f0307b385", 423309400190136, this, []); }
+  get gainMetaParameter(): (PHASEMetaParameter) | null { return callSDK<(PHASEMetaParameter) | null>("PHASE_6be9a005889899ab", 423309400190136, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 15.0+
    */
-  get identifier(): string { return callSDK<string>("PHASE_5d69670f0307b385", 362684821768897, this, []); }
+  get identifier(): string { return callSDK<string>("PHASE_6be9a005889899ab", 362684821768897, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEMixer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "gain": true; "gainMetaParameter": true; "identifier": true };
 }
@@ -1315,14 +1315,14 @@ export class PHASEMixerParameters extends SDKHandle {
    * func addAmbientMixerParameters(identifier: String, listener: PHASEListener)
    * @availability iOS 15.0+
    */
-  addAmbientMixerParameters(identifier: string, listener: PHASEListener): void { return callSDK<void>("PHASE_5d69670f0307b385", 1946876421024034, this, [identifier, listener]); }
+  addAmbientMixerParameters(identifier: string, listener: PHASEListener): void { return callSDK<void>("PHASE_6be9a005889899ab", 1946876421024034, this, [identifier, listener]); }
   /**
    * func addSpatialMixerParameters(identifier: String, source: PHASESource, listener: PHASEListener)
    * @availability iOS 15.0+
    */
-  addSpatialMixerParameters(identifier: string, source: PHASESource, listener: PHASEListener): void { return callSDK<void>("PHASE_5d69670f0307b385", 1320097852786875, this, [identifier, source, listener]); }
+  addSpatialMixerParameters(identifier: string, source: PHASESource, listener: PHASEListener): void { return callSDK<void>("PHASE_6be9a005889899ab", 1320097852786875, this, [identifier, source, listener]); }
   /** init() */
-  static init(): PHASEMixerParameters { return callSDK<PHASEMixerParameters>("PHASE_5d69670f0307b385", 2496066519647977, undefined, []); }
+  static init(): PHASEMixerParameters { return callSDK<PHASEMixerParameters>("PHASE_6be9a005889899ab", 2496066519647977, undefined, []); }
   declare readonly $type: { "c:objc(cs)PHASEMixerParameters": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1331,7 +1331,7 @@ export type PHASENormalizationMode = "none" | "dynamic";
 
 export const PHASENormalizationMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASENormalizationMode) | null { return callSDK<(PHASENormalizationMode) | null>("PHASE_5d69670f0307b385", 1399610492448611, undefined, [rawValue]); }
+  init(rawValue: number): (PHASENormalizationMode) | null { return callSDK<(PHASENormalizationMode) | null>("PHASE_6be9a005889899ab", 1399610492448611, undefined, [rawValue]); }
 };
 
 /**
@@ -1343,17 +1343,17 @@ export class PHASENumberMetaParameter extends PHASEMetaParameter {
    * func fade(value: Double, duration: TimeInterval)
    * @availability iOS 15.0+
    */
-  fade(value: number, duration: number): void { return callSDK<void>("PHASE_5d69670f0307b385", 1393168049728998, this, [value, duration]); }
+  fade(value: number, duration: number): void { return callSDK<void>("PHASE_6be9a005889899ab", 1393168049728998, this, [value, duration]); }
   /**
    * var maximum: Double { get }
    * @availability iOS 15.0+
    */
-  get maximum(): number { return callSDK<number>("PHASE_5d69670f0307b385", 118686693582975, this, []); }
+  get maximum(): number { return callSDK<number>("PHASE_6be9a005889899ab", 118686693582975, this, []); }
   /**
    * var minimum: Double { get }
    * @availability iOS 15.0+
    */
-  get minimum(): number { return callSDK<number>("PHASE_5d69670f0307b385", 3141844578492075, this, []); }
+  get minimum(): number { return callSDK<number>("PHASE_6be9a005889899ab", 3141844578492075, this, []); }
   declare readonly $type: { "c:objc(cs)PHASENumberMetaParameter": true; "c:objc(cs)PHASEMetaParameter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "value": true; "maximum": true; "minimum": true };
 }
@@ -1367,19 +1367,19 @@ export class PHASENumericPair extends SDKHandle {
    * init(firstValue first: Double, secondValue second: Double)
    * @availability iOS 15.0+
    */
-  static init(first: number, second: number): PHASENumericPair { return callSDK<PHASENumericPair>("PHASE_5d69670f0307b385", 3150766496071200, undefined, [first, second]); }
+  static init(first: number, second: number): PHASENumericPair { return callSDK<PHASENumericPair>("PHASE_6be9a005889899ab", 3150766496071200, undefined, [first, second]); }
   /**
    * var first: Double { get set }
    * @availability iOS 15.0+
    */
-  get first(): number { return callSDK<number>("PHASE_5d69670f0307b385", 550647922904570, this, []); }
-  set first(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 4438263703356717, this, [value]); }
+  get first(): number { return callSDK<number>("PHASE_6be9a005889899ab", 550647922904570, this, []); }
+  set first(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 4438263703356717, this, [value]); }
   /**
    * var second: Double { get set }
    * @availability iOS 15.0+
    */
-  get second(): number { return callSDK<number>("PHASE_5d69670f0307b385", 2119178178922956, this, []); }
-  set second(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 579232208144578, this, [value]); }
+  get second(): number { return callSDK<number>("PHASE_6be9a005889899ab", 2119178178922956, this, []); }
+  set second(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 579232208144578, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASENumericPair": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "first": true; "second": true };
 }
@@ -1393,12 +1393,12 @@ export class PHASEOccluder extends (PHASEObject as unknown as Omit<typeof PHASEO
    * init(engine: PHASEEngine, shapes: [PHASEShape])
    * @availability iOS 15.0+
    */
-  static init(engine: PHASEEngine, shapes: Array<PHASEShape>): PHASEOccluder { return callSDK<PHASEOccluder>("PHASE_5d69670f0307b385", 2453826442287276, undefined, [engine, shapes]); }
+  static init(engine: PHASEEngine, shapes: Array<PHASEShape>): PHASEOccluder { return callSDK<PHASEOccluder>("PHASE_6be9a005889899ab", 2453826442287276, undefined, [engine, shapes]); }
   /**
    * var shapes: [PHASEShape] { get }
    * @availability iOS 15.0+
    */
-  get shapes(): Array<PHASEShape> { return callSDK<Array<PHASEShape>>("PHASE_5d69670f0307b385", 577033821428593, this, []); }
+  get shapes(): Array<PHASEShape> { return callSDK<Array<PHASEShape>>("PHASE_6be9a005889899ab", 577033821428593, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEOccluder": true; "c:objc(cs)PHASEObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "parent": true; "transform": true; "worldTransform": true; "shapes": true };
 }
@@ -1408,7 +1408,7 @@ export type PHASEPlaybackMode = "oneShot" | "looping";
 
 export const PHASEPlaybackMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASEPlaybackMode) | null { return callSDK<(PHASEPlaybackMode) | null>("PHASE_5d69670f0307b385", 2643555366152025, undefined, [rawValue]); }
+  init(rawValue: number): (PHASEPlaybackMode) | null { return callSDK<(PHASEPlaybackMode) | null>("PHASE_6be9a005889899ab", 2643555366152025, undefined, [rawValue]); }
 };
 
 /**
@@ -1420,22 +1420,22 @@ export class PHASEStreamNode extends SDKHandle {
    * var format: AVAudioFormat { get }
    * @availability iOS 18.0+
    */
-  get format(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("PHASE_5d69670f0307b385", 2564477940329081, this, []); }
+  get format(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("PHASE_6be9a005889899ab", 2564477940329081, this, []); }
   /**
    * var gainMetaParameter: PHASENumberMetaParameter? { get }
    * @availability iOS 18.0+
    */
-  get gainMetaParameter(): $SDK15 { return callSDK<$SDK15>("PHASE_5d69670f0307b385", 2859640841911701, this, []); }
+  get gainMetaParameter(): $SDK15 { return callSDK<$SDK15>("PHASE_6be9a005889899ab", 2859640841911701, this, []); }
   /**
    * var mixer: PHASEMixer { get }
    * @availability iOS 18.0+
    */
-  get mixer(): PHASEMixer { return callSDK<PHASEMixer>("PHASE_5d69670f0307b385", 2271895849279002, this, []); }
+  get mixer(): PHASEMixer { return callSDK<PHASEMixer>("PHASE_6be9a005889899ab", 2271895849279002, this, []); }
   /**
    * var rateMetaParameter: PHASENumberMetaParameter? { get }
    * @availability iOS 18.0+
    */
-  get rateMetaParameter(): $SDK15 { return callSDK<$SDK15>("PHASE_5d69670f0307b385", 3091194711018688, this, []); }
+  get rateMetaParameter(): $SDK15 { return callSDK<$SDK15>("PHASE_6be9a005889899ab", 3091194711018688, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEStreamNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "format": true; "gainMetaParameter": true; "mixer": true; "rateMetaParameter": true };
 }
@@ -1449,7 +1449,7 @@ export class PHASEPullStreamNode extends PHASEStreamNode {
    * var renderHandler: PHASEPullStreamRenderHandler { get set }
    * @availability iOS 18.0+
    */
-  get renderHandler(): $SDK16 { return callSDK<$SDK16>("PHASE_5d69670f0307b385", 2480326597806289, this, []); }
+  get renderHandler(): $SDK16 { return callSDK<$SDK16>("PHASE_6be9a005889899ab", 2480326597806289, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEPullStreamNode": true; "c:objc(cs)PHASEStreamNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "format": true; "gainMetaParameter": true; "mixer": true; "rateMetaParameter": true };
 }
@@ -1463,23 +1463,23 @@ export class PHASEPullStreamNodeDefinition extends PHASEGeneratorNodeDefinition 
    * init(mixerDefinition: PHASEMixerDefinition, format: AVAudioFormat)
    * @availability iOS 18.0+
    */
-  static initMixerDefinitionFormat(mixerDefinition: PHASEMixerDefinition, format: _AVFAudio_AVAudioFormat): PHASEPullStreamNodeDefinition { return callSDK<PHASEPullStreamNodeDefinition>("PHASE_5d69670f0307b385", 4498999971066280, undefined, [mixerDefinition, format]); }
+  static initMixerDefinitionFormat(mixerDefinition: PHASEMixerDefinition, format: _AVFAudio_AVAudioFormat): PHASEPullStreamNodeDefinition { return callSDK<PHASEPullStreamNodeDefinition>("PHASE_6be9a005889899ab", 4498999971066280, undefined, [mixerDefinition, format]); }
   /**
    * convenience init(mixerDefinition: PHASEMixerDefinition, format: AVAudioFormat, identifier: String)
    * @availability iOS 18.0+
    */
-  static initMixerDefinitionFormatIdentifier(mixerDefinition: PHASEMixerDefinition, format: _AVFAudio_AVAudioFormat, identifier: string): PHASEPullStreamNodeDefinition { return callSDK<PHASEPullStreamNodeDefinition>("PHASE_5d69670f0307b385", 4490056595747296, undefined, [mixerDefinition, format, identifier]); }
+  static initMixerDefinitionFormatIdentifier(mixerDefinition: PHASEMixerDefinition, format: _AVFAudio_AVAudioFormat, identifier: string): PHASEPullStreamNodeDefinition { return callSDK<PHASEPullStreamNodeDefinition>("PHASE_6be9a005889899ab", 4490056595747296, undefined, [mixerDefinition, format, identifier]); }
   /**
    * var format: AVAudioFormat { get }
    * @availability iOS 18.0+
    */
-  get format(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("PHASE_5d69670f0307b385", 4348264748740000, this, []); }
+  get format(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("PHASE_6be9a005889899ab", 4348264748740000, this, []); }
   /**
    * var normalize: Bool { get set }
    * @availability iOS 18.0+
    */
-  get normalize(): boolean { return callSDK<boolean>("PHASE_5d69670f0307b385", 401161879790140, this, []); }
-  set normalize(value: boolean) { callSDK<void>("PHASE_5d69670f0307b385", 4184098852479335, this, [value]); }
+  get normalize(): boolean { return callSDK<boolean>("PHASE_6be9a005889899ab", 401161879790140, this, []); }
+  set normalize(value: boolean) { callSDK<void>("PHASE_6be9a005889899ab", 4184098852479335, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEPullStreamNodeDefinition": true; "c:objc(cs)PHASEGeneratorNodeDefinition": true; "c:objc(cs)PHASESoundEventNodeDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "children": true; "calibrationMode": true; "gainMetaParameterDefinition": true; "group": true; "level": true; "mixerDefinition": true; "rate": true; "rateMetaParameterDefinition": true; "format": true; "normalize": true };
 }
@@ -1492,15 +1492,15 @@ export type PHASEPushStreamBufferOptions = Array<"default" | "loops" | "interrup
 
 export const PHASEPushStreamBufferOptions = {
   /** static var `default`: PHASEPushStreamBufferOptions { get } */
-  get default(): PHASEPushStreamBufferOptions { return callSDK<PHASEPushStreamBufferOptions>("PHASE_5d69670f0307b385", 3727491586656142, undefined, []); },
+  get default(): PHASEPushStreamBufferOptions { return callSDK<PHASEPushStreamBufferOptions>("PHASE_6be9a005889899ab", 3727491586656142, undefined, []); },
   /** static var interrupts: PHASEPushStreamBufferOptions { get } */
-  get interrupts(): PHASEPushStreamBufferOptions { return callSDK<PHASEPushStreamBufferOptions>("PHASE_5d69670f0307b385", 3624722685527542, undefined, []); },
+  get interrupts(): PHASEPushStreamBufferOptions { return callSDK<PHASEPushStreamBufferOptions>("PHASE_6be9a005889899ab", 3624722685527542, undefined, []); },
   /** static var interruptsAtLoop: PHASEPushStreamBufferOptions { get } */
-  get interruptsAtLoop(): PHASEPushStreamBufferOptions { return callSDK<PHASEPushStreamBufferOptions>("PHASE_5d69670f0307b385", 1942615163771617, undefined, []); },
+  get interruptsAtLoop(): PHASEPushStreamBufferOptions { return callSDK<PHASEPushStreamBufferOptions>("PHASE_6be9a005889899ab", 1942615163771617, undefined, []); },
   /** static var loops: PHASEPushStreamBufferOptions { get } */
-  get loops(): PHASEPushStreamBufferOptions { return callSDK<PHASEPushStreamBufferOptions>("PHASE_5d69670f0307b385", 682102915730974, undefined, []); },
+  get loops(): PHASEPushStreamBufferOptions { return callSDK<PHASEPushStreamBufferOptions>("PHASE_6be9a005889899ab", 682102915730974, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): PHASEPushStreamBufferOptions { return callSDK<PHASEPushStreamBufferOptions>("PHASE_5d69670f0307b385", 3659921480236877, undefined, [rawValue]); }
+  init(rawValue: number): PHASEPushStreamBufferOptions { return callSDK<PHASEPushStreamBufferOptions>("PHASE_6be9a005889899ab", 3659921480236877, undefined, [rawValue]); }
 };
 
 /** enum PHASEPushStreamCompletionCallbackCondition */
@@ -1508,7 +1508,7 @@ export type PHASEPushStreamCompletionCallbackCondition = "dataRendered";
 
 export const PHASEPushStreamCompletionCallbackCondition = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASEPushStreamCompletionCallbackCondition) | null { return callSDK<(PHASEPushStreamCompletionCallbackCondition) | null>("PHASE_5d69670f0307b385", 2037575425002690, undefined, [rawValue]); }
+  init(rawValue: number): (PHASEPushStreamCompletionCallbackCondition) | null { return callSDK<(PHASEPushStreamCompletionCallbackCondition) | null>("PHASE_6be9a005889899ab", 2037575425002690, undefined, [rawValue]); }
 };
 
 /**
@@ -1520,42 +1520,42 @@ export class PHASEPushStreamNode extends (PHASEStreamNode as unknown as Omit<typ
    * func scheduleBuffer(buffer: AVAudioPCMBuffer)
    * @availability iOS 15.0+
    */
-  scheduleBufferBuffer(buffer: _AVFAudio_AVAudioPCMBuffer): void { return callSDK<void>("PHASE_5d69670f0307b385", 1378161935103799, this, [buffer]); }
+  scheduleBufferBuffer(buffer: _AVFAudio_AVAudioPCMBuffer): void { return callSDK<void>("PHASE_6be9a005889899ab", 1378161935103799, this, [buffer]); }
   /**
    * func scheduleBuffer(buffer: AVAudioPCMBuffer, time when: AVAudioTime?, options: PHASEPushStreamBufferOptions = [])
    * @availability iOS 15.0+
    */
-  scheduleBufferBufferTimeOptions(buffer: _AVFAudio_AVAudioPCMBuffer, when?: $SDK11, options?: PHASEPushStreamBufferOptions): void { return callSDK<void>("PHASE_5d69670f0307b385", 794638476526839, this, [buffer, when, options]); }
+  scheduleBufferBufferTimeOptions(buffer: _AVFAudio_AVAudioPCMBuffer, when?: $SDK11, options?: PHASEPushStreamBufferOptions): void { return callSDK<void>("PHASE_6be9a005889899ab", 794638476526839, this, [buffer, when, options]); }
   /**
    * func scheduleBuffer(buffer: AVAudioPCMBuffer, time when: AVAudioTime?, options: PHASEPushStreamBufferOptions = [], completionCallbackType: PHASEPushStreamCompletionCallbackCondition) async -> PHASEPushStreamCompletionCallbackCondition
    * @availability iOS 15.0+
    */
-  scheduleBufferBufferTimeOptionsCompletionCallbackTypeCompletionHandler(buffer: _AVFAudio_AVAudioPCMBuffer, when: $SDK11, options: PHASEPushStreamBufferOptions, completionCallbackType: PHASEPushStreamCompletionCallbackCondition, completionHandler: $SDK17): void { return callSDK<void>("PHASE_5d69670f0307b385", 1871592934791306, this, [buffer, when, options, completionCallbackType, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  scheduleBufferBufferTimeOptionsCompletionCallbackTypeCompletionHandler(buffer: _AVFAudio_AVAudioPCMBuffer, when: $SDK11, options: PHASEPushStreamBufferOptions, completionCallbackType: PHASEPushStreamCompletionCallbackCondition, completionHandler: $SDK17): void { return callSDK<void>("PHASE_6be9a005889899ab", 1871592934791306, this, [buffer, when, options, completionCallbackType, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func scheduleBuffer(buffer: AVAudioPCMBuffer, completionCallbackType: PHASEPushStreamCompletionCallbackCondition) async -> PHASEPushStreamCompletionCallbackCondition
    * @availability iOS 15.0+
    */
-  scheduleBufferBufferCompletionCallbackTypeCompletionHandler(buffer: _AVFAudio_AVAudioPCMBuffer, completionCallbackType: PHASEPushStreamCompletionCallbackCondition, completionHandler: $SDK17): void { return callSDK<void>("PHASE_5d69670f0307b385", 537683731205307, this, [buffer, completionCallbackType, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  scheduleBufferBufferCompletionCallbackTypeCompletionHandler(buffer: _AVFAudio_AVAudioPCMBuffer, completionCallbackType: PHASEPushStreamCompletionCallbackCondition, completionHandler: $SDK17): void { return callSDK<void>("PHASE_6be9a005889899ab", 537683731205307, this, [buffer, completionCallbackType, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var format: AVAudioFormat { get }
    * @availability iOS 15.0+
    */
-  get format(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("PHASE_5d69670f0307b385", 2357395873278745, this, []); }
+  get format(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("PHASE_6be9a005889899ab", 2357395873278745, this, []); }
   /**
    * var gainMetaParameter: PHASENumberMetaParameter? { get }
    * @availability iOS 15.0+
    */
-  get gainMetaParameter(): $SDK15 { return callSDK<$SDK15>("PHASE_5d69670f0307b385", 2542758198567303, this, []); }
+  get gainMetaParameter(): $SDK15 { return callSDK<$SDK15>("PHASE_6be9a005889899ab", 2542758198567303, this, []); }
   /**
    * var mixer: PHASEMixer { get }
    * @availability iOS 15.0+
    */
-  get mixer(): PHASEMixer { return callSDK<PHASEMixer>("PHASE_5d69670f0307b385", 1978720850758120, this, []); }
+  get mixer(): PHASEMixer { return callSDK<PHASEMixer>("PHASE_6be9a005889899ab", 1978720850758120, this, []); }
   /**
    * var rateMetaParameter: PHASENumberMetaParameter? { get }
    * @availability iOS 15.0+
    */
-  get rateMetaParameter(): $SDK15 { return callSDK<$SDK15>("PHASE_5d69670f0307b385", 3631044714759264, this, []); }
+  get rateMetaParameter(): $SDK15 { return callSDK<$SDK15>("PHASE_6be9a005889899ab", 3631044714759264, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEPushStreamNode": true; "c:objc(cs)PHASEStreamNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "format": true; "gainMetaParameter": true; "mixer": true; "rateMetaParameter": true };
 }
@@ -1569,23 +1569,23 @@ export class PHASEPushStreamNodeDefinition extends PHASEGeneratorNodeDefinition 
    * init(mixerDefinition: PHASEMixerDefinition, format: AVAudioFormat)
    * @availability iOS 15.0+
    */
-  static initMixerDefinitionFormat(mixerDefinition: PHASEMixerDefinition, format: _AVFAudio_AVAudioFormat): PHASEPushStreamNodeDefinition { return callSDK<PHASEPushStreamNodeDefinition>("PHASE_5d69670f0307b385", 3833362472927964, undefined, [mixerDefinition, format]); }
+  static initMixerDefinitionFormat(mixerDefinition: PHASEMixerDefinition, format: _AVFAudio_AVAudioFormat): PHASEPushStreamNodeDefinition { return callSDK<PHASEPushStreamNodeDefinition>("PHASE_6be9a005889899ab", 3833362472927964, undefined, [mixerDefinition, format]); }
   /**
    * convenience init(mixerDefinition: PHASEMixerDefinition, format: AVAudioFormat, identifier: String)
    * @availability iOS 15.0+
    */
-  static initMixerDefinitionFormatIdentifier(mixerDefinition: PHASEMixerDefinition, format: _AVFAudio_AVAudioFormat, identifier: string): PHASEPushStreamNodeDefinition { return callSDK<PHASEPushStreamNodeDefinition>("PHASE_5d69670f0307b385", 4364640891733495, undefined, [mixerDefinition, format, identifier]); }
+  static initMixerDefinitionFormatIdentifier(mixerDefinition: PHASEMixerDefinition, format: _AVFAudio_AVAudioFormat, identifier: string): PHASEPushStreamNodeDefinition { return callSDK<PHASEPushStreamNodeDefinition>("PHASE_6be9a005889899ab", 4364640891733495, undefined, [mixerDefinition, format, identifier]); }
   /**
    * var format: AVAudioFormat { get }
    * @availability iOS 15.0+
    */
-  get format(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("PHASE_5d69670f0307b385", 2724358266650160, this, []); }
+  get format(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("PHASE_6be9a005889899ab", 2724358266650160, this, []); }
   /**
    * var normalize: Bool { get set }
    * @availability iOS 15.0+
    */
-  get normalize(): boolean { return callSDK<boolean>("PHASE_5d69670f0307b385", 1941373989748555, this, []); }
-  set normalize(value: boolean) { callSDK<void>("PHASE_5d69670f0307b385", 4352501733958622, this, [value]); }
+  get normalize(): boolean { return callSDK<boolean>("PHASE_6be9a005889899ab", 1941373989748555, this, []); }
+  set normalize(value: boolean) { callSDK<void>("PHASE_6be9a005889899ab", 4352501733958622, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEPushStreamNodeDefinition": true; "c:objc(cs)PHASEGeneratorNodeDefinition": true; "c:objc(cs)PHASESoundEventNodeDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "children": true; "calibrationMode": true; "gainMetaParameterDefinition": true; "group": true; "level": true; "mixerDefinition": true; "rate": true; "rateMetaParameterDefinition": true; "format": true; "normalize": true };
 }
@@ -1599,23 +1599,23 @@ export class PHASERandomNodeDefinition extends PHASESoundEventNodeDefinition {
    * func addSubtree(_ subtree: PHASESoundEventNodeDefinition, weight: NSNumber)
    * @availability iOS 15.0+
    */
-  addSubtree(subtree: PHASESoundEventNodeDefinition, weight: _Foundation_NSNumber): void { return callSDK<void>("PHASE_5d69670f0307b385", 1649377988162901, this, [subtree, weight]); }
+  addSubtree(subtree: PHASESoundEventNodeDefinition, weight: _Foundation_NSNumber): void { return callSDK<void>("PHASE_6be9a005889899ab", 1649377988162901, this, [subtree, weight]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): PHASERandomNodeDefinition { return callSDK<PHASERandomNodeDefinition>("PHASE_5d69670f0307b385", 3332046052499525, undefined, []); }
+  static init(): PHASERandomNodeDefinition { return callSDK<PHASERandomNodeDefinition>("PHASE_6be9a005889899ab", 3332046052499525, undefined, []); }
   /**
    * convenience init(identifier: String)
    * @availability iOS 15.0+
    */
-  static initIdentifier(identifier: string): PHASERandomNodeDefinition { return callSDK<PHASERandomNodeDefinition>("PHASE_5d69670f0307b385", 3131400318900182, undefined, [identifier]); }
+  static initIdentifier(identifier: string): PHASERandomNodeDefinition { return callSDK<PHASERandomNodeDefinition>("PHASE_6be9a005889899ab", 3131400318900182, undefined, [identifier]); }
   /**
    * var uniqueSelectionQueueLength: Int { get set }
    * @availability iOS 15.0+
    */
-  get uniqueSelectionQueueLength(): number { return callSDK<number>("PHASE_5d69670f0307b385", 4418503062390312, this, []); }
-  set uniqueSelectionQueueLength(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 72081536962557, this, [value]); }
+  get uniqueSelectionQueueLength(): number { return callSDK<number>("PHASE_6be9a005889899ab", 4418503062390312, this, []); }
+  set uniqueSelectionQueueLength(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 72081536962557, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASERandomNodeDefinition": true; "c:objc(cs)PHASESoundEventNodeDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "children": true; "uniqueSelectionQueueLength": true };
 }
@@ -1625,7 +1625,7 @@ export type PHASEReverbPreset = "none" | "smallRoom" | "mediumRoom" | "largeRoom
 
 export const PHASEReverbPreset = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASEReverbPreset) | null { return callSDK<(PHASEReverbPreset) | null>("PHASE_5d69670f0307b385", 4245191249530172, undefined, [rawValue]); }
+  init(rawValue: number): (PHASEReverbPreset) | null { return callSDK<(PHASEReverbPreset) | null>("PHASE_6be9a005889899ab", 4245191249530172, undefined, [rawValue]); }
 };
 
 /**
@@ -1637,29 +1637,29 @@ export class PHASESamplerNodeDefinition extends PHASEGeneratorNodeDefinition {
    * init(soundAssetIdentifier: String, mixerDefinition: PHASEMixerDefinition)
    * @availability iOS 15.0+
    */
-  static initSoundAssetIdentifierMixerDefinition(soundAssetIdentifier: string, mixerDefinition: PHASEMixerDefinition): PHASESamplerNodeDefinition { return callSDK<PHASESamplerNodeDefinition>("PHASE_5d69670f0307b385", 92992925919725, undefined, [soundAssetIdentifier, mixerDefinition]); }
+  static initSoundAssetIdentifierMixerDefinition(soundAssetIdentifier: string, mixerDefinition: PHASEMixerDefinition): PHASESamplerNodeDefinition { return callSDK<PHASESamplerNodeDefinition>("PHASE_6be9a005889899ab", 92992925919725, undefined, [soundAssetIdentifier, mixerDefinition]); }
   /**
    * convenience init(soundAssetIdentifier: String, mixerDefinition: PHASEMixerDefinition, identifier: String)
    * @availability iOS 15.0+
    */
-  static initSoundAssetIdentifierMixerDefinitionIdentifier(soundAssetIdentifier: string, mixerDefinition: PHASEMixerDefinition, identifier: string): PHASESamplerNodeDefinition { return callSDK<PHASESamplerNodeDefinition>("PHASE_5d69670f0307b385", 3972760830506595, undefined, [soundAssetIdentifier, mixerDefinition, identifier]); }
+  static initSoundAssetIdentifierMixerDefinitionIdentifier(soundAssetIdentifier: string, mixerDefinition: PHASEMixerDefinition, identifier: string): PHASESamplerNodeDefinition { return callSDK<PHASESamplerNodeDefinition>("PHASE_6be9a005889899ab", 3972760830506595, undefined, [soundAssetIdentifier, mixerDefinition, identifier]); }
   /**
    * var assetIdentifier: String { get }
    * @availability iOS 15.0+
    */
-  get assetIdentifier(): string { return callSDK<string>("PHASE_5d69670f0307b385", 1373155449521462, this, []); }
+  get assetIdentifier(): string { return callSDK<string>("PHASE_6be9a005889899ab", 1373155449521462, this, []); }
   /**
    * var cullOption: PHASECullOption { get set }
    * @availability iOS 15.0+
    */
-  get cullOption(): PHASECullOption { return callSDK<PHASECullOption>("PHASE_5d69670f0307b385", 2221094680686782, this, []); }
-  set cullOption(value: PHASECullOption) { callSDK<void>("PHASE_5d69670f0307b385", 4496993764159595, this, [value]); }
+  get cullOption(): PHASECullOption { return callSDK<PHASECullOption>("PHASE_6be9a005889899ab", 2221094680686782, this, []); }
+  set cullOption(value: PHASECullOption) { callSDK<void>("PHASE_6be9a005889899ab", 4496993764159595, this, [value]); }
   /**
    * var playbackMode: PHASEPlaybackMode { get set }
    * @availability iOS 15.0+
    */
-  get playbackMode(): PHASEPlaybackMode { return callSDK<PHASEPlaybackMode>("PHASE_5d69670f0307b385", 2522287401128371, this, []); }
-  set playbackMode(value: PHASEPlaybackMode) { callSDK<void>("PHASE_5d69670f0307b385", 2384135160046386, this, [value]); }
+  get playbackMode(): PHASEPlaybackMode { return callSDK<PHASEPlaybackMode>("PHASE_6be9a005889899ab", 2522287401128371, this, []); }
+  set playbackMode(value: PHASEPlaybackMode) { callSDK<void>("PHASE_6be9a005889899ab", 2384135160046386, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASESamplerNodeDefinition": true; "c:objc(cs)PHASEGeneratorNodeDefinition": true; "c:objc(cs)PHASESoundEventNodeDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "children": true; "calibrationMode": true; "gainMetaParameterDefinition": true; "group": true; "level": true; "mixerDefinition": true; "rate": true; "rateMetaParameterDefinition": true; "assetIdentifier": true; "cullOption": true; "playbackMode": true };
 }
@@ -1673,17 +1673,17 @@ export class PHASEShape extends SDKHandle {
    * init(engine: PHASEEngine, mesh: MDLMesh)
    * @availability iOS 15.0+
    */
-  static initEngineMesh(engine: PHASEEngine, mesh: _ModelIO_MDLMesh): PHASEShape { return callSDK<PHASEShape>("PHASE_5d69670f0307b385", 1033256333339661, undefined, [engine, mesh]); }
+  static initEngineMesh(engine: PHASEEngine, mesh: _ModelIO_MDLMesh): PHASEShape { return callSDK<PHASEShape>("PHASE_6be9a005889899ab", 1033256333339661, undefined, [engine, mesh]); }
   /**
    * convenience init(engine: PHASEEngine, mesh: MDLMesh, materials: [PHASEMaterial])
    * @availability iOS 15.0+
    */
-  static initEngineMeshMaterials(engine: PHASEEngine, mesh: _ModelIO_MDLMesh, materials: Array<PHASEMaterial>): PHASEShape { return callSDK<PHASEShape>("PHASE_5d69670f0307b385", 1828532611612490, undefined, [engine, mesh, materials]); }
+  static initEngineMeshMaterials(engine: PHASEEngine, mesh: _ModelIO_MDLMesh, materials: Array<PHASEMaterial>): PHASEShape { return callSDK<PHASEShape>("PHASE_6be9a005889899ab", 1828532611612490, undefined, [engine, mesh, materials]); }
   /**
    * var elements: [PHASEShape.Element] { get }
    * @availability iOS 15.0+
    */
-  get elements(): Array<PHASEShape_Element> { return callSDK<Array<PHASEShape_Element>>("PHASE_5d69670f0307b385", 3437658333807676, this, []); }
+  get elements(): Array<PHASEShape_Element> { return callSDK<Array<PHASEShape_Element>>("PHASE_6be9a005889899ab", 3437658333807676, this, []); }
   declare readonly $type: { "c:objc(cs)PHASEShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "elements": true };
 }
@@ -1697,8 +1697,8 @@ export class PHASEShape_Element extends SDKHandle {
    * var material: PHASEMaterial? { get set }
    * @availability iOS 15.0+
    */
-  get material(): (PHASEMaterial) | null { return callSDK<(PHASEMaterial) | null>("PHASE_5d69670f0307b385", 3218331673441146, this, []); }
-  set material(value: (PHASEMaterial) | null) { callSDK<void>("PHASE_5d69670f0307b385", 1287511693032183, this, [value]); }
+  get material(): (PHASEMaterial) | null { return callSDK<(PHASEMaterial) | null>("PHASE_6be9a005889899ab", 3218331673441146, this, []); }
+  set material(value: (PHASEMaterial) | null) { callSDK<void>("PHASE_6be9a005889899ab", 1287511693032183, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASEShapeElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "material": true };
 }
@@ -1712,17 +1712,17 @@ export class PHASESoundAsset extends PHASEAsset {
    * var data: Data? { get }
    * @availability iOS 15.0+
    */
-  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PHASE_5d69670f0307b385", 3313291686696959, this, []); }
+  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PHASE_6be9a005889899ab", 3313291686696959, this, []); }
   /**
    * var type: PHASEAsset.AssetType { get }
    * @availability iOS 15.0+
    */
-  get type(): PHASEAsset_AssetType { return callSDK<PHASEAsset_AssetType>("PHASE_5d69670f0307b385", 3135576142345057, this, []); }
+  get type(): PHASEAsset_AssetType { return callSDK<PHASEAsset_AssetType>("PHASE_6be9a005889899ab", 3135576142345057, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("PHASE_5d69670f0307b385", 1228221842029919, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("PHASE_6be9a005889899ab", 1228221842029919, this, []); }
   declare readonly $type: { "c:objc(cs)PHASESoundAsset": true; "c:objc(cs)PHASEAsset": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "data": true; "type": true; "url": true };
 }
@@ -1736,92 +1736,92 @@ export class PHASESoundEvent extends SDKHandle {
    * init(engine: PHASEEngine, assetIdentifier: String) throws
    * @availability iOS 15.0+
    */
-  static initEngineAssetIdentifier(engine: PHASEEngine, assetIdentifier: string): PHASESoundEvent { return callSDK<PHASESoundEvent>("PHASE_5d69670f0307b385", 2404757938738268, undefined, [engine, assetIdentifier]); }
+  static initEngineAssetIdentifier(engine: PHASEEngine, assetIdentifier: string): PHASESoundEvent { return callSDK<PHASESoundEvent>("PHASE_6be9a005889899ab", 2404757938738268, undefined, [engine, assetIdentifier]); }
   /**
    * init(engine: PHASEEngine, assetIdentifier: String, mixerParameters: PHASEMixerParameters) throws
    * @availability iOS 15.0+
    */
-  static initEngineAssetIdentifierMixerParameters(engine: PHASEEngine, assetIdentifier: string, mixerParameters: PHASEMixerParameters): PHASESoundEvent { return callSDK<PHASESoundEvent>("PHASE_5d69670f0307b385", 2858550404269017, undefined, [engine, assetIdentifier, mixerParameters]); }
+  static initEngineAssetIdentifierMixerParameters(engine: PHASEEngine, assetIdentifier: string, mixerParameters: PHASEMixerParameters): PHASESoundEvent { return callSDK<PHASESoundEvent>("PHASE_6be9a005889899ab", 2858550404269017, undefined, [engine, assetIdentifier, mixerParameters]); }
   /**
    * func pause()
    * @availability iOS 15.0+
    */
-  pause(): void { return callSDK<void>("PHASE_5d69670f0307b385", 1761801252249726, this, []); }
+  pause(): void { return callSDK<void>("PHASE_6be9a005889899ab", 1761801252249726, this, []); }
   /**
    * func prepare() async -> PHASESoundEvent.PrepareHandlerReason
    * @availability iOS 15.0+
    */
-  prepare(handler?: (((arg0: PHASESoundEvent_PrepareHandlerReason) => void)) | null): void { return callSDK<void>("PHASE_5d69670f0307b385", 491670015930963, this, [handler], [{"callback":{"out":[]}}]); }
+  prepare(handler?: (((arg0: PHASESoundEvent_PrepareHandlerReason) => void)) | null): void { return callSDK<void>("PHASE_6be9a005889899ab", 491670015930963, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func resume()
    * @availability iOS 15.0+
    */
-  resume(): void { return callSDK<void>("PHASE_5d69670f0307b385", 1176533226417616, this, []); }
+  resume(): void { return callSDK<void>("PHASE_6be9a005889899ab", 1176533226417616, this, []); }
   /**
    * func resume(at time: AVAudioTime?)
    * @availability iOS 26.0+
    */
-  resumeAt(time?: $SDK11): void { return callSDK<void>("PHASE_5d69670f0307b385", 3345145439407218, this, [time]); }
+  resumeAt(time?: $SDK11): void { return callSDK<void>("PHASE_6be9a005889899ab", 3345145439407218, this, [time]); }
   /**
    * func seek(to time: Double) async -> PHASESoundEvent.SeekHandlerReason
    * @availability iOS 15.0+
    */
-  seekToCompletion(time: number, handler?: $SDK20): void { return callSDK<void>("PHASE_5d69670f0307b385", 2645779692788442, this, [time, handler], [null,{"callback":{"out":[]}}]); }
+  seekToCompletion(time: number, handler?: $SDK20): void { return callSDK<void>("PHASE_6be9a005889899ab", 2645779692788442, this, [time, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func seek(to time: Double, resumeAt engineTime: AVAudioTime) async -> PHASESoundEvent.SeekHandlerReason
    * @availability iOS 26.0+
    */
-  seekToResumeAtCompletion(time: number, engineTime: _AVFAudio_AVAudioTime, handler?: $SDK20): void { return callSDK<void>("PHASE_5d69670f0307b385", 3605181468152944, this, [time, engineTime, handler], [null,null,{"callback":{"out":[]}}]); }
+  seekToResumeAtCompletion(time: number, engineTime: _AVFAudio_AVAudioTime, handler?: $SDK20): void { return callSDK<void>("PHASE_6be9a005889899ab", 3605181468152944, this, [time, engineTime, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func start(at when: AVAudioTime?) async -> PHASESoundEvent.StartHandlerReason
    * @availability iOS 26.0+
    */
-  startAtCompletion(when?: $SDK11, handler?: $SDK21): void { return callSDK<void>("PHASE_5d69670f0307b385", 2069480822241601, this, [when, handler], [null,{"callback":{"out":[]}}]); }
+  startAtCompletion(when?: $SDK11, handler?: $SDK21): void { return callSDK<void>("PHASE_6be9a005889899ab", 2069480822241601, this, [when, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func start() async -> PHASESoundEvent.StartHandlerReason
    * @availability iOS 15.0+
    */
-  startCompletion(handler?: $SDK21): void { return callSDK<void>("PHASE_5d69670f0307b385", 4367144538614412, this, [handler], [{"callback":{"out":[]}}]); }
+  startCompletion(handler?: $SDK21): void { return callSDK<void>("PHASE_6be9a005889899ab", 4367144538614412, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func stopAndInvalidate()
    * @availability iOS 15.0+
    */
-  stopAndInvalidate(): void { return callSDK<void>("PHASE_5d69670f0307b385", 4164339872761689, this, []); }
+  stopAndInvalidate(): void { return callSDK<void>("PHASE_6be9a005889899ab", 4164339872761689, this, []); }
   /**
    * var isIndefinite: Bool { get }
    * @availability iOS 15.0+
    */
-  get isIndefinite(): boolean { return callSDK<boolean>("PHASE_5d69670f0307b385", 4490890213166979, this, []); }
+  get isIndefinite(): boolean { return callSDK<boolean>("PHASE_6be9a005889899ab", 4490890213166979, this, []); }
   /**
    * var metaParameters: [String : PHASEMetaParameter] { get }
    * @availability iOS 15.0+
    */
-  get metaParameters(): $SDK3 { return callSDK<$SDK3>("PHASE_5d69670f0307b385", 4265416367963914, this, []); }
+  get metaParameters(): $SDK3 { return callSDK<$SDK3>("PHASE_6be9a005889899ab", 4265416367963914, this, []); }
   /**
    * var mixers: [String : PHASEMixer] { get }
    * @availability iOS 15.0+
    */
-  get mixers(): Record<string, PHASEMixer> { return callSDK<Record<string, PHASEMixer>>("PHASE_5d69670f0307b385", 3992759861183494, this, []); }
+  get mixers(): Record<string, PHASEMixer> { return callSDK<Record<string, PHASEMixer>>("PHASE_6be9a005889899ab", 3992759861183494, this, []); }
   /**
    * var prepareState: PHASESoundEvent.PrepareState { get }
    * @availability iOS 15.0+
    */
-  get prepareState(): PHASESoundEvent_PrepareState { return callSDK<PHASESoundEvent_PrepareState>("PHASE_5d69670f0307b385", 3268201367674033, this, []); }
+  get prepareState(): PHASESoundEvent_PrepareState { return callSDK<PHASESoundEvent_PrepareState>("PHASE_6be9a005889899ab", 3268201367674033, this, []); }
   /**
    * var pullStreamNodes: [String : PHASEPullStreamNode] { get }
    * @availability iOS 18.0+
    */
-  get pullStreamNodes(): Record<string, PHASEPullStreamNode> { return callSDK<Record<string, PHASEPullStreamNode>>("PHASE_5d69670f0307b385", 3945811323998412, this, []); }
+  get pullStreamNodes(): Record<string, PHASEPullStreamNode> { return callSDK<Record<string, PHASEPullStreamNode>>("PHASE_6be9a005889899ab", 3945811323998412, this, []); }
   /**
    * var pushStreamNodes: [String : PHASEPushStreamNode] { get }
    * @availability iOS 15.0+
    */
-  get pushStreamNodes(): Record<string, PHASEPushStreamNode> { return callSDK<Record<string, PHASEPushStreamNode>>("PHASE_5d69670f0307b385", 1479459581575896, this, []); }
+  get pushStreamNodes(): Record<string, PHASEPushStreamNode> { return callSDK<Record<string, PHASEPushStreamNode>>("PHASE_6be9a005889899ab", 1479459581575896, this, []); }
   /**
    * var renderingState: PHASESoundEvent.RenderingState { get }
    * @availability iOS 15.0+
    */
-  get renderingState(): PHASESoundEvent_RenderingState { return callSDK<PHASESoundEvent_RenderingState>("PHASE_5d69670f0307b385", 3871398467687056, this, []); }
+  get renderingState(): PHASESoundEvent_RenderingState { return callSDK<PHASESoundEvent_RenderingState>("PHASE_6be9a005889899ab", 3871398467687056, this, []); }
   declare readonly $type: { "c:objc(cs)PHASESoundEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isIndefinite": true; "metaParameters": true; "mixers": true; "prepareState": true; "pullStreamNodes": true; "pushStreamNodes": true; "renderingState": true };
 }
@@ -1831,7 +1831,7 @@ export type PHASESoundEvent_PrepareHandlerReason = "failure" | "prepared" | "ter
 
 export const PHASESoundEvent_PrepareHandlerReason = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASESoundEvent_PrepareHandlerReason) | null { return callSDK<(PHASESoundEvent_PrepareHandlerReason) | null>("PHASE_5d69670f0307b385", 4290579328773517, undefined, [rawValue]); }
+  init(rawValue: number): (PHASESoundEvent_PrepareHandlerReason) | null { return callSDK<(PHASESoundEvent_PrepareHandlerReason) | null>("PHASE_6be9a005889899ab", 4290579328773517, undefined, [rawValue]); }
 };
 
 /** enum PrepareState */
@@ -1839,7 +1839,7 @@ export type PHASESoundEvent_PrepareState = "prepareNotStarted" | "prepareInProgr
 
 export const PHASESoundEvent_PrepareState = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASESoundEvent_PrepareState) | null { return callSDK<(PHASESoundEvent_PrepareState) | null>("PHASE_5d69670f0307b385", 2049560701572826, undefined, [rawValue]); }
+  init(rawValue: number): (PHASESoundEvent_PrepareState) | null { return callSDK<(PHASESoundEvent_PrepareState) | null>("PHASE_6be9a005889899ab", 2049560701572826, undefined, [rawValue]); }
 };
 
 /** enum RenderingState */
@@ -1847,7 +1847,7 @@ export type PHASESoundEvent_RenderingState = "stopped" | "started" | "paused";
 
 export const PHASESoundEvent_RenderingState = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASESoundEvent_RenderingState) | null { return callSDK<(PHASESoundEvent_RenderingState) | null>("PHASE_5d69670f0307b385", 2046783114555108, undefined, [rawValue]); }
+  init(rawValue: number): (PHASESoundEvent_RenderingState) | null { return callSDK<(PHASESoundEvent_RenderingState) | null>("PHASE_6be9a005889899ab", 2046783114555108, undefined, [rawValue]); }
 };
 
 /** enum SeekHandlerReason */
@@ -1855,7 +1855,7 @@ export type PHASESoundEvent_SeekHandlerReason = "failure" | "failureSeekAlreadyI
 
 export const PHASESoundEvent_SeekHandlerReason = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASESoundEvent_SeekHandlerReason) | null { return callSDK<(PHASESoundEvent_SeekHandlerReason) | null>("PHASE_5d69670f0307b385", 1001336140536284, undefined, [rawValue]); }
+  init(rawValue: number): (PHASESoundEvent_SeekHandlerReason) | null { return callSDK<(PHASESoundEvent_SeekHandlerReason) | null>("PHASE_6be9a005889899ab", 1001336140536284, undefined, [rawValue]); }
 };
 
 /** enum StartHandlerReason */
@@ -1863,25 +1863,25 @@ export type PHASESoundEvent_StartHandlerReason = "failure" | "finishedPlaying" |
 
 export const PHASESoundEvent_StartHandlerReason = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASESoundEvent_StartHandlerReason) | null { return callSDK<(PHASESoundEvent_StartHandlerReason) | null>("PHASE_5d69670f0307b385", 2702956233331310, undefined, [rawValue]); }
+  init(rawValue: number): (PHASESoundEvent_StartHandlerReason) | null { return callSDK<(PHASESoundEvent_StartHandlerReason) | null>("PHASE_6be9a005889899ab", 2702956233331310, undefined, [rawValue]); }
 };
 
 /** struct PHASESoundEventError */
 export class PHASESoundEventError extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("PHASE_5d69670f0307b385", 1751232531573801, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PHASE_6be9a005889899ab", 1751232531573801, undefined, []); }
   /** static var outOfMemory: PHASESoundEventError.Code { get } */
-  static get outOfMemory(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_5d69670f0307b385", 1051451978756312, undefined, []); }
+  static get outOfMemory(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_6be9a005889899ab", 1051451978756312, undefined, []); }
   /** static var invalidInstance: PHASESoundEventError.Code { get } */
-  static get invalidInstance(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_5d69670f0307b385", 1129639377820708, undefined, []); }
+  static get invalidInstance(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_6be9a005889899ab", 1129639377820708, undefined, []); }
   /** static var systemNotInitialized: PHASESoundEventError.Code { get } */
-  static get systemNotInitialized(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_5d69670f0307b385", 2216443548600637, undefined, []); }
+  static get systemNotInitialized(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_6be9a005889899ab", 2216443548600637, undefined, []); }
   /** static var badData: PHASESoundEventError.Code { get } */
-  static get badData(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_5d69670f0307b385", 1894923810944772, undefined, []); }
+  static get badData(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_6be9a005889899ab", 1894923810944772, undefined, []); }
   /** static var notFound: PHASESoundEventError.Code { get } */
-  static get notFound(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_5d69670f0307b385", 3892635895949944, undefined, []); }
+  static get notFound(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_6be9a005889899ab", 3892635895949944, undefined, []); }
   /** static var apiMisuse: PHASESoundEventError.Code { get } */
-  static get apiMisuse(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_5d69670f0307b385", 4322759592964024, undefined, []); }
+  static get apiMisuse(): PHASESoundEventError_Code { return callSDK<PHASESoundEventError_Code>("PHASE_6be9a005889899ab", 4322759592964024, undefined, []); }
   declare readonly $type: { "s:SC20PHASESoundEventErrorLeV": true };
 }
 
@@ -1890,7 +1890,7 @@ export type PHASESoundEventError_Code = "notFound" | "badData" | "invalidInstanc
 
 export const PHASESoundEventError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASESoundEventError_Code) | null { return callSDK<(PHASESoundEventError_Code) | null>("PHASE_5d69670f0307b385", 3519173207816632, undefined, [rawValue]); }
+  init(rawValue: number): (PHASESoundEventError_Code) | null { return callSDK<(PHASESoundEventError_Code) | null>("PHASE_6be9a005889899ab", 3519173207816632, undefined, [rawValue]); }
 };
 
 /**
@@ -1911,23 +1911,23 @@ export class PHASESource extends PHASEObject {
    * init(engine: PHASEEngine)
    * @availability iOS 15.0+
    */
-  static initEngine(engine: PHASEEngine): PHASESource { return callSDK<PHASESource>("PHASE_5d69670f0307b385", 389786702809953, undefined, [engine]); }
+  static initEngine(engine: PHASEEngine): PHASESource { return callSDK<PHASESource>("PHASE_6be9a005889899ab", 389786702809953, undefined, [engine]); }
   /**
    * init(engine: PHASEEngine, shapes: [PHASEShape])
    * @availability iOS 15.0+
    */
-  static initEngineShapes(engine: PHASEEngine, shapes: Array<PHASEShape>): PHASESource { return callSDK<PHASESource>("PHASE_5d69670f0307b385", 3344108409138736, undefined, [engine, shapes]); }
+  static initEngineShapes(engine: PHASEEngine, shapes: Array<PHASEShape>): PHASESource { return callSDK<PHASESource>("PHASE_6be9a005889899ab", 3344108409138736, undefined, [engine, shapes]); }
   /**
    * var gain: Double { get set }
    * @availability iOS 15.0+
    */
-  get gain(): number { return callSDK<number>("PHASE_5d69670f0307b385", 2034619094694098, this, []); }
-  set gain(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 2064054153488257, this, [value]); }
+  get gain(): number { return callSDK<number>("PHASE_6be9a005889899ab", 2034619094694098, this, []); }
+  set gain(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 2064054153488257, this, [value]); }
   /**
    * var shapes: [PHASEShape] { get }
    * @availability iOS 15.0+
    */
-  get shapes(): Array<PHASEShape> { return callSDK<Array<PHASEShape>>("PHASE_5d69670f0307b385", 4353719416015271, this, []); }
+  get shapes(): Array<PHASEShape> { return callSDK<Array<PHASEShape>>("PHASE_6be9a005889899ab", 4353719416015271, this, []); }
   declare readonly $type: { "c:objc(cs)PHASESource": true; "c:objc(cs)PHASEObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "parent": true; "transform": true; "worldTransform": true; "gain": true; "shapes": true };
 }
@@ -1937,13 +1937,13 @@ export type PHASESpatialCategory = "directPathTransmission" | "earlyReflections"
 
 export const PHASESpatialCategory = {
   /** static let directPathTransmission: PHASESpatialCategory */
-  get directPathTransmission(): PHASESpatialCategory { return callSDK<PHASESpatialCategory>("PHASE_5d69670f0307b385", 2270704371333684, undefined, []); },
+  get directPathTransmission(): PHASESpatialCategory { return callSDK<PHASESpatialCategory>("PHASE_6be9a005889899ab", 2270704371333684, undefined, []); },
   /** static let earlyReflections: PHASESpatialCategory */
-  get earlyReflections(): PHASESpatialCategory { return callSDK<PHASESpatialCategory>("PHASE_5d69670f0307b385", 924593097230823, undefined, []); },
+  get earlyReflections(): PHASESpatialCategory { return callSDK<PHASESpatialCategory>("PHASE_6be9a005889899ab", 924593097230823, undefined, []); },
   /** static let lateReverb: PHASESpatialCategory */
-  get lateReverb(): PHASESpatialCategory { return callSDK<PHASESpatialCategory>("PHASE_5d69670f0307b385", 1181101731345118, undefined, []); },
+  get lateReverb(): PHASESpatialCategory { return callSDK<PHASESpatialCategory>("PHASE_6be9a005889899ab", 1181101731345118, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PHASESpatialCategory { return callSDK<PHASESpatialCategory>("PHASE_5d69670f0307b385", 3071948356027530, undefined, [rawValue]); }
+  init(rawValue: string): PHASESpatialCategory { return callSDK<PHASESpatialCategory>("PHASE_6be9a005889899ab", 3071948356027530, undefined, [rawValue]); }
 };
 
 /** enum PHASESpatializationMode */
@@ -1951,7 +1951,7 @@ export type PHASESpatializationMode = "automatic" | "alwaysUseBinaural" | "alway
 
 export const PHASESpatializationMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PHASESpatializationMode) | null { return callSDK<(PHASESpatializationMode) | null>("PHASE_5d69670f0307b385", 676437658853878, undefined, [rawValue]); }
+  init(rawValue: number): (PHASESpatializationMode) | null { return callSDK<(PHASESpatializationMode) | null>("PHASE_6be9a005889899ab", 676437658853878, undefined, [rawValue]); }
 };
 
 /**
@@ -1963,35 +1963,35 @@ export class PHASESpatialMixerDefinition extends PHASEMixerDefinition {
    * init(spatialPipeline: PHASESpatialPipeline)
    * @availability iOS 15.0+
    */
-  static initSpatialPipeline(spatialPipeline: PHASESpatialPipeline): PHASESpatialMixerDefinition { return callSDK<PHASESpatialMixerDefinition>("PHASE_5d69670f0307b385", 2601511153726996, undefined, [spatialPipeline]); }
+  static initSpatialPipeline(spatialPipeline: PHASESpatialPipeline): PHASESpatialMixerDefinition { return callSDK<PHASESpatialMixerDefinition>("PHASE_6be9a005889899ab", 2601511153726996, undefined, [spatialPipeline]); }
   /**
    * convenience init(spatialPipeline: PHASESpatialPipeline, identifier: String)
    * @availability iOS 15.0+
    */
-  static initSpatialPipelineIdentifier(spatialPipeline: PHASESpatialPipeline, identifier: string): PHASESpatialMixerDefinition { return callSDK<PHASESpatialMixerDefinition>("PHASE_5d69670f0307b385", 694234220357218, undefined, [spatialPipeline, identifier]); }
+  static initSpatialPipelineIdentifier(spatialPipeline: PHASESpatialPipeline, identifier: string): PHASESpatialMixerDefinition { return callSDK<PHASESpatialMixerDefinition>("PHASE_6be9a005889899ab", 694234220357218, undefined, [spatialPipeline, identifier]); }
   /**
    * var distanceModelParameters: PHASEDistanceModelParameters? { get set }
    * @availability iOS 15.0+
    */
-  get distanceModelParameters(): $SDK25 { return callSDK<$SDK25>("PHASE_5d69670f0307b385", 930540056999306, this, []); }
-  set distanceModelParameters(value: $SDK25) { callSDK<void>("PHASE_5d69670f0307b385", 3238077662855696, this, [value]); }
+  get distanceModelParameters(): $SDK25 { return callSDK<$SDK25>("PHASE_6be9a005889899ab", 930540056999306, this, []); }
+  set distanceModelParameters(value: $SDK25) { callSDK<void>("PHASE_6be9a005889899ab", 3238077662855696, this, [value]); }
   /**
    * var listenerDirectivityModelParameters: PHASEDirectivityModelParameters? { get set }
    * @availability iOS 15.0+
    */
-  get listenerDirectivityModelParameters(): $SDK26 { return callSDK<$SDK26>("PHASE_5d69670f0307b385", 4176919038361862, this, []); }
-  set listenerDirectivityModelParameters(value: $SDK26) { callSDK<void>("PHASE_5d69670f0307b385", 2545737739555894, this, [value]); }
+  get listenerDirectivityModelParameters(): $SDK26 { return callSDK<$SDK26>("PHASE_6be9a005889899ab", 4176919038361862, this, []); }
+  set listenerDirectivityModelParameters(value: $SDK26) { callSDK<void>("PHASE_6be9a005889899ab", 2545737739555894, this, [value]); }
   /**
    * var sourceDirectivityModelParameters: PHASEDirectivityModelParameters? { get set }
    * @availability iOS 15.0+
    */
-  get sourceDirectivityModelParameters(): $SDK26 { return callSDK<$SDK26>("PHASE_5d69670f0307b385", 4091606153757936, this, []); }
-  set sourceDirectivityModelParameters(value: $SDK26) { callSDK<void>("PHASE_5d69670f0307b385", 1434841239434830, this, [value]); }
+  get sourceDirectivityModelParameters(): $SDK26 { return callSDK<$SDK26>("PHASE_6be9a005889899ab", 4091606153757936, this, []); }
+  set sourceDirectivityModelParameters(value: $SDK26) { callSDK<void>("PHASE_6be9a005889899ab", 1434841239434830, this, [value]); }
   /**
    * var spatialPipeline: PHASESpatialPipeline { get }
    * @availability iOS 15.0+
    */
-  get spatialPipeline(): PHASESpatialPipeline { return callSDK<PHASESpatialPipeline>("PHASE_5d69670f0307b385", 1295175436182662, this, []); }
+  get spatialPipeline(): PHASESpatialPipeline { return callSDK<PHASESpatialPipeline>("PHASE_6be9a005889899ab", 1295175436182662, this, []); }
   declare readonly $type: { "c:objc(cs)PHASESpatialMixerDefinition": true; "c:objc(cs)PHASEMixerDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "gain": true; "gainMetaParameterDefinition": true; "distanceModelParameters": true; "listenerDirectivityModelParameters": true; "sourceDirectivityModelParameters": true; "spatialPipeline": true };
 }
@@ -2005,17 +2005,17 @@ export class PHASESpatialPipeline extends SDKHandle {
    * init?(flags: PHASESpatialPipeline.Flags)
    * @availability iOS 15.0+
    */
-  static init(flags: PHASESpatialPipeline_Flags): (PHASESpatialPipeline) | null { return callSDK<(PHASESpatialPipeline) | null>("PHASE_5d69670f0307b385", 1416678752326535, undefined, [flags]); }
+  static init(flags: PHASESpatialPipeline_Flags): (PHASESpatialPipeline) | null { return callSDK<(PHASESpatialPipeline) | null>("PHASE_6be9a005889899ab", 1416678752326535, undefined, [flags]); }
   /**
    * var entries: [PHASESpatialCategory : PHASESpatialPipelineEntry] { get }
    * @availability iOS 15.0+
    */
-  get entries(): NativeMap<PHASESpatialCategory, PHASESpatialPipelineEntry> { return callSDK<NativeMap<PHASESpatialCategory, PHASESpatialPipelineEntry>>("PHASE_5d69670f0307b385", 504154027167570, this, []); }
+  get entries(): NativeMap<PHASESpatialCategory, PHASESpatialPipelineEntry> { return callSDK<NativeMap<PHASESpatialCategory, PHASESpatialPipelineEntry>>("PHASE_6be9a005889899ab", 504154027167570, this, []); }
   /**
    * var flags: PHASESpatialPipeline.Flags { get }
    * @availability iOS 15.0+
    */
-  get flags(): PHASESpatialPipeline_Flags { return callSDK<PHASESpatialPipeline_Flags>("PHASE_5d69670f0307b385", 4133255064662329, this, []); }
+  get flags(): PHASESpatialPipeline_Flags { return callSDK<PHASESpatialPipeline_Flags>("PHASE_6be9a005889899ab", 4133255064662329, this, []); }
   declare readonly $type: { "c:objc(cs)PHASESpatialPipeline": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "entries": true; "flags": true };
 }
@@ -2025,13 +2025,13 @@ export type PHASESpatialPipeline_Flags = Array<"directPathTransmission" | "early
 
 export const PHASESpatialPipeline_Flags = {
   /** static var directPathTransmission: PHASESpatialPipeline.Flags { get } */
-  get directPathTransmission(): PHASESpatialPipeline_Flags { return callSDK<PHASESpatialPipeline_Flags>("PHASE_5d69670f0307b385", 2641937507614054, undefined, []); },
+  get directPathTransmission(): PHASESpatialPipeline_Flags { return callSDK<PHASESpatialPipeline_Flags>("PHASE_6be9a005889899ab", 2641937507614054, undefined, []); },
   /** static var earlyReflections: PHASESpatialPipeline.Flags { get } */
-  get earlyReflections(): PHASESpatialPipeline_Flags { return callSDK<PHASESpatialPipeline_Flags>("PHASE_5d69670f0307b385", 1778393073473718, undefined, []); },
+  get earlyReflections(): PHASESpatialPipeline_Flags { return callSDK<PHASESpatialPipeline_Flags>("PHASE_6be9a005889899ab", 1778393073473718, undefined, []); },
   /** static var lateReverb: PHASESpatialPipeline.Flags { get } */
-  get lateReverb(): PHASESpatialPipeline_Flags { return callSDK<PHASESpatialPipeline_Flags>("PHASE_5d69670f0307b385", 2501223997182464, undefined, []); },
+  get lateReverb(): PHASESpatialPipeline_Flags { return callSDK<PHASESpatialPipeline_Flags>("PHASE_6be9a005889899ab", 2501223997182464, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): PHASESpatialPipeline_Flags { return callSDK<PHASESpatialPipeline_Flags>("PHASE_5d69670f0307b385", 3892625133714082, undefined, [rawValue]); }
+  init(rawValue: number): PHASESpatialPipeline_Flags { return callSDK<PHASESpatialPipeline_Flags>("PHASE_6be9a005889899ab", 3892625133714082, undefined, [rawValue]); }
 };
 
 /**
@@ -2040,19 +2040,19 @@ export const PHASESpatialPipeline_Flags = {
  */
 export class PHASESpatialPipelineEntry extends SDKHandle {
   /** init() */
-  static init(): PHASESpatialPipelineEntry { return callSDK<PHASESpatialPipelineEntry>("PHASE_5d69670f0307b385", 3116926875488712, undefined, []); }
+  static init(): PHASESpatialPipelineEntry { return callSDK<PHASESpatialPipelineEntry>("PHASE_6be9a005889899ab", 3116926875488712, undefined, []); }
   /**
    * var sendLevel: Double { get set }
    * @availability iOS 15.0+
    */
-  get sendLevel(): number { return callSDK<number>("PHASE_5d69670f0307b385", 23262572742945, this, []); }
-  set sendLevel(value: number) { callSDK<void>("PHASE_5d69670f0307b385", 30402959355756, this, [value]); }
+  get sendLevel(): number { return callSDK<number>("PHASE_6be9a005889899ab", 23262572742945, this, []); }
+  set sendLevel(value: number) { callSDK<void>("PHASE_6be9a005889899ab", 30402959355756, this, [value]); }
   /**
    * var sendLevelMetaParameterDefinition: PHASENumberMetaParameterDefinition? { get set }
    * @availability iOS 15.0+
    */
-  get sendLevelMetaParameterDefinition(): $SDK0 { return callSDK<$SDK0>("PHASE_5d69670f0307b385", 814390864308656, this, []); }
-  set sendLevelMetaParameterDefinition(value: $SDK0) { callSDK<void>("PHASE_5d69670f0307b385", 3587169090498049, this, [value]); }
+  get sendLevelMetaParameterDefinition(): $SDK0 { return callSDK<$SDK0>("PHASE_6be9a005889899ab", 814390864308656, this, []); }
+  set sendLevelMetaParameterDefinition(value: $SDK0) { callSDK<void>("PHASE_6be9a005889899ab", 3587169090498049, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHASESpatialPipelineEntry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "sendLevel": true; "sendLevelMetaParameterDefinition": true };
 }
@@ -2075,12 +2075,12 @@ export class PHASEStringMetaParameterDefinition extends PHASEMetaParameterDefini
    * init(value: String)
    * @availability iOS 15.0+
    */
-  static initValue(value: string): PHASEStringMetaParameterDefinition { return callSDK<PHASEStringMetaParameterDefinition>("PHASE_5d69670f0307b385", 1363868922755196, undefined, [value]); }
+  static initValue(value: string): PHASEStringMetaParameterDefinition { return callSDK<PHASEStringMetaParameterDefinition>("PHASE_6be9a005889899ab", 1363868922755196, undefined, [value]); }
   /**
    * convenience init(value: String, identifier: String)
    * @availability iOS 15.0+
    */
-  static initValueIdentifier(value: string, identifier: string): PHASEStringMetaParameterDefinition { return callSDK<PHASEStringMetaParameterDefinition>("PHASE_5d69670f0307b385", 2034385285584037, undefined, [value, identifier]); }
+  static initValueIdentifier(value: string, identifier: string): PHASEStringMetaParameterDefinition { return callSDK<PHASEStringMetaParameterDefinition>("PHASE_6be9a005889899ab", 2034385285584037, undefined, [value, identifier]); }
   declare readonly $type: { "c:objc(cs)PHASEStringMetaParameterDefinition": true; "c:objc(cs)PHASEMetaParameterDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "value": true };
 }
@@ -2094,94 +2094,94 @@ export class PHASESwitchNodeDefinition extends PHASESoundEventNodeDefinition {
    * func addSubtree(_ subtree: PHASESoundEventNodeDefinition, switchValue: String)
    * @availability iOS 15.0+
    */
-  addSubtree(subtree: PHASESoundEventNodeDefinition, switchValue: string): void { return callSDK<void>("PHASE_5d69670f0307b385", 4059703618807021, this, [subtree, switchValue]); }
+  addSubtree(subtree: PHASESoundEventNodeDefinition, switchValue: string): void { return callSDK<void>("PHASE_6be9a005889899ab", 4059703618807021, this, [subtree, switchValue]); }
   /**
    * init(switchMetaParameterDefinition: PHASEStringMetaParameterDefinition)
    * @availability iOS 15.0+
    */
-  static initSwitchMetaParameterDefinition(switchMetaParameterDefinition: PHASEStringMetaParameterDefinition): PHASESwitchNodeDefinition { return callSDK<PHASESwitchNodeDefinition>("PHASE_5d69670f0307b385", 514239982374025, undefined, [switchMetaParameterDefinition]); }
+  static initSwitchMetaParameterDefinition(switchMetaParameterDefinition: PHASEStringMetaParameterDefinition): PHASESwitchNodeDefinition { return callSDK<PHASESwitchNodeDefinition>("PHASE_6be9a005889899ab", 514239982374025, undefined, [switchMetaParameterDefinition]); }
   /**
    * convenience init(switchMetaParameterDefinition: PHASEStringMetaParameterDefinition, identifier: String)
    * @availability iOS 15.0+
    */
-  static initSwitchMetaParameterDefinitionIdentifier(switchMetaParameterDefinition: PHASEStringMetaParameterDefinition, identifier: string): PHASESwitchNodeDefinition { return callSDK<PHASESwitchNodeDefinition>("PHASE_5d69670f0307b385", 1525103392617778, undefined, [switchMetaParameterDefinition, identifier]); }
+  static initSwitchMetaParameterDefinitionIdentifier(switchMetaParameterDefinition: PHASEStringMetaParameterDefinition, identifier: string): PHASESwitchNodeDefinition { return callSDK<PHASESwitchNodeDefinition>("PHASE_6be9a005889899ab", 1525103392617778, undefined, [switchMetaParameterDefinition, identifier]); }
   /**
    * var switchMetaParameterDefinition: PHASEStringMetaParameterDefinition { get }
    * @availability iOS 15.0+
    */
-  get switchMetaParameterDefinition(): PHASEStringMetaParameterDefinition { return callSDK<PHASEStringMetaParameterDefinition>("PHASE_5d69670f0307b385", 604023113256907, this, []); }
+  get switchMetaParameterDefinition(): PHASEStringMetaParameterDefinition { return callSDK<PHASEStringMetaParameterDefinition>("PHASE_6be9a005889899ab", 604023113256907, this, []); }
   declare readonly $type: { "c:objc(cs)PHASESwitchNodeDefinition": true; "c:objc(cs)PHASESoundEventNodeDefinition": true; "c:objc(cs)PHASEDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "children": true; "switchMetaParameterDefinition": true };
 }
 
 /** let PHASEAssetErrorDomain: String */
-export const PHASEAssetErrorDomain: string = callSDK<string>("PHASE_5d69670f0307b385", 1546439396936841, undefined, []);
+export const PHASEAssetErrorDomain: string = callSDK<string>("PHASE_6be9a005889899ab", 1546439396936841, undefined, []);
 
 /** let PHASEErrorDomain: String */
-export const PHASEErrorDomain: string = callSDK<string>("PHASE_5d69670f0307b385", 1728010182162176, undefined, []);
+export const PHASEErrorDomain: string = callSDK<string>("PHASE_6be9a005889899ab", 1728010182162176, undefined, []);
 
 /** let PHASESoundEventErrorDomain: String */
-export const PHASESoundEventErrorDomain: string = callSDK<string>("PHASE_5d69670f0307b385", 1416754306415089, undefined, []);
+export const PHASESoundEventErrorDomain: string = callSDK<string>("PHASE_6be9a005889899ab", 1416754306415089, undefined, []);
 
-registerSDKClass("PHASEDefinition", PHASEDefinition, { module: "PHASE_5d69670f0307b385", properties: {"identifier":114802283916056} });
-registerSDKClass("PHASEMixerDefinition", PHASEMixerDefinition, { module: "PHASE_5d69670f0307b385", properties: {"gain":4194227650243410,"gainMetaParameterDefinition":2427043139216101} });
-registerSDKClass("PHASEAmbientMixerDefinition", PHASEAmbientMixerDefinition, { module: "PHASE_5d69670f0307b385", properties: {"inputChannelLayout":1397366680243412,"orientation":198193426733306} });
-registerSDKClass("PHASEAsset", PHASEAsset, { module: "PHASE_5d69670f0307b385", properties: {"identifier":4416614351962884} });
-registerSDKClass("PHASE.PHASEAssetError", PHASEAssetError, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASEAssetRegistry", PHASEAssetRegistry, { module: "PHASE_5d69670f0307b385", properties: {"globalMetaParameters":1419510217043626}, methods: {"asset":{"id":3719651385717229},"registerGlobalMetaParameter":{"id":1749902135258661},"registerSoundAssetUrlIdentifierAssetTypeChannelLayoutNormalizationMode":{"id":1227237133674097},"registerSoundAssetDataIdentifierFormatNormalizationMode":{"id":3380890336323406},"registerSoundEventAsset":{"id":3684343291260403},"unregisterAsset":{"id":1533525928841979,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("PHASESoundEventNodeDefinition", PHASESoundEventNodeDefinition, { module: "PHASE_5d69670f0307b385", properties: {"children":1782137143418572} });
-registerSDKClass("PHASEBlendNodeDefinition", PHASEBlendNodeDefinition, { module: "PHASE_5d69670f0307b385", properties: {"blendParameterDefinition":1988125449880106,"spatialMixerDefinitionForDistance":1494844877206002}, methods: {"addRangeForInputValuesAbove":{"id":3118301556891232},"addRangeForInputValuesBelow":{"id":652199020105528},"addRangeForInputValuesBetween":{"id":1993670923977831},"addRange":{"id":3121906563340562}} });
-registerSDKClass("PHASEDirectivityModelParameters", PHASEDirectivityModelParameters, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASECardioidDirectivityModelParameters", PHASECardioidDirectivityModelParameters, { module: "PHASE_5d69670f0307b385", properties: {"subbandParameters":12346104097808} });
-registerSDKClass("PHASECardioidDirectivityModelSubbandParameters", PHASECardioidDirectivityModelSubbandParameters, { module: "PHASE_5d69670f0307b385", properties: {"frequency":4388363561819931,"pattern":2221998861607652,"sharpness":449816994243083} });
-registerSDKClass("PHASEChannelMixerDefinition", PHASEChannelMixerDefinition, { module: "PHASE_5d69670f0307b385", properties: {"inputChannelLayout":1729193380053710} });
-registerSDKClass("PHASEConeDirectivityModelParameters", PHASEConeDirectivityModelParameters, { module: "PHASE_5d69670f0307b385", properties: {"subbandParameters":2392523053758162} });
-registerSDKClass("PHASEConeDirectivityModelSubbandParameters", PHASEConeDirectivityModelSubbandParameters, { module: "PHASE_5d69670f0307b385", properties: {"frequency":3544648557009056,"innerAngle":1767415113447909,"outerAngle":2683698597179041,"outerGain":3116788431517471}, methods: {"setAngles":{"id":60396296510653}} });
-registerSDKClass("PHASEContainerNodeDefinition", PHASEContainerNodeDefinition, { module: "PHASE_5d69670f0307b385", properties: {}, methods: {"addSubtree":{"id":1187393230229299}} });
-registerSDKClass("PHASEDistanceModelFadeOutParameters", PHASEDistanceModelFadeOutParameters, { module: "PHASE_5d69670f0307b385", properties: {"cullDistance":1649535424243290} });
-registerSDKClass("PHASEDistanceModelParameters", PHASEDistanceModelParameters, { module: "PHASE_5d69670f0307b385", properties: {"fadeOutParameters":259029043942778} });
-registerSDKClass("PHASEDucker", PHASEDucker, { module: "PHASE_5d69670f0307b385", properties: {"isActive":3239467589875616,"attackCurve":3179718966710120,"attackTime":1013222407938186,"gain":3745147297710292,"identifier":3693857846004441,"releaseCurve":361477253619777,"releaseTime":3202266917262940,"sourceGroups":2400983683362670,"targetGroups":1255748952621223}, methods: {"activate":{"id":4440933650109001},"deactivate":{"id":3866663954907657}} });
-registerSDKClass("PHASEEngine", PHASEEngine, { module: "PHASE_5d69670f0307b385", properties: {"activeGroupPreset":3232305263931686,"assetRegistry":1181061992205840,"defaultMedium":4070074779107611,"defaultReverbPreset":1115907137812969,"duckers":1384296591835479,"groups":2723134797675221,"lastRenderTime":1707265579233440,"outputSpatializationMode":534139922435351,"renderingState":5039215154712,"rootObject":2451920310934259,"soundEvents":272143559161221,"unitsPerMeter":102661109489113,"unitsPerSecond":2918305265711568}, methods: {"pause":{"id":2738322645006640},"start":{"id":2663530243974563},"stop":{"id":671698521937560},"update":{"id":4320463060014591}} });
-registerSDKClass("PHASEEnvelope", PHASEEnvelope, { module: "PHASE_5d69670f0307b385", properties: {"domain":54283399742621,"range":90507024609414,"segments":2383052165169295,"startPoint":3877395093728004}, methods: {"evaluate":{"id":1568461223057760}} });
-registerSDKClass("PHASEEnvelopeDistanceModelParameters", PHASEEnvelopeDistanceModelParameters, { module: "PHASE_5d69670f0307b385", properties: {"envelope":2609523000848159} });
-registerSDKClass("PHASEEnvelopeSegment", PHASEEnvelopeSegment, { module: "PHASE_5d69670f0307b385", properties: {"curveType":2959594413616125,"endPoint":1035118575259157} });
-registerSDKClass("PHASE.PHASEError", PHASEError, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASEGeneratorNodeDefinition", PHASEGeneratorNodeDefinition, { module: "PHASE_5d69670f0307b385", properties: {"calibrationMode":1532198381541974,"gainMetaParameterDefinition":440596503821524,"group":3234608734773559,"level":2039765392107705,"mixerDefinition":4123609234285218,"rate":4329242951466153,"rateMetaParameterDefinition":294839619913829}, methods: {"setCalibrationMode":{"id":1500472368255502}} });
-registerSDKClass("PHASEGeometricSpreadingDistanceModelParameters", PHASEGeometricSpreadingDistanceModelParameters, { module: "PHASE_5d69670f0307b385", properties: {"rolloffFactor":3171975401151376} });
-registerSDKClass("PHASEGlobalMetaParameterAsset", PHASEGlobalMetaParameterAsset, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASEGroup", PHASEGroup, { module: "PHASE_5d69670f0307b385", properties: {"gain":3380159471561518,"identifier":3332051230635668,"isMuted":917288214984130,"rate":873548375772890,"isSoloed":2092363167317062}, methods: {"fadeGain":{"id":2020889422847968},"fadeRate":{"id":3711299498840146},"mute":{"id":3293395904459433},"register":{"id":4074103582886503},"solo":{"id":686889318513951},"unmute":{"id":3076857159206686},"unregisterFromEngine":{"id":1210949368720981},"unsolo":{"id":1964892826146118}} });
-registerSDKClass("PHASEGroupPreset", PHASEGroupPreset, { module: "PHASE_5d69670f0307b385", properties: {"settings":2349896926525201,"timeToReset":3973088498981909,"timeToTarget":952787683698912}, methods: {"activate":{"id":2395977196460098},"activateTimeToTargetOverride":{"id":3463425097299361},"deactivate":{"id":1051020701382255},"deactivateTimeToResetOverride":{"id":2567699642508412}} });
-registerSDKClass("PHASEGroupPresetSetting", PHASEGroupPresetSetting, { module: "PHASE_5d69670f0307b385", properties: {"gain":1305143430167105,"gainCurveType":3287949546062093,"rate":1985399755708547,"rateCurveType":1659381670126839} });
-registerSDKClass("PHASEObject", PHASEObject, { module: "PHASE_5d69670f0307b385", properties: {"children":3869328291019235,"parent":1628117507801303,"transform":3586265893676971,"worldTransform":1724510461662061}, methods: {"addChild":{"id":162130346717601},"removeChild":{"id":1104187945237703},"removeChildren":{"id":3531461593395573}} });
-registerSDKClass("PHASEListener", PHASEListener, { module: "PHASE_5d69670f0307b385", properties: {"automaticHeadTrackingFlags":554819532820480,"gain":3868864961468216} });
-registerSDKClass("PHASEMetaParameterDefinition", PHASEMetaParameterDefinition, { module: "PHASE_5d69670f0307b385", properties: {"value":2608147434225192} });
-registerSDKClass("PHASENumberMetaParameterDefinition", PHASENumberMetaParameterDefinition, { module: "PHASE_5d69670f0307b385", properties: {"maximum":577227741214285,"minimum":4256754084027978} });
-registerSDKClass("PHASEMappedMetaParameterDefinition", PHASEMappedMetaParameterDefinition, { module: "PHASE_5d69670f0307b385", properties: {"envelope":2512230717155472,"inputMetaParameterDefinition":1292599663914255} });
-registerSDKClass("PHASEMaterial", PHASEMaterial, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASEMedium", PHASEMedium, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASEMetaParameter", PHASEMetaParameter, { module: "PHASE_5d69670f0307b385", properties: {"identifier":976428749776962,"value":1135195317516103} });
-registerSDKClass("PHASEMixer", PHASEMixer, { module: "PHASE_5d69670f0307b385", properties: {"gain":1379212377651079,"gainMetaParameter":423309400190136,"identifier":362684821768897} });
-registerSDKClass("PHASEMixerParameters", PHASEMixerParameters, { module: "PHASE_5d69670f0307b385", properties: {}, methods: {"addAmbientMixerParameters":{"id":1946876421024034},"addSpatialMixerParameters":{"id":1320097852786875}} });
-registerSDKClass("PHASENumberMetaParameter", PHASENumberMetaParameter, { module: "PHASE_5d69670f0307b385", properties: {"maximum":118686693582975,"minimum":3141844578492075}, methods: {"fade":{"id":1393168049728998}} });
-registerSDKClass("PHASENumericPair", PHASENumericPair, { module: "PHASE_5d69670f0307b385", properties: {"first":550647922904570,"second":2119178178922956} });
-registerSDKClass("PHASEOccluder", PHASEOccluder, { module: "PHASE_5d69670f0307b385", properties: {"shapes":577033821428593} });
-registerSDKClass("PHASEStreamNode", PHASEStreamNode, { module: "PHASE_5d69670f0307b385", properties: {"format":2564477940329081,"gainMetaParameter":2859640841911701,"mixer":2271895849279002,"rateMetaParameter":3091194711018688} });
-registerSDKClass("PHASEPullStreamNode", PHASEPullStreamNode, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASEPullStreamNodeDefinition", PHASEPullStreamNodeDefinition, { module: "PHASE_5d69670f0307b385", properties: {"format":4348264748740000,"normalize":401161879790140} });
-registerSDKClass("PHASEPushStreamNode", PHASEPushStreamNode, { module: "PHASE_5d69670f0307b385", properties: {"format":2357395873278745,"gainMetaParameter":2542758198567303,"mixer":1978720850758120,"rateMetaParameter":3631044714759264}, methods: {"scheduleBufferBuffer":{"id":1378161935103799},"scheduleBufferBufferTimeOptions":{"id":794638476526839},"scheduleBufferBufferTimeOptionsCompletionCallbackTypeCompletionHandler":{"id":1871592934791306,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"scheduleBufferBufferCompletionCallbackTypeCompletionHandler":{"id":537683731205307,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("PHASEPushStreamNodeDefinition", PHASEPushStreamNodeDefinition, { module: "PHASE_5d69670f0307b385", properties: {"format":2724358266650160,"normalize":1941373989748555} });
-registerSDKClass("PHASERandomNodeDefinition", PHASERandomNodeDefinition, { module: "PHASE_5d69670f0307b385", properties: {"uniqueSelectionQueueLength":4418503062390312}, methods: {"addSubtree":{"id":1649377988162901}} });
-registerSDKClass("PHASESamplerNodeDefinition", PHASESamplerNodeDefinition, { module: "PHASE_5d69670f0307b385", properties: {"assetIdentifier":1373155449521462,"cullOption":2221094680686782,"playbackMode":2522287401128371} });
-registerSDKClass("PHASEShape", PHASEShape, { module: "PHASE_5d69670f0307b385", properties: {"elements":3437658333807676} });
-registerSDKClass("PHASEShapeElement", PHASEShape_Element, { module: "PHASE_5d69670f0307b385", properties: {"material":3218331673441146} });
-registerSDKClass("PHASESoundAsset", PHASESoundAsset, { module: "PHASE_5d69670f0307b385", properties: {"data":3313291686696959,"type":3135576142345057,"url":1228221842029919} });
-registerSDKClass("PHASESoundEvent", PHASESoundEvent, { module: "PHASE_5d69670f0307b385", properties: {"isIndefinite":4490890213166979,"metaParameters":4265416367963914,"mixers":3992759861183494,"prepareState":3268201367674033,"pullStreamNodes":3945811323998412,"pushStreamNodes":1479459581575896,"renderingState":3871398467687056}, methods: {"pause":{"id":1761801252249726},"prepare":{"id":491670015930963,"hints":[{"callback":{"out":[]}}]},"resume":{"id":1176533226417616},"resumeAt":{"id":3345145439407218},"seekToCompletion":{"id":2645779692788442,"hints":[null,{"callback":{"out":[]}}]},"seekToResumeAtCompletion":{"id":3605181468152944,"hints":[null,null,{"callback":{"out":[]}}]},"startAtCompletion":{"id":2069480822241601,"hints":[null,{"callback":{"out":[]}}]},"startCompletion":{"id":4367144538614412,"hints":[{"callback":{"out":[]}}]},"stopAndInvalidate":{"id":4164339872761689}} });
-registerSDKClass("PHASE.PHASESoundEventError", PHASESoundEventError, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASESoundEventNodeAsset", PHASESoundEventNodeAsset, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASESource", PHASESource, { module: "PHASE_5d69670f0307b385", properties: {"gain":2034619094694098,"shapes":4353719416015271} });
-registerSDKClass("PHASESpatialMixerDefinition", PHASESpatialMixerDefinition, { module: "PHASE_5d69670f0307b385", properties: {"distanceModelParameters":930540056999306,"listenerDirectivityModelParameters":4176919038361862,"sourceDirectivityModelParameters":4091606153757936,"spatialPipeline":1295175436182662} });
-registerSDKClass("PHASESpatialPipeline", PHASESpatialPipeline, { module: "PHASE_5d69670f0307b385", properties: {"entries":504154027167570,"flags":4133255064662329} });
-registerSDKClass("PHASESpatialPipelineEntry", PHASESpatialPipelineEntry, { module: "PHASE_5d69670f0307b385", properties: {"sendLevel":23262572742945,"sendLevelMetaParameterDefinition":814390864308656} });
-registerSDKClass("PHASEStringMetaParameter", PHASEStringMetaParameter, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASEStringMetaParameterDefinition", PHASEStringMetaParameterDefinition, { module: "PHASE_5d69670f0307b385", properties: {} });
-registerSDKClass("PHASESwitchNodeDefinition", PHASESwitchNodeDefinition, { module: "PHASE_5d69670f0307b385", properties: {"switchMetaParameterDefinition":604023113256907}, methods: {"addSubtree":{"id":4059703618807021}} });
+registerSDKClass("PHASEDefinition", PHASEDefinition, { module: "PHASE_6be9a005889899ab", properties: {"identifier":114802283916056} });
+registerSDKClass("PHASEMixerDefinition", PHASEMixerDefinition, { module: "PHASE_6be9a005889899ab", properties: {"gain":4194227650243410,"gainMetaParameterDefinition":2427043139216101} });
+registerSDKClass("PHASEAmbientMixerDefinition", PHASEAmbientMixerDefinition, { module: "PHASE_6be9a005889899ab", properties: {"inputChannelLayout":1397366680243412,"orientation":198193426733306} });
+registerSDKClass("PHASEAsset", PHASEAsset, { module: "PHASE_6be9a005889899ab", properties: {"identifier":4416614351962884} });
+registerSDKClass("PHASE.PHASEAssetError", PHASEAssetError, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASEAssetRegistry", PHASEAssetRegistry, { module: "PHASE_6be9a005889899ab", properties: {"globalMetaParameters":1419510217043626}, methods: {"asset":{"id":3719651385717229},"registerGlobalMetaParameter":{"id":1749902135258661},"registerSoundAssetUrlIdentifierAssetTypeChannelLayoutNormalizationMode":{"id":1227237133674097},"registerSoundAssetDataIdentifierFormatNormalizationMode":{"id":3380890336323406},"registerSoundEventAsset":{"id":3684343291260403},"unregisterAsset":{"id":1533525928841979,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("PHASESoundEventNodeDefinition", PHASESoundEventNodeDefinition, { module: "PHASE_6be9a005889899ab", properties: {"children":1782137143418572} });
+registerSDKClass("PHASEBlendNodeDefinition", PHASEBlendNodeDefinition, { module: "PHASE_6be9a005889899ab", properties: {"blendParameterDefinition":1988125449880106,"spatialMixerDefinitionForDistance":1494844877206002}, methods: {"addRangeForInputValuesAbove":{"id":3118301556891232},"addRangeForInputValuesBelow":{"id":652199020105528},"addRangeForInputValuesBetween":{"id":1993670923977831},"addRange":{"id":3121906563340562}} });
+registerSDKClass("PHASEDirectivityModelParameters", PHASEDirectivityModelParameters, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASECardioidDirectivityModelParameters", PHASECardioidDirectivityModelParameters, { module: "PHASE_6be9a005889899ab", properties: {"subbandParameters":12346104097808} });
+registerSDKClass("PHASECardioidDirectivityModelSubbandParameters", PHASECardioidDirectivityModelSubbandParameters, { module: "PHASE_6be9a005889899ab", properties: {"frequency":4388363561819931,"pattern":2221998861607652,"sharpness":449816994243083} });
+registerSDKClass("PHASEChannelMixerDefinition", PHASEChannelMixerDefinition, { module: "PHASE_6be9a005889899ab", properties: {"inputChannelLayout":1729193380053710} });
+registerSDKClass("PHASEConeDirectivityModelParameters", PHASEConeDirectivityModelParameters, { module: "PHASE_6be9a005889899ab", properties: {"subbandParameters":2392523053758162} });
+registerSDKClass("PHASEConeDirectivityModelSubbandParameters", PHASEConeDirectivityModelSubbandParameters, { module: "PHASE_6be9a005889899ab", properties: {"frequency":3544648557009056,"innerAngle":1767415113447909,"outerAngle":2683698597179041,"outerGain":3116788431517471}, methods: {"setAngles":{"id":60396296510653}} });
+registerSDKClass("PHASEContainerNodeDefinition", PHASEContainerNodeDefinition, { module: "PHASE_6be9a005889899ab", properties: {}, methods: {"addSubtree":{"id":1187393230229299}} });
+registerSDKClass("PHASEDistanceModelFadeOutParameters", PHASEDistanceModelFadeOutParameters, { module: "PHASE_6be9a005889899ab", properties: {"cullDistance":1649535424243290} });
+registerSDKClass("PHASEDistanceModelParameters", PHASEDistanceModelParameters, { module: "PHASE_6be9a005889899ab", properties: {"fadeOutParameters":259029043942778} });
+registerSDKClass("PHASEDucker", PHASEDucker, { module: "PHASE_6be9a005889899ab", properties: {"isActive":3239467589875616,"attackCurve":3179718966710120,"attackTime":1013222407938186,"gain":3745147297710292,"identifier":3693857846004441,"releaseCurve":361477253619777,"releaseTime":3202266917262940,"sourceGroups":2400983683362670,"targetGroups":1255748952621223}, methods: {"activate":{"id":4440933650109001},"deactivate":{"id":3866663954907657}} });
+registerSDKClass("PHASEEngine", PHASEEngine, { module: "PHASE_6be9a005889899ab", properties: {"activeGroupPreset":3232305263931686,"assetRegistry":1181061992205840,"defaultMedium":4070074779107611,"defaultReverbPreset":1115907137812969,"duckers":1384296591835479,"groups":2723134797675221,"lastRenderTime":1707265579233440,"outputSpatializationMode":534139922435351,"renderingState":5039215154712,"rootObject":2451920310934259,"soundEvents":272143559161221,"unitsPerMeter":102661109489113,"unitsPerSecond":2918305265711568}, methods: {"pause":{"id":2738322645006640},"start":{"id":2663530243974563},"stop":{"id":671698521937560},"update":{"id":4320463060014591}} });
+registerSDKClass("PHASEEnvelope", PHASEEnvelope, { module: "PHASE_6be9a005889899ab", properties: {"domain":54283399742621,"range":90507024609414,"segments":2383052165169295,"startPoint":3877395093728004}, methods: {"evaluate":{"id":1568461223057760}} });
+registerSDKClass("PHASEEnvelopeDistanceModelParameters", PHASEEnvelopeDistanceModelParameters, { module: "PHASE_6be9a005889899ab", properties: {"envelope":2609523000848159} });
+registerSDKClass("PHASEEnvelopeSegment", PHASEEnvelopeSegment, { module: "PHASE_6be9a005889899ab", properties: {"curveType":2959594413616125,"endPoint":1035118575259157} });
+registerSDKClass("PHASE.PHASEError", PHASEError, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASEGeneratorNodeDefinition", PHASEGeneratorNodeDefinition, { module: "PHASE_6be9a005889899ab", properties: {"calibrationMode":1532198381541974,"gainMetaParameterDefinition":440596503821524,"group":3234608734773559,"level":2039765392107705,"mixerDefinition":4123609234285218,"rate":4329242951466153,"rateMetaParameterDefinition":294839619913829}, methods: {"setCalibrationMode":{"id":1500472368255502}} });
+registerSDKClass("PHASEGeometricSpreadingDistanceModelParameters", PHASEGeometricSpreadingDistanceModelParameters, { module: "PHASE_6be9a005889899ab", properties: {"rolloffFactor":3171975401151376} });
+registerSDKClass("PHASEGlobalMetaParameterAsset", PHASEGlobalMetaParameterAsset, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASEGroup", PHASEGroup, { module: "PHASE_6be9a005889899ab", properties: {"gain":3380159471561518,"identifier":3332051230635668,"isMuted":917288214984130,"rate":873548375772890,"isSoloed":2092363167317062}, methods: {"fadeGain":{"id":2020889422847968},"fadeRate":{"id":3711299498840146},"mute":{"id":3293395904459433},"register":{"id":4074103582886503},"solo":{"id":686889318513951},"unmute":{"id":3076857159206686},"unregisterFromEngine":{"id":1210949368720981},"unsolo":{"id":1964892826146118}} });
+registerSDKClass("PHASEGroupPreset", PHASEGroupPreset, { module: "PHASE_6be9a005889899ab", properties: {"settings":2349896926525201,"timeToReset":3973088498981909,"timeToTarget":952787683698912}, methods: {"activate":{"id":2395977196460098},"activateTimeToTargetOverride":{"id":3463425097299361},"deactivate":{"id":1051020701382255},"deactivateTimeToResetOverride":{"id":2567699642508412}} });
+registerSDKClass("PHASEGroupPresetSetting", PHASEGroupPresetSetting, { module: "PHASE_6be9a005889899ab", properties: {"gain":1305143430167105,"gainCurveType":3287949546062093,"rate":1985399755708547,"rateCurveType":1659381670126839} });
+registerSDKClass("PHASEObject", PHASEObject, { module: "PHASE_6be9a005889899ab", properties: {"children":3869328291019235,"parent":1628117507801303,"transform":3586265893676971,"worldTransform":1724510461662061}, methods: {"addChild":{"id":162130346717601},"removeChild":{"id":1104187945237703},"removeChildren":{"id":3531461593395573}} });
+registerSDKClass("PHASEListener", PHASEListener, { module: "PHASE_6be9a005889899ab", properties: {"automaticHeadTrackingFlags":554819532820480,"gain":3868864961468216} });
+registerSDKClass("PHASEMetaParameterDefinition", PHASEMetaParameterDefinition, { module: "PHASE_6be9a005889899ab", properties: {"value":2608147434225192} });
+registerSDKClass("PHASENumberMetaParameterDefinition", PHASENumberMetaParameterDefinition, { module: "PHASE_6be9a005889899ab", properties: {"maximum":577227741214285,"minimum":4256754084027978} });
+registerSDKClass("PHASEMappedMetaParameterDefinition", PHASEMappedMetaParameterDefinition, { module: "PHASE_6be9a005889899ab", properties: {"envelope":2512230717155472,"inputMetaParameterDefinition":1292599663914255} });
+registerSDKClass("PHASEMaterial", PHASEMaterial, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASEMedium", PHASEMedium, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASEMetaParameter", PHASEMetaParameter, { module: "PHASE_6be9a005889899ab", properties: {"identifier":976428749776962,"value":1135195317516103} });
+registerSDKClass("PHASEMixer", PHASEMixer, { module: "PHASE_6be9a005889899ab", properties: {"gain":1379212377651079,"gainMetaParameter":423309400190136,"identifier":362684821768897} });
+registerSDKClass("PHASEMixerParameters", PHASEMixerParameters, { module: "PHASE_6be9a005889899ab", properties: {}, methods: {"addAmbientMixerParameters":{"id":1946876421024034},"addSpatialMixerParameters":{"id":1320097852786875}} });
+registerSDKClass("PHASENumberMetaParameter", PHASENumberMetaParameter, { module: "PHASE_6be9a005889899ab", properties: {"maximum":118686693582975,"minimum":3141844578492075}, methods: {"fade":{"id":1393168049728998}} });
+registerSDKClass("PHASENumericPair", PHASENumericPair, { module: "PHASE_6be9a005889899ab", properties: {"first":550647922904570,"second":2119178178922956} });
+registerSDKClass("PHASEOccluder", PHASEOccluder, { module: "PHASE_6be9a005889899ab", properties: {"shapes":577033821428593} });
+registerSDKClass("PHASEStreamNode", PHASEStreamNode, { module: "PHASE_6be9a005889899ab", properties: {"format":2564477940329081,"gainMetaParameter":2859640841911701,"mixer":2271895849279002,"rateMetaParameter":3091194711018688} });
+registerSDKClass("PHASEPullStreamNode", PHASEPullStreamNode, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASEPullStreamNodeDefinition", PHASEPullStreamNodeDefinition, { module: "PHASE_6be9a005889899ab", properties: {"format":4348264748740000,"normalize":401161879790140} });
+registerSDKClass("PHASEPushStreamNode", PHASEPushStreamNode, { module: "PHASE_6be9a005889899ab", properties: {"format":2357395873278745,"gainMetaParameter":2542758198567303,"mixer":1978720850758120,"rateMetaParameter":3631044714759264}, methods: {"scheduleBufferBuffer":{"id":1378161935103799},"scheduleBufferBufferTimeOptions":{"id":794638476526839},"scheduleBufferBufferTimeOptionsCompletionCallbackTypeCompletionHandler":{"id":1871592934791306,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"scheduleBufferBufferCompletionCallbackTypeCompletionHandler":{"id":537683731205307,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("PHASEPushStreamNodeDefinition", PHASEPushStreamNodeDefinition, { module: "PHASE_6be9a005889899ab", properties: {"format":2724358266650160,"normalize":1941373989748555} });
+registerSDKClass("PHASERandomNodeDefinition", PHASERandomNodeDefinition, { module: "PHASE_6be9a005889899ab", properties: {"uniqueSelectionQueueLength":4418503062390312}, methods: {"addSubtree":{"id":1649377988162901}} });
+registerSDKClass("PHASESamplerNodeDefinition", PHASESamplerNodeDefinition, { module: "PHASE_6be9a005889899ab", properties: {"assetIdentifier":1373155449521462,"cullOption":2221094680686782,"playbackMode":2522287401128371} });
+registerSDKClass("PHASEShape", PHASEShape, { module: "PHASE_6be9a005889899ab", properties: {"elements":3437658333807676} });
+registerSDKClass("PHASEShapeElement", PHASEShape_Element, { module: "PHASE_6be9a005889899ab", properties: {"material":3218331673441146} });
+registerSDKClass("PHASESoundAsset", PHASESoundAsset, { module: "PHASE_6be9a005889899ab", properties: {"data":3313291686696959,"type":3135576142345057,"url":1228221842029919} });
+registerSDKClass("PHASESoundEvent", PHASESoundEvent, { module: "PHASE_6be9a005889899ab", properties: {"isIndefinite":4490890213166979,"metaParameters":4265416367963914,"mixers":3992759861183494,"prepareState":3268201367674033,"pullStreamNodes":3945811323998412,"pushStreamNodes":1479459581575896,"renderingState":3871398467687056}, methods: {"pause":{"id":1761801252249726},"prepare":{"id":491670015930963,"hints":[{"callback":{"out":[]}}]},"resume":{"id":1176533226417616},"resumeAt":{"id":3345145439407218},"seekToCompletion":{"id":2645779692788442,"hints":[null,{"callback":{"out":[]}}]},"seekToResumeAtCompletion":{"id":3605181468152944,"hints":[null,null,{"callback":{"out":[]}}]},"startAtCompletion":{"id":2069480822241601,"hints":[null,{"callback":{"out":[]}}]},"startCompletion":{"id":4367144538614412,"hints":[{"callback":{"out":[]}}]},"stopAndInvalidate":{"id":4164339872761689}} });
+registerSDKClass("PHASE.PHASESoundEventError", PHASESoundEventError, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASESoundEventNodeAsset", PHASESoundEventNodeAsset, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASESource", PHASESource, { module: "PHASE_6be9a005889899ab", properties: {"gain":2034619094694098,"shapes":4353719416015271} });
+registerSDKClass("PHASESpatialMixerDefinition", PHASESpatialMixerDefinition, { module: "PHASE_6be9a005889899ab", properties: {"distanceModelParameters":930540056999306,"listenerDirectivityModelParameters":4176919038361862,"sourceDirectivityModelParameters":4091606153757936,"spatialPipeline":1295175436182662} });
+registerSDKClass("PHASESpatialPipeline", PHASESpatialPipeline, { module: "PHASE_6be9a005889899ab", properties: {"entries":504154027167570,"flags":4133255064662329} });
+registerSDKClass("PHASESpatialPipelineEntry", PHASESpatialPipelineEntry, { module: "PHASE_6be9a005889899ab", properties: {"sendLevel":23262572742945,"sendLevelMetaParameterDefinition":814390864308656} });
+registerSDKClass("PHASEStringMetaParameter", PHASEStringMetaParameter, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASEStringMetaParameterDefinition", PHASEStringMetaParameterDefinition, { module: "PHASE_6be9a005889899ab", properties: {} });
+registerSDKClass("PHASESwitchNodeDefinition", PHASESwitchNodeDefinition, { module: "PHASE_6be9a005889899ab", properties: {"switchMetaParameterDefinition":604023113256907}, methods: {"addSubtree":{"id":4059703618807021}} });

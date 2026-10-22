@@ -29,39 +29,39 @@ export class MTAudioProcessingTapCallbacks extends SDKHandle {
    * var clientInfo: UnsafeMutableRawPointer?
    * @availability iOS 6.0+
    */
-  get clientInfo(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MediaToolbox_5d69670f0307b385", 1702926955212117, this, []); }
-  set clientInfo(value: (SDKHandle) | null) { callSDK<void>("MediaToolbox_5d69670f0307b385", 3903424249432972, this, [value]); }
+  get clientInfo(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MediaToolbox_6be9a005889899ab", 1702926955212117, this, []); }
+  set clientInfo(value: (SDKHandle) | null) { callSDK<void>("MediaToolbox_6be9a005889899ab", 3903424249432972, this, [value]); }
   /**
    * var finalize: MTAudioProcessingTapFinalizeCallback?
    * @availability iOS 6.0+
    */
-  get finalize(): $SDK0 { return callSDK<$SDK0>("MediaToolbox_5d69670f0307b385", 3305538760559112, this, []); }
+  get finalize(): $SDK0 { return callSDK<$SDK0>("MediaToolbox_6be9a005889899ab", 3305538760559112, this, []); }
   /**
    * var `init`: MTAudioProcessingTapInitCallback?
    * @availability iOS 6.0+
    */
-  get init(): (((arg0: MTAudioProcessingTap, arg1: (SDKHandle) | null, arg2: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: MTAudioProcessingTap, arg1: (SDKHandle) | null, arg2: SDKHandle) => Promise<void>)) | null>("MediaToolbox_5d69670f0307b385", 2133099215396032, this, []); }
+  get init(): (((arg0: MTAudioProcessingTap, arg1: (SDKHandle) | null, arg2: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: MTAudioProcessingTap, arg1: (SDKHandle) | null, arg2: SDKHandle) => Promise<void>)) | null>("MediaToolbox_6be9a005889899ab", 2133099215396032, this, []); }
   /**
    * var prepare: MTAudioProcessingTapPrepareCallback?
    * @availability iOS 6.0+
    */
-  get prepare(): (((arg0: MTAudioProcessingTap, arg1: number, arg2: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: MTAudioProcessingTap, arg1: number, arg2: SDKHandle) => Promise<void>)) | null>("MediaToolbox_5d69670f0307b385", 2180753947880671, this, []); }
+  get prepare(): (((arg0: MTAudioProcessingTap, arg1: number, arg2: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: MTAudioProcessingTap, arg1: number, arg2: SDKHandle) => Promise<void>)) | null>("MediaToolbox_6be9a005889899ab", 2180753947880671, this, []); }
   /**
    * var process: MTAudioProcessingTapProcessCallback
    * @availability iOS 6.0+
    */
-  get process(): $SDK3 { return callSDK<$SDK3>("MediaToolbox_5d69670f0307b385", 1296451297483757, this, []); }
+  get process(): $SDK3 { return callSDK<$SDK3>("MediaToolbox_6be9a005889899ab", 1296451297483757, this, []); }
   /**
    * var unprepare: MTAudioProcessingTapUnprepareCallback?
    * @availability iOS 6.0+
    */
-  get unprepare(): $SDK0 { return callSDK<$SDK0>("MediaToolbox_5d69670f0307b385", 628219887334081, this, []); }
+  get unprepare(): $SDK0 { return callSDK<$SDK0>("MediaToolbox_6be9a005889899ab", 628219887334081, this, []); }
   /**
    * var version: Int32
    * @availability iOS 6.0+
    */
-  get version(): number { return callSDK<number>("MediaToolbox_5d69670f0307b385", 1818617204501594, this, []); }
-  set version(value: number) { callSDK<void>("MediaToolbox_5d69670f0307b385", 1410764296956443, this, [value]); }
+  get version(): number { return callSDK<number>("MediaToolbox_6be9a005889899ab", 1818617204501594, this, []); }
+  set version(value: number) { callSDK<void>("MediaToolbox_6be9a005889899ab", 1410764296956443, this, [value]); }
   declare readonly $type: { "c:@SA@MTAudioProcessingTapCallbacks": true };
 }
 
@@ -90,58 +90,58 @@ export type MTAudioProcessingTapUnprepareCallback = $SDK4;
  * func MTAudioProcessingTapCreate(_ allocator: CFAllocator?, _ callbacks: UnsafePointer<MTAudioProcessingTapCallbacks>, _ flags: MTAudioProcessingTapCreationFlags, _ tapOut: UnsafeMutablePointer<MTAudioProcessingTap?>) -> OSStatus
  * @availability iOS 6.0+
  */
-export function MTAudioProcessingTapCreate(allocator: $SDK8, callbacks: SDKHandle, flags: number): { $ret: number; $out: { "tapOut": $SDK7 } } { return callSDK<{ $ret: number; $out: { "tapOut": $SDK7 } }>("MediaToolbox_5d69670f0307b385", 4148832835286005, undefined, [allocator, callbacks, flags, null]); }
+export function MTAudioProcessingTapCreate(allocator: $SDK8, callbacks: SDKHandle, flags: number): { $ret: number; $out: { "tapOut": $SDK7 } } { return callSDK<{ $ret: number; $out: { "tapOut": $SDK7 } }>("MediaToolbox_6be9a005889899ab", 4148832835286005, undefined, [allocator, callbacks, flags, null]); }
 
 /**
  * func MTAudioProcessingTapCreateWithPreferredFormat(_ allocator: CFAllocator?, _ callbacks: UnsafePointer<MTAudioProcessingTapCallbacks>, _ flags: MTAudioProcessingTapCreationFlags, _ preferredFormat: CMAudioFormatDescription?, _ tapOut: UnsafeMutablePointer<MTAudioProcessingTap?>) -> OSStatus
  * @availability iOS 27.0+
  */
-export function MTAudioProcessingTapCreateWithPreferredFormat(allocator: $SDK8, callbacks: SDKHandle, flags: number, preferredFormat?: (_CoreMedia_CMFormatDescription) | null): { $ret: number; $out: { "tapOut": $SDK7 } } { return callSDK<{ $ret: number; $out: { "tapOut": $SDK7 } }>("MediaToolbox_5d69670f0307b385", 2184949880537068, undefined, [allocator, callbacks, flags, preferredFormat, null]); }
+export function MTAudioProcessingTapCreateWithPreferredFormat(allocator: $SDK8, callbacks: SDKHandle, flags: number, preferredFormat?: (_CoreMedia_CMFormatDescription) | null): { $ret: number; $out: { "tapOut": $SDK7 } } { return callSDK<{ $ret: number; $out: { "tapOut": $SDK7 } }>("MediaToolbox_6be9a005889899ab", 2184949880537068, undefined, [allocator, callbacks, flags, preferredFormat, null]); }
 
 /**
  * func MTAudioProcessingTapGetSourceAudio(_ tap: MTAudioProcessingTap, _ numberFrames: CMItemCount, _ bufferListInOut: UnsafeMutablePointer<AudioBufferList>, _ flagsOut: UnsafeMutablePointer<MTAudioProcessingTapFlags>?, _ timeRangeOut: UnsafeMutablePointer<CMTimeRange>?, _ numberFramesOut: UnsafeMutablePointer<CMItemCount>?) -> OSStatus
  * @availability iOS 6.0+
  */
-export function MTAudioProcessingTapGetSourceAudio(tap: MTAudioProcessingTap, numberFrames: number, bufferListInOut: SDKHandle, flagsOut?: (SDKHandle) | null, timeRangeOut?: (SDKHandle) | null, numberFramesOut?: (SDKHandle) | null): number { return callSDK<number>("MediaToolbox_5d69670f0307b385", 3117460604759772, undefined, [tap, numberFrames, bufferListInOut, flagsOut, timeRangeOut, numberFramesOut]); }
+export function MTAudioProcessingTapGetSourceAudio(tap: MTAudioProcessingTap, numberFrames: number, bufferListInOut: SDKHandle, flagsOut?: (SDKHandle) | null, timeRangeOut?: (SDKHandle) | null, numberFramesOut?: (SDKHandle) | null): number { return callSDK<number>("MediaToolbox_6be9a005889899ab", 3117460604759772, undefined, [tap, numberFrames, bufferListInOut, flagsOut, timeRangeOut, numberFramesOut]); }
 
 /**
  * func MTAudioProcessingTapGetStorage(_ tap: MTAudioProcessingTap) -> UnsafeMutableRawPointer
  * @availability iOS 6.0+
  */
-export function MTAudioProcessingTapGetStorage(tap: MTAudioProcessingTap): SDKHandle { return callSDK<SDKHandle>("MediaToolbox_5d69670f0307b385", 2730149720980784, undefined, [tap]); }
+export function MTAudioProcessingTapGetStorage(tap: MTAudioProcessingTap): SDKHandle { return callSDK<SDKHandle>("MediaToolbox_6be9a005889899ab", 2730149720980784, undefined, [tap]); }
 
 /**
  * func MTAudioProcessingTapGetTypeID() -> CFTypeID
  * @availability iOS 6.0+
  */
-export function MTAudioProcessingTapGetTypeID(): number { return callSDK<number>("MediaToolbox_5d69670f0307b385", 3811221094901590, undefined, []); }
+export function MTAudioProcessingTapGetTypeID(): number { return callSDK<number>("MediaToolbox_6be9a005889899ab", 3811221094901590, undefined, []); }
 
 /**
  * func MTCopyLocalizedNameForMediaSubType(_ mediaType: CMMediaType, _ mediaSubType: FourCharCode) -> CFString?
  * @availability iOS 6.0+
  */
-export function MTCopyLocalizedNameForMediaSubType(mediaType: SDKHandle, mediaSubType: SDKHandle): $SDK10 { return callSDK<$SDK10>("MediaToolbox_5d69670f0307b385", 2605381790815674, undefined, [mediaType, mediaSubType]); }
+export function MTCopyLocalizedNameForMediaSubType(mediaType: SDKHandle, mediaSubType: SDKHandle): $SDK10 { return callSDK<$SDK10>("MediaToolbox_6be9a005889899ab", 2605381790815674, undefined, [mediaType, mediaSubType]); }
 
 /**
  * func MTCopyLocalizedNameForMediaType(_ mediaType: CMMediaType) -> CFString?
  * @availability iOS 6.0+
  */
-export function MTCopyLocalizedNameForMediaType(mediaType: SDKHandle): $SDK10 { return callSDK<$SDK10>("MediaToolbox_5d69670f0307b385", 3309161421467344, undefined, [mediaType]); }
+export function MTCopyLocalizedNameForMediaType(mediaType: SDKHandle): $SDK10 { return callSDK<$SDK10>("MediaToolbox_6be9a005889899ab", 3309161421467344, undefined, [mediaType]); }
 
 /** var kMTAudioProcessingTapCallbacksVersion_0: Int32 { get } */
-export const kMTAudioProcessingTapCallbacksVersion_0: number = callSDK<number>("MediaToolbox_5d69670f0307b385", 1465808009545929, undefined, []);
+export const kMTAudioProcessingTapCallbacksVersion_0: number = callSDK<number>("MediaToolbox_6be9a005889899ab", 1465808009545929, undefined, []);
 
 /** var kMTAudioProcessingTapCreationFlag_PostEffects: MTAudioProcessingTapCreationFlags { get } */
-export const kMTAudioProcessingTapCreationFlag_PostEffects: number = callSDK<number>("MediaToolbox_5d69670f0307b385", 3674553065369131, undefined, []);
+export const kMTAudioProcessingTapCreationFlag_PostEffects: number = callSDK<number>("MediaToolbox_6be9a005889899ab", 3674553065369131, undefined, []);
 
 /** var kMTAudioProcessingTapCreationFlag_PreEffects: MTAudioProcessingTapCreationFlags { get } */
-export const kMTAudioProcessingTapCreationFlag_PreEffects: number = callSDK<number>("MediaToolbox_5d69670f0307b385", 2670847797395204, undefined, []);
+export const kMTAudioProcessingTapCreationFlag_PreEffects: number = callSDK<number>("MediaToolbox_6be9a005889899ab", 2670847797395204, undefined, []);
 
 /** var kMTAudioProcessingTapFlag_EndOfStream: MTAudioProcessingTapFlags { get } */
-export const kMTAudioProcessingTapFlag_EndOfStream: number = callSDK<number>("MediaToolbox_5d69670f0307b385", 2329871333047384, undefined, []);
+export const kMTAudioProcessingTapFlag_EndOfStream: number = callSDK<number>("MediaToolbox_6be9a005889899ab", 2329871333047384, undefined, []);
 
 /** var kMTAudioProcessingTapFlag_StartOfStream: MTAudioProcessingTapFlags { get } */
-export const kMTAudioProcessingTapFlag_StartOfStream: number = callSDK<number>("MediaToolbox_5d69670f0307b385", 369095587215800, undefined, []);
+export const kMTAudioProcessingTapFlag_StartOfStream: number = callSDK<number>("MediaToolbox_6be9a005889899ab", 369095587215800, undefined, []);
 
-registerSDKClass("MediaToolbox.MTAudioProcessingTap", MTAudioProcessingTap, { module: "MediaToolbox_5d69670f0307b385", properties: {} });
-registerSDKClass("MediaToolbox.MTAudioProcessingTapCallbacks", MTAudioProcessingTapCallbacks, { module: "MediaToolbox_5d69670f0307b385", properties: {} });
+registerSDKClass("MediaToolbox.MTAudioProcessingTap", MTAudioProcessingTap, { module: "MediaToolbox_6be9a005889899ab", properties: {} });
+registerSDKClass("MediaToolbox.MTAudioProcessingTapCallbacks", MTAudioProcessingTapCallbacks, { module: "MediaToolbox_6be9a005889899ab", properties: {} });

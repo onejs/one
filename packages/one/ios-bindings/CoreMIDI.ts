@@ -40,27 +40,27 @@ export class MIDI2DeviceInfo extends SDKHandle {
    * init(manufacturerID: MIDI2DeviceManufacturer, family: MIDIUInteger14, modelNumber: MIDIUInteger14, revisionLevel: MIDI2DeviceRevisionLevel)
    * @availability iOS 18.0+
    */
-  static init(manufacturerID: MIDI2DeviceManufacturer, family: number, modelNumber: number, revisionLevel: MIDI2DeviceRevisionLevel): MIDI2DeviceInfo { return callSDK<MIDI2DeviceInfo>("CoreMIDI_5d69670f0307b385", 640433066020852, undefined, [manufacturerID, family, modelNumber, revisionLevel]); }
+  static init(manufacturerID: MIDI2DeviceManufacturer, family: number, modelNumber: number, revisionLevel: MIDI2DeviceRevisionLevel): MIDI2DeviceInfo { return callSDK<MIDI2DeviceInfo>("CoreMIDI_6be9a005889899ab", 640433066020852, undefined, [manufacturerID, family, modelNumber, revisionLevel]); }
   /**
    * var family: MIDIUInteger14 { get }
    * @availability iOS 18.0+
    */
-  get family(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 381753343969845, this, []); }
+  get family(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 381753343969845, this, []); }
   /**
    * var manufacturerID: MIDI2DeviceManufacturer { get }
    * @availability iOS 18.0+
    */
-  get manufacturerID(): MIDI2DeviceManufacturer { return callSDK<MIDI2DeviceManufacturer>("CoreMIDI_5d69670f0307b385", 1041244801740105, this, []); }
+  get manufacturerID(): MIDI2DeviceManufacturer { return callSDK<MIDI2DeviceManufacturer>("CoreMIDI_6be9a005889899ab", 1041244801740105, this, []); }
   /**
    * var modelNumber: MIDIUInteger14 { get }
    * @availability iOS 18.0+
    */
-  get modelNumber(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 920903037365196, this, []); }
+  get modelNumber(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 920903037365196, this, []); }
   /**
    * var revisionLevel: MIDI2DeviceRevisionLevel { get }
    * @availability iOS 18.0+
    */
-  get revisionLevel(): MIDI2DeviceRevisionLevel { return callSDK<MIDI2DeviceRevisionLevel>("CoreMIDI_5d69670f0307b385", 3542198219563795, this, []); }
+  get revisionLevel(): MIDI2DeviceRevisionLevel { return callSDK<MIDI2DeviceRevisionLevel>("CoreMIDI_6be9a005889899ab", 3542198219563795, this, []); }
   declare readonly $type: { "c:objc(cs)MIDI2DeviceInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "family": true; "manufacturerID": true; "modelNumber": true; "revisionLevel": true };
 }
@@ -68,24 +68,24 @@ export class MIDI2DeviceInfo extends SDKHandle {
 /** struct MIDI2DeviceManufacturer */
 export class MIDI2DeviceManufacturer extends SDKHandle {
   /** var sysExIDByte: (UInt8, UInt8, UInt8) */
-  get sysExIDByte(): $SDK0 { return callSDK<$SDK0>("CoreMIDI_5d69670f0307b385", 3210972859498229, this, []); }
-  set sysExIDByte(value: $SDK0) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1399253011662584, this, [value]); }
+  get sysExIDByte(): $SDK0 { return callSDK<$SDK0>("CoreMIDI_6be9a005889899ab", 3210972859498229, this, []); }
+  set sysExIDByte(value: $SDK0) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1399253011662584, this, [value]); }
   /** init(sysExIDByte: (UInt8, UInt8, UInt8)) */
-  static initSysExIDByte(sysExIDByte: $SDK0): MIDI2DeviceManufacturer { return callSDK<MIDI2DeviceManufacturer>("CoreMIDI_5d69670f0307b385", 3824174770904750, undefined, [sysExIDByte]); }
+  static initSysExIDByte(sysExIDByte: $SDK0): MIDI2DeviceManufacturer { return callSDK<MIDI2DeviceManufacturer>("CoreMIDI_6be9a005889899ab", 3824174770904750, undefined, [sysExIDByte]); }
   /** init() */
-  static init(): MIDI2DeviceManufacturer { return callSDK<MIDI2DeviceManufacturer>("CoreMIDI_5d69670f0307b385", 1284186025094022, undefined, []); }
+  static init(): MIDI2DeviceManufacturer { return callSDK<MIDI2DeviceManufacturer>("CoreMIDI_6be9a005889899ab", 1284186025094022, undefined, []); }
   declare readonly $type: { "c:@SA@MIDI2DeviceManufacturer": true };
 }
 
 /** struct MIDI2DeviceRevisionLevel */
 export class MIDI2DeviceRevisionLevel extends SDKHandle {
   /** var revisionLevel: (UInt8, UInt8, UInt8, UInt8) */
-  get revisionLevel(): $SDK1 { return callSDK<$SDK1>("CoreMIDI_5d69670f0307b385", 1203400760328764, this, []); }
-  set revisionLevel(value: $SDK1) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4064060760186456, this, [value]); }
+  get revisionLevel(): $SDK1 { return callSDK<$SDK1>("CoreMIDI_6be9a005889899ab", 1203400760328764, this, []); }
+  set revisionLevel(value: $SDK1) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4064060760186456, this, [value]); }
   /** init(revisionLevel: (UInt8, UInt8, UInt8, UInt8)) */
-  static initRevisionLevel(revisionLevel: $SDK1): MIDI2DeviceRevisionLevel { return callSDK<MIDI2DeviceRevisionLevel>("CoreMIDI_5d69670f0307b385", 1399509133938164, undefined, [revisionLevel]); }
+  static initRevisionLevel(revisionLevel: $SDK1): MIDI2DeviceRevisionLevel { return callSDK<MIDI2DeviceRevisionLevel>("CoreMIDI_6be9a005889899ab", 1399509133938164, undefined, [revisionLevel]); }
   /** init() */
-  static init(): MIDI2DeviceRevisionLevel { return callSDK<MIDI2DeviceRevisionLevel>("CoreMIDI_5d69670f0307b385", 2716396384782172, undefined, []); }
+  static init(): MIDI2DeviceRevisionLevel { return callSDK<MIDI2DeviceRevisionLevel>("CoreMIDI_6be9a005889899ab", 2716396384782172, undefined, []); }
   declare readonly $type: { "c:@SA@MIDI2DeviceRevisionLevel": true };
 }
 
@@ -97,15 +97,15 @@ export type MIDICICategoryOptions = Array<"protocolNegotiation" | "profileConfig
 
 export const MIDICICategoryOptions = {
   /** static var processInquirySupported: MIDICICategoryOptions { get } */
-  get processInquirySupported(): MIDICICategoryOptions { return callSDK<MIDICICategoryOptions>("CoreMIDI_5d69670f0307b385", 596100953884865, undefined, []); },
+  get processInquirySupported(): MIDICICategoryOptions { return callSDK<MIDICICategoryOptions>("CoreMIDI_6be9a005889899ab", 596100953884865, undefined, []); },
   /** static var profileConfigurationSupported: MIDICICategoryOptions { get } */
-  get profileConfigurationSupported(): MIDICICategoryOptions { return callSDK<MIDICICategoryOptions>("CoreMIDI_5d69670f0307b385", 1328282554537101, undefined, []); },
+  get profileConfigurationSupported(): MIDICICategoryOptions { return callSDK<MIDICICategoryOptions>("CoreMIDI_6be9a005889899ab", 1328282554537101, undefined, []); },
   /** static var propertyExchangeSupported: MIDICICategoryOptions { get } */
-  get propertyExchangeSupported(): MIDICICategoryOptions { return callSDK<MIDICICategoryOptions>("CoreMIDI_5d69670f0307b385", 1246806314485053, undefined, []); },
+  get propertyExchangeSupported(): MIDICICategoryOptions { return callSDK<MIDICICategoryOptions>("CoreMIDI_6be9a005889899ab", 1246806314485053, undefined, []); },
   /** static var protocolNegotiation: MIDICICategoryOptions { get } */
-  get protocolNegotiation(): MIDICICategoryOptions { return callSDK<MIDICICategoryOptions>("CoreMIDI_5d69670f0307b385", 2849232724882968, undefined, []); },
+  get protocolNegotiation(): MIDICICategoryOptions { return callSDK<MIDICICategoryOptions>("CoreMIDI_6be9a005889899ab", 2849232724882968, undefined, []); },
   /** init(rawValue: MIDIUInteger7) */
-  init(rawValue: number): MIDICICategoryOptions { return callSDK<MIDICICategoryOptions>("CoreMIDI_5d69670f0307b385", 1299790820517984, undefined, [rawValue]); }
+  init(rawValue: number): MIDICICategoryOptions { return callSDK<MIDICICategoryOptions>("CoreMIDI_6be9a005889899ab", 1299790820517984, undefined, [rawValue]); }
 };
 
 /**
@@ -117,52 +117,52 @@ export class MIDICIDevice extends SDKHandle {
    * var muid: MIDICIMUID { get }
    * @availability iOS 18.0+
    */
-  get muid(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 898337945246930, this, []); }
+  get muid(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 898337945246930, this, []); }
   /**
    * var deviceInfo: MIDI2DeviceInfo { get }
    * @availability iOS 18.0+
    */
-  get deviceInfo(): MIDI2DeviceInfo { return callSDK<MIDI2DeviceInfo>("CoreMIDI_5d69670f0307b385", 1520671075866343, this, []); }
+  get deviceInfo(): MIDI2DeviceInfo { return callSDK<MIDI2DeviceInfo>("CoreMIDI_6be9a005889899ab", 1520671075866343, this, []); }
   /**
    * var deviceType: MIDICIDeviceType { get }
    * @availability iOS 18.0+
    */
-  get deviceType(): MIDICIDeviceType { return callSDK<MIDICIDeviceType>("CoreMIDI_5d69670f0307b385", 119980407572891, this, []); }
+  get deviceType(): MIDICIDeviceType { return callSDK<MIDICIDeviceType>("CoreMIDI_6be9a005889899ab", 119980407572891, this, []); }
   /**
    * var maxPropertyExchangeRequests: Int { get }
    * @availability iOS 18.0+
    */
-  get maxPropertyExchangeRequests(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3947138054434580, this, []); }
+  get maxPropertyExchangeRequests(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3947138054434580, this, []); }
   /**
    * var maxSysExSize: Int { get }
    * @availability iOS 18.0+
    */
-  get maxSysExSize(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4313855152189382, this, []); }
+  get maxSysExSize(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4313855152189382, this, []); }
   /**
    * var profiles: [MIDIUMPCIProfile] { get }
    * @availability iOS 18.0+
    */
-  get profiles(): Array<MIDIUMPCIProfile> { return callSDK<Array<MIDIUMPCIProfile>>("CoreMIDI_5d69670f0307b385", 2034700539851631, this, []); }
+  get profiles(): Array<MIDIUMPCIProfile> { return callSDK<Array<MIDIUMPCIProfile>>("CoreMIDI_6be9a005889899ab", 2034700539851631, this, []); }
   /**
    * var supportsProcessInquiry: Bool { get }
    * @availability iOS 18.0+
    */
-  get supportsProcessInquiry(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 3638750331236542, this, []); }
+  get supportsProcessInquiry(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 3638750331236542, this, []); }
   /**
    * var supportsProfileConfiguration: Bool { get }
    * @availability iOS 18.0+
    */
-  get supportsProfileConfiguration(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 2558365135045595, this, []); }
+  get supportsProfileConfiguration(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 2558365135045595, this, []); }
   /**
    * var supportsPropertyExchange: Bool { get }
    * @availability iOS 18.0+
    */
-  get supportsPropertyExchange(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 3928261953513625, this, []); }
+  get supportsPropertyExchange(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 3928261953513625, this, []); }
   /**
    * var supportsProtocolNegotiation: Bool { get }
    * @availability iOS 18.0+
    */
-  get supportsProtocolNegotiation(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 2566816715576695, this, []); }
+  get supportsProtocolNegotiation(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 2566816715576695, this, []); }
   declare readonly $type: { "c:objc(cs)MIDICIDevice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "muid": true; "deviceInfo": true; "deviceType": true; "maxPropertyExchangeRequests": true; "maxSysExSize": true; "profiles": true; "supportsProcessInquiry": true; "supportsProfileConfiguration": true; "supportsPropertyExchange": true; "supportsProtocolNegotiation": true };
 }
@@ -173,24 +173,24 @@ export type MIDICIDeviceID = number;
 /** struct MIDICIDeviceIdentification */
 export class MIDICIDeviceIdentification extends SDKHandle {
   /** var family: (UInt8, UInt8) */
-  get family(): [number, number] { return callSDK<[number, number]>("CoreMIDI_5d69670f0307b385", 1936628537675855, this, []); }
-  set family(value: [number, number]) { callSDK<void>("CoreMIDI_5d69670f0307b385", 459611376845432, this, [value]); }
+  get family(): [number, number] { return callSDK<[number, number]>("CoreMIDI_6be9a005889899ab", 1936628537675855, this, []); }
+  set family(value: [number, number]) { callSDK<void>("CoreMIDI_6be9a005889899ab", 459611376845432, this, [value]); }
   /** var manufacturer: (UInt8, UInt8, UInt8) */
-  get manufacturer(): $SDK0 { return callSDK<$SDK0>("CoreMIDI_5d69670f0307b385", 1783481609934693, this, []); }
-  set manufacturer(value: $SDK0) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3470639804373316, this, [value]); }
+  get manufacturer(): $SDK0 { return callSDK<$SDK0>("CoreMIDI_6be9a005889899ab", 1783481609934693, this, []); }
+  set manufacturer(value: $SDK0) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3470639804373316, this, [value]); }
   /** var modelNumber: (UInt8, UInt8) */
-  get modelNumber(): [number, number] { return callSDK<[number, number]>("CoreMIDI_5d69670f0307b385", 4192116385456312, this, []); }
-  set modelNumber(value: [number, number]) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1636818191654713, this, [value]); }
+  get modelNumber(): [number, number] { return callSDK<[number, number]>("CoreMIDI_6be9a005889899ab", 4192116385456312, this, []); }
+  set modelNumber(value: [number, number]) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1636818191654713, this, [value]); }
   /** var reserved: (UInt8, UInt8, UInt8, UInt8, UInt8) */
-  get reserved(): $SDK2 { return callSDK<$SDK2>("CoreMIDI_5d69670f0307b385", 3383027414142193, this, []); }
-  set reserved(value: $SDK2) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3972544659344407, this, [value]); }
+  get reserved(): $SDK2 { return callSDK<$SDK2>("CoreMIDI_6be9a005889899ab", 3383027414142193, this, []); }
+  set reserved(value: $SDK2) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3972544659344407, this, [value]); }
   /** var revisionLevel: (UInt8, UInt8, UInt8, UInt8) */
-  get revisionLevel(): $SDK1 { return callSDK<$SDK1>("CoreMIDI_5d69670f0307b385", 4438773327465403, this, []); }
-  set revisionLevel(value: $SDK1) { callSDK<void>("CoreMIDI_5d69670f0307b385", 120244804187579, this, [value]); }
+  get revisionLevel(): $SDK1 { return callSDK<$SDK1>("CoreMIDI_6be9a005889899ab", 4438773327465403, this, []); }
+  set revisionLevel(value: $SDK1) { callSDK<void>("CoreMIDI_6be9a005889899ab", 120244804187579, this, [value]); }
   /** init(manufacturer: (UInt8, UInt8, UInt8), family: (UInt8, UInt8), modelNumber: (UInt8, UInt8), revisionLevel: (UInt8, UInt8, UInt8, UInt8), reserved: (UInt8, UInt8, UInt8, UInt8, UInt8)) */
-  static initManufacturerFamilyModelNumberRevisionLevelReserved(manufacturer: $SDK0, family: [number, number], modelNumber: [number, number], revisionLevel: $SDK1, reserved: $SDK2): MIDICIDeviceIdentification { return callSDK<MIDICIDeviceIdentification>("CoreMIDI_5d69670f0307b385", 995429634112986, undefined, [manufacturer, family, modelNumber, revisionLevel, reserved]); }
+  static initManufacturerFamilyModelNumberRevisionLevelReserved(manufacturer: $SDK0, family: [number, number], modelNumber: [number, number], revisionLevel: $SDK1, reserved: $SDK2): MIDICIDeviceIdentification { return callSDK<MIDICIDeviceIdentification>("CoreMIDI_6be9a005889899ab", 995429634112986, undefined, [manufacturer, family, modelNumber, revisionLevel, reserved]); }
   /** init() */
-  static init(): MIDICIDeviceIdentification { return callSDK<MIDICIDeviceIdentification>("CoreMIDI_5d69670f0307b385", 1762903899114623, undefined, []); }
+  static init(): MIDICIDeviceIdentification { return callSDK<MIDICIDeviceIdentification>("CoreMIDI_6be9a005889899ab", 1762903899114623, undefined, []); }
   declare readonly $type: { "c:@S@MIDICIDeviceIdentification": true };
 }
 
@@ -205,37 +205,37 @@ export class MIDICIDeviceInfo extends SDKHandle {
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  static init(midiDestination: number, manufacturer: ArrayBuffer, family: ArrayBuffer, modelNumber: ArrayBuffer, revisionLevel: ArrayBuffer): MIDICIDeviceInfo { return callSDK<MIDICIDeviceInfo>("CoreMIDI_5d69670f0307b385", 4251948850630971, undefined, [midiDestination, manufacturer, family, modelNumber, revisionLevel]); }
+  static init(midiDestination: number, manufacturer: ArrayBuffer, family: ArrayBuffer, modelNumber: ArrayBuffer, revisionLevel: ArrayBuffer): MIDICIDeviceInfo { return callSDK<MIDICIDeviceInfo>("CoreMIDI_6be9a005889899ab", 4251948850630971, undefined, [midiDestination, manufacturer, family, modelNumber, revisionLevel]); }
   /**
    * var family: Data { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get family(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreMIDI_5d69670f0307b385", 3329734665441337, this, []); }
+  get family(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreMIDI_6be9a005889899ab", 3329734665441337, this, []); }
   /**
    * var manufacturerID: Data { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get manufacturerID(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreMIDI_5d69670f0307b385", 3262816915609093, this, []); }
+  get manufacturerID(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreMIDI_6be9a005889899ab", 3262816915609093, this, []); }
   /**
    * var midiDestination: MIDIEndpointRef { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get midiDestination(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 112573261723858, this, []); }
+  get midiDestination(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 112573261723858, this, []); }
   /**
    * var modelNumber: Data { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get modelNumber(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreMIDI_5d69670f0307b385", 2161363196073675, this, []); }
+  get modelNumber(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreMIDI_6be9a005889899ab", 2161363196073675, this, []); }
   /**
    * var revisionLevel: Data { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get revisionLevel(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreMIDI_5d69670f0307b385", 582889052090069, this, []); }
+  get revisionLevel(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreMIDI_6be9a005889899ab", 582889052090069, this, []); }
   declare readonly $type: { "c:objc(cs)MIDICIDeviceInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "family": true; "manufacturerID": true; "midiDestination": true; "modelNumber": true; "revisionLevel": true };
 }
@@ -249,34 +249,34 @@ export class MIDICIDeviceManager extends SDKHandle {
    * class let deviceWasAddedNotification: NSNotification.Name
    * @availability iOS 18.0+
    */
-  static get deviceWasAddedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_5d69670f0307b385", 2056039842147134, undefined, []); }
+  static get deviceWasAddedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_6be9a005889899ab", 2056039842147134, undefined, []); }
   /**
    * class let deviceWasRemovedNotification: NSNotification.Name
    * @availability iOS 18.0+
    */
-  static get deviceWasRemovedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_5d69670f0307b385", 3361899256484340, undefined, []); }
+  static get deviceWasRemovedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_6be9a005889899ab", 3361899256484340, undefined, []); }
   /**
    * class let profileWasRemovedNotification: NSNotification.Name
    * @availability iOS 18.0+
    */
-  static get profileWasRemovedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_5d69670f0307b385", 4200687564486465, undefined, []); }
+  static get profileWasRemovedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_6be9a005889899ab", 4200687564486465, undefined, []); }
   /**
    * class let profileWasUpdatedNotification: NSNotification.Name
    * @availability iOS 18.0+
    */
-  static get profileWasUpdatedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_5d69670f0307b385", 1546134310850887, undefined, []); }
+  static get profileWasUpdatedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_6be9a005889899ab", 1546134310850887, undefined, []); }
   /**
    * class var shared: MIDICIDeviceManager { get }
    * @availability iOS 18.0+
    */
-  static get shared(): MIDICIDeviceManager { return callSDK<MIDICIDeviceManager>("CoreMIDI_5d69670f0307b385", 1823579935961943, undefined, []); }
+  static get shared(): MIDICIDeviceManager { return callSDK<MIDICIDeviceManager>("CoreMIDI_6be9a005889899ab", 1823579935961943, undefined, []); }
   /** init() */
-  static init(): MIDICIDeviceManager { return callSDK<MIDICIDeviceManager>("CoreMIDI_5d69670f0307b385", 448833766617312, undefined, []); }
+  static init(): MIDICIDeviceManager { return callSDK<MIDICIDeviceManager>("CoreMIDI_6be9a005889899ab", 448833766617312, undefined, []); }
   /**
    * var discoveredCIDevices: [MIDICIDevice] { get }
    * @availability iOS 18.0+
    */
-  get discoveredCIDevices(): Array<MIDICIDevice> { return callSDK<Array<MIDICIDevice>>("CoreMIDI_5d69670f0307b385", 4367547127573739, this, []); }
+  get discoveredCIDevices(): Array<MIDICIDevice> { return callSDK<Array<MIDICIDevice>>("CoreMIDI_6be9a005889899ab", 4367547127573739, this, []); }
   declare readonly $type: { "c:objc(cs)MIDICIDeviceManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "discoveredCIDevices": true };
 }
@@ -289,14 +289,14 @@ export const MIDICIDeviceManager_DictionaryKey = {
    * static let deviceObject: MIDICIDeviceManager.DictionaryKey
    * @availability iOS 18.0+
    */
-  get deviceObject(): MIDICIDeviceManager_DictionaryKey { return callSDK<MIDICIDeviceManager_DictionaryKey>("CoreMIDI_5d69670f0307b385", 1265693132443114, undefined, []); },
+  get deviceObject(): MIDICIDeviceManager_DictionaryKey { return callSDK<MIDICIDeviceManager_DictionaryKey>("CoreMIDI_6be9a005889899ab", 1265693132443114, undefined, []); },
   /**
    * static let profileObject: MIDICIDeviceManager.DictionaryKey
    * @availability iOS 18.0+
    */
-  get profileObject(): MIDICIDeviceManager_DictionaryKey { return callSDK<MIDICIDeviceManager_DictionaryKey>("CoreMIDI_5d69670f0307b385", 3932819350791524, undefined, []); },
+  get profileObject(): MIDICIDeviceManager_DictionaryKey { return callSDK<MIDICIDeviceManager_DictionaryKey>("CoreMIDI_6be9a005889899ab", 3932819350791524, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): MIDICIDeviceManager_DictionaryKey { return callSDK<MIDICIDeviceManager_DictionaryKey>("CoreMIDI_5d69670f0307b385", 2067557624123580, undefined, [rawValue]); }
+  init(rawValue: string): MIDICIDeviceManager_DictionaryKey { return callSDK<MIDICIDeviceManager_DictionaryKey>("CoreMIDI_6be9a005889899ab", 2067557624123580, undefined, [rawValue]); }
 };
 
 /** enum MIDICIDeviceType */
@@ -304,7 +304,7 @@ export type MIDICIDeviceType = "unknown" | "legacyMIDI1" | "virtual" | "usbMIDI"
 
 export const MIDICIDeviceType = {
   /** init?(rawValue: UInt8) */
-  init(rawValue: number): (MIDICIDeviceType) | null { return callSDK<(MIDICIDeviceType) | null>("CoreMIDI_5d69670f0307b385", 4017371168679921, undefined, [rawValue]); }
+  init(rawValue: number): (MIDICIDeviceType) | null { return callSDK<(MIDICIDeviceType) | null>("CoreMIDI_6be9a005889899ab", 4017371168679921, undefined, [rawValue]); }
 };
 
 /**
@@ -318,31 +318,31 @@ export class MIDICIDiscoveredNode extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  get destination(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1961847877372791, this, []); }
+  get destination(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1961847877372791, this, []); }
   /**
    * var deviceInfo: MIDICIDeviceInfo { get }
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  get deviceInfo(): MIDICIDeviceInfo { return callSDK<MIDICIDeviceInfo>("CoreMIDI_5d69670f0307b385", 1517714812898735, this, []); }
+  get deviceInfo(): MIDICIDeviceInfo { return callSDK<MIDICIDeviceInfo>("CoreMIDI_6be9a005889899ab", 1517714812898735, this, []); }
   /**
    * var maximumSysExSize: NSNumber { get }
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  get maximumSysExSize(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMIDI_5d69670f0307b385", 3252394905445722, this, []); }
+  get maximumSysExSize(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMIDI_6be9a005889899ab", 3252394905445722, this, []); }
   /**
    * var supportsProfiles: Bool { get }
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  get supportsProfiles(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 3151182809805089, this, []); }
+  get supportsProfiles(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 3151182809805089, this, []); }
   /**
    * var supportsProperties: Bool { get }
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  get supportsProperties(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 59075452736967, this, []); }
+  get supportsProperties(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 59075452736967, this, []); }
   declare readonly $type: { "c:objc(cs)MIDICIDiscoveredNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "destination": true; "deviceInfo": true; "maximumSysExSize": true; "supportsProfiles": true; "supportsProperties": true };
 }
@@ -358,15 +358,15 @@ export class MIDICIDiscoveryManager extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  static sharedInstance(): MIDICIDiscoveryManager { return callSDK<MIDICIDiscoveryManager>("CoreMIDI_5d69670f0307b385", 3225011305409142, undefined, []); }
+  static sharedInstance(): MIDICIDiscoveryManager { return callSDK<MIDICIDiscoveryManager>("CoreMIDI_6be9a005889899ab", 3225011305409142, undefined, []); }
   /**
    * func discover(handler completedHandler: @escaping MIDICIDiscoveryResponseBlock)
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  discover(completedHandler: ((arg0: Array<MIDICIDiscoveredNode>) => void)): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 1468047716023958, this, [completedHandler], [{"callback":{"out":[]}}]); }
+  discover(completedHandler: ((arg0: Array<MIDICIDiscoveredNode>) => void)): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 1468047716023958, this, [completedHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): MIDICIDiscoveryManager { return callSDK<MIDICIDiscoveryManager>("CoreMIDI_5d69670f0307b385", 3678826680384705, undefined, []); }
+  static init(): MIDICIDiscoveryManager { return callSDK<MIDICIDiscoveryManager>("CoreMIDI_6be9a005889899ab", 3678826680384705, undefined, []); }
   declare readonly $type: { "c:objc(cs)MIDICIDiscoveryManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -385,7 +385,7 @@ export type MIDICIManagementMessageType = "discovery" | "replyToDiscovery" | "in
 
 export const MIDICIManagementMessageType = {
   /** init?(rawValue: MIDIUInteger7) */
-  init(rawValue: number): (MIDICIManagementMessageType) | null { return callSDK<(MIDICIManagementMessageType) | null>("CoreMIDI_5d69670f0307b385", 1700326114754426, undefined, [rawValue]); }
+  init(rawValue: number): (MIDICIManagementMessageType) | null { return callSDK<(MIDICIManagementMessageType) | null>("CoreMIDI_6be9a005889899ab", 1700326114754426, undefined, [rawValue]); }
 };
 
 /** typealias MIDICIMUID = MIDIUInteger28 */
@@ -396,7 +396,7 @@ export type MIDICIProcessInquiryMessageType = "inquiryProcessInquiryCapabilities
 
 export const MIDICIProcessInquiryMessageType = {
   /** init?(rawValue: MIDIUInteger7) */
-  init(rawValue: number): (MIDICIProcessInquiryMessageType) | null { return callSDK<(MIDICIProcessInquiryMessageType) | null>("CoreMIDI_5d69670f0307b385", 1802566627121316, undefined, [rawValue]); }
+  init(rawValue: number): (MIDICIProcessInquiryMessageType) | null { return callSDK<(MIDICIProcessInquiryMessageType) | null>("CoreMIDI_6be9a005889899ab", 1802566627121316, undefined, [rawValue]); }
 };
 
 /**
@@ -408,22 +408,22 @@ export class MIDICIProfile extends SDKHandle {
    * init(data: Data)
    * @availability iOS 14.0+
    */
-  static initData(data: ArrayBuffer): MIDICIProfile { return callSDK<MIDICIProfile>("CoreMIDI_5d69670f0307b385", 1657625108161953, undefined, [data]); }
+  static initData(data: ArrayBuffer): MIDICIProfile { return callSDK<MIDICIProfile>("CoreMIDI_6be9a005889899ab", 1657625108161953, undefined, [data]); }
   /**
    * init(data: Data, name inName: String)
    * @availability iOS 12.0+
    */
-  static initDataName(data: ArrayBuffer, inName: string): MIDICIProfile { return callSDK<MIDICIProfile>("CoreMIDI_5d69670f0307b385", 1559374922824442, undefined, [data, inName]); }
+  static initDataName(data: ArrayBuffer, inName: string): MIDICIProfile { return callSDK<MIDICIProfile>("CoreMIDI_6be9a005889899ab", 1559374922824442, undefined, [data, inName]); }
   /**
    * var name: String { get }
    * @availability iOS 12.0+
    */
-  get name(): string { return callSDK<string>("CoreMIDI_5d69670f0307b385", 3194647959981040, this, []); }
+  get name(): string { return callSDK<string>("CoreMIDI_6be9a005889899ab", 3194647959981040, this, []); }
   /**
    * var profileID: Data { get }
    * @availability iOS 12.0+
    */
-  get profileID(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreMIDI_5d69670f0307b385", 1556584761842956, this, []); }
+  get profileID(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreMIDI_6be9a005889899ab", 1556584761842956, this, []); }
   declare readonly $type: { "c:objc(cs)MIDICIProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "profileID": true };
 }
@@ -438,65 +438,65 @@ export type MIDICIProfileChangedBlock = ((arg0: MIDICISession, arg1: number, arg
 /** struct MIDICIProfileID */
 export class MIDICIProfileID extends SDKHandle {
   /** var manufacturerSpecific: MIDICIProfileIDManufacturerSpecific { get set } */
-  get manufacturerSpecific(): MIDICIProfileIDManufacturerSpecific { return callSDK<MIDICIProfileIDManufacturerSpecific>("CoreMIDI_5d69670f0307b385", 1691720941727193, this, []); }
-  set manufacturerSpecific(value: MIDICIProfileIDManufacturerSpecific) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3992022470050785, this, [value]); }
+  get manufacturerSpecific(): MIDICIProfileIDManufacturerSpecific { return callSDK<MIDICIProfileIDManufacturerSpecific>("CoreMIDI_6be9a005889899ab", 1691720941727193, this, []); }
+  set manufacturerSpecific(value: MIDICIProfileIDManufacturerSpecific) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3992022470050785, this, [value]); }
   /** var standard: MIDICIProfileIDStandard { get set } */
-  get standard(): MIDICIProfileIDStandard { return callSDK<MIDICIProfileIDStandard>("CoreMIDI_5d69670f0307b385", 2667607168543272, this, []); }
-  set standard(value: MIDICIProfileIDStandard) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4081986285104784, this, [value]); }
+  get standard(): MIDICIProfileIDStandard { return callSDK<MIDICIProfileIDStandard>("CoreMIDI_6be9a005889899ab", 2667607168543272, this, []); }
+  set standard(value: MIDICIProfileIDStandard) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4081986285104784, this, [value]); }
   /** init(manufacturerSpecific: MIDICIProfileIDManufacturerSpecific) */
-  static initManufacturerSpecific(manufacturerSpecific: MIDICIProfileIDManufacturerSpecific): MIDICIProfileID { return callSDK<MIDICIProfileID>("CoreMIDI_5d69670f0307b385", 2214704646147048, undefined, [manufacturerSpecific]); }
+  static initManufacturerSpecific(manufacturerSpecific: MIDICIProfileIDManufacturerSpecific): MIDICIProfileID { return callSDK<MIDICIProfileID>("CoreMIDI_6be9a005889899ab", 2214704646147048, undefined, [manufacturerSpecific]); }
   /** init(standard: MIDICIProfileIDStandard) */
-  static initStandard(standard: MIDICIProfileIDStandard): MIDICIProfileID { return callSDK<MIDICIProfileID>("CoreMIDI_5d69670f0307b385", 1274695839725378, undefined, [standard]); }
+  static initStandard(standard: MIDICIProfileIDStandard): MIDICIProfileID { return callSDK<MIDICIProfileID>("CoreMIDI_6be9a005889899ab", 1274695839725378, undefined, [standard]); }
   /** init() */
-  static init(): MIDICIProfileID { return callSDK<MIDICIProfileID>("CoreMIDI_5d69670f0307b385", 1993408228494686, undefined, []); }
+  static init(): MIDICIProfileID { return callSDK<MIDICIProfileID>("CoreMIDI_6be9a005889899ab", 1993408228494686, undefined, []); }
   declare readonly $type: { "c:@UA@MIDICIProfileID": true };
 }
 
 /** struct MIDICIProfileIDManufacturerSpecific */
 export class MIDICIProfileIDManufacturerSpecific extends SDKHandle {
   /** var info1: MIDIUInteger7 */
-  get info1(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1404114545308721, this, []); }
-  set info1(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 862655957059920, this, [value]); }
+  get info1(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1404114545308721, this, []); }
+  set info1(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 862655957059920, this, [value]); }
   /** var info2: MIDIUInteger7 */
-  get info2(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2557657711185128, this, []); }
-  set info2(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1391267284255967, this, [value]); }
+  get info2(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2557657711185128, this, []); }
+  set info2(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1391267284255967, this, [value]); }
   /** var sysExID1: MIDIUInteger7 */
-  get sysExID1(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 350468049546077, this, []); }
-  set sysExID1(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1242474606955203, this, [value]); }
+  get sysExID1(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 350468049546077, this, []); }
+  set sysExID1(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1242474606955203, this, [value]); }
   /** var sysExID2: MIDIUInteger7 */
-  get sysExID2(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3218701801287066, this, []); }
-  set sysExID2(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 957330977827367, this, [value]); }
+  get sysExID2(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3218701801287066, this, []); }
+  set sysExID2(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 957330977827367, this, [value]); }
   /** var sysExID3: MIDIUInteger7 */
-  get sysExID3(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4438747581484297, this, []); }
-  set sysExID3(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4086051809485983, this, [value]); }
+  get sysExID3(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4438747581484297, this, []); }
+  set sysExID3(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4086051809485983, this, [value]); }
   /** init(sysExID1: MIDIUInteger7, sysExID2: MIDIUInteger7, sysExID3: MIDIUInteger7, info1: MIDIUInteger7, info2: MIDIUInteger7) */
-  static initSysExID1SysExID2SysExID3Info1Info2(sysExID1: number, sysExID2: number, sysExID3: number, info1: number, info2: number): MIDICIProfileIDManufacturerSpecific { return callSDK<MIDICIProfileIDManufacturerSpecific>("CoreMIDI_5d69670f0307b385", 2050858170914273, undefined, [sysExID1, sysExID2, sysExID3, info1, info2]); }
+  static initSysExID1SysExID2SysExID3Info1Info2(sysExID1: number, sysExID2: number, sysExID3: number, info1: number, info2: number): MIDICIProfileIDManufacturerSpecific { return callSDK<MIDICIProfileIDManufacturerSpecific>("CoreMIDI_6be9a005889899ab", 2050858170914273, undefined, [sysExID1, sysExID2, sysExID3, info1, info2]); }
   /** init() */
-  static init(): MIDICIProfileIDManufacturerSpecific { return callSDK<MIDICIProfileIDManufacturerSpecific>("CoreMIDI_5d69670f0307b385", 1933241636991829, undefined, []); }
+  static init(): MIDICIProfileIDManufacturerSpecific { return callSDK<MIDICIProfileIDManufacturerSpecific>("CoreMIDI_6be9a005889899ab", 1933241636991829, undefined, []); }
   declare readonly $type: { "c:@SA@MIDICIProfileIDManufacturerSpecific": true };
 }
 
 /** struct MIDICIProfileIDStandard */
 export class MIDICIProfileIDStandard extends SDKHandle {
   /** var profileBank: MIDIUInteger7 */
-  get profileBank(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3005065912016300, this, []); }
-  set profileBank(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2085998640399544, this, [value]); }
+  get profileBank(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3005065912016300, this, []); }
+  set profileBank(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2085998640399544, this, [value]); }
   /** var profileIDByte1: MIDIUInteger7 */
-  get profileIDByte1(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2823306508122616, this, []); }
-  set profileIDByte1(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1455545371255231, this, [value]); }
+  get profileIDByte1(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2823306508122616, this, []); }
+  set profileIDByte1(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1455545371255231, this, [value]); }
   /** var profileLevel: MIDIUInteger7 */
-  get profileLevel(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3017402226960682, this, []); }
-  set profileLevel(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 532570733790957, this, [value]); }
+  get profileLevel(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3017402226960682, this, []); }
+  set profileLevel(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 532570733790957, this, [value]); }
   /** var profileNumber: MIDIUInteger7 */
-  get profileNumber(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1219261558134462, this, []); }
-  set profileNumber(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1756344422561667, this, [value]); }
+  get profileNumber(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1219261558134462, this, []); }
+  set profileNumber(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1756344422561667, this, [value]); }
   /** var profileVersion: MIDIUInteger7 */
-  get profileVersion(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3084567916396431, this, []); }
-  set profileVersion(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4221418947876119, this, [value]); }
+  get profileVersion(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3084567916396431, this, []); }
+  set profileVersion(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4221418947876119, this, [value]); }
   /** init(profileIDByte1: MIDIUInteger7, profileBank: MIDIUInteger7, profileNumber: MIDIUInteger7, profileVersion: MIDIUInteger7, profileLevel: MIDIUInteger7) */
-  static initProfileIDByte1ProfileBankProfileNumberProfileVersionProfileLevel(profileIDByte1: number, profileBank: number, profileNumber: number, profileVersion: number, profileLevel: number): MIDICIProfileIDStandard { return callSDK<MIDICIProfileIDStandard>("CoreMIDI_5d69670f0307b385", 1374455184966843, undefined, [profileIDByte1, profileBank, profileNumber, profileVersion, profileLevel]); }
+  static initProfileIDByte1ProfileBankProfileNumberProfileVersionProfileLevel(profileIDByte1: number, profileBank: number, profileNumber: number, profileVersion: number, profileLevel: number): MIDICIProfileIDStandard { return callSDK<MIDICIProfileIDStandard>("CoreMIDI_6be9a005889899ab", 1374455184966843, undefined, [profileIDByte1, profileBank, profileNumber, profileVersion, profileLevel]); }
   /** init() */
-  static init(): MIDICIProfileIDStandard { return callSDK<MIDICIProfileIDStandard>("CoreMIDI_5d69670f0307b385", 2364992891558458, undefined, []); }
+  static init(): MIDICIProfileIDStandard { return callSDK<MIDICIProfileIDStandard>("CoreMIDI_6be9a005889899ab", 2364992891558458, undefined, []); }
   declare readonly $type: { "c:@SA@MIDICIProfileIDStandard": true };
 }
 
@@ -505,7 +505,7 @@ export type MIDICIProfileMessageType = "profileInquiry" | "replyToProfileInquiry
 
 export const MIDICIProfileMessageType = {
   /** init?(rawValue: MIDIUInteger7) */
-  init(rawValue: number): (MIDICIProfileMessageType) | null { return callSDK<(MIDICIProfileMessageType) | null>("CoreMIDI_5d69670f0307b385", 757038773642093, undefined, [rawValue]); }
+  init(rawValue: number): (MIDICIProfileMessageType) | null { return callSDK<(MIDICIProfileMessageType) | null>("CoreMIDI_6be9a005889899ab", 757038773642093, undefined, [rawValue]); }
 };
 
 /**
@@ -551,27 +551,27 @@ export class MIDICIProfileState extends SDKHandle {
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  static initChannelEnabledProfilesDisabledProfiles(midiChannelNum: number, enabled: Array<MIDICIProfile>, disabled: Array<MIDICIProfile>): MIDICIProfileState { return callSDK<MIDICIProfileState>("CoreMIDI_5d69670f0307b385", 3478096825680143, undefined, [midiChannelNum, enabled, disabled]); }
+  static initChannelEnabledProfilesDisabledProfiles(midiChannelNum: number, enabled: Array<MIDICIProfile>, disabled: Array<MIDICIProfile>): MIDICIProfileState { return callSDK<MIDICIProfileState>("CoreMIDI_6be9a005889899ab", 3478096825680143, undefined, [midiChannelNum, enabled, disabled]); }
   /**
    * init(enabledProfiles enabled: [MIDICIProfile], disabledProfiles disabled: [MIDICIProfile])
    * @availability iOS 14.0+
    */
-  static initEnabledProfilesDisabledProfiles(enabled: Array<MIDICIProfile>, disabled: Array<MIDICIProfile>): MIDICIProfileState { return callSDK<MIDICIProfileState>("CoreMIDI_5d69670f0307b385", 3319168344233286, undefined, [enabled, disabled]); }
+  static initEnabledProfilesDisabledProfiles(enabled: Array<MIDICIProfile>, disabled: Array<MIDICIProfile>): MIDICIProfileState { return callSDK<MIDICIProfileState>("CoreMIDI_6be9a005889899ab", 3319168344233286, undefined, [enabled, disabled]); }
   /**
    * var disabledProfiles: [MIDICIProfile] { get }
    * @availability iOS 12.0+
    */
-  get disabledProfiles(): Array<MIDICIProfile> { return callSDK<Array<MIDICIProfile>>("CoreMIDI_5d69670f0307b385", 4047080018526803, this, []); }
+  get disabledProfiles(): Array<MIDICIProfile> { return callSDK<Array<MIDICIProfile>>("CoreMIDI_6be9a005889899ab", 4047080018526803, this, []); }
   /**
    * var enabledProfiles: [MIDICIProfile] { get }
    * @availability iOS 12.0+
    */
-  get enabledProfiles(): Array<MIDICIProfile> { return callSDK<Array<MIDICIProfile>>("CoreMIDI_5d69670f0307b385", 383438684984000, this, []); }
+  get enabledProfiles(): Array<MIDICIProfile> { return callSDK<Array<MIDICIProfile>>("CoreMIDI_6be9a005889899ab", 383438684984000, this, []); }
   /**
    * var midiChannel: MIDIChannelNumber { get }
    * @availability iOS 12.0+
    */
-  get midiChannel(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1106066432017463, this, []); }
+  get midiChannel(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1106066432017463, this, []); }
   declare readonly $type: { "c:objc(cs)MIDICIProfileState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "disabledProfiles": true; "enabledProfiles": true; "midiChannel": true };
 }
@@ -581,7 +581,7 @@ export type MIDICIProfileType = "singleChannel" | "group" | "functionBlock" | "m
 
 export const MIDICIProfileType = {
   /** init?(rawValue: UInt8) */
-  init(rawValue: number): (MIDICIProfileType) | null { return callSDK<(MIDICIProfileType) | null>("CoreMIDI_5d69670f0307b385", 286284776019884, undefined, [rawValue]); }
+  init(rawValue: number): (MIDICIProfileType) | null { return callSDK<(MIDICIProfileType) | null>("CoreMIDI_6be9a005889899ab", 286284776019884, undefined, [rawValue]); }
 };
 
 /** enum MIDICIPropertyExchangeMessageType */
@@ -589,7 +589,7 @@ export type MIDICIPropertyExchangeMessageType = "inquiryPropertyExchangeCapabili
 
 export const MIDICIPropertyExchangeMessageType = {
   /** init?(rawValue: MIDIUInteger7) */
-  init(rawValue: number): (MIDICIPropertyExchangeMessageType) | null { return callSDK<(MIDICIPropertyExchangeMessageType) | null>("CoreMIDI_5d69670f0307b385", 150294920872689, undefined, [rawValue]); }
+  init(rawValue: number): (MIDICIPropertyExchangeMessageType) | null { return callSDK<(MIDICIPropertyExchangeMessageType) | null>("CoreMIDI_6be9a005889899ab", 150294920872689, undefined, [rawValue]); }
 };
 
 /** struct MIDICIPropertyExchangeRequestID */
@@ -597,12 +597,12 @@ export type MIDICIPropertyExchangeRequestID = "badRequestID" | (number & {});
 
 export const MIDICIPropertyExchangeRequestID = {
   /** static var badRequestID: MIDICIPropertyExchangeRequestID */
-  get badRequestID(): MIDICIPropertyExchangeRequestID { return callSDK<MIDICIPropertyExchangeRequestID>("CoreMIDI_5d69670f0307b385", 186544643782164, undefined, []); },
-  set badRequestID(value: MIDICIPropertyExchangeRequestID) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2016598561940460, undefined, [value]); },
+  get badRequestID(): MIDICIPropertyExchangeRequestID { return callSDK<MIDICIPropertyExchangeRequestID>("CoreMIDI_6be9a005889899ab", 186544643782164, undefined, []); },
+  set badRequestID(value: MIDICIPropertyExchangeRequestID) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2016598561940460, undefined, [value]); },
   /** init(rawValue: UInt8) */
-  initRawValue(rawValue: number): MIDICIPropertyExchangeRequestID { return callSDK<MIDICIPropertyExchangeRequestID>("CoreMIDI_5d69670f0307b385", 810282813932510, undefined, [rawValue]); },
+  initRawValue(rawValue: number): MIDICIPropertyExchangeRequestID { return callSDK<MIDICIPropertyExchangeRequestID>("CoreMIDI_6be9a005889899ab", 810282813932510, undefined, [rawValue]); },
   /** init(_ rawValue: UInt8) */
-  init(rawValue: number): MIDICIPropertyExchangeRequestID { return callSDK<MIDICIPropertyExchangeRequestID>("CoreMIDI_5d69670f0307b385", 944077694672826, undefined, [rawValue]); }
+  init(rawValue: number): MIDICIPropertyExchangeRequestID { return callSDK<MIDICIPropertyExchangeRequestID>("CoreMIDI_6be9a005889899ab", 944077694672826, undefined, [rawValue]); }
 };
 
 /**
@@ -616,49 +616,49 @@ export class MIDICIResponder extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  static init(deviceInfo: MIDICIDeviceInfo, delegate: SDKHandle, profileList: Array<MIDICIProfileState>, propertiesSupported: boolean): MIDICIResponder { return callSDK<MIDICIResponder>("CoreMIDI_5d69670f0307b385", 620964426001889, undefined, [deviceInfo, delegate, profileList, propertiesSupported]); }
+  static init(deviceInfo: MIDICIDeviceInfo, delegate: SDKHandle, profileList: Array<MIDICIProfileState>, propertiesSupported: boolean): MIDICIResponder { return callSDK<MIDICIResponder>("CoreMIDI_6be9a005889899ab", 620964426001889, undefined, [deviceInfo, delegate, profileList, propertiesSupported]); }
   /**
    * func notify(_ aProfile: MIDICIProfile, onChannel channel: MIDIChannelNumber, isEnabled enabledState: Bool) -> Bool
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  notify(aProfile: MIDICIProfile, channel: number, enabledState: boolean): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 2199737766025111, this, [aProfile, channel, enabledState]); }
+  notify(aProfile: MIDICIProfile, channel: number, enabledState: boolean): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 2199737766025111, this, [aProfile, channel, enabledState]); }
   /**
    * func send(_ aProfile: MIDICIProfile, onChannel channel: MIDIChannelNumber, profileData profileSpecificData: Data) -> Bool
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  send(aProfile: MIDICIProfile, channel: number, profileSpecificData: ArrayBuffer): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 4287546021734852, this, [aProfile, channel, profileSpecificData]); }
+  send(aProfile: MIDICIProfile, channel: number, profileSpecificData: ArrayBuffer): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 4287546021734852, this, [aProfile, channel, profileSpecificData]); }
   /**
    * func start() -> Bool
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  start(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 2469240942538354, this, []); }
+  start(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 2469240942538354, this, []); }
   /**
    * func stop()
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  stop(): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 484229384021890, this, []); }
+  stop(): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 484229384021890, this, []); }
   /**
    * var deviceInfo: MIDICIDeviceInfo { get }
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  get deviceInfo(): MIDICIDeviceInfo { return callSDK<MIDICIDeviceInfo>("CoreMIDI_5d69670f0307b385", 1860407849273179, this, []); }
+  get deviceInfo(): MIDICIDeviceInfo { return callSDK<MIDICIDeviceInfo>("CoreMIDI_6be9a005889899ab", 1860407849273179, this, []); }
   /**
    * var initiators: [MIDICIInitiatiorMUID] { get }
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  get initiators(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("CoreMIDI_5d69670f0307b385", 2776954601231409, this, []); }
+  get initiators(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("CoreMIDI_6be9a005889899ab", 2776954601231409, this, []); }
   /**
    * var profileDelegate: any MIDICIProfileResponderDelegate { get }
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  get profileDelegate(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 1707529287211576, this, []); }
+  get profileDelegate(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 1707529287211576, this, []); }
   declare readonly $type: { "c:objc(cs)MIDICIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deviceInfo": true; "initiators": true; "profileDelegate": true };
 }
@@ -674,81 +674,81 @@ export class MIDICISession extends SDKHandle {
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  disableProfile(profile: MIDICIProfile, channel: number): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 3935170497354570, this, [profile, channel]); }
+  disableProfile(profile: MIDICIProfile, channel: number): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 3935170497354570, this, [profile, channel]); }
   /**
    * func enable(_ profile: MIDICIProfile, onChannel channel: MIDIChannelNumber) throws
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  enable(profile: MIDICIProfile, channel: number): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 1110555400020502, this, [profile, channel]); }
+  enable(profile: MIDICIProfile, channel: number): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 1110555400020502, this, [profile, channel]); }
   /**
    * init(discoveredNode: MIDICIDiscoveredNode, dataReadyHandler handler: @escaping () -> Void, disconnectHandler: @escaping MIDICISessionDisconnectBlock)
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  static init(discoveredNode: MIDICIDiscoveredNode, handler: (() => void), disconnectHandler: ((arg0: MIDICISession, arg1: NativeError) => void)): MIDICISession { return callSDK<MIDICISession>("CoreMIDI_5d69670f0307b385", 3658857743906461, undefined, [discoveredNode, handler, disconnectHandler], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static init(discoveredNode: MIDICIDiscoveredNode, handler: (() => void), disconnectHandler: ((arg0: MIDICISession, arg1: NativeError) => void)): MIDICISession { return callSDK<MIDICISession>("CoreMIDI_6be9a005889899ab", 3658857743906461, undefined, [discoveredNode, handler, disconnectHandler], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * func profileState(forChannel channel: MIDIChannelNumber) -> MIDICIProfileState
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  profileState(channel: number): MIDICIProfileState { return callSDK<MIDICIProfileState>("CoreMIDI_5d69670f0307b385", 4019677989113539, this, [channel]); }
+  profileState(channel: number): MIDICIProfileState { return callSDK<MIDICIProfileState>("CoreMIDI_6be9a005889899ab", 4019677989113539, this, [channel]); }
   /**
    * func send(_ profile: MIDICIProfile, onChannel channel: MIDIChannelNumber, profileData profileSpecificData: Data) -> Bool
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  send(profile: MIDICIProfile, channel: number, profileSpecificData: ArrayBuffer): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 3160103137360003, this, [profile, channel, profileSpecificData]); }
+  send(profile: MIDICIProfile, channel: number, profileSpecificData: ArrayBuffer): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 3160103137360003, this, [profile, channel, profileSpecificData]); }
   /**
    * var deviceInfo: MIDICIDeviceInfo { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get deviceInfo(): MIDICIDeviceInfo { return callSDK<MIDICIDeviceInfo>("CoreMIDI_5d69670f0307b385", 660306917279795, this, []); }
+  get deviceInfo(): MIDICIDeviceInfo { return callSDK<MIDICIDeviceInfo>("CoreMIDI_6be9a005889899ab", 660306917279795, this, []); }
   /**
    * var maxPropertyRequests: NSNumber { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get maxPropertyRequests(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMIDI_5d69670f0307b385", 3167675621254768, this, []); }
+  get maxPropertyRequests(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMIDI_6be9a005889899ab", 3167675621254768, this, []); }
   /**
    * var maxSysExSize: NSNumber { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get maxSysExSize(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMIDI_5d69670f0307b385", 3244428288768170, this, []); }
+  get maxSysExSize(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMIDI_6be9a005889899ab", 3244428288768170, this, []); }
   /**
    * var midiDestination: MIDIEntityRef { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get midiDestination(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1681708865487993, this, []); }
+  get midiDestination(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1681708865487993, this, []); }
   /**
    * var profileChangedCallback: MIDICIProfileChangedBlock? { get set }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get profileChangedCallback(): (((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: boolean) => Promise<void>)) | null { return callSDK<(((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: boolean) => Promise<void>)) | null>("CoreMIDI_5d69670f0307b385", 2756024065351964, this, []); }
-  set profileChangedCallback(value: (((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: boolean) => void)) | null) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2401881658103653, this, [value], [{"callback":{"out":[]}}]); }
+  get profileChangedCallback(): (((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: boolean) => Promise<void>)) | null { return callSDK<(((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: boolean) => Promise<void>)) | null>("CoreMIDI_6be9a005889899ab", 2756024065351964, this, []); }
+  set profileChangedCallback(value: (((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: boolean) => void)) | null) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2401881658103653, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var profileSpecificDataHandler: MIDICIProfileSpecificDataBlock? { get set }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get profileSpecificDataHandler(): (((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: ArrayBuffer) => Promise<void>)) | null { return callSDK<(((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: ArrayBuffer) => Promise<void>)) | null>("CoreMIDI_5d69670f0307b385", 619887101974786, this, []); }
-  set profileSpecificDataHandler(value: (((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: ArrayBuffer) => void)) | null) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4262702050559964, this, [value], [{"callback":{"out":[]}}]); }
+  get profileSpecificDataHandler(): (((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: ArrayBuffer) => Promise<void>)) | null { return callSDK<(((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: ArrayBuffer) => Promise<void>)) | null>("CoreMIDI_6be9a005889899ab", 619887101974786, this, []); }
+  set profileSpecificDataHandler(value: (((arg0: MIDICISession, arg1: number, arg2: MIDICIProfile, arg3: ArrayBuffer) => void)) | null) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4262702050559964, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var supportsProfileCapability: Bool { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get supportsProfileCapability(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 3186311727880971, this, []); }
+  get supportsProfileCapability(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 3186311727880971, this, []); }
   /**
    * var supportsPropertyCapability: Bool { get }
    * @availability iOS 12.0+
    * @deprecated iOS 18.0
    */
-  get supportsPropertyCapability(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 109936616809039, this, []); }
+  get supportsPropertyCapability(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 109936616809039, this, []); }
   declare readonly $type: { "c:objc(cs)MIDICISession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deviceInfo": true; "maxPropertyRequests": true; "maxSysExSize": true; "midiDestination": true; "supportsProfileCapability": true; "supportsPropertyCapability": true };
 }
@@ -772,24 +772,24 @@ export type MIDICompletionProcUMP = $SDK15;
 /** struct MIDIControlTransform */
 export class MIDIControlTransform extends SDKHandle {
   /** var controlNumber: UInt16 */
-  get controlNumber(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 191856763341225, this, []); }
-  set controlNumber(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 137154575741388, this, [value]); }
+  get controlNumber(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 191856763341225, this, []); }
+  set controlNumber(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 137154575741388, this, [value]); }
   /** var controlType: MIDITransformControlType */
-  get controlType(): MIDITransformControlType { return callSDK<MIDITransformControlType>("CoreMIDI_5d69670f0307b385", 3590763404741923, this, []); }
-  set controlType(value: MIDITransformControlType) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2844535098390066, this, [value]); }
+  get controlType(): MIDITransformControlType { return callSDK<MIDITransformControlType>("CoreMIDI_6be9a005889899ab", 3590763404741923, this, []); }
+  set controlType(value: MIDITransformControlType) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2844535098390066, this, [value]); }
   /** var param: Int16 */
-  get param(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3974465632168523, this, []); }
-  set param(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2756629079334573, this, [value]); }
+  get param(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3974465632168523, this, []); }
+  set param(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2756629079334573, this, [value]); }
   /** var remappedControlType: MIDITransformControlType */
-  get remappedControlType(): MIDITransformControlType { return callSDK<MIDITransformControlType>("CoreMIDI_5d69670f0307b385", 4025169857094575, this, []); }
-  set remappedControlType(value: MIDITransformControlType) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2699150678388010, this, [value]); }
+  get remappedControlType(): MIDITransformControlType { return callSDK<MIDITransformControlType>("CoreMIDI_6be9a005889899ab", 4025169857094575, this, []); }
+  set remappedControlType(value: MIDITransformControlType) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2699150678388010, this, [value]); }
   /** var transform: MIDITransformType */
-  get transform(): MIDITransformType { return callSDK<MIDITransformType>("CoreMIDI_5d69670f0307b385", 1763515195825119, this, []); }
-  set transform(value: MIDITransformType) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3682187509068775, this, [value]); }
+  get transform(): MIDITransformType { return callSDK<MIDITransformType>("CoreMIDI_6be9a005889899ab", 1763515195825119, this, []); }
+  set transform(value: MIDITransformType) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3682187509068775, this, [value]); }
   /** init(controlType: MIDITransformControlType, remappedControlType: MIDITransformControlType, controlNumber: UInt16, transform: MIDITransformType, param: Int16) */
-  static initControlTypeRemappedControlTypeControlNumberTransformParam(controlType: MIDITransformControlType, remappedControlType: MIDITransformControlType, controlNumber: number, transform: MIDITransformType, param: number): MIDIControlTransform { return callSDK<MIDIControlTransform>("CoreMIDI_5d69670f0307b385", 456480584273329, undefined, [controlType, remappedControlType, controlNumber, transform, param]); }
+  static initControlTypeRemappedControlTypeControlNumberTransformParam(controlType: MIDITransformControlType, remappedControlType: MIDITransformControlType, controlNumber: number, transform: MIDITransformType, param: number): MIDIControlTransform { return callSDK<MIDIControlTransform>("CoreMIDI_6be9a005889899ab", 456480584273329, undefined, [controlType, remappedControlType, controlNumber, transform, param]); }
   /** init() */
-  static init(): MIDIControlTransform { return callSDK<MIDIControlTransform>("CoreMIDI_5d69670f0307b385", 63954883512405, undefined, []); }
+  static init(): MIDIControlTransform { return callSDK<MIDIControlTransform>("CoreMIDI_6be9a005889899ab", 63954883512405, undefined, []); }
   declare readonly $type: { "c:@S@MIDIControlTransform": true };
 }
 
@@ -798,7 +798,7 @@ export type MIDICVStatus = "noteOff" | "noteOn" | "polyPressure" | "controlChang
 
 export const MIDICVStatus = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (MIDICVStatus) | null { return callSDK<(MIDICVStatus) | null>("CoreMIDI_5d69670f0307b385", 2260149098968324, undefined, [rawValue]); }
+  init(rawValue: number): (MIDICVStatus) | null { return callSDK<(MIDICVStatus) | null>("CoreMIDI_6be9a005889899ab", 2260149098968324, undefined, [rawValue]); }
 };
 
 /** typealias MIDIDeviceListRef = MIDIObjectRef */
@@ -810,11 +810,11 @@ export type MIDIDeviceRef = number;
 /** struct MIDIDriverInterface */
 export class MIDIDriverInterface extends SDKHandle {
   /** var AddRef: (UnsafeMutableRawPointer) -> ULONG */
-  get AddRef(): $SDK16 { return callSDK<$SDK16>("CoreMIDI_5d69670f0307b385", 1194254029443069, this, []); }
+  get AddRef(): $SDK16 { return callSDK<$SDK16>("CoreMIDI_6be9a005889899ab", 1194254029443069, this, []); }
   /** var QueryInterface: (UnsafeMutableRawPointer, REFIID, UnsafeMutablePointer<LPVOID?>?) -> HRESULT */
-  get QueryInterface(): ((arg0: SDKHandle, arg1: SDKHandle, arg2: (SDKHandle) | null) => Promise<SDKHandle>) { return callSDK<((arg0: SDKHandle, arg1: SDKHandle, arg2: (SDKHandle) | null) => Promise<SDKHandle>)>("CoreMIDI_5d69670f0307b385", 4124332252779673, this, []); }
+  get QueryInterface(): ((arg0: SDKHandle, arg1: SDKHandle, arg2: (SDKHandle) | null) => Promise<SDKHandle>) { return callSDK<((arg0: SDKHandle, arg1: SDKHandle, arg2: (SDKHandle) | null) => Promise<SDKHandle>)>("CoreMIDI_6be9a005889899ab", 4124332252779673, this, []); }
   /** var Release: (UnsafeMutableRawPointer) -> ULONG */
-  get Release(): $SDK16 { return callSDK<$SDK16>("CoreMIDI_5d69670f0307b385", 2440786782425192, this, []); }
+  get Release(): $SDK16 { return callSDK<$SDK16>("CoreMIDI_6be9a005889899ab", 2440786782425192, this, []); }
   declare readonly $type: { "c:@S@MIDIDriverInterface": true };
 }
 
@@ -830,23 +830,23 @@ export type MIDIEntityRef = number;
 /** struct MIDIEventList */
 export class MIDIEventList extends SDKHandle {
   /** var numPackets: UInt32 */
-  get numPackets(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3913279984956647, this, []); }
-  set numPackets(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2850384201494171, this, [value]); }
+  get numPackets(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3913279984956647, this, []); }
+  set numPackets(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2850384201494171, this, [value]); }
   /** var packet: MIDIEventPacket */
-  get packet(): MIDIEventPacket { return callSDK<MIDIEventPacket>("CoreMIDI_5d69670f0307b385", 1258556511010974, this, []); }
-  set packet(value: MIDIEventPacket) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3755139041797676, this, [value]); }
+  get packet(): MIDIEventPacket { return callSDK<MIDIEventPacket>("CoreMIDI_6be9a005889899ab", 1258556511010974, this, []); }
+  set packet(value: MIDIEventPacket) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3755139041797676, this, [value]); }
   /** var `protocol`: MIDIProtocolID */
-  get protocol(): MIDIProtocolID { return callSDK<MIDIProtocolID>("CoreMIDI_5d69670f0307b385", 4157019075382411, this, []); }
-  set protocol(value: MIDIProtocolID) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3019965034831711, this, [value]); }
+  get protocol(): MIDIProtocolID { return callSDK<MIDIProtocolID>("CoreMIDI_6be9a005889899ab", 4157019075382411, this, []); }
+  set protocol(value: MIDIProtocolID) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3019965034831711, this, [value]); }
   /**
    * static func sizeInBytes(pktList: UnsafePointer<MIDIEventList>) -> Int
    * @availability iOS 14.0+
    */
-  static sizeInBytes(pktList: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 172544366377674, undefined, [pktList]); }
+  static sizeInBytes(pktList: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 172544366377674, undefined, [pktList]); }
   /** init(protocol: MIDIProtocolID, numPackets: UInt32, packet: MIDIEventPacket) */
-  static initProtocolNumPacketsPacket(protocol: MIDIProtocolID, numPackets: number, packet: MIDIEventPacket): MIDIEventList { return callSDK<MIDIEventList>("CoreMIDI_5d69670f0307b385", 3318979296385745, undefined, [protocol, numPackets, packet]); }
+  static initProtocolNumPacketsPacket(protocol: MIDIProtocolID, numPackets: number, packet: MIDIEventPacket): MIDIEventList { return callSDK<MIDIEventList>("CoreMIDI_6be9a005889899ab", 3318979296385745, undefined, [protocol, numPackets, packet]); }
   /** init() */
-  static init(): MIDIEventList { return callSDK<MIDIEventList>("CoreMIDI_5d69670f0307b385", 1646168473599502, undefined, []); }
+  static init(): MIDIEventList { return callSDK<MIDIEventList>("CoreMIDI_6be9a005889899ab", 1646168473599502, undefined, []); }
   declare readonly $type: { "c:@S@MIDIEventList": true };
 }
 
@@ -859,22 +859,22 @@ export class MIDIEventList_Builder extends SDKHandle {
    * init(inProtocol: MIDIProtocolID, wordSize: Int)
    * @availability iOS 14.0+
    */
-  static init(inProtocol: MIDIProtocolID, wordSize: number): MIDIEventList_Builder { return callSDK<MIDIEventList_Builder>("CoreMIDI_5d69670f0307b385", 889698859443888, undefined, [inProtocol, wordSize]); }
+  static init(inProtocol: MIDIProtocolID, wordSize: number): MIDIEventList_Builder { return callSDK<MIDIEventList_Builder>("CoreMIDI_6be9a005889899ab", 889698859443888, undefined, [inProtocol, wordSize]); }
   /**
    * func clear()
    * @availability iOS 14.0+
    */
-  clear(): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 439106942743121, this, []); }
+  clear(): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 439106942743121, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 14.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3337309628794289, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3337309628794289, this, []); }
   /**
    * @discardableResult func append(timestamp: MIDITimeStamp, words: [UInt32]) -> UnsafePointer<MIDIEventPacket>?
    * @availability iOS 14.0+
    */
-  append(timestamp: number, words: Array<number>): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_5d69670f0307b385", 339795773428557, this, [timestamp, words]); }
+  append(timestamp: number, words: Array<number>): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_6be9a005889899ab", 339795773428557, this, [timestamp, words]); }
   declare readonly $type: { "s:So13MIDIEventListV8CoreMIDIE7BuilderC": true };
 }
 
@@ -887,12 +887,12 @@ export class MIDIEventList_UnsafeSequence extends SDKHandle {
    * func makeIterator() -> MIDIEventList.UnsafeSequence.Iterator
    * @availability iOS 14.0+
    */
-  makeIterator(): MIDIEventList_UnsafeSequence_Iterator { return callSDK<MIDIEventList_UnsafeSequence_Iterator>("CoreMIDI_5d69670f0307b385", 1936746720008898, this, []); }
+  makeIterator(): MIDIEventList_UnsafeSequence_Iterator { return callSDK<MIDIEventList_UnsafeSequence_Iterator>("CoreMIDI_6be9a005889899ab", 1936746720008898, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 14.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3542421861896669, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3542421861896669, this, []); }
   declare readonly $type: { "s:So13MIDIEventListV8CoreMIDIE14UnsafeSequenceV": true };
 }
 
@@ -911,12 +911,12 @@ export class MIDIEventList_UnsafeSequence_Iterator extends SDKHandle {
    * mutating func next() -> UnsafePointer<MIDIEventPacket>?
    * @availability iOS 14.0+
    */
-  next(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_5d69670f0307b385", 3664667082972223, this, []); }
+  next(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_6be9a005889899ab", 3664667082972223, this, []); }
   /**
    * init(_ s: MIDIEventList.UnsafeSequence)
    * @availability iOS 14.0+
    */
-  static init(s: MIDIEventList_UnsafeSequence): MIDIEventList_UnsafeSequence_Iterator { return callSDK<MIDIEventList_UnsafeSequence_Iterator>("CoreMIDI_5d69670f0307b385", 4040618412197836, undefined, [s]); }
+  static init(s: MIDIEventList_UnsafeSequence): MIDIEventList_UnsafeSequence_Iterator { return callSDK<MIDIEventList_UnsafeSequence_Iterator>("CoreMIDI_6be9a005889899ab", 4040618412197836, undefined, [s]); }
   declare readonly $type: { "s:So13MIDIEventListV8CoreMIDIE14UnsafeSequenceV8IteratorV": true };
 }
 
@@ -929,18 +929,18 @@ export type MIDIEventList_UnsafeSequence_Iterator_Element = SDKHandle;
 /** struct MIDIEventPacket */
 export class MIDIEventPacket extends SDKHandle {
   /** var timeStamp: MIDITimeStamp */
-  get timeStamp(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1339054023488006, this, []); }
-  set timeStamp(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4335572587367183, this, [value]); }
+  get timeStamp(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1339054023488006, this, []); }
+  set timeStamp(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4335572587367183, this, [value]); }
   /** var wordCount: UInt32 */
-  get wordCount(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3684537813941928, this, []); }
-  set wordCount(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3002484652695397, this, [value]); }
+  get wordCount(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3684537813941928, this, []); }
+  set wordCount(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3002484652695397, this, [value]); }
   /** var words: (UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32) */
-  get words(): $SDK18 { return callSDK<$SDK18>("CoreMIDI_5d69670f0307b385", 1597350896335867, this, []); }
-  set words(value: $SDK18) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4062673995165973, this, [value]); }
+  get words(): $SDK18 { return callSDK<$SDK18>("CoreMIDI_6be9a005889899ab", 1597350896335867, this, []); }
+  set words(value: $SDK18) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4062673995165973, this, [value]); }
   /** init(timeStamp: MIDITimeStamp, wordCount: UInt32, words: (UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32)) */
-  static initTimeStampWordCountWords(timeStamp: number, wordCount: number, words: $SDK18): MIDIEventPacket { return callSDK<MIDIEventPacket>("CoreMIDI_5d69670f0307b385", 4206489795070994, undefined, [timeStamp, wordCount, words]); }
+  static initTimeStampWordCountWords(timeStamp: number, wordCount: number, words: $SDK18): MIDIEventPacket { return callSDK<MIDIEventPacket>("CoreMIDI_6be9a005889899ab", 4206489795070994, undefined, [timeStamp, wordCount, words]); }
   /** init() */
-  static init(): MIDIEventPacket { return callSDK<MIDIEventPacket>("CoreMIDI_5d69670f0307b385", 2892455375831547, undefined, []); }
+  static init(): MIDIEventPacket { return callSDK<MIDIEventPacket>("CoreMIDI_6be9a005889899ab", 2892455375831547, undefined, []); }
   declare readonly $type: { "c:@S@MIDIEventPacket": true };
 }
 
@@ -953,23 +953,23 @@ export class MIDIEventPacket_Builder extends SDKHandle {
    * init(maximumNumberMIDIWords: Int)
    * @availability iOS 14.0+
    */
-  static init(maximumNumberMIDIWords: number): MIDIEventPacket_Builder { return callSDK<MIDIEventPacket_Builder>("CoreMIDI_5d69670f0307b385", 3240680849163432, undefined, [maximumNumberMIDIWords]); }
+  static init(maximumNumberMIDIWords: number): MIDIEventPacket_Builder { return callSDK<MIDIEventPacket_Builder>("CoreMIDI_6be9a005889899ab", 3240680849163432, undefined, [maximumNumberMIDIWords]); }
   /**
    * var count: Int { get }
    * @availability iOS 14.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3645990356751584, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3645990356751584, this, []); }
   /**
    * var capacity: Int { get }
    * @availability iOS 14.0+
    */
-  get capacity(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2254289518178417, this, []); }
+  get capacity(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2254289518178417, this, []); }
   /**
    * var timeStamp: Int { get set }
    * @availability iOS 14.0+
    */
-  get timeStamp(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4356029396621995, this, []); }
-  set timeStamp(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 377922295984765, this, [value]); }
+  get timeStamp(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4356029396621995, this, []); }
+  set timeStamp(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 377922295984765, this, [value]); }
   declare readonly $type: { "s:So15MIDIEventPacketV8CoreMIDIE7BuilderC": true };
 }
 
@@ -982,32 +982,32 @@ export class MIDIEventPacket_WordCollection extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 14.0+
    */
-  get startIndex(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2250369187984732, this, []); }
+  get startIndex(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2250369187984732, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 14.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2653023412554226, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2653023412554226, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 14.0+
    */
-  get endIndex(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 618104659934327, this, []); }
+  get endIndex(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 618104659934327, this, []); }
   /**
    * init(_ p: UnsafePointer<MIDIEventPacket>)
    * @availability iOS 14.0+
    */
-  static init(p: SDKHandle): MIDIEventPacket_WordCollection { return callSDK<MIDIEventPacket_WordCollection>("CoreMIDI_5d69670f0307b385", 4035858255145911, undefined, [p]); }
+  static init(p: SDKHandle): MIDIEventPacket_WordCollection { return callSDK<MIDIEventPacket_WordCollection>("CoreMIDI_6be9a005889899ab", 4035858255145911, undefined, [p]); }
   /**
    * init?(_ p: UnsafePointer<MIDIEventPacket>?)
    * @availability iOS 14.0+
    */
-  static init17528(p?: (SDKHandle) | null): (MIDIEventPacket_WordCollection) | null { return callSDK<(MIDIEventPacket_WordCollection) | null>("CoreMIDI_5d69670f0307b385", 1654140049924062, undefined, [p]); }
+  static init17528(p?: (SDKHandle) | null): (MIDIEventPacket_WordCollection) | null { return callSDK<(MIDIEventPacket_WordCollection) | null>("CoreMIDI_6be9a005889899ab", 1654140049924062, undefined, [p]); }
   /**
    * subscript(index: MIDIEventPacket.WordCollection.Index) -> MIDIEventPacket.WordCollection.Element { get }
    * @availability iOS 14.0+
    */
-  subscript(index: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4111352871344643, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4111352871344643, this, [index]); }
   declare readonly $type: { "s:So15MIDIEventPacketV8CoreMIDIE14WordCollectionV": true };
 }
 
@@ -1050,12 +1050,12 @@ export class MIDIEventPacket_WordSequence extends SDKHandle {
    * func makeIterator() -> MIDIEventPacket.WordSequence.Iterator
    * @availability iOS 14.0+
    */
-  makeIterator(): MIDIEventPacket_WordSequence_Iterator { return callSDK<MIDIEventPacket_WordSequence_Iterator>("CoreMIDI_5d69670f0307b385", 4266858931983791, this, []); }
+  makeIterator(): MIDIEventPacket_WordSequence_Iterator { return callSDK<MIDIEventPacket_WordSequence_Iterator>("CoreMIDI_6be9a005889899ab", 4266858931983791, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 14.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4486726613468015, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4486726613468015, this, []); }
   declare readonly $type: { "s:So15MIDIEventPacketV8CoreMIDIE12WordSequenceV": true };
 }
 
@@ -1074,12 +1074,12 @@ export class MIDIEventPacket_WordSequence_Iterator extends SDKHandle {
    * mutating func next() -> UInt32?
    * @availability iOS 14.0+
    */
-  next(): (number) | null { return callSDK<(number) | null>("CoreMIDI_5d69670f0307b385", 4347457055649286, this, []); }
+  next(): (number) | null { return callSDK<(number) | null>("CoreMIDI_6be9a005889899ab", 4347457055649286, this, []); }
   /**
    * init(_ s: MIDIEventPacket.WordSequence)
    * @availability iOS 14.0+
    */
-  static init(s: MIDIEventPacket_WordSequence): MIDIEventPacket_WordSequence_Iterator { return callSDK<MIDIEventPacket_WordSequence_Iterator>("CoreMIDI_5d69670f0307b385", 3976462098380820, undefined, [s]); }
+  static init(s: MIDIEventPacket_WordSequence): MIDIEventPacket_WordSequence_Iterator { return callSDK<MIDIEventPacket_WordSequence_Iterator>("CoreMIDI_6be9a005889899ab", 3976462098380820, undefined, [s]); }
   declare readonly $type: { "s:So15MIDIEventPacketV8CoreMIDIE12WordSequenceV8IteratorV": true };
 }
 
@@ -1095,42 +1095,42 @@ export type MIDIEventVisitor = ((arg0: (SDKHandle) | null, arg1: number, arg2: M
 /** struct MIDIIOErrorNotification */
 export class MIDIIOErrorNotification extends SDKHandle {
   /** var driverDevice: MIDIDeviceRef */
-  get driverDevice(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 156579029581562, this, []); }
-  set driverDevice(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3180592306346905, this, [value]); }
+  get driverDevice(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 156579029581562, this, []); }
+  set driverDevice(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3180592306346905, this, [value]); }
   /** var errorCode: OSStatus */
-  get errorCode(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 800961387795698, this, []); }
-  set errorCode(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4010383849992525, this, [value]); }
+  get errorCode(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 800961387795698, this, []); }
+  set errorCode(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4010383849992525, this, [value]); }
   /** var messageID: MIDINotificationMessageID */
-  get messageID(): MIDINotificationMessageID { return callSDK<MIDINotificationMessageID>("CoreMIDI_5d69670f0307b385", 3783288232743959, this, []); }
-  set messageID(value: MIDINotificationMessageID) { callSDK<void>("CoreMIDI_5d69670f0307b385", 827528613774123, this, [value]); }
+  get messageID(): MIDINotificationMessageID { return callSDK<MIDINotificationMessageID>("CoreMIDI_6be9a005889899ab", 3783288232743959, this, []); }
+  set messageID(value: MIDINotificationMessageID) { callSDK<void>("CoreMIDI_6be9a005889899ab", 827528613774123, this, [value]); }
   /** var messageSize: UInt32 */
-  get messageSize(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1921946438413378, this, []); }
-  set messageSize(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3386726473764262, this, [value]); }
+  get messageSize(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1921946438413378, this, []); }
+  set messageSize(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3386726473764262, this, [value]); }
   /** init(messageID: MIDINotificationMessageID, messageSize: UInt32, driverDevice: MIDIDeviceRef, errorCode: OSStatus) */
-  static initMessageIDMessageSizeDriverDeviceErrorCode(messageID: MIDINotificationMessageID, messageSize: number, driverDevice: number, errorCode: number): MIDIIOErrorNotification { return callSDK<MIDIIOErrorNotification>("CoreMIDI_5d69670f0307b385", 1561325955352258, undefined, [messageID, messageSize, driverDevice, errorCode]); }
+  static initMessageIDMessageSizeDriverDeviceErrorCode(messageID: MIDINotificationMessageID, messageSize: number, driverDevice: number, errorCode: number): MIDIIOErrorNotification { return callSDK<MIDIIOErrorNotification>("CoreMIDI_6be9a005889899ab", 1561325955352258, undefined, [messageID, messageSize, driverDevice, errorCode]); }
   /** init() */
-  static init(): MIDIIOErrorNotification { return callSDK<MIDIIOErrorNotification>("CoreMIDI_5d69670f0307b385", 4399068835554303, undefined, []); }
+  static init(): MIDIIOErrorNotification { return callSDK<MIDIIOErrorNotification>("CoreMIDI_6be9a005889899ab", 4399068835554303, undefined, []); }
   declare readonly $type: { "c:@S@MIDIIOErrorNotification": true };
 }
 
 /** struct MIDIMessage_128 */
 export class MIDIMessage_128 extends SDKHandle {
   /** var word0: UInt32 */
-  get word0(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4364223343833894, this, []); }
-  set word0(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1829955871558693, this, [value]); }
+  get word0(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4364223343833894, this, []); }
+  set word0(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1829955871558693, this, [value]); }
   /** var word1: UInt32 */
-  get word1(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2605543213420788, this, []); }
-  set word1(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2445492135320560, this, [value]); }
+  get word1(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2605543213420788, this, []); }
+  set word1(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2445492135320560, this, [value]); }
   /** var word2: UInt32 */
-  get word2(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 576946190427986, this, []); }
-  set word2(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3908811592074565, this, [value]); }
+  get word2(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 576946190427986, this, []); }
+  set word2(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3908811592074565, this, [value]); }
   /** var word3: UInt32 */
-  get word3(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3617271606779771, this, []); }
-  set word3(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4403825114062496, this, [value]); }
+  get word3(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3617271606779771, this, []); }
+  set word3(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4403825114062496, this, [value]); }
   /** init(word0: UInt32, word1: UInt32, word2: UInt32, word3: UInt32) */
-  static initWord0Word1Word2Word3(word0: number, word1: number, word2: number, word3: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 594707040112942, undefined, [word0, word1, word2, word3]); }
+  static initWord0Word1Word2Word3(word0: number, word1: number, word2: number, word3: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 594707040112942, undefined, [word0, word1, word2, word3]); }
   /** init() */
-  static init(): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 2644507577474701, undefined, []); }
+  static init(): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 2644507577474701, undefined, []); }
   declare readonly $type: { "c:@S@MIDIMessage_128": true };
 }
 
@@ -1140,33 +1140,33 @@ export type MIDIMessage_32 = number;
 /** struct MIDIMessage_64 */
 export class MIDIMessage_64 extends SDKHandle {
   /** var word0: UInt32 */
-  get word0(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4470319935601662, this, []); }
-  set word0(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3149466649464392, this, [value]); }
+  get word0(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4470319935601662, this, []); }
+  set word0(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3149466649464392, this, [value]); }
   /** var word1: UInt32 */
-  get word1(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1111014350442866, this, []); }
-  set word1(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2994114679332892, this, [value]); }
+  get word1(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1111014350442866, this, []); }
+  set word1(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2994114679332892, this, [value]); }
   /** init(word0: UInt32, word1: UInt32) */
-  static initWord0Word1(word0: number, word1: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 4199095203087346, undefined, [word0, word1]); }
+  static initWord0Word1(word0: number, word1: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 4199095203087346, undefined, [word0, word1]); }
   /** init() */
-  static init(): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 1126602476807933, undefined, []); }
+  static init(): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 1126602476807933, undefined, []); }
   declare readonly $type: { "c:@S@MIDIMessage_64": true };
 }
 
 /** struct MIDIMessage_96 */
 export class MIDIMessage_96 extends SDKHandle {
   /** var word0: UInt32 */
-  get word0(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 548140031020188, this, []); }
-  set word0(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1074065548526938, this, [value]); }
+  get word0(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 548140031020188, this, []); }
+  set word0(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1074065548526938, this, [value]); }
   /** var word1: UInt32 */
-  get word1(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3828675985237223, this, []); }
-  set word1(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2328649074831992, this, [value]); }
+  get word1(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3828675985237223, this, []); }
+  set word1(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2328649074831992, this, [value]); }
   /** var word2: UInt32 */
-  get word2(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4345009840339764, this, []); }
-  set word2(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2137769869210668, this, [value]); }
+  get word2(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4345009840339764, this, []); }
+  set word2(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2137769869210668, this, [value]); }
   /** init(word0: UInt32, word1: UInt32, word2: UInt32) */
-  static initWord0Word1Word2(word0: number, word1: number, word2: number): MIDIMessage_96 { return callSDK<MIDIMessage_96>("CoreMIDI_5d69670f0307b385", 2001533418478682, undefined, [word0, word1, word2]); }
+  static initWord0Word1Word2(word0: number, word1: number, word2: number): MIDIMessage_96 { return callSDK<MIDIMessage_96>("CoreMIDI_6be9a005889899ab", 2001533418478682, undefined, [word0, word1, word2]); }
   /** init() */
-  static init(): MIDIMessage_96 { return callSDK<MIDIMessage_96>("CoreMIDI_5d69670f0307b385", 555223597745174, undefined, []); }
+  static init(): MIDIMessage_96 { return callSDK<MIDIMessage_96>("CoreMIDI_6be9a005889899ab", 555223597745174, undefined, []); }
   declare readonly $type: { "c:@S@MIDIMessage_96": true };
 }
 
@@ -1175,9 +1175,9 @@ export type MIDIMessageType = "utility" | "system" | "channelVoice1" | "sysEx" |
 
 export const MIDIMessageType = {
   /** static var stream: MIDIMessageType { get } */
-  get stream(): MIDIMessageType { return callSDK<MIDIMessageType>("CoreMIDI_5d69670f0307b385", 2529127540662824, undefined, []); },
+  get stream(): MIDIMessageType { return callSDK<MIDIMessageType>("CoreMIDI_6be9a005889899ab", 2529127540662824, undefined, []); },
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (MIDIMessageType) | null { return callSDK<(MIDIMessageType) | null>("CoreMIDI_5d69670f0307b385", 430158734446876, undefined, [rawValue]); }
+  init(rawValue: number): (MIDIMessageType) | null { return callSDK<(MIDIMessageType) | null>("CoreMIDI_6be9a005889899ab", 430158734446876, undefined, [rawValue]); }
 };
 
 /**
@@ -1189,12 +1189,12 @@ export class MIDINetworkConnection extends SDKHandle {
    * convenience init(host: MIDINetworkHost)
    * @availability iOS 4.2+
    */
-  static init(host: MIDINetworkHost): MIDINetworkConnection { return callSDK<MIDINetworkConnection>("CoreMIDI_5d69670f0307b385", 1919208395432662, undefined, [host]); }
+  static init(host: MIDINetworkHost): MIDINetworkConnection { return callSDK<MIDINetworkConnection>("CoreMIDI_6be9a005889899ab", 1919208395432662, undefined, [host]); }
   /**
    * var host: MIDINetworkHost { get }
    * @availability iOS 4.2+
    */
-  get host(): MIDINetworkHost { return callSDK<MIDINetworkHost>("CoreMIDI_5d69670f0307b385", 1852696600799638, this, []); }
+  get host(): MIDINetworkHost { return callSDK<MIDINetworkHost>("CoreMIDI_6be9a005889899ab", 1852696600799638, this, []); }
   declare readonly $type: { "c:objc(cs)MIDINetworkConnection": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "host": true };
 }
@@ -1204,7 +1204,7 @@ export type MIDINetworkConnectionPolicy = "noOne" | "hostsInContactList" | "anyo
 
 export const MIDINetworkConnectionPolicy = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MIDINetworkConnectionPolicy) | null { return callSDK<(MIDINetworkConnectionPolicy) | null>("CoreMIDI_5d69670f0307b385", 586898025391037, undefined, [rawValue]); }
+  init(rawValue: number): (MIDINetworkConnectionPolicy) | null { return callSDK<(MIDINetworkConnectionPolicy) | null>("CoreMIDI_6be9a005889899ab", 586898025391037, undefined, [rawValue]); }
 };
 
 /**
@@ -1216,47 +1216,47 @@ export class MIDINetworkHost extends SDKHandle {
    * convenience init(name: String, address: String, port: Int)
    * @availability iOS 4.2+
    */
-  static initNameAddressPort(name: string, address: string, port: number): MIDINetworkHost { return callSDK<MIDINetworkHost>("CoreMIDI_5d69670f0307b385", 1084391838844992, undefined, [name, address, port]); }
+  static initNameAddressPort(name: string, address: string, port: number): MIDINetworkHost { return callSDK<MIDINetworkHost>("CoreMIDI_6be9a005889899ab", 1084391838844992, undefined, [name, address, port]); }
   /**
    * convenience init(name: String, netService: NetService)
    * @availability iOS 4.2+
    */
-  static initNameNetService(name: string, netService: _Foundation_NetService): MIDINetworkHost { return callSDK<MIDINetworkHost>("CoreMIDI_5d69670f0307b385", 453290781704940, undefined, [name, netService]); }
+  static initNameNetService(name: string, netService: _Foundation_NetService): MIDINetworkHost { return callSDK<MIDINetworkHost>("CoreMIDI_6be9a005889899ab", 453290781704940, undefined, [name, netService]); }
   /**
    * convenience init(name: String, netServiceName: String, netServiceDomain: String)
    * @availability iOS 4.2+
    */
-  static initNameNetServiceNameNetServiceDomain(name: string, netServiceName: string, netServiceDomain: string): MIDINetworkHost { return callSDK<MIDINetworkHost>("CoreMIDI_5d69670f0307b385", 2489968223929321, undefined, [name, netServiceName, netServiceDomain]); }
+  static initNameNetServiceNameNetServiceDomain(name: string, netServiceName: string, netServiceDomain: string): MIDINetworkHost { return callSDK<MIDINetworkHost>("CoreMIDI_6be9a005889899ab", 2489968223929321, undefined, [name, netServiceName, netServiceDomain]); }
   /**
    * func hasSameAddress(as other: MIDINetworkHost) -> Bool
    * @availability iOS 4.2+
    */
-  hasSameAddress(other: MIDINetworkHost): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 3847239107808864, this, [other]); }
+  hasSameAddress(other: MIDINetworkHost): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 3847239107808864, this, [other]); }
   /**
    * var address: String { get }
    * @availability iOS 4.2+
    */
-  get address(): string { return callSDK<string>("CoreMIDI_5d69670f0307b385", 142022445609726, this, []); }
+  get address(): string { return callSDK<string>("CoreMIDI_6be9a005889899ab", 142022445609726, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 4.2+
    */
-  get name(): string { return callSDK<string>("CoreMIDI_5d69670f0307b385", 3501844650018564, this, []); }
+  get name(): string { return callSDK<string>("CoreMIDI_6be9a005889899ab", 3501844650018564, this, []); }
   /**
    * var netServiceDomain: String? { get }
    * @availability iOS 4.2+
    */
-  get netServiceDomain(): (string) | null { return callSDK<(string) | null>("CoreMIDI_5d69670f0307b385", 1172452387657230, this, []); }
+  get netServiceDomain(): (string) | null { return callSDK<(string) | null>("CoreMIDI_6be9a005889899ab", 1172452387657230, this, []); }
   /**
    * var netServiceName: String? { get }
    * @availability iOS 4.2+
    */
-  get netServiceName(): (string) | null { return callSDK<(string) | null>("CoreMIDI_5d69670f0307b385", 3133863390324227, this, []); }
+  get netServiceName(): (string) | null { return callSDK<(string) | null>("CoreMIDI_6be9a005889899ab", 3133863390324227, this, []); }
   /**
    * var port: Int { get }
    * @availability iOS 4.2+
    */
-  get port(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 453885319140463, this, []); }
+  get port(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 453885319140463, this, []); }
   declare readonly $type: { "c:objc(cs)MIDINetworkHost": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "address": true; "name": true; "netServiceDomain": true; "netServiceName": true; "port": true };
 }
@@ -1270,76 +1270,76 @@ export class MIDINetworkSession extends SDKHandle {
    * class func `default`() -> MIDINetworkSession
    * @availability iOS 4.2+
    */
-  static default(): MIDINetworkSession { return callSDK<MIDINetworkSession>("CoreMIDI_5d69670f0307b385", 3812269692020077, undefined, []); }
+  static default(): MIDINetworkSession { return callSDK<MIDINetworkSession>("CoreMIDI_6be9a005889899ab", 3812269692020077, undefined, []); }
   /**
    * func addConnection(_ connection: MIDINetworkConnection) -> Bool
    * @availability iOS 4.2+
    */
-  addConnection(connection: MIDINetworkConnection): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 2722321629907591, this, [connection]); }
+  addConnection(connection: MIDINetworkConnection): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 2722321629907591, this, [connection]); }
   /**
    * func addContact(_ contact: MIDINetworkHost) -> Bool
    * @availability iOS 4.2+
    */
-  addContact(contact: MIDINetworkHost): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 2594073293751018, this, [contact]); }
+  addContact(contact: MIDINetworkHost): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 2594073293751018, this, [contact]); }
   /**
    * func connections() -> Set<MIDINetworkConnection>
    * @availability iOS 4.2+
    */
-  connections(): Array<MIDINetworkConnection> { return callSDK<Array<MIDINetworkConnection>>("CoreMIDI_5d69670f0307b385", 3589725713495170, this, []); }
+  connections(): Array<MIDINetworkConnection> { return callSDK<Array<MIDINetworkConnection>>("CoreMIDI_6be9a005889899ab", 3589725713495170, this, []); }
   /**
    * func contacts() -> Set<MIDINetworkHost>
    * @availability iOS 4.2+
    */
-  contacts(): Array<MIDINetworkHost> { return callSDK<Array<MIDINetworkHost>>("CoreMIDI_5d69670f0307b385", 3749212848457961, this, []); }
+  contacts(): Array<MIDINetworkHost> { return callSDK<Array<MIDINetworkHost>>("CoreMIDI_6be9a005889899ab", 3749212848457961, this, []); }
   /**
    * func destinationEndpoint() -> MIDIEndpointRef
    * @availability iOS 4.2+
    */
-  destinationEndpoint(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 896946181804988, this, []); }
+  destinationEndpoint(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 896946181804988, this, []); }
   /** init() */
-  static init(): MIDINetworkSession { return callSDK<MIDINetworkSession>("CoreMIDI_5d69670f0307b385", 124675423653062, undefined, []); }
+  static init(): MIDINetworkSession { return callSDK<MIDINetworkSession>("CoreMIDI_6be9a005889899ab", 124675423653062, undefined, []); }
   /**
    * func removeConnection(_ connection: MIDINetworkConnection) -> Bool
    * @availability iOS 4.2+
    */
-  removeConnection(connection: MIDINetworkConnection): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 1965512684298805, this, [connection]); }
+  removeConnection(connection: MIDINetworkConnection): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 1965512684298805, this, [connection]); }
   /**
    * func removeContact(_ contact: MIDINetworkHost) -> Bool
    * @availability iOS 4.2+
    */
-  removeContact(contact: MIDINetworkHost): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 2732735176088925, this, [contact]); }
+  removeContact(contact: MIDINetworkHost): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 2732735176088925, this, [contact]); }
   /**
    * func sourceEndpoint() -> MIDIEndpointRef
    * @availability iOS 4.2+
    */
-  sourceEndpoint(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 342018935741350, this, []); }
+  sourceEndpoint(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 342018935741350, this, []); }
   /**
    * var connectionPolicy: MIDINetworkConnectionPolicy { get set }
    * @availability iOS 4.2+
    */
-  get connectionPolicy(): MIDINetworkConnectionPolicy { return callSDK<MIDINetworkConnectionPolicy>("CoreMIDI_5d69670f0307b385", 241630985731745, this, []); }
-  set connectionPolicy(value: MIDINetworkConnectionPolicy) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4182063525243167, this, [value]); }
+  get connectionPolicy(): MIDINetworkConnectionPolicy { return callSDK<MIDINetworkConnectionPolicy>("CoreMIDI_6be9a005889899ab", 241630985731745, this, []); }
+  set connectionPolicy(value: MIDINetworkConnectionPolicy) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4182063525243167, this, [value]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 4.2+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 4089211538985527, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2377341900865901, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 4089211538985527, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2377341900865901, this, [value]); }
   /**
    * var localName: String { get }
    * @availability iOS 4.2+
    */
-  get localName(): string { return callSDK<string>("CoreMIDI_5d69670f0307b385", 125968771153262, this, []); }
+  get localName(): string { return callSDK<string>("CoreMIDI_6be9a005889899ab", 125968771153262, this, []); }
   /**
    * var networkName: String { get }
    * @availability iOS 4.2+
    */
-  get networkName(): string { return callSDK<string>("CoreMIDI_5d69670f0307b385", 1453988212474851, this, []); }
+  get networkName(): string { return callSDK<string>("CoreMIDI_6be9a005889899ab", 1453988212474851, this, []); }
   /**
    * var networkPort: Int { get }
    * @availability iOS 4.2+
    */
-  get networkPort(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1889603853505394, this, []); }
+  get networkPort(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1889603853505394, this, []); }
   declare readonly $type: { "c:objc(cs)MIDINetworkSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "connectionPolicy": true; "isEnabled": true; "localName": true; "networkName": true; "networkPort": true };
 }
@@ -1349,21 +1349,21 @@ export type MIDINoteAttribute = "none" | "manufacturerSpecific" | "profileSpecif
 
 export const MIDINoteAttribute = {
   /** init?(rawValue: UInt8) */
-  init(rawValue: number): (MIDINoteAttribute) | null { return callSDK<(MIDINoteAttribute) | null>("CoreMIDI_5d69670f0307b385", 4310727452664095, undefined, [rawValue]); }
+  init(rawValue: number): (MIDINoteAttribute) | null { return callSDK<(MIDINoteAttribute) | null>("CoreMIDI_6be9a005889899ab", 4310727452664095, undefined, [rawValue]); }
 };
 
 /** struct MIDINotification */
 export class MIDINotification extends SDKHandle {
   /** var messageID: MIDINotificationMessageID */
-  get messageID(): MIDINotificationMessageID { return callSDK<MIDINotificationMessageID>("CoreMIDI_5d69670f0307b385", 4348239754963546, this, []); }
-  set messageID(value: MIDINotificationMessageID) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2706115724848186, this, [value]); }
+  get messageID(): MIDINotificationMessageID { return callSDK<MIDINotificationMessageID>("CoreMIDI_6be9a005889899ab", 4348239754963546, this, []); }
+  set messageID(value: MIDINotificationMessageID) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2706115724848186, this, [value]); }
   /** var messageSize: UInt32 */
-  get messageSize(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3041853492309160, this, []); }
-  set messageSize(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3099619206244933, this, [value]); }
+  get messageSize(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3041853492309160, this, []); }
+  set messageSize(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3099619206244933, this, [value]); }
   /** init(messageID: MIDINotificationMessageID, messageSize: UInt32) */
-  static initMessageIDMessageSize(messageID: MIDINotificationMessageID, messageSize: number): MIDINotification { return callSDK<MIDINotification>("CoreMIDI_5d69670f0307b385", 415302673646073, undefined, [messageID, messageSize]); }
+  static initMessageIDMessageSize(messageID: MIDINotificationMessageID, messageSize: number): MIDINotification { return callSDK<MIDINotification>("CoreMIDI_6be9a005889899ab", 415302673646073, undefined, [messageID, messageSize]); }
   /** init() */
-  static init(): MIDINotification { return callSDK<MIDINotification>("CoreMIDI_5d69670f0307b385", 258022721393699, undefined, []); }
+  static init(): MIDINotification { return callSDK<MIDINotification>("CoreMIDI_6be9a005889899ab", 258022721393699, undefined, []); }
   declare readonly $type: { "c:@S@MIDINotification": true };
 }
 
@@ -1372,7 +1372,7 @@ export type MIDINotificationMessageID = "msgSetupChanged" | "msgObjectAdded" | "
 
 export const MIDINotificationMessageID = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (MIDINotificationMessageID) | null { return callSDK<(MIDINotificationMessageID) | null>("CoreMIDI_5d69670f0307b385", 678440661376621, undefined, [rawValue]); }
+  init(rawValue: number): (MIDINotificationMessageID) | null { return callSDK<(MIDINotificationMessageID) | null>("CoreMIDI_6be9a005889899ab", 678440661376621, undefined, [rawValue]); }
 };
 
 /** typealias MIDINotifyBlock = (UnsafePointer<MIDINotification>) -> Void */
@@ -1384,49 +1384,49 @@ export type MIDINotifyProc = $SDK21;
 /** struct MIDIObjectAddRemoveNotification */
 export class MIDIObjectAddRemoveNotification extends SDKHandle {
   /** var child: MIDIObjectRef */
-  get child(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2702358466730931, this, []); }
-  set child(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1826937315231863, this, [value]); }
+  get child(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2702358466730931, this, []); }
+  set child(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1826937315231863, this, [value]); }
   /** var childType: MIDIObjectType */
-  get childType(): MIDIObjectType { return callSDK<MIDIObjectType>("CoreMIDI_5d69670f0307b385", 71712937632413, this, []); }
-  set childType(value: MIDIObjectType) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1517657147209135, this, [value]); }
+  get childType(): MIDIObjectType { return callSDK<MIDIObjectType>("CoreMIDI_6be9a005889899ab", 71712937632413, this, []); }
+  set childType(value: MIDIObjectType) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1517657147209135, this, [value]); }
   /** var messageID: MIDINotificationMessageID */
-  get messageID(): MIDINotificationMessageID { return callSDK<MIDINotificationMessageID>("CoreMIDI_5d69670f0307b385", 847850058787777, this, []); }
-  set messageID(value: MIDINotificationMessageID) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1456808871173221, this, [value]); }
+  get messageID(): MIDINotificationMessageID { return callSDK<MIDINotificationMessageID>("CoreMIDI_6be9a005889899ab", 847850058787777, this, []); }
+  set messageID(value: MIDINotificationMessageID) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1456808871173221, this, [value]); }
   /** var messageSize: UInt32 */
-  get messageSize(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1082575568675876, this, []); }
-  set messageSize(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 962645840926311, this, [value]); }
+  get messageSize(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1082575568675876, this, []); }
+  set messageSize(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 962645840926311, this, [value]); }
   /** var parent: MIDIObjectRef */
-  get parent(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2297357267347118, this, []); }
-  set parent(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2670516222823286, this, [value]); }
+  get parent(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2297357267347118, this, []); }
+  set parent(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2670516222823286, this, [value]); }
   /** var parentType: MIDIObjectType */
-  get parentType(): MIDIObjectType { return callSDK<MIDIObjectType>("CoreMIDI_5d69670f0307b385", 1181821749032613, this, []); }
-  set parentType(value: MIDIObjectType) { callSDK<void>("CoreMIDI_5d69670f0307b385", 717948227881173, this, [value]); }
+  get parentType(): MIDIObjectType { return callSDK<MIDIObjectType>("CoreMIDI_6be9a005889899ab", 1181821749032613, this, []); }
+  set parentType(value: MIDIObjectType) { callSDK<void>("CoreMIDI_6be9a005889899ab", 717948227881173, this, [value]); }
   /** init(messageID: MIDINotificationMessageID, messageSize: UInt32, parent: MIDIObjectRef, parentType: MIDIObjectType, child: MIDIObjectRef, childType: MIDIObjectType) */
-  static initMessageIDMessageSizeParentParentTypeChildChildType(messageID: MIDINotificationMessageID, messageSize: number, parent: number, parentType: MIDIObjectType, child: number, childType: MIDIObjectType): MIDIObjectAddRemoveNotification { return callSDK<MIDIObjectAddRemoveNotification>("CoreMIDI_5d69670f0307b385", 3393461632328057, undefined, [messageID, messageSize, parent, parentType, child, childType]); }
+  static initMessageIDMessageSizeParentParentTypeChildChildType(messageID: MIDINotificationMessageID, messageSize: number, parent: number, parentType: MIDIObjectType, child: number, childType: MIDIObjectType): MIDIObjectAddRemoveNotification { return callSDK<MIDIObjectAddRemoveNotification>("CoreMIDI_6be9a005889899ab", 3393461632328057, undefined, [messageID, messageSize, parent, parentType, child, childType]); }
   /** init() */
-  static init(): MIDIObjectAddRemoveNotification { return callSDK<MIDIObjectAddRemoveNotification>("CoreMIDI_5d69670f0307b385", 2169161525268921, undefined, []); }
+  static init(): MIDIObjectAddRemoveNotification { return callSDK<MIDIObjectAddRemoveNotification>("CoreMIDI_6be9a005889899ab", 2169161525268921, undefined, []); }
   declare readonly $type: { "c:@S@MIDIObjectAddRemoveNotification": true };
 }
 
 /** struct MIDIObjectPropertyChangeNotification */
 export class MIDIObjectPropertyChangeNotification extends SDKHandle {
   /** var messageID: MIDINotificationMessageID */
-  get messageID(): MIDINotificationMessageID { return callSDK<MIDINotificationMessageID>("CoreMIDI_5d69670f0307b385", 4061290211448525, this, []); }
-  set messageID(value: MIDINotificationMessageID) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2182921429474247, this, [value]); }
+  get messageID(): MIDINotificationMessageID { return callSDK<MIDINotificationMessageID>("CoreMIDI_6be9a005889899ab", 4061290211448525, this, []); }
+  set messageID(value: MIDINotificationMessageID) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2182921429474247, this, [value]); }
   /** var messageSize: UInt32 */
-  get messageSize(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1102854929487993, this, []); }
-  set messageSize(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2683625971102281, this, [value]); }
+  get messageSize(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1102854929487993, this, []); }
+  set messageSize(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2683625971102281, this, [value]); }
   /** var object: MIDIObjectRef */
-  get object(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2904617640641809, this, []); }
-  set object(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1431132514980325, this, [value]); }
+  get object(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2904617640641809, this, []); }
+  set object(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1431132514980325, this, [value]); }
   /** var objectType: MIDIObjectType */
-  get objectType(): MIDIObjectType { return callSDK<MIDIObjectType>("CoreMIDI_5d69670f0307b385", 1010122501757576, this, []); }
-  set objectType(value: MIDIObjectType) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1583255891943633, this, [value]); }
+  get objectType(): MIDIObjectType { return callSDK<MIDIObjectType>("CoreMIDI_6be9a005889899ab", 1010122501757576, this, []); }
+  set objectType(value: MIDIObjectType) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1583255891943633, this, [value]); }
   /** var propertyName: Unmanaged<CFString> */
-  get propertyName(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 670769296859912, this, []); }
-  set propertyName(value: SDKHandle) { callSDK<void>("CoreMIDI_5d69670f0307b385", 587175396424327, this, [value]); }
+  get propertyName(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 670769296859912, this, []); }
+  set propertyName(value: SDKHandle) { callSDK<void>("CoreMIDI_6be9a005889899ab", 587175396424327, this, [value]); }
   /** init(messageID: MIDINotificationMessageID, messageSize: UInt32, object: MIDIObjectRef, objectType: MIDIObjectType, propertyName: Unmanaged<CFString>) */
-  static init(messageID: MIDINotificationMessageID, messageSize: number, object: number, objectType: MIDIObjectType, propertyName: SDKHandle): MIDIObjectPropertyChangeNotification { return callSDK<MIDIObjectPropertyChangeNotification>("CoreMIDI_5d69670f0307b385", 2271687555884441, undefined, [messageID, messageSize, object, objectType, propertyName]); }
+  static init(messageID: MIDINotificationMessageID, messageSize: number, object: number, objectType: MIDIObjectType, propertyName: SDKHandle): MIDIObjectPropertyChangeNotification { return callSDK<MIDIObjectPropertyChangeNotification>("CoreMIDI_6be9a005889899ab", 2271687555884441, undefined, [messageID, messageSize, object, objectType, propertyName]); }
   declare readonly $type: { "c:@S@MIDIObjectPropertyChangeNotification": true };
 }
 
@@ -1438,24 +1438,24 @@ export type MIDIObjectType = "other" | "device" | "entity" | "source" | "destina
 
 export const MIDIObjectType = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (MIDIObjectType) | null { return callSDK<(MIDIObjectType) | null>("CoreMIDI_5d69670f0307b385", 3772456466432930, undefined, [rawValue]); }
+  init(rawValue: number): (MIDIObjectType) | null { return callSDK<(MIDIObjectType) | null>("CoreMIDI_6be9a005889899ab", 3772456466432930, undefined, [rawValue]); }
 };
 
 /** struct MIDIPacket */
 export class MIDIPacket extends SDKHandle {
   /** var data: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) */
-  get data(): $SDK22 { return callSDK<$SDK22>("CoreMIDI_5d69670f0307b385", 1100082195549182, this, []); }
-  set data(value: $SDK22) { callSDK<void>("CoreMIDI_5d69670f0307b385", 463709545507046, this, [value]); }
+  get data(): $SDK22 { return callSDK<$SDK22>("CoreMIDI_6be9a005889899ab", 1100082195549182, this, []); }
+  set data(value: $SDK22) { callSDK<void>("CoreMIDI_6be9a005889899ab", 463709545507046, this, [value]); }
   /** var length: UInt16 */
-  get length(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1511108792727122, this, []); }
-  set length(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4500892335073987, this, [value]); }
+  get length(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1511108792727122, this, []); }
+  set length(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4500892335073987, this, [value]); }
   /** var timeStamp: MIDITimeStamp */
-  get timeStamp(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2073475655440683, this, []); }
-  set timeStamp(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2765389495499655, this, [value]); }
+  get timeStamp(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2073475655440683, this, []); }
+  set timeStamp(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2765389495499655, this, [value]); }
   /** init(timeStamp: MIDITimeStamp, length: UInt16, data: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8)) */
-  static initTimeStampLengthData(timeStamp: number, length: number, data: $SDK22): MIDIPacket { return callSDK<MIDIPacket>("CoreMIDI_5d69670f0307b385", 2751285045064539, undefined, [timeStamp, length, data]); }
+  static initTimeStampLengthData(timeStamp: number, length: number, data: $SDK22): MIDIPacket { return callSDK<MIDIPacket>("CoreMIDI_6be9a005889899ab", 2751285045064539, undefined, [timeStamp, length, data]); }
   /** init() */
-  static init(): MIDIPacket { return callSDK<MIDIPacket>("CoreMIDI_5d69670f0307b385", 3460824978154204, undefined, []); }
+  static init(): MIDIPacket { return callSDK<MIDIPacket>("CoreMIDI_6be9a005889899ab", 3460824978154204, undefined, []); }
   declare readonly $type: { "c:@S@MIDIPacket": true };
 }
 
@@ -1468,23 +1468,23 @@ export class MIDIPacket_Builder extends SDKHandle {
    * init(maximumNumberMIDIBytes: Int)
    * @availability iOS 13.0+
    */
-  static init(maximumNumberMIDIBytes: number): MIDIPacket_Builder { return callSDK<MIDIPacket_Builder>("CoreMIDI_5d69670f0307b385", 2596191993906587, undefined, [maximumNumberMIDIBytes]); }
+  static init(maximumNumberMIDIBytes: number): MIDIPacket_Builder { return callSDK<MIDIPacket_Builder>("CoreMIDI_6be9a005889899ab", 2596191993906587, undefined, [maximumNumberMIDIBytes]); }
   /**
    * var count: Int { get }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2746062276549972, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2746062276549972, this, []); }
   /**
    * var capacity: Int { get }
    * @availability iOS 13.0+
    */
-  get capacity(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2027574653700226, this, []); }
+  get capacity(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2027574653700226, this, []); }
   /**
    * var timeStamp: Int { get set }
    * @availability iOS 13.0+
    */
-  get timeStamp(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1963619793446397, this, []); }
-  set timeStamp(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 728858655158971, this, [value]); }
+  get timeStamp(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1963619793446397, this, []); }
+  set timeStamp(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 728858655158971, this, [value]); }
   declare readonly $type: { "s:So10MIDIPacketV8CoreMIDIE7BuilderC": true };
 }
 
@@ -1497,32 +1497,32 @@ export class MIDIPacket_ByteCollection extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 13.0+
    */
-  get startIndex(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3216267742703097, this, []); }
+  get startIndex(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3216267742703097, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2722582108955678, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2722582108955678, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 13.0+
    */
-  get endIndex(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2072215236028596, this, []); }
+  get endIndex(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2072215236028596, this, []); }
   /**
    * init(_ p: UnsafePointer<MIDIPacket>)
    * @availability iOS 13.0+
    */
-  static init(p: SDKHandle): MIDIPacket_ByteCollection { return callSDK<MIDIPacket_ByteCollection>("CoreMIDI_5d69670f0307b385", 1626362731009233, undefined, [p]); }
+  static init(p: SDKHandle): MIDIPacket_ByteCollection { return callSDK<MIDIPacket_ByteCollection>("CoreMIDI_6be9a005889899ab", 1626362731009233, undefined, [p]); }
   /**
    * init?(_ p: UnsafePointer<MIDIPacket>?)
    * @availability iOS 13.0+
    */
-  static init82271(p?: (SDKHandle) | null): (MIDIPacket_ByteCollection) | null { return callSDK<(MIDIPacket_ByteCollection) | null>("CoreMIDI_5d69670f0307b385", 955872054445631, undefined, [p]); }
+  static init82271(p?: (SDKHandle) | null): (MIDIPacket_ByteCollection) | null { return callSDK<(MIDIPacket_ByteCollection) | null>("CoreMIDI_6be9a005889899ab", 955872054445631, undefined, [p]); }
   /**
    * subscript(index: MIDIPacket.ByteCollection.Index) -> MIDIPacket.ByteCollection.Element { get }
    * @availability iOS 13.0+
    */
-  subscript(index: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 581749380278425, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 581749380278425, this, [index]); }
   declare readonly $type: { "s:So10MIDIPacketV8CoreMIDIE14ByteCollectionV": true };
 }
 
@@ -1565,12 +1565,12 @@ export class MIDIPacket_ByteSequence extends SDKHandle {
    * func makeIterator() -> MIDIPacket.ByteSequence.Iterator
    * @availability iOS 13.0+
    */
-  makeIterator(): MIDIPacket_ByteSequence_Iterator { return callSDK<MIDIPacket_ByteSequence_Iterator>("CoreMIDI_5d69670f0307b385", 533430781630659, this, []); }
+  makeIterator(): MIDIPacket_ByteSequence_Iterator { return callSDK<MIDIPacket_ByteSequence_Iterator>("CoreMIDI_6be9a005889899ab", 533430781630659, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3088461844820368, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3088461844820368, this, []); }
   declare readonly $type: { "s:So10MIDIPacketV8CoreMIDIE12ByteSequenceV": true };
 }
 
@@ -1589,12 +1589,12 @@ export class MIDIPacket_ByteSequence_Iterator extends SDKHandle {
    * mutating func next() -> UInt8?
    * @availability iOS 13.0+
    */
-  next(): (number) | null { return callSDK<(number) | null>("CoreMIDI_5d69670f0307b385", 4160000694185292, this, []); }
+  next(): (number) | null { return callSDK<(number) | null>("CoreMIDI_6be9a005889899ab", 4160000694185292, this, []); }
   /**
    * init(_ s: MIDIPacket.ByteSequence)
    * @availability iOS 13.0+
    */
-  static init(s: MIDIPacket_ByteSequence): MIDIPacket_ByteSequence_Iterator { return callSDK<MIDIPacket_ByteSequence_Iterator>("CoreMIDI_5d69670f0307b385", 4495027018918253, undefined, [s]); }
+  static init(s: MIDIPacket_ByteSequence): MIDIPacket_ByteSequence_Iterator { return callSDK<MIDIPacket_ByteSequence_Iterator>("CoreMIDI_6be9a005889899ab", 4495027018918253, undefined, [s]); }
   declare readonly $type: { "s:So10MIDIPacketV8CoreMIDIE12ByteSequenceV8IteratorV": true };
 }
 
@@ -1607,20 +1607,20 @@ export type MIDIPacket_ByteSequence_Iterator_Element = number;
 /** struct MIDIPacketList */
 export class MIDIPacketList extends SDKHandle {
   /** var numPackets: UInt32 */
-  get numPackets(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2904883595093749, this, []); }
-  set numPackets(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1542240027705572, this, [value]); }
+  get numPackets(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2904883595093749, this, []); }
+  set numPackets(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1542240027705572, this, [value]); }
   /** var packet: MIDIPacket */
-  get packet(): MIDIPacket { return callSDK<MIDIPacket>("CoreMIDI_5d69670f0307b385", 449118271628839, this, []); }
-  set packet(value: MIDIPacket) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3554818520620503, this, [value]); }
+  get packet(): MIDIPacket { return callSDK<MIDIPacket>("CoreMIDI_6be9a005889899ab", 449118271628839, this, []); }
+  set packet(value: MIDIPacket) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3554818520620503, this, [value]); }
   /** init(numPackets: UInt32, packet: MIDIPacket) */
-  static initNumPacketsPacket(numPackets: number, packet: MIDIPacket): MIDIPacketList { return callSDK<MIDIPacketList>("CoreMIDI_5d69670f0307b385", 1074199871502034, undefined, [numPackets, packet]); }
+  static initNumPacketsPacket(numPackets: number, packet: MIDIPacket): MIDIPacketList { return callSDK<MIDIPacketList>("CoreMIDI_6be9a005889899ab", 1074199871502034, undefined, [numPackets, packet]); }
   /**
    * static func sizeInBytes(pktList: UnsafePointer<MIDIPacketList>) -> Int
    * @availability iOS 13.0+
    */
-  static sizeInBytes(pktList: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3169435770488056, undefined, [pktList]); }
+  static sizeInBytes(pktList: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3169435770488056, undefined, [pktList]); }
   /** init() */
-  static init(): MIDIPacketList { return callSDK<MIDIPacketList>("CoreMIDI_5d69670f0307b385", 343931160388367, undefined, []); }
+  static init(): MIDIPacketList { return callSDK<MIDIPacketList>("CoreMIDI_6be9a005889899ab", 343931160388367, undefined, []); }
   declare readonly $type: { "c:@S@MIDIPacketList": true };
 }
 
@@ -1633,22 +1633,22 @@ export class MIDIPacketList_Builder extends SDKHandle {
    * func clear()
    * @availability iOS 13.0+
    */
-  clear(): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 4204649801979715, this, []); }
+  clear(): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 4204649801979715, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1438031762130864, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1438031762130864, this, []); }
   /**
    * @discardableResult func append(timestamp: MIDITimeStamp, data: [UInt8]) -> UnsafePointer<MIDIPacket>?
    * @availability iOS 13.0+
    */
-  append(timestamp: number, data: Array<number>): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_5d69670f0307b385", 2567724143141286, this, [timestamp, data]); }
+  append(timestamp: number, data: Array<number>): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_6be9a005889899ab", 2567724143141286, this, [timestamp, data]); }
   /**
    * init(byteSize: Int)
    * @availability iOS 13.0+
    */
-  static init(byteSize: number): MIDIPacketList_Builder { return callSDK<MIDIPacketList_Builder>("CoreMIDI_5d69670f0307b385", 3549213709449844, undefined, [byteSize]); }
+  static init(byteSize: number): MIDIPacketList_Builder { return callSDK<MIDIPacketList_Builder>("CoreMIDI_6be9a005889899ab", 3549213709449844, undefined, [byteSize]); }
   declare readonly $type: { "s:So14MIDIPacketListV8CoreMIDIE7BuilderC": true };
 }
 
@@ -1661,12 +1661,12 @@ export class MIDIPacketList_UnsafeSequence extends SDKHandle {
    * func makeIterator() -> MIDIPacketList.UnsafeSequence.Iterator
    * @availability iOS 13.0+
    */
-  makeIterator(): MIDIPacketList_UnsafeSequence_Iterator { return callSDK<MIDIPacketList_UnsafeSequence_Iterator>("CoreMIDI_5d69670f0307b385", 4332701104598558, this, []); }
+  makeIterator(): MIDIPacketList_UnsafeSequence_Iterator { return callSDK<MIDIPacketList_UnsafeSequence_Iterator>("CoreMIDI_6be9a005889899ab", 4332701104598558, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 419635716401956, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 419635716401956, this, []); }
   declare readonly $type: { "s:So14MIDIPacketListV8CoreMIDIE14UnsafeSequenceV": true };
 }
 
@@ -1685,12 +1685,12 @@ export class MIDIPacketList_UnsafeSequence_Iterator extends SDKHandle {
    * mutating func next() -> UnsafePointer<MIDIPacket>?
    * @availability iOS 13.0+
    */
-  next(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_5d69670f0307b385", 1447458950865166, this, []); }
+  next(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_6be9a005889899ab", 1447458950865166, this, []); }
   /**
    * init(_ s: MIDIPacketList.UnsafeSequence)
    * @availability iOS 13.0+
    */
-  static init(s: MIDIPacketList_UnsafeSequence): MIDIPacketList_UnsafeSequence_Iterator { return callSDK<MIDIPacketList_UnsafeSequence_Iterator>("CoreMIDI_5d69670f0307b385", 2563916347581569, undefined, [s]); }
+  static init(s: MIDIPacketList_UnsafeSequence): MIDIPacketList_UnsafeSequence_Iterator { return callSDK<MIDIPacketList_UnsafeSequence_Iterator>("CoreMIDI_6be9a005889899ab", 2563916347581569, undefined, [s]); }
   declare readonly $type: { "s:So14MIDIPacketListV8CoreMIDIE14UnsafeSequenceV8IteratorV": true };
 }
 
@@ -1705,11 +1705,11 @@ export type MIDIPerNoteManagementOptions = Array<"reset" | "detach">;
 
 export const MIDIPerNoteManagementOptions = {
   /** static var detach: MIDIPerNoteManagementOptions { get } */
-  get detach(): MIDIPerNoteManagementOptions { return callSDK<MIDIPerNoteManagementOptions>("CoreMIDI_5d69670f0307b385", 3165303108075029, undefined, []); },
+  get detach(): MIDIPerNoteManagementOptions { return callSDK<MIDIPerNoteManagementOptions>("CoreMIDI_6be9a005889899ab", 3165303108075029, undefined, []); },
   /** static var reset: MIDIPerNoteManagementOptions { get } */
-  get reset(): MIDIPerNoteManagementOptions { return callSDK<MIDIPerNoteManagementOptions>("CoreMIDI_5d69670f0307b385", 3961742068882293, undefined, []); },
+  get reset(): MIDIPerNoteManagementOptions { return callSDK<MIDIPerNoteManagementOptions>("CoreMIDI_6be9a005889899ab", 3961742068882293, undefined, []); },
   /** init(rawValue: UInt8) */
-  init(rawValue: number): MIDIPerNoteManagementOptions { return callSDK<MIDIPerNoteManagementOptions>("CoreMIDI_5d69670f0307b385", 2747736345949763, undefined, [rawValue]); }
+  init(rawValue: number): MIDIPerNoteManagementOptions { return callSDK<MIDIPerNoteManagementOptions>("CoreMIDI_6be9a005889899ab", 2747736345949763, undefined, [rawValue]); }
 };
 
 /** typealias MIDIPortRef = MIDIObjectRef */
@@ -1720,15 +1720,15 @@ export type MIDIProgramChangeOptions = Array<"bankValid">;
 
 export const MIDIProgramChangeOptions = {
   /** static var bankValid: MIDIProgramChangeOptions { get } */
-  get bankValid(): MIDIProgramChangeOptions { return callSDK<MIDIProgramChangeOptions>("CoreMIDI_5d69670f0307b385", 546444147071318, undefined, []); },
+  get bankValid(): MIDIProgramChangeOptions { return callSDK<MIDIProgramChangeOptions>("CoreMIDI_6be9a005889899ab", 546444147071318, undefined, []); },
   /** init(rawValue: UInt8) */
-  init(rawValue: number): MIDIProgramChangeOptions { return callSDK<MIDIProgramChangeOptions>("CoreMIDI_5d69670f0307b385", 2343587108904834, undefined, [rawValue]); }
+  init(rawValue: number): MIDIProgramChangeOptions { return callSDK<MIDIProgramChangeOptions>("CoreMIDI_6be9a005889899ab", 2343587108904834, undefined, [rawValue]); }
 };
 
 /** enum MIDIProtocolID */
 export class MIDIProtocolID extends SDKHandle {
   /** init?(rawValue: Int32) */
-  static init(rawValue: number): (MIDIProtocolID) | null { return callSDK<(MIDIProtocolID) | null>("CoreMIDI_5d69670f0307b385", 4436387003249165, undefined, [rawValue]); }
+  static init(rawValue: number): (MIDIProtocolID) | null { return callSDK<(MIDIProtocolID) | null>("CoreMIDI_6be9a005889899ab", 4436387003249165, undefined, [rawValue]); }
   declare readonly $type: { "c:@E@MIDIProtocolID": true };
 }
 
@@ -1755,47 +1755,47 @@ export type MIDISetupRef = number;
 /** struct MIDISysexSendRequest */
 export class MIDISysexSendRequest extends SDKHandle {
   /** var bytesToSend: UInt32 */
-  get bytesToSend(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4155835224514717, this, []); }
-  set bytesToSend(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 677721670863392, this, [value]); }
+  get bytesToSend(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4155835224514717, this, []); }
+  set bytesToSend(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 677721670863392, this, [value]); }
   /** var complete: DarwinBoolean */
-  get complete(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 365704303421689, this, []); }
-  set complete(value: boolean) { callSDK<void>("CoreMIDI_5d69670f0307b385", 989558160846269, this, [value]); }
+  get complete(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 365704303421689, this, []); }
+  set complete(value: boolean) { callSDK<void>("CoreMIDI_6be9a005889899ab", 989558160846269, this, [value]); }
   /** var completionProc: MIDICompletionProc */
-  get completionProc(): $SDK15 { return callSDK<$SDK15>("CoreMIDI_5d69670f0307b385", 286029984890536, this, []); }
+  get completionProc(): $SDK15 { return callSDK<$SDK15>("CoreMIDI_6be9a005889899ab", 286029984890536, this, []); }
   /** var completionRefCon: UnsafeMutableRawPointer? */
-  get completionRefCon(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_5d69670f0307b385", 1574276237849790, this, []); }
-  set completionRefCon(value: (SDKHandle) | null) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2307183525034503, this, [value]); }
+  get completionRefCon(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_6be9a005889899ab", 1574276237849790, this, []); }
+  set completionRefCon(value: (SDKHandle) | null) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2307183525034503, this, [value]); }
   /** var data: UnsafePointer<UInt8> */
-  get data(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 1863510734113087, this, []); }
-  set data(value: SDKHandle) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2926217181189162, this, [value]); }
+  get data(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 1863510734113087, this, []); }
+  set data(value: SDKHandle) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2926217181189162, this, [value]); }
   /** var destination: MIDIEndpointRef */
-  get destination(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1737378192651839, this, []); }
-  set destination(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 303419132755346, this, [value]); }
+  get destination(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1737378192651839, this, []); }
+  set destination(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 303419132755346, this, [value]); }
   /** var reserved: (UInt8, UInt8, UInt8) */
-  get reserved(): $SDK0 { return callSDK<$SDK0>("CoreMIDI_5d69670f0307b385", 2895286646799755, this, []); }
-  set reserved(value: $SDK0) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3597648250437230, this, [value]); }
+  get reserved(): $SDK0 { return callSDK<$SDK0>("CoreMIDI_6be9a005889899ab", 2895286646799755, this, []); }
+  set reserved(value: $SDK0) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3597648250437230, this, [value]); }
   declare readonly $type: { "c:@S@MIDISysexSendRequest": true };
 }
 
 /** struct MIDISysexSendRequestUMP */
 export class MIDISysexSendRequestUMP extends SDKHandle {
   /** var complete: DarwinBoolean */
-  get complete(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 2757535993926543, this, []); }
-  set complete(value: boolean) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3291634929810086, this, [value]); }
+  get complete(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 2757535993926543, this, []); }
+  set complete(value: boolean) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3291634929810086, this, [value]); }
   /** var completionProc: MIDICompletionProcUMP */
-  get completionProc(): $SDK15 { return callSDK<$SDK15>("CoreMIDI_5d69670f0307b385", 3612849485128344, this, []); }
+  get completionProc(): $SDK15 { return callSDK<$SDK15>("CoreMIDI_6be9a005889899ab", 3612849485128344, this, []); }
   /** var completionRefCon: UnsafeMutableRawPointer? */
-  get completionRefCon(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_5d69670f0307b385", 2881416736323809, this, []); }
-  set completionRefCon(value: (SDKHandle) | null) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1792231266946138, this, [value]); }
+  get completionRefCon(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_6be9a005889899ab", 2881416736323809, this, []); }
+  set completionRefCon(value: (SDKHandle) | null) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1792231266946138, this, [value]); }
   /** var destination: MIDIEndpointRef */
-  get destination(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3678796298218300, this, []); }
-  set destination(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1267863192941453, this, [value]); }
+  get destination(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3678796298218300, this, []); }
+  set destination(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1267863192941453, this, [value]); }
   /** var words: UnsafeMutablePointer<UInt32> */
-  get words(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 3306057271420070, this, []); }
-  set words(value: SDKHandle) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3075753382026408, this, [value]); }
+  get words(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 3306057271420070, this, []); }
+  set words(value: SDKHandle) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3075753382026408, this, [value]); }
   /** var wordsToSend: UInt32 */
-  get wordsToSend(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4193331777177136, this, []); }
-  set wordsToSend(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 340952909725486, this, [value]); }
+  get wordsToSend(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4193331777177136, this, []); }
+  set wordsToSend(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 340952909725486, this, [value]); }
   declare readonly $type: { "c:@S@MIDISysexSendRequestUMP": true };
 }
 
@@ -1804,7 +1804,7 @@ export type MIDISysExStatus = "complete" | "start" | "continue" | "end" | "mixed
 
 export const MIDISysExStatus = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (MIDISysExStatus) | null { return callSDK<(MIDISysExStatus) | null>("CoreMIDI_5d69670f0307b385", 2181831101295083, undefined, [rawValue]); }
+  init(rawValue: number): (MIDISysExStatus) | null { return callSDK<(MIDISysExStatus) | null>("CoreMIDI_6be9a005889899ab", 2181831101295083, undefined, [rawValue]); }
 };
 
 /** enum MIDISystemStatus */
@@ -1812,107 +1812,107 @@ export type MIDISystemStatus = "statusStartOfExclusive" | "statusEndOfExclusive"
 
 export const MIDISystemStatus = {
   /** static var statusActiveSensing: MIDISystemStatus { get } */
-  get statusActiveSensing(): MIDISystemStatus { return callSDK<MIDISystemStatus>("CoreMIDI_5d69670f0307b385", 817875445575392, undefined, []); },
+  get statusActiveSensing(): MIDISystemStatus { return callSDK<MIDISystemStatus>("CoreMIDI_6be9a005889899ab", 817875445575392, undefined, []); },
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (MIDISystemStatus) | null { return callSDK<(MIDISystemStatus) | null>("CoreMIDI_5d69670f0307b385", 4394394640026664, undefined, [rawValue]); }
+  init(rawValue: number): (MIDISystemStatus) | null { return callSDK<(MIDISystemStatus) | null>("CoreMIDI_6be9a005889899ab", 4394394640026664, undefined, [rawValue]); }
 };
 
 /** struct MIDIThruConnectionEndpoint */
 export class MIDIThruConnectionEndpoint extends SDKHandle {
   /** var endpointRef: MIDIEndpointRef */
-  get endpointRef(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3191886699263227, this, []); }
-  set endpointRef(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4280486492216573, this, [value]); }
+  get endpointRef(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3191886699263227, this, []); }
+  set endpointRef(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4280486492216573, this, [value]); }
   /** var uniqueID: MIDIUniqueID */
-  get uniqueID(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4070066973369073, this, []); }
-  set uniqueID(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 829525938851992, this, [value]); }
+  get uniqueID(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4070066973369073, this, []); }
+  set uniqueID(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 829525938851992, this, [value]); }
   /** init(endpointRef: MIDIEndpointRef, uniqueID: MIDIUniqueID) */
-  static initEndpointRefUniqueID(endpointRef: number, uniqueID: number): MIDIThruConnectionEndpoint { return callSDK<MIDIThruConnectionEndpoint>("CoreMIDI_5d69670f0307b385", 3053458007820022, undefined, [endpointRef, uniqueID]); }
+  static initEndpointRefUniqueID(endpointRef: number, uniqueID: number): MIDIThruConnectionEndpoint { return callSDK<MIDIThruConnectionEndpoint>("CoreMIDI_6be9a005889899ab", 3053458007820022, undefined, [endpointRef, uniqueID]); }
   /** init() */
-  static init(): MIDIThruConnectionEndpoint { return callSDK<MIDIThruConnectionEndpoint>("CoreMIDI_5d69670f0307b385", 2982104011620739, undefined, []); }
+  static init(): MIDIThruConnectionEndpoint { return callSDK<MIDIThruConnectionEndpoint>("CoreMIDI_6be9a005889899ab", 2982104011620739, undefined, []); }
   declare readonly $type: { "c:@S@MIDIThruConnectionEndpoint": true };
 }
 
 /** struct MIDIThruConnectionParams */
 export class MIDIThruConnectionParams extends SDKHandle {
   /** var channelMap: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) */
-  get channelMap(): $SDK24 { return callSDK<$SDK24>("CoreMIDI_5d69670f0307b385", 1023258435895567, this, []); }
-  set channelMap(value: $SDK24) { callSDK<void>("CoreMIDI_5d69670f0307b385", 197752514361103, this, [value]); }
+  get channelMap(): $SDK24 { return callSDK<$SDK24>("CoreMIDI_6be9a005889899ab", 1023258435895567, this, []); }
+  set channelMap(value: $SDK24) { callSDK<void>("CoreMIDI_6be9a005889899ab", 197752514361103, this, [value]); }
   /** var channelPressure: MIDITransform */
-  get channelPressure(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_5d69670f0307b385", 2319641087839611, this, []); }
-  set channelPressure(value: MIDITransform) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3953737607755959, this, [value]); }
+  get channelPressure(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_6be9a005889899ab", 2319641087839611, this, []); }
+  set channelPressure(value: MIDITransform) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3953737607755959, this, [value]); }
   /** var destinations: (MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint) */
-  get destinations(): $SDK25 { return callSDK<$SDK25>("CoreMIDI_5d69670f0307b385", 3074239999232026, this, []); }
-  set destinations(value: $SDK25) { callSDK<void>("CoreMIDI_5d69670f0307b385", 701852500164539, this, [value]); }
+  get destinations(): $SDK25 { return callSDK<$SDK25>("CoreMIDI_6be9a005889899ab", 3074239999232026, this, []); }
+  set destinations(value: $SDK25) { callSDK<void>("CoreMIDI_6be9a005889899ab", 701852500164539, this, [value]); }
   /** var filterOutAllControls: UInt8 */
-  get filterOutAllControls(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3940469200542405, this, []); }
-  set filterOutAllControls(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3663957664316771, this, [value]); }
+  get filterOutAllControls(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3940469200542405, this, []); }
+  set filterOutAllControls(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3663957664316771, this, [value]); }
   /** var filterOutBeatClock: UInt8 */
-  get filterOutBeatClock(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 894195750103123, this, []); }
-  set filterOutBeatClock(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3748441283760180, this, [value]); }
+  get filterOutBeatClock(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 894195750103123, this, []); }
+  set filterOutBeatClock(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3748441283760180, this, [value]); }
   /** var filterOutMTC: UInt8 */
-  get filterOutMTC(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1954978974285614, this, []); }
-  set filterOutMTC(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4156947240775446, this, [value]); }
+  get filterOutMTC(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1954978974285614, this, []); }
+  set filterOutMTC(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4156947240775446, this, [value]); }
   /** var filterOutSysEx: UInt8 */
-  get filterOutSysEx(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1644961607999979, this, []); }
-  set filterOutSysEx(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3438998112541474, this, [value]); }
+  get filterOutSysEx(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1644961607999979, this, []); }
+  set filterOutSysEx(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3438998112541474, this, [value]); }
   /** var filterOutTuneRequest: UInt8 */
-  get filterOutTuneRequest(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1264449643997063, this, []); }
-  set filterOutTuneRequest(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 608640927508880, this, [value]); }
+  get filterOutTuneRequest(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1264449643997063, this, []); }
+  set filterOutTuneRequest(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 608640927508880, this, [value]); }
   /** var highNote: UInt8 */
-  get highNote(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 559355665111129, this, []); }
-  set highNote(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3922331996451305, this, [value]); }
+  get highNote(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 559355665111129, this, []); }
+  set highNote(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3922331996451305, this, [value]); }
   /** var highVelocity: UInt8 */
-  get highVelocity(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2420473433943753, this, []); }
-  set highVelocity(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 593387459475500, this, [value]); }
+  get highVelocity(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2420473433943753, this, []); }
+  set highVelocity(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 593387459475500, this, [value]); }
   /** var keyPressure: MIDITransform */
-  get keyPressure(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_5d69670f0307b385", 4417808939003907, this, []); }
-  set keyPressure(value: MIDITransform) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4407518473715562, this, [value]); }
+  get keyPressure(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_6be9a005889899ab", 4417808939003907, this, []); }
+  set keyPressure(value: MIDITransform) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4407518473715562, this, [value]); }
   /** var lowNote: UInt8 */
-  get lowNote(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4340428061704406, this, []); }
-  set lowNote(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1266065672615377, this, [value]); }
+  get lowNote(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4340428061704406, this, []); }
+  set lowNote(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1266065672615377, this, [value]); }
   /** var lowVelocity: UInt8 */
-  get lowVelocity(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4186519311302834, this, []); }
-  set lowVelocity(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1288899296296060, this, [value]); }
+  get lowVelocity(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4186519311302834, this, []); }
+  set lowVelocity(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1288899296296060, this, [value]); }
   /** var noteNumber: MIDITransform */
-  get noteNumber(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_5d69670f0307b385", 2832622511844388, this, []); }
-  set noteNumber(value: MIDITransform) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3756485328711569, this, [value]); }
+  get noteNumber(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_6be9a005889899ab", 2832622511844388, this, []); }
+  set noteNumber(value: MIDITransform) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3756485328711569, this, [value]); }
   /** var numControlTransforms: UInt16 */
-  get numControlTransforms(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 920041776515473, this, []); }
-  set numControlTransforms(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4168313689034944, this, [value]); }
+  get numControlTransforms(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 920041776515473, this, []); }
+  set numControlTransforms(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4168313689034944, this, [value]); }
   /** var numDestinations: UInt32 */
-  get numDestinations(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 208814896793583, this, []); }
-  set numDestinations(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 382360215724677, this, [value]); }
+  get numDestinations(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 208814896793583, this, []); }
+  set numDestinations(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 382360215724677, this, [value]); }
   /** var numMaps: UInt16 */
-  get numMaps(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2368417558354698, this, []); }
-  set numMaps(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1557144808464276, this, [value]); }
+  get numMaps(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2368417558354698, this, []); }
+  set numMaps(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1557144808464276, this, [value]); }
   /** var numSources: UInt32 */
-  get numSources(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1151563707896891, this, []); }
-  set numSources(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4087686376270153, this, [value]); }
+  get numSources(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1151563707896891, this, []); }
+  set numSources(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4087686376270153, this, [value]); }
   /** var pitchBend: MIDITransform */
-  get pitchBend(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_5d69670f0307b385", 2644416773322491, this, []); }
-  set pitchBend(value: MIDITransform) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2018654056260146, this, [value]); }
+  get pitchBend(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_6be9a005889899ab", 2644416773322491, this, []); }
+  set pitchBend(value: MIDITransform) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2018654056260146, this, [value]); }
   /** var programChange: MIDITransform */
-  get programChange(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_5d69670f0307b385", 4427697888489319, this, []); }
-  set programChange(value: MIDITransform) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3076771293285341, this, [value]); }
+  get programChange(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_6be9a005889899ab", 4427697888489319, this, []); }
+  set programChange(value: MIDITransform) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3076771293285341, this, [value]); }
   /** var reserved2: (UInt8, UInt8, UInt8) */
-  get reserved2(): $SDK0 { return callSDK<$SDK0>("CoreMIDI_5d69670f0307b385", 98430523339740, this, []); }
-  set reserved2(value: $SDK0) { callSDK<void>("CoreMIDI_5d69670f0307b385", 826110631684870, this, [value]); }
+  get reserved2(): $SDK0 { return callSDK<$SDK0>("CoreMIDI_6be9a005889899ab", 98430523339740, this, []); }
+  set reserved2(value: $SDK0) { callSDK<void>("CoreMIDI_6be9a005889899ab", 826110631684870, this, [value]); }
   /** var reserved3: (UInt16, UInt16, UInt16, UInt16) */
-  get reserved3(): $SDK1 { return callSDK<$SDK1>("CoreMIDI_5d69670f0307b385", 2470776296550932, this, []); }
-  set reserved3(value: $SDK1) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2134279080928651, this, [value]); }
+  get reserved3(): $SDK1 { return callSDK<$SDK1>("CoreMIDI_6be9a005889899ab", 2470776296550932, this, []); }
+  set reserved3(value: $SDK1) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2134279080928651, this, [value]); }
   /** var sources: (MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint) */
-  get sources(): $SDK25 { return callSDK<$SDK25>("CoreMIDI_5d69670f0307b385", 2410435252746529, this, []); }
-  set sources(value: $SDK25) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1065934655572039, this, [value]); }
+  get sources(): $SDK25 { return callSDK<$SDK25>("CoreMIDI_6be9a005889899ab", 2410435252746529, this, []); }
+  set sources(value: $SDK25) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1065934655572039, this, [value]); }
   /** var velocity: MIDITransform */
-  get velocity(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_5d69670f0307b385", 3558312544193491, this, []); }
-  set velocity(value: MIDITransform) { callSDK<void>("CoreMIDI_5d69670f0307b385", 706207015262864, this, [value]); }
+  get velocity(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_6be9a005889899ab", 3558312544193491, this, []); }
+  set velocity(value: MIDITransform) { callSDK<void>("CoreMIDI_6be9a005889899ab", 706207015262864, this, [value]); }
   /** var version: UInt32 */
-  get version(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2485800549092579, this, []); }
-  set version(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4238838177488680, this, [value]); }
+  get version(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2485800549092579, this, []); }
+  set version(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4238838177488680, this, [value]); }
   /** init(version: UInt32, numSources: UInt32, sources: (MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint), numDestinations: UInt32, destinations: (MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint), channelMap: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8), lowVelocity: UInt8, highVelocity: UInt8, lowNote: UInt8, highNote: UInt8, noteNumber: MIDITransform, velocity: MIDITransform, keyPressure: MIDITransform, channelPressure: MIDITransform, programChange: MIDITransform, pitchBend: MIDITransform, filterOutSysEx: UInt8, filterOutMTC: UInt8, filterOutBeatClock: UInt8, filterOutTuneRequest: UInt8, reserved2: (UInt8, UInt8, UInt8), filterOutAllControls: UInt8, numControlTransforms: UInt16, numMaps: UInt16, reserved3: (UInt16, UInt16, UInt16, UInt16)) */
-  static initVersionNumSourcesSourcesNumDestinationsDestinationsChannelMapLowVelocityHighVelocityLowNoteHighNoteNoteNumberVelocityKeyPressureChannelPressureProgramChangePitchBendFilterOutSysExFilterOutMTCFilterOutBeatClockFilterOutTuneRequestReserved2FilterOutAllControlsNumControlTransformsNumMapsReserved3(version: number, numSources: number, sources: $SDK25, numDestinations: number, destinations: $SDK25, channelMap: $SDK24, lowVelocity: number, highVelocity: number, lowNote: number, highNote: number, noteNumber: MIDITransform, velocity: MIDITransform, keyPressure: MIDITransform, channelPressure: MIDITransform, programChange: MIDITransform, pitchBend: MIDITransform, filterOutSysEx: number, filterOutMTC: number, filterOutBeatClock: number, filterOutTuneRequest: number, reserved2: $SDK0, filterOutAllControls: number, numControlTransforms: number, numMaps: number, reserved3: $SDK1): MIDIThruConnectionParams { return callSDK<MIDIThruConnectionParams>("CoreMIDI_5d69670f0307b385", 2959851302775669, undefined, [version, numSources, sources, numDestinations, destinations, channelMap, lowVelocity, highVelocity, lowNote, highNote, noteNumber, velocity, keyPressure, channelPressure, programChange, pitchBend, filterOutSysEx, filterOutMTC, filterOutBeatClock, filterOutTuneRequest, reserved2, filterOutAllControls, numControlTransforms, numMaps, reserved3]); }
+  static initVersionNumSourcesSourcesNumDestinationsDestinationsChannelMapLowVelocityHighVelocityLowNoteHighNoteNoteNumberVelocityKeyPressureChannelPressureProgramChangePitchBendFilterOutSysExFilterOutMTCFilterOutBeatClockFilterOutTuneRequestReserved2FilterOutAllControlsNumControlTransformsNumMapsReserved3(version: number, numSources: number, sources: $SDK25, numDestinations: number, destinations: $SDK25, channelMap: $SDK24, lowVelocity: number, highVelocity: number, lowNote: number, highNote: number, noteNumber: MIDITransform, velocity: MIDITransform, keyPressure: MIDITransform, channelPressure: MIDITransform, programChange: MIDITransform, pitchBend: MIDITransform, filterOutSysEx: number, filterOutMTC: number, filterOutBeatClock: number, filterOutTuneRequest: number, reserved2: $SDK0, filterOutAllControls: number, numControlTransforms: number, numMaps: number, reserved3: $SDK1): MIDIThruConnectionParams { return callSDK<MIDIThruConnectionParams>("CoreMIDI_6be9a005889899ab", 2959851302775669, undefined, [version, numSources, sources, numDestinations, destinations, channelMap, lowVelocity, highVelocity, lowNote, highNote, noteNumber, velocity, keyPressure, channelPressure, programChange, pitchBend, filterOutSysEx, filterOutMTC, filterOutBeatClock, filterOutTuneRequest, reserved2, filterOutAllControls, numControlTransforms, numMaps, reserved3]); }
   /** init() */
-  static init(): MIDIThruConnectionParams { return callSDK<MIDIThruConnectionParams>("CoreMIDI_5d69670f0307b385", 1253242333206425, undefined, []); }
+  static init(): MIDIThruConnectionParams { return callSDK<MIDIThruConnectionParams>("CoreMIDI_6be9a005889899ab", 1253242333206425, undefined, []); }
   declare readonly $type: { "c:@S@MIDIThruConnectionParams": true };
 }
 
@@ -1925,15 +1925,15 @@ export type MIDITimeStamp = number;
 /** struct MIDITransform */
 export class MIDITransform extends SDKHandle {
   /** var param: Int16 */
-  get param(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2069214547042721, this, []); }
-  set param(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2620205252338804, this, [value]); }
+  get param(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2069214547042721, this, []); }
+  set param(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2620205252338804, this, [value]); }
   /** var transform: MIDITransformType */
-  get transform(): MIDITransformType { return callSDK<MIDITransformType>("CoreMIDI_5d69670f0307b385", 89582093852023, this, []); }
-  set transform(value: MIDITransformType) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2923761491273077, this, [value]); }
+  get transform(): MIDITransformType { return callSDK<MIDITransformType>("CoreMIDI_6be9a005889899ab", 89582093852023, this, []); }
+  set transform(value: MIDITransformType) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2923761491273077, this, [value]); }
   /** init(transform: MIDITransformType, param: Int16) */
-  static initTransformParam(transform: MIDITransformType, param: number): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_5d69670f0307b385", 3628435467874215, undefined, [transform, param]); }
+  static initTransformParam(transform: MIDITransformType, param: number): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_6be9a005889899ab", 3628435467874215, undefined, [transform, param]); }
   /** init() */
-  static init(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_5d69670f0307b385", 2642566888323167, undefined, []); }
+  static init(): MIDITransform { return callSDK<MIDITransform>("CoreMIDI_6be9a005889899ab", 2642566888323167, undefined, []); }
   declare readonly $type: { "c:@S@MIDITransform": true };
 }
 
@@ -1942,7 +1942,7 @@ export type MIDITransformControlType = "controlType_7Bit" | "controlType_14Bit" 
 
 export const MIDITransformControlType = {
   /** init?(rawValue: UInt8) */
-  init(rawValue: number): (MIDITransformControlType) | null { return callSDK<(MIDITransformControlType) | null>("CoreMIDI_5d69670f0307b385", 2896146956428799, undefined, [rawValue]); }
+  init(rawValue: number): (MIDITransformControlType) | null { return callSDK<(MIDITransformControlType) | null>("CoreMIDI_6be9a005889899ab", 2896146956428799, undefined, [rawValue]); }
 };
 
 /** enum MIDITransformType */
@@ -1950,7 +1950,7 @@ export type MIDITransformType = "none" | "filterOut" | "mapControl" | "add" | "s
 
 export const MIDITransformType = {
   /** init?(rawValue: UInt16) */
-  init(rawValue: number): (MIDITransformType) | null { return callSDK<(MIDITransformType) | null>("CoreMIDI_5d69670f0307b385", 1550407651402994, undefined, [rawValue]); }
+  init(rawValue: number): (MIDITransformType) | null { return callSDK<(MIDITransformType) | null>("CoreMIDI_6be9a005889899ab", 1550407651402994, undefined, [rawValue]); }
 };
 
 /** typealias MIDIUInteger14 = UInt16 */
@@ -1973,7 +1973,7 @@ export type MIDIUMPCIObjectBackingType = "unknown" | "virtual" | "driverDevice" 
 
 export const MIDIUMPCIObjectBackingType = {
   /** init?(rawValue: UInt8) */
-  init(rawValue: number): (MIDIUMPCIObjectBackingType) | null { return callSDK<(MIDIUMPCIObjectBackingType) | null>("CoreMIDI_5d69670f0307b385", 3173125521918652, undefined, [rawValue]); }
+  init(rawValue: number): (MIDIUMPCIObjectBackingType) | null { return callSDK<(MIDIUMPCIObjectBackingType) | null>("CoreMIDI_6be9a005889899ab", 3173125521918652, undefined, [rawValue]); }
 };
 
 /**
@@ -1985,47 +1985,47 @@ export class MIDIUMPCIProfile extends SDKHandle {
    * func setProfileState(_ isEnabled: Bool, enabledChannelCount: MIDIUInteger14) throws
    * @availability iOS 18.0+
    */
-  setProfileState(isEnabled: boolean, enabledChannelCount: number): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 1737032791910257, this, [isEnabled, enabledChannelCount]); }
+  setProfileState(isEnabled: boolean, enabledChannelCount: number): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 1737032791910257, this, [isEnabled, enabledChannelCount]); }
   /**
    * var enabledChannelCount: MIDIUInteger14 { get }
    * @availability iOS 18.0+
    */
-  get enabledChannelCount(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 349804412865186, this, []); }
+  get enabledChannelCount(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 349804412865186, this, []); }
   /**
    * var firstChannel: MIDIChannelNumber { get }
    * @availability iOS 18.0+
    */
-  get firstChannel(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1417624583680409, this, []); }
+  get firstChannel(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1417624583680409, this, []); }
   /**
    * var groupOffset: MIDIUMPGroupNumber { get }
    * @availability iOS 18.0+
    */
-  get groupOffset(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1155786460278228, this, []); }
+  get groupOffset(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1155786460278228, this, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 18.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 1461359663446440, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 1461359663446440, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 18.0+
    */
-  get name(): string { return callSDK<string>("CoreMIDI_5d69670f0307b385", 2207731112466607, this, []); }
+  get name(): string { return callSDK<string>("CoreMIDI_6be9a005889899ab", 2207731112466607, this, []); }
   /**
    * var profileID: MIDICIProfileID { get }
    * @availability iOS 18.0+
    */
-  get profileID(): MIDICIProfileID { return callSDK<MIDICIProfileID>("CoreMIDI_5d69670f0307b385", 626388297848540, this, []); }
+  get profileID(): MIDICIProfileID { return callSDK<MIDICIProfileID>("CoreMIDI_6be9a005889899ab", 626388297848540, this, []); }
   /**
    * var profileType: MIDICIProfileType { get }
    * @availability iOS 18.0+
    */
-  get profileType(): MIDICIProfileType { return callSDK<MIDICIProfileType>("CoreMIDI_5d69670f0307b385", 2489111222593504, this, []); }
+  get profileType(): MIDICIProfileType { return callSDK<MIDICIProfileType>("CoreMIDI_6be9a005889899ab", 2489111222593504, this, []); }
   /**
    * var totalChannelCount: MIDIUInteger14 { get }
    * @availability iOS 18.0+
    */
-  get totalChannelCount(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2971502438570621, this, []); }
+  get totalChannelCount(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2971502438570621, this, []); }
   declare readonly $type: { "c:objc(cs)MIDIUMPCIProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "enabledChannelCount": true; "firstChannel": true; "groupOffset": true; "isEnabled": true; "name": true; "profileID": true; "profileType": true; "totalChannelCount": true };
 }
@@ -2039,63 +2039,63 @@ export class MIDIUMPEndpoint extends SDKHandle {
    * var midiDestination: MIDIEndpointRef { get }
    * @availability iOS 18.0+
    */
-  get midiDestination(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1823663007345799, this, []); }
+  get midiDestination(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1823663007345799, this, []); }
   /**
    * var midiProtocol: MIDIProtocolID { get }
    * @availability iOS 18.0+
    */
-  get midiProtocol(): MIDIProtocolID { return callSDK<MIDIProtocolID>("CoreMIDI_5d69670f0307b385", 1821471985081459, this, []); }
+  get midiProtocol(): MIDIProtocolID { return callSDK<MIDIProtocolID>("CoreMIDI_6be9a005889899ab", 1821471985081459, this, []); }
   /**
    * var midiSource: MIDIEndpointRef { get }
    * @availability iOS 18.0+
    */
-  get midiSource(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2142981281947593, this, []); }
+  get midiSource(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2142981281947593, this, []); }
   /**
    * var deviceInfo: MIDI2DeviceInfo { get }
    * @availability iOS 18.0+
    */
-  get deviceInfo(): MIDI2DeviceInfo { return callSDK<MIDI2DeviceInfo>("CoreMIDI_5d69670f0307b385", 1443584748447302, this, []); }
+  get deviceInfo(): MIDI2DeviceInfo { return callSDK<MIDI2DeviceInfo>("CoreMIDI_6be9a005889899ab", 1443584748447302, this, []); }
   /**
    * var endpointType: MIDIUMPCIObjectBackingType { get }
    * @availability iOS 18.0+
    */
-  get endpointType(): MIDIUMPCIObjectBackingType { return callSDK<MIDIUMPCIObjectBackingType>("CoreMIDI_5d69670f0307b385", 1569934874354579, this, []); }
+  get endpointType(): MIDIUMPCIObjectBackingType { return callSDK<MIDIUMPCIObjectBackingType>("CoreMIDI_6be9a005889899ab", 1569934874354579, this, []); }
   /**
    * var functionBlocks: [MIDIUMPFunctionBlock] { get set }
    * @availability iOS 18.0+
    */
-  get functionBlocks(): Array<MIDIUMPFunctionBlock> { return callSDK<Array<MIDIUMPFunctionBlock>>("CoreMIDI_5d69670f0307b385", 3262061634621858, this, []); }
-  set functionBlocks(value: Array<MIDIUMPFunctionBlock>) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3622005884025666, this, [value]); }
+  get functionBlocks(): Array<MIDIUMPFunctionBlock> { return callSDK<Array<MIDIUMPFunctionBlock>>("CoreMIDI_6be9a005889899ab", 3262061634621858, this, []); }
+  set functionBlocks(value: Array<MIDIUMPFunctionBlock>) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3622005884025666, this, [value]); }
   /**
    * var hasJRTSReceiveCapability: Bool { get }
    * @availability iOS 18.0+
    */
-  get hasJRTSReceiveCapability(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 929539755770008, this, []); }
+  get hasJRTSReceiveCapability(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 929539755770008, this, []); }
   /**
    * var hasJRTSTransmitCapability: Bool { get }
    * @availability iOS 18.0+
    */
-  get hasJRTSTransmitCapability(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 1201568244722498, this, []); }
+  get hasJRTSTransmitCapability(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 1201568244722498, this, []); }
   /**
    * var hasStaticFunctionBlocks: Bool { get }
    * @availability iOS 18.0+
    */
-  get hasStaticFunctionBlocks(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 4492789118836091, this, []); }
+  get hasStaticFunctionBlocks(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 4492789118836091, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 18.0+
    */
-  get name(): string { return callSDK<string>("CoreMIDI_5d69670f0307b385", 2916959893875302, this, []); }
+  get name(): string { return callSDK<string>("CoreMIDI_6be9a005889899ab", 2916959893875302, this, []); }
   /**
    * var productInstanceID: String { get }
    * @availability iOS 18.0+
    */
-  get productInstanceID(): string { return callSDK<string>("CoreMIDI_5d69670f0307b385", 309955339555606, this, []); }
+  get productInstanceID(): string { return callSDK<string>("CoreMIDI_6be9a005889899ab", 309955339555606, this, []); }
   /**
    * var supportedMIDIProtocols: MIDIUMPProtocolOptions { get }
    * @availability iOS 18.0+
    */
-  get supportedMIDIProtocols(): MIDIUMPProtocolOptions { return callSDK<MIDIUMPProtocolOptions>("CoreMIDI_5d69670f0307b385", 2643073887416485, this, []); }
+  get supportedMIDIProtocols(): MIDIUMPProtocolOptions { return callSDK<MIDIUMPProtocolOptions>("CoreMIDI_6be9a005889899ab", 2643073887416485, this, []); }
   declare readonly $type: { "c:objc(cs)MIDIUMPEndpoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "midiDestination": true; "midiProtocol": true; "midiSource": true; "deviceInfo": true; "endpointType": true; "functionBlocks": true; "hasJRTSReceiveCapability": true; "hasJRTSTransmitCapability": true; "hasStaticFunctionBlocks": true; "name": true; "productInstanceID": true; "supportedMIDIProtocols": true };
 }
@@ -2109,34 +2109,34 @@ export class MIDIUMPEndpointManager extends SDKHandle {
    * class let endpointWasAddedNotification: NSNotification.Name
    * @availability iOS 18.0+
    */
-  static get endpointWasAddedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_5d69670f0307b385", 3649660068273708, undefined, []); }
+  static get endpointWasAddedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_6be9a005889899ab", 3649660068273708, undefined, []); }
   /**
    * class let endpointWasRemovedNotification: NSNotification.Name
    * @availability iOS 18.0+
    */
-  static get endpointWasRemovedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_5d69670f0307b385", 1904366850201004, undefined, []); }
+  static get endpointWasRemovedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_6be9a005889899ab", 1904366850201004, undefined, []); }
   /**
    * class let endpointWasUpdatedNotification: NSNotification.Name
    * @availability iOS 18.0+
    */
-  static get endpointWasUpdatedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_5d69670f0307b385", 1777093660312958, undefined, []); }
+  static get endpointWasUpdatedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_6be9a005889899ab", 1777093660312958, undefined, []); }
   /**
    * class let functionBlockWasUpdatedNotification: NSNotification.Name
    * @availability iOS 18.0+
    */
-  static get functionBlockWasUpdatedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_5d69670f0307b385", 4439256245468747, undefined, []); }
+  static get functionBlockWasUpdatedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreMIDI_6be9a005889899ab", 4439256245468747, undefined, []); }
   /**
    * class var shared: MIDIUMPEndpointManager { get }
    * @availability iOS 18.0+
    */
-  static get shared(): MIDIUMPEndpointManager { return callSDK<MIDIUMPEndpointManager>("CoreMIDI_5d69670f0307b385", 3351815142781473, undefined, []); }
+  static get shared(): MIDIUMPEndpointManager { return callSDK<MIDIUMPEndpointManager>("CoreMIDI_6be9a005889899ab", 3351815142781473, undefined, []); }
   /** init() */
-  static init(): MIDIUMPEndpointManager { return callSDK<MIDIUMPEndpointManager>("CoreMIDI_5d69670f0307b385", 1103840813335449, undefined, []); }
+  static init(): MIDIUMPEndpointManager { return callSDK<MIDIUMPEndpointManager>("CoreMIDI_6be9a005889899ab", 1103840813335449, undefined, []); }
   /**
    * var umpEndpoints: [MIDIUMPEndpoint] { get }
    * @availability iOS 18.0+
    */
-  get umpEndpoints(): Array<MIDIUMPEndpoint> { return callSDK<Array<MIDIUMPEndpoint>>("CoreMIDI_5d69670f0307b385", 2614768178597108, this, []); }
+  get umpEndpoints(): Array<MIDIUMPEndpoint> { return callSDK<Array<MIDIUMPEndpoint>>("CoreMIDI_6be9a005889899ab", 2614768178597108, this, []); }
   declare readonly $type: { "c:objc(cs)MIDIUMPEndpointManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "umpEndpoints": true };
 }
@@ -2149,14 +2149,14 @@ export const MIDIUMPEndpointManager_DictionaryKey = {
    * static let endpointObject: MIDIUMPEndpointManager.DictionaryKey
    * @availability iOS 18.0+
    */
-  get endpointObject(): MIDIUMPEndpointManager_DictionaryKey { return callSDK<MIDIUMPEndpointManager_DictionaryKey>("CoreMIDI_5d69670f0307b385", 1230227574908555, undefined, []); },
+  get endpointObject(): MIDIUMPEndpointManager_DictionaryKey { return callSDK<MIDIUMPEndpointManager_DictionaryKey>("CoreMIDI_6be9a005889899ab", 1230227574908555, undefined, []); },
   /**
    * static let functionBlockObject: MIDIUMPEndpointManager.DictionaryKey
    * @availability iOS 18.0+
    */
-  get functionBlockObject(): MIDIUMPEndpointManager_DictionaryKey { return callSDK<MIDIUMPEndpointManager_DictionaryKey>("CoreMIDI_5d69670f0307b385", 2974245204838136, undefined, []); },
+  get functionBlockObject(): MIDIUMPEndpointManager_DictionaryKey { return callSDK<MIDIUMPEndpointManager_DictionaryKey>("CoreMIDI_6be9a005889899ab", 2974245204838136, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): MIDIUMPEndpointManager_DictionaryKey { return callSDK<MIDIUMPEndpointManager_DictionaryKey>("CoreMIDI_5d69670f0307b385", 2903780013333440, undefined, [rawValue]); }
+  init(rawValue: string): MIDIUMPEndpointManager_DictionaryKey { return callSDK<MIDIUMPEndpointManager_DictionaryKey>("CoreMIDI_6be9a005889899ab", 2903780013333440, undefined, [rawValue]); }
 };
 
 /**
@@ -2168,57 +2168,57 @@ export class MIDIUMPFunctionBlock extends SDKHandle {
    * var midi1Info: MIDIUMPFunctionBlockMIDI1Info { get }
    * @availability iOS 18.0+
    */
-  get midi1Info(): MIDIUMPFunctionBlockMIDI1Info { return callSDK<MIDIUMPFunctionBlockMIDI1Info>("CoreMIDI_5d69670f0307b385", 2108630896974720, this, []); }
+  get midi1Info(): MIDIUMPFunctionBlockMIDI1Info { return callSDK<MIDIUMPFunctionBlockMIDI1Info>("CoreMIDI_6be9a005889899ab", 2108630896974720, this, []); }
   /**
    * var uiHint: MIDIUMPFunctionBlockUIHint { get }
    * @availability iOS 18.0+
    */
-  get uiHint(): MIDIUMPFunctionBlockUIHint { return callSDK<MIDIUMPFunctionBlockUIHint>("CoreMIDI_5d69670f0307b385", 1502087604090217, this, []); }
+  get uiHint(): MIDIUMPFunctionBlockUIHint { return callSDK<MIDIUMPFunctionBlockUIHint>("CoreMIDI_6be9a005889899ab", 1502087604090217, this, []); }
   /**
    * weak var umpEndpoint: MIDIUMPEndpoint? { get }
    * @availability iOS 18.0+
    */
-  get umpEndpoint(): (MIDIUMPEndpoint) | null { return callSDK<(MIDIUMPEndpoint) | null>("CoreMIDI_5d69670f0307b385", 1586782822657464, this, []); }
+  get umpEndpoint(): (MIDIUMPEndpoint) | null { return callSDK<(MIDIUMPEndpoint) | null>("CoreMIDI_6be9a005889899ab", 1586782822657464, this, []); }
   /**
    * var direction: MIDIUMPFunctionBlockDirection { get }
    * @availability iOS 18.0+
    */
-  get direction(): MIDIUMPFunctionBlockDirection { return callSDK<MIDIUMPFunctionBlockDirection>("CoreMIDI_5d69670f0307b385", 2170804606573875, this, []); }
+  get direction(): MIDIUMPFunctionBlockDirection { return callSDK<MIDIUMPFunctionBlockDirection>("CoreMIDI_6be9a005889899ab", 2170804606573875, this, []); }
   /**
    * var firstGroup: MIDIUMPGroupNumber { get }
    * @availability iOS 18.0+
    */
-  get firstGroup(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3697690585263516, this, []); }
+  get firstGroup(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3697690585263516, this, []); }
   /**
    * var functionBlockID: MIDIUMPFunctionBlockID { get }
    * @availability iOS 18.0+
    */
-  get functionBlockID(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3294366603832953, this, []); }
+  get functionBlockID(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3294366603832953, this, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 18.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 3012077004978937, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 3012077004978937, this, []); }
   /**
    * var maxSysEx8Streams: UInt8 { get }
    * @availability iOS 18.0+
    */
-  get maxSysEx8Streams(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 9462881979418, this, []); }
+  get maxSysEx8Streams(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 9462881979418, this, []); }
   /**
    * weak var midiCIDevice: MIDICIDevice? { get }
    * @availability iOS 18.0+
    */
-  get midiCIDevice(): (MIDICIDevice) | null { return callSDK<(MIDICIDevice) | null>("CoreMIDI_5d69670f0307b385", 443456705273814, this, []); }
+  get midiCIDevice(): (MIDICIDevice) | null { return callSDK<(MIDICIDevice) | null>("CoreMIDI_6be9a005889899ab", 443456705273814, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 18.0+
    */
-  get name(): string { return callSDK<string>("CoreMIDI_5d69670f0307b385", 3851270289579551, this, []); }
+  get name(): string { return callSDK<string>("CoreMIDI_6be9a005889899ab", 3851270289579551, this, []); }
   /**
    * var totalGroupsSpanned: MIDIUInteger7 { get }
    * @availability iOS 18.0+
    */
-  get totalGroupsSpanned(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3913243774529801, this, []); }
+  get totalGroupsSpanned(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3913243774529801, this, []); }
   declare readonly $type: { "c:objc(cs)MIDIUMPFunctionBlock": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "midi1Info": true; "uiHint": true; "umpEndpoint": true; "direction": true; "firstGroup": true; "functionBlockID": true; "isEnabled": true; "maxSysEx8Streams": true; "midiCIDevice": true; "name": true; "totalGroupsSpanned": true };
 }
@@ -2228,7 +2228,7 @@ export type MIDIUMPFunctionBlockDirection = "unknown" | "input" | "output" | "bi
 
 export const MIDIUMPFunctionBlockDirection = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (MIDIUMPFunctionBlockDirection) | null { return callSDK<(MIDIUMPFunctionBlockDirection) | null>("CoreMIDI_5d69670f0307b385", 2348688803930555, undefined, [rawValue]); }
+  init(rawValue: number): (MIDIUMPFunctionBlockDirection) | null { return callSDK<(MIDIUMPFunctionBlockDirection) | null>("CoreMIDI_6be9a005889899ab", 2348688803930555, undefined, [rawValue]); }
 };
 
 /** typealias MIDIUMPFunctionBlockID = MIDIUInteger7 */
@@ -2239,7 +2239,7 @@ export type MIDIUMPFunctionBlockMIDI1Info = "notMIDI1" | "unrestrictedBandwidth"
 
 export const MIDIUMPFunctionBlockMIDI1Info = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (MIDIUMPFunctionBlockMIDI1Info) | null { return callSDK<(MIDIUMPFunctionBlockMIDI1Info) | null>("CoreMIDI_5d69670f0307b385", 2601900122046594, undefined, [rawValue]); }
+  init(rawValue: number): (MIDIUMPFunctionBlockMIDI1Info) | null { return callSDK<(MIDIUMPFunctionBlockMIDI1Info) | null>("CoreMIDI_6be9a005889899ab", 2601900122046594, undefined, [rawValue]); }
 };
 
 /** enum MIDIUMPFunctionBlockUIHint */
@@ -2247,7 +2247,7 @@ export type MIDIUMPFunctionBlockUIHint = "unknown" | "receiver" | "sender" | "se
 
 export const MIDIUMPFunctionBlockUIHint = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (MIDIUMPFunctionBlockUIHint) | null { return callSDK<(MIDIUMPFunctionBlockUIHint) | null>("CoreMIDI_5d69670f0307b385", 2606442065765417, undefined, [rawValue]); }
+  init(rawValue: number): (MIDIUMPFunctionBlockUIHint) | null { return callSDK<(MIDIUMPFunctionBlockUIHint) | null>("CoreMIDI_6be9a005889899ab", 2606442065765417, undefined, [rawValue]); }
 };
 
 /** typealias MIDIUMPGroupNumber = MIDIUInteger4 */
@@ -2262,33 +2262,33 @@ export class MIDIUMPMutableEndpoint extends MIDIUMPEndpoint {
    * init?(name: String, deviceInfo: MIDI2DeviceInfo, productInstanceID: String, midiProtocol MIDIProtocol: MIDIProtocolID, destinationCallback: @escaping MIDIReceiveBlock)
    * @availability iOS 18.0+
    */
-  static init(name: string, deviceInfo: MIDI2DeviceInfo, productInstanceID: string, MIDIProtocol: MIDIProtocolID, destinationCallback: $SDK28): (MIDIUMPMutableEndpoint) | null { return callSDK<(MIDIUMPMutableEndpoint) | null>("CoreMIDI_5d69670f0307b385", 970379937664254, undefined, [name, deviceInfo, productInstanceID, MIDIProtocol, destinationCallback], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static init(name: string, deviceInfo: MIDI2DeviceInfo, productInstanceID: string, MIDIProtocol: MIDIProtocolID, destinationCallback: $SDK28): (MIDIUMPMutableEndpoint) | null { return callSDK<(MIDIUMPMutableEndpoint) | null>("CoreMIDI_6be9a005889899ab", 970379937664254, undefined, [name, deviceInfo, productInstanceID, MIDIProtocol, destinationCallback], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func registerFunctionBlocks(_ functionBlocks: [MIDIUMPMutableFunctionBlock], markAsStatic: Bool) throws
    * @availability iOS 18.0+
    */
-  registerFunctionBlocks(functionBlocks: $SDK29, markAsStatic: boolean): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 1321923755597845, this, [functionBlocks, markAsStatic]); }
+  registerFunctionBlocks(functionBlocks: $SDK29, markAsStatic: boolean): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 1321923755597845, this, [functionBlocks, markAsStatic]); }
   /**
    * func setEnabled(_ isEnabled: Bool) throws
    * @availability iOS 18.0+
    */
-  setEnabled(isEnabled: boolean): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 386605909883738, this, [isEnabled]); }
+  setEnabled(isEnabled: boolean): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 386605909883738, this, [isEnabled]); }
   /**
    * func setName(_ name: String) throws
    * @availability iOS 18.0+
    */
-  setName(name: string): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 296771052239220, this, [name]); }
+  setName(name: string): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 296771052239220, this, [name]); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 18.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("CoreMIDI_5d69670f0307b385", 3109708136073970, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("CoreMIDI_6be9a005889899ab", 3109708136073970, this, []); }
   /**
    * var mutableFunctionBlocks: [MIDIUMPMutableFunctionBlock] { get set }
    * @availability iOS 18.0+
    */
-  get mutableFunctionBlocks(): $SDK29 { return callSDK<$SDK29>("CoreMIDI_5d69670f0307b385", 1236225088136099, this, []); }
-  set mutableFunctionBlocks(value: $SDK29) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1235545725962371, this, [value]); }
+  get mutableFunctionBlocks(): $SDK29 { return callSDK<$SDK29>("CoreMIDI_6be9a005889899ab", 1236225088136099, this, []); }
+  set mutableFunctionBlocks(value: $SDK29) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1235545725962371, this, [value]); }
   declare readonly $type: { "c:objc(cs)MIDIUMPMutableEndpoint": true; "c:objc(cs)MIDIUMPEndpoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "midiDestination": true; "midiProtocol": true; "midiSource": true; "deviceInfo": true; "endpointType": true; "functionBlocks": true; "hasJRTSReceiveCapability": true; "hasJRTSTransmitCapability": true; "hasStaticFunctionBlocks": true; "name": true; "productInstanceID": true; "supportedMIDIProtocols": true; "isEnabled": true; "mutableFunctionBlocks": true };
 }
@@ -2302,27 +2302,27 @@ export class MIDIUMPMutableFunctionBlock extends (MIDIUMPFunctionBlock as unknow
    * init?(name: String, direction: MIDIUMPFunctionBlockDirection, firstGroup: MIDIUMPGroupNumber, totalGroupsSpanned: MIDIUInteger7, maxSysEx8Streams: MIDIUInteger7, midi1Info MIDI1Info: MIDIUMPFunctionBlockMIDI1Info, uiHint UIHint: MIDIUMPFunctionBlockUIHint, isEnabled: Bool)
    * @availability iOS 18.0+
    */
-  static init(name: string, direction: MIDIUMPFunctionBlockDirection, firstGroup: number, totalGroupsSpanned: number, maxSysEx8Streams: number, MIDI1Info: MIDIUMPFunctionBlockMIDI1Info, UIHint: MIDIUMPFunctionBlockUIHint, isEnabled: boolean): (MIDIUMPMutableFunctionBlock) | null { return callSDK<(MIDIUMPMutableFunctionBlock) | null>("CoreMIDI_5d69670f0307b385", 2945776220490785, undefined, [name, direction, firstGroup, totalGroupsSpanned, maxSysEx8Streams, MIDI1Info, UIHint, isEnabled]); }
+  static init(name: string, direction: MIDIUMPFunctionBlockDirection, firstGroup: number, totalGroupsSpanned: number, maxSysEx8Streams: number, MIDI1Info: MIDIUMPFunctionBlockMIDI1Info, UIHint: MIDIUMPFunctionBlockUIHint, isEnabled: boolean): (MIDIUMPMutableFunctionBlock) | null { return callSDK<(MIDIUMPMutableFunctionBlock) | null>("CoreMIDI_6be9a005889899ab", 2945776220490785, undefined, [name, direction, firstGroup, totalGroupsSpanned, maxSysEx8Streams, MIDI1Info, UIHint, isEnabled]); }
   /**
    * func reconfigure(firstGroup: MIDIUMPGroupNumber, direction: MIDIUMPFunctionBlockDirection, MIDI1Info: MIDIUMPFunctionBlockMIDI1Info, UIHint: MIDIUMPFunctionBlockUIHint) throws
    * @availability iOS 18.0+
    */
-  reconfigure(firstGroup: number, direction: MIDIUMPFunctionBlockDirection, MIDI1Info: MIDIUMPFunctionBlockMIDI1Info, UIHint: MIDIUMPFunctionBlockUIHint): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 3122988644308893, this, [firstGroup, direction, MIDI1Info, UIHint]); }
+  reconfigure(firstGroup: number, direction: MIDIUMPFunctionBlockDirection, MIDI1Info: MIDIUMPFunctionBlockMIDI1Info, UIHint: MIDIUMPFunctionBlockUIHint): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 3122988644308893, this, [firstGroup, direction, MIDI1Info, UIHint]); }
   /**
    * func setEnabled(_ isEnabled: Bool) throws
    * @availability iOS 18.0+
    */
-  setEnabled(isEnabled: boolean): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 3713410133831974, this, [isEnabled]); }
+  setEnabled(isEnabled: boolean): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 3713410133831974, this, [isEnabled]); }
   /**
    * func setName(_ name: String) throws
    * @availability iOS 18.0+
    */
-  setName(name: string): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 2306365533857812, this, [name]); }
+  setName(name: string): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 2306365533857812, this, [name]); }
   /**
    * weak var umpEndpoint: MIDIUMPMutableEndpoint? { get }
    * @availability iOS 18.0+
    */
-  get umpEndpoint(): (MIDIUMPMutableEndpoint) | null { return callSDK<(MIDIUMPMutableEndpoint) | null>("CoreMIDI_5d69670f0307b385", 3964650225274267, this, []); }
+  get umpEndpoint(): (MIDIUMPMutableEndpoint) | null { return callSDK<(MIDIUMPMutableEndpoint) | null>("CoreMIDI_6be9a005889899ab", 3964650225274267, this, []); }
   declare readonly $type: { "c:objc(cs)MIDIUMPMutableFunctionBlock": true; "c:objc(cs)MIDIUMPFunctionBlock": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "midi1Info": true; "uiHint": true; "umpEndpoint": true; "direction": true; "firstGroup": true; "functionBlockID": true; "isEnabled": true; "maxSysEx8Streams": true; "midiCIDevice": true; "name": true; "totalGroupsSpanned": true };
 }
@@ -2332,11 +2332,11 @@ export type MIDIUMPProtocolOptions = Array<"midi1" | "midi2">;
 
 export const MIDIUMPProtocolOptions = {
   /** static var midi1: MIDIUMPProtocolOptions { get } */
-  get midi1(): MIDIUMPProtocolOptions { return callSDK<MIDIUMPProtocolOptions>("CoreMIDI_5d69670f0307b385", 3488590022526244, undefined, []); },
+  get midi1(): MIDIUMPProtocolOptions { return callSDK<MIDIUMPProtocolOptions>("CoreMIDI_6be9a005889899ab", 3488590022526244, undefined, []); },
   /** static var midi2: MIDIUMPProtocolOptions { get } */
-  get midi2(): MIDIUMPProtocolOptions { return callSDK<MIDIUMPProtocolOptions>("CoreMIDI_5d69670f0307b385", 3626614174820765, undefined, []); },
+  get midi2(): MIDIUMPProtocolOptions { return callSDK<MIDIUMPProtocolOptions>("CoreMIDI_6be9a005889899ab", 3626614174820765, undefined, []); },
   /** init(rawValue: MIDIUInteger4) */
-  init(rawValue: number): MIDIUMPProtocolOptions { return callSDK<MIDIUMPProtocolOptions>("CoreMIDI_5d69670f0307b385", 3768022830326524, undefined, [rawValue]); }
+  init(rawValue: number): MIDIUMPProtocolOptions { return callSDK<MIDIUMPProtocolOptions>("CoreMIDI_6be9a005889899ab", 3768022830326524, undefined, [rawValue]); }
 };
 
 /** typealias MIDIUniqueID = Int32 */
@@ -2345,37 +2345,37 @@ export type MIDIUniqueID = number;
 /** struct MIDIUniversalMessage */
 export class MIDIUniversalMessage extends SDKHandle {
   /** var group: UInt8 */
-  get group(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 929662079827604, this, []); }
-  set group(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2754427974813002, this, [value]); }
+  get group(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 929662079827604, this, []); }
+  set group(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2754427974813002, this, [value]); }
   /** var reserved: (UInt8, UInt8, UInt8) */
-  get reserved(): $SDK0 { return callSDK<$SDK0>("CoreMIDI_5d69670f0307b385", 2431565310719499, this, []); }
-  set reserved(value: $SDK0) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4024373757963976, this, [value]); }
+  get reserved(): $SDK0 { return callSDK<$SDK0>("CoreMIDI_6be9a005889899ab", 2431565310719499, this, []); }
+  set reserved(value: $SDK0) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4024373757963976, this, [value]); }
   /** var type: MIDIMessageType */
-  get type(): MIDIMessageType { return callSDK<MIDIMessageType>("CoreMIDI_5d69670f0307b385", 2972088980446577, this, []); }
-  set type(value: MIDIMessageType) { callSDK<void>("CoreMIDI_5d69670f0307b385", 11108395686246, this, [value]); }
+  get type(): MIDIMessageType { return callSDK<MIDIMessageType>("CoreMIDI_6be9a005889899ab", 2972088980446577, this, []); }
+  set type(value: MIDIMessageType) { callSDK<void>("CoreMIDI_6be9a005889899ab", 11108395686246, this, [value]); }
   /** var channelVoice1: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_channelVoice1 { get set } */
-  get channelVoice1(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 2147362244996680, this, []); }
-  set channelVoice1(value: SDKHandle) { callSDK<void>("CoreMIDI_5d69670f0307b385", 975499445632510, this, [value]); }
+  get channelVoice1(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 2147362244996680, this, []); }
+  set channelVoice1(value: SDKHandle) { callSDK<void>("CoreMIDI_6be9a005889899ab", 975499445632510, this, [value]); }
   /** var channelVoice2: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_channelVoice2 { get set } */
-  get channelVoice2(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 1904377635756002, this, []); }
-  set channelVoice2(value: SDKHandle) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4149071032864411, this, [value]); }
+  get channelVoice2(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 1904377635756002, this, []); }
+  set channelVoice2(value: SDKHandle) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4149071032864411, this, [value]); }
   /** var data128: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_data128 { get set } */
-  get data128(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 15265150659350, this, []); }
-  set data128(value: SDKHandle) { callSDK<void>("CoreMIDI_5d69670f0307b385", 4310984444723298, this, [value]); }
+  get data128(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 15265150659350, this, []); }
+  set data128(value: SDKHandle) { callSDK<void>("CoreMIDI_6be9a005889899ab", 4310984444723298, this, [value]); }
   /** var sysEx: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_sysEx { get set } */
-  get sysEx(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 1204814093718816, this, []); }
-  set sysEx(value: SDKHandle) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2995178776278896, this, [value]); }
+  get sysEx(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 1204814093718816, this, []); }
+  set sysEx(value: SDKHandle) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2995178776278896, this, [value]); }
   /** var system: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_system { get set } */
-  get system(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 4307465571757755, this, []); }
-  set system(value: SDKHandle) { callSDK<void>("CoreMIDI_5d69670f0307b385", 717163877293078, this, [value]); }
+  get system(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 4307465571757755, this, []); }
+  set system(value: SDKHandle) { callSDK<void>("CoreMIDI_6be9a005889899ab", 717163877293078, this, [value]); }
   /** var unknown: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_unknown { get set } */
-  get unknown(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 4404380080473272, this, []); }
-  set unknown(value: SDKHandle) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1067048844649961, this, [value]); }
+  get unknown(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 4404380080473272, this, []); }
+  set unknown(value: SDKHandle) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1067048844649961, this, [value]); }
   /** var utility: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_utility { get set } */
-  get utility(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 2915481347837713, this, []); }
-  set utility(value: SDKHandle) { callSDK<void>("CoreMIDI_5d69670f0307b385", 2961466449565935, this, [value]); }
+  get utility(): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 2915481347837713, this, []); }
+  set utility(value: SDKHandle) { callSDK<void>("CoreMIDI_6be9a005889899ab", 2961466449565935, this, [value]); }
   /** init() */
-  static init(): MIDIUniversalMessage { return callSDK<MIDIUniversalMessage>("CoreMIDI_5d69670f0307b385", 974678632731528, undefined, []); }
+  static init(): MIDIUniversalMessage { return callSDK<MIDIUniversalMessage>("CoreMIDI_6be9a005889899ab", 974678632731528, undefined, []); }
   declare readonly $type: { "c:@S@MIDIUniversalMessage": true };
 }
 
@@ -2384,18 +2384,18 @@ export type MIDIUtilityStatus = "NOOP" | "jitterReductionClock" | "jitterReducti
 
 export const MIDIUtilityStatus = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (MIDIUtilityStatus) | null { return callSDK<(MIDIUtilityStatus) | null>("CoreMIDI_5d69670f0307b385", 570793935282889, undefined, [rawValue]); }
+  init(rawValue: number): (MIDIUtilityStatus) | null { return callSDK<(MIDIUtilityStatus) | null>("CoreMIDI_6be9a005889899ab", 570793935282889, undefined, [rawValue]); }
 };
 
 /** struct MIDIValueMap */
 export class MIDIValueMap extends SDKHandle {
   /** var value: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) */
-  get value(): $SDK31 { return callSDK<$SDK31>("CoreMIDI_5d69670f0307b385", 3295793108051490, this, []); }
-  set value(value: $SDK31) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3146821364687946, this, [value]); }
+  get value(): $SDK31 { return callSDK<$SDK31>("CoreMIDI_6be9a005889899ab", 3295793108051490, this, []); }
+  set value(value: $SDK31) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3146821364687946, this, [value]); }
   /** init(value: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8)) */
-  static initValue(value: $SDK31): MIDIValueMap { return callSDK<MIDIValueMap>("CoreMIDI_5d69670f0307b385", 4495759155545292, undefined, [value]); }
+  static initValue(value: $SDK31): MIDIValueMap { return callSDK<MIDIValueMap>("CoreMIDI_6be9a005889899ab", 4495759155545292, undefined, [value]); }
   /** init() */
-  static init(): MIDIValueMap { return callSDK<MIDIValueMap>("CoreMIDI_5d69670f0307b385", 1185049805864364, undefined, []); }
+  static init(): MIDIValueMap { return callSDK<MIDIValueMap>("CoreMIDI_6be9a005889899ab", 1185049805864364, undefined, []); }
   declare readonly $type: { "c:@S@MIDIValueMap": true };
 }
 
@@ -2404,7 +2404,7 @@ export type UMPStreamMessageFormat = "complete" | "start" | "continuing" | "end"
 
 export const UMPStreamMessageFormat = {
   /** init?(rawValue: UInt8) */
-  init(rawValue: number): (UMPStreamMessageFormat) | null { return callSDK<(UMPStreamMessageFormat) | null>("CoreMIDI_5d69670f0307b385", 4215309487336262, undefined, [rawValue]); }
+  init(rawValue: number): (UMPStreamMessageFormat) | null { return callSDK<(UMPStreamMessageFormat) | null>("CoreMIDI_6be9a005889899ab", 4215309487336262, undefined, [rawValue]); }
 };
 
 /** enum UMPStreamMessageStatus */
@@ -2412,7 +2412,7 @@ export type UMPStreamMessageStatus = "endpointDiscovery" | "endpointInfoNotifica
 
 export const UMPStreamMessageStatus = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (UMPStreamMessageStatus) | null { return callSDK<(UMPStreamMessageStatus) | null>("CoreMIDI_5d69670f0307b385", 1905367109297202, undefined, [rawValue]); }
+  init(rawValue: number): (UMPStreamMessageStatus) | null { return callSDK<(UMPStreamMessageStatus) | null>("CoreMIDI_6be9a005889899ab", 1905367109297202, undefined, [rawValue]); }
 };
 
 /**
@@ -2424,47 +2424,47 @@ export class UnsafeMutableMIDIEventListPointer extends SDKHandle {
    * var lastPacket: UnsafeMutablePointer<MIDIEventPacket>? { get }
    * @availability iOS 14.0+
    */
-  get lastPacket(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_5d69670f0307b385", 73467781349355, this, []); }
+  get lastPacket(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_6be9a005889899ab", 73467781349355, this, []); }
   /**
    * func makeIterator() -> MIDIEventList.UnsafeSequence.Iterator
    * @availability iOS 14.0+
    */
-  makeIterator(): MIDIEventList_UnsafeSequence_Iterator { return callSDK<MIDIEventList_UnsafeSequence_Iterator>("CoreMIDI_5d69670f0307b385", 2585320643132618, this, []); }
+  makeIterator(): MIDIEventList_UnsafeSequence_Iterator { return callSDK<MIDIEventList_UnsafeSequence_Iterator>("CoreMIDI_6be9a005889899ab", 2585320643132618, this, []); }
   /**
    * var midiProtocol: MIDIProtocolID { get }
    * @availability iOS 14.0+
    */
-  get midiProtocol(): MIDIProtocolID { return callSDK<MIDIProtocolID>("CoreMIDI_5d69670f0307b385", 270225395004933, this, []); }
+  get midiProtocol(): MIDIProtocolID { return callSDK<MIDIProtocolID>("CoreMIDI_6be9a005889899ab", 270225395004933, this, []); }
   /**
    * var listSizeInBytes: Int { get }
    * @availability iOS 14.0+
    */
-  get listSizeInBytes(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3391376352168293, this, []); }
+  get listSizeInBytes(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3391376352168293, this, []); }
   /**
    * mutating func clear()
    * @availability iOS 14.0+
    */
-  clear(): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 1856061252722255, this, []); }
+  clear(): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 1856061252722255, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 14.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2830887900369176, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2830887900369176, this, []); }
   /**
    * @discardableResult mutating func append(timestamp: MIDITimeStamp, words: [UInt32]) -> UnsafePointer<MIDIEventPacket>?
    * @availability iOS 14.0+
    */
-  append(timestamp: number, words: Array<number>): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_5d69670f0307b385", 3285214657164123, this, [timestamp, words]); }
+  append(timestamp: number, words: Array<number>): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_6be9a005889899ab", 3285214657164123, this, [timestamp, words]); }
   /**
    * init(_ p: UnsafeMutablePointer<MIDIEventList>, wordSize: Int, inProtocol: MIDIProtocolID)
    * @availability iOS 14.0+
    */
-  static initWordSizeInProtocol(p: SDKHandle, wordSize: number, inProtocol: MIDIProtocolID): UnsafeMutableMIDIEventListPointer { return callSDK<UnsafeMutableMIDIEventListPointer>("CoreMIDI_5d69670f0307b385", 738616144862098, undefined, [p, wordSize, inProtocol]); }
+  static initWordSizeInProtocol(p: SDKHandle, wordSize: number, inProtocol: MIDIProtocolID): UnsafeMutableMIDIEventListPointer { return callSDK<UnsafeMutableMIDIEventListPointer>("CoreMIDI_6be9a005889899ab", 738616144862098, undefined, [p, wordSize, inProtocol]); }
   /**
    * init?(_ p: UnsafeMutablePointer<MIDIEventList>?, wordSize: Int)
    * @availability iOS 14.0+
    */
-  static initWordSize(p: (SDKHandle) | null, wordSize: number): (UnsafeMutableMIDIEventListPointer) | null { return callSDK<(UnsafeMutableMIDIEventListPointer) | null>("CoreMIDI_5d69670f0307b385", 1338170147398820, undefined, [p, wordSize]); }
+  static initWordSize(p: (SDKHandle) | null, wordSize: number): (UnsafeMutableMIDIEventListPointer) | null { return callSDK<(UnsafeMutableMIDIEventListPointer) | null>("CoreMIDI_6be9a005889899ab", 1338170147398820, undefined, [p, wordSize]); }
   declare readonly $type: { "s:8CoreMIDI33UnsafeMutableMIDIEventListPointerV": true };
 }
 
@@ -2489,44 +2489,44 @@ export class UnsafeMutableMIDIEventPacketPointer extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 14.0+
    */
-  get startIndex(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1429544185243765, this, []); }
+  get startIndex(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1429544185243765, this, []); }
   /**
    * func makeIterator() -> MIDIEventPacket.WordSequence.Iterator
    * @availability iOS 14.0+
    */
-  makeIterator(): MIDIEventPacket_WordSequence_Iterator { return callSDK<MIDIEventPacket_WordSequence_Iterator>("CoreMIDI_5d69670f0307b385", 355954545159790, this, []); }
+  makeIterator(): MIDIEventPacket_WordSequence_Iterator { return callSDK<MIDIEventPacket_WordSequence_Iterator>("CoreMIDI_6be9a005889899ab", 355954545159790, this, []); }
   /**
    * var count: Int { get nonmutating set }
    * @availability iOS 14.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 399345197511151, this, []); }
-  set count(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 200204129259894, this, [value]); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 399345197511151, this, []); }
+  set count(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 200204129259894, this, [value]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 14.0+
    */
-  get endIndex(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4078631554339518, this, []); }
+  get endIndex(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4078631554339518, this, []); }
   /**
    * var timeStamp: Int { get nonmutating set }
    * @availability iOS 14.0+
    */
-  get timeStamp(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1121922801287764, this, []); }
-  set timeStamp(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 1664467470272339, this, [value]); }
+  get timeStamp(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1121922801287764, this, []); }
+  set timeStamp(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 1664467470272339, this, [value]); }
   /**
    * init?(_ p: UnsafeMutablePointer<MIDIEventPacket>?)
    * @availability iOS 14.0+
    */
-  static init(p?: (SDKHandle) | null): (UnsafeMutableMIDIEventPacketPointer) | null { return callSDK<(UnsafeMutableMIDIEventPacketPointer) | null>("CoreMIDI_5d69670f0307b385", 319315695991675, undefined, [p]); }
+  static init(p?: (SDKHandle) | null): (UnsafeMutableMIDIEventPacketPointer) | null { return callSDK<(UnsafeMutableMIDIEventPacketPointer) | null>("CoreMIDI_6be9a005889899ab", 319315695991675, undefined, [p]); }
   /**
    * init(_ p: UnsafeMutablePointer<MIDIEventPacket>)
    * @availability iOS 14.0+
    */
-  static init26183(p: SDKHandle): UnsafeMutableMIDIEventPacketPointer { return callSDK<UnsafeMutableMIDIEventPacketPointer>("CoreMIDI_5d69670f0307b385", 1491717350875562, undefined, [p]); }
+  static init26183(p: SDKHandle): UnsafeMutableMIDIEventPacketPointer { return callSDK<UnsafeMutableMIDIEventPacketPointer>("CoreMIDI_6be9a005889899ab", 1491717350875562, undefined, [p]); }
   /**
    * subscript(index: UnsafeMutableMIDIEventPacketPointer.Index) -> UnsafeMutableMIDIEventPacketPointer.Element { get nonmutating set }
    * @availability iOS 14.0+
    */
-  subscript(index: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 478214394095139, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 478214394095139, this, [index]); }
   declare readonly $type: { "s:8CoreMIDI35UnsafeMutableMIDIEventPacketPointerV": true };
 }
 
@@ -2569,42 +2569,42 @@ export class UnsafeMutableMIDIPacketListPointer extends SDKHandle {
    * var lastPacket: UnsafeMutablePointer<MIDIPacket>? { get }
    * @availability iOS 13.0+
    */
-  get lastPacket(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_5d69670f0307b385", 4062206165395328, this, []); }
+  get lastPacket(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_6be9a005889899ab", 4062206165395328, this, []); }
   /**
    * func makeIterator() -> MIDIPacketList.UnsafeSequence.Iterator
    * @availability iOS 13.0+
    */
-  makeIterator(): MIDIPacketList_UnsafeSequence_Iterator { return callSDK<MIDIPacketList_UnsafeSequence_Iterator>("CoreMIDI_5d69670f0307b385", 3318109827268209, this, []); }
+  makeIterator(): MIDIPacketList_UnsafeSequence_Iterator { return callSDK<MIDIPacketList_UnsafeSequence_Iterator>("CoreMIDI_6be9a005889899ab", 3318109827268209, this, []); }
   /**
    * var listSizeInBytes: Int { get }
    * @availability iOS 13.0+
    */
-  get listSizeInBytes(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2479857600464201, this, []); }
+  get listSizeInBytes(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2479857600464201, this, []); }
   /**
    * mutating func clear()
    * @availability iOS 13.0+
    */
-  clear(): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 4136945856645983, this, []); }
+  clear(): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 4136945856645983, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3260661897997231, this, []); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3260661897997231, this, []); }
   /**
    * @discardableResult mutating func append(timestamp: MIDITimeStamp, data: [UInt8]) -> UnsafePointer<MIDIPacket>?
    * @availability iOS 13.0+
    */
-  append(timestamp: number, data: Array<number>): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_5d69670f0307b385", 1029205606712350, this, [timestamp, data]); }
+  append(timestamp: number, data: Array<number>): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMIDI_6be9a005889899ab", 1029205606712350, this, [timestamp, data]); }
   /**
    * init?(_ p: UnsafeMutablePointer<MIDIPacketList>?, byteSize: Int)
    * @availability iOS 13.0+
    */
-  static initByteSize(p: (SDKHandle) | null, byteSize: number): (UnsafeMutableMIDIPacketListPointer) | null { return callSDK<(UnsafeMutableMIDIPacketListPointer) | null>("CoreMIDI_5d69670f0307b385", 4398637186219380, undefined, [p, byteSize]); }
+  static initByteSize(p: (SDKHandle) | null, byteSize: number): (UnsafeMutableMIDIPacketListPointer) | null { return callSDK<(UnsafeMutableMIDIPacketListPointer) | null>("CoreMIDI_6be9a005889899ab", 4398637186219380, undefined, [p, byteSize]); }
   /**
    * init(_ p: UnsafeMutablePointer<MIDIPacketList>, byteSize: Int)
    * @availability iOS 13.0+
    */
-  static initByteSize21778(p: SDKHandle, byteSize: number): UnsafeMutableMIDIPacketListPointer { return callSDK<UnsafeMutableMIDIPacketListPointer>("CoreMIDI_5d69670f0307b385", 1331126612075348, undefined, [p, byteSize]); }
+  static initByteSize21778(p: SDKHandle, byteSize: number): UnsafeMutableMIDIPacketListPointer { return callSDK<UnsafeMutableMIDIPacketListPointer>("CoreMIDI_6be9a005889899ab", 1331126612075348, undefined, [p, byteSize]); }
   declare readonly $type: { "s:8CoreMIDI34UnsafeMutableMIDIPacketListPointerV": true };
 }
 
@@ -2629,44 +2629,44 @@ export class UnsafeMutableMIDIPacketPointer extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 13.0+
    */
-  get startIndex(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3654424688897389, this, []); }
+  get startIndex(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3654424688897389, this, []); }
   /**
    * func makeIterator() -> MIDIPacket.ByteSequence.Iterator
    * @availability iOS 13.0+
    */
-  makeIterator(): MIDIPacket_ByteSequence_Iterator { return callSDK<MIDIPacket_ByteSequence_Iterator>("CoreMIDI_5d69670f0307b385", 3770054133801301, this, []); }
+  makeIterator(): MIDIPacket_ByteSequence_Iterator { return callSDK<MIDIPacket_ByteSequence_Iterator>("CoreMIDI_6be9a005889899ab", 3770054133801301, this, []); }
   /**
    * var count: Int { get nonmutating set }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 967155432187450, this, []); }
-  set count(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 3947292402949146, this, [value]); }
+  get count(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 967155432187450, this, []); }
+  set count(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 3947292402949146, this, [value]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 13.0+
    */
-  get endIndex(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 602843639392025, this, []); }
+  get endIndex(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 602843639392025, this, []); }
   /**
    * var timeStamp: Int { get nonmutating set }
    * @availability iOS 13.0+
    */
-  get timeStamp(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4464660074324032, this, []); }
-  set timeStamp(value: number) { callSDK<void>("CoreMIDI_5d69670f0307b385", 375282793751225, this, [value]); }
+  get timeStamp(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4464660074324032, this, []); }
+  set timeStamp(value: number) { callSDK<void>("CoreMIDI_6be9a005889899ab", 375282793751225, this, [value]); }
   /**
    * init?(_ p: UnsafeMutablePointer<MIDIPacket>?)
    * @availability iOS 13.0+
    */
-  static init(p?: (SDKHandle) | null): (UnsafeMutableMIDIPacketPointer) | null { return callSDK<(UnsafeMutableMIDIPacketPointer) | null>("CoreMIDI_5d69670f0307b385", 2584917773635449, undefined, [p]); }
+  static init(p?: (SDKHandle) | null): (UnsafeMutableMIDIPacketPointer) | null { return callSDK<(UnsafeMutableMIDIPacketPointer) | null>("CoreMIDI_6be9a005889899ab", 2584917773635449, undefined, [p]); }
   /**
    * init(_ p: UnsafeMutablePointer<MIDIPacket>)
    * @availability iOS 13.0+
    */
-  static init50230(p: SDKHandle): UnsafeMutableMIDIPacketPointer { return callSDK<UnsafeMutableMIDIPacketPointer>("CoreMIDI_5d69670f0307b385", 1031473801040900, undefined, [p]); }
+  static init50230(p: SDKHandle): UnsafeMutableMIDIPacketPointer { return callSDK<UnsafeMutableMIDIPacketPointer>("CoreMIDI_6be9a005889899ab", 1031473801040900, undefined, [p]); }
   /**
    * subscript(index: UnsafeMutableMIDIPacketPointer.Index) -> UnsafeMutableMIDIPacketPointer.Element { get nonmutating set }
    * @availability iOS 13.0+
    */
-  subscript(index: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 359902366401276, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 359902366401276, this, [index]); }
   declare readonly $type: { "s:8CoreMIDI30UnsafeMutableMIDIPacketPointerV": true };
 }
 
@@ -2701,1063 +2701,1063 @@ export type UnsafeMutableMIDIPacketPointer_Iterator = MIDIPacket_ByteSequence_It
 export type UnsafeMutableMIDIPacketPointer_SubSequence = $SDK32;
 
 /** func MIDI1UPChannelPressure(_ group: UInt8, _ channel: UInt8, _ value: UInt8) -> MIDIMessage_32 */
-export function MIDI1UPChannelPressure(group: number, channel: number, value: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3638899093101222, undefined, [group, channel, value]); }
+export function MIDI1UPChannelPressure(group: number, channel: number, value: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3638899093101222, undefined, [group, channel, value]); }
 
 /** func MIDI1UPChannelVoiceMessage(_ group: UInt8, _ status: UInt8, _ channel: UInt8, _ data1: UInt8, _ data2: UInt8) -> MIDIMessage_32 */
-export function MIDI1UPChannelVoiceMessage(group: number, status: number, channel: number, data1: number, data2: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4072641031258682, undefined, [group, status, channel, data1, data2]); }
+export function MIDI1UPChannelVoiceMessage(group: number, status: number, channel: number, data1: number, data2: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4072641031258682, undefined, [group, status, channel, data1, data2]); }
 
 /** func MIDI1UPControlChange(_ group: UInt8, _ channel: UInt8, _ index: UInt8, _ data: UInt8) -> MIDIMessage_32 */
-export function MIDI1UPControlChange(group: number, channel: number, index: number, data: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2498879222679728, undefined, [group, channel, index, data]); }
+export function MIDI1UPControlChange(group: number, channel: number, index: number, data: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2498879222679728, undefined, [group, channel, index, data]); }
 
 /** func MIDI1UPNoteOff(_ group: UInt8, _ channel: UInt8, _ noteNumber: UInt8, _ velocity: UInt8) -> MIDIMessage_32 */
-export function MIDI1UPNoteOff(group: number, channel: number, noteNumber: number, velocity: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 222329460086633, undefined, [group, channel, noteNumber, velocity]); }
+export function MIDI1UPNoteOff(group: number, channel: number, noteNumber: number, velocity: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 222329460086633, undefined, [group, channel, noteNumber, velocity]); }
 
 /** func MIDI1UPNoteOn(_ group: UInt8, _ channel: UInt8, _ noteNumber: UInt8, _ velocity: UInt8) -> MIDIMessage_32 */
-export function MIDI1UPNoteOn(group: number, channel: number, noteNumber: number, velocity: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4284445364492760, undefined, [group, channel, noteNumber, velocity]); }
+export function MIDI1UPNoteOn(group: number, channel: number, noteNumber: number, velocity: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4284445364492760, undefined, [group, channel, noteNumber, velocity]); }
 
 /** func MIDI1UPPitchBend(_ group: UInt8, _ channel: UInt8, _ lsb: UInt8, _ msb: UInt8) -> MIDIMessage_32 */
-export function MIDI1UPPitchBend(group: number, channel: number, lsb: number, msb: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2465313380312675, undefined, [group, channel, lsb, msb]); }
+export function MIDI1UPPitchBend(group: number, channel: number, lsb: number, msb: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2465313380312675, undefined, [group, channel, lsb, msb]); }
 
 /** func MIDI1UPPolyPressure(_ group: UInt8, _ channel: UInt8, _ noteNumber: UInt8, _ pressure: UInt8) -> MIDIMessage_32 */
-export function MIDI1UPPolyPressure(group: number, channel: number, noteNumber: number, pressure: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3525363573688680, undefined, [group, channel, noteNumber, pressure]); }
+export function MIDI1UPPolyPressure(group: number, channel: number, noteNumber: number, pressure: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3525363573688680, undefined, [group, channel, noteNumber, pressure]); }
 
 /** func MIDI1UPProgramChange(_ group: UInt8, _ channel: UInt8, _ program: UInt8) -> MIDIMessage_32 */
-export function MIDI1UPProgramChange(group: number, channel: number, program: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4154656959920213, undefined, [group, channel, program]); }
+export function MIDI1UPProgramChange(group: number, channel: number, program: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4154656959920213, undefined, [group, channel, program]); }
 
 /** func MIDI1UPSysEx(_ group: UInt8, _ status: UInt8, _ bytesUsed: UInt8, _ byte1: UInt8, _ byte2: UInt8, _ byte3: UInt8, _ byte4: UInt8, _ byte5: UInt8, _ byte6: UInt8) -> MIDIMessage_64 */
-export function MIDI1UPSysEx(group: number, status: number, bytesUsed: number, byte1: number, byte2: number, byte3: number, byte4: number, byte5: number, byte6: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 59278391495113, undefined, [group, status, bytesUsed, byte1, byte2, byte3, byte4, byte5, byte6]); }
+export function MIDI1UPSysEx(group: number, status: number, bytesUsed: number, byte1: number, byte2: number, byte3: number, byte4: number, byte5: number, byte6: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 59278391495113, undefined, [group, status, bytesUsed, byte1, byte2, byte3, byte4, byte5, byte6]); }
 
 /** func MIDI1UPSysExArray(_ group: UInt8, _ status: UInt8, _ begin: UnsafePointer<UInt8>!, _ end: UnsafePointer<UInt8>!) -> MIDIMessage_64 */
-export function MIDI1UPSysExArray(group: number, status: number, begin?: (SDKHandle) | null, end?: (SDKHandle) | null): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 2057429825297591, undefined, [group, status, begin, end]); }
+export function MIDI1UPSysExArray(group: number, status: number, begin?: (SDKHandle) | null, end?: (SDKHandle) | null): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 2057429825297591, undefined, [group, status, begin, end]); }
 
 /** func MIDI1UPSystemCommon(_ group: UInt8, _ status: UInt8, _ byte1: UInt8, _ byte2: UInt8) -> MIDIMessage_32 */
-export function MIDI1UPSystemCommon(group: number, status: number, byte1: number, byte2: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2393791553688473, undefined, [group, status, byte1, byte2]); }
+export function MIDI1UPSystemCommon(group: number, status: number, byte1: number, byte2: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2393791553688473, undefined, [group, status, byte1, byte2]); }
 
 /** func MIDI2AssignableControl(_ group: UInt8, _ channel: UInt8, _ bank: UInt8, _ index: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2AssignableControl(group: number, channel: number, bank: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 3829395110239936, undefined, [group, channel, bank, index, value]); }
+export function MIDI2AssignableControl(group: number, channel: number, bank: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 3829395110239936, undefined, [group, channel, bank, index, value]); }
 
 /** func MIDI2AssignablePNC(_ group: UInt8, _ channel: UInt8, _ noteNumber: UInt8, _ index: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2AssignablePNC(group: number, channel: number, noteNumber: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 2880678011895855, undefined, [group, channel, noteNumber, index, value]); }
+export function MIDI2AssignablePNC(group: number, channel: number, noteNumber: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 2880678011895855, undefined, [group, channel, noteNumber, index, value]); }
 
 /** func MIDI2ChannelPressure(_ group: UInt8, _ channel: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2ChannelPressure(group: number, channel: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 2152306132434212, undefined, [group, channel, value]); }
+export function MIDI2ChannelPressure(group: number, channel: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 2152306132434212, undefined, [group, channel, value]); }
 
 /** func MIDI2ChannelVoiceMessage(_ group: UInt8, _ status: UInt8, _ channel: UInt8, _ index: UInt16, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2ChannelVoiceMessage(group: number, status: number, channel: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 1387490247070363, undefined, [group, status, channel, index, value]); }
+export function MIDI2ChannelVoiceMessage(group: number, status: number, channel: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 1387490247070363, undefined, [group, status, channel, index, value]); }
 
 /** func MIDI2ControlChange(_ group: UInt8, _ channel: UInt8, _ index: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2ControlChange(group: number, channel: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 1872079266454685, undefined, [group, channel, index, value]); }
+export function MIDI2ControlChange(group: number, channel: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 1872079266454685, undefined, [group, channel, index, value]); }
 
 /** func MIDI2EndOfClipMessage() -> MIDIMessage_128 */
-export function MIDI2EndOfClipMessage(): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 3667171289214695, undefined, []); }
+export function MIDI2EndOfClipMessage(): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 3667171289214695, undefined, []); }
 
 /** func MIDI2EndpointDeviceIdentityNotificationMessage(_ deviceManufacturer1: MIDIUInteger7, _ deviceManufacturer2: MIDIUInteger7, _ deviceManufacturer3: MIDIUInteger7, _ deviceFamily: MIDIUInteger14, _ deviceFamilyModel: MIDIUInteger14, _ revisionLevel: MIDIUInteger28) -> MIDIMessage_128 */
-export function MIDI2EndpointDeviceIdentityNotificationMessage(deviceManufacturer1: number, deviceManufacturer2: number, deviceManufacturer3: number, deviceFamily: number, deviceFamilyModel: number, revisionLevel: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 3132970529552772, undefined, [deviceManufacturer1, deviceManufacturer2, deviceManufacturer3, deviceFamily, deviceFamilyModel, revisionLevel]); }
+export function MIDI2EndpointDeviceIdentityNotificationMessage(deviceManufacturer1: number, deviceManufacturer2: number, deviceManufacturer3: number, deviceFamily: number, deviceFamilyModel: number, revisionLevel: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 3132970529552772, undefined, [deviceManufacturer1, deviceManufacturer2, deviceManufacturer3, deviceFamily, deviceFamilyModel, revisionLevel]); }
 
 /** func MIDI2EndpointDiscoveryMessage(_ versionMajor: UInt8, _ versionMinor: UInt8, _ endpointInfoRequest: Bool, _ deviceIdentityRequest: Bool, _ endpointNameRequest: Bool, _ productInstanceIDRequest: Bool, _ streamConfigurationRequest: Bool) -> MIDIMessage_128 */
-export function MIDI2EndpointDiscoveryMessage(versionMajor: number, versionMinor: number, endpointInfoRequest: boolean, deviceIdentityRequest: boolean, endpointNameRequest: boolean, productInstanceIDRequest: boolean, streamConfigurationRequest: boolean): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 3508666044941076, undefined, [versionMajor, versionMinor, endpointInfoRequest, deviceIdentityRequest, endpointNameRequest, productInstanceIDRequest, streamConfigurationRequest]); }
+export function MIDI2EndpointDiscoveryMessage(versionMajor: number, versionMinor: number, endpointInfoRequest: boolean, deviceIdentityRequest: boolean, endpointNameRequest: boolean, productInstanceIDRequest: boolean, streamConfigurationRequest: boolean): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 3508666044941076, undefined, [versionMajor, versionMinor, endpointInfoRequest, deviceIdentityRequest, endpointNameRequest, productInstanceIDRequest, streamConfigurationRequest]); }
 
 /** func MIDI2EndpointInfoNotificationMessage(_ versionMajor: UInt8, _ versionMinor: UInt8, _ staticFunctionBlocks: Bool, _ numberOfFunctionBlocks: UInt8, _ m1: Bool, _ m2: Bool, _ receiveJRTimestamp: Bool, _ transmitJRTimestamp: Bool) -> MIDIMessage_128 */
-export function MIDI2EndpointInfoNotificationMessage(versionMajor: number, versionMinor: number, staticFunctionBlocks: boolean, numberOfFunctionBlocks: number, m1: boolean, m2: boolean, receiveJRTimestamp: boolean, transmitJRTimestamp: boolean): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 3288911954943207, undefined, [versionMajor, versionMinor, staticFunctionBlocks, numberOfFunctionBlocks, m1, m2, receiveJRTimestamp, transmitJRTimestamp]); }
+export function MIDI2EndpointInfoNotificationMessage(versionMajor: number, versionMinor: number, staticFunctionBlocks: boolean, numberOfFunctionBlocks: number, m1: boolean, m2: boolean, receiveJRTimestamp: boolean, transmitJRTimestamp: boolean): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 3288911954943207, undefined, [versionMajor, versionMinor, staticFunctionBlocks, numberOfFunctionBlocks, m1, m2, receiveJRTimestamp, transmitJRTimestamp]); }
 
 /** func MIDI2EndpointNameNotificationMessage(_ format: UMPStreamMessageFormat, _ data: UnsafePointer<CChar>!, _ length: Int) -> MIDIMessage_128 */
-export function MIDI2EndpointNameNotificationMessage(format: UMPStreamMessageFormat, data: (SDKHandle) | null, length: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 3666414077578036, undefined, [format, data, length]); }
+export function MIDI2EndpointNameNotificationMessage(format: UMPStreamMessageFormat, data: (SDKHandle) | null, length: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 3666414077578036, undefined, [format, data, length]); }
 
 /** func MIDI2EndpointProductInstanceIDNotificationMessage(_ format: UMPStreamMessageFormat, _ data: UnsafePointer<CChar>!, _ length: Int) -> MIDIMessage_128 */
-export function MIDI2EndpointProductInstanceIDNotificationMessage(format: UMPStreamMessageFormat, data: (SDKHandle) | null, length: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 4144419211113847, undefined, [format, data, length]); }
+export function MIDI2EndpointProductInstanceIDNotificationMessage(format: UMPStreamMessageFormat, data: (SDKHandle) | null, length: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 4144419211113847, undefined, [format, data, length]); }
 
 /** func MIDI2FlexDataMessage(_ group: MIDIUInteger4, _ format: MIDIUInteger2, _ address: MIDIUInteger2, _ channel: MIDIUInteger4, _ statusBank: UInt8, _ status: UInt8, _ data1: UInt32, _ data2: UInt32, _ data3: UInt32) -> MIDIMessage_128 */
-export function MIDI2FlexDataMessage(group: number, format: number, address: number, channel: number, statusBank: number, status: number, data1: number, data2: number, data3: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 3054376802940541, undefined, [group, format, address, channel, statusBank, status, data1, data2, data3]); }
+export function MIDI2FlexDataMessage(group: number, format: number, address: number, channel: number, statusBank: number, status: number, data1: number, data2: number, data3: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 3054376802940541, undefined, [group, format, address, channel, statusBank, status, data1, data2, data3]); }
 
 /** func MIDI2FunctionBlockDiscoveryMessage(_ functionBlockNumber: UInt8, _ infoRequest: Bool, _ nameRequest: Bool) -> MIDIMessage_128 */
-export function MIDI2FunctionBlockDiscoveryMessage(functionBlockNumber: number, infoRequest: boolean, nameRequest: boolean): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 2582182781249688, undefined, [functionBlockNumber, infoRequest, nameRequest]); }
+export function MIDI2FunctionBlockDiscoveryMessage(functionBlockNumber: number, infoRequest: boolean, nameRequest: boolean): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 2582182781249688, undefined, [functionBlockNumber, infoRequest, nameRequest]); }
 
 /** func MIDI2FunctionBlockInfoNotificationMessage(_ active: Bool, _ blockNumber: MIDIUInteger7, _ UIHint: MIDIUMPFunctionBlockUIHint, _ MIDI1: MIDIUMPFunctionBlockMIDI1Info, _ direction: MIDIUMPFunctionBlockDirection, _ firstGroup: UInt8, _ numberOfGroupsSpanned: UInt8, _ CIVersion: UInt8, _ maxSysex8Streams: UInt8) -> MIDIMessage_128 */
-export function MIDI2FunctionBlockInfoNotificationMessage(active: boolean, blockNumber: number, UIHint: MIDIUMPFunctionBlockUIHint, MIDI1: MIDIUMPFunctionBlockMIDI1Info, direction: MIDIUMPFunctionBlockDirection, firstGroup: number, numberOfGroupsSpanned: number, CIVersion: number, maxSysex8Streams: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 708426409738476, undefined, [active, blockNumber, UIHint, MIDI1, direction, firstGroup, numberOfGroupsSpanned, CIVersion, maxSysex8Streams]); }
+export function MIDI2FunctionBlockInfoNotificationMessage(active: boolean, blockNumber: number, UIHint: MIDIUMPFunctionBlockUIHint, MIDI1: MIDIUMPFunctionBlockMIDI1Info, direction: MIDIUMPFunctionBlockDirection, firstGroup: number, numberOfGroupsSpanned: number, CIVersion: number, maxSysex8Streams: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 708426409738476, undefined, [active, blockNumber, UIHint, MIDI1, direction, firstGroup, numberOfGroupsSpanned, CIVersion, maxSysex8Streams]); }
 
 /** func MIDI2FunctionBlockNameNotificationMessage(_ format: UMPStreamMessageFormat, _ blockNumber: UInt8, _ data: UnsafePointer<CChar>!, _ length: Int) -> MIDIMessage_128 */
-export function MIDI2FunctionBlockNameNotificationMessage(format: UMPStreamMessageFormat, blockNumber: number, data: (SDKHandle) | null, length: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 400099496865573, undefined, [format, blockNumber, data, length]); }
+export function MIDI2FunctionBlockNameNotificationMessage(format: UMPStreamMessageFormat, blockNumber: number, data: (SDKHandle) | null, length: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 400099496865573, undefined, [format, blockNumber, data, length]); }
 
 /** func MIDI2NoteOff(_ group: UInt8, _ channel: UInt8, _ noteNumber: UInt8, _ attributeType: UInt8, _ attributeData: UInt16, _ velocity: UInt16) -> MIDIMessage_64 */
-export function MIDI2NoteOff(group: number, channel: number, noteNumber: number, attributeType: number, attributeData: number, velocity: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 3822878966722779, undefined, [group, channel, noteNumber, attributeType, attributeData, velocity]); }
+export function MIDI2NoteOff(group: number, channel: number, noteNumber: number, attributeType: number, attributeData: number, velocity: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 3822878966722779, undefined, [group, channel, noteNumber, attributeType, attributeData, velocity]); }
 
 /** func MIDI2NoteOn(_ group: UInt8, _ channel: UInt8, _ noteNumber: UInt8, _ attributeType: UInt8, _ attributeData: UInt16, _ velocity: UInt16) -> MIDIMessage_64 */
-export function MIDI2NoteOn(group: number, channel: number, noteNumber: number, attributeType: number, attributeData: number, velocity: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 2964616320838492, undefined, [group, channel, noteNumber, attributeType, attributeData, velocity]); }
+export function MIDI2NoteOn(group: number, channel: number, noteNumber: number, attributeType: number, attributeData: number, velocity: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 2964616320838492, undefined, [group, channel, noteNumber, attributeType, attributeData, velocity]); }
 
 /** func MIDI2PerNoteManagment(_ group: UInt8, _ channel: UInt8, _ noteNumber: UInt8, _ detachPNCs: Bool, _ resetPNCsToDefault: Bool) -> MIDIMessage_64 */
-export function MIDI2PerNoteManagment(group: number, channel: number, noteNumber: number, detachPNCs: boolean, resetPNCsToDefault: boolean): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 3744556253902046, undefined, [group, channel, noteNumber, detachPNCs, resetPNCsToDefault]); }
+export function MIDI2PerNoteManagment(group: number, channel: number, noteNumber: number, detachPNCs: boolean, resetPNCsToDefault: boolean): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 3744556253902046, undefined, [group, channel, noteNumber, detachPNCs, resetPNCsToDefault]); }
 
 /** func MIDI2PerNotePitchBend(_ group: UInt8, _ channel: UInt8, _ noteNumber: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2PerNotePitchBend(group: number, channel: number, noteNumber: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 1564036870587055, undefined, [group, channel, noteNumber, value]); }
+export function MIDI2PerNotePitchBend(group: number, channel: number, noteNumber: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 1564036870587055, undefined, [group, channel, noteNumber, value]); }
 
 /** func MIDI2PitchBend(_ group: UInt8, _ channel: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2PitchBend(group: number, channel: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 1885987940785426, undefined, [group, channel, value]); }
+export function MIDI2PitchBend(group: number, channel: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 1885987940785426, undefined, [group, channel, value]); }
 
 /** func MIDI2PolyPressure(_ group: UInt8, _ channel: UInt8, _ noteNumber: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2PolyPressure(group: number, channel: number, noteNumber: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 1506712583211393, undefined, [group, channel, noteNumber, value]); }
+export function MIDI2PolyPressure(group: number, channel: number, noteNumber: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 1506712583211393, undefined, [group, channel, noteNumber, value]); }
 
 /** func MIDI2ProgramChange(_ group: UInt8, _ channel: UInt8, _ bankIsValid: Bool, _ program: UInt8, _ bank_msb: UInt8, _ bank_lsb: UInt8) -> MIDIMessage_64 */
-export function MIDI2ProgramChange(group: number, channel: number, bankIsValid: boolean, program: number, bank_msb: number, bank_lsb: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 151236118516208, undefined, [group, channel, bankIsValid, program, bank_msb, bank_lsb]); }
+export function MIDI2ProgramChange(group: number, channel: number, bankIsValid: boolean, program: number, bank_msb: number, bank_lsb: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 151236118516208, undefined, [group, channel, bankIsValid, program, bank_msb, bank_lsb]); }
 
 /** func MIDI2RegisteredControl(_ group: UInt8, _ channel: UInt8, _ bank: UInt8, _ index: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2RegisteredControl(group: number, channel: number, bank: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 1895695474212508, undefined, [group, channel, bank, index, value]); }
+export function MIDI2RegisteredControl(group: number, channel: number, bank: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 1895695474212508, undefined, [group, channel, bank, index, value]); }
 
 /** func MIDI2RegisteredPNC(_ group: UInt8, _ channel: UInt8, _ noteNumber: UInt8, _ index: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2RegisteredPNC(group: number, channel: number, noteNumber: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 2955714754992982, undefined, [group, channel, noteNumber, index, value]); }
+export function MIDI2RegisteredPNC(group: number, channel: number, noteNumber: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 2955714754992982, undefined, [group, channel, noteNumber, index, value]); }
 
 /** func MIDI2RelAssignableControl(_ group: UInt8, _ channel: UInt8, _ bank: UInt8, _ index: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2RelAssignableControl(group: number, channel: number, bank: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 2687163526708240, undefined, [group, channel, bank, index, value]); }
+export function MIDI2RelAssignableControl(group: number, channel: number, bank: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 2687163526708240, undefined, [group, channel, bank, index, value]); }
 
 /** func MIDI2RelRegisteredControl(_ group: UInt8, _ channel: UInt8, _ bank: UInt8, _ index: UInt8, _ value: UInt32) -> MIDIMessage_64 */
-export function MIDI2RelRegisteredControl(group: number, channel: number, bank: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_5d69670f0307b385", 1833083749667943, undefined, [group, channel, bank, index, value]); }
+export function MIDI2RelRegisteredControl(group: number, channel: number, bank: number, index: number, value: number): MIDIMessage_64 { return callSDK<MIDIMessage_64>("CoreMIDI_6be9a005889899ab", 1833083749667943, undefined, [group, channel, bank, index, value]); }
 
 /** func MIDI2StartOfClipMessage() -> MIDIMessage_128 */
-export function MIDI2StartOfClipMessage(): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 54603494486112, undefined, []); }
+export function MIDI2StartOfClipMessage(): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 54603494486112, undefined, []); }
 
 /** func MIDI2StreamConfigurationNotificationMessage(_ protocol: UInt8, _ receiveJRTimestamp: Bool, _ transmitJRTimestamp: Bool) -> MIDIMessage_128 */
-export function MIDI2StreamConfigurationNotificationMessage(protocol: number, receiveJRTimestamp: boolean, transmitJRTimestamp: boolean): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 2873324542210535, undefined, [protocol, receiveJRTimestamp, transmitJRTimestamp]); }
+export function MIDI2StreamConfigurationNotificationMessage(protocol: number, receiveJRTimestamp: boolean, transmitJRTimestamp: boolean): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 2873324542210535, undefined, [protocol, receiveJRTimestamp, transmitJRTimestamp]); }
 
 /** func MIDI2StreamConfigurationRequestMessage(_ protocol: UInt8, _ receiveJRTimestamp: Bool, _ transmitJRTimestamp: Bool) -> MIDIMessage_128 */
-export function MIDI2StreamConfigurationRequestMessage(protocol: number, receiveJRTimestamp: boolean, transmitJRTimestamp: boolean): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 3857217598692329, undefined, [protocol, receiveJRTimestamp, transmitJRTimestamp]); }
+export function MIDI2StreamConfigurationRequestMessage(protocol: number, receiveJRTimestamp: boolean, transmitJRTimestamp: boolean): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 3857217598692329, undefined, [protocol, receiveJRTimestamp, transmitJRTimestamp]); }
 
 /** func MIDI2StreamMessage(_ format: UMPStreamMessageFormat, _ status: UMPStreamMessageStatus, _ data1: UInt16, _ data2: UInt32, _ data3: UInt32, _ data4: UInt32) -> MIDIMessage_128 */
-export function MIDI2StreamMessage(format: UMPStreamMessageFormat, status: UMPStreamMessageStatus, data1: number, data2: number, data3: number, data4: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 3875312958223616, undefined, [format, status, data1, data2, data3, data4]); }
+export function MIDI2StreamMessage(format: UMPStreamMessageFormat, status: UMPStreamMessageStatus, data1: number, data2: number, data3: number, data4: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 3875312958223616, undefined, [format, status, data1, data2, data3, data4]); }
 
 /** func MIDI2StreamMessageFromData(_ format: UMPStreamMessageFormat, _ status: UMPStreamMessageStatus, _ data: UnsafePointer<UInt8>!, _ length: Int) -> MIDIMessage_128 */
-export function MIDI2StreamMessageFromData(format: UMPStreamMessageFormat, status: UMPStreamMessageStatus, data: (SDKHandle) | null, length: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_5d69670f0307b385", 3632065596142755, undefined, [format, status, data, length]); }
+export function MIDI2StreamMessageFromData(format: UMPStreamMessageFormat, status: UMPStreamMessageStatus, data: (SDKHandle) | null, length: number): MIDIMessage_128 { return callSDK<MIDIMessage_128>("CoreMIDI_6be9a005889899ab", 3632065596142755, undefined, [format, status, data, length]); }
 
 /**
  * func MIDIBluetoothDriverActivateAllConnections() -> OSStatus
  * @availability iOS 16.0+
  */
-export function MIDIBluetoothDriverActivateAllConnections(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 481491005663217, undefined, []); }
+export function MIDIBluetoothDriverActivateAllConnections(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 481491005663217, undefined, []); }
 
 /**
  * func MIDIBluetoothDriverDisconnect(_ uuid: CFString) -> OSStatus
  * @availability iOS 16.0+
  */
-export function MIDIBluetoothDriverDisconnect(uuid: _CoreFoundation_CFString): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3071082964434968, undefined, [uuid]); }
+export function MIDIBluetoothDriverDisconnect(uuid: _CoreFoundation_CFString): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3071082964434968, undefined, [uuid]); }
 
 /**
  * func MIDIClientCreateWithBlock(_ name: CFString, _ outClient: UnsafeMutablePointer<MIDIClientRef>, _ notifyBlock: MIDINotifyBlock?) -> OSStatus
  * @availability iOS 9.0+
  */
-export function MIDIClientCreateWithBlock(name: _CoreFoundation_CFString, outClient: SDKHandle, notifyBlock?: (((arg0: SDKHandle) => void)) | null): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2006488559776632, undefined, [name, outClient, notifyBlock], [null,null,{"callback":{"out":[]}}]); }
+export function MIDIClientCreateWithBlock(name: _CoreFoundation_CFString, outClient: SDKHandle, notifyBlock?: (((arg0: SDKHandle) => void)) | null): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2006488559776632, undefined, [name, outClient, notifyBlock], [null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func MIDIClientDispose(_ client: MIDIClientRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIClientDispose(client: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 587686216787662, undefined, [client]); }
+export function MIDIClientDispose(client: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 587686216787662, undefined, [client]); }
 
 /** func MIDIDeltaClockstampTicksPerQuarterNoteMessage(_ ticksPerQuarterNote: UInt16) -> MIDIMessage_32 */
-export function MIDIDeltaClockstampTicksPerQuarterNoteMessage(ticksPerQuarterNote: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 651011988402296, undefined, [ticksPerQuarterNote]); }
+export function MIDIDeltaClockstampTicksPerQuarterNoteMessage(ticksPerQuarterNote: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 651011988402296, undefined, [ticksPerQuarterNote]); }
 
 /**
  * func MIDIDestinationCreateWithBlock(_ client: MIDIClientRef, _ name: CFString, _ outDest: UnsafeMutablePointer<MIDIEndpointRef>, _ readBlock: @escaping MIDIReadBlock) -> OSStatus
  * @availability iOS 9.0+
  * @deprecated iOS 100000.0
  */
-export function MIDIDestinationCreateWithBlock(client: number, name: _CoreFoundation_CFString, outDest: SDKHandle, readBlock: $SDK28): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2804533022486939, undefined, [client, name, outDest, readBlock], [null,null,null,{"callback":{"out":[]}}]); }
+export function MIDIDestinationCreateWithBlock(client: number, name: _CoreFoundation_CFString, outDest: SDKHandle, readBlock: $SDK28): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2804533022486939, undefined, [client, name, outDest, readBlock], [null,null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func MIDIDestinationCreateWithProtocol(_ client: MIDIClientRef, _ name: CFString, _ protocol: MIDIProtocolID, _ outDest: UnsafeMutablePointer<MIDIEndpointRef>, _ readBlock: @escaping MIDIReceiveBlock) -> OSStatus
  * @availability iOS 14.0+
  */
-export function MIDIDestinationCreateWithProtocol(client: number, name: _CoreFoundation_CFString, protocol: MIDIProtocolID, outDest: SDKHandle, readBlock: $SDK28): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 392132558083447, undefined, [client, name, protocol, outDest, readBlock], [null,null,null,null,{"callback":{"out":[]}}]); }
+export function MIDIDestinationCreateWithProtocol(client: number, name: _CoreFoundation_CFString, protocol: MIDIProtocolID, outDest: SDKHandle, readBlock: $SDK28): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 392132558083447, undefined, [client, name, protocol, outDest, readBlock], [null,null,null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func MIDIDeviceAddEntity(_ device: MIDIDeviceRef, _ name: CFString, _ embedded: Bool, _ numSourceEndpoints: Int, _ numDestinationEndpoints: Int, _ newEntity: UnsafeMutablePointer<MIDIEntityRef>) -> OSStatus
  * @availability iOS 4.2+
  * @deprecated iOS 100000.0
  */
-export function MIDIDeviceAddEntity(device: number, name: _CoreFoundation_CFString, embedded: boolean, numSourceEndpoints: number, numDestinationEndpoints: number, newEntity: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 832608029140911, undefined, [device, name, embedded, numSourceEndpoints, numDestinationEndpoints, newEntity]); }
+export function MIDIDeviceAddEntity(device: number, name: _CoreFoundation_CFString, embedded: boolean, numSourceEndpoints: number, numDestinationEndpoints: number, newEntity: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 832608029140911, undefined, [device, name, embedded, numSourceEndpoints, numDestinationEndpoints, newEntity]); }
 
 /**
  * func MIDIDeviceDispose(_ device: MIDIDeviceRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIDeviceDispose(device: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4434596237579588, undefined, [device]); }
+export function MIDIDeviceDispose(device: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4434596237579588, undefined, [device]); }
 
 /**
  * func MIDIDeviceGetEntity(_ device: MIDIDeviceRef, _ entityIndex0: Int) -> MIDIEntityRef
  * @availability iOS 4.2+
  */
-export function MIDIDeviceGetEntity(device: number, entityIndex0: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 368121861460452, undefined, [device, entityIndex0]); }
+export function MIDIDeviceGetEntity(device: number, entityIndex0: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 368121861460452, undefined, [device, entityIndex0]); }
 
 /**
  * func MIDIDeviceGetNumberOfEntities(_ device: MIDIDeviceRef) -> Int
  * @availability iOS 4.2+
  */
-export function MIDIDeviceGetNumberOfEntities(device: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3179145976800579, undefined, [device]); }
+export function MIDIDeviceGetNumberOfEntities(device: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3179145976800579, undefined, [device]); }
 
 /**
  * func MIDIDeviceListAddDevice(_ devList: MIDIDeviceListRef, _ dev: MIDIDeviceRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIDeviceListAddDevice(devList: number, dev: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1021445290372278, undefined, [devList, dev]); }
+export function MIDIDeviceListAddDevice(devList: number, dev: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1021445290372278, undefined, [devList, dev]); }
 
 /**
  * func MIDIDeviceListDispose(_ devList: MIDIDeviceListRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIDeviceListDispose(devList: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2629316226746536, undefined, [devList]); }
+export function MIDIDeviceListDispose(devList: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2629316226746536, undefined, [devList]); }
 
 /**
  * func MIDIDeviceListGetDevice(_ devList: MIDIDeviceListRef, _ index0: Int) -> MIDIDeviceRef
  * @availability iOS 4.2+
  */
-export function MIDIDeviceListGetDevice(devList: number, index0: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 733461189332725, undefined, [devList, index0]); }
+export function MIDIDeviceListGetDevice(devList: number, index0: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 733461189332725, undefined, [devList, index0]); }
 
 /**
  * func MIDIDeviceListGetNumberOfDevices(_ devList: MIDIDeviceListRef) -> Int
  * @availability iOS 4.2+
  */
-export function MIDIDeviceListGetNumberOfDevices(devList: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3872945315629277, undefined, [devList]); }
+export function MIDIDeviceListGetNumberOfDevices(devList: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3872945315629277, undefined, [devList]); }
 
 /**
  * func MIDIDeviceNewEntity(_ device: MIDIDeviceRef, _ name: CFString, _ protocol: MIDIProtocolID, _ embedded: Bool, _ numSourceEndpoints: Int, _ numDestinationEndpoints: Int, _ newEntity: UnsafeMutablePointer<MIDIEntityRef>) -> OSStatus
  * @availability iOS 14.0+
  */
-export function MIDIDeviceNewEntity(device: number, name: _CoreFoundation_CFString, protocol: MIDIProtocolID, embedded: boolean, numSourceEndpoints: number, numDestinationEndpoints: number, newEntity: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 855009211801497, undefined, [device, name, protocol, embedded, numSourceEndpoints, numDestinationEndpoints, newEntity]); }
+export function MIDIDeviceNewEntity(device: number, name: _CoreFoundation_CFString, protocol: MIDIProtocolID, embedded: boolean, numSourceEndpoints: number, numDestinationEndpoints: number, newEntity: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 855009211801497, undefined, [device, name, protocol, embedded, numSourceEndpoints, numDestinationEndpoints, newEntity]); }
 
 /**
  * func MIDIDeviceRemoveEntity(_ device: MIDIDeviceRef, _ entity: MIDIEntityRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIDeviceRemoveEntity(device: number, entity: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4012689551938764, undefined, [device, entity]); }
+export function MIDIDeviceRemoveEntity(device: number, entity: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4012689551938764, undefined, [device, entity]); }
 
 /**
  * func MIDIEndpointDispose(_ endpt: MIDIEndpointRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIEndpointDispose(endpt: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3088535351500254, undefined, [endpt]); }
+export function MIDIEndpointDispose(endpt: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3088535351500254, undefined, [endpt]); }
 
 /**
  * func MIDIEndpointGetEntity(_ inEndpoint: MIDIEndpointRef, _ outEntity: UnsafeMutablePointer<MIDIEntityRef>?) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIEndpointGetEntity(inEndpoint: number, outEntity?: (SDKHandle) | null): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 614483832914502, undefined, [inEndpoint, outEntity]); }
+export function MIDIEndpointGetEntity(inEndpoint: number, outEntity?: (SDKHandle) | null): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 614483832914502, undefined, [inEndpoint, outEntity]); }
 
 /**
  * func MIDIEndpointSetRefCons(_ endpt: MIDIEndpointRef, _ ref1: UnsafeMutableRawPointer?, _ ref2: UnsafeMutableRawPointer?) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIEndpointSetRefCons(endpt: number, ref1?: (SDKHandle) | null, ref2?: (SDKHandle) | null): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2893468921347404, undefined, [endpt, ref1, ref2]); }
+export function MIDIEndpointSetRefCons(endpt: number, ref1?: (SDKHandle) | null, ref2?: (SDKHandle) | null): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2893468921347404, undefined, [endpt, ref1, ref2]); }
 
 /**
  * func MIDIEntityAddOrRemoveEndpoints(_ entity: MIDIEntityRef, _ numSourceEndpoints: Int, _ numDestinationEndpoints: Int) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIEntityAddOrRemoveEndpoints(entity: number, numSourceEndpoints: number, numDestinationEndpoints: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3810930648054975, undefined, [entity, numSourceEndpoints, numDestinationEndpoints]); }
+export function MIDIEntityAddOrRemoveEndpoints(entity: number, numSourceEndpoints: number, numDestinationEndpoints: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3810930648054975, undefined, [entity, numSourceEndpoints, numDestinationEndpoints]); }
 
 /**
  * func MIDIEntityGetDestination(_ entity: MIDIEntityRef, _ destIndex0: Int) -> MIDIEndpointRef
  * @availability iOS 4.2+
  */
-export function MIDIEntityGetDestination(entity: number, destIndex0: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3014390587515079, undefined, [entity, destIndex0]); }
+export function MIDIEntityGetDestination(entity: number, destIndex0: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3014390587515079, undefined, [entity, destIndex0]); }
 
 /**
  * func MIDIEntityGetDevice(_ inEntity: MIDIEntityRef, _ outDevice: UnsafeMutablePointer<MIDIDeviceRef>?) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIEntityGetDevice(inEntity: number, outDevice?: (SDKHandle) | null): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 39753082210459, undefined, [inEntity, outDevice]); }
+export function MIDIEntityGetDevice(inEntity: number, outDevice?: (SDKHandle) | null): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 39753082210459, undefined, [inEntity, outDevice]); }
 
 /**
  * func MIDIEntityGetNumberOfDestinations(_ entity: MIDIEntityRef) -> Int
  * @availability iOS 4.2+
  */
-export function MIDIEntityGetNumberOfDestinations(entity: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3228238063693492, undefined, [entity]); }
+export function MIDIEntityGetNumberOfDestinations(entity: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3228238063693492, undefined, [entity]); }
 
 /**
  * func MIDIEntityGetNumberOfSources(_ entity: MIDIEntityRef) -> Int
  * @availability iOS 4.2+
  */
-export function MIDIEntityGetNumberOfSources(entity: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3102690559929224, undefined, [entity]); }
+export function MIDIEntityGetNumberOfSources(entity: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3102690559929224, undefined, [entity]); }
 
 /**
  * func MIDIEntityGetSource(_ entity: MIDIEntityRef, _ sourceIndex0: Int) -> MIDIEndpointRef
  * @availability iOS 4.2+
  */
-export function MIDIEntityGetSource(entity: number, sourceIndex0: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4336854275587772, undefined, [entity, sourceIndex0]); }
+export function MIDIEntityGetSource(entity: number, sourceIndex0: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4336854275587772, undefined, [entity, sourceIndex0]); }
 
 /**
  * func MIDIEventListAdd(_ evtlist: UnsafeMutablePointer<MIDIEventList>, _ listSize: Int, _ curPacket: UnsafeMutablePointer<MIDIEventPacket>, _ time: MIDITimeStamp, _ wordCount: Int, _ words: UnsafePointer<UInt32>) -> UnsafeMutablePointer<MIDIEventPacket>
  * @availability iOS 14.0+
  */
-export function MIDIEventListAdd(evtlist: SDKHandle, listSize: number, curPacket: SDKHandle, time: number, wordCount: number, words: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 207925847646886, undefined, [evtlist, listSize, curPacket, time, wordCount, words]); }
+export function MIDIEventListAdd(evtlist: SDKHandle, listSize: number, curPacket: SDKHandle, time: number, wordCount: number, words: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 207925847646886, undefined, [evtlist, listSize, curPacket, time, wordCount, words]); }
 
 /**
  * func MIDIEventListInit(_ evtlist: UnsafeMutablePointer<MIDIEventList>, _ protocol: MIDIProtocolID) -> UnsafeMutablePointer<MIDIEventPacket>
  * @availability iOS 14.0+
  */
-export function MIDIEventListInit(evtlist: SDKHandle, protocol: MIDIProtocolID): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 2109094762171570, undefined, [evtlist, protocol]); }
+export function MIDIEventListInit(evtlist: SDKHandle, protocol: MIDIProtocolID): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 2109094762171570, undefined, [evtlist, protocol]); }
 
 /** func MIDIEventPacketNext(_ pkt: UnsafePointer<MIDIEventPacket>) -> UnsafeMutablePointer<MIDIEventPacket> */
-export function MIDIEventPacketNext(pkt: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 3731433016523863, undefined, [pkt]); }
+export function MIDIEventPacketNext(pkt: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 3731433016523863, undefined, [pkt]); }
 
 /**
  * func MIDIExternalDeviceCreate(_ name: CFString, _ manufacturer: CFString, _ model: CFString, _ outDevice: UnsafeMutablePointer<MIDIDeviceRef>) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIExternalDeviceCreate(name: _CoreFoundation_CFString, manufacturer: _CoreFoundation_CFString, model: _CoreFoundation_CFString, outDevice: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 851945040317074, undefined, [name, manufacturer, model, outDevice]); }
+export function MIDIExternalDeviceCreate(name: _CoreFoundation_CFString, manufacturer: _CoreFoundation_CFString, model: _CoreFoundation_CFString, outDevice: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 851945040317074, undefined, [name, manufacturer, model, outDevice]); }
 
 /**
  * func MIDIFlushOutput(_ dest: MIDIEndpointRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIFlushOutput(dest: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1811883181324818, undefined, [dest]); }
+export function MIDIFlushOutput(dest: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1811883181324818, undefined, [dest]); }
 
 /**
  * func MIDIGetDestination(_ destIndex0: Int) -> MIDIEndpointRef
  * @availability iOS 4.2+
  */
-export function MIDIGetDestination(destIndex0: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1392341596960331, undefined, [destIndex0]); }
+export function MIDIGetDestination(destIndex0: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1392341596960331, undefined, [destIndex0]); }
 
 /**
  * func MIDIGetDevice(_ deviceIndex0: Int) -> MIDIDeviceRef
  * @availability iOS 4.2+
  */
-export function MIDIGetDevice(deviceIndex0: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3398266904938970, undefined, [deviceIndex0]); }
+export function MIDIGetDevice(deviceIndex0: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3398266904938970, undefined, [deviceIndex0]); }
 
 /**
  * func MIDIGetDriverIORunLoop() -> Unmanaged<CFRunLoop>
  * @availability iOS 4.2+
  */
-export function MIDIGetDriverIORunLoop(): _CoreFoundation_CFRunLoop { return callSDK<_CoreFoundation_CFRunLoop>("CoreMIDI_5d69670f0307b385", 1047361422437659, undefined, []); }
+export function MIDIGetDriverIORunLoop(): _CoreFoundation_CFRunLoop { return callSDK<_CoreFoundation_CFRunLoop>("CoreMIDI_6be9a005889899ab", 1047361422437659, undefined, []); }
 
 /**
  * func MIDIGetExternalDevice(_ deviceIndex0: Int) -> MIDIDeviceRef
  * @availability iOS 4.2+
  */
-export function MIDIGetExternalDevice(deviceIndex0: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2532242313884605, undefined, [deviceIndex0]); }
+export function MIDIGetExternalDevice(deviceIndex0: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2532242313884605, undefined, [deviceIndex0]); }
 
 /**
  * func MIDIGetNumberOfDestinations() -> Int
  * @availability iOS 4.2+
  */
-export function MIDIGetNumberOfDestinations(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1080334111206576, undefined, []); }
+export function MIDIGetNumberOfDestinations(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1080334111206576, undefined, []); }
 
 /**
  * func MIDIGetNumberOfDevices() -> Int
  * @availability iOS 4.2+
  */
-export function MIDIGetNumberOfDevices(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3178152752823405, undefined, []); }
+export function MIDIGetNumberOfDevices(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3178152752823405, undefined, []); }
 
 /**
  * func MIDIGetNumberOfExternalDevices() -> Int
  * @availability iOS 4.2+
  */
-export function MIDIGetNumberOfExternalDevices(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 238050782179964, undefined, []); }
+export function MIDIGetNumberOfExternalDevices(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 238050782179964, undefined, []); }
 
 /**
  * func MIDIGetNumberOfSources() -> Int
  * @availability iOS 4.2+
  */
-export function MIDIGetNumberOfSources(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3038519835222034, undefined, []); }
+export function MIDIGetNumberOfSources(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3038519835222034, undefined, []); }
 
 /**
  * func MIDIGetSource(_ sourceIndex0: Int) -> MIDIEndpointRef
  * @availability iOS 4.2+
  */
-export function MIDIGetSource(sourceIndex0: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2875486559330846, undefined, [sourceIndex0]); }
+export function MIDIGetSource(sourceIndex0: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2875486559330846, undefined, [sourceIndex0]); }
 
 /**
  * func MIDIInputPortCreateWithBlock(_ client: MIDIClientRef, _ portName: CFString, _ outPort: UnsafeMutablePointer<MIDIPortRef>, _ readBlock: @escaping MIDIReadBlock) -> OSStatus
  * @availability iOS 9.0+
  * @deprecated iOS 100000.0
  */
-export function MIDIInputPortCreateWithBlock(client: number, portName: _CoreFoundation_CFString, outPort: SDKHandle, readBlock: $SDK28): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2116716520553989, undefined, [client, portName, outPort, readBlock], [null,null,null,{"callback":{"out":[]}}]); }
+export function MIDIInputPortCreateWithBlock(client: number, portName: _CoreFoundation_CFString, outPort: SDKHandle, readBlock: $SDK28): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2116716520553989, undefined, [client, portName, outPort, readBlock], [null,null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func MIDIInputPortCreateWithProtocol(_ client: MIDIClientRef, _ portName: CFString, _ protocol: MIDIProtocolID, _ outPort: UnsafeMutablePointer<MIDIPortRef>, _ receiveBlock: @escaping MIDIReceiveBlock) -> OSStatus
  * @availability iOS 14.0+
  */
-export function MIDIInputPortCreateWithProtocol(client: number, portName: _CoreFoundation_CFString, protocol: MIDIProtocolID, outPort: SDKHandle, receiveBlock: $SDK28): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1223334299064626, undefined, [client, portName, protocol, outPort, receiveBlock], [null,null,null,null,{"callback":{"out":[]}}]); }
+export function MIDIInputPortCreateWithProtocol(client: number, portName: _CoreFoundation_CFString, protocol: MIDIProtocolID, outPort: SDKHandle, receiveBlock: $SDK28): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1223334299064626, undefined, [client, portName, protocol, outPort, receiveBlock], [null,null,null,null,{"callback":{"out":[]}}]); }
 
 /** func MIDIJitterReductionClockMessage(_ senderClockTime: UInt16) -> MIDIMessage_32 */
-export function MIDIJitterReductionClockMessage(senderClockTime: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4417090747425133, undefined, [senderClockTime]); }
+export function MIDIJitterReductionClockMessage(senderClockTime: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4417090747425133, undefined, [senderClockTime]); }
 
 /** func MIDIJitterReductionTimestampMessage(_ senderClockTimestamp: UInt16) -> MIDIMessage_32 */
-export function MIDIJitterReductionTimestampMessage(senderClockTimestamp: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4174823995745923, undefined, [senderClockTimestamp]); }
+export function MIDIJitterReductionTimestampMessage(senderClockTimestamp: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4174823995745923, undefined, [senderClockTimestamp]); }
 
 /** func MIDIMessageTypeForUPWord(_ word: UInt32) -> MIDIMessageType */
-export function MIDIMessageTypeForUPWord(word: number): MIDIMessageType { return callSDK<MIDIMessageType>("CoreMIDI_5d69670f0307b385", 2220318891159400, undefined, [word]); }
+export function MIDIMessageTypeForUPWord(word: number): MIDIMessageType { return callSDK<MIDIMessageType>("CoreMIDI_6be9a005889899ab", 2220318891159400, undefined, [word]); }
 
 /** func MIDINoOpMessage() -> MIDIMessage_32 */
-export function MIDINoOpMessage(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1558199531370655, undefined, []); }
+export function MIDINoOpMessage(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1558199531370655, undefined, []); }
 
 /**
  * func MIDIObjectFindByUniqueID(_ inUniqueID: MIDIUniqueID, _ outObject: UnsafeMutablePointer<MIDIObjectRef>?, _ outObjectType: UnsafeMutablePointer<MIDIObjectType>?) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIObjectFindByUniqueID(inUniqueID: number, outObject?: (SDKHandle) | null, outObjectType?: (SDKHandle) | null): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 986005707243941, undefined, [inUniqueID, outObject, outObjectType]); }
+export function MIDIObjectFindByUniqueID(inUniqueID: number, outObject?: (SDKHandle) | null, outObjectType?: (SDKHandle) | null): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 986005707243941, undefined, [inUniqueID, outObject, outObjectType]); }
 
 /**
  * func MIDIObjectGetIntegerProperty(_ obj: MIDIObjectRef, _ propertyID: CFString, _ outValue: UnsafeMutablePointer<Int32>) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIObjectGetIntegerProperty(obj: number, propertyID: _CoreFoundation_CFString, outValue: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 830062259130986, undefined, [obj, propertyID, outValue]); }
+export function MIDIObjectGetIntegerProperty(obj: number, propertyID: _CoreFoundation_CFString, outValue: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 830062259130986, undefined, [obj, propertyID, outValue]); }
 
 /**
  * func MIDIObjectRemoveProperty(_ obj: MIDIObjectRef, _ propertyID: CFString) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIObjectRemoveProperty(obj: number, propertyID: _CoreFoundation_CFString): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2844369157341916, undefined, [obj, propertyID]); }
+export function MIDIObjectRemoveProperty(obj: number, propertyID: _CoreFoundation_CFString): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2844369157341916, undefined, [obj, propertyID]); }
 
 /**
  * func MIDIObjectSetDataProperty(_ obj: MIDIObjectRef, _ propertyID: CFString, _ data: CFData) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIObjectSetDataProperty(obj: number, propertyID: _CoreFoundation_CFString, data: _CoreFoundation_CFData): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3064114385244525, undefined, [obj, propertyID, data]); }
+export function MIDIObjectSetDataProperty(obj: number, propertyID: _CoreFoundation_CFString, data: _CoreFoundation_CFData): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3064114385244525, undefined, [obj, propertyID, data]); }
 
 /**
  * func MIDIObjectSetDictionaryProperty(_ obj: MIDIObjectRef, _ propertyID: CFString, _ dict: CFDictionary) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIObjectSetDictionaryProperty(obj: number, propertyID: _CoreFoundation_CFString, dict: _CoreFoundation_CFDictionary): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1338167954228045, undefined, [obj, propertyID, dict]); }
+export function MIDIObjectSetDictionaryProperty(obj: number, propertyID: _CoreFoundation_CFString, dict: _CoreFoundation_CFDictionary): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1338167954228045, undefined, [obj, propertyID, dict]); }
 
 /**
  * func MIDIObjectSetIntegerProperty(_ obj: MIDIObjectRef, _ propertyID: CFString, _ value: Int32) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIObjectSetIntegerProperty(obj: number, propertyID: _CoreFoundation_CFString, value: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 80244933929930, undefined, [obj, propertyID, value]); }
+export function MIDIObjectSetIntegerProperty(obj: number, propertyID: _CoreFoundation_CFString, value: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 80244933929930, undefined, [obj, propertyID, value]); }
 
 /**
  * func MIDIObjectSetStringProperty(_ obj: MIDIObjectRef, _ propertyID: CFString, _ str: CFString) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIObjectSetStringProperty(obj: number, propertyID: _CoreFoundation_CFString, str: _CoreFoundation_CFString): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3535120668085199, undefined, [obj, propertyID, str]); }
+export function MIDIObjectSetStringProperty(obj: number, propertyID: _CoreFoundation_CFString, str: _CoreFoundation_CFString): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3535120668085199, undefined, [obj, propertyID, str]); }
 
 /**
  * func MIDIOutputPortCreate(_ client: MIDIClientRef, _ portName: CFString, _ outPort: UnsafeMutablePointer<MIDIPortRef>) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIOutputPortCreate(client: number, portName: _CoreFoundation_CFString, outPort: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3188175286718467, undefined, [client, portName, outPort]); }
+export function MIDIOutputPortCreate(client: number, portName: _CoreFoundation_CFString, outPort: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3188175286718467, undefined, [client, portName, outPort]); }
 
 /**
  * func MIDIPacketListAdd(_ pktlist: UnsafeMutablePointer<MIDIPacketList>, _ listSize: Int, _ curPacket: UnsafeMutablePointer<MIDIPacket>, _ time: MIDITimeStamp, _ nData: Int, _ data: UnsafePointer<UInt8>) -> UnsafeMutablePointer<MIDIPacket>
  * @availability iOS 4.2+
  * @deprecated iOS 100000.0
  */
-export function MIDIPacketListAdd(pktlist: SDKHandle, listSize: number, curPacket: SDKHandle, time: number, nData: number, data: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 104777237775181, undefined, [pktlist, listSize, curPacket, time, nData, data]); }
+export function MIDIPacketListAdd(pktlist: SDKHandle, listSize: number, curPacket: SDKHandle, time: number, nData: number, data: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 104777237775181, undefined, [pktlist, listSize, curPacket, time, nData, data]); }
 
 /**
  * func MIDIPacketListInit(_ pktlist: UnsafeMutablePointer<MIDIPacketList>) -> UnsafeMutablePointer<MIDIPacket>
  * @availability iOS 4.2+
  * @deprecated iOS 100000.0
  */
-export function MIDIPacketListInit(pktlist: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 2880087614898944, undefined, [pktlist]); }
+export function MIDIPacketListInit(pktlist: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 2880087614898944, undefined, [pktlist]); }
 
 /** func MIDIPacketNext(_ pkt: UnsafePointer<MIDIPacket>) -> UnsafeMutablePointer<MIDIPacket> */
-export function MIDIPacketNext(pkt: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_5d69670f0307b385", 3465518258670799, undefined, [pkt]); }
+export function MIDIPacketNext(pkt: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreMIDI_6be9a005889899ab", 3465518258670799, undefined, [pkt]); }
 
 /**
  * func MIDIPortConnectSource(_ port: MIDIPortRef, _ source: MIDIEndpointRef, _ connRefCon: UnsafeMutableRawPointer?) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIPortConnectSource(port: number, source: number, connRefCon?: (SDKHandle) | null): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2194255885896559, undefined, [port, source, connRefCon]); }
+export function MIDIPortConnectSource(port: number, source: number, connRefCon?: (SDKHandle) | null): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2194255885896559, undefined, [port, source, connRefCon]); }
 
 /**
  * func MIDIPortDisconnectSource(_ port: MIDIPortRef, _ source: MIDIEndpointRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIPortDisconnectSource(port: number, source: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1046296914241953, undefined, [port, source]); }
+export function MIDIPortDisconnectSource(port: number, source: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1046296914241953, undefined, [port, source]); }
 
 /**
  * func MIDIPortDispose(_ port: MIDIPortRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIPortDispose(port: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4149789930578591, undefined, [port]); }
+export function MIDIPortDispose(port: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4149789930578591, undefined, [port]); }
 
 /**
  * func MIDIReceived(_ src: MIDIEndpointRef, _ pktlist: UnsafePointer<MIDIPacketList>) -> OSStatus
  * @availability iOS 4.2+
  * @deprecated iOS 100000.0
  */
-export function MIDIReceived(src: number, pktlist: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 669881407005312, undefined, [src, pktlist]); }
+export function MIDIReceived(src: number, pktlist: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 669881407005312, undefined, [src, pktlist]); }
 
 /**
  * func MIDIReceivedEventList(_ src: MIDIEndpointRef, _ evtlist: UnsafePointer<MIDIEventList>) -> OSStatus
  * @availability iOS 14.0+
  */
-export function MIDIReceivedEventList(src: number, evtlist: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 202386407088522, undefined, [src, evtlist]); }
+export function MIDIReceivedEventList(src: number, evtlist: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 202386407088522, undefined, [src, evtlist]); }
 
 /**
  * func MIDIRestart() -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIRestart(): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 456849969931743, undefined, []); }
+export function MIDIRestart(): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 456849969931743, undefined, []); }
 
 /**
  * func MIDISend(_ port: MIDIPortRef, _ dest: MIDIEndpointRef, _ pktlist: UnsafePointer<MIDIPacketList>) -> OSStatus
  * @availability iOS 4.2+
  * @deprecated iOS 100000.0
  */
-export function MIDISend(port: number, dest: number, pktlist: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2663294128645102, undefined, [port, dest, pktlist]); }
+export function MIDISend(port: number, dest: number, pktlist: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2663294128645102, undefined, [port, dest, pktlist]); }
 
 /**
  * func MIDISendEventList(_ port: MIDIPortRef, _ dest: MIDIEndpointRef, _ evtlist: UnsafePointer<MIDIEventList>) -> OSStatus
  * @availability iOS 14.0+
  */
-export function MIDISendEventList(port: number, dest: number, evtlist: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4286528971275618, undefined, [port, dest, evtlist]); }
+export function MIDISendEventList(port: number, dest: number, evtlist: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4286528971275618, undefined, [port, dest, evtlist]); }
 
 /**
  * func MIDISendSysex(_ request: UnsafeMutablePointer<MIDISysexSendRequest>) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDISendSysex(request: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1551879201923929, undefined, [request]); }
+export function MIDISendSysex(request: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1551879201923929, undefined, [request]); }
 
 /**
  * func MIDISendUMPSysex(_ umpRequest: UnsafeMutablePointer<MIDISysexSendRequestUMP>) -> OSStatus
  * @availability iOS 17.0+
  */
-export function MIDISendUMPSysex(umpRequest: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 244421094384007, undefined, [umpRequest]); }
+export function MIDISendUMPSysex(umpRequest: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 244421094384007, undefined, [umpRequest]); }
 
 /**
  * func MIDISendUMPSysex8(_ umpRequest: UnsafeMutablePointer<MIDISysexSendRequestUMP>) -> OSStatus
  * @availability iOS 17.0+
  */
-export function MIDISendUMPSysex8(umpRequest: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2583807014064570, undefined, [umpRequest]); }
+export function MIDISendUMPSysex8(umpRequest: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2583807014064570, undefined, [umpRequest]); }
 
 /**
  * func MIDISetupAddDevice(_ device: MIDIDeviceRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDISetupAddDevice(device: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 546382527343355, undefined, [device]); }
+export function MIDISetupAddDevice(device: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 546382527343355, undefined, [device]); }
 
 /**
  * func MIDISetupAddExternalDevice(_ device: MIDIDeviceRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDISetupAddExternalDevice(device: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 518957115971954, undefined, [device]); }
+export function MIDISetupAddExternalDevice(device: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 518957115971954, undefined, [device]); }
 
 /**
  * func MIDISetupRemoveDevice(_ device: MIDIDeviceRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDISetupRemoveDevice(device: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3875263590557449, undefined, [device]); }
+export function MIDISetupRemoveDevice(device: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3875263590557449, undefined, [device]); }
 
 /**
  * func MIDISetupRemoveExternalDevice(_ device: MIDIDeviceRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDISetupRemoveExternalDevice(device: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3038845104211912, undefined, [device]); }
+export function MIDISetupRemoveExternalDevice(device: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3038845104211912, undefined, [device]); }
 
 /**
  * func MIDISourceCreate(_ client: MIDIClientRef, _ name: CFString, _ outSrc: UnsafeMutablePointer<MIDIEndpointRef>) -> OSStatus
  * @availability iOS 4.2+
  * @deprecated iOS 100000.0
  */
-export function MIDISourceCreate(client: number, name: _CoreFoundation_CFString, outSrc: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4158924587038487, undefined, [client, name, outSrc]); }
+export function MIDISourceCreate(client: number, name: _CoreFoundation_CFString, outSrc: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4158924587038487, undefined, [client, name, outSrc]); }
 
 /**
  * func MIDISourceCreateWithProtocol(_ client: MIDIClientRef, _ name: CFString, _ protocol: MIDIProtocolID, _ outSrc: UnsafeMutablePointer<MIDIEndpointRef>) -> OSStatus
  * @availability iOS 14.0+
  */
-export function MIDISourceCreateWithProtocol(client: number, name: _CoreFoundation_CFString, protocol: MIDIProtocolID, outSrc: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 2254673481846574, undefined, [client, name, protocol, outSrc]); }
+export function MIDISourceCreateWithProtocol(client: number, name: _CoreFoundation_CFString, protocol: MIDIProtocolID, outSrc: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 2254673481846574, undefined, [client, name, protocol, outSrc]); }
 
 /**
  * func MIDIThruConnectionCreate(_ inPersistentOwnerID: CFString?, _ inConnectionParams: CFData, _ outConnection: UnsafeMutablePointer<MIDIThruConnectionRef>) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIThruConnectionCreate(inPersistentOwnerID: (_CoreFoundation_CFString) | null, inConnectionParams: _CoreFoundation_CFData, outConnection: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 4145025172434401, undefined, [inPersistentOwnerID, inConnectionParams, outConnection]); }
+export function MIDIThruConnectionCreate(inPersistentOwnerID: (_CoreFoundation_CFString) | null, inConnectionParams: _CoreFoundation_CFData, outConnection: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 4145025172434401, undefined, [inPersistentOwnerID, inConnectionParams, outConnection]); }
 
 /**
  * func MIDIThruConnectionDispose(_ connection: MIDIThruConnectionRef) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIThruConnectionDispose(connection: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 3864659281743896, undefined, [connection]); }
+export function MIDIThruConnectionDispose(connection: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 3864659281743896, undefined, [connection]); }
 
 /**
  * func MIDIThruConnectionParamsInitialize(_ inConnectionParams: UnsafeMutablePointer<MIDIThruConnectionParams>)
  * @availability iOS 4.2+
  */
-export function MIDIThruConnectionParamsInitialize(inConnectionParams: SDKHandle): void { return callSDK<void>("CoreMIDI_5d69670f0307b385", 1313222989187611, undefined, [inConnectionParams]); }
+export function MIDIThruConnectionParamsInitialize(inConnectionParams: SDKHandle): void { return callSDK<void>("CoreMIDI_6be9a005889899ab", 1313222989187611, undefined, [inConnectionParams]); }
 
 /** func MIDIThruConnectionParamsSize(_ ptr: UnsafePointer<MIDIThruConnectionParams>) -> Int */
-export function MIDIThruConnectionParamsSize(ptr: SDKHandle): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1589153503802433, undefined, [ptr]); }
+export function MIDIThruConnectionParamsSize(ptr: SDKHandle): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1589153503802433, undefined, [ptr]); }
 
 /**
  * func MIDIThruConnectionSetParams(_ connection: MIDIThruConnectionRef, _ inConnectionParams: CFData) -> OSStatus
  * @availability iOS 4.2+
  */
-export function MIDIThruConnectionSetParams(connection: number, inConnectionParams: _CoreFoundation_CFData): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1977709608964021, undefined, [connection, inConnectionParams]); }
+export function MIDIThruConnectionSetParams(connection: number, inConnectionParams: _CoreFoundation_CFData): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1977709608964021, undefined, [connection, inConnectionParams]); }
 
 /** func MIDITicksSinceLastEventMessage(_ ticksSinceLastEvent: UInt32) -> MIDIMessage_32 */
-export function MIDITicksSinceLastEventMessage(ticksSinceLastEvent: number): number { return callSDK<number>("CoreMIDI_5d69670f0307b385", 1323169836662402, undefined, [ticksSinceLastEvent]); }
+export function MIDITicksSinceLastEventMessage(ticksSinceLastEvent: number): number { return callSDK<number>("CoreMIDI_6be9a005889899ab", 1323169836662402, undefined, [ticksSinceLastEvent]); }
 
 /** var kMIDIIDNotUnique: OSStatus { get } */
-export const kMIDIIDNotUnique: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 2670134783282593, undefined, []);
+export const kMIDIIDNotUnique: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 2670134783282593, undefined, []);
 
 /** var kMIDIInvalidClient: OSStatus { get } */
-export const kMIDIInvalidClient: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 2404961168248946, undefined, []);
+export const kMIDIInvalidClient: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 2404961168248946, undefined, []);
 
 /** var kMIDIInvalidPort: OSStatus { get } */
-export const kMIDIInvalidPort: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 3172305247927050, undefined, []);
+export const kMIDIInvalidPort: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 3172305247927050, undefined, []);
 
 /** var kMIDIMessageSendErr: OSStatus { get } */
-export const kMIDIMessageSendErr: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 1252279054572759, undefined, []);
+export const kMIDIMessageSendErr: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 1252279054572759, undefined, []);
 
 /** var kMIDINoConnection: OSStatus { get } */
-export const kMIDINoConnection: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 3922209913454566, undefined, []);
+export const kMIDINoConnection: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 3922209913454566, undefined, []);
 
 /** var kMIDINoCurrentSetup: OSStatus { get } */
-export const kMIDINoCurrentSetup: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 2137805485261931, undefined, []);
+export const kMIDINoCurrentSetup: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 2137805485261931, undefined, []);
 
 /** var kMIDINotPermitted: OSStatus { get } */
-export const kMIDINotPermitted: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 726186379678880, undefined, []);
+export const kMIDINotPermitted: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 726186379678880, undefined, []);
 
 /** var kMIDIObjectNotFound: OSStatus { get } */
-export const kMIDIObjectNotFound: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 4133831261248276, undefined, []);
+export const kMIDIObjectNotFound: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 4133831261248276, undefined, []);
 
 /** var kMIDIServerStartErr: OSStatus { get } */
-export const kMIDIServerStartErr: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 2835489141868426, undefined, []);
+export const kMIDIServerStartErr: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 2835489141868426, undefined, []);
 
 /** var kMIDISetupFormatErr: OSStatus { get } */
-export const kMIDISetupFormatErr: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 301388803463150, undefined, []);
+export const kMIDISetupFormatErr: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 301388803463150, undefined, []);
 
 /** var kMIDIUnknownEndpoint: OSStatus { get } */
-export const kMIDIUnknownEndpoint: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 451229867527750, undefined, []);
+export const kMIDIUnknownEndpoint: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 451229867527750, undefined, []);
 
 /** var kMIDIUnknownError: OSStatus { get } */
-export const kMIDIUnknownError: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 250656508347319, undefined, []);
+export const kMIDIUnknownError: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 250656508347319, undefined, []);
 
 /** var kMIDIUnknownProperty: OSStatus { get } */
-export const kMIDIUnknownProperty: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 978125337107577, undefined, []);
+export const kMIDIUnknownProperty: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 978125337107577, undefined, []);
 
 /** var kMIDIWrongEndpointType: OSStatus { get } */
-export const kMIDIWrongEndpointType: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 2230944958460359, undefined, []);
+export const kMIDIWrongEndpointType: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 2230944958460359, undefined, []);
 
 /** var kMIDIWrongPropertyType: OSStatus { get } */
-export const kMIDIWrongPropertyType: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 645610227783514, undefined, []);
+export const kMIDIWrongPropertyType: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 645610227783514, undefined, []);
 
 /** var kMIDIWrongThread: OSStatus { get } */
-export const kMIDIWrongThread: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 294990060080408, undefined, []);
+export const kMIDIWrongThread: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 294990060080408, undefined, []);
 
 /** var kMIDIInvalidUniqueID: MIDIUniqueID { get } */
-export const kMIDIInvalidUniqueID: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 2324977170622668, undefined, []);
+export const kMIDIInvalidUniqueID: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 2324977170622668, undefined, []);
 
 /** var kMIDIThruConnection_MaxEndpoints: Int { get } */
-export const kMIDIThruConnection_MaxEndpoints: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 2063622153692114, undefined, []);
+export const kMIDIThruConnection_MaxEndpoints: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 2063622153692114, undefined, []);
 
 /** var MIDIChannelsWholePort: MIDIChannelNumber { get } */
-export const MIDIChannelsWholePort: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 3064344625448374, undefined, []);
+export const MIDIChannelsWholePort: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 3064344625448374, undefined, []);
 
 /**
  * let MIDINetworkBonjourServiceType: String
  * @availability iOS 4.2+
  */
-export const MIDINetworkBonjourServiceType: string = callSDK<string>("CoreMIDI_5d69670f0307b385", 1152299730670382, undefined, []);
+export const MIDINetworkBonjourServiceType: string = callSDK<string>("CoreMIDI_6be9a005889899ab", 1152299730670382, undefined, []);
 
 /**
  * let MIDINetworkNotificationContactsDidChange: String
  * @availability iOS 4.2+
  */
-export const MIDINetworkNotificationContactsDidChange: string = callSDK<string>("CoreMIDI_5d69670f0307b385", 4421040903670252, undefined, []);
+export const MIDINetworkNotificationContactsDidChange: string = callSDK<string>("CoreMIDI_6be9a005889899ab", 4421040903670252, undefined, []);
 
 /**
  * let MIDINetworkNotificationSessionDidChange: String
  * @availability iOS 4.2+
  */
-export const MIDINetworkNotificationSessionDidChange: string = callSDK<string>("CoreMIDI_5d69670f0307b385", 213212066323731, undefined, []);
+export const MIDINetworkNotificationSessionDidChange: string = callSDK<string>("CoreMIDI_6be9a005889899ab", 213212066323731, undefined, []);
 
 /** var kMIDI1UPMaxSysexSize: UInt8 { get } */
-export const kMIDI1UPMaxSysexSize: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 1422209750055226, undefined, []);
+export const kMIDI1UPMaxSysexSize: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 1422209750055226, undefined, []);
 
 /** var kMIDIDeviceIDFunctionBlock: MIDICIDeviceID { get } */
-export const kMIDIDeviceIDFunctionBlock: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 4335261818355170, undefined, []);
+export const kMIDIDeviceIDFunctionBlock: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 4335261818355170, undefined, []);
 
 /** var kMIDIDeviceIDUMPGroup: MIDICIDeviceID { get } */
-export const kMIDIDeviceIDUMPGroup: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 2228406888591628, undefined, []);
+export const kMIDIDeviceIDUMPGroup: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 2228406888591628, undefined, []);
 
 /** var kMIDIObjectType_ExternalMask: MIDIObjectType { get } */
-export const kMIDIObjectType_ExternalMask: MIDIObjectType = callSDK<MIDIObjectType>("CoreMIDI_5d69670f0307b385", 2882600668965486, undefined, []);
+export const kMIDIObjectType_ExternalMask: MIDIObjectType = callSDK<MIDIObjectType>("CoreMIDI_6be9a005889899ab", 2882600668965486, undefined, []);
 
 /**
  * let kMIDIPropertyAdvanceScheduleTimeMuSec: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyAdvanceScheduleTimeMuSec: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2584229649942311, undefined, []);
+export const kMIDIPropertyAdvanceScheduleTimeMuSec: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2584229649942311, undefined, []);
 
 /**
  * let kMIDIPropertyAssociatedEndpoint: CFString
  * @availability iOS 18.0+
  */
-export const kMIDIPropertyAssociatedEndpoint: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 4310099527495759, undefined, []);
+export const kMIDIPropertyAssociatedEndpoint: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 4310099527495759, undefined, []);
 
 /**
  * let kMIDIPropertyCanRoute: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyCanRoute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1642546011279484, undefined, []);
+export const kMIDIPropertyCanRoute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1642546011279484, undefined, []);
 
 /**
  * let kMIDIPropertyConnectionUniqueID: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyConnectionUniqueID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1745292389794575, undefined, []);
+export const kMIDIPropertyConnectionUniqueID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1745292389794575, undefined, []);
 
 /**
  * let kMIDIPropertyDeviceID: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyDeviceID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1444445471447980, undefined, []);
+export const kMIDIPropertyDeviceID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1444445471447980, undefined, []);
 
 /**
  * let kMIDIPropertyDisplayName: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyDisplayName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1213757387295991, undefined, []);
+export const kMIDIPropertyDisplayName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1213757387295991, undefined, []);
 
 /**
  * let kMIDIPropertyDriverDeviceEditorApp: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyDriverDeviceEditorApp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2789083864123964, undefined, []);
+export const kMIDIPropertyDriverDeviceEditorApp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2789083864123964, undefined, []);
 
 /**
  * let kMIDIPropertyDriverOwner: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyDriverOwner: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1572589092319290, undefined, []);
+export const kMIDIPropertyDriverOwner: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1572589092319290, undefined, []);
 
 /**
  * let kMIDIPropertyDriverVersion: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyDriverVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 4245665083630689, undefined, []);
+export const kMIDIPropertyDriverVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 4245665083630689, undefined, []);
 
 /**
  * let kMIDIPropertyImage: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 946486949238968, undefined, []);
+export const kMIDIPropertyImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 946486949238968, undefined, []);
 
 /**
  * let kMIDIPropertyIsBroadcast: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyIsBroadcast: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 4196649759910698, undefined, []);
+export const kMIDIPropertyIsBroadcast: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 4196649759910698, undefined, []);
 
 /**
  * let kMIDIPropertyIsDrumMachine: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyIsDrumMachine: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2053712137575308, undefined, []);
+export const kMIDIPropertyIsDrumMachine: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2053712137575308, undefined, []);
 
 /**
  * let kMIDIPropertyIsEffectUnit: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyIsEffectUnit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 3088651347237723, undefined, []);
+export const kMIDIPropertyIsEffectUnit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 3088651347237723, undefined, []);
 
 /**
  * let kMIDIPropertyIsEmbeddedEntity: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyIsEmbeddedEntity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2045802755753117, undefined, []);
+export const kMIDIPropertyIsEmbeddedEntity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2045802755753117, undefined, []);
 
 /**
  * let kMIDIPropertyIsMixer: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyIsMixer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 242558941072994, undefined, []);
+export const kMIDIPropertyIsMixer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 242558941072994, undefined, []);
 
 /**
  * let kMIDIPropertyIsSampler: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyIsSampler: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 4084216470859804, undefined, []);
+export const kMIDIPropertyIsSampler: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 4084216470859804, undefined, []);
 
 /**
  * let kMIDIPropertyManufacturer: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyManufacturer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 3410126448962812, undefined, []);
+export const kMIDIPropertyManufacturer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 3410126448962812, undefined, []);
 
 /**
  * let kMIDIPropertyMaxReceiveChannels: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyMaxReceiveChannels: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 3271334613546091, undefined, []);
+export const kMIDIPropertyMaxReceiveChannels: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 3271334613546091, undefined, []);
 
 /**
  * let kMIDIPropertyMaxSysExSpeed: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyMaxSysExSpeed: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1436930008011097, undefined, []);
+export const kMIDIPropertyMaxSysExSpeed: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1436930008011097, undefined, []);
 
 /**
  * let kMIDIPropertyMaxTransmitChannels: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyMaxTransmitChannels: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2903063733172644, undefined, []);
+export const kMIDIPropertyMaxTransmitChannels: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2903063733172644, undefined, []);
 
 /**
  * let kMIDIPropertyModel: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 4109165837898178, undefined, []);
+export const kMIDIPropertyModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 4109165837898178, undefined, []);
 
 /**
  * let kMIDIPropertyName: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2213804146226175, undefined, []);
+export const kMIDIPropertyName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2213804146226175, undefined, []);
 
 /**
  * let kMIDIPropertyNameConfiguration: CFString
  * @availability iOS 4.2+
  * @deprecated iOS 13.0
  */
-export const kMIDIPropertyNameConfiguration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2954374272585330, undefined, []);
+export const kMIDIPropertyNameConfiguration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2954374272585330, undefined, []);
 
 /**
  * let kMIDIPropertyNameConfigurationDictionary: CFString
  * @availability iOS 13.0+
  */
-export const kMIDIPropertyNameConfigurationDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2178650954659953, undefined, []);
+export const kMIDIPropertyNameConfigurationDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2178650954659953, undefined, []);
 
 /**
  * let kMIDIPropertyOffline: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyOffline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 4164221607402631, undefined, []);
+export const kMIDIPropertyOffline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 4164221607402631, undefined, []);
 
 /**
  * let kMIDIPropertyPanDisruptsStereo: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyPanDisruptsStereo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 351357682798296, undefined, []);
+export const kMIDIPropertyPanDisruptsStereo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 351357682798296, undefined, []);
 
 /**
  * let kMIDIPropertyPrivate: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyPrivate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 268715477090989, undefined, []);
+export const kMIDIPropertyPrivate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 268715477090989, undefined, []);
 
 /**
  * let kMIDIPropertyProtocolID: CFString
  * @availability iOS 14.0+
  */
-export const kMIDIPropertyProtocolID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 4395147839826374, undefined, []);
+export const kMIDIPropertyProtocolID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 4395147839826374, undefined, []);
 
 /**
  * let kMIDIPropertyReceiveChannels: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyReceiveChannels: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 667200870617199, undefined, []);
+export const kMIDIPropertyReceiveChannels: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 667200870617199, undefined, []);
 
 /**
  * let kMIDIPropertyReceivesBankSelectLSB: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyReceivesBankSelectLSB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1946209206952210, undefined, []);
+export const kMIDIPropertyReceivesBankSelectLSB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1946209206952210, undefined, []);
 
 /**
  * let kMIDIPropertyReceivesBankSelectMSB: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyReceivesBankSelectMSB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 3499612230330067, undefined, []);
+export const kMIDIPropertyReceivesBankSelectMSB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 3499612230330067, undefined, []);
 
 /**
  * let kMIDIPropertyReceivesClock: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyReceivesClock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 754059966334431, undefined, []);
+export const kMIDIPropertyReceivesClock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 754059966334431, undefined, []);
 
 /**
  * let kMIDIPropertyReceivesMTC: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyReceivesMTC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 3029531643043021, undefined, []);
+export const kMIDIPropertyReceivesMTC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 3029531643043021, undefined, []);
 
 /**
  * let kMIDIPropertyReceivesNotes: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyReceivesNotes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 469935039442003, undefined, []);
+export const kMIDIPropertyReceivesNotes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 469935039442003, undefined, []);
 
 /**
  * let kMIDIPropertyReceivesProgramChanges: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyReceivesProgramChanges: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2833491438902000, undefined, []);
+export const kMIDIPropertyReceivesProgramChanges: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2833491438902000, undefined, []);
 
 /**
  * let kMIDIPropertySingleRealtimeEntity: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertySingleRealtimeEntity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1354371527973331, undefined, []);
+export const kMIDIPropertySingleRealtimeEntity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1354371527973331, undefined, []);
 
 /**
  * let kMIDIPropertySupportsGeneralMIDI: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertySupportsGeneralMIDI: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 3079699177575653, undefined, []);
+export const kMIDIPropertySupportsGeneralMIDI: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 3079699177575653, undefined, []);
 
 /**
  * let kMIDIPropertySupportsMMC: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertySupportsMMC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 510136652412460, undefined, []);
+export const kMIDIPropertySupportsMMC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 510136652412460, undefined, []);
 
 /**
  * let kMIDIPropertySupportsShowControl: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertySupportsShowControl: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 908725547396358, undefined, []);
+export const kMIDIPropertySupportsShowControl: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 908725547396358, undefined, []);
 
 /**
  * let kMIDIPropertyTransmitChannels: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyTransmitChannels: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1977433451079922, undefined, []);
+export const kMIDIPropertyTransmitChannels: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1977433451079922, undefined, []);
 
 /**
  * let kMIDIPropertyTransmitsBankSelectLSB: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyTransmitsBankSelectLSB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1819410673922692, undefined, []);
+export const kMIDIPropertyTransmitsBankSelectLSB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1819410673922692, undefined, []);
 
 /**
  * let kMIDIPropertyTransmitsBankSelectMSB: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyTransmitsBankSelectMSB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 3222986520144232, undefined, []);
+export const kMIDIPropertyTransmitsBankSelectMSB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 3222986520144232, undefined, []);
 
 /**
  * let kMIDIPropertyTransmitsClock: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyTransmitsClock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2150451603704253, undefined, []);
+export const kMIDIPropertyTransmitsClock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2150451603704253, undefined, []);
 
 /**
  * let kMIDIPropertyTransmitsMTC: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyTransmitsMTC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2115546801081648, undefined, []);
+export const kMIDIPropertyTransmitsMTC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2115546801081648, undefined, []);
 
 /**
  * let kMIDIPropertyTransmitsNotes: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyTransmitsNotes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 32524693497850, undefined, []);
+export const kMIDIPropertyTransmitsNotes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 32524693497850, undefined, []);
 
 /**
  * let kMIDIPropertyTransmitsProgramChanges: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyTransmitsProgramChanges: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 2798494286240478, undefined, []);
+export const kMIDIPropertyTransmitsProgramChanges: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 2798494286240478, undefined, []);
 
 /**
  * let kMIDIPropertyUMPActiveGroupBitmap: CFString
  * @availability iOS 17.0+
  */
-export const kMIDIPropertyUMPActiveGroupBitmap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 1758773913828475, undefined, []);
+export const kMIDIPropertyUMPActiveGroupBitmap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 1758773913828475, undefined, []);
 
 /**
  * let kMIDIPropertyUMPCanTransmitGroupless: CFString
  * @availability iOS 17.0+
  */
-export const kMIDIPropertyUMPCanTransmitGroupless: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 150293686856500, undefined, []);
+export const kMIDIPropertyUMPCanTransmitGroupless: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 150293686856500, undefined, []);
 
 /**
  * let kMIDIPropertyUniqueID: CFString
  * @availability iOS 4.2+
  */
-export const kMIDIPropertyUniqueID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_5d69670f0307b385", 3347240197990125, undefined, []);
+export const kMIDIPropertyUniqueID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreMIDI_6be9a005889899ab", 3347240197990125, undefined, []);
 
 /** var kMIDIUInteger14Max: MIDIUInteger14 { get } */
-export const kMIDIUInteger14Max: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 1856814020875311, undefined, []);
+export const kMIDIUInteger14Max: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 1856814020875311, undefined, []);
 
 /** var kMIDIUInteger28Max: MIDIUInteger28 { get } */
-export const kMIDIUInteger28Max: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 1968177038833368, undefined, []);
+export const kMIDIUInteger28Max: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 1968177038833368, undefined, []);
 
 /** var kMIDIUInteger2Max: MIDIUInteger2 { get } */
-export const kMIDIUInteger2Max: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 3164211053650327, undefined, []);
+export const kMIDIUInteger2Max: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 3164211053650327, undefined, []);
 
 /** var kMIDIUInteger4Max: MIDIUInteger4 { get } */
-export const kMIDIUInteger4Max: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 3503435717896651, undefined, []);
+export const kMIDIUInteger4Max: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 3503435717896651, undefined, []);
 
 /** var kMIDIUInteger7Max: MIDIUInteger7 { get } */
-export const kMIDIUInteger7Max: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 2289238730069910, undefined, []);
+export const kMIDIUInteger7Max: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 2289238730069910, undefined, []);
 
 /** var kMIDINoteAttributeNone: Int { get } */
-export const kMIDINoteAttributeNone: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 4213327045088116, undefined, []);
+export const kMIDINoteAttributeNone: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 4213327045088116, undefined, []);
 
 /** var kMIDINoteAttributePitch: Int { get } */
-export const kMIDINoteAttributePitch: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 664949216034467, undefined, []);
+export const kMIDINoteAttributePitch: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 664949216034467, undefined, []);
 
 /** var kMIDINoteAttributeProfileSpecific: Int { get } */
-export const kMIDINoteAttributeProfileSpecific: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 625247285534303, undefined, []);
+export const kMIDINoteAttributeProfileSpecific: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 625247285534303, undefined, []);
 
 /** var kMIDINoteAttributeManufacturerSpecific: Int { get } */
-export const kMIDINoteAttributeManufacturerSpecific: number = callSDK<number>("CoreMIDI_5d69670f0307b385", 3560949741144020, undefined, []);
+export const kMIDINoteAttributeManufacturerSpecific: number = callSDK<number>("CoreMIDI_6be9a005889899ab", 3560949741144020, undefined, []);
 
-registerSDKClass("MIDI2DeviceInfo", MIDI2DeviceInfo, { module: "CoreMIDI_5d69670f0307b385", properties: {"family":381753343969845,"manufacturerID":1041244801740105,"modelNumber":920903037365196,"revisionLevel":3542198219563795} });
-registerSDKClass("CoreMIDI.MIDI2DeviceManufacturer", MIDI2DeviceManufacturer, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDI2DeviceRevisionLevel", MIDI2DeviceRevisionLevel, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("MIDICIDevice", MIDICIDevice, { module: "CoreMIDI_5d69670f0307b385", properties: {"muid":898337945246930,"deviceInfo":1520671075866343,"deviceType":119980407572891,"maxPropertyExchangeRequests":3947138054434580,"maxSysExSize":4313855152189382,"profiles":2034700539851631,"supportsProcessInquiry":3638750331236542,"supportsProfileConfiguration":2558365135045595,"supportsPropertyExchange":3928261953513625,"supportsProtocolNegotiation":2566816715576695} });
-registerSDKClass("CoreMIDI.MIDICIDeviceIdentification", MIDICIDeviceIdentification, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("MIDICIDeviceInfo", MIDICIDeviceInfo, { module: "CoreMIDI_5d69670f0307b385", properties: {"family":3329734665441337,"manufacturerID":3262816915609093,"midiDestination":112573261723858,"modelNumber":2161363196073675,"revisionLevel":582889052090069} });
-registerSDKClass("MIDICIDeviceManager", MIDICIDeviceManager, { module: "CoreMIDI_5d69670f0307b385", properties: {"discoveredCIDevices":4367547127573739} });
-registerSDKClass("MIDICIDiscoveredNode", MIDICIDiscoveredNode, { module: "CoreMIDI_5d69670f0307b385", properties: {"destination":1961847877372791,"deviceInfo":1517714812898735,"maximumSysExSize":3252394905445722,"supportsProfiles":3151182809805089,"supportsProperties":59075452736967} });
-registerSDKClass("MIDICIDiscoveryManager", MIDICIDiscoveryManager, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"discover":{"id":1468047716023958,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("MIDICIProfile", MIDICIProfile, { module: "CoreMIDI_5d69670f0307b385", properties: {"name":3194647959981040,"profileID":1556584761842956} });
-registerSDKClass("CoreMIDI.MIDICIProfileID", MIDICIProfileID, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDICIProfileIDManufacturerSpecific", MIDICIProfileIDManufacturerSpecific, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDICIProfileIDStandard", MIDICIProfileIDStandard, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
+registerSDKClass("MIDI2DeviceInfo", MIDI2DeviceInfo, { module: "CoreMIDI_6be9a005889899ab", properties: {"family":381753343969845,"manufacturerID":1041244801740105,"modelNumber":920903037365196,"revisionLevel":3542198219563795} });
+registerSDKClass("CoreMIDI.MIDI2DeviceManufacturer", MIDI2DeviceManufacturer, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDI2DeviceRevisionLevel", MIDI2DeviceRevisionLevel, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("MIDICIDevice", MIDICIDevice, { module: "CoreMIDI_6be9a005889899ab", properties: {"muid":898337945246930,"deviceInfo":1520671075866343,"deviceType":119980407572891,"maxPropertyExchangeRequests":3947138054434580,"maxSysExSize":4313855152189382,"profiles":2034700539851631,"supportsProcessInquiry":3638750331236542,"supportsProfileConfiguration":2558365135045595,"supportsPropertyExchange":3928261953513625,"supportsProtocolNegotiation":2566816715576695} });
+registerSDKClass("CoreMIDI.MIDICIDeviceIdentification", MIDICIDeviceIdentification, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("MIDICIDeviceInfo", MIDICIDeviceInfo, { module: "CoreMIDI_6be9a005889899ab", properties: {"family":3329734665441337,"manufacturerID":3262816915609093,"midiDestination":112573261723858,"modelNumber":2161363196073675,"revisionLevel":582889052090069} });
+registerSDKClass("MIDICIDeviceManager", MIDICIDeviceManager, { module: "CoreMIDI_6be9a005889899ab", properties: {"discoveredCIDevices":4367547127573739} });
+registerSDKClass("MIDICIDiscoveredNode", MIDICIDiscoveredNode, { module: "CoreMIDI_6be9a005889899ab", properties: {"destination":1961847877372791,"deviceInfo":1517714812898735,"maximumSysExSize":3252394905445722,"supportsProfiles":3151182809805089,"supportsProperties":59075452736967} });
+registerSDKClass("MIDICIDiscoveryManager", MIDICIDiscoveryManager, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"discover":{"id":1468047716023958,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("MIDICIProfile", MIDICIProfile, { module: "CoreMIDI_6be9a005889899ab", properties: {"name":3194647959981040,"profileID":1556584761842956} });
+registerSDKClass("CoreMIDI.MIDICIProfileID", MIDICIProfileID, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDICIProfileIDManufacturerSpecific", MIDICIProfileIDManufacturerSpecific, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDICIProfileIDStandard", MIDICIProfileIDStandard, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
 registerSDKProtocol("c:objc(pl)MIDICIProfileResponderDelegate", {"connectInitiatorWith":"connectInitiator(_:with:)","initiatorDisconnected":"initiatorDisconnected(_:)","handleDataForOnChannelData":"handleData(for:onChannel:data:)"});
-registerSDKClass("MIDICIProfileState", MIDICIProfileState, { module: "CoreMIDI_5d69670f0307b385", properties: {"disabledProfiles":4047080018526803,"enabledProfiles":383438684984000,"midiChannel":1106066432017463} });
-registerSDKClass("MIDICIResponder", MIDICIResponder, { module: "CoreMIDI_5d69670f0307b385", properties: {"deviceInfo":1860407849273179,"initiators":2776954601231409,"profileDelegate":1707529287211576}, methods: {"notify":{"id":2199737766025111},"send":{"id":4287546021734852},"start":{"id":2469240942538354},"stop":{"id":484229384021890}} });
-registerSDKClass("MIDICISession", MIDICISession, { module: "CoreMIDI_5d69670f0307b385", properties: {"deviceInfo":660306917279795,"maxPropertyRequests":3167675621254768,"maxSysExSize":3244428288768170,"midiDestination":1681708865487993,"supportsProfileCapability":3186311727880971,"supportsPropertyCapability":109936616809039}, methods: {"disableProfile":{"id":3935170497354570},"enable":{"id":1110555400020502},"profileState":{"id":4019677989113539},"send":{"id":3160103137360003}} });
-registerSDKClass("CoreMIDI.MIDIControlTransform", MIDIControlTransform, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIDriverInterface", MIDIDriverInterface, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIEventList", MIDIEventList, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIEventList.Builder", MIDIEventList_Builder, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"clear":{"id":439106942743121},"append":{"id":339795773428557}} });
-registerSDKClass("CoreMIDI.MIDIEventList.UnsafeSequence", MIDIEventList_UnsafeSequence, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"makeIterator":{"id":1936746720008898}} });
-registerSDKClass("CoreMIDI.MIDIEventList.UnsafeSequence.Iterator", MIDIEventList_UnsafeSequence_Iterator, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"next":{"id":3664667082972223}} });
-registerSDKClass("CoreMIDI.MIDIEventPacket", MIDIEventPacket, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIEventPacket.Builder", MIDIEventPacket_Builder, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIEventPacket.WordCollection", MIDIEventPacket_WordCollection, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"subscript":{"id":4111352871344643}} });
-registerSDKClass("CoreMIDI.MIDIEventPacket.WordSequence", MIDIEventPacket_WordSequence, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"makeIterator":{"id":4266858931983791}} });
-registerSDKClass("CoreMIDI.MIDIEventPacket.WordSequence.Iterator", MIDIEventPacket_WordSequence_Iterator, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"next":{"id":4347457055649286}} });
-registerSDKClass("CoreMIDI.MIDIIOErrorNotification", MIDIIOErrorNotification, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIMessage_128", MIDIMessage_128, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIMessage_64", MIDIMessage_64, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIMessage_96", MIDIMessage_96, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("MIDINetworkConnection", MIDINetworkConnection, { module: "CoreMIDI_5d69670f0307b385", properties: {"host":1852696600799638} });
-registerSDKClass("MIDINetworkHost", MIDINetworkHost, { module: "CoreMIDI_5d69670f0307b385", properties: {"address":142022445609726,"name":3501844650018564,"netServiceDomain":1172452387657230,"netServiceName":3133863390324227,"port":453885319140463}, methods: {"hasSameAddress":{"id":3847239107808864}} });
-registerSDKClass("MIDINetworkSession", MIDINetworkSession, { module: "CoreMIDI_5d69670f0307b385", properties: {"connectionPolicy":241630985731745,"isEnabled":4089211538985527,"localName":125968771153262,"networkName":1453988212474851,"networkPort":1889603853505394}, methods: {"addConnection":{"id":2722321629907591},"addContact":{"id":2594073293751018},"connections":{"id":3589725713495170},"contacts":{"id":3749212848457961},"destinationEndpoint":{"id":896946181804988},"removeConnection":{"id":1965512684298805},"removeContact":{"id":2732735176088925},"sourceEndpoint":{"id":342018935741350}} });
-registerSDKClass("CoreMIDI.MIDINotification", MIDINotification, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIObjectAddRemoveNotification", MIDIObjectAddRemoveNotification, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIObjectPropertyChangeNotification", MIDIObjectPropertyChangeNotification, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIPacket", MIDIPacket, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIPacket.Builder", MIDIPacket_Builder, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIPacket.ByteCollection", MIDIPacket_ByteCollection, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"subscript":{"id":581749380278425}} });
-registerSDKClass("CoreMIDI.MIDIPacket.ByteSequence", MIDIPacket_ByteSequence, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"makeIterator":{"id":533430781630659}} });
-registerSDKClass("CoreMIDI.MIDIPacket.ByteSequence.Iterator", MIDIPacket_ByteSequence_Iterator, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"next":{"id":4160000694185292}} });
-registerSDKClass("CoreMIDI.MIDIPacketList", MIDIPacketList, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIPacketList.Builder", MIDIPacketList_Builder, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"clear":{"id":4204649801979715},"append":{"id":2567724143141286}} });
-registerSDKClass("CoreMIDI.MIDIPacketList.UnsafeSequence", MIDIPacketList_UnsafeSequence, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"makeIterator":{"id":4332701104598558}} });
-registerSDKClass("CoreMIDI.MIDIPacketList.UnsafeSequence.Iterator", MIDIPacketList_UnsafeSequence_Iterator, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"next":{"id":1447458950865166}} });
-registerSDKClass("CoreMIDI.MIDIProtocolID", MIDIProtocolID, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDISysexSendRequest", MIDISysexSendRequest, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDISysexSendRequestUMP", MIDISysexSendRequestUMP, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIThruConnectionEndpoint", MIDIThruConnectionEndpoint, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIThruConnectionParams", MIDIThruConnectionParams, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDITransform", MIDITransform, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("MIDIUMPCIProfile", MIDIUMPCIProfile, { module: "CoreMIDI_5d69670f0307b385", properties: {"enabledChannelCount":349804412865186,"firstChannel":1417624583680409,"groupOffset":1155786460278228,"isEnabled":1461359663446440,"name":2207731112466607,"profileID":626388297848540,"profileType":2489111222593504,"totalChannelCount":2971502438570621}, methods: {"setProfileState":{"id":1737032791910257}} });
-registerSDKClass("MIDIUMPEndpoint", MIDIUMPEndpoint, { module: "CoreMIDI_5d69670f0307b385", properties: {"midiDestination":1823663007345799,"midiProtocol":1821471985081459,"midiSource":2142981281947593,"deviceInfo":1443584748447302,"endpointType":1569934874354579,"functionBlocks":3262061634621858,"hasJRTSReceiveCapability":929539755770008,"hasJRTSTransmitCapability":1201568244722498,"hasStaticFunctionBlocks":4492789118836091,"name":2916959893875302,"productInstanceID":309955339555606,"supportedMIDIProtocols":2643073887416485} });
-registerSDKClass("MIDIUMPEndpointManager", MIDIUMPEndpointManager, { module: "CoreMIDI_5d69670f0307b385", properties: {"umpEndpoints":2614768178597108} });
-registerSDKClass("MIDIUMPFunctionBlock", MIDIUMPFunctionBlock, { module: "CoreMIDI_5d69670f0307b385", properties: {"midi1Info":2108630896974720,"uiHint":1502087604090217,"umpEndpoint":1586782822657464,"direction":2170804606573875,"firstGroup":3697690585263516,"functionBlockID":3294366603832953,"isEnabled":3012077004978937,"maxSysEx8Streams":9462881979418,"midiCIDevice":443456705273814,"name":3851270289579551,"totalGroupsSpanned":3913243774529801} });
-registerSDKClass("MIDIUMPMutableEndpoint", MIDIUMPMutableEndpoint, { module: "CoreMIDI_5d69670f0307b385", properties: {"isEnabled":3109708136073970,"mutableFunctionBlocks":1236225088136099}, methods: {"registerFunctionBlocks":{"id":1321923755597845},"setEnabled":{"id":386605909883738},"setName":{"id":296771052239220}} });
-registerSDKClass("MIDIUMPMutableFunctionBlock", MIDIUMPMutableFunctionBlock, { module: "CoreMIDI_5d69670f0307b385", properties: {"umpEndpoint":3964650225274267}, methods: {"reconfigure":{"id":3122988644308893},"setEnabled":{"id":3713410133831974},"setName":{"id":2306365533857812}} });
-registerSDKClass("CoreMIDI.MIDIUniversalMessage", MIDIUniversalMessage, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.MIDIValueMap", MIDIValueMap, { module: "CoreMIDI_5d69670f0307b385", properties: {} });
-registerSDKClass("CoreMIDI.UnsafeMutableMIDIEventListPointer", UnsafeMutableMIDIEventListPointer, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"makeIterator":{"id":2585320643132618},"clear":{"id":1856061252722255},"append":{"id":3285214657164123}} });
-registerSDKClass("CoreMIDI.UnsafeMutableMIDIEventPacketPointer", UnsafeMutableMIDIEventPacketPointer, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"makeIterator":{"id":355954545159790},"subscript":{"id":478214394095139}} });
-registerSDKClass("CoreMIDI.UnsafeMutableMIDIPacketListPointer", UnsafeMutableMIDIPacketListPointer, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"makeIterator":{"id":3318109827268209},"clear":{"id":4136945856645983},"append":{"id":1029205606712350}} });
-registerSDKClass("CoreMIDI.UnsafeMutableMIDIPacketPointer", UnsafeMutableMIDIPacketPointer, { module: "CoreMIDI_5d69670f0307b385", properties: {}, methods: {"makeIterator":{"id":3770054133801301},"subscript":{"id":359902366401276}} });
+registerSDKClass("MIDICIProfileState", MIDICIProfileState, { module: "CoreMIDI_6be9a005889899ab", properties: {"disabledProfiles":4047080018526803,"enabledProfiles":383438684984000,"midiChannel":1106066432017463} });
+registerSDKClass("MIDICIResponder", MIDICIResponder, { module: "CoreMIDI_6be9a005889899ab", properties: {"deviceInfo":1860407849273179,"initiators":2776954601231409,"profileDelegate":1707529287211576}, methods: {"notify":{"id":2199737766025111},"send":{"id":4287546021734852},"start":{"id":2469240942538354},"stop":{"id":484229384021890}} });
+registerSDKClass("MIDICISession", MIDICISession, { module: "CoreMIDI_6be9a005889899ab", properties: {"deviceInfo":660306917279795,"maxPropertyRequests":3167675621254768,"maxSysExSize":3244428288768170,"midiDestination":1681708865487993,"supportsProfileCapability":3186311727880971,"supportsPropertyCapability":109936616809039}, methods: {"disableProfile":{"id":3935170497354570},"enable":{"id":1110555400020502},"profileState":{"id":4019677989113539},"send":{"id":3160103137360003}} });
+registerSDKClass("CoreMIDI.MIDIControlTransform", MIDIControlTransform, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIDriverInterface", MIDIDriverInterface, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIEventList", MIDIEventList, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIEventList.Builder", MIDIEventList_Builder, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"clear":{"id":439106942743121},"append":{"id":339795773428557}} });
+registerSDKClass("CoreMIDI.MIDIEventList.UnsafeSequence", MIDIEventList_UnsafeSequence, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"makeIterator":{"id":1936746720008898}} });
+registerSDKClass("CoreMIDI.MIDIEventList.UnsafeSequence.Iterator", MIDIEventList_UnsafeSequence_Iterator, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"next":{"id":3664667082972223}} });
+registerSDKClass("CoreMIDI.MIDIEventPacket", MIDIEventPacket, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIEventPacket.Builder", MIDIEventPacket_Builder, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIEventPacket.WordCollection", MIDIEventPacket_WordCollection, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":4111352871344643}} });
+registerSDKClass("CoreMIDI.MIDIEventPacket.WordSequence", MIDIEventPacket_WordSequence, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"makeIterator":{"id":4266858931983791}} });
+registerSDKClass("CoreMIDI.MIDIEventPacket.WordSequence.Iterator", MIDIEventPacket_WordSequence_Iterator, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"next":{"id":4347457055649286}} });
+registerSDKClass("CoreMIDI.MIDIIOErrorNotification", MIDIIOErrorNotification, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIMessage_128", MIDIMessage_128, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIMessage_64", MIDIMessage_64, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIMessage_96", MIDIMessage_96, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("MIDINetworkConnection", MIDINetworkConnection, { module: "CoreMIDI_6be9a005889899ab", properties: {"host":1852696600799638} });
+registerSDKClass("MIDINetworkHost", MIDINetworkHost, { module: "CoreMIDI_6be9a005889899ab", properties: {"address":142022445609726,"name":3501844650018564,"netServiceDomain":1172452387657230,"netServiceName":3133863390324227,"port":453885319140463}, methods: {"hasSameAddress":{"id":3847239107808864}} });
+registerSDKClass("MIDINetworkSession", MIDINetworkSession, { module: "CoreMIDI_6be9a005889899ab", properties: {"connectionPolicy":241630985731745,"isEnabled":4089211538985527,"localName":125968771153262,"networkName":1453988212474851,"networkPort":1889603853505394}, methods: {"addConnection":{"id":2722321629907591},"addContact":{"id":2594073293751018},"connections":{"id":3589725713495170},"contacts":{"id":3749212848457961},"destinationEndpoint":{"id":896946181804988},"removeConnection":{"id":1965512684298805},"removeContact":{"id":2732735176088925},"sourceEndpoint":{"id":342018935741350}} });
+registerSDKClass("CoreMIDI.MIDINotification", MIDINotification, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIObjectAddRemoveNotification", MIDIObjectAddRemoveNotification, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIObjectPropertyChangeNotification", MIDIObjectPropertyChangeNotification, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIPacket", MIDIPacket, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIPacket.Builder", MIDIPacket_Builder, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIPacket.ByteCollection", MIDIPacket_ByteCollection, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":581749380278425}} });
+registerSDKClass("CoreMIDI.MIDIPacket.ByteSequence", MIDIPacket_ByteSequence, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"makeIterator":{"id":533430781630659}} });
+registerSDKClass("CoreMIDI.MIDIPacket.ByteSequence.Iterator", MIDIPacket_ByteSequence_Iterator, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"next":{"id":4160000694185292}} });
+registerSDKClass("CoreMIDI.MIDIPacketList", MIDIPacketList, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIPacketList.Builder", MIDIPacketList_Builder, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"clear":{"id":4204649801979715},"append":{"id":2567724143141286}} });
+registerSDKClass("CoreMIDI.MIDIPacketList.UnsafeSequence", MIDIPacketList_UnsafeSequence, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"makeIterator":{"id":4332701104598558}} });
+registerSDKClass("CoreMIDI.MIDIPacketList.UnsafeSequence.Iterator", MIDIPacketList_UnsafeSequence_Iterator, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"next":{"id":1447458950865166}} });
+registerSDKClass("CoreMIDI.MIDIProtocolID", MIDIProtocolID, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDISysexSendRequest", MIDISysexSendRequest, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDISysexSendRequestUMP", MIDISysexSendRequestUMP, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIThruConnectionEndpoint", MIDIThruConnectionEndpoint, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIThruConnectionParams", MIDIThruConnectionParams, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDITransform", MIDITransform, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("MIDIUMPCIProfile", MIDIUMPCIProfile, { module: "CoreMIDI_6be9a005889899ab", properties: {"enabledChannelCount":349804412865186,"firstChannel":1417624583680409,"groupOffset":1155786460278228,"isEnabled":1461359663446440,"name":2207731112466607,"profileID":626388297848540,"profileType":2489111222593504,"totalChannelCount":2971502438570621}, methods: {"setProfileState":{"id":1737032791910257}} });
+registerSDKClass("MIDIUMPEndpoint", MIDIUMPEndpoint, { module: "CoreMIDI_6be9a005889899ab", properties: {"midiDestination":1823663007345799,"midiProtocol":1821471985081459,"midiSource":2142981281947593,"deviceInfo":1443584748447302,"endpointType":1569934874354579,"functionBlocks":3262061634621858,"hasJRTSReceiveCapability":929539755770008,"hasJRTSTransmitCapability":1201568244722498,"hasStaticFunctionBlocks":4492789118836091,"name":2916959893875302,"productInstanceID":309955339555606,"supportedMIDIProtocols":2643073887416485} });
+registerSDKClass("MIDIUMPEndpointManager", MIDIUMPEndpointManager, { module: "CoreMIDI_6be9a005889899ab", properties: {"umpEndpoints":2614768178597108} });
+registerSDKClass("MIDIUMPFunctionBlock", MIDIUMPFunctionBlock, { module: "CoreMIDI_6be9a005889899ab", properties: {"midi1Info":2108630896974720,"uiHint":1502087604090217,"umpEndpoint":1586782822657464,"direction":2170804606573875,"firstGroup":3697690585263516,"functionBlockID":3294366603832953,"isEnabled":3012077004978937,"maxSysEx8Streams":9462881979418,"midiCIDevice":443456705273814,"name":3851270289579551,"totalGroupsSpanned":3913243774529801} });
+registerSDKClass("MIDIUMPMutableEndpoint", MIDIUMPMutableEndpoint, { module: "CoreMIDI_6be9a005889899ab", properties: {"isEnabled":3109708136073970,"mutableFunctionBlocks":1236225088136099}, methods: {"registerFunctionBlocks":{"id":1321923755597845},"setEnabled":{"id":386605909883738},"setName":{"id":296771052239220}} });
+registerSDKClass("MIDIUMPMutableFunctionBlock", MIDIUMPMutableFunctionBlock, { module: "CoreMIDI_6be9a005889899ab", properties: {"umpEndpoint":3964650225274267}, methods: {"reconfigure":{"id":3122988644308893},"setEnabled":{"id":3713410133831974},"setName":{"id":2306365533857812}} });
+registerSDKClass("CoreMIDI.MIDIUniversalMessage", MIDIUniversalMessage, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.MIDIValueMap", MIDIValueMap, { module: "CoreMIDI_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreMIDI.UnsafeMutableMIDIEventListPointer", UnsafeMutableMIDIEventListPointer, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"makeIterator":{"id":2585320643132618},"clear":{"id":1856061252722255},"append":{"id":3285214657164123}} });
+registerSDKClass("CoreMIDI.UnsafeMutableMIDIEventPacketPointer", UnsafeMutableMIDIEventPacketPointer, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"makeIterator":{"id":355954545159790},"subscript":{"id":478214394095139}} });
+registerSDKClass("CoreMIDI.UnsafeMutableMIDIPacketListPointer", UnsafeMutableMIDIPacketListPointer, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"makeIterator":{"id":3318109827268209},"clear":{"id":4136945856645983},"append":{"id":1029205606712350}} });
+registerSDKClass("CoreMIDI.UnsafeMutableMIDIPacketPointer", UnsafeMutableMIDIPacketPointer, { module: "CoreMIDI_6be9a005889899ab", properties: {}, methods: {"makeIterator":{"id":3770054133801301},"subscript":{"id":359902366401276}} });
