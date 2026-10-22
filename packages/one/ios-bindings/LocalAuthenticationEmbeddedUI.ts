@@ -10,8 +10,8 @@ export class LARight extends SDKHandle {
    * func authorize(localizedReason: String, in presentationContext: LAPresentationContext) async throws
    * @availability iOS 16.0+
    */
-  authorize(localizedReason: string, presentationContext: _UIKit_UIWindow, handler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("LocalAuthenticationEmbeddedUI_5d69670f0307b385", 2452355822498437, this, [localizedReason, presentationContext, handler], [null,null,{"callback":{"out":[]}}]); }
+  authorize(localizedReason: string, presentationContext: _UIKit_UIWindow, handler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("LocalAuthenticationEmbeddedUI_6be9a005889899ab", 2452355822498437, this, [localizedReason, presentationContext, handler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)LARight": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("LARight", LARight, { module: "LocalAuthenticationEmbeddedUI_5d69670f0307b385", properties: {}, methods: {"authorize":{"id":2452355822498437,"hints":[null,null,{"callback":{"out":[]}}]}} }, true);
+registerSDKClass("LARight", LARight, { module: "LocalAuthenticationEmbeddedUI_6be9a005889899ab", properties: {}, methods: {"authorize":{"id":2452355822498437,"hints":[null,null,{"callback":{"out":[]}}]}} }, true);

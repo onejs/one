@@ -16,12 +16,12 @@ export class SHCatalog extends SDKHandle {
    * var maximumQuerySignatureDuration: TimeInterval { get }
    * @availability iOS 15.0+
    */
-  get maximumQuerySignatureDuration(): number { return callSDK<number>("ShazamKit_5d69670f0307b385", 1812317970709649, this, []); }
+  get maximumQuerySignatureDuration(): number { return callSDK<number>("ShazamKit_6be9a005889899ab", 1812317970709649, this, []); }
   /**
    * var minimumQuerySignatureDuration: TimeInterval { get }
    * @availability iOS 15.0+
    */
-  get minimumQuerySignatureDuration(): number { return callSDK<number>("ShazamKit_5d69670f0307b385", 1878915489486741, this, []); }
+  get minimumQuerySignatureDuration(): number { return callSDK<number>("ShazamKit_6be9a005889899ab", 1878915489486741, this, []); }
   declare readonly $type: { "c:objc(cs)SHCatalog": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "maximumQuerySignatureDuration": true; "minimumQuerySignatureDuration": true };
 }
@@ -35,33 +35,33 @@ export class SHCustomCatalog extends SHCatalog {
    * func add(from customCatalogURL: URL) throws
    * @availability iOS 15.0+
    */
-  add(customCatalogURL: string): void { return callSDK<void>("ShazamKit_5d69670f0307b385", 2557070684473295, this, [customCatalogURL]); }
+  add(customCatalogURL: string): void { return callSDK<void>("ShazamKit_6be9a005889899ab", 2557070684473295, this, [customCatalogURL]); }
   /**
    * func addReferenceSignature(_ signature: SHSignature, representing mediaItems: [SHMediaItem]) throws
    * @availability iOS 15.0+
    */
-  addReferenceSignature(signature: SHSignature, mediaItems: Array<SHMediaItem>): void { return callSDK<void>("ShazamKit_5d69670f0307b385", 2877612456210188, this, [signature, mediaItems]); }
+  addReferenceSignature(signature: SHSignature, mediaItems: Array<SHMediaItem>): void { return callSDK<void>("ShazamKit_6be9a005889899ab", 2877612456210188, this, [signature, mediaItems]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): SHCustomCatalog { return callSDK<SHCustomCatalog>("ShazamKit_5d69670f0307b385", 3496446602433207, undefined, []); }
+  static init(): SHCustomCatalog { return callSDK<SHCustomCatalog>("ShazamKit_6be9a005889899ab", 3496446602433207, undefined, []); }
   /**
    * init(dataRepresentation: Data) throws
    * @availability iOS 18.0+
    */
-  static initDataRepresentation(dataRepresentation: ArrayBuffer): SHCustomCatalog { return callSDK<SHCustomCatalog>("ShazamKit_5d69670f0307b385", 712648741273626, undefined, [dataRepresentation]); }
+  static initDataRepresentation(dataRepresentation: ArrayBuffer): SHCustomCatalog { return callSDK<SHCustomCatalog>("ShazamKit_6be9a005889899ab", 712648741273626, undefined, [dataRepresentation]); }
   /**
    * func write(to destinationURL: URL) throws
    * @availability iOS 15.0+
    * @deprecated iOS 18.0
    */
-  write(destinationURL: string): void { return callSDK<void>("ShazamKit_5d69670f0307b385", 3834186447508029, this, [destinationURL]); }
+  write(destinationURL: string): void { return callSDK<void>("ShazamKit_6be9a005889899ab", 3834186447508029, this, [destinationURL]); }
   /**
    * var dataRepresentation: Data { get }
    * @availability iOS 18.0+
    */
-  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("ShazamKit_5d69670f0307b385", 4423682898048050, this, []); }
+  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("ShazamKit_6be9a005889899ab", 4423682898048050, this, []); }
   declare readonly $type: { "c:objc(cs)SHCustomCatalog": true; "c:objc(cs)SHCatalog": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "maximumQuerySignatureDuration": true; "minimumQuerySignatureDuration": true; "dataRepresentation": true };
 }
@@ -75,57 +75,57 @@ export class SHError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 15.0+
    */
-  static get errorDomain(): string { return callSDK<string>("ShazamKit_5d69670f0307b385", 4012203355316519, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ShazamKit_6be9a005889899ab", 4012203355316519, undefined, []); }
   /**
    * static var internalError: SHError.Code { get }
    * @availability iOS 16.0+
    */
-  static get internalError(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_5d69670f0307b385", 3521152350213487, undefined, []); }
+  static get internalError(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_6be9a005889899ab", 3521152350213487, undefined, []); }
   /**
    * static var signatureInvalid: SHError.Code { get }
    * @availability iOS 15.0+
    */
-  static get signatureInvalid(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_5d69670f0307b385", 2065961068608302, undefined, []); }
+  static get signatureInvalid(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_6be9a005889899ab", 2065961068608302, undefined, []); }
   /**
    * static var audioDiscontinuity: SHError.Code { get }
    * @availability iOS 15.0+
    */
-  static get audioDiscontinuity(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_5d69670f0307b385", 955701911587471, undefined, []); }
+  static get audioDiscontinuity(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_6be9a005889899ab", 955701911587471, undefined, []); }
   /**
    * static var invalidAudioFormat: SHError.Code { get }
    * @availability iOS 15.0+
    */
-  static get invalidAudioFormat(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_5d69670f0307b385", 3874678445961175, undefined, []); }
+  static get invalidAudioFormat(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_6be9a005889899ab", 3874678445961175, undefined, []); }
   /**
    * static var matchAttemptFailed: SHError.Code { get }
    * @availability iOS 15.0+
    */
-  static get matchAttemptFailed(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_5d69670f0307b385", 728975199992468, undefined, []); }
+  static get matchAttemptFailed(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_6be9a005889899ab", 728975199992468, undefined, []); }
   /**
    * static var customCatalogInvalid: SHError.Code { get }
    * @availability iOS 15.0+
    */
-  static get customCatalogInvalid(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_5d69670f0307b385", 1989953555621434, undefined, []); }
+  static get customCatalogInvalid(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_6be9a005889899ab", 1989953555621434, undefined, []); }
   /**
    * static var mediaItemFetchFailed: SHError.Code { get }
    * @availability iOS 17.0+
    */
-  static get mediaItemFetchFailed(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_5d69670f0307b385", 1719478853027293, undefined, []); }
+  static get mediaItemFetchFailed(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_6be9a005889899ab", 1719478853027293, undefined, []); }
   /**
    * static var mediaLibrarySyncFailed: SHError.Code { get }
    * @availability iOS 15.0+
    */
-  static get mediaLibrarySyncFailed(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_5d69670f0307b385", 19707814138516, undefined, []); }
+  static get mediaLibrarySyncFailed(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_6be9a005889899ab", 19707814138516, undefined, []); }
   /**
    * static var customCatalogInvalidURL: SHError.Code { get }
    * @availability iOS 15.0+
    */
-  static get customCatalogInvalidURL(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_5d69670f0307b385", 2937379391393589, undefined, []); }
+  static get customCatalogInvalidURL(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_6be9a005889899ab", 2937379391393589, undefined, []); }
   /**
    * static var signatureDurationInvalid: SHError.Code { get }
    * @availability iOS 15.0+
    */
-  static get signatureDurationInvalid(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_5d69670f0307b385", 2502979728580887, undefined, []); }
+  static get signatureDurationInvalid(): SHError_Code { return callSDK<SHError_Code>("ShazamKit_6be9a005889899ab", 2502979728580887, undefined, []); }
   declare readonly $type: { "s:SC11SHErrorCodeLeV": true };
 }
 
@@ -140,7 +140,7 @@ export const SHError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (SHError_Code) | null { return callSDK<(SHError_Code) | null>("ShazamKit_5d69670f0307b385", 3622855633711646, undefined, [rawValue]); }
+  init(rawValue: number): (SHError_Code) | null { return callSDK<(SHError_Code) | null>("ShazamKit_6be9a005889899ab", 3622855633711646, undefined, [rawValue]); }
 };
 
 /**
@@ -152,22 +152,22 @@ export class SHLibrary extends SDKHandle {
    * final func removeItems(_ items: [SHMediaItem]) async throws
    * @availability iOS 17.0+
    */
-  removeItems(items: Array<SHMediaItem>): Promise<void> { return callSDKAsync<void>("ShazamKit_5d69670f0307b385", 669690841350968, this, [items]); }
+  removeItems(items: Array<SHMediaItem>): Promise<void> { return callSDKAsync<void>("ShazamKit_6be9a005889899ab", 669690841350968, this, [items]); }
   /**
    * @MainActor final var items: [SHMediaItem] { get }
    * @availability iOS 17.0+
    */
-  get items(): Promise<Array<SHMediaItem>> { return callSDKAsync<Array<SHMediaItem>>("ShazamKit_5d69670f0307b385", 3485407911064876, this, []); }
+  get items(): Promise<Array<SHMediaItem>> { return callSDKAsync<Array<SHMediaItem>>("ShazamKit_6be9a005889899ab", 3485407911064876, this, []); }
   /**
    * static let `default`: SHLibrary
    * @availability iOS 17.0+
    */
-  static get default(): SHLibrary { return callSDK<SHLibrary>("ShazamKit_5d69670f0307b385", 348867656387872, undefined, []); }
+  static get default(): SHLibrary { return callSDK<SHLibrary>("ShazamKit_6be9a005889899ab", 348867656387872, undefined, []); }
   /**
    * final func addItems(_ items: [SHMediaItem]) async throws
    * @availability iOS 17.0+
    */
-  addItems(items: Array<SHMediaItem>): Promise<void> { return callSDKAsync<void>("ShazamKit_5d69670f0307b385", 4285715546717019, this, [items]); }
+  addItems(items: Array<SHMediaItem>): Promise<void> { return callSDKAsync<void>("ShazamKit_6be9a005889899ab", 4285715546717019, this, [items]); }
   declare readonly $type: { "s:9ShazamKit9SHLibraryC": true };
   declare readonly $observable: { "items": true };
 }
@@ -181,37 +181,37 @@ export class SHManagedSession extends SDKHandle {
    * @MainActor final var state: SHManagedSession.State { get }
    * @availability iOS 17.0+
    */
-  get state(): Promise<SHManagedSession_State> { return callSDKAsync<SHManagedSession_State>("ShazamKit_5d69670f0307b385", 3714975936715172, this, []); }
+  get state(): Promise<SHManagedSession_State> { return callSDKAsync<SHManagedSession_State>("ShazamKit_6be9a005889899ab", 3714975936715172, this, []); }
   /**
    * final func cancel()
    * @availability iOS 17.0+
    */
-  cancel(): void { return callSDK<void>("ShazamKit_5d69670f0307b385", 3457485142893967, this, []); }
+  cancel(): void { return callSDK<void>("ShazamKit_6be9a005889899ab", 3457485142893967, this, []); }
   /**
    * final func result() async -> SHSession.Result
    * @availability iOS 17.0+
    */
-  result(): Promise<SHSession_Result> { return callSDKAsync<SHSession_Result>("ShazamKit_5d69670f0307b385", 750361901132104, this, []); }
+  result(): Promise<SHSession_Result> { return callSDKAsync<SHSession_Result>("ShazamKit_6be9a005889899ab", 750361901132104, this, []); }
   /**
    * init(catalog: SHCatalog)
    * @availability iOS 17.0+
    */
-  static initCatalog(catalog: SHCatalog): SHManagedSession { return callSDK<SHManagedSession>("ShazamKit_5d69670f0307b385", 1477894882727928, undefined, [catalog]); }
+  static initCatalog(catalog: SHCatalog): SHManagedSession { return callSDK<SHManagedSession>("ShazamKit_6be9a005889899ab", 1477894882727928, undefined, [catalog]); }
   /**
    * final func prepare() async
    * @availability iOS 17.0+
    */
-  prepare(): Promise<void> { return callSDKAsync<void>("ShazamKit_5d69670f0307b385", 2427208533373631, this, []); }
+  prepare(): Promise<void> { return callSDKAsync<void>("ShazamKit_6be9a005889899ab", 2427208533373631, this, []); }
   /**
    * final var results: SHSession.Results { get }
    * @availability iOS 17.0+
    */
-  get results(): SHSession_Results { return callSDK<SHSession_Results>("ShazamKit_5d69670f0307b385", 2737145700375553, this, []); }
+  get results(): SHSession_Results { return callSDK<SHSession_Results>("ShazamKit_6be9a005889899ab", 2737145700375553, this, []); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): SHManagedSession { return callSDK<SHManagedSession>("ShazamKit_5d69670f0307b385", 1682638640633543, undefined, []); }
+  static init(): SHManagedSession { return callSDK<SHManagedSession>("ShazamKit_6be9a005889899ab", 1682638640633543, undefined, []); }
   declare readonly $type: { "s:9ShazamKit16SHManagedSessionC": true };
   declare readonly $observable: { "state": true; "results": true };
 }
@@ -231,12 +231,12 @@ export class SHMatch extends SDKHandle {
    * var mediaItems: [SHMatchedMediaItem] { get }
    * @availability iOS 15.0+
    */
-  get mediaItems(): Array<SHMatchedMediaItem> { return callSDK<Array<SHMatchedMediaItem>>("ShazamKit_5d69670f0307b385", 3186767239125009, this, []); }
+  get mediaItems(): Array<SHMatchedMediaItem> { return callSDK<Array<SHMatchedMediaItem>>("ShazamKit_6be9a005889899ab", 3186767239125009, this, []); }
   /**
    * var querySignature: SHSignature { get }
    * @availability iOS 15.0+
    */
-  get querySignature(): SHSignature { return callSDK<SHSignature>("ShazamKit_5d69670f0307b385", 1902600650370445, this, []); }
+  get querySignature(): SHSignature { return callSDK<SHSignature>("ShazamKit_6be9a005889899ab", 1902600650370445, this, []); }
   declare readonly $type: { "c:objc(cs)SHMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mediaItems": true; "querySignature": true };
 }
@@ -250,108 +250,108 @@ export class SHMediaItem extends SDKHandle {
    * class func fetch(shazamID: String) async throws -> SHMediaItem
    * @availability iOS 15.0+
    */
-  static fetch(shazamID: string, completionHandler: ((arg0: (SHMediaItem) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ShazamKit_5d69670f0307b385", 4081486737723528, undefined, [shazamID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static fetch(shazamID: string, completionHandler: ((arg0: (SHMediaItem) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ShazamKit_6be9a005889899ab", 4081486737723528, undefined, [shazamID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * subscript(key: SHMediaItemProperty) -> Any { get }
    * @availability iOS 15.0+
    */
-  subscript(key: SHMediaItemProperty): unknown { return callSDK<unknown>("ShazamKit_5d69670f0307b385", 4306293308247014, this, [key]); }
+  subscript(key: SHMediaItemProperty): unknown { return callSDK<unknown>("ShazamKit_6be9a005889899ab", 4306293308247014, this, [key]); }
   /**
    * var appleMusicID: String? { get }
    * @availability iOS 15.0+
    */
-  get appleMusicID(): (string) | null { return callSDK<(string) | null>("ShazamKit_5d69670f0307b385", 945388293233471, this, []); }
+  get appleMusicID(): (string) | null { return callSDK<(string) | null>("ShazamKit_6be9a005889899ab", 945388293233471, this, []); }
   /**
    * var appleMusicURL: URL? { get }
    * @availability iOS 15.0+
    */
-  get appleMusicURL(): (string) | null { return callSDK<(string) | null>("ShazamKit_5d69670f0307b385", 3756163586887196, this, []); }
+  get appleMusicURL(): (string) | null { return callSDK<(string) | null>("ShazamKit_6be9a005889899ab", 3756163586887196, this, []); }
   /**
    * var artist: String? { get }
    * @availability iOS 15.0+
    */
-  get artist(): (string) | null { return callSDK<(string) | null>("ShazamKit_5d69670f0307b385", 4245603213105433, this, []); }
+  get artist(): (string) | null { return callSDK<(string) | null>("ShazamKit_6be9a005889899ab", 4245603213105433, this, []); }
   /**
    * var artworkURL: URL? { get }
    * @availability iOS 15.0+
    */
-  get artworkURL(): (string) | null { return callSDK<(string) | null>("ShazamKit_5d69670f0307b385", 4171759838584451, this, []); }
+  get artworkURL(): (string) | null { return callSDK<(string) | null>("ShazamKit_6be9a005889899ab", 4171759838584451, this, []); }
   /**
    * var creationDate: Date? { get }
    * @availability iOS 17.0+
    */
-  get creationDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("ShazamKit_5d69670f0307b385", 3650094419848334, this, []); }
+  get creationDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("ShazamKit_6be9a005889899ab", 3650094419848334, this, []); }
   /**
    * var explicitContent: Bool { get }
    * @availability iOS 15.0+
    */
-  get explicitContent(): boolean { return callSDK<boolean>("ShazamKit_5d69670f0307b385", 2782359488695652, this, []); }
+  get explicitContent(): boolean { return callSDK<boolean>("ShazamKit_6be9a005889899ab", 2782359488695652, this, []); }
   /**
    * var genres: [String] { get }
    * @availability iOS 15.0+
    */
-  get genres(): Array<string> { return callSDK<Array<string>>("ShazamKit_5d69670f0307b385", 2350003851231705, this, []); }
+  get genres(): Array<string> { return callSDK<Array<string>>("ShazamKit_6be9a005889899ab", 2350003851231705, this, []); }
   /**
    * var isrc: String? { get }
    * @availability iOS 15.0+
    */
-  get isrc(): (string) | null { return callSDK<(string) | null>("ShazamKit_5d69670f0307b385", 3906745683749459, this, []); }
+  get isrc(): (string) | null { return callSDK<(string) | null>("ShazamKit_6be9a005889899ab", 3906745683749459, this, []); }
   /**
    * var shazamID: String? { get }
    * @availability iOS 15.0+
    */
-  get shazamID(): (string) | null { return callSDK<(string) | null>("ShazamKit_5d69670f0307b385", 3415424764129408, this, []); }
+  get shazamID(): (string) | null { return callSDK<(string) | null>("ShazamKit_6be9a005889899ab", 3415424764129408, this, []); }
   /**
    * var subtitle: String? { get }
    * @availability iOS 15.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("ShazamKit_5d69670f0307b385", 3252040115050462, this, []); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("ShazamKit_6be9a005889899ab", 3252040115050462, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 15.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("ShazamKit_5d69670f0307b385", 1169939704055533, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("ShazamKit_6be9a005889899ab", 1169939704055533, this, []); }
   /**
    * var videoURL: URL? { get }
    * @availability iOS 15.0+
    */
-  get videoURL(): (string) | null { return callSDK<(string) | null>("ShazamKit_5d69670f0307b385", 585679711109699, this, []); }
+  get videoURL(): (string) | null { return callSDK<(string) | null>("ShazamKit_6be9a005889899ab", 585679711109699, this, []); }
   /**
    * var webURL: URL? { get }
    * @availability iOS 15.0+
    */
-  get webURL(): (string) | null { return callSDK<(string) | null>("ShazamKit_5d69670f0307b385", 3456345492019071, this, []); }
+  get webURL(): (string) | null { return callSDK<(string) | null>("ShazamKit_6be9a005889899ab", 3456345492019071, this, []); }
   /**
    * convenience init(properties: [SHMediaItemProperty : Any])
    * @availability iOS 15.0+
    */
-  static init(properties: NativeMap<SHMediaItemProperty, unknown>): SHMediaItem { return callSDK<SHMediaItem>("ShazamKit_5d69670f0307b385", 2083826290447100, undefined, [properties]); }
+  static init(properties: NativeMap<SHMediaItemProperty, unknown>): SHMediaItem { return callSDK<SHMediaItem>("ShazamKit_6be9a005889899ab", 2083826290447100, undefined, [properties]); }
   /**
    * var timeRanges: [Range<TimeInterval>] { get }
    * @availability iOS 16.0+
    */
-  get timeRanges(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ShazamKit_5d69670f0307b385", 983598950309655, this, []); }
+  get timeRanges(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ShazamKit_6be9a005889899ab", 983598950309655, this, []); }
   /**
    * var frequencySkewRanges: [Range<Float>] { get }
    * @availability iOS 16.0+
    */
-  get frequencySkewRanges(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ShazamKit_5d69670f0307b385", 2799470120466131, this, []); }
+  get frequencySkewRanges(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ShazamKit_6be9a005889899ab", 2799470120466131, this, []); }
   /**
    * var id: UUID { get }
    * @availability iOS 17.0+
    */
-  get id(): string { return callSDK<string>("ShazamKit_5d69670f0307b385", 512930479713544, this, []); }
+  get id(): string { return callSDK<string>("ShazamKit_6be9a005889899ab", 512930479713544, this, []); }
   /**
    * var songs: [Song] { get }
    * @availability iOS 15.0+
    * @deprecated iOS 27.0
    */
-  get songs(): Array<_MusicKit_Song> { return callSDK<Array<_MusicKit_Song>>("ShazamKit_5d69670f0307b385", 2326246772853678, this, []); }
+  get songs(): Array<_MusicKit_Song> { return callSDK<Array<_MusicKit_Song>>("ShazamKit_6be9a005889899ab", 2326246772853678, this, []); }
   /**
    * func songs() async throws -> [Song]
    * @availability iOS 27.0+
    */
-  songs2497(): Promise<Array<_MusicKit_Song>> { return callSDKAsync<Array<_MusicKit_Song>>("ShazamKit_5d69670f0307b385", 3026005907048776, this, []); }
+  songs2497(): Promise<Array<_MusicKit_Song>> { return callSDKAsync<Array<_MusicKit_Song>>("ShazamKit_6be9a005889899ab", 3026005907048776, this, []); }
   declare readonly $type: { "c:objc(cs)SHMediaItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "appleMusicID": true; "appleMusicURL": true; "artist": true; "artworkURL": true; "creationDate": true; "explicitContent": true; "genres": true; "isrc": true; "shazamID": true; "subtitle": true; "title": true; "videoURL": true; "webURL": true };
 }
@@ -365,22 +365,22 @@ export class SHMatchedMediaItem extends SHMediaItem {
    * var confidence: Float { get }
    * @availability iOS 18.4+
    */
-  get confidence(): number { return callSDK<number>("ShazamKit_5d69670f0307b385", 445051484224115, this, []); }
+  get confidence(): number { return callSDK<number>("ShazamKit_6be9a005889899ab", 445051484224115, this, []); }
   /**
    * var frequencySkew: Float { get }
    * @availability iOS 15.0+
    */
-  get frequencySkew(): number { return callSDK<number>("ShazamKit_5d69670f0307b385", 2996360961585005, this, []); }
+  get frequencySkew(): number { return callSDK<number>("ShazamKit_6be9a005889899ab", 2996360961585005, this, []); }
   /**
    * var matchOffset: TimeInterval { get }
    * @availability iOS 15.0+
    */
-  get matchOffset(): number { return callSDK<number>("ShazamKit_5d69670f0307b385", 2006234996715281, this, []); }
+  get matchOffset(): number { return callSDK<number>("ShazamKit_6be9a005889899ab", 2006234996715281, this, []); }
   /**
    * var predictedCurrentMatchOffset: TimeInterval { get }
    * @availability iOS 15.0+
    */
-  get predictedCurrentMatchOffset(): number { return callSDK<number>("ShazamKit_5d69670f0307b385", 4474514103426477, this, []); }
+  get predictedCurrentMatchOffset(): number { return callSDK<number>("ShazamKit_6be9a005889899ab", 4474514103426477, this, []); }
   declare readonly $type: { "c:objc(cs)SHMatchedMediaItem": true; "c:objc(cs)SHMediaItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "appleMusicID": true; "appleMusicURL": true; "artist": true; "artworkURL": true; "creationDate": true; "explicitContent": true; "genres": true; "isrc": true; "shazamID": true; "subtitle": true; "title": true; "videoURL": true; "webURL": true; "confidence": true; "frequencySkew": true; "matchOffset": true; "predictedCurrentMatchOffset": true };
 }
@@ -402,102 +402,102 @@ export const SHMediaItemProperty = {
    * static let appleMusicID: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get appleMusicID(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 4091656461375194, undefined, []); },
+  get appleMusicID(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 4091656461375194, undefined, []); },
   /**
    * static let appleMusicURL: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get appleMusicURL(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 1319938362256149, undefined, []); },
+  get appleMusicURL(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 1319938362256149, undefined, []); },
   /**
    * static let artist: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get artist(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 1645898826330916, undefined, []); },
+  get artist(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 1645898826330916, undefined, []); },
   /**
    * static let artworkURL: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get artworkURL(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 1877825823457631, undefined, []); },
+  get artworkURL(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 1877825823457631, undefined, []); },
   /**
    * static let confidence: SHMediaItemProperty
    * @availability iOS 18.4+
    */
-  get confidence(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 3527375476306079, undefined, []); },
+  get confidence(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 3527375476306079, undefined, []); },
   /**
    * static let creationDate: SHMediaItemProperty
    * @availability iOS 17.0+
    */
-  get creationDate(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 4106758509466755, undefined, []); },
+  get creationDate(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 4106758509466755, undefined, []); },
   /**
    * static let explicitContent: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get explicitContent(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 4136196608993831, undefined, []); },
+  get explicitContent(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 4136196608993831, undefined, []); },
   /**
    * static let frequencySkew: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get frequencySkew(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 882476154266193, undefined, []); },
+  get frequencySkew(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 882476154266193, undefined, []); },
   /**
    * static let genres: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get genres(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 3942115529317237, undefined, []); },
+  get genres(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 3942115529317237, undefined, []); },
   /**
    * static let ISRC: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get ISRC(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 1580829181519826, undefined, []); },
+  get ISRC(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 1580829181519826, undefined, []); },
   /**
    * static let matchOffset: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get matchOffset(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 2786516242067917, undefined, []); },
+  get matchOffset(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 2786516242067917, undefined, []); },
   /**
    * static let shazamID: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get shazamID(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 2000432383145933, undefined, []); },
+  get shazamID(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 2000432383145933, undefined, []); },
   /**
    * static let subtitle: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get subtitle(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 3700423267230797, undefined, []); },
+  get subtitle(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 3700423267230797, undefined, []); },
   /**
    * static let title: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get title(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 2562828510511284, undefined, []); },
+  get title(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 2562828510511284, undefined, []); },
   /**
    * static let videoURL: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get videoURL(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 646870837675567, undefined, []); },
+  get videoURL(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 646870837675567, undefined, []); },
   /**
    * static let webURL: SHMediaItemProperty
    * @availability iOS 15.0+
    */
-  get webURL(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 1577226667974423, undefined, []); },
+  get webURL(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 1577226667974423, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: string): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 1879912241440488, undefined, [rawValue]); },
+  initRawValue(rawValue: string): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 1879912241440488, undefined, [rawValue]); },
   /**
    * static let timeRanges: SHMediaItemProperty
    * @availability iOS 16.0+
    */
-  get timeRanges(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 1432930526026467, undefined, []); },
+  get timeRanges(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 1432930526026467, undefined, []); },
   /**
    * static let frequencySkewRanges: SHMediaItemProperty
    * @availability iOS 16.0+
    */
-  get frequencySkewRanges(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 1105892179886181, undefined, []); },
+  get frequencySkewRanges(): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 1105892179886181, undefined, []); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_5d69670f0307b385", 772578130338650, undefined, [rawValue]); }
+  init(rawValue: string): SHMediaItemProperty { return callSDK<SHMediaItemProperty>("ShazamKit_6be9a005889899ab", 772578130338650, undefined, [rawValue]); }
 };
 
 /**
@@ -511,13 +511,13 @@ export class SHMediaLibrary extends SDKHandle {
    * @availability iOS 15.0+
    * @deprecated iOS 18.0
    */
-  static get default(): SHMediaLibrary { return callSDK<SHMediaLibrary>("ShazamKit_5d69670f0307b385", 1928887272251982, undefined, []); }
+  static get default(): SHMediaLibrary { return callSDK<SHMediaLibrary>("ShazamKit_6be9a005889899ab", 1928887272251982, undefined, []); }
   /**
    * func add(_ mediaItems: [SHMediaItem]) async throws
    * @availability iOS 15.0+
    * @deprecated iOS 18.0
    */
-  add(mediaItems: Array<SHMediaItem>, completionHandler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("ShazamKit_5d69670f0307b385", 3883825208151857, this, [mediaItems, completionHandler], [null,{"callback":{"out":[]}}]); }
+  add(mediaItems: Array<SHMediaItem>, completionHandler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("ShazamKit_6be9a005889899ab", 3883825208151857, this, [mediaItems, completionHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)SHMediaLibrary": true; "c:objc(cs)NSObject": true };
 }
 
@@ -530,43 +530,43 @@ export class SHSession extends SDKHandle {
    * init()
    * @availability iOS 15.0+
    */
-  static init(): SHSession { return callSDK<SHSession>("ShazamKit_5d69670f0307b385", 1084661064523801, undefined, []); }
+  static init(): SHSession { return callSDK<SHSession>("ShazamKit_6be9a005889899ab", 1084661064523801, undefined, []); }
   /**
    * init(catalog: SHCatalog)
    * @availability iOS 15.0+
    */
-  static initCatalog(catalog: SHCatalog): SHSession { return callSDK<SHSession>("ShazamKit_5d69670f0307b385", 4341972081853141, undefined, [catalog]); }
+  static initCatalog(catalog: SHCatalog): SHSession { return callSDK<SHSession>("ShazamKit_6be9a005889899ab", 4341972081853141, undefined, [catalog]); }
   /**
    * func match(_ signature: SHSignature)
    * @availability iOS 15.0+
    */
-  match(signature: SHSignature): void { return callSDK<void>("ShazamKit_5d69670f0307b385", 2949806968550808, this, [signature]); }
+  match(signature: SHSignature): void { return callSDK<void>("ShazamKit_6be9a005889899ab", 2949806968550808, this, [signature]); }
   /**
    * func matchStreamingBuffer(_ buffer: AVAudioPCMBuffer, at time: AVAudioTime?)
    * @availability iOS 15.0+
    */
-  matchStreamingBuffer(buffer: _AVFAudio_AVAudioPCMBuffer, time?: $SDK5): void { return callSDK<void>("ShazamKit_5d69670f0307b385", 1094742739844147, this, [buffer, time]); }
+  matchStreamingBuffer(buffer: _AVFAudio_AVAudioPCMBuffer, time?: $SDK5): void { return callSDK<void>("ShazamKit_6be9a005889899ab", 1094742739844147, this, [buffer, time]); }
   /**
    * var catalog: SHCatalog { get }
    * @availability iOS 15.0+
    */
-  get catalog(): SHCatalog { return callSDK<SHCatalog>("ShazamKit_5d69670f0307b385", 425095737034827, this, []); }
+  get catalog(): SHCatalog { return callSDK<SHCatalog>("ShazamKit_6be9a005889899ab", 425095737034827, this, []); }
   /**
    * weak var delegate: (any SHSessionDelegate)? { get set }
    * @availability iOS 15.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ShazamKit_5d69670f0307b385", 1119171833456949, this, []); }
-  set delegate(value: (Implements<SHSessionDelegate> | SDKHandle) | null) { callSDK<void>("ShazamKit_5d69670f0307b385", 2252657136075031, this, [value], [{"protocol":"c:objc(pl)SHSessionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ShazamKit_6be9a005889899ab", 1119171833456949, this, []); }
+  set delegate(value: (Implements<SHSessionDelegate> | SDKHandle) | null) { callSDK<void>("ShazamKit_6be9a005889899ab", 2252657136075031, this, [value], [{"protocol":"c:objc(pl)SHSessionDelegate"}]); }
   /**
    * func result(from signature: SHSignature) async -> SHSession.Result
    * @availability iOS 16.0+
    */
-  result(signature: SHSignature): Promise<SHSession_Result> { return callSDKAsync<SHSession_Result>("ShazamKit_5d69670f0307b385", 325991838400570, this, [signature]); }
+  result(signature: SHSignature): Promise<SHSession_Result> { return callSDKAsync<SHSession_Result>("ShazamKit_6be9a005889899ab", 325991838400570, this, [signature]); }
   /**
    * var results: SHSession.Results { get }
    * @availability iOS 16.0+
    */
-  get results(): SHSession_Results { return callSDK<SHSession_Results>("ShazamKit_5d69670f0307b385", 60990398979553, this, []); }
+  get results(): SHSession_Results { return callSDK<SHSession_Results>("ShazamKit_6be9a005889899ab", 60990398979553, this, []); }
   declare readonly $type: { "c:objc(cs)SHSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "catalog": true; "delegate": true };
 }
@@ -588,7 +588,7 @@ export class SHSession_Results extends SDKHandle {
    * func makeAsyncIterator() -> SHSession.Results.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): SHSession_Results_Iterator { return callSDK<SHSession_Results_Iterator>("ShazamKit_5d69670f0307b385", 2300718226432880, this, []); }
+  makeAsyncIterator(): SHSession_Results_Iterator { return callSDK<SHSession_Results_Iterator>("ShazamKit_6be9a005889899ab", 2300718226432880, this, []); }
   declare readonly $type: { "s:So9SHSessionC9ShazamKitE7ResultsV": true };
   declare readonly $element: SHSession_Result;
 }
@@ -614,7 +614,7 @@ export class SHSession_Results_Iterator extends SDKHandle {
    * mutating func next() async -> SHSession.Results.Element?
    * @availability iOS 16.0+
    */
-  next(): Promise<(SHSession_Result) | null> { return callSDKAsync<(SHSession_Result) | null>("ShazamKit_5d69670f0307b385", 1754966582925048, this, []); }
+  next(): Promise<(SHSession_Result) | null> { return callSDKAsync<(SHSession_Result) | null>("ShazamKit_6be9a005889899ab", 1754966582925048, this, []); }
   declare readonly $type: { "s:So9SHSessionC9ShazamKitE7ResultsV8IteratorV": true };
 }
 
@@ -650,22 +650,22 @@ export class SHSignature extends SDKHandle {
    * init(dataRepresentation: Data) throws
    * @availability iOS 15.0+
    */
-  static init(dataRepresentation: ArrayBuffer): SHSignature { return callSDK<SHSignature>("ShazamKit_5d69670f0307b385", 1829411743660388, undefined, [dataRepresentation]); }
+  static init(dataRepresentation: ArrayBuffer): SHSignature { return callSDK<SHSignature>("ShazamKit_6be9a005889899ab", 1829411743660388, undefined, [dataRepresentation]); }
   /**
    * var dataRepresentation: Data { get }
    * @availability iOS 15.0+
    */
-  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("ShazamKit_5d69670f0307b385", 760214225636250, this, []); }
+  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("ShazamKit_6be9a005889899ab", 760214225636250, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 15.0+
    */
-  get duration(): number { return callSDK<number>("ShazamKit_5d69670f0307b385", 4004974828043154, this, []); }
+  get duration(): number { return callSDK<number>("ShazamKit_6be9a005889899ab", 4004974828043154, this, []); }
   /**
    * func slices(from start: TimeInterval, duration: TimeInterval, stride: TimeInterval? = nil) throws -> SHSignature.Slices
    * @availability iOS 18.0+
    */
-  slices(start: number, duration: number, stride?: (number) | null): SHSignature_Slices { return callSDK<SHSignature_Slices>("ShazamKit_5d69670f0307b385", 1795004522375014, this, [start, duration, stride]); }
+  slices(start: number, duration: number, stride?: (number) | null): SHSignature_Slices { return callSDK<SHSignature_Slices>("ShazamKit_6be9a005889899ab", 1795004522375014, this, [start, duration, stride]); }
   declare readonly $type: { "c:objc(cs)SHSignature": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataRepresentation": true; "duration": true };
 }
@@ -679,7 +679,7 @@ export class SHSignature_Slices extends SDKHandle {
    * func makeAsyncIterator() -> SHSignature.Slices.Iterator
    * @availability iOS 18.0+
    */
-  makeAsyncIterator(): SHSignature_Slices_Iterator { return callSDK<SHSignature_Slices_Iterator>("ShazamKit_5d69670f0307b385", 4236523074015400, this, []); }
+  makeAsyncIterator(): SHSignature_Slices_Iterator { return callSDK<SHSignature_Slices_Iterator>("ShazamKit_6be9a005889899ab", 4236523074015400, this, []); }
   declare readonly $type: { "s:So11SHSignatureC9ShazamKitE6SlicesV": true };
   declare readonly $element: SHSignature;
 }
@@ -705,7 +705,7 @@ export class SHSignature_Slices_Iterator extends SDKHandle {
    * mutating func next() async throws -> SHSignature.Slices.Element?
    * @availability iOS 18.0+
    */
-  next(): Promise<(SHSignature) | null> { return callSDKAsync<(SHSignature) | null>("ShazamKit_5d69670f0307b385", 1542775673136169, this, []); }
+  next(): Promise<(SHSignature) | null> { return callSDKAsync<(SHSignature) | null>("ShazamKit_6be9a005889899ab", 1542775673136169, this, []); }
   declare readonly $type: { "s:So11SHSignatureC9ShazamKitE6SlicesV8IteratorV": true };
 }
 
@@ -724,19 +724,19 @@ export class SHSignatureGenerator extends SDKHandle {
    * class func signature(from asset: AVAsset) async throws -> SHSignature
    * @availability iOS 16.0+
    */
-  static generateSignature(asset: _AVFoundation_AVAsset, completionHandler: ((arg0: (SHSignature) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ShazamKit_5d69670f0307b385", 1281183189668217, undefined, [asset, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static generateSignature(asset: _AVFoundation_AVAsset, completionHandler: ((arg0: (SHSignature) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ShazamKit_6be9a005889899ab", 1281183189668217, undefined, [asset, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func append(_ buffer: AVAudioPCMBuffer, at time: AVAudioTime?) throws
    * @availability iOS 15.0+
    */
-  append(buffer: _AVFAudio_AVAudioPCMBuffer, time?: $SDK5): void { return callSDK<void>("ShazamKit_5d69670f0307b385", 1755425493786200, this, [buffer, time]); }
+  append(buffer: _AVFAudio_AVAudioPCMBuffer, time?: $SDK5): void { return callSDK<void>("ShazamKit_6be9a005889899ab", 1755425493786200, this, [buffer, time]); }
   /** init() */
-  static init(): SHSignatureGenerator { return callSDK<SHSignatureGenerator>("ShazamKit_5d69670f0307b385", 1165136273800814, undefined, []); }
+  static init(): SHSignatureGenerator { return callSDK<SHSignatureGenerator>("ShazamKit_6be9a005889899ab", 1165136273800814, undefined, []); }
   /**
    * func signature() -> SHSignature
    * @availability iOS 15.0+
    */
-  signature(): SHSignature { return callSDK<SHSignature>("ShazamKit_5d69670f0307b385", 4457636241505623, this, []); }
+  signature(): SHSignature { return callSDK<SHSignature>("ShazamKit_6be9a005889899ab", 4457636241505623, this, []); }
   declare readonly $type: { "c:objc(cs)SHSignatureGenerator": true; "c:objc(cs)NSObject": true };
 }
 
@@ -745,12 +745,12 @@ export class UTType extends SDKHandle {
    * static var shazamSignature: UTType { get }
    * @availability iOS 16.0+
    */
-  static get shazamSignature(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("ShazamKit_5d69670f0307b385", 3442858874361655, undefined, []); }
+  static get shazamSignature(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("ShazamKit_6be9a005889899ab", 3442858874361655, undefined, []); }
   /**
    * static var shazamCustomCatalog: UTType { get }
    * @availability iOS 16.0+
    */
-  static get shazamCustomCatalog(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("ShazamKit_5d69670f0307b385", 686491502794471, undefined, []); }
+  static get shazamCustomCatalog(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("ShazamKit_6be9a005889899ab", 686491502794471, undefined, []); }
   declare readonly $type: { "s:22UniformTypeIdentifiers6UTTypeV": true };
 }
 
@@ -758,24 +758,24 @@ export class UTType extends SDKHandle {
  * let SHErrorDomain: String
  * @availability iOS 15.0+
  */
-export const SHErrorDomain: string = callSDK<string>("ShazamKit_5d69670f0307b385", 379835088138513, undefined, []);
+export const SHErrorDomain: string = callSDK<string>("ShazamKit_6be9a005889899ab", 379835088138513, undefined, []);
 
-registerSDKClass("SHCatalog", SHCatalog, { module: "ShazamKit_5d69670f0307b385", properties: {"maximumQuerySignatureDuration":1812317970709649,"minimumQuerySignatureDuration":1878915489486741} });
-registerSDKClass("SHCustomCatalog", SHCustomCatalog, { module: "ShazamKit_5d69670f0307b385", properties: {"dataRepresentation":4423682898048050}, methods: {"add":{"id":2557070684473295},"addReferenceSignature":{"id":2877612456210188},"write":{"id":3834186447508029}} });
-registerSDKClass("ShazamKit.SHError", SHError, { module: "ShazamKit_5d69670f0307b385", properties: {} });
-registerSDKClass("ShazamKit.SHLibrary", SHLibrary, { module: "ShazamKit_5d69670f0307b385", properties: {"items":3485407911064876}, methods: {"removeItems":{"id":669690841350968},"addItems":{"id":4285715546717019}} });
-registerSDKClass("ShazamKit.SHManagedSession", SHManagedSession, { module: "ShazamKit_5d69670f0307b385", properties: {"state":3714975936715172,"results":2737145700375553}, methods: {"cancel":{"id":3457485142893967},"result":{"id":750361901132104},"prepare":{"id":2427208533373631}} });
-registerSDKClass("SHMatch", SHMatch, { module: "ShazamKit_5d69670f0307b385", properties: {"mediaItems":3186767239125009,"querySignature":1902600650370445} });
-registerSDKClass("SHMediaItem", SHMediaItem, { module: "ShazamKit_5d69670f0307b385", properties: {"appleMusicID":945388293233471,"appleMusicURL":3756163586887196,"artist":4245603213105433,"artworkURL":4171759838584451,"creationDate":3650094419848334,"explicitContent":2782359488695652,"genres":2350003851231705,"isrc":3906745683749459,"shazamID":3415424764129408,"subtitle":3252040115050462,"title":1169939704055533,"videoURL":585679711109699,"webURL":3456345492019071}, methods: {"subscript":{"id":4306293308247014},"songs2497":{"id":3026005907048776}} });
-registerSDKClass("SHMatchedMediaItem", SHMatchedMediaItem, { module: "ShazamKit_5d69670f0307b385", properties: {"confidence":445051484224115,"frequencySkew":2996360961585005,"matchOffset":2006234996715281,"predictedCurrentMatchOffset":4474514103426477} });
-registerSDKClass("SHMediaLibrary", SHMediaLibrary, { module: "ShazamKit_5d69670f0307b385", properties: {}, methods: {"add":{"id":3883825208151857,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("SHSession", SHSession, { module: "ShazamKit_5d69670f0307b385", properties: {"catalog":425095737034827,"delegate":1119171833456949}, methods: {"match":{"id":2949806968550808},"matchStreamingBuffer":{"id":1094742739844147},"result":{"id":325991838400570}} });
-registerSDKClass("ShazamKit.SHSession.Result", SHSession_Result, { module: "ShazamKit_5d69670f0307b385", properties: {} });
-registerSDKClass("ShazamKit.SHSession.Results", SHSession_Results, { module: "ShazamKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":2300718226432880}} });
-registerSDKClass("ShazamKit.SHSession.Results.Iterator", SHSession_Results_Iterator, { module: "ShazamKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":1754966582925048}} });
+registerSDKClass("SHCatalog", SHCatalog, { module: "ShazamKit_6be9a005889899ab", properties: {"maximumQuerySignatureDuration":1812317970709649,"minimumQuerySignatureDuration":1878915489486741} });
+registerSDKClass("SHCustomCatalog", SHCustomCatalog, { module: "ShazamKit_6be9a005889899ab", properties: {"dataRepresentation":4423682898048050}, methods: {"add":{"id":2557070684473295},"addReferenceSignature":{"id":2877612456210188},"write":{"id":3834186447508029}} });
+registerSDKClass("ShazamKit.SHError", SHError, { module: "ShazamKit_6be9a005889899ab", properties: {} });
+registerSDKClass("ShazamKit.SHLibrary", SHLibrary, { module: "ShazamKit_6be9a005889899ab", properties: {"items":3485407911064876}, methods: {"removeItems":{"id":669690841350968},"addItems":{"id":4285715546717019}} });
+registerSDKClass("ShazamKit.SHManagedSession", SHManagedSession, { module: "ShazamKit_6be9a005889899ab", properties: {"state":3714975936715172,"results":2737145700375553}, methods: {"cancel":{"id":3457485142893967},"result":{"id":750361901132104},"prepare":{"id":2427208533373631}} });
+registerSDKClass("SHMatch", SHMatch, { module: "ShazamKit_6be9a005889899ab", properties: {"mediaItems":3186767239125009,"querySignature":1902600650370445} });
+registerSDKClass("SHMediaItem", SHMediaItem, { module: "ShazamKit_6be9a005889899ab", properties: {"appleMusicID":945388293233471,"appleMusicURL":3756163586887196,"artist":4245603213105433,"artworkURL":4171759838584451,"creationDate":3650094419848334,"explicitContent":2782359488695652,"genres":2350003851231705,"isrc":3906745683749459,"shazamID":3415424764129408,"subtitle":3252040115050462,"title":1169939704055533,"videoURL":585679711109699,"webURL":3456345492019071}, methods: {"subscript":{"id":4306293308247014},"songs2497":{"id":3026005907048776}} });
+registerSDKClass("SHMatchedMediaItem", SHMatchedMediaItem, { module: "ShazamKit_6be9a005889899ab", properties: {"confidence":445051484224115,"frequencySkew":2996360961585005,"matchOffset":2006234996715281,"predictedCurrentMatchOffset":4474514103426477} });
+registerSDKClass("SHMediaLibrary", SHMediaLibrary, { module: "ShazamKit_6be9a005889899ab", properties: {}, methods: {"add":{"id":3883825208151857,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("SHSession", SHSession, { module: "ShazamKit_6be9a005889899ab", properties: {"catalog":425095737034827,"delegate":1119171833456949}, methods: {"match":{"id":2949806968550808},"matchStreamingBuffer":{"id":1094742739844147},"result":{"id":325991838400570}} });
+registerSDKClass("ShazamKit.SHSession.Result", SHSession_Result, { module: "ShazamKit_6be9a005889899ab", properties: {} });
+registerSDKClass("ShazamKit.SHSession.Results", SHSession_Results, { module: "ShazamKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":2300718226432880}} });
+registerSDKClass("ShazamKit.SHSession.Results.Iterator", SHSession_Results_Iterator, { module: "ShazamKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":1754966582925048}} });
 registerSDKProtocol("c:objc(pl)SHSessionDelegate", {"sessionDidFind":"session(_:didFind:)","sessionDidNotFindMatchForError":"session(_:didNotFindMatchFor:error:)"});
-registerSDKClass("SHSignature", SHSignature, { module: "ShazamKit_5d69670f0307b385", properties: {"dataRepresentation":760214225636250,"duration":4004974828043154}, methods: {"slices":{"id":1795004522375014}} });
-registerSDKClass("ShazamKit.SHSignature.Slices", SHSignature_Slices, { module: "ShazamKit_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":4236523074015400}} });
-registerSDKClass("ShazamKit.SHSignature.Slices.Iterator", SHSignature_Slices_Iterator, { module: "ShazamKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":1542775673136169}} });
-registerSDKClass("SHSignatureGenerator", SHSignatureGenerator, { module: "ShazamKit_5d69670f0307b385", properties: {}, methods: {"append":{"id":1755425493786200},"signature":{"id":4457636241505623}} });
-registerSDKClass("UniformTypeIdentifiers.UTType", UTType, { module: "ShazamKit_5d69670f0307b385", properties: {} }, true);
+registerSDKClass("SHSignature", SHSignature, { module: "ShazamKit_6be9a005889899ab", properties: {"dataRepresentation":760214225636250,"duration":4004974828043154}, methods: {"slices":{"id":1795004522375014}} });
+registerSDKClass("ShazamKit.SHSignature.Slices", SHSignature_Slices, { module: "ShazamKit_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":4236523074015400}} });
+registerSDKClass("ShazamKit.SHSignature.Slices.Iterator", SHSignature_Slices_Iterator, { module: "ShazamKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":1542775673136169}} });
+registerSDKClass("SHSignatureGenerator", SHSignatureGenerator, { module: "ShazamKit_6be9a005889899ab", properties: {}, methods: {"append":{"id":1755425493786200},"signature":{"id":4457636241505623}} });
+registerSDKClass("UniformTypeIdentifiers.UTType", UTType, { module: "ShazamKit_6be9a005889899ab", properties: {} }, true);

@@ -43,27 +43,27 @@ export class AnyCancellable extends SDKHandle {
    * final func store(in set: inout Set<AnyCancellable>)
    * @availability iOS 13.0+
    */
-  storeIn(set: Array<AnyCancellable>): { $ret: null; $out: { "set": Array<AnyCancellable> } } { return callSDK<{ $ret: null; $out: { "set": Array<AnyCancellable> } }>("Combine_5d69670f0307b385", 37588107645328, this, [set]); }
+  storeIn(set: Array<AnyCancellable>): { $ret: null; $out: { "set": Array<AnyCancellable> } } { return callSDK<{ $ret: null; $out: { "set": Array<AnyCancellable> } }>("Combine_6be9a005889899ab", 37588107645328, this, [set]); }
   /**
    * final func store<C>(in collection: inout C) where C : RangeReplaceableCollection, C.Element == AnyCancellable
    * @availability iOS 13.0+
    */
-  storeIn88072(collection: Array<AnyCancellable>): { $ret: null; $out: { "collection": Array<AnyCancellable> } } { return callSDK<{ $ret: null; $out: { "collection": Array<AnyCancellable> } }>("Combine_5d69670f0307b385", 3862066833662473, this, [collection]); }
+  storeIn88072(collection: Array<AnyCancellable>): { $ret: null; $out: { "collection": Array<AnyCancellable> } } { return callSDK<{ $ret: null; $out: { "collection": Array<AnyCancellable> } }>("Combine_6be9a005889899ab", 3862066833662473, this, [collection]); }
   /**
    * final func cancel()
    * @availability iOS 13.0+
    */
-  cancel(): void { return callSDK<void>("Combine_5d69670f0307b385", 997765393197981, this, []); }
+  cancel(): void { return callSDK<void>("Combine_6be9a005889899ab", 997765393197981, this, []); }
   /**
    * init<C>(_ canceller: C) where C : Cancellable
    * @availability iOS 13.0+
    */
-  static init(canceller: AnyCancellable): AnyCancellable { return callSDK<AnyCancellable>("Combine_5d69670f0307b385", 1228695041246699, undefined, [canceller]); }
+  static init(canceller: AnyCancellable): AnyCancellable { return callSDK<AnyCancellable>("Combine_6be9a005889899ab", 1228695041246699, undefined, [canceller]); }
   /**
    * init(_ cancel: @escaping () -> Void)
    * @availability iOS 13.0+
    */
-  static init89168(cancel: (() => void)): AnyCancellable { return callSDK<AnyCancellable>("Combine_5d69670f0307b385", 3582589680461405, undefined, [cancel], [{"callback":{"out":[]}}]); }
+  static init89168(cancel: (() => void)): AnyCancellable { return callSDK<AnyCancellable>("Combine_6be9a005889899ab", 3582589680461405, undefined, [cancel], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7Combine14AnyCancellableC": true };
 }
 
@@ -76,12 +76,12 @@ export class AnyPublisher<Output = unknown, Failure = unknown> extends SDKHandle
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("Combine_5d69670f0307b385", 1983581827803700, this, []); }
+  get description(): string { return callSDK<string>("Combine_6be9a005889899ab", 1983581827803700, this, []); }
   /**
    * var playgroundDescription: Any { get }
    * @availability iOS 13.0+
    */
-  get playgroundDescription(): unknown { return callSDK<unknown>("Combine_5d69670f0307b385", 65779857395404, this, []); }
+  get playgroundDescription(): unknown { return callSDK<unknown>("Combine_6be9a005889899ab", 65779857395404, this, []); }
   declare readonly $type: { "s:7Combine12AnyPublisherV": true };
   declare readonly $element: Output;
 }
@@ -95,42 +95,42 @@ export class AnySubscriber<Input = unknown, Failure = unknown> extends SDKHandle
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("Combine_5d69670f0307b385", 3737884069454245, this, []); }
+  get description(): string { return callSDK<string>("Combine_6be9a005889899ab", 3737884069454245, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 13.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 1956564491323639, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 1956564491323639, this, []); }
   /**
    * let combineIdentifier: CombineIdentifier
    * @availability iOS 13.0+
    */
-  get combineIdentifier(): CombineIdentifier { return callSDK<CombineIdentifier>("Combine_5d69670f0307b385", 1070332035160407, this, []); }
+  get combineIdentifier(): CombineIdentifier { return callSDK<CombineIdentifier>("Combine_6be9a005889899ab", 1070332035160407, this, []); }
   /**
    * init(receiveSubscription: ((any Subscription) -> Void)? = nil, receiveValue: ((Input) -> Subscribers.Demand)? = nil, receiveCompletion: ((Subscribers.Completion<Failure>) -> Void)? = nil)
    * @availability iOS 13.0+
    */
-  static init(receiveSubscription?: $SDK1, receiveCompletion?: (((arg0: Subscribers_Completion<NativeError>) => void)) | null): AnySubscriber<unknown, NativeError> { return callSDK<AnySubscriber<unknown, NativeError>>("Combine_5d69670f0307b385", 2024420538620415, undefined, [receiveSubscription, receiveCompletion], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static init(receiveSubscription?: $SDK1, receiveCompletion?: (((arg0: Subscribers_Completion<NativeError>) => void)) | null): AnySubscriber<unknown, NativeError> { return callSDK<AnySubscriber<unknown, NativeError>>("Combine_6be9a005889899ab", 2024420538620415, undefined, [receiveSubscription, receiveCompletion], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * var playgroundDescription: Any { get }
    * @availability iOS 13.0+
    */
-  get playgroundDescription(): unknown { return callSDK<unknown>("Combine_5d69670f0307b385", 1089924227718942, this, []); }
+  get playgroundDescription(): unknown { return callSDK<unknown>("Combine_6be9a005889899ab", 1089924227718942, this, []); }
   /**
    * func receive(completion: Subscribers.Completion<Failure>)
    * @availability iOS 13.0+
    */
-  receiveCompletion(completion: $SDK3): void { return callSDK<void>("Combine_5d69670f0307b385", 3067754291047256, this, [completion]); }
+  receiveCompletion(completion: $SDK3): void { return callSDK<void>("Combine_6be9a005889899ab", 3067754291047256, this, [completion]); }
   /**
    * func receive(subscription: any Subscription)
    * @availability iOS 13.0+
    */
-  receiveSubscription(subscription: SDKHandle): void { return callSDK<void>("Combine_5d69670f0307b385", 96920906456865, this, [subscription]); }
+  receiveSubscription(subscription: SDKHandle): void { return callSDK<void>("Combine_6be9a005889899ab", 96920906456865, this, [subscription]); }
   /**
    * func receive(_ value: Input) -> Subscribers.Demand
    * @availability iOS 13.0+
    */
-  receive(value: unknown): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_5d69670f0307b385", 2202495843888553, this, [value]); }
+  receive(value: unknown): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_6be9a005889899ab", 2202495843888553, this, [value]); }
   declare readonly $type: { "s:7Combine13AnySubscriberV": true };
 }
 
@@ -143,7 +143,7 @@ export class AsyncPublisher<P = unknown> extends SDKHandle {
    * func makeAsyncIterator() -> AsyncPublisher<P>.Iterator
    * @availability iOS 15.0+
    */
-  makeAsyncIterator(): AsyncPublisher_Iterator<SDKHandle> { return callSDK<AsyncPublisher_Iterator<SDKHandle>>("Combine_5d69670f0307b385", 11614257164273, this, []); }
+  makeAsyncIterator(): AsyncPublisher_Iterator<SDKHandle> { return callSDK<AsyncPublisher_Iterator<SDKHandle>>("Combine_6be9a005889899ab", 11614257164273, this, []); }
   declare readonly $type: { "s:7Combine14AsyncPublisherV": true };
   declare readonly $element: AsyncPublisher_Element<unknown>;
 }
@@ -183,7 +183,7 @@ export class AsyncThrowingPublisher<P = unknown> extends SDKHandle {
    * func makeAsyncIterator() -> AsyncThrowingPublisher<P>.Iterator
    * @availability iOS 15.0+
    */
-  makeAsyncIterator(): AsyncThrowingPublisher_Iterator<SDKHandle> { return callSDK<AsyncThrowingPublisher_Iterator<SDKHandle>>("Combine_5d69670f0307b385", 374996743267119, this, []); }
+  makeAsyncIterator(): AsyncThrowingPublisher_Iterator<SDKHandle> { return callSDK<AsyncThrowingPublisher_Iterator<SDKHandle>>("Combine_6be9a005889899ab", 374996743267119, this, []); }
   declare readonly $type: { "s:7Combine22AsyncThrowingPublisherV": true };
   declare readonly $element: AsyncThrowingPublisher_Element<unknown>;
 }
@@ -235,17 +235,17 @@ export class CombineIdentifier extends SDKHandle {
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("Combine_5d69670f0307b385", 2402657838614612, this, []); }
+  get description(): string { return callSDK<string>("Combine_6be9a005889899ab", 2402657838614612, this, []); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): CombineIdentifier { return callSDK<CombineIdentifier>("Combine_5d69670f0307b385", 161218014126623, undefined, []); }
+  static init(): CombineIdentifier { return callSDK<CombineIdentifier>("Combine_6be9a005889899ab", 161218014126623, undefined, []); }
   /**
    * init(_ obj: AnyObject)
    * @availability iOS 13.0+
    */
-  static init57701(obj: unknown): CombineIdentifier { return callSDK<CombineIdentifier>("Combine_5d69670f0307b385", 98435230979706, undefined, [obj]); }
+  static init57701(obj: unknown): CombineIdentifier { return callSDK<CombineIdentifier>("Combine_6be9a005889899ab", 98435230979706, undefined, [obj]); }
   declare readonly $type: { "s:7Combine0A10IdentifierV": true };
 }
 
@@ -275,28 +275,28 @@ export class CurrentValueSubject<Output = unknown, Failure = unknown> extends SD
    * final func send(completion: Subscribers.Completion<Failure>)
    * @availability iOS 13.0+
    */
-  sendCompletion(completion: $SDK3): void { return callSDK<void>("Combine_5d69670f0307b385", 2920254296953721, this, [completion]); }
+  sendCompletion(completion: $SDK3): void { return callSDK<void>("Combine_6be9a005889899ab", 2920254296953721, this, [completion]); }
   /**
    * final func send(subscription: any Subscription)
    * @availability iOS 13.0+
    */
-  sendSubscription(subscription: SDKHandle): void { return callSDK<void>("Combine_5d69670f0307b385", 1042187531202987, this, [subscription]); }
+  sendSubscription(subscription: SDKHandle): void { return callSDK<void>("Combine_6be9a005889899ab", 1042187531202987, this, [subscription]); }
   /**
    * final func send(_ input: Output)
    * @availability iOS 13.0+
    */
-  send(input: unknown): void { return callSDK<void>("Combine_5d69670f0307b385", 2759612059468464, this, [input]); }
+  send(input: unknown): void { return callSDK<void>("Combine_6be9a005889899ab", 2759612059468464, this, [input]); }
   /**
    * final var value: Output { get set }
    * @availability iOS 13.0+
    */
-  get value(): unknown { return callSDK<unknown>("Combine_5d69670f0307b385", 88953548756695, this, []); }
-  set value(value: unknown) { callSDK<void>("Combine_5d69670f0307b385", 2807195858175753, this, [value]); }
+  get value(): unknown { return callSDK<unknown>("Combine_6be9a005889899ab", 88953548756695, this, []); }
+  set value(value: unknown) { callSDK<void>("Combine_6be9a005889899ab", 2807195858175753, this, [value]); }
   /**
    * init(_ value: Output)
    * @availability iOS 13.0+
    */
-  static init(value: unknown): CurrentValueSubject<unknown, NativeError> { return callSDK<CurrentValueSubject<unknown, NativeError>>("Combine_5d69670f0307b385", 1221934287360843, undefined, [value]); }
+  static init(value: unknown): CurrentValueSubject<unknown, NativeError> { return callSDK<CurrentValueSubject<unknown, NativeError>>("Combine_6be9a005889899ab", 1221934287360843, undefined, [value]); }
   declare readonly $type: { "s:7Combine19CurrentValueSubjectC": true };
   declare readonly $element: Output;
 }
@@ -339,12 +339,12 @@ export class Empty<Output = unknown, Failure = unknown> extends SDKHandle {
    * init(completeImmediately: Bool = true)
    * @availability iOS 13.0+
    */
-  static init(completeImmediately?: boolean): Empty<unknown, NativeError> { return callSDK<Empty<unknown, NativeError>>("Combine_5d69670f0307b385", 1010988279374663, undefined, [completeImmediately]); }
+  static init(completeImmediately?: boolean): Empty<unknown, NativeError> { return callSDK<Empty<unknown, NativeError>>("Combine_6be9a005889899ab", 1010988279374663, undefined, [completeImmediately]); }
   /**
    * let completeImmediately: Bool
    * @availability iOS 13.0+
    */
-  get completeImmediately(): boolean { return callSDK<boolean>("Combine_5d69670f0307b385", 951952410369385, this, []); }
+  get completeImmediately(): boolean { return callSDK<boolean>("Combine_6be9a005889899ab", 951952410369385, this, []); }
   declare readonly $type: { "s:7Combine5EmptyV": true };
   declare readonly $element: Output;
 }
@@ -358,12 +358,12 @@ export class Fail<Output = unknown, Failure = unknown> extends SDKHandle {
    * init(error: Failure)
    * @availability iOS 13.0+
    */
-  static init(error: NativeError): Fail<unknown, NativeError> { return callSDK<Fail<unknown, NativeError>>("Combine_5d69670f0307b385", 3730502788084197, undefined, [error]); }
+  static init(error: NativeError): Fail<unknown, NativeError> { return callSDK<Fail<unknown, NativeError>>("Combine_6be9a005889899ab", 3730502788084197, undefined, [error]); }
   /**
    * let error: Failure
    * @availability iOS 13.0+
    */
-  get error(): NativeError { return callSDK<NativeError>("Combine_5d69670f0307b385", 4278358991468154, this, []); }
+  get error(): NativeError { return callSDK<NativeError>("Combine_6be9a005889899ab", 4278358991468154, this, []); }
   declare readonly $type: { "s:7Combine4FailV": true };
   declare readonly $element: Output;
 }
@@ -377,17 +377,17 @@ export class Future<Output = unknown, Failure = unknown> extends SDKHandle {
    * final var value: Output { get async throws }
    * @availability iOS 15.0+
    */
-  get value(): Promise<unknown> { return callSDKAsync<unknown>("Combine_5d69670f0307b385", 1385534385729543, this, []); }
+  get value(): Promise<unknown> { return callSDKAsync<unknown>("Combine_6be9a005889899ab", 1385534385729543, this, []); }
   /**
    * final var value: Output { get async }
    * @availability iOS 15.0+
    */
-  get value70286(): Promise<unknown> { return callSDKAsync<unknown>("Combine_5d69670f0307b385", 2037297256062825, this, []); }
+  get value70286(): Promise<unknown> { return callSDKAsync<unknown>("Combine_6be9a005889899ab", 2037297256062825, this, []); }
   /**
    * init(_ attemptToFulfill: @escaping (@escaping Future<Output, Failure>.Promise) -> Void)
    * @availability iOS 13.0+
    */
-  static init(attemptToFulfill: ((arg0: ((arg0: SDKHandle) => Promise<void>)) => void)): Future<unknown, NativeError> { return callSDK<Future<unknown, NativeError>>("Combine_5d69670f0307b385", 2978469186043910, undefined, [attemptToFulfill], [{"callback":{"out":[]}}]); }
+  static init(attemptToFulfill: ((arg0: ((arg0: SDKHandle) => Promise<void>)) => void)): Future<unknown, NativeError> { return callSDK<Future<unknown, NativeError>>("Combine_6be9a005889899ab", 2978469186043910, undefined, [attemptToFulfill], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7Combine6FutureC": true };
   declare readonly $element: Output;
 }
@@ -407,32 +407,32 @@ export class ImmediateScheduler extends SDKHandle {
    * var minimumTolerance: ImmediateScheduler.SchedulerTimeType.Stride { get }
    * @availability iOS 13.0+
    */
-  get minimumTolerance(): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_5d69670f0307b385", 2487415855293445, this, []); }
+  get minimumTolerance(): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_6be9a005889899ab", 2487415855293445, this, []); }
   /**
    * var now: ImmediateScheduler.SchedulerTimeType { get }
    * @availability iOS 13.0+
    */
-  get now(): ImmediateScheduler_SchedulerTimeType { return callSDK<ImmediateScheduler_SchedulerTimeType>("Combine_5d69670f0307b385", 3723430985142554, this, []); }
+  get now(): ImmediateScheduler_SchedulerTimeType { return callSDK<ImmediateScheduler_SchedulerTimeType>("Combine_6be9a005889899ab", 3723430985142554, this, []); }
   /**
    * static let shared: ImmediateScheduler
    * @availability iOS 13.0+
    */
-  static get shared(): ImmediateScheduler { return callSDK<ImmediateScheduler>("Combine_5d69670f0307b385", 3663578994978096, undefined, []); }
+  static get shared(): ImmediateScheduler { return callSDK<ImmediateScheduler>("Combine_6be9a005889899ab", 3663578994978096, undefined, []); }
   /**
    * @discardableResult func schedule(after date: ImmediateScheduler.SchedulerTimeType, interval: ImmediateScheduler.SchedulerTimeType.Stride, tolerance: ImmediateScheduler.SchedulerTimeType.Stride, options: ImmediateScheduler.SchedulerOptions?, _ action: @escaping () -> Void) -> any Cancellable
    * @availability iOS 13.0+
    */
-  scheduleAfterIntervalToleranceOptions(date: ImmediateScheduler_SchedulerTimeType, interval: ImmediateScheduler_SchedulerTimeType_Stride, tolerance: ImmediateScheduler_SchedulerTimeType_Stride, options: (never) | null, action: (() => void)): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 508688275444269, this, [date, interval, tolerance, options, action], [null,null,null,null,{"callback":{"out":[]}}]); }
+  scheduleAfterIntervalToleranceOptions(date: ImmediateScheduler_SchedulerTimeType, interval: ImmediateScheduler_SchedulerTimeType_Stride, tolerance: ImmediateScheduler_SchedulerTimeType_Stride, options: (never) | null, action: (() => void)): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 508688275444269, this, [date, interval, tolerance, options, action], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func schedule(after date: ImmediateScheduler.SchedulerTimeType, tolerance: ImmediateScheduler.SchedulerTimeType.Stride, options: ImmediateScheduler.SchedulerOptions?, _ action: @escaping () -> Void)
    * @availability iOS 13.0+
    */
-  scheduleAfterToleranceOptions(date: ImmediateScheduler_SchedulerTimeType, tolerance: ImmediateScheduler_SchedulerTimeType_Stride, options: (never) | null, action: (() => void)): void { return callSDK<void>("Combine_5d69670f0307b385", 2747101576930510, this, [date, tolerance, options, action], [null,null,null,{"callback":{"out":[]}}]); }
+  scheduleAfterToleranceOptions(date: ImmediateScheduler_SchedulerTimeType, tolerance: ImmediateScheduler_SchedulerTimeType_Stride, options: (never) | null, action: (() => void)): void { return callSDK<void>("Combine_6be9a005889899ab", 2747101576930510, this, [date, tolerance, options, action], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func schedule(options: ImmediateScheduler.SchedulerOptions?, _ action: @escaping () -> Void)
    * @availability iOS 13.0+
    */
-  scheduleOptions(options: (never) | null, action: (() => void)): void { return callSDK<void>("Combine_5d69670f0307b385", 821709840369185, this, [options, action], [null,{"callback":{"out":[]}}]); }
+  scheduleOptions(options: (never) | null, action: (() => void)): void { return callSDK<void>("Combine_6be9a005889899ab", 821709840369185, this, [options, action], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7Combine18ImmediateSchedulerV": true };
 }
 
@@ -451,12 +451,12 @@ export class ImmediateScheduler_SchedulerTimeType extends SDKHandle {
    * func advanced(by n: ImmediateScheduler.SchedulerTimeType.Stride) -> ImmediateScheduler.SchedulerTimeType
    * @availability iOS 13.0+
    */
-  advanced(n: ImmediateScheduler_SchedulerTimeType_Stride): ImmediateScheduler_SchedulerTimeType { return callSDK<ImmediateScheduler_SchedulerTimeType>("Combine_5d69670f0307b385", 2894890805324298, this, [n]); }
+  advanced(n: ImmediateScheduler_SchedulerTimeType_Stride): ImmediateScheduler_SchedulerTimeType { return callSDK<ImmediateScheduler_SchedulerTimeType>("Combine_6be9a005889899ab", 2894890805324298, this, [n]); }
   /**
    * func distance(to other: ImmediateScheduler.SchedulerTimeType) -> ImmediateScheduler.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  distance(other: ImmediateScheduler_SchedulerTimeType): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_5d69670f0307b385", 931681946532035, this, [other]); }
+  distance(other: ImmediateScheduler_SchedulerTimeType): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_6be9a005889899ab", 931681946532035, this, [other]); }
   declare readonly $type: { "s:7Combine18ImmediateSchedulerV0C8TimeTypeV": true };
 }
 
@@ -469,53 +469,53 @@ export class ImmediateScheduler_SchedulerTimeType_Stride extends SDKHandle {
    * static func nanoseconds(_ ns: Int) -> ImmediateScheduler.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  static nanoseconds(ns: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_5d69670f0307b385", 2332879044417538, undefined, [ns]); }
+  static nanoseconds(ns: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_6be9a005889899ab", 2332879044417538, undefined, [ns]); }
   /**
    * init(floatLiteral value: Double)
    * @availability iOS 13.0+
    */
-  static initFloatLiteral(value: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_5d69670f0307b385", 213801563545637, undefined, [value]); }
+  static initFloatLiteral(value: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_6be9a005889899ab", 213801563545637, undefined, [value]); }
   /**
    * static func microseconds(_ us: Int) -> ImmediateScheduler.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  static microseconds(us: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_5d69670f0307b385", 2236691322883823, undefined, [us]); }
+  static microseconds(us: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_6be9a005889899ab", 2236691322883823, undefined, [us]); }
   /**
    * static func milliseconds(_ ms: Int) -> ImmediateScheduler.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  static milliseconds(ms: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_5d69670f0307b385", 1527063838550338, undefined, [ms]); }
+  static milliseconds(ms: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_6be9a005889899ab", 1527063838550338, undefined, [ms]); }
   /**
    * init(integerLiteral value: Int)
    * @availability iOS 13.0+
    */
-  static initIntegerLiteral(value: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_5d69670f0307b385", 3764750516736839, undefined, [value]); }
+  static initIntegerLiteral(value: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_6be9a005889899ab", 3764750516736839, undefined, [value]); }
   /**
    * init?<T>(exactly source: T) where T : BinaryInteger
    * @availability iOS 13.0+
    */
-  static initExactly(source: number): (ImmediateScheduler_SchedulerTimeType_Stride) | null { return callSDK<(ImmediateScheduler_SchedulerTimeType_Stride) | null>("Combine_5d69670f0307b385", 2157013150135372, undefined, [source]); }
+  static initExactly(source: number): (ImmediateScheduler_SchedulerTimeType_Stride) | null { return callSDK<(ImmediateScheduler_SchedulerTimeType_Stride) | null>("Combine_6be9a005889899ab", 2157013150135372, undefined, [source]); }
   /**
    * static func seconds(_ s: Double) -> ImmediateScheduler.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  static seconds(s: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_5d69670f0307b385", 1584737648795986, undefined, [s]); }
+  static seconds(s: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_6be9a005889899ab", 1584737648795986, undefined, [s]); }
   /**
    * static func seconds(_ s: Int) -> ImmediateScheduler.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  static seconds46315(s: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_5d69670f0307b385", 1147816301278494, undefined, [s]); }
+  static seconds46315(s: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_6be9a005889899ab", 1147816301278494, undefined, [s]); }
   /**
    * var magnitude: Int
    * @availability iOS 13.0+
    */
-  get magnitude(): number { return callSDK<number>("Combine_5d69670f0307b385", 2342021152214457, this, []); }
-  set magnitude(value: number) { callSDK<void>("Combine_5d69670f0307b385", 344870857090199, this, [value]); }
+  get magnitude(): number { return callSDK<number>("Combine_6be9a005889899ab", 2342021152214457, this, []); }
+  set magnitude(value: number) { callSDK<void>("Combine_6be9a005889899ab", 344870857090199, this, [value]); }
   /**
    * init(_ value: Int)
    * @availability iOS 13.0+
    */
-  static init(value: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_5d69670f0307b385", 2939323376106278, undefined, [value]); }
+  static init(value: number): ImmediateScheduler_SchedulerTimeType_Stride { return callSDK<ImmediateScheduler_SchedulerTimeType_Stride>("Combine_6be9a005889899ab", 2939323376106278, undefined, [value]); }
   declare readonly $type: { "s:7Combine18ImmediateSchedulerV0C8TimeTypeV6StrideV": true };
 }
 
@@ -546,112 +546,112 @@ export class Just<Output = unknown> extends SDKHandle {
    * func tryContains(where predicate: (Output) throws -> Bool) -> Result<Bool, any Error>.Publisher
    * @availability iOS 13.0+
    */
-  tryContains(predicate: ((arg0: unknown) => boolean)): $SDK18 { return callSDK<$SDK18>("Combine_5d69670f0307b385", 3525738894354479, this, [predicate], [{"callback":{"out":[]}}], true); }
+  tryContains(predicate: ((arg0: unknown) => boolean)): $SDK18 { return callSDK<$SDK18>("Combine_6be9a005889899ab", 3525738894354479, this, [predicate], [{"callback":{"out":[]}}], true); }
   /**
    * func ignoreOutput() -> Empty<Output, Just<Output>.Failure>
    * @availability iOS 13.0+
    */
-  ignoreOutput(): Empty<unknown, never> { return callSDK<Empty<unknown, never>>("Combine_5d69670f0307b385", 357378553922939, this, []); }
+  ignoreOutput(): Empty<unknown, never> { return callSDK<Empty<unknown, never>>("Combine_6be9a005889899ab", 357378553922939, this, []); }
   /**
    * func replaceEmpty(with output: Output) -> Just<Output>
    * @availability iOS 13.0+
    */
-  replaceEmpty(output: unknown): Just<unknown> { return callSDK<Just<unknown>>("Combine_5d69670f0307b385", 3611321794181137, this, [output]); }
+  replaceEmpty(output: unknown): Just<unknown> { return callSDK<Just<unknown>>("Combine_6be9a005889899ab", 3611321794181137, this, [output]); }
   /**
    * func replaceError(with output: Output) -> Just<Output>
    * @availability iOS 13.0+
    */
-  replaceError(output: unknown): Just<unknown> { return callSDK<Just<unknown>>("Combine_5d69670f0307b385", 4126501381056175, this, [output]); }
+  replaceError(output: unknown): Just<unknown> { return callSDK<Just<unknown>>("Combine_6be9a005889899ab", 4126501381056175, this, [output]); }
   /**
    * func tryAllSatisfy(_ predicate: (Output) throws -> Bool) -> Result<Bool, any Error>.Publisher
    * @availability iOS 13.0+
    */
-  tryAllSatisfy(predicate: ((arg0: unknown) => boolean)): $SDK18 { return callSDK<$SDK18>("Combine_5d69670f0307b385", 1053379484437931, this, [predicate], [{"callback":{"out":[]}}], true); }
+  tryAllSatisfy(predicate: ((arg0: unknown) => boolean)): $SDK18 { return callSDK<$SDK18>("Combine_6be9a005889899ab", 1053379484437931, this, [predicate], [{"callback":{"out":[]}}], true); }
   /**
    * func tryRemoveDuplicates(by predicate: (Output, Output) throws -> Bool) -> Result<Output, any Error>.Publisher
    * @availability iOS 13.0+
    */
-  tryRemoveDuplicates(predicate: ((arg0: unknown, arg1: unknown) => boolean)): $SDK20 { return callSDK<$SDK20>("Combine_5d69670f0307b385", 87783295129766, this, [predicate], [{"callback":{"out":[]}}], true); }
+  tryRemoveDuplicates(predicate: ((arg0: unknown, arg1: unknown) => boolean)): $SDK20 { return callSDK<$SDK20>("Combine_6be9a005889899ab", 87783295129766, this, [predicate], [{"callback":{"out":[]}}], true); }
   /**
    * func last() -> Just<Output>
    * @availability iOS 13.0+
    */
-  last(): Just<unknown> { return callSDK<Just<unknown>>("Combine_5d69670f0307b385", 835781149282624, this, []); }
+  last(): Just<unknown> { return callSDK<Just<unknown>>("Combine_6be9a005889899ab", 835781149282624, this, []); }
   /**
    * func count() -> Just<Int>
    * @availability iOS 13.0+
    */
-  count(): Just<number> { return callSDK<Just<number>>("Combine_5d69670f0307b385", 2017450626370472, this, []); }
+  count(): Just<number> { return callSDK<Just<number>>("Combine_6be9a005889899ab", 2017450626370472, this, []); }
   /**
    * func first() -> Just<Output>
    * @availability iOS 13.0+
    */
-  first(): Just<unknown> { return callSDK<Just<unknown>>("Combine_5d69670f0307b385", 2355262858583501, this, []); }
+  first(): Just<unknown> { return callSDK<Just<unknown>>("Combine_6be9a005889899ab", 2355262858583501, this, []); }
   /**
    * func retry(_ times: Int) -> Just<Output>
    * @availability iOS 13.0+
    */
-  retry(times: number): Just<unknown> { return callSDK<Just<unknown>>("Combine_5d69670f0307b385", 2685572439982987, this, [times]); }
+  retry(times: number): Just<unknown> { return callSDK<Just<unknown>>("Combine_6be9a005889899ab", 2685572439982987, this, [times]); }
   /**
    * func output(at index: Int) -> Optional<Output>.Publisher
    * @availability iOS 13.0+
    */
-  outputAt(index: number): $SDK22 { return callSDK<$SDK22>("Combine_5d69670f0307b385", 891965440523858, this, [index]); }
+  outputAt(index: number): $SDK22 { return callSDK<$SDK22>("Combine_6be9a005889899ab", 891965440523858, this, [index]); }
   /**
    * func output<R>(in range: R) -> Optional<Output>.Publisher where R : RangeExpression, R.Bound == Int
    * @availability iOS 13.0+
    */
-  outputIn(range: SDKHandle): $SDK22 { return callSDK<$SDK22>("Combine_5d69670f0307b385", 627428301365673, this, [range]); }
+  outputIn(range: SDKHandle): $SDK22 { return callSDK<$SDK22>("Combine_6be9a005889899ab", 627428301365673, this, [range]); }
   /**
    * let output: Output
    * @availability iOS 13.0+
    */
-  get output(): unknown { return callSDK<unknown>("Combine_5d69670f0307b385", 1411266861571630, this, []); }
+  get output(): unknown { return callSDK<unknown>("Combine_6be9a005889899ab", 1411266861571630, this, []); }
   /**
    * func prefix(_ maxLength: Int) -> Optional<Output>.Publisher
    * @availability iOS 13.0+
    */
-  prefix(maxLength: number): $SDK22 { return callSDK<$SDK22>("Combine_5d69670f0307b385", 3245625795632563, this, [maxLength]); }
+  prefix(maxLength: number): $SDK22 { return callSDK<$SDK22>("Combine_6be9a005889899ab", 3245625795632563, this, [maxLength]); }
   /**
    * func tryMap<T>(_ transform: (Output) throws -> T) -> Result<T, any Error>.Publisher
    * @availability iOS 13.0+
    */
-  tryMap(transform: ((arg0: unknown) => unknown)): $SDK20 { return callSDK<$SDK20>("Combine_5d69670f0307b385", 1268534638929112, this, [transform], [{"callback":{"out":[]}}], true); }
+  tryMap(transform: ((arg0: unknown) => unknown)): $SDK20 { return callSDK<$SDK20>("Combine_6be9a005889899ab", 1268534638929112, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * func collect() -> Just<[Output]>
    * @availability iOS 13.0+
    */
-  collect(): Just<Array<unknown>> { return callSDK<Just<Array<unknown>>>("Combine_5d69670f0307b385", 2617947304009548, this, []); }
+  collect(): Just<Array<unknown>> { return callSDK<Just<Array<unknown>>>("Combine_6be9a005889899ab", 2617947304009548, this, []); }
   /**
    * func tryScan<T>(_ initialResult: T, _ nextPartialResult: (T, Output) throws -> T) -> Result<T, any Error>.Publisher
    * @availability iOS 13.0+
    */
-  tryScan(initialResult: unknown, nextPartialResult: $SDK24): $SDK20 { return callSDK<$SDK20>("Combine_5d69670f0307b385", 1037053744057106, this, [initialResult, nextPartialResult], [null,{"callback":{"out":[]}}], true); }
+  tryScan(initialResult: unknown, nextPartialResult: $SDK24): $SDK20 { return callSDK<$SDK20>("Combine_6be9a005889899ab", 1037053744057106, this, [initialResult, nextPartialResult], [null,{"callback":{"out":[]}}], true); }
   /**
    * func dropFirst(_ count: Int = 1) -> Optional<Output>.Publisher
    * @availability iOS 13.0+
    */
-  dropFirst(count?: number): $SDK22 { return callSDK<$SDK22>("Combine_5d69670f0307b385", 153351474070666, this, [count]); }
+  dropFirst(count?: number): $SDK22 { return callSDK<$SDK22>("Combine_6be9a005889899ab", 153351474070666, this, [count]); }
   /**
    * func tryReduce<T>(_ initialResult: T, _ nextPartialResult: (T, Output) throws -> T) -> Result<T, any Error>.Publisher
    * @availability iOS 13.0+
    */
-  tryReduce(initialResult: unknown, nextPartialResult: $SDK24): $SDK20 { return callSDK<$SDK20>("Combine_5d69670f0307b385", 1328819454966396, this, [initialResult, nextPartialResult], [null,{"callback":{"out":[]}}], true); }
+  tryReduce(initialResult: unknown, nextPartialResult: $SDK24): $SDK20 { return callSDK<$SDK20>("Combine_6be9a005889899ab", 1328819454966396, this, [initialResult, nextPartialResult], [null,{"callback":{"out":[]}}], true); }
   /**
    * func removeDuplicates() -> Just<Output>
    * @availability iOS 13.0+
    */
-  removeDuplicates(): Just<number> { return callSDK<Just<number>>("Combine_5d69670f0307b385", 2944790764821022, this, []); }
+  removeDuplicates(): Just<number> { return callSDK<Just<number>>("Combine_6be9a005889899ab", 2944790764821022, this, []); }
   /**
    * func contains(_ output: Output) -> Just<Bool>
    * @availability iOS 13.0+
    */
-  contains(output: number): Just<boolean> { return callSDK<Just<boolean>>("Combine_5d69670f0307b385", 321865348661969, this, [output]); }
+  contains(output: number): Just<boolean> { return callSDK<Just<boolean>>("Combine_6be9a005889899ab", 321865348661969, this, [output]); }
   /**
    * init(_ output: Output)
    * @availability iOS 13.0+
    */
-  static init(output: unknown): Just<unknown> { return callSDK<Just<unknown>>("Combine_5d69670f0307b385", 839694601731200, undefined, [output]); }
+  static init(output: unknown): Just<unknown> { return callSDK<Just<unknown>>("Combine_6be9a005889899ab", 839694601731200, undefined, [output]); }
   declare readonly $type: { "s:7Combine4JustV": true };
   declare readonly $element: Output;
 }
@@ -679,12 +679,12 @@ export class ObservableObjectPublisher extends SDKHandle {
    * final func send()
    * @availability iOS 13.0+
    */
-  send(): void { return callSDK<void>("Combine_5d69670f0307b385", 182875737114554, this, []); }
+  send(): void { return callSDK<void>("Combine_6be9a005889899ab", 182875737114554, this, []); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): ObservableObjectPublisher { return callSDK<ObservableObjectPublisher>("Combine_5d69670f0307b385", 1161401281867091, undefined, []); }
+  static init(): ObservableObjectPublisher { return callSDK<ObservableObjectPublisher>("Combine_6be9a005889899ab", 1161401281867091, undefined, []); }
   declare readonly $type: { "s:7Combine25ObservableObjectPublisherC": true };
   declare readonly $element: void;
 }
@@ -731,22 +731,22 @@ export class PassthroughSubject<Output = unknown, Failure = unknown> extends SDK
    * final func send(completion: Subscribers.Completion<Failure>)
    * @availability iOS 13.0+
    */
-  sendCompletion(completion: $SDK3): void { return callSDK<void>("Combine_5d69670f0307b385", 2917157912608839, this, [completion]); }
+  sendCompletion(completion: $SDK3): void { return callSDK<void>("Combine_6be9a005889899ab", 2917157912608839, this, [completion]); }
   /**
    * final func send(subscription: any Subscription)
    * @availability iOS 13.0+
    */
-  sendSubscription(subscription: SDKHandle): void { return callSDK<void>("Combine_5d69670f0307b385", 620928772921956, this, [subscription]); }
+  sendSubscription(subscription: SDKHandle): void { return callSDK<void>("Combine_6be9a005889899ab", 620928772921956, this, [subscription]); }
   /**
    * final func send(_ input: Output)
    * @availability iOS 13.0+
    */
-  send(input: unknown): void { return callSDK<void>("Combine_5d69670f0307b385", 3653813583693817, this, [input]); }
+  send(input: unknown): void { return callSDK<void>("Combine_6be9a005889899ab", 3653813583693817, this, [input]); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): PassthroughSubject<unknown, NativeError> { return callSDK<PassthroughSubject<unknown, NativeError>>("Combine_5d69670f0307b385", 3150910549193660, undefined, []); }
+  static init(): PassthroughSubject<unknown, NativeError> { return callSDK<PassthroughSubject<unknown, NativeError>>("Combine_6be9a005889899ab", 3150910549193660, undefined, []); }
   declare readonly $type: { "s:7Combine18PassthroughSubjectC": true };
   declare readonly $element: Output;
 }
@@ -760,17 +760,17 @@ export class Published<Value = unknown> extends SDKHandle {
    * init(initialValue: Value)
    * @availability iOS 13.0+
    */
-  static initInitialValue(initialValue: unknown): Published<unknown> { return callSDK<Published<unknown>>("Combine_5d69670f0307b385", 2647717229962985, undefined, [initialValue]); }
+  static initInitialValue(initialValue: unknown): Published<unknown> { return callSDK<Published<unknown>>("Combine_6be9a005889899ab", 2647717229962985, undefined, [initialValue]); }
   /**
    * init(wrappedValue: Value)
    * @availability iOS 13.0+
    */
-  static initWrappedValue(wrappedValue: unknown): Published<unknown> { return callSDK<Published<unknown>>("Combine_5d69670f0307b385", 1813378907439121, undefined, [wrappedValue]); }
+  static initWrappedValue(wrappedValue: unknown): Published<unknown> { return callSDK<Published<unknown>>("Combine_6be9a005889899ab", 1813378907439121, undefined, [wrappedValue]); }
   /**
    * var projectedValue: Published<Value>.Publisher { mutating get set }
    * @availability iOS 13.0+
    */
-  set projectedValue(value: Published_Publisher<unknown>) { callSDK<void>("Combine_5d69670f0307b385", 1752986923645967, this, [value]); }
+  set projectedValue(value: Published_Publisher<unknown>) { callSDK<void>("Combine_6be9a005889899ab", 1752986923645967, this, [value]); }
   declare readonly $type: { "s:7Combine9PublishedV": true };
 }
 
@@ -845,17 +845,17 @@ export class Publishers_AssertNoFailure<Upstream = unknown> extends SDKHandle {
    * let file: StaticString
    * @availability iOS 13.0+
    */
-  get file(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 3566330118819686, this, []); }
+  get file(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 3566330118819686, this, []); }
   /**
    * let line: UInt
    * @availability iOS 13.0+
    */
-  get line(): number { return callSDK<number>("Combine_5d69670f0307b385", 3122300449831367, this, []); }
+  get line(): number { return callSDK<number>("Combine_6be9a005889899ab", 3122300449831367, this, []); }
   /**
    * let prefix: String
    * @availability iOS 13.0+
    */
-  get prefix(): string { return callSDK<string>("Combine_5d69670f0307b385", 170908279075634, this, []); }
+  get prefix(): string { return callSDK<string>("Combine_6be9a005889899ab", 170908279075634, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO15AssertNoFailureV": true };
   declare readonly $element: Publishers_AssertNoFailure_Output<unknown>;
 }
@@ -881,12 +881,12 @@ export class Publishers_Autoconnect<Upstream = unknown> extends SDKHandle {
    * init(upstream: Upstream)
    * @availability iOS 13.0+
    */
-  static init(upstream: _Foundation_Timer_TimerPublisher): Publishers_Autoconnect<_Foundation_Timer_TimerPublisher> { return callSDK<Publishers_Autoconnect<_Foundation_Timer_TimerPublisher>>("Combine_5d69670f0307b385", 2745162266780766, undefined, [upstream]); }
+  static init(upstream: _Foundation_Timer_TimerPublisher): Publishers_Autoconnect<_Foundation_Timer_TimerPublisher> { return callSDK<Publishers_Autoconnect<_Foundation_Timer_TimerPublisher>>("Combine_6be9a005889899ab", 2745162266780766, undefined, [upstream]); }
   /**
    * final let upstream: Upstream
    * @availability iOS 13.0+
    */
-  get upstream(): _Foundation_Timer_TimerPublisher { return callSDK<_Foundation_Timer_TimerPublisher>("Combine_5d69670f0307b385", 2796281119289617, this, []); }
+  get upstream(): _Foundation_Timer_TimerPublisher { return callSDK<_Foundation_Timer_TimerPublisher>("Combine_6be9a005889899ab", 2796281119289617, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO11AutoconnectC": true };
   declare readonly $element: Publishers_Autoconnect_Output<unknown>;
 }
@@ -912,12 +912,12 @@ export class Publishers_Breakpoint<Upstream = unknown> extends SDKHandle {
    * let receiveCompletion: ((Subscribers.Completion<Publishers.Breakpoint<Upstream>.Failure>) -> Bool)?
    * @availability iOS 13.0+
    */
-  get receiveCompletion(): (((arg0: Subscribers_Completion<SDKHandle>) => Promise<boolean>)) | null { return callSDK<(((arg0: Subscribers_Completion<SDKHandle>) => Promise<boolean>)) | null>("Combine_5d69670f0307b385", 2596555224961521, this, []); }
+  get receiveCompletion(): (((arg0: Subscribers_Completion<SDKHandle>) => Promise<boolean>)) | null { return callSDK<(((arg0: Subscribers_Completion<SDKHandle>) => Promise<boolean>)) | null>("Combine_6be9a005889899ab", 2596555224961521, this, []); }
   /**
    * let receiveSubscription: ((any Subscription) -> Bool)?
    * @availability iOS 13.0+
    */
-  get receiveSubscription(): (((arg0: SDKHandle) => Promise<boolean>)) | null { return callSDK<(((arg0: SDKHandle) => Promise<boolean>)) | null>("Combine_5d69670f0307b385", 1366049490041890, this, []); }
+  get receiveSubscription(): (((arg0: SDKHandle) => Promise<boolean>)) | null { return callSDK<(((arg0: SDKHandle) => Promise<boolean>)) | null>("Combine_6be9a005889899ab", 1366049490041890, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO10BreakpointV": true };
   declare readonly $element: Publishers_Breakpoint_Output<unknown>;
 }
@@ -943,17 +943,17 @@ export class Publishers_Buffer<Upstream = unknown> extends SDKHandle {
    * let size: Int
    * @availability iOS 13.0+
    */
-  get size(): number { return callSDK<number>("Combine_5d69670f0307b385", 795172310286434, this, []); }
+  get size(): number { return callSDK<number>("Combine_6be9a005889899ab", 795172310286434, this, []); }
   /**
    * let prefetch: Publishers.PrefetchStrategy
    * @availability iOS 13.0+
    */
-  get prefetch(): Publishers_PrefetchStrategy { return callSDK<Publishers_PrefetchStrategy>("Combine_5d69670f0307b385", 2789965832586803, this, []); }
+  get prefetch(): Publishers_PrefetchStrategy { return callSDK<Publishers_PrefetchStrategy>("Combine_6be9a005889899ab", 2789965832586803, this, []); }
   /**
    * let whenFull: Publishers.BufferingStrategy<Publishers.Buffer<Upstream>.Failure>
    * @availability iOS 13.0+
    */
-  get whenFull(): Publishers_BufferingStrategy<SDKHandle> { return callSDK<Publishers_BufferingStrategy<SDKHandle>>("Combine_5d69670f0307b385", 3188541830472729, this, []); }
+  get whenFull(): Publishers_BufferingStrategy<SDKHandle> { return callSDK<Publishers_BufferingStrategy<SDKHandle>>("Combine_6be9a005889899ab", 3188541830472729, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO6BufferV": true };
   declare readonly $element: Publishers_Buffer_Output<unknown>;
 }
@@ -1029,7 +1029,7 @@ export class Publishers_CollectByCount<Upstream = unknown> extends SDKHandle {
    * let count: Int
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("Combine_5d69670f0307b385", 4291638195588705, this, []); }
+  get count(): number { return callSDK<number>("Combine_6be9a005889899ab", 4291638195588705, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO14CollectByCountV": true };
   declare readonly $element: Publishers_CollectByCount_Output<unknown>;
 }
@@ -1055,7 +1055,7 @@ export class Publishers_CollectByTime<Upstream = unknown, Context = unknown> ext
    * let strategy: Publishers.TimeGroupingStrategy<Context>
    * @availability iOS 13.0+
    */
-  get strategy(): Publishers_TimeGroupingStrategy<SDKHandle> { return callSDK<Publishers_TimeGroupingStrategy<SDKHandle>>("Combine_5d69670f0307b385", 2130880091973653, this, []); }
+  get strategy(): Publishers_TimeGroupingStrategy<SDKHandle> { return callSDK<Publishers_TimeGroupingStrategy<SDKHandle>>("Combine_6be9a005889899ab", 2130880091973653, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO13CollectByTimeV": true };
   declare readonly $element: Publishers_CollectByTime_Output<unknown, unknown>;
 }
@@ -1201,7 +1201,7 @@ export class Publishers_Contains<Upstream = unknown> extends SDKHandle {
    * let output: Upstream.Output
    * @availability iOS 13.0+
    */
-  get output(): number { return callSDK<number>("Combine_5d69670f0307b385", 3367784787516619, this, []); }
+  get output(): number { return callSDK<number>("Combine_6be9a005889899ab", 3367784787516619, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO8ContainsV": true };
   declare readonly $element: Publishers_Contains_Output<unknown>;
 }
@@ -1326,7 +1326,7 @@ export class Publishers_Drop<Upstream = unknown> extends SDKHandle {
    * let count: Int
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("Combine_5d69670f0307b385", 3404166454566005, this, []); }
+  get count(): number { return callSDK<number>("Combine_6be9a005889899ab", 3404166454566005, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO4DropV": true };
   declare readonly $element: Publishers_Drop_Output<unknown>;
 }
@@ -1373,7 +1373,7 @@ export class Publishers_DropWhile<Upstream = unknown> extends SDKHandle {
    * let predicate: (Publishers.DropWhile<Upstream>.Output) -> Bool
    * @availability iOS 13.0+
    */
-  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_5d69670f0307b385", 1375602735020385, this, []); }
+  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_6be9a005889899ab", 1375602735020385, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO9DropWhileV": true };
   declare readonly $element: Publishers_DropWhile_Output<unknown>;
 }
@@ -1462,7 +1462,7 @@ export class Publishers_FirstWhere<Upstream = unknown> extends SDKHandle {
    * let predicate: (Publishers.FirstWhere<Upstream>.Output) -> Bool
    * @availability iOS 13.0+
    */
-  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_5d69670f0307b385", 1680205974376870, this, []); }
+  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_6be9a005889899ab", 1680205974376870, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO10FirstWhereV": true };
   declare readonly $element: Publishers_FirstWhere_Output<unknown>;
 }
@@ -1488,7 +1488,7 @@ export class Publishers_FlatMap<NewPublisher = unknown, Upstream = unknown> exte
    * let maxPublishers: Subscribers.Demand
    * @availability iOS 13.0+
    */
-  get maxPublishers(): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_5d69670f0307b385", 4368414471773211, this, []); }
+  get maxPublishers(): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_6be9a005889899ab", 4368414471773211, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO7FlatMapV": true };
   declare readonly $element: Publishers_FlatMap_Output<unknown, unknown>;
 }
@@ -1514,32 +1514,32 @@ export class Publishers_HandleEvents<Upstream = unknown> extends SDKHandle {
    * var receiveCancel: (() -> Void)?
    * @availability iOS 13.0+
    */
-  get receiveCancel(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("Combine_5d69670f0307b385", 1579138450758759, this, []); }
-  set receiveCancel(value: ((() => void)) | null) { callSDK<void>("Combine_5d69670f0307b385", 2116817468632339, this, [value], [{"callback":{"out":[]}}]); }
+  get receiveCancel(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("Combine_6be9a005889899ab", 1579138450758759, this, []); }
+  set receiveCancel(value: ((() => void)) | null) { callSDK<void>("Combine_6be9a005889899ab", 2116817468632339, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var receiveOutput: ((Publishers.HandleEvents<Upstream>.Output) -> Void)?
    * @availability iOS 13.0+
    */
-  get receiveOutput(): $SDK65 { return callSDK<$SDK65>("Combine_5d69670f0307b385", 72815675754843, this, []); }
-  set receiveOutput(value: $SDK1) { callSDK<void>("Combine_5d69670f0307b385", 2840869468581485, this, [value], [{"callback":{"out":[]}}]); }
+  get receiveOutput(): $SDK65 { return callSDK<$SDK65>("Combine_6be9a005889899ab", 72815675754843, this, []); }
+  set receiveOutput(value: $SDK1) { callSDK<void>("Combine_6be9a005889899ab", 2840869468581485, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var receiveRequest: ((Subscribers.Demand) -> Void)?
    * @availability iOS 13.0+
    */
-  get receiveRequest(): (((arg0: Subscribers_Demand) => Promise<void>)) | null { return callSDK<(((arg0: Subscribers_Demand) => Promise<void>)) | null>("Combine_5d69670f0307b385", 772771838915689, this, []); }
-  set receiveRequest(value: (((arg0: Subscribers_Demand) => void)) | null) { callSDK<void>("Combine_5d69670f0307b385", 608538420099473, this, [value], [{"callback":{"out":[]}}]); }
+  get receiveRequest(): (((arg0: Subscribers_Demand) => Promise<void>)) | null { return callSDK<(((arg0: Subscribers_Demand) => Promise<void>)) | null>("Combine_6be9a005889899ab", 772771838915689, this, []); }
+  set receiveRequest(value: (((arg0: Subscribers_Demand) => void)) | null) { callSDK<void>("Combine_6be9a005889899ab", 608538420099473, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var receiveCompletion: ((Subscribers.Completion<Publishers.HandleEvents<Upstream>.Failure>) -> Void)?
    * @availability iOS 13.0+
    */
-  get receiveCompletion(): (((arg0: Subscribers_Completion<SDKHandle>) => Promise<void>)) | null { return callSDK<(((arg0: Subscribers_Completion<SDKHandle>) => Promise<void>)) | null>("Combine_5d69670f0307b385", 753533361455780, this, []); }
-  set receiveCompletion(value: (((arg0: Subscribers_Completion<SDKHandle>) => void)) | null) { callSDK<void>("Combine_5d69670f0307b385", 3640613989545101, this, [value], [{"callback":{"out":[]}}]); }
+  get receiveCompletion(): (((arg0: Subscribers_Completion<SDKHandle>) => Promise<void>)) | null { return callSDK<(((arg0: Subscribers_Completion<SDKHandle>) => Promise<void>)) | null>("Combine_6be9a005889899ab", 753533361455780, this, []); }
+  set receiveCompletion(value: (((arg0: Subscribers_Completion<SDKHandle>) => void)) | null) { callSDK<void>("Combine_6be9a005889899ab", 3640613989545101, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var receiveSubscription: ((any Subscription) -> Void)?
    * @availability iOS 13.0+
    */
-  get receiveSubscription(): $SDK65 { return callSDK<$SDK65>("Combine_5d69670f0307b385", 826318054655380, this, []); }
-  set receiveSubscription(value: $SDK1) { callSDK<void>("Combine_5d69670f0307b385", 1441994484259497, this, [value], [{"callback":{"out":[]}}]); }
+  get receiveSubscription(): $SDK65 { return callSDK<$SDK65>("Combine_6be9a005889899ab", 826318054655380, this, []); }
+  set receiveSubscription(value: $SDK1) { callSDK<void>("Combine_6be9a005889899ab", 1441994484259497, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7Combine10PublishersO12HandleEventsV": true };
   declare readonly $element: Publishers_HandleEvents_Output<unknown>;
 }
@@ -1607,7 +1607,7 @@ export class Publishers_LastWhere<Upstream = unknown> extends SDKHandle {
    * let predicate: (Publishers.LastWhere<Upstream>.Output) -> Bool
    * @availability iOS 13.0+
    */
-  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_5d69670f0307b385", 4048912186181720, this, []); }
+  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_6be9a005889899ab", 4048912186181720, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO9LastWhereV": true };
   declare readonly $element: Publishers_LastWhere_Output<unknown>;
 }
@@ -1633,7 +1633,7 @@ export class Publishers_MakeConnectable<Upstream = unknown> extends SDKHandle {
    * func connect() -> any Cancellable
    * @availability iOS 13.0+
    */
-  connect(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 2268721504910131, this, []); }
+  connect(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 2268721504910131, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO15MakeConnectableV": true };
   declare readonly $element: Publishers_MakeConnectable_Output<unknown>;
 }
@@ -1935,7 +1935,7 @@ export class Publishers_Multicast<Upstream = unknown, SubjectType = unknown> ext
    * final func connect() -> any Cancellable
    * @availability iOS 13.0+
    */
-  connect(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 3251727604710029, this, []); }
+  connect(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 3251727604710029, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO9MulticastC": true };
   declare readonly $element: Publishers_Multicast_Output<unknown, unknown>;
 }
@@ -1961,7 +1961,7 @@ export class Publishers_Output<Upstream = unknown> extends SDKHandle {
    * let range: CountableRange<Int>
    * @availability iOS 13.0+
    */
-  get range(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 1249123541675896, this, []); }
+  get range(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 1249123541675896, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO6OutputV": true };
   declare readonly $element: Publishers_Output_Output<unknown>;
 }
@@ -2014,7 +2014,7 @@ export class Publishers_PrefixWhile<Upstream = unknown> extends SDKHandle {
    * let predicate: (Publishers.PrefixWhile<Upstream>.Output) -> Bool
    * @availability iOS 13.0+
    */
-  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_5d69670f0307b385", 782816709741538, this, []); }
+  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_6be9a005889899ab", 782816709741538, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO11PrefixWhileV": true };
   declare readonly $element: Publishers_PrefixWhile_Output<unknown>;
 }
@@ -2040,12 +2040,12 @@ export class Publishers_Print<Upstream = unknown> extends SDKHandle {
    * let prefix: String
    * @availability iOS 13.0+
    */
-  get prefix(): string { return callSDK<string>("Combine_5d69670f0307b385", 1054404787333445, this, []); }
+  get prefix(): string { return callSDK<string>("Combine_6be9a005889899ab", 1054404787333445, this, []); }
   /**
    * let stream: (any TextOutputStream)?
    * @availability iOS 13.0+
    */
-  get stream(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Combine_5d69670f0307b385", 2464655791129741, this, []); }
+  get stream(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Combine_6be9a005889899ab", 2464655791129741, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO5PrintV": true };
   declare readonly $element: Publishers_Print_Output<unknown>;
 }
@@ -2092,7 +2092,7 @@ export class Publishers_Reduce<Upstream = unknown, Output = unknown> extends SDK
    * let initial: Output
    * @availability iOS 13.0+
    */
-  get initial(): unknown { return callSDK<unknown>("Combine_5d69670f0307b385", 4023188456112617, this, []); }
+  get initial(): unknown { return callSDK<unknown>("Combine_6be9a005889899ab", 4023188456112617, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO6ReduceV": true };
   declare readonly $element: Output;
 }
@@ -2112,7 +2112,7 @@ export class Publishers_RemoveDuplicates<Upstream = unknown> extends SDKHandle {
    * let predicate: (Publishers.RemoveDuplicates<Upstream>.Output, Publishers.RemoveDuplicates<Upstream>.Output) -> Bool
    * @availability iOS 13.0+
    */
-  get predicate(): $SDK94 { return callSDK<$SDK94>("Combine_5d69670f0307b385", 2166705009428172, this, []); }
+  get predicate(): $SDK94 { return callSDK<$SDK94>("Combine_6be9a005889899ab", 2166705009428172, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO16RemoveDuplicatesV": true };
   declare readonly $element: Publishers_RemoveDuplicates_Output<unknown>;
 }
@@ -2138,7 +2138,7 @@ export class Publishers_ReplaceEmpty<Upstream = unknown> extends SDKHandle {
    * let output: Publishers.ReplaceEmpty<Upstream>.Output
    * @availability iOS 13.0+
    */
-  get output(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 2000572276828904, this, []); }
+  get output(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 2000572276828904, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO12ReplaceEmptyV": true };
   declare readonly $element: Publishers_ReplaceEmpty_Output<unknown>;
 }
@@ -2164,7 +2164,7 @@ export class Publishers_ReplaceError<Upstream = unknown> extends SDKHandle {
    * let output: Publishers.ReplaceError<Upstream>.Output
    * @availability iOS 13.0+
    */
-  get output(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 876425155614077, this, []); }
+  get output(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 876425155614077, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO12ReplaceErrorV": true };
   declare readonly $element: Publishers_ReplaceError_Output<unknown>;
 }
@@ -2190,7 +2190,7 @@ export class Publishers_Retry<Upstream = unknown> extends SDKHandle {
    * let retries: Int?
    * @availability iOS 13.0+
    */
-  get retries(): (number) | null { return callSDK<(number) | null>("Combine_5d69670f0307b385", 1165619649065346, this, []); }
+  get retries(): (number) | null { return callSDK<(number) | null>("Combine_6be9a005889899ab", 1165619649065346, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO5RetryV": true };
   declare readonly $element: Publishers_Retry_Output<unknown>;
 }
@@ -2216,7 +2216,7 @@ export class Publishers_Scan<Upstream = unknown, Output = unknown> extends SDKHa
    * let initialResult: Output
    * @availability iOS 13.0+
    */
-  get initialResult(): unknown { return callSDK<unknown>("Combine_5d69670f0307b385", 801876179827504, this, []); }
+  get initialResult(): unknown { return callSDK<unknown>("Combine_6be9a005889899ab", 801876179827504, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO4ScanV": true };
   declare readonly $element: Output;
 }
@@ -2236,42 +2236,42 @@ export class Publishers_Sequence<Elements = unknown, Failure = unknown> extends 
    * func tryContains(where predicate: (Publishers.Sequence<Elements, Failure>.Output) throws -> Bool) -> Result<Bool, any Error>.Publisher
    * @availability iOS 13.0+
    */
-  tryContains(predicate: $SDK99): $SDK18 { return callSDK<$SDK18>("Combine_5d69670f0307b385", 934771328028088, this, [predicate], [{"callback":{"out":[]}}], true); }
+  tryContains(predicate: $SDK99): $SDK18 { return callSDK<$SDK18>("Combine_6be9a005889899ab", 934771328028088, this, [predicate], [{"callback":{"out":[]}}], true); }
   /**
    * func ignoreOutput() -> Empty<Publishers.Sequence<Elements, Failure>.Output, Failure>
    * @availability iOS 13.0+
    */
-  ignoreOutput(): Empty<SDKHandle, NativeError> { return callSDK<Empty<SDKHandle, NativeError>>("Combine_5d69670f0307b385", 345561010272488, this, []); }
+  ignoreOutput(): Empty<SDKHandle, NativeError> { return callSDK<Empty<SDKHandle, NativeError>>("Combine_6be9a005889899ab", 345561010272488, this, []); }
   /**
    * func tryAllSatisfy(_ predicate: (Publishers.Sequence<Elements, Failure>.Output) throws -> Bool) -> Result<Bool, any Error>.Publisher
    * @availability iOS 13.0+
    */
-  tryAllSatisfy(predicate: $SDK99): $SDK18 { return callSDK<$SDK18>("Combine_5d69670f0307b385", 924818565438716, this, [predicate], [{"callback":{"out":[]}}], true); }
+  tryAllSatisfy(predicate: $SDK99): $SDK18 { return callSDK<$SDK18>("Combine_6be9a005889899ab", 924818565438716, this, [predicate], [{"callback":{"out":[]}}], true); }
   /**
    * func prefix(_ maxLength: Int) -> Publishers.Sequence<PrefixSequence<Elements>, Failure>
    * @availability iOS 13.0+
    */
-  prefix(maxLength: number): $SDK101 { return callSDK<$SDK101>("Combine_5d69670f0307b385", 477105123731604, this, [maxLength]); }
+  prefix(maxLength: number): $SDK101 { return callSDK<$SDK101>("Combine_6be9a005889899ab", 477105123731604, this, [maxLength]); }
   /**
    * func collect() -> Result<[Publishers.Sequence<Elements, Failure>.Output], Failure>.Publisher
    * @availability iOS 13.0+
    */
-  collect(): Result_Publisher<Array<SDKHandle>, NativeError> { return callSDK<Result_Publisher<Array<SDKHandle>, NativeError>>("Combine_5d69670f0307b385", 629972999327830, this, []); }
+  collect(): Result_Publisher<Array<SDKHandle>, NativeError> { return callSDK<Result_Publisher<Array<SDKHandle>, NativeError>>("Combine_6be9a005889899ab", 629972999327830, this, []); }
   /**
    * func dropFirst(_ count: Int = 1) -> Publishers.Sequence<DropFirstSequence<Elements>, Failure>
    * @availability iOS 13.0+
    */
-  dropFirst(count?: number): $SDK101 { return callSDK<$SDK101>("Combine_5d69670f0307b385", 839951637556131, this, [count]); }
+  dropFirst(count?: number): $SDK101 { return callSDK<$SDK101>("Combine_6be9a005889899ab", 839951637556131, this, [count]); }
   /**
    * func removeDuplicates() -> Publishers.Sequence<[Publishers.Sequence<Elements, Failure>.Output], Failure>
    * @availability iOS 13.0+
    */
-  removeDuplicates(): Publishers_Sequence<Array<number>, NativeError> { return callSDK<Publishers_Sequence<Array<number>, NativeError>>("Combine_5d69670f0307b385", 3873322608372779, this, []); }
+  removeDuplicates(): Publishers_Sequence<Array<number>, NativeError> { return callSDK<Publishers_Sequence<Array<number>, NativeError>>("Combine_6be9a005889899ab", 3873322608372779, this, []); }
   /**
    * func contains(_ output: Elements.Element) -> Result<Bool, Failure>.Publisher
    * @availability iOS 13.0+
    */
-  contains(output: number): $SDK18 { return callSDK<$SDK18>("Combine_5d69670f0307b385", 1555581273845430, this, [output]); }
+  contains(output: number): $SDK18 { return callSDK<$SDK18>("Combine_6be9a005889899ab", 1555581273845430, this, [output]); }
   declare readonly $type: { "s:7Combine10PublishersO8SequenceV": true };
   declare readonly $element: Publishers_Sequence_Output<unknown, unknown>;
 }
@@ -2369,7 +2369,7 @@ export class Publishers_Throttle<Upstream = unknown, Context = unknown> extends 
    * let latest: Bool
    * @availability iOS 13.0+
    */
-  get latest(): boolean { return callSDK<boolean>("Combine_5d69670f0307b385", 3842195087557911, this, []); }
+  get latest(): boolean { return callSDK<boolean>("Combine_6be9a005889899ab", 3842195087557911, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO8ThrottleV": true };
   declare readonly $element: Publishers_Throttle_Output<unknown, unknown>;
 }
@@ -2403,7 +2403,7 @@ export class Publishers_Timeout<Upstream = unknown, Context = unknown> extends S
    * let customError: (() -> Publishers.Timeout<Upstream, Context>.Failure)?
    * @availability iOS 13.0+
    */
-  get customError(): ((() => Promise<SDKHandle>)) | null { return callSDK<((() => Promise<SDKHandle>)) | null>("Combine_5d69670f0307b385", 2961411636572405, this, []); }
+  get customError(): ((() => Promise<SDKHandle>)) | null { return callSDK<((() => Promise<SDKHandle>)) | null>("Combine_6be9a005889899ab", 2961411636572405, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO7TimeoutV": true };
   declare readonly $element: Publishers_Timeout_Output<unknown, unknown>;
 }
@@ -2528,7 +2528,7 @@ export class Publishers_TryDropWhile<Upstream = unknown> extends SDKHandle {
    * let predicate: (Publishers.TryDropWhile<Upstream>.Output) throws -> Bool
    * @availability iOS 13.0+
    */
-  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_5d69670f0307b385", 2022348368032727, this, []); }
+  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_6be9a005889899ab", 2022348368032727, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO12TryDropWhileV": true };
   declare readonly $element: Publishers_TryDropWhile_Output<unknown>;
 }
@@ -2575,7 +2575,7 @@ export class Publishers_TryFirstWhere<Upstream = unknown> extends SDKHandle {
    * let predicate: (Publishers.TryFirstWhere<Upstream>.Output) throws -> Bool
    * @availability iOS 13.0+
    */
-  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_5d69670f0307b385", 999087582747661, this, []); }
+  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_6be9a005889899ab", 999087582747661, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO13TryFirstWhereV": true };
   declare readonly $element: Publishers_TryFirstWhere_Output<unknown>;
 }
@@ -2601,7 +2601,7 @@ export class Publishers_TryLastWhere<Upstream = unknown> extends SDKHandle {
    * let predicate: (Publishers.TryLastWhere<Upstream>.Output) throws -> Bool
    * @availability iOS 13.0+
    */
-  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_5d69670f0307b385", 2474707013313763, this, []); }
+  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_6be9a005889899ab", 2474707013313763, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO12TryLastWhereV": true };
   declare readonly $element: Publishers_TryLastWhere_Output<unknown>;
 }
@@ -2642,7 +2642,7 @@ export class Publishers_TryPrefixWhile<Upstream = unknown> extends SDKHandle {
    * let predicate: (Publishers.TryPrefixWhile<Upstream>.Output) throws -> Bool
    * @availability iOS 13.0+
    */
-  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_5d69670f0307b385", 2094165302022290, this, []); }
+  get predicate(): $SDK57 { return callSDK<$SDK57>("Combine_6be9a005889899ab", 2094165302022290, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO14TryPrefixWhileV": true };
   declare readonly $element: Publishers_TryPrefixWhile_Output<unknown>;
 }
@@ -2668,7 +2668,7 @@ export class Publishers_TryReduce<Upstream = unknown, Output = unknown> extends 
    * let initial: Output
    * @availability iOS 13.0+
    */
-  get initial(): unknown { return callSDK<unknown>("Combine_5d69670f0307b385", 349019182488424, this, []); }
+  get initial(): unknown { return callSDK<unknown>("Combine_6be9a005889899ab", 349019182488424, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO9TryReduceV": true };
   declare readonly $element: Output;
 }
@@ -2688,7 +2688,7 @@ export class Publishers_TryRemoveDuplicates<Upstream = unknown> extends SDKHandl
    * let predicate: (Publishers.TryRemoveDuplicates<Upstream>.Output, Publishers.TryRemoveDuplicates<Upstream>.Output) throws -> Bool
    * @availability iOS 13.0+
    */
-  get predicate(): $SDK94 { return callSDK<$SDK94>("Combine_5d69670f0307b385", 461109052596293, this, []); }
+  get predicate(): $SDK94 { return callSDK<$SDK94>("Combine_6be9a005889899ab", 461109052596293, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO19TryRemoveDuplicatesV": true };
   declare readonly $element: Publishers_TryRemoveDuplicates_Output<unknown>;
 }
@@ -2714,7 +2714,7 @@ export class Publishers_TryScan<Upstream = unknown, Output = unknown> extends SD
    * let initialResult: Output
    * @availability iOS 13.0+
    */
-  get initialResult(): unknown { return callSDK<unknown>("Combine_5d69670f0307b385", 4246553563077727, this, []); }
+  get initialResult(): unknown { return callSDK<unknown>("Combine_6be9a005889899ab", 4246553563077727, this, []); }
   declare readonly $type: { "s:7Combine10PublishersO7TryScanV": true };
   declare readonly $element: Output;
 }
@@ -2797,22 +2797,22 @@ export class Record<Output = unknown, Failure = unknown> extends SDKHandle {
    * init(output: [Output], completion: Subscribers.Completion<Failure>)
    * @availability iOS 13.0+
    */
-  static initOutputCompletion(output: Array<unknown>, completion: $SDK3): $SDK125 { return callSDK<$SDK125>("Combine_5d69670f0307b385", 1761028077419555, undefined, [output, completion]); }
+  static initOutputCompletion(output: Array<unknown>, completion: $SDK3): $SDK125 { return callSDK<$SDK125>("Combine_6be9a005889899ab", 1761028077419555, undefined, [output, completion]); }
   /**
    * init(record: (inout Record<Output, Failure>.Recording) -> Void)
    * @availability iOS 13.0+
    */
-  static initRecord(record: ((arg0: Record_Recording<unknown, NativeError>) => void)): $SDK125 { return callSDK<$SDK125>("Combine_5d69670f0307b385", 1755551600240297, undefined, [record], [{"callback":{"out":[]}}]); }
+  static initRecord(record: ((arg0: Record_Recording<unknown, NativeError>) => void)): $SDK125 { return callSDK<$SDK125>("Combine_6be9a005889899ab", 1755551600240297, undefined, [record], [{"callback":{"out":[]}}]); }
   /**
    * let recording: Record<Output, Failure>.Recording
    * @availability iOS 13.0+
    */
-  get recording(): $SDK127 { return callSDK<$SDK127>("Combine_5d69670f0307b385", 974569819264938, this, []); }
+  get recording(): $SDK127 { return callSDK<$SDK127>("Combine_6be9a005889899ab", 974569819264938, this, []); }
   /**
    * init(recording: Record<Output, Failure>.Recording)
    * @availability iOS 13.0+
    */
-  static initRecording(recording: $SDK127): $SDK125 { return callSDK<$SDK125>("Combine_5d69670f0307b385", 1657571868022213, undefined, [recording]); }
+  static initRecording(recording: $SDK127): $SDK125 { return callSDK<$SDK125>("Combine_6be9a005889899ab", 1657571868022213, undefined, [recording]); }
   declare readonly $type: { "s:7Combine6RecordV": true };
   declare readonly $element: Output;
 }
@@ -2826,32 +2826,32 @@ export class Record_Recording<Output = unknown, Failure = unknown> extends SDKHa
    * var completion: Subscribers.Completion<Failure> { get }
    * @availability iOS 13.0+
    */
-  get completion(): $SDK3 { return callSDK<$SDK3>("Combine_5d69670f0307b385", 3487156339515109, this, []); }
+  get completion(): $SDK3 { return callSDK<$SDK3>("Combine_6be9a005889899ab", 3487156339515109, this, []); }
   /**
    * init(output: [Output], completion: Subscribers.Completion<Failure> = .finished)
    * @availability iOS 13.0+
    */
-  static initOutputCompletion(output: Array<unknown>, completion?: $SDK3): $SDK127 { return callSDK<$SDK127>("Combine_5d69670f0307b385", 2602479363602301, undefined, [output, completion]); }
+  static initOutputCompletion(output: Array<unknown>, completion?: $SDK3): $SDK127 { return callSDK<$SDK127>("Combine_6be9a005889899ab", 2602479363602301, undefined, [output, completion]); }
   /**
    * var output: [Output] { get }
    * @availability iOS 13.0+
    */
-  get output(): Array<unknown> { return callSDK<Array<unknown>>("Combine_5d69670f0307b385", 2201235277935906, this, []); }
+  get output(): Array<unknown> { return callSDK<Array<unknown>>("Combine_6be9a005889899ab", 2201235277935906, this, []); }
   /**
    * mutating func receive(completion: Subscribers.Completion<Failure>)
    * @availability iOS 13.0+
    */
-  receiveCompletion(completion: $SDK3): void { return callSDK<void>("Combine_5d69670f0307b385", 2935454887083992, this, [completion]); }
+  receiveCompletion(completion: $SDK3): void { return callSDK<void>("Combine_6be9a005889899ab", 2935454887083992, this, [completion]); }
   /**
    * mutating func receive(_ input: Record<Output, Failure>.Recording.Input)
    * @availability iOS 13.0+
    */
-  receive(input: unknown): void { return callSDK<void>("Combine_5d69670f0307b385", 1961839326516224, this, [input]); }
+  receive(input: unknown): void { return callSDK<void>("Combine_6be9a005889899ab", 1961839326516224, this, [input]); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): $SDK127 { return callSDK<$SDK127>("Combine_5d69670f0307b385", 740916284835254, undefined, []); }
+  static init(): $SDK127 { return callSDK<$SDK127>("Combine_6be9a005889899ab", 740916284835254, undefined, []); }
   declare readonly $type: { "s:7Combine6RecordV9RecordingV": true };
 }
 
@@ -2991,52 +2991,52 @@ export class Subscribers_Assign<Root = unknown, Input = unknown> extends SDKHand
    * final var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("Combine_5d69670f0307b385", 4058079673784397, this, []); }
+  get description(): string { return callSDK<string>("Combine_6be9a005889899ab", 4058079673784397, this, []); }
   /**
    * final var customMirror: Mirror { get }
    * @availability iOS 13.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 2865548151344234, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 2865548151344234, this, []); }
   /**
    * final var playgroundDescription: Any { get }
    * @availability iOS 13.0+
    */
-  get playgroundDescription(): unknown { return callSDK<unknown>("Combine_5d69670f0307b385", 4478774150544632, this, []); }
+  get playgroundDescription(): unknown { return callSDK<unknown>("Combine_6be9a005889899ab", 4478774150544632, this, []); }
   /**
    * final func cancel()
    * @availability iOS 13.0+
    */
-  cancel(): void { return callSDK<void>("Combine_5d69670f0307b385", 2129049181820399, this, []); }
+  cancel(): void { return callSDK<void>("Combine_6be9a005889899ab", 2129049181820399, this, []); }
   /**
    * init(object: Root, keyPath: ReferenceWritableKeyPath<Root, Input>)
    * @availability iOS 13.0+
    */
-  static init(object: unknown, keyPath: SDKHandle): Subscribers_Assign<unknown, unknown> { return callSDK<Subscribers_Assign<unknown, unknown>>("Combine_5d69670f0307b385", 3879182546799864, undefined, [object, keyPath]); }
+  static init(object: unknown, keyPath: SDKHandle): Subscribers_Assign<unknown, unknown> { return callSDK<Subscribers_Assign<unknown, unknown>>("Combine_6be9a005889899ab", 3879182546799864, undefined, [object, keyPath]); }
   /**
    * final var object: Root? { get }
    * @availability iOS 13.0+
    */
-  get object(): (unknown) | null { return callSDK<(unknown) | null>("Combine_5d69670f0307b385", 1279939419727867, this, []); }
+  get object(): (unknown) | null { return callSDK<(unknown) | null>("Combine_6be9a005889899ab", 1279939419727867, this, []); }
   /**
    * final let keyPath: ReferenceWritableKeyPath<Root, Input>
    * @availability iOS 13.0+
    */
-  get keyPath(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 4440949639180681, this, []); }
+  get keyPath(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 4440949639180681, this, []); }
   /**
    * final func receive(completion: Subscribers.Completion<Never>)
    * @availability iOS 13.0+
    */
-  receiveCompletion(completion: Subscribers_Completion<never>): void { return callSDK<void>("Combine_5d69670f0307b385", 3777898268215336, this, [completion]); }
+  receiveCompletion(completion: Subscribers_Completion<never>): void { return callSDK<void>("Combine_6be9a005889899ab", 3777898268215336, this, [completion]); }
   /**
    * final func receive(subscription: any Subscription)
    * @availability iOS 13.0+
    */
-  receiveSubscription(subscription: SDKHandle): void { return callSDK<void>("Combine_5d69670f0307b385", 548485597204482, this, [subscription]); }
+  receiveSubscription(subscription: SDKHandle): void { return callSDK<void>("Combine_6be9a005889899ab", 548485597204482, this, [subscription]); }
   /**
    * final func receive(_ value: Input) -> Subscribers.Demand
    * @availability iOS 13.0+
    */
-  receive(value: unknown): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_5d69670f0307b385", 3482063777591182, this, [value]); }
+  receive(value: unknown): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_6be9a005889899ab", 3482063777591182, this, [value]); }
   declare readonly $type: { "s:7Combine11SubscribersO6AssignC": true };
 }
 
@@ -3063,27 +3063,27 @@ export class Subscribers_Demand extends SDKHandle {
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("Combine_5d69670f0307b385", 3248274619660831, this, []); }
+  get description(): string { return callSDK<string>("Combine_6be9a005889899ab", 3248274619660831, this, []); }
   /**
    * var max: Int? { get }
    * @availability iOS 13.0+
    */
-  get max(): (number) | null { return callSDK<(number) | null>("Combine_5d69670f0307b385", 1363853467314066, this, []); }
+  get max(): (number) | null { return callSDK<(number) | null>("Combine_6be9a005889899ab", 1363853467314066, this, []); }
   /**
    * static func max(_ value: Int) -> Subscribers.Demand
    * @availability iOS 13.0+
    */
-  static max64605(value: number): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_5d69670f0307b385", 29876586121452, undefined, [value]); }
+  static max64605(value: number): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_6be9a005889899ab", 29876586121452, undefined, [value]); }
   /**
    * static let none: Subscribers.Demand
    * @availability iOS 13.0+
    */
-  static get none(): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_5d69670f0307b385", 2617079237409188, undefined, []); }
+  static get none(): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_6be9a005889899ab", 2617079237409188, undefined, []); }
   /**
    * static let unlimited: Subscribers.Demand
    * @availability iOS 13.0+
    */
-  static get unlimited(): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_5d69670f0307b385", 3458258117683440, undefined, []); }
+  static get unlimited(): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_6be9a005889899ab", 3458258117683440, undefined, []); }
   declare readonly $type: { "s:7Combine11SubscribersO6DemandV": true };
 }
 
@@ -3096,52 +3096,52 @@ export class Subscribers_Sink<Input = unknown, Failure = unknown> extends SDKHan
    * final var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("Combine_5d69670f0307b385", 3337982863492770, this, []); }
+  get description(): string { return callSDK<string>("Combine_6be9a005889899ab", 3337982863492770, this, []); }
   /**
    * final var customMirror: Mirror { get }
    * @availability iOS 13.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 4086530013106095, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 4086530013106095, this, []); }
   /**
    * final var receiveValue: (Input) -> Void { get }
    * @availability iOS 13.0+
    */
-  get receiveValue(): ((arg0: unknown) => Promise<void>) { return callSDK<((arg0: unknown) => Promise<void>)>("Combine_5d69670f0307b385", 3141764652438814, this, []); }
+  get receiveValue(): ((arg0: unknown) => Promise<void>) { return callSDK<((arg0: unknown) => Promise<void>)>("Combine_6be9a005889899ab", 3141764652438814, this, []); }
   /**
    * init(receiveCompletion: @escaping (Subscribers.Completion<Failure>) -> Void, receiveValue: @escaping (Input) -> Void)
    * @availability iOS 13.0+
    */
-  static init(receiveCompletion: ((arg0: Subscribers_Completion<NativeError>) => void), receiveValue: ((arg0: unknown) => void)): Subscribers_Sink<unknown, NativeError> { return callSDK<Subscribers_Sink<unknown, NativeError>>("Combine_5d69670f0307b385", 1398669607856444, undefined, [receiveCompletion, receiveValue], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static init(receiveCompletion: ((arg0: Subscribers_Completion<NativeError>) => void), receiveValue: ((arg0: unknown) => void)): Subscribers_Sink<unknown, NativeError> { return callSDK<Subscribers_Sink<unknown, NativeError>>("Combine_6be9a005889899ab", 1398669607856444, undefined, [receiveCompletion, receiveValue], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * final var receiveCompletion: (Subscribers.Completion<Failure>) -> Void { get }
    * @availability iOS 13.0+
    */
-  get receiveCompletion(): ((arg0: Subscribers_Completion<NativeError>) => Promise<void>) { return callSDK<((arg0: Subscribers_Completion<NativeError>) => Promise<void>)>("Combine_5d69670f0307b385", 2917762835954934, this, []); }
+  get receiveCompletion(): ((arg0: Subscribers_Completion<NativeError>) => Promise<void>) { return callSDK<((arg0: Subscribers_Completion<NativeError>) => Promise<void>)>("Combine_6be9a005889899ab", 2917762835954934, this, []); }
   /**
    * final var playgroundDescription: Any { get }
    * @availability iOS 13.0+
    */
-  get playgroundDescription(): unknown { return callSDK<unknown>("Combine_5d69670f0307b385", 4240143094902486, this, []); }
+  get playgroundDescription(): unknown { return callSDK<unknown>("Combine_6be9a005889899ab", 4240143094902486, this, []); }
   /**
    * final func cancel()
    * @availability iOS 13.0+
    */
-  cancel(): void { return callSDK<void>("Combine_5d69670f0307b385", 1057279662303539, this, []); }
+  cancel(): void { return callSDK<void>("Combine_6be9a005889899ab", 1057279662303539, this, []); }
   /**
    * final func receive(completion: Subscribers.Completion<Failure>)
    * @availability iOS 13.0+
    */
-  receiveCompletion88476(completion: $SDK3): void { return callSDK<void>("Combine_5d69670f0307b385", 436763221928343, this, [completion]); }
+  receiveCompletion88476(completion: $SDK3): void { return callSDK<void>("Combine_6be9a005889899ab", 436763221928343, this, [completion]); }
   /**
    * final func receive(subscription: any Subscription)
    * @availability iOS 13.0+
    */
-  receiveSubscription(subscription: SDKHandle): void { return callSDK<void>("Combine_5d69670f0307b385", 492981705703831, this, [subscription]); }
+  receiveSubscription(subscription: SDKHandle): void { return callSDK<void>("Combine_6be9a005889899ab", 492981705703831, this, [subscription]); }
   /**
    * final func receive(_ value: Input) -> Subscribers.Demand
    * @availability iOS 13.0+
    */
-  receive(value: unknown): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_5d69670f0307b385", 3040785691754136, this, [value]); }
+  receive(value: unknown): Subscribers_Demand { return callSDK<Subscribers_Demand>("Combine_6be9a005889899ab", 3040785691754136, this, [value]); }
   declare readonly $type: { "s:7Combine11SubscribersO4SinkC": true };
 }
 
@@ -3171,7 +3171,7 @@ export class Subscriptions extends SDKHandle {
    * static var empty: any Subscription { get }
    * @availability iOS 13.0+
    */
-  static get empty(): SDKHandle { return callSDK<SDKHandle>("Combine_5d69670f0307b385", 3953515357000861, undefined, []); }
+  static get empty(): SDKHandle { return callSDK<SDKHandle>("Combine_6be9a005889899ab", 3953515357000861, undefined, []); }
   declare readonly $type: { "s:7Combine13SubscriptionsO": true };
 }
 
@@ -3199,133 +3199,133 @@ export interface TopLevelEncoder {
   "encode"?: (arg0: SDKHandle) => unknown;
 }
 
-registerSDKClass("Combine.AnyCancellable", AnyCancellable, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"storeIn":{"id":37588107645328},"storeIn88072":{"id":3862066833662473},"cancel":{"id":997765393197981}} });
-registerSDKClass("Combine.AnyPublisher", AnyPublisher, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.AnySubscriber", AnySubscriber, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"receiveCompletion":{"id":3067754291047256},"receiveSubscription":{"id":96920906456865},"receive":{"id":2202495843888553}} });
-registerSDKClass("Combine.AsyncPublisher", AsyncPublisher, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":11614257164273}} });
-registerSDKClass("Combine.AsyncPublisher.Iterator", AsyncPublisher_Iterator, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.AsyncThrowingPublisher", AsyncThrowingPublisher, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":374996743267119}} });
-registerSDKClass("Combine.AsyncThrowingPublisher.Iterator", AsyncThrowingPublisher_Iterator, { module: "Combine_5d69670f0307b385", properties: {} });
+registerSDKClass("Combine.AnyCancellable", AnyCancellable, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"storeIn":{"id":37588107645328},"storeIn88072":{"id":3862066833662473},"cancel":{"id":997765393197981}} });
+registerSDKClass("Combine.AnyPublisher", AnyPublisher, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.AnySubscriber", AnySubscriber, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"receiveCompletion":{"id":3067754291047256},"receiveSubscription":{"id":96920906456865},"receive":{"id":2202495843888553}} });
+registerSDKClass("Combine.AsyncPublisher", AsyncPublisher, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":11614257164273}} });
+registerSDKClass("Combine.AsyncPublisher.Iterator", AsyncPublisher_Iterator, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.AsyncThrowingPublisher", AsyncThrowingPublisher, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"makeAsyncIterator":{"id":374996743267119}} });
+registerSDKClass("Combine.AsyncThrowingPublisher.Iterator", AsyncThrowingPublisher_Iterator, { module: "Combine_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:7Combine11CancellableP", {"cancel":"cancel()"});
-registerSDKClass("Combine.CombineIdentifier", CombineIdentifier, { module: "Combine_5d69670f0307b385", properties: {} });
+registerSDKClass("Combine.CombineIdentifier", CombineIdentifier, { module: "Combine_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:7Combine20ConnectablePublisherP", {"receiveSubscriber":"receive(subscriber:)","connect":"connect()"});
-registerSDKClass("Combine.CurrentValueSubject", CurrentValueSubject, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"sendCompletion":{"id":2920254296953721},"sendSubscription":{"id":1042187531202987},"send":{"id":2759612059468464}} });
+registerSDKClass("Combine.CurrentValueSubject", CurrentValueSubject, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"sendCompletion":{"id":2920254296953721},"sendSubscription":{"id":1042187531202987},"send":{"id":2759612059468464}} });
 registerSDKProtocol("s:7Combine06CustomA21IdentifierConvertibleP", {});
-registerSDKClass("Combine.Deferred", Deferred, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Empty", Empty, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Fail", Fail, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Future", Future, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.ImmediateScheduler", ImmediateScheduler, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"scheduleAfterIntervalToleranceOptions":{"id":508688275444269,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"scheduleAfterToleranceOptions":{"id":2747101576930510,"hints":[null,null,null,{"callback":{"out":[]}}]},"scheduleOptions":{"id":821709840369185,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("Combine.ImmediateScheduler.SchedulerTimeType", ImmediateScheduler_SchedulerTimeType, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"advanced":{"id":2894890805324298},"distance":{"id":931681946532035}} });
-registerSDKClass("Combine.ImmediateScheduler.SchedulerTimeType.Stride", ImmediateScheduler_SchedulerTimeType_Stride, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Just", Just, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"ignoreOutput":{"id":357378553922939},"replaceEmpty":{"id":3611321794181137},"replaceError":{"id":4126501381056175},"last":{"id":835781149282624},"count":{"id":2017450626370472},"first":{"id":2355262858583501},"retry":{"id":2685572439982987},"outputAt":{"id":891965440523858},"outputIn":{"id":627428301365673},"prefix":{"id":3245625795632563},"collect":{"id":2617947304009548},"dropFirst":{"id":153351474070666},"removeDuplicates":{"id":2944790764821022},"contains":{"id":321865348661969}} });
+registerSDKClass("Combine.Deferred", Deferred, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Empty", Empty, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Fail", Fail, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Future", Future, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.ImmediateScheduler", ImmediateScheduler, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"scheduleAfterIntervalToleranceOptions":{"id":508688275444269,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"scheduleAfterToleranceOptions":{"id":2747101576930510,"hints":[null,null,null,{"callback":{"out":[]}}]},"scheduleOptions":{"id":821709840369185,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("Combine.ImmediateScheduler.SchedulerTimeType", ImmediateScheduler_SchedulerTimeType, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"advanced":{"id":2894890805324298},"distance":{"id":931681946532035}} });
+registerSDKClass("Combine.ImmediateScheduler.SchedulerTimeType.Stride", ImmediateScheduler_SchedulerTimeType_Stride, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Just", Just, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"ignoreOutput":{"id":357378553922939},"replaceEmpty":{"id":3611321794181137},"replaceError":{"id":4126501381056175},"last":{"id":835781149282624},"count":{"id":2017450626370472},"first":{"id":2355262858583501},"retry":{"id":2685572439982987},"outputAt":{"id":891965440523858},"outputIn":{"id":627428301365673},"prefix":{"id":3245625795632563},"collect":{"id":2617947304009548},"dropFirst":{"id":153351474070666},"removeDuplicates":{"id":2944790764821022},"contains":{"id":321865348661969}} });
 registerSDKProtocol("s:7Combine16ObservableObjectP", {});
-registerSDKClass("Combine.ObservableObjectPublisher", ObservableObjectPublisher, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"send":{"id":182875737114554}} });
-registerSDKClass("Combine.Optional.Publisher", Optional_Publisher, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.PassthroughSubject", PassthroughSubject, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"sendCompletion":{"id":2917157912608839},"sendSubscription":{"id":620928772921956},"send":{"id":3653813583693817}} });
-registerSDKClass("Combine.Published", Published, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Published.Publisher", Published_Publisher, { module: "Combine_5d69670f0307b385", properties: {} });
+registerSDKClass("Combine.ObservableObjectPublisher", ObservableObjectPublisher, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"send":{"id":182875737114554}} });
+registerSDKClass("Combine.Optional.Publisher", Optional_Publisher, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.PassthroughSubject", PassthroughSubject, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"sendCompletion":{"id":2917157912608839},"sendSubscription":{"id":620928772921956},"send":{"id":3653813583693817}} });
+registerSDKClass("Combine.Published", Published, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Published.Publisher", Published_Publisher, { module: "Combine_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:7Combine9PublisherP", {"receiveSubscriber":"receive(subscriber:)"});
-registerSDKClass("Combine.Publishers", Publishers, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.AllSatisfy", Publishers_AllSatisfy, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.AssertNoFailure", Publishers_AssertNoFailure, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Autoconnect", Publishers_Autoconnect, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Breakpoint", Publishers_Breakpoint, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Buffer", Publishers_Buffer, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.BufferingStrategy", Publishers_BufferingStrategy, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Catch", Publishers_Catch, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Collect", Publishers_Collect, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.CollectByCount", Publishers_CollectByCount, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.CollectByTime", Publishers_CollectByTime, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.CombineLatest", Publishers_CombineLatest, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.CombineLatest3", Publishers_CombineLatest3, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.CombineLatest4", Publishers_CombineLatest4, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.CompactMap", Publishers_CompactMap, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Comparison", Publishers_Comparison, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Concatenate", Publishers_Concatenate, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Contains", Publishers_Contains, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.ContainsWhere", Publishers_ContainsWhere, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Count", Publishers_Count, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Debounce", Publishers_Debounce, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Decode", Publishers_Decode, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Delay", Publishers_Delay, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Drop", Publishers_Drop, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.DropUntilOutput", Publishers_DropUntilOutput, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.DropWhile", Publishers_DropWhile, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Encode", Publishers_Encode, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Filter", Publishers_Filter, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.First", Publishers_First, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.FirstWhere", Publishers_FirstWhere, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.FlatMap", Publishers_FlatMap, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.HandleEvents", Publishers_HandleEvents, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.IgnoreOutput", Publishers_IgnoreOutput, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Last", Publishers_Last, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.LastWhere", Publishers_LastWhere, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.MakeConnectable", Publishers_MakeConnectable, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"connect":{"id":2268721504910131}} });
-registerSDKClass("Combine.Publishers.Map", Publishers_Map, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.MapError", Publishers_MapError, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.MapKeyPath", Publishers_MapKeyPath, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.MapKeyPath2", Publishers_MapKeyPath2, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.MapKeyPath3", Publishers_MapKeyPath3, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.MeasureInterval", Publishers_MeasureInterval, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Merge", Publishers_Merge, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Merge3", Publishers_Merge3, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Merge4", Publishers_Merge4, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Merge5", Publishers_Merge5, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Merge6", Publishers_Merge6, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Merge7", Publishers_Merge7, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Merge8", Publishers_Merge8, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.MergeMany", Publishers_MergeMany, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Multicast", Publishers_Multicast, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"connect":{"id":3251727604710029}} });
-registerSDKClass("Combine.Publishers.Output", Publishers_Output, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.PrefixUntilOutput", Publishers_PrefixUntilOutput, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.PrefixWhile", Publishers_PrefixWhile, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Print", Publishers_Print, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.ReceiveOn", Publishers_ReceiveOn, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Reduce", Publishers_Reduce, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.RemoveDuplicates", Publishers_RemoveDuplicates, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.ReplaceEmpty", Publishers_ReplaceEmpty, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.ReplaceError", Publishers_ReplaceError, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Retry", Publishers_Retry, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Scan", Publishers_Scan, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Sequence", Publishers_Sequence, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"ignoreOutput":{"id":345561010272488},"prefix":{"id":477105123731604},"collect":{"id":629972999327830},"dropFirst":{"id":839951637556131},"removeDuplicates":{"id":3873322608372779},"contains":{"id":1555581273845430}} });
-registerSDKClass("Combine.Publishers.SetFailureType", Publishers_SetFailureType, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Share", Publishers_Share, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.SubscribeOn", Publishers_SubscribeOn, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.SwitchToLatest", Publishers_SwitchToLatest, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Throttle", Publishers_Throttle, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TimeGroupingStrategy", Publishers_TimeGroupingStrategy, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Timeout", Publishers_Timeout, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryAllSatisfy", Publishers_TryAllSatisfy, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryCatch", Publishers_TryCatch, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryCompactMap", Publishers_TryCompactMap, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryComparison", Publishers_TryComparison, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryContainsWhere", Publishers_TryContainsWhere, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryDropWhile", Publishers_TryDropWhile, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryFilter", Publishers_TryFilter, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryFirstWhere", Publishers_TryFirstWhere, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryLastWhere", Publishers_TryLastWhere, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryMap", Publishers_TryMap, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryPrefixWhile", Publishers_TryPrefixWhile, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryReduce", Publishers_TryReduce, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryRemoveDuplicates", Publishers_TryRemoveDuplicates, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.TryScan", Publishers_TryScan, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Zip", Publishers_Zip, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Zip3", Publishers_Zip3, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Publishers.Zip4", Publishers_Zip4, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Record", Record, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Record.Recording", Record_Recording, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"receiveCompletion":{"id":2935454887083992},"receive":{"id":1961839326516224}} });
-registerSDKClass("Combine.Result.Publisher", Result_Publisher, { module: "Combine_5d69670f0307b385", properties: {} });
+registerSDKClass("Combine.Publishers", Publishers, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.AllSatisfy", Publishers_AllSatisfy, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.AssertNoFailure", Publishers_AssertNoFailure, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Autoconnect", Publishers_Autoconnect, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Breakpoint", Publishers_Breakpoint, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Buffer", Publishers_Buffer, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.BufferingStrategy", Publishers_BufferingStrategy, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Catch", Publishers_Catch, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Collect", Publishers_Collect, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.CollectByCount", Publishers_CollectByCount, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.CollectByTime", Publishers_CollectByTime, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.CombineLatest", Publishers_CombineLatest, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.CombineLatest3", Publishers_CombineLatest3, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.CombineLatest4", Publishers_CombineLatest4, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.CompactMap", Publishers_CompactMap, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Comparison", Publishers_Comparison, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Concatenate", Publishers_Concatenate, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Contains", Publishers_Contains, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.ContainsWhere", Publishers_ContainsWhere, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Count", Publishers_Count, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Debounce", Publishers_Debounce, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Decode", Publishers_Decode, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Delay", Publishers_Delay, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Drop", Publishers_Drop, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.DropUntilOutput", Publishers_DropUntilOutput, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.DropWhile", Publishers_DropWhile, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Encode", Publishers_Encode, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Filter", Publishers_Filter, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.First", Publishers_First, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.FirstWhere", Publishers_FirstWhere, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.FlatMap", Publishers_FlatMap, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.HandleEvents", Publishers_HandleEvents, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.IgnoreOutput", Publishers_IgnoreOutput, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Last", Publishers_Last, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.LastWhere", Publishers_LastWhere, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.MakeConnectable", Publishers_MakeConnectable, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"connect":{"id":2268721504910131}} });
+registerSDKClass("Combine.Publishers.Map", Publishers_Map, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.MapError", Publishers_MapError, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.MapKeyPath", Publishers_MapKeyPath, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.MapKeyPath2", Publishers_MapKeyPath2, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.MapKeyPath3", Publishers_MapKeyPath3, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.MeasureInterval", Publishers_MeasureInterval, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Merge", Publishers_Merge, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Merge3", Publishers_Merge3, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Merge4", Publishers_Merge4, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Merge5", Publishers_Merge5, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Merge6", Publishers_Merge6, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Merge7", Publishers_Merge7, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Merge8", Publishers_Merge8, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.MergeMany", Publishers_MergeMany, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Multicast", Publishers_Multicast, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"connect":{"id":3251727604710029}} });
+registerSDKClass("Combine.Publishers.Output", Publishers_Output, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.PrefixUntilOutput", Publishers_PrefixUntilOutput, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.PrefixWhile", Publishers_PrefixWhile, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Print", Publishers_Print, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.ReceiveOn", Publishers_ReceiveOn, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Reduce", Publishers_Reduce, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.RemoveDuplicates", Publishers_RemoveDuplicates, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.ReplaceEmpty", Publishers_ReplaceEmpty, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.ReplaceError", Publishers_ReplaceError, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Retry", Publishers_Retry, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Scan", Publishers_Scan, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Sequence", Publishers_Sequence, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"ignoreOutput":{"id":345561010272488},"prefix":{"id":477105123731604},"collect":{"id":629972999327830},"dropFirst":{"id":839951637556131},"removeDuplicates":{"id":3873322608372779},"contains":{"id":1555581273845430}} });
+registerSDKClass("Combine.Publishers.SetFailureType", Publishers_SetFailureType, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Share", Publishers_Share, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.SubscribeOn", Publishers_SubscribeOn, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.SwitchToLatest", Publishers_SwitchToLatest, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Throttle", Publishers_Throttle, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TimeGroupingStrategy", Publishers_TimeGroupingStrategy, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Timeout", Publishers_Timeout, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryAllSatisfy", Publishers_TryAllSatisfy, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryCatch", Publishers_TryCatch, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryCompactMap", Publishers_TryCompactMap, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryComparison", Publishers_TryComparison, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryContainsWhere", Publishers_TryContainsWhere, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryDropWhile", Publishers_TryDropWhile, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryFilter", Publishers_TryFilter, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryFirstWhere", Publishers_TryFirstWhere, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryLastWhere", Publishers_TryLastWhere, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryMap", Publishers_TryMap, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryPrefixWhile", Publishers_TryPrefixWhile, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryReduce", Publishers_TryReduce, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryRemoveDuplicates", Publishers_TryRemoveDuplicates, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.TryScan", Publishers_TryScan, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Zip", Publishers_Zip, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Zip3", Publishers_Zip3, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Publishers.Zip4", Publishers_Zip4, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Record", Record, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Record.Recording", Record_Recording, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"receiveCompletion":{"id":2935454887083992},"receive":{"id":1961839326516224}} });
+registerSDKClass("Combine.Result.Publisher", Result_Publisher, { module: "Combine_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:7Combine9SchedulerP", {"scheduleOptions":"schedule(options:_:)","scheduleAfterToleranceOptions":"schedule(after:tolerance:options:_:)","scheduleAfterIntervalToleranceOptions":"schedule(after:interval:tolerance:options:_:)"});
 registerSDKProtocol("s:7Combine32SchedulerTimeIntervalConvertibleP", {"seconds":"seconds(_:)","milliseconds":"milliseconds(_:)","microseconds":"microseconds(_:)","nanoseconds":"nanoseconds(_:)"});
 registerSDKProtocol("s:7Combine7SubjectP", {"receiveSubscriber":"receive(subscriber:)","send":"send(_:)","sendCompletion":"send(completion:)","sendSubscription":"send(subscription:)"});
 registerSDKProtocol("s:7Combine10SubscriberP", {"receiveSubscription":"receive(subscription:)","receive":"receive(_:)","receiveCompletion":"receive(completion:)"});
-registerSDKClass("Combine.Subscribers", Subscribers, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Subscribers.Assign", Subscribers_Assign, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"cancel":{"id":2129049181820399},"receiveCompletion":{"id":3777898268215336},"receiveSubscription":{"id":548485597204482},"receive":{"id":3482063777591182}} });
-registerSDKClass("Combine.Subscribers.Completion", Subscribers_Completion, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Subscribers.Demand", Subscribers_Demand, { module: "Combine_5d69670f0307b385", properties: {} });
-registerSDKClass("Combine.Subscribers.Sink", Subscribers_Sink, { module: "Combine_5d69670f0307b385", properties: {}, methods: {"cancel":{"id":1057279662303539},"receiveCompletion88476":{"id":436763221928343},"receiveSubscription":{"id":492981705703831},"receive":{"id":3040785691754136}} });
+registerSDKClass("Combine.Subscribers", Subscribers, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Subscribers.Assign", Subscribers_Assign, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"cancel":{"id":2129049181820399},"receiveCompletion":{"id":3777898268215336},"receiveSubscription":{"id":548485597204482},"receive":{"id":3482063777591182}} });
+registerSDKClass("Combine.Subscribers.Completion", Subscribers_Completion, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Subscribers.Demand", Subscribers_Demand, { module: "Combine_6be9a005889899ab", properties: {} });
+registerSDKClass("Combine.Subscribers.Sink", Subscribers_Sink, { module: "Combine_6be9a005889899ab", properties: {}, methods: {"cancel":{"id":1057279662303539},"receiveCompletion88476":{"id":436763221928343},"receiveSubscription":{"id":492981705703831},"receive":{"id":3040785691754136}} });
 registerSDKProtocol("s:7Combine12SubscriptionP", {"cancel":"cancel()","request":"request(_:)"});
-registerSDKClass("Combine.Subscriptions", Subscriptions, { module: "Combine_5d69670f0307b385", properties: {} });
+registerSDKClass("Combine.Subscriptions", Subscriptions, { module: "Combine_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:7Combine15TopLevelDecoderP", {"decodeFrom":"decode(_:from:)"});
 registerSDKProtocol("s:7Combine15TopLevelEncoderP", {"encode":"encode(_:)"});

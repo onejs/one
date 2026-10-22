@@ -24,7 +24,7 @@ export type CGImageAnimationStatus = "parameterError" | "corruptInputImage" | "u
 
 export const CGImageAnimationStatus = {
   /** init?(rawValue: OSStatus) */
-  init(rawValue: number): (CGImageAnimationStatus) | null { return callSDK<(CGImageAnimationStatus) | null>("ImageIO_5d69670f0307b385", 442491587514507, undefined, [rawValue]); }
+  init(rawValue: number): (CGImageAnimationStatus) | null { return callSDK<(CGImageAnimationStatus) | null>("ImageIO_6be9a005889899ab", 442491587514507, undefined, [rawValue]); }
 };
 
 /** class CGImageDestination */
@@ -42,7 +42,7 @@ export type CGImageMetadataErrors = "unknown" | "unsupportedFormat" | "badArgume
 
 export const CGImageMetadataErrors = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGImageMetadataErrors) | null { return callSDK<(CGImageMetadataErrors) | null>("ImageIO_5d69670f0307b385", 272242151718755, undefined, [rawValue]); }
+  init(rawValue: number): (CGImageMetadataErrors) | null { return callSDK<(CGImageMetadataErrors) | null>("ImageIO_6be9a005889899ab", 272242151718755, undefined, [rawValue]); }
 };
 
 /** class CGImageMetadataTag */
@@ -58,7 +58,7 @@ export type CGImageMetadataType = "invalid" | "default" | "string" | "arrayUnord
 
 export const CGImageMetadataType = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGImageMetadataType) | null { return callSDK<(CGImageMetadataType) | null>("ImageIO_5d69670f0307b385", 4283362040263015, undefined, [rawValue]); }
+  init(rawValue: number): (CGImageMetadataType) | null { return callSDK<(CGImageMetadataType) | null>("ImageIO_6be9a005889899ab", 4283362040263015, undefined, [rawValue]); }
 };
 
 /** @frozen enum CGImagePropertyOrientation */
@@ -66,7 +66,7 @@ export type CGImagePropertyOrientation = "up" | "upMirrored" | "down" | "downMir
 
 export const CGImagePropertyOrientation = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CGImagePropertyOrientation) | null { return callSDK<(CGImagePropertyOrientation) | null>("ImageIO_5d69670f0307b385", 3170838240432773, undefined, [rawValue]); }
+  init(rawValue: number): (CGImagePropertyOrientation) | null { return callSDK<(CGImagePropertyOrientation) | null>("ImageIO_6be9a005889899ab", 3170838240432773, undefined, [rawValue]); }
 };
 
 /** @frozen enum CGImagePropertyTGACompression */
@@ -74,7 +74,7 @@ export type CGImagePropertyTGACompression = "tgaCompressionNone" | "tgaCompressi
 
 export const CGImagePropertyTGACompression = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CGImagePropertyTGACompression) | null { return callSDK<(CGImagePropertyTGACompression) | null>("ImageIO_5d69670f0307b385", 2534107205549430, undefined, [rawValue]); }
+  init(rawValue: number): (CGImagePropertyTGACompression) | null { return callSDK<(CGImagePropertyTGACompression) | null>("ImageIO_6be9a005889899ab", 2534107205549430, undefined, [rawValue]); }
 };
 
 /** class CGImageSource */
@@ -90,7 +90,7 @@ export type CGImageSourceStatus = "statusUnexpectedEOF" | "statusInvalidData" | 
 
 export const CGImageSourceStatus = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGImageSourceStatus) | null { return callSDK<(CGImageSourceStatus) | null>("ImageIO_5d69670f0307b385", 1135792323451062, undefined, [rawValue]); }
+  init(rawValue: number): (CGImageSourceStatus) | null { return callSDK<(CGImageSourceStatus) | null>("ImageIO_6be9a005889899ab", 1135792323451062, undefined, [rawValue]); }
 };
 
 /** class CGMutableImageMetadata */
@@ -102,4862 +102,4862 @@ export class CGMutableImageMetadata extends CGImageMetadata {
  * func CGImageDestinationAddAuxiliaryDataInfo(_ idst: CGImageDestination, _ auxiliaryImageDataType: CFString, _ auxiliaryDataInfoDictionary: CFDictionary)
  * @availability iOS 11.0+
  */
-export function CGImageDestinationAddAuxiliaryDataInfo(idst: CGImageDestination, auxiliaryImageDataType: _CoreFoundation_CFString, auxiliaryDataInfoDictionary: _CoreFoundation_CFDictionary): void { return callSDK<void>("ImageIO_5d69670f0307b385", 2171744833186843, undefined, [idst, auxiliaryImageDataType, auxiliaryDataInfoDictionary]); }
+export function CGImageDestinationAddAuxiliaryDataInfo(idst: CGImageDestination, auxiliaryImageDataType: _CoreFoundation_CFString, auxiliaryDataInfoDictionary: _CoreFoundation_CFDictionary): void { return callSDK<void>("ImageIO_6be9a005889899ab", 2171744833186843, undefined, [idst, auxiliaryImageDataType, auxiliaryDataInfoDictionary]); }
 
 /**
  * func CGImageDestinationAddImage(_ idst: CGImageDestination, _ image: CGImage, _ properties: CFDictionary?)
  * @availability iOS 4.0+
  */
-export function CGImageDestinationAddImage(idst: CGImageDestination, image: _CoreGraphics_CGImage, properties?: $SDK2): void { return callSDK<void>("ImageIO_5d69670f0307b385", 4010548823661764, undefined, [idst, image, properties]); }
+export function CGImageDestinationAddImage(idst: CGImageDestination, image: _CoreGraphics_CGImage, properties?: $SDK2): void { return callSDK<void>("ImageIO_6be9a005889899ab", 4010548823661764, undefined, [idst, image, properties]); }
 
 /**
  * func CGImageDestinationAddImageAndMetadata(_ idst: CGImageDestination, _ image: CGImage, _ metadata: CGImageMetadata?, _ options: CFDictionary?)
  * @availability iOS 7.0+
  */
-export function CGImageDestinationAddImageAndMetadata(idst: CGImageDestination, image: _CoreGraphics_CGImage, metadata?: $SDK3, options?: $SDK2): void { return callSDK<void>("ImageIO_5d69670f0307b385", 911751302667848, undefined, [idst, image, metadata, options]); }
+export function CGImageDestinationAddImageAndMetadata(idst: CGImageDestination, image: _CoreGraphics_CGImage, metadata?: $SDK3, options?: $SDK2): void { return callSDK<void>("ImageIO_6be9a005889899ab", 911751302667848, undefined, [idst, image, metadata, options]); }
 
 /**
  * func CGImageDestinationAddImageFromSource(_ idst: CGImageDestination, _ isrc: CGImageSource, _ index: Int, _ properties: CFDictionary?)
  * @availability iOS 4.0+
  */
-export function CGImageDestinationAddImageFromSource(idst: CGImageDestination, isrc: CGImageSource, index: number, properties?: $SDK2): void { return callSDK<void>("ImageIO_5d69670f0307b385", 1502719752378487, undefined, [idst, isrc, index, properties]); }
+export function CGImageDestinationAddImageFromSource(idst: CGImageDestination, isrc: CGImageSource, index: number, properties?: $SDK2): void { return callSDK<void>("ImageIO_6be9a005889899ab", 1502719752378487, undefined, [idst, isrc, index, properties]); }
 
 /**
  * func CGImageDestinationCopyImageSource(_ idst: CGImageDestination, _ isrc: CGImageSource, _ options: CFDictionary?, _ err: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Bool
  * @availability iOS 7.0+
  */
-export function CGImageDestinationCopyImageSource(idst: CGImageDestination, isrc: CGImageSource, options?: $SDK2): { $ret: boolean; $out: { "err": $SDK4 } } { return callSDK<{ $ret: boolean; $out: { "err": $SDK4 } }>("ImageIO_5d69670f0307b385", 470558695103059, undefined, [idst, isrc, options, null]); }
+export function CGImageDestinationCopyImageSource(idst: CGImageDestination, isrc: CGImageSource, options?: $SDK2): { $ret: boolean; $out: { "err": $SDK4 } } { return callSDK<{ $ret: boolean; $out: { "err": $SDK4 } }>("ImageIO_6be9a005889899ab", 470558695103059, undefined, [idst, isrc, options, null]); }
 
 /**
  * func CGImageDestinationCopyTypeIdentifiers() -> CFArray
  * @availability iOS 4.0+
  */
-export function CGImageDestinationCopyTypeIdentifiers(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("ImageIO_5d69670f0307b385", 3712473681917352, undefined, []); }
+export function CGImageDestinationCopyTypeIdentifiers(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("ImageIO_6be9a005889899ab", 3712473681917352, undefined, []); }
 
 /**
  * func CGImageDestinationCreateWithData(_ data: CFMutableData, _ type: CFString, _ count: Int, _ options: CFDictionary?) -> CGImageDestination?
  * @availability iOS 4.0+
  */
-export function CGImageDestinationCreateWithData(data: _CoreFoundation_CFMutableData, type: _CoreFoundation_CFString, count: number, options?: $SDK2): $SDK5 { return callSDK<$SDK5>("ImageIO_5d69670f0307b385", 4441347135491873, undefined, [data, type, count, options]); }
+export function CGImageDestinationCreateWithData(data: _CoreFoundation_CFMutableData, type: _CoreFoundation_CFString, count: number, options?: $SDK2): $SDK5 { return callSDK<$SDK5>("ImageIO_6be9a005889899ab", 4441347135491873, undefined, [data, type, count, options]); }
 
 /**
  * func CGImageDestinationCreateWithDataConsumer(_ consumer: CGDataConsumer, _ type: CFString, _ count: Int, _ options: CFDictionary?) -> CGImageDestination?
  * @availability iOS 4.0+
  */
-export function CGImageDestinationCreateWithDataConsumer(consumer: _CoreGraphics_CGDataConsumer, type: _CoreFoundation_CFString, count: number, options?: $SDK2): $SDK5 { return callSDK<$SDK5>("ImageIO_5d69670f0307b385", 2854283107037591, undefined, [consumer, type, count, options]); }
+export function CGImageDestinationCreateWithDataConsumer(consumer: _CoreGraphics_CGDataConsumer, type: _CoreFoundation_CFString, count: number, options?: $SDK2): $SDK5 { return callSDK<$SDK5>("ImageIO_6be9a005889899ab", 2854283107037591, undefined, [consumer, type, count, options]); }
 
 /**
  * func CGImageDestinationCreateWithURL(_ url: CFURL, _ type: CFString, _ count: Int, _ options: CFDictionary?) -> CGImageDestination?
  * @availability iOS 4.0+
  */
-export function CGImageDestinationCreateWithURL(url: _CoreFoundation_CFURL, type: _CoreFoundation_CFString, count: number, options?: $SDK2): $SDK5 { return callSDK<$SDK5>("ImageIO_5d69670f0307b385", 2965077004540446, undefined, [url, type, count, options]); }
+export function CGImageDestinationCreateWithURL(url: _CoreFoundation_CFURL, type: _CoreFoundation_CFString, count: number, options?: $SDK2): $SDK5 { return callSDK<$SDK5>("ImageIO_6be9a005889899ab", 2965077004540446, undefined, [url, type, count, options]); }
 
 /**
  * func CGImageDestinationFinalize(_ idst: CGImageDestination) -> Bool
  * @availability iOS 4.0+
  */
-export function CGImageDestinationFinalize(idst: CGImageDestination): boolean { return callSDK<boolean>("ImageIO_5d69670f0307b385", 698493403131126, undefined, [idst]); }
+export function CGImageDestinationFinalize(idst: CGImageDestination): boolean { return callSDK<boolean>("ImageIO_6be9a005889899ab", 698493403131126, undefined, [idst]); }
 
 /**
  * func CGImageDestinationGetTypeID() -> CFTypeID
  * @availability iOS 4.0+
  */
-export function CGImageDestinationGetTypeID(): number { return callSDK<number>("ImageIO_5d69670f0307b385", 1745028083455618, undefined, []); }
+export function CGImageDestinationGetTypeID(): number { return callSDK<number>("ImageIO_6be9a005889899ab", 1745028083455618, undefined, []); }
 
 /**
  * func CGImageDestinationSetProperties(_ idst: CGImageDestination, _ properties: CFDictionary?)
  * @availability iOS 4.0+
  */
-export function CGImageDestinationSetProperties(idst: CGImageDestination, properties?: $SDK2): void { return callSDK<void>("ImageIO_5d69670f0307b385", 45406808857866, undefined, [idst, properties]); }
+export function CGImageDestinationSetProperties(idst: CGImageDestination, properties?: $SDK2): void { return callSDK<void>("ImageIO_6be9a005889899ab", 45406808857866, undefined, [idst, properties]); }
 
 /**
  * func CGImageMetadataCopyStringValueWithPath(_ metadata: CGImageMetadata, _ parent: CGImageMetadataTag?, _ path: CFString) -> CFString?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataCopyStringValueWithPath(metadata: CGImageMetadata, parent: $SDK7, path: _CoreFoundation_CFString): $SDK6 { return callSDK<$SDK6>("ImageIO_5d69670f0307b385", 1983857386796975, undefined, [metadata, parent, path]); }
+export function CGImageMetadataCopyStringValueWithPath(metadata: CGImageMetadata, parent: $SDK7, path: _CoreFoundation_CFString): $SDK6 { return callSDK<$SDK6>("ImageIO_6be9a005889899ab", 1983857386796975, undefined, [metadata, parent, path]); }
 
 /**
  * func CGImageMetadataCopyTagMatchingImageProperty(_ metadata: CGImageMetadata, _ dictionaryName: CFString, _ propertyName: CFString) -> CGImageMetadataTag?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataCopyTagMatchingImageProperty(metadata: CGImageMetadata, dictionaryName: _CoreFoundation_CFString, propertyName: _CoreFoundation_CFString): $SDK7 { return callSDK<$SDK7>("ImageIO_5d69670f0307b385", 318980428779682, undefined, [metadata, dictionaryName, propertyName]); }
+export function CGImageMetadataCopyTagMatchingImageProperty(metadata: CGImageMetadata, dictionaryName: _CoreFoundation_CFString, propertyName: _CoreFoundation_CFString): $SDK7 { return callSDK<$SDK7>("ImageIO_6be9a005889899ab", 318980428779682, undefined, [metadata, dictionaryName, propertyName]); }
 
 /**
  * func CGImageMetadataCopyTagWithPath(_ metadata: CGImageMetadata, _ parent: CGImageMetadataTag?, _ path: CFString) -> CGImageMetadataTag?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataCopyTagWithPath(metadata: CGImageMetadata, parent: $SDK7, path: _CoreFoundation_CFString): $SDK7 { return callSDK<$SDK7>("ImageIO_5d69670f0307b385", 3592501497188690, undefined, [metadata, parent, path]); }
+export function CGImageMetadataCopyTagWithPath(metadata: CGImageMetadata, parent: $SDK7, path: _CoreFoundation_CFString): $SDK7 { return callSDK<$SDK7>("ImageIO_6be9a005889899ab", 3592501497188690, undefined, [metadata, parent, path]); }
 
 /**
  * func CGImageMetadataCopyTags(_ metadata: CGImageMetadata) -> CFArray?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataCopyTags(metadata: CGImageMetadata): $SDK8 { return callSDK<$SDK8>("ImageIO_5d69670f0307b385", 2319675559472600, undefined, [metadata]); }
+export function CGImageMetadataCopyTags(metadata: CGImageMetadata): $SDK8 { return callSDK<$SDK8>("ImageIO_6be9a005889899ab", 2319675559472600, undefined, [metadata]); }
 
 /**
  * func CGImageMetadataCreateFromXMPData(_ data: CFData) -> CGImageMetadata?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataCreateFromXMPData(data: _CoreFoundation_CFData): $SDK3 { return callSDK<$SDK3>("ImageIO_5d69670f0307b385", 4338669889851299, undefined, [data]); }
+export function CGImageMetadataCreateFromXMPData(data: _CoreFoundation_CFData): $SDK3 { return callSDK<$SDK3>("ImageIO_6be9a005889899ab", 4338669889851299, undefined, [data]); }
 
 /**
  * func CGImageMetadataCreateMutable() -> CGMutableImageMetadata
  * @availability iOS 7.0+
  */
-export function CGImageMetadataCreateMutable(): CGMutableImageMetadata { return callSDK<CGMutableImageMetadata>("ImageIO_5d69670f0307b385", 156720251749367, undefined, []); }
+export function CGImageMetadataCreateMutable(): CGMutableImageMetadata { return callSDK<CGMutableImageMetadata>("ImageIO_6be9a005889899ab", 156720251749367, undefined, []); }
 
 /**
  * func CGImageMetadataCreateMutableCopy(_ metadata: CGImageMetadata) -> CGMutableImageMetadata?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataCreateMutableCopy(metadata: CGImageMetadata): (CGMutableImageMetadata) | null { return callSDK<(CGMutableImageMetadata) | null>("ImageIO_5d69670f0307b385", 1003795046344873, undefined, [metadata]); }
+export function CGImageMetadataCreateMutableCopy(metadata: CGImageMetadata): (CGMutableImageMetadata) | null { return callSDK<(CGMutableImageMetadata) | null>("ImageIO_6be9a005889899ab", 1003795046344873, undefined, [metadata]); }
 
 /**
  * func CGImageMetadataCreateXMPData(_ metadata: CGImageMetadata, _ options: CFDictionary?) -> CFData?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataCreateXMPData(metadata: CGImageMetadata, options?: $SDK2): (_CoreFoundation_CFData) | null { return callSDK<(_CoreFoundation_CFData) | null>("ImageIO_5d69670f0307b385", 3308152542534557, undefined, [metadata, options]); }
+export function CGImageMetadataCreateXMPData(metadata: CGImageMetadata, options?: $SDK2): (_CoreFoundation_CFData) | null { return callSDK<(_CoreFoundation_CFData) | null>("ImageIO_6be9a005889899ab", 3308152542534557, undefined, [metadata, options]); }
 
 /** func CGImageMetadataGetTypeID() -> CFTypeID */
-export function CGImageMetadataGetTypeID(): number { return callSDK<number>("ImageIO_5d69670f0307b385", 3159827238681631, undefined, []); }
+export function CGImageMetadataGetTypeID(): number { return callSDK<number>("ImageIO_6be9a005889899ab", 3159827238681631, undefined, []); }
 
 /**
  * func CGImageMetadataRegisterNamespaceForPrefix(_ metadata: CGMutableImageMetadata, _ xmlns: CFString, _ prefix: CFString, _ err: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Bool
  * @availability iOS 7.0+
  */
-export function CGImageMetadataRegisterNamespaceForPrefix(metadata: CGMutableImageMetadata, xmlns: _CoreFoundation_CFString, prefix: _CoreFoundation_CFString): { $ret: boolean; $out: { "err": $SDK4 } } { return callSDK<{ $ret: boolean; $out: { "err": $SDK4 } }>("ImageIO_5d69670f0307b385", 1957522080472254, undefined, [metadata, xmlns, prefix, null]); }
+export function CGImageMetadataRegisterNamespaceForPrefix(metadata: CGMutableImageMetadata, xmlns: _CoreFoundation_CFString, prefix: _CoreFoundation_CFString): { $ret: boolean; $out: { "err": $SDK4 } } { return callSDK<{ $ret: boolean; $out: { "err": $SDK4 } }>("ImageIO_6be9a005889899ab", 1957522080472254, undefined, [metadata, xmlns, prefix, null]); }
 
 /**
  * func CGImageMetadataRemoveTagWithPath(_ metadata: CGMutableImageMetadata, _ parent: CGImageMetadataTag?, _ path: CFString) -> Bool
  * @availability iOS 7.0+
  */
-export function CGImageMetadataRemoveTagWithPath(metadata: CGMutableImageMetadata, parent: $SDK7, path: _CoreFoundation_CFString): boolean { return callSDK<boolean>("ImageIO_5d69670f0307b385", 2035503178635250, undefined, [metadata, parent, path]); }
+export function CGImageMetadataRemoveTagWithPath(metadata: CGMutableImageMetadata, parent: $SDK7, path: _CoreFoundation_CFString): boolean { return callSDK<boolean>("ImageIO_6be9a005889899ab", 2035503178635250, undefined, [metadata, parent, path]); }
 
 /**
  * func CGImageMetadataSetTagWithPath(_ metadata: CGMutableImageMetadata, _ parent: CGImageMetadataTag?, _ path: CFString, _ tag: CGImageMetadataTag) -> Bool
  * @availability iOS 7.0+
  */
-export function CGImageMetadataSetTagWithPath(metadata: CGMutableImageMetadata, parent: $SDK7, path: _CoreFoundation_CFString, tag: CGImageMetadataTag): boolean { return callSDK<boolean>("ImageIO_5d69670f0307b385", 3748872881946581, undefined, [metadata, parent, path, tag]); }
+export function CGImageMetadataSetTagWithPath(metadata: CGMutableImageMetadata, parent: $SDK7, path: _CoreFoundation_CFString, tag: CGImageMetadataTag): boolean { return callSDK<boolean>("ImageIO_6be9a005889899ab", 3748872881946581, undefined, [metadata, parent, path, tag]); }
 
 /**
  * func CGImageMetadataSetValueMatchingImageProperty(_ metadata: CGMutableImageMetadata, _ dictionaryName: CFString, _ propertyName: CFString, _ value: CFTypeRef) -> Bool
  * @availability iOS 7.0+
  */
-export function CGImageMetadataSetValueMatchingImageProperty(metadata: CGMutableImageMetadata, dictionaryName: _CoreFoundation_CFString, propertyName: _CoreFoundation_CFString, value: unknown): boolean { return callSDK<boolean>("ImageIO_5d69670f0307b385", 2032865191631432, undefined, [metadata, dictionaryName, propertyName, value]); }
+export function CGImageMetadataSetValueMatchingImageProperty(metadata: CGMutableImageMetadata, dictionaryName: _CoreFoundation_CFString, propertyName: _CoreFoundation_CFString, value: unknown): boolean { return callSDK<boolean>("ImageIO_6be9a005889899ab", 2032865191631432, undefined, [metadata, dictionaryName, propertyName, value]); }
 
 /**
  * func CGImageMetadataSetValueWithPath(_ metadata: CGMutableImageMetadata, _ parent: CGImageMetadataTag?, _ path: CFString, _ value: CFTypeRef) -> Bool
  * @availability iOS 7.0+
  */
-export function CGImageMetadataSetValueWithPath(metadata: CGMutableImageMetadata, parent: $SDK7, path: _CoreFoundation_CFString, value: unknown): boolean { return callSDK<boolean>("ImageIO_5d69670f0307b385", 2534471389516119, undefined, [metadata, parent, path, value]); }
+export function CGImageMetadataSetValueWithPath(metadata: CGMutableImageMetadata, parent: $SDK7, path: _CoreFoundation_CFString, value: unknown): boolean { return callSDK<boolean>("ImageIO_6be9a005889899ab", 2534471389516119, undefined, [metadata, parent, path, value]); }
 
 /**
  * func CGImageMetadataTagCopyName(_ tag: CGImageMetadataTag) -> CFString?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataTagCopyName(tag: CGImageMetadataTag): $SDK6 { return callSDK<$SDK6>("ImageIO_5d69670f0307b385", 4064675146423201, undefined, [tag]); }
+export function CGImageMetadataTagCopyName(tag: CGImageMetadataTag): $SDK6 { return callSDK<$SDK6>("ImageIO_6be9a005889899ab", 4064675146423201, undefined, [tag]); }
 
 /**
  * func CGImageMetadataTagCopyNamespace(_ tag: CGImageMetadataTag) -> CFString?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataTagCopyNamespace(tag: CGImageMetadataTag): $SDK6 { return callSDK<$SDK6>("ImageIO_5d69670f0307b385", 876392127825264, undefined, [tag]); }
+export function CGImageMetadataTagCopyNamespace(tag: CGImageMetadataTag): $SDK6 { return callSDK<$SDK6>("ImageIO_6be9a005889899ab", 876392127825264, undefined, [tag]); }
 
 /**
  * func CGImageMetadataTagCopyPrefix(_ tag: CGImageMetadataTag) -> CFString?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataTagCopyPrefix(tag: CGImageMetadataTag): $SDK6 { return callSDK<$SDK6>("ImageIO_5d69670f0307b385", 2087918553757663, undefined, [tag]); }
+export function CGImageMetadataTagCopyPrefix(tag: CGImageMetadataTag): $SDK6 { return callSDK<$SDK6>("ImageIO_6be9a005889899ab", 2087918553757663, undefined, [tag]); }
 
 /**
  * func CGImageMetadataTagCopyQualifiers(_ tag: CGImageMetadataTag) -> CFArray?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataTagCopyQualifiers(tag: CGImageMetadataTag): $SDK8 { return callSDK<$SDK8>("ImageIO_5d69670f0307b385", 4217937129970363, undefined, [tag]); }
+export function CGImageMetadataTagCopyQualifiers(tag: CGImageMetadataTag): $SDK8 { return callSDK<$SDK8>("ImageIO_6be9a005889899ab", 4217937129970363, undefined, [tag]); }
 
 /**
  * func CGImageMetadataTagCopyValue(_ tag: CGImageMetadataTag) -> CFTypeRef?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataTagCopyValue(tag: CGImageMetadataTag): (unknown) | null { return callSDK<(unknown) | null>("ImageIO_5d69670f0307b385", 743495802936144, undefined, [tag]); }
+export function CGImageMetadataTagCopyValue(tag: CGImageMetadataTag): (unknown) | null { return callSDK<(unknown) | null>("ImageIO_6be9a005889899ab", 743495802936144, undefined, [tag]); }
 
 /**
  * func CGImageMetadataTagCreate(_ xmlns: CFString, _ prefix: CFString?, _ name: CFString, _ type: CGImageMetadataType, _ value: CFTypeRef) -> CGImageMetadataTag?
  * @availability iOS 7.0+
  */
-export function CGImageMetadataTagCreate(xmlns: _CoreFoundation_CFString, prefix: $SDK6, name: _CoreFoundation_CFString, type: CGImageMetadataType, value: unknown): $SDK7 { return callSDK<$SDK7>("ImageIO_5d69670f0307b385", 4164690227141450, undefined, [xmlns, prefix, name, type, value]); }
+export function CGImageMetadataTagCreate(xmlns: _CoreFoundation_CFString, prefix: $SDK6, name: _CoreFoundation_CFString, type: CGImageMetadataType, value: unknown): $SDK7 { return callSDK<$SDK7>("ImageIO_6be9a005889899ab", 4164690227141450, undefined, [xmlns, prefix, name, type, value]); }
 
 /**
  * func CGImageMetadataTagGetType(_ tag: CGImageMetadataTag) -> CGImageMetadataType
  * @availability iOS 7.0+
  */
-export function CGImageMetadataTagGetType(tag: CGImageMetadataTag): CGImageMetadataType { return callSDK<CGImageMetadataType>("ImageIO_5d69670f0307b385", 1497958068831669, undefined, [tag]); }
+export function CGImageMetadataTagGetType(tag: CGImageMetadataTag): CGImageMetadataType { return callSDK<CGImageMetadataType>("ImageIO_6be9a005889899ab", 1497958068831669, undefined, [tag]); }
 
 /**
  * func CGImageMetadataTagGetTypeID() -> CFTypeID
  * @availability iOS 7.0+
  */
-export function CGImageMetadataTagGetTypeID(): number { return callSDK<number>("ImageIO_5d69670f0307b385", 4492177745266542, undefined, []); }
+export function CGImageMetadataTagGetTypeID(): number { return callSDK<number>("ImageIO_6be9a005889899ab", 4492177745266542, undefined, []); }
 
 /**
  * func CGImageSourceCopyAuxiliaryDataInfoAtIndex(_ isrc: CGImageSource, _ index: Int, _ auxiliaryImageDataType: CFString) -> CFDictionary?
  * @availability iOS 11.0+
  */
-export function CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc: CGImageSource, index: number, auxiliaryImageDataType: _CoreFoundation_CFString): $SDK2 { return callSDK<$SDK2>("ImageIO_5d69670f0307b385", 3472577727435097, undefined, [isrc, index, auxiliaryImageDataType]); }
+export function CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc: CGImageSource, index: number, auxiliaryImageDataType: _CoreFoundation_CFString): $SDK2 { return callSDK<$SDK2>("ImageIO_6be9a005889899ab", 3472577727435097, undefined, [isrc, index, auxiliaryImageDataType]); }
 
 /**
  * func CGImageSourceCopyMetadataAtIndex(_ isrc: CGImageSource, _ index: Int, _ options: CFDictionary?) -> CGImageMetadata?
  * @availability iOS 7.0+
  */
-export function CGImageSourceCopyMetadataAtIndex(isrc: CGImageSource, index: number, options?: $SDK2): $SDK3 { return callSDK<$SDK3>("ImageIO_5d69670f0307b385", 185420477605209, undefined, [isrc, index, options]); }
+export function CGImageSourceCopyMetadataAtIndex(isrc: CGImageSource, index: number, options?: $SDK2): $SDK3 { return callSDK<$SDK3>("ImageIO_6be9a005889899ab", 185420477605209, undefined, [isrc, index, options]); }
 
 /**
  * func CGImageSourceCopyProperties(_ isrc: CGImageSource, _ options: CFDictionary?) -> CFDictionary?
  * @availability iOS 4.0+
  */
-export function CGImageSourceCopyProperties(isrc: CGImageSource, options?: $SDK2): $SDK2 { return callSDK<$SDK2>("ImageIO_5d69670f0307b385", 2911691216610434, undefined, [isrc, options]); }
+export function CGImageSourceCopyProperties(isrc: CGImageSource, options?: $SDK2): $SDK2 { return callSDK<$SDK2>("ImageIO_6be9a005889899ab", 2911691216610434, undefined, [isrc, options]); }
 
 /**
  * func CGImageSourceCopyPropertiesAtIndex(_ isrc: CGImageSource, _ index: Int, _ options: CFDictionary?) -> CFDictionary?
  * @availability iOS 4.0+
  */
-export function CGImageSourceCopyPropertiesAtIndex(isrc: CGImageSource, index: number, options?: $SDK2): $SDK2 { return callSDK<$SDK2>("ImageIO_5d69670f0307b385", 2005310563287298, undefined, [isrc, index, options]); }
+export function CGImageSourceCopyPropertiesAtIndex(isrc: CGImageSource, index: number, options?: $SDK2): $SDK2 { return callSDK<$SDK2>("ImageIO_6be9a005889899ab", 2005310563287298, undefined, [isrc, index, options]); }
 
 /**
  * func CGImageSourceCopyTypeIdentifiers() -> CFArray
  * @availability iOS 4.0+
  */
-export function CGImageSourceCopyTypeIdentifiers(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("ImageIO_5d69670f0307b385", 3822150330008837, undefined, []); }
+export function CGImageSourceCopyTypeIdentifiers(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("ImageIO_6be9a005889899ab", 3822150330008837, undefined, []); }
 
 /**
  * func CGImageSourceCreateImageAtIndex(_ isrc: CGImageSource, _ index: Int, _ options: CFDictionary?) -> CGImage?
  * @availability iOS 4.0+
  */
-export function CGImageSourceCreateImageAtIndex(isrc: CGImageSource, index: number, options?: $SDK2): $SDK11 { return callSDK<$SDK11>("ImageIO_5d69670f0307b385", 2288683782242317, undefined, [isrc, index, options]); }
+export function CGImageSourceCreateImageAtIndex(isrc: CGImageSource, index: number, options?: $SDK2): $SDK11 { return callSDK<$SDK11>("ImageIO_6be9a005889899ab", 2288683782242317, undefined, [isrc, index, options]); }
 
 /**
  * func CGImageSourceCreateIncremental(_ options: CFDictionary?) -> CGImageSource
  * @availability iOS 4.0+
  */
-export function CGImageSourceCreateIncremental(options?: $SDK2): CGImageSource { return callSDK<CGImageSource>("ImageIO_5d69670f0307b385", 3760990219021854, undefined, [options]); }
+export function CGImageSourceCreateIncremental(options?: $SDK2): CGImageSource { return callSDK<CGImageSource>("ImageIO_6be9a005889899ab", 3760990219021854, undefined, [options]); }
 
 /**
  * func CGImageSourceCreateThumbnailAtIndex(_ isrc: CGImageSource, _ index: Int, _ options: CFDictionary?) -> CGImage?
  * @availability iOS 4.0+
  */
-export function CGImageSourceCreateThumbnailAtIndex(isrc: CGImageSource, index: number, options?: $SDK2): $SDK11 { return callSDK<$SDK11>("ImageIO_5d69670f0307b385", 2206582308558607, undefined, [isrc, index, options]); }
+export function CGImageSourceCreateThumbnailAtIndex(isrc: CGImageSource, index: number, options?: $SDK2): $SDK11 { return callSDK<$SDK11>("ImageIO_6be9a005889899ab", 2206582308558607, undefined, [isrc, index, options]); }
 
 /**
  * func CGImageSourceCreateWithData(_ data: CFData, _ options: CFDictionary?) -> CGImageSource?
  * @availability iOS 4.0+
  */
-export function CGImageSourceCreateWithData(data: _CoreFoundation_CFData, options?: $SDK2): (CGImageSource) | null { return callSDK<(CGImageSource) | null>("ImageIO_5d69670f0307b385", 2084378335841339, undefined, [data, options]); }
+export function CGImageSourceCreateWithData(data: _CoreFoundation_CFData, options?: $SDK2): (CGImageSource) | null { return callSDK<(CGImageSource) | null>("ImageIO_6be9a005889899ab", 2084378335841339, undefined, [data, options]); }
 
 /**
  * func CGImageSourceCreateWithDataProvider(_ provider: CGDataProvider, _ options: CFDictionary?) -> CGImageSource?
  * @availability iOS 4.0+
  */
-export function CGImageSourceCreateWithDataProvider(provider: _CoreGraphics_CGDataProvider, options?: $SDK2): (CGImageSource) | null { return callSDK<(CGImageSource) | null>("ImageIO_5d69670f0307b385", 2532512305798098, undefined, [provider, options]); }
+export function CGImageSourceCreateWithDataProvider(provider: _CoreGraphics_CGDataProvider, options?: $SDK2): (CGImageSource) | null { return callSDK<(CGImageSource) | null>("ImageIO_6be9a005889899ab", 2532512305798098, undefined, [provider, options]); }
 
 /**
  * func CGImageSourceCreateWithURL(_ url: CFURL, _ options: CFDictionary?) -> CGImageSource?
  * @availability iOS 4.0+
  */
-export function CGImageSourceCreateWithURL(url: _CoreFoundation_CFURL, options?: $SDK2): (CGImageSource) | null { return callSDK<(CGImageSource) | null>("ImageIO_5d69670f0307b385", 2314723779365937, undefined, [url, options]); }
+export function CGImageSourceCreateWithURL(url: _CoreFoundation_CFURL, options?: $SDK2): (CGImageSource) | null { return callSDK<(CGImageSource) | null>("ImageIO_6be9a005889899ab", 2314723779365937, undefined, [url, options]); }
 
 /**
  * func CGImageSourceGetCount(_ isrc: CGImageSource) -> Int
  * @availability iOS 4.0+
  */
-export function CGImageSourceGetCount(isrc: CGImageSource): number { return callSDK<number>("ImageIO_5d69670f0307b385", 2763072817289302, undefined, [isrc]); }
+export function CGImageSourceGetCount(isrc: CGImageSource): number { return callSDK<number>("ImageIO_6be9a005889899ab", 2763072817289302, undefined, [isrc]); }
 
 /**
  * func CGImageSourceGetPrimaryImageIndex(_ isrc: CGImageSource) -> Int
  * @availability iOS 12.0+
  */
-export function CGImageSourceGetPrimaryImageIndex(isrc: CGImageSource): number { return callSDK<number>("ImageIO_5d69670f0307b385", 845380478423542, undefined, [isrc]); }
+export function CGImageSourceGetPrimaryImageIndex(isrc: CGImageSource): number { return callSDK<number>("ImageIO_6be9a005889899ab", 845380478423542, undefined, [isrc]); }
 
 /**
  * func CGImageSourceGetStatus(_ isrc: CGImageSource) -> CGImageSourceStatus
  * @availability iOS 4.0+
  */
-export function CGImageSourceGetStatus(isrc: CGImageSource): CGImageSourceStatus { return callSDK<CGImageSourceStatus>("ImageIO_5d69670f0307b385", 3885930077774631, undefined, [isrc]); }
+export function CGImageSourceGetStatus(isrc: CGImageSource): CGImageSourceStatus { return callSDK<CGImageSourceStatus>("ImageIO_6be9a005889899ab", 3885930077774631, undefined, [isrc]); }
 
 /**
  * func CGImageSourceGetStatusAtIndex(_ isrc: CGImageSource, _ index: Int) -> CGImageSourceStatus
  * @availability iOS 4.0+
  */
-export function CGImageSourceGetStatusAtIndex(isrc: CGImageSource, index: number): CGImageSourceStatus { return callSDK<CGImageSourceStatus>("ImageIO_5d69670f0307b385", 3555423219942155, undefined, [isrc, index]); }
+export function CGImageSourceGetStatusAtIndex(isrc: CGImageSource, index: number): CGImageSourceStatus { return callSDK<CGImageSourceStatus>("ImageIO_6be9a005889899ab", 3555423219942155, undefined, [isrc, index]); }
 
 /**
  * func CGImageSourceGetType(_ isrc: CGImageSource) -> CFString?
  * @availability iOS 4.0+
  */
-export function CGImageSourceGetType(isrc: CGImageSource): $SDK6 { return callSDK<$SDK6>("ImageIO_5d69670f0307b385", 1235353674559460, undefined, [isrc]); }
+export function CGImageSourceGetType(isrc: CGImageSource): $SDK6 { return callSDK<$SDK6>("ImageIO_6be9a005889899ab", 1235353674559460, undefined, [isrc]); }
 
 /**
  * func CGImageSourceGetTypeID() -> CFTypeID
  * @availability iOS 4.0+
  */
-export function CGImageSourceGetTypeID(): number { return callSDK<number>("ImageIO_5d69670f0307b385", 940475045268591, undefined, []); }
+export function CGImageSourceGetTypeID(): number { return callSDK<number>("ImageIO_6be9a005889899ab", 940475045268591, undefined, []); }
 
 /**
  * func CGImageSourceRemoveCacheAtIndex(_ isrc: CGImageSource, _ index: Int)
  * @availability iOS 7.0+
  */
-export function CGImageSourceRemoveCacheAtIndex(isrc: CGImageSource, index: number): void { return callSDK<void>("ImageIO_5d69670f0307b385", 518650810143139, undefined, [isrc, index]); }
+export function CGImageSourceRemoveCacheAtIndex(isrc: CGImageSource, index: number): void { return callSDK<void>("ImageIO_6be9a005889899ab", 518650810143139, undefined, [isrc, index]); }
 
 /**
  * func CGImageSourceSetAllowableTypes(_ allowableTypes: CFArray) -> OSStatus
  * @availability iOS 17.2+
  */
-export function CGImageSourceSetAllowableTypes(allowableTypes: _CoreFoundation_CFArray): number { return callSDK<number>("ImageIO_5d69670f0307b385", 7107522242446, undefined, [allowableTypes]); }
+export function CGImageSourceSetAllowableTypes(allowableTypes: _CoreFoundation_CFArray): number { return callSDK<number>("ImageIO_6be9a005889899ab", 7107522242446, undefined, [allowableTypes]); }
 
 /**
  * func CGImageSourceUpdateData(_ isrc: CGImageSource, _ data: CFData, _ final: Bool)
  * @availability iOS 4.0+
  */
-export function CGImageSourceUpdateData(isrc: CGImageSource, data: _CoreFoundation_CFData, final: boolean): void { return callSDK<void>("ImageIO_5d69670f0307b385", 1928298640277253, undefined, [isrc, data, final]); }
+export function CGImageSourceUpdateData(isrc: CGImageSource, data: _CoreFoundation_CFData, final: boolean): void { return callSDK<void>("ImageIO_6be9a005889899ab", 1928298640277253, undefined, [isrc, data, final]); }
 
 /**
  * func CGImageSourceUpdateDataProvider(_ isrc: CGImageSource, _ provider: CGDataProvider, _ final: Bool)
  * @availability iOS 4.0+
  */
-export function CGImageSourceUpdateDataProvider(isrc: CGImageSource, provider: _CoreGraphics_CGDataProvider, final: boolean): void { return callSDK<void>("ImageIO_5d69670f0307b385", 920322633991924, undefined, [isrc, provider, final]); }
+export function CGImageSourceUpdateDataProvider(isrc: CGImageSource, provider: _CoreGraphics_CGDataProvider, final: boolean): void { return callSDK<void>("ImageIO_6be9a005889899ab", 920322633991924, undefined, [isrc, provider, final]); }
 
 /** let kCFErrorDomainCGImageMetadata: CFString */
-export const kCFErrorDomainCGImageMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2852139809136754, undefined, []);
+export const kCFErrorDomainCGImageMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2852139809136754, undefined, []);
 
 /**
  * let kCGComputeHDRStats: CFString
  * @availability iOS 26.0+
  */
-export const kCGComputeHDRStats: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 264628623230315, undefined, []);
+export const kCGComputeHDRStats: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 264628623230315, undefined, []);
 
 /**
  * let kCGImageAnimationDelayTime: CFString
  * @availability iOS 13.0+
  */
-export const kCGImageAnimationDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3162924013217594, undefined, []);
+export const kCGImageAnimationDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3162924013217594, undefined, []);
 
 /**
  * let kCGImageAnimationLoopCount: CFString
  * @availability iOS 13.0+
  */
-export const kCGImageAnimationLoopCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2366645528003280, undefined, []);
+export const kCGImageAnimationLoopCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2366645528003280, undefined, []);
 
 /**
  * let kCGImageAnimationStartIndex: CFString
  * @availability iOS 13.0+
  */
-export const kCGImageAnimationStartIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3046048548379603, undefined, []);
+export const kCGImageAnimationStartIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3046048548379603, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataInfoColorSpace: CFString
  * @availability iOS 18.0+
  */
-export const kCGImageAuxiliaryDataInfoColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4051993527884283, undefined, []);
+export const kCGImageAuxiliaryDataInfoColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4051993527884283, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataInfoData: CFString
  * @availability iOS 11.0+
  */
-export const kCGImageAuxiliaryDataInfoData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2865687911567613, undefined, []);
+export const kCGImageAuxiliaryDataInfoData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2865687911567613, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataInfoDataDescription: CFString
  * @availability iOS 11.0+
  */
-export const kCGImageAuxiliaryDataInfoDataDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2076004368935345, undefined, []);
+export const kCGImageAuxiliaryDataInfoDataDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2076004368935345, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataInfoMetadata: CFString
  * @availability iOS 11.0+
  */
-export const kCGImageAuxiliaryDataInfoMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1112634695178186, undefined, []);
+export const kCGImageAuxiliaryDataInfoMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1112634695178186, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataTypeDepth: CFString
  * @availability iOS 11.0+
  */
-export const kCGImageAuxiliaryDataTypeDepth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3814942788375501, undefined, []);
+export const kCGImageAuxiliaryDataTypeDepth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3814942788375501, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataTypeDisparity: CFString
  * @availability iOS 11.0+
  */
-export const kCGImageAuxiliaryDataTypeDisparity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1074586649560568, undefined, []);
+export const kCGImageAuxiliaryDataTypeDisparity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1074586649560568, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataTypeHDRGainMap: CFString
  * @availability iOS 14.1+
  */
-export const kCGImageAuxiliaryDataTypeHDRGainMap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2084738912460121, undefined, []);
+export const kCGImageAuxiliaryDataTypeHDRGainMap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2084738912460121, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataTypeISOGainMap: CFString
  * @availability iOS 18.0+
  */
-export const kCGImageAuxiliaryDataTypeISOGainMap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2330216273109319, undefined, []);
+export const kCGImageAuxiliaryDataTypeISOGainMap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2330216273109319, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataTypePortraitEffectsMatte: CFString
  * @availability iOS 12.0+
  */
-export const kCGImageAuxiliaryDataTypePortraitEffectsMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3152332029214777, undefined, []);
+export const kCGImageAuxiliaryDataTypePortraitEffectsMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3152332029214777, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataTypeSemanticSegmentationGlassesMatte: CFString
  * @availability iOS 14.1+
  */
-export const kCGImageAuxiliaryDataTypeSemanticSegmentationGlassesMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1522639450967464, undefined, []);
+export const kCGImageAuxiliaryDataTypeSemanticSegmentationGlassesMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1522639450967464, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataTypeSemanticSegmentationHairMatte: CFString
  * @availability iOS 13.0+
  */
-export const kCGImageAuxiliaryDataTypeSemanticSegmentationHairMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1618948502474614, undefined, []);
+export const kCGImageAuxiliaryDataTypeSemanticSegmentationHairMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1618948502474614, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataTypeSemanticSegmentationSkinMatte: CFString
  * @availability iOS 13.0+
  */
-export const kCGImageAuxiliaryDataTypeSemanticSegmentationSkinMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2812536561593784, undefined, []);
+export const kCGImageAuxiliaryDataTypeSemanticSegmentationSkinMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2812536561593784, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataTypeSemanticSegmentationSkyMatte: CFString
  * @availability iOS 14.1+
  */
-export const kCGImageAuxiliaryDataTypeSemanticSegmentationSkyMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 578665118216818, undefined, []);
+export const kCGImageAuxiliaryDataTypeSemanticSegmentationSkyMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 578665118216818, undefined, []);
 
 /**
  * let kCGImageAuxiliaryDataTypeSemanticSegmentationTeethMatte: CFString
  * @availability iOS 13.0+
  */
-export const kCGImageAuxiliaryDataTypeSemanticSegmentationTeethMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1652902447483545, undefined, []);
+export const kCGImageAuxiliaryDataTypeSemanticSegmentationTeethMatte: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1652902447483545, undefined, []);
 
 /**
  * let kCGImageDestinationBackgroundColor: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageDestinationBackgroundColor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1294371901273021, undefined, []);
+export const kCGImageDestinationBackgroundColor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1294371901273021, undefined, []);
 
 /**
  * let kCGImageDestinationDateTime: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageDestinationDateTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4216097377718700, undefined, []);
+export const kCGImageDestinationDateTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4216097377718700, undefined, []);
 
 /**
  * let kCGImageDestinationEmbedThumbnail: CFString
  * @availability iOS 8.0+
  */
-export const kCGImageDestinationEmbedThumbnail: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 440508042320644, undefined, []);
+export const kCGImageDestinationEmbedThumbnail: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 440508042320644, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeAlternateColorSpace: CFString
  * @availability iOS 26.0+
  */
-export const kCGImageDestinationEncodeAlternateColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1485638825277245, undefined, []);
+export const kCGImageDestinationEncodeAlternateColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1485638825277245, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeBaseColorSpace: CFString
  * @availability iOS 26.0+
  */
-export const kCGImageDestinationEncodeBaseColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3071456185757533, undefined, []);
+export const kCGImageDestinationEncodeBaseColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3071456185757533, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeBaseIsSDR: CFString
  * @availability iOS 18.0+
  */
-export const kCGImageDestinationEncodeBaseIsSDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 480626146267681, undefined, []);
+export const kCGImageDestinationEncodeBaseIsSDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 480626146267681, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeBasePixelFormatRequest: CFString
  * @availability iOS 26.0+
  */
-export const kCGImageDestinationEncodeBasePixelFormatRequest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1155972821562394, undefined, []);
+export const kCGImageDestinationEncodeBasePixelFormatRequest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1155972821562394, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeGainMapPixelFormatRequest: CFString
  * @availability iOS 26.0+
  */
-export const kCGImageDestinationEncodeGainMapPixelFormatRequest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1403729121962898, undefined, []);
+export const kCGImageDestinationEncodeGainMapPixelFormatRequest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1403729121962898, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeGainMapSubsampleFactor: CFString
  * @availability iOS 26.0+
  */
-export const kCGImageDestinationEncodeGainMapSubsampleFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2493464431079411, undefined, []);
+export const kCGImageDestinationEncodeGainMapSubsampleFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2493464431079411, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeGenerateGainMapWithBaseImage: CFString
  * @availability iOS 26.0+
  */
-export const kCGImageDestinationEncodeGenerateGainMapWithBaseImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1402686714104629, undefined, []);
+export const kCGImageDestinationEncodeGenerateGainMapWithBaseImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1402686714104629, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeIsBaseImage: CFString
  * @availability iOS 26.0+
  */
-export const kCGImageDestinationEncodeIsBaseImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3854641195137264, undefined, []);
+export const kCGImageDestinationEncodeIsBaseImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3854641195137264, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeRequest: CFString
  * @availability iOS 18.0+
  */
-export const kCGImageDestinationEncodeRequest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4351197155613629, undefined, []);
+export const kCGImageDestinationEncodeRequest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4351197155613629, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeRequestOptions: CFString
  * @availability iOS 18.0+
  */
-export const kCGImageDestinationEncodeRequestOptions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 415349307448123, undefined, []);
+export const kCGImageDestinationEncodeRequestOptions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 415349307448123, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeToISOGainmap: CFString
  * @availability iOS 18.0+
  */
-export const kCGImageDestinationEncodeToISOGainmap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4470332335869861, undefined, []);
+export const kCGImageDestinationEncodeToISOGainmap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4470332335869861, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeToISOHDR: CFString
  * @availability iOS 18.0+
  */
-export const kCGImageDestinationEncodeToISOHDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1922797871558308, undefined, []);
+export const kCGImageDestinationEncodeToISOHDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1922797871558308, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeToSDR: CFString
  * @availability iOS 18.0+
  */
-export const kCGImageDestinationEncodeToSDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 741797289295881, undefined, []);
+export const kCGImageDestinationEncodeToSDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 741797289295881, undefined, []);
 
 /**
  * let kCGImageDestinationEncodeTonemapMode: CFString
  * @availability iOS 18.0+
  */
-export const kCGImageDestinationEncodeTonemapMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 795391097482924, undefined, []);
+export const kCGImageDestinationEncodeTonemapMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 795391097482924, undefined, []);
 
 /**
  * let kCGImageDestinationImageMaxPixelSize: CFString
  * @availability iOS 8.0+
  */
-export const kCGImageDestinationImageMaxPixelSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 635688777992468, undefined, []);
+export const kCGImageDestinationImageMaxPixelSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 635688777992468, undefined, []);
 
 /**
  * let kCGImageDestinationLossyCompressionQuality: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageDestinationLossyCompressionQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 716875483268578, undefined, []);
+export const kCGImageDestinationLossyCompressionQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 716875483268578, undefined, []);
 
 /**
  * let kCGImageDestinationMergeMetadata: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageDestinationMergeMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 913338057099433, undefined, []);
+export const kCGImageDestinationMergeMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 913338057099433, undefined, []);
 
 /**
  * let kCGImageDestinationMetadata: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageDestinationMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1318189818905919, undefined, []);
+export const kCGImageDestinationMetadata: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1318189818905919, undefined, []);
 
 /**
  * let kCGImageDestinationOptimizeColorForSharing: CFString
  * @availability iOS 9.3+
  */
-export const kCGImageDestinationOptimizeColorForSharing: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2650734113342956, undefined, []);
+export const kCGImageDestinationOptimizeColorForSharing: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2650734113342956, undefined, []);
 
 /**
  * let kCGImageDestinationOrientation: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageDestinationOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2276327495452011, undefined, []);
+export const kCGImageDestinationOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2276327495452011, undefined, []);
 
 /**
  * let kCGImageDestinationPreserveGainMap: CFString
  * @availability iOS 14.1+
  */
-export const kCGImageDestinationPreserveGainMap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4028727380521143, undefined, []);
+export const kCGImageDestinationPreserveGainMap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4028727380521143, undefined, []);
 
 /**
  * let kCGImageMetadataEnumerateRecursively: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataEnumerateRecursively: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2194461740383750, undefined, []);
+export const kCGImageMetadataEnumerateRecursively: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2194461740383750, undefined, []);
 
 /**
  * let kCGImageMetadataNamespaceDublinCore: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataNamespaceDublinCore: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4103346920955389, undefined, []);
+export const kCGImageMetadataNamespaceDublinCore: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4103346920955389, undefined, []);
 
 /**
  * let kCGImageMetadataNamespaceExif: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataNamespaceExif: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3333579829921565, undefined, []);
+export const kCGImageMetadataNamespaceExif: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3333579829921565, undefined, []);
 
 /**
  * let kCGImageMetadataNamespaceExifAux: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataNamespaceExifAux: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1434257204829641, undefined, []);
+export const kCGImageMetadataNamespaceExifAux: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1434257204829641, undefined, []);
 
 /**
  * let kCGImageMetadataNamespaceExifEX: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataNamespaceExifEX: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2057383123795067, undefined, []);
+export const kCGImageMetadataNamespaceExifEX: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2057383123795067, undefined, []);
 
 /**
  * let kCGImageMetadataNamespaceIPTCCore: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataNamespaceIPTCCore: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1429519281607271, undefined, []);
+export const kCGImageMetadataNamespaceIPTCCore: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1429519281607271, undefined, []);
 
 /**
  * let kCGImageMetadataNamespaceIPTCExtension: CFString
  * @availability iOS 11.3+
  */
-export const kCGImageMetadataNamespaceIPTCExtension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2077296446711986, undefined, []);
+export const kCGImageMetadataNamespaceIPTCExtension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2077296446711986, undefined, []);
 
 /**
  * let kCGImageMetadataNamespacePhotoshop: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataNamespacePhotoshop: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1669867592132466, undefined, []);
+export const kCGImageMetadataNamespacePhotoshop: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1669867592132466, undefined, []);
 
 /**
  * let kCGImageMetadataNamespaceTIFF: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataNamespaceTIFF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4052234396980319, undefined, []);
+export const kCGImageMetadataNamespaceTIFF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4052234396980319, undefined, []);
 
 /**
  * let kCGImageMetadataNamespaceXMPBasic: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataNamespaceXMPBasic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2120636246843903, undefined, []);
+export const kCGImageMetadataNamespaceXMPBasic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2120636246843903, undefined, []);
 
 /**
  * let kCGImageMetadataNamespaceXMPRights: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataNamespaceXMPRights: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2850759896630439, undefined, []);
+export const kCGImageMetadataNamespaceXMPRights: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2850759896630439, undefined, []);
 
 /**
  * let kCGImageMetadataPrefixDublinCore: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataPrefixDublinCore: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4231883951604874, undefined, []);
+export const kCGImageMetadataPrefixDublinCore: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4231883951604874, undefined, []);
 
 /**
  * let kCGImageMetadataPrefixExif: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataPrefixExif: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 216085753652147, undefined, []);
+export const kCGImageMetadataPrefixExif: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 216085753652147, undefined, []);
 
 /**
  * let kCGImageMetadataPrefixExifAux: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataPrefixExifAux: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2392089712494321, undefined, []);
+export const kCGImageMetadataPrefixExifAux: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2392089712494321, undefined, []);
 
 /**
  * let kCGImageMetadataPrefixExifEX: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataPrefixExifEX: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 204182355778526, undefined, []);
+export const kCGImageMetadataPrefixExifEX: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 204182355778526, undefined, []);
 
 /**
  * let kCGImageMetadataPrefixIPTCCore: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataPrefixIPTCCore: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3340220833361390, undefined, []);
+export const kCGImageMetadataPrefixIPTCCore: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3340220833361390, undefined, []);
 
 /**
  * let kCGImageMetadataPrefixIPTCExtension: CFString
  * @availability iOS 11.3+
  */
-export const kCGImageMetadataPrefixIPTCExtension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1894526747120714, undefined, []);
+export const kCGImageMetadataPrefixIPTCExtension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1894526747120714, undefined, []);
 
 /**
  * let kCGImageMetadataPrefixPhotoshop: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataPrefixPhotoshop: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2904030512840364, undefined, []);
+export const kCGImageMetadataPrefixPhotoshop: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2904030512840364, undefined, []);
 
 /**
  * let kCGImageMetadataPrefixTIFF: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataPrefixTIFF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1427453119341814, undefined, []);
+export const kCGImageMetadataPrefixTIFF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1427453119341814, undefined, []);
 
 /**
  * let kCGImageMetadataPrefixXMPBasic: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataPrefixXMPBasic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 245298210449915, undefined, []);
+export const kCGImageMetadataPrefixXMPBasic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 245298210449915, undefined, []);
 
 /**
  * let kCGImageMetadataPrefixXMPRights: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataPrefixXMPRights: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3943836055036188, undefined, []);
+export const kCGImageMetadataPrefixXMPRights: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3943836055036188, undefined, []);
 
 /**
  * let kCGImageMetadataShouldExcludeGPS: CFString
  * @availability iOS 8.0+
  */
-export const kCGImageMetadataShouldExcludeGPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1576454996135005, undefined, []);
+export const kCGImageMetadataShouldExcludeGPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1576454996135005, undefined, []);
 
 /**
  * let kCGImageMetadataShouldExcludeXMP: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageMetadataShouldExcludeXMP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2259936655920847, undefined, []);
+export const kCGImageMetadataShouldExcludeXMP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2259936655920847, undefined, []);
 
 /**
  * let kCGImageProperty8BIMDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageProperty8BIMDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 465870935288445, undefined, []);
+export const kCGImageProperty8BIMDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 465870935288445, undefined, []);
 
 /**
  * let kCGImageProperty8BIMLayerNames: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageProperty8BIMLayerNames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4477700812279193, undefined, []);
+export const kCGImageProperty8BIMLayerNames: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4477700812279193, undefined, []);
 
 /**
  * let kCGImageProperty8BIMVersion: CFString
  * @availability iOS 8.0+
  */
-export const kCGImageProperty8BIMVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3502823269644324, undefined, []);
+export const kCGImageProperty8BIMVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3502823269644324, undefined, []);
 
 /**
  * let kCGImagePropertyAPNGCanvasPixelHeight: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyAPNGCanvasPixelHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3443050906131214, undefined, []);
+export const kCGImagePropertyAPNGCanvasPixelHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3443050906131214, undefined, []);
 
 /**
  * let kCGImagePropertyAPNGCanvasPixelWidth: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyAPNGCanvasPixelWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1291415267416736, undefined, []);
+export const kCGImagePropertyAPNGCanvasPixelWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1291415267416736, undefined, []);
 
 /**
  * let kCGImagePropertyAPNGDelayTime: CFString
  * @availability iOS 8.0+
  */
-export const kCGImagePropertyAPNGDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2510419797478623, undefined, []);
+export const kCGImagePropertyAPNGDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2510419797478623, undefined, []);
 
 /**
  * let kCGImagePropertyAPNGFrameInfoArray: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyAPNGFrameInfoArray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1457433767286541, undefined, []);
+export const kCGImagePropertyAPNGFrameInfoArray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1457433767286541, undefined, []);
 
 /**
  * let kCGImagePropertyAPNGLoopCount: CFString
  * @availability iOS 8.0+
  */
-export const kCGImagePropertyAPNGLoopCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1124600633214407, undefined, []);
+export const kCGImagePropertyAPNGLoopCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1124600633214407, undefined, []);
 
 /**
  * let kCGImagePropertyAPNGUnclampedDelayTime: CFString
  * @availability iOS 8.0+
  */
-export const kCGImagePropertyAPNGUnclampedDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2649156530702625, undefined, []);
+export const kCGImagePropertyAPNGUnclampedDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2649156530702625, undefined, []);
 
 /**
  * let kCGImagePropertyASTCBlockSize4x4: CFString
  * @availability iOS 26.0+
  */
-export const kCGImagePropertyASTCBlockSize4x4: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3243756622560283, undefined, []);
+export const kCGImagePropertyASTCBlockSize4x4: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3243756622560283, undefined, []);
 
 /**
  * let kCGImagePropertyASTCBlockSize8x8: CFString
  * @availability iOS 26.0+
  */
-export const kCGImagePropertyASTCBlockSize8x8: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4321948460477711, undefined, []);
+export const kCGImagePropertyASTCBlockSize8x8: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4321948460477711, undefined, []);
 
 /**
  * let kCGImagePropertyASTCBlockSize: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyASTCBlockSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2460453687021272, undefined, []);
+export const kCGImagePropertyASTCBlockSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2460453687021272, undefined, []);
 
 /**
  * let kCGImagePropertyASTCEncoder: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyASTCEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3376869436538796, undefined, []);
+export const kCGImagePropertyASTCEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3376869436538796, undefined, []);
 
 /**
  * let kCGImagePropertyAVISDictionary: CFString
  * @availability iOS 16.0+
  */
-export const kCGImagePropertyAVISDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2424292523674252, undefined, []);
+export const kCGImagePropertyAVISDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2424292523674252, undefined, []);
 
 /**
  * let kCGImagePropertyAuxiliaryData: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyAuxiliaryData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1799591421568694, undefined, []);
+export const kCGImagePropertyAuxiliaryData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1799591421568694, undefined, []);
 
 /**
  * let kCGImagePropertyAuxiliaryDataType: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyAuxiliaryDataType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3107279720946421, undefined, []);
+export const kCGImagePropertyAuxiliaryDataType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3107279720946421, undefined, []);
 
 /**
  * let kCGImagePropertyBCEncoder: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyBCEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1022892074819797, undefined, []);
+export const kCGImagePropertyBCEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1022892074819797, undefined, []);
 
 /**
  * let kCGImagePropertyBCFormat: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyBCFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2111085610458888, undefined, []);
+export const kCGImagePropertyBCFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2111085610458888, undefined, []);
 
 /**
  * let kCGImagePropertyBytesPerRow: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyBytesPerRow: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 186799878395593, undefined, []);
+export const kCGImagePropertyBytesPerRow: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 186799878395593, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFCameraSerialNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFCameraSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4260091548004193, undefined, []);
+export const kCGImagePropertyCIFFCameraSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4260091548004193, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFContinuousDrive: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFContinuousDrive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4252917220465187, undefined, []);
+export const kCGImagePropertyCIFFContinuousDrive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4252917220465187, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFDescription: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1763775061168611, undefined, []);
+export const kCGImagePropertyCIFFDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1763775061168611, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3394696552489593, undefined, []);
+export const kCGImagePropertyCIFFDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3394696552489593, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFFirmware: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFFirmware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3087002963811242, undefined, []);
+export const kCGImagePropertyCIFFFirmware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3087002963811242, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFFlashExposureComp: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFFlashExposureComp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 152548652392379, undefined, []);
+export const kCGImagePropertyCIFFFlashExposureComp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 152548652392379, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFFocusMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFFocusMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3042970989163903, undefined, []);
+export const kCGImagePropertyCIFFFocusMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3042970989163903, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFImageFileName: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFImageFileName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1340690487828903, undefined, []);
+export const kCGImagePropertyCIFFImageFileName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1340690487828903, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFImageName: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFImageName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3724877296508155, undefined, []);
+export const kCGImagePropertyCIFFImageName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3724877296508155, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFImageSerialNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFImageSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3094971543572115, undefined, []);
+export const kCGImagePropertyCIFFImageSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3094971543572115, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFLensMaxMM: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFLensMaxMM: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 26184788033944, undefined, []);
+export const kCGImagePropertyCIFFLensMaxMM: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 26184788033944, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFLensMinMM: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFLensMinMM: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1730088641945038, undefined, []);
+export const kCGImagePropertyCIFFLensMinMM: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1730088641945038, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFLensModel: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFLensModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2164797336606111, undefined, []);
+export const kCGImagePropertyCIFFLensModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2164797336606111, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFMeasuredEV: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFMeasuredEV: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 479914548892474, undefined, []);
+export const kCGImagePropertyCIFFMeasuredEV: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 479914548892474, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFMeteringMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFMeteringMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1732055942177255, undefined, []);
+export const kCGImagePropertyCIFFMeteringMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1732055942177255, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFOwnerName: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFOwnerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2038331970731969, undefined, []);
+export const kCGImagePropertyCIFFOwnerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2038331970731969, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFRecordID: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFRecordID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2569824558421824, undefined, []);
+export const kCGImagePropertyCIFFRecordID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2569824558421824, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFReleaseMethod: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFReleaseMethod: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 120512439438150, undefined, []);
+export const kCGImagePropertyCIFFReleaseMethod: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 120512439438150, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFReleaseTiming: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFReleaseTiming: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2532175350279835, undefined, []);
+export const kCGImagePropertyCIFFReleaseTiming: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2532175350279835, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFSelfTimingTime: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFSelfTimingTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3496716846166496, undefined, []);
+export const kCGImagePropertyCIFFSelfTimingTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3496716846166496, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFShootingMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFShootingMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 651784393472573, undefined, []);
+export const kCGImagePropertyCIFFShootingMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 651784393472573, undefined, []);
 
 /**
  * let kCGImagePropertyCIFFWhiteBalanceIndex: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyCIFFWhiteBalanceIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2525417569022160, undefined, []);
+export const kCGImagePropertyCIFFWhiteBalanceIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2525417569022160, undefined, []);
 
 /**
  * let kCGImagePropertyColorModel: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyColorModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1307389714717290, undefined, []);
+export const kCGImagePropertyColorModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1307389714717290, undefined, []);
 
 /**
  * let kCGImagePropertyColorModelCMYK: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyColorModelCMYK: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 644034730188359, undefined, []);
+export const kCGImagePropertyColorModelCMYK: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 644034730188359, undefined, []);
 
 /**
  * let kCGImagePropertyColorModelGray: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyColorModelGray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1573767260544655, undefined, []);
+export const kCGImagePropertyColorModelGray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1573767260544655, undefined, []);
 
 /**
  * let kCGImagePropertyColorModelLab: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyColorModelLab: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 425379302978742, undefined, []);
+export const kCGImagePropertyColorModelLab: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 425379302978742, undefined, []);
 
 /**
  * let kCGImagePropertyColorModelRGB: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyColorModelRGB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2511468179451752, undefined, []);
+export const kCGImagePropertyColorModelRGB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2511468179451752, undefined, []);
 
 /**
  * let kCGImagePropertyDNGActiveArea: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGActiveArea: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1430036003083668, undefined, []);
+export const kCGImagePropertyDNGActiveArea: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1430036003083668, undefined, []);
 
 /**
  * let kCGImagePropertyDNGAnalogBalance: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGAnalogBalance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2245909052291619, undefined, []);
+export const kCGImagePropertyDNGAnalogBalance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2245909052291619, undefined, []);
 
 /**
  * let kCGImagePropertyDNGAntiAliasStrength: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGAntiAliasStrength: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2472584551216194, undefined, []);
+export const kCGImagePropertyDNGAntiAliasStrength: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2472584551216194, undefined, []);
 
 /**
  * let kCGImagePropertyDNGAsShotICCProfile: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGAsShotICCProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2215353842628452, undefined, []);
+export const kCGImagePropertyDNGAsShotICCProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2215353842628452, undefined, []);
 
 /**
  * let kCGImagePropertyDNGAsShotNeutral: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGAsShotNeutral: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3241283306408787, undefined, []);
+export const kCGImagePropertyDNGAsShotNeutral: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3241283306408787, undefined, []);
 
 /**
  * let kCGImagePropertyDNGAsShotPreProfileMatrix: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGAsShotPreProfileMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3105960513933509, undefined, []);
+export const kCGImagePropertyDNGAsShotPreProfileMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3105960513933509, undefined, []);
 
 /**
  * let kCGImagePropertyDNGAsShotProfileName: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGAsShotProfileName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 817418367255349, undefined, []);
+export const kCGImagePropertyDNGAsShotProfileName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 817418367255349, undefined, []);
 
 /**
  * let kCGImagePropertyDNGAsShotWhiteXY: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGAsShotWhiteXY: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4096093951515554, undefined, []);
+export const kCGImagePropertyDNGAsShotWhiteXY: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4096093951515554, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBackwardVersion: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyDNGBackwardVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2560698323761821, undefined, []);
+export const kCGImagePropertyDNGBackwardVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2560698323761821, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBaselineExposure: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGBaselineExposure: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2001131406037769, undefined, []);
+export const kCGImagePropertyDNGBaselineExposure: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2001131406037769, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBaselineExposureOffset: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGBaselineExposureOffset: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2859631541009912, undefined, []);
+export const kCGImagePropertyDNGBaselineExposureOffset: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2859631541009912, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBaselineNoise: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGBaselineNoise: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2757103472700272, undefined, []);
+export const kCGImagePropertyDNGBaselineNoise: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2757103472700272, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBaselineSharpness: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGBaselineSharpness: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4148302077110894, undefined, []);
+export const kCGImagePropertyDNGBaselineSharpness: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4148302077110894, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBayerGreenSplit: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGBayerGreenSplit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2932545571924043, undefined, []);
+export const kCGImagePropertyDNGBayerGreenSplit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2932545571924043, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBestQualityScale: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGBestQualityScale: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2953791428106188, undefined, []);
+export const kCGImagePropertyDNGBestQualityScale: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2953791428106188, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBlackLevel: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGBlackLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3940571621839442, undefined, []);
+export const kCGImagePropertyDNGBlackLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3940571621839442, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBlackLevelDeltaH: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGBlackLevelDeltaH: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3775744146146251, undefined, []);
+export const kCGImagePropertyDNGBlackLevelDeltaH: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3775744146146251, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBlackLevelDeltaV: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGBlackLevelDeltaV: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2417392789568275, undefined, []);
+export const kCGImagePropertyDNGBlackLevelDeltaV: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2417392789568275, undefined, []);
 
 /**
  * let kCGImagePropertyDNGBlackLevelRepeatDim: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGBlackLevelRepeatDim: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4429962949692279, undefined, []);
+export const kCGImagePropertyDNGBlackLevelRepeatDim: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4429962949692279, undefined, []);
 
 /**
  * let kCGImagePropertyDNGCFALayout: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGCFALayout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 98017358375500, undefined, []);
+export const kCGImagePropertyDNGCFALayout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 98017358375500, undefined, []);
 
 /**
  * let kCGImagePropertyDNGCFAPlaneColor: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGCFAPlaneColor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 472640894137506, undefined, []);
+export const kCGImagePropertyDNGCFAPlaneColor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 472640894137506, undefined, []);
 
 /**
  * let kCGImagePropertyDNGCalibrationIlluminant1: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGCalibrationIlluminant1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2329670029853059, undefined, []);
+export const kCGImagePropertyDNGCalibrationIlluminant1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2329670029853059, undefined, []);
 
 /**
  * let kCGImagePropertyDNGCalibrationIlluminant2: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGCalibrationIlluminant2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2357353028554998, undefined, []);
+export const kCGImagePropertyDNGCalibrationIlluminant2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2357353028554998, undefined, []);
 
 /**
  * let kCGImagePropertyDNGCameraCalibration1: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGCameraCalibration1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3146699268241954, undefined, []);
+export const kCGImagePropertyDNGCameraCalibration1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3146699268241954, undefined, []);
 
 /**
  * let kCGImagePropertyDNGCameraCalibration2: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGCameraCalibration2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2923932184915595, undefined, []);
+export const kCGImagePropertyDNGCameraCalibration2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2923932184915595, undefined, []);
 
 /**
  * let kCGImagePropertyDNGCameraCalibrationSignature: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGCameraCalibrationSignature: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3319505958625740, undefined, []);
+export const kCGImagePropertyDNGCameraCalibrationSignature: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3319505958625740, undefined, []);
 
 /**
  * let kCGImagePropertyDNGCameraSerialNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyDNGCameraSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1183086189211231, undefined, []);
+export const kCGImagePropertyDNGCameraSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1183086189211231, undefined, []);
 
 /**
  * let kCGImagePropertyDNGChromaBlurRadius: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGChromaBlurRadius: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1952308785754764, undefined, []);
+export const kCGImagePropertyDNGChromaBlurRadius: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1952308785754764, undefined, []);
 
 /**
  * let kCGImagePropertyDNGColorMatrix1: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGColorMatrix1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4222441191463573, undefined, []);
+export const kCGImagePropertyDNGColorMatrix1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4222441191463573, undefined, []);
 
 /**
  * let kCGImagePropertyDNGColorMatrix2: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGColorMatrix2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4013706748796902, undefined, []);
+export const kCGImagePropertyDNGColorMatrix2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4013706748796902, undefined, []);
 
 /**
  * let kCGImagePropertyDNGColorimetricReference: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGColorimetricReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2104826571793368, undefined, []);
+export const kCGImagePropertyDNGColorimetricReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2104826571793368, undefined, []);
 
 /**
  * let kCGImagePropertyDNGCurrentICCProfile: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGCurrentICCProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 171699603716356, undefined, []);
+export const kCGImagePropertyDNGCurrentICCProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 171699603716356, undefined, []);
 
 /**
  * let kCGImagePropertyDNGCurrentPreProfileMatrix: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGCurrentPreProfileMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2295604858507404, undefined, []);
+export const kCGImagePropertyDNGCurrentPreProfileMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2295604858507404, undefined, []);
 
 /**
  * let kCGImagePropertyDNGDefaultBlackRender: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGDefaultBlackRender: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 533574330697711, undefined, []);
+export const kCGImagePropertyDNGDefaultBlackRender: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 533574330697711, undefined, []);
 
 /**
  * let kCGImagePropertyDNGDefaultCropOrigin: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGDefaultCropOrigin: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2204121655752557, undefined, []);
+export const kCGImagePropertyDNGDefaultCropOrigin: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2204121655752557, undefined, []);
 
 /**
  * let kCGImagePropertyDNGDefaultCropSize: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGDefaultCropSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2043648752181089, undefined, []);
+export const kCGImagePropertyDNGDefaultCropSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2043648752181089, undefined, []);
 
 /**
  * let kCGImagePropertyDNGDefaultScale: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGDefaultScale: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2120552535681245, undefined, []);
+export const kCGImagePropertyDNGDefaultScale: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2120552535681245, undefined, []);
 
 /**
  * let kCGImagePropertyDNGDefaultUserCrop: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGDefaultUserCrop: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 143224446595903, undefined, []);
+export const kCGImagePropertyDNGDefaultUserCrop: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 143224446595903, undefined, []);
 
 /**
  * let kCGImagePropertyDNGDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyDNGDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4365352587518745, undefined, []);
+export const kCGImagePropertyDNGDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4365352587518745, undefined, []);
 
 /**
  * let kCGImagePropertyDNGExtraCameraProfiles: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGExtraCameraProfiles: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3932965201332455, undefined, []);
+export const kCGImagePropertyDNGExtraCameraProfiles: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3932965201332455, undefined, []);
 
 /**
  * let kCGImagePropertyDNGFixVignetteRadial: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGFixVignetteRadial: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2888507130724123, undefined, []);
+export const kCGImagePropertyDNGFixVignetteRadial: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2888507130724123, undefined, []);
 
 /**
  * let kCGImagePropertyDNGForwardMatrix1: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGForwardMatrix1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3910195987041717, undefined, []);
+export const kCGImagePropertyDNGForwardMatrix1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3910195987041717, undefined, []);
 
 /**
  * let kCGImagePropertyDNGForwardMatrix2: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGForwardMatrix2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1228860100307540, undefined, []);
+export const kCGImagePropertyDNGForwardMatrix2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1228860100307540, undefined, []);
 
 /**
  * let kCGImagePropertyDNGLensInfo: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyDNGLensInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3880777150519717, undefined, []);
+export const kCGImagePropertyDNGLensInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3880777150519717, undefined, []);
 
 /**
  * let kCGImagePropertyDNGLinearResponseLimit: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGLinearResponseLimit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2203980037403603, undefined, []);
+export const kCGImagePropertyDNGLinearResponseLimit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2203980037403603, undefined, []);
 
 /**
  * let kCGImagePropertyDNGLinearizationTable: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGLinearizationTable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2391534094779621, undefined, []);
+export const kCGImagePropertyDNGLinearizationTable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2391534094779621, undefined, []);
 
 /**
  * let kCGImagePropertyDNGLocalizedCameraModel: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyDNGLocalizedCameraModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3083800740192672, undefined, []);
+export const kCGImagePropertyDNGLocalizedCameraModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3083800740192672, undefined, []);
 
 /**
  * let kCGImagePropertyDNGMakerNoteSafety: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGMakerNoteSafety: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4492079277720752, undefined, []);
+export const kCGImagePropertyDNGMakerNoteSafety: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4492079277720752, undefined, []);
 
 /**
  * let kCGImagePropertyDNGMaskedAreas: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGMaskedAreas: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1700599436672811, undefined, []);
+export const kCGImagePropertyDNGMaskedAreas: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1700599436672811, undefined, []);
 
 /**
  * let kCGImagePropertyDNGNewRawImageDigest: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGNewRawImageDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3550210043136875, undefined, []);
+export const kCGImagePropertyDNGNewRawImageDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3550210043136875, undefined, []);
 
 /**
  * let kCGImagePropertyDNGNoiseProfile: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGNoiseProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 247543359434943, undefined, []);
+export const kCGImagePropertyDNGNoiseProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 247543359434943, undefined, []);
 
 /**
  * let kCGImagePropertyDNGNoiseReductionApplied: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGNoiseReductionApplied: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2398305736172197, undefined, []);
+export const kCGImagePropertyDNGNoiseReductionApplied: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2398305736172197, undefined, []);
 
 /**
  * let kCGImagePropertyDNGOpcodeList1: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGOpcodeList1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2430211256716091, undefined, []);
+export const kCGImagePropertyDNGOpcodeList1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2430211256716091, undefined, []);
 
 /**
  * let kCGImagePropertyDNGOpcodeList2: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGOpcodeList2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2046751639381639, undefined, []);
+export const kCGImagePropertyDNGOpcodeList2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2046751639381639, undefined, []);
 
 /**
  * let kCGImagePropertyDNGOpcodeList3: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGOpcodeList3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4275450523860832, undefined, []);
+export const kCGImagePropertyDNGOpcodeList3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4275450523860832, undefined, []);
 
 /**
  * let kCGImagePropertyDNGOriginalBestQualityFinalSize: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGOriginalBestQualityFinalSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 727348109339765, undefined, []);
+export const kCGImagePropertyDNGOriginalBestQualityFinalSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 727348109339765, undefined, []);
 
 /**
  * let kCGImagePropertyDNGOriginalDefaultCropSize: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGOriginalDefaultCropSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3736019040018912, undefined, []);
+export const kCGImagePropertyDNGOriginalDefaultCropSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3736019040018912, undefined, []);
 
 /**
  * let kCGImagePropertyDNGOriginalDefaultFinalSize: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGOriginalDefaultFinalSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 921574626580334, undefined, []);
+export const kCGImagePropertyDNGOriginalDefaultFinalSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 921574626580334, undefined, []);
 
 /**
  * let kCGImagePropertyDNGOriginalRawFileData: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGOriginalRawFileData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3648748780954275, undefined, []);
+export const kCGImagePropertyDNGOriginalRawFileData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3648748780954275, undefined, []);
 
 /**
  * let kCGImagePropertyDNGOriginalRawFileDigest: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGOriginalRawFileDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1456127411743612, undefined, []);
+export const kCGImagePropertyDNGOriginalRawFileDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1456127411743612, undefined, []);
 
 /**
  * let kCGImagePropertyDNGOriginalRawFileName: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGOriginalRawFileName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2891168320052470, undefined, []);
+export const kCGImagePropertyDNGOriginalRawFileName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2891168320052470, undefined, []);
 
 /**
  * let kCGImagePropertyDNGPreviewApplicationName: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGPreviewApplicationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3998401248671752, undefined, []);
+export const kCGImagePropertyDNGPreviewApplicationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3998401248671752, undefined, []);
 
 /**
  * let kCGImagePropertyDNGPreviewApplicationVersion: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGPreviewApplicationVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4422414504141195, undefined, []);
+export const kCGImagePropertyDNGPreviewApplicationVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4422414504141195, undefined, []);
 
 /**
  * let kCGImagePropertyDNGPreviewColorSpace: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGPreviewColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1819291671739728, undefined, []);
+export const kCGImagePropertyDNGPreviewColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1819291671739728, undefined, []);
 
 /**
  * let kCGImagePropertyDNGPreviewDateTime: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGPreviewDateTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 495790624470183, undefined, []);
+export const kCGImagePropertyDNGPreviewDateTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 495790624470183, undefined, []);
 
 /**
  * let kCGImagePropertyDNGPreviewSettingsDigest: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGPreviewSettingsDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2359002499199723, undefined, []);
+export const kCGImagePropertyDNGPreviewSettingsDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2359002499199723, undefined, []);
 
 /**
  * let kCGImagePropertyDNGPreviewSettingsName: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGPreviewSettingsName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3988058400871156, undefined, []);
+export const kCGImagePropertyDNGPreviewSettingsName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3988058400871156, undefined, []);
 
 /**
  * let kCGImagePropertyDNGPrivateData: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGPrivateData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 277370156773459, undefined, []);
+export const kCGImagePropertyDNGPrivateData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 277370156773459, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileCalibrationSignature: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGProfileCalibrationSignature: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1891856910312255, undefined, []);
+export const kCGImagePropertyDNGProfileCalibrationSignature: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1891856910312255, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileCopyright: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileCopyright: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 931687169485885, undefined, []);
+export const kCGImagePropertyDNGProfileCopyright: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 931687169485885, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileEmbedPolicy: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileEmbedPolicy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4249875582899647, undefined, []);
+export const kCGImagePropertyDNGProfileEmbedPolicy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4249875582899647, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileHueSatMapData1: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileHueSatMapData1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 449958785418754, undefined, []);
+export const kCGImagePropertyDNGProfileHueSatMapData1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 449958785418754, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileHueSatMapData2: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileHueSatMapData2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 237100165278461, undefined, []);
+export const kCGImagePropertyDNGProfileHueSatMapData2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 237100165278461, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileHueSatMapDims: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileHueSatMapDims: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1095175845333799, undefined, []);
+export const kCGImagePropertyDNGProfileHueSatMapDims: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1095175845333799, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileHueSatMapEncoding: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileHueSatMapEncoding: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1043132919421097, undefined, []);
+export const kCGImagePropertyDNGProfileHueSatMapEncoding: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1043132919421097, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileLookTableData: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileLookTableData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 864766757107914, undefined, []);
+export const kCGImagePropertyDNGProfileLookTableData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 864766757107914, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileLookTableDims: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileLookTableDims: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2348103082857264, undefined, []);
+export const kCGImagePropertyDNGProfileLookTableDims: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2348103082857264, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileLookTableEncoding: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileLookTableEncoding: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3239558944582383, undefined, []);
+export const kCGImagePropertyDNGProfileLookTableEncoding: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3239558944582383, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileName: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1508928544963250, undefined, []);
+export const kCGImagePropertyDNGProfileName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1508928544963250, undefined, []);
 
 /**
  * let kCGImagePropertyDNGProfileToneCurve: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGProfileToneCurve: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3360277782854501, undefined, []);
+export const kCGImagePropertyDNGProfileToneCurve: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3360277782854501, undefined, []);
 
 /**
  * let kCGImagePropertyDNGRawDataUniqueID: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGRawDataUniqueID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3338919326234468, undefined, []);
+export const kCGImagePropertyDNGRawDataUniqueID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3338919326234468, undefined, []);
 
 /**
  * let kCGImagePropertyDNGRawImageDigest: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGRawImageDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2533570351097542, undefined, []);
+export const kCGImagePropertyDNGRawImageDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2533570351097542, undefined, []);
 
 /**
  * let kCGImagePropertyDNGRawToPreviewGain: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGRawToPreviewGain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2650825744027267, undefined, []);
+export const kCGImagePropertyDNGRawToPreviewGain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2650825744027267, undefined, []);
 
 /**
  * let kCGImagePropertyDNGReductionMatrix1: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGReductionMatrix1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1253427386842264, undefined, []);
+export const kCGImagePropertyDNGReductionMatrix1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1253427386842264, undefined, []);
 
 /**
  * let kCGImagePropertyDNGReductionMatrix2: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGReductionMatrix2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1646082669574106, undefined, []);
+export const kCGImagePropertyDNGReductionMatrix2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1646082669574106, undefined, []);
 
 /**
  * let kCGImagePropertyDNGRowInterleaveFactor: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGRowInterleaveFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4426512461368630, undefined, []);
+export const kCGImagePropertyDNGRowInterleaveFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4426512461368630, undefined, []);
 
 /**
  * let kCGImagePropertyDNGShadowScale: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGShadowScale: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2155651575883131, undefined, []);
+export const kCGImagePropertyDNGShadowScale: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2155651575883131, undefined, []);
 
 /**
  * let kCGImagePropertyDNGSubTileBlockSize: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyDNGSubTileBlockSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2343260414015233, undefined, []);
+export const kCGImagePropertyDNGSubTileBlockSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2343260414015233, undefined, []);
 
 /**
  * let kCGImagePropertyDNGUniqueCameraModel: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyDNGUniqueCameraModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2056858216647475, undefined, []);
+export const kCGImagePropertyDNGUniqueCameraModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2056858216647475, undefined, []);
 
 /**
  * let kCGImagePropertyDNGVersion: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyDNGVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 514543018632143, undefined, []);
+export const kCGImagePropertyDNGVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 514543018632143, undefined, []);
 
 /**
  * let kCGImagePropertyDNGWarpFisheye: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGWarpFisheye: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 624726787579029, undefined, []);
+export const kCGImagePropertyDNGWarpFisheye: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 624726787579029, undefined, []);
 
 /**
  * let kCGImagePropertyDNGWarpRectilinear: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGWarpRectilinear: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1278987143460431, undefined, []);
+export const kCGImagePropertyDNGWarpRectilinear: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1278987143460431, undefined, []);
 
 /**
  * let kCGImagePropertyDNGWhiteLevel: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyDNGWhiteLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2302973965590457, undefined, []);
+export const kCGImagePropertyDNGWhiteLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2302973965590457, undefined, []);
 
 /**
  * let kCGImagePropertyDPIHeight: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyDPIHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4010809247583157, undefined, []);
+export const kCGImagePropertyDPIHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4010809247583157, undefined, []);
 
 /**
  * let kCGImagePropertyDPIWidth: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyDPIWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2031509115363030, undefined, []);
+export const kCGImagePropertyDPIWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2031509115363030, undefined, []);
 
 /**
  * let kCGImagePropertyDepth: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyDepth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4127680730557475, undefined, []);
+export const kCGImagePropertyDepth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4127680730557475, undefined, []);
 
 /**
  * let kCGImagePropertyEncoder: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1501554500125948, undefined, []);
+export const kCGImagePropertyEncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1501554500125948, undefined, []);
 
 /**
  * let kCGImagePropertyExifApertureValue: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifApertureValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2818071186438497, undefined, []);
+export const kCGImagePropertyExifApertureValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2818071186438497, undefined, []);
 
 /**
  * let kCGImagePropertyExifAuxDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifAuxDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 297214913801452, undefined, []);
+export const kCGImagePropertyExifAuxDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 297214913801452, undefined, []);
 
 /**
  * let kCGImagePropertyExifAuxFirmware: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifAuxFirmware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1163465232067812, undefined, []);
+export const kCGImagePropertyExifAuxFirmware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1163465232067812, undefined, []);
 
 /**
  * let kCGImagePropertyExifAuxFlashCompensation: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifAuxFlashCompensation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1667719017959209, undefined, []);
+export const kCGImagePropertyExifAuxFlashCompensation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1667719017959209, undefined, []);
 
 /**
  * let kCGImagePropertyExifAuxImageNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifAuxImageNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4503440607434379, undefined, []);
+export const kCGImagePropertyExifAuxImageNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4503440607434379, undefined, []);
 
 /**
  * let kCGImagePropertyExifAuxLensID: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifAuxLensID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2193362718096604, undefined, []);
+export const kCGImagePropertyExifAuxLensID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2193362718096604, undefined, []);
 
 /**
  * let kCGImagePropertyExifAuxLensInfo: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifAuxLensInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3923922271861437, undefined, []);
+export const kCGImagePropertyExifAuxLensInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3923922271861437, undefined, []);
 
 /**
  * let kCGImagePropertyExifAuxLensModel: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifAuxLensModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 862090300698560, undefined, []);
+export const kCGImagePropertyExifAuxLensModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 862090300698560, undefined, []);
 
 /**
  * let kCGImagePropertyExifAuxLensSerialNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifAuxLensSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3189962538390132, undefined, []);
+export const kCGImagePropertyExifAuxLensSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3189962538390132, undefined, []);
 
 /**
  * let kCGImagePropertyExifAuxOwnerName: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifAuxOwnerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3756972598203242, undefined, []);
+export const kCGImagePropertyExifAuxOwnerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3756972598203242, undefined, []);
 
 /**
  * let kCGImagePropertyExifAuxSerialNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifAuxSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2047618751142714, undefined, []);
+export const kCGImagePropertyExifAuxSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2047618751142714, undefined, []);
 
 /**
  * let kCGImagePropertyExifBodySerialNumber: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyExifBodySerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 317543167217193, undefined, []);
+export const kCGImagePropertyExifBodySerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 317543167217193, undefined, []);
 
 /**
  * let kCGImagePropertyExifBrightnessValue: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifBrightnessValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3129475744734632, undefined, []);
+export const kCGImagePropertyExifBrightnessValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3129475744734632, undefined, []);
 
 /**
  * let kCGImagePropertyExifCFAPattern: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifCFAPattern: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4189519127779112, undefined, []);
+export const kCGImagePropertyExifCFAPattern: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4189519127779112, undefined, []);
 
 /**
  * let kCGImagePropertyExifCameraOwnerName: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyExifCameraOwnerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 310628097469427, undefined, []);
+export const kCGImagePropertyExifCameraOwnerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 310628097469427, undefined, []);
 
 /**
  * let kCGImagePropertyExifColorSpace: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 943909786050723, undefined, []);
+export const kCGImagePropertyExifColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 943909786050723, undefined, []);
 
 /**
  * let kCGImagePropertyExifComponentsConfiguration: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifComponentsConfiguration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 357928478776265, undefined, []);
+export const kCGImagePropertyExifComponentsConfiguration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 357928478776265, undefined, []);
 
 /**
  * let kCGImagePropertyExifCompositeImage: CFString
  * @availability iOS 13.1+
  */
-export const kCGImagePropertyExifCompositeImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3279945713991730, undefined, []);
+export const kCGImagePropertyExifCompositeImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3279945713991730, undefined, []);
 
 /**
  * let kCGImagePropertyExifCompressedBitsPerPixel: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifCompressedBitsPerPixel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2816776688351054, undefined, []);
+export const kCGImagePropertyExifCompressedBitsPerPixel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2816776688351054, undefined, []);
 
 /**
  * let kCGImagePropertyExifContrast: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifContrast: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1384427549514457, undefined, []);
+export const kCGImagePropertyExifContrast: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1384427549514457, undefined, []);
 
 /**
  * let kCGImagePropertyExifCustomRendered: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifCustomRendered: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2182548875572332, undefined, []);
+export const kCGImagePropertyExifCustomRendered: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2182548875572332, undefined, []);
 
 /**
  * let kCGImagePropertyExifDateTimeDigitized: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifDateTimeDigitized: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1578389521139753, undefined, []);
+export const kCGImagePropertyExifDateTimeDigitized: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1578389521139753, undefined, []);
 
 /**
  * let kCGImagePropertyExifDateTimeOriginal: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifDateTimeOriginal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2972831457706744, undefined, []);
+export const kCGImagePropertyExifDateTimeOriginal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2972831457706744, undefined, []);
 
 /**
  * let kCGImagePropertyExifDeviceSettingDescription: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifDeviceSettingDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2848873463697835, undefined, []);
+export const kCGImagePropertyExifDeviceSettingDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2848873463697835, undefined, []);
 
 /**
  * let kCGImagePropertyExifDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 753171337886360, undefined, []);
+export const kCGImagePropertyExifDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 753171337886360, undefined, []);
 
 /**
  * let kCGImagePropertyExifDigitalZoomRatio: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifDigitalZoomRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4007432404265403, undefined, []);
+export const kCGImagePropertyExifDigitalZoomRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4007432404265403, undefined, []);
 
 /**
  * let kCGImagePropertyExifExposureBiasValue: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifExposureBiasValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 363281569641036, undefined, []);
+export const kCGImagePropertyExifExposureBiasValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 363281569641036, undefined, []);
 
 /**
  * let kCGImagePropertyExifExposureIndex: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifExposureIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3168168017683834, undefined, []);
+export const kCGImagePropertyExifExposureIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3168168017683834, undefined, []);
 
 /**
  * let kCGImagePropertyExifExposureMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifExposureMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3677311391483520, undefined, []);
+export const kCGImagePropertyExifExposureMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3677311391483520, undefined, []);
 
 /**
  * let kCGImagePropertyExifExposureProgram: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifExposureProgram: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3134994903778440, undefined, []);
+export const kCGImagePropertyExifExposureProgram: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3134994903778440, undefined, []);
 
 /**
  * let kCGImagePropertyExifExposureTime: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifExposureTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2576561719971838, undefined, []);
+export const kCGImagePropertyExifExposureTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2576561719971838, undefined, []);
 
 /**
  * let kCGImagePropertyExifFNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifFNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3179318022025880, undefined, []);
+export const kCGImagePropertyExifFNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3179318022025880, undefined, []);
 
 /**
  * let kCGImagePropertyExifFileSource: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifFileSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2158934197679930, undefined, []);
+export const kCGImagePropertyExifFileSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2158934197679930, undefined, []);
 
 /**
  * let kCGImagePropertyExifFlash: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifFlash: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4192478657960541, undefined, []);
+export const kCGImagePropertyExifFlash: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4192478657960541, undefined, []);
 
 /**
  * let kCGImagePropertyExifFlashEnergy: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifFlashEnergy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2872616164352735, undefined, []);
+export const kCGImagePropertyExifFlashEnergy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2872616164352735, undefined, []);
 
 /**
  * let kCGImagePropertyExifFlashPixVersion: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifFlashPixVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3057638315341886, undefined, []);
+export const kCGImagePropertyExifFlashPixVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3057638315341886, undefined, []);
 
 /**
  * let kCGImagePropertyExifFocalLenIn35mmFilm: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifFocalLenIn35mmFilm: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2386154586817951, undefined, []);
+export const kCGImagePropertyExifFocalLenIn35mmFilm: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2386154586817951, undefined, []);
 
 /**
  * let kCGImagePropertyExifFocalLength: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifFocalLength: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1781748088392578, undefined, []);
+export const kCGImagePropertyExifFocalLength: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1781748088392578, undefined, []);
 
 /**
  * let kCGImagePropertyExifFocalPlaneResolutionUnit: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifFocalPlaneResolutionUnit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2928688208630270, undefined, []);
+export const kCGImagePropertyExifFocalPlaneResolutionUnit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2928688208630270, undefined, []);
 
 /**
  * let kCGImagePropertyExifFocalPlaneXResolution: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifFocalPlaneXResolution: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1837625154324580, undefined, []);
+export const kCGImagePropertyExifFocalPlaneXResolution: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1837625154324580, undefined, []);
 
 /**
  * let kCGImagePropertyExifFocalPlaneYResolution: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifFocalPlaneYResolution: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3468888117160893, undefined, []);
+export const kCGImagePropertyExifFocalPlaneYResolution: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3468888117160893, undefined, []);
 
 /**
  * let kCGImagePropertyExifGainControl: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifGainControl: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 336340715119977, undefined, []);
+export const kCGImagePropertyExifGainControl: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 336340715119977, undefined, []);
 
 /**
  * let kCGImagePropertyExifGamma: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifGamma: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1899432266084851, undefined, []);
+export const kCGImagePropertyExifGamma: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1899432266084851, undefined, []);
 
 /**
  * let kCGImagePropertyExifISOSpeed: CFString
  * @availability iOS 7.0+
  */
-export const kCGImagePropertyExifISOSpeed: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2980850876794637, undefined, []);
+export const kCGImagePropertyExifISOSpeed: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2980850876794637, undefined, []);
 
 /**
  * let kCGImagePropertyExifISOSpeedLatitudeyyy: CFString
  * @availability iOS 7.0+
  */
-export const kCGImagePropertyExifISOSpeedLatitudeyyy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1611334899028512, undefined, []);
+export const kCGImagePropertyExifISOSpeedLatitudeyyy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1611334899028512, undefined, []);
 
 /**
  * let kCGImagePropertyExifISOSpeedLatitudezzz: CFString
  * @availability iOS 7.0+
  */
-export const kCGImagePropertyExifISOSpeedLatitudezzz: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 799918389722043, undefined, []);
+export const kCGImagePropertyExifISOSpeedLatitudezzz: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 799918389722043, undefined, []);
 
 /**
  * let kCGImagePropertyExifISOSpeedRatings: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifISOSpeedRatings: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3604448818576661, undefined, []);
+export const kCGImagePropertyExifISOSpeedRatings: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3604448818576661, undefined, []);
 
 /**
  * let kCGImagePropertyExifImageUniqueID: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifImageUniqueID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4341945295441042, undefined, []);
+export const kCGImagePropertyExifImageUniqueID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4341945295441042, undefined, []);
 
 /**
  * let kCGImagePropertyExifLensMake: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyExifLensMake: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2145481739698421, undefined, []);
+export const kCGImagePropertyExifLensMake: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2145481739698421, undefined, []);
 
 /**
  * let kCGImagePropertyExifLensModel: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyExifLensModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2814872945166891, undefined, []);
+export const kCGImagePropertyExifLensModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2814872945166891, undefined, []);
 
 /**
  * let kCGImagePropertyExifLensSerialNumber: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyExifLensSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1924543419136753, undefined, []);
+export const kCGImagePropertyExifLensSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1924543419136753, undefined, []);
 
 /**
  * let kCGImagePropertyExifLensSpecification: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyExifLensSpecification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2888516609279238, undefined, []);
+export const kCGImagePropertyExifLensSpecification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2888516609279238, undefined, []);
 
 /**
  * let kCGImagePropertyExifLightSource: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifLightSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2523531447083031, undefined, []);
+export const kCGImagePropertyExifLightSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2523531447083031, undefined, []);
 
 /**
  * let kCGImagePropertyExifMakerNote: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifMakerNote: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1391883627261984, undefined, []);
+export const kCGImagePropertyExifMakerNote: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1391883627261984, undefined, []);
 
 /**
  * let kCGImagePropertyExifMaxApertureValue: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifMaxApertureValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1808384588811594, undefined, []);
+export const kCGImagePropertyExifMaxApertureValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1808384588811594, undefined, []);
 
 /**
  * let kCGImagePropertyExifMeteringMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifMeteringMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2961552353565941, undefined, []);
+export const kCGImagePropertyExifMeteringMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2961552353565941, undefined, []);
 
 /**
  * let kCGImagePropertyExifOECF: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifOECF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2252767794359439, undefined, []);
+export const kCGImagePropertyExifOECF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2252767794359439, undefined, []);
 
 /**
  * let kCGImagePropertyExifOffsetTime: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyExifOffsetTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3591688976309652, undefined, []);
+export const kCGImagePropertyExifOffsetTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3591688976309652, undefined, []);
 
 /**
  * let kCGImagePropertyExifOffsetTimeDigitized: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyExifOffsetTimeDigitized: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2072501774947970, undefined, []);
+export const kCGImagePropertyExifOffsetTimeDigitized: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2072501774947970, undefined, []);
 
 /**
  * let kCGImagePropertyExifOffsetTimeOriginal: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyExifOffsetTimeOriginal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2694786492310702, undefined, []);
+export const kCGImagePropertyExifOffsetTimeOriginal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2694786492310702, undefined, []);
 
 /**
  * let kCGImagePropertyExifPixelXDimension: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifPixelXDimension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3023421975159919, undefined, []);
+export const kCGImagePropertyExifPixelXDimension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3023421975159919, undefined, []);
 
 /**
  * let kCGImagePropertyExifPixelYDimension: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifPixelYDimension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3820550073821625, undefined, []);
+export const kCGImagePropertyExifPixelYDimension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3820550073821625, undefined, []);
 
 /**
  * let kCGImagePropertyExifRecommendedExposureIndex: CFString
  * @availability iOS 7.0+
  */
-export const kCGImagePropertyExifRecommendedExposureIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2969352569057176, undefined, []);
+export const kCGImagePropertyExifRecommendedExposureIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2969352569057176, undefined, []);
 
 /**
  * let kCGImagePropertyExifRelatedSoundFile: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifRelatedSoundFile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 761342637452435, undefined, []);
+export const kCGImagePropertyExifRelatedSoundFile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 761342637452435, undefined, []);
 
 /**
  * let kCGImagePropertyExifSaturation: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSaturation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2959124410472260, undefined, []);
+export const kCGImagePropertyExifSaturation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2959124410472260, undefined, []);
 
 /**
  * let kCGImagePropertyExifSceneCaptureType: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSceneCaptureType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 641394419606140, undefined, []);
+export const kCGImagePropertyExifSceneCaptureType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 641394419606140, undefined, []);
 
 /**
  * let kCGImagePropertyExifSceneType: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSceneType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 90953921625393, undefined, []);
+export const kCGImagePropertyExifSceneType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 90953921625393, undefined, []);
 
 /**
  * let kCGImagePropertyExifSensingMethod: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSensingMethod: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1316614364221593, undefined, []);
+export const kCGImagePropertyExifSensingMethod: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1316614364221593, undefined, []);
 
 /**
  * let kCGImagePropertyExifSensitivityType: CFString
  * @availability iOS 7.0+
  */
-export const kCGImagePropertyExifSensitivityType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 375206346622710, undefined, []);
+export const kCGImagePropertyExifSensitivityType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 375206346622710, undefined, []);
 
 /**
  * let kCGImagePropertyExifSharpness: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSharpness: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3595382858495654, undefined, []);
+export const kCGImagePropertyExifSharpness: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3595382858495654, undefined, []);
 
 /**
  * let kCGImagePropertyExifShutterSpeedValue: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifShutterSpeedValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4216439552278515, undefined, []);
+export const kCGImagePropertyExifShutterSpeedValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4216439552278515, undefined, []);
 
 /**
  * let kCGImagePropertyExifSourceExposureTimesOfCompositeImage: CFString
  * @availability iOS 13.1+
  */
-export const kCGImagePropertyExifSourceExposureTimesOfCompositeImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2734779568572064, undefined, []);
+export const kCGImagePropertyExifSourceExposureTimesOfCompositeImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2734779568572064, undefined, []);
 
 /**
  * let kCGImagePropertyExifSourceImageNumberOfCompositeImage: CFString
  * @availability iOS 13.1+
  */
-export const kCGImagePropertyExifSourceImageNumberOfCompositeImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2127308976484427, undefined, []);
+export const kCGImagePropertyExifSourceImageNumberOfCompositeImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2127308976484427, undefined, []);
 
 /**
  * let kCGImagePropertyExifSpatialFrequencyResponse: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSpatialFrequencyResponse: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1448463475775679, undefined, []);
+export const kCGImagePropertyExifSpatialFrequencyResponse: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1448463475775679, undefined, []);
 
 /**
  * let kCGImagePropertyExifSpectralSensitivity: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSpectralSensitivity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1975062851983085, undefined, []);
+export const kCGImagePropertyExifSpectralSensitivity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1975062851983085, undefined, []);
 
 /**
  * let kCGImagePropertyExifStandardOutputSensitivity: CFString
  * @availability iOS 7.0+
  */
-export const kCGImagePropertyExifStandardOutputSensitivity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2898884456806145, undefined, []);
+export const kCGImagePropertyExifStandardOutputSensitivity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2898884456806145, undefined, []);
 
 /**
  * let kCGImagePropertyExifSubjectArea: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSubjectArea: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 158459722118360, undefined, []);
+export const kCGImagePropertyExifSubjectArea: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 158459722118360, undefined, []);
 
 /**
  * let kCGImagePropertyExifSubjectDistRange: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSubjectDistRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 486959203081778, undefined, []);
+export const kCGImagePropertyExifSubjectDistRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 486959203081778, undefined, []);
 
 /**
  * let kCGImagePropertyExifSubjectDistance: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSubjectDistance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3178604122129818, undefined, []);
+export const kCGImagePropertyExifSubjectDistance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3178604122129818, undefined, []);
 
 /**
  * let kCGImagePropertyExifSubjectLocation: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSubjectLocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4152397843422770, undefined, []);
+export const kCGImagePropertyExifSubjectLocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4152397843422770, undefined, []);
 
 /**
  * let kCGImagePropertyExifSubsecTime: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSubsecTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4079477684712862, undefined, []);
+export const kCGImagePropertyExifSubsecTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4079477684712862, undefined, []);
 
 /**
  * let kCGImagePropertyExifSubsecTimeDigitized: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifSubsecTimeDigitized: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2299418897855689, undefined, []);
+export const kCGImagePropertyExifSubsecTimeDigitized: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2299418897855689, undefined, []);
 
 /**
  * let kCGImagePropertyExifSubsecTimeOrginal: CFString
  * @availability iOS 4.0+
  * @deprecated iOS 10.0
  */
-export const kCGImagePropertyExifSubsecTimeOrginal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1503661003236945, undefined, []);
+export const kCGImagePropertyExifSubsecTimeOrginal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1503661003236945, undefined, []);
 
 /**
  * let kCGImagePropertyExifSubsecTimeOriginal: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyExifSubsecTimeOriginal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 758758320674520, undefined, []);
+export const kCGImagePropertyExifSubsecTimeOriginal: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 758758320674520, undefined, []);
 
 /**
  * let kCGImagePropertyExifUserComment: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifUserComment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3694776453326715, undefined, []);
+export const kCGImagePropertyExifUserComment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3694776453326715, undefined, []);
 
 /**
  * let kCGImagePropertyExifVersion: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 195890120342120, undefined, []);
+export const kCGImagePropertyExifVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 195890120342120, undefined, []);
 
 /**
  * let kCGImagePropertyExifWhiteBalance: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyExifWhiteBalance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1334435001032356, undefined, []);
+export const kCGImagePropertyExifWhiteBalance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1334435001032356, undefined, []);
 
 /**
  * let kCGImagePropertyFileContentsDictionary: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyFileContentsDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 890185818066895, undefined, []);
+export const kCGImagePropertyFileContentsDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 890185818066895, undefined, []);
 
 /**
  * let kCGImagePropertyFileSize: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyFileSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3956355470305295, undefined, []);
+export const kCGImagePropertyFileSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3956355470305295, undefined, []);
 
 /**
  * let kCGImagePropertyGIFCanvasPixelHeight: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyGIFCanvasPixelHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1285373275945303, undefined, []);
+export const kCGImagePropertyGIFCanvasPixelHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1285373275945303, undefined, []);
 
 /**
  * let kCGImagePropertyGIFCanvasPixelWidth: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyGIFCanvasPixelWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 424597291848729, undefined, []);
+export const kCGImagePropertyGIFCanvasPixelWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 424597291848729, undefined, []);
 
 /**
  * let kCGImagePropertyGIFDelayTime: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGIFDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1870225006986523, undefined, []);
+export const kCGImagePropertyGIFDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1870225006986523, undefined, []);
 
 /**
  * let kCGImagePropertyGIFDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGIFDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2729545814672267, undefined, []);
+export const kCGImagePropertyGIFDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2729545814672267, undefined, []);
 
 /**
  * let kCGImagePropertyGIFFrameInfoArray: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyGIFFrameInfoArray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2230090357089131, undefined, []);
+export const kCGImagePropertyGIFFrameInfoArray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2230090357089131, undefined, []);
 
 /**
  * let kCGImagePropertyGIFHasGlobalColorMap: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGIFHasGlobalColorMap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3060765396993004, undefined, []);
+export const kCGImagePropertyGIFHasGlobalColorMap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3060765396993004, undefined, []);
 
 /**
  * let kCGImagePropertyGIFImageColorMap: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGIFImageColorMap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1624315536000505, undefined, []);
+export const kCGImagePropertyGIFImageColorMap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1624315536000505, undefined, []);
 
 /**
  * let kCGImagePropertyGIFLoopCount: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGIFLoopCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1769855949706014, undefined, []);
+export const kCGImagePropertyGIFLoopCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1769855949706014, undefined, []);
 
 /**
  * let kCGImagePropertyGIFUnclampedDelayTime: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGIFUnclampedDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 71930464821944, undefined, []);
+export const kCGImagePropertyGIFUnclampedDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 71930464821944, undefined, []);
 
 /**
  * let kCGImagePropertyGPSAltitude: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSAltitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3329211371533072, undefined, []);
+export const kCGImagePropertyGPSAltitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3329211371533072, undefined, []);
 
 /**
  * let kCGImagePropertyGPSAltitudeRef: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSAltitudeRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2163157622322637, undefined, []);
+export const kCGImagePropertyGPSAltitudeRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2163157622322637, undefined, []);
 
 /**
  * let kCGImagePropertyGPSAreaInformation: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSAreaInformation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3720055120916646, undefined, []);
+export const kCGImagePropertyGPSAreaInformation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3720055120916646, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDOP: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDOP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3701171331194867, undefined, []);
+export const kCGImagePropertyGPSDOP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3701171331194867, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDateStamp: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDateStamp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2053067221233127, undefined, []);
+export const kCGImagePropertyGPSDateStamp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2053067221233127, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDestBearing: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDestBearing: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 582070752328893, undefined, []);
+export const kCGImagePropertyGPSDestBearing: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 582070752328893, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDestBearingRef: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDestBearingRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4276362962278660, undefined, []);
+export const kCGImagePropertyGPSDestBearingRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4276362962278660, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDestDistance: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDestDistance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1356524644035365, undefined, []);
+export const kCGImagePropertyGPSDestDistance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1356524644035365, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDestDistanceRef: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDestDistanceRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3326398807941643, undefined, []);
+export const kCGImagePropertyGPSDestDistanceRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3326398807941643, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDestLatitude: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDestLatitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3017851439196478, undefined, []);
+export const kCGImagePropertyGPSDestLatitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3017851439196478, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDestLatitudeRef: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDestLatitudeRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2629261449356187, undefined, []);
+export const kCGImagePropertyGPSDestLatitudeRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2629261449356187, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDestLongitude: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDestLongitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1461463196660992, undefined, []);
+export const kCGImagePropertyGPSDestLongitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1461463196660992, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDestLongitudeRef: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDestLongitudeRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2933872000509817, undefined, []);
+export const kCGImagePropertyGPSDestLongitudeRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2933872000509817, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2727568041863199, undefined, []);
+export const kCGImagePropertyGPSDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2727568041863199, undefined, []);
 
 /**
  * let kCGImagePropertyGPSDifferental: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSDifferental: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 749234251822001, undefined, []);
+export const kCGImagePropertyGPSDifferental: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 749234251822001, undefined, []);
 
 /**
  * let kCGImagePropertyGPSHPositioningError: CFString
  * @availability iOS 8.0+
  */
-export const kCGImagePropertyGPSHPositioningError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4313568712015017, undefined, []);
+export const kCGImagePropertyGPSHPositioningError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4313568712015017, undefined, []);
 
 /**
  * let kCGImagePropertyGPSImgDirection: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSImgDirection: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 326604750645883, undefined, []);
+export const kCGImagePropertyGPSImgDirection: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 326604750645883, undefined, []);
 
 /**
  * let kCGImagePropertyGPSImgDirectionRef: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSImgDirectionRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2065900931010531, undefined, []);
+export const kCGImagePropertyGPSImgDirectionRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2065900931010531, undefined, []);
 
 /**
  * let kCGImagePropertyGPSLatitude: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSLatitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1371039953970009, undefined, []);
+export const kCGImagePropertyGPSLatitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1371039953970009, undefined, []);
 
 /**
  * let kCGImagePropertyGPSLatitudeRef: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSLatitudeRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1863667457164743, undefined, []);
+export const kCGImagePropertyGPSLatitudeRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1863667457164743, undefined, []);
 
 /**
  * let kCGImagePropertyGPSLongitude: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSLongitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3517863805772004, undefined, []);
+export const kCGImagePropertyGPSLongitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3517863805772004, undefined, []);
 
 /**
  * let kCGImagePropertyGPSLongitudeRef: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSLongitudeRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1144943554381714, undefined, []);
+export const kCGImagePropertyGPSLongitudeRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1144943554381714, undefined, []);
 
 /**
  * let kCGImagePropertyGPSMapDatum: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSMapDatum: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1000124261410748, undefined, []);
+export const kCGImagePropertyGPSMapDatum: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1000124261410748, undefined, []);
 
 /**
  * let kCGImagePropertyGPSMeasureMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSMeasureMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 189143547097936, undefined, []);
+export const kCGImagePropertyGPSMeasureMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 189143547097936, undefined, []);
 
 /**
  * let kCGImagePropertyGPSProcessingMethod: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSProcessingMethod: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2117850385502384, undefined, []);
+export const kCGImagePropertyGPSProcessingMethod: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2117850385502384, undefined, []);
 
 /**
  * let kCGImagePropertyGPSSatellites: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSSatellites: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 417469050423476, undefined, []);
+export const kCGImagePropertyGPSSatellites: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 417469050423476, undefined, []);
 
 /**
  * let kCGImagePropertyGPSSpeed: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSSpeed: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 325731923701405, undefined, []);
+export const kCGImagePropertyGPSSpeed: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 325731923701405, undefined, []);
 
 /**
  * let kCGImagePropertyGPSSpeedRef: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSSpeedRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4500774928590639, undefined, []);
+export const kCGImagePropertyGPSSpeedRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4500774928590639, undefined, []);
 
 /**
  * let kCGImagePropertyGPSStatus: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSStatus: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 977438217311580, undefined, []);
+export const kCGImagePropertyGPSStatus: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 977438217311580, undefined, []);
 
 /**
  * let kCGImagePropertyGPSTimeStamp: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSTimeStamp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4105177141065894, undefined, []);
+export const kCGImagePropertyGPSTimeStamp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4105177141065894, undefined, []);
 
 /**
  * let kCGImagePropertyGPSTrack: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSTrack: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3304089150054859, undefined, []);
+export const kCGImagePropertyGPSTrack: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3304089150054859, undefined, []);
 
 /**
  * let kCGImagePropertyGPSTrackRef: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSTrackRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3797060153637608, undefined, []);
+export const kCGImagePropertyGPSTrackRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3797060153637608, undefined, []);
 
 /**
  * let kCGImagePropertyGPSVersion: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyGPSVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2641488695826980, undefined, []);
+export const kCGImagePropertyGPSVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2641488695826980, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImageBaseline: CFString
  * @availability iOS 16.0+
  */
-export const kCGImagePropertyGroupImageBaseline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4288553373649042, undefined, []);
+export const kCGImagePropertyGroupImageBaseline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4288553373649042, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImageDisparityAdjustment: CFString
  * @availability iOS 16.0+
  */
-export const kCGImagePropertyGroupImageDisparityAdjustment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3448073992577736, undefined, []);
+export const kCGImagePropertyGroupImageDisparityAdjustment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3448073992577736, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImageIndexLeft: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroupImageIndexLeft: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1437335393072009, undefined, []);
+export const kCGImagePropertyGroupImageIndexLeft: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1437335393072009, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImageIndexMonoscopic: CFString
  * @availability iOS 18.0+
  */
-export const kCGImagePropertyGroupImageIndexMonoscopic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1723187765235565, undefined, []);
+export const kCGImagePropertyGroupImageIndexMonoscopic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1723187765235565, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImageIndexRight: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroupImageIndexRight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2006176220667132, undefined, []);
+export const kCGImagePropertyGroupImageIndexRight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2006176220667132, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImageIsAlternateImage: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroupImageIsAlternateImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2326613782890812, undefined, []);
+export const kCGImagePropertyGroupImageIsAlternateImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2326613782890812, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImageIsLeftImage: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroupImageIsLeftImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3638346158596438, undefined, []);
+export const kCGImagePropertyGroupImageIsLeftImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3638346158596438, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImageIsMonoscopicImage: CFString
  * @availability iOS 18.0+
  */
-export const kCGImagePropertyGroupImageIsMonoscopicImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3939945807315256, undefined, []);
+export const kCGImagePropertyGroupImageIsMonoscopicImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3939945807315256, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImageIsRightImage: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroupImageIsRightImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 797664528906760, undefined, []);
+export const kCGImagePropertyGroupImageIsRightImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 797664528906760, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImageStereoAggressors: CFString
  * @availability iOS 18.0+
  */
-export const kCGImagePropertyGroupImageStereoAggressors: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 224362311261006, undefined, []);
+export const kCGImagePropertyGroupImageStereoAggressors: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 224362311261006, undefined, []);
 
 /**
  * let kCGImagePropertyGroupImagesAlternate: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroupImagesAlternate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3134229174815811, undefined, []);
+export const kCGImagePropertyGroupImagesAlternate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3134229174815811, undefined, []);
 
 /**
  * let kCGImagePropertyGroupIndex: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroupIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3968541877937196, undefined, []);
+export const kCGImagePropertyGroupIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3968541877937196, undefined, []);
 
 /**
  * let kCGImagePropertyGroupMonoscopicImageLocation: CFString
  * @availability iOS 18.0+
  */
-export const kCGImagePropertyGroupMonoscopicImageLocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1402556755895201, undefined, []);
+export const kCGImagePropertyGroupMonoscopicImageLocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1402556755895201, undefined, []);
 
 /**
  * let kCGImagePropertyGroupType: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroupType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3943853848125658, undefined, []);
+export const kCGImagePropertyGroupType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3943853848125658, undefined, []);
 
 /**
  * let kCGImagePropertyGroupTypeAlternate: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroupTypeAlternate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2191226037328098, undefined, []);
+export const kCGImagePropertyGroupTypeAlternate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2191226037328098, undefined, []);
 
 /**
  * let kCGImagePropertyGroupTypeStereoPair: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroupTypeStereoPair: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 636787828720143, undefined, []);
+export const kCGImagePropertyGroupTypeStereoPair: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 636787828720143, undefined, []);
 
 /**
  * let kCGImagePropertyGroups: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyGroups: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4111261461077419, undefined, []);
+export const kCGImagePropertyGroups: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4111261461077419, undefined, []);
 
 /**
  * let kCGImagePropertyHEICSCanvasPixelHeight: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyHEICSCanvasPixelHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2359887969436139, undefined, []);
+export const kCGImagePropertyHEICSCanvasPixelHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2359887969436139, undefined, []);
 
 /**
  * let kCGImagePropertyHEICSCanvasPixelWidth: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyHEICSCanvasPixelWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2762839540853097, undefined, []);
+export const kCGImagePropertyHEICSCanvasPixelWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2762839540853097, undefined, []);
 
 /**
  * let kCGImagePropertyHEICSDelayTime: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyHEICSDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1911980884314310, undefined, []);
+export const kCGImagePropertyHEICSDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1911980884314310, undefined, []);
 
 /**
  * let kCGImagePropertyHEICSDictionary: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyHEICSDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2868795025746669, undefined, []);
+export const kCGImagePropertyHEICSDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2868795025746669, undefined, []);
 
 /**
  * let kCGImagePropertyHEICSFrameInfoArray: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyHEICSFrameInfoArray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3046553043290443, undefined, []);
+export const kCGImagePropertyHEICSFrameInfoArray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3046553043290443, undefined, []);
 
 /**
  * let kCGImagePropertyHEICSLoopCount: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyHEICSLoopCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 321013623065901, undefined, []);
+export const kCGImagePropertyHEICSLoopCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 321013623065901, undefined, []);
 
 /**
  * let kCGImagePropertyHEICSUnclampedDelayTime: CFString
  * @availability iOS 13.0+
  */
-export const kCGImagePropertyHEICSUnclampedDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2741771574662758, undefined, []);
+export const kCGImagePropertyHEICSUnclampedDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2741771574662758, undefined, []);
 
 /**
  * let kCGImagePropertyHEIFDictionary: CFString
  * @availability iOS 16.0+
  */
-export const kCGImagePropertyHEIFDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 401775128453204, undefined, []);
+export const kCGImagePropertyHEIFDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 401775128453204, undefined, []);
 
 /**
  * let kCGImagePropertyHasAlpha: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyHasAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 590071680660202, undefined, []);
+export const kCGImagePropertyHasAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 590071680660202, undefined, []);
 
 /**
  * let kCGImagePropertyHeight: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2190363531507690, undefined, []);
+export const kCGImagePropertyHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2190363531507690, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCActionAdvised: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCActionAdvised: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2925868321803821, undefined, []);
+export const kCGImagePropertyIPTCActionAdvised: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2925868321803821, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCByline: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCByline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3920314405934461, undefined, []);
+export const kCGImagePropertyIPTCByline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3920314405934461, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCBylineTitle: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCBylineTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3091623427391703, undefined, []);
+export const kCGImagePropertyIPTCBylineTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3091623427391703, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCCaptionAbstract: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCCaptionAbstract: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1003390818155217, undefined, []);
+export const kCGImagePropertyIPTCCaptionAbstract: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1003390818155217, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCCategory: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCCategory: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1174361109203607, undefined, []);
+export const kCGImagePropertyIPTCCategory: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1174361109203607, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCCity: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCCity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3219828060907047, undefined, []);
+export const kCGImagePropertyIPTCCity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3219828060907047, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContact: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContact: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3207919024266116, undefined, []);
+export const kCGImagePropertyIPTCContact: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3207919024266116, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContactInfoAddress: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContactInfoAddress: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2076685911699049, undefined, []);
+export const kCGImagePropertyIPTCContactInfoAddress: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2076685911699049, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContactInfoCity: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContactInfoCity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3172495680466092, undefined, []);
+export const kCGImagePropertyIPTCContactInfoCity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3172495680466092, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContactInfoCountry: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContactInfoCountry: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3642336730326288, undefined, []);
+export const kCGImagePropertyIPTCContactInfoCountry: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3642336730326288, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContactInfoEmails: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContactInfoEmails: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1695013594508595, undefined, []);
+export const kCGImagePropertyIPTCContactInfoEmails: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1695013594508595, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContactInfoPhones: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContactInfoPhones: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2018025016474864, undefined, []);
+export const kCGImagePropertyIPTCContactInfoPhones: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2018025016474864, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContactInfoPostalCode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContactInfoPostalCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3982477209269085, undefined, []);
+export const kCGImagePropertyIPTCContactInfoPostalCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3982477209269085, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContactInfoStateProvince: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContactInfoStateProvince: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3911988414719347, undefined, []);
+export const kCGImagePropertyIPTCContactInfoStateProvince: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3911988414719347, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContactInfoWebURLs: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContactInfoWebURLs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2821796234033177, undefined, []);
+export const kCGImagePropertyIPTCContactInfoWebURLs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2821796234033177, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContentLocationCode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContentLocationCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1894256918829317, undefined, []);
+export const kCGImagePropertyIPTCContentLocationCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1894256918829317, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCContentLocationName: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCContentLocationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3144204272030951, undefined, []);
+export const kCGImagePropertyIPTCContentLocationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3144204272030951, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCCopyrightNotice: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCCopyrightNotice: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1415570851146504, undefined, []);
+export const kCGImagePropertyIPTCCopyrightNotice: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1415570851146504, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCCountryPrimaryLocationCode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCCountryPrimaryLocationCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2902585307812927, undefined, []);
+export const kCGImagePropertyIPTCCountryPrimaryLocationCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2902585307812927, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCCountryPrimaryLocationName: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCCountryPrimaryLocationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3985682001134154, undefined, []);
+export const kCGImagePropertyIPTCCountryPrimaryLocationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3985682001134154, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCCreatorContactInfo: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCCreatorContactInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2905907235785503, undefined, []);
+export const kCGImagePropertyIPTCCreatorContactInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2905907235785503, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCCredit: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCCredit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 73424658485855, undefined, []);
+export const kCGImagePropertyIPTCCredit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 73424658485855, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCDateCreated: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCDateCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1931823863407427, undefined, []);
+export const kCGImagePropertyIPTCDateCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1931823863407427, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 647154406578102, undefined, []);
+export const kCGImagePropertyIPTCDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 647154406578102, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCDigitalCreationDate: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCDigitalCreationDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1662649596434561, undefined, []);
+export const kCGImagePropertyIPTCDigitalCreationDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1662649596434561, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCDigitalCreationTime: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCDigitalCreationTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4430152278361047, undefined, []);
+export const kCGImagePropertyIPTCDigitalCreationTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4430152278361047, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCEditStatus: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCEditStatus: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1372412221683941, undefined, []);
+export const kCGImagePropertyIPTCEditStatus: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1372412221683941, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCEditorialUpdate: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCEditorialUpdate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3187583207619827, undefined, []);
+export const kCGImagePropertyIPTCEditorialUpdate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3187583207619827, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExpirationDate: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCExpirationDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3063169413884226, undefined, []);
+export const kCGImagePropertyIPTCExpirationDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3063169413884226, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExpirationTime: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCExpirationTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2908885437247465, undefined, []);
+export const kCGImagePropertyIPTCExpirationTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2908885437247465, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtAboutCvTerm: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtAboutCvTerm: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2442535281864161, undefined, []);
+export const kCGImagePropertyIPTCExtAboutCvTerm: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2442535281864161, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtAboutCvTermCvId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtAboutCvTermCvId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3166459545343007, undefined, []);
+export const kCGImagePropertyIPTCExtAboutCvTermCvId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3166459545343007, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtAboutCvTermId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtAboutCvTermId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 513394827619695, undefined, []);
+export const kCGImagePropertyIPTCExtAboutCvTermId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 513394827619695, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtAboutCvTermName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtAboutCvTermName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3682814466646193, undefined, []);
+export const kCGImagePropertyIPTCExtAboutCvTermName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3682814466646193, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtAboutCvTermRefinedAbout: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtAboutCvTermRefinedAbout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 507903917345731, undefined, []);
+export const kCGImagePropertyIPTCExtAboutCvTermRefinedAbout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 507903917345731, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtAddlModelInfo: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtAddlModelInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2349528973051024, undefined, []);
+export const kCGImagePropertyIPTCExtAddlModelInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2349528973051024, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkCircaDateCreated: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkCircaDateCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1325000350875016, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkCircaDateCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1325000350875016, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkContentDescription: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkContentDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 929512645526699, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkContentDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 929512645526699, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkContributionDescription: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkContributionDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2252143890687988, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkContributionDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2252143890687988, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkCopyrightNotice: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkCopyrightNotice: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2885155735699840, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkCopyrightNotice: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2885155735699840, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkCopyrightOwnerID: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkCopyrightOwnerID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 749493635544705, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkCopyrightOwnerID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 749493635544705, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkCopyrightOwnerName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkCopyrightOwnerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1147750209103141, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkCopyrightOwnerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1147750209103141, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkCreator: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkCreator: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2466862707878710, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkCreator: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2466862707878710, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkCreatorID: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkCreatorID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4159880870242528, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkCreatorID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4159880870242528, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkDateCreated: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkDateCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4257172348280342, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkDateCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4257172348280342, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkLicensorID: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkLicensorID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2399847315125340, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkLicensorID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2399847315125340, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkLicensorName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkLicensorName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1022217253396199, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkLicensorName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1022217253396199, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkOrObject: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkOrObject: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 628919514561385, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkOrObject: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 628919514561385, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkPhysicalDescription: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkPhysicalDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2307269206117851, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkPhysicalDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2307269206117851, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkSource: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4176865996542737, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4176865996542737, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkSourceInvURL: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkSourceInvURL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1363339978512840, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkSourceInvURL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1363339978512840, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkSourceInventoryNo: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkSourceInventoryNo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2545685484398703, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkSourceInventoryNo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2545685484398703, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkStylePeriod: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkStylePeriod: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 541568749460237, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkStylePeriod: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 541568749460237, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtArtworkTitle: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtArtworkTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 318185398332437, undefined, []);
+export const kCGImagePropertyIPTCExtArtworkTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 318185398332437, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtAudioBitrate: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtAudioBitrate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4292667939875481, undefined, []);
+export const kCGImagePropertyIPTCExtAudioBitrate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4292667939875481, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtAudioBitrateMode: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtAudioBitrateMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 456011404084640, undefined, []);
+export const kCGImagePropertyIPTCExtAudioBitrateMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 456011404084640, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtAudioChannelCount: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtAudioChannelCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 339644197042335, undefined, []);
+export const kCGImagePropertyIPTCExtAudioChannelCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 339644197042335, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtCircaDateCreated: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtCircaDateCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3244477260552894, undefined, []);
+export const kCGImagePropertyIPTCExtCircaDateCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3244477260552894, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtContainerFormat: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtContainerFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1383340047375160, undefined, []);
+export const kCGImagePropertyIPTCExtContainerFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1383340047375160, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtContainerFormatIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtContainerFormatIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4419606959596228, undefined, []);
+export const kCGImagePropertyIPTCExtContainerFormatIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4419606959596228, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtContainerFormatName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtContainerFormatName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2675306337801724, undefined, []);
+export const kCGImagePropertyIPTCExtContainerFormatName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2675306337801724, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtContributor: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtContributor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 6369395900178, undefined, []);
+export const kCGImagePropertyIPTCExtContributor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 6369395900178, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtContributorIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtContributorIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2928347825042868, undefined, []);
+export const kCGImagePropertyIPTCExtContributorIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2928347825042868, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtContributorName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtContributorName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2391531647329283, undefined, []);
+export const kCGImagePropertyIPTCExtContributorName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2391531647329283, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtContributorRole: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtContributorRole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4282026391612357, undefined, []);
+export const kCGImagePropertyIPTCExtContributorRole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4282026391612357, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtControlledVocabularyTerm: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtControlledVocabularyTerm: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2820676730323868, undefined, []);
+export const kCGImagePropertyIPTCExtControlledVocabularyTerm: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2820676730323868, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtCopyrightYear: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtCopyrightYear: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1777025740144520, undefined, []);
+export const kCGImagePropertyIPTCExtCopyrightYear: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1777025740144520, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtCreator: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtCreator: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1589137720798192, undefined, []);
+export const kCGImagePropertyIPTCExtCreator: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1589137720798192, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtCreatorIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtCreatorIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 386742113471312, undefined, []);
+export const kCGImagePropertyIPTCExtCreatorIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 386742113471312, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtCreatorName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtCreatorName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1976810968980360, undefined, []);
+export const kCGImagePropertyIPTCExtCreatorName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1976810968980360, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtCreatorRole: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtCreatorRole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3365051512028596, undefined, []);
+export const kCGImagePropertyIPTCExtCreatorRole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3365051512028596, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDataOnScreen: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDataOnScreen: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4191875167095646, undefined, []);
+export const kCGImagePropertyIPTCExtDataOnScreen: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4191875167095646, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDataOnScreenRegion: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDataOnScreenRegion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1000579695672387, undefined, []);
+export const kCGImagePropertyIPTCExtDataOnScreenRegion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1000579695672387, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDataOnScreenRegionD: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDataOnScreenRegionD: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 898313220978276, undefined, []);
+export const kCGImagePropertyIPTCExtDataOnScreenRegionD: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 898313220978276, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDataOnScreenRegionH: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDataOnScreenRegionH: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3395347986160704, undefined, []);
+export const kCGImagePropertyIPTCExtDataOnScreenRegionH: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3395347986160704, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDataOnScreenRegionText: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDataOnScreenRegionText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3906424699727573, undefined, []);
+export const kCGImagePropertyIPTCExtDataOnScreenRegionText: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3906424699727573, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDataOnScreenRegionUnit: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDataOnScreenRegionUnit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4409914491400505, undefined, []);
+export const kCGImagePropertyIPTCExtDataOnScreenRegionUnit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4409914491400505, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDataOnScreenRegionW: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDataOnScreenRegionW: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3188405662644741, undefined, []);
+export const kCGImagePropertyIPTCExtDataOnScreenRegionW: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3188405662644741, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDataOnScreenRegionX: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDataOnScreenRegionX: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1702265036064173, undefined, []);
+export const kCGImagePropertyIPTCExtDataOnScreenRegionX: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1702265036064173, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDataOnScreenRegionY: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDataOnScreenRegionY: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2160806908092598, undefined, []);
+export const kCGImagePropertyIPTCExtDataOnScreenRegionY: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2160806908092598, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDigitalImageGUID: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDigitalImageGUID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1237646630668775, undefined, []);
+export const kCGImagePropertyIPTCExtDigitalImageGUID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1237646630668775, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDigitalSourceFileType: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDigitalSourceFileType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3829493228697171, undefined, []);
+export const kCGImagePropertyIPTCExtDigitalSourceFileType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3829493228697171, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDigitalSourceType: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDigitalSourceType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1904097914072711, undefined, []);
+export const kCGImagePropertyIPTCExtDigitalSourceType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1904097914072711, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDopesheet: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDopesheet: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3784778942375562, undefined, []);
+export const kCGImagePropertyIPTCExtDopesheet: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3784778942375562, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDopesheetLink: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDopesheetLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 574913351569273, undefined, []);
+export const kCGImagePropertyIPTCExtDopesheetLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 574913351569273, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDopesheetLinkLink: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDopesheetLinkLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2760811556446716, undefined, []);
+export const kCGImagePropertyIPTCExtDopesheetLinkLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2760811556446716, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtDopesheetLinkLinkQualifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtDopesheetLinkLinkQualifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2530678876471508, undefined, []);
+export const kCGImagePropertyIPTCExtDopesheetLinkLinkQualifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2530678876471508, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtEmbdEncRightsExpr: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtEmbdEncRightsExpr: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2087861805732047, undefined, []);
+export const kCGImagePropertyIPTCExtEmbdEncRightsExpr: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2087861805732047, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtEmbeddedEncodedRightsExpr: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtEmbeddedEncodedRightsExpr: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2265112978356973, undefined, []);
+export const kCGImagePropertyIPTCExtEmbeddedEncodedRightsExpr: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2265112978356973, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprLangID: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprLangID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 499524209232126, undefined, []);
+export const kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprLangID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 499524209232126, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprType: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1277468772858895, undefined, []);
+export const kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1277468772858895, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtEpisode: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtEpisode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2370016332162850, undefined, []);
+export const kCGImagePropertyIPTCExtEpisode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2370016332162850, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtEpisodeIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtEpisodeIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1377831476930112, undefined, []);
+export const kCGImagePropertyIPTCExtEpisodeIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1377831476930112, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtEpisodeName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtEpisodeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3311043044819680, undefined, []);
+export const kCGImagePropertyIPTCExtEpisodeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3311043044819680, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtEpisodeNumber: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtEpisodeNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3775654259632100, undefined, []);
+export const kCGImagePropertyIPTCExtEpisodeNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3775654259632100, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtEvent: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtEvent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1197797035713493, undefined, []);
+export const kCGImagePropertyIPTCExtEvent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1197797035713493, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtExternalMetadataLink: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtExternalMetadataLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3018934224059956, undefined, []);
+export const kCGImagePropertyIPTCExtExternalMetadataLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3018934224059956, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtFeedIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtFeedIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 390783823527830, undefined, []);
+export const kCGImagePropertyIPTCExtFeedIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 390783823527830, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtGenre: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtGenre: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1401353786601380, undefined, []);
+export const kCGImagePropertyIPTCExtGenre: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1401353786601380, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtGenreCvId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtGenreCvId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1502732422347069, undefined, []);
+export const kCGImagePropertyIPTCExtGenreCvId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1502732422347069, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtGenreCvTermId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtGenreCvTermId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1515235541689780, undefined, []);
+export const kCGImagePropertyIPTCExtGenreCvTermId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1515235541689780, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtGenreCvTermName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtGenreCvTermName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 705904395298583, undefined, []);
+export const kCGImagePropertyIPTCExtGenreCvTermName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 705904395298583, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtGenreCvTermRefinedAbout: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtGenreCvTermRefinedAbout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 676908300215058, undefined, []);
+export const kCGImagePropertyIPTCExtGenreCvTermRefinedAbout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 676908300215058, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtHeadline: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtHeadline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 658574956002771, undefined, []);
+export const kCGImagePropertyIPTCExtHeadline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 658574956002771, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtIPTCLastEdited: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtIPTCLastEdited: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4476557935947636, undefined, []);
+export const kCGImagePropertyIPTCExtIPTCLastEdited: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4476557935947636, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLinkedEncRightsExpr: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLinkedEncRightsExpr: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1614779183766499, undefined, []);
+export const kCGImagePropertyIPTCExtLinkedEncRightsExpr: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1614779183766499, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLinkedEncodedRightsExpr: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLinkedEncodedRightsExpr: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3009916015696888, undefined, []);
+export const kCGImagePropertyIPTCExtLinkedEncodedRightsExpr: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3009916015696888, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLinkedEncodedRightsExprLangID: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLinkedEncodedRightsExprLangID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2121795797790058, undefined, []);
+export const kCGImagePropertyIPTCExtLinkedEncodedRightsExprLangID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2121795797790058, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLinkedEncodedRightsExprType: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLinkedEncodedRightsExprType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1933390291390540, undefined, []);
+export const kCGImagePropertyIPTCExtLinkedEncodedRightsExprType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1933390291390540, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationCity: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationCity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3245931139668197, undefined, []);
+export const kCGImagePropertyIPTCExtLocationCity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3245931139668197, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationCountryCode: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationCountryCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2270003066514678, undefined, []);
+export const kCGImagePropertyIPTCExtLocationCountryCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2270003066514678, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationCountryName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationCountryName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1890168082311796, undefined, []);
+export const kCGImagePropertyIPTCExtLocationCountryName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1890168082311796, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationCreated: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1045809596641408, undefined, []);
+export const kCGImagePropertyIPTCExtLocationCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1045809596641408, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationGPSAltitude: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationGPSAltitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1272335404096850, undefined, []);
+export const kCGImagePropertyIPTCExtLocationGPSAltitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1272335404096850, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationGPSLatitude: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationGPSLatitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3286721408758692, undefined, []);
+export const kCGImagePropertyIPTCExtLocationGPSLatitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3286721408758692, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationGPSLongitude: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationGPSLongitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 895601153372448, undefined, []);
+export const kCGImagePropertyIPTCExtLocationGPSLongitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 895601153372448, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4362790952388356, undefined, []);
+export const kCGImagePropertyIPTCExtLocationIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4362790952388356, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationLocationId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationLocationId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3634394214790465, undefined, []);
+export const kCGImagePropertyIPTCExtLocationLocationId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3634394214790465, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationLocationName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationLocationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 304930081225572, undefined, []);
+export const kCGImagePropertyIPTCExtLocationLocationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 304930081225572, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationProvinceState: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationProvinceState: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2844468186522740, undefined, []);
+export const kCGImagePropertyIPTCExtLocationProvinceState: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2844468186522740, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationShown: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationShown: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1145976497116483, undefined, []);
+export const kCGImagePropertyIPTCExtLocationShown: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1145976497116483, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationSublocation: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationSublocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 277145609899475, undefined, []);
+export const kCGImagePropertyIPTCExtLocationSublocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 277145609899475, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtLocationWorldRegion: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtLocationWorldRegion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1679435766405932, undefined, []);
+export const kCGImagePropertyIPTCExtLocationWorldRegion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1679435766405932, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtMaxAvailHeight: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtMaxAvailHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 151287373905692, undefined, []);
+export const kCGImagePropertyIPTCExtMaxAvailHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 151287373905692, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtMaxAvailWidth: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtMaxAvailWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2784053315511328, undefined, []);
+export const kCGImagePropertyIPTCExtMaxAvailWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2784053315511328, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtModelAge: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtModelAge: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2323796994700665, undefined, []);
+export const kCGImagePropertyIPTCExtModelAge: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2323796994700665, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtOrganisationInImageCode: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtOrganisationInImageCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 648783837778502, undefined, []);
+export const kCGImagePropertyIPTCExtOrganisationInImageCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 648783837778502, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtOrganisationInImageName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtOrganisationInImageName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1379745220416911, undefined, []);
+export const kCGImagePropertyIPTCExtOrganisationInImageName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1379745220416911, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonHeard: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonHeard: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3654634764853111, undefined, []);
+export const kCGImagePropertyIPTCExtPersonHeard: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3654634764853111, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonHeardIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonHeardIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3918043490224375, undefined, []);
+export const kCGImagePropertyIPTCExtPersonHeardIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3918043490224375, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonHeardName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonHeardName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 566439712167935, undefined, []);
+export const kCGImagePropertyIPTCExtPersonHeardName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 566439712167935, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonInImage: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonInImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2327699383841914, undefined, []);
+export const kCGImagePropertyIPTCExtPersonInImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2327699383841914, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonInImageCharacteristic: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonInImageCharacteristic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3023098780311387, undefined, []);
+export const kCGImagePropertyIPTCExtPersonInImageCharacteristic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3023098780311387, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonInImageCvTermCvId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonInImageCvTermCvId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3373379265900508, undefined, []);
+export const kCGImagePropertyIPTCExtPersonInImageCvTermCvId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3373379265900508, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonInImageCvTermId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonInImageCvTermId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1414638340006424, undefined, []);
+export const kCGImagePropertyIPTCExtPersonInImageCvTermId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1414638340006424, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonInImageCvTermName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonInImageCvTermName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3186521595876988, undefined, []);
+export const kCGImagePropertyIPTCExtPersonInImageCvTermName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3186521595876988, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonInImageCvTermRefinedAbout: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonInImageCvTermRefinedAbout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 504601531029971, undefined, []);
+export const kCGImagePropertyIPTCExtPersonInImageCvTermRefinedAbout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 504601531029971, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonInImageDescription: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonInImageDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3980493407604686, undefined, []);
+export const kCGImagePropertyIPTCExtPersonInImageDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3980493407604686, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonInImageId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonInImageId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3808577842879883, undefined, []);
+export const kCGImagePropertyIPTCExtPersonInImageId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3808577842879883, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonInImageName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonInImageName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3191616401780468, undefined, []);
+export const kCGImagePropertyIPTCExtPersonInImageName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3191616401780468, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPersonInImageWDetails: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPersonInImageWDetails: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2355581116368473, undefined, []);
+export const kCGImagePropertyIPTCExtPersonInImageWDetails: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2355581116368473, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtProductInImage: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtProductInImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4018393300530978, undefined, []);
+export const kCGImagePropertyIPTCExtProductInImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4018393300530978, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtProductInImageDescription: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtProductInImageDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3088574266923845, undefined, []);
+export const kCGImagePropertyIPTCExtProductInImageDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3088574266923845, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtProductInImageGTIN: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtProductInImageGTIN: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2482382096980813, undefined, []);
+export const kCGImagePropertyIPTCExtProductInImageGTIN: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2482382096980813, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtProductInImageName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtProductInImageName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2515008856750025, undefined, []);
+export const kCGImagePropertyIPTCExtProductInImageName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2515008856750025, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPublicationEvent: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPublicationEvent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1050755407845369, undefined, []);
+export const kCGImagePropertyIPTCExtPublicationEvent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1050755407845369, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPublicationEventDate: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPublicationEventDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 43761971995076, undefined, []);
+export const kCGImagePropertyIPTCExtPublicationEventDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 43761971995076, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPublicationEventIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPublicationEventIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2602056881419379, undefined, []);
+export const kCGImagePropertyIPTCExtPublicationEventIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2602056881419379, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtPublicationEventName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtPublicationEventName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 727967143842909, undefined, []);
+export const kCGImagePropertyIPTCExtPublicationEventName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 727967143842909, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRating: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRating: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2402382231709958, undefined, []);
+export const kCGImagePropertyIPTCExtRating: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2402382231709958, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRatingRegion: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRatingRegion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1052690493853619, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRatingRegion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1052690493853619, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionCity: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionCity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4352285747586401, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionCity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4352285747586401, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionCountryCode: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionCountryCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 256404225582997, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionCountryCode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 256404225582997, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionCountryName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionCountryName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3924728710358696, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionCountryName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3924728710358696, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionGPSAltitude: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionGPSAltitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 544164103549661, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionGPSAltitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 544164103549661, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionGPSLatitude: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionGPSLatitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4389359395831817, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionGPSLatitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4389359395831817, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionGPSLongitude: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionGPSLongitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1730419537145994, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionGPSLongitude: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1730419537145994, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1494810386693196, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1494810386693196, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionLocationId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionLocationId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2886370755838307, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionLocationId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2886370755838307, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionLocationName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionLocationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1304071996475632, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionLocationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1304071996475632, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionProvinceState: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionProvinceState: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 680014583961573, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionProvinceState: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 680014583961573, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionSublocation: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionSublocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4459320187855562, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionSublocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4459320187855562, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingRegionWorldRegion: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingRegionWorldRegion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 556310469862155, undefined, []);
+export const kCGImagePropertyIPTCExtRatingRegionWorldRegion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 556310469862155, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingScaleMaxValue: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingScaleMaxValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 423515942410591, undefined, []);
+export const kCGImagePropertyIPTCExtRatingScaleMaxValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 423515942410591, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingScaleMinValue: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingScaleMinValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2112159636954460, undefined, []);
+export const kCGImagePropertyIPTCExtRatingScaleMinValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2112159636954460, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingSourceLink: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingSourceLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3612975470325886, undefined, []);
+export const kCGImagePropertyIPTCExtRatingSourceLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3612975470325886, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingValue: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2941122056672882, undefined, []);
+export const kCGImagePropertyIPTCExtRatingValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2941122056672882, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRatingValueLogoLink: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRatingValueLogoLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3160414644784972, undefined, []);
+export const kCGImagePropertyIPTCExtRatingValueLogoLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3160414644784972, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRegistryEntryRole: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRegistryEntryRole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1980098676452424, undefined, []);
+export const kCGImagePropertyIPTCExtRegistryEntryRole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1980098676452424, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRegistryID: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1629315378036760, undefined, []);
+export const kCGImagePropertyIPTCExtRegistryID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1629315378036760, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRegistryItemID: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRegistryItemID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1468687206547331, undefined, []);
+export const kCGImagePropertyIPTCExtRegistryItemID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1468687206547331, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtRegistryOrganisationID: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtRegistryOrganisationID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3547746269154020, undefined, []);
+export const kCGImagePropertyIPTCExtRegistryOrganisationID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3547746269154020, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtReleaseReady: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtReleaseReady: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1875554142891553, undefined, []);
+export const kCGImagePropertyIPTCExtReleaseReady: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1875554142891553, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtSeason: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtSeason: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2846288608087077, undefined, []);
+export const kCGImagePropertyIPTCExtSeason: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2846288608087077, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtSeasonIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtSeasonIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4076581453455169, undefined, []);
+export const kCGImagePropertyIPTCExtSeasonIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4076581453455169, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtSeasonName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtSeasonName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2153122605604504, undefined, []);
+export const kCGImagePropertyIPTCExtSeasonName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2153122605604504, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtSeasonNumber: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtSeasonNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1523825950153791, undefined, []);
+export const kCGImagePropertyIPTCExtSeasonNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1523825950153791, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtSeries: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtSeries: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4411485737507136, undefined, []);
+export const kCGImagePropertyIPTCExtSeries: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4411485737507136, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtSeriesIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtSeriesIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2304569667187753, undefined, []);
+export const kCGImagePropertyIPTCExtSeriesIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2304569667187753, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtSeriesName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtSeriesName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1066230582851279, undefined, []);
+export const kCGImagePropertyIPTCExtSeriesName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1066230582851279, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtShownEvent: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtShownEvent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1952885963697641, undefined, []);
+export const kCGImagePropertyIPTCExtShownEvent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1952885963697641, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtShownEventIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtShownEventIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 104362833762726, undefined, []);
+export const kCGImagePropertyIPTCExtShownEventIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 104362833762726, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtShownEventName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtShownEventName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1706903493386478, undefined, []);
+export const kCGImagePropertyIPTCExtShownEventName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1706903493386478, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtStorylineIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtStorylineIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4363732997471325, undefined, []);
+export const kCGImagePropertyIPTCExtStorylineIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4363732997471325, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtStreamReady: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtStreamReady: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3597582494171663, undefined, []);
+export const kCGImagePropertyIPTCExtStreamReady: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3597582494171663, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtStylePeriod: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtStylePeriod: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2326053143474695, undefined, []);
+export const kCGImagePropertyIPTCExtStylePeriod: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2326053143474695, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtSupplyChainSource: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtSupplyChainSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3041171883333368, undefined, []);
+export const kCGImagePropertyIPTCExtSupplyChainSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3041171883333368, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtSupplyChainSourceIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtSupplyChainSourceIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1209255808674696, undefined, []);
+export const kCGImagePropertyIPTCExtSupplyChainSourceIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1209255808674696, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtSupplyChainSourceName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtSupplyChainSourceName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 454394290924508, undefined, []);
+export const kCGImagePropertyIPTCExtSupplyChainSourceName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 454394290924508, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtTemporalCoverage: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtTemporalCoverage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 140457058603009, undefined, []);
+export const kCGImagePropertyIPTCExtTemporalCoverage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 140457058603009, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtTemporalCoverageFrom: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtTemporalCoverageFrom: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1824886169575197, undefined, []);
+export const kCGImagePropertyIPTCExtTemporalCoverageFrom: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1824886169575197, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtTemporalCoverageTo: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtTemporalCoverageTo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2138810445555956, undefined, []);
+export const kCGImagePropertyIPTCExtTemporalCoverageTo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2138810445555956, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtTranscript: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtTranscript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4488127777019216, undefined, []);
+export const kCGImagePropertyIPTCExtTranscript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4488127777019216, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtTranscriptLink: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtTranscriptLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2680588371625702, undefined, []);
+export const kCGImagePropertyIPTCExtTranscriptLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2680588371625702, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtTranscriptLinkLink: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtTranscriptLinkLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4189915534277332, undefined, []);
+export const kCGImagePropertyIPTCExtTranscriptLinkLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4189915534277332, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtTranscriptLinkLinkQualifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtTranscriptLinkLinkQualifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2120372020778341, undefined, []);
+export const kCGImagePropertyIPTCExtTranscriptLinkLinkQualifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2120372020778341, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtVideoBitrate: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtVideoBitrate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1169942403061666, undefined, []);
+export const kCGImagePropertyIPTCExtVideoBitrate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1169942403061666, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtVideoBitrateMode: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtVideoBitrateMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 866161370602231, undefined, []);
+export const kCGImagePropertyIPTCExtVideoBitrateMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 866161370602231, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtVideoDisplayAspectRatio: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtVideoDisplayAspectRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 340479517310262, undefined, []);
+export const kCGImagePropertyIPTCExtVideoDisplayAspectRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 340479517310262, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtVideoEncodingProfile: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtVideoEncodingProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 998206535137363, undefined, []);
+export const kCGImagePropertyIPTCExtVideoEncodingProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 998206535137363, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtVideoShotType: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtVideoShotType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3121721733569971, undefined, []);
+export const kCGImagePropertyIPTCExtVideoShotType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3121721733569971, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtVideoShotTypeIdentifier: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtVideoShotTypeIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 277949934805867, undefined, []);
+export const kCGImagePropertyIPTCExtVideoShotTypeIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 277949934805867, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtVideoShotTypeName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtVideoShotTypeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2640256269010161, undefined, []);
+export const kCGImagePropertyIPTCExtVideoShotTypeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2640256269010161, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtVideoStreamsCount: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtVideoStreamsCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 161855829696420, undefined, []);
+export const kCGImagePropertyIPTCExtVideoStreamsCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 161855829696420, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtVisualColor: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtVisualColor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1536866118496883, undefined, []);
+export const kCGImagePropertyIPTCExtVisualColor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1536866118496883, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtWorkflowTag: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtWorkflowTag: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 393814511024626, undefined, []);
+export const kCGImagePropertyIPTCExtWorkflowTag: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 393814511024626, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtWorkflowTagCvId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtWorkflowTagCvId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3271099208043911, undefined, []);
+export const kCGImagePropertyIPTCExtWorkflowTagCvId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3271099208043911, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtWorkflowTagCvTermId: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtWorkflowTagCvTermId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2424673756081116, undefined, []);
+export const kCGImagePropertyIPTCExtWorkflowTagCvTermId: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2424673756081116, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtWorkflowTagCvTermName: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtWorkflowTagCvTermName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2595686245290802, undefined, []);
+export const kCGImagePropertyIPTCExtWorkflowTagCvTermName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2595686245290802, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCExtWorkflowTagCvTermRefinedAbout: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyIPTCExtWorkflowTagCvTermRefinedAbout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3356010482390525, undefined, []);
+export const kCGImagePropertyIPTCExtWorkflowTagCvTermRefinedAbout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3356010482390525, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCFixtureIdentifier: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCFixtureIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 730081921823461, undefined, []);
+export const kCGImagePropertyIPTCFixtureIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 730081921823461, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCHeadline: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCHeadline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3341027837356964, undefined, []);
+export const kCGImagePropertyIPTCHeadline: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3341027837356964, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCImageOrientation: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCImageOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3542074517441759, undefined, []);
+export const kCGImagePropertyIPTCImageOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3542074517441759, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCImageType: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCImageType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3659406838135304, undefined, []);
+export const kCGImagePropertyIPTCImageType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3659406838135304, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCKeywords: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCKeywords: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2794361192280584, undefined, []);
+export const kCGImagePropertyIPTCKeywords: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2794361192280584, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCLanguageIdentifier: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCLanguageIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2168715084892123, undefined, []);
+export const kCGImagePropertyIPTCLanguageIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2168715084892123, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCObjectAttributeReference: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCObjectAttributeReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3443354404010462, undefined, []);
+export const kCGImagePropertyIPTCObjectAttributeReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3443354404010462, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCObjectCycle: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCObjectCycle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 386639749179512, undefined, []);
+export const kCGImagePropertyIPTCObjectCycle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 386639749179512, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCObjectName: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCObjectName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2336772961536904, undefined, []);
+export const kCGImagePropertyIPTCObjectName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2336772961536904, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCObjectTypeReference: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCObjectTypeReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1098903457217042, undefined, []);
+export const kCGImagePropertyIPTCObjectTypeReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1098903457217042, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCOriginalTransmissionReference: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCOriginalTransmissionReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2224757375593102, undefined, []);
+export const kCGImagePropertyIPTCOriginalTransmissionReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2224757375593102, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCOriginatingProgram: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCOriginatingProgram: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3056649283438598, undefined, []);
+export const kCGImagePropertyIPTCOriginatingProgram: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3056649283438598, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCProgramVersion: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCProgramVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2868303105822529, undefined, []);
+export const kCGImagePropertyIPTCProgramVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2868303105822529, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCProvinceState: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCProvinceState: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1061206065544466, undefined, []);
+export const kCGImagePropertyIPTCProvinceState: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1061206065544466, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCReferenceDate: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCReferenceDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2188045568111587, undefined, []);
+export const kCGImagePropertyIPTCReferenceDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2188045568111587, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCReferenceNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCReferenceNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3709046512443120, undefined, []);
+export const kCGImagePropertyIPTCReferenceNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3709046512443120, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCReferenceService: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCReferenceService: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3853439789320409, undefined, []);
+export const kCGImagePropertyIPTCReferenceService: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3853439789320409, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCReleaseDate: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCReleaseDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1042089761855935, undefined, []);
+export const kCGImagePropertyIPTCReleaseDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1042089761855935, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCReleaseTime: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCReleaseTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2504522289437729, undefined, []);
+export const kCGImagePropertyIPTCReleaseTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2504522289437729, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCRightsUsageTerms: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCRightsUsageTerms: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 203213967435372, undefined, []);
+export const kCGImagePropertyIPTCRightsUsageTerms: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 203213967435372, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCScene: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCScene: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 391551256548767, undefined, []);
+export const kCGImagePropertyIPTCScene: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 391551256548767, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCSource: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3089958258724717, undefined, []);
+export const kCGImagePropertyIPTCSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3089958258724717, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCSpecialInstructions: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCSpecialInstructions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4133549056961856, undefined, []);
+export const kCGImagePropertyIPTCSpecialInstructions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4133549056961856, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCStarRating: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCStarRating: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 611746312072651, undefined, []);
+export const kCGImagePropertyIPTCStarRating: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 611746312072651, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCSubLocation: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCSubLocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1182268743105500, undefined, []);
+export const kCGImagePropertyIPTCSubLocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1182268743105500, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCSubjectReference: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCSubjectReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4138321613029272, undefined, []);
+export const kCGImagePropertyIPTCSubjectReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4138321613029272, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCSupplementalCategory: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCSupplementalCategory: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4294003735486482, undefined, []);
+export const kCGImagePropertyIPTCSupplementalCategory: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4294003735486482, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCTimeCreated: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCTimeCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 330413552911993, undefined, []);
+export const kCGImagePropertyIPTCTimeCreated: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 330413552911993, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCUrgency: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCUrgency: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3876869645096243, undefined, []);
+export const kCGImagePropertyIPTCUrgency: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3876869645096243, undefined, []);
 
 /**
  * let kCGImagePropertyIPTCWriterEditor: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIPTCWriterEditor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 676182047183726, undefined, []);
+export const kCGImagePropertyIPTCWriterEditor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 676182047183726, undefined, []);
 
 /**
  * let kCGImagePropertyImageCount: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyImageCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 575535303611188, undefined, []);
+export const kCGImagePropertyImageCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 575535303611188, undefined, []);
 
 /**
  * let kCGImagePropertyImageIndex: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyImageIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4359992320344166, undefined, []);
+export const kCGImagePropertyImageIndex: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4359992320344166, undefined, []);
 
 /**
  * let kCGImagePropertyImages: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyImages: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2677984969140734, undefined, []);
+export const kCGImagePropertyImages: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2677984969140734, undefined, []);
 
 /**
  * let kCGImagePropertyIsFloat: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIsFloat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4190188817011922, undefined, []);
+export const kCGImagePropertyIsFloat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4190188817011922, undefined, []);
 
 /**
  * let kCGImagePropertyIsIndexed: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyIsIndexed: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4157242476582959, undefined, []);
+export const kCGImagePropertyIsIndexed: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4157242476582959, undefined, []);
 
 /**
  * let kCGImagePropertyJFIFDensityUnit: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyJFIFDensityUnit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 666385861575935, undefined, []);
+export const kCGImagePropertyJFIFDensityUnit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 666385861575935, undefined, []);
 
 /**
  * let kCGImagePropertyJFIFDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyJFIFDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1047574299470488, undefined, []);
+export const kCGImagePropertyJFIFDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1047574299470488, undefined, []);
 
 /**
  * let kCGImagePropertyJFIFIsProgressive: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyJFIFIsProgressive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2944278540675447, undefined, []);
+export const kCGImagePropertyJFIFIsProgressive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2944278540675447, undefined, []);
 
 /**
  * let kCGImagePropertyJFIFVersion: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyJFIFVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2137246396936927, undefined, []);
+export const kCGImagePropertyJFIFVersion: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2137246396936927, undefined, []);
 
 /**
  * let kCGImagePropertyJFIFXDensity: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyJFIFXDensity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 303949661782070, undefined, []);
+export const kCGImagePropertyJFIFXDensity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 303949661782070, undefined, []);
 
 /**
  * let kCGImagePropertyJFIFYDensity: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyJFIFYDensity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 905102318883468, undefined, []);
+export const kCGImagePropertyJFIFYDensity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 905102318883468, undefined, []);
 
 /**
  * let kCGImagePropertyMakerAppleDictionary: CFString
  * @availability iOS 7.0+
  */
-export const kCGImagePropertyMakerAppleDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1635211912461657, undefined, []);
+export const kCGImagePropertyMakerAppleDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1635211912461657, undefined, []);
 
 /**
  * let kCGImagePropertyMakerCanonAspectRatioInfo: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerCanonAspectRatioInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2739515047909626, undefined, []);
+export const kCGImagePropertyMakerCanonAspectRatioInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2739515047909626, undefined, []);
 
 /**
  * let kCGImagePropertyMakerCanonCameraSerialNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerCanonCameraSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3506091412494148, undefined, []);
+export const kCGImagePropertyMakerCanonCameraSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3506091412494148, undefined, []);
 
 /**
  * let kCGImagePropertyMakerCanonContinuousDrive: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerCanonContinuousDrive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1306344221280455, undefined, []);
+export const kCGImagePropertyMakerCanonContinuousDrive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1306344221280455, undefined, []);
 
 /**
  * let kCGImagePropertyMakerCanonDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerCanonDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3073407598187403, undefined, []);
+export const kCGImagePropertyMakerCanonDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3073407598187403, undefined, []);
 
 /**
  * let kCGImagePropertyMakerCanonFirmware: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerCanonFirmware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 771821564502550, undefined, []);
+export const kCGImagePropertyMakerCanonFirmware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 771821564502550, undefined, []);
 
 /**
  * let kCGImagePropertyMakerCanonFlashExposureComp: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerCanonFlashExposureComp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3528227288525115, undefined, []);
+export const kCGImagePropertyMakerCanonFlashExposureComp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3528227288525115, undefined, []);
 
 /**
  * let kCGImagePropertyMakerCanonImageSerialNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerCanonImageSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4119925001200747, undefined, []);
+export const kCGImagePropertyMakerCanonImageSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4119925001200747, undefined, []);
 
 /**
  * let kCGImagePropertyMakerCanonLensModel: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerCanonLensModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1961265197147751, undefined, []);
+export const kCGImagePropertyMakerCanonLensModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1961265197147751, undefined, []);
 
 /**
  * let kCGImagePropertyMakerCanonOwnerName: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerCanonOwnerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3466686047858898, undefined, []);
+export const kCGImagePropertyMakerCanonOwnerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3466686047858898, undefined, []);
 
 /**
  * let kCGImagePropertyMakerFujiDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerFujiDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2515990376780150, undefined, []);
+export const kCGImagePropertyMakerFujiDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2515990376780150, undefined, []);
 
 /**
  * let kCGImagePropertyMakerMinoltaDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerMinoltaDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2792226047214187, undefined, []);
+export const kCGImagePropertyMakerMinoltaDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2792226047214187, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonCameraSerialNumber: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonCameraSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4308099843261213, undefined, []);
+export const kCGImagePropertyMakerNikonCameraSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4308099843261213, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonColorMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonColorMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2118524214900713, undefined, []);
+export const kCGImagePropertyMakerNikonColorMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2118524214900713, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 275447151553336, undefined, []);
+export const kCGImagePropertyMakerNikonDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 275447151553336, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonDigitalZoom: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonDigitalZoom: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1399173083341112, undefined, []);
+export const kCGImagePropertyMakerNikonDigitalZoom: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1399173083341112, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonFlashExposureComp: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonFlashExposureComp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1655113939314804, undefined, []);
+export const kCGImagePropertyMakerNikonFlashExposureComp: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1655113939314804, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonFlashSetting: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonFlashSetting: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1969663036842068, undefined, []);
+export const kCGImagePropertyMakerNikonFlashSetting: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1969663036842068, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonFocusDistance: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonFocusDistance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2153849801250559, undefined, []);
+export const kCGImagePropertyMakerNikonFocusDistance: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2153849801250559, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonFocusMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonFocusMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3691917398699627, undefined, []);
+export const kCGImagePropertyMakerNikonFocusMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3691917398699627, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonISOSelection: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonISOSelection: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3084896020332466, undefined, []);
+export const kCGImagePropertyMakerNikonISOSelection: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3084896020332466, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonISOSetting: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonISOSetting: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4008343107428049, undefined, []);
+export const kCGImagePropertyMakerNikonISOSetting: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4008343107428049, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonImageAdjustment: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonImageAdjustment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1393588927481646, undefined, []);
+export const kCGImagePropertyMakerNikonImageAdjustment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1393588927481646, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonLensAdapter: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonLensAdapter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 466002153665266, undefined, []);
+export const kCGImagePropertyMakerNikonLensAdapter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 466002153665266, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonLensInfo: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonLensInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3811217885607033, undefined, []);
+export const kCGImagePropertyMakerNikonLensInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3811217885607033, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonLensType: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonLensType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 129102000133977, undefined, []);
+export const kCGImagePropertyMakerNikonLensType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 129102000133977, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonQuality: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 870312483763733, undefined, []);
+export const kCGImagePropertyMakerNikonQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 870312483763733, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonSharpenMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonSharpenMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 926216574013704, undefined, []);
+export const kCGImagePropertyMakerNikonSharpenMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 926216574013704, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonShootingMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonShootingMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4483421959704096, undefined, []);
+export const kCGImagePropertyMakerNikonShootingMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4483421959704096, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonShutterCount: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonShutterCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1878438687811420, undefined, []);
+export const kCGImagePropertyMakerNikonShutterCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1878438687811420, undefined, []);
 
 /**
  * let kCGImagePropertyMakerNikonWhiteBalanceMode: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerNikonWhiteBalanceMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2759819649463395, undefined, []);
+export const kCGImagePropertyMakerNikonWhiteBalanceMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2759819649463395, undefined, []);
 
 /**
  * let kCGImagePropertyMakerOlympusDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerOlympusDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 527293202213002, undefined, []);
+export const kCGImagePropertyMakerOlympusDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 527293202213002, undefined, []);
 
 /**
  * let kCGImagePropertyMakerPentaxDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyMakerPentaxDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1112406950954272, undefined, []);
+export const kCGImagePropertyMakerPentaxDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1112406950954272, undefined, []);
 
 /**
  * let kCGImagePropertyNamedColorSpace: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyNamedColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2165740986456150, undefined, []);
+export const kCGImagePropertyNamedColorSpace: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2165740986456150, undefined, []);
 
 /**
  * let kCGImagePropertyOpenEXRAspectRatio: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyOpenEXRAspectRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3874698281135046, undefined, []);
+export const kCGImagePropertyOpenEXRAspectRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3874698281135046, undefined, []);
 
 /**
  * let kCGImagePropertyOpenEXRCompression: CFString
  * @availability iOS 16.1+
  */
-export const kCGImagePropertyOpenEXRCompression: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3964793237353492, undefined, []);
+export const kCGImagePropertyOpenEXRCompression: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3964793237353492, undefined, []);
 
 /**
  * let kCGImagePropertyOpenEXRDictionary: CFString
  * @availability iOS 11.3+
  */
-export const kCGImagePropertyOpenEXRDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2110592273028894, undefined, []);
+export const kCGImagePropertyOpenEXRDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2110592273028894, undefined, []);
 
 /**
  * let kCGImagePropertyOrientation: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1286840028529432, undefined, []);
+export const kCGImagePropertyOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1286840028529432, undefined, []);
 
 /**
  * let kCGImagePropertyPNGAuthor: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyPNGAuthor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3770601053656271, undefined, []);
+export const kCGImagePropertyPNGAuthor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3770601053656271, undefined, []);
 
 /**
  * let kCGImagePropertyPNGChromaticities: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyPNGChromaticities: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1418612590035631, undefined, []);
+export const kCGImagePropertyPNGChromaticities: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1418612590035631, undefined, []);
 
 /**
  * let kCGImagePropertyPNGComment: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyPNGComment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2389115737817925, undefined, []);
+export const kCGImagePropertyPNGComment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2389115737817925, undefined, []);
 
 /**
  * let kCGImagePropertyPNGCompressionFilter: CFString
  * @availability iOS 9.0+
  */
-export const kCGImagePropertyPNGCompressionFilter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4153596115918691, undefined, []);
+export const kCGImagePropertyPNGCompressionFilter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4153596115918691, undefined, []);
 
 /**
  * let kCGImagePropertyPNGCopyright: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyPNGCopyright: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2429134996089377, undefined, []);
+export const kCGImagePropertyPNGCopyright: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2429134996089377, undefined, []);
 
 /**
  * let kCGImagePropertyPNGCreationTime: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyPNGCreationTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1616140412098671, undefined, []);
+export const kCGImagePropertyPNGCreationTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1616140412098671, undefined, []);
 
 /**
  * let kCGImagePropertyPNGDescription: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyPNGDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4226408035956528, undefined, []);
+export const kCGImagePropertyPNGDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4226408035956528, undefined, []);
 
 /**
  * let kCGImagePropertyPNGDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyPNGDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 899479523363998, undefined, []);
+export const kCGImagePropertyPNGDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 899479523363998, undefined, []);
 
 /**
  * let kCGImagePropertyPNGDisclaimer: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyPNGDisclaimer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2311846102419467, undefined, []);
+export const kCGImagePropertyPNGDisclaimer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2311846102419467, undefined, []);
 
 /**
  * let kCGImagePropertyPNGGamma: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyPNGGamma: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3129744572710820, undefined, []);
+export const kCGImagePropertyPNGGamma: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3129744572710820, undefined, []);
 
 /**
  * let kCGImagePropertyPNGInterlaceType: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyPNGInterlaceType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1396589889813832, undefined, []);
+export const kCGImagePropertyPNGInterlaceType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1396589889813832, undefined, []);
 
 /**
  * let kCGImagePropertyPNGModificationTime: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyPNGModificationTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2897903517330118, undefined, []);
+export const kCGImagePropertyPNGModificationTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2897903517330118, undefined, []);
 
 /**
  * let kCGImagePropertyPNGPixelsAspectRatio: CFString
  * @availability iOS 15.0+
  */
-export const kCGImagePropertyPNGPixelsAspectRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4312390837882532, undefined, []);
+export const kCGImagePropertyPNGPixelsAspectRatio: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4312390837882532, undefined, []);
 
 /**
  * let kCGImagePropertyPNGSoftware: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyPNGSoftware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 322785692295920, undefined, []);
+export const kCGImagePropertyPNGSoftware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 322785692295920, undefined, []);
 
 /**
  * let kCGImagePropertyPNGSource: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyPNGSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2978312354647184, undefined, []);
+export const kCGImagePropertyPNGSource: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2978312354647184, undefined, []);
 
 /**
  * let kCGImagePropertyPNGTitle: CFString
  * @availability iOS 5.0+
  */
-export const kCGImagePropertyPNGTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2326531365571524, undefined, []);
+export const kCGImagePropertyPNGTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2326531365571524, undefined, []);
 
 /**
  * let kCGImagePropertyPNGTransparency: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyPNGTransparency: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2154376874563503, undefined, []);
+export const kCGImagePropertyPNGTransparency: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2154376874563503, undefined, []);
 
 /**
  * let kCGImagePropertyPNGWarning: CFString
  * @availability iOS 12.0+
  */
-export const kCGImagePropertyPNGWarning: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3777190286218148, undefined, []);
+export const kCGImagePropertyPNGWarning: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3777190286218148, undefined, []);
 
 /**
  * let kCGImagePropertyPNGXPixelsPerMeter: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyPNGXPixelsPerMeter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2943655195738004, undefined, []);
+export const kCGImagePropertyPNGXPixelsPerMeter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2943655195738004, undefined, []);
 
 /**
  * let kCGImagePropertyPNGYPixelsPerMeter: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyPNGYPixelsPerMeter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3880476003107297, undefined, []);
+export const kCGImagePropertyPNGYPixelsPerMeter: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3880476003107297, undefined, []);
 
 /**
  * let kCGImagePropertyPNGsRGBIntent: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyPNGsRGBIntent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 815424198321984, undefined, []);
+export const kCGImagePropertyPNGsRGBIntent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 815424198321984, undefined, []);
 
 /**
  * let kCGImagePropertyPVREncoder: CFString
  * @availability iOS 10.0+
  */
-export const kCGImagePropertyPVREncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 516216758942981, undefined, []);
+export const kCGImagePropertyPVREncoder: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 516216758942981, undefined, []);
 
 /**
  * let kCGImagePropertyPixelFormat: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyPixelFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 956393932345028, undefined, []);
+export const kCGImagePropertyPixelFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 956393932345028, undefined, []);
 
 /**
  * let kCGImagePropertyPixelHeight: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyPixelHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3039557353280780, undefined, []);
+export const kCGImagePropertyPixelHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3039557353280780, undefined, []);
 
 /**
  * let kCGImagePropertyPixelWidth: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyPixelWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3817805812700537, undefined, []);
+export const kCGImagePropertyPixelWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3817805812700537, undefined, []);
 
 /**
  * let kCGImagePropertyPrimaryImage: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyPrimaryImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3492964390580080, undefined, []);
+export const kCGImagePropertyPrimaryImage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3492964390580080, undefined, []);
 
 /**
  * let kCGImagePropertyProfileName: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyProfileName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 303359452833311, undefined, []);
+export const kCGImagePropertyProfileName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 303359452833311, undefined, []);
 
 /**
  * let kCGImagePropertyRawDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyRawDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 522749155276824, undefined, []);
+export const kCGImagePropertyRawDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 522749155276824, undefined, []);
 
 /**
  * let kCGImagePropertyTGACompression: CFString
  * @availability iOS 14.0+
  */
-export const kCGImagePropertyTGACompression: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 618272139599716, undefined, []);
+export const kCGImagePropertyTGACompression: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 618272139599716, undefined, []);
 
 /**
  * let kCGImagePropertyTGADictionary: CFString
  * @availability iOS 14.0+
  */
-export const kCGImagePropertyTGADictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3876935950189578, undefined, []);
+export const kCGImagePropertyTGADictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3876935950189578, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFArtist: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFArtist: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3334093733814255, undefined, []);
+export const kCGImagePropertyTIFFArtist: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3334093733814255, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFCompression: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFCompression: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2935860154794645, undefined, []);
+export const kCGImagePropertyTIFFCompression: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2935860154794645, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFCopyright: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFCopyright: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3456202721381180, undefined, []);
+export const kCGImagePropertyTIFFCopyright: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3456202721381180, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFDateTime: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFDateTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3575055002685996, undefined, []);
+export const kCGImagePropertyTIFFDateTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3575055002685996, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFDictionary: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 288088391865609, undefined, []);
+export const kCGImagePropertyTIFFDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 288088391865609, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFDocumentName: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFDocumentName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3225059027072744, undefined, []);
+export const kCGImagePropertyTIFFDocumentName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3225059027072744, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFHostComputer: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFHostComputer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 743074626757174, undefined, []);
+export const kCGImagePropertyTIFFHostComputer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 743074626757174, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFImageDescription: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFImageDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3721362426342306, undefined, []);
+export const kCGImagePropertyTIFFImageDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3721362426342306, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFMake: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFMake: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3213387849414824, undefined, []);
+export const kCGImagePropertyTIFFMake: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3213387849414824, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFModel: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3984696236834615, undefined, []);
+export const kCGImagePropertyTIFFModel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3984696236834615, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFOrientation: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2892206601028768, undefined, []);
+export const kCGImagePropertyTIFFOrientation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2892206601028768, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFPhotometricInterpretation: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFPhotometricInterpretation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4284097359707608, undefined, []);
+export const kCGImagePropertyTIFFPhotometricInterpretation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4284097359707608, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFPrimaryChromaticities: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFPrimaryChromaticities: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4068491901954227, undefined, []);
+export const kCGImagePropertyTIFFPrimaryChromaticities: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4068491901954227, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFResolutionUnit: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFResolutionUnit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2701794591622077, undefined, []);
+export const kCGImagePropertyTIFFResolutionUnit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2701794591622077, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFSoftware: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFSoftware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1245016315373588, undefined, []);
+export const kCGImagePropertyTIFFSoftware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1245016315373588, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFTileLength: CFString
  * @availability iOS 9.0+
  */
-export const kCGImagePropertyTIFFTileLength: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1529424691966677, undefined, []);
+export const kCGImagePropertyTIFFTileLength: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1529424691966677, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFTileWidth: CFString
  * @availability iOS 9.0+
  */
-export const kCGImagePropertyTIFFTileWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4455727153895734, undefined, []);
+export const kCGImagePropertyTIFFTileWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4455727153895734, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFTransferFunction: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFTransferFunction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4442402235049501, undefined, []);
+export const kCGImagePropertyTIFFTransferFunction: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4442402235049501, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFWhitePoint: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFWhitePoint: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3002008626746487, undefined, []);
+export const kCGImagePropertyTIFFWhitePoint: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3002008626746487, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFXPosition: CFString
  * @availability iOS 17.4+
  */
-export const kCGImagePropertyTIFFXPosition: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 289099960619747, undefined, []);
+export const kCGImagePropertyTIFFXPosition: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 289099960619747, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFXResolution: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFXResolution: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 494461677573123, undefined, []);
+export const kCGImagePropertyTIFFXResolution: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 494461677573123, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFYPosition: CFString
  * @availability iOS 17.4+
  */
-export const kCGImagePropertyTIFFYPosition: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3177621945546382, undefined, []);
+export const kCGImagePropertyTIFFYPosition: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3177621945546382, undefined, []);
 
 /**
  * let kCGImagePropertyTIFFYResolution: CFString
  * @availability iOS 4.0+
  */
-export const kCGImagePropertyTIFFYResolution: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 190074561225525, undefined, []);
+export const kCGImagePropertyTIFFYResolution: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 190074561225525, undefined, []);
 
 /**
  * let kCGImagePropertyThumbnailImages: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyThumbnailImages: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3098898202817137, undefined, []);
+export const kCGImagePropertyThumbnailImages: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3098898202817137, undefined, []);
 
 /**
  * let kCGImagePropertyWebPCanvasPixelHeight: CFString
  * @availability iOS 14.0+
  */
-export const kCGImagePropertyWebPCanvasPixelHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2130036614613844, undefined, []);
+export const kCGImagePropertyWebPCanvasPixelHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2130036614613844, undefined, []);
 
 /**
  * let kCGImagePropertyWebPCanvasPixelWidth: CFString
  * @availability iOS 14.0+
  */
-export const kCGImagePropertyWebPCanvasPixelWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3014741060098610, undefined, []);
+export const kCGImagePropertyWebPCanvasPixelWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3014741060098610, undefined, []);
 
 /**
  * let kCGImagePropertyWebPDelayTime: CFString
  * @availability iOS 14.0+
  */
-export const kCGImagePropertyWebPDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1515185082440777, undefined, []);
+export const kCGImagePropertyWebPDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1515185082440777, undefined, []);
 
 /**
  * let kCGImagePropertyWebPDictionary: CFString
  * @availability iOS 14.0+
  */
-export const kCGImagePropertyWebPDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3279904527394327, undefined, []);
+export const kCGImagePropertyWebPDictionary: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3279904527394327, undefined, []);
 
 /**
  * let kCGImagePropertyWebPFrameInfoArray: CFString
  * @availability iOS 14.0+
  */
-export const kCGImagePropertyWebPFrameInfoArray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2930286692627341, undefined, []);
+export const kCGImagePropertyWebPFrameInfoArray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2930286692627341, undefined, []);
 
 /**
  * let kCGImagePropertyWebPLoopCount: CFString
  * @availability iOS 14.0+
  */
-export const kCGImagePropertyWebPLoopCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4186331000008522, undefined, []);
+export const kCGImagePropertyWebPLoopCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4186331000008522, undefined, []);
 
 /**
  * let kCGImagePropertyWebPUnclampedDelayTime: CFString
  * @availability iOS 14.0+
  */
-export const kCGImagePropertyWebPUnclampedDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4455488584942161, undefined, []);
+export const kCGImagePropertyWebPUnclampedDelayTime: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4455488584942161, undefined, []);
 
 /**
  * let kCGImagePropertyWidth: CFString
  * @availability iOS 11.0+
  */
-export const kCGImagePropertyWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3664787700641414, undefined, []);
+export const kCGImagePropertyWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3664787700641414, undefined, []);
 
 /**
  * let kCGImageProviderPreferredTileHeight: CFString
  * @availability iOS 26.0+
  */
-export const kCGImageProviderPreferredTileHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4078582402915680, undefined, []);
+export const kCGImageProviderPreferredTileHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4078582402915680, undefined, []);
 
 /**
  * let kCGImageProviderPreferredTileWidth: CFString
  * @availability iOS 26.0+
  */
-export const kCGImageProviderPreferredTileWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2224556190815397, undefined, []);
+export const kCGImageProviderPreferredTileWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2224556190815397, undefined, []);
 
 /**
  * let kCGImageSourceAllowableTypes: CFString
  * @availability iOS 27.0+
  */
-export const kCGImageSourceAllowableTypes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4257543303577295, undefined, []);
+export const kCGImageSourceAllowableTypes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4257543303577295, undefined, []);
 
 /**
  * let kCGImageSourceCreateThumbnailFromImageAlways: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageSourceCreateThumbnailFromImageAlways: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1747701957943030, undefined, []);
+export const kCGImageSourceCreateThumbnailFromImageAlways: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1747701957943030, undefined, []);
 
 /**
  * let kCGImageSourceCreateThumbnailFromImageIfAbsent: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageSourceCreateThumbnailFromImageIfAbsent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 135429205188608, undefined, []);
+export const kCGImageSourceCreateThumbnailFromImageIfAbsent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 135429205188608, undefined, []);
 
 /**
  * let kCGImageSourceCreateThumbnailWithTransform: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageSourceCreateThumbnailWithTransform: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 622673719933610, undefined, []);
+export const kCGImageSourceCreateThumbnailWithTransform: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 622673719933610, undefined, []);
 
 /**
  * let kCGImageSourceDecodeRequest: CFString
  * @availability iOS 17.0+
  */
-export const kCGImageSourceDecodeRequest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3674413810894709, undefined, []);
+export const kCGImageSourceDecodeRequest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3674413810894709, undefined, []);
 
 /**
  * let kCGImageSourceDecodeRequestOptions: CFString
  * @availability iOS 17.0+
  */
-export const kCGImageSourceDecodeRequestOptions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3911647500832872, undefined, []);
+export const kCGImageSourceDecodeRequestOptions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3911647500832872, undefined, []);
 
 /**
  * let kCGImageSourceDecodeToHDR: CFString
  * @availability iOS 17.0+
  */
-export const kCGImageSourceDecodeToHDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1971506815038964, undefined, []);
+export const kCGImageSourceDecodeToHDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1971506815038964, undefined, []);
 
 /**
  * let kCGImageSourceDecodeToSDR: CFString
  * @availability iOS 17.0+
  */
-export const kCGImageSourceDecodeToSDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3801526382220959, undefined, []);
+export const kCGImageSourceDecodeToSDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3801526382220959, undefined, []);
 
 /**
  * let kCGImageSourceGenerateImageSpecificLumaScaling: CFString
  * @availability iOS 18.0+
  */
-export const kCGImageSourceGenerateImageSpecificLumaScaling: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3420350025945576, undefined, []);
+export const kCGImageSourceGenerateImageSpecificLumaScaling: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3420350025945576, undefined, []);
 
 /**
  * let kCGImageSourcePrioritizeQuality: CFString
  * @availability iOS 27.0+
  */
-export const kCGImageSourcePrioritizeQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 788225652781294, undefined, []);
+export const kCGImageSourcePrioritizeQuality: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 788225652781294, undefined, []);
 
 /**
  * let kCGImageSourceShouldAllowFloat: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageSourceShouldAllowFloat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4213357746212028, undefined, []);
+export const kCGImageSourceShouldAllowFloat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4213357746212028, undefined, []);
 
 /**
  * let kCGImageSourceShouldCache: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageSourceShouldCache: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3019286590480535, undefined, []);
+export const kCGImageSourceShouldCache: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3019286590480535, undefined, []);
 
 /**
  * let kCGImageSourceShouldCacheImmediately: CFString
  * @availability iOS 7.0+
  */
-export const kCGImageSourceShouldCacheImmediately: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 545142739362879, undefined, []);
+export const kCGImageSourceShouldCacheImmediately: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 545142739362879, undefined, []);
 
 /**
  * let kCGImageSourceSubsampleFactor: CFString
  * @availability iOS 9.0+
  */
-export const kCGImageSourceSubsampleFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 356800672354331, undefined, []);
+export const kCGImageSourceSubsampleFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 356800672354331, undefined, []);
 
 /**
  * let kCGImageSourceThumbnailMaxPixelSize: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageSourceThumbnailMaxPixelSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2779888365024772, undefined, []);
+export const kCGImageSourceThumbnailMaxPixelSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2779888365024772, undefined, []);
 
 /**
  * let kCGImageSourceTypeIdentifierHint: CFString
  * @availability iOS 4.0+
  */
-export const kCGImageSourceTypeIdentifierHint: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1754857234459598, undefined, []);
+export const kCGImageSourceTypeIdentifierHint: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1754857234459598, undefined, []);
 
 /**
  * let kIIOCameraExtrinsics_CoordinateSystemID: CFString
  * @availability iOS 16.0+
  */
-export const kIIOCameraExtrinsics_CoordinateSystemID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2824113005193770, undefined, []);
+export const kIIOCameraExtrinsics_CoordinateSystemID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2824113005193770, undefined, []);
 
 /**
  * let kIIOCameraExtrinsics_Position: CFString
  * @availability iOS 16.0+
  */
-export const kIIOCameraExtrinsics_Position: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1483035707671030, undefined, []);
+export const kIIOCameraExtrinsics_Position: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1483035707671030, undefined, []);
 
 /**
  * let kIIOCameraExtrinsics_Rotation: CFString
  * @availability iOS 16.0+
  */
-export const kIIOCameraExtrinsics_Rotation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3411620583882497, undefined, []);
+export const kIIOCameraExtrinsics_Rotation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3411620583882497, undefined, []);
 
 /**
  * let kIIOCameraModelType_GenericPinhole: CFString
  * @availability iOS 16.0+
  */
-export const kIIOCameraModelType_GenericPinhole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1094628504271000, undefined, []);
+export const kIIOCameraModelType_GenericPinhole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1094628504271000, undefined, []);
 
 /**
  * let kIIOCameraModelType_SimplifiedPinhole: CFString
  * @availability iOS 16.0+
  */
-export const kIIOCameraModelType_SimplifiedPinhole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3123312925199080, undefined, []);
+export const kIIOCameraModelType_SimplifiedPinhole: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3123312925199080, undefined, []);
 
 /**
  * let kIIOCameraModel_Intrinsics: CFString
  * @availability iOS 16.0+
  */
-export const kIIOCameraModel_Intrinsics: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2692108661286632, undefined, []);
+export const kIIOCameraModel_Intrinsics: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2692108661286632, undefined, []);
 
 /**
  * let kIIOCameraModel_ModelType: CFString
  * @availability iOS 16.0+
  */
-export const kIIOCameraModel_ModelType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2521816135251543, undefined, []);
+export const kIIOCameraModel_ModelType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2521816135251543, undefined, []);
 
 /**
  * let kIIOMetadata_CameraExtrinsicsKey: CFString
  * @availability iOS 16.0+
  */
-export const kIIOMetadata_CameraExtrinsicsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3084297017852891, undefined, []);
+export const kIIOMetadata_CameraExtrinsicsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3084297017852891, undefined, []);
 
 /**
  * let kIIOMetadata_CameraModelKey: CFString
  * @availability iOS 16.0+
  */
-export const kIIOMetadata_CameraModelKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3592996827218796, undefined, []);
+export const kIIOMetadata_CameraModelKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3592996827218796, undefined, []);
 
 /**
  * let kIIOMonoscopicImageLocation_Center: CFString
  * @availability iOS 18.0+
  */
-export const kIIOMonoscopicImageLocation_Center: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 4306897496678797, undefined, []);
+export const kIIOMonoscopicImageLocation_Center: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 4306897496678797, undefined, []);
 
 /**
  * let kIIOMonoscopicImageLocation_Left: CFString
  * @availability iOS 18.0+
  */
-export const kIIOMonoscopicImageLocation_Left: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 3880889133068338, undefined, []);
+export const kIIOMonoscopicImageLocation_Left: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 3880889133068338, undefined, []);
 
 /**
  * let kIIOMonoscopicImageLocation_Right: CFString
  * @availability iOS 18.0+
  */
-export const kIIOMonoscopicImageLocation_Right: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1699540722576322, undefined, []);
+export const kIIOMonoscopicImageLocation_Right: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1699540722576322, undefined, []);
 
 /**
  * let kIIOMonoscopicImageLocation_Unspecified: CFString
  * @availability iOS 18.0+
  */
-export const kIIOMonoscopicImageLocation_Unspecified: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 586103555570546, undefined, []);
+export const kIIOMonoscopicImageLocation_Unspecified: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 586103555570546, undefined, []);
 
 /**
  * let kIIOStereoAggressors_Severity: CFString
  * @availability iOS 18.0+
  */
-export const kIIOStereoAggressors_Severity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1736026488425544, undefined, []);
+export const kIIOStereoAggressors_Severity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1736026488425544, undefined, []);
 
 /**
  * let kIIOStereoAggressors_SubTypeURI: CFString
  * @availability iOS 18.0+
  */
-export const kIIOStereoAggressors_SubTypeURI: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 2709883399560661, undefined, []);
+export const kIIOStereoAggressors_SubTypeURI: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 2709883399560661, undefined, []);
 
 /**
  * let kIIOStereoAggressors_Type: CFString
  * @availability iOS 18.0+
  */
-export const kIIOStereoAggressors_Type: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_5d69670f0307b385", 1578634091068943, undefined, []);
+export const kIIOStereoAggressors_Type: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("ImageIO_6be9a005889899ab", 1578634091068943, undefined, []);
 
 /** var IIO_HAS_IOSURFACE: Int32 { get } */
-export const IIO_HAS_IOSURFACE: number = callSDK<number>("ImageIO_5d69670f0307b385", 94235500333528, undefined, []);
+export const IIO_HAS_IOSURFACE: number = callSDK<number>("ImageIO_6be9a005889899ab", 94235500333528, undefined, []);
 
 /** var IMAGEIO_PNG_FILTER_AVG: Int32 { get } */
-export const IMAGEIO_PNG_FILTER_AVG: number = callSDK<number>("ImageIO_5d69670f0307b385", 2604115317653004, undefined, []);
+export const IMAGEIO_PNG_FILTER_AVG: number = callSDK<number>("ImageIO_6be9a005889899ab", 2604115317653004, undefined, []);
 
 /** var IMAGEIO_PNG_FILTER_NONE: Int32 { get } */
-export const IMAGEIO_PNG_FILTER_NONE: number = callSDK<number>("ImageIO_5d69670f0307b385", 3674277883830894, undefined, []);
+export const IMAGEIO_PNG_FILTER_NONE: number = callSDK<number>("ImageIO_6be9a005889899ab", 3674277883830894, undefined, []);
 
 /** var IMAGEIO_PNG_FILTER_PAETH: Int32 { get } */
-export const IMAGEIO_PNG_FILTER_PAETH: number = callSDK<number>("ImageIO_5d69670f0307b385", 1744854434866609, undefined, []);
+export const IMAGEIO_PNG_FILTER_PAETH: number = callSDK<number>("ImageIO_6be9a005889899ab", 1744854434866609, undefined, []);
 
 /** var IMAGEIO_PNG_FILTER_SUB: Int32 { get } */
-export const IMAGEIO_PNG_FILTER_SUB: number = callSDK<number>("ImageIO_5d69670f0307b385", 446316601268735, undefined, []);
+export const IMAGEIO_PNG_FILTER_SUB: number = callSDK<number>("ImageIO_6be9a005889899ab", 446316601268735, undefined, []);
 
 /** var IMAGEIO_PNG_FILTER_UP: Int32 { get } */
-export const IMAGEIO_PNG_FILTER_UP: number = callSDK<number>("ImageIO_5d69670f0307b385", 862138849227815, undefined, []);
+export const IMAGEIO_PNG_FILTER_UP: number = callSDK<number>("ImageIO_6be9a005889899ab", 862138849227815, undefined, []);
 
 /** var IMAGEIO_PNG_NO_FILTERS: Int32 { get } */
-export const IMAGEIO_PNG_NO_FILTERS: number = callSDK<number>("ImageIO_5d69670f0307b385", 4012550097855531, undefined, []);
+export const IMAGEIO_PNG_NO_FILTERS: number = callSDK<number>("ImageIO_6be9a005889899ab", 4012550097855531, undefined, []);
 
-registerSDKClass("ImageIO.CGImageDestination", CGImageDestination, { module: "ImageIO_5d69670f0307b385", properties: {} });
-registerSDKClass("ImageIO.CGImageMetadata", CGImageMetadata, { module: "ImageIO_5d69670f0307b385", properties: {} });
-registerSDKClass("ImageIO.CGImageMetadataTag", CGImageMetadataTag, { module: "ImageIO_5d69670f0307b385", properties: {} });
-registerSDKClass("ImageIO.CGImageSource", CGImageSource, { module: "ImageIO_5d69670f0307b385", properties: {} });
-registerSDKClass("ImageIO.CGMutableImageMetadata", CGMutableImageMetadata, { module: "ImageIO_5d69670f0307b385", properties: {} });
+registerSDKClass("ImageIO.CGImageDestination", CGImageDestination, { module: "ImageIO_6be9a005889899ab", properties: {} });
+registerSDKClass("ImageIO.CGImageMetadata", CGImageMetadata, { module: "ImageIO_6be9a005889899ab", properties: {} });
+registerSDKClass("ImageIO.CGImageMetadataTag", CGImageMetadataTag, { module: "ImageIO_6be9a005889899ab", properties: {} });
+registerSDKClass("ImageIO.CGImageSource", CGImageSource, { module: "ImageIO_6be9a005889899ab", properties: {} });
+registerSDKClass("ImageIO.CGMutableImageMetadata", CGMutableImageMetadata, { module: "ImageIO_6be9a005889899ab", properties: {} });

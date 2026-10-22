@@ -457,973 +457,973 @@ export type LPALSPEEDOFSOUND = $SDK5;
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alBuffer3f(bid: number, param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 4202196810616518, undefined, [bid, param, value1, value2, value3]); }
+export function alBuffer3f(bid: number, param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 4202196810616518, undefined, [bid, param, value1, value2, value3]); }
 
 /**
  * func alBuffer3i(_ bid: ALuint, _ param: ALenum, _ value1: ALint, _ value2: ALint, _ value3: ALint)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alBuffer3i(bid: number, param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3049581458443083, undefined, [bid, param, value1, value2, value3]); }
+export function alBuffer3i(bid: number, param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3049581458443083, undefined, [bid, param, value1, value2, value3]); }
 
 /**
  * func alBufferData(_ bid: ALuint, _ format: ALenum, _ data: UnsafeRawPointer!, _ size: ALsizei, _ freq: ALsizei)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alBufferData(bid: number, format: number, data: (SDKHandle) | null, size: number, freq: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2926905004272309, undefined, [bid, format, data, size, freq]); }
+export function alBufferData(bid: number, format: number, data: (SDKHandle) | null, size: number, freq: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2926905004272309, undefined, [bid, format, data, size, freq]); }
 
 /**
  * func alBufferf(_ bid: ALuint, _ param: ALenum, _ value: ALfloat)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alBufferf(bid: number, param: number, value: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3166959873542574, undefined, [bid, param, value]); }
+export function alBufferf(bid: number, param: number, value: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3166959873542574, undefined, [bid, param, value]); }
 
 /**
  * func alBufferfv(_ bid: ALuint, _ param: ALenum, _ values: UnsafePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alBufferfv(bid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1015791715079547, undefined, [bid, param, values]); }
+export function alBufferfv(bid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1015791715079547, undefined, [bid, param, values]); }
 
 /**
  * func alBufferi(_ bid: ALuint, _ param: ALenum, _ value: ALint)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alBufferi(bid: number, param: number, value: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 4139756741932946, undefined, [bid, param, value]); }
+export function alBufferi(bid: number, param: number, value: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 4139756741932946, undefined, [bid, param, value]); }
 
 /**
  * func alBufferiv(_ bid: ALuint, _ param: ALenum, _ values: UnsafePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alBufferiv(bid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2876075042998735, undefined, [bid, param, values]); }
+export function alBufferiv(bid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2876075042998735, undefined, [bid, param, values]); }
 
 /**
  * func alDeleteBuffers(_ n: ALsizei, _ buffers: UnsafePointer<ALuint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alDeleteBuffers(n: number, buffers?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2173774286646240, undefined, [n, buffers]); }
+export function alDeleteBuffers(n: number, buffers?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2173774286646240, undefined, [n, buffers]); }
 
 /**
  * func alDeleteSources(_ n: ALsizei, _ sources: UnsafePointer<ALuint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alDeleteSources(n: number, sources?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2296284972447634, undefined, [n, sources]); }
+export function alDeleteSources(n: number, sources?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2296284972447634, undefined, [n, sources]); }
 
 /**
  * func alDisable(_ capability: ALenum)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alDisable(capability: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1776824652908877, undefined, [capability]); }
+export function alDisable(capability: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1776824652908877, undefined, [capability]); }
 
 /**
  * func alDistanceModel(_ distanceModel: ALenum)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alDistanceModel(distanceModel: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1872953171601033, undefined, [distanceModel]); }
+export function alDistanceModel(distanceModel: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1872953171601033, undefined, [distanceModel]); }
 
 /**
  * func alDopplerFactor(_ value: ALfloat)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alDopplerFactor(value: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1203729250261662, undefined, [value]); }
+export function alDopplerFactor(value: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1203729250261662, undefined, [value]); }
 
 /**
  * func alDopplerVelocity(_ value: ALfloat)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alDopplerVelocity(value: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 4224382034250747, undefined, [value]); }
+export function alDopplerVelocity(value: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 4224382034250747, undefined, [value]); }
 
 /**
  * func alEnable(_ capability: ALenum)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alEnable(capability: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2488116602910406, undefined, [capability]); }
+export function alEnable(capability: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2488116602910406, undefined, [capability]); }
 
 /**
  * func alGenBuffers(_ n: ALsizei, _ buffers: UnsafeMutablePointer<ALuint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGenBuffers(n: number, buffers?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2991389998802085, undefined, [n, buffers]); }
+export function alGenBuffers(n: number, buffers?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2991389998802085, undefined, [n, buffers]); }
 
 /**
  * func alGenSources(_ n: ALsizei, _ sources: UnsafeMutablePointer<ALuint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGenSources(n: number, sources?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2640187322564801, undefined, [n, sources]); }
+export function alGenSources(n: number, sources?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2640187322564801, undefined, [n, sources]); }
 
 /**
  * func alGetBoolean(_ param: ALenum) -> ALboolean
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetBoolean(param: number): number { return callSDK<number>("OpenAL_5d69670f0307b385", 4076440749924092, undefined, [param]); }
+export function alGetBoolean(param: number): number { return callSDK<number>("OpenAL_6be9a005889899ab", 4076440749924092, undefined, [param]); }
 
 /**
  * func alGetBooleanv(_ param: ALenum, _ data: UnsafeMutablePointer<ALboolean>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetBooleanv(param: number, data?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1690637635847451, undefined, [param, data]); }
+export function alGetBooleanv(param: number, data?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1690637635847451, undefined, [param, data]); }
 
 /**
  * func alGetBuffer3f(_ bid: ALuint, _ param: ALenum, _ value1: UnsafeMutablePointer<ALfloat>!, _ value2: UnsafeMutablePointer<ALfloat>!, _ value3: UnsafeMutablePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetBuffer3f(bid: number, param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 808520635006212, undefined, [bid, param, value1, value2, value3]); }
+export function alGetBuffer3f(bid: number, param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 808520635006212, undefined, [bid, param, value1, value2, value3]); }
 
 /**
  * func alGetBuffer3i(_ bid: ALuint, _ param: ALenum, _ value1: UnsafeMutablePointer<ALint>!, _ value2: UnsafeMutablePointer<ALint>!, _ value3: UnsafeMutablePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetBuffer3i(bid: number, param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1789784280203120, undefined, [bid, param, value1, value2, value3]); }
+export function alGetBuffer3i(bid: number, param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1789784280203120, undefined, [bid, param, value1, value2, value3]); }
 
 /**
  * func alGetBufferf(_ bid: ALuint, _ param: ALenum, _ value: UnsafeMutablePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetBufferf(bid: number, param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 750251008061484, undefined, [bid, param, value]); }
+export function alGetBufferf(bid: number, param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 750251008061484, undefined, [bid, param, value]); }
 
 /**
  * func alGetBufferfv(_ bid: ALuint, _ param: ALenum, _ values: UnsafeMutablePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetBufferfv(bid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 777806752701300, undefined, [bid, param, values]); }
+export function alGetBufferfv(bid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 777806752701300, undefined, [bid, param, values]); }
 
 /**
  * func alGetBufferi(_ bid: ALuint, _ param: ALenum, _ value: UnsafeMutablePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetBufferi(bid: number, param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3860401734168205, undefined, [bid, param, value]); }
+export function alGetBufferi(bid: number, param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3860401734168205, undefined, [bid, param, value]); }
 
 /** func alGetBufferiv(_ bid: ALuint, _ param: ALenum, _ values: UnsafeMutablePointer<ALint>!) */
-export function alGetBufferiv(bid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3331891014463462, undefined, [bid, param, values]); }
+export function alGetBufferiv(bid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3331891014463462, undefined, [bid, param, values]); }
 
 /**
  * func alGetDouble(_ param: ALenum) -> ALdouble
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetDouble(param: number): number { return callSDK<number>("OpenAL_5d69670f0307b385", 2279055307871924, undefined, [param]); }
+export function alGetDouble(param: number): number { return callSDK<number>("OpenAL_6be9a005889899ab", 2279055307871924, undefined, [param]); }
 
 /**
  * func alGetDoublev(_ param: ALenum, _ data: UnsafeMutablePointer<ALdouble>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetDoublev(param: number, data?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1201330223291117, undefined, [param, data]); }
+export function alGetDoublev(param: number, data?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1201330223291117, undefined, [param, data]); }
 
 /**
  * func alGetEnumValue(_ ename: UnsafePointer<ALchar>!) -> ALenum
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetEnumValue(ename?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_5d69670f0307b385", 42484854953214, undefined, [ename]); }
+export function alGetEnumValue(ename?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_6be9a005889899ab", 42484854953214, undefined, [ename]); }
 
 /**
  * func alGetError() -> ALenum
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetError(): number { return callSDK<number>("OpenAL_5d69670f0307b385", 3618404155608299, undefined, []); }
+export function alGetError(): number { return callSDK<number>("OpenAL_6be9a005889899ab", 3618404155608299, undefined, []); }
 
 /**
  * func alGetFloat(_ param: ALenum) -> ALfloat
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetFloat(param: number): number { return callSDK<number>("OpenAL_5d69670f0307b385", 86350703894415, undefined, [param]); }
+export function alGetFloat(param: number): number { return callSDK<number>("OpenAL_6be9a005889899ab", 86350703894415, undefined, [param]); }
 
 /**
  * func alGetFloatv(_ param: ALenum, _ data: UnsafeMutablePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetFloatv(param: number, data?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3000390177344390, undefined, [param, data]); }
+export function alGetFloatv(param: number, data?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3000390177344390, undefined, [param, data]); }
 
 /**
  * func alGetInteger(_ param: ALenum) -> ALint
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetInteger(param: number): number { return callSDK<number>("OpenAL_5d69670f0307b385", 2127180885083565, undefined, [param]); }
+export function alGetInteger(param: number): number { return callSDK<number>("OpenAL_6be9a005889899ab", 2127180885083565, undefined, [param]); }
 
 /**
  * func alGetIntegerv(_ param: ALenum, _ data: UnsafeMutablePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetIntegerv(param: number, data?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2873944133163045, undefined, [param, data]); }
+export function alGetIntegerv(param: number, data?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2873944133163045, undefined, [param, data]); }
 
 /**
  * func alGetListener3f(_ param: ALenum, _ value1: UnsafeMutablePointer<ALfloat>!, _ value2: UnsafeMutablePointer<ALfloat>!, _ value3: UnsafeMutablePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetListener3f(param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3242002087041002, undefined, [param, value1, value2, value3]); }
+export function alGetListener3f(param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3242002087041002, undefined, [param, value1, value2, value3]); }
 
 /**
  * func alGetListener3i(_ param: ALenum, _ value1: UnsafeMutablePointer<ALint>!, _ value2: UnsafeMutablePointer<ALint>!, _ value3: UnsafeMutablePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetListener3i(param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1570812973996206, undefined, [param, value1, value2, value3]); }
+export function alGetListener3i(param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1570812973996206, undefined, [param, value1, value2, value3]); }
 
 /**
  * func alGetListenerf(_ param: ALenum, _ value: UnsafeMutablePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetListenerf(param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2290749021671995, undefined, [param, value]); }
+export function alGetListenerf(param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2290749021671995, undefined, [param, value]); }
 
 /**
  * func alGetListenerfv(_ param: ALenum, _ values: UnsafeMutablePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetListenerfv(param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 4135328130876649, undefined, [param, values]); }
+export function alGetListenerfv(param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 4135328130876649, undefined, [param, values]); }
 
 /**
  * func alGetListeneri(_ param: ALenum, _ value: UnsafeMutablePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetListeneri(param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3991772021472993, undefined, [param, value]); }
+export function alGetListeneri(param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3991772021472993, undefined, [param, value]); }
 
 /**
  * func alGetListeneriv(_ param: ALenum, _ values: UnsafeMutablePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetListeneriv(param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2069970044166571, undefined, [param, values]); }
+export function alGetListeneriv(param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2069970044166571, undefined, [param, values]); }
 
 /**
  * func alGetProcAddress(_ fname: UnsafePointer<ALchar>!) -> UnsafeMutableRawPointer!
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetProcAddress(fname?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_5d69670f0307b385", 3702808854949434, undefined, [fname]); }
+export function alGetProcAddress(fname?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_6be9a005889899ab", 3702808854949434, undefined, [fname]); }
 
 /**
  * func alGetSource3f(_ sid: ALuint, _ param: ALenum, _ value1: UnsafeMutablePointer<ALfloat>!, _ value2: UnsafeMutablePointer<ALfloat>!, _ value3: UnsafeMutablePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetSource3f(sid: number, param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 4368000983920979, undefined, [sid, param, value1, value2, value3]); }
+export function alGetSource3f(sid: number, param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 4368000983920979, undefined, [sid, param, value1, value2, value3]); }
 
 /**
  * func alGetSource3i(_ sid: ALuint, _ param: ALenum, _ value1: UnsafeMutablePointer<ALint>!, _ value2: UnsafeMutablePointer<ALint>!, _ value3: UnsafeMutablePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetSource3i(sid: number, param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1776185200157369, undefined, [sid, param, value1, value2, value3]); }
+export function alGetSource3i(sid: number, param: number, value1?: (SDKHandle) | null, value2?: (SDKHandle) | null, value3?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1776185200157369, undefined, [sid, param, value1, value2, value3]); }
 
 /**
  * func alGetSourcef(_ sid: ALuint, _ param: ALenum, _ value: UnsafeMutablePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetSourcef(sid: number, param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3938293696547766, undefined, [sid, param, value]); }
+export function alGetSourcef(sid: number, param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3938293696547766, undefined, [sid, param, value]); }
 
 /**
  * func alGetSourcefv(_ sid: ALuint, _ param: ALenum, _ values: UnsafeMutablePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetSourcefv(sid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1610919176305750, undefined, [sid, param, values]); }
+export function alGetSourcefv(sid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1610919176305750, undefined, [sid, param, values]); }
 
 /**
  * func alGetSourcei(_ sid: ALuint, _ param: ALenum, _ value: UnsafeMutablePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetSourcei(sid: number, param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 217610401233411, undefined, [sid, param, value]); }
+export function alGetSourcei(sid: number, param: number, value?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 217610401233411, undefined, [sid, param, value]); }
 
 /**
  * func alGetSourceiv(_ sid: ALuint, _ param: ALenum, _ values: UnsafeMutablePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetSourceiv(sid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 902352649757974, undefined, [sid, param, values]); }
+export function alGetSourceiv(sid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 902352649757974, undefined, [sid, param, values]); }
 
 /**
  * func alGetString(_ param: ALenum) -> UnsafePointer<ALchar>!
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alGetString(param: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_5d69670f0307b385", 3118823677409698, undefined, [param]); }
+export function alGetString(param: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_6be9a005889899ab", 3118823677409698, undefined, [param]); }
 
 /**
  * func alIsBuffer(_ bid: ALuint) -> ALboolean
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alIsBuffer(bid: number): number { return callSDK<number>("OpenAL_5d69670f0307b385", 2602695654286289, undefined, [bid]); }
+export function alIsBuffer(bid: number): number { return callSDK<number>("OpenAL_6be9a005889899ab", 2602695654286289, undefined, [bid]); }
 
 /**
  * func alIsEnabled(_ capability: ALenum) -> ALboolean
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alIsEnabled(capability: number): number { return callSDK<number>("OpenAL_5d69670f0307b385", 2536284202384828, undefined, [capability]); }
+export function alIsEnabled(capability: number): number { return callSDK<number>("OpenAL_6be9a005889899ab", 2536284202384828, undefined, [capability]); }
 
 /**
  * func alIsExtensionPresent(_ extname: UnsafePointer<ALchar>!) -> ALboolean
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alIsExtensionPresent(extname?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_5d69670f0307b385", 2527036644589092, undefined, [extname]); }
+export function alIsExtensionPresent(extname?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_6be9a005889899ab", 2527036644589092, undefined, [extname]); }
 
 /**
  * func alIsSource(_ sid: ALuint) -> ALboolean
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alIsSource(sid: number): number { return callSDK<number>("OpenAL_5d69670f0307b385", 1393460354842192, undefined, [sid]); }
+export function alIsSource(sid: number): number { return callSDK<number>("OpenAL_6be9a005889899ab", 1393460354842192, undefined, [sid]); }
 
 /**
  * func alListener3f(_ param: ALenum, _ value1: ALfloat, _ value2: ALfloat, _ value3: ALfloat)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alListener3f(param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3340669568660365, undefined, [param, value1, value2, value3]); }
+export function alListener3f(param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3340669568660365, undefined, [param, value1, value2, value3]); }
 
 /**
  * func alListener3i(_ param: ALenum, _ value1: ALint, _ value2: ALint, _ value3: ALint)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alListener3i(param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 866937055183349, undefined, [param, value1, value2, value3]); }
+export function alListener3i(param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 866937055183349, undefined, [param, value1, value2, value3]); }
 
 /**
  * func alListenerf(_ param: ALenum, _ value: ALfloat)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alListenerf(param: number, value: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 253900924262968, undefined, [param, value]); }
+export function alListenerf(param: number, value: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 253900924262968, undefined, [param, value]); }
 
 /**
  * func alListenerfv(_ param: ALenum, _ values: UnsafePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alListenerfv(param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 4328771088107202, undefined, [param, values]); }
+export function alListenerfv(param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 4328771088107202, undefined, [param, values]); }
 
 /**
  * func alListeneri(_ param: ALenum, _ value: ALint)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alListeneri(param: number, value: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1516198296880514, undefined, [param, value]); }
+export function alListeneri(param: number, value: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1516198296880514, undefined, [param, value]); }
 
 /**
  * func alListeneriv(_ param: ALenum, _ values: UnsafePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alListeneriv(param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3591402641323885, undefined, [param, values]); }
+export function alListeneriv(param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3591402641323885, undefined, [param, values]); }
 
 /**
  * func alSource3f(_ sid: ALuint, _ param: ALenum, _ value1: ALfloat, _ value2: ALfloat, _ value3: ALfloat)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSource3f(sid: number, param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1789278102965521, undefined, [sid, param, value1, value2, value3]); }
+export function alSource3f(sid: number, param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1789278102965521, undefined, [sid, param, value1, value2, value3]); }
 
 /**
  * func alSource3i(_ sid: ALuint, _ param: ALenum, _ value1: ALint, _ value2: ALint, _ value3: ALint)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSource3i(sid: number, param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3427516233921932, undefined, [sid, param, value1, value2, value3]); }
+export function alSource3i(sid: number, param: number, value1: number, value2: number, value3: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3427516233921932, undefined, [sid, param, value1, value2, value3]); }
 
 /**
  * func alSourcePause(_ sid: ALuint)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourcePause(sid: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 84592453738111, undefined, [sid]); }
+export function alSourcePause(sid: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 84592453738111, undefined, [sid]); }
 
 /**
  * func alSourcePausev(_ ns: ALsizei, _ sids: UnsafePointer<ALuint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourcePausev(ns: number, sids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 174137318394981, undefined, [ns, sids]); }
+export function alSourcePausev(ns: number, sids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 174137318394981, undefined, [ns, sids]); }
 
 /**
  * func alSourcePlay(_ sid: ALuint)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourcePlay(sid: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3102867000529503, undefined, [sid]); }
+export function alSourcePlay(sid: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3102867000529503, undefined, [sid]); }
 
 /**
  * func alSourcePlayv(_ ns: ALsizei, _ sids: UnsafePointer<ALuint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourcePlayv(ns: number, sids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 513361249645251, undefined, [ns, sids]); }
+export function alSourcePlayv(ns: number, sids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 513361249645251, undefined, [ns, sids]); }
 
 /**
  * func alSourceQueueBuffers(_ sid: ALuint, _ numEntries: ALsizei, _ bids: UnsafePointer<ALuint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourceQueueBuffers(sid: number, numEntries: number, bids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1591133158656953, undefined, [sid, numEntries, bids]); }
+export function alSourceQueueBuffers(sid: number, numEntries: number, bids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1591133158656953, undefined, [sid, numEntries, bids]); }
 
 /**
  * func alSourceRewind(_ sid: ALuint)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourceRewind(sid: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 123680127128769, undefined, [sid]); }
+export function alSourceRewind(sid: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 123680127128769, undefined, [sid]); }
 
 /**
  * func alSourceRewindv(_ ns: ALsizei, _ sids: UnsafePointer<ALuint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourceRewindv(ns: number, sids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1964566266329495, undefined, [ns, sids]); }
+export function alSourceRewindv(ns: number, sids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1964566266329495, undefined, [ns, sids]); }
 
 /**
  * func alSourceStop(_ sid: ALuint)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourceStop(sid: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 982786314746117, undefined, [sid]); }
+export function alSourceStop(sid: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 982786314746117, undefined, [sid]); }
 
 /**
  * func alSourceStopv(_ ns: ALsizei, _ sids: UnsafePointer<ALuint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourceStopv(ns: number, sids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 894048723147946, undefined, [ns, sids]); }
+export function alSourceStopv(ns: number, sids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 894048723147946, undefined, [ns, sids]); }
 
 /**
  * func alSourceUnqueueBuffers(_ sid: ALuint, _ numEntries: ALsizei, _ bids: UnsafeMutablePointer<ALuint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourceUnqueueBuffers(sid: number, numEntries: number, bids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3056065372580400, undefined, [sid, numEntries, bids]); }
+export function alSourceUnqueueBuffers(sid: number, numEntries: number, bids?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3056065372580400, undefined, [sid, numEntries, bids]); }
 
 /**
  * func alSourcef(_ sid: ALuint, _ param: ALenum, _ value: ALfloat)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourcef(sid: number, param: number, value: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2889014057385096, undefined, [sid, param, value]); }
+export function alSourcef(sid: number, param: number, value: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2889014057385096, undefined, [sid, param, value]); }
 
 /**
  * func alSourcefv(_ sid: ALuint, _ param: ALenum, _ values: UnsafePointer<ALfloat>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourcefv(sid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2112512417593052, undefined, [sid, param, values]); }
+export function alSourcefv(sid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2112512417593052, undefined, [sid, param, values]); }
 
 /**
  * func alSourcei(_ sid: ALuint, _ param: ALenum, _ value: ALint)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourcei(sid: number, param: number, value: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1800857260534940, undefined, [sid, param, value]); }
+export function alSourcei(sid: number, param: number, value: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1800857260534940, undefined, [sid, param, value]); }
 
 /**
  * func alSourceiv(_ sid: ALuint, _ param: ALenum, _ values: UnsafePointer<ALint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSourceiv(sid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2135871418815432, undefined, [sid, param, values]); }
+export function alSourceiv(sid: number, param: number, values?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2135871418815432, undefined, [sid, param, values]); }
 
 /**
  * func alSpeedOfSound(_ value: ALfloat)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alSpeedOfSound(value: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3327958019658518, undefined, [value]); }
+export function alSpeedOfSound(value: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3327958019658518, undefined, [value]); }
 
 /**
  * func alcCaptureCloseDevice(_ device: OpaquePointer!) -> ALCboolean
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcCaptureCloseDevice(device?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_5d69670f0307b385", 3741190697253454, undefined, [device]); }
+export function alcCaptureCloseDevice(device?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_6be9a005889899ab", 3741190697253454, undefined, [device]); }
 
 /**
  * func alcCaptureOpenDevice(_ devicename: UnsafePointer<ALCchar>!, _ frequency: ALCuint, _ format: ALCenum, _ buffersize: ALCsizei) -> OpaquePointer!
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcCaptureOpenDevice(devicename: (SDKHandle) | null, frequency: number, format: number, buffersize: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_5d69670f0307b385", 3978532951923707, undefined, [devicename, frequency, format, buffersize]); }
+export function alcCaptureOpenDevice(devicename: (SDKHandle) | null, frequency: number, format: number, buffersize: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_6be9a005889899ab", 3978532951923707, undefined, [devicename, frequency, format, buffersize]); }
 
 /**
  * func alcCaptureSamples(_ device: OpaquePointer!, _ buffer: UnsafeMutableRawPointer!, _ samples: ALCsizei)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcCaptureSamples(device: (SDKHandle) | null, buffer: (SDKHandle) | null, samples: number): void { return callSDK<void>("OpenAL_5d69670f0307b385", 4332970553127211, undefined, [device, buffer, samples]); }
+export function alcCaptureSamples(device: (SDKHandle) | null, buffer: (SDKHandle) | null, samples: number): void { return callSDK<void>("OpenAL_6be9a005889899ab", 4332970553127211, undefined, [device, buffer, samples]); }
 
 /**
  * func alcCaptureStart(_ device: OpaquePointer!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcCaptureStart(device?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 529260549284717, undefined, [device]); }
+export function alcCaptureStart(device?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 529260549284717, undefined, [device]); }
 
 /**
  * func alcCaptureStop(_ device: OpaquePointer!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcCaptureStop(device?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3694798082648136, undefined, [device]); }
+export function alcCaptureStop(device?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3694798082648136, undefined, [device]); }
 
 /**
  * func alcCloseDevice(_ device: OpaquePointer!) -> ALCboolean
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcCloseDevice(device?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_5d69670f0307b385", 2878760303514426, undefined, [device]); }
+export function alcCloseDevice(device?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_6be9a005889899ab", 2878760303514426, undefined, [device]); }
 
 /**
  * func alcCreateContext(_ device: OpaquePointer!, _ attrlist: UnsafePointer<ALCint>!) -> OpaquePointer!
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcCreateContext(device?: (SDKHandle) | null, attrlist?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_5d69670f0307b385", 3389329721333288, undefined, [device, attrlist]); }
+export function alcCreateContext(device?: (SDKHandle) | null, attrlist?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_6be9a005889899ab", 3389329721333288, undefined, [device, attrlist]); }
 
 /**
  * func alcDestroyContext(_ context: OpaquePointer!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcDestroyContext(context?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 3001541855854828, undefined, [context]); }
+export function alcDestroyContext(context?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 3001541855854828, undefined, [context]); }
 
 /**
  * func alcGetContextsDevice(_ context: OpaquePointer!) -> OpaquePointer!
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcGetContextsDevice(context?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_5d69670f0307b385", 1142543380367192, undefined, [context]); }
+export function alcGetContextsDevice(context?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_6be9a005889899ab", 1142543380367192, undefined, [context]); }
 
 /**
  * func alcGetCurrentContext() -> OpaquePointer!
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcGetCurrentContext(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_5d69670f0307b385", 2032489023547363, undefined, []); }
+export function alcGetCurrentContext(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_6be9a005889899ab", 2032489023547363, undefined, []); }
 
 /**
  * func alcGetEnumValue(_ device: OpaquePointer!, _ enumname: UnsafePointer<ALCchar>!) -> ALCenum
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcGetEnumValue(device?: (SDKHandle) | null, enumname?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_5d69670f0307b385", 3395246415649377, undefined, [device, enumname]); }
+export function alcGetEnumValue(device?: (SDKHandle) | null, enumname?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_6be9a005889899ab", 3395246415649377, undefined, [device, enumname]); }
 
 /**
  * func alcGetError(_ device: OpaquePointer!) -> ALCenum
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcGetError(device?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_5d69670f0307b385", 2707801555692560, undefined, [device]); }
+export function alcGetError(device?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_6be9a005889899ab", 2707801555692560, undefined, [device]); }
 
 /**
  * func alcGetIntegerv(_ device: OpaquePointer!, _ param: ALCenum, _ size: ALCsizei, _ data: UnsafeMutablePointer<ALCint>!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcGetIntegerv(device: (SDKHandle) | null, param: number, size: number, data?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 696158682381029, undefined, [device, param, size, data]); }
+export function alcGetIntegerv(device: (SDKHandle) | null, param: number, size: number, data?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 696158682381029, undefined, [device, param, size, data]); }
 
 /**
  * func alcGetProcAddress(_ device: OpaquePointer!, _ funcname: UnsafePointer<ALCchar>!) -> UnsafeMutableRawPointer!
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcGetProcAddress(device?: (SDKHandle) | null, funcname?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_5d69670f0307b385", 3427653698722623, undefined, [device, funcname]); }
+export function alcGetProcAddress(device?: (SDKHandle) | null, funcname?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_6be9a005889899ab", 3427653698722623, undefined, [device, funcname]); }
 
 /**
  * func alcGetString(_ device: OpaquePointer!, _ param: ALCenum) -> UnsafePointer<ALCchar>!
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcGetString(device: (SDKHandle) | null, param: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_5d69670f0307b385", 2040072129350681, undefined, [device, param]); }
+export function alcGetString(device: (SDKHandle) | null, param: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_6be9a005889899ab", 2040072129350681, undefined, [device, param]); }
 
 /**
  * func alcIsExtensionPresent(_ device: OpaquePointer!, _ extname: UnsafePointer<ALCchar>!) -> ALCboolean
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcIsExtensionPresent(device?: (SDKHandle) | null, extname?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_5d69670f0307b385", 4376241244532172, undefined, [device, extname]); }
+export function alcIsExtensionPresent(device?: (SDKHandle) | null, extname?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_6be9a005889899ab", 4376241244532172, undefined, [device, extname]); }
 
 /**
  * func alcMakeContextCurrent(_ context: OpaquePointer!) -> ALCboolean
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcMakeContextCurrent(context?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_5d69670f0307b385", 3805617199227458, undefined, [context]); }
+export function alcMakeContextCurrent(context?: (SDKHandle) | null): number { return callSDK<number>("OpenAL_6be9a005889899ab", 3805617199227458, undefined, [context]); }
 
 /**
  * func alcOpenDevice(_ devicename: UnsafePointer<ALCchar>!) -> OpaquePointer!
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcOpenDevice(devicename?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_5d69670f0307b385", 775547736305383, undefined, [devicename]); }
+export function alcOpenDevice(devicename?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("OpenAL_6be9a005889899ab", 775547736305383, undefined, [devicename]); }
 
 /**
  * func alcProcessContext(_ context: OpaquePointer!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcProcessContext(context?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 1184686224942047, undefined, [context]); }
+export function alcProcessContext(context?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 1184686224942047, undefined, [context]); }
 
 /**
  * func alcSuspendContext(_ context: OpaquePointer!)
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function alcSuspendContext(context?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_5d69670f0307b385", 2199598523158845, undefined, [context]); }
+export function alcSuspendContext(context?: (SDKHandle) | null): void { return callSDK<void>("OpenAL_6be9a005889899ab", 2199598523158845, undefined, [context]); }
 
 /** var ALC_ALL_ATTRIBUTES: Int32 { get } */
-export const ALC_ALL_ATTRIBUTES: number = callSDK<number>("OpenAL_5d69670f0307b385", 2572513760386031, undefined, []);
+export const ALC_ALL_ATTRIBUTES: number = callSDK<number>("OpenAL_6be9a005889899ab", 2572513760386031, undefined, []);
 
 /** var ALC_ALL_DEVICES_SPECIFIER: Int32 { get } */
-export const ALC_ALL_DEVICES_SPECIFIER: number = callSDK<number>("OpenAL_5d69670f0307b385", 3892460354460640, undefined, []);
+export const ALC_ALL_DEVICES_SPECIFIER: number = callSDK<number>("OpenAL_6be9a005889899ab", 3892460354460640, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_Cathedral: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_Cathedral: number = callSDK<number>("OpenAL_5d69670f0307b385", 4330790204788590, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_Cathedral: number = callSDK<number>("OpenAL_6be9a005889899ab", 4330790204788590, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_LargeChamber: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_LargeChamber: number = callSDK<number>("OpenAL_5d69670f0307b385", 2724985996951512, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_LargeChamber: number = callSDK<number>("OpenAL_6be9a005889899ab", 2724985996951512, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_LargeHall2: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_LargeHall2: number = callSDK<number>("OpenAL_5d69670f0307b385", 647815613013303, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_LargeHall2: number = callSDK<number>("OpenAL_6be9a005889899ab", 647815613013303, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_LargeHall: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_LargeHall: number = callSDK<number>("OpenAL_5d69670f0307b385", 3335555223009760, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_LargeHall: number = callSDK<number>("OpenAL_6be9a005889899ab", 3335555223009760, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_LargeRoom2: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_LargeRoom2: number = callSDK<number>("OpenAL_5d69670f0307b385", 1942560919505538, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_LargeRoom2: number = callSDK<number>("OpenAL_6be9a005889899ab", 1942560919505538, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_LargeRoom: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_LargeRoom: number = callSDK<number>("OpenAL_5d69670f0307b385", 173974445173855, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_LargeRoom: number = callSDK<number>("OpenAL_6be9a005889899ab", 173974445173855, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_MediumChamber: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_MediumChamber: number = callSDK<number>("OpenAL_5d69670f0307b385", 3471361263893771, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_MediumChamber: number = callSDK<number>("OpenAL_6be9a005889899ab", 3471361263893771, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_MediumHall2: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_MediumHall2: number = callSDK<number>("OpenAL_5d69670f0307b385", 2867513701085675, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_MediumHall2: number = callSDK<number>("OpenAL_6be9a005889899ab", 2867513701085675, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_MediumHall3: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_MediumHall3: number = callSDK<number>("OpenAL_5d69670f0307b385", 2988585349856481, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_MediumHall3: number = callSDK<number>("OpenAL_6be9a005889899ab", 2988585349856481, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_MediumHall: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_MediumHall: number = callSDK<number>("OpenAL_5d69670f0307b385", 919464043313520, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_MediumHall: number = callSDK<number>("OpenAL_6be9a005889899ab", 919464043313520, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_MediumRoom: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_MediumRoom: number = callSDK<number>("OpenAL_5d69670f0307b385", 1788841016346423, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_MediumRoom: number = callSDK<number>("OpenAL_6be9a005889899ab", 1788841016346423, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_Plate: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_Plate: number = callSDK<number>("OpenAL_5d69670f0307b385", 1951482137322747, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_Plate: number = callSDK<number>("OpenAL_6be9a005889899ab", 1951482137322747, undefined, []);
 
 /** var ALC_ASA_REVERB_ROOM_TYPE_SmallRoom: Int32 { get } */
-export const ALC_ASA_REVERB_ROOM_TYPE_SmallRoom: number = callSDK<number>("OpenAL_5d69670f0307b385", 300845128423124, undefined, []);
+export const ALC_ASA_REVERB_ROOM_TYPE_SmallRoom: number = callSDK<number>("OpenAL_6be9a005889899ab", 300845128423124, undefined, []);
 
 /** var ALC_ATTRIBUTES_SIZE: Int32 { get } */
-export const ALC_ATTRIBUTES_SIZE: number = callSDK<number>("OpenAL_5d69670f0307b385", 3180574438043958, undefined, []);
+export const ALC_ATTRIBUTES_SIZE: number = callSDK<number>("OpenAL_6be9a005889899ab", 3180574438043958, undefined, []);
 
 /** var ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER: Int32 { get } */
-export const ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER: number = callSDK<number>("OpenAL_5d69670f0307b385", 3082626501033438, undefined, []);
+export const ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER: number = callSDK<number>("OpenAL_6be9a005889899ab", 3082626501033438, undefined, []);
 
 /** var ALC_CAPTURE_DEVICE_SPECIFIER: Int32 { get } */
-export const ALC_CAPTURE_DEVICE_SPECIFIER: number = callSDK<number>("OpenAL_5d69670f0307b385", 1808327884181911, undefined, []);
+export const ALC_CAPTURE_DEVICE_SPECIFIER: number = callSDK<number>("OpenAL_6be9a005889899ab", 1808327884181911, undefined, []);
 
 /** var ALC_CAPTURE_SAMPLES: Int32 { get } */
-export const ALC_CAPTURE_SAMPLES: number = callSDK<number>("OpenAL_5d69670f0307b385", 3568106707153590, undefined, []);
+export const ALC_CAPTURE_SAMPLES: number = callSDK<number>("OpenAL_6be9a005889899ab", 3568106707153590, undefined, []);
 
 /** var ALC_DEFAULT_ALL_DEVICES_SPECIFIER: Int32 { get } */
-export const ALC_DEFAULT_ALL_DEVICES_SPECIFIER: number = callSDK<number>("OpenAL_5d69670f0307b385", 1517435828408521, undefined, []);
+export const ALC_DEFAULT_ALL_DEVICES_SPECIFIER: number = callSDK<number>("OpenAL_6be9a005889899ab", 1517435828408521, undefined, []);
 
 /** var ALC_DEFAULT_DEVICE_SPECIFIER: Int32 { get } */
-export const ALC_DEFAULT_DEVICE_SPECIFIER: number = callSDK<number>("OpenAL_5d69670f0307b385", 1189671433112881, undefined, []);
+export const ALC_DEFAULT_DEVICE_SPECIFIER: number = callSDK<number>("OpenAL_6be9a005889899ab", 1189671433112881, undefined, []);
 
 /** var ALC_DEVICE_SPECIFIER: Int32 { get } */
-export const ALC_DEVICE_SPECIFIER: number = callSDK<number>("OpenAL_5d69670f0307b385", 1522542910102121, undefined, []);
+export const ALC_DEVICE_SPECIFIER: number = callSDK<number>("OpenAL_6be9a005889899ab", 1522542910102121, undefined, []);
 
 /** var ALC_EXTENSIONS: Int32 { get } */
-export const ALC_EXTENSIONS: number = callSDK<number>("OpenAL_5d69670f0307b385", 323655519659347, undefined, []);
+export const ALC_EXTENSIONS: number = callSDK<number>("OpenAL_6be9a005889899ab", 323655519659347, undefined, []);
 
 /** var ALC_FALSE: Int32 { get } */
-export const ALC_FALSE: number = callSDK<number>("OpenAL_5d69670f0307b385", 4054325135506568, undefined, []);
+export const ALC_FALSE: number = callSDK<number>("OpenAL_6be9a005889899ab", 4054325135506568, undefined, []);
 
 /** var ALC_FREQUENCY: Int32 { get } */
-export const ALC_FREQUENCY: number = callSDK<number>("OpenAL_5d69670f0307b385", 3232104048657937, undefined, []);
+export const ALC_FREQUENCY: number = callSDK<number>("OpenAL_6be9a005889899ab", 3232104048657937, undefined, []);
 
 /** var ALC_INVALID: Int32 { get } */
-export const ALC_INVALID: number = callSDK<number>("OpenAL_5d69670f0307b385", 2065522910599704, undefined, []);
+export const ALC_INVALID: number = callSDK<number>("OpenAL_6be9a005889899ab", 2065522910599704, undefined, []);
 
 /** var ALC_INVALID_CONTEXT: Int32 { get } */
-export const ALC_INVALID_CONTEXT: number = callSDK<number>("OpenAL_5d69670f0307b385", 303749267138649, undefined, []);
+export const ALC_INVALID_CONTEXT: number = callSDK<number>("OpenAL_6be9a005889899ab", 303749267138649, undefined, []);
 
 /** var ALC_INVALID_DEVICE: Int32 { get } */
-export const ALC_INVALID_DEVICE: number = callSDK<number>("OpenAL_5d69670f0307b385", 786702742153067, undefined, []);
+export const ALC_INVALID_DEVICE: number = callSDK<number>("OpenAL_6be9a005889899ab", 786702742153067, undefined, []);
 
 /** var ALC_INVALID_ENUM: Int32 { get } */
-export const ALC_INVALID_ENUM: number = callSDK<number>("OpenAL_5d69670f0307b385", 3495202418178242, undefined, []);
+export const ALC_INVALID_ENUM: number = callSDK<number>("OpenAL_6be9a005889899ab", 3495202418178242, undefined, []);
 
 /** var ALC_INVALID_VALUE: Int32 { get } */
-export const ALC_INVALID_VALUE: number = callSDK<number>("OpenAL_5d69670f0307b385", 3863844592040585, undefined, []);
+export const ALC_INVALID_VALUE: number = callSDK<number>("OpenAL_6be9a005889899ab", 3863844592040585, undefined, []);
 
 /** var ALC_MAJOR_VERSION: Int32 { get } */
-export const ALC_MAJOR_VERSION: number = callSDK<number>("OpenAL_5d69670f0307b385", 2266663820889318, undefined, []);
+export const ALC_MAJOR_VERSION: number = callSDK<number>("OpenAL_6be9a005889899ab", 2266663820889318, undefined, []);
 
 /** var ALC_MINOR_VERSION: Int32 { get } */
-export const ALC_MINOR_VERSION: number = callSDK<number>("OpenAL_5d69670f0307b385", 486654338636603, undefined, []);
+export const ALC_MINOR_VERSION: number = callSDK<number>("OpenAL_6be9a005889899ab", 486654338636603, undefined, []);
 
 /** var ALC_MONO_SOURCES: Int32 { get } */
-export const ALC_MONO_SOURCES: number = callSDK<number>("OpenAL_5d69670f0307b385", 2906026795312787, undefined, []);
+export const ALC_MONO_SOURCES: number = callSDK<number>("OpenAL_6be9a005889899ab", 2906026795312787, undefined, []);
 
 /** var ALC_NO_ERROR: Int32 { get } */
-export const ALC_NO_ERROR: number = callSDK<number>("OpenAL_5d69670f0307b385", 1449938254791981, undefined, []);
+export const ALC_NO_ERROR: number = callSDK<number>("OpenAL_6be9a005889899ab", 1449938254791981, undefined, []);
 
 /** var ALC_OUT_OF_MEMORY: Int32 { get } */
-export const ALC_OUT_OF_MEMORY: number = callSDK<number>("OpenAL_5d69670f0307b385", 666882400411342, undefined, []);
+export const ALC_OUT_OF_MEMORY: number = callSDK<number>("OpenAL_6be9a005889899ab", 666882400411342, undefined, []);
 
 /** var ALC_REFRESH: Int32 { get } */
-export const ALC_REFRESH: number = callSDK<number>("OpenAL_5d69670f0307b385", 370224309602723, undefined, []);
+export const ALC_REFRESH: number = callSDK<number>("OpenAL_6be9a005889899ab", 370224309602723, undefined, []);
 
 /** var ALC_STEREO_SOURCES: Int32 { get } */
-export const ALC_STEREO_SOURCES: number = callSDK<number>("OpenAL_5d69670f0307b385", 111680106424941, undefined, []);
+export const ALC_STEREO_SOURCES: number = callSDK<number>("OpenAL_6be9a005889899ab", 111680106424941, undefined, []);
 
 /** var ALC_SYNC: Int32 { get } */
-export const ALC_SYNC: number = callSDK<number>("OpenAL_5d69670f0307b385", 1247263746130576, undefined, []);
+export const ALC_SYNC: number = callSDK<number>("OpenAL_6be9a005889899ab", 1247263746130576, undefined, []);
 
 /** var ALC_TRUE: Int32 { get } */
-export const ALC_TRUE: number = callSDK<number>("OpenAL_5d69670f0307b385", 204698634341617, undefined, []);
+export const ALC_TRUE: number = callSDK<number>("OpenAL_6be9a005889899ab", 204698634341617, undefined, []);
 
 /** var ALC_VERSION_0_1: Int32 { get } */
-export const ALC_VERSION_0_1: number = callSDK<number>("OpenAL_5d69670f0307b385", 1395789975004762, undefined, []);
+export const ALC_VERSION_0_1: number = callSDK<number>("OpenAL_6be9a005889899ab", 1395789975004762, undefined, []);
 
 /** var AL_BITS: Int32 { get } */
-export const AL_BITS: number = callSDK<number>("OpenAL_5d69670f0307b385", 1848691447977344, undefined, []);
+export const AL_BITS: number = callSDK<number>("OpenAL_6be9a005889899ab", 1848691447977344, undefined, []);
 
 /** var AL_BUFFER: Int32 { get } */
-export const AL_BUFFER: number = callSDK<number>("OpenAL_5d69670f0307b385", 4255656878058986, undefined, []);
+export const AL_BUFFER: number = callSDK<number>("OpenAL_6be9a005889899ab", 4255656878058986, undefined, []);
 
 /** var AL_BUFFERS_PROCESSED: Int32 { get } */
-export const AL_BUFFERS_PROCESSED: number = callSDK<number>("OpenAL_5d69670f0307b385", 2426444462466418, undefined, []);
+export const AL_BUFFERS_PROCESSED: number = callSDK<number>("OpenAL_6be9a005889899ab", 2426444462466418, undefined, []);
 
 /** var AL_BUFFERS_QUEUED: Int32 { get } */
-export const AL_BUFFERS_QUEUED: number = callSDK<number>("OpenAL_5d69670f0307b385", 4169602936168645, undefined, []);
+export const AL_BUFFERS_QUEUED: number = callSDK<number>("OpenAL_6be9a005889899ab", 4169602936168645, undefined, []);
 
 /** var AL_BYTE_OFFSET: Int32 { get } */
-export const AL_BYTE_OFFSET: number = callSDK<number>("OpenAL_5d69670f0307b385", 1886901510766021, undefined, []);
+export const AL_BYTE_OFFSET: number = callSDK<number>("OpenAL_6be9a005889899ab", 1886901510766021, undefined, []);
 
 /** var AL_CHANNELS: Int32 { get } */
-export const AL_CHANNELS: number = callSDK<number>("OpenAL_5d69670f0307b385", 1417912481560301, undefined, []);
+export const AL_CHANNELS: number = callSDK<number>("OpenAL_6be9a005889899ab", 1417912481560301, undefined, []);
 
 /** var AL_CONE_INNER_ANGLE: Int32 { get } */
-export const AL_CONE_INNER_ANGLE: number = callSDK<number>("OpenAL_5d69670f0307b385", 3425053284879356, undefined, []);
+export const AL_CONE_INNER_ANGLE: number = callSDK<number>("OpenAL_6be9a005889899ab", 3425053284879356, undefined, []);
 
 /** var AL_CONE_OUTER_ANGLE: Int32 { get } */
-export const AL_CONE_OUTER_ANGLE: number = callSDK<number>("OpenAL_5d69670f0307b385", 128656547391277, undefined, []);
+export const AL_CONE_OUTER_ANGLE: number = callSDK<number>("OpenAL_6be9a005889899ab", 128656547391277, undefined, []);
 
 /** var AL_CONE_OUTER_GAIN: Int32 { get } */
-export const AL_CONE_OUTER_GAIN: number = callSDK<number>("OpenAL_5d69670f0307b385", 3633419005905502, undefined, []);
+export const AL_CONE_OUTER_GAIN: number = callSDK<number>("OpenAL_6be9a005889899ab", 3633419005905502, undefined, []);
 
 /** var AL_DIRECTION: Int32 { get } */
-export const AL_DIRECTION: number = callSDK<number>("OpenAL_5d69670f0307b385", 965615106995442, undefined, []);
+export const AL_DIRECTION: number = callSDK<number>("OpenAL_6be9a005889899ab", 965615106995442, undefined, []);
 
 /** var AL_DISTANCE_MODEL: Int32 { get } */
-export const AL_DISTANCE_MODEL: number = callSDK<number>("OpenAL_5d69670f0307b385", 2654135808306327, undefined, []);
+export const AL_DISTANCE_MODEL: number = callSDK<number>("OpenAL_6be9a005889899ab", 2654135808306327, undefined, []);
 
 /** var AL_DOPPLER_FACTOR: Int32 { get } */
-export const AL_DOPPLER_FACTOR: number = callSDK<number>("OpenAL_5d69670f0307b385", 448897688865735, undefined, []);
+export const AL_DOPPLER_FACTOR: number = callSDK<number>("OpenAL_6be9a005889899ab", 448897688865735, undefined, []);
 
 /** var AL_DOPPLER_VELOCITY: Int32 { get } */
-export const AL_DOPPLER_VELOCITY: number = callSDK<number>("OpenAL_5d69670f0307b385", 1627857775921199, undefined, []);
+export const AL_DOPPLER_VELOCITY: number = callSDK<number>("OpenAL_6be9a005889899ab", 1627857775921199, undefined, []);
 
 /** var AL_EXPONENT_DISTANCE: Int32 { get } */
-export const AL_EXPONENT_DISTANCE: number = callSDK<number>("OpenAL_5d69670f0307b385", 1399957432626680, undefined, []);
+export const AL_EXPONENT_DISTANCE: number = callSDK<number>("OpenAL_6be9a005889899ab", 1399957432626680, undefined, []);
 
 /** var AL_EXPONENT_DISTANCE_CLAMPED: Int32 { get } */
-export const AL_EXPONENT_DISTANCE_CLAMPED: number = callSDK<number>("OpenAL_5d69670f0307b385", 497700832880513, undefined, []);
+export const AL_EXPONENT_DISTANCE_CLAMPED: number = callSDK<number>("OpenAL_6be9a005889899ab", 497700832880513, undefined, []);
 
 /** var AL_EXTENSIONS: Int32 { get } */
-export const AL_EXTENSIONS: number = callSDK<number>("OpenAL_5d69670f0307b385", 946459482239671, undefined, []);
+export const AL_EXTENSIONS: number = callSDK<number>("OpenAL_6be9a005889899ab", 946459482239671, undefined, []);
 
 /** var AL_FALSE: Int32 { get } */
-export const AL_FALSE: number = callSDK<number>("OpenAL_5d69670f0307b385", 2085613743688657, undefined, []);
+export const AL_FALSE: number = callSDK<number>("OpenAL_6be9a005889899ab", 2085613743688657, undefined, []);
 
 /** var AL_FORMAT_MONO16: Int32 { get } */
-export const AL_FORMAT_MONO16: number = callSDK<number>("OpenAL_5d69670f0307b385", 187244174063253, undefined, []);
+export const AL_FORMAT_MONO16: number = callSDK<number>("OpenAL_6be9a005889899ab", 187244174063253, undefined, []);
 
 /** var AL_FORMAT_MONO8: Int32 { get } */
-export const AL_FORMAT_MONO8: number = callSDK<number>("OpenAL_5d69670f0307b385", 3813089645887093, undefined, []);
+export const AL_FORMAT_MONO8: number = callSDK<number>("OpenAL_6be9a005889899ab", 3813089645887093, undefined, []);
 
 /** var AL_FORMAT_STEREO16: Int32 { get } */
-export const AL_FORMAT_STEREO16: number = callSDK<number>("OpenAL_5d69670f0307b385", 65372852535096, undefined, []);
+export const AL_FORMAT_STEREO16: number = callSDK<number>("OpenAL_6be9a005889899ab", 65372852535096, undefined, []);
 
 /** var AL_FORMAT_STEREO8: Int32 { get } */
-export const AL_FORMAT_STEREO8: number = callSDK<number>("OpenAL_5d69670f0307b385", 3014871743176331, undefined, []);
+export const AL_FORMAT_STEREO8: number = callSDK<number>("OpenAL_6be9a005889899ab", 3014871743176331, undefined, []);
 
 /** var AL_FREQUENCY: Int32 { get } */
-export const AL_FREQUENCY: number = callSDK<number>("OpenAL_5d69670f0307b385", 1062908482901256, undefined, []);
+export const AL_FREQUENCY: number = callSDK<number>("OpenAL_6be9a005889899ab", 1062908482901256, undefined, []);
 
 /** var AL_GAIN: Int32 { get } */
-export const AL_GAIN: number = callSDK<number>("OpenAL_5d69670f0307b385", 928539081389057, undefined, []);
+export const AL_GAIN: number = callSDK<number>("OpenAL_6be9a005889899ab", 928539081389057, undefined, []);
 
 /** var AL_ILLEGAL_COMMAND: Int32 { get } */
-export const AL_ILLEGAL_COMMAND: number = callSDK<number>("OpenAL_5d69670f0307b385", 4103732656329875, undefined, []);
+export const AL_ILLEGAL_COMMAND: number = callSDK<number>("OpenAL_6be9a005889899ab", 4103732656329875, undefined, []);
 
 /** var AL_ILLEGAL_ENUM: Int32 { get } */
-export const AL_ILLEGAL_ENUM: number = callSDK<number>("OpenAL_5d69670f0307b385", 984893797085097, undefined, []);
+export const AL_ILLEGAL_ENUM: number = callSDK<number>("OpenAL_6be9a005889899ab", 984893797085097, undefined, []);
 
 /** var AL_INITIAL: Int32 { get } */
-export const AL_INITIAL: number = callSDK<number>("OpenAL_5d69670f0307b385", 2475979947562479, undefined, []);
+export const AL_INITIAL: number = callSDK<number>("OpenAL_6be9a005889899ab", 2475979947562479, undefined, []);
 
 /** var AL_INVALID: Int32 { get } */
-export const AL_INVALID: number = callSDK<number>("OpenAL_5d69670f0307b385", 1226601315067721, undefined, []);
+export const AL_INVALID: number = callSDK<number>("OpenAL_6be9a005889899ab", 1226601315067721, undefined, []);
 
 /** var AL_INVALID_ENUM: Int32 { get } */
-export const AL_INVALID_ENUM: number = callSDK<number>("OpenAL_5d69670f0307b385", 1803251481856321, undefined, []);
+export const AL_INVALID_ENUM: number = callSDK<number>("OpenAL_6be9a005889899ab", 1803251481856321, undefined, []);
 
 /** var AL_INVALID_NAME: Int32 { get } */
-export const AL_INVALID_NAME: number = callSDK<number>("OpenAL_5d69670f0307b385", 474894389767832, undefined, []);
+export const AL_INVALID_NAME: number = callSDK<number>("OpenAL_6be9a005889899ab", 474894389767832, undefined, []);
 
 /** var AL_INVALID_OPERATION: Int32 { get } */
-export const AL_INVALID_OPERATION: number = callSDK<number>("OpenAL_5d69670f0307b385", 3894828523251023, undefined, []);
+export const AL_INVALID_OPERATION: number = callSDK<number>("OpenAL_6be9a005889899ab", 3894828523251023, undefined, []);
 
 /** var AL_INVALID_VALUE: Int32 { get } */
-export const AL_INVALID_VALUE: number = callSDK<number>("OpenAL_5d69670f0307b385", 1328261768371848, undefined, []);
+export const AL_INVALID_VALUE: number = callSDK<number>("OpenAL_6be9a005889899ab", 1328261768371848, undefined, []);
 
 /** var AL_INVERSE_DISTANCE: Int32 { get } */
-export const AL_INVERSE_DISTANCE: number = callSDK<number>("OpenAL_5d69670f0307b385", 2790791734610278, undefined, []);
+export const AL_INVERSE_DISTANCE: number = callSDK<number>("OpenAL_6be9a005889899ab", 2790791734610278, undefined, []);
 
 /** var AL_INVERSE_DISTANCE_CLAMPED: Int32 { get } */
-export const AL_INVERSE_DISTANCE_CLAMPED: number = callSDK<number>("OpenAL_5d69670f0307b385", 3386324409295731, undefined, []);
+export const AL_INVERSE_DISTANCE_CLAMPED: number = callSDK<number>("OpenAL_6be9a005889899ab", 3386324409295731, undefined, []);
 
 /** var AL_LINEAR_DISTANCE: Int32 { get } */
-export const AL_LINEAR_DISTANCE: number = callSDK<number>("OpenAL_5d69670f0307b385", 1865972996232918, undefined, []);
+export const AL_LINEAR_DISTANCE: number = callSDK<number>("OpenAL_6be9a005889899ab", 1865972996232918, undefined, []);
 
 /** var AL_LINEAR_DISTANCE_CLAMPED: Int32 { get } */
-export const AL_LINEAR_DISTANCE_CLAMPED: number = callSDK<number>("OpenAL_5d69670f0307b385", 2852656112054308, undefined, []);
+export const AL_LINEAR_DISTANCE_CLAMPED: number = callSDK<number>("OpenAL_6be9a005889899ab", 2852656112054308, undefined, []);
 
 /** var AL_LOOPING: Int32 { get } */
-export const AL_LOOPING: number = callSDK<number>("OpenAL_5d69670f0307b385", 2437910473859447, undefined, []);
+export const AL_LOOPING: number = callSDK<number>("OpenAL_6be9a005889899ab", 2437910473859447, undefined, []);
 
 /** var AL_MAX_DISTANCE: Int32 { get } */
-export const AL_MAX_DISTANCE: number = callSDK<number>("OpenAL_5d69670f0307b385", 1742134098849063, undefined, []);
+export const AL_MAX_DISTANCE: number = callSDK<number>("OpenAL_6be9a005889899ab", 1742134098849063, undefined, []);
 
 /** var AL_MAX_GAIN: Int32 { get } */
-export const AL_MAX_GAIN: number = callSDK<number>("OpenAL_5d69670f0307b385", 3581458670650243, undefined, []);
+export const AL_MAX_GAIN: number = callSDK<number>("OpenAL_6be9a005889899ab", 3581458670650243, undefined, []);
 
 /** var AL_MIN_GAIN: Int32 { get } */
-export const AL_MIN_GAIN: number = callSDK<number>("OpenAL_5d69670f0307b385", 3435617127692210, undefined, []);
+export const AL_MIN_GAIN: number = callSDK<number>("OpenAL_6be9a005889899ab", 3435617127692210, undefined, []);
 
 /** var AL_NONE: Int32 { get } */
-export const AL_NONE: number = callSDK<number>("OpenAL_5d69670f0307b385", 2417529057748773, undefined, []);
+export const AL_NONE: number = callSDK<number>("OpenAL_6be9a005889899ab", 2417529057748773, undefined, []);
 
 /** var AL_NO_ERROR: Int32 { get } */
-export const AL_NO_ERROR: number = callSDK<number>("OpenAL_5d69670f0307b385", 1773796247220027, undefined, []);
+export const AL_NO_ERROR: number = callSDK<number>("OpenAL_6be9a005889899ab", 1773796247220027, undefined, []);
 
 /** var AL_ORIENTATION: Int32 { get } */
-export const AL_ORIENTATION: number = callSDK<number>("OpenAL_5d69670f0307b385", 2837290564601191, undefined, []);
+export const AL_ORIENTATION: number = callSDK<number>("OpenAL_6be9a005889899ab", 2837290564601191, undefined, []);
 
 /** var AL_OUT_OF_MEMORY: Int32 { get } */
-export const AL_OUT_OF_MEMORY: number = callSDK<number>("OpenAL_5d69670f0307b385", 2243213706500429, undefined, []);
+export const AL_OUT_OF_MEMORY: number = callSDK<number>("OpenAL_6be9a005889899ab", 2243213706500429, undefined, []);
 
 /** var AL_PAUSED: Int32 { get } */
-export const AL_PAUSED: number = callSDK<number>("OpenAL_5d69670f0307b385", 1123554400508515, undefined, []);
+export const AL_PAUSED: number = callSDK<number>("OpenAL_6be9a005889899ab", 1123554400508515, undefined, []);
 
 /** var AL_PENDING: Int32 { get } */
-export const AL_PENDING: number = callSDK<number>("OpenAL_5d69670f0307b385", 1339882141230564, undefined, []);
+export const AL_PENDING: number = callSDK<number>("OpenAL_6be9a005889899ab", 1339882141230564, undefined, []);
 
 /** var AL_PITCH: Int32 { get } */
-export const AL_PITCH: number = callSDK<number>("OpenAL_5d69670f0307b385", 1292218330030784, undefined, []);
+export const AL_PITCH: number = callSDK<number>("OpenAL_6be9a005889899ab", 1292218330030784, undefined, []);
 
 /** var AL_PLAYING: Int32 { get } */
-export const AL_PLAYING: number = callSDK<number>("OpenAL_5d69670f0307b385", 4465501240456104, undefined, []);
+export const AL_PLAYING: number = callSDK<number>("OpenAL_6be9a005889899ab", 4465501240456104, undefined, []);
 
 /** var AL_POSITION: Int32 { get } */
-export const AL_POSITION: number = callSDK<number>("OpenAL_5d69670f0307b385", 4484470784265003, undefined, []);
+export const AL_POSITION: number = callSDK<number>("OpenAL_6be9a005889899ab", 4484470784265003, undefined, []);
 
 /** var AL_PROCESSED: Int32 { get } */
-export const AL_PROCESSED: number = callSDK<number>("OpenAL_5d69670f0307b385", 3105015821243617, undefined, []);
+export const AL_PROCESSED: number = callSDK<number>("OpenAL_6be9a005889899ab", 3105015821243617, undefined, []);
 
 /** var AL_QUEUE_HAS_LOOPED: Int32 { get } */
-export const AL_QUEUE_HAS_LOOPED: number = callSDK<number>("OpenAL_5d69670f0307b385", 4061426246243251, undefined, []);
+export const AL_QUEUE_HAS_LOOPED: number = callSDK<number>("OpenAL_6be9a005889899ab", 4061426246243251, undefined, []);
 
 /** var AL_REFERENCE_DISTANCE: Int32 { get } */
-export const AL_REFERENCE_DISTANCE: number = callSDK<number>("OpenAL_5d69670f0307b385", 4139981749383582, undefined, []);
+export const AL_REFERENCE_DISTANCE: number = callSDK<number>("OpenAL_6be9a005889899ab", 4139981749383582, undefined, []);
 
 /** var AL_RENDERER: Int32 { get } */
-export const AL_RENDERER: number = callSDK<number>("OpenAL_5d69670f0307b385", 2685665823284417, undefined, []);
+export const AL_RENDERER: number = callSDK<number>("OpenAL_6be9a005889899ab", 2685665823284417, undefined, []);
 
 /** var AL_ROLLOFF_FACTOR: Int32 { get } */
-export const AL_ROLLOFF_FACTOR: number = callSDK<number>("OpenAL_5d69670f0307b385", 3876362553355031, undefined, []);
+export const AL_ROLLOFF_FACTOR: number = callSDK<number>("OpenAL_6be9a005889899ab", 3876362553355031, undefined, []);
 
 /** var AL_SAMPLE_OFFSET: Int32 { get } */
-export const AL_SAMPLE_OFFSET: number = callSDK<number>("OpenAL_5d69670f0307b385", 3241896610160027, undefined, []);
+export const AL_SAMPLE_OFFSET: number = callSDK<number>("OpenAL_6be9a005889899ab", 3241896610160027, undefined, []);
 
 /** var AL_SEC_OFFSET: Int32 { get } */
-export const AL_SEC_OFFSET: number = callSDK<number>("OpenAL_5d69670f0307b385", 3099925235240464, undefined, []);
+export const AL_SEC_OFFSET: number = callSDK<number>("OpenAL_6be9a005889899ab", 3099925235240464, undefined, []);
 
 /** var AL_SIZE: Int32 { get } */
-export const AL_SIZE: number = callSDK<number>("OpenAL_5d69670f0307b385", 597024783919454, undefined, []);
+export const AL_SIZE: number = callSDK<number>("OpenAL_6be9a005889899ab", 597024783919454, undefined, []);
 
 /** var AL_SOURCE_RELATIVE: Int32 { get } */
-export const AL_SOURCE_RELATIVE: number = callSDK<number>("OpenAL_5d69670f0307b385", 1394754091164053, undefined, []);
+export const AL_SOURCE_RELATIVE: number = callSDK<number>("OpenAL_6be9a005889899ab", 1394754091164053, undefined, []);
 
 /** var AL_SOURCE_STATE: Int32 { get } */
-export const AL_SOURCE_STATE: number = callSDK<number>("OpenAL_5d69670f0307b385", 649230208960019, undefined, []);
+export const AL_SOURCE_STATE: number = callSDK<number>("OpenAL_6be9a005889899ab", 649230208960019, undefined, []);
 
 /** var AL_SOURCE_TYPE: Int32 { get } */
-export const AL_SOURCE_TYPE: number = callSDK<number>("OpenAL_5d69670f0307b385", 3572300455560730, undefined, []);
+export const AL_SOURCE_TYPE: number = callSDK<number>("OpenAL_6be9a005889899ab", 3572300455560730, undefined, []);
 
 /** var AL_SPEED_OF_SOUND: Int32 { get } */
-export const AL_SPEED_OF_SOUND: number = callSDK<number>("OpenAL_5d69670f0307b385", 3239943447463274, undefined, []);
+export const AL_SPEED_OF_SOUND: number = callSDK<number>("OpenAL_6be9a005889899ab", 3239943447463274, undefined, []);
 
 /** var AL_STATIC: Int32 { get } */
-export const AL_STATIC: number = callSDK<number>("OpenAL_5d69670f0307b385", 1058663284281464, undefined, []);
+export const AL_STATIC: number = callSDK<number>("OpenAL_6be9a005889899ab", 1058663284281464, undefined, []);
 
 /** var AL_STOPPED: Int32 { get } */
-export const AL_STOPPED: number = callSDK<number>("OpenAL_5d69670f0307b385", 2750077003867288, undefined, []);
+export const AL_STOPPED: number = callSDK<number>("OpenAL_6be9a005889899ab", 2750077003867288, undefined, []);
 
 /** var AL_STREAMING: Int32 { get } */
-export const AL_STREAMING: number = callSDK<number>("OpenAL_5d69670f0307b385", 1660476656379505, undefined, []);
+export const AL_STREAMING: number = callSDK<number>("OpenAL_6be9a005889899ab", 1660476656379505, undefined, []);
 
 /** var AL_TRUE: Int32 { get } */
-export const AL_TRUE: number = callSDK<number>("OpenAL_5d69670f0307b385", 433490221935293, undefined, []);
+export const AL_TRUE: number = callSDK<number>("OpenAL_6be9a005889899ab", 433490221935293, undefined, []);
 
 /** var AL_UNDETERMINED: Int32 { get } */
-export const AL_UNDETERMINED: number = callSDK<number>("OpenAL_5d69670f0307b385", 1111992700631778, undefined, []);
+export const AL_UNDETERMINED: number = callSDK<number>("OpenAL_6be9a005889899ab", 1111992700631778, undefined, []);
 
 /** var AL_UNUSED: Int32 { get } */
-export const AL_UNUSED: number = callSDK<number>("OpenAL_5d69670f0307b385", 4471169025866015, undefined, []);
+export const AL_UNUSED: number = callSDK<number>("OpenAL_6be9a005889899ab", 4471169025866015, undefined, []);
 
 /** var AL_VELOCITY: Int32 { get } */
-export const AL_VELOCITY: number = callSDK<number>("OpenAL_5d69670f0307b385", 485524918982300, undefined, []);
+export const AL_VELOCITY: number = callSDK<number>("OpenAL_6be9a005889899ab", 485524918982300, undefined, []);
 
 /** var AL_VENDOR: Int32 { get } */
-export const AL_VENDOR: number = callSDK<number>("OpenAL_5d69670f0307b385", 1359303355499435, undefined, []);
+export const AL_VENDOR: number = callSDK<number>("OpenAL_6be9a005889899ab", 1359303355499435, undefined, []);
 
 /** var AL_VERSION: Int32 { get } */
-export const AL_VERSION: number = callSDK<number>("OpenAL_5d69670f0307b385", 2604686863287034, undefined, []);
+export const AL_VERSION: number = callSDK<number>("OpenAL_6be9a005889899ab", 2604686863287034, undefined, []);
 
 

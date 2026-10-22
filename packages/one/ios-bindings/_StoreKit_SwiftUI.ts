@@ -48,7 +48,7 @@ export class AutomaticProductViewStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<AutomaticProductViewStyle> { return callSDKAsync<AutomaticProductViewStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 3178187140881346, undefined, []); }
+  static init(): Promise<AutomaticProductViewStyle> { return callSDKAsync<AutomaticProductViewStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 3178187140881346, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI25AutomaticProductViewStyleV": true };
 }
 
@@ -67,7 +67,7 @@ export class AutomaticSubscriptionOfferViewStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 26.0+
    */
-  static init(): Promise<AutomaticSubscriptionOfferViewStyle> { return callSDKAsync<AutomaticSubscriptionOfferViewStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 4203724474390407, undefined, []); }
+  static init(): Promise<AutomaticSubscriptionOfferViewStyle> { return callSDKAsync<AutomaticSubscriptionOfferViewStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 4203724474390407, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI35AutomaticSubscriptionOfferViewStyleV": true };
 }
 
@@ -100,7 +100,7 @@ export class AutomaticSubscriptionOptionGroupStyle extends SDKHandle {
    * init()
    * @availability iOS 18.0+
    */
-  static init(): AutomaticSubscriptionOptionGroupStyle { return callSDK<AutomaticSubscriptionOptionGroupStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 88137797090079, undefined, []); }
+  static init(): AutomaticSubscriptionOptionGroupStyle { return callSDK<AutomaticSubscriptionOptionGroupStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 88137797090079, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI37AutomaticSubscriptionOptionGroupStyleV": true };
 }
 
@@ -115,32 +115,32 @@ export const AutomaticSubscriptionStoreControlPlacement = {
    * static var scrollView: AutomaticSubscriptionStoreControlPlacement { get }
    * @availability iOS 18.0+
    */
-  get scrollView(): AutomaticSubscriptionStoreControlPlacement { return callSDK<AutomaticSubscriptionStoreControlPlacement>("_StoreKit_SwiftUI_5d69670f0307b385", 1703149350229931, undefined, []); },
+  get scrollView(): AutomaticSubscriptionStoreControlPlacement { return callSDK<AutomaticSubscriptionStoreControlPlacement>("_StoreKit_SwiftUI_6be9a005889899ab", 1703149350229931, undefined, []); },
   /**
    * static var buttonsInBottomBar: AutomaticSubscriptionStoreControlPlacement { get }
    * @availability iOS 18.0+
    */
-  get buttonsInBottomBar(): AutomaticSubscriptionStoreControlPlacement { return callSDK<AutomaticSubscriptionStoreControlPlacement>("_StoreKit_SwiftUI_5d69670f0307b385", 3412161849250549, undefined, []); },
+  get buttonsInBottomBar(): AutomaticSubscriptionStoreControlPlacement { return callSDK<AutomaticSubscriptionStoreControlPlacement>("_StoreKit_SwiftUI_6be9a005889899ab", 3412161849250549, undefined, []); },
   /**
    * var rawValue: SubscriptionStoreControlPlacementKey { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: AutomaticSubscriptionStoreControlPlacement): SubscriptionStoreControlPlacementKey { return callSDK<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_5d69670f0307b385", 3568167290750930, $self, []); },
+  getRawValue($self: AutomaticSubscriptionStoreControlPlacement): SubscriptionStoreControlPlacementKey { return callSDK<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_6be9a005889899ab", 3568167290750930, $self, []); },
   /**
    * init(rawValue: SubscriptionStoreControlPlacementKey)
    * @availability iOS 18.0+
    */
-  init(rawValue: SubscriptionStoreControlPlacementKey): AutomaticSubscriptionStoreControlPlacement { return callSDK<AutomaticSubscriptionStoreControlPlacement>("_StoreKit_SwiftUI_5d69670f0307b385", 1627710589855630, undefined, [rawValue]); },
+  init(rawValue: SubscriptionStoreControlPlacementKey): AutomaticSubscriptionStoreControlPlacement { return callSDK<AutomaticSubscriptionStoreControlPlacement>("_StoreKit_SwiftUI_6be9a005889899ab", 1627710589855630, undefined, [rawValue]); },
   /**
    * static var automatic: AutomaticSubscriptionStoreControlPlacement { get }
    * @availability iOS 18.0+
    */
-  get automatic(): AutomaticSubscriptionStoreControlPlacement { return callSDK<AutomaticSubscriptionStoreControlPlacement>("_StoreKit_SwiftUI_5d69670f0307b385", 310009561908389, undefined, []); },
+  get automatic(): AutomaticSubscriptionStoreControlPlacement { return callSDK<AutomaticSubscriptionStoreControlPlacement>("_StoreKit_SwiftUI_6be9a005889899ab", 310009561908389, undefined, []); },
   /**
    * static var bottomBar: AutomaticSubscriptionStoreControlPlacement { get }
    * @availability iOS 18.0+
    */
-  get bottomBar(): AutomaticSubscriptionStoreControlPlacement { return callSDK<AutomaticSubscriptionStoreControlPlacement>("_StoreKit_SwiftUI_5d69670f0307b385", 2182094581017151, undefined, []); }
+  get bottomBar(): AutomaticSubscriptionStoreControlPlacement { return callSDK<AutomaticSubscriptionStoreControlPlacement>("_StoreKit_SwiftUI_6be9a005889899ab", 2182094581017151, undefined, []); }
 };
 
 /**
@@ -158,7 +158,7 @@ export class AutomaticSubscriptionStoreControlStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<AutomaticSubscriptionStoreControlStyle> { return callSDKAsync<AutomaticSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 90350567513159, undefined, []); }
+  static init(): Promise<AutomaticSubscriptionStoreControlStyle> { return callSDKAsync<AutomaticSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 90350567513159, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI021AutomaticSubscriptionA12ControlStyleV": true };
 }
 
@@ -179,17 +179,17 @@ export const AutomaticSubscriptionStoreControlStyle_Placement = {
    * var rawValue: SubscriptionStoreControlPlacementKey { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: AutomaticSubscriptionStoreControlStyle_Placement): Promise<SubscriptionStoreControlPlacementKey> { return callSDKAsync<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_5d69670f0307b385", 3677626225120105, $self, []); },
+  getRawValue($self: AutomaticSubscriptionStoreControlStyle_Placement): Promise<SubscriptionStoreControlPlacementKey> { return callSDKAsync<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_6be9a005889899ab", 3677626225120105, $self, []); },
   /**
    * init?(rawValue: SubscriptionStoreControlPlacementKey)
    * @availability iOS 18.0+
    */
-  init(rawValue: SubscriptionStoreControlPlacementKey): Promise<(AutomaticSubscriptionStoreControlStyle_Placement) | null> { return callSDKAsync<(AutomaticSubscriptionStoreControlStyle_Placement) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 1211675164433570, undefined, [rawValue]); },
+  init(rawValue: SubscriptionStoreControlPlacementKey): Promise<(AutomaticSubscriptionStoreControlStyle_Placement) | null> { return callSDKAsync<(AutomaticSubscriptionStoreControlStyle_Placement) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 1211675164433570, undefined, [rawValue]); },
   /**
    * static var automatic: AutomaticSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get automatic(): Promise<AutomaticSubscriptionStoreControlStyle_Placement> { return callSDKAsync<AutomaticSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 2690257840925381, undefined, []); }
+  get automatic(): Promise<AutomaticSubscriptionStoreControlStyle_Placement> { return callSDKAsync<AutomaticSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 2690257840925381, undefined, []); }
 };
 
 /**
@@ -253,7 +253,7 @@ export class ButtonsSubscriptionStoreControlStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<ButtonsSubscriptionStoreControlStyle> { return callSDKAsync<ButtonsSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 4090654750258012, undefined, []); }
+  static init(): Promise<ButtonsSubscriptionStoreControlStyle> { return callSDKAsync<ButtonsSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 4090654750258012, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI019ButtonsSubscriptionA12ControlStyleV": true };
 }
 
@@ -274,27 +274,27 @@ export const ButtonsSubscriptionStoreControlStyle_Placement = {
    * static var scrollView: ButtonsSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get scrollView(): Promise<ButtonsSubscriptionStoreControlStyle_Placement> { return callSDKAsync<ButtonsSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 4270440443007661, undefined, []); },
+  get scrollView(): Promise<ButtonsSubscriptionStoreControlStyle_Placement> { return callSDKAsync<ButtonsSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 4270440443007661, undefined, []); },
   /**
    * var rawValue: SubscriptionStoreControlPlacementKey { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: ButtonsSubscriptionStoreControlStyle_Placement): Promise<SubscriptionStoreControlPlacementKey> { return callSDKAsync<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_5d69670f0307b385", 2158069918525334, $self, []); },
+  getRawValue($self: ButtonsSubscriptionStoreControlStyle_Placement): Promise<SubscriptionStoreControlPlacementKey> { return callSDKAsync<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_6be9a005889899ab", 2158069918525334, $self, []); },
   /**
    * init?(rawValue: SubscriptionStoreControlPlacementKey)
    * @availability iOS 18.0+
    */
-  init(rawValue: SubscriptionStoreControlPlacementKey): Promise<(ButtonsSubscriptionStoreControlStyle_Placement) | null> { return callSDKAsync<(ButtonsSubscriptionStoreControlStyle_Placement) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 3067260531888614, undefined, [rawValue]); },
+  init(rawValue: SubscriptionStoreControlPlacementKey): Promise<(ButtonsSubscriptionStoreControlStyle_Placement) | null> { return callSDKAsync<(ButtonsSubscriptionStoreControlStyle_Placement) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 3067260531888614, undefined, [rawValue]); },
   /**
    * static var automatic: ButtonsSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get automatic(): Promise<ButtonsSubscriptionStoreControlStyle_Placement> { return callSDKAsync<ButtonsSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 966621479061472, undefined, []); },
+  get automatic(): Promise<ButtonsSubscriptionStoreControlStyle_Placement> { return callSDKAsync<ButtonsSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 966621479061472, undefined, []); },
   /**
    * static var bottomBar: ButtonsSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get bottomBar(): Promise<ButtonsSubscriptionStoreControlStyle_Placement> { return callSDKAsync<ButtonsSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 4400143385515513, undefined, []); }
+  get bottomBar(): Promise<ButtonsSubscriptionStoreControlStyle_Placement> { return callSDKAsync<ButtonsSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 4400143385515513, undefined, []); }
 };
 
 /**
@@ -330,7 +330,7 @@ export class CompactPickerSubscriptionStoreControlStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 18.0+
    */
-  static init(): Promise<CompactPickerSubscriptionStoreControlStyle> { return callSDKAsync<CompactPickerSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 35977043175530, undefined, []); }
+  static init(): Promise<CompactPickerSubscriptionStoreControlStyle> { return callSDKAsync<CompactPickerSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 35977043175530, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI025CompactPickerSubscriptionA12ControlStyleV": true };
 }
 
@@ -351,32 +351,32 @@ export const CompactPickerSubscriptionStoreControlStyle_Placement = {
    * static var scrollView: CompactPickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get scrollView(): Promise<CompactPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<CompactPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 274334169332918, undefined, []); },
+  get scrollView(): Promise<CompactPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<CompactPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 274334169332918, undefined, []); },
   /**
    * static var buttonsInBottomBar: CompactPickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get buttonsInBottomBar(): Promise<CompactPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<CompactPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 481120834844020, undefined, []); },
+  get buttonsInBottomBar(): Promise<CompactPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<CompactPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 481120834844020, undefined, []); },
   /**
    * var rawValue: SubscriptionStoreControlPlacementKey { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: CompactPickerSubscriptionStoreControlStyle_Placement): Promise<SubscriptionStoreControlPlacementKey> { return callSDKAsync<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_5d69670f0307b385", 3343467879185156, $self, []); },
+  getRawValue($self: CompactPickerSubscriptionStoreControlStyle_Placement): Promise<SubscriptionStoreControlPlacementKey> { return callSDKAsync<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_6be9a005889899ab", 3343467879185156, $self, []); },
   /**
    * init?(rawValue: SubscriptionStoreControlPlacementKey)
    * @availability iOS 18.0+
    */
-  init(rawValue: SubscriptionStoreControlPlacementKey): Promise<(CompactPickerSubscriptionStoreControlStyle_Placement) | null> { return callSDKAsync<(CompactPickerSubscriptionStoreControlStyle_Placement) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 3251604001650644, undefined, [rawValue]); },
+  init(rawValue: SubscriptionStoreControlPlacementKey): Promise<(CompactPickerSubscriptionStoreControlStyle_Placement) | null> { return callSDKAsync<(CompactPickerSubscriptionStoreControlStyle_Placement) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 3251604001650644, undefined, [rawValue]); },
   /**
    * static var automatic: CompactPickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get automatic(): Promise<CompactPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<CompactPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 3974842414456625, undefined, []); },
+  get automatic(): Promise<CompactPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<CompactPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 3974842414456625, undefined, []); },
   /**
    * static var bottomBar: CompactPickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get bottomBar(): Promise<CompactPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<CompactPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 290481015041978, undefined, []); }
+  get bottomBar(): Promise<CompactPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<CompactPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 290481015041978, undefined, []); }
 };
 
 /**
@@ -412,7 +412,7 @@ export class CompactProductViewStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<CompactProductViewStyle> { return callSDKAsync<CompactProductViewStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 1037566627825526, undefined, []); }
+  static init(): Promise<CompactProductViewStyle> { return callSDKAsync<CompactProductViewStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 1037566627825526, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI23CompactProductViewStyleV": true };
 }
 
@@ -431,7 +431,7 @@ export class CompactSubscriptionOfferViewStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 26.0+
    */
-  static init(): Promise<CompactSubscriptionOfferViewStyle> { return callSDKAsync<CompactSubscriptionOfferViewStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 2311880939033993, undefined, []); }
+  static init(): Promise<CompactSubscriptionOfferViewStyle> { return callSDKAsync<CompactSubscriptionOfferViewStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 2311880939033993, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI33CompactSubscriptionOfferViewStyleV": true };
 }
 
@@ -450,7 +450,7 @@ export class DisplayMessageAction extends SDKHandle {
    * @MainActor func callAsFunction(_ message: Message) throws
    * @availability iOS 16.0+
    */
-  callAsFunction(message: _StoreKit_Message): Promise<void> { return callSDKAsync<void>("_StoreKit_SwiftUI_5d69670f0307b385", 3715471907996991, this, [message]); }
+  callAsFunction(message: _StoreKit_Message): Promise<void> { return callSDKAsync<void>("_StoreKit_SwiftUI_6be9a005889899ab", 3715471907996991, this, [message]); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI20DisplayMessageActionV": true };
 }
 
@@ -463,32 +463,32 @@ export class EntitlementTaskState<Value = unknown> extends SDKHandle {
    * func map<NewValue>(_ transform: (Value) throws -> NewValue) rethrows -> EntitlementTaskState<NewValue>
    * @availability iOS 17.0+
    */
-  map(transform: ((arg0: unknown) => unknown)): $SDK2 { return callSDK<$SDK2>("_StoreKit_SwiftUI_5d69670f0307b385", 3854667117120654, this, [transform], [{"callback":{"out":[]}}], true); }
+  map(transform: ((arg0: unknown) => unknown)): $SDK2 { return callSDK<$SDK2>("_StoreKit_SwiftUI_6be9a005889899ab", 3854667117120654, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * func map<NewValue>(_ transform: (Value) async throws -> NewValue) async rethrows -> EntitlementTaskState<NewValue>
    * @availability iOS 17.0+
    */
-  map44069(transform: ((arg0: unknown) => Promise<unknown>)): Promise<$SDK2> { return callSDKAsync<$SDK2>("_StoreKit_SwiftUI_5d69670f0307b385", 4002270833913159, this, [transform], [{"callback":{"out":[]}}]); }
+  map44069(transform: ((arg0: unknown) => Promise<unknown>)): Promise<$SDK2> { return callSDKAsync<$SDK2>("_StoreKit_SwiftUI_6be9a005889899ab", 4002270833913159, this, [transform], [{"callback":{"out":[]}}]); }
   /**
    * var value: Value? { get }
    * @availability iOS 17.0+
    */
-  get value(): (unknown) | null { return callSDK<(unknown) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 1332692460076030, this, []); }
+  get value(): (unknown) | null { return callSDK<(unknown) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 1332692460076030, this, []); }
   /**
    * func flatMap<NewValue>(_ transform: (Value) throws -> EntitlementTaskState<NewValue>) rethrows -> EntitlementTaskState<NewValue>
    * @availability iOS 17.0+
    */
-  flatMap(transform: ((arg0: unknown) => EntitlementTaskState<unknown>)): $SDK2 { return callSDK<$SDK2>("_StoreKit_SwiftUI_5d69670f0307b385", 74516487553445, this, [transform], [{"callback":{"out":[]}}], true); }
+  flatMap(transform: ((arg0: unknown) => EntitlementTaskState<unknown>)): $SDK2 { return callSDK<$SDK2>("_StoreKit_SwiftUI_6be9a005889899ab", 74516487553445, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * func flatMap<NewValue>(_ transform: (Value) async throws -> EntitlementTaskState<NewValue>) async rethrows -> EntitlementTaskState<NewValue>
    * @availability iOS 17.0+
    */
-  flatMap44951(transform: ((arg0: unknown) => Promise<EntitlementTaskState<unknown>>)): Promise<$SDK2> { return callSDKAsync<$SDK2>("_StoreKit_SwiftUI_5d69670f0307b385", 2943624089177411, this, [transform], [{"callback":{"out":[]}}]); }
+  flatMap44951(transform: ((arg0: unknown) => Promise<EntitlementTaskState<unknown>>)): Promise<$SDK2> { return callSDKAsync<$SDK2>("_StoreKit_SwiftUI_6be9a005889899ab", 2943624089177411, this, [transform], [{"callback":{"out":[]}}]); }
   /**
    * var transaction: VerificationResult<Transaction>? { get }
    * @availability iOS 17.0+
    */
-  get transaction(): (_StoreKit_VerificationResult<_StoreKit_Transaction>) | null { return callSDK<(_StoreKit_VerificationResult<_StoreKit_Transaction>) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 3943824991493643, this, []); }
+  get transaction(): (_StoreKit_VerificationResult<_StoreKit_Transaction>) | null { return callSDK<(_StoreKit_VerificationResult<_StoreKit_Transaction>) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 3943824991493643, this, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI20EntitlementTaskStateO": true };
 }
 
@@ -509,7 +509,7 @@ export class LargeProductViewStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<LargeProductViewStyle> { return callSDKAsync<LargeProductViewStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 2798959846349044, undefined, []); }
+  static init(): Promise<LargeProductViewStyle> { return callSDKAsync<LargeProductViewStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 2798959846349044, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI21LargeProductViewStyleV": true };
 }
 
@@ -528,7 +528,7 @@ export class LinksSubscriptionOptionGroupStyle extends SDKHandle {
    * init()
    * @availability iOS 18.0+
    */
-  static init(): LinksSubscriptionOptionGroupStyle { return callSDK<LinksSubscriptionOptionGroupStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 2845813599039146, undefined, []); }
+  static init(): LinksSubscriptionOptionGroupStyle { return callSDK<LinksSubscriptionOptionGroupStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 2845813599039146, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI33LinksSubscriptionOptionGroupStyleV": true };
 }
 
@@ -547,7 +547,7 @@ export class PagedPickerSubscriptionStoreControlStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 18.0+
    */
-  static init(): Promise<PagedPickerSubscriptionStoreControlStyle> { return callSDKAsync<PagedPickerSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 2044896824266932, undefined, []); }
+  static init(): Promise<PagedPickerSubscriptionStoreControlStyle> { return callSDKAsync<PagedPickerSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 2044896824266932, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI023PagedPickerSubscriptionA12ControlStyleV": true };
 }
 
@@ -568,32 +568,32 @@ export const PagedPickerSubscriptionStoreControlStyle_Placement = {
    * static var scrollView: PagedPickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get scrollView(): Promise<PagedPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PagedPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 86230102891805, undefined, []); },
+  get scrollView(): Promise<PagedPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PagedPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 86230102891805, undefined, []); },
   /**
    * static var buttonsInBottomBar: PagedPickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get buttonsInBottomBar(): Promise<PagedPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PagedPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 928558063047778, undefined, []); },
+  get buttonsInBottomBar(): Promise<PagedPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PagedPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 928558063047778, undefined, []); },
   /**
    * var rawValue: SubscriptionStoreControlPlacementKey { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: PagedPickerSubscriptionStoreControlStyle_Placement): Promise<SubscriptionStoreControlPlacementKey> { return callSDKAsync<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_5d69670f0307b385", 1829860753697734, $self, []); },
+  getRawValue($self: PagedPickerSubscriptionStoreControlStyle_Placement): Promise<SubscriptionStoreControlPlacementKey> { return callSDKAsync<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_6be9a005889899ab", 1829860753697734, $self, []); },
   /**
    * init?(rawValue: SubscriptionStoreControlPlacementKey)
    * @availability iOS 18.0+
    */
-  init(rawValue: SubscriptionStoreControlPlacementKey): Promise<(PagedPickerSubscriptionStoreControlStyle_Placement) | null> { return callSDKAsync<(PagedPickerSubscriptionStoreControlStyle_Placement) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 2076901768533265, undefined, [rawValue]); },
+  init(rawValue: SubscriptionStoreControlPlacementKey): Promise<(PagedPickerSubscriptionStoreControlStyle_Placement) | null> { return callSDKAsync<(PagedPickerSubscriptionStoreControlStyle_Placement) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 2076901768533265, undefined, [rawValue]); },
   /**
    * static var automatic: PagedPickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get automatic(): Promise<PagedPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PagedPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 2994905834228472, undefined, []); },
+  get automatic(): Promise<PagedPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PagedPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 2994905834228472, undefined, []); },
   /**
    * static var bottomBar: PagedPickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get bottomBar(): Promise<PagedPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PagedPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 3035439660501219, undefined, []); }
+  get bottomBar(): Promise<PagedPickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PagedPickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 3035439660501219, undefined, []); }
 };
 
 /**
@@ -629,7 +629,7 @@ export class PagedProminentPickerSubscriptionStoreControlStyle extends SDKHandle
    * @MainActor @preconcurrency init()
    * @availability iOS 18.0+
    */
-  static init(): Promise<PagedProminentPickerSubscriptionStoreControlStyle> { return callSDKAsync<PagedProminentPickerSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 4271253964800121, undefined, []); }
+  static init(): Promise<PagedProminentPickerSubscriptionStoreControlStyle> { return callSDKAsync<PagedProminentPickerSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 4271253964800121, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI032PagedProminentPickerSubscriptionA12ControlStyleV": true };
 }
 
@@ -672,7 +672,7 @@ export class PickerSubscriptionStoreControlStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<PickerSubscriptionStoreControlStyle> { return callSDKAsync<PickerSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 4148276723495184, undefined, []); }
+  static init(): Promise<PickerSubscriptionStoreControlStyle> { return callSDKAsync<PickerSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 4148276723495184, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI018PickerSubscriptionA12ControlStyleV": true };
 }
 
@@ -693,27 +693,27 @@ export const PickerSubscriptionStoreControlStyle_Placement = {
    * static var scrollView: PickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get scrollView(): Promise<PickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 755411509834577, undefined, []); },
+  get scrollView(): Promise<PickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 755411509834577, undefined, []); },
   /**
    * static var buttonsInBottomBar: PickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get buttonsInBottomBar(): Promise<PickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 667071806970227, undefined, []); },
+  get buttonsInBottomBar(): Promise<PickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 667071806970227, undefined, []); },
   /**
    * var rawValue: SubscriptionStoreControlPlacementKey { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: PickerSubscriptionStoreControlStyle_Placement): Promise<SubscriptionStoreControlPlacementKey> { return callSDKAsync<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_5d69670f0307b385", 2422560365476162, $self, []); },
+  getRawValue($self: PickerSubscriptionStoreControlStyle_Placement): Promise<SubscriptionStoreControlPlacementKey> { return callSDKAsync<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_6be9a005889899ab", 2422560365476162, $self, []); },
   /**
    * init?(rawValue: SubscriptionStoreControlPlacementKey)
    * @availability iOS 18.0+
    */
-  init(rawValue: SubscriptionStoreControlPlacementKey): Promise<(PickerSubscriptionStoreControlStyle_Placement) | null> { return callSDKAsync<(PickerSubscriptionStoreControlStyle_Placement) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 63524109084802, undefined, [rawValue]); },
+  init(rawValue: SubscriptionStoreControlPlacementKey): Promise<(PickerSubscriptionStoreControlStyle_Placement) | null> { return callSDKAsync<(PickerSubscriptionStoreControlStyle_Placement) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 63524109084802, undefined, [rawValue]); },
   /**
    * static var automatic: PickerSubscriptionStoreControlStyle.Placement { get }
    * @availability iOS 18.0+
    */
-  get automatic(): Promise<PickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_5d69670f0307b385", 1666935353265416, undefined, []); }
+  get automatic(): Promise<PickerSubscriptionStoreControlStyle_Placement> { return callSDKAsync<PickerSubscriptionStoreControlStyle_Placement>("_StoreKit_SwiftUI_6be9a005889899ab", 1666935353265416, undefined, []); }
 };
 
 /**
@@ -749,7 +749,7 @@ export class Product_CollectionTaskState extends SDKHandle {
    * var products: [Product]? { get }
    * @availability iOS 17.0+
    */
-  get products(): $SDK8 { return callSDK<$SDK8>("_StoreKit_SwiftUI_5d69670f0307b385", 3109370116289116, this, []); }
+  get products(): $SDK8 { return callSDK<$SDK8>("_StoreKit_SwiftUI_6be9a005889899ab", 3109370116289116, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV01_aB8_SwiftUIE19CollectionTaskStateO": true };
 }
 
@@ -764,38 +764,38 @@ export const Product_SubscriptionRelationship = {
    * static let crossgrade: Product.SubscriptionRelationship
    * @availability iOS 17.0+
    */
-  get crossgrade(): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_5d69670f0307b385", 338951398438135, undefined, []); },
+  get crossgrade(): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_6be9a005889899ab", 338951398438135, undefined, []); },
   /**
    * static let all: Product.SubscriptionRelationship
    * @availability iOS 17.0+
    */
-  get all(): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_5d69670f0307b385", 3953745286969301, undefined, []); },
+  get all(): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_6be9a005889899ab", 3953745286969301, undefined, []); },
   /**
    * static let current: Product.SubscriptionRelationship
    * @availability iOS 17.0+
    */
-  get current(): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_5d69670f0307b385", 444768508974989, undefined, []); },
+  get current(): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_6be9a005889899ab", 444768508974989, undefined, []); },
   /**
    * static let upgrade: Product.SubscriptionRelationship
    * @availability iOS 17.0+
    */
-  get upgrade(): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_5d69670f0307b385", 3868064934690026, undefined, []); },
+  get upgrade(): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_6be9a005889899ab", 3868064934690026, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_5d69670f0307b385", 3029422071931491, undefined, [rawValue]); },
+  init(rawValue: number): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_6be9a005889899ab", 3029422071931491, undefined, [rawValue]); },
   /**
    * var rawValue: Int
    * @availability iOS 17.0+
    */
-  getRawValue($self: Product_SubscriptionRelationship): number { return callSDK<number>("_StoreKit_SwiftUI_5d69670f0307b385", 1036049926135249, $self, []); },
-  setRawValue($self: Product_SubscriptionRelationship, value: number): void { return callSDK<void>("_StoreKit_SwiftUI_5d69670f0307b385", 738478222678284, $self, [value]); },
+  getRawValue($self: Product_SubscriptionRelationship): number { return callSDK<number>("_StoreKit_SwiftUI_6be9a005889899ab", 1036049926135249, $self, []); },
+  setRawValue($self: Product_SubscriptionRelationship, value: number): void { return callSDK<void>("_StoreKit_SwiftUI_6be9a005889899ab", 738478222678284, $self, [value]); },
   /**
    * static let downgrade: Product.SubscriptionRelationship
    * @availability iOS 17.0+
    */
-  get downgrade(): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_5d69670f0307b385", 1408847041302762, undefined, []); }
+  get downgrade(): Product_SubscriptionRelationship { return callSDK<Product_SubscriptionRelationship>("_StoreKit_SwiftUI_6be9a005889899ab", 1408847041302762, undefined, []); }
 };
 
 /**
@@ -825,7 +825,7 @@ export class Product_TaskState extends SDKHandle {
    * var product: Product? { get }
    * @availability iOS 17.0+
    */
-  get product(): $SDK9 { return callSDK<$SDK9>("_StoreKit_SwiftUI_5d69670f0307b385", 3124229310911143, this, []); }
+  get product(): $SDK9 { return callSDK<$SDK9>("_StoreKit_SwiftUI_6be9a005889899ab", 3124229310911143, this, []); }
   declare readonly $type: { "s:8StoreKit7ProductV01_aB8_SwiftUIE9TaskStateO": true };
 }
 
@@ -838,12 +838,12 @@ export class ProductIconPhase extends SDKHandle {
    * var promotionalIcon: Image? { get }
    * @availability iOS 17.0+
    */
-  get promotionalIcon(): (_SwiftUICore_Image) | null { return callSDK<(_SwiftUICore_Image) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 3385512432006157, this, []); }
+  get promotionalIcon(): (_SwiftUICore_Image) | null { return callSDK<(_SwiftUICore_Image) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 3385512432006157, this, []); }
   /**
    * var error: (any Error)? { get }
    * @availability iOS 17.0+
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 3476109536254982, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 3476109536254982, this, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI16ProductIconPhaseO": true };
 }
 
@@ -856,7 +856,7 @@ export class ProductView<Icon = unknown, PlaceholderIcon = unknown> extends SDKH
    * nonisolated init(_ configuration: ProductViewStyleConfiguration) where Icon == ProductViewStyleConfiguration.Icon, PlaceholderIcon == ProductViewStyleConfiguration.Icon
    * @availability iOS 17.0+
    */
-  static init(configuration: ProductViewStyleConfiguration): Promise<ProductView<ProductViewStyleConfiguration_Icon, ProductViewStyleConfiguration_Icon>> { return callSDKAsync<ProductView<ProductViewStyleConfiguration_Icon, ProductViewStyleConfiguration_Icon>>("_StoreKit_SwiftUI_5d69670f0307b385", 4057715847753606, undefined, [configuration]); }
+  static init(configuration: ProductViewStyleConfiguration): Promise<ProductView<ProductViewStyleConfiguration_Icon, ProductViewStyleConfiguration_Icon>> { return callSDKAsync<ProductView<ProductViewStyleConfiguration_Icon, ProductViewStyleConfiguration_Icon>>("_StoreKit_SwiftUI_6be9a005889899ab", 4057715847753606, undefined, [configuration]); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI11ProductViewV": true };
 }
 
@@ -893,32 +893,32 @@ export class ProductViewStyleConfiguration extends SDKHandle {
    * let descriptionVisibility: Visibility
    * @availability iOS 17.4+
    */
-  get descriptionVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("_StoreKit_SwiftUI_5d69670f0307b385", 1994362611383494, this, []); }
+  get descriptionVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("_StoreKit_SwiftUI_6be9a005889899ab", 1994362611383494, this, []); }
   /**
    * let hasCurrentEntitlement: Bool
    * @availability iOS 17.0+
    */
-  get hasCurrentEntitlement(): boolean { return callSDK<boolean>("_StoreKit_SwiftUI_5d69670f0307b385", 2139354985465945, this, []); }
+  get hasCurrentEntitlement(): boolean { return callSDK<boolean>("_StoreKit_SwiftUI_6be9a005889899ab", 2139354985465945, this, []); }
   /**
    * let icon: ProductViewStyleConfiguration.Icon
    * @availability iOS 17.0+
    */
-  get icon(): ProductViewStyleConfiguration_Icon { return callSDK<ProductViewStyleConfiguration_Icon>("_StoreKit_SwiftUI_5d69670f0307b385", 2893664229305013, this, []); }
+  get icon(): ProductViewStyleConfiguration_Icon { return callSDK<ProductViewStyleConfiguration_Icon>("_StoreKit_SwiftUI_6be9a005889899ab", 2893664229305013, this, []); }
   /**
    * let state: Product.TaskState
    * @availability iOS 17.0+
    */
-  get state(): Product_TaskState { return callSDK<Product_TaskState>("_StoreKit_SwiftUI_5d69670f0307b385", 1900064244783097, this, []); }
+  get state(): Product_TaskState { return callSDK<Product_TaskState>("_StoreKit_SwiftUI_6be9a005889899ab", 1900064244783097, this, []); }
   /**
    * var product: Product? { get }
    * @availability iOS 17.0+
    */
-  get product(): $SDK9 { return callSDK<$SDK9>("_StoreKit_SwiftUI_5d69670f0307b385", 4208504233746168, this, []); }
+  get product(): $SDK9 { return callSDK<$SDK9>("_StoreKit_SwiftUI_6be9a005889899ab", 4208504233746168, this, []); }
   /**
    * func purchase()
    * @availability iOS 17.0+
    */
-  purchase(): void { return callSDK<void>("_StoreKit_SwiftUI_5d69670f0307b385", 2042050666421566, this, []); }
+  purchase(): void { return callSDK<void>("_StoreKit_SwiftUI_6be9a005889899ab", 2042050666421566, this, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI29ProductViewStyleConfigurationV": true };
 }
 
@@ -945,7 +945,7 @@ export class ProminentPickerSubscriptionStoreControlStyle extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<ProminentPickerSubscriptionStoreControlStyle> { return callSDKAsync<ProminentPickerSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 2838855562842211, undefined, []); }
+  static init(): Promise<ProminentPickerSubscriptionStoreControlStyle> { return callSDKAsync<ProminentPickerSubscriptionStoreControlStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 2838855562842211, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI027ProminentPickerSubscriptionA12ControlStyleV": true };
 }
 
@@ -988,12 +988,12 @@ export class PurchaseAction extends SDKHandle {
    * @MainActor @preconcurrency func callAsFunction(_ advancedCommerceProduct: AdvancedCommerceProduct, compactJWS: String, options: Set<AdvancedCommerceProduct.PurchaseOption> = []) async throws -> AdvancedCommerceProduct.PurchaseResult
    * @availability iOS 18.4+
    */
-  callAsFunctionCompactJWSOptions(advancedCommerceProduct: _StoreKit_AdvancedCommerceProduct, compactJWS: string, options?: Array<_StoreKit_AdvancedCommerceProduct_PurchaseOption>): Promise<_StoreKit_Product_PurchaseResult> { return callSDKAsync<_StoreKit_Product_PurchaseResult>("_StoreKit_SwiftUI_5d69670f0307b385", 1322057879597461, this, [advancedCommerceProduct, compactJWS, options]); }
+  callAsFunctionCompactJWSOptions(advancedCommerceProduct: _StoreKit_AdvancedCommerceProduct, compactJWS: string, options?: Array<_StoreKit_AdvancedCommerceProduct_PurchaseOption>): Promise<_StoreKit_Product_PurchaseResult> { return callSDKAsync<_StoreKit_Product_PurchaseResult>("_StoreKit_SwiftUI_6be9a005889899ab", 1322057879597461, this, [advancedCommerceProduct, compactJWS, options]); }
   /**
    * @MainActor @preconcurrency func callAsFunction(_ product: Product, options: Set<Product.PurchaseOption> = []) async throws -> Product.PurchaseResult
    * @availability iOS 17.0+
    */
-  callAsFunctionOptions(product: _StoreKit_Product, options?: Array<_StoreKit_Product_PurchaseOption>): Promise<_StoreKit_Product_PurchaseResult> { return callSDKAsync<_StoreKit_Product_PurchaseResult>("_StoreKit_SwiftUI_5d69670f0307b385", 3585370906606601, this, [product, options]); }
+  callAsFunctionOptions(product: _StoreKit_Product, options?: Array<_StoreKit_Product_PurchaseOption>): Promise<_StoreKit_Product_PurchaseResult> { return callSDKAsync<_StoreKit_Product_PurchaseResult>("_StoreKit_SwiftUI_6be9a005889899ab", 3585370906606601, this, [product, options]); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI14PurchaseActionV": true };
 }
 
@@ -1006,7 +1006,7 @@ export class RegularProductViewStyle extends SDKHandle {
    * nonisolated init()
    * @availability iOS 17.0+
    */
-  static init(): Promise<RegularProductViewStyle> { return callSDKAsync<RegularProductViewStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 87185205393474, undefined, []); }
+  static init(): Promise<RegularProductViewStyle> { return callSDKAsync<RegularProductViewStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 87185205393474, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI23RegularProductViewStyleV": true };
 }
 
@@ -1025,7 +1025,7 @@ export class RequestReviewAction extends SDKHandle {
    * @MainActor func callAsFunction()
    * @availability iOS 16.0+
    */
-  callAsFunction(): Promise<void> { return callSDKAsync<void>("_StoreKit_SwiftUI_5d69670f0307b385", 1535024387039575, this, []); }
+  callAsFunction(): Promise<void> { return callSDKAsync<void>("_StoreKit_SwiftUI_6be9a005889899ab", 1535024387039575, this, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI19RequestReviewActionV": true };
 }
 
@@ -1038,27 +1038,27 @@ export class StoreButtonKind extends SDKHandle {
    * static var redeemCode: StoreButtonKind { get }
    * @availability iOS 17.0+
    */
-  static get redeemCode(): StoreButtonKind { return callSDK<StoreButtonKind>("_StoreKit_SwiftUI_5d69670f0307b385", 2162202863860567, undefined, []); }
+  static get redeemCode(): StoreButtonKind { return callSDK<StoreButtonKind>("_StoreKit_SwiftUI_6be9a005889899ab", 2162202863860567, undefined, []); }
   /**
    * static var cancellation: StoreButtonKind { get }
    * @availability iOS 17.0+
    */
-  static get cancellation(): StoreButtonKind { return callSDK<StoreButtonKind>("_StoreKit_SwiftUI_5d69670f0307b385", 1152561186130905, undefined, []); }
+  static get cancellation(): StoreButtonKind { return callSDK<StoreButtonKind>("_StoreKit_SwiftUI_6be9a005889899ab", 1152561186130905, undefined, []); }
   /**
    * static var restorePurchases: StoreButtonKind { get }
    * @availability iOS 17.0+
    */
-  static get restorePurchases(): StoreButtonKind { return callSDK<StoreButtonKind>("_StoreKit_SwiftUI_5d69670f0307b385", 1998214683279792, undefined, []); }
+  static get restorePurchases(): StoreButtonKind { return callSDK<StoreButtonKind>("_StoreKit_SwiftUI_6be9a005889899ab", 1998214683279792, undefined, []); }
   /**
    * static var signIn: StoreButtonKind { get }
    * @availability iOS 17.0+
    */
-  static get signIn(): StoreButtonKind { return callSDK<StoreButtonKind>("_StoreKit_SwiftUI_5d69670f0307b385", 2415345822093899, undefined, []); }
+  static get signIn(): StoreButtonKind { return callSDK<StoreButtonKind>("_StoreKit_SwiftUI_6be9a005889899ab", 2415345822093899, undefined, []); }
   /**
    * static var policies: StoreButtonKind { get }
    * @availability iOS 17.0+
    */
-  static get policies(): StoreButtonKind { return callSDK<StoreButtonKind>("_StoreKit_SwiftUI_5d69670f0307b385", 1961170463171692, undefined, []); }
+  static get policies(): StoreButtonKind { return callSDK<StoreButtonKind>("_StoreKit_SwiftUI_6be9a005889899ab", 1961170463171692, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI0A10ButtonKindV": true };
 }
 
@@ -1101,7 +1101,7 @@ export class SubscriptionOfferView<Icon = unknown, PlaceholderIcon = unknown> ex
    * nonisolated init(_ configuration: SubscriptionOfferViewStyleConfiguration) where Icon == SubscriptionOfferViewStyleConfiguration.Icon, PlaceholderIcon == SubscriptionOfferViewStyleConfiguration.Icon
    * @availability iOS 26.0+
    */
-  static init(configuration: SubscriptionOfferViewStyleConfiguration): Promise<SubscriptionOfferView<SubscriptionOfferViewStyleConfiguration_Icon, SubscriptionOfferViewStyleConfiguration_Icon>> { return callSDKAsync<SubscriptionOfferView<SubscriptionOfferViewStyleConfiguration_Icon, SubscriptionOfferViewStyleConfiguration_Icon>>("_StoreKit_SwiftUI_5d69670f0307b385", 2008393464198133, undefined, [configuration]); }
+  static init(configuration: SubscriptionOfferViewStyleConfiguration): Promise<SubscriptionOfferView<SubscriptionOfferViewStyleConfiguration_Icon, SubscriptionOfferViewStyleConfiguration_Icon>> { return callSDKAsync<SubscriptionOfferView<SubscriptionOfferViewStyleConfiguration_Icon, SubscriptionOfferViewStyleConfiguration_Icon>>("_StoreKit_SwiftUI_6be9a005889899ab", 2008393464198133, undefined, [configuration]); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI21SubscriptionOfferViewV": true };
 }
 
@@ -1120,7 +1120,7 @@ export class SubscriptionOfferViewButtonKind extends SDKHandle {
    * static var detailLink: SubscriptionOfferViewButtonKind { get }
    * @availability iOS 26.0+
    */
-  static get detailLink(): SubscriptionOfferViewButtonKind { return callSDK<SubscriptionOfferViewButtonKind>("_StoreKit_SwiftUI_5d69670f0307b385", 4381300003593267, undefined, []); }
+  static get detailLink(): SubscriptionOfferViewButtonKind { return callSDK<SubscriptionOfferViewButtonKind>("_StoreKit_SwiftUI_6be9a005889899ab", 4381300003593267, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI31SubscriptionOfferViewButtonKindV": true };
 }
 
@@ -1151,48 +1151,48 @@ export class SubscriptionOfferViewStyleConfiguration extends SDKHandle {
    * let activeOffer: Product.SubscriptionOffer?
    * @availability iOS 26.0+
    */
-  get activeOffer(): $SDK15 { return callSDK<$SDK15>("_StoreKit_SwiftUI_5d69670f0307b385", 2930937813262440, this, []); }
+  get activeOffer(): $SDK15 { return callSDK<$SDK15>("_StoreKit_SwiftUI_6be9a005889899ab", 2930937813262440, this, []); }
   /**
    * var visibleSubscription: Product?
    * @availability iOS 26.0+
    */
-  get visibleSubscription(): $SDK9 { return callSDK<$SDK9>("_StoreKit_SwiftUI_5d69670f0307b385", 3763961861511814, this, []); }
-  set visibleSubscription(value: $SDK9) { callSDK<void>("_StoreKit_SwiftUI_5d69670f0307b385", 767771750736894, this, [value]); }
+  get visibleSubscription(): $SDK9 { return callSDK<$SDK9>("_StoreKit_SwiftUI_6be9a005889899ab", 3763961861511814, this, []); }
+  set visibleSubscription(value: $SDK9) { callSDK<void>("_StoreKit_SwiftUI_6be9a005889899ab", 767771750736894, this, [value]); }
   /**
    * var subscriptions: [Product]? { get }
    * @availability iOS 26.0+
    */
-  get subscriptions(): $SDK8 { return callSDK<$SDK8>("_StoreKit_SwiftUI_5d69670f0307b385", 1801974944085059, this, []); }
+  get subscriptions(): $SDK8 { return callSDK<$SDK8>("_StoreKit_SwiftUI_6be9a005889899ab", 1801974944085059, this, []); }
   /**
    * func displayDetails()
    * @availability iOS 26.0+
    */
-  displayDetails(): void { return callSDK<void>("_StoreKit_SwiftUI_5d69670f0307b385", 1536193198775960, this, []); }
+  displayDetails(): void { return callSDK<void>("_StoreKit_SwiftUI_6be9a005889899ab", 1536193198775960, this, []); }
   /**
    * let subscriptionStatus: [Product.SubscriptionInfo.Status]
    * @availability iOS 26.0+
    */
-  get subscriptionStatus(): Array<_StoreKit_Product_SubscriptionInfo_Status> { return callSDK<Array<_StoreKit_Product_SubscriptionInfo_Status>>("_StoreKit_SwiftUI_5d69670f0307b385", 2597312090792913, this, []); }
+  get subscriptionStatus(): Array<_StoreKit_Product_SubscriptionInfo_Status> { return callSDK<Array<_StoreKit_Product_SubscriptionInfo_Status>>("_StoreKit_SwiftUI_6be9a005889899ab", 2597312090792913, this, []); }
   /**
    * var subscriptionGroupDisplayName: String { get }
    * @availability iOS 26.0+
    */
-  get subscriptionGroupDisplayName(): string { return callSDK<string>("_StoreKit_SwiftUI_5d69670f0307b385", 2990236777942977, this, []); }
+  get subscriptionGroupDisplayName(): string { return callSDK<string>("_StoreKit_SwiftUI_6be9a005889899ab", 2990236777942977, this, []); }
   /**
    * let icon: SubscriptionOfferViewStyleConfiguration.Icon
    * @availability iOS 26.0+
    */
-  get icon(): SubscriptionOfferViewStyleConfiguration_Icon { return callSDK<SubscriptionOfferViewStyleConfiguration_Icon>("_StoreKit_SwiftUI_5d69670f0307b385", 2064203654259628, this, []); }
+  get icon(): SubscriptionOfferViewStyleConfiguration_Icon { return callSDK<SubscriptionOfferViewStyleConfiguration_Icon>("_StoreKit_SwiftUI_6be9a005889899ab", 2064203654259628, this, []); }
   /**
    * let state: Product.CollectionTaskState
    * @availability iOS 26.0+
    */
-  get state(): Product_CollectionTaskState { return callSDK<Product_CollectionTaskState>("_StoreKit_SwiftUI_5d69670f0307b385", 3038773069564643, this, []); }
+  get state(): Product_CollectionTaskState { return callSDK<Product_CollectionTaskState>("_StoreKit_SwiftUI_6be9a005889899ab", 3038773069564643, this, []); }
   /**
    * func subscribe()
    * @availability iOS 26.0+
    */
-  subscribe(): void { return callSDK<void>("_StoreKit_SwiftUI_5d69670f0307b385", 3188879198058350, this, []); }
+  subscribe(): void { return callSDK<void>("_StoreKit_SwiftUI_6be9a005889899ab", 3188879198058350, this, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI39SubscriptionOfferViewStyleConfigurationV": true };
 }
 
@@ -1277,7 +1277,7 @@ export class SubscriptionPeriodGroupSet<Label = unknown, MarketingContent = unkn
    * @MainActor @preconcurrency init() where Label == AutomaticSubscriptionOptionGroupLabel, MarketingContent == AutomaticSubscriptionStoreMarketingContent
    * @availability iOS 18.0+
    */
-  static init(): Promise<SubscriptionPeriodGroupSet<AutomaticSubscriptionOptionGroupLabel, AutomaticSubscriptionStoreMarketingContent>> { return callSDKAsync<SubscriptionPeriodGroupSet<AutomaticSubscriptionOptionGroupLabel, AutomaticSubscriptionStoreMarketingContent>>("_StoreKit_SwiftUI_5d69670f0307b385", 2560320889636982, undefined, []); }
+  static init(): Promise<SubscriptionPeriodGroupSet<AutomaticSubscriptionOptionGroupLabel, AutomaticSubscriptionStoreMarketingContent>> { return callSDKAsync<SubscriptionPeriodGroupSet<AutomaticSubscriptionOptionGroupLabel, AutomaticSubscriptionStoreMarketingContent>>("_StoreKit_SwiftUI_6be9a005889899ab", 2560320889636982, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI26SubscriptionPeriodGroupSetV": true };
 }
 
@@ -1296,7 +1296,7 @@ export class SubscriptionStoreButton extends SDKHandle {
    * @MainActor @preconcurrency init(_ option: SubscriptionStoreControlStyleConfiguration.Option)
    * @availability iOS 18.0+
    */
-  static init(option: SubscriptionStoreControlStyleConfiguration_Option): Promise<SubscriptionStoreButton> { return callSDKAsync<SubscriptionStoreButton>("_StoreKit_SwiftUI_5d69670f0307b385", 2405316385050000, undefined, [option]); }
+  static init(option: SubscriptionStoreControlStyleConfiguration_Option): Promise<SubscriptionStoreButton> { return callSDKAsync<SubscriptionStoreButton>("_StoreKit_SwiftUI_6be9a005889899ab", 2405316385050000, undefined, [option]); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA6ButtonV": true };
 }
 
@@ -1315,57 +1315,57 @@ export class SubscriptionStoreButtonLabel extends SDKHandle {
    * var singleLine: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  get singleLine(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 3992409269229102, this, []); }
+  get singleLine(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 3992409269229102, this, []); }
   /**
    * static var singleLine: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  static get singleLine2388(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 2178442100927824, undefined, []); }
+  static get singleLine2388(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 2178442100927824, undefined, []); }
   /**
    * var displayName: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  get displayName(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 3833518249779662, this, []); }
+  get displayName(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 3833518249779662, this, []); }
   /**
    * static var displayName: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  static get displayName4722(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 1559225537130166, undefined, []); }
+  static get displayName4722(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 1559225537130166, undefined, []); }
   /**
    * var price: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  get price(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 1953489790796227, this, []); }
+  get price(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 1953489790796227, this, []); }
   /**
    * static var price: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  static get price36425(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 4140517145183539, undefined, []); }
+  static get price36425(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 4140517145183539, undefined, []); }
   /**
    * var action: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  get action(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 804131135137407, this, []); }
+  get action(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 804131135137407, this, []); }
   /**
    * static var action: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  static get action6483(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 2133298693357357, undefined, []); }
+  static get action6483(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 2133298693357357, undefined, []); }
   /**
    * static var automatic: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  static get automatic(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 1332815021034676, undefined, []); }
+  static get automatic(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 1332815021034676, undefined, []); }
   /**
    * var multiline: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  get multiline(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 693003338356916, this, []); }
+  get multiline(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 693003338356916, this, []); }
   /**
    * static var multiline: SubscriptionStoreButtonLabel { get }
    * @availability iOS 17.0+
    */
-  static get multiline93459(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_5d69670f0307b385", 1536574541614497, undefined, []); }
+  static get multiline93459(): SubscriptionStoreButtonLabel { return callSDK<SubscriptionStoreButtonLabel>("_StoreKit_SwiftUI_6be9a005889899ab", 1536574541614497, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA11ButtonLabelV": true };
 }
 
@@ -1392,17 +1392,17 @@ export class SubscriptionStoreControlBackground extends SDKHandle {
    * static var gradientMaterial: SubscriptionStoreControlBackground { get }
    * @availability iOS 17.0+
    */
-  static get gradientMaterial(): SubscriptionStoreControlBackground { return callSDK<SubscriptionStoreControlBackground>("_StoreKit_SwiftUI_5d69670f0307b385", 1752780714565281, undefined, []); }
+  static get gradientMaterial(): SubscriptionStoreControlBackground { return callSDK<SubscriptionStoreControlBackground>("_StoreKit_SwiftUI_6be9a005889899ab", 1752780714565281, undefined, []); }
   /**
    * static var gradientMaterialOnScroll: SubscriptionStoreControlBackground { get }
    * @availability iOS 17.0+
    */
-  static get gradientMaterialOnScroll(): SubscriptionStoreControlBackground { return callSDK<SubscriptionStoreControlBackground>("_StoreKit_SwiftUI_5d69670f0307b385", 4170041564866766, undefined, []); }
+  static get gradientMaterialOnScroll(): SubscriptionStoreControlBackground { return callSDK<SubscriptionStoreControlBackground>("_StoreKit_SwiftUI_6be9a005889899ab", 4170041564866766, undefined, []); }
   /**
    * static var automatic: SubscriptionStoreControlBackground { get }
    * @availability iOS 17.0+
    */
-  static get automatic(): SubscriptionStoreControlBackground { return callSDK<SubscriptionStoreControlBackground>("_StoreKit_SwiftUI_5d69670f0307b385", 3185036093394905, undefined, []); }
+  static get automatic(): SubscriptionStoreControlBackground { return callSDK<SubscriptionStoreControlBackground>("_StoreKit_SwiftUI_6be9a005889899ab", 3185036093394905, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA17ControlBackgroundV": true };
 }
 
@@ -1423,17 +1423,17 @@ export class SubscriptionStoreControlPlacementKey extends SDKHandle {
    * static var scrollView: SubscriptionStoreControlPlacementKey { get }
    * @availability iOS 18.0+
    */
-  static get scrollView(): SubscriptionStoreControlPlacementKey { return callSDK<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_5d69670f0307b385", 3084754230420028, undefined, []); }
+  static get scrollView(): SubscriptionStoreControlPlacementKey { return callSDK<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_6be9a005889899ab", 3084754230420028, undefined, []); }
   /**
    * static var buttonsInBottomBar: SubscriptionStoreControlPlacementKey { get }
    * @availability iOS 18.0+
    */
-  static get buttonsInBottomBar(): SubscriptionStoreControlPlacementKey { return callSDK<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_5d69670f0307b385", 654825127229051, undefined, []); }
+  static get buttonsInBottomBar(): SubscriptionStoreControlPlacementKey { return callSDK<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_6be9a005889899ab", 654825127229051, undefined, []); }
   /**
    * static var bottomBar: SubscriptionStoreControlPlacementKey { get }
    * @availability iOS 18.0+
    */
-  static get bottomBar(): SubscriptionStoreControlPlacementKey { return callSDK<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_5d69670f0307b385", 1562684330427191, undefined, []); }
+  static get bottomBar(): SubscriptionStoreControlPlacementKey { return callSDK<SubscriptionStoreControlPlacementKey>("_StoreKit_SwiftUI_6be9a005889899ab", 1562684330427191, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA19ControlPlacementKeyV": true };
 }
 
@@ -1482,32 +1482,32 @@ export class SubscriptionStoreControlStyleConfiguration extends SDKHandle {
    * var allOptions: [Product] { get }
    * @availability iOS 17.0+
    */
-  get allOptions(): Array<_StoreKit_Product> { return callSDK<Array<_StoreKit_Product>>("_StoreKit_SwiftUI_5d69670f0307b385", 1344511504528154, this, []); }
+  get allOptions(): Array<_StoreKit_Product> { return callSDK<Array<_StoreKit_Product>>("_StoreKit_SwiftUI_6be9a005889899ab", 1344511504528154, this, []); }
   /**
    * var groupDisplayName: String { get }
    * @availability iOS 18.0+
    */
-  get groupDisplayName(): string { return callSDK<string>("_StoreKit_SwiftUI_5d69670f0307b385", 552414378558583, this, []); }
+  get groupDisplayName(): string { return callSDK<string>("_StoreKit_SwiftUI_6be9a005889899ab", 552414378558583, this, []); }
   /**
    * var autoRenewPreference: Product? { get }
    * @availability iOS 18.0+
    */
-  get autoRenewPreference(): $SDK9 { return callSDK<$SDK9>("_StoreKit_SwiftUI_5d69670f0307b385", 3108983006756716, this, []); }
+  get autoRenewPreference(): $SDK9 { return callSDK<$SDK9>("_StoreKit_SwiftUI_6be9a005889899ab", 3108983006756716, this, []); }
   /**
    * var descriptionVisibility: Visibility { get }
    * @availability iOS 18.0+
    */
-  get descriptionVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("_StoreKit_SwiftUI_5d69670f0307b385", 1513446816726665, this, []); }
+  get descriptionVisibility(): _SwiftUICore_Visibility { return callSDK<_SwiftUICore_Visibility>("_StoreKit_SwiftUI_6be9a005889899ab", 1513446816726665, this, []); }
   /**
    * var options: [SubscriptionStoreControlStyleConfiguration.Option] { get }
    * @availability iOS 18.0+
    */
-  get options(): $SDK19 { return callSDK<$SDK19>("_StoreKit_SwiftUI_5d69670f0307b385", 1691492162620934, this, []); }
+  get options(): $SDK19 { return callSDK<$SDK19>("_StoreKit_SwiftUI_6be9a005889899ab", 1691492162620934, this, []); }
   /**
    * var sections: [SubscriptionStoreControlStyleConfiguration.Section] { get }
    * @availability iOS 18.0+
    */
-  get sections(): Array<SubscriptionStoreControlStyleConfiguration_Section> { return callSDK<Array<SubscriptionStoreControlStyleConfiguration_Section>>("_StoreKit_SwiftUI_5d69670f0307b385", 3932008035759359, this, []); }
+  get sections(): Array<SubscriptionStoreControlStyleConfiguration_Section> { return callSDK<Array<SubscriptionStoreControlStyleConfiguration_Section>>("_StoreKit_SwiftUI_6be9a005889899ab", 3932008035759359, this, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV": true };
 }
 
@@ -1534,42 +1534,42 @@ export class SubscriptionStoreControlStyleConfiguration_Option extends SDKHandle
    * var activeOffer: Product.SubscriptionOffer? { get }
    * @availability iOS 18.0+
    */
-  get activeOffer(): $SDK15 { return callSDK<$SDK15>("_StoreKit_SwiftUI_5d69670f0307b385", 1852957866261623, this, []); }
+  get activeOffer(): $SDK15 { return callSDK<$SDK15>("_StoreKit_SwiftUI_6be9a005889899ab", 1852957866261623, this, []); }
   /**
    * var subscription: Product { get }
    * @availability iOS 18.0+
    */
-  get subscription(): _StoreKit_Product { return callSDK<_StoreKit_Product>("_StoreKit_SwiftUI_5d69670f0307b385", 3118527215824194, this, []); }
+  get subscription(): _StoreKit_Product { return callSDK<_StoreKit_Product>("_StoreKit_SwiftUI_6be9a005889899ab", 3118527215824194, this, []); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<Product.SubscriptionInfo, T?>) -> T? { get }
    * @availability iOS 18.0+
    */
-  subscriptDynamicMember(keyPath: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 2070023036944764, this, [keyPath]); }
+  subscriptDynamicMember(keyPath: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 2070023036944764, this, [keyPath]); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<Product.SubscriptionInfo, T>) -> T? { get }
    * @availability iOS 18.0+
    */
-  subscriptDynamicMember5817(keyPath: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 4335730527638735, this, [keyPath]); }
+  subscriptDynamicMember5817(keyPath: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 4335730527638735, this, [keyPath]); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<Product, T>) -> T { get }
    * @availability iOS 18.0+
    */
-  subscriptDynamicMember67124(keyPath: SDKHandle): unknown { return callSDK<unknown>("_StoreKit_SwiftUI_5d69670f0307b385", 60885725005707, this, [keyPath]); }
+  subscriptDynamicMember67124(keyPath: SDKHandle): unknown { return callSDK<unknown>("_StoreKit_SwiftUI_6be9a005889899ab", 60885725005707, this, [keyPath]); }
   /**
    * var id: Product.ID { get }
    * @availability iOS 18.0+
    */
-  get id(): string { return callSDK<string>("_StoreKit_SwiftUI_5d69670f0307b385", 3401872006883618, this, []); }
+  get id(): string { return callSDK<string>("_StoreKit_SwiftUI_6be9a005889899ab", 3401872006883618, this, []); }
   /**
    * var icon: SubscriptionStoreControlStyleConfiguration.Icon? { get }
    * @availability iOS 18.0+
    */
-  get icon(): $SDK21 { return callSDK<$SDK21>("_StoreKit_SwiftUI_5d69670f0307b385", 3300354292107080, this, []); }
+  get icon(): $SDK21 { return callSDK<$SDK21>("_StoreKit_SwiftUI_6be9a005889899ab", 3300354292107080, this, []); }
   /**
    * func subscribe()
    * @availability iOS 18.0+
    */
-  subscribe(): void { return callSDK<void>("_StoreKit_SwiftUI_5d69670f0307b385", 4037357190488009, this, []); }
+  subscribe(): void { return callSDK<void>("_StoreKit_SwiftUI_6be9a005889899ab", 4037357190488009, this, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV6OptionV": true };
 }
 
@@ -1588,42 +1588,42 @@ export class SubscriptionStoreControlStyleConfiguration_PickerOption extends SDK
    * let isSelected: Bool
    * @availability iOS 18.0+
    */
-  get isSelected(): boolean { return callSDK<boolean>("_StoreKit_SwiftUI_5d69670f0307b385", 1225305444819115, this, []); }
+  get isSelected(): boolean { return callSDK<boolean>("_StoreKit_SwiftUI_6be9a005889899ab", 1225305444819115, this, []); }
   /**
    * var activeOffer: Product.SubscriptionOffer? { get }
    * @availability iOS 18.0+
    */
-  get activeOffer(): $SDK15 { return callSDK<$SDK15>("_StoreKit_SwiftUI_5d69670f0307b385", 3932505608584080, this, []); }
+  get activeOffer(): $SDK15 { return callSDK<$SDK15>("_StoreKit_SwiftUI_6be9a005889899ab", 3932505608584080, this, []); }
   /**
    * var subscription: Product { get }
    * @availability iOS 18.0+
    */
-  get subscription(): _StoreKit_Product { return callSDK<_StoreKit_Product>("_StoreKit_SwiftUI_5d69670f0307b385", 4190470243181230, this, []); }
+  get subscription(): _StoreKit_Product { return callSDK<_StoreKit_Product>("_StoreKit_SwiftUI_6be9a005889899ab", 4190470243181230, this, []); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<Product.SubscriptionInfo, T?>) -> T? { get }
    * @availability iOS 18.0+
    */
-  subscriptDynamicMember(keyPath: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 1376029632938533, this, [keyPath]); }
+  subscriptDynamicMember(keyPath: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 1376029632938533, this, [keyPath]); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<Product.SubscriptionInfo, T>) -> T? { get }
    * @availability iOS 18.0+
    */
-  subscriptDynamicMember54530(keyPath: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("_StoreKit_SwiftUI_5d69670f0307b385", 3598145906560412, this, [keyPath]); }
+  subscriptDynamicMember54530(keyPath: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("_StoreKit_SwiftUI_6be9a005889899ab", 3598145906560412, this, [keyPath]); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<Product, T>) -> T { get }
    * @availability iOS 18.0+
    */
-  subscriptDynamicMember22851(keyPath: SDKHandle): unknown { return callSDK<unknown>("_StoreKit_SwiftUI_5d69670f0307b385", 982234812423559, this, [keyPath]); }
+  subscriptDynamicMember22851(keyPath: SDKHandle): unknown { return callSDK<unknown>("_StoreKit_SwiftUI_6be9a005889899ab", 982234812423559, this, [keyPath]); }
   /**
    * var id: Product.ID { get }
    * @availability iOS 18.0+
    */
-  get id(): string { return callSDK<string>("_StoreKit_SwiftUI_5d69670f0307b385", 2968776980815151, this, []); }
+  get id(): string { return callSDK<string>("_StoreKit_SwiftUI_6be9a005889899ab", 2968776980815151, this, []); }
   /**
    * var icon: SubscriptionStoreControlStyleConfiguration.Icon? { get }
    * @availability iOS 18.0+
    */
-  get icon(): $SDK21 { return callSDK<$SDK21>("_StoreKit_SwiftUI_5d69670f0307b385", 1007496703150031, this, []); }
+  get icon(): $SDK21 { return callSDK<$SDK21>("_StoreKit_SwiftUI_6be9a005889899ab", 1007496703150031, this, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV12PickerOptionV": true };
 }
 
@@ -1642,26 +1642,26 @@ export class SubscriptionStoreControlStyleConfiguration_Section extends SDKHandl
    * var id: SubscriptionStoreControlStyleConfiguration.Section.ID
    * @availability iOS 18.0+
    */
-  get id(): SubscriptionStoreControlStyleConfiguration_Section_ID { return callSDK<SubscriptionStoreControlStyleConfiguration_Section_ID>("_StoreKit_SwiftUI_5d69670f0307b385", 2283852295689527, this, []); }
-  set id(value: SubscriptionStoreControlStyleConfiguration_Section_ID) { callSDK<void>("_StoreKit_SwiftUI_5d69670f0307b385", 4412413276630573, this, [value]); }
+  get id(): SubscriptionStoreControlStyleConfiguration_Section_ID { return callSDK<SubscriptionStoreControlStyleConfiguration_Section_ID>("_StoreKit_SwiftUI_6be9a005889899ab", 2283852295689527, this, []); }
+  set id(value: SubscriptionStoreControlStyleConfiguration_Section_ID) { callSDK<void>("_StoreKit_SwiftUI_6be9a005889899ab", 4412413276630573, this, [value]); }
   /**
    * var footer: SubscriptionStoreControlStyleConfiguration.Section.Footer?
    * @availability iOS 18.0+
    */
-  get footer(): $SDK22 { return callSDK<$SDK22>("_StoreKit_SwiftUI_5d69670f0307b385", 2292341955852954, this, []); }
-  set footer(value: $SDK22) { callSDK<void>("_StoreKit_SwiftUI_5d69670f0307b385", 2106413186850706, this, [value]); }
+  get footer(): $SDK22 { return callSDK<$SDK22>("_StoreKit_SwiftUI_6be9a005889899ab", 2292341955852954, this, []); }
+  set footer(value: $SDK22) { callSDK<void>("_StoreKit_SwiftUI_6be9a005889899ab", 2106413186850706, this, [value]); }
   /**
    * var header: SubscriptionStoreControlStyleConfiguration.Section.Header?
    * @availability iOS 18.0+
    */
-  get header(): $SDK23 { return callSDK<$SDK23>("_StoreKit_SwiftUI_5d69670f0307b385", 643259518342827, this, []); }
-  set header(value: $SDK23) { callSDK<void>("_StoreKit_SwiftUI_5d69670f0307b385", 4321999006641008, this, [value]); }
+  get header(): $SDK23 { return callSDK<$SDK23>("_StoreKit_SwiftUI_6be9a005889899ab", 643259518342827, this, []); }
+  set header(value: $SDK23) { callSDK<void>("_StoreKit_SwiftUI_6be9a005889899ab", 4321999006641008, this, [value]); }
   /**
    * var options: [SubscriptionStoreControlStyleConfiguration.Option]
    * @availability iOS 18.0+
    */
-  get options(): $SDK19 { return callSDK<$SDK19>("_StoreKit_SwiftUI_5d69670f0307b385", 2770508752124264, this, []); }
-  set options(value: $SDK19) { callSDK<void>("_StoreKit_SwiftUI_5d69670f0307b385", 3837764679428944, this, [value]); }
+  get options(): $SDK19 { return callSDK<$SDK19>("_StoreKit_SwiftUI_6be9a005889899ab", 2770508752124264, this, []); }
+  set options(value: $SDK19) { callSDK<void>("_StoreKit_SwiftUI_6be9a005889899ab", 3837764679428944, this, [value]); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV7SectionV": true };
 }
 
@@ -1724,12 +1724,12 @@ export class SubscriptionStorePickerOption<Label = unknown> extends SDKHandle {
    * @MainActor @preconcurrency init(_ option: SubscriptionStoreControlStyleConfiguration.Option) where Label == AutomaticSubscriptionStorePickerOptionLabel
    * @availability iOS 18.0+
    */
-  static init(option: SubscriptionStoreControlStyleConfiguration_Option): Promise<$SDK24> { return callSDKAsync<$SDK24>("_StoreKit_SwiftUI_5d69670f0307b385", 2207254927592652, undefined, [option]); }
+  static init(option: SubscriptionStoreControlStyleConfiguration_Option): Promise<$SDK24> { return callSDKAsync<$SDK24>("_StoreKit_SwiftUI_6be9a005889899ab", 2207254927592652, undefined, [option]); }
   /**
    * @MainActor @preconcurrency init(_ option: SubscriptionStoreControlStyleConfiguration.PickerOption) where Label == AutomaticSubscriptionStorePickerOptionLabel
    * @availability iOS 18.0+
    */
-  static init43180(option: SubscriptionStoreControlStyleConfiguration_PickerOption): Promise<$SDK24> { return callSDKAsync<$SDK24>("_StoreKit_SwiftUI_5d69670f0307b385", 2547777554014218, undefined, [option]); }
+  static init43180(option: SubscriptionStoreControlStyleConfiguration_PickerOption): Promise<$SDK24> { return callSDKAsync<$SDK24>("_StoreKit_SwiftUI_6be9a005889899ab", 2547777554014218, undefined, [option]); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA12PickerOptionV": true };
 }
 
@@ -1748,12 +1748,12 @@ export class SubscriptionStorePolicyKind extends SDKHandle {
    * static var privacyPolicy: SubscriptionStorePolicyKind { get }
    * @availability iOS 17.0+
    */
-  static get privacyPolicy(): SubscriptionStorePolicyKind { return callSDK<SubscriptionStorePolicyKind>("_StoreKit_SwiftUI_5d69670f0307b385", 1943356904882387, undefined, []); }
+  static get privacyPolicy(): SubscriptionStorePolicyKind { return callSDK<SubscriptionStorePolicyKind>("_StoreKit_SwiftUI_6be9a005889899ab", 1943356904882387, undefined, []); }
   /**
    * static var termsOfService: SubscriptionStorePolicyKind { get }
    * @availability iOS 17.0+
    */
-  static get termsOfService(): SubscriptionStorePolicyKind { return callSDK<SubscriptionStorePolicyKind>("_StoreKit_SwiftUI_5d69670f0307b385", 414471587421127, undefined, []); }
+  static get termsOfService(): SubscriptionStorePolicyKind { return callSDK<SubscriptionStorePolicyKind>("_StoreKit_SwiftUI_6be9a005889899ab", 414471587421127, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA10PolicyKindV": true };
 }
 
@@ -1766,7 +1766,7 @@ export class SubscriptionStoreView<Content = unknown> extends SDKHandle {
    * nonisolated init(groupID: String, visibleRelationships: Product.SubscriptionRelationship = .all) where Content == AutomaticSubscriptionStoreMarketingContent
    * @availability iOS 17.0+
    */
-  static init(groupID: string, visibleRelationships?: Product_SubscriptionRelationship): Promise<SubscriptionStoreView<AutomaticSubscriptionStoreMarketingContent>> { return callSDKAsync<SubscriptionStoreView<AutomaticSubscriptionStoreMarketingContent>>("_StoreKit_SwiftUI_5d69670f0307b385", 570375885701793, undefined, [groupID, visibleRelationships]); }
+  static init(groupID: string, visibleRelationships?: Product_SubscriptionRelationship): Promise<SubscriptionStoreView<AutomaticSubscriptionStoreMarketingContent>> { return callSDKAsync<SubscriptionStoreView<AutomaticSubscriptionStoreMarketingContent>>("_StoreKit_SwiftUI_6be9a005889899ab", 570375885701793, undefined, [groupID, visibleRelationships]); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI012SubscriptionA4ViewV": true };
 }
 
@@ -1785,7 +1785,7 @@ export class TabsSubscriptionOptionGroupStyle extends SDKHandle {
    * init()
    * @availability iOS 18.0+
    */
-  static init(): TabsSubscriptionOptionGroupStyle { return callSDK<TabsSubscriptionOptionGroupStyle>("_StoreKit_SwiftUI_5d69670f0307b385", 3266335499071925, undefined, []); }
+  static init(): TabsSubscriptionOptionGroupStyle { return callSDK<TabsSubscriptionOptionGroupStyle>("_StoreKit_SwiftUI_6be9a005889899ab", 3266335499071925, undefined, []); }
   declare readonly $type: { "s:17_StoreKit_SwiftUI32TabsSubscriptionOptionGroupStyleV": true };
 }
 
@@ -1803,70 +1803,70 @@ export class TupleStoreContent<Content = unknown> extends SDKHandle {
  */
 export type TupleStoreContent_Body<Content = unknown> = never;
 
-registerSDKClass("_StoreKit_SwiftUI.AutomaticProductPlaceholderIcon", AutomaticProductPlaceholderIcon, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.AutomaticProductViewStyle", AutomaticProductViewStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionOfferViewStyle", AutomaticSubscriptionOfferViewStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionOptionGroupLabel", AutomaticSubscriptionOptionGroupLabel, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionOptionGroupStyle", AutomaticSubscriptionOptionGroupStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionStoreControlStyle", AutomaticSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionStoreMarketingContent", AutomaticSubscriptionStoreMarketingContent, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionStorePickerOptionLabel", AutomaticSubscriptionStorePickerOptionLabel, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.ButtonsSubscriptionStoreControlStyle", ButtonsSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.CompactPickerSubscriptionStoreControlStyle", CompactPickerSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.CompactProductViewStyle", CompactProductViewStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.CompactSubscriptionOfferViewStyle", CompactSubscriptionOfferViewStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.DisplayMessageAction", DisplayMessageAction, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {}, methods: {"callAsFunction":{"id":3715471907996991}} });
-registerSDKClass("_StoreKit_SwiftUI.EntitlementTaskState", EntitlementTaskState, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {}, methods: {"map44069":{"id":4002270833913159,"hints":[{"callback":{"out":[]}}]},"flatMap44951":{"id":2943624089177411,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("_StoreKit_SwiftUI.IdentifiedStoreContent", IdentifiedStoreContent, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.LargeProductViewStyle", LargeProductViewStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.LinksSubscriptionOptionGroupStyle", LinksSubscriptionOptionGroupStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.PagedPickerSubscriptionStoreControlStyle", PagedPickerSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.PagedProminentPickerSubscriptionStoreControlStyle", PagedProminentPickerSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.PickerSubscriptionStoreControlStyle", PickerSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.Product.CollectionTaskState", Product_CollectionTaskState, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.Product.TaskState", Product_TaskState, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.ProductIconPhase", ProductIconPhase, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.ProductView", ProductView, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.AutomaticProductPlaceholderIcon", AutomaticProductPlaceholderIcon, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.AutomaticProductViewStyle", AutomaticProductViewStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionOfferViewStyle", AutomaticSubscriptionOfferViewStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionOptionGroupLabel", AutomaticSubscriptionOptionGroupLabel, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionOptionGroupStyle", AutomaticSubscriptionOptionGroupStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionStoreControlStyle", AutomaticSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionStoreMarketingContent", AutomaticSubscriptionStoreMarketingContent, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.AutomaticSubscriptionStorePickerOptionLabel", AutomaticSubscriptionStorePickerOptionLabel, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.ButtonsSubscriptionStoreControlStyle", ButtonsSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.CompactPickerSubscriptionStoreControlStyle", CompactPickerSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.CompactProductViewStyle", CompactProductViewStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.CompactSubscriptionOfferViewStyle", CompactSubscriptionOfferViewStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.DisplayMessageAction", DisplayMessageAction, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {}, methods: {"callAsFunction":{"id":3715471907996991}} });
+registerSDKClass("_StoreKit_SwiftUI.EntitlementTaskState", EntitlementTaskState, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {}, methods: {"map44069":{"id":4002270833913159,"hints":[{"callback":{"out":[]}}]},"flatMap44951":{"id":2943624089177411,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("_StoreKit_SwiftUI.IdentifiedStoreContent", IdentifiedStoreContent, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.LargeProductViewStyle", LargeProductViewStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.LinksSubscriptionOptionGroupStyle", LinksSubscriptionOptionGroupStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.PagedPickerSubscriptionStoreControlStyle", PagedPickerSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.PagedProminentPickerSubscriptionStoreControlStyle", PagedProminentPickerSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.PickerSubscriptionStoreControlStyle", PickerSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.Product.CollectionTaskState", Product_CollectionTaskState, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.Product.TaskState", Product_TaskState, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.ProductIconPhase", ProductIconPhase, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.ProductView", ProductView, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:17_StoreKit_SwiftUI16ProductViewStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("_StoreKit_SwiftUI.ProductViewStyleConfiguration", ProductViewStyleConfiguration, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {}, methods: {"purchase":{"id":2042050666421566}} });
-registerSDKClass("_StoreKit_SwiftUI.ProductViewStyleConfiguration.Icon", ProductViewStyleConfiguration_Icon, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.ProminentPickerSubscriptionStoreControlStyle", ProminentPickerSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.PurchaseAction", PurchaseAction, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {}, methods: {"callAsFunctionCompactJWSOptions":{"id":1322057879597461},"callAsFunctionOptions":{"id":3585370906606601}} });
-registerSDKClass("_StoreKit_SwiftUI.RegularProductViewStyle", RegularProductViewStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.RequestReviewAction", RequestReviewAction, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {}, methods: {"callAsFunction":{"id":1535024387039575}} });
-registerSDKClass("_StoreKit_SwiftUI.StoreButtonKind", StoreButtonKind, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.ProductViewStyleConfiguration", ProductViewStyleConfiguration, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {}, methods: {"purchase":{"id":2042050666421566}} });
+registerSDKClass("_StoreKit_SwiftUI.ProductViewStyleConfiguration.Icon", ProductViewStyleConfiguration_Icon, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.ProminentPickerSubscriptionStoreControlStyle", ProminentPickerSubscriptionStoreControlStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.PurchaseAction", PurchaseAction, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {}, methods: {"callAsFunctionCompactJWSOptions":{"id":1322057879597461},"callAsFunctionOptions":{"id":3585370906606601}} });
+registerSDKClass("_StoreKit_SwiftUI.RegularProductViewStyle", RegularProductViewStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.RequestReviewAction", RequestReviewAction, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {}, methods: {"callAsFunction":{"id":1535024387039575}} });
+registerSDKClass("_StoreKit_SwiftUI.StoreButtonKind", StoreButtonKind, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:17_StoreKit_SwiftUI0A7ContentP", {});
-registerSDKClass("_StoreKit_SwiftUI.StoreContentBuilder", StoreContentBuilder, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.StoreView", StoreView, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionOfferView", SubscriptionOfferView, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionOfferViewButtonKind", SubscriptionOfferViewButtonKind, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.StoreContentBuilder", StoreContentBuilder, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.StoreView", StoreView, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionOfferView", SubscriptionOfferView, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionOfferViewButtonKind", SubscriptionOfferViewButtonKind, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:17_StoreKit_SwiftUI26SubscriptionOfferViewStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionOfferViewStyleConfiguration", SubscriptionOfferViewStyleConfiguration, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {}, methods: {"displayDetails":{"id":1536193198775960},"subscribe":{"id":3188879198058350}} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionOfferViewStyleConfiguration.Icon", SubscriptionOfferViewStyleConfiguration_Icon, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionOptionGroup", SubscriptionOptionGroup, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionOptionGroupSet", SubscriptionOptionGroupSet, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionOfferViewStyleConfiguration", SubscriptionOfferViewStyleConfiguration, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {}, methods: {"displayDetails":{"id":1536193198775960},"subscribe":{"id":3188879198058350}} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionOfferViewStyleConfiguration.Icon", SubscriptionOfferViewStyleConfiguration_Icon, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionOptionGroup", SubscriptionOptionGroup, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionOptionGroupSet", SubscriptionOptionGroupSet, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:17_StoreKit_SwiftUI28SubscriptionOptionGroupStyleP", {});
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionOptionGroupStyleOutput", SubscriptionOptionGroupStyleOutput, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionOptionSection", SubscriptionOptionSection, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionPeriodGroupSet", SubscriptionPeriodGroupSet, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreButton", SubscriptionStoreButton, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreButtonLabel", SubscriptionStoreButtonLabel, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreContentView", SubscriptionStoreContentView, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlBackground", SubscriptionStoreControlBackground, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionOptionGroupStyleOutput", SubscriptionOptionGroupStyleOutput, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionOptionSection", SubscriptionOptionSection, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionPeriodGroupSet", SubscriptionPeriodGroupSet, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreButton", SubscriptionStoreButton, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreButtonLabel", SubscriptionStoreButtonLabel, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreContentView", SubscriptionStoreContentView, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlBackground", SubscriptionStoreControlBackground, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:17_StoreKit_SwiftUI012SubscriptionA16ControlPlacementP", {});
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlPlacementKey", SubscriptionStoreControlPlacementKey, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlPlacementKey", SubscriptionStoreControlPlacementKey, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration", SubscriptionStoreControlStyleConfiguration, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Icon", SubscriptionStoreControlStyleConfiguration_Icon, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Option", SubscriptionStoreControlStyleConfiguration_Option, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {}, methods: {"subscriptDynamicMember":{"id":2070023036944764},"subscriptDynamicMember5817":{"id":4335730527638735},"subscriptDynamicMember67124":{"id":60885725005707},"subscribe":{"id":4037357190488009}} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.PickerOption", SubscriptionStoreControlStyleConfiguration_PickerOption, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {}, methods: {"subscriptDynamicMember":{"id":1376029632938533},"subscriptDynamicMember54530":{"id":3598145906560412},"subscriptDynamicMember22851":{"id":982234812423559}} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Section", SubscriptionStoreControlStyleConfiguration_Section, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Section.Footer", SubscriptionStoreControlStyleConfiguration_Section_Footer, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Section.Header", SubscriptionStoreControlStyleConfiguration_Section_Header, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Section.ID", SubscriptionStoreControlStyleConfiguration_Section_ID, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStorePicker", SubscriptionStorePicker, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStorePickerOption", SubscriptionStorePickerOption, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStorePolicyKind", SubscriptionStorePolicyKind, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreView", SubscriptionStoreView, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.TabsSubscriptionOptionGroupStyle", TabsSubscriptionOptionGroupStyle, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
-registerSDKClass("_StoreKit_SwiftUI.TupleStoreContent", TupleStoreContent, { module: "_StoreKit_SwiftUI_5d69670f0307b385", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration", SubscriptionStoreControlStyleConfiguration, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Icon", SubscriptionStoreControlStyleConfiguration_Icon, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Option", SubscriptionStoreControlStyleConfiguration_Option, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {}, methods: {"subscriptDynamicMember":{"id":2070023036944764},"subscriptDynamicMember5817":{"id":4335730527638735},"subscriptDynamicMember67124":{"id":60885725005707},"subscribe":{"id":4037357190488009}} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.PickerOption", SubscriptionStoreControlStyleConfiguration_PickerOption, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {}, methods: {"subscriptDynamicMember":{"id":1376029632938533},"subscriptDynamicMember54530":{"id":3598145906560412},"subscriptDynamicMember22851":{"id":982234812423559}} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Section", SubscriptionStoreControlStyleConfiguration_Section, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Section.Footer", SubscriptionStoreControlStyleConfiguration_Section_Footer, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Section.Header", SubscriptionStoreControlStyleConfiguration_Section_Header, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreControlStyleConfiguration.Section.ID", SubscriptionStoreControlStyleConfiguration_Section_ID, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStorePicker", SubscriptionStorePicker, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStorePickerOption", SubscriptionStorePickerOption, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStorePolicyKind", SubscriptionStorePolicyKind, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.SubscriptionStoreView", SubscriptionStoreView, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.TabsSubscriptionOptionGroupStyle", TabsSubscriptionOptionGroupStyle, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });
+registerSDKClass("_StoreKit_SwiftUI.TupleStoreContent", TupleStoreContent, { module: "_StoreKit_SwiftUI_6be9a005889899ab", properties: {} });

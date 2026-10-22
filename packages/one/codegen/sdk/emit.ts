@@ -793,8 +793,11 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     // a member writing a value receiver goes through a mutating requirement,
     // and the table writes the opened value back to the handle
     const method = ({ isAsync }: Entry, mutates: boolean) => `${mutates ? 'Mutate' : ''}${isAsync ? 'Async' : mutates ? '' : 'Sync'}`
+    // framework tables share one native module and can extend the same owner.
+    // scope witnesses as well as protocols so each table keeps its own bodies.
+    const witness = (name: string) => `oneSDK${name}_${graph.module}`
     const signature = (name: string, conforming: boolean) =>
-      `${name.startsWith('Mutate') && (value || !conforming) ? 'mutating ' : ''}func oneSDK${name}(_ id: Int, _ c: OneSDKCall) ${name.endsWith('Async') ? 'async ' : ''}throws -> Any`
+      `${name.startsWith('Mutate') && (value || !conforming) ? 'mutating ' : ''}func ${witness(name)}(_ id: Int, _ c: OneSDKCall) ${name.endsWith('Async') ? 'async ' : ''}throws -> Any`
     const names = ['Sync', 'Async', 'Mutate', 'MutateAsync']
     const methods = names.map((name) => {
       const cases = [...bodies].filter(([entry, { mutates }]) => method(entry, mutates) === name).sort(([a], [b]) => a.id - b.id)
@@ -806,7 +809,7 @@ ${cases.map((line) => `${line}\n`).join('')}    default: throw OneSDKError.unkno
   }`
     })
     for (const [entry, { mutates }] of bodies) {
-      const call = `try ${entry.isAsync ? 'await ' : ''}o.oneSDK${method(entry, mutates)}(${entry.id}, c)`
+      const call = `try ${entry.isAsync ? 'await ' : ''}o.${witness(method(entry, mutates))}(${entry.id}, c)`
       entry.swift = mutates
         ? `var o: any ${protocol} = try c.receiver(); let r = ${call}; c.setReceiver(o); return r`
         : `let o: any ${protocol} = try c.receiver(); return ${call}`

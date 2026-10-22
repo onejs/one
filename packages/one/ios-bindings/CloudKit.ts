@@ -113,65 +113,65 @@ export class CKOperation extends SDKHandle {
    * init()
    * @availability iOS 8.0+
    */
-  static init(): CKOperation { return callSDK<CKOperation>("CloudKit_5d69670f0307b385", 4387760290525844, undefined, []); }
+  static init(): CKOperation { return callSDK<CKOperation>("CloudKit_6be9a005889899ab", 4387760290525844, undefined, []); }
   /**
    * var allowsCellularAccess: Bool { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get allowsCellularAccess(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 3055355599258394, this, []); }
-  set allowsCellularAccess(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 132411353635154, this, [value]); }
+  get allowsCellularAccess(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 3055355599258394, this, []); }
+  set allowsCellularAccess(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 132411353635154, this, [value]); }
   /**
    * @NSCopying var configuration: CKOperation.Configuration! { get set }
    * @availability iOS 11.0+
    */
-  get configuration(): $SDK0 { return callSDK<$SDK0>("CloudKit_5d69670f0307b385", 2401324240230694, this, []); }
-  set configuration(value: $SDK0) { callSDK<void>("CloudKit_5d69670f0307b385", 3181438768324366, this, [value]); }
+  get configuration(): $SDK0 { return callSDK<$SDK0>("CloudKit_6be9a005889899ab", 2401324240230694, this, []); }
+  set configuration(value: $SDK0) { callSDK<void>("CloudKit_6be9a005889899ab", 3181438768324366, this, [value]); }
   /**
    * var container: CKContainer? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get container(): (CKContainer) | null { return callSDK<(CKContainer) | null>("CloudKit_5d69670f0307b385", 1871776872336231, this, []); }
-  set container(value: (CKContainer) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3798055262047610, this, [value]); }
+  get container(): (CKContainer) | null { return callSDK<(CKContainer) | null>("CloudKit_6be9a005889899ab", 1871776872336231, this, []); }
+  set container(value: (CKContainer) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3798055262047610, this, [value]); }
   /**
    * var group: CKOperationGroup? { get set }
    * @availability iOS 11.0+
    */
-  get group(): $SDK1 { return callSDK<$SDK1>("CloudKit_5d69670f0307b385", 96962242567549, this, []); }
-  set group(value: $SDK1) { callSDK<void>("CloudKit_5d69670f0307b385", 2135256066181352, this, [value]); }
+  get group(): $SDK1 { return callSDK<$SDK1>("CloudKit_6be9a005889899ab", 96962242567549, this, []); }
+  set group(value: $SDK1) { callSDK<void>("CloudKit_6be9a005889899ab", 2135256066181352, this, [value]); }
   /**
    * var isLongLived: Bool { get set }
    * @availability iOS 9.3+
    * @deprecated iOS 11.0
    */
-  get isLongLived(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 1601118528863546, this, []); }
-  set isLongLived(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 3658826317590204, this, [value]); }
+  get isLongLived(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 1601118528863546, this, []); }
+  set isLongLived(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 3658826317590204, this, [value]); }
   /**
    * var longLivedOperationWasPersistedBlock: (() -> Void)? { get set }
    * @availability iOS 9.3+
    */
-  get longLivedOperationWasPersistedBlock(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 1884405193694381, this, []); }
-  set longLivedOperationWasPersistedBlock(value: ((() => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3930495756592937, this, [value], [{"callback":{"out":[]}}]); }
+  get longLivedOperationWasPersistedBlock(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 1884405193694381, this, []); }
+  set longLivedOperationWasPersistedBlock(value: ((() => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3930495756592937, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var timeoutIntervalForRequest: TimeInterval { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 11.0
    */
-  get timeoutIntervalForRequest(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 1104134090213398, this, []); }
-  set timeoutIntervalForRequest(value: number) { callSDK<void>("CloudKit_5d69670f0307b385", 4168790327719194, this, [value]); }
+  get timeoutIntervalForRequest(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 1104134090213398, this, []); }
+  set timeoutIntervalForRequest(value: number) { callSDK<void>("CloudKit_6be9a005889899ab", 4168790327719194, this, [value]); }
   /**
    * var timeoutIntervalForResource: TimeInterval { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 11.0
    */
-  get timeoutIntervalForResource(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 2447232341507924, this, []); }
-  set timeoutIntervalForResource(value: number) { callSDK<void>("CloudKit_5d69670f0307b385", 3574730195488178, this, [value]); }
+  get timeoutIntervalForResource(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 2447232341507924, this, []); }
+  set timeoutIntervalForResource(value: number) { callSDK<void>("CloudKit_6be9a005889899ab", 3574730195488178, this, [value]); }
   /**
    * var operationID: CKOperation.ID { get }
    * @availability iOS 9.3+
    */
-  get operationID(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1548742901477393, this, []); }
+  get operationID(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1548742901477393, this, []); }
   declare readonly $type: { "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true };
 }
@@ -185,44 +185,44 @@ export class CKAcceptSharesOperation extends (CKOperation as unknown as Omit<typ
    * init()
    * @availability iOS 10.0+
    */
-  static init(): CKAcceptSharesOperation { return callSDK<CKAcceptSharesOperation>("CloudKit_5d69670f0307b385", 3522657021447115, undefined, []); }
+  static init(): CKAcceptSharesOperation { return callSDK<CKAcceptSharesOperation>("CloudKit_6be9a005889899ab", 3522657021447115, undefined, []); }
   /**
    * convenience init(shareMetadatas: [CKShare.Metadata])
    * @availability iOS 10.0+
    */
-  static initShareMetadatas(shareMetadatas: Array<CKShare_Metadata>): CKAcceptSharesOperation { return callSDK<CKAcceptSharesOperation>("CloudKit_5d69670f0307b385", 1134290642150427, undefined, [shareMetadatas]); }
+  static initShareMetadatas(shareMetadatas: Array<CKShare_Metadata>): CKAcceptSharesOperation { return callSDK<CKAcceptSharesOperation>("CloudKit_6be9a005889899ab", 1134290642150427, undefined, [shareMetadatas]); }
   /**
    * var acceptSharesCompletionBlock: (((any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get acceptSharesCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_5d69670f0307b385", 2725951035391912, this, []); }
-  set acceptSharesCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_5d69670f0307b385", 130960541472676, this, [value], [{"callback":{"out":[]}}]); }
+  get acceptSharesCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_6be9a005889899ab", 2725951035391912, this, []); }
+  set acceptSharesCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_6be9a005889899ab", 130960541472676, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perShareCompletionBlock: ((CKShare.Metadata, CKShare?, (any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get perShareCompletionBlock(): (((arg0: CKShare_Metadata, arg1: (CKShare) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: CKShare_Metadata, arg1: (CKShare) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 3666639560486346, this, []); }
-  set perShareCompletionBlock(value: (((arg0: CKShare_Metadata, arg1: (CKShare) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3936489402571106, this, [value], [{"callback":{"out":[]}}]); }
+  get perShareCompletionBlock(): (((arg0: CKShare_Metadata, arg1: (CKShare) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: CKShare_Metadata, arg1: (CKShare) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 3666639560486346, this, []); }
+  set perShareCompletionBlock(value: (((arg0: CKShare_Metadata, arg1: (CKShare) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3936489402571106, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var shareMetadatas: [CKShare.Metadata]? { get set }
    * @availability iOS 10.0+
    */
-  get shareMetadatas(): $SDK7 { return callSDK<$SDK7>("CloudKit_5d69670f0307b385", 1222094554557408, this, []); }
-  set shareMetadatas(value: $SDK7) { callSDK<void>("CloudKit_5d69670f0307b385", 3430645811645995, this, [value]); }
+  get shareMetadatas(): $SDK7 { return callSDK<$SDK7>("CloudKit_6be9a005889899ab", 1222094554557408, this, []); }
+  set shareMetadatas(value: $SDK7) { callSDK<void>("CloudKit_6be9a005889899ab", 3430645811645995, this, [value]); }
   /**
    * var acceptSharesResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get acceptSharesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 1492608225907630, this, []); }
-  set acceptSharesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 655542187223255, this, [value], [{"callback":{"out":[]}}]); }
+  get acceptSharesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 1492608225907630, this, []); }
+  set acceptSharesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 655542187223255, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perShareResultBlock: ((CKShare.Metadata, Result<CKShare, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perShareResultBlock(): (((arg0: CKShare_Metadata, arg1: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: CKShare_Metadata, arg1: SDKHandle) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 2475379308977886, this, []); }
-  set perShareResultBlock(value: (((arg0: CKShare_Metadata, arg1: SDKHandle) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 175712390286136, this, [value], [{"callback":{"out":[]}}]); }
+  get perShareResultBlock(): (((arg0: CKShare_Metadata, arg1: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: CKShare_Metadata, arg1: SDKHandle) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 2475379308977886, this, []); }
+  set perShareResultBlock(value: (((arg0: CKShare_Metadata, arg1: SDKHandle) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 175712390286136, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKAcceptSharesOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "shareMetadatas": true };
 }
@@ -238,7 +238,7 @@ export const CKAccountStatus = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (CKAccountStatus) | null { return callSDK<(CKAccountStatus) | null>("CloudKit_5d69670f0307b385", 2896613468100307, undefined, [rawValue]); }
+  init(rawValue: number): (CKAccountStatus) | null { return callSDK<(CKAccountStatus) | null>("CloudKit_6be9a005889899ab", 2896613468100307, undefined, [rawValue]); }
 };
 
 /**
@@ -250,36 +250,36 @@ export class CKAllowedSharingOptions extends SDKHandle {
    * class var standard: CKAllowedSharingOptions { get }
    * @availability iOS 16.0+
    */
-  static get standard(): CKAllowedSharingOptions { return callSDK<CKAllowedSharingOptions>("CloudKit_5d69670f0307b385", 1337659466321783, undefined, []); }
+  static get standard(): CKAllowedSharingOptions { return callSDK<CKAllowedSharingOptions>("CloudKit_6be9a005889899ab", 1337659466321783, undefined, []); }
   /**
    * init(allowedParticipantPermissionOptions: CKSharingParticipantPermissionOption, allowedParticipantAccessOptions: CKSharingParticipantAccessOption)
    * @availability iOS 16.0+
    */
-  static init(allowedParticipantPermissionOptions: CKSharingParticipantPermissionOption, allowedParticipantAccessOptions: CKSharingParticipantAccessOption): CKAllowedSharingOptions { return callSDK<CKAllowedSharingOptions>("CloudKit_5d69670f0307b385", 3093663599633497, undefined, [allowedParticipantPermissionOptions, allowedParticipantAccessOptions]); }
+  static init(allowedParticipantPermissionOptions: CKSharingParticipantPermissionOption, allowedParticipantAccessOptions: CKSharingParticipantAccessOption): CKAllowedSharingOptions { return callSDK<CKAllowedSharingOptions>("CloudKit_6be9a005889899ab", 3093663599633497, undefined, [allowedParticipantPermissionOptions, allowedParticipantAccessOptions]); }
   /**
    * var allowedParticipantAccessOptions: CKSharingParticipantAccessOption { get set }
    * @availability iOS 16.0+
    */
-  get allowedParticipantAccessOptions(): CKSharingParticipantAccessOption { return callSDK<CKSharingParticipantAccessOption>("CloudKit_5d69670f0307b385", 2311016857805255, this, []); }
-  set allowedParticipantAccessOptions(value: CKSharingParticipantAccessOption) { callSDK<void>("CloudKit_5d69670f0307b385", 1782133194367923, this, [value]); }
+  get allowedParticipantAccessOptions(): CKSharingParticipantAccessOption { return callSDK<CKSharingParticipantAccessOption>("CloudKit_6be9a005889899ab", 2311016857805255, this, []); }
+  set allowedParticipantAccessOptions(value: CKSharingParticipantAccessOption) { callSDK<void>("CloudKit_6be9a005889899ab", 1782133194367923, this, [value]); }
   /**
    * var allowedParticipantPermissionOptions: CKSharingParticipantPermissionOption { get set }
    * @availability iOS 16.0+
    */
-  get allowedParticipantPermissionOptions(): CKSharingParticipantPermissionOption { return callSDK<CKSharingParticipantPermissionOption>("CloudKit_5d69670f0307b385", 2641620717546976, this, []); }
-  set allowedParticipantPermissionOptions(value: CKSharingParticipantPermissionOption) { callSDK<void>("CloudKit_5d69670f0307b385", 3178824845211456, this, [value]); }
+  get allowedParticipantPermissionOptions(): CKSharingParticipantPermissionOption { return callSDK<CKSharingParticipantPermissionOption>("CloudKit_6be9a005889899ab", 2641620717546976, this, []); }
+  set allowedParticipantPermissionOptions(value: CKSharingParticipantPermissionOption) { callSDK<void>("CloudKit_6be9a005889899ab", 3178824845211456, this, [value]); }
   /**
    * var allowsAccessRequests: Bool { get set }
    * @availability iOS 26.0+
    */
-  get allowsAccessRequests(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 4386434982531987, this, []); }
-  set allowsAccessRequests(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 2079746016264890, this, [value]); }
+  get allowsAccessRequests(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 4386434982531987, this, []); }
+  set allowsAccessRequests(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 2079746016264890, this, [value]); }
   /**
    * var allowsParticipantsToInviteOthers: Bool { get set }
    * @availability iOS 26.0+
    */
-  get allowsParticipantsToInviteOthers(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 776627834435962, this, []); }
-  set allowsParticipantsToInviteOthers(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 1279946415565739, this, [value]); }
+  get allowsParticipantsToInviteOthers(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 776627834435962, this, []); }
+  set allowsParticipantsToInviteOthers(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 1279946415565739, this, [value]); }
   declare readonly $type: { "c:objc(cs)CKAllowedSharingOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowedParticipantAccessOptions": true; "allowedParticipantPermissionOptions": true; "allowsAccessRequests": true; "allowsParticipantsToInviteOthers": true };
 }
@@ -293,17 +293,17 @@ export class CKAsset extends SDKHandle {
    * init(fileURL: URL)
    * @availability iOS 8.0+
    */
-  static initFileURL(fileURL: string): CKAsset { return callSDK<CKAsset>("CloudKit_5d69670f0307b385", 3003914123231531, undefined, [fileURL]); }
+  static initFileURL(fileURL: string): CKAsset { return callSDK<CKAsset>("CloudKit_6be9a005889899ab", 3003914123231531, undefined, [fileURL]); }
   /**
    * var fileURL: URL? { get }
    * @availability iOS 8.0+
    */
-  get fileURL(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 260519331382106, this, []); }
+  get fileURL(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 260519331382106, this, []); }
   /**
    * convenience init(importing exportedAssetID: CKAsset.ExportedAssetID)
    * @availability iOS 27.0+
    */
-  static initImporting(exportedAssetID: CKAsset_ExportedAssetID): CKAsset { return callSDK<CKAsset>("CloudKit_5d69670f0307b385", 3664602562886412, undefined, [exportedAssetID]); }
+  static initImporting(exportedAssetID: CKAsset_ExportedAssetID): CKAsset { return callSDK<CKAsset>("CloudKit_6be9a005889899ab", 3664602562886412, undefined, [exportedAssetID]); }
   declare readonly $type: { "c:objc(cs)CKAsset": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fileURL": true };
 }
@@ -325,276 +325,276 @@ export class CKContainer extends SDKHandle {
    * init(identifier containerIdentifier: String)
    * @availability iOS 8.0+
    */
-  static init(containerIdentifier: string): CKContainer { return callSDK<CKContainer>("CloudKit_5d69670f0307b385", 3661926680624255, undefined, [containerIdentifier]); }
+  static init(containerIdentifier: string): CKContainer { return callSDK<CKContainer>("CloudKit_6be9a005889899ab", 3661926680624255, undefined, [containerIdentifier]); }
   /**
    * class func `default`() -> CKContainer
    * @availability iOS 8.0+
    */
-  static default(): CKContainer { return callSDK<CKContainer>("CloudKit_5d69670f0307b385", 2839473205652700, undefined, []); }
+  static default(): CKContainer { return callSDK<CKContainer>("CloudKit_6be9a005889899ab", 2839473205652700, undefined, []); }
   /**
    * func accept(_ metadata: CKShare.Metadata, completionHandler: @escaping @Sendable (CKShare?, (any Error)?) -> Void)
    * @availability iOS 10.0+
    */
-  acceptCompletionHandler(metadata: CKShare_Metadata, completionHandler: ((arg0: (CKShare) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2103247591672886, this, [metadata, completionHandler], [null,{"callback":{"out":[]}}]); }
+  acceptCompletionHandler(metadata: CKShare_Metadata, completionHandler: ((arg0: (CKShare) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2103247591672886, this, [metadata, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** func accountStatus() async throws -> CKAccountStatus */
-  accountStatus(completionHandler: ((arg0: CKAccountStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 657523567341403, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  accountStatus(completionHandler: ((arg0: CKAccountStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 657523567341403, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func add(_ operation: CKOperation)
    * @availability iOS 8.0+
    */
-  add(operation: CKOperation): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3088941588193717, this, [operation]); }
+  add(operation: CKOperation): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3088941588193717, this, [operation]); }
   /**
    * func database(with databaseScope: CKDatabase.Scope) -> CKDatabase
    * @availability iOS 10.0+
    */
-  database(databaseScope: CKDatabase_Scope): CKDatabase { return callSDK<CKDatabase>("CloudKit_5d69670f0307b385", 1071829513763679, this, [databaseScope]); }
+  database(databaseScope: CKDatabase_Scope): CKDatabase { return callSDK<CKDatabase>("CloudKit_6be9a005889899ab", 1071829513763679, this, [databaseScope]); }
   /**
    * func discoverAllIdentities(completionHandler: @escaping @Sendable ([CKUserIdentity]?, (any Error)?) -> Void)
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  discoverAllIdentities(completionHandler: ((arg0: (Array<CKUserIdentity>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 214475774147851, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  discoverAllIdentities(completionHandler: ((arg0: (Array<CKUserIdentity>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 214475774147851, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func discoverUserIdentity(withEmailAddress email: String, completionHandler: @escaping @Sendable (CKUserIdentity?, (any Error)?) -> Void)
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  discoverUserIdentityWithEmailAddressCompletionHandler(email: string, completionHandler: $SDK15): void { return callSDK<void>("CloudKit_5d69670f0307b385", 4241370970472710, this, [email, completionHandler], [null,{"callback":{"out":[]}}]); }
+  discoverUserIdentityWithEmailAddressCompletionHandler(email: string, completionHandler: $SDK15): void { return callSDK<void>("CloudKit_6be9a005889899ab", 4241370970472710, this, [email, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func discoverUserIdentity(withPhoneNumber phoneNumber: String, completionHandler: @escaping @Sendable (CKUserIdentity?, (any Error)?) -> Void)
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  discoverUserIdentityWithPhoneNumberCompletionHandler(phoneNumber: string, completionHandler: $SDK15): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3728743011543049, this, [phoneNumber, completionHandler], [null,{"callback":{"out":[]}}]); }
+  discoverUserIdentityWithPhoneNumberCompletionHandler(phoneNumber: string, completionHandler: $SDK15): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3728743011543049, this, [phoneNumber, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func discoverUserIdentity(withUserRecordID userRecordID: CKRecord.ID, completionHandler: @escaping @Sendable (CKUserIdentity?, (any Error)?) -> Void)
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  discoverUserIdentityWithUserRecordIDCompletionHandler(userRecordID: CKRecord_ID, completionHandler: $SDK15): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2845815442456122, this, [userRecordID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  discoverUserIdentityWithUserRecordIDCompletionHandler(userRecordID: CKRecord_ID, completionHandler: $SDK15): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2845815442456122, this, [userRecordID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func fetchShareMetadata(with url: URL, completionHandler: @escaping @Sendable (CKShare.Metadata?, (any Error)?) -> Void)
    * @availability iOS 10.0+
    */
-  fetchShareMetadata(url: string, completionHandler: ((arg0: (CKShare_Metadata) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 196135414229573, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchShareMetadata(url: string, completionHandler: ((arg0: (CKShare_Metadata) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 196135414229573, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func fetchShareParticipant(withEmailAddress emailAddress: String, completionHandler: @escaping @Sendable (CKShare.Participant?, (any Error)?) -> Void)
    * @availability iOS 10.0+
    */
-  fetchShareParticipantWithEmailAddressCompletionHandler(emailAddress: string, completionHandler: $SDK17): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2607002085788258, this, [emailAddress, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchShareParticipantWithEmailAddressCompletionHandler(emailAddress: string, completionHandler: $SDK17): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2607002085788258, this, [emailAddress, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func fetchShareParticipant(withPhoneNumber phoneNumber: String, completionHandler: @escaping @Sendable (CKShare.Participant?, (any Error)?) -> Void)
    * @availability iOS 10.0+
    */
-  fetchShareParticipantWithPhoneNumberCompletionHandler(phoneNumber: string, completionHandler: $SDK17): void { return callSDK<void>("CloudKit_5d69670f0307b385", 283420448792526, this, [phoneNumber, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchShareParticipantWithPhoneNumberCompletionHandler(phoneNumber: string, completionHandler: $SDK17): void { return callSDK<void>("CloudKit_6be9a005889899ab", 283420448792526, this, [phoneNumber, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func fetchShareParticipant(withUserRecordID userRecordID: CKRecord.ID, completionHandler: @escaping @Sendable (CKShare.Participant?, (any Error)?) -> Void)
    * @availability iOS 10.0+
    */
-  fetchShareParticipantWithUserRecordIDCompletionHandler(userRecordID: CKRecord_ID, completionHandler: $SDK17): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2340540617638601, this, [userRecordID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchShareParticipantWithUserRecordIDCompletionHandler(userRecordID: CKRecord_ID, completionHandler: $SDK17): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2340540617638601, this, [userRecordID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** func userRecordID() async throws -> CKRecord.ID */
-  fetchUserRecordID(completionHandler: $SDK18): void { return callSDK<void>("CloudKit_5d69670f0307b385", 903484451365029, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchUserRecordID(completionHandler: $SDK18): void { return callSDK<void>("CloudKit_6be9a005889899ab", 903484451365029, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func requestApplicationPermission(_ applicationPermission: CKContainer.ApplicationPermissions) async throws -> CKContainer.ApplicationPermissionStatus
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  requestApplicationPermission(applicationPermission: CKContainer_ApplicationPermissions, completionHandler: $SDK19): void { return callSDK<void>("CloudKit_5d69670f0307b385", 1461344068732857, this, [applicationPermission, completionHandler], [null,{"callback":{"out":[]}}]); }
+  requestApplicationPermission(applicationPermission: CKContainer_ApplicationPermissions, completionHandler: $SDK19): void { return callSDK<void>("CloudKit_6be9a005889899ab", 1461344068732857, this, [applicationPermission, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func applicationPermissionStatus(for applicationPermission: CKContainer.ApplicationPermissions) async throws -> CKContainer.ApplicationPermissionStatus
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  status(applicationPermission: CKContainer_ApplicationPermissions, completionHandler: $SDK19): void { return callSDK<void>("CloudKit_5d69670f0307b385", 630598171041897, this, [applicationPermission, completionHandler], [null,{"callback":{"out":[]}}]); }
+  status(applicationPermission: CKContainer_ApplicationPermissions, completionHandler: $SDK19): void { return callSDK<void>("CloudKit_6be9a005889899ab", 630598171041897, this, [applicationPermission, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var containerIdentifier: String? { get }
    * @availability iOS 8.0+
    */
-  get containerIdentifier(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3389197631518998, this, []); }
+  get containerIdentifier(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3389197631518998, this, []); }
   /** var privateCloudDatabase: CKDatabase { get } */
-  get privateCloudDatabase(): CKDatabase { return callSDK<CKDatabase>("CloudKit_5d69670f0307b385", 1313881112080937, this, []); }
+  get privateCloudDatabase(): CKDatabase { return callSDK<CKDatabase>("CloudKit_6be9a005889899ab", 1313881112080937, this, []); }
   /** var publicCloudDatabase: CKDatabase { get } */
-  get publicCloudDatabase(): CKDatabase { return callSDK<CKDatabase>("CloudKit_5d69670f0307b385", 3214194992831846, this, []); }
+  get publicCloudDatabase(): CKDatabase { return callSDK<CKDatabase>("CloudKit_6be9a005889899ab", 3214194992831846, this, []); }
   /**
    * var sharedCloudDatabase: CKDatabase { get }
    * @availability iOS 10.0+
    */
-  get sharedCloudDatabase(): CKDatabase { return callSDK<CKDatabase>("CloudKit_5d69670f0307b385", 3101832021589676, this, []); }
+  get sharedCloudDatabase(): CKDatabase { return callSDK<CKDatabase>("CloudKit_6be9a005889899ab", 3101832021589676, this, []); }
   /**
    * func userIdentity(forPhoneNumber phoneNumber: String) async throws -> CKUserIdentity?
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  userIdentityForPhoneNumber(phoneNumber: string): Promise<(CKUserIdentity) | null> { return callSDKAsync<(CKUserIdentity) | null>("CloudKit_5d69670f0307b385", 3223391156869822, this, [phoneNumber]); }
+  userIdentityForPhoneNumber(phoneNumber: string): Promise<(CKUserIdentity) | null> { return callSDKAsync<(CKUserIdentity) | null>("CloudKit_6be9a005889899ab", 3223391156869822, this, [phoneNumber]); }
   /**
    * func userIdentity(forEmailAddress email: String) async throws -> CKUserIdentity?
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  userIdentityForEmailAddress(email: string): Promise<(CKUserIdentity) | null> { return callSDKAsync<(CKUserIdentity) | null>("CloudKit_5d69670f0307b385", 2535912628829243, this, [email]); }
+  userIdentityForEmailAddress(email: string): Promise<(CKUserIdentity) | null> { return callSDKAsync<(CKUserIdentity) | null>("CloudKit_6be9a005889899ab", 2535912628829243, this, [email]); }
   /**
    * func userIdentity(forUserRecordID userRecordID: CKRecord.ID) async throws -> CKUserIdentity?
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  userIdentityForUserRecordID(userRecordID: CKRecord_ID): Promise<(CKUserIdentity) | null> { return callSDKAsync<(CKUserIdentity) | null>("CloudKit_5d69670f0307b385", 3579578801369086, this, [userRecordID]); }
+  userIdentityForUserRecordID(userRecordID: CKRecord_ID): Promise<(CKUserIdentity) | null> { return callSDKAsync<(CKUserIdentity) | null>("CloudKit_6be9a005889899ab", 3579578801369086, this, [userRecordID]); }
   /**
    * func shareMetadata(for url: URL) async throws -> CKShare.Metadata
    * @availability iOS 15.0+
    */
-  shareMetadata(url: string): Promise<CKShare_Metadata> { return callSDKAsync<CKShare_Metadata>("CloudKit_5d69670f0307b385", 572749462032632, this, [url]); }
+  shareMetadata(url: string): Promise<CKShare_Metadata> { return callSDKAsync<CKShare_Metadata>("CloudKit_6be9a005889899ab", 572749462032632, this, [url]); }
   /**
    * @discardableResult func configuredWith<R>(configuration: CKOperation.Configuration? = nil, group: CKOperationGroup? = nil, body: (CKContainer) throws -> R) rethrows -> R
    * @availability iOS 15.0+
    */
-  configuredWithConfigurationGroupBody(configuration: $SDK0, group: $SDK1, body: ((arg0: CKContainer) => unknown)): unknown { return callSDK<unknown>("CloudKit_5d69670f0307b385", 2858497605361870, this, [configuration, group, body], [null,null,{"callback":{"out":[]}}], true); }
+  configuredWithConfigurationGroupBody(configuration: $SDK0, group: $SDK1, body: ((arg0: CKContainer) => unknown)): unknown { return callSDK<unknown>("CloudKit_6be9a005889899ab", 2858497605361870, this, [configuration, group, body], [null,null,{"callback":{"out":[]}}], true); }
   /**
    * @discardableResult @preconcurrency func configuredWith<R>(configuration: CKOperation.Configuration? = nil, group: CKOperationGroup? = nil, body: @Sendable (CKContainer) async throws -> R) async rethrows -> R
    * @availability iOS 15.0+
    */
-  configuredWithConfigurationGroupBody21466(configuration: $SDK0, group: $SDK1, body: ((arg0: CKContainer) => Promise<unknown>)): Promise<unknown> { return callSDKAsync<unknown>("CloudKit_5d69670f0307b385", 2125274451611367, this, [configuration, group, body], [null,null,{"callback":{"out":[]}}]); }
+  configuredWithConfigurationGroupBody21466(configuration: $SDK0, group: $SDK1, body: ((arg0: CKContainer) => Promise<unknown>)): Promise<unknown> { return callSDKAsync<unknown>("CloudKit_6be9a005889899ab", 2125274451611367, this, [configuration, group, body], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func shareMetadatas(for urls: [URL]) async throws -> [URL : Result<CKShare.Metadata, any Error>]
    * @availability iOS 15.0+
    */
-  shareMetadatas(urls: Array<string>): Promise<$SDK22> { return callSDKAsync<$SDK22>("CloudKit_5d69670f0307b385", 4157903445655455, this, [urls]); }
+  shareMetadatas(urls: Array<string>): Promise<$SDK22> { return callSDKAsync<$SDK22>("CloudKit_6be9a005889899ab", 4157903445655455, this, [urls]); }
   /**
    * func userIdentities(forPhoneNumbers phoneNumbers: [String]) async throws -> [String : CKUserIdentity]
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  userIdentitiesForPhoneNumbers(phoneNumbers: Array<string>): Promise<$SDK23> { return callSDKAsync<$SDK23>("CloudKit_5d69670f0307b385", 1403489823707975, this, [phoneNumbers]); }
+  userIdentitiesForPhoneNumbers(phoneNumbers: Array<string>): Promise<$SDK23> { return callSDKAsync<$SDK23>("CloudKit_6be9a005889899ab", 1403489823707975, this, [phoneNumbers]); }
   /**
    * func userIdentities(forUserRecordIDs userRecordIDs: [CKRecord.ID]) async throws -> [CKRecord.ID : CKUserIdentity]
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  userIdentitiesForUserRecordIDs(userRecordIDs: Array<CKRecord_ID>): Promise<NativeMap<CKRecord_ID, CKUserIdentity>> { return callSDKAsync<NativeMap<CKRecord_ID, CKUserIdentity>>("CloudKit_5d69670f0307b385", 2043739683678817, this, [userRecordIDs]); }
+  userIdentitiesForUserRecordIDs(userRecordIDs: Array<CKRecord_ID>): Promise<NativeMap<CKRecord_ID, CKUserIdentity>> { return callSDKAsync<NativeMap<CKRecord_ID, CKUserIdentity>>("CloudKit_6be9a005889899ab", 2043739683678817, this, [userRecordIDs]); }
   /**
    * func userIdentities(forEmailAddresses emails: [String]) async throws -> [String : CKUserIdentity]
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  userIdentitiesForEmailAddresses(emails: Array<string>): Promise<$SDK23> { return callSDKAsync<$SDK23>("CloudKit_5d69670f0307b385", 1992968595651531, this, [emails]); }
+  userIdentitiesForEmailAddresses(emails: Array<string>): Promise<$SDK23> { return callSDKAsync<$SDK23>("CloudKit_6be9a005889899ab", 1992968595651531, this, [emails]); }
   /**
    * func shareParticipant(forPhoneNumber phoneNumber: String) async throws -> CKShare.Participant
    * @availability iOS 15.0+
    */
-  shareParticipantForPhoneNumber(phoneNumber: string): Promise<CKShare_Participant> { return callSDKAsync<CKShare_Participant>("CloudKit_5d69670f0307b385", 1030384225163398, this, [phoneNumber]); }
+  shareParticipantForPhoneNumber(phoneNumber: string): Promise<CKShare_Participant> { return callSDKAsync<CKShare_Participant>("CloudKit_6be9a005889899ab", 1030384225163398, this, [phoneNumber]); }
   /**
    * func shareParticipant(forEmailAddress email: String) async throws -> CKShare.Participant
    * @availability iOS 15.0+
    */
-  shareParticipantForEmailAddress(email: string): Promise<CKShare_Participant> { return callSDKAsync<CKShare_Participant>("CloudKit_5d69670f0307b385", 4332628955156306, this, [email]); }
+  shareParticipantForEmailAddress(email: string): Promise<CKShare_Participant> { return callSDKAsync<CKShare_Participant>("CloudKit_6be9a005889899ab", 4332628955156306, this, [email]); }
   /**
    * func shareParticipant(forUserRecordID userRecordID: CKRecord.ID) async throws -> CKShare.Participant
    * @availability iOS 15.0+
    */
-  shareParticipantForUserRecordID(userRecordID: CKRecord_ID): Promise<CKShare_Participant> { return callSDKAsync<CKShare_Participant>("CloudKit_5d69670f0307b385", 3647082616042238, this, [userRecordID]); }
+  shareParticipantForUserRecordID(userRecordID: CKRecord_ID): Promise<CKShare_Participant> { return callSDKAsync<CKShare_Participant>("CloudKit_6be9a005889899ab", 3647082616042238, this, [userRecordID]); }
   /**
    * func shareParticipants(forPhoneNumbers phoneNumbers: [String]) async throws -> [String : Result<CKShare.Participant, any Error>]
    * @availability iOS 15.0+
    */
-  shareParticipantsForPhoneNumbers(phoneNumbers: Array<string>): Promise<$SDK22> { return callSDKAsync<$SDK22>("CloudKit_5d69670f0307b385", 3682718481891061, this, [phoneNumbers]); }
+  shareParticipantsForPhoneNumbers(phoneNumbers: Array<string>): Promise<$SDK22> { return callSDKAsync<$SDK22>("CloudKit_6be9a005889899ab", 3682718481891061, this, [phoneNumbers]); }
   /**
    * func shareParticipants(forUserRecordIDs userRecordIDs: [CKRecord.ID]) async throws -> [CKRecord.ID : Result<CKShare.Participant, any Error>]
    * @availability iOS 15.0+
    */
-  shareParticipantsForUserRecordIDs(userRecordIDs: Array<CKRecord_ID>): Promise<$SDK25> { return callSDKAsync<$SDK25>("CloudKit_5d69670f0307b385", 2283000253361283, this, [userRecordIDs]); }
+  shareParticipantsForUserRecordIDs(userRecordIDs: Array<CKRecord_ID>): Promise<$SDK25> { return callSDKAsync<$SDK25>("CloudKit_6be9a005889899ab", 2283000253361283, this, [userRecordIDs]); }
   /**
    * func shareParticipants(forEmailAddresses emails: [String]) async throws -> [String : Result<CKShare.Participant, any Error>]
    * @availability iOS 15.0+
    */
-  shareParticipantsForEmailAddresses(emails: Array<string>): Promise<$SDK22> { return callSDKAsync<$SDK22>("CloudKit_5d69670f0307b385", 3630340625054073, this, [emails]); }
+  shareParticipantsForEmailAddresses(emails: Array<string>): Promise<$SDK22> { return callSDKAsync<$SDK22>("CloudKit_6be9a005889899ab", 3630340625054073, this, [emails]); }
   /**
    * func shareParticipants(for lookupInfos: [CKUserIdentity.LookupInfo]) async throws -> [CKUserIdentity.LookupInfo : Result<CKShare.Participant, any Error>]
    * @availability iOS 26.0+
    */
-  shareParticipantsFor(lookupInfos: $SDK27): Promise<NativeMap<CKUserIdentity_LookupInfo, SDKHandle>> { return callSDKAsync<NativeMap<CKUserIdentity_LookupInfo, SDKHandle>>("CloudKit_5d69670f0307b385", 3745395716133099, this, [lookupInfos]); }
+  shareParticipantsFor(lookupInfos: $SDK27): Promise<NativeMap<CKUserIdentity_LookupInfo, SDKHandle>> { return callSDKAsync<NativeMap<CKUserIdentity_LookupInfo, SDKHandle>>("CloudKit_6be9a005889899ab", 3745395716133099, this, [lookupInfos]); }
   /**
    * func longLivedOperation(for operationID: CKOperation.ID) async throws -> CKOperation?
    * @availability iOS 15.0+
    */
-  longLivedOperation(operationID: string): Promise<(CKOperation) | null> { return callSDKAsync<(CKOperation) | null>("CloudKit_5d69670f0307b385", 1474509138992128, this, [operationID]); }
+  longLivedOperation(operationID: string): Promise<(CKOperation) | null> { return callSDKAsync<(CKOperation) | null>("CloudKit_6be9a005889899ab", 1474509138992128, this, [operationID]); }
   /**
    * func requestShareAccess(for urls: [URL]) async throws -> [URL : Result<Void, any Error>]
    * @availability iOS 26.0+
    */
-  requestShareAccess(urls: Array<string>): Promise<$SDK22> { return callSDKAsync<$SDK22>("CloudKit_5d69670f0307b385", 3726972204681519, this, [urls]); }
+  requestShareAccess(urls: Array<string>): Promise<$SDK22> { return callSDKAsync<$SDK22>("CloudKit_6be9a005889899ab", 3726972204681519, this, [urls]); }
   /**
    * @preconcurrency func fetchShareMetadatas(for urls: [URL], completionHandler: @escaping @Sendable (Result<[URL : Result<CKShare.Metadata, any Error>], any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchShareMetadatas(urls: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 1164459308434710, this, [urls, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchShareMetadatas(urls: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 1164459308434710, this, [urls, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func discoverUserIdentities(forUserRecordIDs userRecordIDs: [CKRecord.ID], completionHandler: @escaping @Sendable (Result<[CKRecord.ID : CKUserIdentity], any Error>) -> Void)
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  discoverUserIdentitiesForUserRecordIDsCompletionHandler(userRecordIDs: Array<CKRecord_ID>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 818805411559224, this, [userRecordIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
+  discoverUserIdentitiesForUserRecordIDsCompletionHandler(userRecordIDs: Array<CKRecord_ID>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 818805411559224, this, [userRecordIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func discoverUserIdentities(forPhoneNumbers phoneNumbers: [String], completionHandler: @escaping @Sendable (Result<[String : CKUserIdentity], any Error>) -> Void)
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  discoverUserIdentitiesForPhoneNumbersCompletionHandler(phoneNumbers: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3324397932072335, this, [phoneNumbers, completionHandler], [null,{"callback":{"out":[]}}]); }
+  discoverUserIdentitiesForPhoneNumbersCompletionHandler(phoneNumbers: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3324397932072335, this, [phoneNumbers, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func discoverUserIdentities(forEmailAddresses emails: [String], completionHandler: @escaping @Sendable (Result<[String : CKUserIdentity], any Error>) -> Void)
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  discoverUserIdentitiesForEmailAddressesCompletionHandler(emails: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2348517004007838, this, [emails, completionHandler], [null,{"callback":{"out":[]}}]); }
+  discoverUserIdentitiesForEmailAddressesCompletionHandler(emails: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2348517004007838, this, [emails, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func fetchShareParticipants(forPhoneNumbers phoneNumbers: [String], completionHandler: @escaping @Sendable (Result<[String : Result<CKShare.Participant, any Error>], any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchShareParticipantsForPhoneNumbersCompletionHandler(phoneNumbers: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2699385664717592, this, [phoneNumbers, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchShareParticipantsForPhoneNumbersCompletionHandler(phoneNumbers: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2699385664717592, this, [phoneNumbers, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func fetchShareParticipants(forUserRecordIDs userRecordIDs: [CKRecord.ID], completionHandler: @escaping @Sendable (Result<[CKRecord.ID : Result<CKShare.Participant, any Error>], any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchShareParticipantsForUserRecordIDsCompletionHandler(userRecordIDs: Array<CKRecord_ID>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2522043714836371, this, [userRecordIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchShareParticipantsForUserRecordIDsCompletionHandler(userRecordIDs: Array<CKRecord_ID>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2522043714836371, this, [userRecordIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func fetchShareParticipants(forEmailAddresses emails: [String], completionHandler: @escaping @Sendable (Result<[String : Result<CKShare.Participant, any Error>], any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchShareParticipantsForEmailAddressesCompletionHandler(emails: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3130600865962065, this, [emails, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchShareParticipantsForEmailAddressesCompletionHandler(emails: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3130600865962065, this, [emails, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func fetchLongLivedOperation(withID operationID: CKOperation.ID, completionHandler: @escaping @Sendable (CKOperation?, (any Error)?) -> Void)
    * @availability iOS 9.3+
    */
-  fetchLongLivedOperation(operationID: string, completionHandler: ((arg0: (CKOperation) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 817348161585888, this, [operationID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchLongLivedOperation(operationID: string, completionHandler: ((arg0: (CKOperation) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 817348161585888, this, [operationID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func allLongLivedOperationIDs() async throws -> [CKOperation.ID]
    * @availability iOS 15.0+
    */
-  allLongLivedOperationIDs(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CloudKit_5d69670f0307b385", 3591915127017843, this, []); }
+  allLongLivedOperationIDs(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CloudKit_6be9a005889899ab", 3591915127017843, this, []); }
   /**
    * func allUserIdentitiesFromContacts() async throws -> [CKUserIdentity]
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  allUserIdentitiesFromContacts(): Promise<Array<CKUserIdentity>> { return callSDKAsync<Array<CKUserIdentity>>("CloudKit_5d69670f0307b385", 2699891777473789, this, []); }
+  allUserIdentitiesFromContacts(): Promise<Array<CKUserIdentity>> { return callSDKAsync<Array<CKUserIdentity>>("CloudKit_6be9a005889899ab", 2699891777473789, this, []); }
   /**
    * @preconcurrency func fetchAllLongLivedOperationIDs(completionHandler: @escaping @Sendable ([CKOperation.ID]?, (any Error)?) -> Void)
    * @availability iOS 9.3+
    */
-  fetchAllLongLivedOperationIDs(completionHandler: ((arg0: (Array<string>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3954518528264709, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchAllLongLivedOperationIDs(completionHandler: ((arg0: (Array<string>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3954518528264709, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func accept(_ metadatas: [CKShare.Metadata], completionHandler: @escaping @Sendable (Result<[CKShare.Metadata : Result<CKShare, any Error>], any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  acceptCompletionHandler19311(metadatas: Array<CKShare_Metadata>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3251469684811172, this, [metadatas, completionHandler], [null,{"callback":{"out":[]}}]); }
+  acceptCompletionHandler19311(metadatas: Array<CKShare_Metadata>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3251469684811172, this, [metadatas, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func accept(_ metadatas: [CKShare.Metadata]) async throws -> [CKShare.Metadata : Result<CKShare, any Error>]
    * @availability iOS 15.0+
    */
-  accept(metadatas: Array<CKShare_Metadata>): Promise<NativeMap<CKShare_Metadata, SDKHandle>> { return callSDKAsync<NativeMap<CKShare_Metadata, SDKHandle>>("CloudKit_5d69670f0307b385", 3472797862846452, this, [metadatas]); }
+  accept(metadatas: Array<CKShare_Metadata>): Promise<NativeMap<CKShare_Metadata, SDKHandle>> { return callSDKAsync<NativeMap<CKShare_Metadata, SDKHandle>>("CloudKit_6be9a005889899ab", 3472797862846452, this, [metadatas]); }
   /**
    * func accept(_ metadata: CKShare.Metadata) async throws -> CKShare
    * @availability iOS 15.0+
    */
-  accept27794(metadata: CKShare_Metadata): Promise<CKShare> { return callSDKAsync<CKShare>("CloudKit_5d69670f0307b385", 3563278321388701, this, [metadata]); }
+  accept27794(metadata: CKShare_Metadata): Promise<CKShare> { return callSDKAsync<CKShare>("CloudKit_6be9a005889899ab", 3563278321388701, this, [metadata]); }
   declare readonly $type: { "c:objc(cs)CKContainer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "containerIdentifier": true; "privateCloudDatabase": true; "publicCloudDatabase": true; "sharedCloudDatabase": true };
 }
@@ -647,12 +647,12 @@ export const CKContainer_ApplicationPermissions = {
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get userDiscoverability(): CKContainer_ApplicationPermissions { return callSDK<CKContainer_ApplicationPermissions>("CloudKit_5d69670f0307b385", 3575734309888516, undefined, []); },
+  get userDiscoverability(): CKContainer_ApplicationPermissions { return callSDK<CKContainer_ApplicationPermissions>("CloudKit_6be9a005889899ab", 3575734309888516, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): CKContainer_ApplicationPermissions { return callSDK<CKContainer_ApplicationPermissions>("CloudKit_5d69670f0307b385", 2311973733538767, undefined, [rawValue]); }
+  init(rawValue: number): CKContainer_ApplicationPermissions { return callSDK<CKContainer_ApplicationPermissions>("CloudKit_6be9a005889899ab", 2311973733538767, undefined, [rawValue]); }
 };
 
 /**
@@ -668,7 +668,7 @@ export const CKContainer_ApplicationPermissionStatus = {
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  init(rawValue: number): (CKContainer_ApplicationPermissionStatus) | null { return callSDK<(CKContainer_ApplicationPermissionStatus) | null>("CloudKit_5d69670f0307b385", 1159079869935091, undefined, [rawValue]); }
+  init(rawValue: number): (CKContainer_ApplicationPermissionStatus) | null { return callSDK<(CKContainer_ApplicationPermissionStatus) | null>("CloudKit_6be9a005889899ab", 1159079869935091, undefined, [rawValue]); }
 };
 
 /**
@@ -680,229 +680,229 @@ export class CKDatabase extends SDKHandle {
    * func add(_ operation: CKDatabaseOperation)
    * @availability iOS 8.0+
    */
-  add(operation: CKDatabaseOperation): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3744101305193418, this, [operation]); }
+  add(operation: CKDatabaseOperation): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3744101305193418, this, [operation]); }
   /** func delete(withRecordID recordID: CKRecord.ID) async throws -> CKRecord.ID */
-  deleteWithRecordIDCompletionHandler(recordID: CKRecord_ID, completionHandler: $SDK18): void { return callSDK<void>("CloudKit_5d69670f0307b385", 595712895555858, this, [recordID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  deleteWithRecordIDCompletionHandler(recordID: CKRecord_ID, completionHandler: $SDK18): void { return callSDK<void>("CloudKit_6be9a005889899ab", 595712895555858, this, [recordID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** func delete(withRecordZoneID zoneID: CKRecordZone.ID) async throws -> CKRecordZone.ID */
-  deleteWithRecordZoneIDCompletionHandler(zoneID: CKRecordZone_ID, completionHandler: ((arg0: (CKRecordZone_ID) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 753151183528831, this, [zoneID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  deleteWithRecordZoneIDCompletionHandler(zoneID: CKRecordZone_ID, completionHandler: ((arg0: (CKRecordZone_ID) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 753151183528831, this, [zoneID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** func fetchAllRecordZones(completionHandler: @escaping @Sendable ([CKRecordZone]?, (any Error)?) -> Void) */
-  fetchAllRecordZones(completionHandler: ((arg0: (Array<CKRecordZone>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3012653147230971, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchAllRecordZones(completionHandler: ((arg0: (Array<CKRecordZone>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3012653147230971, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func fetchAllSubscriptions(completionHandler: @escaping @Sendable ([CKSubscription]?, (any Error)?) -> Void)
    * @availability iOS 8.0+
    */
-  fetchAllSubscriptions(completionHandler: ((arg0: (Array<CKSubscription>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 4260782616465834, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchAllSubscriptions(completionHandler: ((arg0: (Array<CKSubscription>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 4260782616465834, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** func fetch(withRecordID recordID: CKRecord.ID) async throws -> CKRecord */
-  fetchWithRecordIDCompletionHandler(recordID: CKRecord_ID, completionHandler: $SDK36): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2679169399305066, this, [recordID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchWithRecordIDCompletionHandler(recordID: CKRecord_ID, completionHandler: $SDK36): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2679169399305066, this, [recordID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** func fetch(withRecordZoneID zoneID: CKRecordZone.ID) async throws -> CKRecordZone */
-  fetchWithRecordZoneIDCompletionHandler(zoneID: CKRecordZone_ID, completionHandler: $SDK37): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2535110792460092, this, [zoneID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchWithRecordZoneIDCompletionHandler(zoneID: CKRecordZone_ID, completionHandler: $SDK37): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2535110792460092, this, [zoneID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func perform(_ query: CKQuery, inZoneWith zoneID: CKRecordZone.ID?, completionHandler: @escaping @Sendable ([CKRecord]?, (any Error)?) -> Void)
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  performInZoneWithCompletionHandler(query: CKQuery, zoneID: $SDK38, completionHandler: ((arg0: (Array<CKRecord>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 1121036168052744, this, [query, zoneID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  performInZoneWithCompletionHandler(query: CKQuery, zoneID: $SDK38, completionHandler: ((arg0: (Array<CKRecord>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 1121036168052744, this, [query, zoneID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /** func save(_ record: CKRecord, completionHandler: @escaping @Sendable (CKRecord?, (any Error)?) -> Void) */
-  saveCompletionHandler(record: CKRecord, completionHandler: $SDK36): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3606822321688736, this, [record, completionHandler], [null,{"callback":{"out":[]}}]); }
+  saveCompletionHandler(record: CKRecord, completionHandler: $SDK36): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3606822321688736, this, [record, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** func save(_ zone: CKRecordZone, completionHandler: @escaping @Sendable (CKRecordZone?, (any Error)?) -> Void) */
-  saveCompletionHandler10675(zone: CKRecordZone, completionHandler: $SDK37): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2598790837936065, this, [zone, completionHandler], [null,{"callback":{"out":[]}}]); }
+  saveCompletionHandler10675(zone: CKRecordZone, completionHandler: $SDK37): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2598790837936065, this, [zone, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func save(_ subscription: CKSubscription, completionHandler: @escaping @Sendable (CKSubscription?, (any Error)?) -> Void)
    * @availability iOS 8.0+
    */
-  saveCompletionHandler5505(subscription: CKSubscription, completionHandler: $SDK40): void { return callSDK<void>("CloudKit_5d69670f0307b385", 1835243818252003, this, [subscription, completionHandler], [null,{"callback":{"out":[]}}]); }
+  saveCompletionHandler5505(subscription: CKSubscription, completionHandler: $SDK40): void { return callSDK<void>("CloudKit_6be9a005889899ab", 1835243818252003, this, [subscription, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var databaseScope: CKDatabase.Scope { get }
    * @availability iOS 10.0+
    */
-  get databaseScope(): CKDatabase_Scope { return callSDK<CKDatabase_Scope>("CloudKit_5d69670f0307b385", 3021891494419739, this, []); }
+  get databaseScope(): CKDatabase_Scope { return callSDK<CKDatabase_Scope>("CloudKit_6be9a005889899ab", 3021891494419739, this, []); }
   /**
    * func recordZone(for zoneID: CKRecordZone.ID) async throws -> CKRecordZone
    * @availability iOS 15.0+
    */
-  recordZone(zoneID: CKRecordZone_ID): Promise<CKRecordZone> { return callSDKAsync<CKRecordZone>("CloudKit_5d69670f0307b385", 3078673049502727, this, [zoneID]); }
+  recordZone(zoneID: CKRecordZone_ID): Promise<CKRecordZone> { return callSDKAsync<CKRecordZone>("CloudKit_6be9a005889899ab", 3078673049502727, this, [zoneID]); }
   /**
    * func recordZones(for ids: [CKRecordZone.ID]) async throws -> [CKRecordZone.ID : Result<CKRecordZone, any Error>]
    * @availability iOS 15.0+
    */
-  recordZones(ids: Array<CKRecordZone_ID>): Promise<NativeMap<CKRecordZone_ID, SDKHandle>> { return callSDKAsync<NativeMap<CKRecordZone_ID, SDKHandle>>("CloudKit_5d69670f0307b385", 1174428519136433, this, [ids]); }
+  recordZones(ids: Array<CKRecordZone_ID>): Promise<NativeMap<CKRecordZone_ID, SDKHandle>> { return callSDKAsync<NativeMap<CKRecordZone_ID, SDKHandle>>("CloudKit_6be9a005889899ab", 1174428519136433, this, [ids]); }
   /**
    * @discardableResult func deleteRecord(withID recordID: CKRecord.ID) async throws -> CKRecord.ID
    * @availability iOS 15.0+
    */
-  deleteRecord(recordID: CKRecord_ID): Promise<CKRecord_ID> { return callSDKAsync<CKRecord_ID>("CloudKit_5d69670f0307b385", 3566444397325588, this, [recordID]); }
+  deleteRecord(recordID: CKRecord_ID): Promise<CKRecord_ID> { return callSDKAsync<CKRecord_ID>("CloudKit_6be9a005889899ab", 3566444397325588, this, [recordID]); }
   /**
    * func subscription(for subscriptionID: CKSubscription.ID) async throws -> CKSubscription
    * @availability iOS 15.0+
    */
-  subscription(subscriptionID: string): Promise<CKSubscription> { return callSDKAsync<CKSubscription>("CloudKit_5d69670f0307b385", 4057483601737863, this, [subscriptionID]); }
+  subscription(subscriptionID: string): Promise<CKSubscription> { return callSDKAsync<CKSubscription>("CloudKit_6be9a005889899ab", 4057483601737863, this, [subscriptionID]); }
   /**
    * @preconcurrency func modifyRecords(saving recordsToSave: [CKRecord], deleting recordIDsToDelete: [CKRecord.ID], savePolicy: CKModifyRecordsOperation.RecordSavePolicy = .ifServerRecordUnchanged, atomically: Bool = true, completionHandler: @escaping @Sendable (Result<(saveResults: [CKRecord.ID : Result<CKRecord, any Error>], deleteResults: [CKRecord.ID : Result<Void, any Error>]), any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  modifyRecordsSavingDeletingSavePolicyAtomicallyCompletionHandler(recordsToSave: Array<CKRecord>, recordIDsToDelete: Array<CKRecord_ID>, savePolicy: CKModifyRecordsOperation_RecordSavePolicy, atomically: boolean, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 1360915181495257, this, [recordsToSave, recordIDsToDelete, savePolicy, atomically, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  modifyRecordsSavingDeletingSavePolicyAtomicallyCompletionHandler(recordsToSave: Array<CKRecord>, recordIDsToDelete: Array<CKRecord_ID>, savePolicy: CKModifyRecordsOperation_RecordSavePolicy, atomically: boolean, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 1360915181495257, this, [recordsToSave, recordIDsToDelete, savePolicy, atomically, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func modifyRecords(saving recordsToSave: [CKRecord], deleting recordIDsToDelete: [CKRecord.ID], savePolicy: CKModifyRecordsOperation.RecordSavePolicy = .ifServerRecordUnchanged, atomically: Bool = true) async throws -> (saveResults: [CKRecord.ID : Result<CKRecord, any Error>], deleteResults: [CKRecord.ID : Result<Void, any Error>])
    * @availability iOS 15.0+
    */
-  modifyRecordsSavingDeletingSavePolicyAtomically(recordsToSave: Array<CKRecord>, recordIDsToDelete: Array<CKRecord_ID>, savePolicy?: CKModifyRecordsOperation_RecordSavePolicy, atomically?: boolean): Promise<{ "saveResults": NativeMap<CKRecord_ID, SDKHandle>; "deleteResults": NativeMap<CKRecord_ID, SDKHandle> }> { return callSDKAsync<{ "saveResults": NativeMap<CKRecord_ID, SDKHandle>; "deleteResults": NativeMap<CKRecord_ID, SDKHandle> }>("CloudKit_5d69670f0307b385", 3726190482818656, this, [recordsToSave, recordIDsToDelete, savePolicy, atomically]); }
+  modifyRecordsSavingDeletingSavePolicyAtomically(recordsToSave: Array<CKRecord>, recordIDsToDelete: Array<CKRecord_ID>, savePolicy?: CKModifyRecordsOperation_RecordSavePolicy, atomically?: boolean): Promise<{ "saveResults": NativeMap<CKRecord_ID, SDKHandle>; "deleteResults": NativeMap<CKRecord_ID, SDKHandle> }> { return callSDKAsync<{ "saveResults": NativeMap<CKRecord_ID, SDKHandle>; "deleteResults": NativeMap<CKRecord_ID, SDKHandle> }>("CloudKit_6be9a005889899ab", 3726190482818656, this, [recordsToSave, recordIDsToDelete, savePolicy, atomically]); }
   /**
    * func subscriptions(for ids: [CKSubscription.ID]) async throws -> [CKSubscription.ID : Result<CKSubscription, any Error>]
    * @availability iOS 15.0+
    */
-  subscriptions(ids: Array<string>): Promise<$SDK22> { return callSDKAsync<$SDK22>("CloudKit_5d69670f0307b385", 2123545842334194, this, [ids]); }
+  subscriptions(ids: Array<string>): Promise<$SDK22> { return callSDKAsync<$SDK22>("CloudKit_6be9a005889899ab", 2123545842334194, this, [ids]); }
   /**
    * func allRecordZones() async throws -> [CKRecordZone]
    * @availability iOS 15.0+
    */
-  allRecordZones(): Promise<Array<CKRecordZone>> { return callSDKAsync<Array<CKRecordZone>>("CloudKit_5d69670f0307b385", 810181424800526, this, []); }
+  allRecordZones(): Promise<Array<CKRecordZone>> { return callSDKAsync<Array<CKRecordZone>>("CloudKit_6be9a005889899ab", 810181424800526, this, []); }
   /**
    * @discardableResult func configuredWith<R>(configuration: CKOperation.Configuration? = nil, group: CKOperationGroup? = nil, body: (CKDatabase) throws -> R) rethrows -> R
    * @availability iOS 15.0+
    */
-  configuredWithConfigurationGroupBody(configuration: $SDK0, group: $SDK1, body: ((arg0: CKDatabase) => unknown)): unknown { return callSDK<unknown>("CloudKit_5d69670f0307b385", 1553938009818129, this, [configuration, group, body], [null,null,{"callback":{"out":[]}}], true); }
+  configuredWithConfigurationGroupBody(configuration: $SDK0, group: $SDK1, body: ((arg0: CKDatabase) => unknown)): unknown { return callSDK<unknown>("CloudKit_6be9a005889899ab", 1553938009818129, this, [configuration, group, body], [null,null,{"callback":{"out":[]}}], true); }
   /**
    * @discardableResult @preconcurrency func configuredWith<R>(configuration: CKOperation.Configuration? = nil, group: CKOperationGroup? = nil, body: @Sendable (CKDatabase) async throws -> R) async rethrows -> R
    * @availability iOS 15.0+
    */
-  configuredWithConfigurationGroupBody35481(configuration: $SDK0, group: $SDK1, body: ((arg0: CKDatabase) => Promise<unknown>)): Promise<unknown> { return callSDKAsync<unknown>("CloudKit_5d69670f0307b385", 488068341648184, this, [configuration, group, body], [null,null,{"callback":{"out":[]}}]); }
+  configuredWithConfigurationGroupBody35481(configuration: $SDK0, group: $SDK1, body: ((arg0: CKDatabase) => Promise<unknown>)): Promise<unknown> { return callSDKAsync<unknown>("CloudKit_6be9a005889899ab", 488068341648184, this, [configuration, group, body], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func databaseChanges(since changeToken: CKServerChangeToken?, resultsLimit: Int? = nil) async throws -> (modifications: [CKDatabase.DatabaseChange.Modification], deletions: [CKDatabase.DatabaseChange.Deletion], changeToken: CKServerChangeToken, moreComing: Bool)
    * @availability iOS 15.0+
    */
-  databaseChanges(changeToken?: $SDK46, resultsLimit?: (number) | null): Promise<{ "modifications": Array<CKDatabase_DatabaseChange_Modification>; "deletions": Array<CKDatabase_DatabaseChange_Deletion>; "changeToken": CKServerChangeToken; "moreComing": boolean }> { return callSDKAsync<{ "modifications": Array<CKDatabase_DatabaseChange_Modification>; "deletions": Array<CKDatabase_DatabaseChange_Deletion>; "changeToken": CKServerChangeToken; "moreComing": boolean }>("CloudKit_5d69670f0307b385", 4227239695444138, this, [changeToken, resultsLimit]); }
+  databaseChanges(changeToken?: $SDK46, resultsLimit?: (number) | null): Promise<{ "modifications": Array<CKDatabase_DatabaseChange_Modification>; "deletions": Array<CKDatabase_DatabaseChange_Deletion>; "changeToken": CKServerChangeToken; "moreComing": boolean }> { return callSDKAsync<{ "modifications": Array<CKDatabase_DatabaseChange_Modification>; "deletions": Array<CKDatabase_DatabaseChange_Deletion>; "changeToken": CKServerChangeToken; "moreComing": boolean }>("CloudKit_6be9a005889899ab", 4227239695444138, this, [changeToken, resultsLimit]); }
   /**
    * func allSubscriptions() async throws -> [CKSubscription]
    * @availability iOS 15.0+
    */
-  allSubscriptions(): Promise<Array<CKSubscription>> { return callSDKAsync<Array<CKSubscription>>("CloudKit_5d69670f0307b385", 117928577496208, this, []); }
+  allSubscriptions(): Promise<Array<CKSubscription>> { return callSDKAsync<Array<CKSubscription>>("CloudKit_6be9a005889899ab", 117928577496208, this, []); }
   /**
    * @discardableResult func deleteRecordZone(withID zoneID: CKRecordZone.ID) async throws -> CKRecordZone.ID
    * @availability iOS 15.0+
    */
-  deleteRecordZone(zoneID: CKRecordZone_ID): Promise<CKRecordZone_ID> { return callSDKAsync<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 1626138489487520, this, [zoneID]); }
+  deleteRecordZone(zoneID: CKRecordZone_ID): Promise<CKRecordZone_ID> { return callSDKAsync<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 1626138489487520, this, [zoneID]); }
   /**
    * @preconcurrency func modifyRecordZones(saving recordZonesToSave: [CKRecordZone], deleting recordZoneIDsToDelete: [CKRecordZone.ID], completionHandler: @escaping @Sendable (Result<(saveResults: [CKRecordZone.ID : Result<CKRecordZone, any Error>], deleteResults: [CKRecordZone.ID : Result<Void, any Error>]), any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  modifyRecordZonesSavingDeletingCompletionHandler(recordZonesToSave: Array<CKRecordZone>, recordZoneIDsToDelete: Array<CKRecordZone_ID>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2397785814940362, this, [recordZonesToSave, recordZoneIDsToDelete, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  modifyRecordZonesSavingDeletingCompletionHandler(recordZonesToSave: Array<CKRecordZone>, recordZoneIDsToDelete: Array<CKRecordZone_ID>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2397785814940362, this, [recordZonesToSave, recordZoneIDsToDelete, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func modifyRecordZones(saving recordZonesToSave: [CKRecordZone], deleting recordZoneIDsToDelete: [CKRecordZone.ID]) async throws -> (saveResults: [CKRecordZone.ID : Result<CKRecordZone, any Error>], deleteResults: [CKRecordZone.ID : Result<Void, any Error>])
    * @availability iOS 15.0+
    */
-  modifyRecordZonesSavingDeleting(recordZonesToSave: Array<CKRecordZone>, recordZoneIDsToDelete: Array<CKRecordZone_ID>): Promise<{ "saveResults": NativeMap<CKRecordZone_ID, SDKHandle>; "deleteResults": NativeMap<CKRecordZone_ID, SDKHandle> }> { return callSDKAsync<{ "saveResults": NativeMap<CKRecordZone_ID, SDKHandle>; "deleteResults": NativeMap<CKRecordZone_ID, SDKHandle> }>("CloudKit_5d69670f0307b385", 2541326025282088, this, [recordZonesToSave, recordZoneIDsToDelete]); }
+  modifyRecordZonesSavingDeleting(recordZonesToSave: Array<CKRecordZone>, recordZoneIDsToDelete: Array<CKRecordZone_ID>): Promise<{ "saveResults": NativeMap<CKRecordZone_ID, SDKHandle>; "deleteResults": NativeMap<CKRecordZone_ID, SDKHandle> }> { return callSDKAsync<{ "saveResults": NativeMap<CKRecordZone_ID, SDKHandle>; "deleteResults": NativeMap<CKRecordZone_ID, SDKHandle> }>("CloudKit_6be9a005889899ab", 2541326025282088, this, [recordZonesToSave, recordZoneIDsToDelete]); }
   /**
    * func recordZoneChanges(inZoneWith zoneID: CKRecordZone.ID, since changeToken: CKServerChangeToken?, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int? = nil) async throws -> (modificationResultsByID: [CKRecord.ID : Result<CKDatabase.RecordZoneChange.Modification, any Error>], deletions: [CKDatabase.RecordZoneChange.Deletion], changeToken: CKServerChangeToken, moreComing: Bool)
    * @availability iOS 15.0+
    */
-  recordZoneChanges(zoneID: CKRecordZone_ID, changeToken?: $SDK46, desiredKeys?: (Array<string>) | null, resultsLimit?: (number) | null): Promise<{ "modificationResultsByID": NativeMap<CKRecord_ID, SDKHandle>; "deletions": Array<CKDatabase_RecordZoneChange_Deletion>; "changeToken": CKServerChangeToken; "moreComing": boolean }> { return callSDKAsync<{ "modificationResultsByID": NativeMap<CKRecord_ID, SDKHandle>; "deletions": Array<CKDatabase_RecordZoneChange_Deletion>; "changeToken": CKServerChangeToken; "moreComing": boolean }>("CloudKit_5d69670f0307b385", 2297394951995090, this, [zoneID, changeToken, desiredKeys, resultsLimit]); }
+  recordZoneChanges(zoneID: CKRecordZone_ID, changeToken?: $SDK46, desiredKeys?: (Array<string>) | null, resultsLimit?: (number) | null): Promise<{ "modificationResultsByID": NativeMap<CKRecord_ID, SDKHandle>; "deletions": Array<CKDatabase_RecordZoneChange_Deletion>; "changeToken": CKServerChangeToken; "moreComing": boolean }> { return callSDKAsync<{ "modificationResultsByID": NativeMap<CKRecord_ID, SDKHandle>; "deletions": Array<CKDatabase_RecordZoneChange_Deletion>; "changeToken": CKServerChangeToken; "moreComing": boolean }>("CloudKit_6be9a005889899ab", 2297394951995090, this, [zoneID, changeToken, desiredKeys, resultsLimit]); }
   /**
    * @discardableResult func deleteSubscription(withID subscriptionID: CKSubscription.ID) async throws -> CKSubscription.ID
    * @availability iOS 15.0+
    */
-  deleteSubscription(subscriptionID: string): Promise<string> { return callSDKAsync<string>("CloudKit_5d69670f0307b385", 3278906420302276, this, [subscriptionID]); }
+  deleteSubscription(subscriptionID: string): Promise<string> { return callSDKAsync<string>("CloudKit_6be9a005889899ab", 3278906420302276, this, [subscriptionID]); }
   /**
    * @preconcurrency func modifySubscriptions(saving subscriptionsToSave: [CKSubscription], deleting subscriptionIDsToDelete: [CKSubscription.ID], completionHandler: @escaping @Sendable (Result<(saveResults: [CKSubscription.ID : Result<CKSubscription, any Error>], deleteResults: [CKSubscription.ID : Result<Void, any Error>]), any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  modifySubscriptionsSavingDeletingCompletionHandler(subscriptionsToSave: Array<CKSubscription>, subscriptionIDsToDelete: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 4321851502489760, this, [subscriptionsToSave, subscriptionIDsToDelete, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  modifySubscriptionsSavingDeletingCompletionHandler(subscriptionsToSave: Array<CKSubscription>, subscriptionIDsToDelete: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 4321851502489760, this, [subscriptionsToSave, subscriptionIDsToDelete, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func modifySubscriptions(saving subscriptionsToSave: [CKSubscription], deleting subscriptionIDsToDelete: [CKSubscription.ID]) async throws -> (saveResults: [CKSubscription.ID : Result<CKSubscription, any Error>], deleteResults: [CKSubscription.ID : Result<Void, any Error>])
    * @availability iOS 15.0+
    */
-  modifySubscriptionsSavingDeleting(subscriptionsToSave: Array<CKSubscription>, subscriptionIDsToDelete: Array<string>): Promise<{ "saveResults": Record<string, SDKHandle>; "deleteResults": Record<string, SDKHandle> }> { return callSDKAsync<{ "saveResults": Record<string, SDKHandle>; "deleteResults": Record<string, SDKHandle> }>("CloudKit_5d69670f0307b385", 1186867388139041, this, [subscriptionsToSave, subscriptionIDsToDelete]); }
+  modifySubscriptionsSavingDeleting(subscriptionsToSave: Array<CKSubscription>, subscriptionIDsToDelete: Array<string>): Promise<{ "saveResults": Record<string, SDKHandle>; "deleteResults": Record<string, SDKHandle> }> { return callSDKAsync<{ "saveResults": Record<string, SDKHandle>; "deleteResults": Record<string, SDKHandle> }>("CloudKit_6be9a005889899ab", 1186867388139041, this, [subscriptionsToSave, subscriptionIDsToDelete]); }
   /**
    * @preconcurrency func fetchDatabaseChanges(since changeToken: CKServerChangeToken?, resultsLimit: Int? = nil, completionHandler: @escaping @Sendable (Result<(modifications: [CKDatabase.DatabaseChange.Modification], deletions: [CKDatabase.DatabaseChange.Deletion], changeToken: CKServerChangeToken, moreComing: Bool), any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchDatabaseChanges(changeToken: $SDK46, resultsLimit: (number) | null, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2811010617684825, this, [changeToken, resultsLimit, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  fetchDatabaseChanges(changeToken: $SDK46, resultsLimit: (number) | null, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2811010617684825, this, [changeToken, resultsLimit, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func fetchRecordZoneChanges(inZoneWith zoneID: CKRecordZone.ID, since changeToken: CKServerChangeToken?, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int? = nil, completionHandler: @escaping @Sendable (Result<(modificationResultsByID: [CKRecord.ID : Result<CKDatabase.RecordZoneChange.Modification, any Error>], deletions: [CKDatabase.RecordZoneChange.Deletion], changeToken: CKServerChangeToken, moreComing: Bool), any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchRecordZoneChanges(zoneID: CKRecordZone_ID, changeToken: $SDK46, desiredKeys: (Array<string>) | null, resultsLimit: (number) | null, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 1117099628097823, this, [zoneID, changeToken, desiredKeys, resultsLimit, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  fetchRecordZoneChanges(zoneID: CKRecordZone_ID, changeToken: $SDK46, desiredKeys: (Array<string>) | null, resultsLimit: (number) | null, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 1117099628097823, this, [zoneID, changeToken, desiredKeys, resultsLimit, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func save(_ zone: CKRecordZone) async throws -> CKRecordZone
    * @availability iOS 15.0+
    */
-  save(zone: CKRecordZone): Promise<CKRecordZone> { return callSDKAsync<CKRecordZone>("CloudKit_5d69670f0307b385", 551411226418941, this, [zone]); }
+  save(zone: CKRecordZone): Promise<CKRecordZone> { return callSDKAsync<CKRecordZone>("CloudKit_6be9a005889899ab", 551411226418941, this, [zone]); }
   /**
    * func save(_ subscription: CKSubscription) async throws -> CKSubscription
    * @availability iOS 15.0+
    */
-  save87972(subscription: CKSubscription): Promise<CKSubscription> { return callSDKAsync<CKSubscription>("CloudKit_5d69670f0307b385", 3401344217734065, this, [subscription]); }
+  save87972(subscription: CKSubscription): Promise<CKSubscription> { return callSDKAsync<CKSubscription>("CloudKit_6be9a005889899ab", 3401344217734065, this, [subscription]); }
   /**
    * func save(_ record: CKRecord) async throws -> CKRecord
    * @availability iOS 15.0+
    */
-  save91437(record: CKRecord): Promise<CKRecord> { return callSDKAsync<CKRecord>("CloudKit_5d69670f0307b385", 1449147979419410, this, [record]); }
+  save91437(record: CKRecord): Promise<CKRecord> { return callSDKAsync<CKRecord>("CloudKit_6be9a005889899ab", 1449147979419410, this, [record]); }
   /**
    * @preconcurrency func fetch(withCursor queryCursor: CKQueryOperation.Cursor, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int = CKQueryOperation.maximumResults, completionHandler: @escaping @Sendable (Result<(matchResults: [(CKRecord.ID, Result<CKRecord, any Error>)], queryCursor: CKQueryOperation.Cursor?), any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchWithCursorDesiredKeysResultsLimitCompletionHandler(queryCursor: CKQueryOperation_Cursor, desiredKeys: (Array<string>) | null, resultsLimit: number, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3081451025168814, this, [queryCursor, desiredKeys, resultsLimit, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  fetchWithCursorDesiredKeysResultsLimitCompletionHandler(queryCursor: CKQueryOperation_Cursor, desiredKeys: (Array<string>) | null, resultsLimit: number, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3081451025168814, this, [queryCursor, desiredKeys, resultsLimit, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func fetch(withRecordIDs recordIDs: [CKRecord.ID], desiredKeys: [CKRecord.FieldKey]? = nil, completionHandler: @escaping @Sendable (Result<[CKRecord.ID : Result<CKRecord, any Error>], any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchWithRecordIDsDesiredKeysCompletionHandler(recordIDs: Array<CKRecord_ID>, desiredKeys: (Array<string>) | null, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 1126503146853316, this, [recordIDs, desiredKeys, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  fetchWithRecordIDsDesiredKeysCompletionHandler(recordIDs: Array<CKRecord_ID>, desiredKeys: (Array<string>) | null, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 1126503146853316, this, [recordIDs, desiredKeys, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func fetch(withRecordZoneIDs zoneIDs: [CKRecordZone.ID], completionHandler: @escaping @Sendable (Result<[CKRecordZone.ID : Result<CKRecordZone, any Error>], any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchWithRecordZoneIDsCompletionHandler(zoneIDs: Array<CKRecordZone_ID>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3633415017419930, this, [zoneIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchWithRecordZoneIDsCompletionHandler(zoneIDs: Array<CKRecordZone_ID>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3633415017419930, this, [zoneIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func fetch(withSubscriptionID subscriptionID: CKSubscription.ID, completionHandler: @escaping @Sendable (CKSubscription?, (any Error)?) -> Void)
    * @availability iOS 8.0+
    */
-  fetchWithSubscriptionIDCompletionHandler(subscriptionID: string, completionHandler: $SDK40): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3893922472823622, this, [subscriptionID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchWithSubscriptionIDCompletionHandler(subscriptionID: string, completionHandler: $SDK40): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3893922472823622, this, [subscriptionID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func fetch(withSubscriptionIDs subscriptionIDs: [CKSubscription.ID], completionHandler: @escaping @Sendable (Result<[CKSubscription.ID : Result<CKSubscription, any Error>], any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchWithSubscriptionIDsCompletionHandler(subscriptionIDs: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 4289409995143913, this, [subscriptionIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchWithSubscriptionIDsCompletionHandler(subscriptionIDs: Array<string>, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 4289409995143913, this, [subscriptionIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func fetch(withQuery query: CKQuery, inZoneWith zoneID: CKRecordZone.ID? = nil, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int = CKQueryOperation.maximumResults, completionHandler: @escaping @Sendable (Result<(matchResults: [(CKRecord.ID, Result<CKRecord, any Error>)], queryCursor: CKQueryOperation.Cursor?), any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  fetchWithQueryInZoneWithDesiredKeysResultsLimitCompletionHandler(query: CKQuery, zoneID: $SDK38, desiredKeys: (Array<string>) | null, resultsLimit: number, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_5d69670f0307b385", 955370737971955, this, [query, zoneID, desiredKeys, resultsLimit, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  fetchWithQueryInZoneWithDesiredKeysResultsLimitCompletionHandler(query: CKQuery, zoneID: $SDK38, desiredKeys: (Array<string>) | null, resultsLimit: number, completionHandler: $SDK28): void { return callSDK<void>("CloudKit_6be9a005889899ab", 955370737971955, this, [query, zoneID, desiredKeys, resultsLimit, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency func delete(withSubscriptionID subscriptionID: CKSubscription.ID, completionHandler: @escaping @Sendable (String?, (any Error)?) -> Void)
    * @availability iOS 8.0+
    */
-  deleteWithSubscriptionIDCompletionHandler(subscriptionID: string, completionHandler: ((arg0: (string) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2417134644457823, this, [subscriptionID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  deleteWithSubscriptionIDCompletionHandler(subscriptionID: string, completionHandler: ((arg0: (string) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2417134644457823, this, [subscriptionID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func record(for recordID: CKRecord.ID) async throws -> CKRecord
    * @availability iOS 15.0+
    */
-  record(recordID: CKRecord_ID): Promise<CKRecord> { return callSDKAsync<CKRecord>("CloudKit_5d69670f0307b385", 3057055442096611, this, [recordID]); }
+  record(recordID: CKRecord_ID): Promise<CKRecord> { return callSDKAsync<CKRecord>("CloudKit_6be9a005889899ab", 3057055442096611, this, [recordID]); }
   /**
    * func perform(_ query: CKQuery, inZoneWith zoneID: CKRecordZone.ID?) async throws -> [CKRecord]
    * @availability iOS 15.0+
    * @deprecated iOS 15.0
    */
-  performInZoneWith(query: CKQuery, zoneID?: $SDK38): Promise<Array<CKRecord>> { return callSDKAsync<Array<CKRecord>>("CloudKit_5d69670f0307b385", 4417530744024301, this, [query, zoneID]); }
+  performInZoneWith(query: CKQuery, zoneID?: $SDK38): Promise<Array<CKRecord>> { return callSDKAsync<Array<CKRecord>>("CloudKit_6be9a005889899ab", 4417530744024301, this, [query, zoneID]); }
   /**
    * func records(continuingMatchFrom queryCursor: CKQueryOperation.Cursor, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int = CKQueryOperation.maximumResults) async throws -> (matchResults: [(CKRecord.ID, Result<CKRecord, any Error>)], queryCursor: CKQueryOperation.Cursor?)
    * @availability iOS 15.0+
    */
-  recordsContinuingMatchFromDesiredKeysResultsLimit(queryCursor: CKQueryOperation_Cursor, desiredKeys?: (Array<string>) | null, resultsLimit?: number): Promise<$SDK51> { return callSDKAsync<$SDK51>("CloudKit_5d69670f0307b385", 174979741219680, this, [queryCursor, desiredKeys, resultsLimit]); }
+  recordsContinuingMatchFromDesiredKeysResultsLimit(queryCursor: CKQueryOperation_Cursor, desiredKeys?: (Array<string>) | null, resultsLimit?: number): Promise<$SDK51> { return callSDKAsync<$SDK51>("CloudKit_6be9a005889899ab", 174979741219680, this, [queryCursor, desiredKeys, resultsLimit]); }
   /**
    * func records(for ids: [CKRecord.ID], desiredKeys: [CKRecord.FieldKey]? = nil) async throws -> [CKRecord.ID : Result<CKRecord, any Error>]
    * @availability iOS 15.0+
    */
-  recordsForDesiredKeys(ids: Array<CKRecord_ID>, desiredKeys?: (Array<string>) | null): Promise<$SDK25> { return callSDKAsync<$SDK25>("CloudKit_5d69670f0307b385", 1343479128726077, this, [ids, desiredKeys]); }
+  recordsForDesiredKeys(ids: Array<CKRecord_ID>, desiredKeys?: (Array<string>) | null): Promise<$SDK25> { return callSDKAsync<$SDK25>("CloudKit_6be9a005889899ab", 1343479128726077, this, [ids, desiredKeys]); }
   /**
    * func records(matching query: CKQuery, inZoneWith zoneID: CKRecordZone.ID? = nil, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int = CKQueryOperation.maximumResults) async throws -> (matchResults: [(CKRecord.ID, Result<CKRecord, any Error>)], queryCursor: CKQueryOperation.Cursor?)
    * @availability iOS 15.0+
    */
-  recordsMatchingInZoneWithDesiredKeysResultsLimit(query: CKQuery, zoneID?: $SDK38, desiredKeys?: (Array<string>) | null, resultsLimit?: number): Promise<$SDK51> { return callSDKAsync<$SDK51>("CloudKit_5d69670f0307b385", 874701837524416, this, [query, zoneID, desiredKeys, resultsLimit]); }
+  recordsMatchingInZoneWithDesiredKeysResultsLimit(query: CKQuery, zoneID?: $SDK38, desiredKeys?: (Array<string>) | null, resultsLimit?: number): Promise<$SDK51> { return callSDKAsync<$SDK51>("CloudKit_6be9a005889899ab", 874701837524416, this, [query, zoneID, desiredKeys, resultsLimit]); }
   /**
    * func records(matching query: CKQuery, inZoneWith zoneID: CKRecordZone.ID?) async throws -> [CKRecord]
    * @availability iOS 15.0+
    * @deprecated iOS 15.0
    */
-  recordsMatchingInZoneWith(query: CKQuery, zoneID?: $SDK38): Promise<Array<CKRecord>> { return callSDKAsync<Array<CKRecord>>("CloudKit_5d69670f0307b385", 4333001936011217, this, [query, zoneID]); }
+  recordsMatchingInZoneWith(query: CKQuery, zoneID?: $SDK38): Promise<Array<CKRecord>> { return callSDKAsync<Array<CKRecord>>("CloudKit_6be9a005889899ab", 4333001936011217, this, [query, zoneID]); }
   declare readonly $type: { "c:objc(cs)CKDatabase": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "databaseScope": true };
 }
@@ -925,17 +925,17 @@ export class CKDatabase_DatabaseChange_Deletion extends SDKHandle {
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  get purged(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 4370447409848681, this, []); }
+  get purged(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 4370447409848681, this, []); }
   /**
    * var reason: CKDatabase.DatabaseChange.Deletion.Reason { get }
    * @availability iOS 17.0+
    */
-  get reason(): CKDatabase_DatabaseChange_Deletion_Reason { return callSDK<CKDatabase_DatabaseChange_Deletion_Reason>("CloudKit_5d69670f0307b385", 653745754535377, this, []); }
+  get reason(): CKDatabase_DatabaseChange_Deletion_Reason { return callSDK<CKDatabase_DatabaseChange_Deletion_Reason>("CloudKit_6be9a005889899ab", 653745754535377, this, []); }
   /**
    * var zoneID: CKRecordZone.ID { get }
    * @availability iOS 15.0+
    */
-  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 3114372386976758, this, []); }
+  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 3114372386976758, this, []); }
   declare readonly $type: { "s:So10CKDatabaseC8CloudKitE14DatabaseChangeO8DeletionV": true };
 }
 
@@ -954,7 +954,7 @@ export class CKDatabase_DatabaseChange_Modification extends SDKHandle {
    * var zoneID: CKRecordZone.ID { get }
    * @availability iOS 15.0+
    */
-  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 3115738809182395, this, []); }
+  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 3115738809182395, this, []); }
   declare readonly $type: { "s:So10CKDatabaseC8CloudKitE14DatabaseChangeO12ModificationV": true };
 }
 
@@ -975,12 +975,12 @@ export class CKDatabase_RecordZoneChange_Deletion extends SDKHandle {
    * var recordType: CKRecord.RecordType { get }
    * @availability iOS 15.0+
    */
-  get recordType(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2059078305143611, this, []); }
+  get recordType(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2059078305143611, this, []); }
   /**
    * var recordID: CKRecord.ID { get }
    * @availability iOS 15.0+
    */
-  get recordID(): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_5d69670f0307b385", 1094173549469598, this, []); }
+  get recordID(): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_6be9a005889899ab", 1094173549469598, this, []); }
   declare readonly $type: { "s:So10CKDatabaseC8CloudKitE16RecordZoneChangeO8DeletionV": true };
 }
 
@@ -993,7 +993,7 @@ export class CKDatabase_RecordZoneChange_Modification extends SDKHandle {
    * var record: CKRecord { get }
    * @availability iOS 15.0+
    */
-  get record(): CKRecord { return callSDK<CKRecord>("CloudKit_5d69670f0307b385", 3237963408699865, this, []); }
+  get record(): CKRecord { return callSDK<CKRecord>("CloudKit_6be9a005889899ab", 3237963408699865, this, []); }
   declare readonly $type: { "s:So10CKDatabaseC8CloudKitE16RecordZoneChangeO12ModificationV": true };
 }
 
@@ -1008,7 +1008,7 @@ export const CKDatabase_Scope = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CKDatabase_Scope) | null { return callSDK<(CKDatabase_Scope) | null>("CloudKit_5d69670f0307b385", 1913683070532161, undefined, [rawValue]); }
+  init(rawValue: number): (CKDatabase_Scope) | null { return callSDK<(CKDatabase_Scope) | null>("CloudKit_6be9a005889899ab", 1913683070532161, undefined, [rawValue]); }
 };
 
 /**
@@ -1020,121 +1020,121 @@ export class CKNotification extends SDKHandle {
    * convenience init?(fromRemoteNotificationDictionary notificationDictionary: [AnyHashable : Any])
    * @availability iOS 8.0+
    */
-  static init(notificationDictionary: NativeMap<unknown, unknown>): (CKNotification) | null { return callSDK<(CKNotification) | null>("CloudKit_5d69670f0307b385", 183337353496248, undefined, [notificationDictionary]); }
+  static init(notificationDictionary: NativeMap<unknown, unknown>): (CKNotification) | null { return callSDK<(CKNotification) | null>("CloudKit_6be9a005889899ab", 183337353496248, undefined, [notificationDictionary]); }
   /**
    * var alertActionLocalizationKey: String? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get alertActionLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 1512608789460236, this, []); }
+  get alertActionLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 1512608789460236, this, []); }
   /**
    * var alertBody: String? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get alertBody(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 4128411001418360, this, []); }
+  get alertBody(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 4128411001418360, this, []); }
   /**
    * var alertLaunchImage: String? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get alertLaunchImage(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3414163228516305, this, []); }
+  get alertLaunchImage(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3414163228516305, this, []); }
   /**
    * var alertLocalizationArgs: [String]? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get alertLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 3003964976786574, this, []); }
+  get alertLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 3003964976786574, this, []); }
   /**
    * var alertLocalizationKey: String? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get alertLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 2507418003295167, this, []); }
+  get alertLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 2507418003295167, this, []); }
   /**
    * @NSCopying var badge: NSNumber? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get badge(): (_Foundation_NSNumber) | null { return callSDK<(_Foundation_NSNumber) | null>("CloudKit_5d69670f0307b385", 4425646038625400, this, []); }
+  get badge(): (_Foundation_NSNumber) | null { return callSDK<(_Foundation_NSNumber) | null>("CloudKit_6be9a005889899ab", 4425646038625400, this, []); }
   /**
    * var category: String? { get }
    * @availability iOS 9.0+
    * @deprecated iOS 17.0
    */
-  get category(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 66311046156045, this, []); }
+  get category(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 66311046156045, this, []); }
   /**
    * var containerIdentifier: String? { get }
    * @availability iOS 8.0+
    */
-  get containerIdentifier(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 82629498812741, this, []); }
+  get containerIdentifier(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 82629498812741, this, []); }
   /**
    * var isPruned: Bool { get }
    * @availability iOS 8.0+
    */
-  get isPruned(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 3386203666398844, this, []); }
+  get isPruned(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 3386203666398844, this, []); }
   /**
    * @NSCopying var notificationID: CKNotification.ID? { get }
    * @availability iOS 8.0+
    */
-  get notificationID(): (CKNotification_ID) | null { return callSDK<(CKNotification_ID) | null>("CloudKit_5d69670f0307b385", 2363305018770023, this, []); }
+  get notificationID(): (CKNotification_ID) | null { return callSDK<(CKNotification_ID) | null>("CloudKit_6be9a005889899ab", 2363305018770023, this, []); }
   /**
    * var notificationType: CKNotification.NotificationType { get }
    * @availability iOS 8.0+
    */
-  get notificationType(): CKNotification_NotificationType { return callSDK<CKNotification_NotificationType>("CloudKit_5d69670f0307b385", 1219230929746906, this, []); }
+  get notificationType(): CKNotification_NotificationType { return callSDK<CKNotification_NotificationType>("CloudKit_6be9a005889899ab", 1219230929746906, this, []); }
   /**
    * var soundName: String? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get soundName(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3970521014199288, this, []); }
+  get soundName(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3970521014199288, this, []); }
   /**
    * @NSCopying var subscriptionOwnerUserRecordID: CKRecord.ID? { get }
    * @availability iOS 13.0+
    */
-  get subscriptionOwnerUserRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_5d69670f0307b385", 78665881529815, this, []); }
+  get subscriptionOwnerUserRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_6be9a005889899ab", 78665881529815, this, []); }
   /**
    * var subtitle: String? { get }
    * @availability iOS 11.0+
    * @deprecated iOS 17.0
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 199711620034853, this, []); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 199711620034853, this, []); }
   /**
    * var subtitleLocalizationArgs: [String]? { get }
    * @availability iOS 11.0+
    * @deprecated iOS 17.0
    */
-  get subtitleLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 799020023172654, this, []); }
+  get subtitleLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 799020023172654, this, []); }
   /**
    * var subtitleLocalizationKey: String? { get }
    * @availability iOS 11.0+
    * @deprecated iOS 17.0
    */
-  get subtitleLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 1444414243877816, this, []); }
+  get subtitleLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 1444414243877816, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 11.0+
    * @deprecated iOS 17.0
    */
-  get title(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 2646117715335298, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 2646117715335298, this, []); }
   /**
    * var titleLocalizationArgs: [String]? { get }
    * @availability iOS 11.0+
    * @deprecated iOS 17.0
    */
-  get titleLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 3896793309804221, this, []); }
+  get titleLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 3896793309804221, this, []); }
   /**
    * var titleLocalizationKey: String? { get }
    * @availability iOS 11.0+
    * @deprecated iOS 17.0
    */
-  get titleLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 2505461293042539, this, []); }
+  get titleLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 2505461293042539, this, []); }
   /**
    * var subscriptionID: CKSubscription.ID? { get }
    * @availability iOS 9.0+
    */
-  get subscriptionID(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3329887090576195, this, []); }
+  get subscriptionID(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3329887090576195, this, []); }
   declare readonly $type: { "c:objc(cs)CKNotification": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alertActionLocalizationKey": true; "alertBody": true; "alertLaunchImage": true; "alertLocalizationArgs": true; "alertLocalizationKey": true; "badge": true; "category": true; "containerIdentifier": true; "isPruned": true; "notificationID": true; "notificationType": true; "soundName": true; "subscriptionOwnerUserRecordID": true; "subtitle": true; "subtitleLocalizationArgs": true; "subtitleLocalizationKey": true; "title": true; "titleLocalizationArgs": true; "titleLocalizationKey": true };
 }
@@ -1148,7 +1148,7 @@ export class CKDatabaseNotification extends CKNotification {
    * var databaseScope: CKDatabase.Scope { get }
    * @availability iOS 10.0+
    */
-  get databaseScope(): CKDatabase_Scope { return callSDK<CKDatabase_Scope>("CloudKit_5d69670f0307b385", 702785797023294, this, []); }
+  get databaseScope(): CKDatabase_Scope { return callSDK<CKDatabase_Scope>("CloudKit_6be9a005889899ab", 702785797023294, this, []); }
   declare readonly $type: { "c:objc(cs)CKDatabaseNotification": true; "c:objc(cs)CKNotification": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alertActionLocalizationKey": true; "alertBody": true; "alertLaunchImage": true; "alertLocalizationArgs": true; "alertLocalizationKey": true; "badge": true; "category": true; "containerIdentifier": true; "isPruned": true; "notificationID": true; "notificationType": true; "soundName": true; "subscriptionOwnerUserRecordID": true; "subtitle": true; "subtitleLocalizationArgs": true; "subtitleLocalizationKey": true; "title": true; "titleLocalizationArgs": true; "titleLocalizationKey": true; "databaseScope": true };
 }
@@ -1159,13 +1159,13 @@ export class CKDatabaseNotification extends CKNotification {
  */
 export class CKDatabaseOperation extends (CKOperation as unknown as Omit<typeof CKOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKOperation)) {
   /** init() */
-  static init(): CKDatabaseOperation { return callSDK<CKDatabaseOperation>("CloudKit_5d69670f0307b385", 1192193828369321, undefined, []); }
+  static init(): CKDatabaseOperation { return callSDK<CKDatabaseOperation>("CloudKit_6be9a005889899ab", 1192193828369321, undefined, []); }
   /**
    * var database: CKDatabase? { get set }
    * @availability iOS 8.0+
    */
-  get database(): (CKDatabase) | null { return callSDK<(CKDatabase) | null>("CloudKit_5d69670f0307b385", 2895936897761160, this, []); }
-  set database(value: (CKDatabase) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 104828346365671, this, [value]); }
+  get database(): (CKDatabase) | null { return callSDK<(CKDatabase) | null>("CloudKit_6be9a005889899ab", 2895936897761160, this, []); }
+  set database(value: (CKDatabase) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 104828346365671, this, [value]); }
   declare readonly $type: { "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true };
 }
@@ -1179,18 +1179,18 @@ export class CKSubscription extends SDKHandle {
    * @NSCopying var notificationInfo: CKSubscription.NotificationInfo? { get set }
    * @availability iOS 8.0+
    */
-  get notificationInfo(): $SDK55 { return callSDK<$SDK55>("CloudKit_5d69670f0307b385", 4350981208148389, this, []); }
-  set notificationInfo(value: $SDK55) { callSDK<void>("CloudKit_5d69670f0307b385", 2980582068982058, this, [value]); }
+  get notificationInfo(): $SDK55 { return callSDK<$SDK55>("CloudKit_6be9a005889899ab", 4350981208148389, this, []); }
+  set notificationInfo(value: $SDK55) { callSDK<void>("CloudKit_6be9a005889899ab", 2980582068982058, this, [value]); }
   /**
    * var subscriptionType: CKSubscription.SubscriptionType { get }
    * @availability iOS 8.0+
    */
-  get subscriptionType(): CKSubscription_SubscriptionType { return callSDK<CKSubscription_SubscriptionType>("CloudKit_5d69670f0307b385", 3745534154791592, this, []); }
+  get subscriptionType(): CKSubscription_SubscriptionType { return callSDK<CKSubscription_SubscriptionType>("CloudKit_6be9a005889899ab", 3745534154791592, this, []); }
   /**
    * var subscriptionID: CKSubscription.ID { get }
    * @availability iOS 8.0+
    */
-  get subscriptionID(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2392385994319916, this, []); }
+  get subscriptionID(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2392385994319916, this, []); }
   declare readonly $type: { "c:objc(cs)CKSubscription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "notificationInfo": true; "subscriptionType": true };
 }
@@ -1205,23 +1205,23 @@ export class CKDatabaseSubscription extends CKSubscription {
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  static init(): CKDatabaseSubscription { return callSDK<CKDatabaseSubscription>("CloudKit_5d69670f0307b385", 2400806103076578, undefined, []); }
+  static init(): CKDatabaseSubscription { return callSDK<CKDatabaseSubscription>("CloudKit_6be9a005889899ab", 2400806103076578, undefined, []); }
   /**
    * init(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): CKDatabaseSubscription { return callSDK<CKDatabaseSubscription>("CloudKit_5d69670f0307b385", 3540402573161832, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): CKDatabaseSubscription { return callSDK<CKDatabaseSubscription>("CloudKit_6be9a005889899ab", 3540402573161832, undefined, [aDecoder]); }
   /**
    * var recordType: CKRecord.RecordType? { get set }
    * @availability iOS 10.0+
    */
-  get recordType(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 940609703693812, this, []); }
-  set recordType(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 416827626855468, this, [value]); }
+  get recordType(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 940609703693812, this, []); }
+  set recordType(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 416827626855468, this, [value]); }
   /**
    * convenience init(subscriptionID: CKSubscription.ID)
    * @availability iOS 10.0+
    */
-  static initSubscriptionID(subscriptionID: string): CKDatabaseSubscription { return callSDK<CKDatabaseSubscription>("CloudKit_5d69670f0307b385", 4193953331365270, undefined, [subscriptionID]); }
+  static initSubscriptionID(subscriptionID: string): CKDatabaseSubscription { return callSDK<CKDatabaseSubscription>("CloudKit_6be9a005889899ab", 4193953331365270, undefined, [subscriptionID]); }
   declare readonly $type: { "c:objc(cs)CKDatabaseSubscription": true; "c:objc(cs)CKSubscription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "notificationInfo": true; "subscriptionType": true };
 }
@@ -1237,28 +1237,28 @@ export class CKDiscoverAllUserIdentitiesOperation extends (CKOperation as unknow
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  static init(): CKDiscoverAllUserIdentitiesOperation { return callSDK<CKDiscoverAllUserIdentitiesOperation>("CloudKit_5d69670f0307b385", 3326181844835310, undefined, []); }
+  static init(): CKDiscoverAllUserIdentitiesOperation { return callSDK<CKDiscoverAllUserIdentitiesOperation>("CloudKit_6be9a005889899ab", 3326181844835310, undefined, []); }
   /**
    * var discoverAllUserIdentitiesCompletionBlock: (((any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get discoverAllUserIdentitiesCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_5d69670f0307b385", 1382445205143967, this, []); }
-  set discoverAllUserIdentitiesCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_5d69670f0307b385", 1665972608434192, this, [value], [{"callback":{"out":[]}}]); }
+  get discoverAllUserIdentitiesCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_6be9a005889899ab", 1382445205143967, this, []); }
+  set discoverAllUserIdentitiesCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_6be9a005889899ab", 1665972608434192, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var userIdentityDiscoveredBlock: ((CKUserIdentity) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  get userIdentityDiscoveredBlock(): (((arg0: CKUserIdentity) => Promise<void>)) | null { return callSDK<(((arg0: CKUserIdentity) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 4409391034591412, this, []); }
-  set userIdentityDiscoveredBlock(value: (((arg0: CKUserIdentity) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3112546501089441, this, [value], [{"callback":{"out":[]}}]); }
+  get userIdentityDiscoveredBlock(): (((arg0: CKUserIdentity) => Promise<void>)) | null { return callSDK<(((arg0: CKUserIdentity) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 4409391034591412, this, []); }
+  set userIdentityDiscoveredBlock(value: (((arg0: CKUserIdentity) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3112546501089441, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var discoverAllUserIdentitiesResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  get discoverAllUserIdentitiesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 744745280271793, this, []); }
-  set discoverAllUserIdentitiesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 4178471735617602, this, [value], [{"callback":{"out":[]}}]); }
+  get discoverAllUserIdentitiesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 744745280271793, this, []); }
+  set discoverAllUserIdentitiesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 4178471735617602, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKDiscoverAllUserIdentitiesOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true };
 }
@@ -1274,41 +1274,41 @@ export class CKDiscoverUserIdentitiesOperation extends (CKOperation as unknown a
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  static init(): CKDiscoverUserIdentitiesOperation { return callSDK<CKDiscoverUserIdentitiesOperation>("CloudKit_5d69670f0307b385", 266694466530001, undefined, []); }
+  static init(): CKDiscoverUserIdentitiesOperation { return callSDK<CKDiscoverUserIdentitiesOperation>("CloudKit_6be9a005889899ab", 266694466530001, undefined, []); }
   /**
    * convenience init(userIdentityLookupInfos: [CKUserIdentity.LookupInfo])
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  static initUserIdentityLookupInfos(userIdentityLookupInfos: $SDK27): CKDiscoverUserIdentitiesOperation { return callSDK<CKDiscoverUserIdentitiesOperation>("CloudKit_5d69670f0307b385", 992884768677285, undefined, [userIdentityLookupInfos]); }
+  static initUserIdentityLookupInfos(userIdentityLookupInfos: $SDK27): CKDiscoverUserIdentitiesOperation { return callSDK<CKDiscoverUserIdentitiesOperation>("CloudKit_6be9a005889899ab", 992884768677285, undefined, [userIdentityLookupInfos]); }
   /**
    * var discoverUserIdentitiesCompletionBlock: (((any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get discoverUserIdentitiesCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_5d69670f0307b385", 1905401685833363, this, []); }
-  set discoverUserIdentitiesCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_5d69670f0307b385", 2422650681959837, this, [value], [{"callback":{"out":[]}}]); }
+  get discoverUserIdentitiesCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_6be9a005889899ab", 1905401685833363, this, []); }
+  set discoverUserIdentitiesCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_6be9a005889899ab", 2422650681959837, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var userIdentityDiscoveredBlock: ((CKUserIdentity, CKUserIdentity.LookupInfo) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  get userIdentityDiscoveredBlock(): (((arg0: CKUserIdentity, arg1: CKUserIdentity_LookupInfo) => Promise<void>)) | null { return callSDK<(((arg0: CKUserIdentity, arg1: CKUserIdentity_LookupInfo) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 2212560944926716, this, []); }
-  set userIdentityDiscoveredBlock(value: (((arg0: CKUserIdentity, arg1: CKUserIdentity_LookupInfo) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3034980780892031, this, [value], [{"callback":{"out":[]}}]); }
+  get userIdentityDiscoveredBlock(): (((arg0: CKUserIdentity, arg1: CKUserIdentity_LookupInfo) => Promise<void>)) | null { return callSDK<(((arg0: CKUserIdentity, arg1: CKUserIdentity_LookupInfo) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 2212560944926716, this, []); }
+  set userIdentityDiscoveredBlock(value: (((arg0: CKUserIdentity, arg1: CKUserIdentity_LookupInfo) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3034980780892031, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var userIdentityLookupInfos: [CKUserIdentity.LookupInfo] { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  get userIdentityLookupInfos(): $SDK27 { return callSDK<$SDK27>("CloudKit_5d69670f0307b385", 81527410524885, this, []); }
-  set userIdentityLookupInfos(value: $SDK27) { callSDK<void>("CloudKit_5d69670f0307b385", 2001835231811551, this, [value]); }
+  get userIdentityLookupInfos(): $SDK27 { return callSDK<$SDK27>("CloudKit_6be9a005889899ab", 81527410524885, this, []); }
+  set userIdentityLookupInfos(value: $SDK27) { callSDK<void>("CloudKit_6be9a005889899ab", 2001835231811551, this, [value]); }
   /**
    * var discoverUserIdentitiesResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    * @deprecated iOS 17.0
    */
-  get discoverUserIdentitiesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 3978603956380915, this, []); }
-  set discoverUserIdentitiesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 466270820100009, this, [value], [{"callback":{"out":[]}}]); }
+  get discoverUserIdentitiesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 3978603956380915, this, []); }
+  set discoverUserIdentitiesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 466270820100009, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKDiscoverUserIdentitiesOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "userIdentityLookupInfos": true };
 }
@@ -1322,218 +1322,218 @@ export class CKError extends SDKHandle {
    * static var badDatabase: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get badDatabase(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 4076271706028123, undefined, []); }
+  static get badDatabase(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 4076271706028123, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 8.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1647128098941620, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1647128098941620, undefined, []); }
   /**
    * static var unknownItem: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get unknownItem(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 1291543968493784, undefined, []); }
+  static get unknownItem(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 1291543968493784, undefined, []); }
   /**
    * static var badContainer: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get badContainer(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 2484168312486466, undefined, []); }
+  static get badContainer(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 2484168312486466, undefined, []); }
   /**
    * static var zoneNotFound: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get zoneNotFound(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 1312450698669045, undefined, []); }
+  static get zoneNotFound(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 1312450698669045, undefined, []); }
   /**
    * static var alreadyShared: CKError.Code { get }
    * @availability iOS 10.0+
    */
-  static get alreadyShared(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 921034492492596, undefined, []); }
+  static get alreadyShared(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 921034492492596, undefined, []); }
   /**
    * static var internalError: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get internalError(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 1811150923494017, undefined, []); }
+  static get internalError(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 1811150923494017, undefined, []); }
   /**
    * static var limitExceeded: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get limitExceeded(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 2422018999947513, undefined, []); }
+  static get limitExceeded(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 2422018999947513, undefined, []); }
   /**
    * static var quotaExceeded: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get quotaExceeded(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 1621256414510317, undefined, []); }
+  static get quotaExceeded(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 1621256414510317, undefined, []); }
   /**
    * static var networkFailure: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get networkFailure(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 4057289183748521, undefined, []); }
+  static get networkFailure(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 4057289183748521, undefined, []); }
   /**
    * static var partialFailure: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get partialFailure(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 2936795393483112, undefined, []); }
+  static get partialFailure(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 2936795393483112, undefined, []); }
   /**
    * static var userDeletedZone: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get userDeletedZone(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 4190704334130310, undefined, []); }
+  static get userDeletedZone(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 4190704334130310, undefined, []); }
   /**
    * static var invalidArguments: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get invalidArguments(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 910393907205487, undefined, []); }
+  static get invalidArguments(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 910393907205487, undefined, []); }
   /**
    * static var notAuthenticated: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get notAuthenticated(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 289785023861107, undefined, []); }
+  static get notAuthenticated(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 289785023861107, undefined, []); }
   /**
    * static var resultsTruncated: CKError.Code { get }
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  static get resultsTruncated(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 2755906326353666, undefined, []); }
+  static get resultsTruncated(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 2755906326353666, undefined, []); }
   /**
    * static var assetFileModified: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get assetFileModified(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 4470758235205453, undefined, []); }
+  static get assetFileModified(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 4470758235205453, undefined, []); }
   /**
    * static var assetFileNotFound: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get assetFileNotFound(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 2902474125821728, undefined, []); }
+  static get assetFileNotFound(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 2902474125821728, undefined, []); }
   /**
    * static var assetNotAvailable: CKError.Code { get }
    * @availability iOS 11.3+
    */
-  static get assetNotAvailable(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 345527256381571, undefined, []); }
+  static get assetNotAvailable(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 345527256381571, undefined, []); }
   /**
    * static var permissionFailure: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get permissionFailure(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 233183857138588, undefined, []); }
+  static get permissionFailure(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 233183857138588, undefined, []); }
   /**
    * static var batchRequestFailed: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get batchRequestFailed(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 1927121818069597, undefined, []); }
+  static get batchRequestFailed(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 1927121818069597, undefined, []); }
   /**
    * static var changeTokenExpired: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get changeTokenExpired(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 4280790745650450, undefined, []); }
+  static get changeTokenExpired(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 4280790745650450, undefined, []); }
   /**
    * static var missingEntitlement: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get missingEntitlement(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 773218598015174, undefined, []); }
+  static get missingEntitlement(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 773218598015174, undefined, []); }
   /**
    * static var networkUnavailable: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get networkUnavailable(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 371089757532048, undefined, []); }
+  static get networkUnavailable(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 371089757532048, undefined, []); }
   /**
    * static var operationCancelled: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get operationCancelled(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 1507484428594700, undefined, []); }
+  static get operationCancelled(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 1507484428594700, undefined, []); }
   /**
    * static var referenceViolation: CKError.Code { get }
    * @availability iOS 10.0+
    */
-  static get referenceViolation(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 3927667881101824, undefined, []); }
+  static get referenceViolation(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 3927667881101824, undefined, []); }
   /**
    * static var requestRateLimited: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get requestRateLimited(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 2773058851296572, undefined, []); }
+  static get requestRateLimited(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 2773058851296572, undefined, []); }
   /**
    * static var serverResponseLost: CKError.Code { get }
    * @availability iOS 11.0+
    */
-  static get serverResponseLost(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 4061988953571416, undefined, []); }
+  static get serverResponseLost(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 4061988953571416, undefined, []); }
   /**
    * static var serviceUnavailable: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get serviceUnavailable(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 2985969520357463, undefined, []); }
+  static get serviceUnavailable(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 2985969520357463, undefined, []); }
   /**
    * static var constraintViolation: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get constraintViolation(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 1916617460844221, undefined, []); }
+  static get constraintViolation(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 1916617460844221, undefined, []); }
   /**
    * static var incompatibleVersion: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get incompatibleVersion(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 1620151977852162, undefined, []); }
+  static get incompatibleVersion(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 1620151977852162, undefined, []); }
   /**
    * static var serverRecordChanged: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get serverRecordChanged(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 2628536090399448, undefined, []); }
+  static get serverRecordChanged(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 2628536090399448, undefined, []); }
   /**
    * static var tooManyParticipants: CKError.Code { get }
    * @availability iOS 10.0+
    */
-  static get tooManyParticipants(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 679712274161680, undefined, []); }
+  static get tooManyParticipants(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 679712274161680, undefined, []); }
   /**
    * static var serverRejectedRequest: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get serverRejectedRequest(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 2100200036377126, undefined, []); }
+  static get serverRejectedRequest(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 2100200036377126, undefined, []); }
   /**
    * static var managedAccountRestricted: CKError.Code { get }
    * @availability iOS 10.0+
    */
-  static get managedAccountRestricted(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 4151390379650940, undefined, []); }
+  static get managedAccountRestricted(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 4151390379650940, undefined, []); }
   /**
    * static var participantAlreadyInvited: CKError.Code { get }
    * @availability iOS 26.0+
    */
-  static get participantAlreadyInvited(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 1719039666076773, undefined, []); }
+  static get participantAlreadyInvited(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 1719039666076773, undefined, []); }
   /**
    * static var accountTemporarilyUnavailable: CKError.Code { get }
    * @availability iOS 15.0+
    */
-  static get accountTemporarilyUnavailable(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 4213427779762280, undefined, []); }
+  static get accountTemporarilyUnavailable(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 4213427779762280, undefined, []); }
   /**
    * static var participantMayNeedVerification: CKError.Code { get }
    * @availability iOS 10.0+
    */
-  static get participantMayNeedVerification(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 3716949200232158, undefined, []); }
+  static get participantMayNeedVerification(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 3716949200232158, undefined, []); }
   /**
    * var clientRecord: CKRecord? { get }
    * @availability iOS 8.0+
    */
-  get clientRecord(): (CKRecord) | null { return callSDK<(CKRecord) | null>("CloudKit_5d69670f0307b385", 3641472700850063, this, []); }
+  get clientRecord(): (CKRecord) | null { return callSDK<(CKRecord) | null>("CloudKit_6be9a005889899ab", 3641472700850063, this, []); }
   /**
    * var serverRecord: CKRecord? { get }
    * @availability iOS 8.0+
    */
-  get serverRecord(): (CKRecord) | null { return callSDK<(CKRecord) | null>("CloudKit_5d69670f0307b385", 3959589245177000, this, []); }
+  get serverRecord(): (CKRecord) | null { return callSDK<(CKRecord) | null>("CloudKit_6be9a005889899ab", 3959589245177000, this, []); }
   /**
    * var ancestorRecord: CKRecord? { get }
    * @availability iOS 8.0+
    */
-  get ancestorRecord(): (CKRecord) | null { return callSDK<(CKRecord) | null>("CloudKit_5d69670f0307b385", 3144066304870840, this, []); }
+  get ancestorRecord(): (CKRecord) | null { return callSDK<(CKRecord) | null>("CloudKit_6be9a005889899ab", 3144066304870840, this, []); }
   /**
    * var retryAfterSeconds: Double? { get }
    * @availability iOS 8.0+
    */
-  get retryAfterSeconds(): (number) | null { return callSDK<(number) | null>("CloudKit_5d69670f0307b385", 1407642652157535, this, []); }
+  get retryAfterSeconds(): (number) | null { return callSDK<(number) | null>("CloudKit_6be9a005889899ab", 1407642652157535, this, []); }
   /**
    * var partialErrorsByItemID: [AnyHashable : any Error]? { get }
    * @availability iOS 8.0+
    */
-  get partialErrorsByItemID(): (NativeMap<unknown, NativeError>) | null { return callSDK<(NativeMap<unknown, NativeError>) | null>("CloudKit_5d69670f0307b385", 2695698130539877, this, []); }
+  get partialErrorsByItemID(): (NativeMap<unknown, NativeError>) | null { return callSDK<(NativeMap<unknown, NativeError>) | null>("CloudKit_6be9a005889899ab", 2695698130539877, this, []); }
   /**
    * static var zoneBusy: CKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get zoneBusy(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 135646894838556, undefined, []); }
+  static get zoneBusy(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 135646894838556, undefined, []); }
   declare readonly $type: { "s:SC11CKErrorCodeLeV": true };
 }
 
@@ -1548,7 +1548,7 @@ export const CKError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (CKError_Code) | null { return callSDK<(CKError_Code) | null>("CloudKit_5d69670f0307b385", 418780722401419, undefined, [rawValue]); }
+  init(rawValue: number): (CKError_Code) | null { return callSDK<(CKError_Code) | null>("CloudKit_6be9a005889899ab", 418780722401419, undefined, [rawValue]); }
 };
 
 /**
@@ -1560,73 +1560,73 @@ export class CKFetchDatabaseChangesOperation extends (CKDatabaseOperation as unk
    * init()
    * @availability iOS 10.0+
    */
-  static init(): CKFetchDatabaseChangesOperation { return callSDK<CKFetchDatabaseChangesOperation>("CloudKit_5d69670f0307b385", 4364634614510609, undefined, []); }
+  static init(): CKFetchDatabaseChangesOperation { return callSDK<CKFetchDatabaseChangesOperation>("CloudKit_6be9a005889899ab", 4364634614510609, undefined, []); }
   /**
    * convenience init(previousServerChangeToken: CKServerChangeToken?)
    * @availability iOS 10.0+
    */
-  static initPreviousServerChangeToken(previousServerChangeToken?: $SDK46): CKFetchDatabaseChangesOperation { return callSDK<CKFetchDatabaseChangesOperation>("CloudKit_5d69670f0307b385", 1593900708240191, undefined, [previousServerChangeToken]); }
+  static initPreviousServerChangeToken(previousServerChangeToken?: $SDK46): CKFetchDatabaseChangesOperation { return callSDK<CKFetchDatabaseChangesOperation>("CloudKit_6be9a005889899ab", 1593900708240191, undefined, [previousServerChangeToken]); }
   /**
    * var changeTokenUpdatedBlock: ((CKServerChangeToken) -> Void)? { get set }
    * @availability iOS 10.0+
    */
-  get changeTokenUpdatedBlock(): (((arg0: CKServerChangeToken) => Promise<void>)) | null { return callSDK<(((arg0: CKServerChangeToken) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 520470122023296, this, []); }
-  set changeTokenUpdatedBlock(value: (((arg0: CKServerChangeToken) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2833641492328474, this, [value], [{"callback":{"out":[]}}]); }
+  get changeTokenUpdatedBlock(): (((arg0: CKServerChangeToken) => Promise<void>)) | null { return callSDK<(((arg0: CKServerChangeToken) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 520470122023296, this, []); }
+  set changeTokenUpdatedBlock(value: (((arg0: CKServerChangeToken) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2833641492328474, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var fetchAllChanges: Bool { get set }
    * @availability iOS 10.0+
    */
-  get fetchAllChanges(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 3590498070348631, this, []); }
-  set fetchAllChanges(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 3702536646184191, this, [value]); }
+  get fetchAllChanges(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 3590498070348631, this, []); }
+  set fetchAllChanges(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 3702536646184191, this, [value]); }
   /**
    * var fetchDatabaseChangesCompletionBlock: ((CKServerChangeToken?, Bool, (any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get fetchDatabaseChangesCompletionBlock(): (((arg0: (CKServerChangeToken) | null, arg1: boolean, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CKServerChangeToken) | null, arg1: boolean, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 818257721115719, this, []); }
-  set fetchDatabaseChangesCompletionBlock(value: (((arg0: (CKServerChangeToken) | null, arg1: boolean, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 454970279243468, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchDatabaseChangesCompletionBlock(): (((arg0: (CKServerChangeToken) | null, arg1: boolean, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CKServerChangeToken) | null, arg1: boolean, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 818257721115719, this, []); }
+  set fetchDatabaseChangesCompletionBlock(value: (((arg0: (CKServerChangeToken) | null, arg1: boolean, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 454970279243468, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * @NSCopying var previousServerChangeToken: CKServerChangeToken? { get set }
    * @availability iOS 10.0+
    */
-  get previousServerChangeToken(): $SDK46 { return callSDK<$SDK46>("CloudKit_5d69670f0307b385", 1890842912579246, this, []); }
-  set previousServerChangeToken(value: $SDK46) { callSDK<void>("CloudKit_5d69670f0307b385", 736729524973026, this, [value]); }
+  get previousServerChangeToken(): $SDK46 { return callSDK<$SDK46>("CloudKit_6be9a005889899ab", 1890842912579246, this, []); }
+  set previousServerChangeToken(value: $SDK46) { callSDK<void>("CloudKit_6be9a005889899ab", 736729524973026, this, [value]); }
   /**
    * var recordZoneWithIDChangedBlock: ((CKRecordZone.ID) -> Void)? { get set }
    * @availability iOS 10.0+
    */
-  get recordZoneWithIDChangedBlock(): $SDK65 { return callSDK<$SDK65>("CloudKit_5d69670f0307b385", 3294413420012590, this, []); }
-  set recordZoneWithIDChangedBlock(value: $SDK66) { callSDK<void>("CloudKit_5d69670f0307b385", 745212804286408, this, [value], [{"callback":{"out":[]}}]); }
+  get recordZoneWithIDChangedBlock(): $SDK65 { return callSDK<$SDK65>("CloudKit_6be9a005889899ab", 3294413420012590, this, []); }
+  set recordZoneWithIDChangedBlock(value: $SDK66) { callSDK<void>("CloudKit_6be9a005889899ab", 745212804286408, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordZoneWithIDWasDeletedBlock: ((CKRecordZone.ID) -> Void)? { get set }
    * @availability iOS 10.0+
    */
-  get recordZoneWithIDWasDeletedBlock(): $SDK65 { return callSDK<$SDK65>("CloudKit_5d69670f0307b385", 4370497834063116, this, []); }
-  set recordZoneWithIDWasDeletedBlock(value: $SDK66) { callSDK<void>("CloudKit_5d69670f0307b385", 3886581152293460, this, [value], [{"callback":{"out":[]}}]); }
+  get recordZoneWithIDWasDeletedBlock(): $SDK65 { return callSDK<$SDK65>("CloudKit_6be9a005889899ab", 4370497834063116, this, []); }
+  set recordZoneWithIDWasDeletedBlock(value: $SDK66) { callSDK<void>("CloudKit_6be9a005889899ab", 3886581152293460, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock: ((CKRecordZone.ID) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(): $SDK65 { return callSDK<$SDK65>("CloudKit_5d69670f0307b385", 3081778189289972, this, []); }
-  set recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(value: $SDK66) { callSDK<void>("CloudKit_5d69670f0307b385", 1765131950246742, this, [value], [{"callback":{"out":[]}}]); }
+  get recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(): $SDK65 { return callSDK<$SDK65>("CloudKit_6be9a005889899ab", 3081778189289972, this, []); }
+  set recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(value: $SDK66) { callSDK<void>("CloudKit_6be9a005889899ab", 1765131950246742, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordZoneWithIDWasPurgedBlock: ((CKRecordZone.ID) -> Void)? { get set }
    * @availability iOS 11.0+
    */
-  get recordZoneWithIDWasPurgedBlock(): $SDK65 { return callSDK<$SDK65>("CloudKit_5d69670f0307b385", 4339372411113318, this, []); }
-  set recordZoneWithIDWasPurgedBlock(value: $SDK66) { callSDK<void>("CloudKit_5d69670f0307b385", 1502303597287188, this, [value], [{"callback":{"out":[]}}]); }
+  get recordZoneWithIDWasPurgedBlock(): $SDK65 { return callSDK<$SDK65>("CloudKit_6be9a005889899ab", 4339372411113318, this, []); }
+  set recordZoneWithIDWasPurgedBlock(value: $SDK66) { callSDK<void>("CloudKit_6be9a005889899ab", 1502303597287188, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var resultsLimit: Int { get set }
    * @availability iOS 10.0+
    */
-  get resultsLimit(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 3305224549954056, this, []); }
-  set resultsLimit(value: number) { callSDK<void>("CloudKit_5d69670f0307b385", 4137054043808025, this, [value]); }
+  get resultsLimit(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 3305224549954056, this, []); }
+  set resultsLimit(value: number) { callSDK<void>("CloudKit_6be9a005889899ab", 4137054043808025, this, [value]); }
   /**
    * var fetchDatabaseChangesResultBlock: ((Result<(serverChangeToken: CKServerChangeToken, moreComing: Bool), any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get fetchDatabaseChangesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 1918713169646098, this, []); }
-  set fetchDatabaseChangesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 2728218074078052, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchDatabaseChangesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 1918713169646098, this, []); }
+  set fetchDatabaseChangesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 2728218074078052, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKFetchDatabaseChangesOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true; "fetchAllChanges": true; "previousServerChangeToken": true; "resultsLimit": true };
 }
@@ -1642,68 +1642,68 @@ export class CKFetchRecordChangesOperation extends (CKDatabaseOperation as unkno
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  static init(): CKFetchRecordChangesOperation { return callSDK<CKFetchRecordChangesOperation>("CloudKit_5d69670f0307b385", 1777427166506079, undefined, []); }
+  static init(): CKFetchRecordChangesOperation { return callSDK<CKFetchRecordChangesOperation>("CloudKit_6be9a005889899ab", 1777427166506079, undefined, []); }
   /**
    * convenience init(recordZoneID: CKRecordZone.ID, previousServerChangeToken: CKServerChangeToken?)
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  static initRecordZoneIDPreviousServerChangeToken(recordZoneID: CKRecordZone_ID, previousServerChangeToken?: $SDK46): CKFetchRecordChangesOperation { return callSDK<CKFetchRecordChangesOperation>("CloudKit_5d69670f0307b385", 290721345344121, undefined, [recordZoneID, previousServerChangeToken]); }
+  static initRecordZoneIDPreviousServerChangeToken(recordZoneID: CKRecordZone_ID, previousServerChangeToken?: $SDK46): CKFetchRecordChangesOperation { return callSDK<CKFetchRecordChangesOperation>("CloudKit_6be9a005889899ab", 290721345344121, undefined, [recordZoneID, previousServerChangeToken]); }
   /**
    * var desiredKeys: [String]? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 1725750218375853, this, []); }
-  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1179743603801979, this, [value]); }
+  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 1725750218375853, this, []); }
+  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1179743603801979, this, [value]); }
   /**
    * var fetchRecordChangesCompletionBlock: ((CKServerChangeToken?, Data?, (any Error)?) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  get fetchRecordChangesCompletionBlock(): (((arg0: (CKServerChangeToken) | null, arg1: (ArrayBuffer) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CKServerChangeToken) | null, arg1: (ArrayBuffer) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 3764784377047733, this, []); }
-  set fetchRecordChangesCompletionBlock(value: (((arg0: (CKServerChangeToken) | null, arg1: (ArrayBuffer) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2608213211526492, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchRecordChangesCompletionBlock(): (((arg0: (CKServerChangeToken) | null, arg1: (ArrayBuffer) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CKServerChangeToken) | null, arg1: (ArrayBuffer) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 3764784377047733, this, []); }
+  set fetchRecordChangesCompletionBlock(value: (((arg0: (CKServerChangeToken) | null, arg1: (ArrayBuffer) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2608213211526492, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var moreComing: Bool { get }
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  get moreComing(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 3045851116997012, this, []); }
+  get moreComing(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 3045851116997012, this, []); }
   /**
    * @NSCopying var previousServerChangeToken: CKServerChangeToken? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  get previousServerChangeToken(): $SDK46 { return callSDK<$SDK46>("CloudKit_5d69670f0307b385", 1188907491010847, this, []); }
-  set previousServerChangeToken(value: $SDK46) { callSDK<void>("CloudKit_5d69670f0307b385", 3388913500103004, this, [value]); }
+  get previousServerChangeToken(): $SDK46 { return callSDK<$SDK46>("CloudKit_6be9a005889899ab", 1188907491010847, this, []); }
+  set previousServerChangeToken(value: $SDK46) { callSDK<void>("CloudKit_6be9a005889899ab", 3388913500103004, this, [value]); }
   /**
    * var recordChangedBlock: ((CKRecord) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  get recordChangedBlock(): $SDK69 { return callSDK<$SDK69>("CloudKit_5d69670f0307b385", 3699040446117430, this, []); }
-  set recordChangedBlock(value: $SDK70) { callSDK<void>("CloudKit_5d69670f0307b385", 3339741600469619, this, [value], [{"callback":{"out":[]}}]); }
+  get recordChangedBlock(): $SDK69 { return callSDK<$SDK69>("CloudKit_6be9a005889899ab", 3699040446117430, this, []); }
+  set recordChangedBlock(value: $SDK70) { callSDK<void>("CloudKit_6be9a005889899ab", 3339741600469619, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordWithIDWasDeletedBlock: ((CKRecord.ID) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  get recordWithIDWasDeletedBlock(): (((arg0: CKRecord_ID) => Promise<void>)) | null { return callSDK<(((arg0: CKRecord_ID) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 3130890237486682, this, []); }
-  set recordWithIDWasDeletedBlock(value: (((arg0: CKRecord_ID) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 654999462010323, this, [value], [{"callback":{"out":[]}}]); }
+  get recordWithIDWasDeletedBlock(): (((arg0: CKRecord_ID) => Promise<void>)) | null { return callSDK<(((arg0: CKRecord_ID) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 3130890237486682, this, []); }
+  set recordWithIDWasDeletedBlock(value: (((arg0: CKRecord_ID) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 654999462010323, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * @NSCopying var recordZoneID: CKRecordZone.ID? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  get recordZoneID(): $SDK38 { return callSDK<$SDK38>("CloudKit_5d69670f0307b385", 3923505490912741, this, []); }
-  set recordZoneID(value: $SDK38) { callSDK<void>("CloudKit_5d69670f0307b385", 3418770263961103, this, [value]); }
+  get recordZoneID(): $SDK38 { return callSDK<$SDK38>("CloudKit_6be9a005889899ab", 3923505490912741, this, []); }
+  set recordZoneID(value: $SDK38) { callSDK<void>("CloudKit_6be9a005889899ab", 3418770263961103, this, [value]); }
   /**
    * var resultsLimit: Int { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  get resultsLimit(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 4448893405596024, this, []); }
-  set resultsLimit(value: number) { callSDK<void>("CloudKit_5d69670f0307b385", 3569174846288908, this, [value]); }
+  get resultsLimit(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 4448893405596024, this, []); }
+  set resultsLimit(value: number) { callSDK<void>("CloudKit_6be9a005889899ab", 3569174846288908, this, [value]); }
   declare readonly $type: { "c:objc(cs)CKFetchRecordChangesOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true; "desiredKeys": true; "moreComing": true; "previousServerChangeToken": true; "recordZoneID": true; "resultsLimit": true };
 }
@@ -1717,61 +1717,61 @@ export class CKFetchRecordsOperation extends (CKDatabaseOperation as unknown as 
    * class func fetchCurrentUserRecordOperation() -> Self
    * @availability iOS 8.0+
    */
-  static fetchCurrentUserRecordOperation(): CKFetchRecordsOperation { return callSDK<CKFetchRecordsOperation>("CloudKit_5d69670f0307b385", 267153503671263, undefined, []); }
+  static fetchCurrentUserRecordOperation(): CKFetchRecordsOperation { return callSDK<CKFetchRecordsOperation>("CloudKit_6be9a005889899ab", 267153503671263, undefined, []); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): CKFetchRecordsOperation { return callSDK<CKFetchRecordsOperation>("CloudKit_5d69670f0307b385", 3145311261098215, undefined, []); }
+  static init(): CKFetchRecordsOperation { return callSDK<CKFetchRecordsOperation>("CloudKit_6be9a005889899ab", 3145311261098215, undefined, []); }
   /**
    * convenience init(recordIDs: [CKRecord.ID])
    * @availability iOS 8.0+
    */
-  static initRecordIDs(recordIDs: Array<CKRecord_ID>): CKFetchRecordsOperation { return callSDK<CKFetchRecordsOperation>("CloudKit_5d69670f0307b385", 3089609045463726, undefined, [recordIDs]); }
+  static initRecordIDs(recordIDs: Array<CKRecord_ID>): CKFetchRecordsOperation { return callSDK<CKFetchRecordsOperation>("CloudKit_6be9a005889899ab", 3089609045463726, undefined, [recordIDs]); }
   /**
    * var fetchRecordsCompletionBlock: (([CKRecord.ID : CKRecord]?, (any Error)?) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get fetchRecordsCompletionBlock(): (((arg0: (NativeMap<CKRecord_ID, CKRecord>) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (NativeMap<CKRecord_ID, CKRecord>) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 2464973536348607, this, []); }
-  set fetchRecordsCompletionBlock(value: (((arg0: (NativeMap<CKRecord_ID, CKRecord>) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 4337877176617731, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchRecordsCompletionBlock(): (((arg0: (NativeMap<CKRecord_ID, CKRecord>) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (NativeMap<CKRecord_ID, CKRecord>) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 2464973536348607, this, []); }
+  set fetchRecordsCompletionBlock(value: (((arg0: (NativeMap<CKRecord_ID, CKRecord>) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 4337877176617731, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perRecordCompletionBlock: ((CKRecord?, CKRecord.ID?, (any Error)?) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get perRecordCompletionBlock(): (((arg0: (CKRecord) | null, arg1: (CKRecord_ID) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CKRecord) | null, arg1: (CKRecord_ID) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 1819270155821259, this, []); }
-  set perRecordCompletionBlock(value: (((arg0: (CKRecord) | null, arg1: (CKRecord_ID) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2411413755942264, this, [value], [{"callback":{"out":[]}}]); }
+  get perRecordCompletionBlock(): (((arg0: (CKRecord) | null, arg1: (CKRecord_ID) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CKRecord) | null, arg1: (CKRecord_ID) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 1819270155821259, this, []); }
+  set perRecordCompletionBlock(value: (((arg0: (CKRecord) | null, arg1: (CKRecord_ID) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2411413755942264, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perRecordProgressBlock: ((CKRecord.ID, Double) -> Void)? { get set }
    * @availability iOS 8.0+
    */
-  get perRecordProgressBlock(): (((arg0: CKRecord_ID, arg1: number) => Promise<void>)) | null { return callSDK<(((arg0: CKRecord_ID, arg1: number) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 2304650120221135, this, []); }
-  set perRecordProgressBlock(value: (((arg0: CKRecord_ID, arg1: number) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1985316682614999, this, [value], [{"callback":{"out":[]}}]); }
+  get perRecordProgressBlock(): (((arg0: CKRecord_ID, arg1: number) => Promise<void>)) | null { return callSDK<(((arg0: CKRecord_ID, arg1: number) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 2304650120221135, this, []); }
+  set perRecordProgressBlock(value: (((arg0: CKRecord_ID, arg1: number) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1985316682614999, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordIDs: [CKRecord.ID]? { get set }
    * @availability iOS 8.0+
    */
-  get recordIDs(): $SDK79 { return callSDK<$SDK79>("CloudKit_5d69670f0307b385", 745088256000357, this, []); }
-  set recordIDs(value: $SDK79) { callSDK<void>("CloudKit_5d69670f0307b385", 1669930963338269, this, [value]); }
+  get recordIDs(): $SDK79 { return callSDK<$SDK79>("CloudKit_6be9a005889899ab", 745088256000357, this, []); }
+  set recordIDs(value: $SDK79) { callSDK<void>("CloudKit_6be9a005889899ab", 1669930963338269, this, [value]); }
   /**
    * var fetchRecordsResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get fetchRecordsResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 3470037941090048, this, []); }
-  set fetchRecordsResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 3063707346485721, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchRecordsResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 3470037941090048, this, []); }
+  set fetchRecordsResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 3063707346485721, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var desiredKeys: [CKRecord.FieldKey]? { get set }
    * @availability iOS 8.0+
    */
-  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 2828938122458455, this, []); }
-  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3107790967447793, this, [value]); }
+  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 2828938122458455, this, []); }
+  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3107790967447793, this, [value]); }
   /**
    * var perRecordResultBlock: ((CKRecord.ID, Result<CKRecord, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perRecordResultBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_5d69670f0307b385", 3671871297673116, this, []); }
-  set perRecordResultBlock(value: $SDK81) { callSDK<void>("CloudKit_5d69670f0307b385", 1222385813699173, this, [value], [{"callback":{"out":[]}}]); }
+  get perRecordResultBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_6be9a005889899ab", 3671871297673116, this, []); }
+  set perRecordResultBlock(value: $SDK81) { callSDK<void>("CloudKit_6be9a005889899ab", 1222385813699173, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKFetchRecordsOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true; "recordIDs": true };
 }
@@ -1785,94 +1785,94 @@ export class CKFetchRecordZoneChangesOperation extends (CKDatabaseOperation as u
    * init()
    * @availability iOS 10.0+
    */
-  static init(): CKFetchRecordZoneChangesOperation { return callSDK<CKFetchRecordZoneChangesOperation>("CloudKit_5d69670f0307b385", 2931576273334566, undefined, []); }
+  static init(): CKFetchRecordZoneChangesOperation { return callSDK<CKFetchRecordZoneChangesOperation>("CloudKit_6be9a005889899ab", 2931576273334566, undefined, []); }
   /**
    * convenience init(recordZoneIDs: [CKRecordZone.ID], optionsByRecordZoneID: [CKRecordZone.ID : CKFetchRecordZoneChangesOperation.ZoneOptions]? = nil)
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static initRecordZoneIDsOptionsByRecordZoneID(recordZoneIDs: Array<CKRecordZone_ID>, optionsByRecordZoneID?: $SDK82): CKFetchRecordZoneChangesOperation { return callSDK<CKFetchRecordZoneChangesOperation>("CloudKit_5d69670f0307b385", 662368304587604, undefined, [recordZoneIDs, optionsByRecordZoneID]); }
+  static initRecordZoneIDsOptionsByRecordZoneID(recordZoneIDs: Array<CKRecordZone_ID>, optionsByRecordZoneID?: $SDK82): CKFetchRecordZoneChangesOperation { return callSDK<CKFetchRecordZoneChangesOperation>("CloudKit_6be9a005889899ab", 662368304587604, undefined, [recordZoneIDs, optionsByRecordZoneID]); }
   /**
    * var configurationsByRecordZoneID: [CKRecordZone.ID : CKFetchRecordZoneChangesOperation.ZoneConfiguration]? { get set }
    * @availability iOS 12.0+
    */
-  get configurationsByRecordZoneID(): $SDK83 { return callSDK<$SDK83>("CloudKit_5d69670f0307b385", 3931225716199164, this, []); }
-  set configurationsByRecordZoneID(value: $SDK83) { callSDK<void>("CloudKit_5d69670f0307b385", 953089891058067, this, [value]); }
+  get configurationsByRecordZoneID(): $SDK83 { return callSDK<$SDK83>("CloudKit_6be9a005889899ab", 3931225716199164, this, []); }
+  set configurationsByRecordZoneID(value: $SDK83) { callSDK<void>("CloudKit_6be9a005889899ab", 953089891058067, this, [value]); }
   /**
    * var fetchAllChanges: Bool { get set }
    * @availability iOS 10.0+
    */
-  get fetchAllChanges(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 2730841807659903, this, []); }
-  set fetchAllChanges(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 2453006850928652, this, [value]); }
+  get fetchAllChanges(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 2730841807659903, this, []); }
+  set fetchAllChanges(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 2453006850928652, this, [value]); }
   /**
    * var fetchRecordZoneChangesCompletionBlock: (((any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get fetchRecordZoneChangesCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_5d69670f0307b385", 2390062153233654, this, []); }
-  set fetchRecordZoneChangesCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_5d69670f0307b385", 2334123336983065, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchRecordZoneChangesCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_6be9a005889899ab", 2390062153233654, this, []); }
+  set fetchRecordZoneChangesCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_6be9a005889899ab", 2334123336983065, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var optionsByRecordZoneID: [CKRecordZone.ID : CKFetchRecordZoneChangesOperation.ZoneOptions]? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get optionsByRecordZoneID(): $SDK82 { return callSDK<$SDK82>("CloudKit_5d69670f0307b385", 3490364402994207, this, []); }
-  set optionsByRecordZoneID(value: $SDK82) { callSDK<void>("CloudKit_5d69670f0307b385", 3775343437379142, this, [value]); }
+  get optionsByRecordZoneID(): $SDK82 { return callSDK<$SDK82>("CloudKit_6be9a005889899ab", 3490364402994207, this, []); }
+  set optionsByRecordZoneID(value: $SDK82) { callSDK<void>("CloudKit_6be9a005889899ab", 3775343437379142, this, [value]); }
   /**
    * var recordChangedBlock: ((CKRecord) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get recordChangedBlock(): $SDK69 { return callSDK<$SDK69>("CloudKit_5d69670f0307b385", 2224400553604414, this, []); }
-  set recordChangedBlock(value: $SDK70) { callSDK<void>("CloudKit_5d69670f0307b385", 1029652915402146, this, [value], [{"callback":{"out":[]}}]); }
+  get recordChangedBlock(): $SDK69 { return callSDK<$SDK69>("CloudKit_6be9a005889899ab", 2224400553604414, this, []); }
+  set recordChangedBlock(value: $SDK70) { callSDK<void>("CloudKit_6be9a005889899ab", 1029652915402146, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordZoneChangeTokensUpdatedBlock: ((CKRecordZone.ID, CKServerChangeToken?, Data?) -> Void)? { get set }
    * @availability iOS 10.0+
    */
-  get recordZoneChangeTokensUpdatedBlock(): (((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null) => Promise<void>)) | null { return callSDK<(((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 3910390459904587, this, []); }
-  set recordZoneChangeTokensUpdatedBlock(value: (((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2903883356511120, this, [value], [{"callback":{"out":[]}}]); }
+  get recordZoneChangeTokensUpdatedBlock(): (((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null) => Promise<void>)) | null { return callSDK<(((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 3910390459904587, this, []); }
+  set recordZoneChangeTokensUpdatedBlock(value: (((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2903883356511120, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordZoneFetchCompletionBlock: ((CKRecordZone.ID, CKServerChangeToken?, Data?, Bool, (any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get recordZoneFetchCompletionBlock(): (((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null, arg3: boolean, arg4: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null, arg3: boolean, arg4: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 52434637523237, this, []); }
-  set recordZoneFetchCompletionBlock(value: (((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null, arg3: boolean, arg4: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1888864606291561, this, [value], [{"callback":{"out":[]}}]); }
+  get recordZoneFetchCompletionBlock(): (((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null, arg3: boolean, arg4: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null, arg3: boolean, arg4: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 52434637523237, this, []); }
+  set recordZoneFetchCompletionBlock(value: (((arg0: CKRecordZone_ID, arg1: (CKServerChangeToken) | null, arg2: (ArrayBuffer) | null, arg3: boolean, arg4: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1888864606291561, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordZoneIDs: [CKRecordZone.ID]? { get set }
    * @availability iOS 10.0+
    */
-  get recordZoneIDs(): $SDK88 { return callSDK<$SDK88>("CloudKit_5d69670f0307b385", 3048763186153028, this, []); }
-  set recordZoneIDs(value: $SDK88) { callSDK<void>("CloudKit_5d69670f0307b385", 3211895114946358, this, [value]); }
+  get recordZoneIDs(): $SDK88 { return callSDK<$SDK88>("CloudKit_6be9a005889899ab", 3048763186153028, this, []); }
+  set recordZoneIDs(value: $SDK88) { callSDK<void>("CloudKit_6be9a005889899ab", 3211895114946358, this, [value]); }
   /**
    * var fetchRecordZoneChangesResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get fetchRecordZoneChangesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 3138716210034517, this, []); }
-  set fetchRecordZoneChangesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 2450845277425983, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchRecordZoneChangesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 3138716210034517, this, []); }
+  set fetchRecordZoneChangesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 2450845277425983, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordZoneFetchResultBlock: ((CKRecordZone.ID, Result<(serverChangeToken: CKServerChangeToken, clientChangeTokenData: Data?, moreComing: Bool), any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get recordZoneFetchResultBlock(): $SDK89 { return callSDK<$SDK89>("CloudKit_5d69670f0307b385", 330122206142120, this, []); }
-  set recordZoneFetchResultBlock(value: $SDK90) { callSDK<void>("CloudKit_5d69670f0307b385", 1059202636433955, this, [value], [{"callback":{"out":[]}}]); }
+  get recordZoneFetchResultBlock(): $SDK89 { return callSDK<$SDK89>("CloudKit_6be9a005889899ab", 330122206142120, this, []); }
+  set recordZoneFetchResultBlock(value: $SDK90) { callSDK<void>("CloudKit_6be9a005889899ab", 1059202636433955, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * convenience init(recordZoneIDs: [CKRecordZone.ID]? = nil, configurationsByRecordZoneID: [CKRecordZone.ID : CKFetchRecordZoneChangesOperation.ZoneConfiguration]? = nil)
    * @availability iOS 12.0+
    */
-  static initRecordZoneIDsConfigurationsByRecordZoneID(recordZoneIDs?: $SDK88, configurationsByRecordZoneID?: $SDK83): CKFetchRecordZoneChangesOperation { return callSDK<CKFetchRecordZoneChangesOperation>("CloudKit_5d69670f0307b385", 2354112953880220, undefined, [recordZoneIDs, configurationsByRecordZoneID]); }
+  static initRecordZoneIDsConfigurationsByRecordZoneID(recordZoneIDs?: $SDK88, configurationsByRecordZoneID?: $SDK83): CKFetchRecordZoneChangesOperation { return callSDK<CKFetchRecordZoneChangesOperation>("CloudKit_6be9a005889899ab", 2354112953880220, undefined, [recordZoneIDs, configurationsByRecordZoneID]); }
   /**
    * var recordWasChangedBlock: ((CKRecord.ID, Result<CKRecord, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get recordWasChangedBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_5d69670f0307b385", 1800566902782376, this, []); }
-  set recordWasChangedBlock(value: $SDK81) { callSDK<void>("CloudKit_5d69670f0307b385", 3462771780097440, this, [value], [{"callback":{"out":[]}}]); }
+  get recordWasChangedBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_6be9a005889899ab", 1800566902782376, this, []); }
+  set recordWasChangedBlock(value: $SDK81) { callSDK<void>("CloudKit_6be9a005889899ab", 3462771780097440, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordWithIDWasDeletedBlock: ((CKRecord.ID, CKRecord.RecordType) -> Void)? { get set }
    * @availability iOS 10.0+
    */
-  get recordWithIDWasDeletedBlock(): (((arg0: CKRecord_ID, arg1: string) => Promise<void>)) | null { return callSDK<(((arg0: CKRecord_ID, arg1: string) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 4125066472538026, this, []); }
-  set recordWithIDWasDeletedBlock(value: (((arg0: CKRecord_ID, arg1: string) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 4164868244978416, this, [value], [{"callback":{"out":[]}}]); }
+  get recordWithIDWasDeletedBlock(): (((arg0: CKRecord_ID, arg1: string) => Promise<void>)) | null { return callSDK<(((arg0: CKRecord_ID, arg1: string) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 4125066472538026, this, []); }
+  set recordWithIDWasDeletedBlock(value: (((arg0: CKRecord_ID, arg1: string) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 4164868244978416, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKFetchRecordZoneChangesOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true; "configurationsByRecordZoneID": true; "fetchAllChanges": true; "optionsByRecordZoneID": true; "recordZoneIDs": true };
 }
@@ -1886,25 +1886,25 @@ export class CKFetchRecordZoneChangesOperation_ZoneConfiguration extends SDKHand
    * @NSCopying var previousServerChangeToken: CKServerChangeToken? { get set }
    * @availability iOS 12.0+
    */
-  get previousServerChangeToken(): $SDK46 { return callSDK<$SDK46>("CloudKit_5d69670f0307b385", 1479428422925971, this, []); }
-  set previousServerChangeToken(value: $SDK46) { callSDK<void>("CloudKit_5d69670f0307b385", 2235026749687391, this, [value]); }
+  get previousServerChangeToken(): $SDK46 { return callSDK<$SDK46>("CloudKit_6be9a005889899ab", 1479428422925971, this, []); }
+  set previousServerChangeToken(value: $SDK46) { callSDK<void>("CloudKit_6be9a005889899ab", 2235026749687391, this, [value]); }
   /**
    * var resultsLimit: Int { get set }
    * @availability iOS 12.0+
    */
-  get resultsLimit(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 4281863143968690, this, []); }
-  set resultsLimit(value: number) { callSDK<void>("CloudKit_5d69670f0307b385", 1582772292658743, this, [value]); }
+  get resultsLimit(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 4281863143968690, this, []); }
+  set resultsLimit(value: number) { callSDK<void>("CloudKit_6be9a005889899ab", 1582772292658743, this, [value]); }
   /**
    * var desiredKeys: [CKRecord.FieldKey]? { get set }
    * @availability iOS 12.0+
    */
-  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 3807231565226318, this, []); }
-  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 4054207258200148, this, [value]); }
+  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 3807231565226318, this, []); }
+  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 4054207258200148, this, [value]); }
   /**
    * convenience init(previousServerChangeToken: CKServerChangeToken? = nil, resultsLimit: Int? = nil, desiredKeys: [CKRecord.FieldKey]? = nil)
    * @availability iOS 12.0+
    */
-  static init(previousServerChangeToken?: $SDK46, resultsLimit?: (number) | null, desiredKeys?: (Array<string>) | null): CKFetchRecordZoneChangesOperation_ZoneConfiguration { return callSDK<CKFetchRecordZoneChangesOperation_ZoneConfiguration>("CloudKit_5d69670f0307b385", 3641278292810928, undefined, [previousServerChangeToken, resultsLimit, desiredKeys]); }
+  static init(previousServerChangeToken?: $SDK46, resultsLimit?: (number) | null, desiredKeys?: (Array<string>) | null): CKFetchRecordZoneChangesOperation_ZoneConfiguration { return callSDK<CKFetchRecordZoneChangesOperation_ZoneConfiguration>("CloudKit_6be9a005889899ab", 3641278292810928, undefined, [previousServerChangeToken, resultsLimit, desiredKeys]); }
   declare readonly $type: { "c:objc(cs)CKFetchRecordZoneChangesConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "previousServerChangeToken": true; "resultsLimit": true };
 }
@@ -1916,28 +1916,28 @@ export class CKFetchRecordZoneChangesOperation_ZoneConfiguration extends SDKHand
  */
 export class CKFetchRecordZoneChangesOperation_ZoneOptions extends SDKHandle {
   /** init() */
-  static init(): CKFetchRecordZoneChangesOperation_ZoneOptions { return callSDK<CKFetchRecordZoneChangesOperation_ZoneOptions>("CloudKit_5d69670f0307b385", 1285142329071467, undefined, []); }
+  static init(): CKFetchRecordZoneChangesOperation_ZoneOptions { return callSDK<CKFetchRecordZoneChangesOperation_ZoneOptions>("CloudKit_6be9a005889899ab", 1285142329071467, undefined, []); }
   /**
    * var desiredKeys: [String]? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 989175491467011, this, []); }
-  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2881595886940379, this, [value]); }
+  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 989175491467011, this, []); }
+  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2881595886940379, this, [value]); }
   /**
    * @NSCopying var previousServerChangeToken: CKServerChangeToken? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get previousServerChangeToken(): $SDK46 { return callSDK<$SDK46>("CloudKit_5d69670f0307b385", 3634661999769157, this, []); }
-  set previousServerChangeToken(value: $SDK46) { callSDK<void>("CloudKit_5d69670f0307b385", 500704102975617, this, [value]); }
+  get previousServerChangeToken(): $SDK46 { return callSDK<$SDK46>("CloudKit_6be9a005889899ab", 3634661999769157, this, []); }
+  set previousServerChangeToken(value: $SDK46) { callSDK<void>("CloudKit_6be9a005889899ab", 500704102975617, this, [value]); }
   /**
    * var resultsLimit: Int { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get resultsLimit(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 4383167815747903, this, []); }
-  set resultsLimit(value: number) { callSDK<void>("CloudKit_5d69670f0307b385", 977702642999667, this, [value]); }
+  get resultsLimit(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 4383167815747903, this, []); }
+  set resultsLimit(value: number) { callSDK<void>("CloudKit_6be9a005889899ab", 977702642999667, this, [value]); }
   declare readonly $type: { "c:objc(cs)CKFetchRecordZoneChangesOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "desiredKeys": true; "previousServerChangeToken": true; "resultsLimit": true };
 }
@@ -1951,42 +1951,42 @@ export class CKFetchRecordZonesOperation extends (CKDatabaseOperation as unknown
    * class func fetchAllRecordZonesOperation() -> Self
    * @availability iOS 8.0+
    */
-  static fetchAllRecordZonesOperation(): CKFetchRecordZonesOperation { return callSDK<CKFetchRecordZonesOperation>("CloudKit_5d69670f0307b385", 1369703853914445, undefined, []); }
+  static fetchAllRecordZonesOperation(): CKFetchRecordZonesOperation { return callSDK<CKFetchRecordZonesOperation>("CloudKit_6be9a005889899ab", 1369703853914445, undefined, []); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): CKFetchRecordZonesOperation { return callSDK<CKFetchRecordZonesOperation>("CloudKit_5d69670f0307b385", 3542359067008400, undefined, []); }
+  static init(): CKFetchRecordZonesOperation { return callSDK<CKFetchRecordZonesOperation>("CloudKit_6be9a005889899ab", 3542359067008400, undefined, []); }
   /**
    * convenience init(recordZoneIDs zoneIDs: [CKRecordZone.ID])
    * @availability iOS 8.0+
    */
-  static initRecordZoneIDs(zoneIDs: Array<CKRecordZone_ID>): CKFetchRecordZonesOperation { return callSDK<CKFetchRecordZonesOperation>("CloudKit_5d69670f0307b385", 559045825268530, undefined, [zoneIDs]); }
+  static initRecordZoneIDs(zoneIDs: Array<CKRecordZone_ID>): CKFetchRecordZonesOperation { return callSDK<CKFetchRecordZonesOperation>("CloudKit_6be9a005889899ab", 559045825268530, undefined, [zoneIDs]); }
   /**
    * var fetchRecordZonesCompletionBlock: (([CKRecordZone.ID : CKRecordZone]?, (any Error)?) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get fetchRecordZonesCompletionBlock(): (((arg0: (NativeMap<CKRecordZone_ID, CKRecordZone>) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (NativeMap<CKRecordZone_ID, CKRecordZone>) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 3795287605831378, this, []); }
-  set fetchRecordZonesCompletionBlock(value: (((arg0: (NativeMap<CKRecordZone_ID, CKRecordZone>) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1933256203436126, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchRecordZonesCompletionBlock(): (((arg0: (NativeMap<CKRecordZone_ID, CKRecordZone>) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (NativeMap<CKRecordZone_ID, CKRecordZone>) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 3795287605831378, this, []); }
+  set fetchRecordZonesCompletionBlock(value: (((arg0: (NativeMap<CKRecordZone_ID, CKRecordZone>) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1933256203436126, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordZoneIDs: [CKRecordZone.ID]? { get set }
    * @availability iOS 8.0+
    */
-  get recordZoneIDs(): $SDK88 { return callSDK<$SDK88>("CloudKit_5d69670f0307b385", 1373774272233392, this, []); }
-  set recordZoneIDs(value: $SDK88) { callSDK<void>("CloudKit_5d69670f0307b385", 552918240742731, this, [value]); }
+  get recordZoneIDs(): $SDK88 { return callSDK<$SDK88>("CloudKit_6be9a005889899ab", 1373774272233392, this, []); }
+  set recordZoneIDs(value: $SDK88) { callSDK<void>("CloudKit_6be9a005889899ab", 552918240742731, this, [value]); }
   /**
    * var perRecordZoneResultBlock: ((CKRecordZone.ID, Result<CKRecordZone, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perRecordZoneResultBlock(): $SDK89 { return callSDK<$SDK89>("CloudKit_5d69670f0307b385", 2006911946501771, this, []); }
-  set perRecordZoneResultBlock(value: $SDK90) { callSDK<void>("CloudKit_5d69670f0307b385", 389681223302961, this, [value], [{"callback":{"out":[]}}]); }
+  get perRecordZoneResultBlock(): $SDK89 { return callSDK<$SDK89>("CloudKit_6be9a005889899ab", 2006911946501771, this, []); }
+  set perRecordZoneResultBlock(value: $SDK90) { callSDK<void>("CloudKit_6be9a005889899ab", 389681223302961, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var fetchRecordZonesResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get fetchRecordZonesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 460628462172573, this, []); }
-  set fetchRecordZonesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 271348246378812, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchRecordZonesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 460628462172573, this, []); }
+  set fetchRecordZonesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 271348246378812, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKFetchRecordZonesOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true; "recordZoneIDs": true };
 }
@@ -2000,56 +2000,56 @@ export class CKFetchShareMetadataOperation extends (CKOperation as unknown as Om
    * init()
    * @availability iOS 10.0+
    */
-  static init(): CKFetchShareMetadataOperation { return callSDK<CKFetchShareMetadataOperation>("CloudKit_5d69670f0307b385", 2981499501937479, undefined, []); }
+  static init(): CKFetchShareMetadataOperation { return callSDK<CKFetchShareMetadataOperation>("CloudKit_6be9a005889899ab", 2981499501937479, undefined, []); }
   /**
    * convenience init(shareURLs: [URL])
    * @availability iOS 10.0+
    */
-  static initShareURLs(shareURLs: Array<string>): CKFetchShareMetadataOperation { return callSDK<CKFetchShareMetadataOperation>("CloudKit_5d69670f0307b385", 416020833591983, undefined, [shareURLs]); }
+  static initShareURLs(shareURLs: Array<string>): CKFetchShareMetadataOperation { return callSDK<CKFetchShareMetadataOperation>("CloudKit_6be9a005889899ab", 416020833591983, undefined, [shareURLs]); }
   /**
    * var fetchShareMetadataCompletionBlock: (((any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get fetchShareMetadataCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_5d69670f0307b385", 3281539283839721, this, []); }
-  set fetchShareMetadataCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_5d69670f0307b385", 1155592125142374, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchShareMetadataCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_6be9a005889899ab", 3281539283839721, this, []); }
+  set fetchShareMetadataCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_6be9a005889899ab", 1155592125142374, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perShareMetadataBlock: ((URL, CKShare.Metadata?, (any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get perShareMetadataBlock(): (((arg0: string, arg1: (CKShare_Metadata) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: string, arg1: (CKShare_Metadata) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 1029895337707873, this, []); }
-  set perShareMetadataBlock(value: (((arg0: string, arg1: (CKShare_Metadata) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1865153332442887, this, [value], [{"callback":{"out":[]}}]); }
+  get perShareMetadataBlock(): (((arg0: string, arg1: (CKShare_Metadata) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: string, arg1: (CKShare_Metadata) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 1029895337707873, this, []); }
+  set perShareMetadataBlock(value: (((arg0: string, arg1: (CKShare_Metadata) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1865153332442887, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var shareURLs: [URL]? { get set }
    * @availability iOS 10.0+
    */
-  get shareURLs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 3698688927891794, this, []); }
-  set shareURLs(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2414623871696728, this, [value]); }
+  get shareURLs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 3698688927891794, this, []); }
+  set shareURLs(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2414623871696728, this, [value]); }
   /**
    * var shouldFetchRootRecord: Bool { get set }
    * @availability iOS 10.0+
    */
-  get shouldFetchRootRecord(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 3601886748791984, this, []); }
-  set shouldFetchRootRecord(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 2572356022889119, this, [value]); }
+  get shouldFetchRootRecord(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 3601886748791984, this, []); }
+  set shouldFetchRootRecord(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 2572356022889119, this, [value]); }
   /**
    * var perShareMetadataResultBlock: ((URL, Result<CKShare.Metadata, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perShareMetadataResultBlock(): $SDK97 { return callSDK<$SDK97>("CloudKit_5d69670f0307b385", 866703675535208, this, []); }
-  set perShareMetadataResultBlock(value: $SDK98) { callSDK<void>("CloudKit_5d69670f0307b385", 3276360460976031, this, [value], [{"callback":{"out":[]}}]); }
+  get perShareMetadataResultBlock(): $SDK97 { return callSDK<$SDK97>("CloudKit_6be9a005889899ab", 866703675535208, this, []); }
+  set perShareMetadataResultBlock(value: $SDK98) { callSDK<void>("CloudKit_6be9a005889899ab", 3276360460976031, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var fetchShareMetadataResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get fetchShareMetadataResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 2752411729032323, this, []); }
-  set fetchShareMetadataResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 1895312432691841, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchShareMetadataResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 2752411729032323, this, []); }
+  set fetchShareMetadataResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 1895312432691841, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var rootRecordDesiredKeys: [CKRecord.FieldKey]? { get set }
    * @availability iOS 10.0+
    */
-  get rootRecordDesiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 4093620217003359, this, []); }
-  set rootRecordDesiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2060427734773275, this, [value]); }
+  get rootRecordDesiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 4093620217003359, this, []); }
+  set rootRecordDesiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2060427734773275, this, [value]); }
   declare readonly $type: { "c:objc(cs)CKFetchShareMetadataOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "shareURLs": true; "shouldFetchRootRecord": true };
 }
@@ -2063,44 +2063,44 @@ export class CKFetchShareParticipantsOperation extends (CKOperation as unknown a
    * init()
    * @availability iOS 10.0+
    */
-  static init(): CKFetchShareParticipantsOperation { return callSDK<CKFetchShareParticipantsOperation>("CloudKit_5d69670f0307b385", 1255636161696021, undefined, []); }
+  static init(): CKFetchShareParticipantsOperation { return callSDK<CKFetchShareParticipantsOperation>("CloudKit_6be9a005889899ab", 1255636161696021, undefined, []); }
   /**
    * convenience init(userIdentityLookupInfos: [CKUserIdentity.LookupInfo])
    * @availability iOS 10.0+
    */
-  static initUserIdentityLookupInfos(userIdentityLookupInfos: $SDK27): CKFetchShareParticipantsOperation { return callSDK<CKFetchShareParticipantsOperation>("CloudKit_5d69670f0307b385", 3195587200062150, undefined, [userIdentityLookupInfos]); }
+  static initUserIdentityLookupInfos(userIdentityLookupInfos: $SDK27): CKFetchShareParticipantsOperation { return callSDK<CKFetchShareParticipantsOperation>("CloudKit_6be9a005889899ab", 3195587200062150, undefined, [userIdentityLookupInfos]); }
   /**
    * var fetchShareParticipantsCompletionBlock: (((any Error)?) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get fetchShareParticipantsCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_5d69670f0307b385", 2931859144537085, this, []); }
-  set fetchShareParticipantsCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_5d69670f0307b385", 2915408174412242, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchShareParticipantsCompletionBlock(): $SDK3 { return callSDK<$SDK3>("CloudKit_6be9a005889899ab", 2931859144537085, this, []); }
+  set fetchShareParticipantsCompletionBlock(value: $SDK4) { callSDK<void>("CloudKit_6be9a005889899ab", 2915408174412242, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var shareParticipantFetchedBlock: ((CKShare.Participant) -> Void)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get shareParticipantFetchedBlock(): (((arg0: CKShare_Participant) => Promise<void>)) | null { return callSDK<(((arg0: CKShare_Participant) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 1530391652920158, this, []); }
-  set shareParticipantFetchedBlock(value: (((arg0: CKShare_Participant) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3677410014438846, this, [value], [{"callback":{"out":[]}}]); }
+  get shareParticipantFetchedBlock(): (((arg0: CKShare_Participant) => Promise<void>)) | null { return callSDK<(((arg0: CKShare_Participant) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 1530391652920158, this, []); }
+  set shareParticipantFetchedBlock(value: (((arg0: CKShare_Participant) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3677410014438846, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var userIdentityLookupInfos: [CKUserIdentity.LookupInfo]? { get set }
    * @availability iOS 10.0+
    */
-  get userIdentityLookupInfos(): $SDK101 { return callSDK<$SDK101>("CloudKit_5d69670f0307b385", 2787389045181366, this, []); }
-  set userIdentityLookupInfos(value: $SDK101) { callSDK<void>("CloudKit_5d69670f0307b385", 4239610361909245, this, [value]); }
+  get userIdentityLookupInfos(): $SDK101 { return callSDK<$SDK101>("CloudKit_6be9a005889899ab", 2787389045181366, this, []); }
+  set userIdentityLookupInfos(value: $SDK101) { callSDK<void>("CloudKit_6be9a005889899ab", 4239610361909245, this, [value]); }
   /**
    * var perShareParticipantResultBlock: ((CKUserIdentity.LookupInfo, Result<CKShare.Participant, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perShareParticipantResultBlock(): (((arg0: CKUserIdentity_LookupInfo, arg1: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: CKUserIdentity_LookupInfo, arg1: SDKHandle) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 2772825909310975, this, []); }
-  set perShareParticipantResultBlock(value: (((arg0: CKUserIdentity_LookupInfo, arg1: SDKHandle) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 4374800873847276, this, [value], [{"callback":{"out":[]}}]); }
+  get perShareParticipantResultBlock(): (((arg0: CKUserIdentity_LookupInfo, arg1: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: CKUserIdentity_LookupInfo, arg1: SDKHandle) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 2772825909310975, this, []); }
+  set perShareParticipantResultBlock(value: (((arg0: CKUserIdentity_LookupInfo, arg1: SDKHandle) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 4374800873847276, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var fetchShareParticipantsResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get fetchShareParticipantsResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 312272522561844, this, []); }
-  set fetchShareParticipantsResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 4270442785689966, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchShareParticipantsResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 312272522561844, this, []); }
+  set fetchShareParticipantsResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 4270442785689966, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKFetchShareParticipantsOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "userIdentityLookupInfos": true };
 }
@@ -2114,42 +2114,42 @@ export class CKFetchSubscriptionsOperation extends (CKDatabaseOperation as unkno
    * class func fetchAllSubscriptionsOperation() -> Self
    * @availability iOS 8.0+
    */
-  static fetchAllSubscriptionsOperation(): CKFetchSubscriptionsOperation { return callSDK<CKFetchSubscriptionsOperation>("CloudKit_5d69670f0307b385", 766621312233551, undefined, []); }
+  static fetchAllSubscriptionsOperation(): CKFetchSubscriptionsOperation { return callSDK<CKFetchSubscriptionsOperation>("CloudKit_6be9a005889899ab", 766621312233551, undefined, []); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): CKFetchSubscriptionsOperation { return callSDK<CKFetchSubscriptionsOperation>("CloudKit_5d69670f0307b385", 3820551606005672, undefined, []); }
+  static init(): CKFetchSubscriptionsOperation { return callSDK<CKFetchSubscriptionsOperation>("CloudKit_6be9a005889899ab", 3820551606005672, undefined, []); }
   /**
    * var fetchSubscriptionsResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get fetchSubscriptionsResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 119039299848741, this, []); }
-  set fetchSubscriptionsResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 2136738697718180, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchSubscriptionsResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 119039299848741, this, []); }
+  set fetchSubscriptionsResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 2136738697718180, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * convenience init(subscriptionIDs: [CKSubscription.ID])
    * @availability iOS 8.0+
    */
-  static initSubscriptionIDs(subscriptionIDs: Array<string>): CKFetchSubscriptionsOperation { return callSDK<CKFetchSubscriptionsOperation>("CloudKit_5d69670f0307b385", 4091193046904509, undefined, [subscriptionIDs]); }
+  static initSubscriptionIDs(subscriptionIDs: Array<string>): CKFetchSubscriptionsOperation { return callSDK<CKFetchSubscriptionsOperation>("CloudKit_6be9a005889899ab", 4091193046904509, undefined, [subscriptionIDs]); }
   /**
    * var subscriptionIDs: [CKSubscription.ID]? { get set }
    * @availability iOS 8.0+
    */
-  get subscriptionIDs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 3444454480929261, this, []); }
-  set subscriptionIDs(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3735186075553087, this, [value]); }
+  get subscriptionIDs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 3444454480929261, this, []); }
+  set subscriptionIDs(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3735186075553087, this, [value]); }
   /**
    * var perSubscriptionResultBlock: ((CKSubscription.ID, Result<CKSubscription, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perSubscriptionResultBlock(): $SDK97 { return callSDK<$SDK97>("CloudKit_5d69670f0307b385", 3755602216873667, this, []); }
-  set perSubscriptionResultBlock(value: $SDK98) { callSDK<void>("CloudKit_5d69670f0307b385", 2403291874231652, this, [value], [{"callback":{"out":[]}}]); }
+  get perSubscriptionResultBlock(): $SDK97 { return callSDK<$SDK97>("CloudKit_6be9a005889899ab", 3755602216873667, this, []); }
+  set perSubscriptionResultBlock(value: $SDK98) { callSDK<void>("CloudKit_6be9a005889899ab", 2403291874231652, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var fetchSubscriptionCompletionBlock: (([CKSubscription.ID : CKSubscription]?, (any Error)?) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get fetchSubscriptionCompletionBlock(): (((arg0: (Record<string, CKSubscription>) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (Record<string, CKSubscription>) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 4423824856541399, this, []); }
-  set fetchSubscriptionCompletionBlock(value: (((arg0: (Record<string, CKSubscription>) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1331960025674971, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchSubscriptionCompletionBlock(): (((arg0: (Record<string, CKSubscription>) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (Record<string, CKSubscription>) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 4423824856541399, this, []); }
+  set fetchSubscriptionCompletionBlock(value: (((arg0: (Record<string, CKSubscription>) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1331960025674971, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKFetchSubscriptionsOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true };
 }
@@ -2163,31 +2163,31 @@ export class CKFetchWebAuthTokenOperation extends (CKDatabaseOperation as unknow
    * init()
    * @availability iOS 9.2+
    */
-  static init(): CKFetchWebAuthTokenOperation { return callSDK<CKFetchWebAuthTokenOperation>("CloudKit_5d69670f0307b385", 3033366783461333, undefined, []); }
+  static init(): CKFetchWebAuthTokenOperation { return callSDK<CKFetchWebAuthTokenOperation>("CloudKit_6be9a005889899ab", 3033366783461333, undefined, []); }
   /**
    * convenience init(apiToken APIToken: String)
    * @availability iOS 9.2+
    */
-  static initApiToken(APIToken: string): CKFetchWebAuthTokenOperation { return callSDK<CKFetchWebAuthTokenOperation>("CloudKit_5d69670f0307b385", 3250472152971886, undefined, [APIToken]); }
+  static initApiToken(APIToken: string): CKFetchWebAuthTokenOperation { return callSDK<CKFetchWebAuthTokenOperation>("CloudKit_6be9a005889899ab", 3250472152971886, undefined, [APIToken]); }
   /**
    * var apiToken: String? { get set }
    * @availability iOS 9.2+
    */
-  get apiToken(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3634808615423414, this, []); }
-  set apiToken(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 726009980209230, this, [value]); }
+  get apiToken(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3634808615423414, this, []); }
+  set apiToken(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 726009980209230, this, [value]); }
   /**
    * var fetchWebAuthTokenCompletionBlock: ((String?, (any Error)?) -> Void)? { get set }
    * @availability iOS 9.2+
    * @deprecated iOS 15.0
    */
-  get fetchWebAuthTokenCompletionBlock(): (((arg0: (string) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (string) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 1847657360397153, this, []); }
-  set fetchWebAuthTokenCompletionBlock(value: (((arg0: (string) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3255191033752009, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchWebAuthTokenCompletionBlock(): (((arg0: (string) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (string) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 1847657360397153, this, []); }
+  set fetchWebAuthTokenCompletionBlock(value: (((arg0: (string) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3255191033752009, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var fetchWebAuthTokenResultBlock: ((Result<String, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get fetchWebAuthTokenResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 3043980922986975, this, []); }
-  set fetchWebAuthTokenResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 510224055324952, this, [value], [{"callback":{"out":[]}}]); }
+  get fetchWebAuthTokenResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 3043980922986975, this, []); }
+  set fetchWebAuthTokenResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 510224055324952, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKFetchWebAuthTokenOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true; "apiToken": true };
 }
@@ -2201,17 +2201,17 @@ export class CKLocationSortDescriptor extends SDKHandle {
    * init(coder aDecoder: NSCoder)
    * @availability iOS 8.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): CKLocationSortDescriptor { return callSDK<CKLocationSortDescriptor>("CloudKit_5d69670f0307b385", 2067915594166070, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): CKLocationSortDescriptor { return callSDK<CKLocationSortDescriptor>("CloudKit_6be9a005889899ab", 2067915594166070, undefined, [aDecoder]); }
   /**
    * init(key: String, relativeLocation: CLLocation)
    * @availability iOS 8.0+
    */
-  static initKeyRelativeLocation(key: string, relativeLocation: __LocationEssentials_CLLocation): CKLocationSortDescriptor { return callSDK<CKLocationSortDescriptor>("CloudKit_5d69670f0307b385", 2263267160351373, undefined, [key, relativeLocation]); }
+  static initKeyRelativeLocation(key: string, relativeLocation: __LocationEssentials_CLLocation): CKLocationSortDescriptor { return callSDK<CKLocationSortDescriptor>("CloudKit_6be9a005889899ab", 2263267160351373, undefined, [key, relativeLocation]); }
   /**
    * @NSCopying var relativeLocation: CLLocation { get }
    * @availability iOS 8.0+
    */
-  get relativeLocation(): __LocationEssentials_CLLocation { return callSDK<__LocationEssentials_CLLocation>("CloudKit_5d69670f0307b385", 3033180671079422, this, []); }
+  get relativeLocation(): __LocationEssentials_CLLocation { return callSDK<__LocationEssentials_CLLocation>("CloudKit_6be9a005889899ab", 3033180671079422, this, []); }
   declare readonly $type: { "c:objc(cs)CKLocationSortDescriptor": true; "c:objc(cs)NSSortDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "relativeLocation": true };
 }
@@ -2225,80 +2225,80 @@ export class CKModifyRecordsOperation extends (CKDatabaseOperation as unknown as
    * init()
    * @availability iOS 8.0+
    */
-  static init(): CKModifyRecordsOperation { return callSDK<CKModifyRecordsOperation>("CloudKit_5d69670f0307b385", 3931773823774908, undefined, []); }
+  static init(): CKModifyRecordsOperation { return callSDK<CKModifyRecordsOperation>("CloudKit_6be9a005889899ab", 3931773823774908, undefined, []); }
   /**
    * var isAtomic: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isAtomic(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 4253730911428763, this, []); }
-  set isAtomic(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 642419183857829, this, [value]); }
+  get isAtomic(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 4253730911428763, this, []); }
+  set isAtomic(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 642419183857829, this, [value]); }
   /**
    * var clientChangeTokenData: Data? { get set }
    * @availability iOS 8.0+
    */
-  get clientChangeTokenData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CloudKit_5d69670f0307b385", 977844652557181, this, []); }
-  set clientChangeTokenData(value: (ArrayBuffer) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1891659470543635, this, [value]); }
+  get clientChangeTokenData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CloudKit_6be9a005889899ab", 977844652557181, this, []); }
+  set clientChangeTokenData(value: (ArrayBuffer) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1891659470543635, this, [value]); }
   /**
    * var modifyRecordsCompletionBlock: (([CKRecord]?, [CKRecord.ID]?, (any Error)?) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get modifyRecordsCompletionBlock(): (((arg0: (Array<CKRecord>) | null, arg1: (Array<CKRecord_ID>) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (Array<CKRecord>) | null, arg1: (Array<CKRecord_ID>) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 1514357778264004, this, []); }
-  set modifyRecordsCompletionBlock(value: (((arg0: (Array<CKRecord>) | null, arg1: (Array<CKRecord_ID>) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 4281472806324531, this, [value], [{"callback":{"out":[]}}]); }
+  get modifyRecordsCompletionBlock(): (((arg0: (Array<CKRecord>) | null, arg1: (Array<CKRecord_ID>) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (Array<CKRecord>) | null, arg1: (Array<CKRecord_ID>) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 1514357778264004, this, []); }
+  set modifyRecordsCompletionBlock(value: (((arg0: (Array<CKRecord>) | null, arg1: (Array<CKRecord_ID>) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 4281472806324531, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perRecordCompletionBlock: ((CKRecord, (any Error)?) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get perRecordCompletionBlock(): (((arg0: CKRecord, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: CKRecord, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 845906719478304, this, []); }
-  set perRecordCompletionBlock(value: (((arg0: CKRecord, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2719201341447339, this, [value], [{"callback":{"out":[]}}]); }
+  get perRecordCompletionBlock(): (((arg0: CKRecord, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: CKRecord, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 845906719478304, this, []); }
+  set perRecordCompletionBlock(value: (((arg0: CKRecord, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2719201341447339, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perRecordProgressBlock: ((CKRecord, Double) -> Void)? { get set }
    * @availability iOS 8.0+
    */
-  get perRecordProgressBlock(): (((arg0: CKRecord, arg1: number) => Promise<void>)) | null { return callSDK<(((arg0: CKRecord, arg1: number) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 1365410681256081, this, []); }
-  set perRecordProgressBlock(value: (((arg0: CKRecord, arg1: number) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 4171718800841541, this, [value], [{"callback":{"out":[]}}]); }
+  get perRecordProgressBlock(): (((arg0: CKRecord, arg1: number) => Promise<void>)) | null { return callSDK<(((arg0: CKRecord, arg1: number) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 1365410681256081, this, []); }
+  set perRecordProgressBlock(value: (((arg0: CKRecord, arg1: number) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 4171718800841541, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordIDsToDelete: [CKRecord.ID]? { get set }
    * @availability iOS 8.0+
    */
-  get recordIDsToDelete(): $SDK79 { return callSDK<$SDK79>("CloudKit_5d69670f0307b385", 1336167786641164, this, []); }
-  set recordIDsToDelete(value: $SDK79) { callSDK<void>("CloudKit_5d69670f0307b385", 1034982472741903, this, [value]); }
+  get recordIDsToDelete(): $SDK79 { return callSDK<$SDK79>("CloudKit_6be9a005889899ab", 1336167786641164, this, []); }
+  set recordIDsToDelete(value: $SDK79) { callSDK<void>("CloudKit_6be9a005889899ab", 1034982472741903, this, [value]); }
   /**
    * var recordsToSave: [CKRecord]? { get set }
    * @availability iOS 8.0+
    */
-  get recordsToSave(): $SDK114 { return callSDK<$SDK114>("CloudKit_5d69670f0307b385", 565378080486786, this, []); }
-  set recordsToSave(value: $SDK114) { callSDK<void>("CloudKit_5d69670f0307b385", 3206618076120519, this, [value]); }
+  get recordsToSave(): $SDK114 { return callSDK<$SDK114>("CloudKit_6be9a005889899ab", 565378080486786, this, []); }
+  set recordsToSave(value: $SDK114) { callSDK<void>("CloudKit_6be9a005889899ab", 3206618076120519, this, [value]); }
   /**
    * var savePolicy: CKModifyRecordsOperation.RecordSavePolicy { get set }
    * @availability iOS 8.0+
    */
-  get savePolicy(): CKModifyRecordsOperation_RecordSavePolicy { return callSDK<CKModifyRecordsOperation_RecordSavePolicy>("CloudKit_5d69670f0307b385", 1180712114248121, this, []); }
-  set savePolicy(value: CKModifyRecordsOperation_RecordSavePolicy) { callSDK<void>("CloudKit_5d69670f0307b385", 2306782855007151, this, [value]); }
+  get savePolicy(): CKModifyRecordsOperation_RecordSavePolicy { return callSDK<CKModifyRecordsOperation_RecordSavePolicy>("CloudKit_6be9a005889899ab", 1180712114248121, this, []); }
+  set savePolicy(value: CKModifyRecordsOperation_RecordSavePolicy) { callSDK<void>("CloudKit_6be9a005889899ab", 2306782855007151, this, [value]); }
   /**
    * var modifyRecordsResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get modifyRecordsResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 2377254234540657, this, []); }
-  set modifyRecordsResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 1110412332502363, this, [value], [{"callback":{"out":[]}}]); }
+  get modifyRecordsResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 2377254234540657, this, []); }
+  set modifyRecordsResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 1110412332502363, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * convenience init(recordsToSave: [CKRecord]? = nil, recordIDsToDelete: [CKRecord.ID]? = nil)
    * @availability iOS 8.0+
    */
-  static initRecordsToSaveRecordIDsToDelete(recordsToSave?: $SDK114, recordIDsToDelete?: $SDK79): CKModifyRecordsOperation { return callSDK<CKModifyRecordsOperation>("CloudKit_5d69670f0307b385", 1381975857132698, undefined, [recordsToSave, recordIDsToDelete]); }
+  static initRecordsToSaveRecordIDsToDelete(recordsToSave?: $SDK114, recordIDsToDelete?: $SDK79): CKModifyRecordsOperation { return callSDK<CKModifyRecordsOperation>("CloudKit_6be9a005889899ab", 1381975857132698, undefined, [recordsToSave, recordIDsToDelete]); }
   /**
    * var perRecordSaveBlock: ((CKRecord.ID, Result<CKRecord, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perRecordSaveBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_5d69670f0307b385", 1028658533607753, this, []); }
-  set perRecordSaveBlock(value: $SDK81) { callSDK<void>("CloudKit_5d69670f0307b385", 866633087385650, this, [value], [{"callback":{"out":[]}}]); }
+  get perRecordSaveBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_6be9a005889899ab", 1028658533607753, this, []); }
+  set perRecordSaveBlock(value: $SDK81) { callSDK<void>("CloudKit_6be9a005889899ab", 866633087385650, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perRecordDeleteBlock: ((CKRecord.ID, Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perRecordDeleteBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_5d69670f0307b385", 943401204033243, this, []); }
-  set perRecordDeleteBlock(value: $SDK81) { callSDK<void>("CloudKit_5d69670f0307b385", 3825550934483023, this, [value], [{"callback":{"out":[]}}]); }
+  get perRecordDeleteBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_6be9a005889899ab", 943401204033243, this, []); }
+  set perRecordDeleteBlock(value: $SDK81) { callSDK<void>("CloudKit_6be9a005889899ab", 3825550934483023, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKModifyRecordsOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true; "isAtomic": true; "clientChangeTokenData": true; "recordIDsToDelete": true; "recordsToSave": true; "savePolicy": true };
 }
@@ -2314,7 +2314,7 @@ export const CKModifyRecordsOperation_RecordSavePolicy = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (CKModifyRecordsOperation_RecordSavePolicy) | null { return callSDK<(CKModifyRecordsOperation_RecordSavePolicy) | null>("CloudKit_5d69670f0307b385", 3818058569427236, undefined, [rawValue]); }
+  init(rawValue: number): (CKModifyRecordsOperation_RecordSavePolicy) | null { return callSDK<(CKModifyRecordsOperation_RecordSavePolicy) | null>("CloudKit_6be9a005889899ab", 3818058569427236, undefined, [rawValue]); }
 };
 
 /**
@@ -2326,49 +2326,49 @@ export class CKModifyRecordZonesOperation extends (CKDatabaseOperation as unknow
    * init()
    * @availability iOS 8.0+
    */
-  static init(): CKModifyRecordZonesOperation { return callSDK<CKModifyRecordZonesOperation>("CloudKit_5d69670f0307b385", 2127092247123723, undefined, []); }
+  static init(): CKModifyRecordZonesOperation { return callSDK<CKModifyRecordZonesOperation>("CloudKit_6be9a005889899ab", 2127092247123723, undefined, []); }
   /**
    * var modifyRecordZonesCompletionBlock: (([CKRecordZone]?, [CKRecordZone.ID]?, (any Error)?) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get modifyRecordZonesCompletionBlock(): (((arg0: (Array<CKRecordZone>) | null, arg1: (Array<CKRecordZone_ID>) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (Array<CKRecordZone>) | null, arg1: (Array<CKRecordZone_ID>) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 3519375604746072, this, []); }
-  set modifyRecordZonesCompletionBlock(value: (((arg0: (Array<CKRecordZone>) | null, arg1: (Array<CKRecordZone_ID>) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2160435587079627, this, [value], [{"callback":{"out":[]}}]); }
+  get modifyRecordZonesCompletionBlock(): (((arg0: (Array<CKRecordZone>) | null, arg1: (Array<CKRecordZone_ID>) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (Array<CKRecordZone>) | null, arg1: (Array<CKRecordZone_ID>) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 3519375604746072, this, []); }
+  set modifyRecordZonesCompletionBlock(value: (((arg0: (Array<CKRecordZone>) | null, arg1: (Array<CKRecordZone_ID>) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2160435587079627, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordZoneIDsToDelete: [CKRecordZone.ID]? { get set }
    * @availability iOS 8.0+
    */
-  get recordZoneIDsToDelete(): $SDK88 { return callSDK<$SDK88>("CloudKit_5d69670f0307b385", 3271305406598944, this, []); }
-  set recordZoneIDsToDelete(value: $SDK88) { callSDK<void>("CloudKit_5d69670f0307b385", 1682036806423260, this, [value]); }
+  get recordZoneIDsToDelete(): $SDK88 { return callSDK<$SDK88>("CloudKit_6be9a005889899ab", 3271305406598944, this, []); }
+  set recordZoneIDsToDelete(value: $SDK88) { callSDK<void>("CloudKit_6be9a005889899ab", 1682036806423260, this, [value]); }
   /**
    * var recordZonesToSave: [CKRecordZone]? { get set }
    * @availability iOS 8.0+
    */
-  get recordZonesToSave(): $SDK117 { return callSDK<$SDK117>("CloudKit_5d69670f0307b385", 319186898326604, this, []); }
-  set recordZonesToSave(value: $SDK117) { callSDK<void>("CloudKit_5d69670f0307b385", 1079831763238823, this, [value]); }
+  get recordZonesToSave(): $SDK117 { return callSDK<$SDK117>("CloudKit_6be9a005889899ab", 319186898326604, this, []); }
+  set recordZonesToSave(value: $SDK117) { callSDK<void>("CloudKit_6be9a005889899ab", 1079831763238823, this, [value]); }
   /**
    * var perRecordZoneSaveBlock: ((CKRecordZone.ID, Result<CKRecordZone, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perRecordZoneSaveBlock(): $SDK89 { return callSDK<$SDK89>("CloudKit_5d69670f0307b385", 2941616499123798, this, []); }
-  set perRecordZoneSaveBlock(value: $SDK90) { callSDK<void>("CloudKit_5d69670f0307b385", 1935465982039539, this, [value], [{"callback":{"out":[]}}]); }
+  get perRecordZoneSaveBlock(): $SDK89 { return callSDK<$SDK89>("CloudKit_6be9a005889899ab", 2941616499123798, this, []); }
+  set perRecordZoneSaveBlock(value: $SDK90) { callSDK<void>("CloudKit_6be9a005889899ab", 1935465982039539, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perRecordZoneDeleteBlock: ((CKRecordZone.ID, Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perRecordZoneDeleteBlock(): $SDK89 { return callSDK<$SDK89>("CloudKit_5d69670f0307b385", 1813801870929435, this, []); }
-  set perRecordZoneDeleteBlock(value: $SDK90) { callSDK<void>("CloudKit_5d69670f0307b385", 1550311738944337, this, [value], [{"callback":{"out":[]}}]); }
+  get perRecordZoneDeleteBlock(): $SDK89 { return callSDK<$SDK89>("CloudKit_6be9a005889899ab", 1813801870929435, this, []); }
+  set perRecordZoneDeleteBlock(value: $SDK90) { callSDK<void>("CloudKit_6be9a005889899ab", 1550311738944337, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var modifyRecordZonesResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get modifyRecordZonesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 657756937402137, this, []); }
-  set modifyRecordZonesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 4286958870979602, this, [value], [{"callback":{"out":[]}}]); }
+  get modifyRecordZonesResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 657756937402137, this, []); }
+  set modifyRecordZonesResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 4286958870979602, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * convenience init(recordZonesToSave: [CKRecordZone]? = nil, recordZoneIDsToDelete: [CKRecordZone.ID]? = nil)
    * @availability iOS 8.0+
    */
-  static initRecordZonesToSaveRecordZoneIDsToDelete(recordZonesToSave?: $SDK117, recordZoneIDsToDelete?: $SDK88): CKModifyRecordZonesOperation { return callSDK<CKModifyRecordZonesOperation>("CloudKit_5d69670f0307b385", 2423124676224195, undefined, [recordZonesToSave, recordZoneIDsToDelete]); }
+  static initRecordZonesToSaveRecordZoneIDsToDelete(recordZonesToSave?: $SDK117, recordZoneIDsToDelete?: $SDK88): CKModifyRecordZonesOperation { return callSDK<CKModifyRecordZonesOperation>("CloudKit_6be9a005889899ab", 2423124676224195, undefined, [recordZonesToSave, recordZoneIDsToDelete]); }
   declare readonly $type: { "c:objc(cs)CKModifyRecordZonesOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true; "recordZoneIDsToDelete": true; "recordZonesToSave": true };
 }
@@ -2382,49 +2382,49 @@ export class CKModifySubscriptionsOperation extends (CKDatabaseOperation as unkn
    * init()
    * @availability iOS 8.0+
    */
-  static init(): CKModifySubscriptionsOperation { return callSDK<CKModifySubscriptionsOperation>("CloudKit_5d69670f0307b385", 181951484084613, undefined, []); }
+  static init(): CKModifySubscriptionsOperation { return callSDK<CKModifySubscriptionsOperation>("CloudKit_6be9a005889899ab", 181951484084613, undefined, []); }
   /**
    * var subscriptionsToSave: [CKSubscription]? { get set }
    * @availability iOS 8.0+
    */
-  get subscriptionsToSave(): $SDK118 { return callSDK<$SDK118>("CloudKit_5d69670f0307b385", 1452611739428706, this, []); }
-  set subscriptionsToSave(value: $SDK118) { callSDK<void>("CloudKit_5d69670f0307b385", 2923408324114463, this, [value]); }
+  get subscriptionsToSave(): $SDK118 { return callSDK<$SDK118>("CloudKit_6be9a005889899ab", 1452611739428706, this, []); }
+  set subscriptionsToSave(value: $SDK118) { callSDK<void>("CloudKit_6be9a005889899ab", 2923408324114463, this, [value]); }
   /**
    * var modifySubscriptionsResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get modifySubscriptionsResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 1310809345697828, this, []); }
-  set modifySubscriptionsResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 3695309282257688, this, [value], [{"callback":{"out":[]}}]); }
+  get modifySubscriptionsResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 1310809345697828, this, []); }
+  set modifySubscriptionsResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 3695309282257688, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var modifySubscriptionsCompletionBlock: (([CKSubscription]?, [CKSubscription.ID]?, (any Error)?) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get modifySubscriptionsCompletionBlock(): (((arg0: (Array<CKSubscription>) | null, arg1: (Array<string>) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (Array<CKSubscription>) | null, arg1: (Array<string>) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 1713958371183620, this, []); }
-  set modifySubscriptionsCompletionBlock(value: (((arg0: (Array<CKSubscription>) | null, arg1: (Array<string>) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1139594655266910, this, [value], [{"callback":{"out":[]}}]); }
+  get modifySubscriptionsCompletionBlock(): (((arg0: (Array<CKSubscription>) | null, arg1: (Array<string>) | null, arg2: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (Array<CKSubscription>) | null, arg1: (Array<string>) | null, arg2: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 1713958371183620, this, []); }
+  set modifySubscriptionsCompletionBlock(value: (((arg0: (Array<CKSubscription>) | null, arg1: (Array<string>) | null, arg2: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1139594655266910, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * convenience init(subscriptionsToSave: [CKSubscription]? = nil, subscriptionIDsToDelete: [CKSubscription.ID]? = nil)
    * @availability iOS 8.0+
    */
-  static initSubscriptionsToSaveSubscriptionIDsToDelete(subscriptionsToSave?: $SDK118, subscriptionIDsToDelete?: (Array<string>) | null): CKModifySubscriptionsOperation { return callSDK<CKModifySubscriptionsOperation>("CloudKit_5d69670f0307b385", 2963254425311815, undefined, [subscriptionsToSave, subscriptionIDsToDelete]); }
+  static initSubscriptionsToSaveSubscriptionIDsToDelete(subscriptionsToSave?: $SDK118, subscriptionIDsToDelete?: (Array<string>) | null): CKModifySubscriptionsOperation { return callSDK<CKModifySubscriptionsOperation>("CloudKit_6be9a005889899ab", 2963254425311815, undefined, [subscriptionsToSave, subscriptionIDsToDelete]); }
   /**
    * var subscriptionIDsToDelete: [CKSubscription.ID]? { get set }
    * @availability iOS 8.0+
    */
-  get subscriptionIDsToDelete(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 2667676537394885, this, []); }
-  set subscriptionIDsToDelete(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2933574043280036, this, [value]); }
+  get subscriptionIDsToDelete(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 2667676537394885, this, []); }
+  set subscriptionIDsToDelete(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2933574043280036, this, [value]); }
   /**
    * var perSubscriptionSaveBlock: ((CKSubscription.ID, Result<CKSubscription, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perSubscriptionSaveBlock(): $SDK97 { return callSDK<$SDK97>("CloudKit_5d69670f0307b385", 3201642411718535, this, []); }
-  set perSubscriptionSaveBlock(value: $SDK98) { callSDK<void>("CloudKit_5d69670f0307b385", 930595296609428, this, [value], [{"callback":{"out":[]}}]); }
+  get perSubscriptionSaveBlock(): $SDK97 { return callSDK<$SDK97>("CloudKit_6be9a005889899ab", 3201642411718535, this, []); }
+  set perSubscriptionSaveBlock(value: $SDK98) { callSDK<void>("CloudKit_6be9a005889899ab", 930595296609428, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perSubscriptionDeleteBlock: ((CKSubscription.ID, Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get perSubscriptionDeleteBlock(): $SDK97 { return callSDK<$SDK97>("CloudKit_5d69670f0307b385", 1907109787439226, this, []); }
-  set perSubscriptionDeleteBlock(value: $SDK98) { callSDK<void>("CloudKit_5d69670f0307b385", 4192664952980262, this, [value], [{"callback":{"out":[]}}]); }
+  get perSubscriptionDeleteBlock(): $SDK97 { return callSDK<$SDK97>("CloudKit_6be9a005889899ab", 1907109787439226, this, []); }
+  set perSubscriptionDeleteBlock(value: $SDK98) { callSDK<void>("CloudKit_6be9a005889899ab", 4192664952980262, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKModifySubscriptionsOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true; "subscriptionsToSave": true };
 }
@@ -2435,7 +2435,7 @@ export class CKModifySubscriptionsOperation extends (CKDatabaseOperation as unkn
  */
 export class CKNotification_ID extends SDKHandle {
   /** init() */
-  static init(): CKNotification_ID { return callSDK<CKNotification_ID>("CloudKit_5d69670f0307b385", 2413176784292145, undefined, []); }
+  static init(): CKNotification_ID { return callSDK<CKNotification_ID>("CloudKit_6be9a005889899ab", 2413176784292145, undefined, []); }
   declare readonly $type: { "c:objc(cs)CKNotificationID": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2450,7 +2450,7 @@ export const CKNotification_NotificationType = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (CKNotification_NotificationType) | null { return callSDK<(CKNotification_NotificationType) | null>("CloudKit_5d69670f0307b385", 2283500130247921, undefined, [rawValue]); }
+  init(rawValue: number): (CKNotification_NotificationType) | null { return callSDK<(CKNotification_NotificationType) | null>("CloudKit_6be9a005889899ab", 2283500130247921, undefined, [rawValue]); }
 };
 
 /**
@@ -2459,43 +2459,43 @@ export const CKNotification_NotificationType = {
  */
 export class CKOperation_Configuration extends SDKHandle {
   /** init() */
-  static init(): CKOperation_Configuration { return callSDK<CKOperation_Configuration>("CloudKit_5d69670f0307b385", 4174417538458298, undefined, []); }
+  static init(): CKOperation_Configuration { return callSDK<CKOperation_Configuration>("CloudKit_6be9a005889899ab", 4174417538458298, undefined, []); }
   /**
    * var allowsCellularAccess: Bool { get set }
    * @availability iOS 11.0+
    */
-  get allowsCellularAccess(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 1250703888829152, this, []); }
-  set allowsCellularAccess(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 2739727286104637, this, [value]); }
+  get allowsCellularAccess(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 1250703888829152, this, []); }
+  set allowsCellularAccess(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 2739727286104637, this, [value]); }
   /**
    * var container: CKContainer? { get set }
    * @availability iOS 11.0+
    */
-  get container(): (CKContainer) | null { return callSDK<(CKContainer) | null>("CloudKit_5d69670f0307b385", 982223280856003, this, []); }
-  set container(value: (CKContainer) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1764413512190469, this, [value]); }
+  get container(): (CKContainer) | null { return callSDK<(CKContainer) | null>("CloudKit_6be9a005889899ab", 982223280856003, this, []); }
+  set container(value: (CKContainer) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1764413512190469, this, [value]); }
   /**
    * var isLongLived: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isLongLived(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 900844936862947, this, []); }
-  set isLongLived(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 376976944383405, this, [value]); }
+  get isLongLived(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 900844936862947, this, []); }
+  set isLongLived(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 376976944383405, this, [value]); }
   /**
    * var qualityOfService: QualityOfService { get set }
    * @availability iOS 11.0+
    */
-  get qualityOfService(): _Foundation_QualityOfService { return callSDK<_Foundation_QualityOfService>("CloudKit_5d69670f0307b385", 584574546440143, this, []); }
-  set qualityOfService(value: _Foundation_QualityOfService) { callSDK<void>("CloudKit_5d69670f0307b385", 3675278451826888, this, [value]); }
+  get qualityOfService(): _Foundation_QualityOfService { return callSDK<_Foundation_QualityOfService>("CloudKit_6be9a005889899ab", 584574546440143, this, []); }
+  set qualityOfService(value: _Foundation_QualityOfService) { callSDK<void>("CloudKit_6be9a005889899ab", 3675278451826888, this, [value]); }
   /**
    * var timeoutIntervalForRequest: TimeInterval { get set }
    * @availability iOS 11.0+
    */
-  get timeoutIntervalForRequest(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 1944479801826198, this, []); }
-  set timeoutIntervalForRequest(value: number) { callSDK<void>("CloudKit_5d69670f0307b385", 2574571691472947, this, [value]); }
+  get timeoutIntervalForRequest(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 1944479801826198, this, []); }
+  set timeoutIntervalForRequest(value: number) { callSDK<void>("CloudKit_6be9a005889899ab", 2574571691472947, this, [value]); }
   /**
    * var timeoutIntervalForResource: TimeInterval { get set }
    * @availability iOS 11.0+
    */
-  get timeoutIntervalForResource(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 783694711921516, this, []); }
-  set timeoutIntervalForResource(value: number) { callSDK<void>("CloudKit_5d69670f0307b385", 3334108264659943, this, [value]); }
+  get timeoutIntervalForResource(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 783694711921516, this, []); }
+  set timeoutIntervalForResource(value: number) { callSDK<void>("CloudKit_6be9a005889899ab", 3334108264659943, this, [value]); }
   declare readonly $type: { "c:objc(cs)CKOperationConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "container": true; "isLongLived": true; "qualityOfService": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true };
 }
@@ -2515,47 +2515,47 @@ export class CKOperationGroup extends SDKHandle {
    * init()
    * @availability iOS 11.0+
    */
-  static init(): CKOperationGroup { return callSDK<CKOperationGroup>("CloudKit_5d69670f0307b385", 1940899870999966, undefined, []); }
+  static init(): CKOperationGroup { return callSDK<CKOperationGroup>("CloudKit_6be9a005889899ab", 1940899870999966, undefined, []); }
   /**
    * init(coder aDecoder: NSCoder)
    * @availability iOS 11.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): CKOperationGroup { return callSDK<CKOperationGroup>("CloudKit_5d69670f0307b385", 2241406185977301, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): CKOperationGroup { return callSDK<CKOperationGroup>("CloudKit_6be9a005889899ab", 2241406185977301, undefined, [aDecoder]); }
   /**
    * @NSCopying var defaultConfiguration: CKOperation.Configuration! { get set }
    * @availability iOS 11.0+
    */
-  get defaultConfiguration(): $SDK0 { return callSDK<$SDK0>("CloudKit_5d69670f0307b385", 1184411809352322, this, []); }
-  set defaultConfiguration(value: $SDK0) { callSDK<void>("CloudKit_5d69670f0307b385", 1588337950385504, this, [value]); }
+  get defaultConfiguration(): $SDK0 { return callSDK<$SDK0>("CloudKit_6be9a005889899ab", 1184411809352322, this, []); }
+  set defaultConfiguration(value: $SDK0) { callSDK<void>("CloudKit_6be9a005889899ab", 1588337950385504, this, [value]); }
   /**
    * var expectedReceiveSize: CKOperationGroup.TransferSize { get set }
    * @availability iOS 11.0+
    */
-  get expectedReceiveSize(): CKOperationGroup_TransferSize { return callSDK<CKOperationGroup_TransferSize>("CloudKit_5d69670f0307b385", 1692698084577487, this, []); }
-  set expectedReceiveSize(value: CKOperationGroup_TransferSize) { callSDK<void>("CloudKit_5d69670f0307b385", 4172847189696565, this, [value]); }
+  get expectedReceiveSize(): CKOperationGroup_TransferSize { return callSDK<CKOperationGroup_TransferSize>("CloudKit_6be9a005889899ab", 1692698084577487, this, []); }
+  set expectedReceiveSize(value: CKOperationGroup_TransferSize) { callSDK<void>("CloudKit_6be9a005889899ab", 4172847189696565, this, [value]); }
   /**
    * var expectedSendSize: CKOperationGroup.TransferSize { get set }
    * @availability iOS 11.0+
    */
-  get expectedSendSize(): CKOperationGroup_TransferSize { return callSDK<CKOperationGroup_TransferSize>("CloudKit_5d69670f0307b385", 4503469866427088, this, []); }
-  set expectedSendSize(value: CKOperationGroup_TransferSize) { callSDK<void>("CloudKit_5d69670f0307b385", 1572520238624042, this, [value]); }
+  get expectedSendSize(): CKOperationGroup_TransferSize { return callSDK<CKOperationGroup_TransferSize>("CloudKit_6be9a005889899ab", 4503469866427088, this, []); }
+  set expectedSendSize(value: CKOperationGroup_TransferSize) { callSDK<void>("CloudKit_6be9a005889899ab", 1572520238624042, this, [value]); }
   /**
    * var name: String? { get set }
    * @availability iOS 11.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 1038863141931903, this, []); }
-  set name(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1243759685594869, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 1038863141931903, this, []); }
+  set name(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1243759685594869, this, [value]); }
   /**
    * var operationGroupID: String { get }
    * @availability iOS 11.0+
    */
-  get operationGroupID(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1422317783651967, this, []); }
+  get operationGroupID(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1422317783651967, this, []); }
   /**
    * var quantity: Int { get set }
    * @availability iOS 11.0+
    */
-  get quantity(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 1133684253597267, this, []); }
-  set quantity(value: number) { callSDK<void>("CloudKit_5d69670f0307b385", 1494669079361181, this, [value]); }
+  get quantity(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 1133684253597267, this, []); }
+  set quantity(value: number) { callSDK<void>("CloudKit_6be9a005889899ab", 1494669079361181, this, [value]); }
   declare readonly $type: { "c:objc(cs)CKOperationGroup": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "defaultConfiguration": true; "expectedReceiveSize": true; "expectedSendSize": true; "name": true; "operationGroupID": true; "quantity": true };
 }
@@ -2571,7 +2571,7 @@ export const CKOperationGroup_TransferSize = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (CKOperationGroup_TransferSize) | null { return callSDK<(CKOperationGroup_TransferSize) | null>("CloudKit_5d69670f0307b385", 3290429436345137, undefined, [rawValue]); }
+  init(rawValue: number): (CKOperationGroup_TransferSize) | null { return callSDK<(CKOperationGroup_TransferSize) | null>("CloudKit_6be9a005889899ab", 3290429436345137, undefined, [rawValue]); }
 };
 
 /**
@@ -2583,28 +2583,28 @@ export class CKQuery extends SDKHandle {
    * init(coder aDecoder: NSCoder)
    * @availability iOS 8.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): CKQuery { return callSDK<CKQuery>("CloudKit_5d69670f0307b385", 670669270631006, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): CKQuery { return callSDK<CKQuery>("CloudKit_6be9a005889899ab", 670669270631006, undefined, [aDecoder]); }
   /**
    * @NSCopying var predicate: NSPredicate { get }
    * @availability iOS 8.0+
    */
-  get predicate(): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("CloudKit_5d69670f0307b385", 734171353122850, this, []); }
+  get predicate(): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("CloudKit_6be9a005889899ab", 734171353122850, this, []); }
   /**
    * var sortDescriptors: [NSSortDescriptor]? { get set }
    * @availability iOS 8.0+
    */
-  get sortDescriptors(): $SDK121 { return callSDK<$SDK121>("CloudKit_5d69670f0307b385", 3830301988671166, this, []); }
-  set sortDescriptors(value: $SDK121) { callSDK<void>("CloudKit_5d69670f0307b385", 4474072317579531, this, [value]); }
+  get sortDescriptors(): $SDK121 { return callSDK<$SDK121>("CloudKit_6be9a005889899ab", 3830301988671166, this, []); }
+  set sortDescriptors(value: $SDK121) { callSDK<void>("CloudKit_6be9a005889899ab", 4474072317579531, this, [value]); }
   /**
    * convenience init(recordType: CKRecord.RecordType, predicate: NSPredicate)
    * @availability iOS 8.0+
    */
-  static initRecordTypePredicate(recordType: string, predicate: _Foundation_NSPredicate): CKQuery { return callSDK<CKQuery>("CloudKit_5d69670f0307b385", 3278841636962973, undefined, [recordType, predicate]); }
+  static initRecordTypePredicate(recordType: string, predicate: _Foundation_NSPredicate): CKQuery { return callSDK<CKQuery>("CloudKit_6be9a005889899ab", 3278841636962973, undefined, [recordType, predicate]); }
   /**
    * var recordType: CKRecord.RecordType { get }
    * @availability iOS 8.0+
    */
-  get recordType(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 148475860584522, this, []); }
+  get recordType(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 148475860584522, this, []); }
   declare readonly $type: { "c:objc(cs)CKQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "predicate": true; "sortDescriptors": true };
 }
@@ -2618,22 +2618,22 @@ export class CKQueryNotification extends CKNotification {
    * var databaseScope: CKDatabase.Scope { get }
    * @availability iOS 10.0+
    */
-  get databaseScope(): CKDatabase_Scope { return callSDK<CKDatabase_Scope>("CloudKit_5d69670f0307b385", 1677286305464155, this, []); }
+  get databaseScope(): CKDatabase_Scope { return callSDK<CKDatabase_Scope>("CloudKit_6be9a005889899ab", 1677286305464155, this, []); }
   /**
    * var queryNotificationReason: CKQueryNotification.Reason { get }
    * @availability iOS 8.0+
    */
-  get queryNotificationReason(): CKQueryNotification_Reason { return callSDK<CKQueryNotification_Reason>("CloudKit_5d69670f0307b385", 2525898069319054, this, []); }
+  get queryNotificationReason(): CKQueryNotification_Reason { return callSDK<CKQueryNotification_Reason>("CloudKit_6be9a005889899ab", 2525898069319054, this, []); }
   /**
    * var recordFields: [String : Any]? { get }
    * @availability iOS 8.0+
    */
-  get recordFields(): (Record<string, unknown>) | null { return callSDK<(Record<string, unknown>) | null>("CloudKit_5d69670f0307b385", 797170402518617, this, []); }
+  get recordFields(): (Record<string, unknown>) | null { return callSDK<(Record<string, unknown>) | null>("CloudKit_6be9a005889899ab", 797170402518617, this, []); }
   /**
    * @NSCopying var recordID: CKRecord.ID? { get }
    * @availability iOS 8.0+
    */
-  get recordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_5d69670f0307b385", 2884322272293001, this, []); }
+  get recordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_6be9a005889899ab", 2884322272293001, this, []); }
   declare readonly $type: { "c:objc(cs)CKQueryNotification": true; "c:objc(cs)CKNotification": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alertActionLocalizationKey": true; "alertBody": true; "alertLaunchImage": true; "alertLocalizationArgs": true; "alertLocalizationKey": true; "badge": true; "category": true; "containerIdentifier": true; "isPruned": true; "notificationID": true; "notificationType": true; "soundName": true; "subscriptionOwnerUserRecordID": true; "subtitle": true; "subtitleLocalizationArgs": true; "subtitleLocalizationKey": true; "title": true; "titleLocalizationArgs": true; "titleLocalizationKey": true; "databaseScope": true; "queryNotificationReason": true; "recordFields": true; "recordID": true };
 }
@@ -2649,7 +2649,7 @@ export const CKQueryNotification_Reason = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (CKQueryNotification_Reason) | null { return callSDK<(CKQueryNotification_Reason) | null>("CloudKit_5d69670f0307b385", 3690140609205406, undefined, [rawValue]); }
+  init(rawValue: number): (CKQueryNotification_Reason) | null { return callSDK<(CKQueryNotification_Reason) | null>("CloudKit_6be9a005889899ab", 3690140609205406, undefined, [rawValue]); }
 };
 
 /**
@@ -2661,78 +2661,78 @@ export class CKQueryOperation extends (CKDatabaseOperation as unknown as Omit<ty
    * class let maximumResults: Int
    * @availability iOS 8.0+
    */
-  static get maximumResults(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 3890101744570003, undefined, []); }
+  static get maximumResults(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 3890101744570003, undefined, []); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): CKQueryOperation { return callSDK<CKQueryOperation>("CloudKit_5d69670f0307b385", 4101437404936792, undefined, []); }
+  static init(): CKQueryOperation { return callSDK<CKQueryOperation>("CloudKit_6be9a005889899ab", 4101437404936792, undefined, []); }
   /**
    * convenience init(cursor: CKQueryOperation.Cursor)
    * @availability iOS 8.0+
    */
-  static initCursor(cursor: CKQueryOperation_Cursor): CKQueryOperation { return callSDK<CKQueryOperation>("CloudKit_5d69670f0307b385", 3552859646621929, undefined, [cursor]); }
+  static initCursor(cursor: CKQueryOperation_Cursor): CKQueryOperation { return callSDK<CKQueryOperation>("CloudKit_6be9a005889899ab", 3552859646621929, undefined, [cursor]); }
   /**
    * convenience init(query: CKQuery)
    * @availability iOS 8.0+
    */
-  static initQuery(query: CKQuery): CKQueryOperation { return callSDK<CKQueryOperation>("CloudKit_5d69670f0307b385", 2584650125445081, undefined, [query]); }
+  static initQuery(query: CKQuery): CKQueryOperation { return callSDK<CKQueryOperation>("CloudKit_6be9a005889899ab", 2584650125445081, undefined, [query]); }
   /**
    * @NSCopying var cursor: CKQueryOperation.Cursor? { get set }
    * @availability iOS 8.0+
    */
-  get cursor(): (CKQueryOperation_Cursor) | null { return callSDK<(CKQueryOperation_Cursor) | null>("CloudKit_5d69670f0307b385", 1136821216625900, this, []); }
-  set cursor(value: (CKQueryOperation_Cursor) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2009084802711535, this, [value]); }
+  get cursor(): (CKQueryOperation_Cursor) | null { return callSDK<(CKQueryOperation_Cursor) | null>("CloudKit_6be9a005889899ab", 1136821216625900, this, []); }
+  set cursor(value: (CKQueryOperation_Cursor) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2009084802711535, this, [value]); }
   /**
    * @NSCopying var query: CKQuery? { get set }
    * @availability iOS 8.0+
    */
-  get query(): (CKQuery) | null { return callSDK<(CKQuery) | null>("CloudKit_5d69670f0307b385", 289338588700, this, []); }
-  set query(value: (CKQuery) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 260729841508788, this, [value]); }
+  get query(): (CKQuery) | null { return callSDK<(CKQuery) | null>("CloudKit_6be9a005889899ab", 289338588700, this, []); }
+  set query(value: (CKQuery) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 260729841508788, this, [value]); }
   /**
    * var queryCompletionBlock: ((CKQueryOperation.Cursor?, (any Error)?) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get queryCompletionBlock(): (((arg0: (CKQueryOperation_Cursor) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CKQueryOperation_Cursor) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_5d69670f0307b385", 584691793926306, this, []); }
-  set queryCompletionBlock(value: (((arg0: (CKQueryOperation_Cursor) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2388480301655206, this, [value], [{"callback":{"out":[]}}]); }
+  get queryCompletionBlock(): (((arg0: (CKQueryOperation_Cursor) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CKQueryOperation_Cursor) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("CloudKit_6be9a005889899ab", 584691793926306, this, []); }
+  set queryCompletionBlock(value: (((arg0: (CKQueryOperation_Cursor) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2388480301655206, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordFetchedBlock: ((CKRecord) -> Void)? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get recordFetchedBlock(): $SDK69 { return callSDK<$SDK69>("CloudKit_5d69670f0307b385", 1461554123987820, this, []); }
-  set recordFetchedBlock(value: $SDK70) { callSDK<void>("CloudKit_5d69670f0307b385", 443438022323234, this, [value], [{"callback":{"out":[]}}]); }
+  get recordFetchedBlock(): $SDK69 { return callSDK<$SDK69>("CloudKit_6be9a005889899ab", 1461554123987820, this, []); }
+  set recordFetchedBlock(value: $SDK70) { callSDK<void>("CloudKit_6be9a005889899ab", 443438022323234, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var resultsLimit: Int { get set }
    * @availability iOS 8.0+
    */
-  get resultsLimit(): number { return callSDK<number>("CloudKit_5d69670f0307b385", 3306759201222206, this, []); }
-  set resultsLimit(value: number) { callSDK<void>("CloudKit_5d69670f0307b385", 2766934563126383, this, [value]); }
+  get resultsLimit(): number { return callSDK<number>("CloudKit_6be9a005889899ab", 3306759201222206, this, []); }
+  set resultsLimit(value: number) { callSDK<void>("CloudKit_6be9a005889899ab", 2766934563126383, this, [value]); }
   /**
    * @NSCopying var zoneID: CKRecordZone.ID? { get set }
    * @availability iOS 8.0+
    */
-  get zoneID(): $SDK38 { return callSDK<$SDK38>("CloudKit_5d69670f0307b385", 663263177098155, this, []); }
-  set zoneID(value: $SDK38) { callSDK<void>("CloudKit_5d69670f0307b385", 1321145284874080, this, [value]); }
+  get zoneID(): $SDK38 { return callSDK<$SDK38>("CloudKit_6be9a005889899ab", 663263177098155, this, []); }
+  set zoneID(value: $SDK38) { callSDK<void>("CloudKit_6be9a005889899ab", 1321145284874080, this, [value]); }
   /**
    * var desiredKeys: [CKRecord.FieldKey]? { get set }
    * @availability iOS 8.0+
    */
-  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 2358774989395241, this, []); }
-  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1090408482400477, this, [value]); }
+  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 2358774989395241, this, []); }
+  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1090408482400477, this, [value]); }
   /**
    * var queryResultBlock: ((Result<CKQueryOperation.Cursor?, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get queryResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 3880880252494289, this, []); }
-  set queryResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 1614757985384795, this, [value], [{"callback":{"out":[]}}]); }
+  get queryResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 3880880252494289, this, []); }
+  set queryResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 1614757985384795, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recordMatchedBlock: ((CKRecord.ID, Result<CKRecord, any Error>) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get recordMatchedBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_5d69670f0307b385", 754248141518379, this, []); }
-  set recordMatchedBlock(value: $SDK81) { callSDK<void>("CloudKit_5d69670f0307b385", 4470490019454445, this, [value], [{"callback":{"out":[]}}]); }
+  get recordMatchedBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_6be9a005889899ab", 754248141518379, this, []); }
+  set recordMatchedBlock(value: $SDK81) { callSDK<void>("CloudKit_6be9a005889899ab", 4470490019454445, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKQueryOperation": true; "c:objc(cs)CKDatabaseOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "database": true; "cursor": true; "query": true; "resultsLimit": true; "zoneID": true };
 }
@@ -2754,39 +2754,39 @@ export class CKQuerySubscription extends CKSubscription {
    * init(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): CKQuerySubscription { return callSDK<CKQuerySubscription>("CloudKit_5d69670f0307b385", 667837737528219, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): CKQuerySubscription { return callSDK<CKQuerySubscription>("CloudKit_6be9a005889899ab", 667837737528219, undefined, [aDecoder]); }
   /**
    * @NSCopying var predicate: NSPredicate { get }
    * @availability iOS 10.0+
    */
-  get predicate(): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("CloudKit_5d69670f0307b385", 3440900740716166, this, []); }
+  get predicate(): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("CloudKit_6be9a005889899ab", 3440900740716166, this, []); }
   /**
    * var querySubscriptionOptions: CKQuerySubscription.Options { get }
    * @availability iOS 10.0+
    */
-  get querySubscriptionOptions(): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_5d69670f0307b385", 2289748709827733, this, []); }
+  get querySubscriptionOptions(): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_6be9a005889899ab", 2289748709827733, this, []); }
   /**
    * @NSCopying var zoneID: CKRecordZone.ID? { get set }
    * @availability iOS 10.0+
    */
-  get zoneID(): $SDK38 { return callSDK<$SDK38>("CloudKit_5d69670f0307b385", 1968639010209720, this, []); }
-  set zoneID(value: $SDK38) { callSDK<void>("CloudKit_5d69670f0307b385", 2267213073975608, this, [value]); }
+  get zoneID(): $SDK38 { return callSDK<$SDK38>("CloudKit_6be9a005889899ab", 1968639010209720, this, []); }
+  set zoneID(value: $SDK38) { callSDK<void>("CloudKit_6be9a005889899ab", 2267213073975608, this, [value]); }
   /**
    * convenience init(recordType: CKRecord.RecordType, predicate: NSPredicate, subscriptionID: CKSubscription.ID, options querySubscriptionOptions: CKQuerySubscription.Options = [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion])
    * @availability iOS 10.0+
    */
-  static initRecordTypePredicateSubscriptionIDOptions(recordType: string, predicate: _Foundation_NSPredicate, subscriptionID: string, querySubscriptionOptions?: CKQuerySubscription_Options): CKQuerySubscription { return callSDK<CKQuerySubscription>("CloudKit_5d69670f0307b385", 4260160560316218, undefined, [recordType, predicate, subscriptionID, querySubscriptionOptions]); }
+  static initRecordTypePredicateSubscriptionIDOptions(recordType: string, predicate: _Foundation_NSPredicate, subscriptionID: string, querySubscriptionOptions?: CKQuerySubscription_Options): CKQuerySubscription { return callSDK<CKQuerySubscription>("CloudKit_6be9a005889899ab", 4260160560316218, undefined, [recordType, predicate, subscriptionID, querySubscriptionOptions]); }
   /**
    * convenience init(recordType: CKRecord.RecordType, predicate: NSPredicate, options querySubscriptionOptions: CKQuerySubscription.Options = [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion])
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  static initRecordTypePredicateOptions(recordType: string, predicate: _Foundation_NSPredicate, querySubscriptionOptions?: CKQuerySubscription_Options): CKQuerySubscription { return callSDK<CKQuerySubscription>("CloudKit_5d69670f0307b385", 1016366039540594, undefined, [recordType, predicate, querySubscriptionOptions]); }
+  static initRecordTypePredicateOptions(recordType: string, predicate: _Foundation_NSPredicate, querySubscriptionOptions?: CKQuerySubscription_Options): CKQuerySubscription { return callSDK<CKQuerySubscription>("CloudKit_6be9a005889899ab", 1016366039540594, undefined, [recordType, predicate, querySubscriptionOptions]); }
   /**
    * var recordType: CKRecord.RecordType? { get }
    * @availability iOS 10.0+
    */
-  get recordType(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 696737933630526, this, []); }
+  get recordType(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 696737933630526, this, []); }
   declare readonly $type: { "c:objc(cs)CKQuerySubscription": true; "c:objc(cs)CKSubscription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "notificationInfo": true; "subscriptionType": true; "predicate": true; "querySubscriptionOptions": true; "zoneID": true };
 }
@@ -2802,27 +2802,27 @@ export const CKQuerySubscription_Options = {
    * static var firesOnRecordCreation: CKQuerySubscription.Options { get }
    * @availability iOS 10.0+
    */
-  get firesOnRecordCreation(): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_5d69670f0307b385", 2245547685778700, undefined, []); },
+  get firesOnRecordCreation(): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_6be9a005889899ab", 2245547685778700, undefined, []); },
   /**
    * static var firesOnRecordDeletion: CKQuerySubscription.Options { get }
    * @availability iOS 10.0+
    */
-  get firesOnRecordDeletion(): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_5d69670f0307b385", 4236381025936542, undefined, []); },
+  get firesOnRecordDeletion(): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_6be9a005889899ab", 4236381025936542, undefined, []); },
   /**
    * static var firesOnRecordUpdate: CKQuerySubscription.Options { get }
    * @availability iOS 10.0+
    */
-  get firesOnRecordUpdate(): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_5d69670f0307b385", 4136936351365514, undefined, []); },
+  get firesOnRecordUpdate(): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_6be9a005889899ab", 4136936351365514, undefined, []); },
   /**
    * static var firesOnce: CKQuerySubscription.Options { get }
    * @availability iOS 10.0+
    */
-  get firesOnce(): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_5d69670f0307b385", 3341515967092453, undefined, []); },
+  get firesOnce(): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_6be9a005889899ab", 3341515967092453, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_5d69670f0307b385", 3854880243211530, undefined, [rawValue]); }
+  init(rawValue: number): CKQuerySubscription_Options { return callSDK<CKQuerySubscription_Options>("CloudKit_6be9a005889899ab", 3854880243211530, undefined, [rawValue]); }
 };
 
 /**
@@ -2834,118 +2834,118 @@ export class CKRecord extends SDKHandle {
    * func allTokens() -> [String]
    * @availability iOS 8.0+
    */
-  allTokens(): Array<string> { return callSDK<Array<string>>("CloudKit_5d69670f0307b385", 4071971414025170, this, []); }
+  allTokens(): Array<string> { return callSDK<Array<string>>("CloudKit_6be9a005889899ab", 4071971414025170, this, []); }
   /**
    * func encodeSystemFields(with coder: NSCoder)
    * @availability iOS 8.0+
    */
-  encodeSystemFields(coder: _Foundation_NSCoder): void { return callSDK<void>("CloudKit_5d69670f0307b385", 947868773385984, this, [coder]); }
+  encodeSystemFields(coder: _Foundation_NSCoder): void { return callSDK<void>("CloudKit_6be9a005889899ab", 947868773385984, this, [coder]); }
   /**
    * subscript(key: String) -> (any __CKRecordObjCValue)? { get set }
    * @availability iOS 8.0+
    */
-  subscript(key: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CloudKit_5d69670f0307b385", 3884884045394798, this, [key]); }
+  subscript(key: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CloudKit_6be9a005889899ab", 3884884045394798, this, [key]); }
   /**
    * func setParent(_ parentRecord: CKRecord?)
    * @availability iOS 10.0+
    */
-  setParent(parentRecord?: (CKRecord) | null): void { return callSDK<void>("CloudKit_5d69670f0307b385", 610314954529125, this, [parentRecord]); }
+  setParent(parentRecord?: (CKRecord) | null): void { return callSDK<void>("CloudKit_6be9a005889899ab", 610314954529125, this, [parentRecord]); }
   /**
    * func setParent(_ parentRecordID: CKRecord.ID?)
    * @availability iOS 10.0+
    */
-  setParent16582(parentRecordID?: (CKRecord_ID) | null): void { return callSDK<void>("CloudKit_5d69670f0307b385", 1824478651679307, this, [parentRecordID]); }
+  setParent16582(parentRecordID?: (CKRecord_ID) | null): void { return callSDK<void>("CloudKit_6be9a005889899ab", 1824478651679307, this, [parentRecordID]); }
   /**
    * var creationDate: Date? { get }
    * @availability iOS 8.0+
    */
-  get creationDate(): $SDK126 { return callSDK<$SDK126>("CloudKit_5d69670f0307b385", 4114760947120043, this, []); }
+  get creationDate(): $SDK126 { return callSDK<$SDK126>("CloudKit_6be9a005889899ab", 4114760947120043, this, []); }
   /**
    * @NSCopying var creatorUserRecordID: CKRecord.ID? { get }
    * @availability iOS 8.0+
    */
-  get creatorUserRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_5d69670f0307b385", 4415361334513779, this, []); }
+  get creatorUserRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_6be9a005889899ab", 4415361334513779, this, []); }
   /**
    * @NSCopying var encryptedValues: any CKRecordKeyValueSetting & Sendable { get }
    * @availability iOS 15.0+
    */
-  get encryptedValues(): (SDKHandle) & (SDKHandle) { return callSDK<(SDKHandle) & (SDKHandle)>("CloudKit_5d69670f0307b385", 3001790285872974, this, []); }
+  get encryptedValues(): (SDKHandle) & (SDKHandle) { return callSDK<(SDKHandle) & (SDKHandle)>("CloudKit_6be9a005889899ab", 3001790285872974, this, []); }
   /**
    * @NSCopying var lastModifiedUserRecordID: CKRecord.ID? { get }
    * @availability iOS 8.0+
    */
-  get lastModifiedUserRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_5d69670f0307b385", 4359871131970532, this, []); }
+  get lastModifiedUserRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_6be9a005889899ab", 4359871131970532, this, []); }
   /**
    * var modificationDate: Date? { get }
    * @availability iOS 8.0+
    */
-  get modificationDate(): $SDK126 { return callSDK<$SDK126>("CloudKit_5d69670f0307b385", 2656655731393023, this, []); }
+  get modificationDate(): $SDK126 { return callSDK<$SDK126>("CloudKit_6be9a005889899ab", 2656655731393023, this, []); }
   /**
    * @NSCopying var parent: CKRecord.Reference? { get set }
    * @availability iOS 10.0+
    */
-  get parent(): $SDK128 { return callSDK<$SDK128>("CloudKit_5d69670f0307b385", 3538149941010981, this, []); }
-  set parent(value: $SDK128) { callSDK<void>("CloudKit_5d69670f0307b385", 814359195703355, this, [value]); }
+  get parent(): $SDK128 { return callSDK<$SDK128>("CloudKit_6be9a005889899ab", 3538149941010981, this, []); }
+  set parent(value: $SDK128) { callSDK<void>("CloudKit_6be9a005889899ab", 814359195703355, this, [value]); }
   /**
    * var recordChangeTag: String? { get }
    * @availability iOS 8.0+
    */
-  get recordChangeTag(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3416947568513415, this, []); }
+  get recordChangeTag(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3416947568513415, this, []); }
   /**
    * @NSCopying var recordID: CKRecord.ID { get }
    * @availability iOS 8.0+
    */
-  get recordID(): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_5d69670f0307b385", 1582175366200410, this, []); }
+  get recordID(): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_6be9a005889899ab", 1582175366200410, this, []); }
   /**
    * @NSCopying var share: CKRecord.Reference? { get }
    * @availability iOS 10.0+
    */
-  get share(): $SDK128 { return callSDK<$SDK128>("CloudKit_5d69670f0307b385", 1050330803695346, this, []); }
+  get share(): $SDK128 { return callSDK<$SDK128>("CloudKit_6be9a005889899ab", 1050330803695346, this, []); }
   /**
    * convenience init(recordType: CKRecord.RecordType, recordID: CKRecord.ID = CKRecord.ID())
    * @availability iOS 8.0+
    */
-  static initRecordTypeRecordID(recordType: string, recordID?: CKRecord_ID): CKRecord { return callSDK<CKRecord>("CloudKit_5d69670f0307b385", 1209359233846714, undefined, [recordType, recordID]); }
+  static initRecordTypeRecordID(recordType: string, recordID?: CKRecord_ID): CKRecord { return callSDK<CKRecord>("CloudKit_6be9a005889899ab", 1209359233846714, undefined, [recordType, recordID]); }
   /**
    * convenience init(recordType: CKRecord.RecordType, zoneID: CKRecordZone.ID)
    * @availability iOS 8.0+
    */
-  static initRecordTypeZoneID(recordType: string, zoneID: CKRecordZone_ID): CKRecord { return callSDK<CKRecord>("CloudKit_5d69670f0307b385", 3833326555914986, undefined, [recordType, zoneID]); }
+  static initRecordTypeZoneID(recordType: string, zoneID: CKRecordZone_ID): CKRecord { return callSDK<CKRecord>("CloudKit_6be9a005889899ab", 3833326555914986, undefined, [recordType, zoneID]); }
   /**
    * var recordType: CKRecord.RecordType { get }
    * @availability iOS 8.0+
    */
-  get recordType(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3450474969573863, this, []); }
+  get recordType(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3450474969573863, this, []); }
   /**
    * func changedKeys() -> [CKRecord.FieldKey]
    * @availability iOS 8.0+
    */
-  changedKeys(): Array<string> { return callSDK<Array<string>>("CloudKit_5d69670f0307b385", 1690700923088887, this, []); }
+  changedKeys(): Array<string> { return callSDK<Array<string>>("CloudKit_6be9a005889899ab", 1690700923088887, this, []); }
   /**
    * func makeIterator() -> CKRecordKeyValueIterator
    * @availability iOS 8.0+
    */
-  makeIterator(): CKRecordKeyValueIterator { return callSDK<CKRecordKeyValueIterator>("CloudKit_5d69670f0307b385", 1753661563255488, this, []); }
+  makeIterator(): CKRecordKeyValueIterator { return callSDK<CKRecordKeyValueIterator>("CloudKit_6be9a005889899ab", 1753661563255488, this, []); }
   /**
    * func object(forKey key: CKRecord.FieldKey) -> (any __CKRecordObjCValue)?
    * @availability iOS 8.0+
    */
-  object(key: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CloudKit_5d69670f0307b385", 1238239268024874, this, [key]); }
+  object(key: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CloudKit_6be9a005889899ab", 1238239268024874, this, [key]); }
   /**
    * func allKeys() -> [CKRecord.FieldKey]
    * @availability iOS 8.0+
    */
-  allKeys(): Array<string> { return callSDK<Array<string>>("CloudKit_5d69670f0307b385", 910451009297291, this, []); }
+  allKeys(): Array<string> { return callSDK<Array<string>>("CloudKit_6be9a005889899ab", 910451009297291, this, []); }
   /**
    * func setObject(_ object: (any __CKRecordObjCValue)?, forKey key: CKRecord.FieldKey)
    * @availability iOS 8.0+
    */
-  setObject(object: (SDKHandle) | null, key: string): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2202189935104612, this, [object, key]); }
+  setObject(object: (SDKHandle) | null, key: string): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2202189935104612, this, [object, key]); }
   /**
    * subscript(key: CKRecord.FieldKey) -> (any __CKRecordObjCValue)? { get set }
    * @availability iOS 8.0+
    */
-  subscript3079(key: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CloudKit_5d69670f0307b385", 3607723853754130, this, [key]); }
+  subscript3079(key: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CloudKit_6be9a005889899ab", 3607723853754130, this, [key]); }
   declare readonly $type: { "c:objc(cs)CKRecord": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "creationDate": true; "creatorUserRecordID": true; "encryptedValues": true; "lastModifiedUserRecordID": true; "modificationDate": true; "parent": true; "recordChangeTag": true; "recordID": true; "share": true };
 }
@@ -2978,22 +2978,22 @@ export class CKRecord_ID extends SDKHandle {
    * convenience init(recordName: String)
    * @availability iOS 8.0+
    */
-  static initRecordName(recordName: string): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_5d69670f0307b385", 2980074901855837, undefined, [recordName]); }
+  static initRecordName(recordName: string): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_6be9a005889899ab", 2980074901855837, undefined, [recordName]); }
   /**
    * var recordName: String { get }
    * @availability iOS 8.0+
    */
-  get recordName(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1285473553513258, this, []); }
+  get recordName(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1285473553513258, this, []); }
   /**
    * @NSCopying var zoneID: CKRecordZone.ID { get }
    * @availability iOS 8.0+
    */
-  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 2440423208463705, this, []); }
+  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 2440423208463705, this, []); }
   /**
    * convenience init(recordName: String = UUID().uuidString, zoneID: CKRecordZone.ID = CKRecordZone.ID.default)
    * @availability iOS 8.0+
    */
-  static initRecordNameZoneID(recordName?: string, zoneID?: CKRecordZone_ID): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_5d69670f0307b385", 2721163608043258, undefined, [recordName, zoneID]); }
+  static initRecordNameZoneID(recordName?: string, zoneID?: CKRecordZone_ID): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_6be9a005889899ab", 2721163608043258, undefined, [recordName, zoneID]); }
   declare readonly $type: { "c:objc(cs)CKRecordID": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "recordName": true; "zoneID": true };
 }
@@ -3019,22 +3019,22 @@ export class CKRecord_Reference extends SDKHandle {
    * convenience init(record: CKRecord, action: CKRecord.ReferenceAction)
    * @availability iOS 8.0+
    */
-  static initRecordAction(record: CKRecord, action: CKRecord_ReferenceAction): CKRecord_Reference { return callSDK<CKRecord_Reference>("CloudKit_5d69670f0307b385", 1669322572904890, undefined, [record, action]); }
+  static initRecordAction(record: CKRecord, action: CKRecord_ReferenceAction): CKRecord_Reference { return callSDK<CKRecord_Reference>("CloudKit_6be9a005889899ab", 1669322572904890, undefined, [record, action]); }
   /**
    * init(recordID: CKRecord.ID, action: CKRecord.ReferenceAction)
    * @availability iOS 8.0+
    */
-  static initRecordIDAction(recordID: CKRecord_ID, action: CKRecord_ReferenceAction): CKRecord_Reference { return callSDK<CKRecord_Reference>("CloudKit_5d69670f0307b385", 1493980714390056, undefined, [recordID, action]); }
+  static initRecordIDAction(recordID: CKRecord_ID, action: CKRecord_ReferenceAction): CKRecord_Reference { return callSDK<CKRecord_Reference>("CloudKit_6be9a005889899ab", 1493980714390056, undefined, [recordID, action]); }
   /**
    * @NSCopying var recordID: CKRecord.ID { get }
    * @availability iOS 8.0+
    */
-  get recordID(): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_5d69670f0307b385", 2319217419153098, this, []); }
+  get recordID(): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_6be9a005889899ab", 2319217419153098, this, []); }
   /**
    * var action: CKRecord.ReferenceAction { get }
    * @availability iOS 8.0+
    */
-  get action(): CKRecord_ReferenceAction { return callSDK<CKRecord_ReferenceAction>("CloudKit_5d69670f0307b385", 2670131396204754, this, []); }
+  get action(): CKRecord_ReferenceAction { return callSDK<CKRecord_ReferenceAction>("CloudKit_6be9a005889899ab", 2670131396204754, this, []); }
   declare readonly $type: { "c:objc(cs)CKReference": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "recordID": true; "action": true };
 }
@@ -3050,7 +3050,7 @@ export const CKRecord_ReferenceAction = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (CKRecord_ReferenceAction) | null { return callSDK<(CKRecord_ReferenceAction) | null>("CloudKit_5d69670f0307b385", 1541510112843289, undefined, [rawValue]); }
+  init(rawValue: number): (CKRecord_ReferenceAction) | null { return callSDK<(CKRecord_ReferenceAction) | null>("CloudKit_6be9a005889899ab", 1541510112843289, undefined, [rawValue]); }
 };
 
 /**
@@ -3063,41 +3063,41 @@ export class CKRecord_SystemFieldKey extends SDKHandle {
   static var creationDate: CKRecord.FieldKey { get }
    * @availability iOS 8.0+
    */
-  static get creationDate(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 411168856692638, undefined, []); }
+  static get creationDate(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 411168856692638, undefined, []); }
   /**
    * @backDeployed(before: macOS 14.0, iOS 17.0, tvOS 17.0, watchOS 10.0)
   static var modificationDate: CKRecord.FieldKey { get }
    * @availability iOS 8.0+
    */
-  static get modificationDate(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 4162065447745584, undefined, []); }
+  static get modificationDate(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 4162065447745584, undefined, []); }
   /**
    * @backDeployed(before: macOS 14.0, iOS 17.0, tvOS 17.0, watchOS 10.0)
   static var creatorUserRecordID: CKRecord.FieldKey { get }
    * @availability iOS 8.0+
    */
-  static get creatorUserRecordID(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2532427750154340, undefined, []); }
+  static get creatorUserRecordID(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2532427750154340, undefined, []); }
   /**
    * @backDeployed(before: macOS 14.0, iOS 17.0, tvOS 17.0, watchOS 10.0)
   static var lastModifiedUserRecordID: CKRecord.FieldKey { get }
    * @availability iOS 8.0+
    */
-  static get lastModifiedUserRecordID(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 248782819354429, undefined, []); }
+  static get lastModifiedUserRecordID(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 248782819354429, undefined, []); }
   /**
    * static let share: CKRecord.FieldKey
    * @availability iOS 10.0+
    */
-  static get share(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3572522460721399, undefined, []); }
+  static get share(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3572522460721399, undefined, []); }
   /**
    * static let parent: CKRecord.FieldKey
    * @availability iOS 10.0+
    */
-  static get parent(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 4220156489903397, undefined, []); }
+  static get parent(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 4220156489903397, undefined, []); }
   /**
    * @backDeployed(before: macOS 14.0, iOS 17.0, tvOS 17.0, watchOS 10.0)
   static var recordID: CKRecord.FieldKey { get }
    * @availability iOS 8.0+
    */
-  static get recordID(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2502266008690787, undefined, []); }
+  static get recordID(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2502266008690787, undefined, []); }
   declare readonly $type: { "s:So8CKRecordC8CloudKitE14SystemFieldKeyO": true };
 }
 
@@ -3110,12 +3110,12 @@ export class CKRecord_SystemType extends SDKHandle {
    * static let userRecord: CKRecord.RecordType
    * @availability iOS 8.0+
    */
-  static get userRecord(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 272810723934499, undefined, []); }
+  static get userRecord(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 272810723934499, undefined, []); }
   /**
    * static let share: CKRecord.RecordType
    * @availability iOS 10.0+
    */
-  static get share(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3734310453205930, undefined, []); }
+  static get share(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3734310453205930, undefined, []); }
   declare readonly $type: { "s:So8CKRecordC8CloudKitE10SystemTypeO": true };
 }
 
@@ -3128,7 +3128,7 @@ export class CKRecordKeyValueIterator extends SDKHandle {
    * mutating func next() -> (CKRecord.FieldKey, any CKRecordValueProtocol)?
    * @availability iOS 8.0+
    */
-  next(): ([string, SDKHandle]) | null { return callSDK<([string, SDKHandle]) | null>("CloudKit_5d69670f0307b385", 2960678392558655, this, []); }
+  next(): ([string, SDKHandle]) | null { return callSDK<([string, SDKHandle]) | null>("CloudKit_6be9a005889899ab", 2960678392558655, this, []); }
   declare readonly $type: { "s:8CloudKit24CKRecordKeyValueIteratorV": true };
 }
 
@@ -3193,38 +3193,38 @@ export class CKRecordZone extends SDKHandle {
    * class func `default`() -> CKRecordZone
    * @availability iOS 8.0+
    */
-  static default(): CKRecordZone { return callSDK<CKRecordZone>("CloudKit_5d69670f0307b385", 2303977275173004, undefined, []); }
+  static default(): CKRecordZone { return callSDK<CKRecordZone>("CloudKit_6be9a005889899ab", 2303977275173004, undefined, []); }
   /**
    * init(zoneID: CKRecordZone.ID)
    * @availability iOS 8.0+
    */
-  static initZoneID(zoneID: CKRecordZone_ID): CKRecordZone { return callSDK<CKRecordZone>("CloudKit_5d69670f0307b385", 1000744393642849, undefined, [zoneID]); }
+  static initZoneID(zoneID: CKRecordZone_ID): CKRecordZone { return callSDK<CKRecordZone>("CloudKit_6be9a005889899ab", 1000744393642849, undefined, [zoneID]); }
   /**
    * init(zoneName: String)
    * @availability iOS 8.0+
    */
-  static initZoneName(zoneName: string): CKRecordZone { return callSDK<CKRecordZone>("CloudKit_5d69670f0307b385", 2011026668304071, undefined, [zoneName]); }
+  static initZoneName(zoneName: string): CKRecordZone { return callSDK<CKRecordZone>("CloudKit_6be9a005889899ab", 2011026668304071, undefined, [zoneName]); }
   /**
    * var capabilities: CKRecordZone.Capabilities { get }
    * @availability iOS 8.0+
    */
-  get capabilities(): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_5d69670f0307b385", 2099980226324718, this, []); }
+  get capabilities(): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_6be9a005889899ab", 2099980226324718, this, []); }
   /**
    * var encryptionScope: CKRecordZone.EncryptionScope { get set }
    * @availability iOS 26.0+
    */
-  get encryptionScope(): CKRecordZone_EncryptionScope { return callSDK<CKRecordZone_EncryptionScope>("CloudKit_5d69670f0307b385", 1520959434164980, this, []); }
-  set encryptionScope(value: CKRecordZone_EncryptionScope) { callSDK<void>("CloudKit_5d69670f0307b385", 3420380842888356, this, [value]); }
+  get encryptionScope(): CKRecordZone_EncryptionScope { return callSDK<CKRecordZone_EncryptionScope>("CloudKit_6be9a005889899ab", 1520959434164980, this, []); }
+  set encryptionScope(value: CKRecordZone_EncryptionScope) { callSDK<void>("CloudKit_6be9a005889899ab", 3420380842888356, this, [value]); }
   /**
    * @NSCopying var share: CKRecord.Reference? { get }
    * @availability iOS 15.0+
    */
-  get share(): $SDK128 { return callSDK<$SDK128>("CloudKit_5d69670f0307b385", 3526269027508067, this, []); }
+  get share(): $SDK128 { return callSDK<$SDK128>("CloudKit_6be9a005889899ab", 3526269027508067, this, []); }
   /**
    * @NSCopying var zoneID: CKRecordZone.ID { get }
    * @availability iOS 8.0+
    */
-  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 3305826201613466, this, []); }
+  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 3305826201613466, this, []); }
   declare readonly $type: { "c:objc(cs)CKRecordZone": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "capabilities": true; "encryptionScope": true; "share": true; "zoneID": true };
 }
@@ -3240,27 +3240,27 @@ export const CKRecordZone_Capabilities = {
    * static var atomic: CKRecordZone.Capabilities { get }
    * @availability iOS 8.0+
    */
-  get atomic(): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_5d69670f0307b385", 716329444660448, undefined, []); },
+  get atomic(): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_6be9a005889899ab", 716329444660448, undefined, []); },
   /**
    * static var fetchChanges: CKRecordZone.Capabilities { get }
    * @availability iOS 8.0+
    */
-  get fetchChanges(): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_5d69670f0307b385", 2521597333626378, undefined, []); },
+  get fetchChanges(): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_6be9a005889899ab", 2521597333626378, undefined, []); },
   /**
    * static var sharing: CKRecordZone.Capabilities { get }
    * @availability iOS 10.0+
    */
-  get sharing(): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_5d69670f0307b385", 2017083552544053, undefined, []); },
+  get sharing(): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_6be9a005889899ab", 2017083552544053, undefined, []); },
   /**
    * static var zoneWideSharing: CKRecordZone.Capabilities { get }
    * @availability iOS 15.0+
    */
-  get zoneWideSharing(): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_5d69670f0307b385", 23947957770449, undefined, []); },
+  get zoneWideSharing(): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_6be9a005889899ab", 23947957770449, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_5d69670f0307b385", 1655515984590039, undefined, [rawValue]); }
+  init(rawValue: number): CKRecordZone_Capabilities { return callSDK<CKRecordZone_Capabilities>("CloudKit_6be9a005889899ab", 1655515984590039, undefined, [rawValue]); }
 };
 
 /**
@@ -3274,7 +3274,7 @@ export const CKRecordZone_EncryptionScope = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (CKRecordZone_EncryptionScope) | null { return callSDK<(CKRecordZone_EncryptionScope) | null>("CloudKit_5d69670f0307b385", 252337228926202, undefined, [rawValue]); }
+  init(rawValue: number): (CKRecordZone_EncryptionScope) | null { return callSDK<(CKRecordZone_EncryptionScope) | null>("CloudKit_6be9a005889899ab", 252337228926202, undefined, [rawValue]); }
 };
 
 /**
@@ -3286,33 +3286,33 @@ export class CKRecordZone_ID extends SDKHandle {
    * var ownerName: String { get }
    * @availability iOS 8.0+
    */
-  get ownerName(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2811518734471971, this, []); }
+  get ownerName(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2811518734471971, this, []); }
   /**
    * var zoneName: String { get }
    * @availability iOS 8.0+
    */
-  get zoneName(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1908882702435093, this, []); }
+  get zoneName(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1908882702435093, this, []); }
   /**
    * static let defaultZoneName: String
    * @availability iOS 8.0+
    */
-  static get defaultZoneName(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2518484640593270, undefined, []); }
+  static get defaultZoneName(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2518484640593270, undefined, []); }
   /**
    * static let `default`: CKRecordZone.ID
    * @availability iOS 8.0+
    */
-  static get default(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 386092068608190, undefined, []); }
+  static get default(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 386092068608190, undefined, []); }
   /**
    * convenience init(zoneName: String = CKRecordZone.ID.defaultZoneName, ownerName: String? = CKOwnerDefaultName)
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  static initZoneNameOwnerName(zoneName?: string, ownerName?: (string) | null): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 157347095892494, undefined, [zoneName, ownerName]); }
+  static initZoneNameOwnerName(zoneName?: string, ownerName?: (string) | null): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 157347095892494, undefined, [zoneName, ownerName]); }
   /**
    * convenience init(zoneName: String = CKRecordZone.ID.defaultZoneName, ownerName: String = CKCurrentUserDefaultName)
    * @availability iOS 10.0+
    */
-  static initZoneNameOwnerName33926(zoneName?: string, ownerName?: string): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 2733035148095972, undefined, [zoneName, ownerName]); }
+  static initZoneNameOwnerName33926(zoneName?: string, ownerName?: string): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 2733035148095972, undefined, [zoneName, ownerName]); }
   declare readonly $type: { "c:objc(cs)CKRecordZoneID": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ownerName": true; "zoneName": true };
 }
@@ -3326,12 +3326,12 @@ export class CKRecordZoneNotification extends CKNotification {
    * var databaseScope: CKDatabase.Scope { get }
    * @availability iOS 10.0+
    */
-  get databaseScope(): CKDatabase_Scope { return callSDK<CKDatabase_Scope>("CloudKit_5d69670f0307b385", 2840995559899948, this, []); }
+  get databaseScope(): CKDatabase_Scope { return callSDK<CKDatabase_Scope>("CloudKit_6be9a005889899ab", 2840995559899948, this, []); }
   /**
    * @NSCopying var recordZoneID: CKRecordZone.ID? { get }
    * @availability iOS 8.0+
    */
-  get recordZoneID(): $SDK38 { return callSDK<$SDK38>("CloudKit_5d69670f0307b385", 1111199567976614, this, []); }
+  get recordZoneID(): $SDK38 { return callSDK<$SDK38>("CloudKit_6be9a005889899ab", 1111199567976614, this, []); }
   declare readonly $type: { "c:objc(cs)CKRecordZoneNotification": true; "c:objc(cs)CKNotification": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alertActionLocalizationKey": true; "alertBody": true; "alertLaunchImage": true; "alertLocalizationArgs": true; "alertLocalizationKey": true; "badge": true; "category": true; "containerIdentifier": true; "isPruned": true; "notificationID": true; "notificationType": true; "soundName": true; "subscriptionOwnerUserRecordID": true; "subtitle": true; "subtitleLocalizationArgs": true; "subtitleLocalizationKey": true; "title": true; "titleLocalizationArgs": true; "titleLocalizationKey": true; "databaseScope": true; "recordZoneID": true };
 }
@@ -3345,29 +3345,29 @@ export class CKRecordZoneSubscription extends CKSubscription {
    * init(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): CKRecordZoneSubscription { return callSDK<CKRecordZoneSubscription>("CloudKit_5d69670f0307b385", 2820567570776130, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): CKRecordZoneSubscription { return callSDK<CKRecordZoneSubscription>("CloudKit_6be9a005889899ab", 2820567570776130, undefined, [aDecoder]); }
   /**
    * convenience init(zoneID: CKRecordZone.ID)
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  static initZoneID(zoneID: CKRecordZone_ID): CKRecordZoneSubscription { return callSDK<CKRecordZoneSubscription>("CloudKit_5d69670f0307b385", 2717465241450594, undefined, [zoneID]); }
+  static initZoneID(zoneID: CKRecordZone_ID): CKRecordZoneSubscription { return callSDK<CKRecordZoneSubscription>("CloudKit_6be9a005889899ab", 2717465241450594, undefined, [zoneID]); }
   /**
    * @NSCopying var zoneID: CKRecordZone.ID { get }
    * @availability iOS 10.0+
    */
-  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 75625617169543, this, []); }
+  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 75625617169543, this, []); }
   /**
    * var recordType: CKRecord.RecordType? { get set }
    * @availability iOS 10.0+
    */
-  get recordType(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 984104152299154, this, []); }
-  set recordType(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2857752529093778, this, [value]); }
+  get recordType(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 984104152299154, this, []); }
+  set recordType(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2857752529093778, this, [value]); }
   /**
    * convenience init(zoneID: CKRecordZone.ID, subscriptionID: CKSubscription.ID)
    * @availability iOS 10.0+
    */
-  static initZoneIDSubscriptionID(zoneID: CKRecordZone_ID, subscriptionID: string): CKRecordZoneSubscription { return callSDK<CKRecordZoneSubscription>("CloudKit_5d69670f0307b385", 584620704111459, undefined, [zoneID, subscriptionID]); }
+  static initZoneIDSubscriptionID(zoneID: CKRecordZone_ID, subscriptionID: string): CKRecordZoneSubscription { return callSDK<CKRecordZoneSubscription>("CloudKit_6be9a005889899ab", 584620704111459, undefined, [zoneID, subscriptionID]); }
   declare readonly $type: { "c:objc(cs)CKRecordZoneSubscription": true; "c:objc(cs)CKSubscription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "notificationInfo": true; "subscriptionType": true; "zoneID": true };
 }
@@ -3389,94 +3389,94 @@ export class CKShare extends CKRecord {
    * func addParticipant(_ participant: CKShare.Participant)
    * @availability iOS 10.0+
    */
-  addParticipant(participant: CKShare_Participant): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3246324211455549, this, [participant]); }
+  addParticipant(participant: CKShare_Participant): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3246324211455549, this, [participant]); }
   /**
    * func blockRequesters(_ requesters: [CKShare.AccessRequester])
    * @availability iOS 26.0+
    */
-  blockRequesters(requesters: $SDK130): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2652898564688253, this, [requesters]); }
+  blockRequesters(requesters: $SDK130): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2652898564688253, this, [requesters]); }
   /**
    * func denyRequesters(_ requesters: [CKShare.AccessRequester])
    * @availability iOS 26.0+
    */
-  denyRequesters(requesters: $SDK130): void { return callSDK<void>("CloudKit_5d69670f0307b385", 3256362704375393, this, [requesters]); }
+  denyRequesters(requesters: $SDK130): void { return callSDK<void>("CloudKit_6be9a005889899ab", 3256362704375393, this, [requesters]); }
   /**
    * init(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): CKShare { return callSDK<CKShare>("CloudKit_5d69670f0307b385", 2199209045341810, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): CKShare { return callSDK<CKShare>("CloudKit_6be9a005889899ab", 2199209045341810, undefined, [aDecoder]); }
   /**
    * init(recordZoneID: CKRecordZone.ID)
    * @availability iOS 15.0+
    */
-  static initRecordZoneID(recordZoneID: CKRecordZone_ID): CKShare { return callSDK<CKShare>("CloudKit_5d69670f0307b385", 3063085024062584, undefined, [recordZoneID]); }
+  static initRecordZoneID(recordZoneID: CKRecordZone_ID): CKShare { return callSDK<CKShare>("CloudKit_6be9a005889899ab", 3063085024062584, undefined, [recordZoneID]); }
   /**
    * convenience init(rootRecord: CKRecord)
    * @availability iOS 10.0+
    */
-  static initRootRecord(rootRecord: CKRecord): CKShare { return callSDK<CKShare>("CloudKit_5d69670f0307b385", 18189866916127, undefined, [rootRecord]); }
+  static initRootRecord(rootRecord: CKRecord): CKShare { return callSDK<CKShare>("CloudKit_6be9a005889899ab", 18189866916127, undefined, [rootRecord]); }
   /**
    * init(rootRecord: CKRecord, shareID: CKRecord.ID)
    * @availability iOS 10.0+
    */
-  static initRootRecordShareID(rootRecord: CKRecord, shareID: CKRecord_ID): CKShare { return callSDK<CKShare>("CloudKit_5d69670f0307b385", 4184970117671810, undefined, [rootRecord, shareID]); }
+  static initRootRecordShareID(rootRecord: CKRecord, shareID: CKRecord_ID): CKShare { return callSDK<CKShare>("CloudKit_6be9a005889899ab", 4184970117671810, undefined, [rootRecord, shareID]); }
   /**
    * func removeParticipant(_ participant: CKShare.Participant)
    * @availability iOS 10.0+
    */
-  removeParticipant(participant: CKShare_Participant): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2992106843513534, this, [participant]); }
+  removeParticipant(participant: CKShare_Participant): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2992106843513534, this, [participant]); }
   /**
    * func unblockIdentities(_ blockedIdentities: [CKShare.BlockedIdentity])
    * @availability iOS 26.0+
    */
-  unblockIdentities(blockedIdentities: Array<CKShare_BlockedIdentity>): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2717384173167476, this, [blockedIdentities]); }
+  unblockIdentities(blockedIdentities: Array<CKShare_BlockedIdentity>): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2717384173167476, this, [blockedIdentities]); }
   /**
    * var url: URL? { get }
    * @availability iOS 10.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 4189830123434722, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 4189830123434722, this, []); }
   /**
    * var allowsAccessRequests: Bool { get set }
    * @availability iOS 26.0+
    */
-  get allowsAccessRequests(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 2202904329483367, this, []); }
-  set allowsAccessRequests(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 904130072892474, this, [value]); }
+  get allowsAccessRequests(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 2202904329483367, this, []); }
+  set allowsAccessRequests(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 904130072892474, this, [value]); }
   /**
    * var blockedIdentities: [CKShare.BlockedIdentity] { get }
    * @availability iOS 26.0+
    */
-  get blockedIdentities(): Array<CKShare_BlockedIdentity> { return callSDK<Array<CKShare_BlockedIdentity>>("CloudKit_5d69670f0307b385", 1245055440131141, this, []); }
+  get blockedIdentities(): Array<CKShare_BlockedIdentity> { return callSDK<Array<CKShare_BlockedIdentity>>("CloudKit_6be9a005889899ab", 1245055440131141, this, []); }
   /**
    * @NSCopying var currentUserParticipant: CKShare.Participant? { get }
    * @availability iOS 10.0+
    */
-  get currentUserParticipant(): (CKShare_Participant) | null { return callSDK<(CKShare_Participant) | null>("CloudKit_5d69670f0307b385", 85978775436998, this, []); }
+  get currentUserParticipant(): (CKShare_Participant) | null { return callSDK<(CKShare_Participant) | null>("CloudKit_6be9a005889899ab", 85978775436998, this, []); }
   /**
    * @NSCopying var owner: CKShare.Participant { get }
    * @availability iOS 10.0+
    */
-  get owner(): CKShare_Participant { return callSDK<CKShare_Participant>("CloudKit_5d69670f0307b385", 2284429607169048, this, []); }
+  get owner(): CKShare_Participant { return callSDK<CKShare_Participant>("CloudKit_6be9a005889899ab", 2284429607169048, this, []); }
   /**
    * var participants: [CKShare.Participant] { get }
    * @availability iOS 10.0+
    */
-  get participants(): Array<CKShare_Participant> { return callSDK<Array<CKShare_Participant>>("CloudKit_5d69670f0307b385", 2251359766451537, this, []); }
+  get participants(): Array<CKShare_Participant> { return callSDK<Array<CKShare_Participant>>("CloudKit_6be9a005889899ab", 2251359766451537, this, []); }
   /**
    * var publicPermission: CKShare.ParticipantPermission { get set }
    * @availability iOS 10.0+
    */
-  get publicPermission(): CKShare_ParticipantPermission { return callSDK<CKShare_ParticipantPermission>("CloudKit_5d69670f0307b385", 42540793255396, this, []); }
-  set publicPermission(value: CKShare_ParticipantPermission) { callSDK<void>("CloudKit_5d69670f0307b385", 2855898143303228, this, [value]); }
+  get publicPermission(): CKShare_ParticipantPermission { return callSDK<CKShare_ParticipantPermission>("CloudKit_6be9a005889899ab", 42540793255396, this, []); }
+  set publicPermission(value: CKShare_ParticipantPermission) { callSDK<void>("CloudKit_6be9a005889899ab", 2855898143303228, this, [value]); }
   /**
    * var requesters: [CKShare.AccessRequester] { get }
    * @availability iOS 26.0+
    */
-  get requesters(): $SDK130 { return callSDK<$SDK130>("CloudKit_5d69670f0307b385", 4156897734680123, this, []); }
+  get requesters(): $SDK130 { return callSDK<$SDK130>("CloudKit_6be9a005889899ab", 4156897734680123, this, []); }
   /**
    * func oneTimeURL(for participantID: CKShare.Participant.ID) -> URL?
    * @availability iOS 26.0+
    */
-  oneTimeURL(participantID: string): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3968027646813295, this, [participantID]); }
+  oneTimeURL(participantID: string): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3968027646813295, this, [participantID]); }
   declare readonly $type: { "c:objc(cs)CKShare": true; "c:objc(cs)CKRecord": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "creationDate": true; "creatorUserRecordID": true; "encryptedValues": true; "lastModifiedUserRecordID": true; "modificationDate": true; "parent": true; "recordChangeTag": true; "recordID": true; "share": true; "url": true; "allowsAccessRequests": true; "blockedIdentities": true; "currentUserParticipant": true; "owner": true; "participants": true; "publicPermission": true; "requesters": true };
 }
@@ -3518,12 +3518,12 @@ export class CKShare_AccessRequester extends SDKHandle {
    * @NSCopying var participantLookupInfo: CKUserIdentity.LookupInfo { get }
    * @availability iOS 26.0+
    */
-  get participantLookupInfo(): CKUserIdentity_LookupInfo { return callSDK<CKUserIdentity_LookupInfo>("CloudKit_5d69670f0307b385", 1470799664588474, this, []); }
+  get participantLookupInfo(): CKUserIdentity_LookupInfo { return callSDK<CKUserIdentity_LookupInfo>("CloudKit_6be9a005889899ab", 1470799664588474, this, []); }
   /**
    * @NSCopying var userIdentity: CKUserIdentity { get }
    * @availability iOS 26.0+
    */
-  get userIdentity(): CKUserIdentity { return callSDK<CKUserIdentity>("CloudKit_5d69670f0307b385", 1403594393378190, this, []); }
+  get userIdentity(): CKUserIdentity { return callSDK<CKUserIdentity>("CloudKit_6be9a005889899ab", 1403594393378190, this, []); }
   declare readonly $type: { "c:objc(cs)CKShareAccessRequester": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "participantLookupInfo": true; "userIdentity": true };
 }
@@ -3537,7 +3537,7 @@ export class CKShare_BlockedIdentity extends SDKHandle {
    * @NSCopying var userIdentity: CKUserIdentity { get }
    * @availability iOS 26.0+
    */
-  get userIdentity(): CKUserIdentity { return callSDK<CKUserIdentity>("CloudKit_5d69670f0307b385", 2220834378541145, this, []); }
+  get userIdentity(): CKUserIdentity { return callSDK<CKUserIdentity>("CloudKit_6be9a005889899ab", 2220834378541145, this, []); }
   declare readonly $type: { "c:objc(cs)CKShareBlockedIdentity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "userIdentity": true };
 }
@@ -3551,48 +3551,48 @@ export class CKShare_Metadata extends SDKHandle {
    * var containerIdentifier: String { get }
    * @availability iOS 10.0+
    */
-  get containerIdentifier(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 865504985861726, this, []); }
+  get containerIdentifier(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 865504985861726, this, []); }
   /**
    * @NSCopying var hierarchicalRootRecordID: CKRecord.ID? { get }
    * @availability iOS 15.0+
    */
-  get hierarchicalRootRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_5d69670f0307b385", 1699207058137037, this, []); }
+  get hierarchicalRootRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_6be9a005889899ab", 1699207058137037, this, []); }
   /**
    * @NSCopying var ownerIdentity: CKUserIdentity { get }
    * @availability iOS 10.0+
    */
-  get ownerIdentity(): CKUserIdentity { return callSDK<CKUserIdentity>("CloudKit_5d69670f0307b385", 2037431543050453, this, []); }
+  get ownerIdentity(): CKUserIdentity { return callSDK<CKUserIdentity>("CloudKit_6be9a005889899ab", 2037431543050453, this, []); }
   /**
    * var participantPermission: CKShare.ParticipantPermission { get }
    * @availability iOS 10.0+
    */
-  get participantPermission(): CKShare_ParticipantPermission { return callSDK<CKShare_ParticipantPermission>("CloudKit_5d69670f0307b385", 4282288362157962, this, []); }
+  get participantPermission(): CKShare_ParticipantPermission { return callSDK<CKShare_ParticipantPermission>("CloudKit_6be9a005889899ab", 4282288362157962, this, []); }
   /**
    * var participantRole: CKShare.ParticipantRole { get }
    * @availability iOS 12.0+
    */
-  get participantRole(): CKShare_ParticipantRole { return callSDK<CKShare_ParticipantRole>("CloudKit_5d69670f0307b385", 4261051209391333, this, []); }
+  get participantRole(): CKShare_ParticipantRole { return callSDK<CKShare_ParticipantRole>("CloudKit_6be9a005889899ab", 4261051209391333, this, []); }
   /**
    * var participantStatus: CKShare.ParticipantAcceptanceStatus { get }
    * @availability iOS 10.0+
    */
-  get participantStatus(): CKShare_ParticipantAcceptanceStatus { return callSDK<CKShare_ParticipantAcceptanceStatus>("CloudKit_5d69670f0307b385", 847419152212604, this, []); }
+  get participantStatus(): CKShare_ParticipantAcceptanceStatus { return callSDK<CKShare_ParticipantAcceptanceStatus>("CloudKit_6be9a005889899ab", 847419152212604, this, []); }
   /**
    * @NSCopying var rootRecord: CKRecord? { get }
    * @availability iOS 10.0+
    */
-  get rootRecord(): (CKRecord) | null { return callSDK<(CKRecord) | null>("CloudKit_5d69670f0307b385", 444529947204, this, []); }
+  get rootRecord(): (CKRecord) | null { return callSDK<(CKRecord) | null>("CloudKit_6be9a005889899ab", 444529947204, this, []); }
   /**
    * @NSCopying var rootRecordID: CKRecord.ID { get }
    * @availability iOS 10.0+
    * @deprecated iOS 16.0
    */
-  get rootRecordID(): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_5d69670f0307b385", 1100658744707051, this, []); }
+  get rootRecordID(): CKRecord_ID { return callSDK<CKRecord_ID>("CloudKit_6be9a005889899ab", 1100658744707051, this, []); }
   /**
    * @NSCopying var share: CKShare { get }
    * @availability iOS 10.0+
    */
-  get share(): CKShare { return callSDK<CKShare>("CloudKit_5d69670f0307b385", 2798984743776262, this, []); }
+  get share(): CKShare { return callSDK<CKShare>("CloudKit_6be9a005889899ab", 2798984743776262, this, []); }
   declare readonly $type: { "c:objc(cs)CKShareMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "containerIdentifier": true; "hierarchicalRootRecordID": true; "ownerIdentity": true; "participantPermission": true; "participantRole": true; "participantStatus": true; "rootRecord": true; "rootRecordID": true; "share": true };
 }
@@ -3606,50 +3606,50 @@ export class CKShare_Participant extends SDKHandle {
    * class func oneTimeURLParticipant() -> Self
    * @availability iOS 18.0+
    */
-  static oneTimeURLParticipant(): CKShare_Participant { return callSDK<CKShare_Participant>("CloudKit_5d69670f0307b385", 1183666655227144, undefined, []); }
+  static oneTimeURLParticipant(): CKShare_Participant { return callSDK<CKShare_Participant>("CloudKit_6be9a005889899ab", 1183666655227144, undefined, []); }
   /**
    * func isEqual(_ object: Any) -> Bool
    * @availability iOS 10.0+
    */
-  isEqual(object: unknown): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 4295174824264324, this, [object]); }
+  isEqual(object: unknown): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 4295174824264324, this, [object]); }
   /**
    * var acceptanceStatus: CKShare.ParticipantAcceptanceStatus { get }
    * @availability iOS 10.0+
    */
-  get acceptanceStatus(): CKShare_ParticipantAcceptanceStatus { return callSDK<CKShare_ParticipantAcceptanceStatus>("CloudKit_5d69670f0307b385", 1877730049912819, this, []); }
+  get acceptanceStatus(): CKShare_ParticipantAcceptanceStatus { return callSDK<CKShare_ParticipantAcceptanceStatus>("CloudKit_6be9a005889899ab", 1877730049912819, this, []); }
   /**
    * var dateAddedToShare: Date? { get }
    * @availability iOS 26.0+
    */
-  get dateAddedToShare(): $SDK126 { return callSDK<$SDK126>("CloudKit_5d69670f0307b385", 636568965332785, this, []); }
+  get dateAddedToShare(): $SDK126 { return callSDK<$SDK126>("CloudKit_6be9a005889899ab", 636568965332785, this, []); }
   /**
    * var isApprovedRequester: Bool { get }
    * @availability iOS 26.0+
    */
-  get isApprovedRequester(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 47443947737383, this, []); }
+  get isApprovedRequester(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 47443947737383, this, []); }
   /**
    * var permission: CKShare.ParticipantPermission { get set }
    * @availability iOS 10.0+
    */
-  get permission(): CKShare_ParticipantPermission { return callSDK<CKShare_ParticipantPermission>("CloudKit_5d69670f0307b385", 1582890170054237, this, []); }
-  set permission(value: CKShare_ParticipantPermission) { callSDK<void>("CloudKit_5d69670f0307b385", 4344493287597490, this, [value]); }
+  get permission(): CKShare_ParticipantPermission { return callSDK<CKShare_ParticipantPermission>("CloudKit_6be9a005889899ab", 1582890170054237, this, []); }
+  set permission(value: CKShare_ParticipantPermission) { callSDK<void>("CloudKit_6be9a005889899ab", 4344493287597490, this, [value]); }
   /**
    * var role: CKShare.ParticipantRole { get set }
    * @availability iOS 12.0+
    */
-  get role(): CKShare_ParticipantRole { return callSDK<CKShare_ParticipantRole>("CloudKit_5d69670f0307b385", 1117912789710625, this, []); }
-  set role(value: CKShare_ParticipantRole) { callSDK<void>("CloudKit_5d69670f0307b385", 3101861923365427, this, [value]); }
+  get role(): CKShare_ParticipantRole { return callSDK<CKShare_ParticipantRole>("CloudKit_6be9a005889899ab", 1117912789710625, this, []); }
+  set role(value: CKShare_ParticipantRole) { callSDK<void>("CloudKit_6be9a005889899ab", 3101861923365427, this, [value]); }
   /**
    * @NSCopying var userIdentity: CKUserIdentity { get }
    * @availability iOS 10.0+
    */
-  get userIdentity(): CKUserIdentity { return callSDK<CKUserIdentity>("CloudKit_5d69670f0307b385", 1302219485688575, this, []); }
+  get userIdentity(): CKUserIdentity { return callSDK<CKUserIdentity>("CloudKit_6be9a005889899ab", 1302219485688575, this, []); }
   /**
    * @backDeployed(before: macOS 15.0, iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   final var participantID: CKShare.Participant.ID { get }
    * @availability iOS 10.0+
    */
-  get participantID(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3066185639732225, this, []); }
+  get participantID(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3066185639732225, this, []); }
   declare readonly $type: { "c:objc(cs)CKShareParticipant": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "acceptanceStatus": true; "dateAddedToShare": true; "isApprovedRequester": true; "permission": true; "role": true; "userIdentity": true };
 }
@@ -3671,7 +3671,7 @@ export const CKShare_ParticipantAcceptanceStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CKShare_ParticipantAcceptanceStatus) | null { return callSDK<(CKShare_ParticipantAcceptanceStatus) | null>("CloudKit_5d69670f0307b385", 2636306589737000, undefined, [rawValue]); }
+  init(rawValue: number): (CKShare_ParticipantAcceptanceStatus) | null { return callSDK<(CKShare_ParticipantAcceptanceStatus) | null>("CloudKit_6be9a005889899ab", 2636306589737000, undefined, [rawValue]); }
 };
 
 /**
@@ -3685,7 +3685,7 @@ export const CKShare_ParticipantPermission = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CKShare_ParticipantPermission) | null { return callSDK<(CKShare_ParticipantPermission) | null>("CloudKit_5d69670f0307b385", 4142688467642662, undefined, [rawValue]); }
+  init(rawValue: number): (CKShare_ParticipantPermission) | null { return callSDK<(CKShare_ParticipantPermission) | null>("CloudKit_6be9a005889899ab", 4142688467642662, undefined, [rawValue]); }
 };
 
 /**
@@ -3699,7 +3699,7 @@ export const CKShare_ParticipantRole = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (CKShare_ParticipantRole) | null { return callSDK<(CKShare_ParticipantRole) | null>("CloudKit_5d69670f0307b385", 4072042978771558, undefined, [rawValue]); }
+  init(rawValue: number): (CKShare_ParticipantRole) | null { return callSDK<(CKShare_ParticipantRole) | null>("CloudKit_6be9a005889899ab", 4072042978771558, undefined, [rawValue]); }
 };
 
 /**
@@ -3718,17 +3718,17 @@ export class CKShare_SystemFieldKey extends SDKHandle {
    * static let thumbnailImageData: CKRecord.FieldKey
    * @availability iOS 10.0+
    */
-  static get thumbnailImageData(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3272461939572906, undefined, []); }
+  static get thumbnailImageData(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3272461939572906, undefined, []); }
   /**
    * static let title: CKRecord.FieldKey
    * @availability iOS 10.0+
    */
-  static get title(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1537141410331600, undefined, []); }
+  static get title(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1537141410331600, undefined, []); }
   /**
    * static let shareType: CKRecord.FieldKey
    * @availability iOS 10.0+
    */
-  static get shareType(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2129676368905368, undefined, []); }
+  static get shareType(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2129676368905368, undefined, []); }
   declare readonly $type: { "s:So7CKShareC8CloudKitE14SystemFieldKeyO": true };
 }
 
@@ -3741,30 +3741,30 @@ export class CKShareRequestAccessOperation extends (CKOperation as unknown as Om
    * init()
    * @availability iOS 26.0+
    */
-  static init(): CKShareRequestAccessOperation { return callSDK<CKShareRequestAccessOperation>("CloudKit_5d69670f0307b385", 939245931571021, undefined, []); }
+  static init(): CKShareRequestAccessOperation { return callSDK<CKShareRequestAccessOperation>("CloudKit_6be9a005889899ab", 939245931571021, undefined, []); }
   /**
    * convenience init(shareURLs: [URL])
    * @availability iOS 26.0+
    */
-  static initShareURLs(shareURLs: Array<string>): CKShareRequestAccessOperation { return callSDK<CKShareRequestAccessOperation>("CloudKit_5d69670f0307b385", 3555969889046497, undefined, [shareURLs]); }
+  static initShareURLs(shareURLs: Array<string>): CKShareRequestAccessOperation { return callSDK<CKShareRequestAccessOperation>("CloudKit_6be9a005889899ab", 3555969889046497, undefined, [shareURLs]); }
   /**
    * var shareURLs: [URL]? { get set }
    * @availability iOS 26.0+
    */
-  get shareURLs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 1075318742224024, this, []); }
-  set shareURLs(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2259417888117327, this, [value]); }
+  get shareURLs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 1075318742224024, this, []); }
+  set shareURLs(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2259417888117327, this, [value]); }
   /**
    * var shareAccessRequestResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 26.0+
    */
-  get shareAccessRequestResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_5d69670f0307b385", 3174489054103994, this, []); }
-  set shareAccessRequestResultBlock(value: $SDK9) { callSDK<void>("CloudKit_5d69670f0307b385", 3984304378387408, this, [value], [{"callback":{"out":[]}}]); }
+  get shareAccessRequestResultBlock(): $SDK8 { return callSDK<$SDK8>("CloudKit_6be9a005889899ab", 3174489054103994, this, []); }
+  set shareAccessRequestResultBlock(value: $SDK9) { callSDK<void>("CloudKit_6be9a005889899ab", 3984304378387408, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var perShareAccessRequestResultBlock: ((URL, Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 26.0+
    */
-  get perShareAccessRequestResultBlock(): $SDK97 { return callSDK<$SDK97>("CloudKit_5d69670f0307b385", 207875839294727, this, []); }
-  set perShareAccessRequestResultBlock(value: $SDK98) { callSDK<void>("CloudKit_5d69670f0307b385", 1308609946421895, this, [value], [{"callback":{"out":[]}}]); }
+  get perShareAccessRequestResultBlock(): $SDK97 { return callSDK<$SDK97>("CloudKit_6be9a005889899ab", 207875839294727, this, []); }
+  set perShareAccessRequestResultBlock(value: $SDK98) { callSDK<void>("CloudKit_6be9a005889899ab", 1308609946421895, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKShareRequestAccessOperation": true; "c:objc(cs)CKOperation": true; "c:objc(cs)NSOperation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCellularAccess": true; "configuration": true; "container": true; "group": true; "isLongLived": true; "timeoutIntervalForRequest": true; "timeoutIntervalForResource": true; "shareURLs": true };
 }
@@ -3792,12 +3792,12 @@ export class CKShareTransferRepresentation_ExportedShare<Item = unknown> extends
    * static func prepareShare(container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions = CKAllowedSharingOptions.standard, preparationHandler: @escaping @Sendable () async throws -> CKShare) -> CKShareTransferRepresentation<Item>.ExportedShare
    * @availability iOS 16.0+
    */
-  static prepareShare(container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions, preparationHandler: (() => Promise<CKShare>)): $SDK134 { return callSDK<$SDK134>("CloudKit_5d69670f0307b385", 2568677304259455, undefined, [container, allowedSharingOptions, preparationHandler], [null,null,{"callback":{"out":[]}}]); }
+  static prepareShare(container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions, preparationHandler: (() => Promise<CKShare>)): $SDK134 { return callSDK<$SDK134>("CloudKit_6be9a005889899ab", 2568677304259455, undefined, [container, allowedSharingOptions, preparationHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * static func existing(_ share: CKShare, container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions = CKAllowedSharingOptions.standard) -> CKShareTransferRepresentation<Item>.ExportedShare
    * @availability iOS 16.0+
    */
-  static existing(share: CKShare, container: CKContainer, allowedSharingOptions?: CKAllowedSharingOptions): $SDK134 { return callSDK<$SDK134>("CloudKit_5d69670f0307b385", 1286937048529632, undefined, [share, container, allowedSharingOptions]); }
+  static existing(share: CKShare, container: CKContainer, allowedSharingOptions?: CKAllowedSharingOptions): $SDK134 { return callSDK<$SDK134>("CloudKit_6be9a005889899ab", 1286937048529632, undefined, [share, container, allowedSharingOptions]); }
   declare readonly $type: { "s:8CloudKit29CKShareTransferRepresentationV13ExportedShareV": true };
 }
 
@@ -3818,22 +3818,22 @@ export const CKSharingParticipantAccessOption = {
    * static var any: CKSharingParticipantAccessOption { get }
    * @availability iOS 16.0+
    */
-  get any(): CKSharingParticipantAccessOption { return callSDK<CKSharingParticipantAccessOption>("CloudKit_5d69670f0307b385", 4061267269109321, undefined, []); },
+  get any(): CKSharingParticipantAccessOption { return callSDK<CKSharingParticipantAccessOption>("CloudKit_6be9a005889899ab", 4061267269109321, undefined, []); },
   /**
    * static var anyoneWithLink: CKSharingParticipantAccessOption { get }
    * @availability iOS 16.0+
    */
-  get anyoneWithLink(): CKSharingParticipantAccessOption { return callSDK<CKSharingParticipantAccessOption>("CloudKit_5d69670f0307b385", 2820832401300013, undefined, []); },
+  get anyoneWithLink(): CKSharingParticipantAccessOption { return callSDK<CKSharingParticipantAccessOption>("CloudKit_6be9a005889899ab", 2820832401300013, undefined, []); },
   /**
    * static var specifiedRecipientsOnly: CKSharingParticipantAccessOption { get }
    * @availability iOS 16.0+
    */
-  get specifiedRecipientsOnly(): CKSharingParticipantAccessOption { return callSDK<CKSharingParticipantAccessOption>("CloudKit_5d69670f0307b385", 769438824908038, undefined, []); },
+  get specifiedRecipientsOnly(): CKSharingParticipantAccessOption { return callSDK<CKSharingParticipantAccessOption>("CloudKit_6be9a005889899ab", 769438824908038, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): CKSharingParticipantAccessOption { return callSDK<CKSharingParticipantAccessOption>("CloudKit_5d69670f0307b385", 3574065484031332, undefined, [rawValue]); }
+  init(rawValue: number): CKSharingParticipantAccessOption { return callSDK<CKSharingParticipantAccessOption>("CloudKit_6be9a005889899ab", 3574065484031332, undefined, [rawValue]); }
 };
 
 /**
@@ -3847,22 +3847,22 @@ export const CKSharingParticipantPermissionOption = {
    * static var any: CKSharingParticipantPermissionOption { get }
    * @availability iOS 16.0+
    */
-  get any(): CKSharingParticipantPermissionOption { return callSDK<CKSharingParticipantPermissionOption>("CloudKit_5d69670f0307b385", 3600638685670980, undefined, []); },
+  get any(): CKSharingParticipantPermissionOption { return callSDK<CKSharingParticipantPermissionOption>("CloudKit_6be9a005889899ab", 3600638685670980, undefined, []); },
   /**
    * static var readOnly: CKSharingParticipantPermissionOption { get }
    * @availability iOS 16.0+
    */
-  get readOnly(): CKSharingParticipantPermissionOption { return callSDK<CKSharingParticipantPermissionOption>("CloudKit_5d69670f0307b385", 2621756533582206, undefined, []); },
+  get readOnly(): CKSharingParticipantPermissionOption { return callSDK<CKSharingParticipantPermissionOption>("CloudKit_6be9a005889899ab", 2621756533582206, undefined, []); },
   /**
    * static var readWrite: CKSharingParticipantPermissionOption { get }
    * @availability iOS 16.0+
    */
-  get readWrite(): CKSharingParticipantPermissionOption { return callSDK<CKSharingParticipantPermissionOption>("CloudKit_5d69670f0307b385", 552348581132383, undefined, []); },
+  get readWrite(): CKSharingParticipantPermissionOption { return callSDK<CKSharingParticipantPermissionOption>("CloudKit_6be9a005889899ab", 552348581132383, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): CKSharingParticipantPermissionOption { return callSDK<CKSharingParticipantPermissionOption>("CloudKit_5d69670f0307b385", 389954177581647, undefined, [rawValue]); }
+  init(rawValue: number): CKSharingParticipantPermissionOption { return callSDK<CKSharingParticipantPermissionOption>("CloudKit_6be9a005889899ab", 389954177581647, undefined, [rawValue]); }
 };
 
 /**
@@ -3880,115 +3880,115 @@ export class CKSubscription_NotificationInfo extends SDKHandle {
    * var alertActionLocalizationKey: String? { get set }
    * @availability iOS 8.0+
    */
-  get alertActionLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3427290962295351, this, []); }
-  set alertActionLocalizationKey(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2566712571326713, this, [value]); }
+  get alertActionLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3427290962295351, this, []); }
+  set alertActionLocalizationKey(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2566712571326713, this, [value]); }
   /**
    * var alertBody: String? { get set }
    * @availability iOS 8.0+
    */
-  get alertBody(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 1192336622897731, this, []); }
-  set alertBody(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 4423938954193296, this, [value]); }
+  get alertBody(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 1192336622897731, this, []); }
+  set alertBody(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 4423938954193296, this, [value]); }
   /**
    * var alertLaunchImage: String? { get set }
    * @availability iOS 8.0+
    */
-  get alertLaunchImage(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3230575663442263, this, []); }
-  set alertLaunchImage(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1191290365682030, this, [value]); }
+  get alertLaunchImage(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3230575663442263, this, []); }
+  set alertLaunchImage(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1191290365682030, this, [value]); }
   /**
    * var alertLocalizationKey: String? { get set }
    * @availability iOS 8.0+
    */
-  get alertLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 4183010906531715, this, []); }
-  set alertLocalizationKey(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3300757537185367, this, [value]); }
+  get alertLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 4183010906531715, this, []); }
+  set alertLocalizationKey(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3300757537185367, this, [value]); }
   /**
    * var category: String? { get set }
    * @availability iOS 9.0+
    */
-  get category(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 1204880021117808, this, []); }
-  set category(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1066385364919547, this, [value]); }
+  get category(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 1204880021117808, this, []); }
+  set category(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1066385364919547, this, [value]); }
   /**
    * var collapseIDKey: String? { get set }
    * @availability iOS 11.0+
    */
-  get collapseIDKey(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 2000394201418544, this, []); }
-  set collapseIDKey(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2715757262038993, this, [value]); }
+  get collapseIDKey(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 2000394201418544, this, []); }
+  set collapseIDKey(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2715757262038993, this, [value]); }
   /**
    * var shouldBadge: Bool { get set }
    * @availability iOS 8.0+
    */
-  get shouldBadge(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 3553216813626756, this, []); }
-  set shouldBadge(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 172695312777097, this, [value]); }
+  get shouldBadge(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 3553216813626756, this, []); }
+  set shouldBadge(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 172695312777097, this, [value]); }
   /**
    * var shouldSendContentAvailable: Bool { get set }
    * @availability iOS 8.0+
    */
-  get shouldSendContentAvailable(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 216824102153178, this, []); }
-  set shouldSendContentAvailable(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 2492388187282344, this, [value]); }
+  get shouldSendContentAvailable(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 216824102153178, this, []); }
+  set shouldSendContentAvailable(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 2492388187282344, this, [value]); }
   /**
    * var shouldSendMutableContent: Bool { get set }
    * @availability iOS 11.0+
    */
-  get shouldSendMutableContent(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 3106468436031330, this, []); }
-  set shouldSendMutableContent(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 2297354878237681, this, [value]); }
+  get shouldSendMutableContent(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 3106468436031330, this, []); }
+  set shouldSendMutableContent(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 2297354878237681, this, [value]); }
   /**
    * var soundName: String? { get set }
    * @availability iOS 8.0+
    */
-  get soundName(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3668632683496333, this, []); }
-  set soundName(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3450551098366534, this, [value]); }
+  get soundName(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3668632683496333, this, []); }
+  set soundName(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3450551098366534, this, [value]); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 11.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 1774979421524738, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 2464865255221726, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 1774979421524738, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 2464865255221726, this, [value]); }
   /**
    * var subtitleLocalizationKey: String? { get set }
    * @availability iOS 11.0+
    */
-  get subtitleLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 233806512952340, this, []); }
-  set subtitleLocalizationKey(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 387743830503361, this, [value]); }
+  get subtitleLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 233806512952340, this, []); }
+  set subtitleLocalizationKey(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 387743830503361, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 11.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 2090774245581380, this, []); }
-  set title(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 230681664746031, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 2090774245581380, this, []); }
+  set title(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 230681664746031, this, [value]); }
   /**
    * var titleLocalizationKey: String? { get set }
    * @availability iOS 11.0+
    */
-  get titleLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 1714513382014709, this, []); }
-  set titleLocalizationKey(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 3840064001675897, this, [value]); }
+  get titleLocalizationKey(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 1714513382014709, this, []); }
+  set titleLocalizationKey(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 3840064001675897, this, [value]); }
   /**
    * var desiredKeys: [CKRecord.FieldKey]? { get set }
    * @availability iOS 8.0+
    */
-  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 2542504185886513, this, []); }
-  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1960587506083258, this, [value]); }
+  get desiredKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 2542504185886513, this, []); }
+  set desiredKeys(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1960587506083258, this, [value]); }
   /**
    * var alertLocalizationArgs: [CKRecord.FieldKey]? { get set }
    * @availability iOS 8.0+
    */
-  get alertLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 4054517169917711, this, []); }
-  set alertLocalizationArgs(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 452848669821746, this, [value]); }
+  get alertLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 4054517169917711, this, []); }
+  set alertLocalizationArgs(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 452848669821746, this, [value]); }
   /**
    * var titleLocalizationArgs: [CKRecord.FieldKey]? { get set }
    * @availability iOS 11.0+
    */
-  get titleLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 877032609373511, this, []); }
-  set titleLocalizationArgs(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 4456859977168564, this, [value]); }
+  get titleLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 877032609373511, this, []); }
+  set titleLocalizationArgs(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 4456859977168564, this, [value]); }
   /**
    * var subtitleLocalizationArgs: [CKRecord.FieldKey]? { get set }
    * @availability iOS 11.0+
    */
-  get subtitleLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_5d69670f0307b385", 451522926903595, this, []); }
-  set subtitleLocalizationArgs(value: (Array<string>) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 763868564342355, this, [value]); }
+  get subtitleLocalizationArgs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CloudKit_6be9a005889899ab", 451522926903595, this, []); }
+  set subtitleLocalizationArgs(value: (Array<string>) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 763868564342355, this, [value]); }
   /**
    * convenience init(alertBody: String? = nil, alertLocalizationKey: String? = nil, alertLocalizationArgs: [CKRecord.FieldKey] = [], title: String? = nil, titleLocalizationKey: String? = nil, titleLocalizationArgs: [CKRecord.FieldKey] = [], subtitle: String? = nil, subtitleLocalizationKey: String? = nil, subtitleLocalizationArgs: [CKRecord.FieldKey] = [], alertActionLocalizationKey: String? = nil, alertLaunchImage: String? = nil, soundName: String? = nil, desiredKeys: [CKRecord.FieldKey] = [], shouldBadge: Bool = false, shouldSendContentAvailable: Bool = false, shouldSendMutableContent: Bool = false, category: String? = nil, collapseIDKey: String? = nil)
    * @availability iOS 8.0+
    */
-  static init(alertBody?: (string) | null, alertLocalizationKey?: (string) | null, alertLocalizationArgs?: Array<string>, title?: (string) | null, titleLocalizationKey?: (string) | null, titleLocalizationArgs?: Array<string>, subtitle?: (string) | null, subtitleLocalizationKey?: (string) | null, subtitleLocalizationArgs?: Array<string>, alertActionLocalizationKey?: (string) | null, alertLaunchImage?: (string) | null, soundName?: (string) | null, desiredKeys?: Array<string>, shouldBadge?: boolean, shouldSendContentAvailable?: boolean, shouldSendMutableContent?: boolean, category?: (string) | null, collapseIDKey?: (string) | null): CKSubscription_NotificationInfo { return callSDK<CKSubscription_NotificationInfo>("CloudKit_5d69670f0307b385", 730185317032088, undefined, [alertBody, alertLocalizationKey, alertLocalizationArgs, title, titleLocalizationKey, titleLocalizationArgs, subtitle, subtitleLocalizationKey, subtitleLocalizationArgs, alertActionLocalizationKey, alertLaunchImage, soundName, desiredKeys, shouldBadge, shouldSendContentAvailable, shouldSendMutableContent, category, collapseIDKey]); }
+  static init(alertBody?: (string) | null, alertLocalizationKey?: (string) | null, alertLocalizationArgs?: Array<string>, title?: (string) | null, titleLocalizationKey?: (string) | null, titleLocalizationArgs?: Array<string>, subtitle?: (string) | null, subtitleLocalizationKey?: (string) | null, subtitleLocalizationArgs?: Array<string>, alertActionLocalizationKey?: (string) | null, alertLaunchImage?: (string) | null, soundName?: (string) | null, desiredKeys?: Array<string>, shouldBadge?: boolean, shouldSendContentAvailable?: boolean, shouldSendMutableContent?: boolean, category?: (string) | null, collapseIDKey?: (string) | null): CKSubscription_NotificationInfo { return callSDK<CKSubscription_NotificationInfo>("CloudKit_6be9a005889899ab", 730185317032088, undefined, [alertBody, alertLocalizationKey, alertLocalizationArgs, title, titleLocalizationKey, titleLocalizationArgs, subtitle, subtitleLocalizationKey, subtitleLocalizationArgs, alertActionLocalizationKey, alertLaunchImage, soundName, desiredKeys, shouldBadge, shouldSendContentAvailable, shouldSendMutableContent, category, collapseIDKey]); }
   declare readonly $type: { "c:objc(cs)CKNotificationInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alertActionLocalizationKey": true; "alertBody": true; "alertLaunchImage": true; "alertLocalizationKey": true; "category": true; "collapseIDKey": true; "shouldBadge": true; "shouldSendContentAvailable": true; "shouldSendMutableContent": true; "soundName": true; "subtitle": true; "subtitleLocalizationKey": true; "title": true; "titleLocalizationKey": true };
 }
@@ -4004,7 +4004,7 @@ export const CKSubscription_SubscriptionType = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (CKSubscription_SubscriptionType) | null { return callSDK<(CKSubscription_SubscriptionType) | null>("CloudKit_5d69670f0307b385", 4474016448400584, undefined, [rawValue]); }
+  init(rawValue: number): (CKSubscription_SubscriptionType) | null { return callSDK<(CKSubscription_SubscriptionType) | null>("CloudKit_6be9a005889899ab", 4474016448400584, undefined, [rawValue]); }
 };
 
 /**
@@ -4016,37 +4016,37 @@ export class CKSyncEngine extends SDKHandle {
    * final var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3166319559977631, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3166319559977631, this, []); }
   /**
    * final func sendChanges(_ options: CKSyncEngine.SendChangesOptions = .init()) async throws
    * @availability iOS 17.0+
    */
-  sendChanges(options?: CKSyncEngine_SendChangesOptions): Promise<void> { return callSDKAsync<void>("CloudKit_5d69670f0307b385", 2677196052521872, this, [options]); }
+  sendChanges(options?: CKSyncEngine_SendChangesOptions): Promise<void> { return callSDKAsync<void>("CloudKit_6be9a005889899ab", 2677196052521872, this, [options]); }
   /**
    * final func fetchChanges(_ options: CKSyncEngine.FetchChangesOptions = .init()) async throws
    * @availability iOS 17.0+
    */
-  fetchChanges(options?: CKSyncEngine_FetchChangesOptions): Promise<void> { return callSDKAsync<void>("CloudKit_5d69670f0307b385", 964172634333575, this, [options]); }
+  fetchChanges(options?: CKSyncEngine_FetchChangesOptions): Promise<void> { return callSDKAsync<void>("CloudKit_6be9a005889899ab", 964172634333575, this, [options]); }
   /**
    * final func cancelOperations() async
    * @availability iOS 17.0+
    */
-  cancelOperations(): Promise<void> { return callSDKAsync<void>("CloudKit_5d69670f0307b385", 2729304952074186, this, []); }
+  cancelOperations(): Promise<void> { return callSDKAsync<void>("CloudKit_6be9a005889899ab", 2729304952074186, this, []); }
   /**
    * final var state: CKSyncEngine.State { get }
    * @availability iOS 17.0+
    */
-  get state(): CKSyncEngine_State { return callSDK<CKSyncEngine_State>("CloudKit_5d69670f0307b385", 682773787258218, this, []); }
+  get state(): CKSyncEngine_State { return callSDK<CKSyncEngine_State>("CloudKit_6be9a005889899ab", 682773787258218, this, []); }
   /**
    * final var database: CKDatabase { get }
    * @availability iOS 17.0+
    */
-  get database(): CKDatabase { return callSDK<CKDatabase>("CloudKit_5d69670f0307b385", 3092310655122278, this, []); }
+  get database(): CKDatabase { return callSDK<CKDatabase>("CloudKit_6be9a005889899ab", 3092310655122278, this, []); }
   /**
    * init(_ configuration: CKSyncEngine.Configuration)
    * @availability iOS 17.0+
    */
-  static init(configuration: CKSyncEngine_Configuration): CKSyncEngine { return callSDK<CKSyncEngine>("CloudKit_5d69670f0307b385", 911578642999535, undefined, [configuration]); }
+  static init(configuration: CKSyncEngine_Configuration): CKSyncEngine { return callSDK<CKSyncEngine>("CloudKit_6be9a005889899ab", 911578642999535, undefined, [configuration]); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC": true };
 }
 
@@ -4059,42 +4059,42 @@ export class CKSyncEngine_Configuration extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1205359477726470, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1205359477726470, this, []); }
   /**
    * var subscriptionID: CKSubscription.ID?
    * @availability iOS 17.0+
    */
-  get subscriptionID(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 3673707808682276, this, []); }
-  set subscriptionID(value: (string) | null) { callSDK<void>("CloudKit_5d69670f0307b385", 1214230833642133, this, [value]); }
+  get subscriptionID(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 3673707808682276, this, []); }
+  set subscriptionID(value: (string) | null) { callSDK<void>("CloudKit_6be9a005889899ab", 1214230833642133, this, [value]); }
   /**
    * var automaticallySync: Bool
    * @availability iOS 17.0+
    */
-  get automaticallySync(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 4290806098566913, this, []); }
-  set automaticallySync(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 519107059928086, this, [value]); }
+  get automaticallySync(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 4290806098566913, this, []); }
+  set automaticallySync(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 519107059928086, this, [value]); }
   /**
    * var stateSerialization: CKSyncEngine.State.Serialization?
    * @availability iOS 17.0+
    */
-  get stateSerialization(): $SDK136 { return callSDK<$SDK136>("CloudKit_5d69670f0307b385", 1245026880235881, this, []); }
-  set stateSerialization(value: $SDK136) { callSDK<void>("CloudKit_5d69670f0307b385", 4226509832491873, this, [value]); }
+  get stateSerialization(): $SDK136 { return callSDK<$SDK136>("CloudKit_6be9a005889899ab", 1245026880235881, this, []); }
+  set stateSerialization(value: $SDK136) { callSDK<void>("CloudKit_6be9a005889899ab", 4226509832491873, this, [value]); }
   /**
    * init(database: CKDatabase, stateSerialization: CKSyncEngine.State.Serialization?, delegate: any CKSyncEngineDelegate)
    * @availability iOS 17.0+
    */
-  static init(database: CKDatabase, stateSerialization: $SDK136, delegate: SDKHandle): CKSyncEngine_Configuration { return callSDK<CKSyncEngine_Configuration>("CloudKit_5d69670f0307b385", 3882365779852313, undefined, [database, stateSerialization, delegate]); }
+  static init(database: CKDatabase, stateSerialization: $SDK136, delegate: SDKHandle): CKSyncEngine_Configuration { return callSDK<CKSyncEngine_Configuration>("CloudKit_6be9a005889899ab", 3882365779852313, undefined, [database, stateSerialization, delegate]); }
   /**
    * var database: CKDatabase
    * @availability iOS 17.0+
    */
-  get database(): CKDatabase { return callSDK<CKDatabase>("CloudKit_5d69670f0307b385", 4192976462223879, this, []); }
-  set database(value: CKDatabase) { callSDK<void>("CloudKit_5d69670f0307b385", 3883359402335476, this, [value]); }
+  get database(): CKDatabase { return callSDK<CKDatabase>("CloudKit_6be9a005889899ab", 4192976462223879, this, []); }
+  set database(value: CKDatabase) { callSDK<void>("CloudKit_6be9a005889899ab", 3883359402335476, this, [value]); }
   /**
    * var delegate: any CKSyncEngineDelegate
    * @availability iOS 17.0+
    */
-  get delegate(): SDKHandle { return callSDK<SDKHandle>("CloudKit_5d69670f0307b385", 3680337334779768, this, []); }
-  set delegate(value: SDKHandle) { callSDK<void>("CloudKit_5d69670f0307b385", 1643493398269480, this, [value]); }
+  get delegate(): SDKHandle { return callSDK<SDKHandle>("CloudKit_6be9a005889899ab", 3680337334779768, this, []); }
+  set delegate(value: SDKHandle) { callSDK<void>("CloudKit_6be9a005889899ab", 1643493398269480, this, [value]); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC13ConfigurationV": true };
 }
 
@@ -4107,7 +4107,7 @@ export class CKSyncEngine_Event extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2869622625560642, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2869622625560642, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO": true };
 }
 
@@ -4120,12 +4120,12 @@ export class CKSyncEngine_Event_AccountChange extends SDKHandle {
    * let changeType: CKSyncEngine.Event.AccountChange.ChangeType
    * @availability iOS 17.0+
    */
-  get changeType(): CKSyncEngine_Event_AccountChange_ChangeType { return callSDK<CKSyncEngine_Event_AccountChange_ChangeType>("CloudKit_5d69670f0307b385", 3071807048283814, this, []); }
+  get changeType(): CKSyncEngine_Event_AccountChange_ChangeType { return callSDK<CKSyncEngine_Event_AccountChange_ChangeType>("CloudKit_6be9a005889899ab", 3071807048283814, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1096949883805936, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1096949883805936, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO13AccountChangeV": true };
 }
 
@@ -4146,12 +4146,12 @@ export class CKSyncEngine_Event_DidFetchChanges extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3649939386184072, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3649939386184072, this, []); }
   /**
    * let context: CKSyncEngine.FetchChangesContext
    * @availability iOS 17.2+
    */
-  get context(): CKSyncEngine_FetchChangesContext { return callSDK<CKSyncEngine_FetchChangesContext>("CloudKit_5d69670f0307b385", 3834906711204500, this, []); }
+  get context(): CKSyncEngine_FetchChangesContext { return callSDK<CKSyncEngine_FetchChangesContext>("CloudKit_6be9a005889899ab", 3834906711204500, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO15DidFetchChangesV": true };
 }
 
@@ -4164,17 +4164,17 @@ export class CKSyncEngine_Event_DidFetchRecordZoneChanges extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3524397294124668, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3524397294124668, this, []); }
   /**
    * let error: CKError?
    * @availability iOS 17.0+
    */
-  get error(): (CKError_Code) | null { return callSDK<(CKError_Code) | null>("CloudKit_5d69670f0307b385", 1205090038982183, this, []); }
+  get error(): (CKError_Code) | null { return callSDK<(CKError_Code) | null>("CloudKit_6be9a005889899ab", 1205090038982183, this, []); }
   /**
    * let zoneID: CKRecordZone.ID
    * @availability iOS 17.0+
    */
-  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 1998116683286363, this, []); }
+  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 1998116683286363, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO25DidFetchRecordZoneChangesV": true };
 }
 
@@ -4187,12 +4187,12 @@ export class CKSyncEngine_Event_DidSendChanges extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1649001845562822, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1649001845562822, this, []); }
   /**
    * let context: CKSyncEngine.SendChangesContext
    * @availability iOS 17.0+
    */
-  get context(): CKSyncEngine_SendChangesContext { return callSDK<CKSyncEngine_SendChangesContext>("CloudKit_5d69670f0307b385", 1847033102413724, this, []); }
+  get context(): CKSyncEngine_SendChangesContext { return callSDK<CKSyncEngine_SendChangesContext>("CloudKit_6be9a005889899ab", 1847033102413724, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO14DidSendChangesV": true };
 }
 
@@ -4205,17 +4205,17 @@ export class CKSyncEngine_Event_FetchedDatabaseChanges extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1954454892899841, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1954454892899841, this, []); }
   /**
    * let modifications: [CKDatabase.DatabaseChange.Modification]
    * @availability iOS 17.0+
    */
-  get modifications(): Array<CKDatabase_DatabaseChange_Modification> { return callSDK<Array<CKDatabase_DatabaseChange_Modification>>("CloudKit_5d69670f0307b385", 1572143953978822, this, []); }
+  get modifications(): Array<CKDatabase_DatabaseChange_Modification> { return callSDK<Array<CKDatabase_DatabaseChange_Modification>>("CloudKit_6be9a005889899ab", 1572143953978822, this, []); }
   /**
    * let deletions: [CKDatabase.DatabaseChange.Deletion]
    * @availability iOS 17.0+
    */
-  get deletions(): Array<CKDatabase_DatabaseChange_Deletion> { return callSDK<Array<CKDatabase_DatabaseChange_Deletion>>("CloudKit_5d69670f0307b385", 4260449460158903, this, []); }
+  get deletions(): Array<CKDatabase_DatabaseChange_Deletion> { return callSDK<Array<CKDatabase_DatabaseChange_Deletion>>("CloudKit_6be9a005889899ab", 4260449460158903, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO22FetchedDatabaseChangesV": true };
 }
 
@@ -4228,17 +4228,17 @@ export class CKSyncEngine_Event_FetchedRecordZoneChanges extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 4100080433886701, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 4100080433886701, this, []); }
   /**
    * let modifications: [CKDatabase.RecordZoneChange.Modification]
    * @availability iOS 17.0+
    */
-  get modifications(): Array<CKDatabase_RecordZoneChange_Modification> { return callSDK<Array<CKDatabase_RecordZoneChange_Modification>>("CloudKit_5d69670f0307b385", 1363102345426821, this, []); }
+  get modifications(): Array<CKDatabase_RecordZoneChange_Modification> { return callSDK<Array<CKDatabase_RecordZoneChange_Modification>>("CloudKit_6be9a005889899ab", 1363102345426821, this, []); }
   /**
    * let deletions: [CKDatabase.RecordZoneChange.Deletion]
    * @availability iOS 17.0+
    */
-  get deletions(): Array<CKDatabase_RecordZoneChange_Deletion> { return callSDK<Array<CKDatabase_RecordZoneChange_Deletion>>("CloudKit_5d69670f0307b385", 3202624585071979, this, []); }
+  get deletions(): Array<CKDatabase_RecordZoneChange_Deletion> { return callSDK<Array<CKDatabase_RecordZoneChange_Deletion>>("CloudKit_6be9a005889899ab", 3202624585071979, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO24FetchedRecordZoneChangesV": true };
 }
 
@@ -4251,27 +4251,27 @@ export class CKSyncEngine_Event_SentDatabaseChanges extends SDKHandle {
    * let savedZones: [CKRecordZone]
    * @availability iOS 17.0+
    */
-  get savedZones(): Array<CKRecordZone> { return callSDK<Array<CKRecordZone>>("CloudKit_5d69670f0307b385", 1325689247023828, this, []); }
+  get savedZones(): Array<CKRecordZone> { return callSDK<Array<CKRecordZone>>("CloudKit_6be9a005889899ab", 1325689247023828, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2585867188970010, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2585867188970010, this, []); }
   /**
    * let deletedZoneIDs: [CKRecordZone.ID]
    * @availability iOS 17.0+
    */
-  get deletedZoneIDs(): Array<CKRecordZone_ID> { return callSDK<Array<CKRecordZone_ID>>("CloudKit_5d69670f0307b385", 4282008990170074, this, []); }
+  get deletedZoneIDs(): Array<CKRecordZone_ID> { return callSDK<Array<CKRecordZone_ID>>("CloudKit_6be9a005889899ab", 4282008990170074, this, []); }
   /**
    * let failedZoneSaves: [CKSyncEngine.Event.SentDatabaseChanges.FailedZoneSave]
    * @availability iOS 17.0+
    */
-  get failedZoneSaves(): Array<CKSyncEngine_Event_SentDatabaseChanges_FailedZoneSave> { return callSDK<Array<CKSyncEngine_Event_SentDatabaseChanges_FailedZoneSave>>("CloudKit_5d69670f0307b385", 2447572992054998, this, []); }
+  get failedZoneSaves(): Array<CKSyncEngine_Event_SentDatabaseChanges_FailedZoneSave> { return callSDK<Array<CKSyncEngine_Event_SentDatabaseChanges_FailedZoneSave>>("CloudKit_6be9a005889899ab", 2447572992054998, this, []); }
   /**
    * let failedZoneDeletes: [CKRecordZone.ID : CKError]
    * @availability iOS 17.0+
    */
-  get failedZoneDeletes(): NativeMap<CKRecordZone_ID, CKError_Code> { return callSDK<NativeMap<CKRecordZone_ID, CKError_Code>>("CloudKit_5d69670f0307b385", 4171582243803449, this, []); }
+  get failedZoneDeletes(): NativeMap<CKRecordZone_ID, CKError_Code> { return callSDK<NativeMap<CKRecordZone_ID, CKError_Code>>("CloudKit_6be9a005889899ab", 4171582243803449, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO19SentDatabaseChangesV": true };
 }
 
@@ -4284,17 +4284,17 @@ export class CKSyncEngine_Event_SentDatabaseChanges_FailedZoneSave extends SDKHa
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 854048485185335, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 854048485185335, this, []); }
   /**
    * let zone: CKRecordZone
    * @availability iOS 17.0+
    */
-  get zone(): CKRecordZone { return callSDK<CKRecordZone>("CloudKit_5d69670f0307b385", 1153726568207031, this, []); }
+  get zone(): CKRecordZone { return callSDK<CKRecordZone>("CloudKit_6be9a005889899ab", 1153726568207031, this, []); }
   /**
    * let error: CKError
    * @availability iOS 17.0+
    */
-  get error(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 4017828668432551, this, []); }
+  get error(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 4017828668432551, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO19SentDatabaseChangesV14FailedZoneSaveV": true };
 }
 
@@ -4307,27 +4307,27 @@ export class CKSyncEngine_Event_SentRecordZoneChanges extends SDKHandle {
    * let failedRecordSaves: [CKSyncEngine.Event.SentRecordZoneChanges.FailedRecordSave]
    * @availability iOS 17.0+
    */
-  get failedRecordSaves(): Array<CKSyncEngine_Event_SentRecordZoneChanges_FailedRecordSave> { return callSDK<Array<CKSyncEngine_Event_SentRecordZoneChanges_FailedRecordSave>>("CloudKit_5d69670f0307b385", 2961556734674454, this, []); }
+  get failedRecordSaves(): Array<CKSyncEngine_Event_SentRecordZoneChanges_FailedRecordSave> { return callSDK<Array<CKSyncEngine_Event_SentRecordZoneChanges_FailedRecordSave>>("CloudKit_6be9a005889899ab", 2961556734674454, this, []); }
   /**
    * let failedRecordDeletes: [CKRecord.ID : CKError]
    * @availability iOS 17.0+
    */
-  get failedRecordDeletes(): NativeMap<CKRecord_ID, CKError_Code> { return callSDK<NativeMap<CKRecord_ID, CKError_Code>>("CloudKit_5d69670f0307b385", 4396762963234937, this, []); }
+  get failedRecordDeletes(): NativeMap<CKRecord_ID, CKError_Code> { return callSDK<NativeMap<CKRecord_ID, CKError_Code>>("CloudKit_6be9a005889899ab", 4396762963234937, this, []); }
   /**
    * let deletedRecordIDs: [CKRecord.ID]
    * @availability iOS 17.0+
    */
-  get deletedRecordIDs(): Array<CKRecord_ID> { return callSDK<Array<CKRecord_ID>>("CloudKit_5d69670f0307b385", 276965320919692, this, []); }
+  get deletedRecordIDs(): Array<CKRecord_ID> { return callSDK<Array<CKRecord_ID>>("CloudKit_6be9a005889899ab", 276965320919692, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2485600775827781, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2485600775827781, this, []); }
   /**
    * let savedRecords: [CKRecord]
    * @availability iOS 17.0+
    */
-  get savedRecords(): Array<CKRecord> { return callSDK<Array<CKRecord>>("CloudKit_5d69670f0307b385", 3518563373916029, this, []); }
+  get savedRecords(): Array<CKRecord> { return callSDK<Array<CKRecord>>("CloudKit_6be9a005889899ab", 3518563373916029, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO21SentRecordZoneChangesV": true };
 }
 
@@ -4340,17 +4340,17 @@ export class CKSyncEngine_Event_SentRecordZoneChanges_FailedRecordSave extends S
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3654282684384948, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3654282684384948, this, []); }
   /**
    * let error: CKError
    * @availability iOS 17.0+
    */
-  get error(): CKError_Code { return callSDK<CKError_Code>("CloudKit_5d69670f0307b385", 1703731387559896, this, []); }
+  get error(): CKError_Code { return callSDK<CKError_Code>("CloudKit_6be9a005889899ab", 1703731387559896, this, []); }
   /**
    * let record: CKRecord
    * @availability iOS 17.0+
    */
-  get record(): CKRecord { return callSDK<CKRecord>("CloudKit_5d69670f0307b385", 2384395038864435, this, []); }
+  get record(): CKRecord { return callSDK<CKRecord>("CloudKit_6be9a005889899ab", 2384395038864435, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO21SentRecordZoneChangesV06FailedG4SaveV": true };
 }
 
@@ -4363,12 +4363,12 @@ export class CKSyncEngine_Event_StateUpdate extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2921692174653775, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2921692174653775, this, []); }
   /**
    * let stateSerialization: CKSyncEngine.State.Serialization
    * @availability iOS 17.0+
    */
-  get stateSerialization(): CKSyncEngine_State_Serialization { return callSDK<CKSyncEngine_State_Serialization>("CloudKit_5d69670f0307b385", 846590538740139, this, []); }
+  get stateSerialization(): CKSyncEngine_State_Serialization { return callSDK<CKSyncEngine_State_Serialization>("CloudKit_6be9a005889899ab", 846590538740139, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO11StateUpdateV": true };
 }
 
@@ -4381,12 +4381,12 @@ export class CKSyncEngine_Event_WillFetchChanges extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3611577947400381, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3611577947400381, this, []); }
   /**
    * let context: CKSyncEngine.FetchChangesContext
    * @availability iOS 17.2+
    */
-  get context(): CKSyncEngine_FetchChangesContext { return callSDK<CKSyncEngine_FetchChangesContext>("CloudKit_5d69670f0307b385", 1889803672020714, this, []); }
+  get context(): CKSyncEngine_FetchChangesContext { return callSDK<CKSyncEngine_FetchChangesContext>("CloudKit_6be9a005889899ab", 1889803672020714, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO16WillFetchChangesV": true };
 }
 
@@ -4399,12 +4399,12 @@ export class CKSyncEngine_Event_WillFetchRecordZoneChanges extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 187393805832442, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 187393805832442, this, []); }
   /**
    * let zoneID: CKRecordZone.ID
    * @availability iOS 17.0+
    */
-  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_5d69670f0307b385", 2022100465896012, this, []); }
+  get zoneID(): CKRecordZone_ID { return callSDK<CKRecordZone_ID>("CloudKit_6be9a005889899ab", 2022100465896012, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO26WillFetchRecordZoneChangesV": true };
 }
 
@@ -4417,12 +4417,12 @@ export class CKSyncEngine_Event_WillSendChanges extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 875309144647536, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 875309144647536, this, []); }
   /**
    * let context: CKSyncEngine.SendChangesContext
    * @availability iOS 17.0+
    */
-  get context(): CKSyncEngine_SendChangesContext { return callSDK<CKSyncEngine_SendChangesContext>("CloudKit_5d69670f0307b385", 101451798081753, this, []); }
+  get context(): CKSyncEngine_SendChangesContext { return callSDK<CKSyncEngine_SendChangesContext>("CloudKit_6be9a005889899ab", 101451798081753, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5EventO15WillSendChangesV": true };
 }
 
@@ -4435,17 +4435,17 @@ export class CKSyncEngine_FetchChangesContext extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.2+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2576051674868446, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2576051674868446, this, []); }
   /**
    * let reason: CKSyncEngine.SyncReason
    * @availability iOS 17.0+
    */
-  get reason(): CKSyncEngine_SyncReason { return callSDK<CKSyncEngine_SyncReason>("CloudKit_5d69670f0307b385", 1179281490178473, this, []); }
+  get reason(): CKSyncEngine_SyncReason { return callSDK<CKSyncEngine_SyncReason>("CloudKit_6be9a005889899ab", 1179281490178473, this, []); }
   /**
    * let options: CKSyncEngine.FetchChangesOptions
    * @availability iOS 17.0+
    */
-  get options(): CKSyncEngine_FetchChangesOptions { return callSDK<CKSyncEngine_FetchChangesOptions>("CloudKit_5d69670f0307b385", 3042796061822078, this, []); }
+  get options(): CKSyncEngine_FetchChangesOptions { return callSDK<CKSyncEngine_FetchChangesOptions>("CloudKit_6be9a005889899ab", 3042796061822078, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC19FetchChangesContextV": true };
 }
 
@@ -4458,30 +4458,30 @@ export class CKSyncEngine_FetchChangesOptions extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 572481007254431, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 572481007254431, this, []); }
   /**
    * var operationGroup: CKOperationGroup { get set }
    * @availability iOS 17.0+
    */
-  get operationGroup(): CKOperationGroup { return callSDK<CKOperationGroup>("CloudKit_5d69670f0307b385", 484862861573456, this, []); }
-  set operationGroup(value: CKOperationGroup) { callSDK<void>("CloudKit_5d69670f0307b385", 4176057452476001, this, [value]); }
+  get operationGroup(): CKOperationGroup { return callSDK<CKOperationGroup>("CloudKit_6be9a005889899ab", 484862861573456, this, []); }
+  set operationGroup(value: CKOperationGroup) { callSDK<void>("CloudKit_6be9a005889899ab", 4176057452476001, this, [value]); }
   /**
    * var prioritizedZoneIDs: [CKRecordZone.ID]
    * @availability iOS 17.0+
    */
-  get prioritizedZoneIDs(): Array<CKRecordZone_ID> { return callSDK<Array<CKRecordZone_ID>>("CloudKit_5d69670f0307b385", 2486089953610226, this, []); }
-  set prioritizedZoneIDs(value: Array<CKRecordZone_ID>) { callSDK<void>("CloudKit_5d69670f0307b385", 165470719405221, this, [value]); }
+  get prioritizedZoneIDs(): Array<CKRecordZone_ID> { return callSDK<Array<CKRecordZone_ID>>("CloudKit_6be9a005889899ab", 2486089953610226, this, []); }
+  set prioritizedZoneIDs(value: Array<CKRecordZone_ID>) { callSDK<void>("CloudKit_6be9a005889899ab", 165470719405221, this, [value]); }
   /**
    * init(scope: CKSyncEngine.FetchChangesOptions.Scope = .all, operationGroup: CKOperationGroup? = nil)
    * @availability iOS 17.0+
    */
-  static init(scope?: CKSyncEngine_FetchChangesOptions_Scope, operationGroup?: $SDK1): CKSyncEngine_FetchChangesOptions { return callSDK<CKSyncEngine_FetchChangesOptions>("CloudKit_5d69670f0307b385", 4087780381366208, undefined, [scope, operationGroup]); }
+  static init(scope?: CKSyncEngine_FetchChangesOptions_Scope, operationGroup?: $SDK1): CKSyncEngine_FetchChangesOptions { return callSDK<CKSyncEngine_FetchChangesOptions>("CloudKit_6be9a005889899ab", 4087780381366208, undefined, [scope, operationGroup]); }
   /**
    * var scope: CKSyncEngine.FetchChangesOptions.Scope { get set }
    * @availability iOS 17.0+
    */
-  get scope(): CKSyncEngine_FetchChangesOptions_Scope { return callSDK<CKSyncEngine_FetchChangesOptions_Scope>("CloudKit_5d69670f0307b385", 3342360291854635, this, []); }
-  set scope(value: CKSyncEngine_FetchChangesOptions_Scope) { callSDK<void>("CloudKit_5d69670f0307b385", 2343947244870987, this, [value]); }
+  get scope(): CKSyncEngine_FetchChangesOptions_Scope { return callSDK<CKSyncEngine_FetchChangesOptions_Scope>("CloudKit_6be9a005889899ab", 3342360291854635, this, []); }
+  set scope(value: CKSyncEngine_FetchChangesOptions_Scope) { callSDK<void>("CloudKit_6be9a005889899ab", 2343947244870987, this, [value]); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC19FetchChangesOptionsV": true };
 }
 
@@ -4494,12 +4494,12 @@ export class CKSyncEngine_FetchChangesOptions_Scope extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2196343315513484, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2196343315513484, this, []); }
   /**
    * func contains(_ zoneID: CKRecordZone.ID) -> Bool
    * @availability iOS 17.0+
    */
-  contains(zoneID: CKRecordZone_ID): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 118652305719491, this, [zoneID]); }
+  contains(zoneID: CKRecordZone_ID): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 118652305719491, this, [zoneID]); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC19FetchChangesOptionsV5ScopeO": true };
 }
 
@@ -4512,7 +4512,7 @@ export class CKSyncEngine_PendingDatabaseChange extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 300506905331652, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 300506905331652, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC21PendingDatabaseChangeO": true };
 }
 
@@ -4525,7 +4525,7 @@ export class CKSyncEngine_PendingRecordZoneChange extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 296150245696124, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 296150245696124, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC23PendingRecordZoneChangeO": true };
 }
 
@@ -4538,30 +4538,30 @@ export class CKSyncEngine_RecordZoneChangeBatch extends SDKHandle {
    * var atomicByZone: Bool
    * @availability iOS 17.0+
    */
-  get atomicByZone(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 1566449161186284, this, []); }
-  set atomicByZone(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 1955301851328457, this, [value]); }
+  get atomicByZone(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 1566449161186284, this, []); }
+  set atomicByZone(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 1955301851328457, this, [value]); }
   /**
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 3303056448782041, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 3303056448782041, this, []); }
   /**
    * init(recordsToSave: [CKRecord] = [], recordIDsToDelete: [CKRecord.ID] = [], atomicByZone: Bool = false)
    * @availability iOS 17.0+
    */
-  static init(recordsToSave?: Array<CKRecord>, recordIDsToDelete?: Array<CKRecord_ID>, atomicByZone?: boolean): CKSyncEngine_RecordZoneChangeBatch { return callSDK<CKSyncEngine_RecordZoneChangeBatch>("CloudKit_5d69670f0307b385", 2090219165050576, undefined, [recordsToSave, recordIDsToDelete, atomicByZone]); }
+  static init(recordsToSave?: Array<CKRecord>, recordIDsToDelete?: Array<CKRecord_ID>, atomicByZone?: boolean): CKSyncEngine_RecordZoneChangeBatch { return callSDK<CKSyncEngine_RecordZoneChangeBatch>("CloudKit_6be9a005889899ab", 2090219165050576, undefined, [recordsToSave, recordIDsToDelete, atomicByZone]); }
   /**
    * var recordsToSave: [CKRecord]
    * @availability iOS 17.0+
    */
-  get recordsToSave(): Array<CKRecord> { return callSDK<Array<CKRecord>>("CloudKit_5d69670f0307b385", 1426228707468844, this, []); }
-  set recordsToSave(value: Array<CKRecord>) { callSDK<void>("CloudKit_5d69670f0307b385", 823530314880694, this, [value]); }
+  get recordsToSave(): Array<CKRecord> { return callSDK<Array<CKRecord>>("CloudKit_6be9a005889899ab", 1426228707468844, this, []); }
+  set recordsToSave(value: Array<CKRecord>) { callSDK<void>("CloudKit_6be9a005889899ab", 823530314880694, this, [value]); }
   /**
    * var recordIDsToDelete: [CKRecord.ID]
    * @availability iOS 17.0+
    */
-  get recordIDsToDelete(): Array<CKRecord_ID> { return callSDK<Array<CKRecord_ID>>("CloudKit_5d69670f0307b385", 3405028646962507, this, []); }
-  set recordIDsToDelete(value: Array<CKRecord_ID>) { callSDK<void>("CloudKit_5d69670f0307b385", 2859779648094458, this, [value]); }
+  get recordIDsToDelete(): Array<CKRecord_ID> { return callSDK<Array<CKRecord_ID>>("CloudKit_6be9a005889899ab", 3405028646962507, this, []); }
+  set recordIDsToDelete(value: Array<CKRecord_ID>) { callSDK<void>("CloudKit_6be9a005889899ab", 2859779648094458, this, [value]); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC21RecordZoneChangeBatchV": true };
 }
 
@@ -4574,17 +4574,17 @@ export class CKSyncEngine_SendChangesContext extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2972175290352455, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2972175290352455, this, []); }
   /**
    * let reason: CKSyncEngine.SyncReason
    * @availability iOS 17.0+
    */
-  get reason(): CKSyncEngine_SyncReason { return callSDK<CKSyncEngine_SyncReason>("CloudKit_5d69670f0307b385", 344653486800724, this, []); }
+  get reason(): CKSyncEngine_SyncReason { return callSDK<CKSyncEngine_SyncReason>("CloudKit_6be9a005889899ab", 344653486800724, this, []); }
   /**
    * let options: CKSyncEngine.SendChangesOptions
    * @availability iOS 17.0+
    */
-  get options(): CKSyncEngine_SendChangesOptions { return callSDK<CKSyncEngine_SendChangesOptions>("CloudKit_5d69670f0307b385", 4043392325961271, this, []); }
+  get options(): CKSyncEngine_SendChangesOptions { return callSDK<CKSyncEngine_SendChangesOptions>("CloudKit_6be9a005889899ab", 4043392325961271, this, []); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC18SendChangesContextV": true };
 }
 
@@ -4597,24 +4597,24 @@ export class CKSyncEngine_SendChangesOptions extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2521636879792699, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2521636879792699, this, []); }
   /**
    * var operationGroup: CKOperationGroup { get set }
    * @availability iOS 17.0+
    */
-  get operationGroup(): CKOperationGroup { return callSDK<CKOperationGroup>("CloudKit_5d69670f0307b385", 3553317463397294, this, []); }
-  set operationGroup(value: CKOperationGroup) { callSDK<void>("CloudKit_5d69670f0307b385", 313480306289548, this, [value]); }
+  get operationGroup(): CKOperationGroup { return callSDK<CKOperationGroup>("CloudKit_6be9a005889899ab", 3553317463397294, this, []); }
+  set operationGroup(value: CKOperationGroup) { callSDK<void>("CloudKit_6be9a005889899ab", 313480306289548, this, [value]); }
   /**
    * init(scope: CKSyncEngine.SendChangesOptions.Scope = .all, operationGroup: CKOperationGroup? = nil)
    * @availability iOS 17.0+
    */
-  static init(scope?: CKSyncEngine_SendChangesOptions_Scope, operationGroup?: $SDK1): CKSyncEngine_SendChangesOptions { return callSDK<CKSyncEngine_SendChangesOptions>("CloudKit_5d69670f0307b385", 2152412691334750, undefined, [scope, operationGroup]); }
+  static init(scope?: CKSyncEngine_SendChangesOptions_Scope, operationGroup?: $SDK1): CKSyncEngine_SendChangesOptions { return callSDK<CKSyncEngine_SendChangesOptions>("CloudKit_6be9a005889899ab", 2152412691334750, undefined, [scope, operationGroup]); }
   /**
    * var scope: CKSyncEngine.SendChangesOptions.Scope { get set }
    * @availability iOS 17.0+
    */
-  get scope(): CKSyncEngine_SendChangesOptions_Scope { return callSDK<CKSyncEngine_SendChangesOptions_Scope>("CloudKit_5d69670f0307b385", 3110341630094555, this, []); }
-  set scope(value: CKSyncEngine_SendChangesOptions_Scope) { callSDK<void>("CloudKit_5d69670f0307b385", 786315098522484, this, [value]); }
+  get scope(): CKSyncEngine_SendChangesOptions_Scope { return callSDK<CKSyncEngine_SendChangesOptions_Scope>("CloudKit_6be9a005889899ab", 3110341630094555, this, []); }
+  set scope(value: CKSyncEngine_SendChangesOptions_Scope) { callSDK<void>("CloudKit_6be9a005889899ab", 786315098522484, this, [value]); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC18SendChangesOptionsV": true };
 }
 
@@ -4627,17 +4627,17 @@ export class CKSyncEngine_SendChangesOptions_Scope extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CloudKit_5d69670f0307b385", 1454360568682285, this, []); }
+  get description(): string { return callSDK<string>("CloudKit_6be9a005889899ab", 1454360568682285, this, []); }
   /**
    * func contains(_ pendingChange: CKSyncEngine.PendingRecordZoneChange) -> Bool
    * @availability iOS 17.0+
    */
-  contains(pendingChange: CKSyncEngine_PendingRecordZoneChange): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 2913203673355797, this, [pendingChange]); }
+  contains(pendingChange: CKSyncEngine_PendingRecordZoneChange): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 2913203673355797, this, [pendingChange]); }
   /**
    * func contains(_ recordID: CKRecord.ID) -> Bool
    * @availability iOS 17.0+
    */
-  contains86583(recordID: CKRecord_ID): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 727613891374832, this, [recordID]); }
+  contains86583(recordID: CKRecord_ID): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 727613891374832, this, [recordID]); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC18SendChangesOptionsV5ScopeO": true };
 }
 
@@ -4650,43 +4650,43 @@ export class CKSyncEngine_State extends SDKHandle {
    * final var pendingDatabaseChanges: [CKSyncEngine.PendingDatabaseChange] { get }
    * @availability iOS 17.0+
    */
-  get pendingDatabaseChanges(): $SDK145 { return callSDK<$SDK145>("CloudKit_5d69670f0307b385", 2239997461126625, this, []); }
+  get pendingDatabaseChanges(): $SDK145 { return callSDK<$SDK145>("CloudKit_6be9a005889899ab", 2239997461126625, this, []); }
   /**
    * final var pendingRecordZoneChanges: [CKSyncEngine.PendingRecordZoneChange] { get }
    * @availability iOS 17.0+
    */
-  get pendingRecordZoneChanges(): $SDK146 { return callSDK<$SDK146>("CloudKit_5d69670f0307b385", 3881879323648959, this, []); }
+  get pendingRecordZoneChanges(): $SDK146 { return callSDK<$SDK146>("CloudKit_6be9a005889899ab", 3881879323648959, this, []); }
   /**
    * final var hasPendingUntrackedChanges: Bool { get set }
    * @availability iOS 17.0+
    */
-  get hasPendingUntrackedChanges(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 152321556623304, this, []); }
-  set hasPendingUntrackedChanges(value: boolean) { callSDK<void>("CloudKit_5d69670f0307b385", 4257423497880589, this, [value]); }
+  get hasPendingUntrackedChanges(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 152321556623304, this, []); }
+  set hasPendingUntrackedChanges(value: boolean) { callSDK<void>("CloudKit_6be9a005889899ab", 4257423497880589, this, [value]); }
   /**
    * final var zoneIDsWithUnfetchedServerChanges: [CKRecordZone.ID] { get }
    * @availability iOS 17.0+
    */
-  get zoneIDsWithUnfetchedServerChanges(): Array<CKRecordZone_ID> { return callSDK<Array<CKRecordZone_ID>>("CloudKit_5d69670f0307b385", 1948938335095234, this, []); }
+  get zoneIDsWithUnfetchedServerChanges(): Array<CKRecordZone_ID> { return callSDK<Array<CKRecordZone_ID>>("CloudKit_6be9a005889899ab", 1948938335095234, this, []); }
   /**
    * final func add(pendingDatabaseChanges: [CKSyncEngine.PendingDatabaseChange])
    * @availability iOS 17.0+
    */
-  addPendingDatabaseChanges(pendingDatabaseChanges: $SDK145): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2380667923437223, this, [pendingDatabaseChanges]); }
+  addPendingDatabaseChanges(pendingDatabaseChanges: $SDK145): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2380667923437223, this, [pendingDatabaseChanges]); }
   /**
    * final func add(pendingRecordZoneChanges: [CKSyncEngine.PendingRecordZoneChange])
    * @availability iOS 17.0+
    */
-  addPendingRecordZoneChanges(pendingRecordZoneChanges: $SDK146): void { return callSDK<void>("CloudKit_5d69670f0307b385", 807698186917457, this, [pendingRecordZoneChanges]); }
+  addPendingRecordZoneChanges(pendingRecordZoneChanges: $SDK146): void { return callSDK<void>("CloudKit_6be9a005889899ab", 807698186917457, this, [pendingRecordZoneChanges]); }
   /**
    * final func remove(pendingDatabaseChanges: [CKSyncEngine.PendingDatabaseChange])
    * @availability iOS 17.0+
    */
-  removePendingDatabaseChanges(pendingDatabaseChanges: $SDK145): void { return callSDK<void>("CloudKit_5d69670f0307b385", 2556718873800713, this, [pendingDatabaseChanges]); }
+  removePendingDatabaseChanges(pendingDatabaseChanges: $SDK145): void { return callSDK<void>("CloudKit_6be9a005889899ab", 2556718873800713, this, [pendingDatabaseChanges]); }
   /**
    * final func remove(pendingRecordZoneChanges: [CKSyncEngine.PendingRecordZoneChange])
    * @availability iOS 17.0+
    */
-  removePendingRecordZoneChanges(pendingRecordZoneChanges: $SDK146): void { return callSDK<void>("CloudKit_5d69670f0307b385", 1765520693058228, this, [pendingRecordZoneChanges]); }
+  removePendingRecordZoneChanges(pendingRecordZoneChanges: $SDK146): void { return callSDK<void>("CloudKit_6be9a005889899ab", 1765520693058228, this, [pendingRecordZoneChanges]); }
   declare readonly $type: { "s:8CloudKit12CKSyncEngineC5StateC": true };
 }
 
@@ -4709,7 +4709,7 @@ export const CKSyncEngine_SyncReason = {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  getDescription($self: CKSyncEngine_SyncReason): string { return callSDK<string>("CloudKit_5d69670f0307b385", 2457041398906277, $self, []); }
+  getDescription($self: CKSyncEngine_SyncReason): string { return callSDK<string>("CloudKit_6be9a005889899ab", 2457041398906277, $self, []); }
 };
 
 /**
@@ -4723,7 +4723,7 @@ export const CKSyncEngineAccountChangeType = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (CKSyncEngineAccountChangeType) | null { return callSDK<(CKSyncEngineAccountChangeType) | null>("CloudKit_5d69670f0307b385", 623960338140933, undefined, [rawValue]); }
+  init(rawValue: number): (CKSyncEngineAccountChangeType) | null { return callSDK<(CKSyncEngineAccountChangeType) | null>("CloudKit_6be9a005889899ab", 623960338140933, undefined, [rawValue]); }
 };
 
 /**
@@ -4759,7 +4759,7 @@ export const CKSyncEngineEventType = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (CKSyncEngineEventType) | null { return callSDK<(CKSyncEngineEventType) | null>("CloudKit_5d69670f0307b385", 2346420554075179, undefined, [rawValue]); }
+  init(rawValue: number): (CKSyncEngineEventType) | null { return callSDK<(CKSyncEngineEventType) | null>("CloudKit_6be9a005889899ab", 2346420554075179, undefined, [rawValue]); }
 };
 
 /**
@@ -4773,7 +4773,7 @@ export const CKSyncEnginePendingDatabaseChangeType = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (CKSyncEnginePendingDatabaseChangeType) | null { return callSDK<(CKSyncEnginePendingDatabaseChangeType) | null>("CloudKit_5d69670f0307b385", 1888204352678493, undefined, [rawValue]); }
+  init(rawValue: number): (CKSyncEnginePendingDatabaseChangeType) | null { return callSDK<(CKSyncEnginePendingDatabaseChangeType) | null>("CloudKit_6be9a005889899ab", 1888204352678493, undefined, [rawValue]); }
 };
 
 /**
@@ -4787,7 +4787,7 @@ export const CKSyncEnginePendingRecordZoneChangeType = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (CKSyncEnginePendingRecordZoneChangeType) | null { return callSDK<(CKSyncEnginePendingRecordZoneChangeType) | null>("CloudKit_5d69670f0307b385", 2851488029267088, undefined, [rawValue]); }
+  init(rawValue: number): (CKSyncEnginePendingRecordZoneChangeType) | null { return callSDK<(CKSyncEnginePendingRecordZoneChangeType) | null>("CloudKit_6be9a005889899ab", 2851488029267088, undefined, [rawValue]); }
 };
 
 /**
@@ -4801,7 +4801,7 @@ export const CKSyncEngineSyncReason = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (CKSyncEngineSyncReason) | null { return callSDK<(CKSyncEngineSyncReason) | null>("CloudKit_5d69670f0307b385", 732950183384802, undefined, [rawValue]); }
+  init(rawValue: number): (CKSyncEngineSyncReason) | null { return callSDK<(CKSyncEngineSyncReason) | null>("CloudKit_6be9a005889899ab", 732950183384802, undefined, [rawValue]); }
 };
 
 /**
@@ -4815,7 +4815,7 @@ export const CKSyncEngineZoneDeletionReason = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (CKSyncEngineZoneDeletionReason) | null { return callSDK<(CKSyncEngineZoneDeletionReason) | null>("CloudKit_5d69670f0307b385", 2745571503649555, undefined, [rawValue]); }
+  init(rawValue: number): (CKSyncEngineZoneDeletionReason) | null { return callSDK<(CKSyncEngineZoneDeletionReason) | null>("CloudKit_6be9a005889899ab", 2745571503649555, undefined, [rawValue]); }
 };
 
 /**
@@ -4827,19 +4827,19 @@ export class CKSystemSharingUIObserver extends SDKHandle {
    * init(container: CKContainer)
    * @availability iOS 16.0+
    */
-  static init(container: CKContainer): CKSystemSharingUIObserver { return callSDK<CKSystemSharingUIObserver>("CloudKit_5d69670f0307b385", 2926902060235296, undefined, [container]); }
+  static init(container: CKContainer): CKSystemSharingUIObserver { return callSDK<CKSystemSharingUIObserver>("CloudKit_6be9a005889899ab", 2926902060235296, undefined, [container]); }
   /**
    * @preconcurrency var systemSharingUIDidSaveShareBlock: (@Sendable (CKRecord.ID, Result<CKShare, any Error>) -> Void)? { get set }
    * @availability iOS 16.0+
    */
-  get systemSharingUIDidSaveShareBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_5d69670f0307b385", 587465059278657, this, []); }
-  set systemSharingUIDidSaveShareBlock(value: $SDK81) { callSDK<void>("CloudKit_5d69670f0307b385", 306278549532255, this, [value], [{"callback":{"out":[]}}]); }
+  get systemSharingUIDidSaveShareBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_6be9a005889899ab", 587465059278657, this, []); }
+  set systemSharingUIDidSaveShareBlock(value: $SDK81) { callSDK<void>("CloudKit_6be9a005889899ab", 306278549532255, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency var systemSharingUIDidStopSharingBlock: (@Sendable (CKRecord.ID, Result<Void, any Error>) -> Void)? { get set }
    * @availability iOS 16.0+
    */
-  get systemSharingUIDidStopSharingBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_5d69670f0307b385", 2857750723181105, this, []); }
-  set systemSharingUIDidStopSharingBlock(value: $SDK81) { callSDK<void>("CloudKit_5d69670f0307b385", 3886239750150114, this, [value], [{"callback":{"out":[]}}]); }
+  get systemSharingUIDidStopSharingBlock(): $SDK80 { return callSDK<$SDK80>("CloudKit_6be9a005889899ab", 2857750723181105, this, []); }
+  set systemSharingUIDidStopSharingBlock(value: $SDK81) { callSDK<void>("CloudKit_6be9a005889899ab", 3886239750150114, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CKSystemSharingUIObserver": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4853,27 +4853,27 @@ export class CKUserIdentity extends SDKHandle {
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get contactIdentifiers(): Array<string> { return callSDK<Array<string>>("CloudKit_5d69670f0307b385", 2049665123071290, this, []); }
+  get contactIdentifiers(): Array<string> { return callSDK<Array<string>>("CloudKit_6be9a005889899ab", 2049665123071290, this, []); }
   /**
    * var hasiCloudAccount: Bool { get }
    * @availability iOS 10.0+
    */
-  get hasiCloudAccount(): boolean { return callSDK<boolean>("CloudKit_5d69670f0307b385", 972278265215077, this, []); }
+  get hasiCloudAccount(): boolean { return callSDK<boolean>("CloudKit_6be9a005889899ab", 972278265215077, this, []); }
   /**
    * @NSCopying var lookupInfo: CKUserIdentity.LookupInfo? { get }
    * @availability iOS 10.0+
    */
-  get lookupInfo(): (CKUserIdentity_LookupInfo) | null { return callSDK<(CKUserIdentity_LookupInfo) | null>("CloudKit_5d69670f0307b385", 1109087380900666, this, []); }
+  get lookupInfo(): (CKUserIdentity_LookupInfo) | null { return callSDK<(CKUserIdentity_LookupInfo) | null>("CloudKit_6be9a005889899ab", 1109087380900666, this, []); }
   /**
    * var nameComponents: PersonNameComponents? { get }
    * @availability iOS 10.0+
    */
-  get nameComponents(): (_Foundation_PersonNameComponents) | null { return callSDK<(_Foundation_PersonNameComponents) | null>("CloudKit_5d69670f0307b385", 3252449151383965, this, []); }
+  get nameComponents(): (_Foundation_PersonNameComponents) | null { return callSDK<(_Foundation_PersonNameComponents) | null>("CloudKit_6be9a005889899ab", 3252449151383965, this, []); }
   /**
    * @NSCopying var userRecordID: CKRecord.ID? { get }
    * @availability iOS 10.0+
    */
-  get userRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_5d69670f0307b385", 2677084394628829, this, []); }
+  get userRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_6be9a005889899ab", 2677084394628829, this, []); }
   declare readonly $type: { "c:objc(cs)CKUserIdentity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contactIdentifiers": true; "hasiCloudAccount": true; "lookupInfo": true; "nameComponents": true; "userRecordID": true };
 }
@@ -4887,47 +4887,47 @@ export class CKUserIdentity_LookupInfo extends SDKHandle {
    * class func lookupInfos(withEmails emails: [String]) -> [CKUserIdentity.LookupInfo]
    * @availability iOS 10.0+
    */
-  static lookupInfosWithEmails(emails: Array<string>): $SDK27 { return callSDK<$SDK27>("CloudKit_5d69670f0307b385", 3015706427082986, undefined, [emails]); }
+  static lookupInfosWithEmails(emails: Array<string>): $SDK27 { return callSDK<$SDK27>("CloudKit_6be9a005889899ab", 3015706427082986, undefined, [emails]); }
   /**
    * class func lookupInfos(withPhoneNumbers phoneNumbers: [String]) -> [CKUserIdentity.LookupInfo]
    * @availability iOS 10.0+
    */
-  static lookupInfosWithPhoneNumbers(phoneNumbers: Array<string>): $SDK27 { return callSDK<$SDK27>("CloudKit_5d69670f0307b385", 1364704062538685, undefined, [phoneNumbers]); }
+  static lookupInfosWithPhoneNumbers(phoneNumbers: Array<string>): $SDK27 { return callSDK<$SDK27>("CloudKit_6be9a005889899ab", 1364704062538685, undefined, [phoneNumbers]); }
   /**
    * class func lookupInfos(with recordIDs: [CKRecord.ID]) -> [CKUserIdentity.LookupInfo]
    * @availability iOS 10.0+
    */
-  static lookupInfosWith(recordIDs: Array<CKRecord_ID>): $SDK27 { return callSDK<$SDK27>("CloudKit_5d69670f0307b385", 4130032405689407, undefined, [recordIDs]); }
+  static lookupInfosWith(recordIDs: Array<CKRecord_ID>): $SDK27 { return callSDK<$SDK27>("CloudKit_6be9a005889899ab", 4130032405689407, undefined, [recordIDs]); }
   /**
    * init(emailAddress: String)
    * @availability iOS 10.0+
    */
-  static initEmailAddress(emailAddress: string): CKUserIdentity_LookupInfo { return callSDK<CKUserIdentity_LookupInfo>("CloudKit_5d69670f0307b385", 1614243449729088, undefined, [emailAddress]); }
+  static initEmailAddress(emailAddress: string): CKUserIdentity_LookupInfo { return callSDK<CKUserIdentity_LookupInfo>("CloudKit_6be9a005889899ab", 1614243449729088, undefined, [emailAddress]); }
   /**
    * init(phoneNumber: String)
    * @availability iOS 10.0+
    */
-  static initPhoneNumber(phoneNumber: string): CKUserIdentity_LookupInfo { return callSDK<CKUserIdentity_LookupInfo>("CloudKit_5d69670f0307b385", 1347123954334681, undefined, [phoneNumber]); }
+  static initPhoneNumber(phoneNumber: string): CKUserIdentity_LookupInfo { return callSDK<CKUserIdentity_LookupInfo>("CloudKit_6be9a005889899ab", 1347123954334681, undefined, [phoneNumber]); }
   /**
    * init(userRecordID: CKRecord.ID)
    * @availability iOS 10.0+
    */
-  static initUserRecordID(userRecordID: CKRecord_ID): CKUserIdentity_LookupInfo { return callSDK<CKUserIdentity_LookupInfo>("CloudKit_5d69670f0307b385", 1507215093149358, undefined, [userRecordID]); }
+  static initUserRecordID(userRecordID: CKRecord_ID): CKUserIdentity_LookupInfo { return callSDK<CKUserIdentity_LookupInfo>("CloudKit_6be9a005889899ab", 1507215093149358, undefined, [userRecordID]); }
   /**
    * var emailAddress: String? { get }
    * @availability iOS 10.0+
    */
-  get emailAddress(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 747431136739115, this, []); }
+  get emailAddress(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 747431136739115, this, []); }
   /**
    * var phoneNumber: String? { get }
    * @availability iOS 10.0+
    */
-  get phoneNumber(): (string) | null { return callSDK<(string) | null>("CloudKit_5d69670f0307b385", 4377107309435410, this, []); }
+  get phoneNumber(): (string) | null { return callSDK<(string) | null>("CloudKit_6be9a005889899ab", 4377107309435410, this, []); }
   /**
    * @NSCopying var userRecordID: CKRecord.ID? { get }
    * @availability iOS 10.0+
    */
-  get userRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_5d69670f0307b385", 1605932228649057, this, []); }
+  get userRecordID(): (CKRecord_ID) | null { return callSDK<(CKRecord_ID) | null>("CloudKit_6be9a005889899ab", 1605932228649057, this, []); }
   declare readonly $type: { "c:objc(cs)CKUserIdentityLookupInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "emailAddress": true; "phoneNumber": true; "userRecordID": true };
 }
@@ -4937,12 +4937,12 @@ export class NSItemProvider extends SDKHandle {
    * func registerCKShare(container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions = CKAllowedSharingOptions.standard, preparationHandler: @escaping @Sendable () async throws -> CKShare)
    * @availability iOS 16.0+
    */
-  registerCKShareContainerAllowedSharingOptionsPreparationHandler(container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions, preparationHandler: (() => Promise<CKShare>)): void { return callSDK<void>("CloudKit_5d69670f0307b385", 332713536986214, this, [container, allowedSharingOptions, preparationHandler], [null,null,{"callback":{"out":[]}}]); }
+  registerCKShareContainerAllowedSharingOptionsPreparationHandler(container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions, preparationHandler: (() => Promise<CKShare>)): void { return callSDK<void>("CloudKit_6be9a005889899ab", 332713536986214, this, [container, allowedSharingOptions, preparationHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func registerCKShare(_ share: CKShare, container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions = CKAllowedSharingOptions.standard)
    * @availability iOS 16.0+
    */
-  registerCKShareContainerAllowedSharingOptions(share: CKShare, container: CKContainer, allowedSharingOptions?: CKAllowedSharingOptions): void { return callSDK<void>("CloudKit_5d69670f0307b385", 316879894051956, this, [share, container, allowedSharingOptions]); }
+  registerCKShareContainerAllowedSharingOptions(share: CKShare, container: CKContainer, allowedSharingOptions?: CKAllowedSharingOptions): void { return callSDK<void>("CloudKit_6be9a005889899ab", 316879894051956, this, [share, container, allowedSharingOptions]); }
   declare readonly $type: { "c:objc(cs)NSItemProvider": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4953,169 +4953,169 @@ export const NSNotification_Name = {
    * static let CKAccountChanged: NSNotification.Name
    * @availability iOS 9.0+
    */
-  get CKAccountChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CloudKit_5d69670f0307b385", 2029695348009184, undefined, []); }
+  get CKAccountChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CloudKit_6be9a005889899ab", 2029695348009184, undefined, []); }
 };
 
 /**
  * let CKCurrentUserDefaultName: String
  * @availability iOS 10.0+
  */
-export const CKCurrentUserDefaultName: string = callSDK<string>("CloudKit_5d69670f0307b385", 2491837207216001, undefined, []);
+export const CKCurrentUserDefaultName: string = callSDK<string>("CloudKit_6be9a005889899ab", 2491837207216001, undefined, []);
 
 /**
  * let CKErrorDomain: String
  * @availability iOS 8.0+
  */
-export const CKErrorDomain: string = callSDK<string>("CloudKit_5d69670f0307b385", 3656915486456923, undefined, []);
+export const CKErrorDomain: string = callSDK<string>("CloudKit_6be9a005889899ab", 3656915486456923, undefined, []);
 
 /**
  * let CKErrorRetryAfterKey: String
  * @availability iOS 8.0+
  */
-export const CKErrorRetryAfterKey: string = callSDK<string>("CloudKit_5d69670f0307b385", 1873597854609297, undefined, []);
+export const CKErrorRetryAfterKey: string = callSDK<string>("CloudKit_6be9a005889899ab", 1873597854609297, undefined, []);
 
 /**
  * let CKErrorUserDidResetEncryptedDataKey: String
  * @availability iOS 15.0+
  */
-export const CKErrorUserDidResetEncryptedDataKey: string = callSDK<string>("CloudKit_5d69670f0307b385", 919597642097035, undefined, []);
+export const CKErrorUserDidResetEncryptedDataKey: string = callSDK<string>("CloudKit_6be9a005889899ab", 919597642097035, undefined, []);
 
 /**
  * let CKOwnerDefaultName: String
  * @availability iOS 8.0+
  * @deprecated iOS 10.0
  */
-export const CKOwnerDefaultName: string = callSDK<string>("CloudKit_5d69670f0307b385", 57182172458103, undefined, []);
+export const CKOwnerDefaultName: string = callSDK<string>("CloudKit_6be9a005889899ab", 57182172458103, undefined, []);
 
 /**
  * let CKPartialErrorsByItemIDKey: String
  * @availability iOS 8.0+
  */
-export const CKPartialErrorsByItemIDKey: string = callSDK<string>("CloudKit_5d69670f0307b385", 374616477278046, undefined, []);
+export const CKPartialErrorsByItemIDKey: string = callSDK<string>("CloudKit_6be9a005889899ab", 374616477278046, undefined, []);
 
 /**
  * let CKRecordChangedErrorAncestorRecordKey: String
  * @availability iOS 8.0+
  */
-export const CKRecordChangedErrorAncestorRecordKey: string = callSDK<string>("CloudKit_5d69670f0307b385", 4431958663606277, undefined, []);
+export const CKRecordChangedErrorAncestorRecordKey: string = callSDK<string>("CloudKit_6be9a005889899ab", 4431958663606277, undefined, []);
 
 /**
  * let CKRecordChangedErrorClientRecordKey: String
  * @availability iOS 8.0+
  */
-export const CKRecordChangedErrorClientRecordKey: string = callSDK<string>("CloudKit_5d69670f0307b385", 4089953859596417, undefined, []);
+export const CKRecordChangedErrorClientRecordKey: string = callSDK<string>("CloudKit_6be9a005889899ab", 4089953859596417, undefined, []);
 
 /**
  * let CKRecordChangedErrorServerRecordKey: String
  * @availability iOS 8.0+
  */
-export const CKRecordChangedErrorServerRecordKey: string = callSDK<string>("CloudKit_5d69670f0307b385", 2707468258091767, undefined, []);
+export const CKRecordChangedErrorServerRecordKey: string = callSDK<string>("CloudKit_6be9a005889899ab", 2707468258091767, undefined, []);
 
 /**
  * let CKRecordNameZoneWideShare: String
  * @availability iOS 15.0+
  */
-export const CKRecordNameZoneWideShare: string = callSDK<string>("CloudKit_5d69670f0307b385", 2995710439328368, undefined, []);
+export const CKRecordNameZoneWideShare: string = callSDK<string>("CloudKit_6be9a005889899ab", 2995710439328368, undefined, []);
 
-registerSDKClass("CKOperation", CKOperation, { module: "CloudKit_5d69670f0307b385", properties: {"allowsCellularAccess":3055355599258394,"configuration":2401324240230694,"container":1871776872336231,"group":96962242567549,"isLongLived":1601118528863546,"timeoutIntervalForRequest":1104134090213398,"timeoutIntervalForResource":2447232341507924} });
-registerSDKClass("CKAcceptSharesOperation", CKAcceptSharesOperation, { module: "CloudKit_5d69670f0307b385", properties: {"shareMetadatas":1222094554557408} });
-registerSDKClass("CKAllowedSharingOptions", CKAllowedSharingOptions, { module: "CloudKit_5d69670f0307b385", properties: {"allowedParticipantAccessOptions":2311016857805255,"allowedParticipantPermissionOptions":2641620717546976,"allowsAccessRequests":4386434982531987,"allowsParticipantsToInviteOthers":776627834435962} });
-registerSDKClass("CKAsset", CKAsset, { module: "CloudKit_5d69670f0307b385", properties: {"fileURL":260519331382106} });
-registerSDKClass("CloudKit.CKAsset.ExportedAssetID", CKAsset_ExportedAssetID, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKContainer", CKContainer, { module: "CloudKit_5d69670f0307b385", properties: {"containerIdentifier":3389197631518998,"privateCloudDatabase":1313881112080937,"publicCloudDatabase":3214194992831846,"sharedCloudDatabase":3101832021589676}, methods: {"acceptCompletionHandler":{"id":2103247591672886,"hints":[null,{"callback":{"out":[]}}]},"accountStatus":{"id":657523567341403,"hints":[{"callback":{"out":[]}}]},"add":{"id":3088941588193717},"database":{"id":1071829513763679},"discoverAllIdentities":{"id":214475774147851,"hints":[{"callback":{"out":[]}}]},"discoverUserIdentityWithEmailAddressCompletionHandler":{"id":4241370970472710,"hints":[null,{"callback":{"out":[]}}]},"discoverUserIdentityWithPhoneNumberCompletionHandler":{"id":3728743011543049,"hints":[null,{"callback":{"out":[]}}]},"discoverUserIdentityWithUserRecordIDCompletionHandler":{"id":2845815442456122,"hints":[null,{"callback":{"out":[]}}]},"fetchShareMetadata":{"id":196135414229573,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantWithEmailAddressCompletionHandler":{"id":2607002085788258,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantWithPhoneNumberCompletionHandler":{"id":283420448792526,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantWithUserRecordIDCompletionHandler":{"id":2340540617638601,"hints":[null,{"callback":{"out":[]}}]},"fetchUserRecordID":{"id":903484451365029,"hints":[{"callback":{"out":[]}}]},"requestApplicationPermission":{"id":1461344068732857,"hints":[null,{"callback":{"out":[]}}]},"status":{"id":630598171041897,"hints":[null,{"callback":{"out":[]}}]},"userIdentityForPhoneNumber":{"id":3223391156869822},"userIdentityForEmailAddress":{"id":2535912628829243},"userIdentityForUserRecordID":{"id":3579578801369086},"shareMetadata":{"id":572749462032632},"configuredWithConfigurationGroupBody21466":{"id":2125274451611367,"hints":[null,null,{"callback":{"out":[]}}]},"shareMetadatas":{"id":4157903445655455},"userIdentitiesForPhoneNumbers":{"id":1403489823707975},"userIdentitiesForUserRecordIDs":{"id":2043739683678817},"userIdentitiesForEmailAddresses":{"id":1992968595651531},"shareParticipantForPhoneNumber":{"id":1030384225163398},"shareParticipantForEmailAddress":{"id":4332628955156306},"shareParticipantForUserRecordID":{"id":3647082616042238},"shareParticipantsForPhoneNumbers":{"id":3682718481891061},"shareParticipantsForUserRecordIDs":{"id":2283000253361283},"shareParticipantsForEmailAddresses":{"id":3630340625054073},"shareParticipantsFor":{"id":3745395716133099},"longLivedOperation":{"id":1474509138992128},"requestShareAccess":{"id":3726972204681519},"fetchShareMetadatas":{"id":1164459308434710,"hints":[null,{"callback":{"out":[]}}]},"discoverUserIdentitiesForUserRecordIDsCompletionHandler":{"id":818805411559224,"hints":[null,{"callback":{"out":[]}}]},"discoverUserIdentitiesForPhoneNumbersCompletionHandler":{"id":3324397932072335,"hints":[null,{"callback":{"out":[]}}]},"discoverUserIdentitiesForEmailAddressesCompletionHandler":{"id":2348517004007838,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantsForPhoneNumbersCompletionHandler":{"id":2699385664717592,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantsForUserRecordIDsCompletionHandler":{"id":2522043714836371,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantsForEmailAddressesCompletionHandler":{"id":3130600865962065,"hints":[null,{"callback":{"out":[]}}]},"fetchLongLivedOperation":{"id":817348161585888,"hints":[null,{"callback":{"out":[]}}]},"allLongLivedOperationIDs":{"id":3591915127017843},"allUserIdentitiesFromContacts":{"id":2699891777473789},"fetchAllLongLivedOperationIDs":{"id":3954518528264709,"hints":[{"callback":{"out":[]}}]},"acceptCompletionHandler19311":{"id":3251469684811172,"hints":[null,{"callback":{"out":[]}}]},"accept":{"id":3472797862846452},"accept27794":{"id":3563278321388701}} });
-registerSDKClass("CloudKit.CKContainer.Application", CKContainer_Application, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKDatabase", CKDatabase, { module: "CloudKit_5d69670f0307b385", properties: {"databaseScope":3021891494419739}, methods: {"add":{"id":3744101305193418},"deleteWithRecordIDCompletionHandler":{"id":595712895555858,"hints":[null,{"callback":{"out":[]}}]},"deleteWithRecordZoneIDCompletionHandler":{"id":753151183528831,"hints":[null,{"callback":{"out":[]}}]},"fetchAllRecordZones":{"id":3012653147230971,"hints":[{"callback":{"out":[]}}]},"fetchAllSubscriptions":{"id":4260782616465834,"hints":[{"callback":{"out":[]}}]},"fetchWithRecordIDCompletionHandler":{"id":2679169399305066,"hints":[null,{"callback":{"out":[]}}]},"fetchWithRecordZoneIDCompletionHandler":{"id":2535110792460092,"hints":[null,{"callback":{"out":[]}}]},"performInZoneWithCompletionHandler":{"id":1121036168052744,"hints":[null,null,{"callback":{"out":[]}}]},"saveCompletionHandler":{"id":3606822321688736,"hints":[null,{"callback":{"out":[]}}]},"saveCompletionHandler10675":{"id":2598790837936065,"hints":[null,{"callback":{"out":[]}}]},"saveCompletionHandler5505":{"id":1835243818252003,"hints":[null,{"callback":{"out":[]}}]},"recordZone":{"id":3078673049502727},"recordZones":{"id":1174428519136433},"deleteRecord":{"id":3566444397325588},"subscription":{"id":4057483601737863},"modifyRecordsSavingDeletingSavePolicyAtomicallyCompletionHandler":{"id":1360915181495257,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"modifyRecordsSavingDeletingSavePolicyAtomically":{"id":3726190482818656},"subscriptions":{"id":2123545842334194},"allRecordZones":{"id":810181424800526},"configuredWithConfigurationGroupBody35481":{"id":488068341648184,"hints":[null,null,{"callback":{"out":[]}}]},"databaseChanges":{"id":4227239695444138},"allSubscriptions":{"id":117928577496208},"deleteRecordZone":{"id":1626138489487520},"modifyRecordZonesSavingDeletingCompletionHandler":{"id":2397785814940362,"hints":[null,null,{"callback":{"out":[]}}]},"modifyRecordZonesSavingDeleting":{"id":2541326025282088},"recordZoneChanges":{"id":2297394951995090},"deleteSubscription":{"id":3278906420302276},"modifySubscriptionsSavingDeletingCompletionHandler":{"id":4321851502489760,"hints":[null,null,{"callback":{"out":[]}}]},"modifySubscriptionsSavingDeleting":{"id":1186867388139041},"fetchDatabaseChanges":{"id":2811010617684825,"hints":[null,null,{"callback":{"out":[]}}]},"fetchRecordZoneChanges":{"id":1117099628097823,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"save":{"id":551411226418941},"save87972":{"id":3401344217734065},"save91437":{"id":1449147979419410},"fetchWithCursorDesiredKeysResultsLimitCompletionHandler":{"id":3081451025168814,"hints":[null,null,null,{"callback":{"out":[]}}]},"fetchWithRecordIDsDesiredKeysCompletionHandler":{"id":1126503146853316,"hints":[null,null,{"callback":{"out":[]}}]},"fetchWithRecordZoneIDsCompletionHandler":{"id":3633415017419930,"hints":[null,{"callback":{"out":[]}}]},"fetchWithSubscriptionIDCompletionHandler":{"id":3893922472823622,"hints":[null,{"callback":{"out":[]}}]},"fetchWithSubscriptionIDsCompletionHandler":{"id":4289409995143913,"hints":[null,{"callback":{"out":[]}}]},"fetchWithQueryInZoneWithDesiredKeysResultsLimitCompletionHandler":{"id":955370737971955,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"deleteWithSubscriptionIDCompletionHandler":{"id":2417134644457823,"hints":[null,{"callback":{"out":[]}}]},"record":{"id":3057055442096611},"performInZoneWith":{"id":4417530744024301},"recordsContinuingMatchFromDesiredKeysResultsLimit":{"id":174979741219680},"recordsForDesiredKeys":{"id":1343479128726077},"recordsMatchingInZoneWithDesiredKeysResultsLimit":{"id":874701837524416},"recordsMatchingInZoneWith":{"id":4333001936011217}} });
-registerSDKClass("CloudKit.CKDatabase.DatabaseChange", CKDatabase_DatabaseChange, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKDatabase.DatabaseChange.Deletion", CKDatabase_DatabaseChange_Deletion, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKDatabase.DatabaseChange.Modification", CKDatabase_DatabaseChange_Modification, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKDatabase.RecordZoneChange", CKDatabase_RecordZoneChange, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKDatabase.RecordZoneChange.Deletion", CKDatabase_RecordZoneChange_Deletion, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKDatabase.RecordZoneChange.Modification", CKDatabase_RecordZoneChange_Modification, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKNotification", CKNotification, { module: "CloudKit_5d69670f0307b385", properties: {"alertActionLocalizationKey":1512608789460236,"alertBody":4128411001418360,"alertLaunchImage":3414163228516305,"alertLocalizationArgs":3003964976786574,"alertLocalizationKey":2507418003295167,"badge":4425646038625400,"category":66311046156045,"containerIdentifier":82629498812741,"isPruned":3386203666398844,"notificationID":2363305018770023,"notificationType":1219230929746906,"soundName":3970521014199288,"subscriptionOwnerUserRecordID":78665881529815,"subtitle":199711620034853,"subtitleLocalizationArgs":799020023172654,"subtitleLocalizationKey":1444414243877816,"title":2646117715335298,"titleLocalizationArgs":3896793309804221,"titleLocalizationKey":2505461293042539} });
-registerSDKClass("CKDatabaseNotification", CKDatabaseNotification, { module: "CloudKit_5d69670f0307b385", properties: {"databaseScope":702785797023294} });
-registerSDKClass("CKDatabaseOperation", CKDatabaseOperation, { module: "CloudKit_5d69670f0307b385", properties: {"database":2895936897761160} });
-registerSDKClass("CKSubscription", CKSubscription, { module: "CloudKit_5d69670f0307b385", properties: {"notificationInfo":4350981208148389,"subscriptionType":3745534154791592} });
-registerSDKClass("CKDatabaseSubscription", CKDatabaseSubscription, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKDiscoverAllUserIdentitiesOperation", CKDiscoverAllUserIdentitiesOperation, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKDiscoverUserIdentitiesOperation", CKDiscoverUserIdentitiesOperation, { module: "CloudKit_5d69670f0307b385", properties: {"userIdentityLookupInfos":81527410524885} });
-registerSDKClass("CloudKit.CKError", CKError, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKFetchDatabaseChangesOperation", CKFetchDatabaseChangesOperation, { module: "CloudKit_5d69670f0307b385", properties: {"fetchAllChanges":3590498070348631,"previousServerChangeToken":1890842912579246,"resultsLimit":3305224549954056} });
-registerSDKClass("CKFetchRecordChangesOperation", CKFetchRecordChangesOperation, { module: "CloudKit_5d69670f0307b385", properties: {"desiredKeys":1725750218375853,"moreComing":3045851116997012,"previousServerChangeToken":1188907491010847,"recordZoneID":3923505490912741,"resultsLimit":4448893405596024} });
-registerSDKClass("CKFetchRecordsOperation", CKFetchRecordsOperation, { module: "CloudKit_5d69670f0307b385", properties: {"recordIDs":745088256000357} });
-registerSDKClass("CKFetchRecordZoneChangesOperation", CKFetchRecordZoneChangesOperation, { module: "CloudKit_5d69670f0307b385", properties: {"configurationsByRecordZoneID":3931225716199164,"fetchAllChanges":2730841807659903,"optionsByRecordZoneID":3490364402994207,"recordZoneIDs":3048763186153028} });
-registerSDKClass("CKFetchRecordZoneChangesConfiguration", CKFetchRecordZoneChangesOperation_ZoneConfiguration, { module: "CloudKit_5d69670f0307b385", properties: {"previousServerChangeToken":1479428422925971,"resultsLimit":4281863143968690} });
-registerSDKClass("CKFetchRecordZoneChangesOptions", CKFetchRecordZoneChangesOperation_ZoneOptions, { module: "CloudKit_5d69670f0307b385", properties: {"desiredKeys":989175491467011,"previousServerChangeToken":3634661999769157,"resultsLimit":4383167815747903} });
-registerSDKClass("CKFetchRecordZonesOperation", CKFetchRecordZonesOperation, { module: "CloudKit_5d69670f0307b385", properties: {"recordZoneIDs":1373774272233392} });
-registerSDKClass("CKFetchShareMetadataOperation", CKFetchShareMetadataOperation, { module: "CloudKit_5d69670f0307b385", properties: {"shareURLs":3698688927891794,"shouldFetchRootRecord":3601886748791984} });
-registerSDKClass("CKFetchShareParticipantsOperation", CKFetchShareParticipantsOperation, { module: "CloudKit_5d69670f0307b385", properties: {"userIdentityLookupInfos":2787389045181366} });
-registerSDKClass("CKFetchSubscriptionsOperation", CKFetchSubscriptionsOperation, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKFetchWebAuthTokenOperation", CKFetchWebAuthTokenOperation, { module: "CloudKit_5d69670f0307b385", properties: {"apiToken":3634808615423414} });
-registerSDKClass("CKLocationSortDescriptor", CKLocationSortDescriptor, { module: "CloudKit_5d69670f0307b385", properties: {"relativeLocation":3033180671079422} });
-registerSDKClass("CKModifyRecordsOperation", CKModifyRecordsOperation, { module: "CloudKit_5d69670f0307b385", properties: {"isAtomic":4253730911428763,"clientChangeTokenData":977844652557181,"recordIDsToDelete":1336167786641164,"recordsToSave":565378080486786,"savePolicy":1180712114248121} });
-registerSDKClass("CKModifyRecordZonesOperation", CKModifyRecordZonesOperation, { module: "CloudKit_5d69670f0307b385", properties: {"recordZoneIDsToDelete":3271305406598944,"recordZonesToSave":319186898326604} });
-registerSDKClass("CKModifySubscriptionsOperation", CKModifySubscriptionsOperation, { module: "CloudKit_5d69670f0307b385", properties: {"subscriptionsToSave":1452611739428706} });
-registerSDKClass("CKNotificationID", CKNotification_ID, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKOperationConfiguration", CKOperation_Configuration, { module: "CloudKit_5d69670f0307b385", properties: {"allowsCellularAccess":1250703888829152,"container":982223280856003,"isLongLived":900844936862947,"qualityOfService":584574546440143,"timeoutIntervalForRequest":1944479801826198,"timeoutIntervalForResource":783694711921516} });
-registerSDKClass("CKOperationGroup", CKOperationGroup, { module: "CloudKit_5d69670f0307b385", properties: {"defaultConfiguration":1184411809352322,"expectedReceiveSize":1692698084577487,"expectedSendSize":4503469866427088,"name":1038863141931903,"operationGroupID":1422317783651967,"quantity":1133684253597267} });
-registerSDKClass("CKQuery", CKQuery, { module: "CloudKit_5d69670f0307b385", properties: {"predicate":734171353122850,"sortDescriptors":3830301988671166} });
-registerSDKClass("CKQueryNotification", CKQueryNotification, { module: "CloudKit_5d69670f0307b385", properties: {"databaseScope":1677286305464155,"queryNotificationReason":2525898069319054,"recordFields":797170402518617,"recordID":2884322272293001} });
-registerSDKClass("CKQueryOperation", CKQueryOperation, { module: "CloudKit_5d69670f0307b385", properties: {"cursor":1136821216625900,"query":289338588700,"resultsLimit":3306759201222206,"zoneID":663263177098155} });
-registerSDKClass("CKQueryCursor", CKQueryOperation_Cursor, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKQuerySubscription", CKQuerySubscription, { module: "CloudKit_5d69670f0307b385", properties: {"predicate":3440900740716166,"querySubscriptionOptions":2289748709827733,"zoneID":1968639010209720} });
-registerSDKClass("CKRecord", CKRecord, { module: "CloudKit_5d69670f0307b385", properties: {"creationDate":4114760947120043,"creatorUserRecordID":4415361334513779,"encryptedValues":3001790285872974,"lastModifiedUserRecordID":4359871131970532,"modificationDate":2656655731393023,"parent":3538149941010981,"recordChangeTag":3416947568513415,"recordID":1582175366200410,"share":1050330803695346}, methods: {"allTokens":{"id":4071971414025170},"encodeSystemFields":{"id":947868773385984},"subscript":{"id":3884884045394798},"setParent":{"id":610314954529125},"setParent16582":{"id":1824478651679307},"changedKeys":{"id":1690700923088887},"makeIterator":{"id":1753661563255488},"object":{"id":1238239268024874},"allKeys":{"id":910451009297291},"setObject":{"id":2202189935104612},"subscript3079":{"id":3607723853754130}} });
-registerSDKClass("CKRecordID", CKRecord_ID, { module: "CloudKit_5d69670f0307b385", properties: {"recordName":1285473553513258,"zoneID":2440423208463705} });
-registerSDKClass("CKReference", CKRecord_Reference, { module: "CloudKit_5d69670f0307b385", properties: {"recordID":2319217419153098,"action":2670131396204754} });
-registerSDKClass("CloudKit.CKRecord.SystemFieldKey", CKRecord_SystemFieldKey, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKRecord.SystemType", CKRecord_SystemType, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKRecordKeyValueIterator", CKRecordKeyValueIterator, { module: "CloudKit_5d69670f0307b385", properties: {}, methods: {"next":{"id":2960678392558655}} });
+registerSDKClass("CKOperation", CKOperation, { module: "CloudKit_6be9a005889899ab", properties: {"allowsCellularAccess":3055355599258394,"configuration":2401324240230694,"container":1871776872336231,"group":96962242567549,"isLongLived":1601118528863546,"timeoutIntervalForRequest":1104134090213398,"timeoutIntervalForResource":2447232341507924} });
+registerSDKClass("CKAcceptSharesOperation", CKAcceptSharesOperation, { module: "CloudKit_6be9a005889899ab", properties: {"shareMetadatas":1222094554557408} });
+registerSDKClass("CKAllowedSharingOptions", CKAllowedSharingOptions, { module: "CloudKit_6be9a005889899ab", properties: {"allowedParticipantAccessOptions":2311016857805255,"allowedParticipantPermissionOptions":2641620717546976,"allowsAccessRequests":4386434982531987,"allowsParticipantsToInviteOthers":776627834435962} });
+registerSDKClass("CKAsset", CKAsset, { module: "CloudKit_6be9a005889899ab", properties: {"fileURL":260519331382106} });
+registerSDKClass("CloudKit.CKAsset.ExportedAssetID", CKAsset_ExportedAssetID, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKContainer", CKContainer, { module: "CloudKit_6be9a005889899ab", properties: {"containerIdentifier":3389197631518998,"privateCloudDatabase":1313881112080937,"publicCloudDatabase":3214194992831846,"sharedCloudDatabase":3101832021589676}, methods: {"acceptCompletionHandler":{"id":2103247591672886,"hints":[null,{"callback":{"out":[]}}]},"accountStatus":{"id":657523567341403,"hints":[{"callback":{"out":[]}}]},"add":{"id":3088941588193717},"database":{"id":1071829513763679},"discoverAllIdentities":{"id":214475774147851,"hints":[{"callback":{"out":[]}}]},"discoverUserIdentityWithEmailAddressCompletionHandler":{"id":4241370970472710,"hints":[null,{"callback":{"out":[]}}]},"discoverUserIdentityWithPhoneNumberCompletionHandler":{"id":3728743011543049,"hints":[null,{"callback":{"out":[]}}]},"discoverUserIdentityWithUserRecordIDCompletionHandler":{"id":2845815442456122,"hints":[null,{"callback":{"out":[]}}]},"fetchShareMetadata":{"id":196135414229573,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantWithEmailAddressCompletionHandler":{"id":2607002085788258,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantWithPhoneNumberCompletionHandler":{"id":283420448792526,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantWithUserRecordIDCompletionHandler":{"id":2340540617638601,"hints":[null,{"callback":{"out":[]}}]},"fetchUserRecordID":{"id":903484451365029,"hints":[{"callback":{"out":[]}}]},"requestApplicationPermission":{"id":1461344068732857,"hints":[null,{"callback":{"out":[]}}]},"status":{"id":630598171041897,"hints":[null,{"callback":{"out":[]}}]},"userIdentityForPhoneNumber":{"id":3223391156869822},"userIdentityForEmailAddress":{"id":2535912628829243},"userIdentityForUserRecordID":{"id":3579578801369086},"shareMetadata":{"id":572749462032632},"configuredWithConfigurationGroupBody21466":{"id":2125274451611367,"hints":[null,null,{"callback":{"out":[]}}]},"shareMetadatas":{"id":4157903445655455},"userIdentitiesForPhoneNumbers":{"id":1403489823707975},"userIdentitiesForUserRecordIDs":{"id":2043739683678817},"userIdentitiesForEmailAddresses":{"id":1992968595651531},"shareParticipantForPhoneNumber":{"id":1030384225163398},"shareParticipantForEmailAddress":{"id":4332628955156306},"shareParticipantForUserRecordID":{"id":3647082616042238},"shareParticipantsForPhoneNumbers":{"id":3682718481891061},"shareParticipantsForUserRecordIDs":{"id":2283000253361283},"shareParticipantsForEmailAddresses":{"id":3630340625054073},"shareParticipantsFor":{"id":3745395716133099},"longLivedOperation":{"id":1474509138992128},"requestShareAccess":{"id":3726972204681519},"fetchShareMetadatas":{"id":1164459308434710,"hints":[null,{"callback":{"out":[]}}]},"discoverUserIdentitiesForUserRecordIDsCompletionHandler":{"id":818805411559224,"hints":[null,{"callback":{"out":[]}}]},"discoverUserIdentitiesForPhoneNumbersCompletionHandler":{"id":3324397932072335,"hints":[null,{"callback":{"out":[]}}]},"discoverUserIdentitiesForEmailAddressesCompletionHandler":{"id":2348517004007838,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantsForPhoneNumbersCompletionHandler":{"id":2699385664717592,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantsForUserRecordIDsCompletionHandler":{"id":2522043714836371,"hints":[null,{"callback":{"out":[]}}]},"fetchShareParticipantsForEmailAddressesCompletionHandler":{"id":3130600865962065,"hints":[null,{"callback":{"out":[]}}]},"fetchLongLivedOperation":{"id":817348161585888,"hints":[null,{"callback":{"out":[]}}]},"allLongLivedOperationIDs":{"id":3591915127017843},"allUserIdentitiesFromContacts":{"id":2699891777473789},"fetchAllLongLivedOperationIDs":{"id":3954518528264709,"hints":[{"callback":{"out":[]}}]},"acceptCompletionHandler19311":{"id":3251469684811172,"hints":[null,{"callback":{"out":[]}}]},"accept":{"id":3472797862846452},"accept27794":{"id":3563278321388701}} });
+registerSDKClass("CloudKit.CKContainer.Application", CKContainer_Application, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKDatabase", CKDatabase, { module: "CloudKit_6be9a005889899ab", properties: {"databaseScope":3021891494419739}, methods: {"add":{"id":3744101305193418},"deleteWithRecordIDCompletionHandler":{"id":595712895555858,"hints":[null,{"callback":{"out":[]}}]},"deleteWithRecordZoneIDCompletionHandler":{"id":753151183528831,"hints":[null,{"callback":{"out":[]}}]},"fetchAllRecordZones":{"id":3012653147230971,"hints":[{"callback":{"out":[]}}]},"fetchAllSubscriptions":{"id":4260782616465834,"hints":[{"callback":{"out":[]}}]},"fetchWithRecordIDCompletionHandler":{"id":2679169399305066,"hints":[null,{"callback":{"out":[]}}]},"fetchWithRecordZoneIDCompletionHandler":{"id":2535110792460092,"hints":[null,{"callback":{"out":[]}}]},"performInZoneWithCompletionHandler":{"id":1121036168052744,"hints":[null,null,{"callback":{"out":[]}}]},"saveCompletionHandler":{"id":3606822321688736,"hints":[null,{"callback":{"out":[]}}]},"saveCompletionHandler10675":{"id":2598790837936065,"hints":[null,{"callback":{"out":[]}}]},"saveCompletionHandler5505":{"id":1835243818252003,"hints":[null,{"callback":{"out":[]}}]},"recordZone":{"id":3078673049502727},"recordZones":{"id":1174428519136433},"deleteRecord":{"id":3566444397325588},"subscription":{"id":4057483601737863},"modifyRecordsSavingDeletingSavePolicyAtomicallyCompletionHandler":{"id":1360915181495257,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"modifyRecordsSavingDeletingSavePolicyAtomically":{"id":3726190482818656},"subscriptions":{"id":2123545842334194},"allRecordZones":{"id":810181424800526},"configuredWithConfigurationGroupBody35481":{"id":488068341648184,"hints":[null,null,{"callback":{"out":[]}}]},"databaseChanges":{"id":4227239695444138},"allSubscriptions":{"id":117928577496208},"deleteRecordZone":{"id":1626138489487520},"modifyRecordZonesSavingDeletingCompletionHandler":{"id":2397785814940362,"hints":[null,null,{"callback":{"out":[]}}]},"modifyRecordZonesSavingDeleting":{"id":2541326025282088},"recordZoneChanges":{"id":2297394951995090},"deleteSubscription":{"id":3278906420302276},"modifySubscriptionsSavingDeletingCompletionHandler":{"id":4321851502489760,"hints":[null,null,{"callback":{"out":[]}}]},"modifySubscriptionsSavingDeleting":{"id":1186867388139041},"fetchDatabaseChanges":{"id":2811010617684825,"hints":[null,null,{"callback":{"out":[]}}]},"fetchRecordZoneChanges":{"id":1117099628097823,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"save":{"id":551411226418941},"save87972":{"id":3401344217734065},"save91437":{"id":1449147979419410},"fetchWithCursorDesiredKeysResultsLimitCompletionHandler":{"id":3081451025168814,"hints":[null,null,null,{"callback":{"out":[]}}]},"fetchWithRecordIDsDesiredKeysCompletionHandler":{"id":1126503146853316,"hints":[null,null,{"callback":{"out":[]}}]},"fetchWithRecordZoneIDsCompletionHandler":{"id":3633415017419930,"hints":[null,{"callback":{"out":[]}}]},"fetchWithSubscriptionIDCompletionHandler":{"id":3893922472823622,"hints":[null,{"callback":{"out":[]}}]},"fetchWithSubscriptionIDsCompletionHandler":{"id":4289409995143913,"hints":[null,{"callback":{"out":[]}}]},"fetchWithQueryInZoneWithDesiredKeysResultsLimitCompletionHandler":{"id":955370737971955,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"deleteWithSubscriptionIDCompletionHandler":{"id":2417134644457823,"hints":[null,{"callback":{"out":[]}}]},"record":{"id":3057055442096611},"performInZoneWith":{"id":4417530744024301},"recordsContinuingMatchFromDesiredKeysResultsLimit":{"id":174979741219680},"recordsForDesiredKeys":{"id":1343479128726077},"recordsMatchingInZoneWithDesiredKeysResultsLimit":{"id":874701837524416},"recordsMatchingInZoneWith":{"id":4333001936011217}} });
+registerSDKClass("CloudKit.CKDatabase.DatabaseChange", CKDatabase_DatabaseChange, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKDatabase.DatabaseChange.Deletion", CKDatabase_DatabaseChange_Deletion, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKDatabase.DatabaseChange.Modification", CKDatabase_DatabaseChange_Modification, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKDatabase.RecordZoneChange", CKDatabase_RecordZoneChange, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKDatabase.RecordZoneChange.Deletion", CKDatabase_RecordZoneChange_Deletion, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKDatabase.RecordZoneChange.Modification", CKDatabase_RecordZoneChange_Modification, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKNotification", CKNotification, { module: "CloudKit_6be9a005889899ab", properties: {"alertActionLocalizationKey":1512608789460236,"alertBody":4128411001418360,"alertLaunchImage":3414163228516305,"alertLocalizationArgs":3003964976786574,"alertLocalizationKey":2507418003295167,"badge":4425646038625400,"category":66311046156045,"containerIdentifier":82629498812741,"isPruned":3386203666398844,"notificationID":2363305018770023,"notificationType":1219230929746906,"soundName":3970521014199288,"subscriptionOwnerUserRecordID":78665881529815,"subtitle":199711620034853,"subtitleLocalizationArgs":799020023172654,"subtitleLocalizationKey":1444414243877816,"title":2646117715335298,"titleLocalizationArgs":3896793309804221,"titleLocalizationKey":2505461293042539} });
+registerSDKClass("CKDatabaseNotification", CKDatabaseNotification, { module: "CloudKit_6be9a005889899ab", properties: {"databaseScope":702785797023294} });
+registerSDKClass("CKDatabaseOperation", CKDatabaseOperation, { module: "CloudKit_6be9a005889899ab", properties: {"database":2895936897761160} });
+registerSDKClass("CKSubscription", CKSubscription, { module: "CloudKit_6be9a005889899ab", properties: {"notificationInfo":4350981208148389,"subscriptionType":3745534154791592} });
+registerSDKClass("CKDatabaseSubscription", CKDatabaseSubscription, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKDiscoverAllUserIdentitiesOperation", CKDiscoverAllUserIdentitiesOperation, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKDiscoverUserIdentitiesOperation", CKDiscoverUserIdentitiesOperation, { module: "CloudKit_6be9a005889899ab", properties: {"userIdentityLookupInfos":81527410524885} });
+registerSDKClass("CloudKit.CKError", CKError, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKFetchDatabaseChangesOperation", CKFetchDatabaseChangesOperation, { module: "CloudKit_6be9a005889899ab", properties: {"fetchAllChanges":3590498070348631,"previousServerChangeToken":1890842912579246,"resultsLimit":3305224549954056} });
+registerSDKClass("CKFetchRecordChangesOperation", CKFetchRecordChangesOperation, { module: "CloudKit_6be9a005889899ab", properties: {"desiredKeys":1725750218375853,"moreComing":3045851116997012,"previousServerChangeToken":1188907491010847,"recordZoneID":3923505490912741,"resultsLimit":4448893405596024} });
+registerSDKClass("CKFetchRecordsOperation", CKFetchRecordsOperation, { module: "CloudKit_6be9a005889899ab", properties: {"recordIDs":745088256000357} });
+registerSDKClass("CKFetchRecordZoneChangesOperation", CKFetchRecordZoneChangesOperation, { module: "CloudKit_6be9a005889899ab", properties: {"configurationsByRecordZoneID":3931225716199164,"fetchAllChanges":2730841807659903,"optionsByRecordZoneID":3490364402994207,"recordZoneIDs":3048763186153028} });
+registerSDKClass("CKFetchRecordZoneChangesConfiguration", CKFetchRecordZoneChangesOperation_ZoneConfiguration, { module: "CloudKit_6be9a005889899ab", properties: {"previousServerChangeToken":1479428422925971,"resultsLimit":4281863143968690} });
+registerSDKClass("CKFetchRecordZoneChangesOptions", CKFetchRecordZoneChangesOperation_ZoneOptions, { module: "CloudKit_6be9a005889899ab", properties: {"desiredKeys":989175491467011,"previousServerChangeToken":3634661999769157,"resultsLimit":4383167815747903} });
+registerSDKClass("CKFetchRecordZonesOperation", CKFetchRecordZonesOperation, { module: "CloudKit_6be9a005889899ab", properties: {"recordZoneIDs":1373774272233392} });
+registerSDKClass("CKFetchShareMetadataOperation", CKFetchShareMetadataOperation, { module: "CloudKit_6be9a005889899ab", properties: {"shareURLs":3698688927891794,"shouldFetchRootRecord":3601886748791984} });
+registerSDKClass("CKFetchShareParticipantsOperation", CKFetchShareParticipantsOperation, { module: "CloudKit_6be9a005889899ab", properties: {"userIdentityLookupInfos":2787389045181366} });
+registerSDKClass("CKFetchSubscriptionsOperation", CKFetchSubscriptionsOperation, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKFetchWebAuthTokenOperation", CKFetchWebAuthTokenOperation, { module: "CloudKit_6be9a005889899ab", properties: {"apiToken":3634808615423414} });
+registerSDKClass("CKLocationSortDescriptor", CKLocationSortDescriptor, { module: "CloudKit_6be9a005889899ab", properties: {"relativeLocation":3033180671079422} });
+registerSDKClass("CKModifyRecordsOperation", CKModifyRecordsOperation, { module: "CloudKit_6be9a005889899ab", properties: {"isAtomic":4253730911428763,"clientChangeTokenData":977844652557181,"recordIDsToDelete":1336167786641164,"recordsToSave":565378080486786,"savePolicy":1180712114248121} });
+registerSDKClass("CKModifyRecordZonesOperation", CKModifyRecordZonesOperation, { module: "CloudKit_6be9a005889899ab", properties: {"recordZoneIDsToDelete":3271305406598944,"recordZonesToSave":319186898326604} });
+registerSDKClass("CKModifySubscriptionsOperation", CKModifySubscriptionsOperation, { module: "CloudKit_6be9a005889899ab", properties: {"subscriptionsToSave":1452611739428706} });
+registerSDKClass("CKNotificationID", CKNotification_ID, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKOperationConfiguration", CKOperation_Configuration, { module: "CloudKit_6be9a005889899ab", properties: {"allowsCellularAccess":1250703888829152,"container":982223280856003,"isLongLived":900844936862947,"qualityOfService":584574546440143,"timeoutIntervalForRequest":1944479801826198,"timeoutIntervalForResource":783694711921516} });
+registerSDKClass("CKOperationGroup", CKOperationGroup, { module: "CloudKit_6be9a005889899ab", properties: {"defaultConfiguration":1184411809352322,"expectedReceiveSize":1692698084577487,"expectedSendSize":4503469866427088,"name":1038863141931903,"operationGroupID":1422317783651967,"quantity":1133684253597267} });
+registerSDKClass("CKQuery", CKQuery, { module: "CloudKit_6be9a005889899ab", properties: {"predicate":734171353122850,"sortDescriptors":3830301988671166} });
+registerSDKClass("CKQueryNotification", CKQueryNotification, { module: "CloudKit_6be9a005889899ab", properties: {"databaseScope":1677286305464155,"queryNotificationReason":2525898069319054,"recordFields":797170402518617,"recordID":2884322272293001} });
+registerSDKClass("CKQueryOperation", CKQueryOperation, { module: "CloudKit_6be9a005889899ab", properties: {"cursor":1136821216625900,"query":289338588700,"resultsLimit":3306759201222206,"zoneID":663263177098155} });
+registerSDKClass("CKQueryCursor", CKQueryOperation_Cursor, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKQuerySubscription", CKQuerySubscription, { module: "CloudKit_6be9a005889899ab", properties: {"predicate":3440900740716166,"querySubscriptionOptions":2289748709827733,"zoneID":1968639010209720} });
+registerSDKClass("CKRecord", CKRecord, { module: "CloudKit_6be9a005889899ab", properties: {"creationDate":4114760947120043,"creatorUserRecordID":4415361334513779,"encryptedValues":3001790285872974,"lastModifiedUserRecordID":4359871131970532,"modificationDate":2656655731393023,"parent":3538149941010981,"recordChangeTag":3416947568513415,"recordID":1582175366200410,"share":1050330803695346}, methods: {"allTokens":{"id":4071971414025170},"encodeSystemFields":{"id":947868773385984},"subscript":{"id":3884884045394798},"setParent":{"id":610314954529125},"setParent16582":{"id":1824478651679307},"changedKeys":{"id":1690700923088887},"makeIterator":{"id":1753661563255488},"object":{"id":1238239268024874},"allKeys":{"id":910451009297291},"setObject":{"id":2202189935104612},"subscript3079":{"id":3607723853754130}} });
+registerSDKClass("CKRecordID", CKRecord_ID, { module: "CloudKit_6be9a005889899ab", properties: {"recordName":1285473553513258,"zoneID":2440423208463705} });
+registerSDKClass("CKReference", CKRecord_Reference, { module: "CloudKit_6be9a005889899ab", properties: {"recordID":2319217419153098,"action":2670131396204754} });
+registerSDKClass("CloudKit.CKRecord.SystemFieldKey", CKRecord_SystemFieldKey, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKRecord.SystemType", CKRecord_SystemType, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKRecordKeyValueIterator", CKRecordKeyValueIterator, { module: "CloudKit_6be9a005889899ab", properties: {}, methods: {"next":{"id":2960678392558655}} });
 registerSDKProtocol("c:objc(pl)CKRecordKeyValueSetting", {"objectForKey":"object(forKey:)","setObjectForKey":"setObject(_:forKey:)","subscript":"subscript(_:)","allKeys":"allKeys()","changedKeys":"changedKeys()"});
 registerSDKProtocol("s:8CloudKit21CKRecordValueProtocolP", {});
-registerSDKClass("CKRecordZone", CKRecordZone, { module: "CloudKit_5d69670f0307b385", properties: {"capabilities":2099980226324718,"encryptionScope":1520959434164980,"share":3526269027508067,"zoneID":3305826201613466} });
-registerSDKClass("CKRecordZoneID", CKRecordZone_ID, { module: "CloudKit_5d69670f0307b385", properties: {"ownerName":2811518734471971,"zoneName":1908882702435093} });
-registerSDKClass("CKRecordZoneNotification", CKRecordZoneNotification, { module: "CloudKit_5d69670f0307b385", properties: {"databaseScope":2840995559899948,"recordZoneID":1111199567976614} });
-registerSDKClass("CKRecordZoneSubscription", CKRecordZoneSubscription, { module: "CloudKit_5d69670f0307b385", properties: {"zoneID":75625617169543} });
-registerSDKClass("CKServerChangeToken", CKServerChangeToken, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKShare", CKShare, { module: "CloudKit_5d69670f0307b385", properties: {"url":4189830123434722,"allowsAccessRequests":2202904329483367,"blockedIdentities":1245055440131141,"currentUserParticipant":85978775436998,"owner":2284429607169048,"participants":2251359766451537,"publicPermission":42540793255396,"requesters":4156897734680123}, methods: {"addParticipant":{"id":3246324211455549},"blockRequesters":{"id":2652898564688253},"denyRequesters":{"id":3256362704375393},"removeParticipant":{"id":2992106843513534},"unblockIdentities":{"id":2717384173167476},"oneTimeURL":{"id":3968027646813295}} });
-registerSDKClass("CKShareAccessRequester", CKShare_AccessRequester, { module: "CloudKit_5d69670f0307b385", properties: {"participantLookupInfo":1470799664588474,"userIdentity":1403594393378190} });
-registerSDKClass("CKShareBlockedIdentity", CKShare_BlockedIdentity, { module: "CloudKit_5d69670f0307b385", properties: {"userIdentity":2220834378541145} });
-registerSDKClass("CKShareMetadata", CKShare_Metadata, { module: "CloudKit_5d69670f0307b385", properties: {"containerIdentifier":865504985861726,"hierarchicalRootRecordID":1699207058137037,"ownerIdentity":2037431543050453,"participantPermission":4282288362157962,"participantRole":4261051209391333,"participantStatus":847419152212604,"rootRecord":444529947204,"rootRecordID":1100658744707051,"share":2798984743776262} });
-registerSDKClass("CKShareParticipant", CKShare_Participant, { module: "CloudKit_5d69670f0307b385", properties: {"acceptanceStatus":1877730049912819,"dateAddedToShare":636568965332785,"isApprovedRequester":47443947737383,"permission":1582890170054237,"role":1117912789710625,"userIdentity":1302219485688575}, methods: {"isEqual":{"id":4295174824264324}} });
-registerSDKClass("CloudKit.CKShare.SystemFieldKey", CKShare_SystemFieldKey, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKShareRequestAccessOperation", CKShareRequestAccessOperation, { module: "CloudKit_5d69670f0307b385", properties: {"shareURLs":1075318742224024} });
-registerSDKClass("CloudKit.CKShareTransferRepresentation", CKShareTransferRepresentation, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKShareTransferRepresentation.ExportedShare", CKShareTransferRepresentation_ExportedShare, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKNotificationInfo", CKSubscription_NotificationInfo, { module: "CloudKit_5d69670f0307b385", properties: {"alertActionLocalizationKey":3427290962295351,"alertBody":1192336622897731,"alertLaunchImage":3230575663442263,"alertLocalizationKey":4183010906531715,"category":1204880021117808,"collapseIDKey":2000394201418544,"shouldBadge":3553216813626756,"shouldSendContentAvailable":216824102153178,"shouldSendMutableContent":3106468436031330,"soundName":3668632683496333,"subtitle":1774979421524738,"subtitleLocalizationKey":233806512952340,"title":2090774245581380,"titleLocalizationKey":1714513382014709} });
-registerSDKClass("CloudKit.CKSyncEngine", CKSyncEngine, { module: "CloudKit_5d69670f0307b385", properties: {}, methods: {"sendChanges":{"id":2677196052521872},"fetchChanges":{"id":964172634333575},"cancelOperations":{"id":2729304952074186}} });
-registerSDKClass("CloudKit.CKSyncEngine.Configuration", CKSyncEngine_Configuration, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event", CKSyncEngine_Event, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.AccountChange", CKSyncEngine_Event_AccountChange, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.AccountChange.ChangeType", CKSyncEngine_Event_AccountChange_ChangeType, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.DidFetchChanges", CKSyncEngine_Event_DidFetchChanges, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.DidFetchRecordZoneChanges", CKSyncEngine_Event_DidFetchRecordZoneChanges, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.DidSendChanges", CKSyncEngine_Event_DidSendChanges, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.FetchedDatabaseChanges", CKSyncEngine_Event_FetchedDatabaseChanges, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.FetchedRecordZoneChanges", CKSyncEngine_Event_FetchedRecordZoneChanges, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.SentDatabaseChanges", CKSyncEngine_Event_SentDatabaseChanges, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.SentDatabaseChanges.FailedZoneSave", CKSyncEngine_Event_SentDatabaseChanges_FailedZoneSave, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.SentRecordZoneChanges", CKSyncEngine_Event_SentRecordZoneChanges, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.SentRecordZoneChanges.FailedRecordSave", CKSyncEngine_Event_SentRecordZoneChanges_FailedRecordSave, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.StateUpdate", CKSyncEngine_Event_StateUpdate, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.WillFetchChanges", CKSyncEngine_Event_WillFetchChanges, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.WillFetchRecordZoneChanges", CKSyncEngine_Event_WillFetchRecordZoneChanges, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.Event.WillSendChanges", CKSyncEngine_Event_WillSendChanges, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.FetchChangesContext", CKSyncEngine_FetchChangesContext, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.FetchChangesOptions", CKSyncEngine_FetchChangesOptions, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.FetchChangesOptions.Scope", CKSyncEngine_FetchChangesOptions_Scope, { module: "CloudKit_5d69670f0307b385", properties: {}, methods: {"contains":{"id":118652305719491}} });
-registerSDKClass("CloudKit.CKSyncEngine.PendingDatabaseChange", CKSyncEngine_PendingDatabaseChange, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.PendingRecordZoneChange", CKSyncEngine_PendingRecordZoneChange, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.RecordZoneChangeBatch", CKSyncEngine_RecordZoneChangeBatch, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.SendChangesContext", CKSyncEngine_SendChangesContext, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.SendChangesOptions", CKSyncEngine_SendChangesOptions, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CloudKit.CKSyncEngine.SendChangesOptions.Scope", CKSyncEngine_SendChangesOptions_Scope, { module: "CloudKit_5d69670f0307b385", properties: {}, methods: {"contains":{"id":2913203673355797},"contains86583":{"id":727613891374832}} });
-registerSDKClass("CloudKit.CKSyncEngine.State", CKSyncEngine_State, { module: "CloudKit_5d69670f0307b385", properties: {}, methods: {"addPendingDatabaseChanges":{"id":2380667923437223},"addPendingRecordZoneChanges":{"id":807698186917457},"removePendingDatabaseChanges":{"id":2556718873800713},"removePendingRecordZoneChanges":{"id":1765520693058228}} });
-registerSDKClass("CloudKit.CKSyncEngine.State.Serialization", CKSyncEngine_State_Serialization, { module: "CloudKit_5d69670f0307b385", properties: {} });
+registerSDKClass("CKRecordZone", CKRecordZone, { module: "CloudKit_6be9a005889899ab", properties: {"capabilities":2099980226324718,"encryptionScope":1520959434164980,"share":3526269027508067,"zoneID":3305826201613466} });
+registerSDKClass("CKRecordZoneID", CKRecordZone_ID, { module: "CloudKit_6be9a005889899ab", properties: {"ownerName":2811518734471971,"zoneName":1908882702435093} });
+registerSDKClass("CKRecordZoneNotification", CKRecordZoneNotification, { module: "CloudKit_6be9a005889899ab", properties: {"databaseScope":2840995559899948,"recordZoneID":1111199567976614} });
+registerSDKClass("CKRecordZoneSubscription", CKRecordZoneSubscription, { module: "CloudKit_6be9a005889899ab", properties: {"zoneID":75625617169543} });
+registerSDKClass("CKServerChangeToken", CKServerChangeToken, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKShare", CKShare, { module: "CloudKit_6be9a005889899ab", properties: {"url":4189830123434722,"allowsAccessRequests":2202904329483367,"blockedIdentities":1245055440131141,"currentUserParticipant":85978775436998,"owner":2284429607169048,"participants":2251359766451537,"publicPermission":42540793255396,"requesters":4156897734680123}, methods: {"addParticipant":{"id":3246324211455549},"blockRequesters":{"id":2652898564688253},"denyRequesters":{"id":3256362704375393},"removeParticipant":{"id":2992106843513534},"unblockIdentities":{"id":2717384173167476},"oneTimeURL":{"id":3968027646813295}} });
+registerSDKClass("CKShareAccessRequester", CKShare_AccessRequester, { module: "CloudKit_6be9a005889899ab", properties: {"participantLookupInfo":1470799664588474,"userIdentity":1403594393378190} });
+registerSDKClass("CKShareBlockedIdentity", CKShare_BlockedIdentity, { module: "CloudKit_6be9a005889899ab", properties: {"userIdentity":2220834378541145} });
+registerSDKClass("CKShareMetadata", CKShare_Metadata, { module: "CloudKit_6be9a005889899ab", properties: {"containerIdentifier":865504985861726,"hierarchicalRootRecordID":1699207058137037,"ownerIdentity":2037431543050453,"participantPermission":4282288362157962,"participantRole":4261051209391333,"participantStatus":847419152212604,"rootRecord":444529947204,"rootRecordID":1100658744707051,"share":2798984743776262} });
+registerSDKClass("CKShareParticipant", CKShare_Participant, { module: "CloudKit_6be9a005889899ab", properties: {"acceptanceStatus":1877730049912819,"dateAddedToShare":636568965332785,"isApprovedRequester":47443947737383,"permission":1582890170054237,"role":1117912789710625,"userIdentity":1302219485688575}, methods: {"isEqual":{"id":4295174824264324}} });
+registerSDKClass("CloudKit.CKShare.SystemFieldKey", CKShare_SystemFieldKey, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKShareRequestAccessOperation", CKShareRequestAccessOperation, { module: "CloudKit_6be9a005889899ab", properties: {"shareURLs":1075318742224024} });
+registerSDKClass("CloudKit.CKShareTransferRepresentation", CKShareTransferRepresentation, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKShareTransferRepresentation.ExportedShare", CKShareTransferRepresentation_ExportedShare, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKNotificationInfo", CKSubscription_NotificationInfo, { module: "CloudKit_6be9a005889899ab", properties: {"alertActionLocalizationKey":3427290962295351,"alertBody":1192336622897731,"alertLaunchImage":3230575663442263,"alertLocalizationKey":4183010906531715,"category":1204880021117808,"collapseIDKey":2000394201418544,"shouldBadge":3553216813626756,"shouldSendContentAvailable":216824102153178,"shouldSendMutableContent":3106468436031330,"soundName":3668632683496333,"subtitle":1774979421524738,"subtitleLocalizationKey":233806512952340,"title":2090774245581380,"titleLocalizationKey":1714513382014709} });
+registerSDKClass("CloudKit.CKSyncEngine", CKSyncEngine, { module: "CloudKit_6be9a005889899ab", properties: {}, methods: {"sendChanges":{"id":2677196052521872},"fetchChanges":{"id":964172634333575},"cancelOperations":{"id":2729304952074186}} });
+registerSDKClass("CloudKit.CKSyncEngine.Configuration", CKSyncEngine_Configuration, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event", CKSyncEngine_Event, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.AccountChange", CKSyncEngine_Event_AccountChange, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.AccountChange.ChangeType", CKSyncEngine_Event_AccountChange_ChangeType, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.DidFetchChanges", CKSyncEngine_Event_DidFetchChanges, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.DidFetchRecordZoneChanges", CKSyncEngine_Event_DidFetchRecordZoneChanges, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.DidSendChanges", CKSyncEngine_Event_DidSendChanges, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.FetchedDatabaseChanges", CKSyncEngine_Event_FetchedDatabaseChanges, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.FetchedRecordZoneChanges", CKSyncEngine_Event_FetchedRecordZoneChanges, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.SentDatabaseChanges", CKSyncEngine_Event_SentDatabaseChanges, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.SentDatabaseChanges.FailedZoneSave", CKSyncEngine_Event_SentDatabaseChanges_FailedZoneSave, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.SentRecordZoneChanges", CKSyncEngine_Event_SentRecordZoneChanges, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.SentRecordZoneChanges.FailedRecordSave", CKSyncEngine_Event_SentRecordZoneChanges_FailedRecordSave, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.StateUpdate", CKSyncEngine_Event_StateUpdate, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.WillFetchChanges", CKSyncEngine_Event_WillFetchChanges, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.WillFetchRecordZoneChanges", CKSyncEngine_Event_WillFetchRecordZoneChanges, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.Event.WillSendChanges", CKSyncEngine_Event_WillSendChanges, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.FetchChangesContext", CKSyncEngine_FetchChangesContext, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.FetchChangesOptions", CKSyncEngine_FetchChangesOptions, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.FetchChangesOptions.Scope", CKSyncEngine_FetchChangesOptions_Scope, { module: "CloudKit_6be9a005889899ab", properties: {}, methods: {"contains":{"id":118652305719491}} });
+registerSDKClass("CloudKit.CKSyncEngine.PendingDatabaseChange", CKSyncEngine_PendingDatabaseChange, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.PendingRecordZoneChange", CKSyncEngine_PendingRecordZoneChange, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.RecordZoneChangeBatch", CKSyncEngine_RecordZoneChangeBatch, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.SendChangesContext", CKSyncEngine_SendChangesContext, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.SendChangesOptions", CKSyncEngine_SendChangesOptions, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CloudKit.CKSyncEngine.SendChangesOptions.Scope", CKSyncEngine_SendChangesOptions_Scope, { module: "CloudKit_6be9a005889899ab", properties: {}, methods: {"contains":{"id":2913203673355797},"contains86583":{"id":727613891374832}} });
+registerSDKClass("CloudKit.CKSyncEngine.State", CKSyncEngine_State, { module: "CloudKit_6be9a005889899ab", properties: {}, methods: {"addPendingDatabaseChanges":{"id":2380667923437223},"addPendingRecordZoneChanges":{"id":807698186917457},"removePendingDatabaseChanges":{"id":2556718873800713},"removePendingRecordZoneChanges":{"id":1765520693058228}} });
+registerSDKClass("CloudKit.CKSyncEngine.State.Serialization", CKSyncEngine_State_Serialization, { module: "CloudKit_6be9a005889899ab", properties: {} });
 registerSDKProtocol("s:8CloudKit20CKSyncEngineDelegateP", {"handleEventSyncEngine":"handleEvent(_:syncEngine:)","nextRecordZoneChangeBatchSyncEngine":"nextRecordZoneChangeBatch(_:syncEngine:)","nextFetchChangesOptionsSyncEngine":"nextFetchChangesOptions(_:syncEngine:)"});
-registerSDKClass("CKSystemSharingUIObserver", CKSystemSharingUIObserver, { module: "CloudKit_5d69670f0307b385", properties: {} });
-registerSDKClass("CKUserIdentity", CKUserIdentity, { module: "CloudKit_5d69670f0307b385", properties: {"contactIdentifiers":2049665123071290,"hasiCloudAccount":972278265215077,"lookupInfo":1109087380900666,"nameComponents":3252449151383965,"userRecordID":2677084394628829} });
-registerSDKClass("CKUserIdentityLookupInfo", CKUserIdentity_LookupInfo, { module: "CloudKit_5d69670f0307b385", properties: {"emailAddress":747431136739115,"phoneNumber":4377107309435410,"userRecordID":1605932228649057} });
-registerSDKClass("NSItemProvider", NSItemProvider, { module: "CloudKit_5d69670f0307b385", properties: {}, methods: {"registerCKShareContainerAllowedSharingOptionsPreparationHandler":{"id":332713536986214,"hints":[null,null,{"callback":{"out":[]}}]},"registerCKShareContainerAllowedSharingOptions":{"id":316879894051956}} }, true);
+registerSDKClass("CKSystemSharingUIObserver", CKSystemSharingUIObserver, { module: "CloudKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CKUserIdentity", CKUserIdentity, { module: "CloudKit_6be9a005889899ab", properties: {"contactIdentifiers":2049665123071290,"hasiCloudAccount":972278265215077,"lookupInfo":1109087380900666,"nameComponents":3252449151383965,"userRecordID":2677084394628829} });
+registerSDKClass("CKUserIdentityLookupInfo", CKUserIdentity_LookupInfo, { module: "CloudKit_6be9a005889899ab", properties: {"emailAddress":747431136739115,"phoneNumber":4377107309435410,"userRecordID":1605932228649057} });
+registerSDKClass("NSItemProvider", NSItemProvider, { module: "CloudKit_6be9a005889899ab", properties: {}, methods: {"registerCKShareContainerAllowedSharingOptionsPreparationHandler":{"id":332713536986214,"hints":[null,null,{"callback":{"out":[]}}]},"registerCKShareContainerAllowedSharingOptions":{"id":316879894051956}} }, true);
