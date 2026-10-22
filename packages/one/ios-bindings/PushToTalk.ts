@@ -14,17 +14,17 @@ export class PTChannelDescriptor extends SDKHandle {
    * init(name: String, image: UIImage?)
    * @availability iOS 16.0+
    */
-  static init(name: string, image?: (_UIKit_UIImage) | null): PTChannelDescriptor { return callSDK<PTChannelDescriptor>("PushToTalk_6be9a005889899ab", 4002299738759439, undefined, [name, image]); }
+  static init(name: string, image?: (_UIKit_UIImage) | null): PTChannelDescriptor { return callSDK<PTChannelDescriptor>("PushToTalk_c1f28409f8601238", 4002299738759439, undefined, [name, image]); }
   /**
    * @NSCopying var image: UIImage? { get }
    * @availability iOS 16.0+
    */
-  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("PushToTalk_6be9a005889899ab", 3709440899709058, this, []); }
+  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("PushToTalk_c1f28409f8601238", 3709440899709058, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 16.0+
    */
-  get name(): string { return callSDK<string>("PushToTalk_6be9a005889899ab", 490016194503431, this, []); }
+  get name(): string { return callSDK<string>("PushToTalk_c1f28409f8601238", 490016194503431, this, []); }
   declare readonly $type: { "c:objc(cs)PTChannelDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "image": true; "name": true };
 }
@@ -38,57 +38,57 @@ export class PTChannelError extends SDKHandle {
    * static var callActive: PTChannelError.Code { get }
    * @availability iOS 16.0+
    */
-  static get callActive(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_6be9a005889899ab", 4084475095274714, undefined, []); }
+  static get callActive(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_c1f28409f8601238", 4084475095274714, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 16.0+
    */
-  static get errorDomain(): string { return callSDK<string>("PushToTalk_6be9a005889899ab", 3389964218449867, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PushToTalk_c1f28409f8601238", 3389964218449867, undefined, []); }
   /**
    * static var channelNotFound: PTChannelError.Code { get }
    * @availability iOS 16.0+
    */
-  static get channelNotFound(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_6be9a005889899ab", 1030342381744645, undefined, []); }
+  static get channelNotFound(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_c1f28409f8601238", 1030342381744645, undefined, []); }
   /**
    * static var appNotForeground: PTChannelError.Code { get }
    * @availability iOS 16.0+
    */
-  static get appNotForeground(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_6be9a005889899ab", 1163887265593164, undefined, []); }
+  static get appNotForeground(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_c1f28409f8601238", 1163887265593164, undefined, []); }
   /**
    * static var channelLimitReached: PTChannelError.Code { get }
    * @availability iOS 16.0+
    */
-  static get channelLimitReached(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_6be9a005889899ab", 1107088787995249, undefined, []); }
+  static get channelLimitReached(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_c1f28409f8601238", 1107088787995249, undefined, []); }
   /**
    * static var transmissionNotFound: PTChannelError.Code { get }
    * @availability iOS 16.0+
    */
-  static get transmissionNotFound(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_6be9a005889899ab", 3180187638721904, undefined, []); }
+  static get transmissionNotFound(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_c1f28409f8601238", 3180187638721904, undefined, []); }
   /**
    * static var screenTimeRestriction: PTChannelError.Code { get }
    * @availability iOS 16.0+
    */
-  static get screenTimeRestriction(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_6be9a005889899ab", 86657614991034, undefined, []); }
+  static get screenTimeRestriction(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_c1f28409f8601238", 86657614991034, undefined, []); }
   /**
    * static var transmissionInProgress: PTChannelError.Code { get }
    * @availability iOS 16.0+
    */
-  static get transmissionInProgress(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_6be9a005889899ab", 1005375388909511, undefined, []); }
+  static get transmissionInProgress(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_c1f28409f8601238", 1005375388909511, undefined, []); }
   /**
    * static var transmissionNotAllowed: PTChannelError.Code { get }
    * @availability iOS 16.0+
    */
-  static get transmissionNotAllowed(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_6be9a005889899ab", 1167203180542967, undefined, []); }
+  static get transmissionNotAllowed(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_c1f28409f8601238", 1167203180542967, undefined, []); }
   /**
    * static var deviceManagementRestriction: PTChannelError.Code { get }
    * @availability iOS 16.0+
    */
-  static get deviceManagementRestriction(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_6be9a005889899ab", 1982809611542917, undefined, []); }
+  static get deviceManagementRestriction(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_c1f28409f8601238", 1982809611542917, undefined, []); }
   /**
    * static var unknown: PTChannelError.Code { get }
    * @availability iOS 16.0+
    */
-  static get unknown(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_6be9a005889899ab", 2666700635949536, undefined, []); }
+  static get unknown(): PTChannelError_Code { return callSDK<PTChannelError_Code>("PushToTalk_c1f28409f8601238", 2666700635949536, undefined, []); }
   declare readonly $type: { "s:SC14PTChannelErrorLeV": true };
 }
 
@@ -103,7 +103,7 @@ export const PTChannelError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PTChannelError_Code) | null { return callSDK<(PTChannelError_Code) | null>("PushToTalk_6be9a005889899ab", 1978428646198335, undefined, [rawValue]); }
+  init(rawValue: number): (PTChannelError_Code) | null { return callSDK<(PTChannelError_Code) | null>("PushToTalk_c1f28409f8601238", 1978428646198335, undefined, [rawValue]); }
 };
 
 /**
@@ -117,7 +117,7 @@ export const PTChannelJoinReason = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PTChannelJoinReason) | null { return callSDK<(PTChannelJoinReason) | null>("PushToTalk_6be9a005889899ab", 2134074461267025, undefined, [rawValue]); }
+  init(rawValue: number): (PTChannelJoinReason) | null { return callSDK<(PTChannelJoinReason) | null>("PushToTalk_c1f28409f8601238", 2134074461267025, undefined, [rawValue]); }
 };
 
 /**
@@ -131,7 +131,7 @@ export const PTChannelLeaveReason = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PTChannelLeaveReason) | null { return callSDK<(PTChannelLeaveReason) | null>("PushToTalk_6be9a005889899ab", 4076275390732167, undefined, [rawValue]); }
+  init(rawValue: number): (PTChannelLeaveReason) | null { return callSDK<(PTChannelLeaveReason) | null>("PushToTalk_c1f28409f8601238", 4076275390732167, undefined, [rawValue]); }
 };
 
 /**
@@ -143,57 +143,57 @@ export class PTChannelManager extends SDKHandle {
    * class func channelManager(delegate: any PTChannelManagerDelegate, restorationDelegate: any PTChannelRestorationDelegate) async throws -> PTChannelManager
    * @availability iOS 16.0+
    */
-  static channelManager(delegate: SDKHandle, restorationDelegate: SDKHandle, completionHandler: ((arg0: (PTChannelManager) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PushToTalk_6be9a005889899ab", 1457060038524307, undefined, [delegate, restorationDelegate, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static channelManager(delegate: SDKHandle, restorationDelegate: SDKHandle, completionHandler: ((arg0: (PTChannelManager) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("PushToTalk_c1f28409f8601238", 1457060038524307, undefined, [delegate, restorationDelegate, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func leaveChannel(channelUUID: UUID)
    * @availability iOS 16.0+
    */
-  leaveChannel(channelUUID: string): void { return callSDK<void>("PushToTalk_6be9a005889899ab", 3422664446753109, this, [channelUUID]); }
+  leaveChannel(channelUUID: string): void { return callSDK<void>("PushToTalk_c1f28409f8601238", 3422664446753109, this, [channelUUID]); }
   /**
    * func requestBeginTransmitting(channelUUID: UUID)
    * @availability iOS 16.0+
    */
-  requestBeginTransmitting(channelUUID: string): void { return callSDK<void>("PushToTalk_6be9a005889899ab", 1820230573144449, this, [channelUUID]); }
+  requestBeginTransmitting(channelUUID: string): void { return callSDK<void>("PushToTalk_c1f28409f8601238", 1820230573144449, this, [channelUUID]); }
   /**
    * func requestJoinChannel(channelUUID: UUID, descriptor: PTChannelDescriptor)
    * @availability iOS 16.0+
    */
-  requestJoinChannel(channelUUID: string, descriptor: PTChannelDescriptor): void { return callSDK<void>("PushToTalk_6be9a005889899ab", 3780209318679125, this, [channelUUID, descriptor]); }
+  requestJoinChannel(channelUUID: string, descriptor: PTChannelDescriptor): void { return callSDK<void>("PushToTalk_c1f28409f8601238", 3780209318679125, this, [channelUUID, descriptor]); }
   /**
    * func setAccessoryButtonEventsEnabled(_ enabled: Bool, channelUUID: UUID) async throws
    * @availability iOS 17.0+
    */
-  setAccessoryButtonEventsEnabled(enabled: boolean, channelUUID: string, completionHandler?: $SDK1): void { return callSDK<void>("PushToTalk_6be9a005889899ab", 2459074087149433, this, [enabled, channelUUID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  setAccessoryButtonEventsEnabled(enabled: boolean, channelUUID: string, completionHandler?: $SDK1): void { return callSDK<void>("PushToTalk_c1f28409f8601238", 2459074087149433, this, [enabled, channelUUID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func setActiveRemoteParticipant(_ participant: PTParticipant?, channelUUID: UUID) async throws
    * @availability iOS 16.0+
    */
-  setActiveRemoteParticipant(participant: (PTParticipant) | null, channelUUID: string, completionHandler?: $SDK1): void { return callSDK<void>("PushToTalk_6be9a005889899ab", 3649636428131728, this, [participant, channelUUID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  setActiveRemoteParticipant(participant: (PTParticipant) | null, channelUUID: string, completionHandler?: $SDK1): void { return callSDK<void>("PushToTalk_c1f28409f8601238", 3649636428131728, this, [participant, channelUUID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func setChannelDescriptor(_ channelDescriptor: PTChannelDescriptor, channelUUID: UUID) async throws
    * @availability iOS 16.0+
    */
-  setChannelDescriptor(channelDescriptor: PTChannelDescriptor, channelUUID: string, completionHandler?: $SDK1): void { return callSDK<void>("PushToTalk_6be9a005889899ab", 2292507950024710, this, [channelDescriptor, channelUUID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  setChannelDescriptor(channelDescriptor: PTChannelDescriptor, channelUUID: string, completionHandler?: $SDK1): void { return callSDK<void>("PushToTalk_c1f28409f8601238", 2292507950024710, this, [channelDescriptor, channelUUID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func setServiceStatus(_ status: PTServiceStatus, channelUUID: UUID) async throws
    * @availability iOS 16.0+
    */
-  setServiceStatus(status: PTServiceStatus, channelUUID: string, completionHandler?: $SDK1): void { return callSDK<void>("PushToTalk_6be9a005889899ab", 1723422029888245, this, [status, channelUUID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  setServiceStatus(status: PTServiceStatus, channelUUID: string, completionHandler?: $SDK1): void { return callSDK<void>("PushToTalk_c1f28409f8601238", 1723422029888245, this, [status, channelUUID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func setTransmissionMode(_ transmissionMode: PTTransmissionMode, channelUUID: UUID) async throws
    * @availability iOS 16.0+
    */
-  setTransmissionMode(transmissionMode: PTTransmissionMode, channelUUID: string, completionHandler?: $SDK1): void { return callSDK<void>("PushToTalk_6be9a005889899ab", 4378130001528159, this, [transmissionMode, channelUUID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  setTransmissionMode(transmissionMode: PTTransmissionMode, channelUUID: string, completionHandler?: $SDK1): void { return callSDK<void>("PushToTalk_c1f28409f8601238", 4378130001528159, this, [transmissionMode, channelUUID, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func stopTransmitting(channelUUID: UUID)
    * @availability iOS 16.0+
    */
-  stopTransmitting(channelUUID: string): void { return callSDK<void>("PushToTalk_6be9a005889899ab", 105237456252408, this, [channelUUID]); }
+  stopTransmitting(channelUUID: string): void { return callSDK<void>("PushToTalk_c1f28409f8601238", 105237456252408, this, [channelUUID]); }
   /**
    * var activeChannelUUID: UUID? { get }
    * @availability iOS 16.0+
    */
-  get activeChannelUUID(): (string) | null { return callSDK<(string) | null>("PushToTalk_6be9a005889899ab", 185715490370042, this, []); }
+  get activeChannelUUID(): (string) | null { return callSDK<(string) | null>("PushToTalk_c1f28409f8601238", 185715490370042, this, []); }
   declare readonly $type: { "c:objc(cs)PTChannelManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activeChannelUUID": true };
 }
@@ -288,7 +288,7 @@ export const PTChannelTransmitRequestSource = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PTChannelTransmitRequestSource) | null { return callSDK<(PTChannelTransmitRequestSource) | null>("PushToTalk_6be9a005889899ab", 2888397196595102, undefined, [rawValue]); }
+  init(rawValue: number): (PTChannelTransmitRequestSource) | null { return callSDK<(PTChannelTransmitRequestSource) | null>("PushToTalk_c1f28409f8601238", 2888397196595102, undefined, [rawValue]); }
 };
 
 /**
@@ -300,37 +300,37 @@ export class PTInstantiationError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 16.0+
    */
-  static get errorDomain(): string { return callSDK<string>("PushToTalk_6be9a005889899ab", 1158571199720606, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("PushToTalk_c1f28409f8601238", 1158571199720606, undefined, []); }
   /**
    * static var invalidPlatform: PTInstantiationError.Code { get }
    * @availability iOS 16.0+
    */
-  static get invalidPlatform(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_6be9a005889899ab", 14708440813257, undefined, []); }
+  static get invalidPlatform(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_c1f28409f8601238", 14708440813257, undefined, []); }
   /**
    * static var missingEntitlement: PTInstantiationError.Code { get }
    * @availability iOS 16.0+
    */
-  static get missingEntitlement(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_6be9a005889899ab", 1824819170567017, undefined, []); }
+  static get missingEntitlement(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_c1f28409f8601238", 1824819170567017, undefined, []); }
   /**
    * static var missingBackgroundMode: PTInstantiationError.Code { get }
    * @availability iOS 16.0+
    */
-  static get missingBackgroundMode(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_6be9a005889899ab", 973341579698275, undefined, []); }
+  static get missingBackgroundMode(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_c1f28409f8601238", 973341579698275, undefined, []); }
   /**
    * static var missingPushServerEnvironment: PTInstantiationError.Code { get }
    * @availability iOS 16.0+
    */
-  static get missingPushServerEnvironment(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_6be9a005889899ab", 214683125870893, undefined, []); }
+  static get missingPushServerEnvironment(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_c1f28409f8601238", 214683125870893, undefined, []); }
   /**
    * static var instantiationAlreadyInProgress: PTInstantiationError.Code { get }
    * @availability iOS 16.0+
    */
-  static get instantiationAlreadyInProgress(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_6be9a005889899ab", 2778551245979998, undefined, []); }
+  static get instantiationAlreadyInProgress(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_c1f28409f8601238", 2778551245979998, undefined, []); }
   /**
    * static var unknown: PTInstantiationError.Code { get }
    * @availability iOS 16.0+
    */
-  static get unknown(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_6be9a005889899ab", 4263542458128709, undefined, []); }
+  static get unknown(): PTInstantiationError_Code { return callSDK<PTInstantiationError_Code>("PushToTalk_c1f28409f8601238", 4263542458128709, undefined, []); }
   declare readonly $type: { "s:SC20PTInstantiationErrorLeV": true };
 }
 
@@ -345,7 +345,7 @@ export const PTInstantiationError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PTInstantiationError_Code) | null { return callSDK<(PTInstantiationError_Code) | null>("PushToTalk_6be9a005889899ab", 301097150689765, undefined, [rawValue]); }
+  init(rawValue: number): (PTInstantiationError_Code) | null { return callSDK<(PTInstantiationError_Code) | null>("PushToTalk_c1f28409f8601238", 301097150689765, undefined, [rawValue]); }
 };
 
 /**
@@ -357,17 +357,17 @@ export class PTParticipant extends SDKHandle {
    * init(name: String, image: UIImage?)
    * @availability iOS 16.0+
    */
-  static init(name: string, image?: (_UIKit_UIImage) | null): PTParticipant { return callSDK<PTParticipant>("PushToTalk_6be9a005889899ab", 2335416851635657, undefined, [name, image]); }
+  static init(name: string, image?: (_UIKit_UIImage) | null): PTParticipant { return callSDK<PTParticipant>("PushToTalk_c1f28409f8601238", 2335416851635657, undefined, [name, image]); }
   /**
    * @NSCopying var image: UIImage? { get }
    * @availability iOS 16.0+
    */
-  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("PushToTalk_6be9a005889899ab", 979946401007985, this, []); }
+  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("PushToTalk_c1f28409f8601238", 979946401007985, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 16.0+
    */
-  get name(): string { return callSDK<string>("PushToTalk_6be9a005889899ab", 2211728157310057, this, []); }
+  get name(): string { return callSDK<string>("PushToTalk_c1f28409f8601238", 2211728157310057, this, []); }
   declare readonly $type: { "c:objc(cs)PTParticipant": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "image": true; "name": true };
 }
@@ -381,12 +381,12 @@ export class PTPushResult extends SDKHandle {
    * class func activeRemoteParticipant(_ participant: PTParticipant) -> PTPushResult
    * @availability iOS 16.0+
    */
-  static activeRemoteParticipant(participant: PTParticipant): PTPushResult { return callSDK<PTPushResult>("PushToTalk_6be9a005889899ab", 2931970924547434, undefined, [participant]); }
+  static activeRemoteParticipant(participant: PTParticipant): PTPushResult { return callSDK<PTPushResult>("PushToTalk_c1f28409f8601238", 2931970924547434, undefined, [participant]); }
   /**
    * class var leaveChannel: PTPushResult { get }
    * @availability iOS 16.0+
    */
-  static get leaveChannel(): PTPushResult { return callSDK<PTPushResult>("PushToTalk_6be9a005889899ab", 868915866512888, undefined, []); }
+  static get leaveChannel(): PTPushResult { return callSDK<PTPushResult>("PushToTalk_c1f28409f8601238", 868915866512888, undefined, []); }
   declare readonly $type: { "c:objc(cs)PTPushResult": true; "c:objc(cs)NSObject": true };
 }
 
@@ -401,7 +401,7 @@ export const PTServiceStatus = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PTServiceStatus) | null { return callSDK<(PTServiceStatus) | null>("PushToTalk_6be9a005889899ab", 1385369357772177, undefined, [rawValue]); }
+  init(rawValue: number): (PTServiceStatus) | null { return callSDK<(PTServiceStatus) | null>("PushToTalk_c1f28409f8601238", 1385369357772177, undefined, [rawValue]); }
 };
 
 /**
@@ -415,26 +415,26 @@ export const PTTransmissionMode = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PTTransmissionMode) | null { return callSDK<(PTTransmissionMode) | null>("PushToTalk_6be9a005889899ab", 1571039514383011, undefined, [rawValue]); }
+  init(rawValue: number): (PTTransmissionMode) | null { return callSDK<(PTTransmissionMode) | null>("PushToTalk_c1f28409f8601238", 1571039514383011, undefined, [rawValue]); }
 };
 
 /**
  * let PTChannelErrorDomain: String
  * @availability iOS 16.0+
  */
-export const PTChannelErrorDomain: string = callSDK<string>("PushToTalk_6be9a005889899ab", 1848865635100598, undefined, []);
+export const PTChannelErrorDomain: string = callSDK<string>("PushToTalk_c1f28409f8601238", 1848865635100598, undefined, []);
 
 /**
  * let PTInstantiationErrorDomain: String
  * @availability iOS 16.0+
  */
-export const PTInstantiationErrorDomain: string = callSDK<string>("PushToTalk_6be9a005889899ab", 1150809641719201, undefined, []);
+export const PTInstantiationErrorDomain: string = callSDK<string>("PushToTalk_c1f28409f8601238", 1150809641719201, undefined, []);
 
-registerSDKClass("PTChannelDescriptor", PTChannelDescriptor, { module: "PushToTalk_6be9a005889899ab", properties: {"image":3709440899709058,"name":490016194503431} });
-registerSDKClass("PushToTalk.PTChannelError", PTChannelError, { module: "PushToTalk_6be9a005889899ab", properties: {} });
-registerSDKClass("PTChannelManager", PTChannelManager, { module: "PushToTalk_6be9a005889899ab", properties: {"activeChannelUUID":185715490370042}, methods: {"leaveChannel":{"id":3422664446753109},"requestBeginTransmitting":{"id":1820230573144449},"requestJoinChannel":{"id":3780209318679125},"setAccessoryButtonEventsEnabled":{"id":2459074087149433,"hints":[null,null,{"callback":{"out":[]}}]},"setActiveRemoteParticipant":{"id":3649636428131728,"hints":[null,null,{"callback":{"out":[]}}]},"setChannelDescriptor":{"id":2292507950024710,"hints":[null,null,{"callback":{"out":[]}}]},"setServiceStatus":{"id":1723422029888245,"hints":[null,null,{"callback":{"out":[]}}]},"setTransmissionMode":{"id":4378130001528159,"hints":[null,null,{"callback":{"out":[]}}]},"stopTransmitting":{"id":105237456252408}} });
+registerSDKClass("PTChannelDescriptor", PTChannelDescriptor, { module: "PushToTalk_c1f28409f8601238", properties: {"image":3709440899709058,"name":490016194503431} });
+registerSDKClass("PushToTalk.PTChannelError", PTChannelError, { module: "PushToTalk_c1f28409f8601238", properties: {} });
+registerSDKClass("PTChannelManager", PTChannelManager, { module: "PushToTalk_c1f28409f8601238", properties: {"activeChannelUUID":185715490370042}, methods: {"leaveChannel":{"id":3422664446753109},"requestBeginTransmitting":{"id":1820230573144449},"requestJoinChannel":{"id":3780209318679125},"setAccessoryButtonEventsEnabled":{"id":2459074087149433,"hints":[null,null,{"callback":{"out":[]}}]},"setActiveRemoteParticipant":{"id":3649636428131728,"hints":[null,null,{"callback":{"out":[]}}]},"setChannelDescriptor":{"id":2292507950024710,"hints":[null,null,{"callback":{"out":[]}}]},"setServiceStatus":{"id":1723422029888245,"hints":[null,null,{"callback":{"out":[]}}]},"setTransmissionMode":{"id":4378130001528159,"hints":[null,null,{"callback":{"out":[]}}]},"stopTransmitting":{"id":105237456252408}} });
 registerSDKProtocol("c:objc(pl)PTChannelManagerDelegate", {"channelManagerDidJoinChannelReason":"channelManager(_:didJoinChannel:reason:)","channelManagerDidLeaveChannelReason":"channelManager(_:didLeaveChannel:reason:)","channelManagerChannelUUIDDidBeginTransmittingFrom":"channelManager(_:channelUUID:didBeginTransmittingFrom:)","channelManagerChannelUUIDDidEndTransmittingFrom":"channelManager(_:channelUUID:didEndTransmittingFrom:)","channelManagerReceivedEphemeralPushToken":"channelManager(_:receivedEphemeralPushToken:)","incomingPushResultChannelManagerChannelUUIDPushPayload":"incomingPushResult(channelManager:channelUUID:pushPayload:)","channelManagerDidActivate":"channelManager(_:didActivate:)","channelManagerDidDeactivate":"channelManager(_:didDeactivate:)","channelManagerFailedToJoinChannelError":"channelManager(_:failedToJoinChannel:error:)","channelManagerFailedToLeaveChannelError":"channelManager(_:failedToLeaveChannel:error:)","channelManagerFailedToBeginTransmittingInChannelError":"channelManager(_:failedToBeginTransmittingInChannel:error:)","channelManagerFailedToStopTransmittingInChannelError":"channelManager(_:failedToStopTransmittingInChannel:error:)"});
 registerSDKProtocol("c:objc(pl)PTChannelRestorationDelegate", {"channelDescriptorRestoredChannelUUID":"channelDescriptor(restoredChannelUUID:)"});
-registerSDKClass("PushToTalk.PTInstantiationError", PTInstantiationError, { module: "PushToTalk_6be9a005889899ab", properties: {} });
-registerSDKClass("PTParticipant", PTParticipant, { module: "PushToTalk_6be9a005889899ab", properties: {"image":979946401007985,"name":2211728157310057} });
-registerSDKClass("PTPushResult", PTPushResult, { module: "PushToTalk_6be9a005889899ab", properties: {} });
+registerSDKClass("PushToTalk.PTInstantiationError", PTInstantiationError, { module: "PushToTalk_c1f28409f8601238", properties: {} });
+registerSDKClass("PTParticipant", PTParticipant, { module: "PushToTalk_c1f28409f8601238", properties: {"image":979946401007985,"name":2211728157310057} });
+registerSDKClass("PTPushResult", PTPushResult, { module: "PushToTalk_c1f28409f8601238", properties: {} });

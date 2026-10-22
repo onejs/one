@@ -42,48 +42,48 @@ export class ALMXGlyphEntry extends SDKHandle {
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get GlyphIndexOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1808956177790252, this, []); }
-  set GlyphIndexOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2490838475699986, this, [value]); }
+  get GlyphIndexOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1808956177790252, this, []); }
+  set GlyphIndexOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2490838475699986, this, [value]); }
   /**
    * var HorizontalAdvance: Int16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get HorizontalAdvance(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2311377652653869, this, []); }
-  set HorizontalAdvance(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2848969677280965, this, [value]); }
+  get HorizontalAdvance(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2311377652653869, this, []); }
+  set HorizontalAdvance(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2848969677280965, this, [value]); }
   /**
    * var VerticalAdvance: Int16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get VerticalAdvance(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1971428118467692, this, []); }
-  set VerticalAdvance(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3612480007111514, this, [value]); }
+  get VerticalAdvance(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1971428118467692, this, []); }
+  set VerticalAdvance(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3612480007111514, this, [value]); }
   /**
    * var XOffsetToHOrigin: Int16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get XOffsetToHOrigin(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4153847584663937, this, []); }
-  set XOffsetToHOrigin(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3390006167331436, this, [value]); }
+  get XOffsetToHOrigin(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4153847584663937, this, []); }
+  set XOffsetToHOrigin(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3390006167331436, this, [value]); }
   /**
    * var YOffsetToVOrigin: Int16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get YOffsetToVOrigin(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3986960540272990, this, []); }
-  set YOffsetToVOrigin(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4354613353718316, this, [value]); }
+  get YOffsetToVOrigin(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3986960540272990, this, []); }
+  set YOffsetToVOrigin(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4354613353718316, this, [value]); }
   /**
    * init(GlyphIndexOffset: Int16, HorizontalAdvance: Int16, XOffsetToHOrigin: Int16, VerticalAdvance: Int16, YOffsetToVOrigin: Int16)
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  static initGlyphIndexOffsetHorizontalAdvanceXOffsetToHOriginVerticalAdvanceYOffsetToVOrigin(GlyphIndexOffset: number, HorizontalAdvance: number, XOffsetToHOrigin: number, VerticalAdvance: number, YOffsetToVOrigin: number): ALMXGlyphEntry { return callSDK<ALMXGlyphEntry>("CoreText_6be9a005889899ab", 345423017796971, undefined, [GlyphIndexOffset, HorizontalAdvance, XOffsetToHOrigin, VerticalAdvance, YOffsetToVOrigin]); }
+  static initGlyphIndexOffsetHorizontalAdvanceXOffsetToHOriginVerticalAdvanceYOffsetToVOrigin(GlyphIndexOffset: number, HorizontalAdvance: number, XOffsetToHOrigin: number, VerticalAdvance: number, YOffsetToVOrigin: number): ALMXGlyphEntry { return callSDK<ALMXGlyphEntry>("CoreText_c1f28409f8601238", 345423017796971, undefined, [GlyphIndexOffset, HorizontalAdvance, XOffsetToHOrigin, VerticalAdvance, YOffsetToVOrigin]); }
   /**
    * init()
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  static init(): ALMXGlyphEntry { return callSDK<ALMXGlyphEntry>("CoreText_6be9a005889899ab", 2849218064333061, undefined, []); }
+  static init(): ALMXGlyphEntry { return callSDK<ALMXGlyphEntry>("CoreText_c1f28409f8601238", 2849218064333061, undefined, []); }
   declare readonly $type: { "c:@S@ALMXGlyphEntry": true };
 }
 
@@ -98,100 +98,100 @@ export class ALMXHeader extends SDKHandle {
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get FirstGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3383469842333493, this, []); }
-  set FirstGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1190813590633937, this, [value]); }
+  get FirstGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3383469842333493, this, []); }
+  set FirstGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1190813590633937, this, [value]); }
   /**
    * var Flags: UInt16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get Flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4351319825169862, this, []); }
-  set Flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4166861264512297, this, [value]); }
+  get Flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4351319825169862, this, []); }
+  set Flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4166861264512297, this, [value]); }
   /**
    * var LastGlyph: UInt16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get LastGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2613885776280539, this, []); }
-  set LastGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2429019979253943, this, [value]); }
+  get LastGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2613885776280539, this, []); }
+  set LastGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2429019979253943, this, [value]); }
   /**
    * var NMasters: UInt16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get NMasters(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3834174776831035, this, []); }
-  set NMasters(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2998216662676604, this, [value]); }
+  get NMasters(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3834174776831035, this, []); }
+  set NMasters(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2998216662676604, this, [value]); }
   /**
    * var Version: Fixed
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get Version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3496817371566518, this, []); }
-  set Version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1588540953840794, this, [value]); }
+  get Version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3496817371566518, this, []); }
+  set Version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1588540953840794, this, [value]); }
   /**
    * var lookup: SFNTLookupTable
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 3648136783716649, this, []); }
-  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_6be9a005889899ab", 981410808915994, this, [value]); }
+  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 3648136783716649, this, []); }
+  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_c1f28409f8601238", 981410808915994, this, [value]); }
   /**
    * init()
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  static init(): ALMXHeader { return callSDK<ALMXHeader>("CoreText_6be9a005889899ab", 2683693000051743, undefined, []); }
+  static init(): ALMXHeader { return callSDK<ALMXHeader>("CoreText_c1f28409f8601238", 2683693000051743, undefined, []); }
   declare readonly $type: { "c:@S@ALMXHeader": true };
 }
 
 /** struct AnchorPoint */
 export class AnchorPoint extends SDKHandle {
   /** var x: Int16 */
-  get x(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4018903725309414, this, []); }
-  set x(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 376152184450378, this, [value]); }
+  get x(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4018903725309414, this, []); }
+  set x(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 376152184450378, this, [value]); }
   /** var y: Int16 */
-  get y(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1002711974505250, this, []); }
-  set y(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1622123905944417, this, [value]); }
+  get y(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1002711974505250, this, []); }
+  set y(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1622123905944417, this, [value]); }
   /** init(x: Int16, y: Int16) */
-  static initXY(x: number, y: number): AnchorPoint { return callSDK<AnchorPoint>("CoreText_6be9a005889899ab", 564141406441753, undefined, [x, y]); }
+  static initXY(x: number, y: number): AnchorPoint { return callSDK<AnchorPoint>("CoreText_c1f28409f8601238", 564141406441753, undefined, [x, y]); }
   /** init() */
-  static init(): AnchorPoint { return callSDK<AnchorPoint>("CoreText_6be9a005889899ab", 483420186671202, undefined, []); }
+  static init(): AnchorPoint { return callSDK<AnchorPoint>("CoreText_c1f28409f8601238", 483420186671202, undefined, []); }
   declare readonly $type: { "c:@S@AnchorPoint": true };
 }
 
 /** struct AnchorPointTable */
 export class AnchorPointTable extends SDKHandle {
   /** var nPoints: UInt32 */
-  get nPoints(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2996396400948577, this, []); }
-  set nPoints(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1131139373848376, this, [value]); }
+  get nPoints(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2996396400948577, this, []); }
+  set nPoints(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1131139373848376, this, [value]); }
   /** var points: AnchorPoint */
-  get points(): AnchorPoint { return callSDK<AnchorPoint>("CoreText_6be9a005889899ab", 2453379135220842, this, []); }
-  set points(value: AnchorPoint) { callSDK<void>("CoreText_6be9a005889899ab", 118452101689576, this, [value]); }
+  get points(): AnchorPoint { return callSDK<AnchorPoint>("CoreText_c1f28409f8601238", 2453379135220842, this, []); }
+  set points(value: AnchorPoint) { callSDK<void>("CoreText_c1f28409f8601238", 118452101689576, this, [value]); }
   /** init(nPoints: UInt32, points: AnchorPoint) */
-  static initNPointsPoints(nPoints: number, points: AnchorPoint): AnchorPointTable { return callSDK<AnchorPointTable>("CoreText_6be9a005889899ab", 4116568634459440, undefined, [nPoints, points]); }
+  static initNPointsPoints(nPoints: number, points: AnchorPoint): AnchorPointTable { return callSDK<AnchorPointTable>("CoreText_c1f28409f8601238", 4116568634459440, undefined, [nPoints, points]); }
   /** init() */
-  static init(): AnchorPointTable { return callSDK<AnchorPointTable>("CoreText_6be9a005889899ab", 3970478454857306, undefined, []); }
+  static init(): AnchorPointTable { return callSDK<AnchorPointTable>("CoreText_c1f28409f8601238", 3970478454857306, undefined, []); }
   declare readonly $type: { "c:@S@AnchorPointTable": true };
 }
 
 /** struct AnkrTable */
 export class AnkrTable extends SDKHandle {
   /** var anchorPointTableOffset: UInt32 */
-  get anchorPointTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 678334926129467, this, []); }
-  set anchorPointTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2963604015056206, this, [value]); }
+  get anchorPointTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 678334926129467, this, []); }
+  set anchorPointTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2963604015056206, this, [value]); }
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3578674983088483, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3014478126896533, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3578674983088483, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3014478126896533, this, [value]); }
   /** var lookupTableOffset: UInt32 */
-  get lookupTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2217749068409392, this, []); }
-  set lookupTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1172308250594246, this, [value]); }
+  get lookupTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2217749068409392, this, []); }
+  set lookupTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1172308250594246, this, [value]); }
   /** var version: UInt16 */
-  get version(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2549201104999153, this, []); }
-  set version(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4344094057214816, this, [value]); }
+  get version(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2549201104999153, this, []); }
+  set version(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4344094057214816, this, [value]); }
   /** init(version: UInt16, flags: UInt16, lookupTableOffset: UInt32, anchorPointTableOffset: UInt32) */
-  static initVersionFlagsLookupTableOffsetAnchorPointTableOffset(version: number, flags: number, lookupTableOffset: number, anchorPointTableOffset: number): AnkrTable { return callSDK<AnkrTable>("CoreText_6be9a005889899ab", 2695254320742369, undefined, [version, flags, lookupTableOffset, anchorPointTableOffset]); }
+  static initVersionFlagsLookupTableOffsetAnchorPointTableOffset(version: number, flags: number, lookupTableOffset: number, anchorPointTableOffset: number): AnkrTable { return callSDK<AnkrTable>("CoreText_c1f28409f8601238", 2695254320742369, undefined, [version, flags, lookupTableOffset, anchorPointTableOffset]); }
   /** init() */
-  static init(): AnkrTable { return callSDK<AnkrTable>("CoreText_6be9a005889899ab", 2165251555059660, undefined, []); }
+  static init(): AnkrTable { return callSDK<AnkrTable>("CoreText_c1f28409f8601238", 2165251555059660, undefined, []); }
   declare readonly $type: { "c:@S@AnkrTable": true };
 }
 
@@ -271,106 +271,106 @@ export type BslnBaselineRecord = [SDKHandle, SDKHandle, SDKHandle, SDKHandle, SD
 /** struct BslnFormat0Part */
 export class BslnFormat0Part extends SDKHandle {
   /** var deltas: (Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16) */
-  get deltas(): $SDK2 { return callSDK<$SDK2>("CoreText_6be9a005889899ab", 471418890987111, this, []); }
-  set deltas(value: $SDK2) { callSDK<void>("CoreText_6be9a005889899ab", 2677245331468625, this, [value]); }
+  get deltas(): $SDK2 { return callSDK<$SDK2>("CoreText_c1f28409f8601238", 471418890987111, this, []); }
+  set deltas(value: $SDK2) { callSDK<void>("CoreText_c1f28409f8601238", 2677245331468625, this, [value]); }
   /** init(deltas: (Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16)) */
-  static initDeltas(deltas: $SDK2): BslnFormat0Part { return callSDK<BslnFormat0Part>("CoreText_6be9a005889899ab", 572316871508116, undefined, [deltas]); }
+  static initDeltas(deltas: $SDK2): BslnFormat0Part { return callSDK<BslnFormat0Part>("CoreText_c1f28409f8601238", 572316871508116, undefined, [deltas]); }
   /** init() */
-  static init(): BslnFormat0Part { return callSDK<BslnFormat0Part>("CoreText_6be9a005889899ab", 4363353566093157, undefined, []); }
+  static init(): BslnFormat0Part { return callSDK<BslnFormat0Part>("CoreText_c1f28409f8601238", 4363353566093157, undefined, []); }
   declare readonly $type: { "c:@S@BslnFormat0Part": true };
 }
 
 /** struct BslnFormat1Part */
 export class BslnFormat1Part extends SDKHandle {
   /** var deltas: (Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16) */
-  get deltas(): $SDK2 { return callSDK<$SDK2>("CoreText_6be9a005889899ab", 1349315106913021, this, []); }
-  set deltas(value: $SDK2) { callSDK<void>("CoreText_6be9a005889899ab", 42320008344872, this, [value]); }
+  get deltas(): $SDK2 { return callSDK<$SDK2>("CoreText_c1f28409f8601238", 1349315106913021, this, []); }
+  set deltas(value: $SDK2) { callSDK<void>("CoreText_c1f28409f8601238", 42320008344872, this, [value]); }
   /** var mappingData: SFNTLookupTable */
-  get mappingData(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 4002324208111773, this, []); }
-  set mappingData(value: SFNTLookupTable) { callSDK<void>("CoreText_6be9a005889899ab", 3748155541824544, this, [value]); }
+  get mappingData(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 4002324208111773, this, []); }
+  set mappingData(value: SFNTLookupTable) { callSDK<void>("CoreText_c1f28409f8601238", 3748155541824544, this, [value]); }
   /** init(deltas: (Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16), mappingData: SFNTLookupTable) */
-  static initDeltasMappingData(deltas: $SDK2, mappingData: SFNTLookupTable): BslnFormat1Part { return callSDK<BslnFormat1Part>("CoreText_6be9a005889899ab", 220527709705237, undefined, [deltas, mappingData]); }
+  static initDeltasMappingData(deltas: $SDK2, mappingData: SFNTLookupTable): BslnFormat1Part { return callSDK<BslnFormat1Part>("CoreText_c1f28409f8601238", 220527709705237, undefined, [deltas, mappingData]); }
   /** init() */
-  static init(): BslnFormat1Part { return callSDK<BslnFormat1Part>("CoreText_6be9a005889899ab", 2904526651408405, undefined, []); }
+  static init(): BslnFormat1Part { return callSDK<BslnFormat1Part>("CoreText_c1f28409f8601238", 2904526651408405, undefined, []); }
   declare readonly $type: { "c:@S@BslnFormat1Part": true };
 }
 
 /** struct BslnFormat2Part */
 export class BslnFormat2Part extends SDKHandle {
   /** var ctlPoints: (Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16) */
-  get ctlPoints(): $SDK2 { return callSDK<$SDK2>("CoreText_6be9a005889899ab", 3409218197787328, this, []); }
-  set ctlPoints(value: $SDK2) { callSDK<void>("CoreText_6be9a005889899ab", 2725031530070867, this, [value]); }
+  get ctlPoints(): $SDK2 { return callSDK<$SDK2>("CoreText_c1f28409f8601238", 3409218197787328, this, []); }
+  set ctlPoints(value: $SDK2) { callSDK<void>("CoreText_c1f28409f8601238", 2725031530070867, this, [value]); }
   /** var stdGlyph: UInt16 */
-  get stdGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 786007495322756, this, []); }
-  set stdGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4008323267884892, this, [value]); }
+  get stdGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 786007495322756, this, []); }
+  set stdGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4008323267884892, this, [value]); }
   /** init(stdGlyph: UInt16, ctlPoints: (Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16)) */
-  static initStdGlyphCtlPoints(stdGlyph: number, ctlPoints: $SDK2): BslnFormat2Part { return callSDK<BslnFormat2Part>("CoreText_6be9a005889899ab", 3001687203448526, undefined, [stdGlyph, ctlPoints]); }
+  static initStdGlyphCtlPoints(stdGlyph: number, ctlPoints: $SDK2): BslnFormat2Part { return callSDK<BslnFormat2Part>("CoreText_c1f28409f8601238", 3001687203448526, undefined, [stdGlyph, ctlPoints]); }
   /** init() */
-  static init(): BslnFormat2Part { return callSDK<BslnFormat2Part>("CoreText_6be9a005889899ab", 501283182033337, undefined, []); }
+  static init(): BslnFormat2Part { return callSDK<BslnFormat2Part>("CoreText_c1f28409f8601238", 501283182033337, undefined, []); }
   declare readonly $type: { "c:@S@BslnFormat2Part": true };
 }
 
 /** struct BslnFormat3Part */
 export class BslnFormat3Part extends SDKHandle {
   /** var ctlPoints: (Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16) */
-  get ctlPoints(): $SDK2 { return callSDK<$SDK2>("CoreText_6be9a005889899ab", 4347676366351971, this, []); }
-  set ctlPoints(value: $SDK2) { callSDK<void>("CoreText_6be9a005889899ab", 1151190470209013, this, [value]); }
+  get ctlPoints(): $SDK2 { return callSDK<$SDK2>("CoreText_c1f28409f8601238", 4347676366351971, this, []); }
+  set ctlPoints(value: $SDK2) { callSDK<void>("CoreText_c1f28409f8601238", 1151190470209013, this, [value]); }
   /** var mappingData: SFNTLookupTable */
-  get mappingData(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 1591376997502209, this, []); }
-  set mappingData(value: SFNTLookupTable) { callSDK<void>("CoreText_6be9a005889899ab", 832247738467051, this, [value]); }
+  get mappingData(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 1591376997502209, this, []); }
+  set mappingData(value: SFNTLookupTable) { callSDK<void>("CoreText_c1f28409f8601238", 832247738467051, this, [value]); }
   /** var stdGlyph: UInt16 */
-  get stdGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1603772685309492, this, []); }
-  set stdGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1219175903854333, this, [value]); }
+  get stdGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1603772685309492, this, []); }
+  set stdGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1219175903854333, this, [value]); }
   /** init(stdGlyph: UInt16, ctlPoints: (Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16, Int16), mappingData: SFNTLookupTable) */
-  static initStdGlyphCtlPointsMappingData(stdGlyph: number, ctlPoints: $SDK2, mappingData: SFNTLookupTable): BslnFormat3Part { return callSDK<BslnFormat3Part>("CoreText_6be9a005889899ab", 1440297726563994, undefined, [stdGlyph, ctlPoints, mappingData]); }
+  static initStdGlyphCtlPointsMappingData(stdGlyph: number, ctlPoints: $SDK2, mappingData: SFNTLookupTable): BslnFormat3Part { return callSDK<BslnFormat3Part>("CoreText_c1f28409f8601238", 1440297726563994, undefined, [stdGlyph, ctlPoints, mappingData]); }
   /** init() */
-  static init(): BslnFormat3Part { return callSDK<BslnFormat3Part>("CoreText_6be9a005889899ab", 3077485560168188, undefined, []); }
+  static init(): BslnFormat3Part { return callSDK<BslnFormat3Part>("CoreText_c1f28409f8601238", 3077485560168188, undefined, []); }
   declare readonly $type: { "c:@S@BslnFormat3Part": true };
 }
 
 /** struct BslnFormatUnion */
 export class BslnFormatUnion extends SDKHandle {
   /** var fmt0Part: BslnFormat0Part { get set } */
-  get fmt0Part(): BslnFormat0Part { return callSDK<BslnFormat0Part>("CoreText_6be9a005889899ab", 130857809192552, this, []); }
-  set fmt0Part(value: BslnFormat0Part) { callSDK<void>("CoreText_6be9a005889899ab", 4340573485700904, this, [value]); }
+  get fmt0Part(): BslnFormat0Part { return callSDK<BslnFormat0Part>("CoreText_c1f28409f8601238", 130857809192552, this, []); }
+  set fmt0Part(value: BslnFormat0Part) { callSDK<void>("CoreText_c1f28409f8601238", 4340573485700904, this, [value]); }
   /** var fmt1Part: BslnFormat1Part { get set } */
-  get fmt1Part(): BslnFormat1Part { return callSDK<BslnFormat1Part>("CoreText_6be9a005889899ab", 2237873011071282, this, []); }
-  set fmt1Part(value: BslnFormat1Part) { callSDK<void>("CoreText_6be9a005889899ab", 3699818574464820, this, [value]); }
+  get fmt1Part(): BslnFormat1Part { return callSDK<BslnFormat1Part>("CoreText_c1f28409f8601238", 2237873011071282, this, []); }
+  set fmt1Part(value: BslnFormat1Part) { callSDK<void>("CoreText_c1f28409f8601238", 3699818574464820, this, [value]); }
   /** var fmt2Part: BslnFormat2Part { get set } */
-  get fmt2Part(): BslnFormat2Part { return callSDK<BslnFormat2Part>("CoreText_6be9a005889899ab", 2900473499936637, this, []); }
-  set fmt2Part(value: BslnFormat2Part) { callSDK<void>("CoreText_6be9a005889899ab", 1960182814065756, this, [value]); }
+  get fmt2Part(): BslnFormat2Part { return callSDK<BslnFormat2Part>("CoreText_c1f28409f8601238", 2900473499936637, this, []); }
+  set fmt2Part(value: BslnFormat2Part) { callSDK<void>("CoreText_c1f28409f8601238", 1960182814065756, this, [value]); }
   /** var fmt3Part: BslnFormat3Part { get set } */
-  get fmt3Part(): BslnFormat3Part { return callSDK<BslnFormat3Part>("CoreText_6be9a005889899ab", 1693634476154849, this, []); }
-  set fmt3Part(value: BslnFormat3Part) { callSDK<void>("CoreText_6be9a005889899ab", 2779641044929514, this, [value]); }
+  get fmt3Part(): BslnFormat3Part { return callSDK<BslnFormat3Part>("CoreText_c1f28409f8601238", 1693634476154849, this, []); }
+  set fmt3Part(value: BslnFormat3Part) { callSDK<void>("CoreText_c1f28409f8601238", 2779641044929514, this, [value]); }
   /** init(fmt0Part: BslnFormat0Part) */
-  static initFmt0Part(fmt0Part: BslnFormat0Part): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_6be9a005889899ab", 2474812562045042, undefined, [fmt0Part]); }
+  static initFmt0Part(fmt0Part: BslnFormat0Part): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_c1f28409f8601238", 2474812562045042, undefined, [fmt0Part]); }
   /** init(fmt1Part: BslnFormat1Part) */
-  static initFmt1Part(fmt1Part: BslnFormat1Part): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_6be9a005889899ab", 1989428967119899, undefined, [fmt1Part]); }
+  static initFmt1Part(fmt1Part: BslnFormat1Part): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_c1f28409f8601238", 1989428967119899, undefined, [fmt1Part]); }
   /** init(fmt2Part: BslnFormat2Part) */
-  static initFmt2Part(fmt2Part: BslnFormat2Part): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_6be9a005889899ab", 3819324825527070, undefined, [fmt2Part]); }
+  static initFmt2Part(fmt2Part: BslnFormat2Part): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_c1f28409f8601238", 3819324825527070, undefined, [fmt2Part]); }
   /** init(fmt3Part: BslnFormat3Part) */
-  static initFmt3Part(fmt3Part: BslnFormat3Part): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_6be9a005889899ab", 164833224327521, undefined, [fmt3Part]); }
+  static initFmt3Part(fmt3Part: BslnFormat3Part): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_c1f28409f8601238", 164833224327521, undefined, [fmt3Part]); }
   /** init() */
-  static init(): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_6be9a005889899ab", 274428566247718, undefined, []); }
+  static init(): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_c1f28409f8601238", 274428566247718, undefined, []); }
   declare readonly $type: { "c:@U@BslnFormatUnion": true };
 }
 
 /** struct BslnTable */
 export class BslnTable extends SDKHandle {
   /** var defaultBaseline: UInt16 */
-  get defaultBaseline(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2020665934572528, this, []); }
-  set defaultBaseline(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1729474654660598, this, [value]); }
+  get defaultBaseline(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2020665934572528, this, []); }
+  set defaultBaseline(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1729474654660598, this, [value]); }
   /** var format: BslnTableFormat */
-  get format(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3646399048160909, this, []); }
-  set format(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3908135797704362, this, [value]); }
+  get format(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3646399048160909, this, []); }
+  set format(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3908135797704362, this, [value]); }
   /** var parts: BslnFormatUnion */
-  get parts(): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_6be9a005889899ab", 3485208642677084, this, []); }
-  set parts(value: BslnFormatUnion) { callSDK<void>("CoreText_6be9a005889899ab", 3896966689512110, this, [value]); }
+  get parts(): BslnFormatUnion { return callSDK<BslnFormatUnion>("CoreText_c1f28409f8601238", 3485208642677084, this, []); }
+  set parts(value: BslnFormatUnion) { callSDK<void>("CoreText_c1f28409f8601238", 3896966689512110, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 4096081669735162, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1314292482848367, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 4096081669735162, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1314292482848367, this, [value]); }
   /** init() */
-  static init(): BslnTable { return callSDK<BslnTable>("CoreText_6be9a005889899ab", 1381751301538299, undefined, []); }
+  static init(): BslnTable { return callSDK<BslnTable>("CoreText_c1f28409f8601238", 1381751301538299, undefined, []); }
   declare readonly $type: { "c:@S@BslnTable": true };
 }
 
@@ -398,59 +398,59 @@ export const CTCharacterCollection = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTAdobeCNS1CharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_6be9a005889899ab", 80517551172331, undefined, []); },
+  get kCTAdobeCNS1CharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_c1f28409f8601238", 80517551172331, undefined, []); },
   /**
    * static var kCTAdobeGB1CharacterCollection: CTCharacterCollection { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTAdobeGB1CharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_6be9a005889899ab", 4292841148911967, undefined, []); },
+  get kCTAdobeGB1CharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_c1f28409f8601238", 4292841148911967, undefined, []); },
   /**
    * static var kCTAdobeJapan1CharacterCollection: CTCharacterCollection { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTAdobeJapan1CharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_6be9a005889899ab", 3341120795743049, undefined, []); },
+  get kCTAdobeJapan1CharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_c1f28409f8601238", 3341120795743049, undefined, []); },
   /**
    * static var kCTAdobeJapan2CharacterCollection: CTCharacterCollection { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTAdobeJapan2CharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_6be9a005889899ab", 598867541535336, undefined, []); },
+  get kCTAdobeJapan2CharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_c1f28409f8601238", 598867541535336, undefined, []); },
   /**
    * static var kCTAdobeKorea1CharacterCollection: CTCharacterCollection { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTAdobeKorea1CharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_6be9a005889899ab", 4415401073779847, undefined, []); },
+  get kCTAdobeKorea1CharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_c1f28409f8601238", 4415401073779847, undefined, []); },
   /**
    * static var kCTIdentityMappingCharacterCollection: CTCharacterCollection { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTIdentityMappingCharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_6be9a005889899ab", 1213563523712206, undefined, []); },
+  get kCTIdentityMappingCharacterCollection(): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_c1f28409f8601238", 1213563523712206, undefined, []); },
   /** init?(rawValue: UInt16) */
-  init(rawValue: number): (CTCharacterCollection) | null { return callSDK<(CTCharacterCollection) | null>("CoreText_6be9a005889899ab", 2811910245584584, undefined, [rawValue]); }
+  init(rawValue: number): (CTCharacterCollection) | null { return callSDK<(CTCharacterCollection) | null>("CoreText_c1f28409f8601238", 2811910245584584, undefined, [rawValue]); }
 };
 
 /** class CTFont */
 export class CTFont extends SDKHandle {
   /** init(font currentFont: CTFont, string: CFString, range: CFRange) */
-  static initFontStringRange(currentFont: CTFont, string: _CoreFoundation_CFString, range: _CoreFoundation_CFRange): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 1661112014775777, undefined, [currentFont, string, range]); }
+  static initFontStringRange(currentFont: CTFont, string: _CoreFoundation_CFString, range: _CoreFoundation_CFRange): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 1661112014775777, undefined, [currentFont, string, range]); }
   /** init(font currentFont: CTFont, string: CFString, range: CFRange, language: CFString?) */
-  static initFontStringRangeLanguage(currentFont: CTFont, string: _CoreFoundation_CFString, range: _CoreFoundation_CFRange, language?: $SDK6): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 3212454819436960, undefined, [currentFont, string, range, language]); }
+  static initFontStringRangeLanguage(currentFont: CTFont, string: _CoreFoundation_CFString, range: _CoreFoundation_CFRange, language?: $SDK6): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 3212454819436960, undefined, [currentFont, string, range, language]); }
   /** init(_ uiType: CTFontUIFontType, size: CGFloat) */
-  static initSize(uiType: CTFontUIFontType, size: number): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 1001026590348353, undefined, [uiType, size]); }
+  static initSize(uiType: CTFontUIFontType, size: number): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 1001026590348353, undefined, [uiType, size]); }
   /** init(_ uiType: CTFontUIFontType, size: CGFloat, language: CFString?) */
-  static initSizeLanguage(uiType: CTFontUIFontType, size: number, language?: $SDK6): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 3504492247931850, undefined, [uiType, size, language]); }
+  static initSizeLanguage(uiType: CTFontUIFontType, size: number, language?: $SDK6): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 3504492247931850, undefined, [uiType, size, language]); }
   /** init(_ descriptor: CTFontDescriptor, size: CGFloat) */
-  static initSize18249(descriptor: CTFontDescriptor, size: number): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 2082006160701012, undefined, [descriptor, size]); }
+  static initSize18249(descriptor: CTFontDescriptor, size: number): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 2082006160701012, undefined, [descriptor, size]); }
   /** init(_ descriptor: CTFontDescriptor, transform matrix: CGAffineTransform) */
-  static initTransform(descriptor: CTFontDescriptor, matrix: _CoreFoundation_CGAffineTransform): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 2261746966232322, undefined, [descriptor, matrix]); }
+  static initTransform(descriptor: CTFontDescriptor, matrix: _CoreFoundation_CGAffineTransform): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 2261746966232322, undefined, [descriptor, matrix]); }
   /** init(_ name: CFString, size: CGFloat) */
-  static initSize91390(name: _CoreFoundation_CFString, size: number): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 3202997741288591, undefined, [name, size]); }
+  static initSize91390(name: _CoreFoundation_CFString, size: number): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 3202997741288591, undefined, [name, size]); }
   /** init(_ name: CFString, transform matrix: CGAffineTransform) */
-  static initTransform95962(name: _CoreFoundation_CFString, matrix: _CoreFoundation_CGAffineTransform): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 783271909267078, undefined, [name, matrix]); }
+  static initTransform95962(name: _CoreFoundation_CFString, matrix: _CoreFoundation_CGAffineTransform): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 783271909267078, undefined, [name, matrix]); }
   declare readonly $type: { "c:@T@CTFontRef": true };
 }
 
@@ -470,17 +470,17 @@ export const CTFontCollectionCopyOptions = {
    * static var standardSort: CTFontCollectionCopyOptions { get }
    * @availability iOS 12.0+
    */
-  get standardSort(): CTFontCollectionCopyOptions { return callSDK<CTFontCollectionCopyOptions>("CoreText_6be9a005889899ab", 2219169140783426, undefined, []); },
+  get standardSort(): CTFontCollectionCopyOptions { return callSDK<CTFontCollectionCopyOptions>("CoreText_c1f28409f8601238", 2219169140783426, undefined, []); },
   /**
    * static var unique: CTFontCollectionCopyOptions { get }
    * @availability iOS 12.0+
    */
-  get unique(): CTFontCollectionCopyOptions { return callSDK<CTFontCollectionCopyOptions>("CoreText_6be9a005889899ab", 925782730673705, undefined, []); },
+  get unique(): CTFontCollectionCopyOptions { return callSDK<CTFontCollectionCopyOptions>("CoreText_c1f28409f8601238", 925782730673705, undefined, []); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): CTFontCollectionCopyOptions { return callSDK<CTFontCollectionCopyOptions>("CoreText_6be9a005889899ab", 2914111469681112, undefined, [rawValue]); }
+  init(rawValue: number): CTFontCollectionCopyOptions { return callSDK<CTFontCollectionCopyOptions>("CoreText_c1f28409f8601238", 2914111469681112, undefined, [rawValue]); }
 };
 
 /** typealias CTFontCollectionSortDescriptorsCallback = (CTFontDescriptor, CTFontDescriptor, UnsafeMutableRawPointer) -> CFComparisonResult */
@@ -496,7 +496,7 @@ export type CTFontDescriptorMatchingState = "didBegin" | "didFinish" | "willBegi
 
 export const CTFontDescriptorMatchingState = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CTFontDescriptorMatchingState) | null { return callSDK<(CTFontDescriptorMatchingState) | null>("CoreText_6be9a005889899ab", 585368353833915, undefined, [rawValue]); }
+  init(rawValue: number): (CTFontDescriptorMatchingState) | null { return callSDK<(CTFontDescriptorMatchingState) | null>("CoreText_c1f28409f8601238", 585368353833915, undefined, [rawValue]); }
 };
 
 /** typealias CTFontDescriptorProgressHandler = (CTFontDescriptorMatchingState, CFDictionary) -> Bool */
@@ -507,7 +507,7 @@ export type CTFontFormat = "unrecognized" | "openTypePostScript" | "openTypeTrue
 
 export const CTFontFormat = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CTFontFormat) | null { return callSDK<(CTFontFormat) | null>("CoreText_6be9a005889899ab", 3774828440400829, undefined, [rawValue]); }
+  init(rawValue: number): (CTFontFormat) | null { return callSDK<(CTFontFormat) | null>("CoreText_c1f28409f8601238", 3774828440400829, undefined, [rawValue]); }
 };
 
 /** enum CTFontManagerAutoActivationSetting */
@@ -515,7 +515,7 @@ export type CTFontManagerAutoActivationSetting = "default" | "disabled" | "enabl
 
 export const CTFontManagerAutoActivationSetting = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CTFontManagerAutoActivationSetting) | null { return callSDK<(CTFontManagerAutoActivationSetting) | null>("CoreText_6be9a005889899ab", 1832429808575670, undefined, [rawValue]); }
+  init(rawValue: number): (CTFontManagerAutoActivationSetting) | null { return callSDK<(CTFontManagerAutoActivationSetting) | null>("CoreText_c1f28409f8601238", 1832429808575670, undefined, [rawValue]); }
 };
 
 /** enum CTFontManagerError */
@@ -523,7 +523,7 @@ export type CTFontManagerError = "fileNotFound" | "insufficientPermissions" | "u
 
 export const CTFontManagerError = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CTFontManagerError) | null { return callSDK<(CTFontManagerError) | null>("CoreText_6be9a005889899ab", 2694321674629271, undefined, [rawValue]); }
+  init(rawValue: number): (CTFontManagerError) | null { return callSDK<(CTFontManagerError) | null>("CoreText_c1f28409f8601238", 2694321674629271, undefined, [rawValue]); }
 };
 
 /** enum CTFontManagerScope */
@@ -534,9 +534,9 @@ export const CTFontManagerScope = {
    * static var user: CTFontManagerScope { get }
    * @availability iOS 13.0+
    */
-  get user(): CTFontManagerScope { return callSDK<CTFontManagerScope>("CoreText_6be9a005889899ab", 591674963039804, undefined, []); },
+  get user(): CTFontManagerScope { return callSDK<CTFontManagerScope>("CoreText_c1f28409f8601238", 591674963039804, undefined, []); },
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CTFontManagerScope) | null { return callSDK<(CTFontManagerScope) | null>("CoreText_6be9a005889899ab", 3633145835998584, undefined, [rawValue]); }
+  init(rawValue: number): (CTFontManagerScope) | null { return callSDK<(CTFontManagerScope) | null>("CoreText_c1f28409f8601238", 3633145835998584, undefined, [rawValue]); }
 };
 
 /** struct CTFontOptions */
@@ -544,13 +544,13 @@ export type CTFontOptions = Array<"preventAutoActivation" | "preventAutoDownload
 
 export const CTFontOptions = {
   /** static var preferSystemFont: CTFontOptions { get } */
-  get preferSystemFont(): CTFontOptions { return callSDK<CTFontOptions>("CoreText_6be9a005889899ab", 1038408408303670, undefined, []); },
+  get preferSystemFont(): CTFontOptions { return callSDK<CTFontOptions>("CoreText_c1f28409f8601238", 1038408408303670, undefined, []); },
   /** static var preventAutoActivation: CTFontOptions { get } */
-  get preventAutoActivation(): CTFontOptions { return callSDK<CTFontOptions>("CoreText_6be9a005889899ab", 716073628546883, undefined, []); },
+  get preventAutoActivation(): CTFontOptions { return callSDK<CTFontOptions>("CoreText_c1f28409f8601238", 716073628546883, undefined, []); },
   /** static var preventAutoDownload: CTFontOptions { get } */
-  get preventAutoDownload(): CTFontOptions { return callSDK<CTFontOptions>("CoreText_6be9a005889899ab", 2823933268961322, undefined, []); },
+  get preventAutoDownload(): CTFontOptions { return callSDK<CTFontOptions>("CoreText_c1f28409f8601238", 2823933268961322, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CTFontOptions { return callSDK<CTFontOptions>("CoreText_6be9a005889899ab", 1453444733771918, undefined, [rawValue]); }
+  init(rawValue: number): CTFontOptions { return callSDK<CTFontOptions>("CoreText_c1f28409f8601238", 1453444733771918, undefined, [rawValue]); }
 };
 
 /** enum CTFontOrientation */
@@ -562,21 +562,21 @@ export const CTFontOrientation = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontDefaultOrientation(): CTFontOrientation { return callSDK<CTFontOrientation>("CoreText_6be9a005889899ab", 2640289785535363, undefined, []); },
+  get kCTFontDefaultOrientation(): CTFontOrientation { return callSDK<CTFontOrientation>("CoreText_c1f28409f8601238", 2640289785535363, undefined, []); },
   /**
    * static var kCTFontHorizontalOrientation: CTFontOrientation { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontHorizontalOrientation(): CTFontOrientation { return callSDK<CTFontOrientation>("CoreText_6be9a005889899ab", 590703887145847, undefined, []); },
+  get kCTFontHorizontalOrientation(): CTFontOrientation { return callSDK<CTFontOrientation>("CoreText_c1f28409f8601238", 590703887145847, undefined, []); },
   /**
    * static var kCTFontVerticalOrientation: CTFontOrientation { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontVerticalOrientation(): CTFontOrientation { return callSDK<CTFontOrientation>("CoreText_6be9a005889899ab", 4364308790682929, undefined, []); },
+  get kCTFontVerticalOrientation(): CTFontOrientation { return callSDK<CTFontOrientation>("CoreText_c1f28409f8601238", 4364308790682929, undefined, []); },
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CTFontOrientation) | null { return callSDK<(CTFontOrientation) | null>("CoreText_6be9a005889899ab", 1608187915114448, undefined, [rawValue]); }
+  init(rawValue: number): (CTFontOrientation) | null { return callSDK<(CTFontOrientation) | null>("CoreText_c1f28409f8601238", 1608187915114448, undefined, [rawValue]); }
 };
 
 /** typealias CTFontPriority = UInt32 */
@@ -587,47 +587,47 @@ export type CTFontStylisticClass = Array<"classOldStyleSerifs" | "classTransitio
 
 export const CTFontStylisticClass = {
   /** static var clarendonSerifsClass: CTFontStylisticClass { get } */
-  get clarendonSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 2821254932926577, undefined, []); },
+  get clarendonSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 2821254932926577, undefined, []); },
   /** static var classClarendonSerifs: CTFontStylisticClass { get } */
-  get classClarendonSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 103894823781854, undefined, []); },
+  get classClarendonSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 103894823781854, undefined, []); },
   /** static var classFreeformSerifs: CTFontStylisticClass { get } */
-  get classFreeformSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 4048233251933003, undefined, []); },
+  get classFreeformSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 4048233251933003, undefined, []); },
   /** static var classModernSerifs: CTFontStylisticClass { get } */
-  get classModernSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 871136268040767, undefined, []); },
+  get classModernSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 871136268040767, undefined, []); },
   /** static var classOldStyleSerifs: CTFontStylisticClass { get } */
-  get classOldStyleSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 1888513360471758, undefined, []); },
+  get classOldStyleSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 1888513360471758, undefined, []); },
   /** static var classOrnamentals: CTFontStylisticClass { get } */
-  get classOrnamentals(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 4321076557403688, undefined, []); },
+  get classOrnamentals(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 4321076557403688, undefined, []); },
   /** static var classSansSerif: CTFontStylisticClass { get } */
-  get classSansSerif(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 4485344976870537, undefined, []); },
+  get classSansSerif(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 4485344976870537, undefined, []); },
   /** static var classScripts: CTFontStylisticClass { get } */
-  get classScripts(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 1896620347025581, undefined, []); },
+  get classScripts(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 1896620347025581, undefined, []); },
   /** static var classSlabSerifs: CTFontStylisticClass { get } */
-  get classSlabSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 3198850910641744, undefined, []); },
+  get classSlabSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 3198850910641744, undefined, []); },
   /** static var classSymbolic: CTFontStylisticClass { get } */
-  get classSymbolic(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 1644634981927329, undefined, []); },
+  get classSymbolic(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 1644634981927329, undefined, []); },
   /** static var classTransitionalSerifs: CTFontStylisticClass { get } */
-  get classTransitionalSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 4256310673634694, undefined, []); },
+  get classTransitionalSerifs(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 4256310673634694, undefined, []); },
   /** static var freeformSerifsClass: CTFontStylisticClass { get } */
-  get freeformSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 3017238584541307, undefined, []); },
+  get freeformSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 3017238584541307, undefined, []); },
   /** static var modernSerifsClass: CTFontStylisticClass { get } */
-  get modernSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 575245469481555, undefined, []); },
+  get modernSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 575245469481555, undefined, []); },
   /** static var oldStyleSerifsClass: CTFontStylisticClass { get } */
-  get oldStyleSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 3276267742556625, undefined, []); },
+  get oldStyleSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 3276267742556625, undefined, []); },
   /** static var ornamentalsClass: CTFontStylisticClass { get } */
-  get ornamentalsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 2037338668632485, undefined, []); },
+  get ornamentalsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 2037338668632485, undefined, []); },
   /** static var sansSerifClass: CTFontStylisticClass { get } */
-  get sansSerifClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 1042229309425564, undefined, []); },
+  get sansSerifClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 1042229309425564, undefined, []); },
   /** static var scriptsClass: CTFontStylisticClass { get } */
-  get scriptsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 1629036718900066, undefined, []); },
+  get scriptsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 1629036718900066, undefined, []); },
   /** static var slabSerifsClass: CTFontStylisticClass { get } */
-  get slabSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 683279668649738, undefined, []); },
+  get slabSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 683279668649738, undefined, []); },
   /** static var symbolicClass: CTFontStylisticClass { get } */
-  get symbolicClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 3502838646078544, undefined, []); },
+  get symbolicClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 3502838646078544, undefined, []); },
   /** static var transitionalSerifsClass: CTFontStylisticClass { get } */
-  get transitionalSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 1572119785364758, undefined, []); },
+  get transitionalSerifsClass(): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 1572119785364758, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_6be9a005889899ab", 1570404376057787, undefined, [rawValue]); }
+  init(rawValue: number): CTFontStylisticClass { return callSDK<CTFontStylisticClass>("CoreText_c1f28409f8601238", 1570404376057787, undefined, [rawValue]); }
 };
 
 /** struct CTFontSymbolicTraits */
@@ -635,47 +635,47 @@ export type CTFontSymbolicTraits = Array<"traitItalic" | "traitBold" | "traitExp
 
 export const CTFontSymbolicTraits = {
   /** static var boldTrait: CTFontSymbolicTraits { get } */
-  get boldTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 3714489027960135, undefined, []); },
+  get boldTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 3714489027960135, undefined, []); },
   /** static var classMaskTrait: CTFontSymbolicTraits { get } */
-  get classMaskTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 2531202701431013, undefined, []); },
+  get classMaskTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 2531202701431013, undefined, []); },
   /** static var colorGlyphsTrait: CTFontSymbolicTraits { get } */
-  get colorGlyphsTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 4299727677491009, undefined, []); },
+  get colorGlyphsTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 4299727677491009, undefined, []); },
   /** static var compositeTrait: CTFontSymbolicTraits { get } */
-  get compositeTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 714203625637879, undefined, []); },
+  get compositeTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 714203625637879, undefined, []); },
   /** static var condensedTrait: CTFontSymbolicTraits { get } */
-  get condensedTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 23189749782364, undefined, []); },
+  get condensedTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 23189749782364, undefined, []); },
   /** static var expandedTrait: CTFontSymbolicTraits { get } */
-  get expandedTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 3529753008673717, undefined, []); },
+  get expandedTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 3529753008673717, undefined, []); },
   /** static var italicTrait: CTFontSymbolicTraits { get } */
-  get italicTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 1676540841617410, undefined, []); },
+  get italicTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 1676540841617410, undefined, []); },
   /** static var monoSpaceTrait: CTFontSymbolicTraits { get } */
-  get monoSpaceTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 942538664125866, undefined, []); },
+  get monoSpaceTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 942538664125866, undefined, []); },
   /** static var traitBold: CTFontSymbolicTraits { get } */
-  get traitBold(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 2940205917030649, undefined, []); },
+  get traitBold(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 2940205917030649, undefined, []); },
   /** static var traitClassMask: CTFontSymbolicTraits { get } */
-  get traitClassMask(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 3292710080767631, undefined, []); },
+  get traitClassMask(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 3292710080767631, undefined, []); },
   /** static var traitColorGlyphs: CTFontSymbolicTraits { get } */
-  get traitColorGlyphs(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 3337111764089805, undefined, []); },
+  get traitColorGlyphs(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 3337111764089805, undefined, []); },
   /** static var traitComposite: CTFontSymbolicTraits { get } */
-  get traitComposite(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 2528078799223625, undefined, []); },
+  get traitComposite(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 2528078799223625, undefined, []); },
   /** static var traitCondensed: CTFontSymbolicTraits { get } */
-  get traitCondensed(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 2864163454002985, undefined, []); },
+  get traitCondensed(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 2864163454002985, undefined, []); },
   /** static var traitExpanded: CTFontSymbolicTraits { get } */
-  get traitExpanded(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 1648524704432353, undefined, []); },
+  get traitExpanded(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 1648524704432353, undefined, []); },
   /** static var traitItalic: CTFontSymbolicTraits { get } */
-  get traitItalic(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 2480356644490664, undefined, []); },
+  get traitItalic(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 2480356644490664, undefined, []); },
   /** static var traitMonoSpace: CTFontSymbolicTraits { get } */
-  get traitMonoSpace(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 1365811213716044, undefined, []); },
+  get traitMonoSpace(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 1365811213716044, undefined, []); },
   /** static var traitUIOptimized: CTFontSymbolicTraits { get } */
-  get traitUIOptimized(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 1338806110174924, undefined, []); },
+  get traitUIOptimized(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 1338806110174924, undefined, []); },
   /** static var traitVertical: CTFontSymbolicTraits { get } */
-  get traitVertical(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 2292368172633052, undefined, []); },
+  get traitVertical(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 2292368172633052, undefined, []); },
   /** static var uiOptimizedTrait: CTFontSymbolicTraits { get } */
-  get uiOptimizedTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 509437390727611, undefined, []); },
+  get uiOptimizedTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 509437390727611, undefined, []); },
   /** static var verticalTrait: CTFontSymbolicTraits { get } */
-  get verticalTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 3151393264799699, undefined, []); },
+  get verticalTrait(): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 3151393264799699, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 4209301099238910, undefined, [rawValue]); }
+  init(rawValue: number): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 4209301099238910, undefined, [rawValue]); }
 };
 
 /** struct CTFontTableOptions */
@@ -683,7 +683,7 @@ export type CTFontTableOptions = Array<number>;
 
 export const CTFontTableOptions = {
   /** init(rawValue: UInt32) */
-  init(rawValue: number): CTFontTableOptions { return callSDK<CTFontTableOptions>("CoreText_6be9a005889899ab", 3149012147295554, undefined, [rawValue]); }
+  init(rawValue: number): CTFontTableOptions { return callSDK<CTFontTableOptions>("CoreText_c1f28409f8601238", 3149012147295554, undefined, [rawValue]); }
 };
 
 /** typealias CTFontTableTag = FourCharCode */
@@ -698,171 +698,171 @@ export const CTFontUIFontType = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontAlertHeaderFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2805004495137294, undefined, []); },
+  get kCTFontAlertHeaderFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2805004495137294, undefined, []); },
   /**
    * static var kCTFontApplicationFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontApplicationFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 3274157650496189, undefined, []); },
+  get kCTFontApplicationFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 3274157650496189, undefined, []); },
   /**
    * static var kCTFontControlContentFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontControlContentFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 348595886497510, undefined, []); },
+  get kCTFontControlContentFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 348595886497510, undefined, []); },
   /**
    * static var kCTFontEmphasizedSystemDetailFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontEmphasizedSystemDetailFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2670282388740454, undefined, []); },
+  get kCTFontEmphasizedSystemDetailFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2670282388740454, undefined, []); },
   /**
    * static var kCTFontEmphasizedSystemFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontEmphasizedSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 3694177027922503, undefined, []); },
+  get kCTFontEmphasizedSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 3694177027922503, undefined, []); },
   /**
    * static var kCTFontLabelFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontLabelFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 420161026072983, undefined, []); },
+  get kCTFontLabelFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 420161026072983, undefined, []); },
   /**
    * static var kCTFontMenuItemCmdKeyFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontMenuItemCmdKeyFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2960179497002692, undefined, []); },
+  get kCTFontMenuItemCmdKeyFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2960179497002692, undefined, []); },
   /**
    * static var kCTFontMenuItemFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontMenuItemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 1960277272537526, undefined, []); },
+  get kCTFontMenuItemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 1960277272537526, undefined, []); },
   /**
    * static var kCTFontMenuItemMarkFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontMenuItemMarkFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2578130422117889, undefined, []); },
+  get kCTFontMenuItemMarkFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2578130422117889, undefined, []); },
   /**
    * static var kCTFontMenuTitleFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontMenuTitleFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2585912372789911, undefined, []); },
+  get kCTFontMenuTitleFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2585912372789911, undefined, []); },
   /**
    * static var kCTFontMessageFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontMessageFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 562242265096957, undefined, []); },
+  get kCTFontMessageFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 562242265096957, undefined, []); },
   /**
    * static var kCTFontMiniEmphasizedSystemFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontMiniEmphasizedSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 3230516491492703, undefined, []); },
+  get kCTFontMiniEmphasizedSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 3230516491492703, undefined, []); },
   /**
    * static var kCTFontMiniSystemFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontMiniSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 4358752203097457, undefined, []); },
+  get kCTFontMiniSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 4358752203097457, undefined, []); },
   /**
    * static var kCTFontNoFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontNoFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2592203608600496, undefined, []); },
+  get kCTFontNoFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2592203608600496, undefined, []); },
   /**
    * static var kCTFontPaletteFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontPaletteFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 1316690000194994, undefined, []); },
+  get kCTFontPaletteFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 1316690000194994, undefined, []); },
   /**
    * static var kCTFontPushButtonFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontPushButtonFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2323132423397267, undefined, []); },
+  get kCTFontPushButtonFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2323132423397267, undefined, []); },
   /**
    * static var kCTFontSmallEmphasizedSystemFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontSmallEmphasizedSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2322860932780639, undefined, []); },
+  get kCTFontSmallEmphasizedSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2322860932780639, undefined, []); },
   /**
    * static var kCTFontSmallSystemFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontSmallSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 1576513948645725, undefined, []); },
+  get kCTFontSmallSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 1576513948645725, undefined, []); },
   /**
    * static var kCTFontSmallToolbarFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontSmallToolbarFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 592954858871787, undefined, []); },
+  get kCTFontSmallToolbarFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 592954858871787, undefined, []); },
   /**
    * static var kCTFontSystemDetailFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontSystemDetailFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 3161379321565702, undefined, []); },
+  get kCTFontSystemDetailFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 3161379321565702, undefined, []); },
   /**
    * static var kCTFontSystemFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2675019901027578, undefined, []); },
+  get kCTFontSystemFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2675019901027578, undefined, []); },
   /**
    * static var kCTFontToolTipFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontToolTipFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 3691093799637120, undefined, []); },
+  get kCTFontToolTipFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 3691093799637120, undefined, []); },
   /**
    * static var kCTFontToolbarFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontToolbarFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 4396840807775104, undefined, []); },
+  get kCTFontToolbarFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 4396840807775104, undefined, []); },
   /**
    * static var kCTFontUserFixedPitchFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontUserFixedPitchFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2908757153454608, undefined, []); },
+  get kCTFontUserFixedPitchFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2908757153454608, undefined, []); },
   /**
    * static var kCTFontUserFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontUserFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2631768863030820, undefined, []); },
+  get kCTFontUserFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2631768863030820, undefined, []); },
   /**
    * static var kCTFontUtilityWindowTitleFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontUtilityWindowTitleFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2231437126625437, undefined, []); },
+  get kCTFontUtilityWindowTitleFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2231437126625437, undefined, []); },
   /**
    * static var kCTFontViewsFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontViewsFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 2143187623522773, undefined, []); },
+  get kCTFontViewsFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 2143187623522773, undefined, []); },
   /**
    * static var kCTFontWindowTitleFontType: CTFontUIFontType { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTFontWindowTitleFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 4475436358789070, undefined, []); },
+  get kCTFontWindowTitleFontType(): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 4475436358789070, undefined, []); },
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CTFontUIFontType) | null { return callSDK<(CTFontUIFontType) | null>("CoreText_6be9a005889899ab", 1466035466801737, undefined, [rawValue]); }
+  init(rawValue: number): (CTFontUIFontType) | null { return callSDK<(CTFontUIFontType) | null>("CoreText_c1f28409f8601238", 1466035466801737, undefined, [rawValue]); }
 };
 
 /** class CTFrame */
@@ -875,7 +875,7 @@ export type CTFramePathFillRule = "evenOdd" | "windingNumber";
 
 export const CTFramePathFillRule = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CTFramePathFillRule) | null { return callSDK<(CTFramePathFillRule) | null>("CoreText_6be9a005889899ab", 2510919880306241, undefined, [rawValue]); }
+  init(rawValue: number): (CTFramePathFillRule) | null { return callSDK<(CTFramePathFillRule) | null>("CoreText_c1f28409f8601238", 2510919880306241, undefined, [rawValue]); }
 };
 
 /** enum CTFrameProgression */
@@ -883,7 +883,7 @@ export type CTFrameProgression = "topToBottom" | "rightToLeft" | "leftToRight";
 
 export const CTFrameProgression = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CTFrameProgression) | null { return callSDK<(CTFrameProgression) | null>("CoreText_6be9a005889899ab", 1251958574421015, undefined, [rawValue]); }
+  init(rawValue: number): (CTFrameProgression) | null { return callSDK<(CTFrameProgression) | null>("CoreText_c1f28409f8601238", 1251958574421015, undefined, [rawValue]); }
 };
 
 /** class CTFramesetter */
@@ -906,19 +906,19 @@ export type CTLineBoundsOptions = Array<"excludeTypographicLeading" | "excludeTy
 
 export const CTLineBoundsOptions = {
   /** static var excludeTypographicLeading: CTLineBoundsOptions { get } */
-  get excludeTypographicLeading(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_6be9a005889899ab", 3831994545840907, undefined, []); },
+  get excludeTypographicLeading(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_c1f28409f8601238", 3831994545840907, undefined, []); },
   /** static var excludeTypographicShifts: CTLineBoundsOptions { get } */
-  get excludeTypographicShifts(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_6be9a005889899ab", 472640513371445, undefined, []); },
+  get excludeTypographicShifts(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_c1f28409f8601238", 472640513371445, undefined, []); },
   /** static var includeLanguageExtents: CTLineBoundsOptions { get } */
-  get includeLanguageExtents(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_6be9a005889899ab", 551264301304053, undefined, []); },
+  get includeLanguageExtents(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_c1f28409f8601238", 551264301304053, undefined, []); },
   /** static var useGlyphPathBounds: CTLineBoundsOptions { get } */
-  get useGlyphPathBounds(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_6be9a005889899ab", 2108974723789265, undefined, []); },
+  get useGlyphPathBounds(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_c1f28409f8601238", 2108974723789265, undefined, []); },
   /** static var useHangingPunctuation: CTLineBoundsOptions { get } */
-  get useHangingPunctuation(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_6be9a005889899ab", 3313409450518713, undefined, []); },
+  get useHangingPunctuation(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_c1f28409f8601238", 3313409450518713, undefined, []); },
   /** static var useOpticalBounds: CTLineBoundsOptions { get } */
-  get useOpticalBounds(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_6be9a005889899ab", 3551772520206197, undefined, []); },
+  get useOpticalBounds(): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_c1f28409f8601238", 3551772520206197, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_6be9a005889899ab", 3013865207085277, undefined, [rawValue]); }
+  init(rawValue: number): CTLineBoundsOptions { return callSDK<CTLineBoundsOptions>("CoreText_c1f28409f8601238", 3013865207085277, undefined, [rawValue]); }
 };
 
 /** enum CTLineBreakMode */
@@ -926,7 +926,7 @@ export type CTLineBreakMode = "byWordWrapping" | "byCharWrapping" | "byClipping"
 
 export const CTLineBreakMode = {
   /** init?(rawValue: UInt8) */
-  init(rawValue: number): (CTLineBreakMode) | null { return callSDK<(CTLineBreakMode) | null>("CoreText_6be9a005889899ab", 3949146788605837, undefined, [rawValue]); }
+  init(rawValue: number): (CTLineBreakMode) | null { return callSDK<(CTLineBreakMode) | null>("CoreText_c1f28409f8601238", 3949146788605837, undefined, [rawValue]); }
 };
 
 /** enum CTLineTruncationType */
@@ -934,7 +934,7 @@ export type CTLineTruncationType = "start" | "end" | "middle";
 
 export const CTLineTruncationType = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CTLineTruncationType) | null { return callSDK<(CTLineTruncationType) | null>("CoreText_6be9a005889899ab", 2019082100428799, undefined, [rawValue]); }
+  init(rawValue: number): (CTLineTruncationType) | null { return callSDK<(CTLineTruncationType) | null>("CoreText_c1f28409f8601238", 2019082100428799, undefined, [rawValue]); }
 };
 
 /** class CTMutableFontCollection */
@@ -950,16 +950,16 @@ export class CTParagraphStyle extends SDKHandle {
 /** struct CTParagraphStyleSetting */
 export class CTParagraphStyleSetting extends SDKHandle {
   /** var spec: CTParagraphStyleSpecifier */
-  get spec(): CTParagraphStyleSpecifier { return callSDK<CTParagraphStyleSpecifier>("CoreText_6be9a005889899ab", 3841125302314098, this, []); }
-  set spec(value: CTParagraphStyleSpecifier) { callSDK<void>("CoreText_6be9a005889899ab", 3876006166840033, this, [value]); }
+  get spec(): CTParagraphStyleSpecifier { return callSDK<CTParagraphStyleSpecifier>("CoreText_c1f28409f8601238", 3841125302314098, this, []); }
+  set spec(value: CTParagraphStyleSpecifier) { callSDK<void>("CoreText_c1f28409f8601238", 3876006166840033, this, [value]); }
   /** var value: UnsafeRawPointer */
-  get value(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 1664755653843360, this, []); }
-  set value(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 4173543833220594, this, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 1664755653843360, this, []); }
+  set value(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 4173543833220594, this, [value]); }
   /** var valueSize: Int */
-  get valueSize(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2667935154550425, this, []); }
-  set valueSize(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1077878442053165, this, [value]); }
+  get valueSize(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2667935154550425, this, []); }
+  set valueSize(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1077878442053165, this, [value]); }
   /** init(spec: CTParagraphStyleSpecifier, valueSize: Int, value: UnsafeRawPointer) */
-  static init(spec: CTParagraphStyleSpecifier, valueSize: number, value: SDKHandle): CTParagraphStyleSetting { return callSDK<CTParagraphStyleSetting>("CoreText_6be9a005889899ab", 1657304461592152, undefined, [spec, valueSize, value]); }
+  static init(spec: CTParagraphStyleSpecifier, valueSize: number, value: SDKHandle): CTParagraphStyleSetting { return callSDK<CTParagraphStyleSetting>("CoreText_c1f28409f8601238", 1657304461592152, undefined, [spec, valueSize, value]); }
   declare readonly $type: { "c:@S@CTParagraphStyleSetting": true };
 }
 
@@ -968,7 +968,7 @@ export type CTParagraphStyleSpecifier = "alignment" | "firstLineHeadIndent" | "h
 
 export const CTParagraphStyleSpecifier = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CTParagraphStyleSpecifier) | null { return callSDK<(CTParagraphStyleSpecifier) | null>("CoreText_6be9a005889899ab", 1751039629504384, undefined, [rawValue]); }
+  init(rawValue: number): (CTParagraphStyleSpecifier) | null { return callSDK<(CTParagraphStyleSpecifier) | null>("CoreText_c1f28409f8601238", 1751039629504384, undefined, [rawValue]); }
 };
 
 /**
@@ -982,7 +982,7 @@ export const CTRubyAlignment = {
    * init?(rawValue: UInt8)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (CTRubyAlignment) | null { return callSDK<(CTRubyAlignment) | null>("CoreText_6be9a005889899ab", 1314301650853747, undefined, [rawValue]); }
+  init(rawValue: number): (CTRubyAlignment) | null { return callSDK<(CTRubyAlignment) | null>("CoreText_c1f28409f8601238", 1314301650853747, undefined, [rawValue]); }
 };
 
 /** class CTRubyAnnotation */
@@ -1001,7 +1001,7 @@ export const CTRubyOverhang = {
    * init?(rawValue: UInt8)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (CTRubyOverhang) | null { return callSDK<(CTRubyOverhang) | null>("CoreText_6be9a005889899ab", 3445041837217950, undefined, [rawValue]); }
+  init(rawValue: number): (CTRubyOverhang) | null { return callSDK<(CTRubyOverhang) | null>("CoreText_c1f28409f8601238", 3445041837217950, undefined, [rawValue]); }
 };
 
 /**
@@ -1015,7 +1015,7 @@ export const CTRubyPosition = {
    * init?(rawValue: UInt8)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (CTRubyPosition) | null { return callSDK<(CTRubyPosition) | null>("CoreText_6be9a005889899ab", 136394224111844, undefined, [rawValue]); }
+  init(rawValue: number): (CTRubyPosition) | null { return callSDK<(CTRubyPosition) | null>("CoreText_c1f28409f8601238", 136394224111844, undefined, [rawValue]); }
 };
 
 /** class CTRun */
@@ -1031,16 +1031,16 @@ export class CTRunDelegate extends SDKHandle {
 /** struct CTRunDelegateCallbacks */
 export class CTRunDelegateCallbacks extends SDKHandle {
   /** var dealloc: CTRunDelegateDeallocateCallback */
-  get dealloc(): $SDK9 { return callSDK<$SDK9>("CoreText_6be9a005889899ab", 1268039559386927, this, []); }
+  get dealloc(): $SDK9 { return callSDK<$SDK9>("CoreText_c1f28409f8601238", 1268039559386927, this, []); }
   /** var getAscent: CTRunDelegateGetAscentCallback */
-  get getAscent(): $SDK10 { return callSDK<$SDK10>("CoreText_6be9a005889899ab", 1403103282086649, this, []); }
+  get getAscent(): $SDK10 { return callSDK<$SDK10>("CoreText_c1f28409f8601238", 1403103282086649, this, []); }
   /** var getDescent: CTRunDelegateGetDescentCallback */
-  get getDescent(): $SDK10 { return callSDK<$SDK10>("CoreText_6be9a005889899ab", 220513378635110, this, []); }
+  get getDescent(): $SDK10 { return callSDK<$SDK10>("CoreText_c1f28409f8601238", 220513378635110, this, []); }
   /** var getWidth: CTRunDelegateGetWidthCallback */
-  get getWidth(): $SDK10 { return callSDK<$SDK10>("CoreText_6be9a005889899ab", 1672379348593103, this, []); }
+  get getWidth(): $SDK10 { return callSDK<$SDK10>("CoreText_c1f28409f8601238", 1672379348593103, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2233261852806951, this, []); }
-  set version(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1112689082445701, this, [value]); }
+  get version(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2233261852806951, this, []); }
+  set version(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1112689082445701, this, [value]); }
   declare readonly $type: { "c:@SA@CTRunDelegateCallbacks": true };
 }
 
@@ -1061,13 +1061,13 @@ export type CTRunStatus = Array<"rightToLeft" | "nonMonotonic" | "hasNonIdentity
 
 export const CTRunStatus = {
   /** static var hasNonIdentityMatrix: CTRunStatus { get } */
-  get hasNonIdentityMatrix(): CTRunStatus { return callSDK<CTRunStatus>("CoreText_6be9a005889899ab", 1919858230233140, undefined, []); },
+  get hasNonIdentityMatrix(): CTRunStatus { return callSDK<CTRunStatus>("CoreText_c1f28409f8601238", 1919858230233140, undefined, []); },
   /** static var nonMonotonic: CTRunStatus { get } */
-  get nonMonotonic(): CTRunStatus { return callSDK<CTRunStatus>("CoreText_6be9a005889899ab", 3660803338646780, undefined, []); },
+  get nonMonotonic(): CTRunStatus { return callSDK<CTRunStatus>("CoreText_c1f28409f8601238", 3660803338646780, undefined, []); },
   /** static var rightToLeft: CTRunStatus { get } */
-  get rightToLeft(): CTRunStatus { return callSDK<CTRunStatus>("CoreText_6be9a005889899ab", 4113336332393375, undefined, []); },
+  get rightToLeft(): CTRunStatus { return callSDK<CTRunStatus>("CoreText_c1f28409f8601238", 4113336332393375, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): CTRunStatus { return callSDK<CTRunStatus>("CoreText_6be9a005889899ab", 3333940435242481, undefined, [rawValue]); }
+  init(rawValue: number): CTRunStatus { return callSDK<CTRunStatus>("CoreText_c1f28409f8601238", 3333940435242481, undefined, [rawValue]); }
 };
 
 /** enum CTTextAlignment */
@@ -1079,33 +1079,33 @@ export const CTTextAlignment = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTCenterTextAlignment(): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_6be9a005889899ab", 1710791444700245, undefined, []); },
+  get kCTCenterTextAlignment(): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_c1f28409f8601238", 1710791444700245, undefined, []); },
   /**
    * static var kCTJustifiedTextAlignment: CTTextAlignment { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTJustifiedTextAlignment(): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_6be9a005889899ab", 631399307307460, undefined, []); },
+  get kCTJustifiedTextAlignment(): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_c1f28409f8601238", 631399307307460, undefined, []); },
   /**
    * static var kCTLeftTextAlignment: CTTextAlignment { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTLeftTextAlignment(): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_6be9a005889899ab", 31348604372004, undefined, []); },
+  get kCTLeftTextAlignment(): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_c1f28409f8601238", 31348604372004, undefined, []); },
   /**
    * static var kCTNaturalTextAlignment: CTTextAlignment { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTNaturalTextAlignment(): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_6be9a005889899ab", 2356145731178409, undefined, []); },
+  get kCTNaturalTextAlignment(): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_c1f28409f8601238", 2356145731178409, undefined, []); },
   /**
    * static var kCTRightTextAlignment: CTTextAlignment { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get kCTRightTextAlignment(): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_6be9a005889899ab", 2342196495010623, undefined, []); },
+  get kCTRightTextAlignment(): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_c1f28409f8601238", 2342196495010623, undefined, []); },
   /** init?(rawValue: UInt8) */
-  init(rawValue: number): (CTTextAlignment) | null { return callSDK<(CTTextAlignment) | null>("CoreText_6be9a005889899ab", 3501563489962662, undefined, [rawValue]); }
+  init(rawValue: number): (CTTextAlignment) | null { return callSDK<(CTTextAlignment) | null>("CoreText_c1f28409f8601238", 3501563489962662, undefined, [rawValue]); }
 };
 
 /** class CTTextTab */
@@ -1123,13 +1123,13 @@ export type CTUnderlineStyle = Array<"single" | "thick" | "double">;
 
 export const CTUnderlineStyle = {
   /** static var double: CTUnderlineStyle { get } */
-  get double(): CTUnderlineStyle { return callSDK<CTUnderlineStyle>("CoreText_6be9a005889899ab", 3326310726008230, undefined, []); },
+  get double(): CTUnderlineStyle { return callSDK<CTUnderlineStyle>("CoreText_c1f28409f8601238", 3326310726008230, undefined, []); },
   /** static var single: CTUnderlineStyle { get } */
-  get single(): CTUnderlineStyle { return callSDK<CTUnderlineStyle>("CoreText_6be9a005889899ab", 1747161850529938, undefined, []); },
+  get single(): CTUnderlineStyle { return callSDK<CTUnderlineStyle>("CoreText_c1f28409f8601238", 1747161850529938, undefined, []); },
   /** static var thick: CTUnderlineStyle { get } */
-  get thick(): CTUnderlineStyle { return callSDK<CTUnderlineStyle>("CoreText_6be9a005889899ab", 2201390117030073, undefined, []); },
+  get thick(): CTUnderlineStyle { return callSDK<CTUnderlineStyle>("CoreText_c1f28409f8601238", 2201390117030073, undefined, []); },
   /** init(rawValue: Int32) */
-  init(rawValue: number): CTUnderlineStyle { return callSDK<CTUnderlineStyle>("CoreText_6be9a005889899ab", 4381572431599558, undefined, [rawValue]); }
+  init(rawValue: number): CTUnderlineStyle { return callSDK<CTUnderlineStyle>("CoreText_c1f28409f8601238", 4381572431599558, undefined, [rawValue]); }
 };
 
 /** struct CTUnderlineStyleModifiers */
@@ -1137,17 +1137,17 @@ export type CTUnderlineStyleModifiers = Array<"patternSolid" | "patternDot" | "p
 
 export const CTUnderlineStyleModifiers = {
   /** static var patternDash: CTUnderlineStyleModifiers { get } */
-  get patternDash(): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_6be9a005889899ab", 427695106427687, undefined, []); },
+  get patternDash(): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_c1f28409f8601238", 427695106427687, undefined, []); },
   /** static var patternDashDot: CTUnderlineStyleModifiers { get } */
-  get patternDashDot(): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_6be9a005889899ab", 873560959928979, undefined, []); },
+  get patternDashDot(): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_c1f28409f8601238", 873560959928979, undefined, []); },
   /** static var patternDashDotDot: CTUnderlineStyleModifiers { get } */
-  get patternDashDotDot(): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_6be9a005889899ab", 1090006622954793, undefined, []); },
+  get patternDashDotDot(): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_c1f28409f8601238", 1090006622954793, undefined, []); },
   /** static var patternDot: CTUnderlineStyleModifiers { get } */
-  get patternDot(): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_6be9a005889899ab", 3548264391068182, undefined, []); },
+  get patternDot(): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_c1f28409f8601238", 3548264391068182, undefined, []); },
   /** static var patternSolid: CTUnderlineStyleModifiers { get } */
-  get patternSolid(): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_6be9a005889899ab", 1344381376773155, undefined, []); },
+  get patternSolid(): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_c1f28409f8601238", 1344381376773155, undefined, []); },
   /** init(rawValue: Int32) */
-  init(rawValue: number): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_6be9a005889899ab", 1620204195703960, undefined, [rawValue]); }
+  init(rawValue: number): CTUnderlineStyleModifiers { return callSDK<CTUnderlineStyleModifiers>("CoreText_c1f28409f8601238", 1620204195703960, undefined, [rawValue]); }
 };
 
 /** enum CTWritingDirection */
@@ -1155,7 +1155,7 @@ export type CTWritingDirection = "natural" | "leftToRight" | "rightToLeft";
 
 export const CTWritingDirection = {
   /** init?(rawValue: Int8) */
-  init(rawValue: number): (CTWritingDirection) | null { return callSDK<(CTWritingDirection) | null>("CoreText_6be9a005889899ab", 966167807789127, undefined, [rawValue]); }
+  init(rawValue: number): (CTWritingDirection) | null { return callSDK<(CTWritingDirection) | null>("CoreText_c1f28409f8601238", 966167807789127, undefined, [rawValue]); }
 };
 
 /** typealias FontLanguageCode = UInt32 */
@@ -1173,34 +1173,34 @@ export type FontScriptCode = number;
 /** struct FontVariation */
 export class FontVariation extends SDKHandle {
   /** var name: FourCharCode */
-  get name(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 1718668193919925, this, []); }
-  set name(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 12565611661363, this, [value]); }
+  get name(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 1718668193919925, this, []); }
+  set name(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 12565611661363, this, [value]); }
   /** var value: Fixed */
-  get value(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 2717277366666818, this, []); }
-  set value(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 725211979341958, this, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 2717277366666818, this, []); }
+  set value(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 725211979341958, this, [value]); }
   /** init() */
-  static init(): FontVariation { return callSDK<FontVariation>("CoreText_6be9a005889899ab", 2213739054588489, undefined, []); }
+  static init(): FontVariation { return callSDK<FontVariation>("CoreText_c1f28409f8601238", 2213739054588489, undefined, []); }
   declare readonly $type: { "c:@S@FontVariation": true };
 }
 
 /** struct JustDirectionTable */
 export class JustDirectionTable extends SDKHandle {
   /** var justClass: UInt16 */
-  get justClass(): number { return callSDK<number>("CoreText_6be9a005889899ab", 772597107481331, this, []); }
-  set justClass(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4061980638040793, this, [value]); }
+  get justClass(): number { return callSDK<number>("CoreText_c1f28409f8601238", 772597107481331, this, []); }
+  set justClass(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4061980638040793, this, [value]); }
   /** var lookup: SFNTLookupTable */
-  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 3863302217032509, this, []); }
-  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_6be9a005889899ab", 3743458641697747, this, [value]); }
+  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 3863302217032509, this, []); }
+  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_c1f28409f8601238", 3743458641697747, this, [value]); }
   /** var postcomp: UInt16 */
-  get postcomp(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2606798499391938, this, []); }
-  set postcomp(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4078256913765774, this, [value]); }
+  get postcomp(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2606798499391938, this, []); }
+  set postcomp(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4078256913765774, this, [value]); }
   /** var widthDeltaClusters: UInt16 */
-  get widthDeltaClusters(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1179388461819150, this, []); }
-  set widthDeltaClusters(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 586285073518447, this, [value]); }
+  get widthDeltaClusters(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1179388461819150, this, []); }
+  set widthDeltaClusters(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 586285073518447, this, [value]); }
   /** init(justClass: UInt16, widthDeltaClusters: UInt16, postcomp: UInt16, lookup: SFNTLookupTable) */
-  static initJustClassWidthDeltaClustersPostcompLookup(justClass: number, widthDeltaClusters: number, postcomp: number, lookup: SFNTLookupTable): JustDirectionTable { return callSDK<JustDirectionTable>("CoreText_6be9a005889899ab", 3203072541754558, undefined, [justClass, widthDeltaClusters, postcomp, lookup]); }
+  static initJustClassWidthDeltaClustersPostcompLookup(justClass: number, widthDeltaClusters: number, postcomp: number, lookup: SFNTLookupTable): JustDirectionTable { return callSDK<JustDirectionTable>("CoreText_c1f28409f8601238", 3203072541754558, undefined, [justClass, widthDeltaClusters, postcomp, lookup]); }
   /** init() */
-  static init(): JustDirectionTable { return callSDK<JustDirectionTable>("CoreText_6be9a005889899ab", 3921850292954348, undefined, []); }
+  static init(): JustDirectionTable { return callSDK<JustDirectionTable>("CoreText_c1f28409f8601238", 3921850292954348, undefined, []); }
   declare readonly $type: { "c:@S@JustDirectionTable": true };
 }
 
@@ -1210,36 +1210,36 @@ export type JustificationFlags = number;
 /** struct JustPCAction */
 export class JustPCAction extends SDKHandle {
   /** var actionCount: UInt32 */
-  get actionCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1386664549067296, this, []); }
-  set actionCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3813841127004994, this, [value]); }
+  get actionCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1386664549067296, this, []); }
+  set actionCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3813841127004994, this, [value]); }
   /** var actions: JustPCActionSubrecord */
-  get actions(): JustPCActionSubrecord { return callSDK<JustPCActionSubrecord>("CoreText_6be9a005889899ab", 1613923679223277, this, []); }
-  set actions(value: JustPCActionSubrecord) { callSDK<void>("CoreText_6be9a005889899ab", 220851127026448, this, [value]); }
+  get actions(): JustPCActionSubrecord { return callSDK<JustPCActionSubrecord>("CoreText_c1f28409f8601238", 1613923679223277, this, []); }
+  set actions(value: JustPCActionSubrecord) { callSDK<void>("CoreText_c1f28409f8601238", 220851127026448, this, [value]); }
   /** init(actionCount: UInt32, actions: JustPCActionSubrecord) */
-  static initActionCountActions(actionCount: number, actions: JustPCActionSubrecord): JustPCAction { return callSDK<JustPCAction>("CoreText_6be9a005889899ab", 315365892696901, undefined, [actionCount, actions]); }
+  static initActionCountActions(actionCount: number, actions: JustPCActionSubrecord): JustPCAction { return callSDK<JustPCAction>("CoreText_c1f28409f8601238", 315365892696901, undefined, [actionCount, actions]); }
   /** init() */
-  static init(): JustPCAction { return callSDK<JustPCAction>("CoreText_6be9a005889899ab", 1082793771412641, undefined, []); }
+  static init(): JustPCAction { return callSDK<JustPCAction>("CoreText_c1f28409f8601238", 1082793771412641, undefined, []); }
   declare readonly $type: { "c:@S@JustPCAction": true };
 }
 
 /** struct JustPCActionSubrecord */
 export class JustPCActionSubrecord extends SDKHandle {
   /** var data: UInt32 */
-  get data(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1839387764809732, this, []); }
-  set data(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1022340965657235, this, [value]); }
+  get data(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1839387764809732, this, []); }
+  set data(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1022340965657235, this, [value]); }
   /** var length: UInt32 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4450782669890281, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2616207337319336, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4450782669890281, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2616207337319336, this, [value]); }
   /** var theClass: UInt16 */
-  get theClass(): number { return callSDK<number>("CoreText_6be9a005889899ab", 346586141390770, this, []); }
-  set theClass(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 234032941375574, this, [value]); }
+  get theClass(): number { return callSDK<number>("CoreText_c1f28409f8601238", 346586141390770, this, []); }
+  set theClass(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 234032941375574, this, [value]); }
   /** var theType: JustPCActionType */
-  get theType(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3192956213392176, this, []); }
-  set theType(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 901506957678602, this, [value]); }
+  get theType(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3192956213392176, this, []); }
+  set theType(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 901506957678602, this, [value]); }
   /** init(theClass: UInt16, theType: JustPCActionType, length: UInt32, data: UInt32) */
-  static initTheClassTheTypeLengthData(theClass: number, theType: number, length: number, data: number): JustPCActionSubrecord { return callSDK<JustPCActionSubrecord>("CoreText_6be9a005889899ab", 668526979548996, undefined, [theClass, theType, length, data]); }
+  static initTheClassTheTypeLengthData(theClass: number, theType: number, length: number, data: number): JustPCActionSubrecord { return callSDK<JustPCActionSubrecord>("CoreText_c1f28409f8601238", 668526979548996, undefined, [theClass, theType, length, data]); }
   /** init() */
-  static init(): JustPCActionSubrecord { return callSDK<JustPCActionSubrecord>("CoreText_6be9a005889899ab", 814704880384484, undefined, []); }
+  static init(): JustPCActionSubrecord { return callSDK<JustPCActionSubrecord>("CoreText_c1f28409f8601238", 814704880384484, undefined, []); }
   declare readonly $type: { "c:@S@JustPCActionSubrecord": true };
 }
 
@@ -1249,72 +1249,72 @@ export type JustPCActionType = number;
 /** struct JustPCConditionalAddAction */
 export class JustPCConditionalAddAction extends SDKHandle {
   /** var addGlyph: UInt16 */
-  get addGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3485470114331122, this, []); }
-  set addGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4366359488331863, this, [value]); }
+  get addGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3485470114331122, this, []); }
+  set addGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4366359488331863, this, [value]); }
   /** var substGlyph: UInt16 */
-  get substGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2067115416582380, this, []); }
-  set substGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 294057332876337, this, [value]); }
+  get substGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2067115416582380, this, []); }
+  set substGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 294057332876337, this, [value]); }
   /** var substThreshold: Fixed */
-  get substThreshold(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 1662153588030061, this, []); }
-  set substThreshold(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 3248797570073339, this, [value]); }
+  get substThreshold(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 1662153588030061, this, []); }
+  set substThreshold(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 3248797570073339, this, [value]); }
   /** init() */
-  static init(): JustPCConditionalAddAction { return callSDK<JustPCConditionalAddAction>("CoreText_6be9a005889899ab", 817963486419944, undefined, []); }
+  static init(): JustPCConditionalAddAction { return callSDK<JustPCConditionalAddAction>("CoreText_c1f28409f8601238", 817963486419944, undefined, []); }
   declare readonly $type: { "c:@S@JustPCConditionalAddAction": true };
 }
 
 /** struct JustPCDecompositionAction */
 export class JustPCDecompositionAction extends SDKHandle {
   /** var count: UInt16 */
-  get count(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2116758937725344, this, []); }
-  set count(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 57581372666189, this, [value]); }
+  get count(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2116758937725344, this, []); }
+  set count(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 57581372666189, this, [value]); }
   /** var glyphs: UInt16 */
-  get glyphs(): number { return callSDK<number>("CoreText_6be9a005889899ab", 602352743924074, this, []); }
-  set glyphs(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2380855380075185, this, [value]); }
+  get glyphs(): number { return callSDK<number>("CoreText_c1f28409f8601238", 602352743924074, this, []); }
+  set glyphs(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2380855380075185, this, [value]); }
   /** var lowerLimit: Fixed */
-  get lowerLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 753028646981489, this, []); }
-  set lowerLimit(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 2437993140620851, this, [value]); }
+  get lowerLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 753028646981489, this, []); }
+  set lowerLimit(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 2437993140620851, this, [value]); }
   /** var order: UInt16 */
-  get order(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2149799898826810, this, []); }
-  set order(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3266063806292497, this, [value]); }
+  get order(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2149799898826810, this, []); }
+  set order(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3266063806292497, this, [value]); }
   /** var upperLimit: Fixed */
-  get upperLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3089560388636144, this, []); }
-  set upperLimit(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1157554697464811, this, [value]); }
+  get upperLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3089560388636144, this, []); }
+  set upperLimit(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1157554697464811, this, [value]); }
   /** init() */
-  static init(): JustPCDecompositionAction { return callSDK<JustPCDecompositionAction>("CoreText_6be9a005889899ab", 3170457760608039, undefined, []); }
+  static init(): JustPCDecompositionAction { return callSDK<JustPCDecompositionAction>("CoreText_c1f28409f8601238", 3170457760608039, undefined, []); }
   declare readonly $type: { "c:@S@JustPCDecompositionAction": true };
 }
 
 /** struct JustPCDuctilityAction */
 export class JustPCDuctilityAction extends SDKHandle {
   /** var ductilityAxis: UInt32 */
-  get ductilityAxis(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3624901946416940, this, []); }
-  set ductilityAxis(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 977460327295274, this, [value]); }
+  get ductilityAxis(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3624901946416940, this, []); }
+  set ductilityAxis(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 977460327295274, this, [value]); }
   /** var maximumLimit: Fixed */
-  get maximumLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 2271258017256421, this, []); }
-  set maximumLimit(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 514698383748667, this, [value]); }
+  get maximumLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 2271258017256421, this, []); }
+  set maximumLimit(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 514698383748667, this, [value]); }
   /** var minimumLimit: Fixed */
-  get minimumLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 208485208543995, this, []); }
-  set minimumLimit(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 2274794407275339, this, [value]); }
+  get minimumLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 208485208543995, this, []); }
+  set minimumLimit(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 2274794407275339, this, [value]); }
   /** var noStretchValue: Fixed */
-  get noStretchValue(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 1020518546154256, this, []); }
-  set noStretchValue(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 2507549054985483, this, [value]); }
+  get noStretchValue(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 1020518546154256, this, []); }
+  set noStretchValue(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 2507549054985483, this, [value]); }
   /** init() */
-  static init(): JustPCDuctilityAction { return callSDK<JustPCDuctilityAction>("CoreText_6be9a005889899ab", 702724667507387, undefined, []); }
+  static init(): JustPCDuctilityAction { return callSDK<JustPCDuctilityAction>("CoreText_c1f28409f8601238", 702724667507387, undefined, []); }
   declare readonly $type: { "c:@S@JustPCDuctilityAction": true };
 }
 
 /** struct JustPCGlyphRepeatAddAction */
 export class JustPCGlyphRepeatAddAction extends SDKHandle {
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2166684716560151, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 229939592282940, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2166684716560151, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 229939592282940, this, [value]); }
   /** var glyph: UInt16 */
-  get glyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3834647219478999, this, []); }
-  set glyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2272191880081437, this, [value]); }
+  get glyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3834647219478999, this, []); }
+  set glyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2272191880081437, this, [value]); }
   /** init(flags: UInt16, glyph: UInt16) */
-  static initFlagsGlyph(flags: number, glyph: number): JustPCGlyphRepeatAddAction { return callSDK<JustPCGlyphRepeatAddAction>("CoreText_6be9a005889899ab", 2758522852581809, undefined, [flags, glyph]); }
+  static initFlagsGlyph(flags: number, glyph: number): JustPCGlyphRepeatAddAction { return callSDK<JustPCGlyphRepeatAddAction>("CoreText_c1f28409f8601238", 2758522852581809, undefined, [flags, glyph]); }
   /** init() */
-  static init(): JustPCGlyphRepeatAddAction { return callSDK<JustPCGlyphRepeatAddAction>("CoreText_6be9a005889899ab", 4233234793067891, undefined, []); }
+  static init(): JustPCGlyphRepeatAddAction { return callSDK<JustPCGlyphRepeatAddAction>("CoreText_c1f28409f8601238", 4233234793067891, undefined, []); }
   declare readonly $type: { "c:@S@JustPCGlyphRepeatAddAction": true };
 }
 
@@ -1324,74 +1324,74 @@ export type JustPCUnconditionalAddAction = number;
 /** struct JustPostcompTable */
 export class JustPostcompTable extends SDKHandle {
   /** var lookupTable: SFNTLookupTable */
-  get lookupTable(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 2404053532872118, this, []); }
-  set lookupTable(value: SFNTLookupTable) { callSDK<void>("CoreText_6be9a005889899ab", 1710119760842927, this, [value]); }
+  get lookupTable(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 2404053532872118, this, []); }
+  set lookupTable(value: SFNTLookupTable) { callSDK<void>("CoreText_c1f28409f8601238", 1710119760842927, this, [value]); }
   /** init(lookupTable: SFNTLookupTable) */
-  static initLookupTable(lookupTable: SFNTLookupTable): JustPostcompTable { return callSDK<JustPostcompTable>("CoreText_6be9a005889899ab", 13306830150469, undefined, [lookupTable]); }
+  static initLookupTable(lookupTable: SFNTLookupTable): JustPostcompTable { return callSDK<JustPostcompTable>("CoreText_c1f28409f8601238", 13306830150469, undefined, [lookupTable]); }
   /** init() */
-  static init(): JustPostcompTable { return callSDK<JustPostcompTable>("CoreText_6be9a005889899ab", 223468314268917, undefined, []); }
+  static init(): JustPostcompTable { return callSDK<JustPostcompTable>("CoreText_c1f28409f8601238", 223468314268917, undefined, []); }
   declare readonly $type: { "c:@S@JustPostcompTable": true };
 }
 
 /** struct JustTable */
 export class JustTable extends SDKHandle {
   /** var format: UInt16 */
-  get format(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4418263949176027, this, []); }
-  set format(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1863667069258204, this, [value]); }
+  get format(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4418263949176027, this, []); }
+  set format(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1863667069258204, this, [value]); }
   /** var horizHeaderOffset: UInt16 */
-  get horizHeaderOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 195290691079029, this, []); }
-  set horizHeaderOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2012466999011393, this, [value]); }
+  get horizHeaderOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 195290691079029, this, []); }
+  set horizHeaderOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2012466999011393, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 634125377531805, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 896125323861759, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 634125377531805, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 896125323861759, this, [value]); }
   /** var vertHeaderOffset: UInt16 */
-  get vertHeaderOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 168717210515813, this, []); }
-  set vertHeaderOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1475297806868051, this, [value]); }
+  get vertHeaderOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 168717210515813, this, []); }
+  set vertHeaderOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1475297806868051, this, [value]); }
   /** init() */
-  static init(): JustTable { return callSDK<JustTable>("CoreText_6be9a005889899ab", 231628486002530, undefined, []); }
+  static init(): JustTable { return callSDK<JustTable>("CoreText_c1f28409f8601238", 231628486002530, undefined, []); }
   declare readonly $type: { "c:@S@JustTable": true };
 }
 
 /** struct JustWidthDeltaEntry */
 export class JustWidthDeltaEntry extends SDKHandle {
   /** var afterGrowLimit: Fixed */
-  get afterGrowLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3554635659168019, this, []); }
-  set afterGrowLimit(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1582291432495135, this, [value]); }
+  get afterGrowLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3554635659168019, this, []); }
+  set afterGrowLimit(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1582291432495135, this, [value]); }
   /** var afterShrinkLimit: Fixed */
-  get afterShrinkLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 4054568989480551, this, []); }
-  set afterShrinkLimit(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 2390104032848460, this, [value]); }
+  get afterShrinkLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 4054568989480551, this, []); }
+  set afterShrinkLimit(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 2390104032848460, this, [value]); }
   /** var beforeGrowLimit: Fixed */
-  get beforeGrowLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3450514782615745, this, []); }
-  set beforeGrowLimit(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1071736815898260, this, [value]); }
+  get beforeGrowLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3450514782615745, this, []); }
+  set beforeGrowLimit(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1071736815898260, this, [value]); }
   /** var beforeShrinkLimit: Fixed */
-  get beforeShrinkLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3242503359883745, this, []); }
-  set beforeShrinkLimit(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 3795458490363922, this, [value]); }
+  get beforeShrinkLimit(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3242503359883745, this, []); }
+  set beforeShrinkLimit(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 3795458490363922, this, [value]); }
   /** var growFlags: JustificationFlags */
-  get growFlags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4272543127380562, this, []); }
-  set growFlags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1677250600042486, this, [value]); }
+  get growFlags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4272543127380562, this, []); }
+  set growFlags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1677250600042486, this, [value]); }
   /** var justClass: UInt32 */
-  get justClass(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1852216887804682, this, []); }
-  set justClass(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4492966010562884, this, [value]); }
+  get justClass(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1852216887804682, this, []); }
+  set justClass(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4492966010562884, this, [value]); }
   /** var shrinkFlags: JustificationFlags */
-  get shrinkFlags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 601610457498756, this, []); }
-  set shrinkFlags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4208760881981841, this, [value]); }
+  get shrinkFlags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 601610457498756, this, []); }
+  set shrinkFlags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4208760881981841, this, [value]); }
   /** init() */
-  static init(): JustWidthDeltaEntry { return callSDK<JustWidthDeltaEntry>("CoreText_6be9a005889899ab", 919944143092312, undefined, []); }
+  static init(): JustWidthDeltaEntry { return callSDK<JustWidthDeltaEntry>("CoreText_c1f28409f8601238", 919944143092312, undefined, []); }
   declare readonly $type: { "c:@S@JustWidthDeltaEntry": true };
 }
 
 /** struct JustWidthDeltaGroup */
 export class JustWidthDeltaGroup extends SDKHandle {
   /** var count: UInt32 */
-  get count(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2198492250208015, this, []); }
-  set count(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1186804031312240, this, [value]); }
+  get count(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2198492250208015, this, []); }
+  set count(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1186804031312240, this, [value]); }
   /** var entries: JustWidthDeltaEntry */
-  get entries(): JustWidthDeltaEntry { return callSDK<JustWidthDeltaEntry>("CoreText_6be9a005889899ab", 4385197107378434, this, []); }
-  set entries(value: JustWidthDeltaEntry) { callSDK<void>("CoreText_6be9a005889899ab", 2589014643381415, this, [value]); }
+  get entries(): JustWidthDeltaEntry { return callSDK<JustWidthDeltaEntry>("CoreText_c1f28409f8601238", 4385197107378434, this, []); }
+  set entries(value: JustWidthDeltaEntry) { callSDK<void>("CoreText_c1f28409f8601238", 2589014643381415, this, [value]); }
   /** init(count: UInt32, entries: JustWidthDeltaEntry) */
-  static initCountEntries(count: number, entries: JustWidthDeltaEntry): JustWidthDeltaGroup { return callSDK<JustWidthDeltaGroup>("CoreText_6be9a005889899ab", 3186444851186153, undefined, [count, entries]); }
+  static initCountEntries(count: number, entries: JustWidthDeltaEntry): JustWidthDeltaGroup { return callSDK<JustWidthDeltaGroup>("CoreText_c1f28409f8601238", 3186444851186153, undefined, [count, entries]); }
   /** init() */
-  static init(): JustWidthDeltaGroup { return callSDK<JustWidthDeltaGroup>("CoreText_6be9a005889899ab", 4477331673863404, undefined, []); }
+  static init(): JustWidthDeltaGroup { return callSDK<JustWidthDeltaGroup>("CoreText_c1f28409f8601238", 4477331673863404, undefined, []); }
   declare readonly $type: { "c:@S@JustWidthDeltaGroup": true };
 }
 
@@ -1401,78 +1401,78 @@ export type KernArrayOffset = number;
 /** struct KernFormatSpecificHeader */
 export class KernFormatSpecificHeader extends SDKHandle {
   /** var indexArray: KernIndexArrayHeader { get set } */
-  get indexArray(): KernIndexArrayHeader { return callSDK<KernIndexArrayHeader>("CoreText_6be9a005889899ab", 259125248524163, this, []); }
-  set indexArray(value: KernIndexArrayHeader) { callSDK<void>("CoreText_6be9a005889899ab", 151112500321988, this, [value]); }
+  get indexArray(): KernIndexArrayHeader { return callSDK<KernIndexArrayHeader>("CoreText_c1f28409f8601238", 259125248524163, this, []); }
+  set indexArray(value: KernIndexArrayHeader) { callSDK<void>("CoreText_c1f28409f8601238", 151112500321988, this, [value]); }
   /** var orderedList: KernOrderedListHeader { get set } */
-  get orderedList(): KernOrderedListHeader { return callSDK<KernOrderedListHeader>("CoreText_6be9a005889899ab", 3650377334731106, this, []); }
-  set orderedList(value: KernOrderedListHeader) { callSDK<void>("CoreText_6be9a005889899ab", 466937322106355, this, [value]); }
+  get orderedList(): KernOrderedListHeader { return callSDK<KernOrderedListHeader>("CoreText_c1f28409f8601238", 3650377334731106, this, []); }
+  set orderedList(value: KernOrderedListHeader) { callSDK<void>("CoreText_c1f28409f8601238", 466937322106355, this, [value]); }
   /** var simpleArray: KernSimpleArrayHeader { get set } */
-  get simpleArray(): KernSimpleArrayHeader { return callSDK<KernSimpleArrayHeader>("CoreText_6be9a005889899ab", 768181476111155, this, []); }
-  set simpleArray(value: KernSimpleArrayHeader) { callSDK<void>("CoreText_6be9a005889899ab", 3078368020104654, this, [value]); }
+  get simpleArray(): KernSimpleArrayHeader { return callSDK<KernSimpleArrayHeader>("CoreText_c1f28409f8601238", 768181476111155, this, []); }
+  set simpleArray(value: KernSimpleArrayHeader) { callSDK<void>("CoreText_c1f28409f8601238", 3078368020104654, this, [value]); }
   /** var stateTable: KernStateHeader { get set } */
-  get stateTable(): KernStateHeader { return callSDK<KernStateHeader>("CoreText_6be9a005889899ab", 1562183117529144, this, []); }
-  set stateTable(value: KernStateHeader) { callSDK<void>("CoreText_6be9a005889899ab", 2745678038216827, this, [value]); }
+  get stateTable(): KernStateHeader { return callSDK<KernStateHeader>("CoreText_c1f28409f8601238", 1562183117529144, this, []); }
+  set stateTable(value: KernStateHeader) { callSDK<void>("CoreText_c1f28409f8601238", 2745678038216827, this, [value]); }
   /** init(indexArray: KernIndexArrayHeader) */
-  static initIndexArray(indexArray: KernIndexArrayHeader): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_6be9a005889899ab", 69075506504720, undefined, [indexArray]); }
+  static initIndexArray(indexArray: KernIndexArrayHeader): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_c1f28409f8601238", 69075506504720, undefined, [indexArray]); }
   /** init(stateTable: KernStateHeader) */
-  static initStateTable(stateTable: KernStateHeader): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_6be9a005889899ab", 375774202656052, undefined, [stateTable]); }
+  static initStateTable(stateTable: KernStateHeader): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_c1f28409f8601238", 375774202656052, undefined, [stateTable]); }
   /** init(orderedList: KernOrderedListHeader) */
-  static initOrderedList(orderedList: KernOrderedListHeader): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_6be9a005889899ab", 5661575360409, undefined, [orderedList]); }
+  static initOrderedList(orderedList: KernOrderedListHeader): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_c1f28409f8601238", 5661575360409, undefined, [orderedList]); }
   /** init(simpleArray: KernSimpleArrayHeader) */
-  static initSimpleArray(simpleArray: KernSimpleArrayHeader): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_6be9a005889899ab", 1738202113712937, undefined, [simpleArray]); }
+  static initSimpleArray(simpleArray: KernSimpleArrayHeader): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_c1f28409f8601238", 1738202113712937, undefined, [simpleArray]); }
   /** init() */
-  static init(): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_6be9a005889899ab", 4071792909521390, undefined, []); }
+  static init(): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_c1f28409f8601238", 4071792909521390, undefined, []); }
   declare readonly $type: { "c:@U@KernFormatSpecificHeader": true };
 }
 
 /** struct KernIndexArrayHeader */
 export class KernIndexArrayHeader extends SDKHandle {
   /** var flags: UInt8 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1687849656858779, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2535196004548269, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1687849656858779, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2535196004548269, this, [value]); }
   /** var glyphCount: UInt16 */
-  get glyphCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1602860986010261, this, []); }
-  set glyphCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1561678326909934, this, [value]); }
+  get glyphCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1602860986010261, this, []); }
+  set glyphCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1561678326909934, this, [value]); }
   /** var kernIndex: UInt8 */
-  get kernIndex(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1198150663595383, this, []); }
-  set kernIndex(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2008516686539334, this, [value]); }
+  get kernIndex(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1198150663595383, this, []); }
+  set kernIndex(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2008516686539334, this, [value]); }
   /** var kernValue: Int16 */
-  get kernValue(): number { return callSDK<number>("CoreText_6be9a005889899ab", 50064898019243, this, []); }
-  set kernValue(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2947952082906763, this, [value]); }
+  get kernValue(): number { return callSDK<number>("CoreText_c1f28409f8601238", 50064898019243, this, []); }
+  set kernValue(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2947952082906763, this, [value]); }
   /** var kernValueCount: UInt8 */
-  get kernValueCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2271745615357214, this, []); }
-  set kernValueCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1740359852880068, this, [value]); }
+  get kernValueCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2271745615357214, this, []); }
+  set kernValueCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1740359852880068, this, [value]); }
   /** var leftClass: UInt8 */
-  get leftClass(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2855151785477763, this, []); }
-  set leftClass(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 529270703789191, this, [value]); }
+  get leftClass(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2855151785477763, this, []); }
+  set leftClass(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 529270703789191, this, [value]); }
   /** var leftClassCount: UInt8 */
-  get leftClassCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3382260906893401, this, []); }
-  set leftClassCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4335973882925808, this, [value]); }
+  get leftClassCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3382260906893401, this, []); }
+  set leftClassCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4335973882925808, this, [value]); }
   /** var rightClass: UInt8 */
-  get rightClass(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4208521343307155, this, []); }
-  set rightClass(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 842834082029304, this, [value]); }
+  get rightClass(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4208521343307155, this, []); }
+  set rightClass(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 842834082029304, this, [value]); }
   /** var rightClassCount: UInt8 */
-  get rightClassCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1809954397570456, this, []); }
-  set rightClassCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2702876554072099, this, [value]); }
+  get rightClassCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1809954397570456, this, []); }
+  set rightClassCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2702876554072099, this, [value]); }
   /** init(glyphCount: UInt16, kernValueCount: UInt8, leftClassCount: UInt8, rightClassCount: UInt8, flags: UInt8, kernValue: Int16, leftClass: UInt8, rightClass: UInt8, kernIndex: UInt8) */
-  static initGlyphCountKernValueCountLeftClassCountRightClassCountFlagsKernValueLeftClassRightClassKernIndex(glyphCount: number, kernValueCount: number, leftClassCount: number, rightClassCount: number, flags: number, kernValue: number, leftClass: number, rightClass: number, kernIndex: number): KernIndexArrayHeader { return callSDK<KernIndexArrayHeader>("CoreText_6be9a005889899ab", 2283508973173784, undefined, [glyphCount, kernValueCount, leftClassCount, rightClassCount, flags, kernValue, leftClass, rightClass, kernIndex]); }
+  static initGlyphCountKernValueCountLeftClassCountRightClassCountFlagsKernValueLeftClassRightClassKernIndex(glyphCount: number, kernValueCount: number, leftClassCount: number, rightClassCount: number, flags: number, kernValue: number, leftClass: number, rightClass: number, kernIndex: number): KernIndexArrayHeader { return callSDK<KernIndexArrayHeader>("CoreText_c1f28409f8601238", 2283508973173784, undefined, [glyphCount, kernValueCount, leftClassCount, rightClassCount, flags, kernValue, leftClass, rightClass, kernIndex]); }
   /** init() */
-  static init(): KernIndexArrayHeader { return callSDK<KernIndexArrayHeader>("CoreText_6be9a005889899ab", 2093293881320538, undefined, []); }
+  static init(): KernIndexArrayHeader { return callSDK<KernIndexArrayHeader>("CoreText_c1f28409f8601238", 2093293881320538, undefined, []); }
   declare readonly $type: { "c:@S@KernIndexArrayHeader": true };
 }
 
 /** struct KernKerningPair */
 export class KernKerningPair extends SDKHandle {
   /** var left: UInt16 */
-  get left(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2930630637201902, this, []); }
-  set left(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2805860122077487, this, [value]); }
+  get left(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2930630637201902, this, []); }
+  set left(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2805860122077487, this, [value]); }
   /** var right: UInt16 */
-  get right(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1872675985191159, this, []); }
-  set right(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1081834612548061, this, [value]); }
+  get right(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1872675985191159, this, []); }
+  set right(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1081834612548061, this, [value]); }
   /** init(left: UInt16, right: UInt16) */
-  static initLeftRight(left: number, right: number): KernKerningPair { return callSDK<KernKerningPair>("CoreText_6be9a005889899ab", 2388874689475094, undefined, [left, right]); }
+  static initLeftRight(left: number, right: number): KernKerningPair { return callSDK<KernKerningPair>("CoreText_c1f28409f8601238", 2388874689475094, undefined, [left, right]); }
   /** init() */
-  static init(): KernKerningPair { return callSDK<KernKerningPair>("CoreText_6be9a005889899ab", 3862154480273746, undefined, []); }
+  static init(): KernKerningPair { return callSDK<KernKerningPair>("CoreText_c1f28409f8601238", 3862154480273746, undefined, []); }
   declare readonly $type: { "c:@S@KernKerningPair": true };
 }
 
@@ -1482,18 +1482,18 @@ export type KernKerningValue = number;
 /** struct KernOffsetTable */
 export class KernOffsetTable extends SDKHandle {
   /** var firstGlyph: UInt16 */
-  get firstGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 912538552259483, this, []); }
-  set firstGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1600774009020625, this, [value]); }
+  get firstGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 912538552259483, this, []); }
+  set firstGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1600774009020625, this, [value]); }
   /** var nGlyphs: UInt16 */
-  get nGlyphs(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1305256179880072, this, []); }
-  set nGlyphs(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1821042355940679, this, [value]); }
+  get nGlyphs(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1305256179880072, this, []); }
+  set nGlyphs(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1821042355940679, this, [value]); }
   /** var offsetTable: KernArrayOffset */
-  get offsetTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4076939050556197, this, []); }
-  set offsetTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4422516793861628, this, [value]); }
+  get offsetTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4076939050556197, this, []); }
+  set offsetTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4422516793861628, this, [value]); }
   /** init(firstGlyph: UInt16, nGlyphs: UInt16, offsetTable: KernArrayOffset) */
-  static initFirstGlyphNGlyphsOffsetTable(firstGlyph: number, nGlyphs: number, offsetTable: number): KernOffsetTable { return callSDK<KernOffsetTable>("CoreText_6be9a005889899ab", 1856964416110350, undefined, [firstGlyph, nGlyphs, offsetTable]); }
+  static initFirstGlyphNGlyphsOffsetTable(firstGlyph: number, nGlyphs: number, offsetTable: number): KernOffsetTable { return callSDK<KernOffsetTable>("CoreText_c1f28409f8601238", 1856964416110350, undefined, [firstGlyph, nGlyphs, offsetTable]); }
   /** init() */
-  static init(): KernOffsetTable { return callSDK<KernOffsetTable>("CoreText_6be9a005889899ab", 2109502791434589, undefined, []); }
+  static init(): KernOffsetTable { return callSDK<KernOffsetTable>("CoreText_c1f28409f8601238", 2109502791434589, undefined, []); }
   declare readonly $type: { "c:@S@KernOffsetTable": true };
 }
 
@@ -1503,15 +1503,15 @@ export type KernOffsetTablePtr = SDKHandle;
 /** struct KernOrderedListEntry */
 export class KernOrderedListEntry extends SDKHandle {
   /** var pair: KernKerningPair */
-  get pair(): KernKerningPair { return callSDK<KernKerningPair>("CoreText_6be9a005889899ab", 2549480299121789, this, []); }
-  set pair(value: KernKerningPair) { callSDK<void>("CoreText_6be9a005889899ab", 2829096755433349, this, [value]); }
+  get pair(): KernKerningPair { return callSDK<KernKerningPair>("CoreText_c1f28409f8601238", 2549480299121789, this, []); }
+  set pair(value: KernKerningPair) { callSDK<void>("CoreText_c1f28409f8601238", 2829096755433349, this, [value]); }
   /** var value: KernKerningValue */
-  get value(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3748050711462307, this, []); }
-  set value(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1159990425461177, this, [value]); }
+  get value(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3748050711462307, this, []); }
+  set value(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1159990425461177, this, [value]); }
   /** init(pair: KernKerningPair, value: KernKerningValue) */
-  static initPairValue(pair: KernKerningPair, value: number): KernOrderedListEntry { return callSDK<KernOrderedListEntry>("CoreText_6be9a005889899ab", 1208196058850423, undefined, [pair, value]); }
+  static initPairValue(pair: KernKerningPair, value: number): KernOrderedListEntry { return callSDK<KernOrderedListEntry>("CoreText_c1f28409f8601238", 1208196058850423, undefined, [pair, value]); }
   /** init() */
-  static init(): KernOrderedListEntry { return callSDK<KernOrderedListEntry>("CoreText_6be9a005889899ab", 3351489891682250, undefined, []); }
+  static init(): KernOrderedListEntry { return callSDK<KernOrderedListEntry>("CoreText_c1f28409f8601238", 3351489891682250, undefined, []); }
   declare readonly $type: { "c:@S@KernOrderedListEntry": true };
 }
 
@@ -1521,102 +1521,102 @@ export type KernOrderedListEntryPtr = SDKHandle;
 /** struct KernOrderedListHeader */
 export class KernOrderedListHeader extends SDKHandle {
   /** var entrySelector: UInt16 */
-  get entrySelector(): number { return callSDK<number>("CoreText_6be9a005889899ab", 437229824689844, this, []); }
-  set entrySelector(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4169912598983217, this, [value]); }
+  get entrySelector(): number { return callSDK<number>("CoreText_c1f28409f8601238", 437229824689844, this, []); }
+  set entrySelector(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4169912598983217, this, [value]); }
   /** var nPairs: UInt16 */
-  get nPairs(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1763479540496806, this, []); }
-  set nPairs(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3980838259638357, this, [value]); }
+  get nPairs(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1763479540496806, this, []); }
+  set nPairs(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3980838259638357, this, [value]); }
   /** var rangeShift: UInt16 */
-  get rangeShift(): number { return callSDK<number>("CoreText_6be9a005889899ab", 139547058063533, this, []); }
-  set rangeShift(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3734238886597393, this, [value]); }
+  get rangeShift(): number { return callSDK<number>("CoreText_c1f28409f8601238", 139547058063533, this, []); }
+  set rangeShift(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3734238886597393, this, [value]); }
   /** var searchRange: UInt16 */
-  get searchRange(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4436564577706634, this, []); }
-  set searchRange(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 198766307131359, this, [value]); }
+  get searchRange(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4436564577706634, this, []); }
+  set searchRange(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 198766307131359, this, [value]); }
   /** var table: UInt16 */
-  get table(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3871862803988241, this, []); }
-  set table(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4183017449708139, this, [value]); }
+  get table(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3871862803988241, this, []); }
+  set table(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4183017449708139, this, [value]); }
   /** init(nPairs: UInt16, searchRange: UInt16, entrySelector: UInt16, rangeShift: UInt16, table: UInt16) */
-  static initNPairsSearchRangeEntrySelectorRangeShiftTable(nPairs: number, searchRange: number, entrySelector: number, rangeShift: number, table: number): KernOrderedListHeader { return callSDK<KernOrderedListHeader>("CoreText_6be9a005889899ab", 3070306058804871, undefined, [nPairs, searchRange, entrySelector, rangeShift, table]); }
+  static initNPairsSearchRangeEntrySelectorRangeShiftTable(nPairs: number, searchRange: number, entrySelector: number, rangeShift: number, table: number): KernOrderedListHeader { return callSDK<KernOrderedListHeader>("CoreText_c1f28409f8601238", 3070306058804871, undefined, [nPairs, searchRange, entrySelector, rangeShift, table]); }
   /** init() */
-  static init(): KernOrderedListHeader { return callSDK<KernOrderedListHeader>("CoreText_6be9a005889899ab", 4455973406096100, undefined, []); }
+  static init(): KernOrderedListHeader { return callSDK<KernOrderedListHeader>("CoreText_c1f28409f8601238", 4455973406096100, undefined, []); }
   declare readonly $type: { "c:@S@KernOrderedListHeader": true };
 }
 
 /** struct KernSimpleArrayHeader */
 export class KernSimpleArrayHeader extends SDKHandle {
   /** var firstTable: UInt16 */
-  get firstTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3613316015697295, this, []); }
-  set firstTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3778068872690888, this, [value]); }
+  get firstTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3613316015697295, this, []); }
+  set firstTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3778068872690888, this, [value]); }
   /** var leftOffsetTable: UInt16 */
-  get leftOffsetTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1969845817983937, this, []); }
-  set leftOffsetTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2914299954628662, this, [value]); }
+  get leftOffsetTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1969845817983937, this, []); }
+  set leftOffsetTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2914299954628662, this, [value]); }
   /** var rightOffsetTable: UInt16 */
-  get rightOffsetTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2897426714345438, this, []); }
-  set rightOffsetTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3490618261522309, this, [value]); }
+  get rightOffsetTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2897426714345438, this, []); }
+  set rightOffsetTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3490618261522309, this, [value]); }
   /** var rowWidth: UInt16 */
-  get rowWidth(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4488447910324608, this, []); }
-  set rowWidth(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3447694265697591, this, [value]); }
+  get rowWidth(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4488447910324608, this, []); }
+  set rowWidth(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3447694265697591, this, [value]); }
   /** var theArray: KernArrayOffset */
-  get theArray(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2218067194082980, this, []); }
-  set theArray(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3945555723211579, this, [value]); }
+  get theArray(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2218067194082980, this, []); }
+  set theArray(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3945555723211579, this, [value]); }
   /** init(rowWidth: UInt16, leftOffsetTable: UInt16, rightOffsetTable: UInt16, theArray: KernArrayOffset, firstTable: UInt16) */
-  static initRowWidthLeftOffsetTableRightOffsetTableTheArrayFirstTable(rowWidth: number, leftOffsetTable: number, rightOffsetTable: number, theArray: number, firstTable: number): KernSimpleArrayHeader { return callSDK<KernSimpleArrayHeader>("CoreText_6be9a005889899ab", 2970242995578566, undefined, [rowWidth, leftOffsetTable, rightOffsetTable, theArray, firstTable]); }
+  static initRowWidthLeftOffsetTableRightOffsetTableTheArrayFirstTable(rowWidth: number, leftOffsetTable: number, rightOffsetTable: number, theArray: number, firstTable: number): KernSimpleArrayHeader { return callSDK<KernSimpleArrayHeader>("CoreText_c1f28409f8601238", 2970242995578566, undefined, [rowWidth, leftOffsetTable, rightOffsetTable, theArray, firstTable]); }
   /** init() */
-  static init(): KernSimpleArrayHeader { return callSDK<KernSimpleArrayHeader>("CoreText_6be9a005889899ab", 1128668449170437, undefined, []); }
+  static init(): KernSimpleArrayHeader { return callSDK<KernSimpleArrayHeader>("CoreText_c1f28409f8601238", 1128668449170437, undefined, []); }
   declare readonly $type: { "c:@S@KernSimpleArrayHeader": true };
 }
 
 /** struct KernStateEntry */
 export class KernStateEntry extends SDKHandle {
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3718594094825516, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4386531176847898, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3718594094825516, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4386531176847898, this, [value]); }
   /** var newState: UInt16 */
-  get newState(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3700681509323152, this, []); }
-  set newState(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4422104467094087, this, [value]); }
+  get newState(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3700681509323152, this, []); }
+  set newState(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4422104467094087, this, [value]); }
   /** init(newState: UInt16, flags: UInt16) */
-  static initNewStateFlags(newState: number, flags: number): KernStateEntry { return callSDK<KernStateEntry>("CoreText_6be9a005889899ab", 1793977343589140, undefined, [newState, flags]); }
+  static initNewStateFlags(newState: number, flags: number): KernStateEntry { return callSDK<KernStateEntry>("CoreText_c1f28409f8601238", 1793977343589140, undefined, [newState, flags]); }
   /** init() */
-  static init(): KernStateEntry { return callSDK<KernStateEntry>("CoreText_6be9a005889899ab", 2333480411283860, undefined, []); }
+  static init(): KernStateEntry { return callSDK<KernStateEntry>("CoreText_c1f28409f8601238", 2333480411283860, undefined, []); }
   declare readonly $type: { "c:@S@KernStateEntry": true };
 }
 
 /** struct KernStateHeader */
 export class KernStateHeader extends SDKHandle {
   /** var firstTable: UInt8 */
-  get firstTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 65858497813493, this, []); }
-  set firstTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 240054260061523, this, [value]); }
+  get firstTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 65858497813493, this, []); }
+  set firstTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 240054260061523, this, [value]); }
   /** var header: STHeader */
-  get header(): STHeader { return callSDK<STHeader>("CoreText_6be9a005889899ab", 2465466415211616, this, []); }
-  set header(value: STHeader) { callSDK<void>("CoreText_6be9a005889899ab", 1039517265811003, this, [value]); }
+  get header(): STHeader { return callSDK<STHeader>("CoreText_c1f28409f8601238", 2465466415211616, this, []); }
+  set header(value: STHeader) { callSDK<void>("CoreText_c1f28409f8601238", 1039517265811003, this, [value]); }
   /** var valueTable: UInt16 */
-  get valueTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3208062442334314, this, []); }
-  set valueTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2447969531483751, this, [value]); }
+  get valueTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3208062442334314, this, []); }
+  set valueTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2447969531483751, this, [value]); }
   /** init(header: STHeader, valueTable: UInt16, firstTable: UInt8) */
-  static initHeaderValueTableFirstTable(header: STHeader, valueTable: number, firstTable: number): KernStateHeader { return callSDK<KernStateHeader>("CoreText_6be9a005889899ab", 560019761288704, undefined, [header, valueTable, firstTable]); }
+  static initHeaderValueTableFirstTable(header: STHeader, valueTable: number, firstTable: number): KernStateHeader { return callSDK<KernStateHeader>("CoreText_c1f28409f8601238", 560019761288704, undefined, [header, valueTable, firstTable]); }
   /** init() */
-  static init(): KernStateHeader { return callSDK<KernStateHeader>("CoreText_6be9a005889899ab", 768871903354335, undefined, []); }
+  static init(): KernStateHeader { return callSDK<KernStateHeader>("CoreText_c1f28409f8601238", 768871903354335, undefined, []); }
   declare readonly $type: { "c:@S@KernStateHeader": true };
 }
 
 /** struct KernSubtableHeader */
 export class KernSubtableHeader extends SDKHandle {
   /** var fsHeader: KernFormatSpecificHeader */
-  get fsHeader(): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_6be9a005889899ab", 1952378757604383, this, []); }
-  set fsHeader(value: KernFormatSpecificHeader) { callSDK<void>("CoreText_6be9a005889899ab", 1907231990943177, this, [value]); }
+  get fsHeader(): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_c1f28409f8601238", 1952378757604383, this, []); }
+  set fsHeader(value: KernFormatSpecificHeader) { callSDK<void>("CoreText_c1f28409f8601238", 1907231990943177, this, [value]); }
   /** var length: Int32 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2714747830333736, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1097078743894197, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2714747830333736, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1097078743894197, this, [value]); }
   /** var stInfo: KernSubtableInfo */
-  get stInfo(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2044244039043613, this, []); }
-  set stInfo(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4016820370674775, this, [value]); }
+  get stInfo(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2044244039043613, this, []); }
+  set stInfo(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4016820370674775, this, [value]); }
   /** var tupleIndex: Int16 */
-  get tupleIndex(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3942371213508837, this, []); }
-  set tupleIndex(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 886379610591992, this, [value]); }
+  get tupleIndex(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3942371213508837, this, []); }
+  set tupleIndex(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 886379610591992, this, [value]); }
   /** init(length: Int32, stInfo: KernSubtableInfo, tupleIndex: Int16, fsHeader: KernFormatSpecificHeader) */
-  static initLengthStInfoTupleIndexFsHeader(length: number, stInfo: number, tupleIndex: number, fsHeader: KernFormatSpecificHeader): KernSubtableHeader { return callSDK<KernSubtableHeader>("CoreText_6be9a005889899ab", 3021356074762417, undefined, [length, stInfo, tupleIndex, fsHeader]); }
+  static initLengthStInfoTupleIndexFsHeader(length: number, stInfo: number, tupleIndex: number, fsHeader: KernFormatSpecificHeader): KernSubtableHeader { return callSDK<KernSubtableHeader>("CoreText_c1f28409f8601238", 3021356074762417, undefined, [length, stInfo, tupleIndex, fsHeader]); }
   /** init() */
-  static init(): KernSubtableHeader { return callSDK<KernSubtableHeader>("CoreText_6be9a005889899ab", 2485098605147674, undefined, []); }
+  static init(): KernSubtableHeader { return callSDK<KernSubtableHeader>("CoreText_c1f28409f8601238", 2485098605147674, undefined, []); }
   declare readonly $type: { "c:@S@KernSubtableHeader": true };
 }
 
@@ -1632,16 +1632,16 @@ export type KernTableFormat = number;
 /** struct KernTableHeader */
 export class KernTableHeader extends SDKHandle {
   /** var firstSubtable: UInt16 */
-  get firstSubtable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3039079252668690, this, []); }
-  set firstSubtable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3835290366679502, this, [value]); }
+  get firstSubtable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3039079252668690, this, []); }
+  set firstSubtable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3835290366679502, this, [value]); }
   /** var nTables: Int32 */
-  get nTables(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2550855657942955, this, []); }
-  set nTables(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3855095179500248, this, [value]); }
+  get nTables(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2550855657942955, this, []); }
+  set nTables(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3855095179500248, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 2935427844889640, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1100101344886055, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 2935427844889640, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1100101344886055, this, [value]); }
   /** init() */
-  static init(): KernTableHeader { return callSDK<KernTableHeader>("CoreText_6be9a005889899ab", 1309317076035098, undefined, []); }
+  static init(): KernTableHeader { return callSDK<KernTableHeader>("CoreText_c1f28409f8601238", 1309317076035098, undefined, []); }
   declare readonly $type: { "c:@S@KernTableHeader": true };
 }
 
@@ -1654,54 +1654,54 @@ export type KernTableHeaderPtr = SDKHandle;
 /** struct KernVersion0Header */
 export class KernVersion0Header extends SDKHandle {
   /** var firstSubtable: UInt16 */
-  get firstSubtable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3474125232894894, this, []); }
-  set firstSubtable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2393801094195704, this, [value]); }
+  get firstSubtable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3474125232894894, this, []); }
+  set firstSubtable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2393801094195704, this, [value]); }
   /** var nTables: UInt16 */
-  get nTables(): number { return callSDK<number>("CoreText_6be9a005889899ab", 229461025259996, this, []); }
-  set nTables(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2407319957907480, this, [value]); }
+  get nTables(): number { return callSDK<number>("CoreText_c1f28409f8601238", 229461025259996, this, []); }
+  set nTables(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2407319957907480, this, [value]); }
   /** var version: UInt16 */
-  get version(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3292684828691314, this, []); }
-  set version(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2775063087944570, this, [value]); }
+  get version(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3292684828691314, this, []); }
+  set version(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2775063087944570, this, [value]); }
   /** init(version: UInt16, nTables: UInt16, firstSubtable: UInt16) */
-  static initVersionNTablesFirstSubtable(version: number, nTables: number, firstSubtable: number): KernVersion0Header { return callSDK<KernVersion0Header>("CoreText_6be9a005889899ab", 971402662288865, undefined, [version, nTables, firstSubtable]); }
+  static initVersionNTablesFirstSubtable(version: number, nTables: number, firstSubtable: number): KernVersion0Header { return callSDK<KernVersion0Header>("CoreText_c1f28409f8601238", 971402662288865, undefined, [version, nTables, firstSubtable]); }
   /** init() */
-  static init(): KernVersion0Header { return callSDK<KernVersion0Header>("CoreText_6be9a005889899ab", 3721652107267878, undefined, []); }
+  static init(): KernVersion0Header { return callSDK<KernVersion0Header>("CoreText_c1f28409f8601238", 3721652107267878, undefined, []); }
   declare readonly $type: { "c:@S@KernVersion0Header": true };
 }
 
 /** struct KernVersion0SubtableHeader */
 export class KernVersion0SubtableHeader extends SDKHandle {
   /** var fsHeader: KernFormatSpecificHeader */
-  get fsHeader(): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_6be9a005889899ab", 53852447272280, this, []); }
-  set fsHeader(value: KernFormatSpecificHeader) { callSDK<void>("CoreText_6be9a005889899ab", 1757500461660772, this, [value]); }
+  get fsHeader(): KernFormatSpecificHeader { return callSDK<KernFormatSpecificHeader>("CoreText_c1f28409f8601238", 53852447272280, this, []); }
+  set fsHeader(value: KernFormatSpecificHeader) { callSDK<void>("CoreText_c1f28409f8601238", 1757500461660772, this, [value]); }
   /** var length: UInt16 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2404728011997281, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 950622270645009, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2404728011997281, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 950622270645009, this, [value]); }
   /** var stInfo: KernSubtableInfo */
-  get stInfo(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2357059130020365, this, []); }
-  set stInfo(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2349660973154459, this, [value]); }
+  get stInfo(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2357059130020365, this, []); }
+  set stInfo(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2349660973154459, this, [value]); }
   /** var version: UInt16 */
-  get version(): number { return callSDK<number>("CoreText_6be9a005889899ab", 621835297695187, this, []); }
-  set version(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1635782554888278, this, [value]); }
+  get version(): number { return callSDK<number>("CoreText_c1f28409f8601238", 621835297695187, this, []); }
+  set version(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1635782554888278, this, [value]); }
   /** init(version: UInt16, length: UInt16, stInfo: KernSubtableInfo, fsHeader: KernFormatSpecificHeader) */
-  static initVersionLengthStInfoFsHeader(version: number, length: number, stInfo: number, fsHeader: KernFormatSpecificHeader): KernVersion0SubtableHeader { return callSDK<KernVersion0SubtableHeader>("CoreText_6be9a005889899ab", 874054494493561, undefined, [version, length, stInfo, fsHeader]); }
+  static initVersionLengthStInfoFsHeader(version: number, length: number, stInfo: number, fsHeader: KernFormatSpecificHeader): KernVersion0SubtableHeader { return callSDK<KernVersion0SubtableHeader>("CoreText_c1f28409f8601238", 874054494493561, undefined, [version, length, stInfo, fsHeader]); }
   /** init() */
-  static init(): KernVersion0SubtableHeader { return callSDK<KernVersion0SubtableHeader>("CoreText_6be9a005889899ab", 235793878956869, undefined, []); }
+  static init(): KernVersion0SubtableHeader { return callSDK<KernVersion0SubtableHeader>("CoreText_c1f28409f8601238", 235793878956869, undefined, []); }
   declare readonly $type: { "c:@S@KernVersion0SubtableHeader": true };
 }
 
 /** struct KerxAnchorPointAction */
 export class KerxAnchorPointAction extends SDKHandle {
   /** var currAnchorPoint: UInt16 */
-  get currAnchorPoint(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1228638732668149, this, []); }
-  set currAnchorPoint(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4327711910829857, this, [value]); }
+  get currAnchorPoint(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1228638732668149, this, []); }
+  set currAnchorPoint(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4327711910829857, this, [value]); }
   /** var markAnchorPoint: UInt16 */
-  get markAnchorPoint(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4475647373209363, this, []); }
-  set markAnchorPoint(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2570204301243915, this, [value]); }
+  get markAnchorPoint(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4475647373209363, this, []); }
+  set markAnchorPoint(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2570204301243915, this, [value]); }
   /** init(markAnchorPoint: UInt16, currAnchorPoint: UInt16) */
-  static initMarkAnchorPointCurrAnchorPoint(markAnchorPoint: number, currAnchorPoint: number): KerxAnchorPointAction { return callSDK<KerxAnchorPointAction>("CoreText_6be9a005889899ab", 23576777810269, undefined, [markAnchorPoint, currAnchorPoint]); }
+  static initMarkAnchorPointCurrAnchorPoint(markAnchorPoint: number, currAnchorPoint: number): KerxAnchorPointAction { return callSDK<KerxAnchorPointAction>("CoreText_c1f28409f8601238", 23576777810269, undefined, [markAnchorPoint, currAnchorPoint]); }
   /** init() */
-  static init(): KerxAnchorPointAction { return callSDK<KerxAnchorPointAction>("CoreText_6be9a005889899ab", 915021264816906, undefined, []); }
+  static init(): KerxAnchorPointAction { return callSDK<KerxAnchorPointAction>("CoreText_c1f28409f8601238", 915021264816906, undefined, []); }
   declare readonly $type: { "c:@S@KerxAnchorPointAction": true };
 }
 
@@ -1711,164 +1711,164 @@ export type KerxArrayOffset = number;
 /** struct KerxControlPointAction */
 export class KerxControlPointAction extends SDKHandle {
   /** var currControlPoint: UInt16 */
-  get currControlPoint(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1348424202172419, this, []); }
-  set currControlPoint(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2936787790443285, this, [value]); }
+  get currControlPoint(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1348424202172419, this, []); }
+  set currControlPoint(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2936787790443285, this, [value]); }
   /** var markControlPoint: UInt16 */
-  get markControlPoint(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3966417790944661, this, []); }
-  set markControlPoint(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1619250074996285, this, [value]); }
+  get markControlPoint(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3966417790944661, this, []); }
+  set markControlPoint(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1619250074996285, this, [value]); }
   /** init(markControlPoint: UInt16, currControlPoint: UInt16) */
-  static initMarkControlPointCurrControlPoint(markControlPoint: number, currControlPoint: number): KerxControlPointAction { return callSDK<KerxControlPointAction>("CoreText_6be9a005889899ab", 4097085603452260, undefined, [markControlPoint, currControlPoint]); }
+  static initMarkControlPointCurrControlPoint(markControlPoint: number, currControlPoint: number): KerxControlPointAction { return callSDK<KerxControlPointAction>("CoreText_c1f28409f8601238", 4097085603452260, undefined, [markControlPoint, currControlPoint]); }
   /** init() */
-  static init(): KerxControlPointAction { return callSDK<KerxControlPointAction>("CoreText_6be9a005889899ab", 1671299728862637, undefined, []); }
+  static init(): KerxControlPointAction { return callSDK<KerxControlPointAction>("CoreText_c1f28409f8601238", 1671299728862637, undefined, []); }
   declare readonly $type: { "c:@S@KerxControlPointAction": true };
 }
 
 /** struct KerxControlPointEntry */
 export class KerxControlPointEntry extends SDKHandle {
   /** var actionIndex: UInt16 */
-  get actionIndex(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3472702975217888, this, []); }
-  set actionIndex(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2188033588183308, this, [value]); }
+  get actionIndex(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3472702975217888, this, []); }
+  set actionIndex(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2188033588183308, this, [value]); }
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3710188624499222, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2783098446749562, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3710188624499222, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2783098446749562, this, [value]); }
   /** var newState: UInt16 */
-  get newState(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4409277297804350, this, []); }
-  set newState(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2445639047039250, this, [value]); }
+  get newState(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4409277297804350, this, []); }
+  set newState(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2445639047039250, this, [value]); }
   /** init(newState: UInt16, flags: UInt16, actionIndex: UInt16) */
-  static initNewStateFlagsActionIndex(newState: number, flags: number, actionIndex: number): KerxControlPointEntry { return callSDK<KerxControlPointEntry>("CoreText_6be9a005889899ab", 3563794308874151, undefined, [newState, flags, actionIndex]); }
+  static initNewStateFlagsActionIndex(newState: number, flags: number, actionIndex: number): KerxControlPointEntry { return callSDK<KerxControlPointEntry>("CoreText_c1f28409f8601238", 3563794308874151, undefined, [newState, flags, actionIndex]); }
   /** init() */
-  static init(): KerxControlPointEntry { return callSDK<KerxControlPointEntry>("CoreText_6be9a005889899ab", 43777298249727, undefined, []); }
+  static init(): KerxControlPointEntry { return callSDK<KerxControlPointEntry>("CoreText_c1f28409f8601238", 43777298249727, undefined, []); }
   declare readonly $type: { "c:@S@KerxControlPointEntry": true };
 }
 
 /** struct KerxControlPointHeader */
 export class KerxControlPointHeader extends SDKHandle {
   /** var firstTable: UInt8 */
-  get firstTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2341270620258152, this, []); }
-  set firstTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1907364370725100, this, [value]); }
+  get firstTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2341270620258152, this, []); }
+  set firstTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1907364370725100, this, [value]); }
   /** var flags: UInt32 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1866818627921995, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3108858584132042, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1866818627921995, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3108858584132042, this, [value]); }
   /** var header: STXHeader */
-  get header(): STXHeader { return callSDK<STXHeader>("CoreText_6be9a005889899ab", 138968750144835, this, []); }
-  set header(value: STXHeader) { callSDK<void>("CoreText_6be9a005889899ab", 3508148455753840, this, [value]); }
+  get header(): STXHeader { return callSDK<STXHeader>("CoreText_c1f28409f8601238", 138968750144835, this, []); }
+  set header(value: STXHeader) { callSDK<void>("CoreText_c1f28409f8601238", 3508148455753840, this, [value]); }
   /** init(header: STXHeader, flags: UInt32, firstTable: UInt8) */
-  static initHeaderFlagsFirstTable(header: STXHeader, flags: number, firstTable: number): KerxControlPointHeader { return callSDK<KerxControlPointHeader>("CoreText_6be9a005889899ab", 538198193992992, undefined, [header, flags, firstTable]); }
+  static initHeaderFlagsFirstTable(header: STXHeader, flags: number, firstTable: number): KerxControlPointHeader { return callSDK<KerxControlPointHeader>("CoreText_c1f28409f8601238", 538198193992992, undefined, [header, flags, firstTable]); }
   /** init() */
-  static init(): KerxControlPointHeader { return callSDK<KerxControlPointHeader>("CoreText_6be9a005889899ab", 1978268819498928, undefined, []); }
+  static init(): KerxControlPointHeader { return callSDK<KerxControlPointHeader>("CoreText_c1f28409f8601238", 1978268819498928, undefined, []); }
   declare readonly $type: { "c:@S@KerxControlPointHeader": true };
 }
 
 /** struct KerxCoordinateAction */
 export class KerxCoordinateAction extends SDKHandle {
   /** var currX: UInt16 */
-  get currX(): number { return callSDK<number>("CoreText_6be9a005889899ab", 604218739700159, this, []); }
-  set currX(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 190968856281199, this, [value]); }
+  get currX(): number { return callSDK<number>("CoreText_c1f28409f8601238", 604218739700159, this, []); }
+  set currX(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 190968856281199, this, [value]); }
   /** var currY: UInt16 */
-  get currY(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4502959598847015, this, []); }
-  set currY(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2956984207585726, this, [value]); }
+  get currY(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4502959598847015, this, []); }
+  set currY(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2956984207585726, this, [value]); }
   /** var markX: UInt16 */
-  get markX(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3176090763984779, this, []); }
-  set markX(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3401741837187835, this, [value]); }
+  get markX(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3176090763984779, this, []); }
+  set markX(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3401741837187835, this, [value]); }
   /** var markY: UInt16 */
-  get markY(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4132783112607016, this, []); }
-  set markY(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1122850623226491, this, [value]); }
+  get markY(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4132783112607016, this, []); }
+  set markY(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1122850623226491, this, [value]); }
   /** init(markX: UInt16, markY: UInt16, currX: UInt16, currY: UInt16) */
-  static initMarkXMarkYCurrXCurrY(markX: number, markY: number, currX: number, currY: number): KerxCoordinateAction { return callSDK<KerxCoordinateAction>("CoreText_6be9a005889899ab", 1251796323853759, undefined, [markX, markY, currX, currY]); }
+  static initMarkXMarkYCurrXCurrY(markX: number, markY: number, currX: number, currY: number): KerxCoordinateAction { return callSDK<KerxCoordinateAction>("CoreText_c1f28409f8601238", 1251796323853759, undefined, [markX, markY, currX, currY]); }
   /** init() */
-  static init(): KerxCoordinateAction { return callSDK<KerxCoordinateAction>("CoreText_6be9a005889899ab", 1269355543146865, undefined, []); }
+  static init(): KerxCoordinateAction { return callSDK<KerxCoordinateAction>("CoreText_c1f28409f8601238", 1269355543146865, undefined, []); }
   declare readonly $type: { "c:@S@KerxCoordinateAction": true };
 }
 
 /** struct KerxFormatSpecificHeader */
 export class KerxFormatSpecificHeader extends SDKHandle {
   /** var controlPoint: KerxControlPointHeader { get set } */
-  get controlPoint(): KerxControlPointHeader { return callSDK<KerxControlPointHeader>("CoreText_6be9a005889899ab", 1516941625119235, this, []); }
-  set controlPoint(value: KerxControlPointHeader) { callSDK<void>("CoreText_6be9a005889899ab", 2095877934524423, this, [value]); }
+  get controlPoint(): KerxControlPointHeader { return callSDK<KerxControlPointHeader>("CoreText_c1f28409f8601238", 1516941625119235, this, []); }
+  set controlPoint(value: KerxControlPointHeader) { callSDK<void>("CoreText_c1f28409f8601238", 2095877934524423, this, [value]); }
   /** var indexArray: KerxIndexArrayHeader { get set } */
-  get indexArray(): KerxIndexArrayHeader { return callSDK<KerxIndexArrayHeader>("CoreText_6be9a005889899ab", 2516637400829803, this, []); }
-  set indexArray(value: KerxIndexArrayHeader) { callSDK<void>("CoreText_6be9a005889899ab", 573899869951656, this, [value]); }
+  get indexArray(): KerxIndexArrayHeader { return callSDK<KerxIndexArrayHeader>("CoreText_c1f28409f8601238", 2516637400829803, this, []); }
+  set indexArray(value: KerxIndexArrayHeader) { callSDK<void>("CoreText_c1f28409f8601238", 573899869951656, this, [value]); }
   /** var orderedList: KerxOrderedListHeader { get set } */
-  get orderedList(): KerxOrderedListHeader { return callSDK<KerxOrderedListHeader>("CoreText_6be9a005889899ab", 2842209898504038, this, []); }
-  set orderedList(value: KerxOrderedListHeader) { callSDK<void>("CoreText_6be9a005889899ab", 591486155780005, this, [value]); }
+  get orderedList(): KerxOrderedListHeader { return callSDK<KerxOrderedListHeader>("CoreText_c1f28409f8601238", 2842209898504038, this, []); }
+  set orderedList(value: KerxOrderedListHeader) { callSDK<void>("CoreText_c1f28409f8601238", 591486155780005, this, [value]); }
   /** var simpleArray: KerxSimpleArrayHeader { get set } */
-  get simpleArray(): KerxSimpleArrayHeader { return callSDK<KerxSimpleArrayHeader>("CoreText_6be9a005889899ab", 1532069575556013, this, []); }
-  set simpleArray(value: KerxSimpleArrayHeader) { callSDK<void>("CoreText_6be9a005889899ab", 2215959877960204, this, [value]); }
+  get simpleArray(): KerxSimpleArrayHeader { return callSDK<KerxSimpleArrayHeader>("CoreText_c1f28409f8601238", 1532069575556013, this, []); }
+  set simpleArray(value: KerxSimpleArrayHeader) { callSDK<void>("CoreText_c1f28409f8601238", 2215959877960204, this, [value]); }
   /** var stateTable: KerxStateHeader { get set } */
-  get stateTable(): KerxStateHeader { return callSDK<KerxStateHeader>("CoreText_6be9a005889899ab", 1682939397085451, this, []); }
-  set stateTable(value: KerxStateHeader) { callSDK<void>("CoreText_6be9a005889899ab", 1744080803768816, this, [value]); }
+  get stateTable(): KerxStateHeader { return callSDK<KerxStateHeader>("CoreText_c1f28409f8601238", 1682939397085451, this, []); }
+  set stateTable(value: KerxStateHeader) { callSDK<void>("CoreText_c1f28409f8601238", 1744080803768816, this, [value]); }
   /** init(indexArray: KerxIndexArrayHeader) */
-  static initIndexArray(indexArray: KerxIndexArrayHeader): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_6be9a005889899ab", 996445957756903, undefined, [indexArray]); }
+  static initIndexArray(indexArray: KerxIndexArrayHeader): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_c1f28409f8601238", 996445957756903, undefined, [indexArray]); }
   /** init(stateTable: KerxStateHeader) */
-  static initStateTable(stateTable: KerxStateHeader): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_6be9a005889899ab", 3460430337931499, undefined, [stateTable]); }
+  static initStateTable(stateTable: KerxStateHeader): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_c1f28409f8601238", 3460430337931499, undefined, [stateTable]); }
   /** init(orderedList: KerxOrderedListHeader) */
-  static initOrderedList(orderedList: KerxOrderedListHeader): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_6be9a005889899ab", 1285144218879206, undefined, [orderedList]); }
+  static initOrderedList(orderedList: KerxOrderedListHeader): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_c1f28409f8601238", 1285144218879206, undefined, [orderedList]); }
   /** init(simpleArray: KerxSimpleArrayHeader) */
-  static initSimpleArray(simpleArray: KerxSimpleArrayHeader): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_6be9a005889899ab", 1802038620837632, undefined, [simpleArray]); }
+  static initSimpleArray(simpleArray: KerxSimpleArrayHeader): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_c1f28409f8601238", 1802038620837632, undefined, [simpleArray]); }
   /** init(controlPoint: KerxControlPointHeader) */
-  static initControlPoint(controlPoint: KerxControlPointHeader): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_6be9a005889899ab", 2646015309618939, undefined, [controlPoint]); }
+  static initControlPoint(controlPoint: KerxControlPointHeader): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_c1f28409f8601238", 2646015309618939, undefined, [controlPoint]); }
   /** init() */
-  static init(): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_6be9a005889899ab", 1525231016372993, undefined, []); }
+  static init(): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_c1f28409f8601238", 1525231016372993, undefined, []); }
   declare readonly $type: { "c:@U@KerxFormatSpecificHeader": true };
 }
 
 /** struct KerxIndexArrayHeader */
 export class KerxIndexArrayHeader extends SDKHandle {
   /** var columnCount: UInt16 */
-  get columnCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2186137633169620, this, []); }
-  set columnCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2240407738918247, this, [value]); }
+  get columnCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2186137633169620, this, []); }
+  set columnCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2240407738918247, this, [value]); }
   /** var columnIndexTableOffset: UInt32 */
-  get columnIndexTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1826108801900176, this, []); }
-  set columnIndexTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3191562693996528, this, [value]); }
+  get columnIndexTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1826108801900176, this, []); }
+  set columnIndexTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3191562693996528, this, [value]); }
   /** var flags: UInt32 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 566253734085100, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3602472750452861, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 566253734085100, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3602472750452861, this, [value]); }
   /** var kerningArrayOffset: UInt32 */
-  get kerningArrayOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 405423485757029, this, []); }
-  set kerningArrayOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3158219318893746, this, [value]); }
+  get kerningArrayOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 405423485757029, this, []); }
+  set kerningArrayOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3158219318893746, this, [value]); }
   /** var kerningVectorOffset: UInt32 */
-  get kerningVectorOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2453870830211834, this, []); }
-  set kerningVectorOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 614868826767045, this, [value]); }
+  get kerningVectorOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2453870830211834, this, []); }
+  set kerningVectorOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 614868826767045, this, [value]); }
   /** var rowCount: UInt16 */
-  get rowCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4150649234694719, this, []); }
-  set rowCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3787030455629449, this, [value]); }
+  get rowCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4150649234694719, this, []); }
+  set rowCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3787030455629449, this, [value]); }
   /** var rowIndexTableOffset: UInt32 */
-  get rowIndexTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3901938039132494, this, []); }
-  set rowIndexTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2672776354567448, this, [value]); }
+  get rowIndexTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3901938039132494, this, []); }
+  set rowIndexTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2672776354567448, this, [value]); }
   /** init(flags: UInt32, rowCount: UInt16, columnCount: UInt16, rowIndexTableOffset: UInt32, columnIndexTableOffset: UInt32, kerningArrayOffset: UInt32, kerningVectorOffset: UInt32) */
-  static initFlagsRowCountColumnCountRowIndexTableOffsetColumnIndexTableOffsetKerningArrayOffsetKerningVectorOffset(flags: number, rowCount: number, columnCount: number, rowIndexTableOffset: number, columnIndexTableOffset: number, kerningArrayOffset: number, kerningVectorOffset: number): KerxIndexArrayHeader { return callSDK<KerxIndexArrayHeader>("CoreText_6be9a005889899ab", 1051227696608880, undefined, [flags, rowCount, columnCount, rowIndexTableOffset, columnIndexTableOffset, kerningArrayOffset, kerningVectorOffset]); }
+  static initFlagsRowCountColumnCountRowIndexTableOffsetColumnIndexTableOffsetKerningArrayOffsetKerningVectorOffset(flags: number, rowCount: number, columnCount: number, rowIndexTableOffset: number, columnIndexTableOffset: number, kerningArrayOffset: number, kerningVectorOffset: number): KerxIndexArrayHeader { return callSDK<KerxIndexArrayHeader>("CoreText_c1f28409f8601238", 1051227696608880, undefined, [flags, rowCount, columnCount, rowIndexTableOffset, columnIndexTableOffset, kerningArrayOffset, kerningVectorOffset]); }
   /** init() */
-  static init(): KerxIndexArrayHeader { return callSDK<KerxIndexArrayHeader>("CoreText_6be9a005889899ab", 2074850491134204, undefined, []); }
+  static init(): KerxIndexArrayHeader { return callSDK<KerxIndexArrayHeader>("CoreText_c1f28409f8601238", 2074850491134204, undefined, []); }
   declare readonly $type: { "c:@S@KerxIndexArrayHeader": true };
 }
 
 /** struct KerxKerningPair */
 export class KerxKerningPair extends SDKHandle {
   /** var left: UInt16 */
-  get left(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1916450880278775, this, []); }
-  set left(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3922389877102050, this, [value]); }
+  get left(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1916450880278775, this, []); }
+  set left(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3922389877102050, this, [value]); }
   /** var right: UInt16 */
-  get right(): number { return callSDK<number>("CoreText_6be9a005889899ab", 334954581452679, this, []); }
-  set right(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 861664553382894, this, [value]); }
+  get right(): number { return callSDK<number>("CoreText_c1f28409f8601238", 334954581452679, this, []); }
+  set right(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 861664553382894, this, [value]); }
   /** init(left: UInt16, right: UInt16) */
-  static initLeftRight(left: number, right: number): KerxKerningPair { return callSDK<KerxKerningPair>("CoreText_6be9a005889899ab", 3716613707195692, undefined, [left, right]); }
+  static initLeftRight(left: number, right: number): KerxKerningPair { return callSDK<KerxKerningPair>("CoreText_c1f28409f8601238", 3716613707195692, undefined, [left, right]); }
   /** init() */
-  static init(): KerxKerningPair { return callSDK<KerxKerningPair>("CoreText_6be9a005889899ab", 495482442883343, undefined, []); }
+  static init(): KerxKerningPair { return callSDK<KerxKerningPair>("CoreText_c1f28409f8601238", 495482442883343, undefined, []); }
   declare readonly $type: { "c:@S@KerxKerningPair": true };
 }
 
 /** struct KerxOrderedListEntry */
 export class KerxOrderedListEntry extends SDKHandle {
   /** var pair: KerxKerningPair */
-  get pair(): KerxKerningPair { return callSDK<KerxKerningPair>("CoreText_6be9a005889899ab", 491451691970691, this, []); }
-  set pair(value: KerxKerningPair) { callSDK<void>("CoreText_6be9a005889899ab", 3595015692443459, this, [value]); }
+  get pair(): KerxKerningPair { return callSDK<KerxKerningPair>("CoreText_c1f28409f8601238", 491451691970691, this, []); }
+  set pair(value: KerxKerningPair) { callSDK<void>("CoreText_c1f28409f8601238", 3595015692443459, this, [value]); }
   /** var value: KernKerningValue */
-  get value(): number { return callSDK<number>("CoreText_6be9a005889899ab", 287874997581722, this, []); }
-  set value(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3369096815282130, this, [value]); }
+  get value(): number { return callSDK<number>("CoreText_c1f28409f8601238", 287874997581722, this, []); }
+  set value(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3369096815282130, this, [value]); }
   /** init(pair: KerxKerningPair, value: KernKerningValue) */
-  static initPairValue(pair: KerxKerningPair, value: number): KerxOrderedListEntry { return callSDK<KerxOrderedListEntry>("CoreText_6be9a005889899ab", 814269480733350, undefined, [pair, value]); }
+  static initPairValue(pair: KerxKerningPair, value: number): KerxOrderedListEntry { return callSDK<KerxOrderedListEntry>("CoreText_c1f28409f8601238", 814269480733350, undefined, [pair, value]); }
   /** init() */
-  static init(): KerxOrderedListEntry { return callSDK<KerxOrderedListEntry>("CoreText_6be9a005889899ab", 573705027310537, undefined, []); }
+  static init(): KerxOrderedListEntry { return callSDK<KerxOrderedListEntry>("CoreText_c1f28409f8601238", 573705027310537, undefined, []); }
   declare readonly $type: { "c:@S@KerxOrderedListEntry": true };
 }
 
@@ -1878,84 +1878,84 @@ export type KerxOrderedListEntryPtr = SDKHandle;
 /** struct KerxOrderedListHeader */
 export class KerxOrderedListHeader extends SDKHandle {
   /** var entrySelector: UInt32 */
-  get entrySelector(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3876676208185360, this, []); }
-  set entrySelector(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3271640417506820, this, [value]); }
+  get entrySelector(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3876676208185360, this, []); }
+  set entrySelector(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3271640417506820, this, [value]); }
   /** var nPairs: UInt32 */
-  get nPairs(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2682438484349954, this, []); }
-  set nPairs(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4021146119352244, this, [value]); }
+  get nPairs(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2682438484349954, this, []); }
+  set nPairs(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4021146119352244, this, [value]); }
   /** var rangeShift: UInt32 */
-  get rangeShift(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3895757613534443, this, []); }
-  set rangeShift(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2101440337938187, this, [value]); }
+  get rangeShift(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3895757613534443, this, []); }
+  set rangeShift(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2101440337938187, this, [value]); }
   /** var searchRange: UInt32 */
-  get searchRange(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3372879167135606, this, []); }
-  set searchRange(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4350333575130288, this, [value]); }
+  get searchRange(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3372879167135606, this, []); }
+  set searchRange(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4350333575130288, this, [value]); }
   /** var table: UInt32 */
-  get table(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3921750566585876, this, []); }
-  set table(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3950240474933980, this, [value]); }
+  get table(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3921750566585876, this, []); }
+  set table(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3950240474933980, this, [value]); }
   /** init(nPairs: UInt32, searchRange: UInt32, entrySelector: UInt32, rangeShift: UInt32, table: UInt32) */
-  static initNPairsSearchRangeEntrySelectorRangeShiftTable(nPairs: number, searchRange: number, entrySelector: number, rangeShift: number, table: number): KerxOrderedListHeader { return callSDK<KerxOrderedListHeader>("CoreText_6be9a005889899ab", 2650864841217159, undefined, [nPairs, searchRange, entrySelector, rangeShift, table]); }
+  static initNPairsSearchRangeEntrySelectorRangeShiftTable(nPairs: number, searchRange: number, entrySelector: number, rangeShift: number, table: number): KerxOrderedListHeader { return callSDK<KerxOrderedListHeader>("CoreText_c1f28409f8601238", 2650864841217159, undefined, [nPairs, searchRange, entrySelector, rangeShift, table]); }
   /** init() */
-  static init(): KerxOrderedListHeader { return callSDK<KerxOrderedListHeader>("CoreText_6be9a005889899ab", 3965513153237592, undefined, []); }
+  static init(): KerxOrderedListHeader { return callSDK<KerxOrderedListHeader>("CoreText_c1f28409f8601238", 3965513153237592, undefined, []); }
   declare readonly $type: { "c:@S@KerxOrderedListHeader": true };
 }
 
 /** struct KerxSimpleArrayHeader */
 export class KerxSimpleArrayHeader extends SDKHandle {
   /** var firstTable: UInt32 */
-  get firstTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 316990910199073, this, []); }
-  set firstTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3262082631628467, this, [value]); }
+  get firstTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 316990910199073, this, []); }
+  set firstTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3262082631628467, this, [value]); }
   /** var leftOffsetTable: UInt32 */
-  get leftOffsetTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3106504552542710, this, []); }
-  set leftOffsetTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 555860386306606, this, [value]); }
+  get leftOffsetTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3106504552542710, this, []); }
+  set leftOffsetTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 555860386306606, this, [value]); }
   /** var rightOffsetTable: UInt32 */
-  get rightOffsetTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2035107741871037, this, []); }
-  set rightOffsetTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3227789304248531, this, [value]); }
+  get rightOffsetTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2035107741871037, this, []); }
+  set rightOffsetTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3227789304248531, this, [value]); }
   /** var rowWidth: UInt32 */
-  get rowWidth(): number { return callSDK<number>("CoreText_6be9a005889899ab", 675712161911562, this, []); }
-  set rowWidth(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1155340712646758, this, [value]); }
+  get rowWidth(): number { return callSDK<number>("CoreText_c1f28409f8601238", 675712161911562, this, []); }
+  set rowWidth(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1155340712646758, this, [value]); }
   /** var theArray: KerxArrayOffset */
-  get theArray(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1242757981119250, this, []); }
-  set theArray(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 522904392548021, this, [value]); }
+  get theArray(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1242757981119250, this, []); }
+  set theArray(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 522904392548021, this, [value]); }
   /** init(rowWidth: UInt32, leftOffsetTable: UInt32, rightOffsetTable: UInt32, theArray: KerxArrayOffset, firstTable: UInt32) */
-  static initRowWidthLeftOffsetTableRightOffsetTableTheArrayFirstTable(rowWidth: number, leftOffsetTable: number, rightOffsetTable: number, theArray: number, firstTable: number): KerxSimpleArrayHeader { return callSDK<KerxSimpleArrayHeader>("CoreText_6be9a005889899ab", 1229192948629772, undefined, [rowWidth, leftOffsetTable, rightOffsetTable, theArray, firstTable]); }
+  static initRowWidthLeftOffsetTableRightOffsetTableTheArrayFirstTable(rowWidth: number, leftOffsetTable: number, rightOffsetTable: number, theArray: number, firstTable: number): KerxSimpleArrayHeader { return callSDK<KerxSimpleArrayHeader>("CoreText_c1f28409f8601238", 1229192948629772, undefined, [rowWidth, leftOffsetTable, rightOffsetTable, theArray, firstTable]); }
   /** init() */
-  static init(): KerxSimpleArrayHeader { return callSDK<KerxSimpleArrayHeader>("CoreText_6be9a005889899ab", 1159112064799671, undefined, []); }
+  static init(): KerxSimpleArrayHeader { return callSDK<KerxSimpleArrayHeader>("CoreText_c1f28409f8601238", 1159112064799671, undefined, []); }
   declare readonly $type: { "c:@S@KerxSimpleArrayHeader": true };
 }
 
 /** struct KerxStateEntry */
 export class KerxStateEntry extends SDKHandle {
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2639367614378864, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 413250591894300, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2639367614378864, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 413250591894300, this, [value]); }
   /** var newState: UInt16 */
-  get newState(): number { return callSDK<number>("CoreText_6be9a005889899ab", 377722649926161, this, []); }
-  set newState(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2964595896380449, this, [value]); }
+  get newState(): number { return callSDK<number>("CoreText_c1f28409f8601238", 377722649926161, this, []); }
+  set newState(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2964595896380449, this, [value]); }
   /** var valueIndex: UInt16 */
-  get valueIndex(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1650672816590324, this, []); }
-  set valueIndex(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 434309911891231, this, [value]); }
+  get valueIndex(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1650672816590324, this, []); }
+  set valueIndex(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 434309911891231, this, [value]); }
   /** init(newState: UInt16, flags: UInt16, valueIndex: UInt16) */
-  static initNewStateFlagsValueIndex(newState: number, flags: number, valueIndex: number): KerxStateEntry { return callSDK<KerxStateEntry>("CoreText_6be9a005889899ab", 367875862845122, undefined, [newState, flags, valueIndex]); }
+  static initNewStateFlagsValueIndex(newState: number, flags: number, valueIndex: number): KerxStateEntry { return callSDK<KerxStateEntry>("CoreText_c1f28409f8601238", 367875862845122, undefined, [newState, flags, valueIndex]); }
   /** init() */
-  static init(): KerxStateEntry { return callSDK<KerxStateEntry>("CoreText_6be9a005889899ab", 2748126050880751, undefined, []); }
+  static init(): KerxStateEntry { return callSDK<KerxStateEntry>("CoreText_c1f28409f8601238", 2748126050880751, undefined, []); }
   declare readonly $type: { "c:@S@KerxStateEntry": true };
 }
 
 /** struct KerxStateHeader */
 export class KerxStateHeader extends SDKHandle {
   /** var firstTable: UInt8 */
-  get firstTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3977346488715872, this, []); }
-  set firstTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2311032732743114, this, [value]); }
+  get firstTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3977346488715872, this, []); }
+  set firstTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2311032732743114, this, [value]); }
   /** var header: STXHeader */
-  get header(): STXHeader { return callSDK<STXHeader>("CoreText_6be9a005889899ab", 3090282223844326, this, []); }
-  set header(value: STXHeader) { callSDK<void>("CoreText_6be9a005889899ab", 1214947489222791, this, [value]); }
+  get header(): STXHeader { return callSDK<STXHeader>("CoreText_c1f28409f8601238", 3090282223844326, this, []); }
+  set header(value: STXHeader) { callSDK<void>("CoreText_c1f28409f8601238", 1214947489222791, this, [value]); }
   /** var valueTable: UInt32 */
-  get valueTable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2356738399290303, this, []); }
-  set valueTable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1993173185294165, this, [value]); }
+  get valueTable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2356738399290303, this, []); }
+  set valueTable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1993173185294165, this, [value]); }
   /** init(header: STXHeader, valueTable: UInt32, firstTable: UInt8) */
-  static initHeaderValueTableFirstTable(header: STXHeader, valueTable: number, firstTable: number): KerxStateHeader { return callSDK<KerxStateHeader>("CoreText_6be9a005889899ab", 4029998834315298, undefined, [header, valueTable, firstTable]); }
+  static initHeaderValueTableFirstTable(header: STXHeader, valueTable: number, firstTable: number): KerxStateHeader { return callSDK<KerxStateHeader>("CoreText_c1f28409f8601238", 4029998834315298, undefined, [header, valueTable, firstTable]); }
   /** init() */
-  static init(): KerxStateHeader { return callSDK<KerxStateHeader>("CoreText_6be9a005889899ab", 936030284173058, undefined, []); }
+  static init(): KerxStateHeader { return callSDK<KerxStateHeader>("CoreText_c1f28409f8601238", 936030284173058, undefined, []); }
   declare readonly $type: { "c:@S@KerxStateHeader": true };
 }
 
@@ -1965,21 +1965,21 @@ export type KerxSubtableCoverage = number;
 /** struct KerxSubtableHeader */
 export class KerxSubtableHeader extends SDKHandle {
   /** var fsHeader: KerxFormatSpecificHeader */
-  get fsHeader(): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_6be9a005889899ab", 2419440649707720, this, []); }
-  set fsHeader(value: KerxFormatSpecificHeader) { callSDK<void>("CoreText_6be9a005889899ab", 4218462545218313, this, [value]); }
+  get fsHeader(): KerxFormatSpecificHeader { return callSDK<KerxFormatSpecificHeader>("CoreText_c1f28409f8601238", 2419440649707720, this, []); }
+  set fsHeader(value: KerxFormatSpecificHeader) { callSDK<void>("CoreText_c1f28409f8601238", 4218462545218313, this, [value]); }
   /** var length: UInt32 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1541956240069009, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3338053827607158, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1541956240069009, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3338053827607158, this, [value]); }
   /** var stInfo: KerxSubtableCoverage */
-  get stInfo(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2633693962323983, this, []); }
-  set stInfo(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3679641817989494, this, [value]); }
+  get stInfo(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2633693962323983, this, []); }
+  set stInfo(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3679641817989494, this, [value]); }
   /** var tupleCount: UInt32 */
-  get tupleCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 351429692440450, this, []); }
-  set tupleCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4027004545825565, this, [value]); }
+  get tupleCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 351429692440450, this, []); }
+  set tupleCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4027004545825565, this, [value]); }
   /** init(length: UInt32, stInfo: KerxSubtableCoverage, tupleCount: UInt32, fsHeader: KerxFormatSpecificHeader) */
-  static initLengthStInfoTupleCountFsHeader(length: number, stInfo: number, tupleCount: number, fsHeader: KerxFormatSpecificHeader): KerxSubtableHeader { return callSDK<KerxSubtableHeader>("CoreText_6be9a005889899ab", 2265676048625168, undefined, [length, stInfo, tupleCount, fsHeader]); }
+  static initLengthStInfoTupleCountFsHeader(length: number, stInfo: number, tupleCount: number, fsHeader: KerxFormatSpecificHeader): KerxSubtableHeader { return callSDK<KerxSubtableHeader>("CoreText_c1f28409f8601238", 2265676048625168, undefined, [length, stInfo, tupleCount, fsHeader]); }
   /** init() */
-  static init(): KerxSubtableHeader { return callSDK<KerxSubtableHeader>("CoreText_6be9a005889899ab", 883672854235482, undefined, []); }
+  static init(): KerxSubtableHeader { return callSDK<KerxSubtableHeader>("CoreText_c1f28409f8601238", 883672854235482, undefined, []); }
   declare readonly $type: { "c:@S@KerxSubtableHeader": true };
 }
 
@@ -1989,16 +1989,16 @@ export type KerxSubtableHeaderPtr = SDKHandle;
 /** struct KerxTableHeader */
 export class KerxTableHeader extends SDKHandle {
   /** var firstSubtable: UInt32 */
-  get firstSubtable(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1729808516793610, this, []); }
-  set firstSubtable(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1176737087055235, this, [value]); }
+  get firstSubtable(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1729808516793610, this, []); }
+  set firstSubtable(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1176737087055235, this, [value]); }
   /** var nTables: UInt32 */
-  get nTables(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3879957189733751, this, []); }
-  set nTables(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 433524543707317, this, [value]); }
+  get nTables(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3879957189733751, this, []); }
+  set nTables(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 433524543707317, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 820990199252984, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1224273432410735, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 820990199252984, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1224273432410735, this, [value]); }
   /** init() */
-  static init(): KerxTableHeader { return callSDK<KerxTableHeader>("CoreText_6be9a005889899ab", 4302016904572492, undefined, []); }
+  static init(): KerxTableHeader { return callSDK<KerxTableHeader>("CoreText_c1f28409f8601238", 4302016904572492, undefined, []); }
   declare readonly $type: { "c:@S@KerxTableHeader": true };
 }
 
@@ -2011,31 +2011,31 @@ export type KerxTableHeaderPtr = SDKHandle;
 /** struct LcarCaretClassEntry */
 export class LcarCaretClassEntry extends SDKHandle {
   /** var count: UInt16 */
-  get count(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2239708788655088, this, []); }
-  set count(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4014208700854738, this, [value]); }
+  get count(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2239708788655088, this, []); }
+  set count(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4014208700854738, this, [value]); }
   /** var partials: UInt16 */
-  get partials(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3246363483738110, this, []); }
-  set partials(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1952206225022200, this, [value]); }
+  get partials(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3246363483738110, this, []); }
+  set partials(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1952206225022200, this, [value]); }
   /** init(count: UInt16, partials: UInt16) */
-  static initCountPartials(count: number, partials: number): LcarCaretClassEntry { return callSDK<LcarCaretClassEntry>("CoreText_6be9a005889899ab", 1894020286086759, undefined, [count, partials]); }
+  static initCountPartials(count: number, partials: number): LcarCaretClassEntry { return callSDK<LcarCaretClassEntry>("CoreText_c1f28409f8601238", 1894020286086759, undefined, [count, partials]); }
   /** init() */
-  static init(): LcarCaretClassEntry { return callSDK<LcarCaretClassEntry>("CoreText_6be9a005889899ab", 2651758673145860, undefined, []); }
+  static init(): LcarCaretClassEntry { return callSDK<LcarCaretClassEntry>("CoreText_c1f28409f8601238", 2651758673145860, undefined, []); }
   declare readonly $type: { "c:@S@LcarCaretClassEntry": true };
 }
 
 /** struct LcarCaretTable */
 export class LcarCaretTable extends SDKHandle {
   /** var format: UInt16 */
-  get format(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3470772371575711, this, []); }
-  set format(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1671487933422812, this, [value]); }
+  get format(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3470772371575711, this, []); }
+  set format(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1671487933422812, this, [value]); }
   /** var lookup: SFNTLookupTable */
-  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 3807766374244712, this, []); }
-  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_6be9a005889899ab", 2090711606153285, this, [value]); }
+  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 3807766374244712, this, []); }
+  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_c1f28409f8601238", 2090711606153285, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 4451463030984199, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 4336287707694339, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 4451463030984199, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 4336287707694339, this, [value]); }
   /** init() */
-  static init(): LcarCaretTable { return callSDK<LcarCaretTable>("CoreText_6be9a005889899ab", 1414574650134073, undefined, []); }
+  static init(): LcarCaretTable { return callSDK<LcarCaretTable>("CoreText_c1f28409f8601238", 1414574650134073, undefined, []); }
   declare readonly $type: { "c:@S@LcarCaretTable": true };
 }
 
@@ -2045,108 +2045,108 @@ export type LcarCaretTablePtr = SDKHandle;
 /** struct LtagStringRange */
 export class LtagStringRange extends SDKHandle {
   /** var length: UInt16 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2954231420481482, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3258057192412399, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2954231420481482, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3258057192412399, this, [value]); }
   /** var offset: UInt16 */
-  get offset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1535165575762192, this, []); }
-  set offset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 60680609158469, this, [value]); }
+  get offset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1535165575762192, this, []); }
+  set offset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 60680609158469, this, [value]); }
   /** init(offset: UInt16, length: UInt16) */
-  static initOffsetLength(offset: number, length: number): LtagStringRange { return callSDK<LtagStringRange>("CoreText_6be9a005889899ab", 2344917555251537, undefined, [offset, length]); }
+  static initOffsetLength(offset: number, length: number): LtagStringRange { return callSDK<LtagStringRange>("CoreText_c1f28409f8601238", 2344917555251537, undefined, [offset, length]); }
   /** init() */
-  static init(): LtagStringRange { return callSDK<LtagStringRange>("CoreText_6be9a005889899ab", 1630053022586073, undefined, []); }
+  static init(): LtagStringRange { return callSDK<LtagStringRange>("CoreText_c1f28409f8601238", 1630053022586073, undefined, []); }
   declare readonly $type: { "c:@S@LtagStringRange": true };
 }
 
 /** struct LtagTable */
 export class LtagTable extends SDKHandle {
   /** var flags: UInt32 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1710682453062527, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 536775464323508, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1710682453062527, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 536775464323508, this, [value]); }
   /** var numTags: UInt32 */
-  get numTags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2766859292394706, this, []); }
-  set numTags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4393631690495994, this, [value]); }
+  get numTags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2766859292394706, this, []); }
+  set numTags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4393631690495994, this, [value]); }
   /** var tagRange: LtagStringRange */
-  get tagRange(): LtagStringRange { return callSDK<LtagStringRange>("CoreText_6be9a005889899ab", 352636579794613, this, []); }
-  set tagRange(value: LtagStringRange) { callSDK<void>("CoreText_6be9a005889899ab", 2806192200299716, this, [value]); }
+  get tagRange(): LtagStringRange { return callSDK<LtagStringRange>("CoreText_c1f28409f8601238", 352636579794613, this, []); }
+  set tagRange(value: LtagStringRange) { callSDK<void>("CoreText_c1f28409f8601238", 2806192200299716, this, [value]); }
   /** var version: UInt32 */
-  get version(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3264411557471117, this, []); }
-  set version(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2098494503075628, this, [value]); }
+  get version(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3264411557471117, this, []); }
+  set version(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2098494503075628, this, [value]); }
   /** init(version: UInt32, flags: UInt32, numTags: UInt32, tagRange: LtagStringRange) */
-  static initVersionFlagsNumTagsTagRange(version: number, flags: number, numTags: number, tagRange: LtagStringRange): LtagTable { return callSDK<LtagTable>("CoreText_6be9a005889899ab", 4451791369364357, undefined, [version, flags, numTags, tagRange]); }
+  static initVersionFlagsNumTagsTagRange(version: number, flags: number, numTags: number, tagRange: LtagStringRange): LtagTable { return callSDK<LtagTable>("CoreText_c1f28409f8601238", 4451791369364357, undefined, [version, flags, numTags, tagRange]); }
   /** init() */
-  static init(): LtagTable { return callSDK<LtagTable>("CoreText_6be9a005889899ab", 246152622027650, undefined, []); }
+  static init(): LtagTable { return callSDK<LtagTable>("CoreText_c1f28409f8601238", 246152622027650, undefined, []); }
   declare readonly $type: { "c:@S@LtagTable": true };
 }
 
 /** struct MortChain */
 export class MortChain extends SDKHandle {
   /** var defaultFlags: MortSubtableMaskFlags */
-  get defaultFlags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2999212472310551, this, []); }
-  set defaultFlags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3869834054952381, this, [value]); }
+  get defaultFlags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2999212472310551, this, []); }
+  set defaultFlags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3869834054952381, this, [value]); }
   /** var featureEntries: MortFeatureEntry */
-  get featureEntries(): MortFeatureEntry { return callSDK<MortFeatureEntry>("CoreText_6be9a005889899ab", 4316389177212496, this, []); }
-  set featureEntries(value: MortFeatureEntry) { callSDK<void>("CoreText_6be9a005889899ab", 3527025669832480, this, [value]); }
+  get featureEntries(): MortFeatureEntry { return callSDK<MortFeatureEntry>("CoreText_c1f28409f8601238", 4316389177212496, this, []); }
+  set featureEntries(value: MortFeatureEntry) { callSDK<void>("CoreText_c1f28409f8601238", 3527025669832480, this, [value]); }
   /** var length: UInt32 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1023202076266097, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4035082380460315, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1023202076266097, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4035082380460315, this, [value]); }
   /** var nFeatures: UInt16 */
-  get nFeatures(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3039267353990857, this, []); }
-  set nFeatures(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2148352122853760, this, [value]); }
+  get nFeatures(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3039267353990857, this, []); }
+  set nFeatures(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2148352122853760, this, [value]); }
   /** var nSubtables: UInt16 */
-  get nSubtables(): number { return callSDK<number>("CoreText_6be9a005889899ab", 159058846037742, this, []); }
-  set nSubtables(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3407255802909353, this, [value]); }
+  get nSubtables(): number { return callSDK<number>("CoreText_c1f28409f8601238", 159058846037742, this, []); }
+  set nSubtables(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3407255802909353, this, [value]); }
   /** init(defaultFlags: MortSubtableMaskFlags, length: UInt32, nFeatures: UInt16, nSubtables: UInt16, featureEntries: MortFeatureEntry) */
-  static initDefaultFlagsLengthNFeaturesNSubtablesFeatureEntries(defaultFlags: number, length: number, nFeatures: number, nSubtables: number, featureEntries: MortFeatureEntry): MortChain { return callSDK<MortChain>("CoreText_6be9a005889899ab", 1529502571544414, undefined, [defaultFlags, length, nFeatures, nSubtables, featureEntries]); }
+  static initDefaultFlagsLengthNFeaturesNSubtablesFeatureEntries(defaultFlags: number, length: number, nFeatures: number, nSubtables: number, featureEntries: MortFeatureEntry): MortChain { return callSDK<MortChain>("CoreText_c1f28409f8601238", 1529502571544414, undefined, [defaultFlags, length, nFeatures, nSubtables, featureEntries]); }
   /** init() */
-  static init(): MortChain { return callSDK<MortChain>("CoreText_6be9a005889899ab", 404145239102272, undefined, []); }
+  static init(): MortChain { return callSDK<MortChain>("CoreText_c1f28409f8601238", 404145239102272, undefined, []); }
   declare readonly $type: { "c:@S@MortChain": true };
 }
 
 /** struct MortContextualSubtable */
 export class MortContextualSubtable extends SDKHandle {
   /** var header: STHeader */
-  get header(): STHeader { return callSDK<STHeader>("CoreText_6be9a005889899ab", 128066039388962, this, []); }
-  set header(value: STHeader) { callSDK<void>("CoreText_6be9a005889899ab", 1563705919943250, this, [value]); }
+  get header(): STHeader { return callSDK<STHeader>("CoreText_c1f28409f8601238", 128066039388962, this, []); }
+  set header(value: STHeader) { callSDK<void>("CoreText_c1f28409f8601238", 1563705919943250, this, [value]); }
   /** var substitutionTableOffset: UInt16 */
-  get substitutionTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 902082355401302, this, []); }
-  set substitutionTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1337095588216039, this, [value]); }
+  get substitutionTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 902082355401302, this, []); }
+  set substitutionTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1337095588216039, this, [value]); }
   /** init(header: STHeader, substitutionTableOffset: UInt16) */
-  static initHeaderSubstitutionTableOffset(header: STHeader, substitutionTableOffset: number): MortContextualSubtable { return callSDK<MortContextualSubtable>("CoreText_6be9a005889899ab", 1626714279661056, undefined, [header, substitutionTableOffset]); }
+  static initHeaderSubstitutionTableOffset(header: STHeader, substitutionTableOffset: number): MortContextualSubtable { return callSDK<MortContextualSubtable>("CoreText_c1f28409f8601238", 1626714279661056, undefined, [header, substitutionTableOffset]); }
   /** init() */
-  static init(): MortContextualSubtable { return callSDK<MortContextualSubtable>("CoreText_6be9a005889899ab", 2080588989379582, undefined, []); }
+  static init(): MortContextualSubtable { return callSDK<MortContextualSubtable>("CoreText_c1f28409f8601238", 2080588989379582, undefined, []); }
   declare readonly $type: { "c:@S@MortContextualSubtable": true };
 }
 
 /** struct MortFeatureEntry */
 export class MortFeatureEntry extends SDKHandle {
   /** var disableFlags: MortSubtableMaskFlags */
-  get disableFlags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2011860597129198, this, []); }
-  set disableFlags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3016905436138347, this, [value]); }
+  get disableFlags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2011860597129198, this, []); }
+  set disableFlags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3016905436138347, this, [value]); }
   /** var enableFlags: MortSubtableMaskFlags */
-  get enableFlags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1764963075449048, this, []); }
-  set enableFlags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 245638201372432, this, [value]); }
+  get enableFlags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1764963075449048, this, []); }
+  set enableFlags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 245638201372432, this, [value]); }
   /** var featureSelector: UInt16 */
-  get featureSelector(): number { return callSDK<number>("CoreText_6be9a005889899ab", 18635846086325, this, []); }
-  set featureSelector(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 245788735132241, this, [value]); }
+  get featureSelector(): number { return callSDK<number>("CoreText_c1f28409f8601238", 18635846086325, this, []); }
+  set featureSelector(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 245788735132241, this, [value]); }
   /** var featureType: UInt16 */
-  get featureType(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2870380299032354, this, []); }
-  set featureType(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3460991752518190, this, [value]); }
+  get featureType(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2870380299032354, this, []); }
+  set featureType(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3460991752518190, this, [value]); }
   /** init(featureType: UInt16, featureSelector: UInt16, enableFlags: MortSubtableMaskFlags, disableFlags: MortSubtableMaskFlags) */
-  static initFeatureTypeFeatureSelectorEnableFlagsDisableFlags(featureType: number, featureSelector: number, enableFlags: number, disableFlags: number): MortFeatureEntry { return callSDK<MortFeatureEntry>("CoreText_6be9a005889899ab", 596610063525071, undefined, [featureType, featureSelector, enableFlags, disableFlags]); }
+  static initFeatureTypeFeatureSelectorEnableFlagsDisableFlags(featureType: number, featureSelector: number, enableFlags: number, disableFlags: number): MortFeatureEntry { return callSDK<MortFeatureEntry>("CoreText_c1f28409f8601238", 596610063525071, undefined, [featureType, featureSelector, enableFlags, disableFlags]); }
   /** init() */
-  static init(): MortFeatureEntry { return callSDK<MortFeatureEntry>("CoreText_6be9a005889899ab", 381357226909032, undefined, []); }
+  static init(): MortFeatureEntry { return callSDK<MortFeatureEntry>("CoreText_c1f28409f8601238", 381357226909032, undefined, []); }
   declare readonly $type: { "c:@S@MortFeatureEntry": true };
 }
 
 /** struct MortInsertionSubtable */
 export class MortInsertionSubtable extends SDKHandle {
   /** var header: STHeader */
-  get header(): STHeader { return callSDK<STHeader>("CoreText_6be9a005889899ab", 3007290080567099, this, []); }
-  set header(value: STHeader) { callSDK<void>("CoreText_6be9a005889899ab", 4154073181459035, this, [value]); }
+  get header(): STHeader { return callSDK<STHeader>("CoreText_c1f28409f8601238", 3007290080567099, this, []); }
+  set header(value: STHeader) { callSDK<void>("CoreText_c1f28409f8601238", 4154073181459035, this, [value]); }
   /** init(header: STHeader) */
-  static initHeader(header: STHeader): MortInsertionSubtable { return callSDK<MortInsertionSubtable>("CoreText_6be9a005889899ab", 228358625953768, undefined, [header]); }
+  static initHeader(header: STHeader): MortInsertionSubtable { return callSDK<MortInsertionSubtable>("CoreText_c1f28409f8601238", 228358625953768, undefined, [header]); }
   /** init() */
-  static init(): MortInsertionSubtable { return callSDK<MortInsertionSubtable>("CoreText_6be9a005889899ab", 2247511510911591, undefined, []); }
+  static init(): MortInsertionSubtable { return callSDK<MortInsertionSubtable>("CoreText_c1f28409f8601238", 2247511510911591, undefined, []); }
   declare readonly $type: { "c:@S@MortInsertionSubtable": true };
 }
 
@@ -2156,86 +2156,86 @@ export type MortLigatureActionEntry = number;
 /** struct MortLigatureSubtable */
 export class MortLigatureSubtable extends SDKHandle {
   /** var componentTableOffset: UInt16 */
-  get componentTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3857417014859790, this, []); }
-  set componentTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2796605999544357, this, [value]); }
+  get componentTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3857417014859790, this, []); }
+  set componentTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2796605999544357, this, [value]); }
   /** var header: STHeader */
-  get header(): STHeader { return callSDK<STHeader>("CoreText_6be9a005889899ab", 1152517713581337, this, []); }
-  set header(value: STHeader) { callSDK<void>("CoreText_6be9a005889899ab", 2125836489086658, this, [value]); }
+  get header(): STHeader { return callSDK<STHeader>("CoreText_c1f28409f8601238", 1152517713581337, this, []); }
+  set header(value: STHeader) { callSDK<void>("CoreText_c1f28409f8601238", 2125836489086658, this, [value]); }
   /** var ligatureActionTableOffset: UInt16 */
-  get ligatureActionTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1324632034847254, this, []); }
-  set ligatureActionTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3678985725307221, this, [value]); }
+  get ligatureActionTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1324632034847254, this, []); }
+  set ligatureActionTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3678985725307221, this, [value]); }
   /** var ligatureTableOffset: UInt16 */
-  get ligatureTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1794219481144373, this, []); }
-  set ligatureTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 591720333084755, this, [value]); }
+  get ligatureTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1794219481144373, this, []); }
+  set ligatureTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 591720333084755, this, [value]); }
   /** init(header: STHeader, ligatureActionTableOffset: UInt16, componentTableOffset: UInt16, ligatureTableOffset: UInt16) */
-  static initHeaderLigatureActionTableOffsetComponentTableOffsetLigatureTableOffset(header: STHeader, ligatureActionTableOffset: number, componentTableOffset: number, ligatureTableOffset: number): MortLigatureSubtable { return callSDK<MortLigatureSubtable>("CoreText_6be9a005889899ab", 2791831505343696, undefined, [header, ligatureActionTableOffset, componentTableOffset, ligatureTableOffset]); }
+  static initHeaderLigatureActionTableOffsetComponentTableOffsetLigatureTableOffset(header: STHeader, ligatureActionTableOffset: number, componentTableOffset: number, ligatureTableOffset: number): MortLigatureSubtable { return callSDK<MortLigatureSubtable>("CoreText_c1f28409f8601238", 2791831505343696, undefined, [header, ligatureActionTableOffset, componentTableOffset, ligatureTableOffset]); }
   /** init() */
-  static init(): MortLigatureSubtable { return callSDK<MortLigatureSubtable>("CoreText_6be9a005889899ab", 3159808994357428, undefined, []); }
+  static init(): MortLigatureSubtable { return callSDK<MortLigatureSubtable>("CoreText_c1f28409f8601238", 3159808994357428, undefined, []); }
   declare readonly $type: { "c:@S@MortLigatureSubtable": true };
 }
 
 /** struct MortRearrangementSubtable */
 export class MortRearrangementSubtable extends SDKHandle {
   /** var header: STHeader */
-  get header(): STHeader { return callSDK<STHeader>("CoreText_6be9a005889899ab", 413478856119150, this, []); }
-  set header(value: STHeader) { callSDK<void>("CoreText_6be9a005889899ab", 2198166023051073, this, [value]); }
+  get header(): STHeader { return callSDK<STHeader>("CoreText_c1f28409f8601238", 413478856119150, this, []); }
+  set header(value: STHeader) { callSDK<void>("CoreText_c1f28409f8601238", 2198166023051073, this, [value]); }
   /** init(header: STHeader) */
-  static initHeader(header: STHeader): MortRearrangementSubtable { return callSDK<MortRearrangementSubtable>("CoreText_6be9a005889899ab", 2362823650360133, undefined, [header]); }
+  static initHeader(header: STHeader): MortRearrangementSubtable { return callSDK<MortRearrangementSubtable>("CoreText_c1f28409f8601238", 2362823650360133, undefined, [header]); }
   /** init() */
-  static init(): MortRearrangementSubtable { return callSDK<MortRearrangementSubtable>("CoreText_6be9a005889899ab", 4312301680672710, undefined, []); }
+  static init(): MortRearrangementSubtable { return callSDK<MortRearrangementSubtable>("CoreText_c1f28409f8601238", 4312301680672710, undefined, []); }
   declare readonly $type: { "c:@S@MortRearrangementSubtable": true };
 }
 
 /** struct MortSpecificSubtable */
 export class MortSpecificSubtable extends SDKHandle {
   /** var contextual: MortContextualSubtable { get set } */
-  get contextual(): MortContextualSubtable { return callSDK<MortContextualSubtable>("CoreText_6be9a005889899ab", 1166742729436378, this, []); }
-  set contextual(value: MortContextualSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 1228236423478036, this, [value]); }
+  get contextual(): MortContextualSubtable { return callSDK<MortContextualSubtable>("CoreText_c1f28409f8601238", 1166742729436378, this, []); }
+  set contextual(value: MortContextualSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 1228236423478036, this, [value]); }
   /** var insertion: MortInsertionSubtable { get set } */
-  get insertion(): MortInsertionSubtable { return callSDK<MortInsertionSubtable>("CoreText_6be9a005889899ab", 4407902693525649, this, []); }
-  set insertion(value: MortInsertionSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 1198017295863750, this, [value]); }
+  get insertion(): MortInsertionSubtable { return callSDK<MortInsertionSubtable>("CoreText_c1f28409f8601238", 4407902693525649, this, []); }
+  set insertion(value: MortInsertionSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 1198017295863750, this, [value]); }
   /** var ligature: MortLigatureSubtable { get set } */
-  get ligature(): MortLigatureSubtable { return callSDK<MortLigatureSubtable>("CoreText_6be9a005889899ab", 1507330117058117, this, []); }
-  set ligature(value: MortLigatureSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 388866068557747, this, [value]); }
+  get ligature(): MortLigatureSubtable { return callSDK<MortLigatureSubtable>("CoreText_c1f28409f8601238", 1507330117058117, this, []); }
+  set ligature(value: MortLigatureSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 388866068557747, this, [value]); }
   /** var rearrangement: MortRearrangementSubtable { get set } */
-  get rearrangement(): MortRearrangementSubtable { return callSDK<MortRearrangementSubtable>("CoreText_6be9a005889899ab", 1661669438495193, this, []); }
-  set rearrangement(value: MortRearrangementSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 822746339290715, this, [value]); }
+  get rearrangement(): MortRearrangementSubtable { return callSDK<MortRearrangementSubtable>("CoreText_c1f28409f8601238", 1661669438495193, this, []); }
+  set rearrangement(value: MortRearrangementSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 822746339290715, this, [value]); }
   /** var swash: MortSwashSubtable { get set } */
-  get swash(): MortSwashSubtable { return callSDK<MortSwashSubtable>("CoreText_6be9a005889899ab", 804124082341709, this, []); }
-  set swash(value: MortSwashSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 4059294182466802, this, [value]); }
+  get swash(): MortSwashSubtable { return callSDK<MortSwashSubtable>("CoreText_c1f28409f8601238", 804124082341709, this, []); }
+  set swash(value: MortSwashSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 4059294182466802, this, [value]); }
   /** init(contextual: MortContextualSubtable) */
-  static initContextual(contextual: MortContextualSubtable): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_6be9a005889899ab", 969053908325904, undefined, [contextual]); }
+  static initContextual(contextual: MortContextualSubtable): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_c1f28409f8601238", 969053908325904, undefined, [contextual]); }
   /** init(rearrangement: MortRearrangementSubtable) */
-  static initRearrangement(rearrangement: MortRearrangementSubtable): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_6be9a005889899ab", 3911864979060558, undefined, [rearrangement]); }
+  static initRearrangement(rearrangement: MortRearrangementSubtable): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_c1f28409f8601238", 3911864979060558, undefined, [rearrangement]); }
   /** init(swash: MortSwashSubtable) */
-  static initSwash(swash: MortSwashSubtable): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_6be9a005889899ab", 3411756677418882, undefined, [swash]); }
+  static initSwash(swash: MortSwashSubtable): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_c1f28409f8601238", 3411756677418882, undefined, [swash]); }
   /** init(ligature: MortLigatureSubtable) */
-  static initLigature(ligature: MortLigatureSubtable): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_6be9a005889899ab", 2225462341585806, undefined, [ligature]); }
+  static initLigature(ligature: MortLigatureSubtable): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_c1f28409f8601238", 2225462341585806, undefined, [ligature]); }
   /** init(insertion: MortInsertionSubtable) */
-  static initInsertion(insertion: MortInsertionSubtable): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_6be9a005889899ab", 625481305119770, undefined, [insertion]); }
+  static initInsertion(insertion: MortInsertionSubtable): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_c1f28409f8601238", 625481305119770, undefined, [insertion]); }
   /** init() */
-  static init(): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_6be9a005889899ab", 3831810394186755, undefined, []); }
+  static init(): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_c1f28409f8601238", 3831810394186755, undefined, []); }
   declare readonly $type: { "c:@U@MortSpecificSubtable": true };
 }
 
 /** struct MortSubtable */
 export class MortSubtable extends SDKHandle {
   /** var coverage: UInt16 */
-  get coverage(): number { return callSDK<number>("CoreText_6be9a005889899ab", 166613611586675, this, []); }
-  set coverage(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2107497826630801, this, [value]); }
+  get coverage(): number { return callSDK<number>("CoreText_c1f28409f8601238", 166613611586675, this, []); }
+  set coverage(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2107497826630801, this, [value]); }
   /** var flags: MortSubtableMaskFlags */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1609312099985871, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2279113298829948, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1609312099985871, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2279113298829948, this, [value]); }
   /** var length: UInt16 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 324461668791362, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1790948510507674, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 324461668791362, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1790948510507674, this, [value]); }
   /** var u: MortSpecificSubtable */
-  get u(): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_6be9a005889899ab", 1315536100515188, this, []); }
-  set u(value: MortSpecificSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 584073734705216, this, [value]); }
+  get u(): MortSpecificSubtable { return callSDK<MortSpecificSubtable>("CoreText_c1f28409f8601238", 1315536100515188, this, []); }
+  set u(value: MortSpecificSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 584073734705216, this, [value]); }
   /** init(length: UInt16, coverage: UInt16, flags: MortSubtableMaskFlags, u: MortSpecificSubtable) */
-  static initLengthCoverageFlagsU(length: number, coverage: number, flags: number, u: MortSpecificSubtable): MortSubtable { return callSDK<MortSubtable>("CoreText_6be9a005889899ab", 1692980148401943, undefined, [length, coverage, flags, u]); }
+  static initLengthCoverageFlagsU(length: number, coverage: number, flags: number, u: MortSpecificSubtable): MortSubtable { return callSDK<MortSubtable>("CoreText_c1f28409f8601238", 1692980148401943, undefined, [length, coverage, flags, u]); }
   /** init() */
-  static init(): MortSubtable { return callSDK<MortSubtable>("CoreText_6be9a005889899ab", 4355139499067419, undefined, []); }
+  static init(): MortSubtable { return callSDK<MortSubtable>("CoreText_c1f28409f8601238", 4355139499067419, undefined, []); }
   declare readonly $type: { "c:@S@MortSubtable": true };
 }
 
@@ -2245,221 +2245,221 @@ export type MortSubtableMaskFlags = number;
 /** struct MortSwashSubtable */
 export class MortSwashSubtable extends SDKHandle {
   /** var lookup: SFNTLookupTable */
-  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 1098501359135094, this, []); }
-  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_6be9a005889899ab", 535468467533187, this, [value]); }
+  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 1098501359135094, this, []); }
+  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_c1f28409f8601238", 535468467533187, this, [value]); }
   /** init(lookup: SFNTLookupTable) */
-  static initLookup(lookup: SFNTLookupTable): MortSwashSubtable { return callSDK<MortSwashSubtable>("CoreText_6be9a005889899ab", 3632984143482882, undefined, [lookup]); }
+  static initLookup(lookup: SFNTLookupTable): MortSwashSubtable { return callSDK<MortSwashSubtable>("CoreText_c1f28409f8601238", 3632984143482882, undefined, [lookup]); }
   /** init() */
-  static init(): MortSwashSubtable { return callSDK<MortSwashSubtable>("CoreText_6be9a005889899ab", 2603569374352950, undefined, []); }
+  static init(): MortSwashSubtable { return callSDK<MortSwashSubtable>("CoreText_c1f28409f8601238", 2603569374352950, undefined, []); }
   declare readonly $type: { "c:@S@MortSwashSubtable": true };
 }
 
 /** struct MortTable */
 export class MortTable extends SDKHandle {
   /** var chains: MortChain */
-  get chains(): MortChain { return callSDK<MortChain>("CoreText_6be9a005889899ab", 1438552813321574, this, []); }
-  set chains(value: MortChain) { callSDK<void>("CoreText_6be9a005889899ab", 4026174731134254, this, [value]); }
+  get chains(): MortChain { return callSDK<MortChain>("CoreText_c1f28409f8601238", 1438552813321574, this, []); }
+  set chains(value: MortChain) { callSDK<void>("CoreText_c1f28409f8601238", 4026174731134254, this, [value]); }
   /** var nChains: UInt32 */
-  get nChains(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1892890283964665, this, []); }
-  set nChains(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1295076872491634, this, [value]); }
+  get nChains(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1892890283964665, this, []); }
+  set nChains(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1295076872491634, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 1249553130289884, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 688238371699633, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 1249553130289884, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 688238371699633, this, [value]); }
   /** init() */
-  static init(): MortTable { return callSDK<MortTable>("CoreText_6be9a005889899ab", 2021692653405177, undefined, []); }
+  static init(): MortTable { return callSDK<MortTable>("CoreText_c1f28409f8601238", 2021692653405177, undefined, []); }
   declare readonly $type: { "c:@S@MortTable": true };
 }
 
 /** struct MorxChain */
 export class MorxChain extends SDKHandle {
   /** var defaultFlags: MortSubtableMaskFlags */
-  get defaultFlags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3513786587382589, this, []); }
-  set defaultFlags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2325458081658988, this, [value]); }
+  get defaultFlags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3513786587382589, this, []); }
+  set defaultFlags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2325458081658988, this, [value]); }
   /** var featureEntries: MortFeatureEntry */
-  get featureEntries(): MortFeatureEntry { return callSDK<MortFeatureEntry>("CoreText_6be9a005889899ab", 949863803546656, this, []); }
-  set featureEntries(value: MortFeatureEntry) { callSDK<void>("CoreText_6be9a005889899ab", 934263812841277, this, [value]); }
+  get featureEntries(): MortFeatureEntry { return callSDK<MortFeatureEntry>("CoreText_c1f28409f8601238", 949863803546656, this, []); }
+  set featureEntries(value: MortFeatureEntry) { callSDK<void>("CoreText_c1f28409f8601238", 934263812841277, this, [value]); }
   /** var length: UInt32 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2822030441372239, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3343699662961111, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2822030441372239, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3343699662961111, this, [value]); }
   /** var nFeatures: UInt32 */
-  get nFeatures(): number { return callSDK<number>("CoreText_6be9a005889899ab", 930003545582903, this, []); }
-  set nFeatures(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 298449398673720, this, [value]); }
+  get nFeatures(): number { return callSDK<number>("CoreText_c1f28409f8601238", 930003545582903, this, []); }
+  set nFeatures(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 298449398673720, this, [value]); }
   /** var nSubtables: UInt32 */
-  get nSubtables(): number { return callSDK<number>("CoreText_6be9a005889899ab", 479715296642709, this, []); }
-  set nSubtables(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 607065277038410, this, [value]); }
+  get nSubtables(): number { return callSDK<number>("CoreText_c1f28409f8601238", 479715296642709, this, []); }
+  set nSubtables(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 607065277038410, this, [value]); }
   /** init(defaultFlags: MortSubtableMaskFlags, length: UInt32, nFeatures: UInt32, nSubtables: UInt32, featureEntries: MortFeatureEntry) */
-  static initDefaultFlagsLengthNFeaturesNSubtablesFeatureEntries(defaultFlags: number, length: number, nFeatures: number, nSubtables: number, featureEntries: MortFeatureEntry): MorxChain { return callSDK<MorxChain>("CoreText_6be9a005889899ab", 3942472976052098, undefined, [defaultFlags, length, nFeatures, nSubtables, featureEntries]); }
+  static initDefaultFlagsLengthNFeaturesNSubtablesFeatureEntries(defaultFlags: number, length: number, nFeatures: number, nSubtables: number, featureEntries: MortFeatureEntry): MorxChain { return callSDK<MorxChain>("CoreText_c1f28409f8601238", 3942472976052098, undefined, [defaultFlags, length, nFeatures, nSubtables, featureEntries]); }
   /** init() */
-  static init(): MorxChain { return callSDK<MorxChain>("CoreText_6be9a005889899ab", 326577131662721, undefined, []); }
+  static init(): MorxChain { return callSDK<MorxChain>("CoreText_c1f28409f8601238", 326577131662721, undefined, []); }
   declare readonly $type: { "c:@S@MorxChain": true };
 }
 
 /** struct MorxContextualSubtable */
 export class MorxContextualSubtable extends SDKHandle {
   /** var header: STXHeader */
-  get header(): STXHeader { return callSDK<STXHeader>("CoreText_6be9a005889899ab", 2419712620592259, this, []); }
-  set header(value: STXHeader) { callSDK<void>("CoreText_6be9a005889899ab", 1880274403809887, this, [value]); }
+  get header(): STXHeader { return callSDK<STXHeader>("CoreText_c1f28409f8601238", 2419712620592259, this, []); }
+  set header(value: STXHeader) { callSDK<void>("CoreText_c1f28409f8601238", 1880274403809887, this, [value]); }
   /** var substitutionTableOffset: UInt32 */
-  get substitutionTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3321852592738235, this, []); }
-  set substitutionTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 493678638899841, this, [value]); }
+  get substitutionTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3321852592738235, this, []); }
+  set substitutionTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 493678638899841, this, [value]); }
   /** init(header: STXHeader, substitutionTableOffset: UInt32) */
-  static initHeaderSubstitutionTableOffset(header: STXHeader, substitutionTableOffset: number): MorxContextualSubtable { return callSDK<MorxContextualSubtable>("CoreText_6be9a005889899ab", 1283367099073943, undefined, [header, substitutionTableOffset]); }
+  static initHeaderSubstitutionTableOffset(header: STXHeader, substitutionTableOffset: number): MorxContextualSubtable { return callSDK<MorxContextualSubtable>("CoreText_c1f28409f8601238", 1283367099073943, undefined, [header, substitutionTableOffset]); }
   /** init() */
-  static init(): MorxContextualSubtable { return callSDK<MorxContextualSubtable>("CoreText_6be9a005889899ab", 2666316251238782, undefined, []); }
+  static init(): MorxContextualSubtable { return callSDK<MorxContextualSubtable>("CoreText_c1f28409f8601238", 2666316251238782, undefined, []); }
   declare readonly $type: { "c:@S@MorxContextualSubtable": true };
 }
 
 /** struct MorxInsertionSubtable */
 export class MorxInsertionSubtable extends SDKHandle {
   /** var header: STXHeader */
-  get header(): STXHeader { return callSDK<STXHeader>("CoreText_6be9a005889899ab", 3662509164868987, this, []); }
-  set header(value: STXHeader) { callSDK<void>("CoreText_6be9a005889899ab", 469560006683743, this, [value]); }
+  get header(): STXHeader { return callSDK<STXHeader>("CoreText_c1f28409f8601238", 3662509164868987, this, []); }
+  set header(value: STXHeader) { callSDK<void>("CoreText_c1f28409f8601238", 469560006683743, this, [value]); }
   /** var insertionGlyphTableOffset: UInt32 */
-  get insertionGlyphTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2901458127825710, this, []); }
-  set insertionGlyphTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 170467598335377, this, [value]); }
+  get insertionGlyphTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2901458127825710, this, []); }
+  set insertionGlyphTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 170467598335377, this, [value]); }
   /** init(header: STXHeader, insertionGlyphTableOffset: UInt32) */
-  static initHeaderInsertionGlyphTableOffset(header: STXHeader, insertionGlyphTableOffset: number): MorxInsertionSubtable { return callSDK<MorxInsertionSubtable>("CoreText_6be9a005889899ab", 3503668678935876, undefined, [header, insertionGlyphTableOffset]); }
+  static initHeaderInsertionGlyphTableOffset(header: STXHeader, insertionGlyphTableOffset: number): MorxInsertionSubtable { return callSDK<MorxInsertionSubtable>("CoreText_c1f28409f8601238", 3503668678935876, undefined, [header, insertionGlyphTableOffset]); }
   /** init() */
-  static init(): MorxInsertionSubtable { return callSDK<MorxInsertionSubtable>("CoreText_6be9a005889899ab", 1436543727968694, undefined, []); }
+  static init(): MorxInsertionSubtable { return callSDK<MorxInsertionSubtable>("CoreText_c1f28409f8601238", 1436543727968694, undefined, []); }
   declare readonly $type: { "c:@S@MorxInsertionSubtable": true };
 }
 
 /** struct MorxLigatureSubtable */
 export class MorxLigatureSubtable extends SDKHandle {
   /** var componentTableOffset: UInt32 */
-  get componentTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3516123405703719, this, []); }
-  set componentTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2738413165104808, this, [value]); }
+  get componentTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3516123405703719, this, []); }
+  set componentTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2738413165104808, this, [value]); }
   /** var header: STXHeader */
-  get header(): STXHeader { return callSDK<STXHeader>("CoreText_6be9a005889899ab", 2798116805812647, this, []); }
-  set header(value: STXHeader) { callSDK<void>("CoreText_6be9a005889899ab", 68654080055272, this, [value]); }
+  get header(): STXHeader { return callSDK<STXHeader>("CoreText_c1f28409f8601238", 2798116805812647, this, []); }
+  set header(value: STXHeader) { callSDK<void>("CoreText_c1f28409f8601238", 68654080055272, this, [value]); }
   /** var ligatureActionTableOffset: UInt32 */
-  get ligatureActionTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2260992549824140, this, []); }
-  set ligatureActionTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1707259734096229, this, [value]); }
+  get ligatureActionTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2260992549824140, this, []); }
+  set ligatureActionTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1707259734096229, this, [value]); }
   /** var ligatureTableOffset: UInt32 */
-  get ligatureTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2227579811441337, this, []); }
-  set ligatureTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 576048817583199, this, [value]); }
+  get ligatureTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2227579811441337, this, []); }
+  set ligatureTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 576048817583199, this, [value]); }
   /** init(header: STXHeader, ligatureActionTableOffset: UInt32, componentTableOffset: UInt32, ligatureTableOffset: UInt32) */
-  static initHeaderLigatureActionTableOffsetComponentTableOffsetLigatureTableOffset(header: STXHeader, ligatureActionTableOffset: number, componentTableOffset: number, ligatureTableOffset: number): MorxLigatureSubtable { return callSDK<MorxLigatureSubtable>("CoreText_6be9a005889899ab", 3267007473137682, undefined, [header, ligatureActionTableOffset, componentTableOffset, ligatureTableOffset]); }
+  static initHeaderLigatureActionTableOffsetComponentTableOffsetLigatureTableOffset(header: STXHeader, ligatureActionTableOffset: number, componentTableOffset: number, ligatureTableOffset: number): MorxLigatureSubtable { return callSDK<MorxLigatureSubtable>("CoreText_c1f28409f8601238", 3267007473137682, undefined, [header, ligatureActionTableOffset, componentTableOffset, ligatureTableOffset]); }
   /** init() */
-  static init(): MorxLigatureSubtable { return callSDK<MorxLigatureSubtable>("CoreText_6be9a005889899ab", 117664170893423, undefined, []); }
+  static init(): MorxLigatureSubtable { return callSDK<MorxLigatureSubtable>("CoreText_c1f28409f8601238", 117664170893423, undefined, []); }
   declare readonly $type: { "c:@S@MorxLigatureSubtable": true };
 }
 
 /** struct MorxRearrangementSubtable */
 export class MorxRearrangementSubtable extends SDKHandle {
   /** var header: STXHeader */
-  get header(): STXHeader { return callSDK<STXHeader>("CoreText_6be9a005889899ab", 1903950993122516, this, []); }
-  set header(value: STXHeader) { callSDK<void>("CoreText_6be9a005889899ab", 1971134635640140, this, [value]); }
+  get header(): STXHeader { return callSDK<STXHeader>("CoreText_c1f28409f8601238", 1903950993122516, this, []); }
+  set header(value: STXHeader) { callSDK<void>("CoreText_c1f28409f8601238", 1971134635640140, this, [value]); }
   /** init(header: STXHeader) */
-  static initHeader(header: STXHeader): MorxRearrangementSubtable { return callSDK<MorxRearrangementSubtable>("CoreText_6be9a005889899ab", 4315552597889519, undefined, [header]); }
+  static initHeader(header: STXHeader): MorxRearrangementSubtable { return callSDK<MorxRearrangementSubtable>("CoreText_c1f28409f8601238", 4315552597889519, undefined, [header]); }
   /** init() */
-  static init(): MorxRearrangementSubtable { return callSDK<MorxRearrangementSubtable>("CoreText_6be9a005889899ab", 4486020424271347, undefined, []); }
+  static init(): MorxRearrangementSubtable { return callSDK<MorxRearrangementSubtable>("CoreText_c1f28409f8601238", 4486020424271347, undefined, []); }
   declare readonly $type: { "c:@S@MorxRearrangementSubtable": true };
 }
 
 /** struct MorxSpecificSubtable */
 export class MorxSpecificSubtable extends SDKHandle {
   /** var contextual: MorxContextualSubtable { get set } */
-  get contextual(): MorxContextualSubtable { return callSDK<MorxContextualSubtable>("CoreText_6be9a005889899ab", 1751719750290738, this, []); }
-  set contextual(value: MorxContextualSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 4267213271893848, this, [value]); }
+  get contextual(): MorxContextualSubtable { return callSDK<MorxContextualSubtable>("CoreText_c1f28409f8601238", 1751719750290738, this, []); }
+  set contextual(value: MorxContextualSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 4267213271893848, this, [value]); }
   /** var insertion: MorxInsertionSubtable { get set } */
-  get insertion(): MorxInsertionSubtable { return callSDK<MorxInsertionSubtable>("CoreText_6be9a005889899ab", 1532748457548449, this, []); }
-  set insertion(value: MorxInsertionSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 3933555955847694, this, [value]); }
+  get insertion(): MorxInsertionSubtable { return callSDK<MorxInsertionSubtable>("CoreText_c1f28409f8601238", 1532748457548449, this, []); }
+  set insertion(value: MorxInsertionSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 3933555955847694, this, [value]); }
   /** var ligature: MorxLigatureSubtable { get set } */
-  get ligature(): MorxLigatureSubtable { return callSDK<MorxLigatureSubtable>("CoreText_6be9a005889899ab", 3273058552328640, this, []); }
-  set ligature(value: MorxLigatureSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 3549454223630310, this, [value]); }
+  get ligature(): MorxLigatureSubtable { return callSDK<MorxLigatureSubtable>("CoreText_c1f28409f8601238", 3273058552328640, this, []); }
+  set ligature(value: MorxLigatureSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 3549454223630310, this, [value]); }
   /** var rearrangement: MorxRearrangementSubtable { get set } */
-  get rearrangement(): MorxRearrangementSubtable { return callSDK<MorxRearrangementSubtable>("CoreText_6be9a005889899ab", 3930949184234081, this, []); }
-  set rearrangement(value: MorxRearrangementSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 3646710607710909, this, [value]); }
+  get rearrangement(): MorxRearrangementSubtable { return callSDK<MorxRearrangementSubtable>("CoreText_c1f28409f8601238", 3930949184234081, this, []); }
+  set rearrangement(value: MorxRearrangementSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 3646710607710909, this, [value]); }
   /** var swash: MortSwashSubtable { get set } */
-  get swash(): MortSwashSubtable { return callSDK<MortSwashSubtable>("CoreText_6be9a005889899ab", 1955940946603060, this, []); }
-  set swash(value: MortSwashSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 3503792698508663, this, [value]); }
+  get swash(): MortSwashSubtable { return callSDK<MortSwashSubtable>("CoreText_c1f28409f8601238", 1955940946603060, this, []); }
+  set swash(value: MortSwashSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 3503792698508663, this, [value]); }
   /** init(contextual: MorxContextualSubtable) */
-  static initContextual(contextual: MorxContextualSubtable): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_6be9a005889899ab", 4216032593264929, undefined, [contextual]); }
+  static initContextual(contextual: MorxContextualSubtable): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_c1f28409f8601238", 4216032593264929, undefined, [contextual]); }
   /** init(rearrangement: MorxRearrangementSubtable) */
-  static initRearrangement(rearrangement: MorxRearrangementSubtable): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_6be9a005889899ab", 2198860824442978, undefined, [rearrangement]); }
+  static initRearrangement(rearrangement: MorxRearrangementSubtable): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_c1f28409f8601238", 2198860824442978, undefined, [rearrangement]); }
   /** init(swash: MortSwashSubtable) */
-  static initSwash(swash: MortSwashSubtable): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_6be9a005889899ab", 2890667197931629, undefined, [swash]); }
+  static initSwash(swash: MortSwashSubtable): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_c1f28409f8601238", 2890667197931629, undefined, [swash]); }
   /** init(ligature: MorxLigatureSubtable) */
-  static initLigature(ligature: MorxLigatureSubtable): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_6be9a005889899ab", 2226883661161118, undefined, [ligature]); }
+  static initLigature(ligature: MorxLigatureSubtable): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_c1f28409f8601238", 2226883661161118, undefined, [ligature]); }
   /** init(insertion: MorxInsertionSubtable) */
-  static initInsertion(insertion: MorxInsertionSubtable): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_6be9a005889899ab", 3876443752683775, undefined, [insertion]); }
+  static initInsertion(insertion: MorxInsertionSubtable): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_c1f28409f8601238", 3876443752683775, undefined, [insertion]); }
   /** init() */
-  static init(): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_6be9a005889899ab", 3617709122067273, undefined, []); }
+  static init(): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_c1f28409f8601238", 3617709122067273, undefined, []); }
   declare readonly $type: { "c:@U@MorxSpecificSubtable": true };
 }
 
 /** struct MorxSubtable */
 export class MorxSubtable extends SDKHandle {
   /** var coverage: UInt32 */
-  get coverage(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3933018441086018, this, []); }
-  set coverage(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3940823023411105, this, [value]); }
+  get coverage(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3933018441086018, this, []); }
+  set coverage(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3940823023411105, this, [value]); }
   /** var flags: MortSubtableMaskFlags */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1030516518499961, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2691321888085664, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1030516518499961, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2691321888085664, this, [value]); }
   /** var length: UInt32 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2533171135862042, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4085697333611161, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2533171135862042, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4085697333611161, this, [value]); }
   /** var u: MorxSpecificSubtable */
-  get u(): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_6be9a005889899ab", 4043714428895319, this, []); }
-  set u(value: MorxSpecificSubtable) { callSDK<void>("CoreText_6be9a005889899ab", 1273528591163153, this, [value]); }
+  get u(): MorxSpecificSubtable { return callSDK<MorxSpecificSubtable>("CoreText_c1f28409f8601238", 4043714428895319, this, []); }
+  set u(value: MorxSpecificSubtable) { callSDK<void>("CoreText_c1f28409f8601238", 1273528591163153, this, [value]); }
   /** init(length: UInt32, coverage: UInt32, flags: MortSubtableMaskFlags, u: MorxSpecificSubtable) */
-  static initLengthCoverageFlagsU(length: number, coverage: number, flags: number, u: MorxSpecificSubtable): MorxSubtable { return callSDK<MorxSubtable>("CoreText_6be9a005889899ab", 292317356504263, undefined, [length, coverage, flags, u]); }
+  static initLengthCoverageFlagsU(length: number, coverage: number, flags: number, u: MorxSpecificSubtable): MorxSubtable { return callSDK<MorxSubtable>("CoreText_c1f28409f8601238", 292317356504263, undefined, [length, coverage, flags, u]); }
   /** init() */
-  static init(): MorxSubtable { return callSDK<MorxSubtable>("CoreText_6be9a005889899ab", 3370070165601686, undefined, []); }
+  static init(): MorxSubtable { return callSDK<MorxSubtable>("CoreText_c1f28409f8601238", 3370070165601686, undefined, []); }
   declare readonly $type: { "c:@S@MorxSubtable": true };
 }
 
 /** struct MorxTable */
 export class MorxTable extends SDKHandle {
   /** var chains: MorxChain */
-  get chains(): MorxChain { return callSDK<MorxChain>("CoreText_6be9a005889899ab", 1083164629257622, this, []); }
-  set chains(value: MorxChain) { callSDK<void>("CoreText_6be9a005889899ab", 3022574327787109, this, [value]); }
+  get chains(): MorxChain { return callSDK<MorxChain>("CoreText_c1f28409f8601238", 1083164629257622, this, []); }
+  set chains(value: MorxChain) { callSDK<void>("CoreText_c1f28409f8601238", 3022574327787109, this, [value]); }
   /** var nChains: UInt32 */
-  get nChains(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2402791621194302, this, []); }
-  set nChains(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2108215372968167, this, [value]); }
+  get nChains(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2402791621194302, this, []); }
+  set nChains(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2108215372968167, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3170335537840950, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 3844901364709468, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3170335537840950, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 3844901364709468, this, [value]); }
   /** init() */
-  static init(): MorxTable { return callSDK<MorxTable>("CoreText_6be9a005889899ab", 1107090626346671, undefined, []); }
+  static init(): MorxTable { return callSDK<MorxTable>("CoreText_c1f28409f8601238", 1107090626346671, undefined, []); }
   declare readonly $type: { "c:@S@MorxTable": true };
 }
 
 /** struct OpbdSideValues */
 export class OpbdSideValues extends SDKHandle {
   /** var bottomSideShift: Int16 */
-  get bottomSideShift(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2132552520313062, this, []); }
-  set bottomSideShift(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1034555648185942, this, [value]); }
+  get bottomSideShift(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2132552520313062, this, []); }
+  set bottomSideShift(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1034555648185942, this, [value]); }
   /** var leftSideShift: Int16 */
-  get leftSideShift(): number { return callSDK<number>("CoreText_6be9a005889899ab", 613515445479669, this, []); }
-  set leftSideShift(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 961941241638912, this, [value]); }
+  get leftSideShift(): number { return callSDK<number>("CoreText_c1f28409f8601238", 613515445479669, this, []); }
+  set leftSideShift(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 961941241638912, this, [value]); }
   /** var rightSideShift: Int16 */
-  get rightSideShift(): number { return callSDK<number>("CoreText_6be9a005889899ab", 510475725148003, this, []); }
-  set rightSideShift(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1237775546037653, this, [value]); }
+  get rightSideShift(): number { return callSDK<number>("CoreText_c1f28409f8601238", 510475725148003, this, []); }
+  set rightSideShift(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1237775546037653, this, [value]); }
   /** var topSideShift: Int16 */
-  get topSideShift(): number { return callSDK<number>("CoreText_6be9a005889899ab", 607913123146282, this, []); }
-  set topSideShift(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1760979382648233, this, [value]); }
+  get topSideShift(): number { return callSDK<number>("CoreText_c1f28409f8601238", 607913123146282, this, []); }
+  set topSideShift(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1760979382648233, this, [value]); }
   /** init(leftSideShift: Int16, topSideShift: Int16, rightSideShift: Int16, bottomSideShift: Int16) */
-  static initLeftSideShiftTopSideShiftRightSideShiftBottomSideShift(leftSideShift: number, topSideShift: number, rightSideShift: number, bottomSideShift: number): OpbdSideValues { return callSDK<OpbdSideValues>("CoreText_6be9a005889899ab", 4209969762721339, undefined, [leftSideShift, topSideShift, rightSideShift, bottomSideShift]); }
+  static initLeftSideShiftTopSideShiftRightSideShiftBottomSideShift(leftSideShift: number, topSideShift: number, rightSideShift: number, bottomSideShift: number): OpbdSideValues { return callSDK<OpbdSideValues>("CoreText_c1f28409f8601238", 4209969762721339, undefined, [leftSideShift, topSideShift, rightSideShift, bottomSideShift]); }
   /** init() */
-  static init(): OpbdSideValues { return callSDK<OpbdSideValues>("CoreText_6be9a005889899ab", 1590799111996924, undefined, []); }
+  static init(): OpbdSideValues { return callSDK<OpbdSideValues>("CoreText_c1f28409f8601238", 1590799111996924, undefined, []); }
   declare readonly $type: { "c:@S@OpbdSideValues": true };
 }
 
 /** struct OpbdTable */
 export class OpbdTable extends SDKHandle {
   /** var format: OpbdTableFormat */
-  get format(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2845453929497946, this, []); }
-  set format(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3998414685925959, this, [value]); }
+  get format(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2845453929497946, this, []); }
+  set format(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3998414685925959, this, [value]); }
   /** var lookupTable: SFNTLookupTable */
-  get lookupTable(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 1639271078668408, this, []); }
-  set lookupTable(value: SFNTLookupTable) { callSDK<void>("CoreText_6be9a005889899ab", 1526935974417750, this, [value]); }
+  get lookupTable(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 1639271078668408, this, []); }
+  set lookupTable(value: SFNTLookupTable) { callSDK<void>("CoreText_c1f28409f8601238", 1526935974417750, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 4116586834908807, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 3614632728647550, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 4116586834908807, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 3614632728647550, this, [value]); }
   /** init() */
-  static init(): OpbdTable { return callSDK<OpbdTable>("CoreText_6be9a005889899ab", 1009245675389880, undefined, []); }
+  static init(): OpbdTable { return callSDK<OpbdTable>("CoreText_c1f28409f8601238", 1009245675389880, undefined, []); }
   declare readonly $type: { "c:@S@OpbdTable": true };
 }
 
@@ -2472,52 +2472,52 @@ export type PropCharProperties = number;
 /** struct PropLookupSegment */
 export class PropLookupSegment extends SDKHandle {
   /** var firstGlyph: UInt16 */
-  get firstGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3016746557570352, this, []); }
-  set firstGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2739345221477364, this, [value]); }
+  get firstGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3016746557570352, this, []); }
+  set firstGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2739345221477364, this, [value]); }
   /** var lastGlyph: UInt16 */
-  get lastGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3227183956132573, this, []); }
-  set lastGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3815716990080766, this, [value]); }
+  get lastGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3227183956132573, this, []); }
+  set lastGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3815716990080766, this, [value]); }
   /** var value: UInt16 */
-  get value(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4150566944572257, this, []); }
-  set value(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2068927818254351, this, [value]); }
+  get value(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4150566944572257, this, []); }
+  set value(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2068927818254351, this, [value]); }
   /** init(lastGlyph: UInt16, firstGlyph: UInt16, value: UInt16) */
-  static initLastGlyphFirstGlyphValue(lastGlyph: number, firstGlyph: number, value: number): PropLookupSegment { return callSDK<PropLookupSegment>("CoreText_6be9a005889899ab", 4236890803377756, undefined, [lastGlyph, firstGlyph, value]); }
+  static initLastGlyphFirstGlyphValue(lastGlyph: number, firstGlyph: number, value: number): PropLookupSegment { return callSDK<PropLookupSegment>("CoreText_c1f28409f8601238", 4236890803377756, undefined, [lastGlyph, firstGlyph, value]); }
   /** init() */
-  static init(): PropLookupSegment { return callSDK<PropLookupSegment>("CoreText_6be9a005889899ab", 2003423869375437, undefined, []); }
+  static init(): PropLookupSegment { return callSDK<PropLookupSegment>("CoreText_c1f28409f8601238", 2003423869375437, undefined, []); }
   declare readonly $type: { "c:@S@PropLookupSegment": true };
 }
 
 /** struct PropLookupSingle */
 export class PropLookupSingle extends SDKHandle {
   /** var glyph: UInt16 */
-  get glyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 702761781167890, this, []); }
-  set glyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4425991498731716, this, [value]); }
+  get glyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 702761781167890, this, []); }
+  set glyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4425991498731716, this, [value]); }
   /** var props: PropCharProperties */
-  get props(): number { return callSDK<number>("CoreText_6be9a005889899ab", 96999036114438, this, []); }
-  set props(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2159661570962565, this, [value]); }
+  get props(): number { return callSDK<number>("CoreText_c1f28409f8601238", 96999036114438, this, []); }
+  set props(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2159661570962565, this, [value]); }
   /** init(glyph: UInt16, props: PropCharProperties) */
-  static initGlyphProps(glyph: number, props: number): PropLookupSingle { return callSDK<PropLookupSingle>("CoreText_6be9a005889899ab", 2783177222439862, undefined, [glyph, props]); }
+  static initGlyphProps(glyph: number, props: number): PropLookupSingle { return callSDK<PropLookupSingle>("CoreText_c1f28409f8601238", 2783177222439862, undefined, [glyph, props]); }
   /** init() */
-  static init(): PropLookupSingle { return callSDK<PropLookupSingle>("CoreText_6be9a005889899ab", 4406983829522142, undefined, []); }
+  static init(): PropLookupSingle { return callSDK<PropLookupSingle>("CoreText_c1f28409f8601238", 4406983829522142, undefined, []); }
   declare readonly $type: { "c:@S@PropLookupSingle": true };
 }
 
 /** struct PropTable */
 export class PropTable extends SDKHandle {
   /** var defaultProps: PropCharProperties */
-  get defaultProps(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2451847926239347, this, []); }
-  set defaultProps(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2686675659655695, this, [value]); }
+  get defaultProps(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2451847926239347, this, []); }
+  set defaultProps(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2686675659655695, this, [value]); }
   /** var format: UInt16 */
-  get format(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1751286138101774, this, []); }
-  set format(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3989318347336620, this, [value]); }
+  get format(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1751286138101774, this, []); }
+  set format(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3989318347336620, this, [value]); }
   /** var lookup: SFNTLookupTable */
-  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 3198063196388689, this, []); }
-  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_6be9a005889899ab", 201009616164241, this, [value]); }
+  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 3198063196388689, this, []); }
+  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_c1f28409f8601238", 201009616164241, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 2570865579607662, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1849518756063379, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 2570865579607662, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1849518756063379, this, [value]); }
   /** init() */
-  static init(): PropTable { return callSDK<PropTable>("CoreText_6be9a005889899ab", 2155649465358998, undefined, []); }
+  static init(): PropTable { return callSDK<PropTable>("CoreText_c1f28409f8601238", 2155649465358998, undefined, []); }
   declare readonly $type: { "c:@S@PropTable": true };
 }
 
@@ -2532,34 +2532,34 @@ export class ROTAGlyphEntry extends SDKHandle {
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get GlyphIndexOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1671752633808747, this, []); }
-  set GlyphIndexOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3971062533407152, this, [value]); }
+  get GlyphIndexOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1671752633808747, this, []); }
+  set GlyphIndexOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3971062533407152, this, [value]); }
   /**
    * var HBaselineOffset: Int16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get HBaselineOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2758701825295846, this, []); }
-  set HBaselineOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 666563197799493, this, [value]); }
+  get HBaselineOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2758701825295846, this, []); }
+  set HBaselineOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 666563197799493, this, [value]); }
   /**
    * var VBaselineOffset: Int16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get VBaselineOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 458232374092340, this, []); }
-  set VBaselineOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 785443265185034, this, [value]); }
+  get VBaselineOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 458232374092340, this, []); }
+  set VBaselineOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 785443265185034, this, [value]); }
   /**
    * init(GlyphIndexOffset: Int16, HBaselineOffset: Int16, VBaselineOffset: Int16)
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  static initGlyphIndexOffsetHBaselineOffsetVBaselineOffset(GlyphIndexOffset: number, HBaselineOffset: number, VBaselineOffset: number): ROTAGlyphEntry { return callSDK<ROTAGlyphEntry>("CoreText_6be9a005889899ab", 2807112285888235, undefined, [GlyphIndexOffset, HBaselineOffset, VBaselineOffset]); }
+  static initGlyphIndexOffsetHBaselineOffsetVBaselineOffset(GlyphIndexOffset: number, HBaselineOffset: number, VBaselineOffset: number): ROTAGlyphEntry { return callSDK<ROTAGlyphEntry>("CoreText_c1f28409f8601238", 2807112285888235, undefined, [GlyphIndexOffset, HBaselineOffset, VBaselineOffset]); }
   /**
    * init()
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  static init(): ROTAGlyphEntry { return callSDK<ROTAGlyphEntry>("CoreText_6be9a005889899ab", 2337337945038548, undefined, []); }
+  static init(): ROTAGlyphEntry { return callSDK<ROTAGlyphEntry>("CoreText_c1f28409f8601238", 2337337945038548, undefined, []); }
   declare readonly $type: { "c:@S@ROTAGlyphEntry": true };
 }
 
@@ -2574,369 +2574,369 @@ export class ROTAHeader extends SDKHandle {
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get FirstGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3439410093487746, this, []); }
-  set FirstGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 527741530203793, this, [value]); }
+  get FirstGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3439410093487746, this, []); }
+  set FirstGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 527741530203793, this, [value]); }
   /**
    * var Flags: UInt16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get Flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1207432881038204, this, []); }
-  set Flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2765855931800614, this, [value]); }
+  get Flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1207432881038204, this, []); }
+  set Flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2765855931800614, this, [value]); }
   /**
    * var LastGlyph: UInt16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get LastGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2086895437247887, this, []); }
-  set LastGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2780384107382353, this, [value]); }
+  get LastGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2086895437247887, this, []); }
+  set LastGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2780384107382353, this, [value]); }
   /**
    * var NMasters: UInt16
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get NMasters(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3790954945197134, this, []); }
-  set NMasters(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1054254640859019, this, [value]); }
+  get NMasters(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3790954945197134, this, []); }
+  set NMasters(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1054254640859019, this, [value]); }
   /**
    * var Version: Fixed
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get Version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3567987757491303, this, []); }
-  set Version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 2152638936039403, this, [value]); }
+  get Version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3567987757491303, this, []); }
+  set Version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 2152638936039403, this, [value]); }
   /**
    * var lookup: SFNTLookupTable
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 866710134193883, this, []); }
-  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_6be9a005889899ab", 2495706526331658, this, [value]); }
+  get lookup(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 866710134193883, this, []); }
+  set lookup(value: SFNTLookupTable) { callSDK<void>("CoreText_c1f28409f8601238", 2495706526331658, this, [value]); }
   /**
    * init()
    * @availability iOS 1.0+
    * @deprecated iOS 15.0
    */
-  static init(): ROTAHeader { return callSDK<ROTAHeader>("CoreText_6be9a005889899ab", 2996266257516352, undefined, []); }
+  static init(): ROTAHeader { return callSDK<ROTAHeader>("CoreText_c1f28409f8601238", 2996266257516352, undefined, []); }
   declare readonly $type: { "c:@S@ROTAHeader": true };
 }
 
 /** struct sfntCMapEncoding */
 export class sfntCMapEncoding extends SDKHandle {
   /** var offset: UInt32 */
-  get offset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1427114300150128, this, []); }
-  set offset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3578194882825466, this, [value]); }
+  get offset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1427114300150128, this, []); }
+  set offset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3578194882825466, this, [value]); }
   /** var platformID: UInt16 */
-  get platformID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2841214048379621, this, []); }
-  set platformID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 414505350026806, this, [value]); }
+  get platformID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2841214048379621, this, []); }
+  set platformID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 414505350026806, this, [value]); }
   /** var scriptID: UInt16 */
-  get scriptID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1643513428028224, this, []); }
-  set scriptID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3020098008884640, this, [value]); }
+  get scriptID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1643513428028224, this, []); }
+  set scriptID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3020098008884640, this, [value]); }
   /** init(platformID: UInt16, scriptID: UInt16, offset: UInt32) */
-  static initPlatformIDScriptIDOffset(platformID: number, scriptID: number, offset: number): sfntCMapEncoding { return callSDK<sfntCMapEncoding>("CoreText_6be9a005889899ab", 362338559863553, undefined, [platformID, scriptID, offset]); }
+  static initPlatformIDScriptIDOffset(platformID: number, scriptID: number, offset: number): sfntCMapEncoding { return callSDK<sfntCMapEncoding>("CoreText_c1f28409f8601238", 362338559863553, undefined, [platformID, scriptID, offset]); }
   /** init() */
-  static init(): sfntCMapEncoding { return callSDK<sfntCMapEncoding>("CoreText_6be9a005889899ab", 2008044501356483, undefined, []); }
+  static init(): sfntCMapEncoding { return callSDK<sfntCMapEncoding>("CoreText_c1f28409f8601238", 2008044501356483, undefined, []); }
   declare readonly $type: { "c:@S@sfntCMapEncoding": true };
 }
 
 /** struct sfntCMapExtendedSubHeader */
 export class sfntCMapExtendedSubHeader extends SDKHandle {
   /** var format: UInt16 */
-  get format(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1503653034421412, this, []); }
-  set format(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3604428951332363, this, [value]); }
+  get format(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1503653034421412, this, []); }
+  set format(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3604428951332363, this, [value]); }
   /** var language: UInt32 */
-  get language(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3074056534760433, this, []); }
-  set language(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 753594643299782, this, [value]); }
+  get language(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3074056534760433, this, []); }
+  set language(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 753594643299782, this, [value]); }
   /** var length: UInt32 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2724487399489368, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2761338873462971, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2724487399489368, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2761338873462971, this, [value]); }
   /** var reserved: UInt16 */
-  get reserved(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3722377497773720, this, []); }
-  set reserved(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 548437395659742, this, [value]); }
+  get reserved(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3722377497773720, this, []); }
+  set reserved(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 548437395659742, this, [value]); }
   /** init(format: UInt16, reserved: UInt16, length: UInt32, language: UInt32) */
-  static initFormatReservedLengthLanguage(format: number, reserved: number, length: number, language: number): sfntCMapExtendedSubHeader { return callSDK<sfntCMapExtendedSubHeader>("CoreText_6be9a005889899ab", 3216679579686660, undefined, [format, reserved, length, language]); }
+  static initFormatReservedLengthLanguage(format: number, reserved: number, length: number, language: number): sfntCMapExtendedSubHeader { return callSDK<sfntCMapExtendedSubHeader>("CoreText_c1f28409f8601238", 3216679579686660, undefined, [format, reserved, length, language]); }
   /** init() */
-  static init(): sfntCMapExtendedSubHeader { return callSDK<sfntCMapExtendedSubHeader>("CoreText_6be9a005889899ab", 980193717471425, undefined, []); }
+  static init(): sfntCMapExtendedSubHeader { return callSDK<sfntCMapExtendedSubHeader>("CoreText_c1f28409f8601238", 980193717471425, undefined, []); }
   declare readonly $type: { "c:@S@sfntCMapExtendedSubHeader": true };
 }
 
 /** struct sfntCMapHeader */
 export class sfntCMapHeader extends SDKHandle {
   /** var encoding: sfntCMapEncoding */
-  get encoding(): sfntCMapEncoding { return callSDK<sfntCMapEncoding>("CoreText_6be9a005889899ab", 3478336080021136, this, []); }
-  set encoding(value: sfntCMapEncoding) { callSDK<void>("CoreText_6be9a005889899ab", 2762253767681430, this, [value]); }
+  get encoding(): sfntCMapEncoding { return callSDK<sfntCMapEncoding>("CoreText_c1f28409f8601238", 3478336080021136, this, []); }
+  set encoding(value: sfntCMapEncoding) { callSDK<void>("CoreText_c1f28409f8601238", 2762253767681430, this, [value]); }
   /** var numTables: UInt16 */
-  get numTables(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1999053405370671, this, []); }
-  set numTables(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1591824623546669, this, [value]); }
+  get numTables(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1999053405370671, this, []); }
+  set numTables(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1591824623546669, this, [value]); }
   /** var version: UInt16 */
-  get version(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2448982999026827, this, []); }
-  set version(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 69016165399584, this, [value]); }
+  get version(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2448982999026827, this, []); }
+  set version(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 69016165399584, this, [value]); }
   /** init(version: UInt16, numTables: UInt16, encoding: sfntCMapEncoding) */
-  static initVersionNumTablesEncoding(version: number, numTables: number, encoding: sfntCMapEncoding): sfntCMapHeader { return callSDK<sfntCMapHeader>("CoreText_6be9a005889899ab", 3842269601311028, undefined, [version, numTables, encoding]); }
+  static initVersionNumTablesEncoding(version: number, numTables: number, encoding: sfntCMapEncoding): sfntCMapHeader { return callSDK<sfntCMapHeader>("CoreText_c1f28409f8601238", 3842269601311028, undefined, [version, numTables, encoding]); }
   /** init() */
-  static init(): sfntCMapHeader { return callSDK<sfntCMapHeader>("CoreText_6be9a005889899ab", 2401549368750347, undefined, []); }
+  static init(): sfntCMapHeader { return callSDK<sfntCMapHeader>("CoreText_c1f28409f8601238", 2401549368750347, undefined, []); }
   declare readonly $type: { "c:@S@sfntCMapHeader": true };
 }
 
 /** struct sfntCMapSubHeader */
 export class sfntCMapSubHeader extends SDKHandle {
   /** var format: UInt16 */
-  get format(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3150913499554185, this, []); }
-  set format(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 147085506014099, this, [value]); }
+  get format(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3150913499554185, this, []); }
+  set format(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 147085506014099, this, [value]); }
   /** var languageID: UInt16 */
-  get languageID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 999584117167673, this, []); }
-  set languageID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2656571065029627, this, [value]); }
+  get languageID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 999584117167673, this, []); }
+  set languageID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2656571065029627, this, [value]); }
   /** var length: UInt16 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3871024862002322, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 354359296404544, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3871024862002322, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 354359296404544, this, [value]); }
   /** init(format: UInt16, length: UInt16, languageID: UInt16) */
-  static initFormatLengthLanguageID(format: number, length: number, languageID: number): sfntCMapSubHeader { return callSDK<sfntCMapSubHeader>("CoreText_6be9a005889899ab", 3650864021559421, undefined, [format, length, languageID]); }
+  static initFormatLengthLanguageID(format: number, length: number, languageID: number): sfntCMapSubHeader { return callSDK<sfntCMapSubHeader>("CoreText_c1f28409f8601238", 3650864021559421, undefined, [format, length, languageID]); }
   /** init() */
-  static init(): sfntCMapSubHeader { return callSDK<sfntCMapSubHeader>("CoreText_6be9a005889899ab", 2528354924912319, undefined, []); }
+  static init(): sfntCMapSubHeader { return callSDK<sfntCMapSubHeader>("CoreText_c1f28409f8601238", 2528354924912319, undefined, []); }
   declare readonly $type: { "c:@S@sfntCMapSubHeader": true };
 }
 
 /** struct sfntDescriptorHeader */
 export class sfntDescriptorHeader extends SDKHandle {
   /** var descriptor: sfntFontDescriptor */
-  get descriptor(): sfntFontDescriptor { return callSDK<sfntFontDescriptor>("CoreText_6be9a005889899ab", 3737999009688437, this, []); }
-  set descriptor(value: sfntFontDescriptor) { callSDK<void>("CoreText_6be9a005889899ab", 4060328853919119, this, [value]); }
+  get descriptor(): sfntFontDescriptor { return callSDK<sfntFontDescriptor>("CoreText_c1f28409f8601238", 3737999009688437, this, []); }
+  set descriptor(value: sfntFontDescriptor) { callSDK<void>("CoreText_c1f28409f8601238", 4060328853919119, this, [value]); }
   /** var descriptorCount: Int32 */
-  get descriptorCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3454376086473610, this, []); }
-  set descriptorCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 330751816253808, this, [value]); }
+  get descriptorCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3454376086473610, this, []); }
+  set descriptorCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 330751816253808, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 293201764799100, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 3894895280190966, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 293201764799100, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 3894895280190966, this, [value]); }
   /** init() */
-  static init(): sfntDescriptorHeader { return callSDK<sfntDescriptorHeader>("CoreText_6be9a005889899ab", 2991793292488253, undefined, []); }
+  static init(): sfntDescriptorHeader { return callSDK<sfntDescriptorHeader>("CoreText_c1f28409f8601238", 2991793292488253, undefined, []); }
   declare readonly $type: { "c:@S@sfntDescriptorHeader": true };
 }
 
 /** struct sfntDirectory */
 export class sfntDirectory extends SDKHandle {
   /** var entrySelector: UInt16 */
-  get entrySelector(): number { return callSDK<number>("CoreText_6be9a005889899ab", 438346687667001, this, []); }
-  set entrySelector(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4017564199949615, this, [value]); }
+  get entrySelector(): number { return callSDK<number>("CoreText_c1f28409f8601238", 438346687667001, this, []); }
+  set entrySelector(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4017564199949615, this, [value]); }
   /** var format: FourCharCode */
-  get format(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 754006663441804, this, []); }
-  set format(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 3024062959845286, this, [value]); }
+  get format(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 754006663441804, this, []); }
+  set format(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 3024062959845286, this, [value]); }
   /** var numOffsets: UInt16 */
-  get numOffsets(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1659108704633076, this, []); }
-  set numOffsets(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1815247290672164, this, [value]); }
+  get numOffsets(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1659108704633076, this, []); }
+  set numOffsets(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1815247290672164, this, [value]); }
   /** var rangeShift: UInt16 */
-  get rangeShift(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3787727016514706, this, []); }
-  set rangeShift(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1036768461854222, this, [value]); }
+  get rangeShift(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3787727016514706, this, []); }
+  set rangeShift(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1036768461854222, this, [value]); }
   /** var searchRange: UInt16 */
-  get searchRange(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3284334521921530, this, []); }
-  set searchRange(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4053049489987851, this, [value]); }
+  get searchRange(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3284334521921530, this, []); }
+  set searchRange(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4053049489987851, this, [value]); }
   /** var table: sfntDirectoryEntry */
-  get table(): sfntDirectoryEntry { return callSDK<sfntDirectoryEntry>("CoreText_6be9a005889899ab", 4147649204569389, this, []); }
-  set table(value: sfntDirectoryEntry) { callSDK<void>("CoreText_6be9a005889899ab", 3929624499997245, this, [value]); }
+  get table(): sfntDirectoryEntry { return callSDK<sfntDirectoryEntry>("CoreText_c1f28409f8601238", 4147649204569389, this, []); }
+  set table(value: sfntDirectoryEntry) { callSDK<void>("CoreText_c1f28409f8601238", 3929624499997245, this, [value]); }
   /** init(format: FourCharCode, numOffsets: UInt16, searchRange: UInt16, entrySelector: UInt16, rangeShift: UInt16, table: sfntDirectoryEntry) */
-  static initFormatNumOffsetsSearchRangeEntrySelectorRangeShiftTable(format: SDKHandle, numOffsets: number, searchRange: number, entrySelector: number, rangeShift: number, table: sfntDirectoryEntry): sfntDirectory { return callSDK<sfntDirectory>("CoreText_6be9a005889899ab", 3185195031739819, undefined, [format, numOffsets, searchRange, entrySelector, rangeShift, table]); }
+  static initFormatNumOffsetsSearchRangeEntrySelectorRangeShiftTable(format: SDKHandle, numOffsets: number, searchRange: number, entrySelector: number, rangeShift: number, table: sfntDirectoryEntry): sfntDirectory { return callSDK<sfntDirectory>("CoreText_c1f28409f8601238", 3185195031739819, undefined, [format, numOffsets, searchRange, entrySelector, rangeShift, table]); }
   /** init() */
-  static init(): sfntDirectory { return callSDK<sfntDirectory>("CoreText_6be9a005889899ab", 3194049609717629, undefined, []); }
+  static init(): sfntDirectory { return callSDK<sfntDirectory>("CoreText_c1f28409f8601238", 3194049609717629, undefined, []); }
   declare readonly $type: { "c:@S@sfntDirectory": true };
 }
 
 /** struct sfntDirectoryEntry */
 export class sfntDirectoryEntry extends SDKHandle {
   /** var checkSum: UInt32 */
-  get checkSum(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2257462716283111, this, []); }
-  set checkSum(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3657768370954373, this, [value]); }
+  get checkSum(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2257462716283111, this, []); }
+  set checkSum(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3657768370954373, this, [value]); }
   /** var length: UInt32 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4236170935129307, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1775793668307262, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4236170935129307, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1775793668307262, this, [value]); }
   /** var offset: UInt32 */
-  get offset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 225940844071890, this, []); }
-  set offset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3210751044568957, this, [value]); }
+  get offset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 225940844071890, this, []); }
+  set offset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3210751044568957, this, [value]); }
   /** var tableTag: FourCharCode */
-  get tableTag(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 2061383891739043, this, []); }
-  set tableTag(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 2039657656409886, this, [value]); }
+  get tableTag(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 2061383891739043, this, []); }
+  set tableTag(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 2039657656409886, this, [value]); }
   /** init(tableTag: FourCharCode, checkSum: UInt32, offset: UInt32, length: UInt32) */
-  static initTableTagCheckSumOffsetLength(tableTag: SDKHandle, checkSum: number, offset: number, length: number): sfntDirectoryEntry { return callSDK<sfntDirectoryEntry>("CoreText_6be9a005889899ab", 2837036584593596, undefined, [tableTag, checkSum, offset, length]); }
+  static initTableTagCheckSumOffsetLength(tableTag: SDKHandle, checkSum: number, offset: number, length: number): sfntDirectoryEntry { return callSDK<sfntDirectoryEntry>("CoreText_c1f28409f8601238", 2837036584593596, undefined, [tableTag, checkSum, offset, length]); }
   /** init() */
-  static init(): sfntDirectoryEntry { return callSDK<sfntDirectoryEntry>("CoreText_6be9a005889899ab", 4360109374256949, undefined, []); }
+  static init(): sfntDirectoryEntry { return callSDK<sfntDirectoryEntry>("CoreText_c1f28409f8601238", 4360109374256949, undefined, []); }
   declare readonly $type: { "c:@S@sfntDirectoryEntry": true };
 }
 
 /** struct sfntFeatureHeader */
 export class sfntFeatureHeader extends SDKHandle {
   /** var featureNameCount: UInt16 */
-  get featureNameCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2737656842377256, this, []); }
-  set featureNameCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4009458103229028, this, [value]); }
+  get featureNameCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2737656842377256, this, []); }
+  set featureNameCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4009458103229028, this, [value]); }
   /** var featureSetCount: UInt16 */
-  get featureSetCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1306478996183813, this, []); }
-  set featureSetCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1595256884143584, this, [value]); }
+  get featureSetCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1306478996183813, this, []); }
+  set featureSetCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1595256884143584, this, [value]); }
   /** var names: sfntFeatureName */
-  get names(): sfntFeatureName { return callSDK<sfntFeatureName>("CoreText_6be9a005889899ab", 1417165838434319, this, []); }
-  set names(value: sfntFeatureName) { callSDK<void>("CoreText_6be9a005889899ab", 3379711834601445, this, [value]); }
+  get names(): sfntFeatureName { return callSDK<sfntFeatureName>("CoreText_c1f28409f8601238", 1417165838434319, this, []); }
+  set names(value: sfntFeatureName) { callSDK<void>("CoreText_c1f28409f8601238", 3379711834601445, this, [value]); }
   /** var reserved: Int32 */
-  get reserved(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3998679651040416, this, []); }
-  set reserved(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3691877180250441, this, [value]); }
+  get reserved(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3998679651040416, this, []); }
+  set reserved(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3691877180250441, this, [value]); }
   /** var runs: sfntFontRunFeature */
-  get runs(): sfntFontRunFeature { return callSDK<sfntFontRunFeature>("CoreText_6be9a005889899ab", 1431888847670868, this, []); }
-  set runs(value: sfntFontRunFeature) { callSDK<void>("CoreText_6be9a005889899ab", 3308648278134556, this, [value]); }
+  get runs(): sfntFontRunFeature { return callSDK<sfntFontRunFeature>("CoreText_c1f28409f8601238", 1431888847670868, this, []); }
+  set runs(value: sfntFontRunFeature) { callSDK<void>("CoreText_c1f28409f8601238", 3308648278134556, this, [value]); }
   /** var settings: sfntFontFeatureSetting */
-  get settings(): sfntFontFeatureSetting { return callSDK<sfntFontFeatureSetting>("CoreText_6be9a005889899ab", 3785770990116181, this, []); }
-  set settings(value: sfntFontFeatureSetting) { callSDK<void>("CoreText_6be9a005889899ab", 4321999771556303, this, [value]); }
+  get settings(): sfntFontFeatureSetting { return callSDK<sfntFontFeatureSetting>("CoreText_c1f28409f8601238", 3785770990116181, this, []); }
+  set settings(value: sfntFontFeatureSetting) { callSDK<void>("CoreText_c1f28409f8601238", 4321999771556303, this, [value]); }
   /** var version: Int32 */
-  get version(): number { return callSDK<number>("CoreText_6be9a005889899ab", 914115210350208, this, []); }
-  set version(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1671026950066113, this, [value]); }
+  get version(): number { return callSDK<number>("CoreText_c1f28409f8601238", 914115210350208, this, []); }
+  set version(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1671026950066113, this, [value]); }
   /** init(version: Int32, featureNameCount: UInt16, featureSetCount: UInt16, reserved: Int32, names: sfntFeatureName, settings: sfntFontFeatureSetting, runs: sfntFontRunFeature) */
-  static initVersionFeatureNameCountFeatureSetCountReservedNamesSettingsRuns(version: number, featureNameCount: number, featureSetCount: number, reserved: number, names: sfntFeatureName, settings: sfntFontFeatureSetting, runs: sfntFontRunFeature): sfntFeatureHeader { return callSDK<sfntFeatureHeader>("CoreText_6be9a005889899ab", 3603418319074620, undefined, [version, featureNameCount, featureSetCount, reserved, names, settings, runs]); }
+  static initVersionFeatureNameCountFeatureSetCountReservedNamesSettingsRuns(version: number, featureNameCount: number, featureSetCount: number, reserved: number, names: sfntFeatureName, settings: sfntFontFeatureSetting, runs: sfntFontRunFeature): sfntFeatureHeader { return callSDK<sfntFeatureHeader>("CoreText_c1f28409f8601238", 3603418319074620, undefined, [version, featureNameCount, featureSetCount, reserved, names, settings, runs]); }
   /** init() */
-  static init(): sfntFeatureHeader { return callSDK<sfntFeatureHeader>("CoreText_6be9a005889899ab", 2009716199107829, undefined, []); }
+  static init(): sfntFeatureHeader { return callSDK<sfntFeatureHeader>("CoreText_c1f28409f8601238", 2009716199107829, undefined, []); }
   declare readonly $type: { "c:@S@sfntFeatureHeader": true };
 }
 
 /** struct sfntFeatureName */
 export class sfntFeatureName extends SDKHandle {
   /** var featureFlags: UInt16 */
-  get featureFlags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2527693942945473, this, []); }
-  set featureFlags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4161782626596851, this, [value]); }
+  get featureFlags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2527693942945473, this, []); }
+  set featureFlags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4161782626596851, this, [value]); }
   /** var featureType: UInt16 */
-  get featureType(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3533310870773343, this, []); }
-  set featureType(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 331546270548177, this, [value]); }
+  get featureType(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3533310870773343, this, []); }
+  set featureType(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 331546270548177, this, [value]); }
   /** var nameID: Int16 */
-  get nameID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1050726908796548, this, []); }
-  set nameID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3031067865317403, this, [value]); }
+  get nameID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1050726908796548, this, []); }
+  set nameID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3031067865317403, this, [value]); }
   /** var offsetToSettings: Int32 */
-  get offsetToSettings(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2995786051247370, this, []); }
-  set offsetToSettings(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1844147631759149, this, [value]); }
+  get offsetToSettings(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2995786051247370, this, []); }
+  set offsetToSettings(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1844147631759149, this, [value]); }
   /** var settingCount: UInt16 */
-  get settingCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2543082349139382, this, []); }
-  set settingCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 877357733640085, this, [value]); }
+  get settingCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2543082349139382, this, []); }
+  set settingCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 877357733640085, this, [value]); }
   /** init(featureType: UInt16, settingCount: UInt16, offsetToSettings: Int32, featureFlags: UInt16, nameID: Int16) */
-  static initFeatureTypeSettingCountOffsetToSettingsFeatureFlagsNameID(featureType: number, settingCount: number, offsetToSettings: number, featureFlags: number, nameID: number): sfntFeatureName { return callSDK<sfntFeatureName>("CoreText_6be9a005889899ab", 4244694633342641, undefined, [featureType, settingCount, offsetToSettings, featureFlags, nameID]); }
+  static initFeatureTypeSettingCountOffsetToSettingsFeatureFlagsNameID(featureType: number, settingCount: number, offsetToSettings: number, featureFlags: number, nameID: number): sfntFeatureName { return callSDK<sfntFeatureName>("CoreText_c1f28409f8601238", 4244694633342641, undefined, [featureType, settingCount, offsetToSettings, featureFlags, nameID]); }
   /** init() */
-  static init(): sfntFeatureName { return callSDK<sfntFeatureName>("CoreText_6be9a005889899ab", 1158777500369030, undefined, []); }
+  static init(): sfntFeatureName { return callSDK<sfntFeatureName>("CoreText_c1f28409f8601238", 1158777500369030, undefined, []); }
   declare readonly $type: { "c:@S@sfntFeatureName": true };
 }
 
 /** struct sfntFontDescriptor */
 export class sfntFontDescriptor extends SDKHandle {
   /** var name: FourCharCode */
-  get name(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 819432975929697, this, []); }
-  set name(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 2496818804178, this, [value]); }
+  get name(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 819432975929697, this, []); }
+  set name(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 2496818804178, this, [value]); }
   /** var value: Fixed */
-  get value(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 2667949642881923, this, []); }
-  set value(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1043772541432043, this, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 2667949642881923, this, []); }
+  set value(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1043772541432043, this, [value]); }
   /** init() */
-  static init(): sfntFontDescriptor { return callSDK<sfntFontDescriptor>("CoreText_6be9a005889899ab", 4107449541031943, undefined, []); }
+  static init(): sfntFontDescriptor { return callSDK<sfntFontDescriptor>("CoreText_c1f28409f8601238", 4107449541031943, undefined, []); }
   declare readonly $type: { "c:@S@sfntFontDescriptor": true };
 }
 
 /** struct sfntFontFeatureSetting */
 export class sfntFontFeatureSetting extends SDKHandle {
   /** var nameID: Int16 */
-  get nameID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2128954701798158, this, []); }
-  set nameID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1236620774009147, this, [value]); }
+  get nameID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2128954701798158, this, []); }
+  set nameID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1236620774009147, this, [value]); }
   /** var setting: UInt16 */
-  get setting(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1169399585003782, this, []); }
-  set setting(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1199876132636949, this, [value]); }
+  get setting(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1169399585003782, this, []); }
+  set setting(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1199876132636949, this, [value]); }
   /** init(setting: UInt16, nameID: Int16) */
-  static initSettingNameID(setting: number, nameID: number): sfntFontFeatureSetting { return callSDK<sfntFontFeatureSetting>("CoreText_6be9a005889899ab", 2591740824156819, undefined, [setting, nameID]); }
+  static initSettingNameID(setting: number, nameID: number): sfntFontFeatureSetting { return callSDK<sfntFontFeatureSetting>("CoreText_c1f28409f8601238", 2591740824156819, undefined, [setting, nameID]); }
   /** init() */
-  static init(): sfntFontFeatureSetting { return callSDK<sfntFontFeatureSetting>("CoreText_6be9a005889899ab", 624040885592976, undefined, []); }
+  static init(): sfntFontFeatureSetting { return callSDK<sfntFontFeatureSetting>("CoreText_c1f28409f8601238", 624040885592976, undefined, []); }
   declare readonly $type: { "c:@S@sfntFontFeatureSetting": true };
 }
 
 /** struct sfntFontRunFeature */
 export class sfntFontRunFeature extends SDKHandle {
   /** var featureType: UInt16 */
-  get featureType(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4158159462250837, this, []); }
-  set featureType(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 37030483720176, this, [value]); }
+  get featureType(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4158159462250837, this, []); }
+  set featureType(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 37030483720176, this, [value]); }
   /** var setting: UInt16 */
-  get setting(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4349006538633484, this, []); }
-  set setting(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1308300151033559, this, [value]); }
+  get setting(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4349006538633484, this, []); }
+  set setting(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1308300151033559, this, [value]); }
   /** init(featureType: UInt16, setting: UInt16) */
-  static initFeatureTypeSetting(featureType: number, setting: number): sfntFontRunFeature { return callSDK<sfntFontRunFeature>("CoreText_6be9a005889899ab", 4459412136928339, undefined, [featureType, setting]); }
+  static initFeatureTypeSetting(featureType: number, setting: number): sfntFontRunFeature { return callSDK<sfntFontRunFeature>("CoreText_c1f28409f8601238", 4459412136928339, undefined, [featureType, setting]); }
   /** init() */
-  static init(): sfntFontRunFeature { return callSDK<sfntFontRunFeature>("CoreText_6be9a005889899ab", 714811702969707, undefined, []); }
+  static init(): sfntFontRunFeature { return callSDK<sfntFontRunFeature>("CoreText_c1f28409f8601238", 714811702969707, undefined, []); }
   declare readonly $type: { "c:@S@sfntFontRunFeature": true };
 }
 
 /** struct sfntInstance */
 export class sfntInstance extends SDKHandle {
   /** var coord: Fixed */
-  get coord(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 451089787838410, this, []); }
-  set coord(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 3649909090276451, this, [value]); }
+  get coord(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 451089787838410, this, []); }
+  set coord(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 3649909090276451, this, [value]); }
   /** var flags: Int16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3270945396735810, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1663975710652691, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3270945396735810, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1663975710652691, this, [value]); }
   /** var nameID: Int16 */
-  get nameID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1646453444619742, this, []); }
-  set nameID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1447077433580590, this, [value]); }
+  get nameID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1646453444619742, this, []); }
+  set nameID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1447077433580590, this, [value]); }
   /** init() */
-  static init(): sfntInstance { return callSDK<sfntInstance>("CoreText_6be9a005889899ab", 456574930459913, undefined, []); }
+  static init(): sfntInstance { return callSDK<sfntInstance>("CoreText_c1f28409f8601238", 456574930459913, undefined, []); }
   declare readonly $type: { "c:@S@sfntInstance": true };
 }
 
 /** struct SFNTLookupArrayHeader */
 export class SFNTLookupArrayHeader extends SDKHandle {
   /** var lookupValues: SFNTLookupValue */
-  get lookupValues(): number { return callSDK<number>("CoreText_6be9a005889899ab", 9692077027168, this, []); }
-  set lookupValues(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2331298781585214, this, [value]); }
+  get lookupValues(): number { return callSDK<number>("CoreText_c1f28409f8601238", 9692077027168, this, []); }
+  set lookupValues(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2331298781585214, this, [value]); }
   /** init(lookupValues: SFNTLookupValue) */
-  static initLookupValues(lookupValues: number): SFNTLookupArrayHeader { return callSDK<SFNTLookupArrayHeader>("CoreText_6be9a005889899ab", 621660357057801, undefined, [lookupValues]); }
+  static initLookupValues(lookupValues: number): SFNTLookupArrayHeader { return callSDK<SFNTLookupArrayHeader>("CoreText_c1f28409f8601238", 621660357057801, undefined, [lookupValues]); }
   /** init() */
-  static init(): SFNTLookupArrayHeader { return callSDK<SFNTLookupArrayHeader>("CoreText_6be9a005889899ab", 4177729282278309, undefined, []); }
+  static init(): SFNTLookupArrayHeader { return callSDK<SFNTLookupArrayHeader>("CoreText_c1f28409f8601238", 4177729282278309, undefined, []); }
   declare readonly $type: { "c:@S@SFNTLookupArrayHeader": true };
 }
 
 /** struct SFNTLookupBinarySearchHeader */
 export class SFNTLookupBinarySearchHeader extends SDKHandle {
   /** var entrySelector: UInt16 */
-  get entrySelector(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1886228846545899, this, []); }
-  set entrySelector(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3384023950817329, this, [value]); }
+  get entrySelector(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1886228846545899, this, []); }
+  set entrySelector(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3384023950817329, this, [value]); }
   /** var nUnits: UInt16 */
-  get nUnits(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1944199726339866, this, []); }
-  set nUnits(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 26624225131477, this, [value]); }
+  get nUnits(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1944199726339866, this, []); }
+  set nUnits(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 26624225131477, this, [value]); }
   /** var rangeShift: UInt16 */
-  get rangeShift(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1017284015809970, this, []); }
-  set rangeShift(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1981711913581140, this, [value]); }
+  get rangeShift(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1017284015809970, this, []); }
+  set rangeShift(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1981711913581140, this, [value]); }
   /** var searchRange: UInt16 */
-  get searchRange(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2671634901108330, this, []); }
-  set searchRange(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3681763924136287, this, [value]); }
+  get searchRange(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2671634901108330, this, []); }
+  set searchRange(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3681763924136287, this, [value]); }
   /** var unitSize: UInt16 */
-  get unitSize(): number { return callSDK<number>("CoreText_6be9a005889899ab", 508521878410589, this, []); }
-  set unitSize(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3549045547369140, this, [value]); }
+  get unitSize(): number { return callSDK<number>("CoreText_c1f28409f8601238", 508521878410589, this, []); }
+  set unitSize(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3549045547369140, this, [value]); }
   /** init(unitSize: UInt16, nUnits: UInt16, searchRange: UInt16, entrySelector: UInt16, rangeShift: UInt16) */
-  static initUnitSizeNUnitsSearchRangeEntrySelectorRangeShift(unitSize: number, nUnits: number, searchRange: number, entrySelector: number, rangeShift: number): SFNTLookupBinarySearchHeader { return callSDK<SFNTLookupBinarySearchHeader>("CoreText_6be9a005889899ab", 2385395318516126, undefined, [unitSize, nUnits, searchRange, entrySelector, rangeShift]); }
+  static initUnitSizeNUnitsSearchRangeEntrySelectorRangeShift(unitSize: number, nUnits: number, searchRange: number, entrySelector: number, rangeShift: number): SFNTLookupBinarySearchHeader { return callSDK<SFNTLookupBinarySearchHeader>("CoreText_c1f28409f8601238", 2385395318516126, undefined, [unitSize, nUnits, searchRange, entrySelector, rangeShift]); }
   /** init() */
-  static init(): SFNTLookupBinarySearchHeader { return callSDK<SFNTLookupBinarySearchHeader>("CoreText_6be9a005889899ab", 28986811731432, undefined, []); }
+  static init(): SFNTLookupBinarySearchHeader { return callSDK<SFNTLookupBinarySearchHeader>("CoreText_c1f28409f8601238", 28986811731432, undefined, []); }
   declare readonly $type: { "c:@S@SFNTLookupBinarySearchHeader": true };
 }
 
 /** struct SFNTLookupFormatSpecificHeader */
 export class SFNTLookupFormatSpecificHeader extends SDKHandle {
   /** var segment: SFNTLookupSegmentHeader { get set } */
-  get segment(): SFNTLookupSegmentHeader { return callSDK<SFNTLookupSegmentHeader>("CoreText_6be9a005889899ab", 1712473789160342, this, []); }
-  set segment(value: SFNTLookupSegmentHeader) { callSDK<void>("CoreText_6be9a005889899ab", 4223474833363894, this, [value]); }
+  get segment(): SFNTLookupSegmentHeader { return callSDK<SFNTLookupSegmentHeader>("CoreText_c1f28409f8601238", 1712473789160342, this, []); }
+  set segment(value: SFNTLookupSegmentHeader) { callSDK<void>("CoreText_c1f28409f8601238", 4223474833363894, this, [value]); }
   /** var single: SFNTLookupSingleHeader { get set } */
-  get single(): SFNTLookupSingleHeader { return callSDK<SFNTLookupSingleHeader>("CoreText_6be9a005889899ab", 3363801511317922, this, []); }
-  set single(value: SFNTLookupSingleHeader) { callSDK<void>("CoreText_6be9a005889899ab", 3904398618430485, this, [value]); }
+  get single(): SFNTLookupSingleHeader { return callSDK<SFNTLookupSingleHeader>("CoreText_c1f28409f8601238", 3363801511317922, this, []); }
+  set single(value: SFNTLookupSingleHeader) { callSDK<void>("CoreText_c1f28409f8601238", 3904398618430485, this, [value]); }
   /** var theArray: SFNTLookupArrayHeader { get set } */
-  get theArray(): SFNTLookupArrayHeader { return callSDK<SFNTLookupArrayHeader>("CoreText_6be9a005889899ab", 312679756860909, this, []); }
-  set theArray(value: SFNTLookupArrayHeader) { callSDK<void>("CoreText_6be9a005889899ab", 1493707083539852, this, [value]); }
+  get theArray(): SFNTLookupArrayHeader { return callSDK<SFNTLookupArrayHeader>("CoreText_c1f28409f8601238", 312679756860909, this, []); }
+  set theArray(value: SFNTLookupArrayHeader) { callSDK<void>("CoreText_c1f28409f8601238", 1493707083539852, this, [value]); }
   /** var trimmedArray: SFNTLookupTrimmedArrayHeader { get set } */
-  get trimmedArray(): SFNTLookupTrimmedArrayHeader { return callSDK<SFNTLookupTrimmedArrayHeader>("CoreText_6be9a005889899ab", 2485644284123046, this, []); }
-  set trimmedArray(value: SFNTLookupTrimmedArrayHeader) { callSDK<void>("CoreText_6be9a005889899ab", 3811869020546591, this, [value]); }
+  get trimmedArray(): SFNTLookupTrimmedArrayHeader { return callSDK<SFNTLookupTrimmedArrayHeader>("CoreText_c1f28409f8601238", 2485644284123046, this, []); }
+  set trimmedArray(value: SFNTLookupTrimmedArrayHeader) { callSDK<void>("CoreText_c1f28409f8601238", 3811869020546591, this, [value]); }
   /** var vector: SFNTLookupVectorHeader { get set } */
-  get vector(): SFNTLookupVectorHeader { return callSDK<SFNTLookupVectorHeader>("CoreText_6be9a005889899ab", 449402123039312, this, []); }
-  set vector(value: SFNTLookupVectorHeader) { callSDK<void>("CoreText_6be9a005889899ab", 2599740375268915, this, [value]); }
+  get vector(): SFNTLookupVectorHeader { return callSDK<SFNTLookupVectorHeader>("CoreText_c1f28409f8601238", 449402123039312, this, []); }
+  set vector(value: SFNTLookupVectorHeader) { callSDK<void>("CoreText_c1f28409f8601238", 2599740375268915, this, [value]); }
   /** init(trimmedArray: SFNTLookupTrimmedArrayHeader) */
-  static initTrimmedArray(trimmedArray: SFNTLookupTrimmedArrayHeader): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_6be9a005889899ab", 3708204988769438, undefined, [trimmedArray]); }
+  static initTrimmedArray(trimmedArray: SFNTLookupTrimmedArrayHeader): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_c1f28409f8601238", 3708204988769438, undefined, [trimmedArray]); }
   /** init(single: SFNTLookupSingleHeader) */
-  static initSingle(single: SFNTLookupSingleHeader): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_6be9a005889899ab", 1900880394749789, undefined, [single]); }
+  static initSingle(single: SFNTLookupSingleHeader): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_c1f28409f8601238", 1900880394749789, undefined, [single]); }
   /** init(vector: SFNTLookupVectorHeader) */
-  static initVector(vector: SFNTLookupVectorHeader): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_6be9a005889899ab", 520327636453898, undefined, [vector]); }
+  static initVector(vector: SFNTLookupVectorHeader): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_c1f28409f8601238", 520327636453898, undefined, [vector]); }
   /** init(segment: SFNTLookupSegmentHeader) */
-  static initSegment(segment: SFNTLookupSegmentHeader): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_6be9a005889899ab", 2085381259124418, undefined, [segment]); }
+  static initSegment(segment: SFNTLookupSegmentHeader): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_c1f28409f8601238", 2085381259124418, undefined, [segment]); }
   /** init(theArray: SFNTLookupArrayHeader) */
-  static initTheArray(theArray: SFNTLookupArrayHeader): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_6be9a005889899ab", 968645482792855, undefined, [theArray]); }
+  static initTheArray(theArray: SFNTLookupArrayHeader): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_c1f28409f8601238", 968645482792855, undefined, [theArray]); }
   /** init() */
-  static init(): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_6be9a005889899ab", 4224018310999816, undefined, []); }
+  static init(): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_c1f28409f8601238", 4224018310999816, undefined, []); }
   declare readonly $type: { "c:@U@SFNTLookupFormatSpecificHeader": true };
 }
 
@@ -2949,78 +2949,78 @@ export type SFNTLookupOffset = number;
 /** struct SFNTLookupSegment */
 export class SFNTLookupSegment extends SDKHandle {
   /** var firstGlyph: UInt16 */
-  get firstGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3849530159475204, this, []); }
-  set firstGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1218357092548124, this, [value]); }
+  get firstGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3849530159475204, this, []); }
+  set firstGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1218357092548124, this, [value]); }
   /** var lastGlyph: UInt16 */
-  get lastGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4309906820598117, this, []); }
-  set lastGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3552593402945661, this, [value]); }
+  get lastGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4309906820598117, this, []); }
+  set lastGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3552593402945661, this, [value]); }
   /** var value: UInt16 */
-  get value(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3087787078769165, this, []); }
-  set value(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1227615367596429, this, [value]); }
+  get value(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3087787078769165, this, []); }
+  set value(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1227615367596429, this, [value]); }
   /** init(lastGlyph: UInt16, firstGlyph: UInt16, value: UInt16) */
-  static initLastGlyphFirstGlyphValue(lastGlyph: number, firstGlyph: number, value: number): SFNTLookupSegment { return callSDK<SFNTLookupSegment>("CoreText_6be9a005889899ab", 1796297869415718, undefined, [lastGlyph, firstGlyph, value]); }
+  static initLastGlyphFirstGlyphValue(lastGlyph: number, firstGlyph: number, value: number): SFNTLookupSegment { return callSDK<SFNTLookupSegment>("CoreText_c1f28409f8601238", 1796297869415718, undefined, [lastGlyph, firstGlyph, value]); }
   /** init() */
-  static init(): SFNTLookupSegment { return callSDK<SFNTLookupSegment>("CoreText_6be9a005889899ab", 1953620926024551, undefined, []); }
+  static init(): SFNTLookupSegment { return callSDK<SFNTLookupSegment>("CoreText_c1f28409f8601238", 1953620926024551, undefined, []); }
   declare readonly $type: { "c:@S@SFNTLookupSegment": true };
 }
 
 /** struct SFNTLookupSegmentHeader */
 export class SFNTLookupSegmentHeader extends SDKHandle {
   /** var binSearch: SFNTLookupBinarySearchHeader */
-  get binSearch(): SFNTLookupBinarySearchHeader { return callSDK<SFNTLookupBinarySearchHeader>("CoreText_6be9a005889899ab", 1592969555043135, this, []); }
-  set binSearch(value: SFNTLookupBinarySearchHeader) { callSDK<void>("CoreText_6be9a005889899ab", 3102804613090705, this, [value]); }
+  get binSearch(): SFNTLookupBinarySearchHeader { return callSDK<SFNTLookupBinarySearchHeader>("CoreText_c1f28409f8601238", 1592969555043135, this, []); }
+  set binSearch(value: SFNTLookupBinarySearchHeader) { callSDK<void>("CoreText_c1f28409f8601238", 3102804613090705, this, [value]); }
   /** var segments: SFNTLookupSegment */
-  get segments(): SFNTLookupSegment { return callSDK<SFNTLookupSegment>("CoreText_6be9a005889899ab", 3542791193022386, this, []); }
-  set segments(value: SFNTLookupSegment) { callSDK<void>("CoreText_6be9a005889899ab", 195779925513887, this, [value]); }
+  get segments(): SFNTLookupSegment { return callSDK<SFNTLookupSegment>("CoreText_c1f28409f8601238", 3542791193022386, this, []); }
+  set segments(value: SFNTLookupSegment) { callSDK<void>("CoreText_c1f28409f8601238", 195779925513887, this, [value]); }
   /** init(binSearch: SFNTLookupBinarySearchHeader, segments: SFNTLookupSegment) */
-  static initBinSearchSegments(binSearch: SFNTLookupBinarySearchHeader, segments: SFNTLookupSegment): SFNTLookupSegmentHeader { return callSDK<SFNTLookupSegmentHeader>("CoreText_6be9a005889899ab", 523187566491559, undefined, [binSearch, segments]); }
+  static initBinSearchSegments(binSearch: SFNTLookupBinarySearchHeader, segments: SFNTLookupSegment): SFNTLookupSegmentHeader { return callSDK<SFNTLookupSegmentHeader>("CoreText_c1f28409f8601238", 523187566491559, undefined, [binSearch, segments]); }
   /** init() */
-  static init(): SFNTLookupSegmentHeader { return callSDK<SFNTLookupSegmentHeader>("CoreText_6be9a005889899ab", 3435371917209018, undefined, []); }
+  static init(): SFNTLookupSegmentHeader { return callSDK<SFNTLookupSegmentHeader>("CoreText_c1f28409f8601238", 3435371917209018, undefined, []); }
   declare readonly $type: { "c:@S@SFNTLookupSegmentHeader": true };
 }
 
 /** struct SFNTLookupSingle */
 export class SFNTLookupSingle extends SDKHandle {
   /** var glyph: UInt16 */
-  get glyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2082774715039703, this, []); }
-  set glyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1257430055375752, this, [value]); }
+  get glyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2082774715039703, this, []); }
+  set glyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1257430055375752, this, [value]); }
   /** var value: UInt16 */
-  get value(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1389594063486034, this, []); }
-  set value(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3685293562908685, this, [value]); }
+  get value(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1389594063486034, this, []); }
+  set value(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3685293562908685, this, [value]); }
   /** init(glyph: UInt16, value: UInt16) */
-  static initGlyphValue(glyph: number, value: number): SFNTLookupSingle { return callSDK<SFNTLookupSingle>("CoreText_6be9a005889899ab", 957840043446596, undefined, [glyph, value]); }
+  static initGlyphValue(glyph: number, value: number): SFNTLookupSingle { return callSDK<SFNTLookupSingle>("CoreText_c1f28409f8601238", 957840043446596, undefined, [glyph, value]); }
   /** init() */
-  static init(): SFNTLookupSingle { return callSDK<SFNTLookupSingle>("CoreText_6be9a005889899ab", 941636207700391, undefined, []); }
+  static init(): SFNTLookupSingle { return callSDK<SFNTLookupSingle>("CoreText_c1f28409f8601238", 941636207700391, undefined, []); }
   declare readonly $type: { "c:@S@SFNTLookupSingle": true };
 }
 
 /** struct SFNTLookupSingleHeader */
 export class SFNTLookupSingleHeader extends SDKHandle {
   /** var binSearch: SFNTLookupBinarySearchHeader */
-  get binSearch(): SFNTLookupBinarySearchHeader { return callSDK<SFNTLookupBinarySearchHeader>("CoreText_6be9a005889899ab", 2007278121520511, this, []); }
-  set binSearch(value: SFNTLookupBinarySearchHeader) { callSDK<void>("CoreText_6be9a005889899ab", 60540037933477, this, [value]); }
+  get binSearch(): SFNTLookupBinarySearchHeader { return callSDK<SFNTLookupBinarySearchHeader>("CoreText_c1f28409f8601238", 2007278121520511, this, []); }
+  set binSearch(value: SFNTLookupBinarySearchHeader) { callSDK<void>("CoreText_c1f28409f8601238", 60540037933477, this, [value]); }
   /** var entries: SFNTLookupSingle */
-  get entries(): SFNTLookupSingle { return callSDK<SFNTLookupSingle>("CoreText_6be9a005889899ab", 3669649104728250, this, []); }
-  set entries(value: SFNTLookupSingle) { callSDK<void>("CoreText_6be9a005889899ab", 346862062664992, this, [value]); }
+  get entries(): SFNTLookupSingle { return callSDK<SFNTLookupSingle>("CoreText_c1f28409f8601238", 3669649104728250, this, []); }
+  set entries(value: SFNTLookupSingle) { callSDK<void>("CoreText_c1f28409f8601238", 346862062664992, this, [value]); }
   /** init(binSearch: SFNTLookupBinarySearchHeader, entries: SFNTLookupSingle) */
-  static initBinSearchEntries(binSearch: SFNTLookupBinarySearchHeader, entries: SFNTLookupSingle): SFNTLookupSingleHeader { return callSDK<SFNTLookupSingleHeader>("CoreText_6be9a005889899ab", 139258474888005, undefined, [binSearch, entries]); }
+  static initBinSearchEntries(binSearch: SFNTLookupBinarySearchHeader, entries: SFNTLookupSingle): SFNTLookupSingleHeader { return callSDK<SFNTLookupSingleHeader>("CoreText_c1f28409f8601238", 139258474888005, undefined, [binSearch, entries]); }
   /** init() */
-  static init(): SFNTLookupSingleHeader { return callSDK<SFNTLookupSingleHeader>("CoreText_6be9a005889899ab", 2293566211856901, undefined, []); }
+  static init(): SFNTLookupSingleHeader { return callSDK<SFNTLookupSingleHeader>("CoreText_c1f28409f8601238", 2293566211856901, undefined, []); }
   declare readonly $type: { "c:@S@SFNTLookupSingleHeader": true };
 }
 
 /** struct SFNTLookupTable */
 export class SFNTLookupTable extends SDKHandle {
   /** var format: SFNTLookupTableFormat */
-  get format(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1309412097721275, this, []); }
-  set format(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4233837489530011, this, [value]); }
+  get format(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1309412097721275, this, []); }
+  set format(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4233837489530011, this, [value]); }
   /** var fsHeader: SFNTLookupFormatSpecificHeader */
-  get fsHeader(): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_6be9a005889899ab", 2547602587245754, this, []); }
-  set fsHeader(value: SFNTLookupFormatSpecificHeader) { callSDK<void>("CoreText_6be9a005889899ab", 1574781699400374, this, [value]); }
+  get fsHeader(): SFNTLookupFormatSpecificHeader { return callSDK<SFNTLookupFormatSpecificHeader>("CoreText_c1f28409f8601238", 2547602587245754, this, []); }
+  set fsHeader(value: SFNTLookupFormatSpecificHeader) { callSDK<void>("CoreText_c1f28409f8601238", 1574781699400374, this, [value]); }
   /** init(format: SFNTLookupTableFormat, fsHeader: SFNTLookupFormatSpecificHeader) */
-  static initFormatFsHeader(format: number, fsHeader: SFNTLookupFormatSpecificHeader): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 4004586567945527, undefined, [format, fsHeader]); }
+  static initFormatFsHeader(format: number, fsHeader: SFNTLookupFormatSpecificHeader): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 4004586567945527, undefined, [format, fsHeader]); }
   /** init() */
-  static init(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_6be9a005889899ab", 3343891823910156, undefined, []); }
+  static init(): SFNTLookupTable { return callSDK<SFNTLookupTable>("CoreText_c1f28409f8601238", 3343891823910156, undefined, []); }
   declare readonly $type: { "c:@S@SFNTLookupTable": true };
 }
 
@@ -3036,18 +3036,18 @@ export type SFNTLookupTablePtr = SDKHandle;
 /** struct SFNTLookupTrimmedArrayHeader */
 export class SFNTLookupTrimmedArrayHeader extends SDKHandle {
   /** var count: UInt16 */
-  get count(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3119700470864135, this, []); }
-  set count(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1218760978672052, this, [value]); }
+  get count(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3119700470864135, this, []); }
+  set count(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1218760978672052, this, [value]); }
   /** var firstGlyph: UInt16 */
-  get firstGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1230621370504221, this, []); }
-  set firstGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2680528621543544, this, [value]); }
+  get firstGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1230621370504221, this, []); }
+  set firstGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2680528621543544, this, [value]); }
   /** var valueArray: SFNTLookupValue */
-  get valueArray(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4080896169338013, this, []); }
-  set valueArray(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1032694431556333, this, [value]); }
+  get valueArray(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4080896169338013, this, []); }
+  set valueArray(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1032694431556333, this, [value]); }
   /** init(firstGlyph: UInt16, count: UInt16, valueArray: SFNTLookupValue) */
-  static initFirstGlyphCountValueArray(firstGlyph: number, count: number, valueArray: number): SFNTLookupTrimmedArrayHeader { return callSDK<SFNTLookupTrimmedArrayHeader>("CoreText_6be9a005889899ab", 637578810413681, undefined, [firstGlyph, count, valueArray]); }
+  static initFirstGlyphCountValueArray(firstGlyph: number, count: number, valueArray: number): SFNTLookupTrimmedArrayHeader { return callSDK<SFNTLookupTrimmedArrayHeader>("CoreText_c1f28409f8601238", 637578810413681, undefined, [firstGlyph, count, valueArray]); }
   /** init() */
-  static init(): SFNTLookupTrimmedArrayHeader { return callSDK<SFNTLookupTrimmedArrayHeader>("CoreText_6be9a005889899ab", 1929778010479695, undefined, []); }
+  static init(): SFNTLookupTrimmedArrayHeader { return callSDK<SFNTLookupTrimmedArrayHeader>("CoreText_c1f28409f8601238", 1929778010479695, undefined, []); }
   declare readonly $type: { "c:@S@SFNTLookupTrimmedArrayHeader": true };
 }
 
@@ -3057,128 +3057,128 @@ export type SFNTLookupValue = number;
 /** struct SFNTLookupVectorHeader */
 export class SFNTLookupVectorHeader extends SDKHandle {
   /** var count: UInt16 */
-  get count(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3263903192663764, this, []); }
-  set count(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 186231135826742, this, [value]); }
+  get count(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3263903192663764, this, []); }
+  set count(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 186231135826742, this, [value]); }
   /** var firstGlyph: UInt16 */
-  get firstGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3133773052068427, this, []); }
-  set firstGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 267394550028776, this, [value]); }
+  get firstGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3133773052068427, this, []); }
+  set firstGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 267394550028776, this, [value]); }
   /** var valueSize: UInt16 */
-  get valueSize(): number { return callSDK<number>("CoreText_6be9a005889899ab", 232791778889697, this, []); }
-  set valueSize(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2784895216862615, this, [value]); }
+  get valueSize(): number { return callSDK<number>("CoreText_c1f28409f8601238", 232791778889697, this, []); }
+  set valueSize(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2784895216862615, this, [value]); }
   /** var values: UInt8 */
-  get values(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3714349838736008, this, []); }
-  set values(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3357964027799688, this, [value]); }
+  get values(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3714349838736008, this, []); }
+  set values(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3357964027799688, this, [value]); }
   /** init(valueSize: UInt16, firstGlyph: UInt16, count: UInt16, values: UInt8) */
-  static initValueSizeFirstGlyphCountValues(valueSize: number, firstGlyph: number, count: number, values: number): SFNTLookupVectorHeader { return callSDK<SFNTLookupVectorHeader>("CoreText_6be9a005889899ab", 3571421998469278, undefined, [valueSize, firstGlyph, count, values]); }
+  static initValueSizeFirstGlyphCountValues(valueSize: number, firstGlyph: number, count: number, values: number): SFNTLookupVectorHeader { return callSDK<SFNTLookupVectorHeader>("CoreText_c1f28409f8601238", 3571421998469278, undefined, [valueSize, firstGlyph, count, values]); }
   /** init() */
-  static init(): SFNTLookupVectorHeader { return callSDK<SFNTLookupVectorHeader>("CoreText_6be9a005889899ab", 823827557686152, undefined, []); }
+  static init(): SFNTLookupVectorHeader { return callSDK<SFNTLookupVectorHeader>("CoreText_c1f28409f8601238", 823827557686152, undefined, []); }
   declare readonly $type: { "c:@S@SFNTLookupVectorHeader": true };
 }
 
 /** struct sfntNameHeader */
 export class sfntNameHeader extends SDKHandle {
   /** var count: UInt16 */
-  get count(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2898493309163439, this, []); }
-  set count(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 943500115742815, this, [value]); }
+  get count(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2898493309163439, this, []); }
+  set count(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 943500115742815, this, [value]); }
   /** var format: UInt16 */
-  get format(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2414818070262810, this, []); }
-  set format(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1864105485552370, this, [value]); }
+  get format(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2414818070262810, this, []); }
+  set format(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1864105485552370, this, [value]); }
   /** var rec: sfntNameRecord */
-  get rec(): sfntNameRecord { return callSDK<sfntNameRecord>("CoreText_6be9a005889899ab", 3736522014351805, this, []); }
-  set rec(value: sfntNameRecord) { callSDK<void>("CoreText_6be9a005889899ab", 3750783931856093, this, [value]); }
+  get rec(): sfntNameRecord { return callSDK<sfntNameRecord>("CoreText_c1f28409f8601238", 3736522014351805, this, []); }
+  set rec(value: sfntNameRecord) { callSDK<void>("CoreText_c1f28409f8601238", 3750783931856093, this, [value]); }
   /** var stringOffset: UInt16 */
-  get stringOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4288988578046215, this, []); }
-  set stringOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2330829279134962, this, [value]); }
+  get stringOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4288988578046215, this, []); }
+  set stringOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2330829279134962, this, [value]); }
   /** init(format: UInt16, count: UInt16, stringOffset: UInt16, rec: sfntNameRecord) */
-  static initFormatCountStringOffsetRec(format: number, count: number, stringOffset: number, rec: sfntNameRecord): sfntNameHeader { return callSDK<sfntNameHeader>("CoreText_6be9a005889899ab", 1001142470906064, undefined, [format, count, stringOffset, rec]); }
+  static initFormatCountStringOffsetRec(format: number, count: number, stringOffset: number, rec: sfntNameRecord): sfntNameHeader { return callSDK<sfntNameHeader>("CoreText_c1f28409f8601238", 1001142470906064, undefined, [format, count, stringOffset, rec]); }
   /** init() */
-  static init(): sfntNameHeader { return callSDK<sfntNameHeader>("CoreText_6be9a005889899ab", 4139470738634221, undefined, []); }
+  static init(): sfntNameHeader { return callSDK<sfntNameHeader>("CoreText_c1f28409f8601238", 4139470738634221, undefined, []); }
   declare readonly $type: { "c:@S@sfntNameHeader": true };
 }
 
 /** struct sfntNameRecord */
 export class sfntNameRecord extends SDKHandle {
   /** var languageID: UInt16 */
-  get languageID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2171935282388473, this, []); }
-  set languageID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1268442678693494, this, [value]); }
+  get languageID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2171935282388473, this, []); }
+  set languageID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1268442678693494, this, [value]); }
   /** var length: UInt16 */
-  get length(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1466985745172279, this, []); }
-  set length(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1130407871367130, this, [value]); }
+  get length(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1466985745172279, this, []); }
+  set length(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1130407871367130, this, [value]); }
   /** var nameID: UInt16 */
-  get nameID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3325825888237012, this, []); }
-  set nameID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1931467168955728, this, [value]); }
+  get nameID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3325825888237012, this, []); }
+  set nameID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1931467168955728, this, [value]); }
   /** var offset: UInt16 */
-  get offset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4344611375262842, this, []); }
-  set offset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2479529149579298, this, [value]); }
+  get offset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4344611375262842, this, []); }
+  set offset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2479529149579298, this, [value]); }
   /** var platformID: UInt16 */
-  get platformID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4363786850407355, this, []); }
-  set platformID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 86944188694357, this, [value]); }
+  get platformID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4363786850407355, this, []); }
+  set platformID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 86944188694357, this, [value]); }
   /** var scriptID: UInt16 */
-  get scriptID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2258093220607474, this, []); }
-  set scriptID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1644140523934300, this, [value]); }
+  get scriptID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2258093220607474, this, []); }
+  set scriptID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1644140523934300, this, [value]); }
   /** init(platformID: UInt16, scriptID: UInt16, languageID: UInt16, nameID: UInt16, length: UInt16, offset: UInt16) */
-  static initPlatformIDScriptIDLanguageIDNameIDLengthOffset(platformID: number, scriptID: number, languageID: number, nameID: number, length: number, offset: number): sfntNameRecord { return callSDK<sfntNameRecord>("CoreText_6be9a005889899ab", 2804314863751260, undefined, [platformID, scriptID, languageID, nameID, length, offset]); }
+  static initPlatformIDScriptIDLanguageIDNameIDLengthOffset(platformID: number, scriptID: number, languageID: number, nameID: number, length: number, offset: number): sfntNameRecord { return callSDK<sfntNameRecord>("CoreText_c1f28409f8601238", 2804314863751260, undefined, [platformID, scriptID, languageID, nameID, length, offset]); }
   /** init() */
-  static init(): sfntNameRecord { return callSDK<sfntNameRecord>("CoreText_6be9a005889899ab", 1130869421306619, undefined, []); }
+  static init(): sfntNameRecord { return callSDK<sfntNameRecord>("CoreText_c1f28409f8601238", 1130869421306619, undefined, []); }
   declare readonly $type: { "c:@S@sfntNameRecord": true };
 }
 
 /** struct sfntVariationAxis */
 export class sfntVariationAxis extends SDKHandle {
   /** var axisTag: FourCharCode */
-  get axisTag(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3568089197049425, this, []); }
-  set axisTag(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1745014154001094, this, [value]); }
+  get axisTag(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3568089197049425, this, []); }
+  set axisTag(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1745014154001094, this, [value]); }
   /** var defaultValue: Fixed */
-  get defaultValue(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3267025249548173, this, []); }
-  set defaultValue(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 267511519576130, this, [value]); }
+  get defaultValue(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3267025249548173, this, []); }
+  set defaultValue(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 267511519576130, this, [value]); }
   /** var flags: Int16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 6114761259828, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 705709521481887, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 6114761259828, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 705709521481887, this, [value]); }
   /** var maxValue: Fixed */
-  get maxValue(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 1935513433386804, this, []); }
-  set maxValue(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 1011597082668541, this, [value]); }
+  get maxValue(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 1935513433386804, this, []); }
+  set maxValue(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 1011597082668541, this, [value]); }
   /** var minValue: Fixed */
-  get minValue(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 1048362253704312, this, []); }
-  set minValue(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 2575246612587853, this, [value]); }
+  get minValue(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 1048362253704312, this, []); }
+  set minValue(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 2575246612587853, this, [value]); }
   /** var nameID: Int16 */
-  get nameID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2535291033105219, this, []); }
-  set nameID(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3043722884588371, this, [value]); }
+  get nameID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2535291033105219, this, []); }
+  set nameID(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3043722884588371, this, [value]); }
   /** init() */
-  static init(): sfntVariationAxis { return callSDK<sfntVariationAxis>("CoreText_6be9a005889899ab", 648619148767805, undefined, []); }
+  static init(): sfntVariationAxis { return callSDK<sfntVariationAxis>("CoreText_c1f28409f8601238", 648619148767805, undefined, []); }
   declare readonly $type: { "c:@S@sfntVariationAxis": true };
 }
 
 /** struct sfntVariationHeader */
 export class sfntVariationHeader extends SDKHandle {
   /** var axis: sfntVariationAxis */
-  get axis(): sfntVariationAxis { return callSDK<sfntVariationAxis>("CoreText_6be9a005889899ab", 3595002250152245, this, []); }
-  set axis(value: sfntVariationAxis) { callSDK<void>("CoreText_6be9a005889899ab", 585701455314886, this, [value]); }
+  get axis(): sfntVariationAxis { return callSDK<sfntVariationAxis>("CoreText_c1f28409f8601238", 3595002250152245, this, []); }
+  set axis(value: sfntVariationAxis) { callSDK<void>("CoreText_c1f28409f8601238", 585701455314886, this, [value]); }
   /** var axisCount: UInt16 */
-  get axisCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 747037126897258, this, []); }
-  set axisCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1234318909924439, this, [value]); }
+  get axisCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 747037126897258, this, []); }
+  set axisCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1234318909924439, this, [value]); }
   /** var axisSize: UInt16 */
-  get axisSize(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1960877755123318, this, []); }
-  set axisSize(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1151350079932695, this, [value]); }
+  get axisSize(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1960877755123318, this, []); }
+  set axisSize(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1151350079932695, this, [value]); }
   /** var countSizePairs: UInt16 */
-  get countSizePairs(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2563431246297625, this, []); }
-  set countSizePairs(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2216981039857696, this, [value]); }
+  get countSizePairs(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2563431246297625, this, []); }
+  set countSizePairs(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2216981039857696, this, [value]); }
   /** var instance: sfntInstance */
-  get instance(): sfntInstance { return callSDK<sfntInstance>("CoreText_6be9a005889899ab", 3148010053056890, this, []); }
-  set instance(value: sfntInstance) { callSDK<void>("CoreText_6be9a005889899ab", 1221607487211735, this, [value]); }
+  get instance(): sfntInstance { return callSDK<sfntInstance>("CoreText_c1f28409f8601238", 3148010053056890, this, []); }
+  set instance(value: sfntInstance) { callSDK<void>("CoreText_c1f28409f8601238", 1221607487211735, this, [value]); }
   /** var instanceCount: UInt16 */
-  get instanceCount(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1656478780208031, this, []); }
-  set instanceCount(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2411339551815204, this, [value]); }
+  get instanceCount(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1656478780208031, this, []); }
+  set instanceCount(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2411339551815204, this, [value]); }
   /** var instanceSize: UInt16 */
-  get instanceSize(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1070678082619301, this, []); }
-  set instanceSize(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2862555496755093, this, [value]); }
+  get instanceSize(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1070678082619301, this, []); }
+  set instanceSize(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2862555496755093, this, [value]); }
   /** var offsetToData: UInt16 */
-  get offsetToData(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1732318155435964, this, []); }
-  set offsetToData(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4448892968401160, this, [value]); }
+  get offsetToData(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1732318155435964, this, []); }
+  set offsetToData(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4448892968401160, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 1298847742514647, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 3330647429822818, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 1298847742514647, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 3330647429822818, this, [value]); }
   /** init() */
-  static init(): sfntVariationHeader { return callSDK<sfntVariationHeader>("CoreText_6be9a005889899ab", 4444467724032574, undefined, []); }
+  static init(): sfntVariationHeader { return callSDK<sfntVariationHeader>("CoreText_c1f28409f8601238", 4444467724032574, undefined, []); }
   declare readonly $type: { "c:@S@sfntVariationHeader": true };
 }
 
@@ -3188,18 +3188,18 @@ export type STClass = number;
 /** struct STClassTable */
 export class STClassTable extends SDKHandle {
   /** var classes: STClass */
-  get classes(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4074777603156664, this, []); }
-  set classes(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2936100488752419, this, [value]); }
+  get classes(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4074777603156664, this, []); }
+  set classes(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2936100488752419, this, [value]); }
   /** var firstGlyph: UInt16 */
-  get firstGlyph(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2405213371788955, this, []); }
-  set firstGlyph(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 509972516919641, this, [value]); }
+  get firstGlyph(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2405213371788955, this, []); }
+  set firstGlyph(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 509972516919641, this, [value]); }
   /** var nGlyphs: UInt16 */
-  get nGlyphs(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3023248982845440, this, []); }
-  set nGlyphs(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1270229981021695, this, [value]); }
+  get nGlyphs(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3023248982845440, this, []); }
+  set nGlyphs(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1270229981021695, this, [value]); }
   /** init(firstGlyph: UInt16, nGlyphs: UInt16, classes: STClass) */
-  static initFirstGlyphNGlyphsClasses(firstGlyph: number, nGlyphs: number, classes: number): STClassTable { return callSDK<STClassTable>("CoreText_6be9a005889899ab", 772957377079984, undefined, [firstGlyph, nGlyphs, classes]); }
+  static initFirstGlyphNGlyphsClasses(firstGlyph: number, nGlyphs: number, classes: number): STClassTable { return callSDK<STClassTable>("CoreText_c1f28409f8601238", 772957377079984, undefined, [firstGlyph, nGlyphs, classes]); }
   /** init() */
-  static init(): STClassTable { return callSDK<STClassTable>("CoreText_6be9a005889899ab", 2731867689546991, undefined, []); }
+  static init(): STClassTable { return callSDK<STClassTable>("CoreText_c1f28409f8601238", 2731867689546991, undefined, []); }
   declare readonly $type: { "c:@S@STClassTable": true };
 }
 
@@ -3209,78 +3209,78 @@ export type STEntryIndex = number;
 /** struct STEntryOne */
 export class STEntryOne extends SDKHandle {
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4030437137634927, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1771184431836015, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4030437137634927, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1771184431836015, this, [value]); }
   /** var newState: UInt16 */
-  get newState(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4446332155134103, this, []); }
-  set newState(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1699921883942830, this, [value]); }
+  get newState(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4446332155134103, this, []); }
+  set newState(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1699921883942830, this, [value]); }
   /** var offset1: UInt16 */
-  get offset1(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4015877007135790, this, []); }
-  set offset1(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1075648148081588, this, [value]); }
+  get offset1(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4015877007135790, this, []); }
+  set offset1(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1075648148081588, this, [value]); }
   /** init(newState: UInt16, flags: UInt16, offset1: UInt16) */
-  static initNewStateFlagsOffset1(newState: number, flags: number, offset1: number): STEntryOne { return callSDK<STEntryOne>("CoreText_6be9a005889899ab", 2681138255529732, undefined, [newState, flags, offset1]); }
+  static initNewStateFlagsOffset1(newState: number, flags: number, offset1: number): STEntryOne { return callSDK<STEntryOne>("CoreText_c1f28409f8601238", 2681138255529732, undefined, [newState, flags, offset1]); }
   /** init() */
-  static init(): STEntryOne { return callSDK<STEntryOne>("CoreText_6be9a005889899ab", 479976152187584, undefined, []); }
+  static init(): STEntryOne { return callSDK<STEntryOne>("CoreText_c1f28409f8601238", 479976152187584, undefined, []); }
   declare readonly $type: { "c:@S@STEntryOne": true };
 }
 
 /** struct STEntryTwo */
 export class STEntryTwo extends SDKHandle {
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2779623675584070, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1909071933509588, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2779623675584070, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1909071933509588, this, [value]); }
   /** var newState: UInt16 */
-  get newState(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3316509574040283, this, []); }
-  set newState(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3491922811540197, this, [value]); }
+  get newState(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3316509574040283, this, []); }
+  set newState(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3491922811540197, this, [value]); }
   /** var offset1: UInt16 */
-  get offset1(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2925999604099777, this, []); }
-  set offset1(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1669160822636452, this, [value]); }
+  get offset1(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2925999604099777, this, []); }
+  set offset1(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1669160822636452, this, [value]); }
   /** var offset2: UInt16 */
-  get offset2(): number { return callSDK<number>("CoreText_6be9a005889899ab", 275029837262200, this, []); }
-  set offset2(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1195555323166445, this, [value]); }
+  get offset2(): number { return callSDK<number>("CoreText_c1f28409f8601238", 275029837262200, this, []); }
+  set offset2(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1195555323166445, this, [value]); }
   /** init(newState: UInt16, flags: UInt16, offset1: UInt16, offset2: UInt16) */
-  static initNewStateFlagsOffset1Offset2(newState: number, flags: number, offset1: number, offset2: number): STEntryTwo { return callSDK<STEntryTwo>("CoreText_6be9a005889899ab", 424615304556620, undefined, [newState, flags, offset1, offset2]); }
+  static initNewStateFlagsOffset1Offset2(newState: number, flags: number, offset1: number, offset2: number): STEntryTwo { return callSDK<STEntryTwo>("CoreText_c1f28409f8601238", 424615304556620, undefined, [newState, flags, offset1, offset2]); }
   /** init() */
-  static init(): STEntryTwo { return callSDK<STEntryTwo>("CoreText_6be9a005889899ab", 3184113030036895, undefined, []); }
+  static init(): STEntryTwo { return callSDK<STEntryTwo>("CoreText_c1f28409f8601238", 3184113030036895, undefined, []); }
   declare readonly $type: { "c:@S@STEntryTwo": true };
 }
 
 /** struct STEntryZero */
 export class STEntryZero extends SDKHandle {
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4228192376087533, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3296087150712617, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4228192376087533, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3296087150712617, this, [value]); }
   /** var newState: UInt16 */
-  get newState(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2021738042221229, this, []); }
-  set newState(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2636509518875173, this, [value]); }
+  get newState(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2021738042221229, this, []); }
+  set newState(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2636509518875173, this, [value]); }
   /** init(newState: UInt16, flags: UInt16) */
-  static initNewStateFlags(newState: number, flags: number): STEntryZero { return callSDK<STEntryZero>("CoreText_6be9a005889899ab", 21925912050431, undefined, [newState, flags]); }
+  static initNewStateFlags(newState: number, flags: number): STEntryZero { return callSDK<STEntryZero>("CoreText_c1f28409f8601238", 21925912050431, undefined, [newState, flags]); }
   /** init() */
-  static init(): STEntryZero { return callSDK<STEntryZero>("CoreText_6be9a005889899ab", 4162101388904564, undefined, []); }
+  static init(): STEntryZero { return callSDK<STEntryZero>("CoreText_c1f28409f8601238", 4162101388904564, undefined, []); }
   declare readonly $type: { "c:@S@STEntryZero": true };
 }
 
 /** struct STHeader */
 export class STHeader extends SDKHandle {
   /** var classTableOffset: UInt16 */
-  get classTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1675190844367208, this, []); }
-  set classTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 45130030724583, this, [value]); }
+  get classTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1675190844367208, this, []); }
+  set classTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 45130030724583, this, [value]); }
   /** var entryTableOffset: UInt16 */
-  get entryTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3156000781590129, this, []); }
-  set entryTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1679987688486, this, [value]); }
+  get entryTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3156000781590129, this, []); }
+  set entryTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1679987688486, this, [value]); }
   /** var filler: UInt8 */
-  get filler(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2943538398278437, this, []); }
-  set filler(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3457516660426560, this, [value]); }
+  get filler(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2943538398278437, this, []); }
+  set filler(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3457516660426560, this, [value]); }
   /** var nClasses: STClass */
-  get nClasses(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1766734167835015, this, []); }
-  set nClasses(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2315285180336092, this, [value]); }
+  get nClasses(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1766734167835015, this, []); }
+  set nClasses(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2315285180336092, this, [value]); }
   /** var stateArrayOffset: UInt16 */
-  get stateArrayOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 67930972880190, this, []); }
-  set stateArrayOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4005071714616384, this, [value]); }
+  get stateArrayOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 67930972880190, this, []); }
+  set stateArrayOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4005071714616384, this, [value]); }
   /** init(filler: UInt8, nClasses: STClass, classTableOffset: UInt16, stateArrayOffset: UInt16, entryTableOffset: UInt16) */
-  static initFillerNClassesClassTableOffsetStateArrayOffsetEntryTableOffset(filler: number, nClasses: number, classTableOffset: number, stateArrayOffset: number, entryTableOffset: number): STHeader { return callSDK<STHeader>("CoreText_6be9a005889899ab", 3418016640480116, undefined, [filler, nClasses, classTableOffset, stateArrayOffset, entryTableOffset]); }
+  static initFillerNClassesClassTableOffsetStateArrayOffsetEntryTableOffset(filler: number, nClasses: number, classTableOffset: number, stateArrayOffset: number, entryTableOffset: number): STHeader { return callSDK<STHeader>("CoreText_c1f28409f8601238", 3418016640480116, undefined, [filler, nClasses, classTableOffset, stateArrayOffset, entryTableOffset]); }
   /** init() */
-  static init(): STHeader { return callSDK<STHeader>("CoreText_6be9a005889899ab", 2337967593211784, undefined, []); }
+  static init(): STHeader { return callSDK<STHeader>("CoreText_c1f28409f8601238", 2337967593211784, undefined, []); }
   declare readonly $type: { "c:@S@STHeader": true };
 }
 
@@ -3296,75 +3296,75 @@ export type STXEntryIndex = number;
 /** struct STXEntryOne */
 export class STXEntryOne extends SDKHandle {
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 701724867346656, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3759370042137609, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 701724867346656, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3759370042137609, this, [value]); }
   /** var index1: UInt16 */
-  get index1(): number { return callSDK<number>("CoreText_6be9a005889899ab", 538504468584045, this, []); }
-  set index1(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1051004856814543, this, [value]); }
+  get index1(): number { return callSDK<number>("CoreText_c1f28409f8601238", 538504468584045, this, []); }
+  set index1(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1051004856814543, this, [value]); }
   /** var newState: STXStateIndex */
-  get newState(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1358836091236054, this, []); }
-  set newState(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 189095865538389, this, [value]); }
+  get newState(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1358836091236054, this, []); }
+  set newState(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 189095865538389, this, [value]); }
   /** init(newState: STXStateIndex, flags: UInt16, index1: UInt16) */
-  static initNewStateFlagsIndex1(newState: number, flags: number, index1: number): STXEntryOne { return callSDK<STXEntryOne>("CoreText_6be9a005889899ab", 3567927879314161, undefined, [newState, flags, index1]); }
+  static initNewStateFlagsIndex1(newState: number, flags: number, index1: number): STXEntryOne { return callSDK<STXEntryOne>("CoreText_c1f28409f8601238", 3567927879314161, undefined, [newState, flags, index1]); }
   /** init() */
-  static init(): STXEntryOne { return callSDK<STXEntryOne>("CoreText_6be9a005889899ab", 3665830168147863, undefined, []); }
+  static init(): STXEntryOne { return callSDK<STXEntryOne>("CoreText_c1f28409f8601238", 3665830168147863, undefined, []); }
   declare readonly $type: { "c:@S@STXEntryOne": true };
 }
 
 /** struct STXEntryTwo */
 export class STXEntryTwo extends SDKHandle {
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 220058331410840, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1237841320892685, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 220058331410840, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1237841320892685, this, [value]); }
   /** var index1: UInt16 */
-  get index1(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4405089184529506, this, []); }
-  set index1(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2899830636395104, this, [value]); }
+  get index1(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4405089184529506, this, []); }
+  set index1(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2899830636395104, this, [value]); }
   /** var index2: UInt16 */
-  get index2(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1083024228538817, this, []); }
-  set index2(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 532302835572336, this, [value]); }
+  get index2(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1083024228538817, this, []); }
+  set index2(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 532302835572336, this, [value]); }
   /** var newState: STXStateIndex */
-  get newState(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3140166710892861, this, []); }
-  set newState(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3818575980811893, this, [value]); }
+  get newState(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3140166710892861, this, []); }
+  set newState(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3818575980811893, this, [value]); }
   /** init(newState: STXStateIndex, flags: UInt16, index1: UInt16, index2: UInt16) */
-  static initNewStateFlagsIndex1Index2(newState: number, flags: number, index1: number, index2: number): STXEntryTwo { return callSDK<STXEntryTwo>("CoreText_6be9a005889899ab", 2202618548612503, undefined, [newState, flags, index1, index2]); }
+  static initNewStateFlagsIndex1Index2(newState: number, flags: number, index1: number, index2: number): STXEntryTwo { return callSDK<STXEntryTwo>("CoreText_c1f28409f8601238", 2202618548612503, undefined, [newState, flags, index1, index2]); }
   /** init() */
-  static init(): STXEntryTwo { return callSDK<STXEntryTwo>("CoreText_6be9a005889899ab", 727546928094751, undefined, []); }
+  static init(): STXEntryTwo { return callSDK<STXEntryTwo>("CoreText_c1f28409f8601238", 727546928094751, undefined, []); }
   declare readonly $type: { "c:@S@STXEntryTwo": true };
 }
 
 /** struct STXEntryZero */
 export class STXEntryZero extends SDKHandle {
   /** var flags: UInt16 */
-  get flags(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3945658933297096, this, []); }
-  set flags(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1500600910923700, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3945658933297096, this, []); }
+  set flags(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1500600910923700, this, [value]); }
   /** var newState: STXStateIndex */
-  get newState(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1968142504065867, this, []); }
-  set newState(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3757395336384109, this, [value]); }
+  get newState(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1968142504065867, this, []); }
+  set newState(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3757395336384109, this, [value]); }
   /** init(newState: STXStateIndex, flags: UInt16) */
-  static initNewStateFlags(newState: number, flags: number): STXEntryZero { return callSDK<STXEntryZero>("CoreText_6be9a005889899ab", 1300726827081011, undefined, [newState, flags]); }
+  static initNewStateFlags(newState: number, flags: number): STXEntryZero { return callSDK<STXEntryZero>("CoreText_c1f28409f8601238", 1300726827081011, undefined, [newState, flags]); }
   /** init() */
-  static init(): STXEntryZero { return callSDK<STXEntryZero>("CoreText_6be9a005889899ab", 1177008081721795, undefined, []); }
+  static init(): STXEntryZero { return callSDK<STXEntryZero>("CoreText_c1f28409f8601238", 1177008081721795, undefined, []); }
   declare readonly $type: { "c:@S@STXEntryZero": true };
 }
 
 /** struct STXHeader */
 export class STXHeader extends SDKHandle {
   /** var classTableOffset: UInt32 */
-  get classTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3672973205284065, this, []); }
-  set classTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4018294124932420, this, [value]); }
+  get classTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3672973205284065, this, []); }
+  set classTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4018294124932420, this, [value]); }
   /** var entryTableOffset: UInt32 */
-  get entryTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3282324847712282, this, []); }
-  set entryTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4285864463934078, this, [value]); }
+  get entryTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3282324847712282, this, []); }
+  set entryTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4285864463934078, this, [value]); }
   /** var nClasses: UInt32 */
-  get nClasses(): number { return callSDK<number>("CoreText_6be9a005889899ab", 980458924425195, this, []); }
-  set nClasses(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 4221607494159, this, [value]); }
+  get nClasses(): number { return callSDK<number>("CoreText_c1f28409f8601238", 980458924425195, this, []); }
+  set nClasses(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 4221607494159, this, [value]); }
   /** var stateArrayOffset: UInt32 */
-  get stateArrayOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2398492584200023, this, []); }
-  set stateArrayOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 291683703603433, this, [value]); }
+  get stateArrayOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2398492584200023, this, []); }
+  set stateArrayOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 291683703603433, this, [value]); }
   /** init(nClasses: UInt32, classTableOffset: UInt32, stateArrayOffset: UInt32, entryTableOffset: UInt32) */
-  static initNClassesClassTableOffsetStateArrayOffsetEntryTableOffset(nClasses: number, classTableOffset: number, stateArrayOffset: number, entryTableOffset: number): STXHeader { return callSDK<STXHeader>("CoreText_6be9a005889899ab", 4435021304848695, undefined, [nClasses, classTableOffset, stateArrayOffset, entryTableOffset]); }
+  static initNClassesClassTableOffsetStateArrayOffsetEntryTableOffset(nClasses: number, classTableOffset: number, stateArrayOffset: number, entryTableOffset: number): STXHeader { return callSDK<STXHeader>("CoreText_c1f28409f8601238", 4435021304848695, undefined, [nClasses, classTableOffset, stateArrayOffset, entryTableOffset]); }
   /** init() */
-  static init(): STXHeader { return callSDK<STXHeader>("CoreText_6be9a005889899ab", 2285123689907248, undefined, []); }
+  static init(): STXHeader { return callSDK<STXHeader>("CoreText_c1f28409f8601238", 2285123689907248, undefined, []); }
   declare readonly $type: { "c:@S@STXHeader": true };
 }
 
@@ -3374,56 +3374,56 @@ export type STXStateIndex = number;
 /** struct TrakTable */
 export class TrakTable extends SDKHandle {
   /** var format: UInt16 */
-  get format(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1954478792598075, this, []); }
-  set format(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3232600737274996, this, [value]); }
+  get format(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1954478792598075, this, []); }
+  set format(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3232600737274996, this, [value]); }
   /** var horizOffset: UInt16 */
-  get horizOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 127297138571080, this, []); }
-  set horizOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1881986017579734, this, [value]); }
+  get horizOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 127297138571080, this, []); }
+  set horizOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1881986017579734, this, [value]); }
   /** var version: Fixed */
-  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3528093780954581, this, []); }
-  set version(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 3598213713154411, this, [value]); }
+  get version(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3528093780954581, this, []); }
+  set version(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 3598213713154411, this, [value]); }
   /** var vertOffset: UInt16 */
-  get vertOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 16667613278620, this, []); }
-  set vertOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 208790450334459, this, [value]); }
+  get vertOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 16667613278620, this, []); }
+  set vertOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 208790450334459, this, [value]); }
   /** init() */
-  static init(): TrakTable { return callSDK<TrakTable>("CoreText_6be9a005889899ab", 1500679850419032, undefined, []); }
+  static init(): TrakTable { return callSDK<TrakTable>("CoreText_c1f28409f8601238", 1500679850419032, undefined, []); }
   declare readonly $type: { "c:@S@TrakTable": true };
 }
 
 /** struct TrakTableData */
 export class TrakTableData extends SDKHandle {
   /** var nSizes: UInt16 */
-  get nSizes(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3119639757408728, this, []); }
-  set nSizes(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 3464502579888700, this, [value]); }
+  get nSizes(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3119639757408728, this, []); }
+  set nSizes(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 3464502579888700, this, [value]); }
   /** var nTracks: UInt16 */
-  get nTracks(): number { return callSDK<number>("CoreText_6be9a005889899ab", 292559980352610, this, []); }
-  set nTracks(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 2009959408484349, this, [value]); }
+  get nTracks(): number { return callSDK<number>("CoreText_c1f28409f8601238", 292559980352610, this, []); }
+  set nTracks(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 2009959408484349, this, [value]); }
   /** var sizeTableOffset: UInt32 */
-  get sizeTableOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3651905539997993, this, []); }
-  set sizeTableOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 677216323038913, this, [value]); }
+  get sizeTableOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3651905539997993, this, []); }
+  set sizeTableOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 677216323038913, this, [value]); }
   /** var trakTable: TrakTableEntry */
-  get trakTable(): TrakTableEntry { return callSDK<TrakTableEntry>("CoreText_6be9a005889899ab", 3956204323464505, this, []); }
-  set trakTable(value: TrakTableEntry) { callSDK<void>("CoreText_6be9a005889899ab", 4085304753939706, this, [value]); }
+  get trakTable(): TrakTableEntry { return callSDK<TrakTableEntry>("CoreText_c1f28409f8601238", 3956204323464505, this, []); }
+  set trakTable(value: TrakTableEntry) { callSDK<void>("CoreText_c1f28409f8601238", 4085304753939706, this, [value]); }
   /** init(nTracks: UInt16, nSizes: UInt16, sizeTableOffset: UInt32, trakTable: TrakTableEntry) */
-  static initNTracksNSizesSizeTableOffsetTrakTable(nTracks: number, nSizes: number, sizeTableOffset: number, trakTable: TrakTableEntry): TrakTableData { return callSDK<TrakTableData>("CoreText_6be9a005889899ab", 614534376664688, undefined, [nTracks, nSizes, sizeTableOffset, trakTable]); }
+  static initNTracksNSizesSizeTableOffsetTrakTable(nTracks: number, nSizes: number, sizeTableOffset: number, trakTable: TrakTableEntry): TrakTableData { return callSDK<TrakTableData>("CoreText_c1f28409f8601238", 614534376664688, undefined, [nTracks, nSizes, sizeTableOffset, trakTable]); }
   /** init() */
-  static init(): TrakTableData { return callSDK<TrakTableData>("CoreText_6be9a005889899ab", 3383273888584695, undefined, []); }
+  static init(): TrakTableData { return callSDK<TrakTableData>("CoreText_c1f28409f8601238", 3383273888584695, undefined, []); }
   declare readonly $type: { "c:@S@TrakTableData": true };
 }
 
 /** struct TrakTableEntry */
 export class TrakTableEntry extends SDKHandle {
   /** var nameTableIndex: UInt16 */
-  get nameTableIndex(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4153557816801348, this, []); }
-  set nameTableIndex(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 429282950552365, this, [value]); }
+  get nameTableIndex(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4153557816801348, this, []); }
+  set nameTableIndex(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 429282950552365, this, [value]); }
   /** var sizesOffset: UInt16 */
-  get sizesOffset(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3060013306944087, this, []); }
-  set sizesOffset(value: number) { callSDK<void>("CoreText_6be9a005889899ab", 1834363930636987, this, [value]); }
+  get sizesOffset(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3060013306944087, this, []); }
+  set sizesOffset(value: number) { callSDK<void>("CoreText_c1f28409f8601238", 1834363930636987, this, [value]); }
   /** var track: Fixed */
-  get track(): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 3359596032015103, this, []); }
-  set track(value: SDKHandle) { callSDK<void>("CoreText_6be9a005889899ab", 2502458353569, this, [value]); }
+  get track(): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 3359596032015103, this, []); }
+  set track(value: SDKHandle) { callSDK<void>("CoreText_c1f28409f8601238", 2502458353569, this, [value]); }
   /** init() */
-  static init(): TrakTableEntry { return callSDK<TrakTableEntry>("CoreText_6be9a005889899ab", 3239414096256253, undefined, []); }
+  static init(): TrakTableEntry { return callSDK<TrakTableEntry>("CoreText_c1f28409f8601238", 3239414096256253, undefined, []); }
   declare readonly $type: { "c:@S@TrakTableEntry": true };
 }
 
@@ -3434,4341 +3434,4341 @@ export type TrakValue = number;
  * func CTFontCollectionCopyFontAttribute(_ collection: CTFontCollection, _ attributeName: CFString, _ options: CTFontCollectionCopyOptions) -> CFArray
  * @availability iOS 15.0+
  */
-export function CTFontCollectionCopyFontAttribute(collection: CTFontCollection, attributeName: _CoreFoundation_CFString, options: CTFontCollectionCopyOptions): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_6be9a005889899ab", 770276552017063, undefined, [collection, attributeName, options]); }
+export function CTFontCollectionCopyFontAttribute(collection: CTFontCollection, attributeName: _CoreFoundation_CFString, options: CTFontCollectionCopyOptions): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_c1f28409f8601238", 770276552017063, undefined, [collection, attributeName, options]); }
 
 /**
  * func CTFontCollectionCopyFontAttributes(_ collection: CTFontCollection, _ attributeNames: CFSet, _ options: CTFontCollectionCopyOptions) -> CFArray
  * @availability iOS 15.0+
  */
-export function CTFontCollectionCopyFontAttributes(collection: CTFontCollection, attributeNames: _CoreFoundation_CFSet, options: CTFontCollectionCopyOptions): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_6be9a005889899ab", 2575749018579595, undefined, [collection, attributeNames, options]); }
+export function CTFontCollectionCopyFontAttributes(collection: CTFontCollection, attributeNames: _CoreFoundation_CFSet, options: CTFontCollectionCopyOptions): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_c1f28409f8601238", 2575749018579595, undefined, [collection, attributeNames, options]); }
 
 /**
  * func CTFontCollectionCreateCopyWithFontDescriptors(_ original: CTFontCollection, _ queryDescriptors: CFArray?, _ options: CFDictionary?) -> CTFontCollection
  * @availability iOS 3.2+
  */
-export function CTFontCollectionCreateCopyWithFontDescriptors(original: CTFontCollection, queryDescriptors?: $SDK11, options?: $SDK12): CTFontCollection { return callSDK<CTFontCollection>("CoreText_6be9a005889899ab", 1858447086435819, undefined, [original, queryDescriptors, options]); }
+export function CTFontCollectionCreateCopyWithFontDescriptors(original: CTFontCollection, queryDescriptors?: $SDK11, options?: $SDK12): CTFontCollection { return callSDK<CTFontCollection>("CoreText_c1f28409f8601238", 1858447086435819, undefined, [original, queryDescriptors, options]); }
 
 /**
  * func CTFontCollectionCreateFromAvailableFonts(_ options: CFDictionary?) -> CTFontCollection
  * @availability iOS 3.2+
  */
-export function CTFontCollectionCreateFromAvailableFonts(options?: $SDK12): CTFontCollection { return callSDK<CTFontCollection>("CoreText_6be9a005889899ab", 1390954498585908, undefined, [options]); }
+export function CTFontCollectionCreateFromAvailableFonts(options?: $SDK12): CTFontCollection { return callSDK<CTFontCollection>("CoreText_c1f28409f8601238", 1390954498585908, undefined, [options]); }
 
 /**
  * func CTFontCollectionCreateMatchingFontDescriptors(_ collection: CTFontCollection) -> CFArray?
  * @availability iOS 3.2+
  */
-export function CTFontCollectionCreateMatchingFontDescriptors(collection: CTFontCollection): $SDK11 { return callSDK<$SDK11>("CoreText_6be9a005889899ab", 2013825627366008, undefined, [collection]); }
+export function CTFontCollectionCreateMatchingFontDescriptors(collection: CTFontCollection): $SDK11 { return callSDK<$SDK11>("CoreText_c1f28409f8601238", 2013825627366008, undefined, [collection]); }
 
 /**
  * func CTFontCollectionCreateMatchingFontDescriptorsWithOptions(_ collection: CTFontCollection, _ options: CFDictionary?) -> CFArray?
  * @availability iOS 12.0+
  */
-export function CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection: CTFontCollection, options?: $SDK12): $SDK11 { return callSDK<$SDK11>("CoreText_6be9a005889899ab", 1069821211575854, undefined, [collection, options]); }
+export function CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection: CTFontCollection, options?: $SDK12): $SDK11 { return callSDK<$SDK11>("CoreText_c1f28409f8601238", 1069821211575854, undefined, [collection, options]); }
 
 /**
  * func CTFontCollectionCreateWithFontDescriptors(_ queryDescriptors: CFArray?, _ options: CFDictionary?) -> CTFontCollection
  * @availability iOS 3.2+
  */
-export function CTFontCollectionCreateWithFontDescriptors(queryDescriptors?: $SDK11, options?: $SDK12): CTFontCollection { return callSDK<CTFontCollection>("CoreText_6be9a005889899ab", 3111143991221254, undefined, [queryDescriptors, options]); }
+export function CTFontCollectionCreateWithFontDescriptors(queryDescriptors?: $SDK11, options?: $SDK12): CTFontCollection { return callSDK<CTFontCollection>("CoreText_c1f28409f8601238", 3111143991221254, undefined, [queryDescriptors, options]); }
 
 /**
  * func CTFontCollectionGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTFontCollectionGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2091607326760475, undefined, []); }
+export function CTFontCollectionGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2091607326760475, undefined, []); }
 
 /**
  * func CTFontCopyAttribute(_ font: CTFont, _ attribute: CFString) -> CFTypeRef?
  * @availability iOS 3.2+
  */
-export function CTFontCopyAttribute(font: CTFont, attribute: _CoreFoundation_CFString): (unknown) | null { return callSDK<(unknown) | null>("CoreText_6be9a005889899ab", 1974076149133924, undefined, [font, attribute]); }
+export function CTFontCopyAttribute(font: CTFont, attribute: _CoreFoundation_CFString): (unknown) | null { return callSDK<(unknown) | null>("CoreText_c1f28409f8601238", 1974076149133924, undefined, [font, attribute]); }
 
 /**
  * func CTFontCopyAvailableTables(_ font: CTFont, _ options: CTFontTableOptions) -> CFArray?
  * @availability iOS 3.2+
  */
-export function CTFontCopyAvailableTables(font: CTFont, options: CTFontTableOptions): $SDK11 { return callSDK<$SDK11>("CoreText_6be9a005889899ab", 799305226686730, undefined, [font, options]); }
+export function CTFontCopyAvailableTables(font: CTFont, options: CTFontTableOptions): $SDK11 { return callSDK<$SDK11>("CoreText_c1f28409f8601238", 799305226686730, undefined, [font, options]); }
 
 /**
  * func CTFontCopyCharacterSet(_ font: CTFont) -> CFCharacterSet
  * @availability iOS 3.2+
  */
-export function CTFontCopyCharacterSet(font: CTFont): _CoreFoundation_CFCharacterSet { return callSDK<_CoreFoundation_CFCharacterSet>("CoreText_6be9a005889899ab", 2854235268963278, undefined, [font]); }
+export function CTFontCopyCharacterSet(font: CTFont): _CoreFoundation_CFCharacterSet { return callSDK<_CoreFoundation_CFCharacterSet>("CoreText_c1f28409f8601238", 2854235268963278, undefined, [font]); }
 
 /**
  * func CTFontCopyDefaultCascadeListForLanguages(_ font: CTFont, _ languagePrefList: CFArray?) -> CFArray?
  * @availability iOS 6.0+
  */
-export function CTFontCopyDefaultCascadeListForLanguages(font: CTFont, languagePrefList?: $SDK11): $SDK11 { return callSDK<$SDK11>("CoreText_6be9a005889899ab", 4347188094544696, undefined, [font, languagePrefList]); }
+export function CTFontCopyDefaultCascadeListForLanguages(font: CTFont, languagePrefList?: $SDK11): $SDK11 { return callSDK<$SDK11>("CoreText_c1f28409f8601238", 4347188094544696, undefined, [font, languagePrefList]); }
 
 /**
  * func CTFontCopyDisplayName(_ font: CTFont) -> CFString
  * @availability iOS 3.2+
  */
-export function CTFontCopyDisplayName(font: CTFont): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1864347877439442, undefined, [font]); }
+export function CTFontCopyDisplayName(font: CTFont): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1864347877439442, undefined, [font]); }
 
 /**
  * func CTFontCopyFamilyName(_ font: CTFont) -> CFString
  * @availability iOS 3.2+
  */
-export function CTFontCopyFamilyName(font: CTFont): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1626613699188992, undefined, [font]); }
+export function CTFontCopyFamilyName(font: CTFont): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1626613699188992, undefined, [font]); }
 
 /**
  * func CTFontCopyFeatureSettings(_ font: CTFont) -> CFArray?
  * @availability iOS 3.2+
  */
-export function CTFontCopyFeatureSettings(font: CTFont): $SDK11 { return callSDK<$SDK11>("CoreText_6be9a005889899ab", 3723763318005413, undefined, [font]); }
+export function CTFontCopyFeatureSettings(font: CTFont): $SDK11 { return callSDK<$SDK11>("CoreText_c1f28409f8601238", 3723763318005413, undefined, [font]); }
 
 /**
  * func CTFontCopyFeatures(_ font: CTFont) -> CFArray?
  * @availability iOS 3.2+
  */
-export function CTFontCopyFeatures(font: CTFont): $SDK11 { return callSDK<$SDK11>("CoreText_6be9a005889899ab", 4371262804674246, undefined, [font]); }
+export function CTFontCopyFeatures(font: CTFont): $SDK11 { return callSDK<$SDK11>("CoreText_c1f28409f8601238", 4371262804674246, undefined, [font]); }
 
 /**
  * func CTFontCopyFontDescriptor(_ font: CTFont) -> CTFontDescriptor
  * @availability iOS 3.2+
  */
-export function CTFontCopyFontDescriptor(font: CTFont): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_6be9a005889899ab", 1766751693371958, undefined, [font]); }
+export function CTFontCopyFontDescriptor(font: CTFont): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_c1f28409f8601238", 1766751693371958, undefined, [font]); }
 
 /**
  * func CTFontCopyFullName(_ font: CTFont) -> CFString
  * @availability iOS 3.2+
  */
-export function CTFontCopyFullName(font: CTFont): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4119132125227281, undefined, [font]); }
+export function CTFontCopyFullName(font: CTFont): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4119132125227281, undefined, [font]); }
 
 /**
  * func CTFontCopyName(_ font: CTFont, _ nameKey: CFString) -> CFString?
  * @availability iOS 3.2+
  */
-export function CTFontCopyName(font: CTFont, nameKey: _CoreFoundation_CFString): $SDK6 { return callSDK<$SDK6>("CoreText_6be9a005889899ab", 2674313764184133, undefined, [font, nameKey]); }
+export function CTFontCopyName(font: CTFont, nameKey: _CoreFoundation_CFString): $SDK6 { return callSDK<$SDK6>("CoreText_c1f28409f8601238", 2674313764184133, undefined, [font, nameKey]); }
 
 /**
  * func CTFontCopyNameForGlyph(_ font: CTFont, _ glyph: CGGlyph) -> CFString?
  * @availability iOS 6.0+
  */
-export function CTFontCopyNameForGlyph(font: CTFont, glyph: number): $SDK6 { return callSDK<$SDK6>("CoreText_6be9a005889899ab", 3437113111625263, undefined, [font, glyph]); }
+export function CTFontCopyNameForGlyph(font: CTFont, glyph: number): $SDK6 { return callSDK<$SDK6>("CoreText_c1f28409f8601238", 3437113111625263, undefined, [font, glyph]); }
 
 /**
  * func CTFontCopyPostScriptName(_ font: CTFont) -> CFString
  * @availability iOS 3.2+
  */
-export function CTFontCopyPostScriptName(font: CTFont): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3466538908905519, undefined, [font]); }
+export function CTFontCopyPostScriptName(font: CTFont): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3466538908905519, undefined, [font]); }
 
 /**
  * func CTFontCopySupportedLanguages(_ font: CTFont) -> CFArray
  * @availability iOS 3.2+
  */
-export function CTFontCopySupportedLanguages(font: CTFont): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_6be9a005889899ab", 1599695081575124, undefined, [font]); }
+export function CTFontCopySupportedLanguages(font: CTFont): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_c1f28409f8601238", 1599695081575124, undefined, [font]); }
 
 /**
  * func CTFontCopyTable(_ font: CTFont, _ table: CTFontTableTag, _ options: CTFontTableOptions) -> CFData?
  * @availability iOS 3.2+
  */
-export function CTFontCopyTable(font: CTFont, table: SDKHandle, options: CTFontTableOptions): (_CoreFoundation_CFData) | null { return callSDK<(_CoreFoundation_CFData) | null>("CoreText_6be9a005889899ab", 3581504950732739, undefined, [font, table, options]); }
+export function CTFontCopyTable(font: CTFont, table: SDKHandle, options: CTFontTableOptions): (_CoreFoundation_CFData) | null { return callSDK<(_CoreFoundation_CFData) | null>("CoreText_c1f28409f8601238", 3581504950732739, undefined, [font, table, options]); }
 
 /**
  * func CTFontCopyTraits(_ font: CTFont) -> CFDictionary
  * @availability iOS 3.2+
  */
-export function CTFontCopyTraits(font: CTFont): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreText_6be9a005889899ab", 4420983131911448, undefined, [font]); }
+export function CTFontCopyTraits(font: CTFont): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreText_c1f28409f8601238", 4420983131911448, undefined, [font]); }
 
 /**
  * func CTFontCopyVariation(_ font: CTFont) -> CFDictionary?
  * @availability iOS 3.2+
  */
-export function CTFontCopyVariation(font: CTFont): $SDK12 { return callSDK<$SDK12>("CoreText_6be9a005889899ab", 2618865934318585, undefined, [font]); }
+export function CTFontCopyVariation(font: CTFont): $SDK12 { return callSDK<$SDK12>("CoreText_c1f28409f8601238", 2618865934318585, undefined, [font]); }
 
 /**
  * func CTFontCopyVariationAxes(_ font: CTFont) -> CFArray?
  * @availability iOS 3.2+
  */
-export function CTFontCopyVariationAxes(font: CTFont): $SDK11 { return callSDK<$SDK11>("CoreText_6be9a005889899ab", 3289740099643316, undefined, [font]); }
+export function CTFontCopyVariationAxes(font: CTFont): $SDK11 { return callSDK<$SDK11>("CoreText_c1f28409f8601238", 3289740099643316, undefined, [font]); }
 
 /**
  * func CTFontCreateCopyWithAttributes(_ font: CTFont, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?, _ attributes: CTFontDescriptor?) -> CTFont
  * @availability iOS 3.2+
  */
-export function CTFontCreateCopyWithAttributes(font: CTFont, size: number, matrix?: (SDKHandle) | null, attributes?: $SDK14): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 354023730553614, undefined, [font, size, matrix, attributes]); }
+export function CTFontCreateCopyWithAttributes(font: CTFont, size: number, matrix?: (SDKHandle) | null, attributes?: $SDK14): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 354023730553614, undefined, [font, size, matrix, attributes]); }
 
 /**
  * func CTFontCreateCopyWithFamily(_ font: CTFont, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?, _ family: CFString) -> CTFont?
  * @availability iOS 3.2+
  */
-export function CTFontCreateCopyWithFamily(font: CTFont, size: number, matrix: (SDKHandle) | null, family: _CoreFoundation_CFString): (CTFont) | null { return callSDK<(CTFont) | null>("CoreText_6be9a005889899ab", 688775260815069, undefined, [font, size, matrix, family]); }
+export function CTFontCreateCopyWithFamily(font: CTFont, size: number, matrix: (SDKHandle) | null, family: _CoreFoundation_CFString): (CTFont) | null { return callSDK<(CTFont) | null>("CoreText_c1f28409f8601238", 688775260815069, undefined, [font, size, matrix, family]); }
 
 /**
  * func CTFontCreateCopyWithSymbolicTraits(_ font: CTFont, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?, _ symTraitValue: CTFontSymbolicTraits, _ symTraitMask: CTFontSymbolicTraits) -> CTFont?
  * @availability iOS 3.2+
  */
-export function CTFontCreateCopyWithSymbolicTraits(font: CTFont, size: number, matrix: (SDKHandle) | null, symTraitValue: CTFontSymbolicTraits, symTraitMask: CTFontSymbolicTraits): (CTFont) | null { return callSDK<(CTFont) | null>("CoreText_6be9a005889899ab", 3043333795326027, undefined, [font, size, matrix, symTraitValue, symTraitMask]); }
+export function CTFontCreateCopyWithSymbolicTraits(font: CTFont, size: number, matrix: (SDKHandle) | null, symTraitValue: CTFontSymbolicTraits, symTraitMask: CTFontSymbolicTraits): (CTFont) | null { return callSDK<(CTFont) | null>("CoreText_c1f28409f8601238", 3043333795326027, undefined, [font, size, matrix, symTraitValue, symTraitMask]); }
 
 /**
  * func CTFontCreateForString(_ currentFont: CTFont, _ string: CFString, _ range: CFRange) -> CTFont
  * @availability iOS 3.2+
  */
-export function CTFontCreateForString(currentFont: CTFont, string: _CoreFoundation_CFString, range: _CoreFoundation_CFRange): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 4489260936811522, undefined, [currentFont, string, range]); }
+export function CTFontCreateForString(currentFont: CTFont, string: _CoreFoundation_CFString, range: _CoreFoundation_CFRange): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 4489260936811522, undefined, [currentFont, string, range]); }
 
 /**
  * func CTFontCreateForStringWithLanguage(_ currentFont: CTFont, _ string: CFString, _ range: CFRange, _ language: CFString?) -> CTFont
  * @availability iOS 7.0+
  */
-export function CTFontCreateForStringWithLanguage(currentFont: CTFont, string: _CoreFoundation_CFString, range: _CoreFoundation_CFRange, language?: $SDK6): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 3981310899007559, undefined, [currentFont, string, range, language]); }
+export function CTFontCreateForStringWithLanguage(currentFont: CTFont, string: _CoreFoundation_CFString, range: _CoreFoundation_CFRange, language?: $SDK6): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 3981310899007559, undefined, [currentFont, string, range, language]); }
 
 /**
  * func CTFontCreatePathForGlyph(_ font: CTFont, _ glyph: CGGlyph, _ matrix: UnsafePointer<CGAffineTransform>?) -> CGPath?
  * @availability iOS 3.2+
  */
-export function CTFontCreatePathForGlyph(font: CTFont, glyph: number, matrix?: (SDKHandle) | null): (_CoreGraphics_CGPath) | null { return callSDK<(_CoreGraphics_CGPath) | null>("CoreText_6be9a005889899ab", 2104259838287468, undefined, [font, glyph, matrix]); }
+export function CTFontCreatePathForGlyph(font: CTFont, glyph: number, matrix?: (SDKHandle) | null): (_CoreGraphics_CGPath) | null { return callSDK<(_CoreGraphics_CGPath) | null>("CoreText_c1f28409f8601238", 2104259838287468, undefined, [font, glyph, matrix]); }
 
 /**
  * func CTFontCreateUIFontForLanguage(_ uiType: CTFontUIFontType, _ size: CGFloat, _ language: CFString?) -> CTFont?
  * @availability iOS 3.2+
  */
-export function CTFontCreateUIFontForLanguage(uiType: CTFontUIFontType, size: number, language?: $SDK6): (CTFont) | null { return callSDK<(CTFont) | null>("CoreText_6be9a005889899ab", 2221227270040935, undefined, [uiType, size, language]); }
+export function CTFontCreateUIFontForLanguage(uiType: CTFontUIFontType, size: number, language?: $SDK6): (CTFont) | null { return callSDK<(CTFont) | null>("CoreText_c1f28409f8601238", 2221227270040935, undefined, [uiType, size, language]); }
 
 /**
  * func CTFontCreateWithFontDescriptor(_ descriptor: CTFontDescriptor, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?) -> CTFont
  * @availability iOS 3.2+
  */
-export function CTFontCreateWithFontDescriptor(descriptor: CTFontDescriptor, size: number, matrix?: (SDKHandle) | null): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 3835476750387916, undefined, [descriptor, size, matrix]); }
+export function CTFontCreateWithFontDescriptor(descriptor: CTFontDescriptor, size: number, matrix?: (SDKHandle) | null): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 3835476750387916, undefined, [descriptor, size, matrix]); }
 
 /**
  * func CTFontCreateWithFontDescriptorAndOptions(_ descriptor: CTFontDescriptor, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?, _ options: CTFontOptions) -> CTFont
  * @availability iOS 3.2+
  */
-export function CTFontCreateWithFontDescriptorAndOptions(descriptor: CTFontDescriptor, size: number, matrix: (SDKHandle) | null, options: CTFontOptions): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 1489141913756044, undefined, [descriptor, size, matrix, options]); }
+export function CTFontCreateWithFontDescriptorAndOptions(descriptor: CTFontDescriptor, size: number, matrix: (SDKHandle) | null, options: CTFontOptions): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 1489141913756044, undefined, [descriptor, size, matrix, options]); }
 
 /**
  * func CTFontCreateWithGraphicsFont(_ graphicsFont: CGFont, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?, _ attributes: CTFontDescriptor?) -> CTFont
  * @availability iOS 3.2+
  */
-export function CTFontCreateWithGraphicsFont(graphicsFont: _CoreGraphics_CGFont, size: number, matrix?: (SDKHandle) | null, attributes?: $SDK14): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 2146150219330549, undefined, [graphicsFont, size, matrix, attributes]); }
+export function CTFontCreateWithGraphicsFont(graphicsFont: _CoreGraphics_CGFont, size: number, matrix?: (SDKHandle) | null, attributes?: $SDK14): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 2146150219330549, undefined, [graphicsFont, size, matrix, attributes]); }
 
 /**
  * func CTFontCreateWithName(_ name: CFString, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?) -> CTFont
  * @availability iOS 3.2+
  */
-export function CTFontCreateWithName(name: _CoreFoundation_CFString, size: number, matrix?: (SDKHandle) | null): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 1232611935932075, undefined, [name, size, matrix]); }
+export function CTFontCreateWithName(name: _CoreFoundation_CFString, size: number, matrix?: (SDKHandle) | null): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 1232611935932075, undefined, [name, size, matrix]); }
 
 /**
  * func CTFontCreateWithNameAndOptions(_ name: CFString, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?, _ options: CTFontOptions) -> CTFont
  * @availability iOS 3.2+
  */
-export function CTFontCreateWithNameAndOptions(name: _CoreFoundation_CFString, size: number, matrix: (SDKHandle) | null, options: CTFontOptions): CTFont { return callSDK<CTFont>("CoreText_6be9a005889899ab", 2032734294633708, undefined, [name, size, matrix, options]); }
+export function CTFontCreateWithNameAndOptions(name: _CoreFoundation_CFString, size: number, matrix: (SDKHandle) | null, options: CTFontOptions): CTFont { return callSDK<CTFont>("CoreText_c1f28409f8601238", 2032734294633708, undefined, [name, size, matrix, options]); }
 
 /**
  * func CTFontDescriptorCopyAttribute(_ descriptor: CTFontDescriptor, _ attribute: CFString) -> CFTypeRef?
  * @availability iOS 3.2+
  */
-export function CTFontDescriptorCopyAttribute(descriptor: CTFontDescriptor, attribute: _CoreFoundation_CFString): (unknown) | null { return callSDK<(unknown) | null>("CoreText_6be9a005889899ab", 2637852403041435, undefined, [descriptor, attribute]); }
+export function CTFontDescriptorCopyAttribute(descriptor: CTFontDescriptor, attribute: _CoreFoundation_CFString): (unknown) | null { return callSDK<(unknown) | null>("CoreText_c1f28409f8601238", 2637852403041435, undefined, [descriptor, attribute]); }
 
 /**
  * func CTFontDescriptorCopyAttributes(_ descriptor: CTFontDescriptor) -> CFDictionary
  * @availability iOS 3.2+
  */
-export function CTFontDescriptorCopyAttributes(descriptor: CTFontDescriptor): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreText_6be9a005889899ab", 1188923184233705, undefined, [descriptor]); }
+export function CTFontDescriptorCopyAttributes(descriptor: CTFontDescriptor): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreText_c1f28409f8601238", 1188923184233705, undefined, [descriptor]); }
 
 /**
  * func CTFontDescriptorCreateCopyWithAttributes(_ original: CTFontDescriptor, _ attributes: CFDictionary) -> CTFontDescriptor
  * @availability iOS 3.2+
  */
-export function CTFontDescriptorCreateCopyWithAttributes(original: CTFontDescriptor, attributes: _CoreFoundation_CFDictionary): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_6be9a005889899ab", 3773159746884823, undefined, [original, attributes]); }
+export function CTFontDescriptorCreateCopyWithAttributes(original: CTFontDescriptor, attributes: _CoreFoundation_CFDictionary): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_c1f28409f8601238", 3773159746884823, undefined, [original, attributes]); }
 
 /**
  * func CTFontDescriptorCreateCopyWithFamily(_ original: CTFontDescriptor, _ family: CFString) -> CTFontDescriptor?
  * @availability iOS 7.0+
  */
-export function CTFontDescriptorCreateCopyWithFamily(original: CTFontDescriptor, family: _CoreFoundation_CFString): $SDK14 { return callSDK<$SDK14>("CoreText_6be9a005889899ab", 2562677296976678, undefined, [original, family]); }
+export function CTFontDescriptorCreateCopyWithFamily(original: CTFontDescriptor, family: _CoreFoundation_CFString): $SDK14 { return callSDK<$SDK14>("CoreText_c1f28409f8601238", 2562677296976678, undefined, [original, family]); }
 
 /**
  * func CTFontDescriptorCreateCopyWithFeature(_ original: CTFontDescriptor, _ featureTypeIdentifier: CFNumber, _ featureSelectorIdentifier: CFNumber) -> CTFontDescriptor
  * @availability iOS 3.2+
  */
-export function CTFontDescriptorCreateCopyWithFeature(original: CTFontDescriptor, featureTypeIdentifier: _CoreFoundation_CFNumber, featureSelectorIdentifier: _CoreFoundation_CFNumber): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_6be9a005889899ab", 3378532420406696, undefined, [original, featureTypeIdentifier, featureSelectorIdentifier]); }
+export function CTFontDescriptorCreateCopyWithFeature(original: CTFontDescriptor, featureTypeIdentifier: _CoreFoundation_CFNumber, featureSelectorIdentifier: _CoreFoundation_CFNumber): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_c1f28409f8601238", 3378532420406696, undefined, [original, featureTypeIdentifier, featureSelectorIdentifier]); }
 
 /**
  * func CTFontDescriptorCreateCopyWithSymbolicTraits(_ original: CTFontDescriptor, _ symTraitValue: CTFontSymbolicTraits, _ symTraitMask: CTFontSymbolicTraits) -> CTFontDescriptor?
  * @availability iOS 7.0+
  */
-export function CTFontDescriptorCreateCopyWithSymbolicTraits(original: CTFontDescriptor, symTraitValue: CTFontSymbolicTraits, symTraitMask: CTFontSymbolicTraits): $SDK14 { return callSDK<$SDK14>("CoreText_6be9a005889899ab", 512312583261071, undefined, [original, symTraitValue, symTraitMask]); }
+export function CTFontDescriptorCreateCopyWithSymbolicTraits(original: CTFontDescriptor, symTraitValue: CTFontSymbolicTraits, symTraitMask: CTFontSymbolicTraits): $SDK14 { return callSDK<$SDK14>("CoreText_c1f28409f8601238", 512312583261071, undefined, [original, symTraitValue, symTraitMask]); }
 
 /**
  * func CTFontDescriptorCreateCopyWithVariation(_ original: CTFontDescriptor, _ variationIdentifier: CFNumber, _ variationValue: CGFloat) -> CTFontDescriptor
  * @availability iOS 3.2+
  */
-export function CTFontDescriptorCreateCopyWithVariation(original: CTFontDescriptor, variationIdentifier: _CoreFoundation_CFNumber, variationValue: number): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_6be9a005889899ab", 1331181968025495, undefined, [original, variationIdentifier, variationValue]); }
+export function CTFontDescriptorCreateCopyWithVariation(original: CTFontDescriptor, variationIdentifier: _CoreFoundation_CFNumber, variationValue: number): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_c1f28409f8601238", 1331181968025495, undefined, [original, variationIdentifier, variationValue]); }
 
 /**
  * func CTFontDescriptorCreateMatchingFontDescriptor(_ descriptor: CTFontDescriptor, _ mandatoryAttributes: CFSet?) -> CTFontDescriptor?
  * @availability iOS 3.2+
  */
-export function CTFontDescriptorCreateMatchingFontDescriptor(descriptor: CTFontDescriptor, mandatoryAttributes?: $SDK16): $SDK14 { return callSDK<$SDK14>("CoreText_6be9a005889899ab", 4064058702163621, undefined, [descriptor, mandatoryAttributes]); }
+export function CTFontDescriptorCreateMatchingFontDescriptor(descriptor: CTFontDescriptor, mandatoryAttributes?: $SDK16): $SDK14 { return callSDK<$SDK14>("CoreText_c1f28409f8601238", 4064058702163621, undefined, [descriptor, mandatoryAttributes]); }
 
 /**
  * func CTFontDescriptorCreateMatchingFontDescriptors(_ descriptor: CTFontDescriptor, _ mandatoryAttributes: CFSet?) -> CFArray?
  * @availability iOS 3.2+
  */
-export function CTFontDescriptorCreateMatchingFontDescriptors(descriptor: CTFontDescriptor, mandatoryAttributes?: $SDK16): $SDK11 { return callSDK<$SDK11>("CoreText_6be9a005889899ab", 1750623057394431, undefined, [descriptor, mandatoryAttributes]); }
+export function CTFontDescriptorCreateMatchingFontDescriptors(descriptor: CTFontDescriptor, mandatoryAttributes?: $SDK16): $SDK11 { return callSDK<$SDK11>("CoreText_c1f28409f8601238", 1750623057394431, undefined, [descriptor, mandatoryAttributes]); }
 
 /**
  * func CTFontDescriptorCreateWithAttributes(_ attributes: CFDictionary) -> CTFontDescriptor
  * @availability iOS 3.2+
  */
-export function CTFontDescriptorCreateWithAttributes(attributes: _CoreFoundation_CFDictionary): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_6be9a005889899ab", 4333697676924358, undefined, [attributes]); }
+export function CTFontDescriptorCreateWithAttributes(attributes: _CoreFoundation_CFDictionary): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_c1f28409f8601238", 4333697676924358, undefined, [attributes]); }
 
 /**
  * func CTFontDescriptorCreateWithNameAndSize(_ name: CFString, _ size: CGFloat) -> CTFontDescriptor
  * @availability iOS 3.2+
  */
-export function CTFontDescriptorCreateWithNameAndSize(name: _CoreFoundation_CFString, size: number): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_6be9a005889899ab", 680116047226314, undefined, [name, size]); }
+export function CTFontDescriptorCreateWithNameAndSize(name: _CoreFoundation_CFString, size: number): CTFontDescriptor { return callSDK<CTFontDescriptor>("CoreText_c1f28409f8601238", 680116047226314, undefined, [name, size]); }
 
 /**
  * func CTFontDescriptorGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTFontDescriptorGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1432783616834630, undefined, []); }
+export function CTFontDescriptorGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1432783616834630, undefined, []); }
 
 /**
  * func CTFontDrawGlyphs(_ font: CTFont, _ glyphs: UnsafePointer<CGGlyph>, _ positions: UnsafePointer<CGPoint>, _ count: Int, _ context: CGContext)
  * @availability iOS 4.2+
  */
-export function CTFontDrawGlyphs(font: CTFont, glyphs: SDKHandle, positions: $SDK4, count: number, context: _CoreGraphics_CGContext): void { return callSDK<void>("CoreText_6be9a005889899ab", 3687535763320229, undefined, [font, glyphs, positions, count, context]); }
+export function CTFontDrawGlyphs(font: CTFont, glyphs: SDKHandle, positions: $SDK4, count: number, context: _CoreGraphics_CGContext): void { return callSDK<void>("CoreText_c1f28409f8601238", 3687535763320229, undefined, [font, glyphs, positions, count, context]); }
 
 /**
  * func CTFontDrawImageFromAdaptiveImageProviderAtPoint(_ font: CTFont, _ provider: any CTAdaptiveImageProviding, _ point: CGPoint, _ context: CGContext)
  * @availability iOS 18.0+
  */
-export function CTFontDrawImageFromAdaptiveImageProviderAtPoint(font: CTFont, provider: SDKHandle, point: { x: number; y: number }, context: _CoreGraphics_CGContext): void { return callSDK<void>("CoreText_6be9a005889899ab", 2478515367241606, undefined, [font, provider, point, context]); }
+export function CTFontDrawImageFromAdaptiveImageProviderAtPoint(font: CTFont, provider: SDKHandle, point: { x: number; y: number }, context: _CoreGraphics_CGContext): void { return callSDK<void>("CoreText_c1f28409f8601238", 2478515367241606, undefined, [font, provider, point, context]); }
 
 /**
  * func CTFontGetAdvancesForGlyphs(_ font: CTFont, _ orientation: CTFontOrientation, _ glyphs: UnsafePointer<CGGlyph>, _ advances: UnsafeMutablePointer<CGSize>?, _ count: CFIndex) -> Double
  * @availability iOS 3.2+
  */
-export function CTFontGetAdvancesForGlyphs(font: CTFont, orientation: CTFontOrientation, glyphs: SDKHandle, advances: $SDK18, count: number): number { return callSDK<number>("CoreText_6be9a005889899ab", 360425058816072, undefined, [font, orientation, glyphs, advances, count]); }
+export function CTFontGetAdvancesForGlyphs(font: CTFont, orientation: CTFontOrientation, glyphs: SDKHandle, advances: $SDK18, count: number): number { return callSDK<number>("CoreText_c1f28409f8601238", 360425058816072, undefined, [font, orientation, glyphs, advances, count]); }
 
 /**
  * func CTFontGetAscent(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
  */
-export function CTFontGetAscent(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 3524956287056633, undefined, [font]); }
+export function CTFontGetAscent(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 3524956287056633, undefined, [font]); }
 
 /**
  * func CTFontGetBoundingBox(_ font: CTFont) -> CGRect
  * @availability iOS 3.2+
  */
-export function CTFontGetBoundingBox(font: CTFont): $SDK19 { return callSDK<$SDK19>("CoreText_6be9a005889899ab", 3619749244351484, undefined, [font]); }
+export function CTFontGetBoundingBox(font: CTFont): $SDK19 { return callSDK<$SDK19>("CoreText_c1f28409f8601238", 3619749244351484, undefined, [font]); }
 
 /**
  * func CTFontGetBoundingRectsForGlyphs(_ font: CTFont, _ orientation: CTFontOrientation, _ glyphs: UnsafePointer<CGGlyph>, _ boundingRects: UnsafeMutablePointer<CGRect>?, _ count: CFIndex) -> CGRect
  * @availability iOS 3.2+
  */
-export function CTFontGetBoundingRectsForGlyphs(font: CTFont, orientation: CTFontOrientation, glyphs: SDKHandle, boundingRects: $SDK18, count: number): $SDK19 { return callSDK<$SDK19>("CoreText_6be9a005889899ab", 2977206459509258, undefined, [font, orientation, glyphs, boundingRects, count]); }
+export function CTFontGetBoundingRectsForGlyphs(font: CTFont, orientation: CTFontOrientation, glyphs: SDKHandle, boundingRects: $SDK18, count: number): $SDK19 { return callSDK<$SDK19>("CoreText_c1f28409f8601238", 2977206459509258, undefined, [font, orientation, glyphs, boundingRects, count]); }
 
 /**
  * func CTFontGetCapHeight(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
  */
-export function CTFontGetCapHeight(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 3132122645195154, undefined, [font]); }
+export function CTFontGetCapHeight(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 3132122645195154, undefined, [font]); }
 
 /**
  * func CTFontGetDescent(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
  */
-export function CTFontGetDescent(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 2452771516876285, undefined, [font]); }
+export function CTFontGetDescent(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 2452771516876285, undefined, [font]); }
 
 /**
  * func CTFontGetGlyphCount(_ font: CTFont) -> CFIndex
  * @availability iOS 3.2+
  */
-export function CTFontGetGlyphCount(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 132707794363469, undefined, [font]); }
+export function CTFontGetGlyphCount(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 132707794363469, undefined, [font]); }
 
 /**
  * func CTFontGetGlyphWithName(_ font: CTFont, _ glyphName: CFString) -> CGGlyph
  * @availability iOS 3.2+
  */
-export function CTFontGetGlyphWithName(font: CTFont, glyphName: _CoreFoundation_CFString): number { return callSDK<number>("CoreText_6be9a005889899ab", 4009768263709679, undefined, [font, glyphName]); }
+export function CTFontGetGlyphWithName(font: CTFont, glyphName: _CoreFoundation_CFString): number { return callSDK<number>("CoreText_c1f28409f8601238", 4009768263709679, undefined, [font, glyphName]); }
 
 /**
  * func CTFontGetGlyphsForCharacters(_ font: CTFont, _ characters: UnsafePointer<UniChar>, _ glyphs: UnsafeMutablePointer<CGGlyph>, _ count: CFIndex) -> Bool
  * @availability iOS 3.2+
  */
-export function CTFontGetGlyphsForCharacters(font: CTFont, characters: SDKHandle, glyphs: SDKHandle, count: number): boolean { return callSDK<boolean>("CoreText_6be9a005889899ab", 3185261547879840, undefined, [font, characters, glyphs, count]); }
+export function CTFontGetGlyphsForCharacters(font: CTFont, characters: SDKHandle, glyphs: SDKHandle, count: number): boolean { return callSDK<boolean>("CoreText_c1f28409f8601238", 3185261547879840, undefined, [font, characters, glyphs, count]); }
 
 /**
  * func CTFontGetLeading(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
  */
-export function CTFontGetLeading(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 120709542521603, undefined, [font]); }
+export function CTFontGetLeading(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 120709542521603, undefined, [font]); }
 
 /**
  * func CTFontGetLigatureCaretPositions(_ font: CTFont, _ glyph: CGGlyph, _ positions: UnsafeMutablePointer<CGFloat>?, _ maxPositions: CFIndex) -> CFIndex
  * @availability iOS 3.2+
  */
-export function CTFontGetLigatureCaretPositions(font: CTFont, glyph: number, positions: $SDK18, maxPositions: number): number { return callSDK<number>("CoreText_6be9a005889899ab", 3704854904316402, undefined, [font, glyph, positions, maxPositions]); }
+export function CTFontGetLigatureCaretPositions(font: CTFont, glyph: number, positions: $SDK18, maxPositions: number): number { return callSDK<number>("CoreText_c1f28409f8601238", 3704854904316402, undefined, [font, glyph, positions, maxPositions]); }
 
 /**
  * func CTFontGetMatrix(_ font: CTFont) -> CGAffineTransform
  * @availability iOS 3.2+
  */
-export function CTFontGetMatrix(font: CTFont): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreText_6be9a005889899ab", 1961870522162971, undefined, [font]); }
+export function CTFontGetMatrix(font: CTFont): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreText_c1f28409f8601238", 1961870522162971, undefined, [font]); }
 
 /**
  * func CTFontGetOpticalBoundsForGlyphs(_ font: CTFont, _ glyphs: UnsafePointer<CGGlyph>, _ boundingRects: UnsafeMutablePointer<CGRect>?, _ count: CFIndex, _ options: CFOptionFlags) -> CGRect
  * @availability iOS 6.0+
  */
-export function CTFontGetOpticalBoundsForGlyphs(font: CTFont, glyphs: SDKHandle, boundingRects: $SDK18, count: number, options: number): $SDK19 { return callSDK<$SDK19>("CoreText_6be9a005889899ab", 1118735649743197, undefined, [font, glyphs, boundingRects, count, options]); }
+export function CTFontGetOpticalBoundsForGlyphs(font: CTFont, glyphs: SDKHandle, boundingRects: $SDK18, count: number, options: number): $SDK19 { return callSDK<$SDK19>("CoreText_c1f28409f8601238", 1118735649743197, undefined, [font, glyphs, boundingRects, count, options]); }
 
 /**
  * func CTFontGetSize(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
  */
-export function CTFontGetSize(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 3510686894328019, undefined, [font]); }
+export function CTFontGetSize(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 3510686894328019, undefined, [font]); }
 
 /**
  * func CTFontGetSlantAngle(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
  */
-export function CTFontGetSlantAngle(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 2108168559780141, undefined, [font]); }
+export function CTFontGetSlantAngle(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 2108168559780141, undefined, [font]); }
 
 /**
  * func CTFontGetStringEncoding(_ font: CTFont) -> CFStringEncoding
  * @availability iOS 3.2+
  */
-export function CTFontGetStringEncoding(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 3063971171942172, undefined, [font]); }
+export function CTFontGetStringEncoding(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 3063971171942172, undefined, [font]); }
 
 /**
  * func CTFontGetSymbolicTraits(_ font: CTFont) -> CTFontSymbolicTraits
  * @availability iOS 3.2+
  */
-export function CTFontGetSymbolicTraits(font: CTFont): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_6be9a005889899ab", 3577047863044824, undefined, [font]); }
+export function CTFontGetSymbolicTraits(font: CTFont): CTFontSymbolicTraits { return callSDK<CTFontSymbolicTraits>("CoreText_c1f28409f8601238", 3577047863044824, undefined, [font]); }
 
 /**
  * func CTFontGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTFontGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 4413392793527762, undefined, []); }
+export function CTFontGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 4413392793527762, undefined, []); }
 
 /**
  * func CTFontGetTypographicBoundsForAdaptiveImageProvider(_ font: CTFont, _ provider: (any CTAdaptiveImageProviding)?) -> CGRect
  * @availability iOS 18.0+
  */
-export function CTFontGetTypographicBoundsForAdaptiveImageProvider(font: CTFont, provider?: (SDKHandle) | null): $SDK19 { return callSDK<$SDK19>("CoreText_6be9a005889899ab", 2991691758839329, undefined, [font, provider]); }
+export function CTFontGetTypographicBoundsForAdaptiveImageProvider(font: CTFont, provider?: (SDKHandle) | null): $SDK19 { return callSDK<$SDK19>("CoreText_c1f28409f8601238", 2991691758839329, undefined, [font, provider]); }
 
 /**
  * func CTFontGetUIFontType(_ font: CTFont) -> CTFontUIFontType
  * @availability iOS 13.0+
  */
-export function CTFontGetUIFontType(font: CTFont): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_6be9a005889899ab", 3324545626560884, undefined, [font]); }
+export function CTFontGetUIFontType(font: CTFont): CTFontUIFontType { return callSDK<CTFontUIFontType>("CoreText_c1f28409f8601238", 3324545626560884, undefined, [font]); }
 
 /**
  * func CTFontGetUnderlinePosition(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
  */
-export function CTFontGetUnderlinePosition(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 3385696830374071, undefined, [font]); }
+export function CTFontGetUnderlinePosition(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 3385696830374071, undefined, [font]); }
 
 /**
  * func CTFontGetUnderlineThickness(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
  */
-export function CTFontGetUnderlineThickness(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 1666600043272008, undefined, [font]); }
+export function CTFontGetUnderlineThickness(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 1666600043272008, undefined, [font]); }
 
 /**
  * func CTFontGetUnitsPerEm(_ font: CTFont) -> UInt32
  * @availability iOS 3.2+
  */
-export function CTFontGetUnitsPerEm(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 3729065557277635, undefined, [font]); }
+export function CTFontGetUnitsPerEm(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 3729065557277635, undefined, [font]); }
 
 /**
  * func CTFontGetVerticalTranslationsForGlyphs(_ font: CTFont, _ glyphs: UnsafePointer<CGGlyph>, _ translations: UnsafeMutablePointer<CGSize>, _ count: CFIndex)
  * @availability iOS 3.2+
  */
-export function CTFontGetVerticalTranslationsForGlyphs(font: CTFont, glyphs: SDKHandle, translations: $SDK4, count: number): void { return callSDK<void>("CoreText_6be9a005889899ab", 3883425214848093, undefined, [font, glyphs, translations, count]); }
+export function CTFontGetVerticalTranslationsForGlyphs(font: CTFont, glyphs: SDKHandle, translations: $SDK4, count: number): void { return callSDK<void>("CoreText_c1f28409f8601238", 3883425214848093, undefined, [font, glyphs, translations, count]); }
 
 /**
  * func CTFontGetXHeight(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
  */
-export function CTFontGetXHeight(font: CTFont): number { return callSDK<number>("CoreText_6be9a005889899ab", 512466085598667, undefined, [font]); }
+export function CTFontGetXHeight(font: CTFont): number { return callSDK<number>("CoreText_c1f28409f8601238", 512466085598667, undefined, [font]); }
 
 /**
  * func CTFontHasTable(_ font: CTFont, _ tag: CTFontTableTag) -> Bool
  * @availability iOS 13.0+
  */
-export function CTFontHasTable(font: CTFont, tag: SDKHandle): boolean { return callSDK<boolean>("CoreText_6be9a005889899ab", 3102577225323407, undefined, [font, tag]); }
+export function CTFontHasTable(font: CTFont, tag: SDKHandle): boolean { return callSDK<boolean>("CoreText_c1f28409f8601238", 3102577225323407, undefined, [font, tag]); }
 
 /**
  * func CTFontManagerCopyAvailableFontFamilyNames() -> CFArray
  * @availability iOS 10.0+
  */
-export function CTFontManagerCopyAvailableFontFamilyNames(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_6be9a005889899ab", 33041776259927, undefined, []); }
+export function CTFontManagerCopyAvailableFontFamilyNames(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_c1f28409f8601238", 33041776259927, undefined, []); }
 
 /**
  * func CTFontManagerCopyAvailablePostScriptNames() -> CFArray
  * @availability iOS 10.0+
  */
-export function CTFontManagerCopyAvailablePostScriptNames(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_6be9a005889899ab", 2051820420393168, undefined, []); }
+export function CTFontManagerCopyAvailablePostScriptNames(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_c1f28409f8601238", 2051820420393168, undefined, []); }
 
 /**
  * func CTFontManagerCopyRegisteredFontDescriptors(_ scope: CTFontManagerScope, _ enabled: Bool) -> CFArray
  * @availability iOS 13.0+
  */
-export function CTFontManagerCopyRegisteredFontDescriptors(scope: CTFontManagerScope, enabled: boolean): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_6be9a005889899ab", 1508169780852748, undefined, [scope, enabled]); }
+export function CTFontManagerCopyRegisteredFontDescriptors(scope: CTFontManagerScope, enabled: boolean): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_c1f28409f8601238", 1508169780852748, undefined, [scope, enabled]); }
 
 /**
  * func CTFontManagerCreateFontDescriptorFromData(_ data: CFData) -> CTFontDescriptor?
  * @availability iOS 7.0+
  */
-export function CTFontManagerCreateFontDescriptorFromData(data: _CoreFoundation_CFData): $SDK14 { return callSDK<$SDK14>("CoreText_6be9a005889899ab", 968555868955859, undefined, [data]); }
+export function CTFontManagerCreateFontDescriptorFromData(data: _CoreFoundation_CFData): $SDK14 { return callSDK<$SDK14>("CoreText_c1f28409f8601238", 968555868955859, undefined, [data]); }
 
 /**
  * func CTFontManagerCreateFontDescriptorsFromData(_ data: CFData) -> CFArray
  * @availability iOS 11.0+
  */
-export function CTFontManagerCreateFontDescriptorsFromData(data: _CoreFoundation_CFData): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_6be9a005889899ab", 2449317982330502, undefined, [data]); }
+export function CTFontManagerCreateFontDescriptorsFromData(data: _CoreFoundation_CFData): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_c1f28409f8601238", 2449317982330502, undefined, [data]); }
 
 /**
  * func CTFontManagerCreateFontDescriptorsFromURL(_ fileURL: CFURL) -> CFArray?
  * @availability iOS 7.0+
  */
-export function CTFontManagerCreateFontDescriptorsFromURL(fileURL: _CoreFoundation_CFURL): $SDK11 { return callSDK<$SDK11>("CoreText_6be9a005889899ab", 589266134859801, undefined, [fileURL]); }
+export function CTFontManagerCreateFontDescriptorsFromURL(fileURL: _CoreFoundation_CFURL): $SDK11 { return callSDK<$SDK11>("CoreText_c1f28409f8601238", 589266134859801, undefined, [fileURL]); }
 
 /**
  * func CTFontManagerRegisterFontsForURL(_ fontURL: CFURL, _ scope: CTFontManagerScope, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Bool
  * @availability iOS 4.1+
  */
-export function CTFontManagerRegisterFontsForURL(fontURL: _CoreFoundation_CFURL, scope: CTFontManagerScope): { $ret: boolean; $out: { "error": $SDK20 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK20 } }>("CoreText_6be9a005889899ab", 2405308647191739, undefined, [fontURL, scope, null]); }
+export function CTFontManagerRegisterFontsForURL(fontURL: _CoreFoundation_CFURL, scope: CTFontManagerScope): { $ret: boolean; $out: { "error": $SDK20 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK20 } }>("CoreText_c1f28409f8601238", 2405308647191739, undefined, [fontURL, scope, null]); }
 
 /**
  * func CTFontManagerRegisterGraphicsFont(_ font: CGFont, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Bool
  * @availability iOS 4.1+
  * @deprecated iOS 18.0
  */
-export function CTFontManagerRegisterGraphicsFont(font: _CoreGraphics_CGFont): { $ret: boolean; $out: { "error": $SDK20 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK20 } }>("CoreText_6be9a005889899ab", 31546144296250, undefined, [font, null]); }
+export function CTFontManagerRegisterGraphicsFont(font: _CoreGraphics_CGFont): { $ret: boolean; $out: { "error": $SDK20 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK20 } }>("CoreText_c1f28409f8601238", 31546144296250, undefined, [font, null]); }
 
 /**
  * func CTFontManagerRequestFonts(_ fontDescriptors: CFArray, _ completionHandler: @escaping (CFArray) -> Void)
  * @availability iOS 13.0+
  */
-export function CTFontManagerRequestFonts(fontDescriptors: _CoreFoundation_CFArray, completionHandler: ((arg0: _CoreFoundation_CFArray) => void)): void { return callSDK<void>("CoreText_6be9a005889899ab", 4207286661828473, undefined, [fontDescriptors, completionHandler], [null,{"callback":{"out":[]}}]); }
+export function CTFontManagerRequestFonts(fontDescriptors: _CoreFoundation_CFArray, completionHandler: ((arg0: _CoreFoundation_CFArray) => void)): void { return callSDK<void>("CoreText_c1f28409f8601238", 4207286661828473, undefined, [fontDescriptors, completionHandler], [null,{"callback":{"out":[]}}]); }
 
 /**
  * func CTFontManagerUnregisterFontsForURL(_ fontURL: CFURL, _ scope: CTFontManagerScope, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Bool
  * @availability iOS 4.1+
  */
-export function CTFontManagerUnregisterFontsForURL(fontURL: _CoreFoundation_CFURL, scope: CTFontManagerScope): { $ret: boolean; $out: { "error": $SDK20 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK20 } }>("CoreText_6be9a005889899ab", 404438217337149, undefined, [fontURL, scope, null]); }
+export function CTFontManagerUnregisterFontsForURL(fontURL: _CoreFoundation_CFURL, scope: CTFontManagerScope): { $ret: boolean; $out: { "error": $SDK20 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK20 } }>("CoreText_c1f28409f8601238", 404438217337149, undefined, [fontURL, scope, null]); }
 
 /**
  * func CTFontManagerUnregisterGraphicsFont(_ font: CGFont, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Bool
  * @availability iOS 4.1+
  * @deprecated iOS 18.0
  */
-export function CTFontManagerUnregisterGraphicsFont(font: _CoreGraphics_CGFont): { $ret: boolean; $out: { "error": $SDK20 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK20 } }>("CoreText_6be9a005889899ab", 1181489703022272, undefined, [font, null]); }
+export function CTFontManagerUnregisterGraphicsFont(font: _CoreGraphics_CGFont): { $ret: boolean; $out: { "error": $SDK20 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK20 } }>("CoreText_c1f28409f8601238", 1181489703022272, undefined, [font, null]); }
 
 /**
  * func CTFrameDraw(_ frame: CTFrame, _ context: CGContext)
  * @availability iOS 3.2+
  */
-export function CTFrameDraw(frame: CTFrame, context: _CoreGraphics_CGContext): void { return callSDK<void>("CoreText_6be9a005889899ab", 2365243370738781, undefined, [frame, context]); }
+export function CTFrameDraw(frame: CTFrame, context: _CoreGraphics_CGContext): void { return callSDK<void>("CoreText_c1f28409f8601238", 2365243370738781, undefined, [frame, context]); }
 
 /**
  * func CTFrameGetFrameAttributes(_ frame: CTFrame) -> CFDictionary?
  * @availability iOS 3.2+
  */
-export function CTFrameGetFrameAttributes(frame: CTFrame): $SDK12 { return callSDK<$SDK12>("CoreText_6be9a005889899ab", 2201566571855804, undefined, [frame]); }
+export function CTFrameGetFrameAttributes(frame: CTFrame): $SDK12 { return callSDK<$SDK12>("CoreText_c1f28409f8601238", 2201566571855804, undefined, [frame]); }
 
 /**
  * func CTFrameGetLineOrigins(_ frame: CTFrame, _ range: CFRange, _ origins: UnsafeMutablePointer<CGPoint>)
  * @availability iOS 3.2+
  */
-export function CTFrameGetLineOrigins(frame: CTFrame, range: _CoreFoundation_CFRange, origins: $SDK4): void { return callSDK<void>("CoreText_6be9a005889899ab", 2581673065036580, undefined, [frame, range, origins]); }
+export function CTFrameGetLineOrigins(frame: CTFrame, range: _CoreFoundation_CFRange, origins: $SDK4): void { return callSDK<void>("CoreText_c1f28409f8601238", 2581673065036580, undefined, [frame, range, origins]); }
 
 /**
  * func CTFrameGetLines(_ frame: CTFrame) -> CFArray
  * @availability iOS 3.2+
  */
-export function CTFrameGetLines(frame: CTFrame): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_6be9a005889899ab", 513292955595594, undefined, [frame]); }
+export function CTFrameGetLines(frame: CTFrame): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_c1f28409f8601238", 513292955595594, undefined, [frame]); }
 
 /**
  * func CTFrameGetPath(_ frame: CTFrame) -> CGPath
  * @availability iOS 3.2+
  */
-export function CTFrameGetPath(frame: CTFrame): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("CoreText_6be9a005889899ab", 3390057317343343, undefined, [frame]); }
+export function CTFrameGetPath(frame: CTFrame): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("CoreText_c1f28409f8601238", 3390057317343343, undefined, [frame]); }
 
 /**
  * func CTFrameGetStringRange(_ frame: CTFrame) -> CFRange
  * @availability iOS 3.2+
  */
-export function CTFrameGetStringRange(frame: CTFrame): _CoreFoundation_CFRange { return callSDK<_CoreFoundation_CFRange>("CoreText_6be9a005889899ab", 2338354383569515, undefined, [frame]); }
+export function CTFrameGetStringRange(frame: CTFrame): _CoreFoundation_CFRange { return callSDK<_CoreFoundation_CFRange>("CoreText_c1f28409f8601238", 2338354383569515, undefined, [frame]); }
 
 /**
  * func CTFrameGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTFrameGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3609205485348200, undefined, []); }
+export function CTFrameGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3609205485348200, undefined, []); }
 
 /**
  * func CTFrameGetVisibleStringRange(_ frame: CTFrame) -> CFRange
  * @availability iOS 3.2+
  */
-export function CTFrameGetVisibleStringRange(frame: CTFrame): _CoreFoundation_CFRange { return callSDK<_CoreFoundation_CFRange>("CoreText_6be9a005889899ab", 3471402313461087, undefined, [frame]); }
+export function CTFrameGetVisibleStringRange(frame: CTFrame): _CoreFoundation_CFRange { return callSDK<_CoreFoundation_CFRange>("CoreText_c1f28409f8601238", 3471402313461087, undefined, [frame]); }
 
 /**
  * func CTFramesetterCreateFrame(_ framesetter: CTFramesetter, _ stringRange: CFRange, _ path: CGPath, _ frameAttributes: CFDictionary?) -> CTFrame
  * @availability iOS 3.2+
  */
-export function CTFramesetterCreateFrame(framesetter: CTFramesetter, stringRange: _CoreFoundation_CFRange, path: _CoreGraphics_CGPath, frameAttributes?: $SDK12): CTFrame { return callSDK<CTFrame>("CoreText_6be9a005889899ab", 878402588893522, undefined, [framesetter, stringRange, path, frameAttributes]); }
+export function CTFramesetterCreateFrame(framesetter: CTFramesetter, stringRange: _CoreFoundation_CFRange, path: _CoreGraphics_CGPath, frameAttributes?: $SDK12): CTFrame { return callSDK<CTFrame>("CoreText_c1f28409f8601238", 878402588893522, undefined, [framesetter, stringRange, path, frameAttributes]); }
 
 /**
  * func CTFramesetterCreateWithAttributedString(_ attrString: CFAttributedString) -> CTFramesetter
  * @availability iOS 3.2+
  */
-export function CTFramesetterCreateWithAttributedString(attrString: _CoreFoundation_CFAttributedString): CTFramesetter { return callSDK<CTFramesetter>("CoreText_6be9a005889899ab", 45954382521436, undefined, [attrString]); }
+export function CTFramesetterCreateWithAttributedString(attrString: _CoreFoundation_CFAttributedString): CTFramesetter { return callSDK<CTFramesetter>("CoreText_c1f28409f8601238", 45954382521436, undefined, [attrString]); }
 
 /**
  * func CTFramesetterCreateWithTypesetter(_ typesetter: CTTypesetter) -> CTFramesetter
  * @availability iOS 12.0+
  */
-export function CTFramesetterCreateWithTypesetter(typesetter: CTTypesetter): CTFramesetter { return callSDK<CTFramesetter>("CoreText_6be9a005889899ab", 4055532525467648, undefined, [typesetter]); }
+export function CTFramesetterCreateWithTypesetter(typesetter: CTTypesetter): CTFramesetter { return callSDK<CTFramesetter>("CoreText_c1f28409f8601238", 4055532525467648, undefined, [typesetter]); }
 
 /**
  * func CTFramesetterGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTFramesetterGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2895638248566235, undefined, []); }
+export function CTFramesetterGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2895638248566235, undefined, []); }
 
 /**
  * func CTFramesetterGetTypesetter(_ framesetter: CTFramesetter) -> CTTypesetter
  * @availability iOS 3.2+
  */
-export function CTFramesetterGetTypesetter(framesetter: CTFramesetter): CTTypesetter { return callSDK<CTTypesetter>("CoreText_6be9a005889899ab", 1451812544674862, undefined, [framesetter]); }
+export function CTFramesetterGetTypesetter(framesetter: CTFramesetter): CTTypesetter { return callSDK<CTTypesetter>("CoreText_c1f28409f8601238", 1451812544674862, undefined, [framesetter]); }
 
 /**
  * func CTFramesetterSuggestFrameSizeWithConstraints(_ framesetter: CTFramesetter, _ stringRange: CFRange, _ frameAttributes: CFDictionary?, _ constraints: CGSize, _ fitRange: UnsafeMutablePointer<CFRange>?) -> CGSize
  * @availability iOS 3.2+
  */
-export function CTFramesetterSuggestFrameSizeWithConstraints(framesetter: CTFramesetter, stringRange: _CoreFoundation_CFRange, frameAttributes: $SDK12, constraints: $SDK3, fitRange?: (SDKHandle) | null): $SDK3 { return callSDK<$SDK3>("CoreText_6be9a005889899ab", 4314511976574676, undefined, [framesetter, stringRange, frameAttributes, constraints, fitRange]); }
+export function CTFramesetterSuggestFrameSizeWithConstraints(framesetter: CTFramesetter, stringRange: _CoreFoundation_CFRange, frameAttributes: $SDK12, constraints: $SDK3, fitRange?: (SDKHandle) | null): $SDK3 { return callSDK<$SDK3>("CoreText_c1f28409f8601238", 4314511976574676, undefined, [framesetter, stringRange, frameAttributes, constraints, fitRange]); }
 
 /**
  * func CTGetCoreTextVersion() -> UInt32
  * @availability iOS 3.2+
  * @deprecated iOS 14.0
  */
-export function CTGetCoreTextVersion(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2483316900745777, undefined, []); }
+export function CTGetCoreTextVersion(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2483316900745777, undefined, []); }
 
 /**
  * func CTGlyphInfoCreateWithCharacterIdentifier(_ cid: CGFontIndex, _ collection: CTCharacterCollection, _ baseString: CFString) -> CTGlyphInfo?
  * @availability iOS 3.2+
  */
-export function CTGlyphInfoCreateWithCharacterIdentifier(cid: number, collection: CTCharacterCollection, baseString: _CoreFoundation_CFString): (CTGlyphInfo) | null { return callSDK<(CTGlyphInfo) | null>("CoreText_6be9a005889899ab", 753572941720867, undefined, [cid, collection, baseString]); }
+export function CTGlyphInfoCreateWithCharacterIdentifier(cid: number, collection: CTCharacterCollection, baseString: _CoreFoundation_CFString): (CTGlyphInfo) | null { return callSDK<(CTGlyphInfo) | null>("CoreText_c1f28409f8601238", 753572941720867, undefined, [cid, collection, baseString]); }
 
 /**
  * func CTGlyphInfoCreateWithGlyph(_ glyph: CGGlyph, _ font: CTFont, _ baseString: CFString) -> CTGlyphInfo?
  * @availability iOS 3.2+
  */
-export function CTGlyphInfoCreateWithGlyph(glyph: number, font: CTFont, baseString: _CoreFoundation_CFString): (CTGlyphInfo) | null { return callSDK<(CTGlyphInfo) | null>("CoreText_6be9a005889899ab", 1472836429086857, undefined, [glyph, font, baseString]); }
+export function CTGlyphInfoCreateWithGlyph(glyph: number, font: CTFont, baseString: _CoreFoundation_CFString): (CTGlyphInfo) | null { return callSDK<(CTGlyphInfo) | null>("CoreText_c1f28409f8601238", 1472836429086857, undefined, [glyph, font, baseString]); }
 
 /**
  * func CTGlyphInfoCreateWithGlyphName(_ glyphName: CFString, _ font: CTFont, _ baseString: CFString) -> CTGlyphInfo?
  * @availability iOS 3.2+
  */
-export function CTGlyphInfoCreateWithGlyphName(glyphName: _CoreFoundation_CFString, font: CTFont, baseString: _CoreFoundation_CFString): (CTGlyphInfo) | null { return callSDK<(CTGlyphInfo) | null>("CoreText_6be9a005889899ab", 3799960478896258, undefined, [glyphName, font, baseString]); }
+export function CTGlyphInfoCreateWithGlyphName(glyphName: _CoreFoundation_CFString, font: CTFont, baseString: _CoreFoundation_CFString): (CTGlyphInfo) | null { return callSDK<(CTGlyphInfo) | null>("CoreText_c1f28409f8601238", 3799960478896258, undefined, [glyphName, font, baseString]); }
 
 /**
  * func CTGlyphInfoGetCharacterCollection(_ glyphInfo: CTGlyphInfo) -> CTCharacterCollection
  * @availability iOS 3.2+
  */
-export function CTGlyphInfoGetCharacterCollection(glyphInfo: CTGlyphInfo): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_6be9a005889899ab", 1134752159265855, undefined, [glyphInfo]); }
+export function CTGlyphInfoGetCharacterCollection(glyphInfo: CTGlyphInfo): CTCharacterCollection { return callSDK<CTCharacterCollection>("CoreText_c1f28409f8601238", 1134752159265855, undefined, [glyphInfo]); }
 
 /**
  * func CTGlyphInfoGetCharacterIdentifier(_ glyphInfo: CTGlyphInfo) -> CGFontIndex
  * @availability iOS 3.2+
  */
-export function CTGlyphInfoGetCharacterIdentifier(glyphInfo: CTGlyphInfo): number { return callSDK<number>("CoreText_6be9a005889899ab", 978801006015599, undefined, [glyphInfo]); }
+export function CTGlyphInfoGetCharacterIdentifier(glyphInfo: CTGlyphInfo): number { return callSDK<number>("CoreText_c1f28409f8601238", 978801006015599, undefined, [glyphInfo]); }
 
 /**
  * func CTGlyphInfoGetGlyph(_ glyphInfo: CTGlyphInfo) -> CGGlyph
  * @availability iOS 13.0+
  */
-export function CTGlyphInfoGetGlyph(glyphInfo: CTGlyphInfo): number { return callSDK<number>("CoreText_6be9a005889899ab", 4180987002954177, undefined, [glyphInfo]); }
+export function CTGlyphInfoGetGlyph(glyphInfo: CTGlyphInfo): number { return callSDK<number>("CoreText_c1f28409f8601238", 4180987002954177, undefined, [glyphInfo]); }
 
 /**
  * func CTGlyphInfoGetGlyphName(_ glyphInfo: CTGlyphInfo) -> CFString?
  * @availability iOS 3.2+
  */
-export function CTGlyphInfoGetGlyphName(glyphInfo: CTGlyphInfo): $SDK6 { return callSDK<$SDK6>("CoreText_6be9a005889899ab", 723392976749220, undefined, [glyphInfo]); }
+export function CTGlyphInfoGetGlyphName(glyphInfo: CTGlyphInfo): $SDK6 { return callSDK<$SDK6>("CoreText_c1f28409f8601238", 723392976749220, undefined, [glyphInfo]); }
 
 /**
  * func CTGlyphInfoGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTGlyphInfoGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2457209699683675, undefined, []); }
+export function CTGlyphInfoGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2457209699683675, undefined, []); }
 
 /**
  * func CTLineCreateJustifiedLine(_ line: CTLine, _ justificationFactor: CGFloat, _ justificationWidth: Double) -> CTLine?
  * @availability iOS 3.2+
  */
-export function CTLineCreateJustifiedLine(line: CTLine, justificationFactor: number, justificationWidth: number): (CTLine) | null { return callSDK<(CTLine) | null>("CoreText_6be9a005889899ab", 222551755196591, undefined, [line, justificationFactor, justificationWidth]); }
+export function CTLineCreateJustifiedLine(line: CTLine, justificationFactor: number, justificationWidth: number): (CTLine) | null { return callSDK<(CTLine) | null>("CoreText_c1f28409f8601238", 222551755196591, undefined, [line, justificationFactor, justificationWidth]); }
 
 /**
  * func CTLineCreateTruncatedLine(_ line: CTLine, _ width: Double, _ truncationType: CTLineTruncationType, _ truncationToken: CTLine?) -> CTLine?
  * @availability iOS 3.2+
  */
-export function CTLineCreateTruncatedLine(line: CTLine, width: number, truncationType: CTLineTruncationType, truncationToken?: (CTLine) | null): (CTLine) | null { return callSDK<(CTLine) | null>("CoreText_6be9a005889899ab", 3954819444222233, undefined, [line, width, truncationType, truncationToken]); }
+export function CTLineCreateTruncatedLine(line: CTLine, width: number, truncationType: CTLineTruncationType, truncationToken?: (CTLine) | null): (CTLine) | null { return callSDK<(CTLine) | null>("CoreText_c1f28409f8601238", 3954819444222233, undefined, [line, width, truncationType, truncationToken]); }
 
 /**
  * func CTLineCreateWithAttributedString(_ attrString: CFAttributedString) -> CTLine
  * @availability iOS 3.2+
  */
-export function CTLineCreateWithAttributedString(attrString: _CoreFoundation_CFAttributedString): CTLine { return callSDK<CTLine>("CoreText_6be9a005889899ab", 365534948424441, undefined, [attrString]); }
+export function CTLineCreateWithAttributedString(attrString: _CoreFoundation_CFAttributedString): CTLine { return callSDK<CTLine>("CoreText_c1f28409f8601238", 365534948424441, undefined, [attrString]); }
 
 /**
  * func CTLineDraw(_ line: CTLine, _ context: CGContext)
  * @availability iOS 3.2+
  */
-export function CTLineDraw(line: CTLine, context: _CoreGraphics_CGContext): void { return callSDK<void>("CoreText_6be9a005889899ab", 2261270840131786, undefined, [line, context]); }
+export function CTLineDraw(line: CTLine, context: _CoreGraphics_CGContext): void { return callSDK<void>("CoreText_c1f28409f8601238", 2261270840131786, undefined, [line, context]); }
 
 /**
  * func CTLineGetBoundsWithOptions(_ line: CTLine, _ options: CTLineBoundsOptions) -> CGRect
  * @availability iOS 6.0+
  */
-export function CTLineGetBoundsWithOptions(line: CTLine, options: CTLineBoundsOptions): $SDK19 { return callSDK<$SDK19>("CoreText_6be9a005889899ab", 1911876413437376, undefined, [line, options]); }
+export function CTLineGetBoundsWithOptions(line: CTLine, options: CTLineBoundsOptions): $SDK19 { return callSDK<$SDK19>("CoreText_c1f28409f8601238", 1911876413437376, undefined, [line, options]); }
 
 /**
  * func CTLineGetGlyphCount(_ line: CTLine) -> CFIndex
  * @availability iOS 3.2+
  */
-export function CTLineGetGlyphCount(line: CTLine): number { return callSDK<number>("CoreText_6be9a005889899ab", 1258315275346152, undefined, [line]); }
+export function CTLineGetGlyphCount(line: CTLine): number { return callSDK<number>("CoreText_c1f28409f8601238", 1258315275346152, undefined, [line]); }
 
 /**
  * func CTLineGetGlyphRuns(_ line: CTLine) -> CFArray
  * @availability iOS 3.2+
  */
-export function CTLineGetGlyphRuns(line: CTLine): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_6be9a005889899ab", 609047370878474, undefined, [line]); }
+export function CTLineGetGlyphRuns(line: CTLine): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CoreText_c1f28409f8601238", 609047370878474, undefined, [line]); }
 
 /**
  * func CTLineGetImageBounds(_ line: CTLine, _ context: CGContext?) -> CGRect
  * @availability iOS 3.2+
  */
-export function CTLineGetImageBounds(line: CTLine, context?: $SDK22): $SDK19 { return callSDK<$SDK19>("CoreText_6be9a005889899ab", 537101326771338, undefined, [line, context]); }
+export function CTLineGetImageBounds(line: CTLine, context?: $SDK22): $SDK19 { return callSDK<$SDK19>("CoreText_c1f28409f8601238", 537101326771338, undefined, [line, context]); }
 
 /**
  * func CTLineGetOffsetForStringIndex(_ line: CTLine, _ charIndex: CFIndex, _ secondaryOffset: UnsafeMutablePointer<CGFloat>?) -> CGFloat
  * @availability iOS 3.2+
  */
-export function CTLineGetOffsetForStringIndex(line: CTLine, charIndex: number, secondaryOffset?: $SDK18): number { return callSDK<number>("CoreText_6be9a005889899ab", 1509647710416614, undefined, [line, charIndex, secondaryOffset]); }
+export function CTLineGetOffsetForStringIndex(line: CTLine, charIndex: number, secondaryOffset?: $SDK18): number { return callSDK<number>("CoreText_c1f28409f8601238", 1509647710416614, undefined, [line, charIndex, secondaryOffset]); }
 
 /**
  * func CTLineGetPenOffsetForFlush(_ line: CTLine, _ flushFactor: CGFloat, _ flushWidth: Double) -> Double
  * @availability iOS 3.2+
  */
-export function CTLineGetPenOffsetForFlush(line: CTLine, flushFactor: number, flushWidth: number): number { return callSDK<number>("CoreText_6be9a005889899ab", 2429143744160168, undefined, [line, flushFactor, flushWidth]); }
+export function CTLineGetPenOffsetForFlush(line: CTLine, flushFactor: number, flushWidth: number): number { return callSDK<number>("CoreText_c1f28409f8601238", 2429143744160168, undefined, [line, flushFactor, flushWidth]); }
 
 /**
  * func CTLineGetStringIndexForPosition(_ line: CTLine, _ position: CGPoint) -> CFIndex
  * @availability iOS 3.2+
  */
-export function CTLineGetStringIndexForPosition(line: CTLine, position: { x: number; y: number }): number { return callSDK<number>("CoreText_6be9a005889899ab", 1055125713283575, undefined, [line, position]); }
+export function CTLineGetStringIndexForPosition(line: CTLine, position: { x: number; y: number }): number { return callSDK<number>("CoreText_c1f28409f8601238", 1055125713283575, undefined, [line, position]); }
 
 /**
  * func CTLineGetStringRange(_ line: CTLine) -> CFRange
  * @availability iOS 3.2+
  */
-export function CTLineGetStringRange(line: CTLine): _CoreFoundation_CFRange { return callSDK<_CoreFoundation_CFRange>("CoreText_6be9a005889899ab", 3515280057992042, undefined, [line]); }
+export function CTLineGetStringRange(line: CTLine): _CoreFoundation_CFRange { return callSDK<_CoreFoundation_CFRange>("CoreText_c1f28409f8601238", 3515280057992042, undefined, [line]); }
 
 /**
  * func CTLineGetTrailingWhitespaceWidth(_ line: CTLine) -> Double
  * @availability iOS 3.2+
  */
-export function CTLineGetTrailingWhitespaceWidth(line: CTLine): number { return callSDK<number>("CoreText_6be9a005889899ab", 3510697202494817, undefined, [line]); }
+export function CTLineGetTrailingWhitespaceWidth(line: CTLine): number { return callSDK<number>("CoreText_c1f28409f8601238", 3510697202494817, undefined, [line]); }
 
 /**
  * func CTLineGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTLineGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3529446516388369, undefined, []); }
+export function CTLineGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3529446516388369, undefined, []); }
 
 /**
  * func CTLineGetTypographicBounds(_ line: CTLine, _ ascent: UnsafeMutablePointer<CGFloat>?, _ descent: UnsafeMutablePointer<CGFloat>?, _ leading: UnsafeMutablePointer<CGFloat>?) -> Double
  * @availability iOS 3.2+
  */
-export function CTLineGetTypographicBounds(line: CTLine, ascent?: $SDK18, descent?: $SDK18, leading?: $SDK18): number { return callSDK<number>("CoreText_6be9a005889899ab", 97194765039709, undefined, [line, ascent, descent, leading]); }
+export function CTLineGetTypographicBounds(line: CTLine, ascent?: $SDK18, descent?: $SDK18, leading?: $SDK18): number { return callSDK<number>("CoreText_c1f28409f8601238", 97194765039709, undefined, [line, ascent, descent, leading]); }
 
 /**
  * func CTParagraphStyleCreate(_ settings: UnsafePointer<CTParagraphStyleSetting>?, _ settingCount: Int) -> CTParagraphStyle
  * @availability iOS 3.2+
  */
-export function CTParagraphStyleCreate(settings: (SDKHandle) | null, settingCount: number): CTParagraphStyle { return callSDK<CTParagraphStyle>("CoreText_6be9a005889899ab", 4391291043106086, undefined, [settings, settingCount]); }
+export function CTParagraphStyleCreate(settings: (SDKHandle) | null, settingCount: number): CTParagraphStyle { return callSDK<CTParagraphStyle>("CoreText_c1f28409f8601238", 4391291043106086, undefined, [settings, settingCount]); }
 
 /**
  * func CTParagraphStyleCreateCopy(_ paragraphStyle: CTParagraphStyle) -> CTParagraphStyle
  * @availability iOS 3.2+
  */
-export function CTParagraphStyleCreateCopy(paragraphStyle: CTParagraphStyle): CTParagraphStyle { return callSDK<CTParagraphStyle>("CoreText_6be9a005889899ab", 3631859889995049, undefined, [paragraphStyle]); }
+export function CTParagraphStyleCreateCopy(paragraphStyle: CTParagraphStyle): CTParagraphStyle { return callSDK<CTParagraphStyle>("CoreText_c1f28409f8601238", 3631859889995049, undefined, [paragraphStyle]); }
 
 /**
  * func CTParagraphStyleGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTParagraphStyleGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 1827813491371938, undefined, []); }
+export function CTParagraphStyleGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 1827813491371938, undefined, []); }
 
 /**
  * func CTParagraphStyleGetValueForSpecifier(_ paragraphStyle: CTParagraphStyle, _ spec: CTParagraphStyleSpecifier, _ valueBufferSize: Int, _ valueBuffer: UnsafeMutableRawPointer) -> Bool
  * @availability iOS 3.2+
  */
-export function CTParagraphStyleGetValueForSpecifier(paragraphStyle: CTParagraphStyle, spec: CTParagraphStyleSpecifier, valueBufferSize: number, valueBuffer: SDKHandle): boolean { return callSDK<boolean>("CoreText_6be9a005889899ab", 3617260416785810, undefined, [paragraphStyle, spec, valueBufferSize, valueBuffer]); }
+export function CTParagraphStyleGetValueForSpecifier(paragraphStyle: CTParagraphStyle, spec: CTParagraphStyleSpecifier, valueBufferSize: number, valueBuffer: SDKHandle): boolean { return callSDK<boolean>("CoreText_c1f28409f8601238", 3617260416785810, undefined, [paragraphStyle, spec, valueBufferSize, valueBuffer]); }
 
 /**
  * func CTRubyAnnotationCreateCopy(_ rubyAnnotation: CTRubyAnnotation) -> CTRubyAnnotation
  * @availability iOS 8.0+
  */
-export function CTRubyAnnotationCreateCopy(rubyAnnotation: CTRubyAnnotation): CTRubyAnnotation { return callSDK<CTRubyAnnotation>("CoreText_6be9a005889899ab", 4197533720194440, undefined, [rubyAnnotation]); }
+export function CTRubyAnnotationCreateCopy(rubyAnnotation: CTRubyAnnotation): CTRubyAnnotation { return callSDK<CTRubyAnnotation>("CoreText_c1f28409f8601238", 4197533720194440, undefined, [rubyAnnotation]); }
 
 /**
  * func CTRubyAnnotationCreateWithAttributes(_ alignment: CTRubyAlignment, _ overhang: CTRubyOverhang, _ position: CTRubyPosition, _ string: CFString, _ attributes: CFDictionary) -> CTRubyAnnotation
  * @availability iOS 10.0+
  */
-export function CTRubyAnnotationCreateWithAttributes(alignment: CTRubyAlignment, overhang: CTRubyOverhang, position: CTRubyPosition, string: _CoreFoundation_CFString, attributes: _CoreFoundation_CFDictionary): CTRubyAnnotation { return callSDK<CTRubyAnnotation>("CoreText_6be9a005889899ab", 3898677654665026, undefined, [alignment, overhang, position, string, attributes]); }
+export function CTRubyAnnotationCreateWithAttributes(alignment: CTRubyAlignment, overhang: CTRubyOverhang, position: CTRubyPosition, string: _CoreFoundation_CFString, attributes: _CoreFoundation_CFDictionary): CTRubyAnnotation { return callSDK<CTRubyAnnotation>("CoreText_c1f28409f8601238", 3898677654665026, undefined, [alignment, overhang, position, string, attributes]); }
 
 /**
  * func CTRubyAnnotationGetAlignment(_ rubyAnnotation: CTRubyAnnotation) -> CTRubyAlignment
  * @availability iOS 8.0+
  */
-export function CTRubyAnnotationGetAlignment(rubyAnnotation: CTRubyAnnotation): CTRubyAlignment { return callSDK<CTRubyAlignment>("CoreText_6be9a005889899ab", 3442849058782454, undefined, [rubyAnnotation]); }
+export function CTRubyAnnotationGetAlignment(rubyAnnotation: CTRubyAnnotation): CTRubyAlignment { return callSDK<CTRubyAlignment>("CoreText_c1f28409f8601238", 3442849058782454, undefined, [rubyAnnotation]); }
 
 /**
  * func CTRubyAnnotationGetOverhang(_ rubyAnnotation: CTRubyAnnotation) -> CTRubyOverhang
  * @availability iOS 8.0+
  */
-export function CTRubyAnnotationGetOverhang(rubyAnnotation: CTRubyAnnotation): CTRubyOverhang { return callSDK<CTRubyOverhang>("CoreText_6be9a005889899ab", 617861379705072, undefined, [rubyAnnotation]); }
+export function CTRubyAnnotationGetOverhang(rubyAnnotation: CTRubyAnnotation): CTRubyOverhang { return callSDK<CTRubyOverhang>("CoreText_c1f28409f8601238", 617861379705072, undefined, [rubyAnnotation]); }
 
 /**
  * func CTRubyAnnotationGetSizeFactor(_ rubyAnnotation: CTRubyAnnotation) -> CGFloat
  * @availability iOS 8.0+
  */
-export function CTRubyAnnotationGetSizeFactor(rubyAnnotation: CTRubyAnnotation): number { return callSDK<number>("CoreText_6be9a005889899ab", 4423671815289840, undefined, [rubyAnnotation]); }
+export function CTRubyAnnotationGetSizeFactor(rubyAnnotation: CTRubyAnnotation): number { return callSDK<number>("CoreText_c1f28409f8601238", 4423671815289840, undefined, [rubyAnnotation]); }
 
 /**
  * func CTRubyAnnotationGetTextForPosition(_ rubyAnnotation: CTRubyAnnotation, _ position: CTRubyPosition) -> CFString?
  * @availability iOS 8.0+
  */
-export function CTRubyAnnotationGetTextForPosition(rubyAnnotation: CTRubyAnnotation, position: CTRubyPosition): $SDK6 { return callSDK<$SDK6>("CoreText_6be9a005889899ab", 4364152311773501, undefined, [rubyAnnotation, position]); }
+export function CTRubyAnnotationGetTextForPosition(rubyAnnotation: CTRubyAnnotation, position: CTRubyPosition): $SDK6 { return callSDK<$SDK6>("CoreText_c1f28409f8601238", 4364152311773501, undefined, [rubyAnnotation, position]); }
 
 /**
  * func CTRubyAnnotationGetTypeID() -> CFTypeID
  * @availability iOS 8.0+
  */
-export function CTRubyAnnotationGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3033879635235790, undefined, []); }
+export function CTRubyAnnotationGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3033879635235790, undefined, []); }
 
 /**
  * func CTRunDelegateCreate(_ callbacks: UnsafePointer<CTRunDelegateCallbacks>, _ refCon: UnsafeMutableRawPointer?) -> CTRunDelegate?
  * @availability iOS 3.2+
  */
-export function CTRunDelegateCreate(callbacks: SDKHandle, refCon?: (SDKHandle) | null): (CTRunDelegate) | null { return callSDK<(CTRunDelegate) | null>("CoreText_6be9a005889899ab", 38544188024961, undefined, [callbacks, refCon]); }
+export function CTRunDelegateCreate(callbacks: SDKHandle, refCon?: (SDKHandle) | null): (CTRunDelegate) | null { return callSDK<(CTRunDelegate) | null>("CoreText_c1f28409f8601238", 38544188024961, undefined, [callbacks, refCon]); }
 
 /**
  * func CTRunDelegateGetRefCon(_ runDelegate: CTRunDelegate) -> UnsafeMutableRawPointer
  * @availability iOS 3.2+
  */
-export function CTRunDelegateGetRefCon(runDelegate: CTRunDelegate): SDKHandle { return callSDK<SDKHandle>("CoreText_6be9a005889899ab", 402231878332975, undefined, [runDelegate]); }
+export function CTRunDelegateGetRefCon(runDelegate: CTRunDelegate): SDKHandle { return callSDK<SDKHandle>("CoreText_c1f28409f8601238", 402231878332975, undefined, [runDelegate]); }
 
 /**
  * func CTRunDelegateGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTRunDelegateGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 2949486221071482, undefined, []); }
+export function CTRunDelegateGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 2949486221071482, undefined, []); }
 
 /**
  * func CTRunDraw(_ run: CTRun, _ context: CGContext, _ range: CFRange)
  * @availability iOS 3.2+
  */
-export function CTRunDraw(run: CTRun, context: _CoreGraphics_CGContext, range: _CoreFoundation_CFRange): void { return callSDK<void>("CoreText_6be9a005889899ab", 2988697895164154, undefined, [run, context, range]); }
+export function CTRunDraw(run: CTRun, context: _CoreGraphics_CGContext, range: _CoreFoundation_CFRange): void { return callSDK<void>("CoreText_c1f28409f8601238", 2988697895164154, undefined, [run, context, range]); }
 
 /**
  * func CTRunGetAdvances(_ run: CTRun, _ range: CFRange, _ buffer: UnsafeMutablePointer<CGSize>)
  * @availability iOS 3.2+
  */
-export function CTRunGetAdvances(run: CTRun, range: _CoreFoundation_CFRange, buffer: $SDK4): void { return callSDK<void>("CoreText_6be9a005889899ab", 1019866361876906, undefined, [run, range, buffer]); }
+export function CTRunGetAdvances(run: CTRun, range: _CoreFoundation_CFRange, buffer: $SDK4): void { return callSDK<void>("CoreText_c1f28409f8601238", 1019866361876906, undefined, [run, range, buffer]); }
 
 /**
  * func CTRunGetAdvancesPtr(_ run: CTRun) -> UnsafePointer<CGSize>?
  * @availability iOS 3.2+
  */
-export function CTRunGetAdvancesPtr(run: CTRun): $SDK18 { return callSDK<$SDK18>("CoreText_6be9a005889899ab", 1224481605619759, undefined, [run]); }
+export function CTRunGetAdvancesPtr(run: CTRun): $SDK18 { return callSDK<$SDK18>("CoreText_c1f28409f8601238", 1224481605619759, undefined, [run]); }
 
 /**
  * func CTRunGetAttributes(_ run: CTRun) -> CFDictionary
  * @availability iOS 3.2+
  */
-export function CTRunGetAttributes(run: CTRun): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreText_6be9a005889899ab", 1599908292084260, undefined, [run]); }
+export function CTRunGetAttributes(run: CTRun): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreText_c1f28409f8601238", 1599908292084260, undefined, [run]); }
 
 /**
  * func CTRunGetBaseAdvancesAndOrigins(_ runRef: CTRun, _ range: CFRange, _ advancesBuffer: UnsafeMutablePointer<CGSize>?, _ originsBuffer: UnsafeMutablePointer<CGPoint>?)
  * @availability iOS 9.0+
  */
-export function CTRunGetBaseAdvancesAndOrigins(runRef: CTRun, range: _CoreFoundation_CFRange, advancesBuffer?: $SDK18, originsBuffer?: $SDK18): void { return callSDK<void>("CoreText_6be9a005889899ab", 396308986279273, undefined, [runRef, range, advancesBuffer, originsBuffer]); }
+export function CTRunGetBaseAdvancesAndOrigins(runRef: CTRun, range: _CoreFoundation_CFRange, advancesBuffer?: $SDK18, originsBuffer?: $SDK18): void { return callSDK<void>("CoreText_c1f28409f8601238", 396308986279273, undefined, [runRef, range, advancesBuffer, originsBuffer]); }
 
 /**
  * func CTRunGetGlyphCount(_ run: CTRun) -> CFIndex
  * @availability iOS 3.2+
  */
-export function CTRunGetGlyphCount(run: CTRun): number { return callSDK<number>("CoreText_6be9a005889899ab", 3415600175168612, undefined, [run]); }
+export function CTRunGetGlyphCount(run: CTRun): number { return callSDK<number>("CoreText_c1f28409f8601238", 3415600175168612, undefined, [run]); }
 
 /**
  * func CTRunGetGlyphs(_ run: CTRun, _ range: CFRange, _ buffer: UnsafeMutablePointer<CGGlyph>)
  * @availability iOS 3.2+
  */
-export function CTRunGetGlyphs(run: CTRun, range: _CoreFoundation_CFRange, buffer: SDKHandle): void { return callSDK<void>("CoreText_6be9a005889899ab", 643685948312029, undefined, [run, range, buffer]); }
+export function CTRunGetGlyphs(run: CTRun, range: _CoreFoundation_CFRange, buffer: SDKHandle): void { return callSDK<void>("CoreText_c1f28409f8601238", 643685948312029, undefined, [run, range, buffer]); }
 
 /**
  * func CTRunGetGlyphsPtr(_ run: CTRun) -> UnsafePointer<CGGlyph>?
  * @availability iOS 3.2+
  */
-export function CTRunGetGlyphsPtr(run: CTRun): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreText_6be9a005889899ab", 1297724829454592, undefined, [run]); }
+export function CTRunGetGlyphsPtr(run: CTRun): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreText_c1f28409f8601238", 1297724829454592, undefined, [run]); }
 
 /**
  * func CTRunGetImageBounds(_ run: CTRun, _ context: CGContext?, _ range: CFRange) -> CGRect
  * @availability iOS 3.2+
  */
-export function CTRunGetImageBounds(run: CTRun, context: $SDK22, range: _CoreFoundation_CFRange): $SDK19 { return callSDK<$SDK19>("CoreText_6be9a005889899ab", 1263269540085544, undefined, [run, context, range]); }
+export function CTRunGetImageBounds(run: CTRun, context: $SDK22, range: _CoreFoundation_CFRange): $SDK19 { return callSDK<$SDK19>("CoreText_c1f28409f8601238", 1263269540085544, undefined, [run, context, range]); }
 
 /**
  * func CTRunGetPositions(_ run: CTRun, _ range: CFRange, _ buffer: UnsafeMutablePointer<CGPoint>)
  * @availability iOS 3.2+
  */
-export function CTRunGetPositions(run: CTRun, range: _CoreFoundation_CFRange, buffer: $SDK4): void { return callSDK<void>("CoreText_6be9a005889899ab", 2752238836477118, undefined, [run, range, buffer]); }
+export function CTRunGetPositions(run: CTRun, range: _CoreFoundation_CFRange, buffer: $SDK4): void { return callSDK<void>("CoreText_c1f28409f8601238", 2752238836477118, undefined, [run, range, buffer]); }
 
 /**
  * func CTRunGetPositionsPtr(_ run: CTRun) -> UnsafePointer<CGPoint>?
  * @availability iOS 3.2+
  */
-export function CTRunGetPositionsPtr(run: CTRun): $SDK18 { return callSDK<$SDK18>("CoreText_6be9a005889899ab", 757344319868699, undefined, [run]); }
+export function CTRunGetPositionsPtr(run: CTRun): $SDK18 { return callSDK<$SDK18>("CoreText_c1f28409f8601238", 757344319868699, undefined, [run]); }
 
 /**
  * func CTRunGetStatus(_ run: CTRun) -> CTRunStatus
  * @availability iOS 3.2+
  */
-export function CTRunGetStatus(run: CTRun): CTRunStatus { return callSDK<CTRunStatus>("CoreText_6be9a005889899ab", 87899336757273, undefined, [run]); }
+export function CTRunGetStatus(run: CTRun): CTRunStatus { return callSDK<CTRunStatus>("CoreText_c1f28409f8601238", 87899336757273, undefined, [run]); }
 
 /**
  * func CTRunGetStringIndices(_ run: CTRun, _ range: CFRange, _ buffer: UnsafeMutablePointer<CFIndex>)
  * @availability iOS 3.2+
  */
-export function CTRunGetStringIndices(run: CTRun, range: _CoreFoundation_CFRange, buffer: SDKHandle): void { return callSDK<void>("CoreText_6be9a005889899ab", 2941080987548297, undefined, [run, range, buffer]); }
+export function CTRunGetStringIndices(run: CTRun, range: _CoreFoundation_CFRange, buffer: SDKHandle): void { return callSDK<void>("CoreText_c1f28409f8601238", 2941080987548297, undefined, [run, range, buffer]); }
 
 /**
  * func CTRunGetStringIndicesPtr(_ run: CTRun) -> UnsafePointer<CFIndex>?
  * @availability iOS 3.2+
  */
-export function CTRunGetStringIndicesPtr(run: CTRun): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreText_6be9a005889899ab", 2701961149400210, undefined, [run]); }
+export function CTRunGetStringIndicesPtr(run: CTRun): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreText_c1f28409f8601238", 2701961149400210, undefined, [run]); }
 
 /**
  * func CTRunGetStringRange(_ run: CTRun) -> CFRange
  * @availability iOS 3.2+
  */
-export function CTRunGetStringRange(run: CTRun): _CoreFoundation_CFRange { return callSDK<_CoreFoundation_CFRange>("CoreText_6be9a005889899ab", 131321677260011, undefined, [run]); }
+export function CTRunGetStringRange(run: CTRun): _CoreFoundation_CFRange { return callSDK<_CoreFoundation_CFRange>("CoreText_c1f28409f8601238", 131321677260011, undefined, [run]); }
 
 /**
  * func CTRunGetTextMatrix(_ run: CTRun) -> CGAffineTransform
  * @availability iOS 3.2+
  */
-export function CTRunGetTextMatrix(run: CTRun): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreText_6be9a005889899ab", 1406158615465508, undefined, [run]); }
+export function CTRunGetTextMatrix(run: CTRun): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreText_c1f28409f8601238", 1406158615465508, undefined, [run]); }
 
 /**
  * func CTRunGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTRunGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 3352626497621853, undefined, []); }
+export function CTRunGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 3352626497621853, undefined, []); }
 
 /**
  * func CTRunGetTypographicBounds(_ run: CTRun, _ range: CFRange, _ ascent: UnsafeMutablePointer<CGFloat>?, _ descent: UnsafeMutablePointer<CGFloat>?, _ leading: UnsafeMutablePointer<CGFloat>?) -> Double
  * @availability iOS 3.2+
  */
-export function CTRunGetTypographicBounds(run: CTRun, range: _CoreFoundation_CFRange, ascent?: $SDK18, descent?: $SDK18, leading?: $SDK18): number { return callSDK<number>("CoreText_6be9a005889899ab", 2535946743186053, undefined, [run, range, ascent, descent, leading]); }
+export function CTRunGetTypographicBounds(run: CTRun, range: _CoreFoundation_CFRange, ascent?: $SDK18, descent?: $SDK18, leading?: $SDK18): number { return callSDK<number>("CoreText_c1f28409f8601238", 2535946743186053, undefined, [run, range, ascent, descent, leading]); }
 
 /**
  * func CTTextTabCreate(_ alignment: CTTextAlignment, _ location: Double, _ options: CFDictionary?) -> CTTextTab
  * @availability iOS 3.2+
  */
-export function CTTextTabCreate(alignment: CTTextAlignment, location: number, options?: $SDK12): CTTextTab { return callSDK<CTTextTab>("CoreText_6be9a005889899ab", 1279562496134185, undefined, [alignment, location, options]); }
+export function CTTextTabCreate(alignment: CTTextAlignment, location: number, options?: $SDK12): CTTextTab { return callSDK<CTTextTab>("CoreText_c1f28409f8601238", 1279562496134185, undefined, [alignment, location, options]); }
 
 /**
  * func CTTextTabGetAlignment(_ tab: CTTextTab) -> CTTextAlignment
  * @availability iOS 3.2+
  */
-export function CTTextTabGetAlignment(tab: CTTextTab): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_6be9a005889899ab", 1203457512599658, undefined, [tab]); }
+export function CTTextTabGetAlignment(tab: CTTextTab): CTTextAlignment { return callSDK<CTTextAlignment>("CoreText_c1f28409f8601238", 1203457512599658, undefined, [tab]); }
 
 /**
  * func CTTextTabGetLocation(_ tab: CTTextTab) -> Double
  * @availability iOS 3.2+
  */
-export function CTTextTabGetLocation(tab: CTTextTab): number { return callSDK<number>("CoreText_6be9a005889899ab", 569190797194391, undefined, [tab]); }
+export function CTTextTabGetLocation(tab: CTTextTab): number { return callSDK<number>("CoreText_c1f28409f8601238", 569190797194391, undefined, [tab]); }
 
 /**
  * func CTTextTabGetOptions(_ tab: CTTextTab) -> CFDictionary?
  * @availability iOS 3.2+
  */
-export function CTTextTabGetOptions(tab: CTTextTab): $SDK12 { return callSDK<$SDK12>("CoreText_6be9a005889899ab", 3328087289626639, undefined, [tab]); }
+export function CTTextTabGetOptions(tab: CTTextTab): $SDK12 { return callSDK<$SDK12>("CoreText_c1f28409f8601238", 3328087289626639, undefined, [tab]); }
 
 /**
  * func CTTextTabGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTTextTabGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 940513010783859, undefined, []); }
+export function CTTextTabGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 940513010783859, undefined, []); }
 
 /**
  * func CTTypesetterCreateLine(_ typesetter: CTTypesetter, _ stringRange: CFRange) -> CTLine
  * @availability iOS 3.2+
  */
-export function CTTypesetterCreateLine(typesetter: CTTypesetter, stringRange: _CoreFoundation_CFRange): CTLine { return callSDK<CTLine>("CoreText_6be9a005889899ab", 699905407669066, undefined, [typesetter, stringRange]); }
+export function CTTypesetterCreateLine(typesetter: CTTypesetter, stringRange: _CoreFoundation_CFRange): CTLine { return callSDK<CTLine>("CoreText_c1f28409f8601238", 699905407669066, undefined, [typesetter, stringRange]); }
 
 /**
  * func CTTypesetterCreateLineWithOffset(_ typesetter: CTTypesetter, _ stringRange: CFRange, _ offset: Double) -> CTLine
  * @availability iOS 3.2+
  */
-export function CTTypesetterCreateLineWithOffset(typesetter: CTTypesetter, stringRange: _CoreFoundation_CFRange, offset: number): CTLine { return callSDK<CTLine>("CoreText_6be9a005889899ab", 1319996871139822, undefined, [typesetter, stringRange, offset]); }
+export function CTTypesetterCreateLineWithOffset(typesetter: CTTypesetter, stringRange: _CoreFoundation_CFRange, offset: number): CTLine { return callSDK<CTLine>("CoreText_c1f28409f8601238", 1319996871139822, undefined, [typesetter, stringRange, offset]); }
 
 /**
  * func CTTypesetterCreateWithAttributedString(_ string: CFAttributedString) -> CTTypesetter
  * @availability iOS 3.2+
  */
-export function CTTypesetterCreateWithAttributedString(string: _CoreFoundation_CFAttributedString): CTTypesetter { return callSDK<CTTypesetter>("CoreText_6be9a005889899ab", 1963939090253596, undefined, [string]); }
+export function CTTypesetterCreateWithAttributedString(string: _CoreFoundation_CFAttributedString): CTTypesetter { return callSDK<CTTypesetter>("CoreText_c1f28409f8601238", 1963939090253596, undefined, [string]); }
 
 /**
  * func CTTypesetterCreateWithAttributedStringAndOptions(_ string: CFAttributedString, _ options: CFDictionary?) -> CTTypesetter?
  * @availability iOS 3.2+
  */
-export function CTTypesetterCreateWithAttributedStringAndOptions(string: _CoreFoundation_CFAttributedString, options?: $SDK12): (CTTypesetter) | null { return callSDK<(CTTypesetter) | null>("CoreText_6be9a005889899ab", 146980353613739, undefined, [string, options]); }
+export function CTTypesetterCreateWithAttributedStringAndOptions(string: _CoreFoundation_CFAttributedString, options?: $SDK12): (CTTypesetter) | null { return callSDK<(CTTypesetter) | null>("CoreText_c1f28409f8601238", 146980353613739, undefined, [string, options]); }
 
 /**
  * func CTTypesetterGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
  */
-export function CTTypesetterGetTypeID(): number { return callSDK<number>("CoreText_6be9a005889899ab", 713706046575119, undefined, []); }
+export function CTTypesetterGetTypeID(): number { return callSDK<number>("CoreText_c1f28409f8601238", 713706046575119, undefined, []); }
 
 /**
  * func CTTypesetterSuggestClusterBreak(_ typesetter: CTTypesetter, _ startIndex: CFIndex, _ width: Double) -> CFIndex
  * @availability iOS 3.2+
  */
-export function CTTypesetterSuggestClusterBreak(typesetter: CTTypesetter, startIndex: number, width: number): number { return callSDK<number>("CoreText_6be9a005889899ab", 1677568102506150, undefined, [typesetter, startIndex, width]); }
+export function CTTypesetterSuggestClusterBreak(typesetter: CTTypesetter, startIndex: number, width: number): number { return callSDK<number>("CoreText_c1f28409f8601238", 1677568102506150, undefined, [typesetter, startIndex, width]); }
 
 /**
  * func CTTypesetterSuggestClusterBreakWithOffset(_ typesetter: CTTypesetter, _ startIndex: CFIndex, _ width: Double, _ offset: Double) -> CFIndex
  * @availability iOS 3.2+
  */
-export function CTTypesetterSuggestClusterBreakWithOffset(typesetter: CTTypesetter, startIndex: number, width: number, offset: number): number { return callSDK<number>("CoreText_6be9a005889899ab", 276145500769868, undefined, [typesetter, startIndex, width, offset]); }
+export function CTTypesetterSuggestClusterBreakWithOffset(typesetter: CTTypesetter, startIndex: number, width: number, offset: number): number { return callSDK<number>("CoreText_c1f28409f8601238", 276145500769868, undefined, [typesetter, startIndex, width, offset]); }
 
 /**
  * func CTTypesetterSuggestLineBreak(_ typesetter: CTTypesetter, _ startIndex: CFIndex, _ width: Double) -> CFIndex
  * @availability iOS 3.2+
  */
-export function CTTypesetterSuggestLineBreak(typesetter: CTTypesetter, startIndex: number, width: number): number { return callSDK<number>("CoreText_6be9a005889899ab", 3340629778806866, undefined, [typesetter, startIndex, width]); }
+export function CTTypesetterSuggestLineBreak(typesetter: CTTypesetter, startIndex: number, width: number): number { return callSDK<number>("CoreText_c1f28409f8601238", 3340629778806866, undefined, [typesetter, startIndex, width]); }
 
 /**
  * func CTTypesetterSuggestLineBreakWithOffset(_ typesetter: CTTypesetter, _ startIndex: CFIndex, _ width: Double, _ offset: Double) -> CFIndex
  * @availability iOS 3.2+
  */
-export function CTTypesetterSuggestLineBreakWithOffset(typesetter: CTTypesetter, startIndex: number, width: number, offset: number): number { return callSDK<number>("CoreText_6be9a005889899ab", 1791529824217793, undefined, [typesetter, startIndex, width, offset]); }
+export function CTTypesetterSuggestLineBreakWithOffset(typesetter: CTTypesetter, startIndex: number, width: number, offset: number): number { return callSDK<number>("CoreText_c1f28409f8601238", 1791529824217793, undefined, [typesetter, startIndex, width, offset]); }
 
 /** var cmapFontTableTag: Int { get } */
-export const cmapFontTableTag: number = callSDK<number>("CoreText_6be9a005889899ab", 3287129214512840, undefined, []);
+export const cmapFontTableTag: number = callSDK<number>("CoreText_c1f28409f8601238", 3287129214512840, undefined, []);
 
 /** var descriptorFontTableTag: Int { get } */
-export const descriptorFontTableTag: number = callSDK<number>("CoreText_6be9a005889899ab", 1139706188423814, undefined, []);
+export const descriptorFontTableTag: number = callSDK<number>("CoreText_c1f28409f8601238", 1139706188423814, undefined, []);
 
 /** var featureFontTableTag: Int { get } */
-export const featureFontTableTag: number = callSDK<number>("CoreText_6be9a005889899ab", 2994823079395298, undefined, []);
+export const featureFontTableTag: number = callSDK<number>("CoreText_c1f28409f8601238", 2994823079395298, undefined, []);
 
 /** var kANKRCurrentVersion: Int { get } */
-export const kANKRCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 3093136256529962, undefined, []);
+export const kANKRCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 3093136256529962, undefined, []);
 
 /** var kAllTypeFeaturesOffSelector: Int { get } */
-export const kAllTypeFeaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2025355407087844, undefined, []);
+export const kAllTypeFeaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2025355407087844, undefined, []);
 
 /** var kAllTypeFeaturesOnSelector: Int { get } */
-export const kAllTypeFeaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 425262211357414, undefined, []);
+export const kAllTypeFeaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 425262211357414, undefined, []);
 
 /** var kAllTypographicFeaturesType: Int { get } */
-export const kAllTypographicFeaturesType: number = callSDK<number>("CoreText_6be9a005889899ab", 580359828970517, undefined, []);
+export const kAllTypographicFeaturesType: number = callSDK<number>("CoreText_c1f28409f8601238", 580359828970517, undefined, []);
 
 /** var kAlternateKanaType: Int { get } */
-export const kAlternateKanaType: number = callSDK<number>("CoreText_6be9a005889899ab", 4249267472032847, undefined, []);
+export const kAlternateKanaType: number = callSDK<number>("CoreText_c1f28409f8601238", 4249267472032847, undefined, []);
 
 /** var kAnnotationType: Int { get } */
-export const kAnnotationType: number = callSDK<number>("CoreText_6be9a005889899ab", 678143075142759, undefined, []);
+export const kAnnotationType: number = callSDK<number>("CoreText_c1f28409f8601238", 678143075142759, undefined, []);
 
 /** var kCJKRomanSpacingType: Int { get } */
-export const kCJKRomanSpacingType: number = callSDK<number>("CoreText_6be9a005889899ab", 4499668792129044, undefined, []);
+export const kCJKRomanSpacingType: number = callSDK<number>("CoreText_c1f28409f8601238", 4499668792129044, undefined, []);
 
 /** var kCJKSymbolAlternativesType: Int { get } */
-export const kCJKSymbolAlternativesType: number = callSDK<number>("CoreText_6be9a005889899ab", 2214795915438476, undefined, []);
+export const kCJKSymbolAlternativesType: number = callSDK<number>("CoreText_c1f28409f8601238", 2214795915438476, undefined, []);
 
 /** var kCJKVerticalRomanPlacementType: Int { get } */
-export const kCJKVerticalRomanPlacementType: number = callSDK<number>("CoreText_6be9a005889899ab", 3981540729326561, undefined, []);
+export const kCJKVerticalRomanPlacementType: number = callSDK<number>("CoreText_c1f28409f8601238", 3981540729326561, undefined, []);
 
 /** var kCaseSensitiveLayoutType: Int { get } */
-export const kCaseSensitiveLayoutType: number = callSDK<number>("CoreText_6be9a005889899ab", 712244430745218, undefined, []);
+export const kCaseSensitiveLayoutType: number = callSDK<number>("CoreText_c1f28409f8601238", 712244430745218, undefined, []);
 
 /** var kCharacterAlternativesType: Int { get } */
-export const kCharacterAlternativesType: number = callSDK<number>("CoreText_6be9a005889899ab", 684059563868449, undefined, []);
+export const kCharacterAlternativesType: number = callSDK<number>("CoreText_c1f28409f8601238", 684059563868449, undefined, []);
 
 /** var kCharacterShapeType: Int { get } */
-export const kCharacterShapeType: number = callSDK<number>("CoreText_6be9a005889899ab", 3466600326003193, undefined, []);
+export const kCharacterShapeType: number = callSDK<number>("CoreText_c1f28409f8601238", 3466600326003193, undefined, []);
 
 /** var kContextualAlternatesType: Int { get } */
-export const kContextualAlternatesType: number = callSDK<number>("CoreText_6be9a005889899ab", 1129163620122382, undefined, []);
+export const kContextualAlternatesType: number = callSDK<number>("CoreText_c1f28409f8601238", 1129163620122382, undefined, []);
 
 /** var kCursiveConnectionType: Int { get } */
-export const kCursiveConnectionType: number = callSDK<number>("CoreText_6be9a005889899ab", 2044721077061806, undefined, []);
+export const kCursiveConnectionType: number = callSDK<number>("CoreText_c1f28409f8601238", 2044721077061806, undefined, []);
 
 /** var kDesignComplexityType: Int { get } */
-export const kDesignComplexityType: number = callSDK<number>("CoreText_6be9a005889899ab", 2389304287687026, undefined, []);
+export const kDesignComplexityType: number = callSDK<number>("CoreText_c1f28409f8601238", 2389304287687026, undefined, []);
 
 /** var kDiacriticsType: Int { get } */
-export const kDiacriticsType: number = callSDK<number>("CoreText_6be9a005889899ab", 3237310363072625, undefined, []);
+export const kDiacriticsType: number = callSDK<number>("CoreText_c1f28409f8601238", 3237310363072625, undefined, []);
 
 /** var kFractionsType: Int { get } */
-export const kFractionsType: number = callSDK<number>("CoreText_6be9a005889899ab", 4427416661093613, undefined, []);
+export const kFractionsType: number = callSDK<number>("CoreText_c1f28409f8601238", 4427416661093613, undefined, []);
 
 /** var kIdeographicAlternativesType: Int { get } */
-export const kIdeographicAlternativesType: number = callSDK<number>("CoreText_6be9a005889899ab", 763045703412094, undefined, []);
+export const kIdeographicAlternativesType: number = callSDK<number>("CoreText_c1f28409f8601238", 763045703412094, undefined, []);
 
 /** var kIdeographicSpacingType: Int { get } */
-export const kIdeographicSpacingType: number = callSDK<number>("CoreText_6be9a005889899ab", 4459388488098964, undefined, []);
+export const kIdeographicSpacingType: number = callSDK<number>("CoreText_c1f28409f8601238", 4459388488098964, undefined, []);
 
 /** var kItalicCJKRomanType: Int { get } */
-export const kItalicCJKRomanType: number = callSDK<number>("CoreText_6be9a005889899ab", 3187649192114532, undefined, []);
+export const kItalicCJKRomanType: number = callSDK<number>("CoreText_c1f28409f8601238", 3187649192114532, undefined, []);
 
 /** var kKanaSpacingType: Int { get } */
-export const kKanaSpacingType: number = callSDK<number>("CoreText_6be9a005889899ab", 1173312459108203, undefined, []);
+export const kKanaSpacingType: number = callSDK<number>("CoreText_c1f28409f8601238", 1173312459108203, undefined, []);
 
 /** var kLanguageTagType: Int { get } */
-export const kLanguageTagType: number = callSDK<number>("CoreText_6be9a005889899ab", 3143683822570647, undefined, []);
+export const kLanguageTagType: number = callSDK<number>("CoreText_c1f28409f8601238", 3143683822570647, undefined, []);
 
 /** var kLastFeatureType: Int { get } */
-export const kLastFeatureType: number = callSDK<number>("CoreText_6be9a005889899ab", 3477500195349670, undefined, []);
+export const kLastFeatureType: number = callSDK<number>("CoreText_c1f28409f8601238", 3477500195349670, undefined, []);
 
 /** var kLetterCaseType: Int { get } */
-export const kLetterCaseType: number = callSDK<number>("CoreText_6be9a005889899ab", 672670943817420, undefined, []);
+export const kLetterCaseType: number = callSDK<number>("CoreText_c1f28409f8601238", 672670943817420, undefined, []);
 
 /** var kLigaturesType: Int { get } */
-export const kLigaturesType: number = callSDK<number>("CoreText_6be9a005889899ab", 4226286587676142, undefined, []);
+export const kLigaturesType: number = callSDK<number>("CoreText_c1f28409f8601238", 4226286587676142, undefined, []);
 
 /** var kLinguisticRearrangementType: Int { get } */
-export const kLinguisticRearrangementType: number = callSDK<number>("CoreText_6be9a005889899ab", 4160490408774012, undefined, []);
+export const kLinguisticRearrangementType: number = callSDK<number>("CoreText_c1f28409f8601238", 4160490408774012, undefined, []);
 
 /** var kLowerCaseType: Int { get } */
-export const kLowerCaseType: number = callSDK<number>("CoreText_6be9a005889899ab", 4011278901964593, undefined, []);
+export const kLowerCaseType: number = callSDK<number>("CoreText_c1f28409f8601238", 4011278901964593, undefined, []);
 
 /** var kMathematicalExtrasType: Int { get } */
-export const kMathematicalExtrasType: number = callSDK<number>("CoreText_6be9a005889899ab", 1843863441144131, undefined, []);
+export const kMathematicalExtrasType: number = callSDK<number>("CoreText_c1f28409f8601238", 1843863441144131, undefined, []);
 
 /** var kNumberCaseType: Int { get } */
-export const kNumberCaseType: number = callSDK<number>("CoreText_6be9a005889899ab", 1970591021902605, undefined, []);
+export const kNumberCaseType: number = callSDK<number>("CoreText_c1f28409f8601238", 1970591021902605, undefined, []);
 
 /** var kNumberSpacingType: Int { get } */
-export const kNumberSpacingType: number = callSDK<number>("CoreText_6be9a005889899ab", 3665926033087463, undefined, []);
+export const kNumberSpacingType: number = callSDK<number>("CoreText_c1f28409f8601238", 3665926033087463, undefined, []);
 
 /** var kOrnamentSetsType: Int { get } */
-export const kOrnamentSetsType: number = callSDK<number>("CoreText_6be9a005889899ab", 2775617737109981, undefined, []);
+export const kOrnamentSetsType: number = callSDK<number>("CoreText_c1f28409f8601238", 2775617737109981, undefined, []);
 
 /** var kOverlappingCharactersType: Int { get } */
-export const kOverlappingCharactersType: number = callSDK<number>("CoreText_6be9a005889899ab", 4441252495697070, undefined, []);
+export const kOverlappingCharactersType: number = callSDK<number>("CoreText_c1f28409f8601238", 4441252495697070, undefined, []);
 
 /** var kRubyKanaType: Int { get } */
-export const kRubyKanaType: number = callSDK<number>("CoreText_6be9a005889899ab", 266729566434461, undefined, []);
+export const kRubyKanaType: number = callSDK<number>("CoreText_c1f28409f8601238", 266729566434461, undefined, []);
 
 /** var kSmartSwashType: Int { get } */
-export const kSmartSwashType: number = callSDK<number>("CoreText_6be9a005889899ab", 1956983081536814, undefined, []);
+export const kSmartSwashType: number = callSDK<number>("CoreText_c1f28409f8601238", 1956983081536814, undefined, []);
 
 /** var kStyleOptionsType: Int { get } */
-export const kStyleOptionsType: number = callSDK<number>("CoreText_6be9a005889899ab", 868730256560702, undefined, []);
+export const kStyleOptionsType: number = callSDK<number>("CoreText_c1f28409f8601238", 868730256560702, undefined, []);
 
 /** var kStylisticAlternativesType: Int { get } */
-export const kStylisticAlternativesType: number = callSDK<number>("CoreText_6be9a005889899ab", 4207219023877697, undefined, []);
+export const kStylisticAlternativesType: number = callSDK<number>("CoreText_c1f28409f8601238", 4207219023877697, undefined, []);
 
 /** var kTextSpacingType: Int { get } */
-export const kTextSpacingType: number = callSDK<number>("CoreText_6be9a005889899ab", 2124662155674618, undefined, []);
+export const kTextSpacingType: number = callSDK<number>("CoreText_c1f28409f8601238", 2124662155674618, undefined, []);
 
 /** var kTransliterationType: Int { get } */
-export const kTransliterationType: number = callSDK<number>("CoreText_6be9a005889899ab", 3233014464797884, undefined, []);
+export const kTransliterationType: number = callSDK<number>("CoreText_c1f28409f8601238", 3233014464797884, undefined, []);
 
 /** var kTypographicExtrasType: Int { get } */
-export const kTypographicExtrasType: number = callSDK<number>("CoreText_6be9a005889899ab", 3234708809124623, undefined, []);
+export const kTypographicExtrasType: number = callSDK<number>("CoreText_c1f28409f8601238", 3234708809124623, undefined, []);
 
 /** var kUnicodeDecompositionType: Int { get } */
-export const kUnicodeDecompositionType: number = callSDK<number>("CoreText_6be9a005889899ab", 43255980579714, undefined, []);
+export const kUnicodeDecompositionType: number = callSDK<number>("CoreText_c1f28409f8601238", 43255980579714, undefined, []);
 
 /** var kUpperCaseType: Int { get } */
-export const kUpperCaseType: number = callSDK<number>("CoreText_6be9a005889899ab", 2058309506083472, undefined, []);
+export const kUpperCaseType: number = callSDK<number>("CoreText_c1f28409f8601238", 2058309506083472, undefined, []);
 
 /** var kVerticalPositionType: Int { get } */
-export const kVerticalPositionType: number = callSDK<number>("CoreText_6be9a005889899ab", 4033627819199037, undefined, []);
+export const kVerticalPositionType: number = callSDK<number>("CoreText_c1f28409f8601238", 4033627819199037, undefined, []);
 
 /** var kVerticalSubstitutionType: Int { get } */
-export const kVerticalSubstitutionType: number = callSDK<number>("CoreText_6be9a005889899ab", 3851594076108326, undefined, []);
+export const kVerticalSubstitutionType: number = callSDK<number>("CoreText_c1f28409f8601238", 3851594076108326, undefined, []);
 
 /** var kAlternateHorizKanaOffSelector: Int { get } */
-export const kAlternateHorizKanaOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3410425454102258, undefined, []);
+export const kAlternateHorizKanaOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3410425454102258, undefined, []);
 
 /** var kAlternateHorizKanaOnSelector: Int { get } */
-export const kAlternateHorizKanaOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 746847467189317, undefined, []);
+export const kAlternateHorizKanaOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 746847467189317, undefined, []);
 
 /** var kAlternateVertKanaOffSelector: Int { get } */
-export const kAlternateVertKanaOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1854368606093597, undefined, []);
+export const kAlternateVertKanaOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1854368606093597, undefined, []);
 
 /** var kAlternateVertKanaOnSelector: Int { get } */
-export const kAlternateVertKanaOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3765980930294873, undefined, []);
+export const kAlternateVertKanaOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3765980930294873, undefined, []);
 
 /** var kBSLNHangingBaseline: Int { get } */
-export const kBSLNHangingBaseline: number = callSDK<number>("CoreText_6be9a005889899ab", 1083542482943242, undefined, []);
+export const kBSLNHangingBaseline: number = callSDK<number>("CoreText_c1f28409f8601238", 1083542482943242, undefined, []);
 
 /** var kBSLNIdeographicCenterBaseline: Int { get } */
-export const kBSLNIdeographicCenterBaseline: number = callSDK<number>("CoreText_6be9a005889899ab", 3806665266108299, undefined, []);
+export const kBSLNIdeographicCenterBaseline: number = callSDK<number>("CoreText_c1f28409f8601238", 3806665266108299, undefined, []);
 
 /** var kBSLNIdeographicHighBaseline: Int { get } */
-export const kBSLNIdeographicHighBaseline: number = callSDK<number>("CoreText_6be9a005889899ab", 3451246817233484, undefined, []);
+export const kBSLNIdeographicHighBaseline: number = callSDK<number>("CoreText_c1f28409f8601238", 3451246817233484, undefined, []);
 
 /** var kBSLNIdeographicLowBaseline: Int { get } */
-export const kBSLNIdeographicLowBaseline: number = callSDK<number>("CoreText_6be9a005889899ab", 4111007418870131, undefined, []);
+export const kBSLNIdeographicLowBaseline: number = callSDK<number>("CoreText_c1f28409f8601238", 4111007418870131, undefined, []);
 
 /** var kBSLNLastBaseline: Int { get } */
-export const kBSLNLastBaseline: number = callSDK<number>("CoreText_6be9a005889899ab", 725306081571263, undefined, []);
+export const kBSLNLastBaseline: number = callSDK<number>("CoreText_c1f28409f8601238", 725306081571263, undefined, []);
 
 /** var kBSLNMathBaseline: Int { get } */
-export const kBSLNMathBaseline: number = callSDK<number>("CoreText_6be9a005889899ab", 3838678425939102, undefined, []);
+export const kBSLNMathBaseline: number = callSDK<number>("CoreText_c1f28409f8601238", 3838678425939102, undefined, []);
 
 /** var kBSLNNoBaseline: Int { get } */
-export const kBSLNNoBaseline: number = callSDK<number>("CoreText_6be9a005889899ab", 2594782427667724, undefined, []);
+export const kBSLNNoBaseline: number = callSDK<number>("CoreText_c1f28409f8601238", 2594782427667724, undefined, []);
 
 /** var kBSLNNoBaselineOverride: Int { get } */
-export const kBSLNNoBaselineOverride: number = callSDK<number>("CoreText_6be9a005889899ab", 624560260753614, undefined, []);
+export const kBSLNNoBaselineOverride: number = callSDK<number>("CoreText_c1f28409f8601238", 624560260753614, undefined, []);
 
 /** var kBSLNNumBaselineClasses: Int { get } */
-export const kBSLNNumBaselineClasses: number = callSDK<number>("CoreText_6be9a005889899ab", 4396348807682016, undefined, []);
+export const kBSLNNumBaselineClasses: number = callSDK<number>("CoreText_c1f28409f8601238", 4396348807682016, undefined, []);
 
 /** var kBSLNRomanBaseline: Int { get } */
-export const kBSLNRomanBaseline: number = callSDK<number>("CoreText_6be9a005889899ab", 3956425910960689, undefined, []);
+export const kBSLNRomanBaseline: number = callSDK<number>("CoreText_c1f28409f8601238", 3956425910960689, undefined, []);
 
 /** var kBSLNControlPointFormatNoMap: Int { get } */
-export const kBSLNControlPointFormatNoMap: number = callSDK<number>("CoreText_6be9a005889899ab", 2300348260028477, undefined, []);
+export const kBSLNControlPointFormatNoMap: number = callSDK<number>("CoreText_c1f28409f8601238", 2300348260028477, undefined, []);
 
 /** var kBSLNControlPointFormatWithMap: Int { get } */
-export const kBSLNControlPointFormatWithMap: number = callSDK<number>("CoreText_6be9a005889899ab", 3302490519680227, undefined, []);
+export const kBSLNControlPointFormatWithMap: number = callSDK<number>("CoreText_c1f28409f8601238", 3302490519680227, undefined, []);
 
 /** var kBSLNCurrentVersion: Int { get } */
-export const kBSLNCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 718317780120751, undefined, []);
+export const kBSLNCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 718317780120751, undefined, []);
 
 /** var kBSLNDistanceFormatNoMap: Int { get } */
-export const kBSLNDistanceFormatNoMap: number = callSDK<number>("CoreText_6be9a005889899ab", 1114024542840148, undefined, []);
+export const kBSLNDistanceFormatNoMap: number = callSDK<number>("CoreText_c1f28409f8601238", 1114024542840148, undefined, []);
 
 /** var kBSLNDistanceFormatWithMap: Int { get } */
-export const kBSLNDistanceFormatWithMap: number = callSDK<number>("CoreText_6be9a005889899ab", 850431918150413, undefined, []);
+export const kBSLNDistanceFormatWithMap: number = callSDK<number>("CoreText_c1f28409f8601238", 850431918150413, undefined, []);
 
 /** var kBSLNTag: Int { get } */
-export const kBSLNTag: number = callSDK<number>("CoreText_6be9a005889899ab", 1801767182086244, undefined, []);
+export const kBSLNTag: number = callSDK<number>("CoreText_c1f28409f8601238", 1801767182086244, undefined, []);
 
 /** var kCJKVerticalRomanCenteredSelector: Int { get } */
-export const kCJKVerticalRomanCenteredSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 461893493831888, undefined, []);
+export const kCJKVerticalRomanCenteredSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 461893493831888, undefined, []);
 
 /** var kCJKVerticalRomanHBaselineSelector: Int { get } */
-export const kCJKVerticalRomanHBaselineSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3417002149741801, undefined, []);
+export const kCJKVerticalRomanHBaselineSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3417002149741801, undefined, []);
 
 /** var kCTFontClassMaskShift: Int { get } */
-export const kCTFontClassMaskShift: number = callSDK<number>("CoreText_6be9a005889899ab", 1828275520941637, undefined, []);
+export const kCTFontClassMaskShift: number = callSDK<number>("CoreText_c1f28409f8601238", 1828275520941637, undefined, []);
 
 /** var kCTFontPriorityComputer: Int { get } */
-export const kCTFontPriorityComputer: number = callSDK<number>("CoreText_6be9a005889899ab", 1280738239986615, undefined, []);
+export const kCTFontPriorityComputer: number = callSDK<number>("CoreText_c1f28409f8601238", 1280738239986615, undefined, []);
 
 /** var kCTFontPriorityDynamic: Int { get } */
-export const kCTFontPriorityDynamic: number = callSDK<number>("CoreText_6be9a005889899ab", 3939747435055937, undefined, []);
+export const kCTFontPriorityDynamic: number = callSDK<number>("CoreText_c1f28409f8601238", 3939747435055937, undefined, []);
 
 /** var kCTFontPriorityNetwork: Int { get } */
-export const kCTFontPriorityNetwork: number = callSDK<number>("CoreText_6be9a005889899ab", 3962010966269816, undefined, []);
+export const kCTFontPriorityNetwork: number = callSDK<number>("CoreText_c1f28409f8601238", 3962010966269816, undefined, []);
 
 /** var kCTFontPriorityProcess: Int { get } */
-export const kCTFontPriorityProcess: number = callSDK<number>("CoreText_6be9a005889899ab", 2571042478326559, undefined, []);
+export const kCTFontPriorityProcess: number = callSDK<number>("CoreText_c1f28409f8601238", 2571042478326559, undefined, []);
 
 /** var kCTFontPrioritySystem: Int { get } */
-export const kCTFontPrioritySystem: number = callSDK<number>("CoreText_6be9a005889899ab", 3103290906575401, undefined, []);
+export const kCTFontPrioritySystem: number = callSDK<number>("CoreText_c1f28409f8601238", 3103290906575401, undefined, []);
 
 /** var kCTFontPriorityUser: Int { get } */
-export const kCTFontPriorityUser: number = callSDK<number>("CoreText_6be9a005889899ab", 4398632135356342, undefined, []);
+export const kCTFontPriorityUser: number = callSDK<number>("CoreText_c1f28409f8601238", 4398632135356342, undefined, []);
 
 /** var kCTFontTableAcnt: Int { get } */
-export const kCTFontTableAcnt: number = callSDK<number>("CoreText_6be9a005889899ab", 2861061474825238, undefined, []);
+export const kCTFontTableAcnt: number = callSDK<number>("CoreText_c1f28409f8601238", 2861061474825238, undefined, []);
 
 /** var kCTFontTableAnkr: Int { get } */
-export const kCTFontTableAnkr: number = callSDK<number>("CoreText_6be9a005889899ab", 2622279305787808, undefined, []);
+export const kCTFontTableAnkr: number = callSDK<number>("CoreText_c1f28409f8601238", 2622279305787808, undefined, []);
 
 /** var kCTFontTableAvar: Int { get } */
-export const kCTFontTableAvar: number = callSDK<number>("CoreText_6be9a005889899ab", 1241301605749310, undefined, []);
+export const kCTFontTableAvar: number = callSDK<number>("CoreText_c1f28409f8601238", 1241301605749310, undefined, []);
 
 /** var kCTFontTableBASE: Int { get } */
-export const kCTFontTableBASE: number = callSDK<number>("CoreText_6be9a005889899ab", 1066012886286992, undefined, []);
+export const kCTFontTableBASE: number = callSDK<number>("CoreText_c1f28409f8601238", 1066012886286992, undefined, []);
 
 /** var kCTFontTableBdat: Int { get } */
-export const kCTFontTableBdat: number = callSDK<number>("CoreText_6be9a005889899ab", 4127028095876201, undefined, []);
+export const kCTFontTableBdat: number = callSDK<number>("CoreText_c1f28409f8601238", 4127028095876201, undefined, []);
 
 /** var kCTFontTableBhed: Int { get } */
-export const kCTFontTableBhed: number = callSDK<number>("CoreText_6be9a005889899ab", 1010850312762162, undefined, []);
+export const kCTFontTableBhed: number = callSDK<number>("CoreText_c1f28409f8601238", 1010850312762162, undefined, []);
 
 /** var kCTFontTableBloc: Int { get } */
-export const kCTFontTableBloc: number = callSDK<number>("CoreText_6be9a005889899ab", 4243058950231569, undefined, []);
+export const kCTFontTableBloc: number = callSDK<number>("CoreText_c1f28409f8601238", 4243058950231569, undefined, []);
 
 /** var kCTFontTableBsln: Int { get } */
-export const kCTFontTableBsln: number = callSDK<number>("CoreText_6be9a005889899ab", 2783589743101930, undefined, []);
+export const kCTFontTableBsln: number = callSDK<number>("CoreText_c1f28409f8601238", 2783589743101930, undefined, []);
 
 /** var kCTFontTableCBDT: Int { get } */
-export const kCTFontTableCBDT: number = callSDK<number>("CoreText_6be9a005889899ab", 694831855843306, undefined, []);
+export const kCTFontTableCBDT: number = callSDK<number>("CoreText_c1f28409f8601238", 694831855843306, undefined, []);
 
 /** var kCTFontTableCBLC: Int { get } */
-export const kCTFontTableCBLC: number = callSDK<number>("CoreText_6be9a005889899ab", 2386565557223458, undefined, []);
+export const kCTFontTableCBLC: number = callSDK<number>("CoreText_c1f28409f8601238", 2386565557223458, undefined, []);
 
 /** var kCTFontTableCFF2: Int { get } */
-export const kCTFontTableCFF2: number = callSDK<number>("CoreText_6be9a005889899ab", 519650347954687, undefined, []);
+export const kCTFontTableCFF2: number = callSDK<number>("CoreText_c1f28409f8601238", 519650347954687, undefined, []);
 
 /** var kCTFontTableCFF: Int { get } */
-export const kCTFontTableCFF: number = callSDK<number>("CoreText_6be9a005889899ab", 2543948050561373, undefined, []);
+export const kCTFontTableCFF: number = callSDK<number>("CoreText_c1f28409f8601238", 2543948050561373, undefined, []);
 
 /** var kCTFontTableCOLR: Int { get } */
-export const kCTFontTableCOLR: number = callSDK<number>("CoreText_6be9a005889899ab", 3574635715785695, undefined, []);
+export const kCTFontTableCOLR: number = callSDK<number>("CoreText_c1f28409f8601238", 3574635715785695, undefined, []);
 
 /** var kCTFontTableCPAL: Int { get } */
-export const kCTFontTableCPAL: number = callSDK<number>("CoreText_6be9a005889899ab", 3723210042189645, undefined, []);
+export const kCTFontTableCPAL: number = callSDK<number>("CoreText_c1f28409f8601238", 3723210042189645, undefined, []);
 
 /** var kCTFontTableCidg: Int { get } */
-export const kCTFontTableCidg: number = callSDK<number>("CoreText_6be9a005889899ab", 3015444629750600, undefined, []);
+export const kCTFontTableCidg: number = callSDK<number>("CoreText_c1f28409f8601238", 3015444629750600, undefined, []);
 
 /** var kCTFontTableCmap: Int { get } */
-export const kCTFontTableCmap: number = callSDK<number>("CoreText_6be9a005889899ab", 2701062966060261, undefined, []);
+export const kCTFontTableCmap: number = callSDK<number>("CoreText_c1f28409f8601238", 2701062966060261, undefined, []);
 
 /** var kCTFontTableCvar: Int { get } */
-export const kCTFontTableCvar: number = callSDK<number>("CoreText_6be9a005889899ab", 616323658900467, undefined, []);
+export const kCTFontTableCvar: number = callSDK<number>("CoreText_c1f28409f8601238", 616323658900467, undefined, []);
 
 /** var kCTFontTableCvt: Int { get } */
-export const kCTFontTableCvt: number = callSDK<number>("CoreText_6be9a005889899ab", 803213803989311, undefined, []);
+export const kCTFontTableCvt: number = callSDK<number>("CoreText_c1f28409f8601238", 803213803989311, undefined, []);
 
 /** var kCTFontTableDSIG: Int { get } */
-export const kCTFontTableDSIG: number = callSDK<number>("CoreText_6be9a005889899ab", 3531709478582061, undefined, []);
+export const kCTFontTableDSIG: number = callSDK<number>("CoreText_c1f28409f8601238", 3531709478582061, undefined, []);
 
 /** var kCTFontTableEBDT: Int { get } */
-export const kCTFontTableEBDT: number = callSDK<number>("CoreText_6be9a005889899ab", 163974141256236, undefined, []);
+export const kCTFontTableEBDT: number = callSDK<number>("CoreText_c1f28409f8601238", 163974141256236, undefined, []);
 
 /** var kCTFontTableEBLC: Int { get } */
-export const kCTFontTableEBLC: number = callSDK<number>("CoreText_6be9a005889899ab", 79886730884256, undefined, []);
+export const kCTFontTableEBLC: number = callSDK<number>("CoreText_c1f28409f8601238", 79886730884256, undefined, []);
 
 /** var kCTFontTableEBSC: Int { get } */
-export const kCTFontTableEBSC: number = callSDK<number>("CoreText_6be9a005889899ab", 2629375682696616, undefined, []);
+export const kCTFontTableEBSC: number = callSDK<number>("CoreText_c1f28409f8601238", 2629375682696616, undefined, []);
 
 /** var kCTFontTableFdsc: Int { get } */
-export const kCTFontTableFdsc: number = callSDK<number>("CoreText_6be9a005889899ab", 3936905633944500, undefined, []);
+export const kCTFontTableFdsc: number = callSDK<number>("CoreText_c1f28409f8601238", 3936905633944500, undefined, []);
 
 /** var kCTFontTableFeat: Int { get } */
-export const kCTFontTableFeat: number = callSDK<number>("CoreText_6be9a005889899ab", 739205623592963, undefined, []);
+export const kCTFontTableFeat: number = callSDK<number>("CoreText_c1f28409f8601238", 739205623592963, undefined, []);
 
 /** var kCTFontTableFmtx: Int { get } */
-export const kCTFontTableFmtx: number = callSDK<number>("CoreText_6be9a005889899ab", 1774120880613007, undefined, []);
+export const kCTFontTableFmtx: number = callSDK<number>("CoreText_c1f28409f8601238", 1774120880613007, undefined, []);
 
 /** var kCTFontTableFond: Int { get } */
-export const kCTFontTableFond: number = callSDK<number>("CoreText_6be9a005889899ab", 976574918634057, undefined, []);
+export const kCTFontTableFond: number = callSDK<number>("CoreText_c1f28409f8601238", 976574918634057, undefined, []);
 
 /** var kCTFontTableFpgm: Int { get } */
-export const kCTFontTableFpgm: number = callSDK<number>("CoreText_6be9a005889899ab", 2520799103399987, undefined, []);
+export const kCTFontTableFpgm: number = callSDK<number>("CoreText_c1f28409f8601238", 2520799103399987, undefined, []);
 
 /** var kCTFontTableFvar: Int { get } */
-export const kCTFontTableFvar: number = callSDK<number>("CoreText_6be9a005889899ab", 1633652964366839, undefined, []);
+export const kCTFontTableFvar: number = callSDK<number>("CoreText_c1f28409f8601238", 1633652964366839, undefined, []);
 
 /** var kCTFontTableGDEF: Int { get } */
-export const kCTFontTableGDEF: number = callSDK<number>("CoreText_6be9a005889899ab", 3050561982854068, undefined, []);
+export const kCTFontTableGDEF: number = callSDK<number>("CoreText_c1f28409f8601238", 3050561982854068, undefined, []);
 
 /** var kCTFontTableGPOS: Int { get } */
-export const kCTFontTableGPOS: number = callSDK<number>("CoreText_6be9a005889899ab", 3992837148051219, undefined, []);
+export const kCTFontTableGPOS: number = callSDK<number>("CoreText_c1f28409f8601238", 3992837148051219, undefined, []);
 
 /** var kCTFontTableGSUB: Int { get } */
-export const kCTFontTableGSUB: number = callSDK<number>("CoreText_6be9a005889899ab", 4453611313078971, undefined, []);
+export const kCTFontTableGSUB: number = callSDK<number>("CoreText_c1f28409f8601238", 4453611313078971, undefined, []);
 
 /** var kCTFontTableGasp: Int { get } */
-export const kCTFontTableGasp: number = callSDK<number>("CoreText_6be9a005889899ab", 209965506392706, undefined, []);
+export const kCTFontTableGasp: number = callSDK<number>("CoreText_c1f28409f8601238", 209965506392706, undefined, []);
 
 /** var kCTFontTableGlyf: Int { get } */
-export const kCTFontTableGlyf: number = callSDK<number>("CoreText_6be9a005889899ab", 1055788862962739, undefined, []);
+export const kCTFontTableGlyf: number = callSDK<number>("CoreText_c1f28409f8601238", 1055788862962739, undefined, []);
 
 /** var kCTFontTableGvar: Int { get } */
-export const kCTFontTableGvar: number = callSDK<number>("CoreText_6be9a005889899ab", 1108592622790021, undefined, []);
+export const kCTFontTableGvar: number = callSDK<number>("CoreText_c1f28409f8601238", 1108592622790021, undefined, []);
 
 /** var kCTFontTableHVAR: Int { get } */
-export const kCTFontTableHVAR: number = callSDK<number>("CoreText_6be9a005889899ab", 3061580881836035, undefined, []);
+export const kCTFontTableHVAR: number = callSDK<number>("CoreText_c1f28409f8601238", 3061580881836035, undefined, []);
 
 /** var kCTFontTableHdmx: Int { get } */
-export const kCTFontTableHdmx: number = callSDK<number>("CoreText_6be9a005889899ab", 3642899791438739, undefined, []);
+export const kCTFontTableHdmx: number = callSDK<number>("CoreText_c1f28409f8601238", 3642899791438739, undefined, []);
 
 /** var kCTFontTableHead: Int { get } */
-export const kCTFontTableHead: number = callSDK<number>("CoreText_6be9a005889899ab", 3166290628078930, undefined, []);
+export const kCTFontTableHead: number = callSDK<number>("CoreText_c1f28409f8601238", 3166290628078930, undefined, []);
 
 /** var kCTFontTableHhea: Int { get } */
-export const kCTFontTableHhea: number = callSDK<number>("CoreText_6be9a005889899ab", 1931796844336940, undefined, []);
+export const kCTFontTableHhea: number = callSDK<number>("CoreText_c1f28409f8601238", 1931796844336940, undefined, []);
 
 /** var kCTFontTableHmtx: Int { get } */
-export const kCTFontTableHmtx: number = callSDK<number>("CoreText_6be9a005889899ab", 133294580333792, undefined, []);
+export const kCTFontTableHmtx: number = callSDK<number>("CoreText_c1f28409f8601238", 133294580333792, undefined, []);
 
 /** var kCTFontTableHsty: Int { get } */
-export const kCTFontTableHsty: number = callSDK<number>("CoreText_6be9a005889899ab", 2863926316909180, undefined, []);
+export const kCTFontTableHsty: number = callSDK<number>("CoreText_c1f28409f8601238", 2863926316909180, undefined, []);
 
 /** var kCTFontTableJSTF: Int { get } */
-export const kCTFontTableJSTF: number = callSDK<number>("CoreText_6be9a005889899ab", 2841541328387285, undefined, []);
+export const kCTFontTableJSTF: number = callSDK<number>("CoreText_c1f28409f8601238", 2841541328387285, undefined, []);
 
 /** var kCTFontTableJust: Int { get } */
-export const kCTFontTableJust: number = callSDK<number>("CoreText_6be9a005889899ab", 3524440558988287, undefined, []);
+export const kCTFontTableJust: number = callSDK<number>("CoreText_c1f28409f8601238", 3524440558988287, undefined, []);
 
 /** var kCTFontTableKern: Int { get } */
-export const kCTFontTableKern: number = callSDK<number>("CoreText_6be9a005889899ab", 1552521390736240, undefined, []);
+export const kCTFontTableKern: number = callSDK<number>("CoreText_c1f28409f8601238", 1552521390736240, undefined, []);
 
 /** var kCTFontTableKerx: Int { get } */
-export const kCTFontTableKerx: number = callSDK<number>("CoreText_6be9a005889899ab", 101118026515280, undefined, []);
+export const kCTFontTableKerx: number = callSDK<number>("CoreText_c1f28409f8601238", 101118026515280, undefined, []);
 
 /** var kCTFontTableLTSH: Int { get } */
-export const kCTFontTableLTSH: number = callSDK<number>("CoreText_6be9a005889899ab", 4061101290412481, undefined, []);
+export const kCTFontTableLTSH: number = callSDK<number>("CoreText_c1f28409f8601238", 4061101290412481, undefined, []);
 
 /** var kCTFontTableLcar: Int { get } */
-export const kCTFontTableLcar: number = callSDK<number>("CoreText_6be9a005889899ab", 2365271612296884, undefined, []);
+export const kCTFontTableLcar: number = callSDK<number>("CoreText_c1f28409f8601238", 2365271612296884, undefined, []);
 
 /** var kCTFontTableLoca: Int { get } */
-export const kCTFontTableLoca: number = callSDK<number>("CoreText_6be9a005889899ab", 516124911907511, undefined, []);
+export const kCTFontTableLoca: number = callSDK<number>("CoreText_c1f28409f8601238", 516124911907511, undefined, []);
 
 /** var kCTFontTableLtag: Int { get } */
-export const kCTFontTableLtag: number = callSDK<number>("CoreText_6be9a005889899ab", 1283068803589592, undefined, []);
+export const kCTFontTableLtag: number = callSDK<number>("CoreText_c1f28409f8601238", 1283068803589592, undefined, []);
 
 /** var kCTFontTableMATH: Int { get } */
-export const kCTFontTableMATH: number = callSDK<number>("CoreText_6be9a005889899ab", 2156737924693449, undefined, []);
+export const kCTFontTableMATH: number = callSDK<number>("CoreText_c1f28409f8601238", 2156737924693449, undefined, []);
 
 /** var kCTFontTableMERG: Int { get } */
-export const kCTFontTableMERG: number = callSDK<number>("CoreText_6be9a005889899ab", 1302445106913450, undefined, []);
+export const kCTFontTableMERG: number = callSDK<number>("CoreText_c1f28409f8601238", 1302445106913450, undefined, []);
 
 /** var kCTFontTableMVAR: Int { get } */
-export const kCTFontTableMVAR: number = callSDK<number>("CoreText_6be9a005889899ab", 2644980190173424, undefined, []);
+export const kCTFontTableMVAR: number = callSDK<number>("CoreText_c1f28409f8601238", 2644980190173424, undefined, []);
 
 /** var kCTFontTableMaxp: Int { get } */
-export const kCTFontTableMaxp: number = callSDK<number>("CoreText_6be9a005889899ab", 2120195644477479, undefined, []);
+export const kCTFontTableMaxp: number = callSDK<number>("CoreText_c1f28409f8601238", 2120195644477479, undefined, []);
 
 /** var kCTFontTableMeta: Int { get } */
-export const kCTFontTableMeta: number = callSDK<number>("CoreText_6be9a005889899ab", 3818239651322241, undefined, []);
+export const kCTFontTableMeta: number = callSDK<number>("CoreText_c1f28409f8601238", 3818239651322241, undefined, []);
 
 /** var kCTFontTableMort: Int { get } */
-export const kCTFontTableMort: number = callSDK<number>("CoreText_6be9a005889899ab", 1285289582772267, undefined, []);
+export const kCTFontTableMort: number = callSDK<number>("CoreText_c1f28409f8601238", 1285289582772267, undefined, []);
 
 /** var kCTFontTableMorx: Int { get } */
-export const kCTFontTableMorx: number = callSDK<number>("CoreText_6be9a005889899ab", 3366950944477116, undefined, []);
+export const kCTFontTableMorx: number = callSDK<number>("CoreText_c1f28409f8601238", 3366950944477116, undefined, []);
 
 /** var kCTFontTableName: Int { get } */
-export const kCTFontTableName: number = callSDK<number>("CoreText_6be9a005889899ab", 3537399425253639, undefined, []);
+export const kCTFontTableName: number = callSDK<number>("CoreText_c1f28409f8601238", 3537399425253639, undefined, []);
 
 /** var kCTFontTableOS2: Int { get } */
-export const kCTFontTableOS2: number = callSDK<number>("CoreText_6be9a005889899ab", 3028146447719514, undefined, []);
+export const kCTFontTableOS2: number = callSDK<number>("CoreText_c1f28409f8601238", 3028146447719514, undefined, []);
 
 /** var kCTFontTableOpbd: Int { get } */
-export const kCTFontTableOpbd: number = callSDK<number>("CoreText_6be9a005889899ab", 2366876488589644, undefined, []);
+export const kCTFontTableOpbd: number = callSDK<number>("CoreText_c1f28409f8601238", 2366876488589644, undefined, []);
 
 /** var kCTFontTablePCLT: Int { get } */
-export const kCTFontTablePCLT: number = callSDK<number>("CoreText_6be9a005889899ab", 4103849683658490, undefined, []);
+export const kCTFontTablePCLT: number = callSDK<number>("CoreText_c1f28409f8601238", 4103849683658490, undefined, []);
 
 /** var kCTFontTablePost: Int { get } */
-export const kCTFontTablePost: number = callSDK<number>("CoreText_6be9a005889899ab", 1395650787003729, undefined, []);
+export const kCTFontTablePost: number = callSDK<number>("CoreText_c1f28409f8601238", 1395650787003729, undefined, []);
 
 /** var kCTFontTablePrep: Int { get } */
-export const kCTFontTablePrep: number = callSDK<number>("CoreText_6be9a005889899ab", 4497488038752688, undefined, []);
+export const kCTFontTablePrep: number = callSDK<number>("CoreText_c1f28409f8601238", 4497488038752688, undefined, []);
 
 /** var kCTFontTableProp: Int { get } */
-export const kCTFontTableProp: number = callSDK<number>("CoreText_6be9a005889899ab", 4170244437912587, undefined, []);
+export const kCTFontTableProp: number = callSDK<number>("CoreText_c1f28409f8601238", 4170244437912587, undefined, []);
 
 /** var kCTFontTableSTAT: Int { get } */
-export const kCTFontTableSTAT: number = callSDK<number>("CoreText_6be9a005889899ab", 1173190342323041, undefined, []);
+export const kCTFontTableSTAT: number = callSDK<number>("CoreText_c1f28409f8601238", 1173190342323041, undefined, []);
 
 /** var kCTFontTableSVG: Int { get } */
-export const kCTFontTableSVG: number = callSDK<number>("CoreText_6be9a005889899ab", 2193587706493839, undefined, []);
+export const kCTFontTableSVG: number = callSDK<number>("CoreText_c1f28409f8601238", 2193587706493839, undefined, []);
 
 /** var kCTFontTableSbit: Int { get } */
-export const kCTFontTableSbit: number = callSDK<number>("CoreText_6be9a005889899ab", 512671829677972, undefined, []);
+export const kCTFontTableSbit: number = callSDK<number>("CoreText_c1f28409f8601238", 512671829677972, undefined, []);
 
 /** var kCTFontTableSbix: Int { get } */
-export const kCTFontTableSbix: number = callSDK<number>("CoreText_6be9a005889899ab", 2356450463568232, undefined, []);
+export const kCTFontTableSbix: number = callSDK<number>("CoreText_c1f28409f8601238", 2356450463568232, undefined, []);
 
 /** var kCTFontTableTrak: Int { get } */
-export const kCTFontTableTrak: number = callSDK<number>("CoreText_6be9a005889899ab", 4238197199875247, undefined, []);
+export const kCTFontTableTrak: number = callSDK<number>("CoreText_c1f28409f8601238", 4238197199875247, undefined, []);
 
 /** var kCTFontTableVDMX: Int { get } */
-export const kCTFontTableVDMX: number = callSDK<number>("CoreText_6be9a005889899ab", 2286852945098053, undefined, []);
+export const kCTFontTableVDMX: number = callSDK<number>("CoreText_c1f28409f8601238", 2286852945098053, undefined, []);
 
 /** var kCTFontTableVORG: Int { get } */
-export const kCTFontTableVORG: number = callSDK<number>("CoreText_6be9a005889899ab", 4268964470579938, undefined, []);
+export const kCTFontTableVORG: number = callSDK<number>("CoreText_c1f28409f8601238", 4268964470579938, undefined, []);
 
 /** var kCTFontTableVVAR: Int { get } */
-export const kCTFontTableVVAR: number = callSDK<number>("CoreText_6be9a005889899ab", 2934255023668848, undefined, []);
+export const kCTFontTableVVAR: number = callSDK<number>("CoreText_c1f28409f8601238", 2934255023668848, undefined, []);
 
 /** var kCTFontTableVhea: Int { get } */
-export const kCTFontTableVhea: number = callSDK<number>("CoreText_6be9a005889899ab", 360485110867441, undefined, []);
+export const kCTFontTableVhea: number = callSDK<number>("CoreText_c1f28409f8601238", 360485110867441, undefined, []);
 
 /** var kCTFontTableVmtx: Int { get } */
-export const kCTFontTableVmtx: number = callSDK<number>("CoreText_6be9a005889899ab", 2743223729785359, undefined, []);
+export const kCTFontTableVmtx: number = callSDK<number>("CoreText_c1f28409f8601238", 2743223729785359, undefined, []);
 
 /** var kCTFontTableXref: Int { get } */
-export const kCTFontTableXref: number = callSDK<number>("CoreText_6be9a005889899ab", 4342967597127606, undefined, []);
+export const kCTFontTableXref: number = callSDK<number>("CoreText_c1f28409f8601238", 4342967597127606, undefined, []);
 
 /** var kCTFontTableZapf: Int { get } */
-export const kCTFontTableZapf: number = callSDK<number>("CoreText_6be9a005889899ab", 445047456844202, undefined, []);
+export const kCTFontTableZapf: number = callSDK<number>("CoreText_c1f28409f8601238", 445047456844202, undefined, []);
 
 /** var kCTRunDelegateCurrentVersion: Int { get } */
-export const kCTRunDelegateCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 1995460874253682, undefined, []);
+export const kCTRunDelegateCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 1995460874253682, undefined, []);
 
 /** var kCTRunDelegateVersion1: Int { get } */
-export const kCTRunDelegateVersion1: number = callSDK<number>("CoreText_6be9a005889899ab", 263723228738380, undefined, []);
+export const kCTRunDelegateVersion1: number = callSDK<number>("CoreText_c1f28409f8601238", 263723228738380, undefined, []);
 
 /** var kCTWritingDirectionEmbedding: Int { get } */
-export const kCTWritingDirectionEmbedding: number = callSDK<number>("CoreText_6be9a005889899ab", 3283714232461393, undefined, []);
+export const kCTWritingDirectionEmbedding: number = callSDK<number>("CoreText_c1f28409f8601238", 3283714232461393, undefined, []);
 
 /** var kCTWritingDirectionOverride: Int { get } */
-export const kCTWritingDirectionOverride: number = callSDK<number>("CoreText_6be9a005889899ab", 3115692558084760, undefined, []);
+export const kCTWritingDirectionOverride: number = callSDK<number>("CoreText_c1f28409f8601238", 3115692558084760, undefined, []);
 
 /** var kCanonicalCompositionOffSelector: Int { get } */
-export const kCanonicalCompositionOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1514981924800679, undefined, []);
+export const kCanonicalCompositionOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1514981924800679, undefined, []);
 
 /** var kCanonicalCompositionOnSelector: Int { get } */
-export const kCanonicalCompositionOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3496836359147423, undefined, []);
+export const kCanonicalCompositionOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3496836359147423, undefined, []);
 
 /** var kCompatibilityCompositionOffSelector: Int { get } */
-export const kCompatibilityCompositionOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2662930227344922, undefined, []);
+export const kCompatibilityCompositionOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2662930227344922, undefined, []);
 
 /** var kCompatibilityCompositionOnSelector: Int { get } */
-export const kCompatibilityCompositionOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3194467586769364, undefined, []);
+export const kCompatibilityCompositionOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3194467586769364, undefined, []);
 
 /** var kTranscodingCompositionOffSelector: Int { get } */
-export const kTranscodingCompositionOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1051924030813805, undefined, []);
+export const kTranscodingCompositionOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1051924030813805, undefined, []);
 
 /** var kTranscodingCompositionOnSelector: Int { get } */
-export const kTranscodingCompositionOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2441813082805739, undefined, []);
+export const kTranscodingCompositionOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2441813082805739, undefined, []);
 
 /** var kCaseSensitiveLayoutOffSelector: Int { get } */
-export const kCaseSensitiveLayoutOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1774178798687053, undefined, []);
+export const kCaseSensitiveLayoutOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1774178798687053, undefined, []);
 
 /** var kCaseSensitiveLayoutOnSelector: Int { get } */
-export const kCaseSensitiveLayoutOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2596732344252607, undefined, []);
+export const kCaseSensitiveLayoutOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2596732344252607, undefined, []);
 
 /** var kCaseSensitiveSpacingOffSelector: Int { get } */
-export const kCaseSensitiveSpacingOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2209010207500678, undefined, []);
+export const kCaseSensitiveSpacingOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2209010207500678, undefined, []);
 
 /** var kCaseSensitiveSpacingOnSelector: Int { get } */
-export const kCaseSensitiveSpacingOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 815387422754460, undefined, []);
+export const kCaseSensitiveSpacingOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 815387422754460, undefined, []);
 
 /** var kContextualAlternatesOffSelector: Int { get } */
-export const kContextualAlternatesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4105047953633531, undefined, []);
+export const kContextualAlternatesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4105047953633531, undefined, []);
 
 /** var kContextualAlternatesOnSelector: Int { get } */
-export const kContextualAlternatesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 789696793137391, undefined, []);
+export const kContextualAlternatesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 789696793137391, undefined, []);
 
 /** var kContextualSwashAlternatesOffSelector: Int { get } */
-export const kContextualSwashAlternatesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2981301686617430, undefined, []);
+export const kContextualSwashAlternatesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2981301686617430, undefined, []);
 
 /** var kContextualSwashAlternatesOnSelector: Int { get } */
-export const kContextualSwashAlternatesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1185686804225933, undefined, []);
+export const kContextualSwashAlternatesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1185686804225933, undefined, []);
 
 /** var kSwashAlternatesOffSelector: Int { get } */
-export const kSwashAlternatesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4417895057009739, undefined, []);
+export const kSwashAlternatesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4417895057009739, undefined, []);
 
 /** var kSwashAlternatesOnSelector: Int { get } */
-export const kSwashAlternatesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3969300291301284, undefined, []);
+export const kSwashAlternatesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3969300291301284, undefined, []);
 
 /** var kDefaultLowerCaseSelector: Int { get } */
-export const kDefaultLowerCaseSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2480712717436352, undefined, []);
+export const kDefaultLowerCaseSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2480712717436352, undefined, []);
 
 /** var kLowerCasePetiteCapsSelector: Int { get } */
-export const kLowerCasePetiteCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4036254219573690, undefined, []);
+export const kLowerCasePetiteCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4036254219573690, undefined, []);
 
 /** var kLowerCaseSmallCapsSelector: Int { get } */
-export const kLowerCaseSmallCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4200032086459243, undefined, []);
+export const kLowerCaseSmallCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4200032086459243, undefined, []);
 
 /** var kDefaultUpperCaseSelector: Int { get } */
-export const kDefaultUpperCaseSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1882817007926176, undefined, []);
+export const kDefaultUpperCaseSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1882817007926176, undefined, []);
 
 /** var kUpperCasePetiteCapsSelector: Int { get } */
-export const kUpperCasePetiteCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1386825210420682, undefined, []);
+export const kUpperCasePetiteCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1386825210420682, undefined, []);
 
 /** var kUpperCaseSmallCapsSelector: Int { get } */
-export const kUpperCaseSmallCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2358660772811924, undefined, []);
+export const kUpperCaseSmallCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2358660772811924, undefined, []);
 
 /** var kDesignLevel1Selector: Int { get } */
-export const kDesignLevel1Selector: number = callSDK<number>("CoreText_6be9a005889899ab", 3136026449588467, undefined, []);
+export const kDesignLevel1Selector: number = callSDK<number>("CoreText_c1f28409f8601238", 3136026449588467, undefined, []);
 
 /** var kDesignLevel2Selector: Int { get } */
-export const kDesignLevel2Selector: number = callSDK<number>("CoreText_6be9a005889899ab", 3963931283800690, undefined, []);
+export const kDesignLevel2Selector: number = callSDK<number>("CoreText_c1f28409f8601238", 3963931283800690, undefined, []);
 
 /** var kDesignLevel3Selector: Int { get } */
-export const kDesignLevel3Selector: number = callSDK<number>("CoreText_6be9a005889899ab", 3128528772969613, undefined, []);
+export const kDesignLevel3Selector: number = callSDK<number>("CoreText_c1f28409f8601238", 3128528772969613, undefined, []);
 
 /** var kDesignLevel4Selector: Int { get } */
-export const kDesignLevel4Selector: number = callSDK<number>("CoreText_6be9a005889899ab", 586750971091097, undefined, []);
+export const kDesignLevel4Selector: number = callSDK<number>("CoreText_c1f28409f8601238", 586750971091097, undefined, []);
 
 /** var kDesignLevel5Selector: Int { get } */
-export const kDesignLevel5Selector: number = callSDK<number>("CoreText_6be9a005889899ab", 1685373578255461, undefined, []);
+export const kDesignLevel5Selector: number = callSDK<number>("CoreText_c1f28409f8601238", 1685373578255461, undefined, []);
 
 /** var kFontCopyrightName: Int { get } */
-export const kFontCopyrightName: number = callSDK<number>("CoreText_6be9a005889899ab", 459020996101035, undefined, []);
+export const kFontCopyrightName: number = callSDK<number>("CoreText_c1f28409f8601238", 459020996101035, undefined, []);
 
 /** var kFontDescriptionName: Int { get } */
-export const kFontDescriptionName: number = callSDK<number>("CoreText_6be9a005889899ab", 2466650944177661, undefined, []);
+export const kFontDescriptionName: number = callSDK<number>("CoreText_c1f28409f8601238", 2466650944177661, undefined, []);
 
 /** var kFontDesignerName: Int { get } */
-export const kFontDesignerName: number = callSDK<number>("CoreText_6be9a005889899ab", 1355207902227303, undefined, []);
+export const kFontDesignerName: number = callSDK<number>("CoreText_c1f28409f8601238", 1355207902227303, undefined, []);
 
 /** var kFontDesignerURLName: Int { get } */
-export const kFontDesignerURLName: number = callSDK<number>("CoreText_6be9a005889899ab", 2176067157754688, undefined, []);
+export const kFontDesignerURLName: number = callSDK<number>("CoreText_c1f28409f8601238", 2176067157754688, undefined, []);
 
 /** var kFontFamilyName: Int { get } */
-export const kFontFamilyName: number = callSDK<number>("CoreText_6be9a005889899ab", 3227727316815827, undefined, []);
+export const kFontFamilyName: number = callSDK<number>("CoreText_c1f28409f8601238", 3227727316815827, undefined, []);
 
 /** var kFontFullName: Int { get } */
-export const kFontFullName: number = callSDK<number>("CoreText_6be9a005889899ab", 3542662272689030, undefined, []);
+export const kFontFullName: number = callSDK<number>("CoreText_c1f28409f8601238", 3542662272689030, undefined, []);
 
 /** var kFontLastReservedName: Int { get } */
-export const kFontLastReservedName: number = callSDK<number>("CoreText_6be9a005889899ab", 1016415920722314, undefined, []);
+export const kFontLastReservedName: number = callSDK<number>("CoreText_c1f28409f8601238", 1016415920722314, undefined, []);
 
 /** var kFontLicenseDescriptionName: Int { get } */
-export const kFontLicenseDescriptionName: number = callSDK<number>("CoreText_6be9a005889899ab", 278537917968670, undefined, []);
+export const kFontLicenseDescriptionName: number = callSDK<number>("CoreText_c1f28409f8601238", 278537917968670, undefined, []);
 
 /** var kFontLicenseInfoURLName: Int { get } */
-export const kFontLicenseInfoURLName: number = callSDK<number>("CoreText_6be9a005889899ab", 3473464140692507, undefined, []);
+export const kFontLicenseInfoURLName: number = callSDK<number>("CoreText_c1f28409f8601238", 3473464140692507, undefined, []);
 
 /** var kFontMacCompatibleFullName: Int { get } */
-export const kFontMacCompatibleFullName: number = callSDK<number>("CoreText_6be9a005889899ab", 4119117077600045, undefined, []);
+export const kFontMacCompatibleFullName: number = callSDK<number>("CoreText_c1f28409f8601238", 4119117077600045, undefined, []);
 
 /** var kFontManufacturerName: Int { get } */
-export const kFontManufacturerName: number = callSDK<number>("CoreText_6be9a005889899ab", 3044721139888847, undefined, []);
+export const kFontManufacturerName: number = callSDK<number>("CoreText_c1f28409f8601238", 3044721139888847, undefined, []);
 
 /** var kFontPostScriptCIDName: Int { get } */
-export const kFontPostScriptCIDName: number = callSDK<number>("CoreText_6be9a005889899ab", 4102515046804474, undefined, []);
+export const kFontPostScriptCIDName: number = callSDK<number>("CoreText_c1f28409f8601238", 4102515046804474, undefined, []);
 
 /** var kFontPostscriptName: Int { get } */
-export const kFontPostscriptName: number = callSDK<number>("CoreText_6be9a005889899ab", 3367707163847661, undefined, []);
+export const kFontPostscriptName: number = callSDK<number>("CoreText_c1f28409f8601238", 3367707163847661, undefined, []);
 
 /** var kFontPreferredFamilyName: Int { get } */
-export const kFontPreferredFamilyName: number = callSDK<number>("CoreText_6be9a005889899ab", 1532250642929868, undefined, []);
+export const kFontPreferredFamilyName: number = callSDK<number>("CoreText_c1f28409f8601238", 1532250642929868, undefined, []);
 
 /** var kFontPreferredSubfamilyName: Int { get } */
-export const kFontPreferredSubfamilyName: number = callSDK<number>("CoreText_6be9a005889899ab", 3592092112756279, undefined, []);
+export const kFontPreferredSubfamilyName: number = callSDK<number>("CoreText_c1f28409f8601238", 3592092112756279, undefined, []);
 
 /** var kFontSampleTextName: Int { get } */
-export const kFontSampleTextName: number = callSDK<number>("CoreText_6be9a005889899ab", 506382755107816, undefined, []);
+export const kFontSampleTextName: number = callSDK<number>("CoreText_c1f28409f8601238", 506382755107816, undefined, []);
 
 /** var kFontStyleName: Int { get } */
-export const kFontStyleName: number = callSDK<number>("CoreText_6be9a005889899ab", 2237400669524627, undefined, []);
+export const kFontStyleName: number = callSDK<number>("CoreText_c1f28409f8601238", 2237400669524627, undefined, []);
 
 /** var kFontTrademarkName: Int { get } */
-export const kFontTrademarkName: number = callSDK<number>("CoreText_6be9a005889899ab", 109663594232544, undefined, []);
+export const kFontTrademarkName: number = callSDK<number>("CoreText_c1f28409f8601238", 109663594232544, undefined, []);
 
 /** var kFontUniqueName: Int { get } */
-export const kFontUniqueName: number = callSDK<number>("CoreText_6be9a005889899ab", 608702717922339, undefined, []);
+export const kFontUniqueName: number = callSDK<number>("CoreText_c1f28409f8601238", 608702717922339, undefined, []);
 
 /** var kFontVendorURLName: Int { get } */
-export const kFontVendorURLName: number = callSDK<number>("CoreText_6be9a005889899ab", 2605688416201444, undefined, []);
+export const kFontVendorURLName: number = callSDK<number>("CoreText_c1f28409f8601238", 2605688416201444, undefined, []);
 
 /** var kFontVersionName: Int { get } */
-export const kFontVersionName: number = callSDK<number>("CoreText_6be9a005889899ab", 3368542248854859, undefined, []);
+export const kFontVersionName: number = callSDK<number>("CoreText_c1f28409f8601238", 3368542248854859, undefined, []);
 
 /** var kFontCustom16BitScript: Int { get } */
-export const kFontCustom16BitScript: number = callSDK<number>("CoreText_6be9a005889899ab", 1100101506829433, undefined, []);
+export const kFontCustom16BitScript: number = callSDK<number>("CoreText_c1f28409f8601238", 1100101506829433, undefined, []);
 
 /** var kFontCustom816BitScript: Int { get } */
-export const kFontCustom816BitScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3551323351793695, undefined, []);
+export const kFontCustom816BitScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3551323351793695, undefined, []);
 
 /** var kFontCustom8BitScript: Int { get } */
-export const kFontCustom8BitScript: number = callSDK<number>("CoreText_6be9a005889899ab", 990465605369268, undefined, []);
+export const kFontCustom8BitScript: number = callSDK<number>("CoreText_c1f28409f8601238", 990465605369268, undefined, []);
 
 /** var kFontAlbanianLanguage: Int { get } */
-export const kFontAlbanianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1975571057138829, undefined, []);
+export const kFontAlbanianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1975571057138829, undefined, []);
 
 /** var kFontAmharicLanguage: Int { get } */
-export const kFontAmharicLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3360829275203509, undefined, []);
+export const kFontAmharicLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3360829275203509, undefined, []);
 
 /** var kFontArabicLanguage: Int { get } */
-export const kFontArabicLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3297528014446318, undefined, []);
+export const kFontArabicLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3297528014446318, undefined, []);
 
 /** var kFontArmenianLanguage: Int { get } */
-export const kFontArmenianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3456205585198943, undefined, []);
+export const kFontArmenianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3456205585198943, undefined, []);
 
 /** var kFontAssameseLanguage: Int { get } */
-export const kFontAssameseLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4168075000175744, undefined, []);
+export const kFontAssameseLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4168075000175744, undefined, []);
 
 /** var kFontAymaraLanguage: Int { get } */
-export const kFontAymaraLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 348887282277963, undefined, []);
+export const kFontAymaraLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 348887282277963, undefined, []);
 
 /** var kFontAzerbaijanArLanguage: Int { get } */
-export const kFontAzerbaijanArLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2068393924399586, undefined, []);
+export const kFontAzerbaijanArLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2068393924399586, undefined, []);
 
 /** var kFontAzerbaijaniLanguage: Int { get } */
-export const kFontAzerbaijaniLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3114414370497543, undefined, []);
+export const kFontAzerbaijaniLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3114414370497543, undefined, []);
 
 /** var kFontBasqueLanguage: Int { get } */
-export const kFontBasqueLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1209460300043706, undefined, []);
+export const kFontBasqueLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1209460300043706, undefined, []);
 
 /** var kFontBengaliLanguage: Int { get } */
-export const kFontBengaliLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3724510647321062, undefined, []);
+export const kFontBengaliLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3724510647321062, undefined, []);
 
 /** var kFontBulgarianLanguage: Int { get } */
-export const kFontBulgarianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1812133995845262, undefined, []);
+export const kFontBulgarianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1812133995845262, undefined, []);
 
 /** var kFontBurmeseLanguage: Int { get } */
-export const kFontBurmeseLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 298172655772568, undefined, []);
+export const kFontBurmeseLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 298172655772568, undefined, []);
 
 /** var kFontByelorussianLanguage: Int { get } */
-export const kFontByelorussianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4385050265084684, undefined, []);
+export const kFontByelorussianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4385050265084684, undefined, []);
 
 /** var kFontCatalanLanguage: Int { get } */
-export const kFontCatalanLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 226617541011832, undefined, []);
+export const kFontCatalanLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 226617541011832, undefined, []);
 
 /** var kFontChewaLanguage: Int { get } */
-export const kFontChewaLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1140178873548291, undefined, []);
+export const kFontChewaLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1140178873548291, undefined, []);
 
 /** var kFontCroatianLanguage: Int { get } */
-export const kFontCroatianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2812054822975009, undefined, []);
+export const kFontCroatianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2812054822975009, undefined, []);
 
 /** var kFontCzechLanguage: Int { get } */
-export const kFontCzechLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 481640524256232, undefined, []);
+export const kFontCzechLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 481640524256232, undefined, []);
 
 /** var kFontDanishLanguage: Int { get } */
-export const kFontDanishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1711501242434363, undefined, []);
+export const kFontDanishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1711501242434363, undefined, []);
 
 /** var kFontDutchLanguage: Int { get } */
-export const kFontDutchLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3810432525909451, undefined, []);
+export const kFontDutchLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3810432525909451, undefined, []);
 
 /** var kFontDzongkhaLanguage: Int { get } */
-export const kFontDzongkhaLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2871538861415889, undefined, []);
+export const kFontDzongkhaLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2871538861415889, undefined, []);
 
 /** var kFontEnglishLanguage: Int { get } */
-export const kFontEnglishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2677884310646204, undefined, []);
+export const kFontEnglishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2677884310646204, undefined, []);
 
 /** var kFontEsperantoLanguage: Int { get } */
-export const kFontEsperantoLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 453882325706397, undefined, []);
+export const kFontEsperantoLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 453882325706397, undefined, []);
 
 /** var kFontEstonianLanguage: Int { get } */
-export const kFontEstonianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 50994754566937, undefined, []);
+export const kFontEstonianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 50994754566937, undefined, []);
 
 /** var kFontFaeroeseLanguage: Int { get } */
-export const kFontFaeroeseLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3748017933508030, undefined, []);
+export const kFontFaeroeseLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3748017933508030, undefined, []);
 
 /** var kFontFarsiLanguage: Int { get } */
-export const kFontFarsiLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1502012538489031, undefined, []);
+export const kFontFarsiLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1502012538489031, undefined, []);
 
 /** var kFontFinnishLanguage: Int { get } */
-export const kFontFinnishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1291884488623817, undefined, []);
+export const kFontFinnishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1291884488623817, undefined, []);
 
 /** var kFontFlemishLanguage: Int { get } */
-export const kFontFlemishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 58715507171318, undefined, []);
+export const kFontFlemishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 58715507171318, undefined, []);
 
 /** var kFontFrenchLanguage: Int { get } */
-export const kFontFrenchLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2693117873457123, undefined, []);
+export const kFontFrenchLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2693117873457123, undefined, []);
 
 /** var kFontGallaLanguage: Int { get } */
-export const kFontGallaLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3536623338098194, undefined, []);
+export const kFontGallaLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3536623338098194, undefined, []);
 
 /** var kFontGeorgianLanguage: Int { get } */
-export const kFontGeorgianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2584796216630920, undefined, []);
+export const kFontGeorgianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2584796216630920, undefined, []);
 
 /** var kFontGermanLanguage: Int { get } */
-export const kFontGermanLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4460721274691639, undefined, []);
+export const kFontGermanLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4460721274691639, undefined, []);
 
 /** var kFontGreekLanguage: Int { get } */
-export const kFontGreekLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4149751448456056, undefined, []);
+export const kFontGreekLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4149751448456056, undefined, []);
 
 /** var kFontGuaraniLanguage: Int { get } */
-export const kFontGuaraniLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3726060021986378, undefined, []);
+export const kFontGuaraniLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3726060021986378, undefined, []);
 
 /** var kFontGujaratiLanguage: Int { get } */
-export const kFontGujaratiLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 109669432621776, undefined, []);
+export const kFontGujaratiLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 109669432621776, undefined, []);
 
 /** var kFontHebrewLanguage: Int { get } */
-export const kFontHebrewLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4366296758118068, undefined, []);
+export const kFontHebrewLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4366296758118068, undefined, []);
 
 /** var kFontHindiLanguage: Int { get } */
-export const kFontHindiLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1663288699897206, undefined, []);
+export const kFontHindiLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1663288699897206, undefined, []);
 
 /** var kFontHungarianLanguage: Int { get } */
-export const kFontHungarianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3278605557657116, undefined, []);
+export const kFontHungarianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3278605557657116, undefined, []);
 
 /** var kFontIcelandicLanguage: Int { get } */
-export const kFontIcelandicLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1976939595555579, undefined, []);
+export const kFontIcelandicLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1976939595555579, undefined, []);
 
 /** var kFontIndonesianLanguage: Int { get } */
-export const kFontIndonesianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 770139907350786, undefined, []);
+export const kFontIndonesianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 770139907350786, undefined, []);
 
 /** var kFontIrishLanguage: Int { get } */
-export const kFontIrishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2801449125744273, undefined, []);
+export const kFontIrishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2801449125744273, undefined, []);
 
 /** var kFontItalianLanguage: Int { get } */
-export const kFontItalianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3861744365097537, undefined, []);
+export const kFontItalianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3861744365097537, undefined, []);
 
 /** var kFontJapaneseLanguage: Int { get } */
-export const kFontJapaneseLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3590940776593026, undefined, []);
+export const kFontJapaneseLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3590940776593026, undefined, []);
 
 /** var kFontJavaneseRomLanguage: Int { get } */
-export const kFontJavaneseRomLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2557509289189276, undefined, []);
+export const kFontJavaneseRomLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2557509289189276, undefined, []);
 
 /** var kFontKannadaLanguage: Int { get } */
-export const kFontKannadaLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2339933841663948, undefined, []);
+export const kFontKannadaLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2339933841663948, undefined, []);
 
 /** var kFontKashmiriLanguage: Int { get } */
-export const kFontKashmiriLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3623038286655193, undefined, []);
+export const kFontKashmiriLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3623038286655193, undefined, []);
 
 /** var kFontKazakhLanguage: Int { get } */
-export const kFontKazakhLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2733167867259114, undefined, []);
+export const kFontKazakhLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2733167867259114, undefined, []);
 
 /** var kFontKhmerLanguage: Int { get } */
-export const kFontKhmerLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2540175241486559, undefined, []);
+export const kFontKhmerLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2540175241486559, undefined, []);
 
 /** var kFontKirghizLanguage: Int { get } */
-export const kFontKirghizLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1517545266111717, undefined, []);
+export const kFontKirghizLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1517545266111717, undefined, []);
 
 /** var kFontKoreanLanguage: Int { get } */
-export const kFontKoreanLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1847481241511032, undefined, []);
+export const kFontKoreanLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1847481241511032, undefined, []);
 
 /** var kFontKurdishLanguage: Int { get } */
-export const kFontKurdishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1997509851559627, undefined, []);
+export const kFontKurdishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1997509851559627, undefined, []);
 
 /** var kFontLaoLanguage: Int { get } */
-export const kFontLaoLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2097202942739682, undefined, []);
+export const kFontLaoLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2097202942739682, undefined, []);
 
 /** var kFontLappishLanguage: Int { get } */
-export const kFontLappishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1615703619302928, undefined, []);
+export const kFontLappishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1615703619302928, undefined, []);
 
 /** var kFontLatinLanguage: Int { get } */
-export const kFontLatinLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1437427796091898, undefined, []);
+export const kFontLatinLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1437427796091898, undefined, []);
 
 /** var kFontLatvianLanguage: Int { get } */
-export const kFontLatvianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3525113343063677, undefined, []);
+export const kFontLatvianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3525113343063677, undefined, []);
 
 /** var kFontLettishLanguage: Int { get } */
-export const kFontLettishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 850285410665665, undefined, []);
+export const kFontLettishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 850285410665665, undefined, []);
 
 /** var kFontLithuanianLanguage: Int { get } */
-export const kFontLithuanianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 769414409676260, undefined, []);
+export const kFontLithuanianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 769414409676260, undefined, []);
 
 /** var kFontMacedonianLanguage: Int { get } */
-export const kFontMacedonianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2423890034035346, undefined, []);
+export const kFontMacedonianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2423890034035346, undefined, []);
 
 /** var kFontMalagasyLanguage: Int { get } */
-export const kFontMalagasyLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2510801307526168, undefined, []);
+export const kFontMalagasyLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2510801307526168, undefined, []);
 
 /** var kFontMalayArabicLanguage: Int { get } */
-export const kFontMalayArabicLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3924054860957149, undefined, []);
+export const kFontMalayArabicLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3924054860957149, undefined, []);
 
 /** var kFontMalayRomanLanguage: Int { get } */
-export const kFontMalayRomanLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 623621558860352, undefined, []);
+export const kFontMalayRomanLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 623621558860352, undefined, []);
 
 /** var kFontMalayalamLanguage: Int { get } */
-export const kFontMalayalamLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1988807652863918, undefined, []);
+export const kFontMalayalamLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1988807652863918, undefined, []);
 
 /** var kFontMalteseLanguage: Int { get } */
-export const kFontMalteseLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 114718905196390, undefined, []);
+export const kFontMalteseLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 114718905196390, undefined, []);
 
 /** var kFontMarathiLanguage: Int { get } */
-export const kFontMarathiLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1560654382081985, undefined, []);
+export const kFontMarathiLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1560654382081985, undefined, []);
 
 /** var kFontMoldavianLanguage: Int { get } */
-export const kFontMoldavianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 153271214052299, undefined, []);
+export const kFontMoldavianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 153271214052299, undefined, []);
 
 /** var kFontMongolianCyrLanguage: Int { get } */
-export const kFontMongolianCyrLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 829785611996814, undefined, []);
+export const kFontMongolianCyrLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 829785611996814, undefined, []);
 
 /** var kFontMongolianLanguage: Int { get } */
-export const kFontMongolianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2823621989376155, undefined, []);
+export const kFontMongolianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2823621989376155, undefined, []);
 
 /** var kFontNepaliLanguage: Int { get } */
-export const kFontNepaliLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4159585975478679, undefined, []);
+export const kFontNepaliLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4159585975478679, undefined, []);
 
 /** var kFontNorwegianLanguage: Int { get } */
-export const kFontNorwegianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3995852360420885, undefined, []);
+export const kFontNorwegianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3995852360420885, undefined, []);
 
 /** var kFontOriyaLanguage: Int { get } */
-export const kFontOriyaLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3276958545935709, undefined, []);
+export const kFontOriyaLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3276958545935709, undefined, []);
 
 /** var kFontOromoLanguage: Int { get } */
-export const kFontOromoLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1202675587030583, undefined, []);
+export const kFontOromoLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1202675587030583, undefined, []);
 
 /** var kFontPashtoLanguage: Int { get } */
-export const kFontPashtoLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1670947916654698, undefined, []);
+export const kFontPashtoLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1670947916654698, undefined, []);
 
 /** var kFontPersianLanguage: Int { get } */
-export const kFontPersianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 50274548502177, undefined, []);
+export const kFontPersianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 50274548502177, undefined, []);
 
 /** var kFontPolishLanguage: Int { get } */
-export const kFontPolishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3259038406711288, undefined, []);
+export const kFontPolishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3259038406711288, undefined, []);
 
 /** var kFontPortugueseLanguage: Int { get } */
-export const kFontPortugueseLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1866391213904944, undefined, []);
+export const kFontPortugueseLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1866391213904944, undefined, []);
 
 /** var kFontPunjabiLanguage: Int { get } */
-export const kFontPunjabiLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1600935181342425, undefined, []);
+export const kFontPunjabiLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1600935181342425, undefined, []);
 
 /** var kFontQuechuaLanguage: Int { get } */
-export const kFontQuechuaLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2786080702762435, undefined, []);
+export const kFontQuechuaLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2786080702762435, undefined, []);
 
 /** var kFontRomanianLanguage: Int { get } */
-export const kFontRomanianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 878882545534503, undefined, []);
+export const kFontRomanianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 878882545534503, undefined, []);
 
 /** var kFontRuandaLanguage: Int { get } */
-export const kFontRuandaLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2898899428775786, undefined, []);
+export const kFontRuandaLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2898899428775786, undefined, []);
 
 /** var kFontRundiLanguage: Int { get } */
-export const kFontRundiLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2807926487294389, undefined, []);
+export const kFontRundiLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2807926487294389, undefined, []);
 
 /** var kFontRussianLanguage: Int { get } */
-export const kFontRussianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2411914738280147, undefined, []);
+export const kFontRussianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2411914738280147, undefined, []);
 
 /** var kFontSaamiskLanguage: Int { get } */
-export const kFontSaamiskLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1780198005579791, undefined, []);
+export const kFontSaamiskLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1780198005579791, undefined, []);
 
 /** var kFontSanskritLanguage: Int { get } */
-export const kFontSanskritLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3854432325926161, undefined, []);
+export const kFontSanskritLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3854432325926161, undefined, []);
 
 /** var kFontSerbianLanguage: Int { get } */
-export const kFontSerbianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1270537093226503, undefined, []);
+export const kFontSerbianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1270537093226503, undefined, []);
 
 /** var kFontSimpChineseLanguage: Int { get } */
-export const kFontSimpChineseLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4476037567253010, undefined, []);
+export const kFontSimpChineseLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4476037567253010, undefined, []);
 
 /** var kFontSindhiLanguage: Int { get } */
-export const kFontSindhiLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 994335277050467, undefined, []);
+export const kFontSindhiLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 994335277050467, undefined, []);
 
 /** var kFontSinhaleseLanguage: Int { get } */
-export const kFontSinhaleseLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4469232952906373, undefined, []);
+export const kFontSinhaleseLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4469232952906373, undefined, []);
 
 /** var kFontSlovakLanguage: Int { get } */
-export const kFontSlovakLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 415923468265824, undefined, []);
+export const kFontSlovakLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 415923468265824, undefined, []);
 
 /** var kFontSlovenianLanguage: Int { get } */
-export const kFontSlovenianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1519861094798520, undefined, []);
+export const kFontSlovenianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1519861094798520, undefined, []);
 
 /** var kFontSomaliLanguage: Int { get } */
-export const kFontSomaliLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4277676886288862, undefined, []);
+export const kFontSomaliLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4277676886288862, undefined, []);
 
 /** var kFontSpanishLanguage: Int { get } */
-export const kFontSpanishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1538434335785386, undefined, []);
+export const kFontSpanishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1538434335785386, undefined, []);
 
 /** var kFontSundaneseRomLanguage: Int { get } */
-export const kFontSundaneseRomLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 771995598729748, undefined, []);
+export const kFontSundaneseRomLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 771995598729748, undefined, []);
 
 /** var kFontSwahiliLanguage: Int { get } */
-export const kFontSwahiliLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3867258961194905, undefined, []);
+export const kFontSwahiliLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3867258961194905, undefined, []);
 
 /** var kFontSwedishLanguage: Int { get } */
-export const kFontSwedishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 747049320790618, undefined, []);
+export const kFontSwedishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 747049320790618, undefined, []);
 
 /** var kFontTagalogLanguage: Int { get } */
-export const kFontTagalogLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 79548684762834, undefined, []);
+export const kFontTagalogLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 79548684762834, undefined, []);
 
 /** var kFontTajikiLanguage: Int { get } */
-export const kFontTajikiLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 679042838350443, undefined, []);
+export const kFontTajikiLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 679042838350443, undefined, []);
 
 /** var kFontTamilLanguage: Int { get } */
-export const kFontTamilLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1540444186766470, undefined, []);
+export const kFontTamilLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1540444186766470, undefined, []);
 
 /** var kFontTatarLanguage: Int { get } */
-export const kFontTatarLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3435099094119063, undefined, []);
+export const kFontTatarLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3435099094119063, undefined, []);
 
 /** var kFontTeluguLanguage: Int { get } */
-export const kFontTeluguLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4057107746058900, undefined, []);
+export const kFontTeluguLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4057107746058900, undefined, []);
 
 /** var kFontThaiLanguage: Int { get } */
-export const kFontThaiLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 563717315271711, undefined, []);
+export const kFontThaiLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 563717315271711, undefined, []);
 
 /** var kFontTibetanLanguage: Int { get } */
-export const kFontTibetanLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3986646130995485, undefined, []);
+export const kFontTibetanLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3986646130995485, undefined, []);
 
 /** var kFontTigrinyaLanguage: Int { get } */
-export const kFontTigrinyaLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4303688729856697, undefined, []);
+export const kFontTigrinyaLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4303688729856697, undefined, []);
 
 /** var kFontTradChineseLanguage: Int { get } */
-export const kFontTradChineseLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1928481880813113, undefined, []);
+export const kFontTradChineseLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1928481880813113, undefined, []);
 
 /** var kFontTurkishLanguage: Int { get } */
-export const kFontTurkishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4234817297961773, undefined, []);
+export const kFontTurkishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4234817297961773, undefined, []);
 
 /** var kFontTurkmenLanguage: Int { get } */
-export const kFontTurkmenLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 1298300716015468, undefined, []);
+export const kFontTurkmenLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 1298300716015468, undefined, []);
 
 /** var kFontUighurLanguage: Int { get } */
-export const kFontUighurLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3356593752879617, undefined, []);
+export const kFontUighurLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3356593752879617, undefined, []);
 
 /** var kFontUkrainianLanguage: Int { get } */
-export const kFontUkrainianLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2391567470764162, undefined, []);
+export const kFontUkrainianLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2391567470764162, undefined, []);
 
 /** var kFontUrduLanguage: Int { get } */
-export const kFontUrduLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 4237876961984223, undefined, []);
+export const kFontUrduLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 4237876961984223, undefined, []);
 
 /** var kFontUzbekLanguage: Int { get } */
-export const kFontUzbekLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3631889235606398, undefined, []);
+export const kFontUzbekLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3631889235606398, undefined, []);
 
 /** var kFontVietnameseLanguage: Int { get } */
-export const kFontVietnameseLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 3467330617832320, undefined, []);
+export const kFontVietnameseLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 3467330617832320, undefined, []);
 
 /** var kFontWelshLanguage: Int { get } */
-export const kFontWelshLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 2623279538042158, undefined, []);
+export const kFontWelshLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 2623279538042158, undefined, []);
 
 /** var kFontYiddishLanguage: Int { get } */
-export const kFontYiddishLanguage: number = callSDK<number>("CoreText_6be9a005889899ab", 172517604291893, undefined, []);
+export const kFontYiddishLanguage: number = callSDK<number>("CoreText_c1f28409f8601238", 172517604291893, undefined, []);
 
 /** var kFontMicrosoftStandardScript: Int { get } */
-export const kFontMicrosoftStandardScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3767061759071431, undefined, []);
+export const kFontMicrosoftStandardScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3767061759071431, undefined, []);
 
 /** var kFontMicrosoftSymbolScript: Int { get } */
-export const kFontMicrosoftSymbolScript: number = callSDK<number>("CoreText_6be9a005889899ab", 1869566935944641, undefined, []);
+export const kFontMicrosoftSymbolScript: number = callSDK<number>("CoreText_c1f28409f8601238", 1869566935944641, undefined, []);
 
 /** var kFontMicrosoftUCS4Script: Int { get } */
-export const kFontMicrosoftUCS4Script: number = callSDK<number>("CoreText_6be9a005889899ab", 203517820331433, undefined, []);
+export const kFontMicrosoftUCS4Script: number = callSDK<number>("CoreText_c1f28409f8601238", 203517820331433, undefined, []);
 
 /** var kFontNoNameCode: UInt32 { get } */
-export const kFontNoNameCode: number = callSDK<number>("CoreText_6be9a005889899ab", 4113008531907266, undefined, []);
+export const kFontNoNameCode: number = callSDK<number>("CoreText_c1f28409f8601238", 4113008531907266, undefined, []);
 
 /** var kFontNoLanguageCode: UInt32 { get } */
-export const kFontNoLanguageCode: number = callSDK<number>("CoreText_6be9a005889899ab", 2350587984768153, undefined, []);
+export const kFontNoLanguageCode: number = callSDK<number>("CoreText_c1f28409f8601238", 2350587984768153, undefined, []);
 
 /** var kFontNoPlatformCode: UInt32 { get } */
-export const kFontNoPlatformCode: number = callSDK<number>("CoreText_6be9a005889899ab", 4398385246508591, undefined, []);
+export const kFontNoPlatformCode: number = callSDK<number>("CoreText_c1f28409f8601238", 4398385246508591, undefined, []);
 
 /** var kFontNoScriptCode: UInt32 { get } */
-export const kFontNoScriptCode: number = callSDK<number>("CoreText_6be9a005889899ab", 4074981818368219, undefined, []);
+export const kFontNoScriptCode: number = callSDK<number>("CoreText_c1f28409f8601238", 4074981818368219, undefined, []);
 
 /** var kFontAmharicScript: Int { get } */
-export const kFontAmharicScript: number = callSDK<number>("CoreText_6be9a005889899ab", 2894760082713741, undefined, []);
+export const kFontAmharicScript: number = callSDK<number>("CoreText_c1f28409f8601238", 2894760082713741, undefined, []);
 
 /** var kFontArabicScript: Int { get } */
-export const kFontArabicScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3842126014354291, undefined, []);
+export const kFontArabicScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3842126014354291, undefined, []);
 
 /** var kFontArmenianScript: Int { get } */
-export const kFontArmenianScript: number = callSDK<number>("CoreText_6be9a005889899ab", 2195861005176081, undefined, []);
+export const kFontArmenianScript: number = callSDK<number>("CoreText_c1f28409f8601238", 2195861005176081, undefined, []);
 
 /** var kFontBengaliScript: Int { get } */
-export const kFontBengaliScript: number = callSDK<number>("CoreText_6be9a005889899ab", 790732374099673, undefined, []);
+export const kFontBengaliScript: number = callSDK<number>("CoreText_c1f28409f8601238", 790732374099673, undefined, []);
 
 /** var kFontBurmeseScript: Int { get } */
-export const kFontBurmeseScript: number = callSDK<number>("CoreText_6be9a005889899ab", 271887854618911, undefined, []);
+export const kFontBurmeseScript: number = callSDK<number>("CoreText_c1f28409f8601238", 271887854618911, undefined, []);
 
 /** var kFontChineseScript: Int { get } */
-export const kFontChineseScript: number = callSDK<number>("CoreText_6be9a005889899ab", 317086310907791, undefined, []);
+export const kFontChineseScript: number = callSDK<number>("CoreText_c1f28409f8601238", 317086310907791, undefined, []);
 
 /** var kFontCyrillicScript: Int { get } */
-export const kFontCyrillicScript: number = callSDK<number>("CoreText_6be9a005889899ab", 4088144401459283, undefined, []);
+export const kFontCyrillicScript: number = callSDK<number>("CoreText_c1f28409f8601238", 4088144401459283, undefined, []);
 
 /** var kFontDevanagariScript: Int { get } */
-export const kFontDevanagariScript: number = callSDK<number>("CoreText_6be9a005889899ab", 1088100734601686, undefined, []);
+export const kFontDevanagariScript: number = callSDK<number>("CoreText_c1f28409f8601238", 1088100734601686, undefined, []);
 
 /** var kFontEastEuropeanRomanScript: Int { get } */
-export const kFontEastEuropeanRomanScript: number = callSDK<number>("CoreText_6be9a005889899ab", 4172780768556926, undefined, []);
+export const kFontEastEuropeanRomanScript: number = callSDK<number>("CoreText_c1f28409f8601238", 4172780768556926, undefined, []);
 
 /** var kFontEthiopicScript: Int { get } */
-export const kFontEthiopicScript: number = callSDK<number>("CoreText_6be9a005889899ab", 729264260187541, undefined, []);
+export const kFontEthiopicScript: number = callSDK<number>("CoreText_c1f28409f8601238", 729264260187541, undefined, []);
 
 /** var kFontExtendedArabicScript: Int { get } */
-export const kFontExtendedArabicScript: number = callSDK<number>("CoreText_6be9a005889899ab", 435683465443700, undefined, []);
+export const kFontExtendedArabicScript: number = callSDK<number>("CoreText_c1f28409f8601238", 435683465443700, undefined, []);
 
 /** var kFontGeezScript: Int { get } */
-export const kFontGeezScript: number = callSDK<number>("CoreText_6be9a005889899ab", 955634170733087, undefined, []);
+export const kFontGeezScript: number = callSDK<number>("CoreText_c1f28409f8601238", 955634170733087, undefined, []);
 
 /** var kFontGeorgianScript: Int { get } */
-export const kFontGeorgianScript: number = callSDK<number>("CoreText_6be9a005889899ab", 2378177670243930, undefined, []);
+export const kFontGeorgianScript: number = callSDK<number>("CoreText_c1f28409f8601238", 2378177670243930, undefined, []);
 
 /** var kFontGreekScript: Int { get } */
-export const kFontGreekScript: number = callSDK<number>("CoreText_6be9a005889899ab", 4345904667867076, undefined, []);
+export const kFontGreekScript: number = callSDK<number>("CoreText_c1f28409f8601238", 4345904667867076, undefined, []);
 
 /** var kFontGujaratiScript: Int { get } */
-export const kFontGujaratiScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3044598945639080, undefined, []);
+export const kFontGujaratiScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3044598945639080, undefined, []);
 
 /** var kFontGurmukhiScript: Int { get } */
-export const kFontGurmukhiScript: number = callSDK<number>("CoreText_6be9a005889899ab", 2815271979231429, undefined, []);
+export const kFontGurmukhiScript: number = callSDK<number>("CoreText_c1f28409f8601238", 2815271979231429, undefined, []);
 
 /** var kFontHebrewScript: Int { get } */
-export const kFontHebrewScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3211801214624465, undefined, []);
+export const kFontHebrewScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3211801214624465, undefined, []);
 
 /** var kFontJapaneseScript: Int { get } */
-export const kFontJapaneseScript: number = callSDK<number>("CoreText_6be9a005889899ab", 1991582654626497, undefined, []);
+export const kFontJapaneseScript: number = callSDK<number>("CoreText_c1f28409f8601238", 1991582654626497, undefined, []);
 
 /** var kFontKannadaScript: Int { get } */
-export const kFontKannadaScript: number = callSDK<number>("CoreText_6be9a005889899ab", 22453815224097, undefined, []);
+export const kFontKannadaScript: number = callSDK<number>("CoreText_c1f28409f8601238", 22453815224097, undefined, []);
 
 /** var kFontKhmerScript: Int { get } */
-export const kFontKhmerScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3346766060632281, undefined, []);
+export const kFontKhmerScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3346766060632281, undefined, []);
 
 /** var kFontKoreanScript: Int { get } */
-export const kFontKoreanScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3406170399233877, undefined, []);
+export const kFontKoreanScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3406170399233877, undefined, []);
 
 /** var kFontLaotianScript: Int { get } */
-export const kFontLaotianScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3776525846871468, undefined, []);
+export const kFontLaotianScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3776525846871468, undefined, []);
 
 /** var kFontMalayalamScript: Int { get } */
-export const kFontMalayalamScript: number = callSDK<number>("CoreText_6be9a005889899ab", 992098966554498, undefined, []);
+export const kFontMalayalamScript: number = callSDK<number>("CoreText_c1f28409f8601238", 992098966554498, undefined, []);
 
 /** var kFontMongolianScript: Int { get } */
-export const kFontMongolianScript: number = callSDK<number>("CoreText_6be9a005889899ab", 760801473206984, undefined, []);
+export const kFontMongolianScript: number = callSDK<number>("CoreText_c1f28409f8601238", 760801473206984, undefined, []);
 
 /** var kFontOriyaScript: Int { get } */
-export const kFontOriyaScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3879194662777364, undefined, []);
+export const kFontOriyaScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3879194662777364, undefined, []);
 
 /** var kFontRSymbolScript: Int { get } */
-export const kFontRSymbolScript: number = callSDK<number>("CoreText_6be9a005889899ab", 1818388357670964, undefined, []);
+export const kFontRSymbolScript: number = callSDK<number>("CoreText_c1f28409f8601238", 1818388357670964, undefined, []);
 
 /** var kFontRomanScript: Int { get } */
-export const kFontRomanScript: number = callSDK<number>("CoreText_6be9a005889899ab", 657215646856926, undefined, []);
+export const kFontRomanScript: number = callSDK<number>("CoreText_c1f28409f8601238", 657215646856926, undefined, []);
 
 /** var kFontRussian: Int { get } */
-export const kFontRussian: number = callSDK<number>("CoreText_6be9a005889899ab", 4147906285050638, undefined, []);
+export const kFontRussian: number = callSDK<number>("CoreText_c1f28409f8601238", 4147906285050638, undefined, []);
 
 /** var kFontSimpleChineseScript: Int { get } */
-export const kFontSimpleChineseScript: number = callSDK<number>("CoreText_6be9a005889899ab", 304923966746779, undefined, []);
+export const kFontSimpleChineseScript: number = callSDK<number>("CoreText_c1f28409f8601238", 304923966746779, undefined, []);
 
 /** var kFontSindhiScript: Int { get } */
-export const kFontSindhiScript: number = callSDK<number>("CoreText_6be9a005889899ab", 648375520586528, undefined, []);
+export const kFontSindhiScript: number = callSDK<number>("CoreText_c1f28409f8601238", 648375520586528, undefined, []);
 
 /** var kFontSinhaleseScript: Int { get } */
-export const kFontSinhaleseScript: number = callSDK<number>("CoreText_6be9a005889899ab", 1720736391855223, undefined, []);
+export const kFontSinhaleseScript: number = callSDK<number>("CoreText_c1f28409f8601238", 1720736391855223, undefined, []);
 
 /** var kFontSlavicScript: Int { get } */
-export const kFontSlavicScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3564353240331641, undefined, []);
+export const kFontSlavicScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3564353240331641, undefined, []);
 
 /** var kFontTamilScript: Int { get } */
-export const kFontTamilScript: number = callSDK<number>("CoreText_6be9a005889899ab", 1695406362141705, undefined, []);
+export const kFontTamilScript: number = callSDK<number>("CoreText_c1f28409f8601238", 1695406362141705, undefined, []);
 
 /** var kFontTeluguScript: Int { get } */
-export const kFontTeluguScript: number = callSDK<number>("CoreText_6be9a005889899ab", 1772671680118353, undefined, []);
+export const kFontTeluguScript: number = callSDK<number>("CoreText_c1f28409f8601238", 1772671680118353, undefined, []);
 
 /** var kFontThaiScript: Int { get } */
-export const kFontThaiScript: number = callSDK<number>("CoreText_6be9a005889899ab", 2202041175059431, undefined, []);
+export const kFontThaiScript: number = callSDK<number>("CoreText_c1f28409f8601238", 2202041175059431, undefined, []);
 
 /** var kFontTibetanScript: Int { get } */
-export const kFontTibetanScript: number = callSDK<number>("CoreText_6be9a005889899ab", 4123901574029041, undefined, []);
+export const kFontTibetanScript: number = callSDK<number>("CoreText_c1f28409f8601238", 4123901574029041, undefined, []);
 
 /** var kFontTraditionalChineseScript: Int { get } */
-export const kFontTraditionalChineseScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3795037820625743, undefined, []);
+export const kFontTraditionalChineseScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3795037820625743, undefined, []);
 
 /** var kFontUninterpretedScript: Int { get } */
-export const kFontUninterpretedScript: number = callSDK<number>("CoreText_6be9a005889899ab", 3142076585272734, undefined, []);
+export const kFontUninterpretedScript: number = callSDK<number>("CoreText_c1f28409f8601238", 3142076585272734, undefined, []);
 
 /** var kFontVietnameseScript: Int { get } */
-export const kFontVietnameseScript: number = callSDK<number>("CoreText_6be9a005889899ab", 1390260991580625, undefined, []);
+export const kFontVietnameseScript: number = callSDK<number>("CoreText_c1f28409f8601238", 1390260991580625, undefined, []);
 
 /** var kFontISO10646_1993Semantics: Int { get } */
-export const kFontISO10646_1993Semantics: number = callSDK<number>("CoreText_6be9a005889899ab", 2497440054501952, undefined, []);
+export const kFontISO10646_1993Semantics: number = callSDK<number>("CoreText_c1f28409f8601238", 2497440054501952, undefined, []);
 
 /** var kFontUnicodeDefaultSemantics: Int { get } */
-export const kFontUnicodeDefaultSemantics: number = callSDK<number>("CoreText_6be9a005889899ab", 1991950721369855, undefined, []);
+export const kFontUnicodeDefaultSemantics: number = callSDK<number>("CoreText_c1f28409f8601238", 1991950721369855, undefined, []);
 
 /** var kFontUnicodeV1_1Semantics: Int { get } */
-export const kFontUnicodeV1_1Semantics: number = callSDK<number>("CoreText_6be9a005889899ab", 4238464531352671, undefined, []);
+export const kFontUnicodeV1_1Semantics: number = callSDK<number>("CoreText_c1f28409f8601238", 4238464531352671, undefined, []);
 
 /** var kFontUnicodeV2_0BMPOnlySemantics: Int { get } */
-export const kFontUnicodeV2_0BMPOnlySemantics: number = callSDK<number>("CoreText_6be9a005889899ab", 2572045782667054, undefined, []);
+export const kFontUnicodeV2_0BMPOnlySemantics: number = callSDK<number>("CoreText_c1f28409f8601238", 2572045782667054, undefined, []);
 
 /** var kFontUnicodeV2_0FullCoverageSemantics: Int { get } */
-export const kFontUnicodeV2_0FullCoverageSemantics: number = callSDK<number>("CoreText_6be9a005889899ab", 3170127429517856, undefined, []);
+export const kFontUnicodeV2_0FullCoverageSemantics: number = callSDK<number>("CoreText_c1f28409f8601238", 3170127429517856, undefined, []);
 
 /** var kFontUnicodeV4_0VariationSequenceSemantics: Int { get } */
-export const kFontUnicodeV4_0VariationSequenceSemantics: number = callSDK<number>("CoreText_6be9a005889899ab", 3267487386078101, undefined, []);
+export const kFontUnicodeV4_0VariationSequenceSemantics: number = callSDK<number>("CoreText_c1f28409f8601238", 3267487386078101, undefined, []);
 
 /** var kFontUnicode_FullRepertoire: Int { get } */
-export const kFontUnicode_FullRepertoire: number = callSDK<number>("CoreText_6be9a005889899ab", 4241100366375087, undefined, []);
+export const kFontUnicode_FullRepertoire: number = callSDK<number>("CoreText_c1f28409f8601238", 4241100366375087, undefined, []);
 
 /** var kFontCustomPlatform: Int { get } */
-export const kFontCustomPlatform: number = callSDK<number>("CoreText_6be9a005889899ab", 1318996267296576, undefined, []);
+export const kFontCustomPlatform: number = callSDK<number>("CoreText_c1f28409f8601238", 1318996267296576, undefined, []);
 
 /** var kFontMacintoshPlatform: Int { get } */
-export const kFontMacintoshPlatform: number = callSDK<number>("CoreText_6be9a005889899ab", 991059251597947, undefined, []);
+export const kFontMacintoshPlatform: number = callSDK<number>("CoreText_c1f28409f8601238", 991059251597947, undefined, []);
 
 /** var kFontMicrosoftPlatform: Int { get } */
-export const kFontMicrosoftPlatform: number = callSDK<number>("CoreText_6be9a005889899ab", 750476441494490, undefined, []);
+export const kFontMicrosoftPlatform: number = callSDK<number>("CoreText_c1f28409f8601238", 750476441494490, undefined, []);
 
 /** var kFontReservedPlatform: Int { get } */
-export const kFontReservedPlatform: number = callSDK<number>("CoreText_6be9a005889899ab", 3244346691396719, undefined, []);
+export const kFontReservedPlatform: number = callSDK<number>("CoreText_c1f28409f8601238", 3244346691396719, undefined, []);
 
 /** var kFontUnicodePlatform: Int { get } */
-export const kFontUnicodePlatform: number = callSDK<number>("CoreText_6be9a005889899ab", 798387956531533, undefined, []);
+export const kFontUnicodePlatform: number = callSDK<number>("CoreText_c1f28409f8601238", 798387956531533, undefined, []);
 
 /** var kFullWidthIdeographsSelector: Int { get } */
-export const kFullWidthIdeographsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2163437888575939, undefined, []);
+export const kFullWidthIdeographsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2163437888575939, undefined, []);
 
 /** var kHalfWidthIdeographsSelector: Int { get } */
-export const kHalfWidthIdeographsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2753493891868147, undefined, []);
+export const kHalfWidthIdeographsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2753493891868147, undefined, []);
 
 /** var kProportionalIdeographsSelector: Int { get } */
-export const kProportionalIdeographsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4126755031936932, undefined, []);
+export const kProportionalIdeographsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4126755031936932, undefined, []);
 
 /** var kFullWidthKanaSelector: Int { get } */
-export const kFullWidthKanaSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3906351898379114, undefined, []);
+export const kFullWidthKanaSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3906351898379114, undefined, []);
 
 /** var kProportionalKanaSelector: Int { get } */
-export const kProportionalKanaSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1418315387692093, undefined, []);
+export const kProportionalKanaSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1418315387692093, undefined, []);
 
 /** var kDefaultCJKRomanSelector: Int { get } */
-export const kDefaultCJKRomanSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2007101107972891, undefined, []);
+export const kDefaultCJKRomanSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2007101107972891, undefined, []);
 
 /** var kFullWidthCJKRomanSelector: Int { get } */
-export const kFullWidthCJKRomanSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3050305896244781, undefined, []);
+export const kFullWidthCJKRomanSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3050305896244781, undefined, []);
 
 /** var kHalfWidthCJKRomanSelector: Int { get } */
-export const kHalfWidthCJKRomanSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4333964882615429, undefined, []);
+export const kHalfWidthCJKRomanSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4333964882615429, undefined, []);
 
 /** var kProportionalCJKRomanSelector: Int { get } */
-export const kProportionalCJKRomanSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2009866881856991, undefined, []);
+export const kProportionalCJKRomanSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2009866881856991, undefined, []);
 
 /** var kAsteriskToMultiplyOffSelector: Int { get } */
-export const kAsteriskToMultiplyOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1021529987263606, undefined, []);
+export const kAsteriskToMultiplyOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1021529987263606, undefined, []);
 
 /** var kAsteriskToMultiplyOnSelector: Int { get } */
-export const kAsteriskToMultiplyOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3633639061114371, undefined, []);
+export const kAsteriskToMultiplyOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3633639061114371, undefined, []);
 
 /** var kExponentsOffSelector: Int { get } */
-export const kExponentsOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3396073322583313, undefined, []);
+export const kExponentsOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3396073322583313, undefined, []);
 
 /** var kExponentsOnSelector: Int { get } */
-export const kExponentsOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2525801509794621, undefined, []);
+export const kExponentsOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2525801509794621, undefined, []);
 
 /** var kHyphenToMinusOffSelector: Int { get } */
-export const kHyphenToMinusOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1820957055588012, undefined, []);
+export const kHyphenToMinusOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1820957055588012, undefined, []);
 
 /** var kHyphenToMinusOnSelector: Int { get } */
-export const kHyphenToMinusOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2100179536908342, undefined, []);
+export const kHyphenToMinusOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2100179536908342, undefined, []);
 
 /** var kInequalityLigaturesOffSelector: Int { get } */
-export const kInequalityLigaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 667728841752090, undefined, []);
+export const kInequalityLigaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 667728841752090, undefined, []);
 
 /** var kInequalityLigaturesOnSelector: Int { get } */
-export const kInequalityLigaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4351762871791737, undefined, []);
+export const kInequalityLigaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4351762871791737, undefined, []);
 
 /** var kMathematicalGreekOffSelector: Int { get } */
-export const kMathematicalGreekOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3908005198343813, undefined, []);
+export const kMathematicalGreekOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3908005198343813, undefined, []);
 
 /** var kMathematicalGreekOnSelector: Int { get } */
-export const kMathematicalGreekOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 63537480414478, undefined, []);
+export const kMathematicalGreekOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 63537480414478, undefined, []);
 
 /** var kSlashToDivideOffSelector: Int { get } */
-export const kSlashToDivideOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 518744342204469, undefined, []);
+export const kSlashToDivideOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 518744342204469, undefined, []);
 
 /** var kSlashToDivideOnSelector: Int { get } */
-export const kSlashToDivideOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4069269599206772, undefined, []);
+export const kSlashToDivideOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4069269599206772, undefined, []);
 
 /** var kFormInterrobangOffSelector: Int { get } */
-export const kFormInterrobangOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3603926616559072, undefined, []);
+export const kFormInterrobangOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3603926616559072, undefined, []);
 
 /** var kFormInterrobangOnSelector: Int { get } */
-export const kFormInterrobangOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2128230198060699, undefined, []);
+export const kFormInterrobangOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2128230198060699, undefined, []);
 
 /** var kHyphenToEnDashOffSelector: Int { get } */
-export const kHyphenToEnDashOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1451788087120306, undefined, []);
+export const kHyphenToEnDashOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1451788087120306, undefined, []);
 
 /** var kHyphenToEnDashOnSelector: Int { get } */
-export const kHyphenToEnDashOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1013026713701889, undefined, []);
+export const kHyphenToEnDashOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1013026713701889, undefined, []);
 
 /** var kHyphensToEmDashOffSelector: Int { get } */
-export const kHyphensToEmDashOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2263696104427825, undefined, []);
+export const kHyphensToEmDashOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2263696104427825, undefined, []);
 
 /** var kHyphensToEmDashOnSelector: Int { get } */
-export const kHyphensToEmDashOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2097274777464638, undefined, []);
+export const kHyphensToEmDashOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2097274777464638, undefined, []);
 
 /** var kPeriodsToEllipsisOffSelector: Int { get } */
-export const kPeriodsToEllipsisOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 522850384637958, undefined, []);
+export const kPeriodsToEllipsisOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 522850384637958, undefined, []);
 
 /** var kPeriodsToEllipsisOnSelector: Int { get } */
-export const kPeriodsToEllipsisOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4166232678348572, undefined, []);
+export const kPeriodsToEllipsisOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4166232678348572, undefined, []);
 
 /** var kSlashedZeroOffSelector: Int { get } */
-export const kSlashedZeroOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2007519027184695, undefined, []);
+export const kSlashedZeroOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2007519027184695, undefined, []);
 
 /** var kSlashedZeroOnSelector: Int { get } */
-export const kSlashedZeroOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3783122687478760, undefined, []);
+export const kSlashedZeroOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3783122687478760, undefined, []);
 
 /** var kSmartQuotesOffSelector: Int { get } */
-export const kSmartQuotesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3723353969921730, undefined, []);
+export const kSmartQuotesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3723353969921730, undefined, []);
 
 /** var kSmartQuotesOnSelector: Int { get } */
-export const kSmartQuotesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4076486928659111, undefined, []);
+export const kSmartQuotesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4076486928659111, undefined, []);
 
 /** var kJUSTKashidaPriority: Int { get } */
-export const kJUSTKashidaPriority: number = callSDK<number>("CoreText_6be9a005889899ab", 1129945733877586, undefined, []);
+export const kJUSTKashidaPriority: number = callSDK<number>("CoreText_c1f28409f8601238", 1129945733877586, undefined, []);
 
 /** var kJUSTLetterPriority: Int { get } */
-export const kJUSTLetterPriority: number = callSDK<number>("CoreText_6be9a005889899ab", 1711651594361066, undefined, []);
+export const kJUSTLetterPriority: number = callSDK<number>("CoreText_c1f28409f8601238", 1711651594361066, undefined, []);
 
 /** var kJUSTNullPriority: Int { get } */
-export const kJUSTNullPriority: number = callSDK<number>("CoreText_6be9a005889899ab", 2076806863711112, undefined, []);
+export const kJUSTNullPriority: number = callSDK<number>("CoreText_c1f28409f8601238", 2076806863711112, undefined, []);
 
 /** var kJUSTPriorityCount: Int { get } */
-export const kJUSTPriorityCount: number = callSDK<number>("CoreText_6be9a005889899ab", 1549396185813857, undefined, []);
+export const kJUSTPriorityCount: number = callSDK<number>("CoreText_c1f28409f8601238", 1549396185813857, undefined, []);
 
 /** var kJUSTSpacePriority: Int { get } */
-export const kJUSTSpacePriority: number = callSDK<number>("CoreText_6be9a005889899ab", 2555868944791344, undefined, []);
+export const kJUSTSpacePriority: number = callSDK<number>("CoreText_c1f28409f8601238", 2555868944791344, undefined, []);
 
 /** var kJUSTOverrideLimits: Int { get } */
-export const kJUSTOverrideLimits: number = callSDK<number>("CoreText_6be9a005889899ab", 1443276779614971, undefined, []);
+export const kJUSTOverrideLimits: number = callSDK<number>("CoreText_c1f28409f8601238", 1443276779614971, undefined, []);
 
 /** var kJUSTOverridePriority: Int { get } */
-export const kJUSTOverridePriority: number = callSDK<number>("CoreText_6be9a005889899ab", 3674783687907686, undefined, []);
+export const kJUSTOverridePriority: number = callSDK<number>("CoreText_c1f28409f8601238", 3674783687907686, undefined, []);
 
 /** var kJUSTOverrideUnlimited: Int { get } */
-export const kJUSTOverrideUnlimited: number = callSDK<number>("CoreText_6be9a005889899ab", 1113854471680562, undefined, []);
+export const kJUSTOverrideUnlimited: number = callSDK<number>("CoreText_c1f28409f8601238", 1113854471680562, undefined, []);
 
 /** var kJUSTPriorityMask: Int { get } */
-export const kJUSTPriorityMask: number = callSDK<number>("CoreText_6be9a005889899ab", 264902236872337, undefined, []);
+export const kJUSTPriorityMask: number = callSDK<number>("CoreText_c1f28409f8601238", 264902236872337, undefined, []);
 
 /** var kJUSTUnlimited: Int { get } */
-export const kJUSTUnlimited: number = callSDK<number>("CoreText_6be9a005889899ab", 1704742790869460, undefined, []);
+export const kJUSTUnlimited: number = callSDK<number>("CoreText_c1f28409f8601238", 1704742790869460, undefined, []);
 
 /** var kJUSTCurrentVersion: Int { get } */
-export const kJUSTCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 74760462814351, undefined, []);
+export const kJUSTCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 74760462814351, undefined, []);
 
 /** var kJUSTStandardFormat: Int { get } */
-export const kJUSTStandardFormat: number = callSDK<number>("CoreText_6be9a005889899ab", 810074805918378, undefined, []);
+export const kJUSTStandardFormat: number = callSDK<number>("CoreText_c1f28409f8601238", 810074805918378, undefined, []);
 
 /** var kJUSTTag: Int { get } */
-export const kJUSTTag: number = callSDK<number>("CoreText_6be9a005889899ab", 2036574265987876, undefined, []);
+export const kJUSTTag: number = callSDK<number>("CoreText_c1f28409f8601238", 2036574265987876, undefined, []);
 
 /** var kJUSTnoGlyphcode: Int { get } */
-export const kJUSTnoGlyphcode: number = callSDK<number>("CoreText_6be9a005889899ab", 3446664931132629, undefined, []);
+export const kJUSTnoGlyphcode: number = callSDK<number>("CoreText_c1f28409f8601238", 3446664931132629, undefined, []);
 
 /** var kJUSTpcConditionalAddAction: Int { get } */
-export const kJUSTpcConditionalAddAction: number = callSDK<number>("CoreText_6be9a005889899ab", 2706854583122146, undefined, []);
+export const kJUSTpcConditionalAddAction: number = callSDK<number>("CoreText_c1f28409f8601238", 2706854583122146, undefined, []);
 
 /** var kJUSTpcDecompositionAction: Int { get } */
-export const kJUSTpcDecompositionAction: number = callSDK<number>("CoreText_6be9a005889899ab", 2187474063857499, undefined, []);
+export const kJUSTpcDecompositionAction: number = callSDK<number>("CoreText_c1f28409f8601238", 2187474063857499, undefined, []);
 
 /** var kJUSTpcDuctilityAction: Int { get } */
-export const kJUSTpcDuctilityAction: number = callSDK<number>("CoreText_6be9a005889899ab", 2308504071022837, undefined, []);
+export const kJUSTpcDuctilityAction: number = callSDK<number>("CoreText_c1f28409f8601238", 2308504071022837, undefined, []);
 
 /** var kJUSTpcGlyphRepeatAddAction: Int { get } */
-export const kJUSTpcGlyphRepeatAddAction: number = callSDK<number>("CoreText_6be9a005889899ab", 2671420525740021, undefined, []);
+export const kJUSTpcGlyphRepeatAddAction: number = callSDK<number>("CoreText_c1f28409f8601238", 2671420525740021, undefined, []);
 
 /** var kJUSTpcGlyphStretchAction: Int { get } */
-export const kJUSTpcGlyphStretchAction: number = callSDK<number>("CoreText_6be9a005889899ab", 4029185750202332, undefined, []);
+export const kJUSTpcGlyphStretchAction: number = callSDK<number>("CoreText_c1f28409f8601238", 4029185750202332, undefined, []);
 
 /** var kJUSTpcUnconditionalAddAction: Int { get } */
-export const kJUSTpcUnconditionalAddAction: number = callSDK<number>("CoreText_6be9a005889899ab", 853448478776661, undefined, []);
+export const kJUSTpcUnconditionalAddAction: number = callSDK<number>("CoreText_c1f28409f8601238", 853448478776661, undefined, []);
 
 /** var kKERNCrossStreamResetNote: Int { get } */
-export const kKERNCrossStreamResetNote: number = callSDK<number>("CoreText_6be9a005889899ab", 2543712786766779, undefined, []);
+export const kKERNCrossStreamResetNote: number = callSDK<number>("CoreText_c1f28409f8601238", 2543712786766779, undefined, []);
 
 /** var kKERNLineEndKerning: Int { get } */
-export const kKERNLineEndKerning: number = callSDK<number>("CoreText_6be9a005889899ab", 620583362127733, undefined, []);
+export const kKERNLineEndKerning: number = callSDK<number>("CoreText_c1f28409f8601238", 620583362127733, undefined, []);
 
 /** var kKERNLineStart: Int { get } */
-export const kKERNLineStart: number = callSDK<number>("CoreText_6be9a005889899ab", 2899857725067817, undefined, []);
+export const kKERNLineStart: number = callSDK<number>("CoreText_c1f28409f8601238", 2899857725067817, undefined, []);
 
 /** var kKERNNoCrossKerning: Int { get } */
-export const kKERNNoCrossKerning: number = callSDK<number>("CoreText_6be9a005889899ab", 174933374300439, undefined, []);
+export const kKERNNoCrossKerning: number = callSDK<number>("CoreText_c1f28409f8601238", 174933374300439, undefined, []);
 
 /** var kKERNNoStakeNote: Int { get } */
-export const kKERNNoStakeNote: number = callSDK<number>("CoreText_6be9a005889899ab", 671293667756789, undefined, []);
+export const kKERNNoStakeNote: number = callSDK<number>("CoreText_c1f28409f8601238", 671293667756789, undefined, []);
 
 /** var kKERNNotApplied: Int { get } */
-export const kKERNNotApplied: number = callSDK<number>("CoreText_6be9a005889899ab", 1901249759544807, undefined, []);
+export const kKERNNotApplied: number = callSDK<number>("CoreText_c1f28409f8601238", 1901249759544807, undefined, []);
 
 /** var kKERNNotesRequested: Int { get } */
-export const kKERNNotesRequested: number = callSDK<number>("CoreText_6be9a005889899ab", 1414433711939041, undefined, []);
+export const kKERNNotesRequested: number = callSDK<number>("CoreText_c1f28409f8601238", 1414433711939041, undefined, []);
 
 /** var kKERNIndexArray: Int { get } */
-export const kKERNIndexArray: number = callSDK<number>("CoreText_6be9a005889899ab", 2792836727168991, undefined, []);
+export const kKERNIndexArray: number = callSDK<number>("CoreText_c1f28409f8601238", 2792836727168991, undefined, []);
 
 /** var kKERNOrderedList: Int { get } */
-export const kKERNOrderedList: number = callSDK<number>("CoreText_6be9a005889899ab", 3776784191431287, undefined, []);
+export const kKERNOrderedList: number = callSDK<number>("CoreText_c1f28409f8601238", 3776784191431287, undefined, []);
 
 /** var kKERNSimpleArray: Int { get } */
-export const kKERNSimpleArray: number = callSDK<number>("CoreText_6be9a005889899ab", 3110722756521147, undefined, []);
+export const kKERNSimpleArray: number = callSDK<number>("CoreText_c1f28409f8601238", 3110722756521147, undefined, []);
 
 /** var kKERNStateTable: Int { get } */
-export const kKERNStateTable: number = callSDK<number>("CoreText_6be9a005889899ab", 671471259499862, undefined, []);
+export const kKERNStateTable: number = callSDK<number>("CoreText_c1f28409f8601238", 671471259499862, undefined, []);
 
 /** var kKERNCrossStream: Int { get } */
-export const kKERNCrossStream: number = callSDK<number>("CoreText_6be9a005889899ab", 1897763751672041, undefined, []);
+export const kKERNCrossStream: number = callSDK<number>("CoreText_c1f28409f8601238", 1897763751672041, undefined, []);
 
 /** var kKERNCurrentVersion: Int { get } */
-export const kKERNCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 2501517890545517, undefined, []);
+export const kKERNCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 2501517890545517, undefined, []);
 
 /** var kKERNFormatMask: Int { get } */
-export const kKERNFormatMask: number = callSDK<number>("CoreText_6be9a005889899ab", 1978041161994382, undefined, []);
+export const kKERNFormatMask: number = callSDK<number>("CoreText_c1f28409f8601238", 1978041161994382, undefined, []);
 
 /** var kKERNResetCrossStream: Int { get } */
-export const kKERNResetCrossStream: number = callSDK<number>("CoreText_6be9a005889899ab", 3639386213019082, undefined, []);
+export const kKERNResetCrossStream: number = callSDK<number>("CoreText_c1f28409f8601238", 3639386213019082, undefined, []);
 
 /** var kKERNTag: Int { get } */
-export const kKERNTag: number = callSDK<number>("CoreText_6be9a005889899ab", 1257705033905313, undefined, []);
+export const kKERNTag: number = callSDK<number>("CoreText_c1f28409f8601238", 1257705033905313, undefined, []);
 
 /** var kKERNUnusedBits: Int { get } */
-export const kKERNUnusedBits: number = callSDK<number>("CoreText_6be9a005889899ab", 2497217760346943, undefined, []);
+export const kKERNUnusedBits: number = callSDK<number>("CoreText_c1f28409f8601238", 2497217760346943, undefined, []);
 
 /** var kKERNVariation: Int { get } */
-export const kKERNVariation: number = callSDK<number>("CoreText_6be9a005889899ab", 216536120282361, undefined, []);
+export const kKERNVariation: number = callSDK<number>("CoreText_c1f28409f8601238", 216536120282361, undefined, []);
 
 /** var kKERNVertical: Int { get } */
-export const kKERNVertical: number = callSDK<number>("CoreText_6be9a005889899ab", 3656176132256961, undefined, []);
+export const kKERNVertical: number = callSDK<number>("CoreText_c1f28409f8601238", 3656176132256961, undefined, []);
 
 /** var kKERXActionOffsetMask: UInt32 { get } */
-export const kKERXActionOffsetMask: number = callSDK<number>("CoreText_6be9a005889899ab", 1717361429613627, undefined, []);
+export const kKERXActionOffsetMask: number = callSDK<number>("CoreText_c1f28409f8601238", 1717361429613627, undefined, []);
 
 /** var kKERXActionTypeAnchorPoints: UInt32 { get } */
-export const kKERXActionTypeAnchorPoints: number = callSDK<number>("CoreText_6be9a005889899ab", 3309489525299861, undefined, []);
+export const kKERXActionTypeAnchorPoints: number = callSDK<number>("CoreText_c1f28409f8601238", 3309489525299861, undefined, []);
 
 /** var kKERXActionTypeControlPoints: UInt32 { get } */
-export const kKERXActionTypeControlPoints: number = callSDK<number>("CoreText_6be9a005889899ab", 2532275185113114, undefined, []);
+export const kKERXActionTypeControlPoints: number = callSDK<number>("CoreText_c1f28409f8601238", 2532275185113114, undefined, []);
 
 /** var kKERXActionTypeCoordinates: UInt32 { get } */
-export const kKERXActionTypeCoordinates: number = callSDK<number>("CoreText_6be9a005889899ab", 2562673318134693, undefined, []);
+export const kKERXActionTypeCoordinates: number = callSDK<number>("CoreText_c1f28409f8601238", 2562673318134693, undefined, []);
 
 /** var kKERXActionTypeMask: UInt32 { get } */
-export const kKERXActionTypeMask: number = callSDK<number>("CoreText_6be9a005889899ab", 1679452501664675, undefined, []);
+export const kKERXActionTypeMask: number = callSDK<number>("CoreText_c1f28409f8601238", 1679452501664675, undefined, []);
 
 /** var kKERXUnusedFlags: UInt32 { get } */
-export const kKERXUnusedFlags: number = callSDK<number>("CoreText_6be9a005889899ab", 1723948516599160, undefined, []);
+export const kKERXUnusedFlags: number = callSDK<number>("CoreText_c1f28409f8601238", 1723948516599160, undefined, []);
 
 /** var kKERXCrossStreamResetNote: Int { get } */
-export const kKERXCrossStreamResetNote: number = callSDK<number>("CoreText_6be9a005889899ab", 3158771567949612, undefined, []);
+export const kKERXCrossStreamResetNote: number = callSDK<number>("CoreText_c1f28409f8601238", 3158771567949612, undefined, []);
 
 /** var kKERXLineEndKerning: Int { get } */
-export const kKERXLineEndKerning: number = callSDK<number>("CoreText_6be9a005889899ab", 1174489427861621, undefined, []);
+export const kKERXLineEndKerning: number = callSDK<number>("CoreText_c1f28409f8601238", 1174489427861621, undefined, []);
 
 /** var kKERXLineStart: Int { get } */
-export const kKERXLineStart: number = callSDK<number>("CoreText_6be9a005889899ab", 2291096391019997, undefined, []);
+export const kKERXLineStart: number = callSDK<number>("CoreText_c1f28409f8601238", 2291096391019997, undefined, []);
 
 /** var kKERXNoCrossKerning: Int { get } */
-export const kKERXNoCrossKerning: number = callSDK<number>("CoreText_6be9a005889899ab", 2695463197296223, undefined, []);
+export const kKERXNoCrossKerning: number = callSDK<number>("CoreText_c1f28409f8601238", 2695463197296223, undefined, []);
 
 /** var kKERXNoStakeNote: Int { get } */
-export const kKERXNoStakeNote: number = callSDK<number>("CoreText_6be9a005889899ab", 1421417271931022, undefined, []);
+export const kKERXNoStakeNote: number = callSDK<number>("CoreText_c1f28409f8601238", 1421417271931022, undefined, []);
 
 /** var kKERXNotApplied: Int { get } */
-export const kKERXNotApplied: number = callSDK<number>("CoreText_6be9a005889899ab", 3124286798839196, undefined, []);
+export const kKERXNotApplied: number = callSDK<number>("CoreText_c1f28409f8601238", 3124286798839196, undefined, []);
 
 /** var kKERXNotesRequested: Int { get } */
-export const kKERXNotesRequested: number = callSDK<number>("CoreText_6be9a005889899ab", 3247122353664574, undefined, []);
+export const kKERXNotesRequested: number = callSDK<number>("CoreText_c1f28409f8601238", 3247122353664574, undefined, []);
 
 /** var kKERXControlPoint: Int { get } */
-export const kKERXControlPoint: number = callSDK<number>("CoreText_6be9a005889899ab", 73642513867159, undefined, []);
+export const kKERXControlPoint: number = callSDK<number>("CoreText_c1f28409f8601238", 73642513867159, undefined, []);
 
 /** var kKERXIndexArray: Int { get } */
-export const kKERXIndexArray: number = callSDK<number>("CoreText_6be9a005889899ab", 2870459036852194, undefined, []);
+export const kKERXIndexArray: number = callSDK<number>("CoreText_c1f28409f8601238", 2870459036852194, undefined, []);
 
 /** var kKERXOrderedList: Int { get } */
-export const kKERXOrderedList: number = callSDK<number>("CoreText_6be9a005889899ab", 510380997641090, undefined, []);
+export const kKERXOrderedList: number = callSDK<number>("CoreText_c1f28409f8601238", 510380997641090, undefined, []);
 
 /** var kKERXSimpleArray: Int { get } */
-export const kKERXSimpleArray: number = callSDK<number>("CoreText_6be9a005889899ab", 4416469238494065, undefined, []);
+export const kKERXSimpleArray: number = callSDK<number>("CoreText_c1f28409f8601238", 4416469238494065, undefined, []);
 
 /** var kKERXStateTable: Int { get } */
-export const kKERXStateTable: number = callSDK<number>("CoreText_6be9a005889899ab", 2979002005250033, undefined, []);
+export const kKERXStateTable: number = callSDK<number>("CoreText_c1f28409f8601238", 2979002005250033, undefined, []);
 
 /** var kKERXCrossStream: Int { get } */
-export const kKERXCrossStream: number = callSDK<number>("CoreText_6be9a005889899ab", 914652255084170, undefined, []);
+export const kKERXCrossStream: number = callSDK<number>("CoreText_c1f28409f8601238", 914652255084170, undefined, []);
 
 /** var kKERXCurrentVersion: Int { get } */
-export const kKERXCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 4192840185209021, undefined, []);
+export const kKERXCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 4192840185209021, undefined, []);
 
 /** var kKERXDescending: Int { get } */
-export const kKERXDescending: number = callSDK<number>("CoreText_6be9a005889899ab", 2379203296375769, undefined, []);
+export const kKERXDescending: number = callSDK<number>("CoreText_c1f28409f8601238", 2379203296375769, undefined, []);
 
 /** var kKERXFormatMask: Int { get } */
-export const kKERXFormatMask: number = callSDK<number>("CoreText_6be9a005889899ab", 2801667584156833, undefined, []);
+export const kKERXFormatMask: number = callSDK<number>("CoreText_c1f28409f8601238", 2801667584156833, undefined, []);
 
 /** var kKERXResetCrossStream: Int { get } */
-export const kKERXResetCrossStream: number = callSDK<number>("CoreText_6be9a005889899ab", 934012778578427, undefined, []);
+export const kKERXResetCrossStream: number = callSDK<number>("CoreText_c1f28409f8601238", 934012778578427, undefined, []);
 
 /** var kKERXTag: Int { get } */
-export const kKERXTag: number = callSDK<number>("CoreText_6be9a005889899ab", 3631487686923245, undefined, []);
+export const kKERXTag: number = callSDK<number>("CoreText_c1f28409f8601238", 3631487686923245, undefined, []);
 
 /** var kKERXUnusedBits: Int { get } */
-export const kKERXUnusedBits: number = callSDK<number>("CoreText_6be9a005889899ab", 982654801436780, undefined, []);
+export const kKERXUnusedBits: number = callSDK<number>("CoreText_c1f28409f8601238", 982654801436780, undefined, []);
 
 /** var kKERXVariation: Int { get } */
-export const kKERXVariation: number = callSDK<number>("CoreText_6be9a005889899ab", 4058709001456323, undefined, []);
+export const kKERXVariation: number = callSDK<number>("CoreText_c1f28409f8601238", 4058709001456323, undefined, []);
 
 /** var kKERXVertical: Int { get } */
-export const kKERXVertical: number = callSDK<number>("CoreText_6be9a005889899ab", 1221924751346868, undefined, []);
+export const kKERXVertical: number = callSDK<number>("CoreText_c1f28409f8601238", 1221924751346868, undefined, []);
 
 /** var kKERXValuesAreLong: Int { get } */
-export const kKERXValuesAreLong: number = callSDK<number>("CoreText_6be9a005889899ab", 4221985632158542, undefined, []);
+export const kKERXValuesAreLong: number = callSDK<number>("CoreText_c1f28409f8601238", 4221985632158542, undefined, []);
 
 /** var kLCARCtlPointFormat: Int { get } */
-export const kLCARCtlPointFormat: number = callSDK<number>("CoreText_6be9a005889899ab", 748731345260790, undefined, []);
+export const kLCARCtlPointFormat: number = callSDK<number>("CoreText_c1f28409f8601238", 748731345260790, undefined, []);
 
 /** var kLCARCurrentVersion: Int { get } */
-export const kLCARCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 3347076703062019, undefined, []);
+export const kLCARCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 3347076703062019, undefined, []);
 
 /** var kLCARLinearFormat: Int { get } */
-export const kLCARLinearFormat: number = callSDK<number>("CoreText_6be9a005889899ab", 3674776776323816, undefined, []);
+export const kLCARLinearFormat: number = callSDK<number>("CoreText_c1f28409f8601238", 3674776776323816, undefined, []);
 
 /** var kLCARTag: Int { get } */
-export const kLCARTag: number = callSDK<number>("CoreText_6be9a005889899ab", 1336356439315723, undefined, []);
+export const kLCARTag: number = callSDK<number>("CoreText_c1f28409f8601238", 1336356439315723, undefined, []);
 
 /** var kLTAGCurrentVersion: Int { get } */
-export const kLTAGCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 547274915359348, undefined, []);
+export const kLTAGCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 547274915359348, undefined, []);
 
 /** var kLinguisticRearrangementOffSelector: Int { get } */
-export const kLinguisticRearrangementOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4355877695676493, undefined, []);
+export const kLinguisticRearrangementOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4355877695676493, undefined, []);
 
 /** var kLinguisticRearrangementOnSelector: Int { get } */
-export const kLinguisticRearrangementOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2037623941788624, undefined, []);
+export const kLinguisticRearrangementOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2037623941788624, undefined, []);
 
 /** var kLowerCaseNumbersSelector: Int { get } */
-export const kLowerCaseNumbersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 258192718757979, undefined, []);
+export const kLowerCaseNumbersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 258192718757979, undefined, []);
 
 /** var kUpperCaseNumbersSelector: Int { get } */
-export const kUpperCaseNumbersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 90723928195407, undefined, []);
+export const kUpperCaseNumbersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 90723928195407, undefined, []);
 
 /** var kMORTContextualType: Int { get } */
-export const kMORTContextualType: number = callSDK<number>("CoreText_6be9a005889899ab", 1736641456090088, undefined, []);
+export const kMORTContextualType: number = callSDK<number>("CoreText_c1f28409f8601238", 1736641456090088, undefined, []);
 
 /** var kMORTCoverDescending: Int { get } */
-export const kMORTCoverDescending: number = callSDK<number>("CoreText_6be9a005889899ab", 2469005539202070, undefined, []);
+export const kMORTCoverDescending: number = callSDK<number>("CoreText_c1f28409f8601238", 2469005539202070, undefined, []);
 
 /** var kMORTCoverIgnoreVertical: Int { get } */
-export const kMORTCoverIgnoreVertical: number = callSDK<number>("CoreText_6be9a005889899ab", 1121438068463509, undefined, []);
+export const kMORTCoverIgnoreVertical: number = callSDK<number>("CoreText_c1f28409f8601238", 1121438068463509, undefined, []);
 
 /** var kMORTCoverTypeMask: Int { get } */
-export const kMORTCoverTypeMask: number = callSDK<number>("CoreText_6be9a005889899ab", 4385763187145722, undefined, []);
+export const kMORTCoverTypeMask: number = callSDK<number>("CoreText_c1f28409f8601238", 4385763187145722, undefined, []);
 
 /** var kMORTCoverVertical: Int { get } */
-export const kMORTCoverVertical: number = callSDK<number>("CoreText_6be9a005889899ab", 3850599197486878, undefined, []);
+export const kMORTCoverVertical: number = callSDK<number>("CoreText_c1f28409f8601238", 3850599197486878, undefined, []);
 
 /** var kMORTCurrInsertBefore: Int { get } */
-export const kMORTCurrInsertBefore: number = callSDK<number>("CoreText_6be9a005889899ab", 190572750421425, undefined, []);
+export const kMORTCurrInsertBefore: number = callSDK<number>("CoreText_c1f28409f8601238", 190572750421425, undefined, []);
 
 /** var kMORTCurrInsertCountMask: Int { get } */
-export const kMORTCurrInsertCountMask: number = callSDK<number>("CoreText_6be9a005889899ab", 2626742313599860, undefined, []);
+export const kMORTCurrInsertCountMask: number = callSDK<number>("CoreText_c1f28409f8601238", 2626742313599860, undefined, []);
 
 /** var kMORTCurrInsertCountShift: Int { get } */
-export const kMORTCurrInsertCountShift: number = callSDK<number>("CoreText_6be9a005889899ab", 1784783997599147, undefined, []);
+export const kMORTCurrInsertCountShift: number = callSDK<number>("CoreText_c1f28409f8601238", 1784783997599147, undefined, []);
 
 /** var kMORTCurrInsertKashidaLike: Int { get } */
-export const kMORTCurrInsertKashidaLike: number = callSDK<number>("CoreText_6be9a005889899ab", 1344195456217648, undefined, []);
+export const kMORTCurrInsertKashidaLike: number = callSDK<number>("CoreText_c1f28409f8601238", 1344195456217648, undefined, []);
 
 /** var kMORTCurrJustTableCountMask: Int { get } */
-export const kMORTCurrJustTableCountMask: number = callSDK<number>("CoreText_6be9a005889899ab", 2484932261295791, undefined, []);
+export const kMORTCurrJustTableCountMask: number = callSDK<number>("CoreText_c1f28409f8601238", 2484932261295791, undefined, []);
 
 /** var kMORTCurrJustTableCountShift: Int { get } */
-export const kMORTCurrJustTableCountShift: number = callSDK<number>("CoreText_6be9a005889899ab", 3538008259655742, undefined, []);
+export const kMORTCurrJustTableCountShift: number = callSDK<number>("CoreText_c1f28409f8601238", 3538008259655742, undefined, []);
 
 /** var kMORTCurrentVersion: Int { get } */
-export const kMORTCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 951955498393075, undefined, []);
+export const kMORTCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 951955498393075, undefined, []);
 
 /** var kMORTDoInsertionsBefore: Int { get } */
-export const kMORTDoInsertionsBefore: number = callSDK<number>("CoreText_6be9a005889899ab", 3339445490444478, undefined, []);
+export const kMORTDoInsertionsBefore: number = callSDK<number>("CoreText_c1f28409f8601238", 3339445490444478, undefined, []);
 
 /** var kMORTInsertionType: Int { get } */
-export const kMORTInsertionType: number = callSDK<number>("CoreText_6be9a005889899ab", 4318562397211618, undefined, []);
+export const kMORTInsertionType: number = callSDK<number>("CoreText_c1f28409f8601238", 4318562397211618, undefined, []);
 
 /** var kMORTInsertionsCountMask: Int { get } */
-export const kMORTInsertionsCountMask: number = callSDK<number>("CoreText_6be9a005889899ab", 2383936621513152, undefined, []);
+export const kMORTInsertionsCountMask: number = callSDK<number>("CoreText_c1f28409f8601238", 2383936621513152, undefined, []);
 
 /** var kMORTIsSplitVowelPiece: Int { get } */
-export const kMORTIsSplitVowelPiece: number = callSDK<number>("CoreText_6be9a005889899ab", 4432430330164421, undefined, []);
+export const kMORTIsSplitVowelPiece: number = callSDK<number>("CoreText_c1f28409f8601238", 4432430330164421, undefined, []);
 
 /** var kMORTLigFormOffsetMask: Int { get } */
-export const kMORTLigFormOffsetMask: number = callSDK<number>("CoreText_6be9a005889899ab", 1350594921428622, undefined, []);
+export const kMORTLigFormOffsetMask: number = callSDK<number>("CoreText_c1f28409f8601238", 1350594921428622, undefined, []);
 
 /** var kMORTLigFormOffsetShift: Int { get } */
-export const kMORTLigFormOffsetShift: number = callSDK<number>("CoreText_6be9a005889899ab", 4150518637395011, undefined, []);
+export const kMORTLigFormOffsetShift: number = callSDK<number>("CoreText_c1f28409f8601238", 4150518637395011, undefined, []);
 
 /** var kMORTLigLastAction: Int { get } */
-export const kMORTLigLastAction: number = callSDK<number>("CoreText_6be9a005889899ab", 2860338004618825, undefined, []);
+export const kMORTLigLastAction: number = callSDK<number>("CoreText_c1f28409f8601238", 2860338004618825, undefined, []);
 
 /** var kMORTLigStoreLigature: Int { get } */
-export const kMORTLigStoreLigature: number = callSDK<number>("CoreText_6be9a005889899ab", 2032076870825165, undefined, []);
+export const kMORTLigStoreLigature: number = callSDK<number>("CoreText_c1f28409f8601238", 2032076870825165, undefined, []);
 
 /** var kMORTLigatureType: Int { get } */
-export const kMORTLigatureType: number = callSDK<number>("CoreText_6be9a005889899ab", 2206400827308787, undefined, []);
+export const kMORTLigatureType: number = callSDK<number>("CoreText_c1f28409f8601238", 2206400827308787, undefined, []);
 
 /** var kMORTMarkInsertBefore: Int { get } */
-export const kMORTMarkInsertBefore: number = callSDK<number>("CoreText_6be9a005889899ab", 1070040377455665, undefined, []);
+export const kMORTMarkInsertBefore: number = callSDK<number>("CoreText_c1f28409f8601238", 1070040377455665, undefined, []);
 
 /** var kMORTMarkInsertCountMask: Int { get } */
-export const kMORTMarkInsertCountMask: number = callSDK<number>("CoreText_6be9a005889899ab", 2395829065301085, undefined, []);
+export const kMORTMarkInsertCountMask: number = callSDK<number>("CoreText_c1f28409f8601238", 2395829065301085, undefined, []);
 
 /** var kMORTMarkInsertCountShift: Int { get } */
-export const kMORTMarkInsertCountShift: number = callSDK<number>("CoreText_6be9a005889899ab", 2234377233271394, undefined, []);
+export const kMORTMarkInsertCountShift: number = callSDK<number>("CoreText_c1f28409f8601238", 2234377233271394, undefined, []);
 
 /** var kMORTMarkInsertKashidaLike: Int { get } */
-export const kMORTMarkInsertKashidaLike: number = callSDK<number>("CoreText_6be9a005889899ab", 524786749227041, undefined, []);
+export const kMORTMarkInsertKashidaLike: number = callSDK<number>("CoreText_c1f28409f8601238", 524786749227041, undefined, []);
 
 /** var kMORTMarkJustTableCountMask: Int { get } */
-export const kMORTMarkJustTableCountMask: number = callSDK<number>("CoreText_6be9a005889899ab", 2935515867418347, undefined, []);
+export const kMORTMarkJustTableCountMask: number = callSDK<number>("CoreText_c1f28409f8601238", 2935515867418347, undefined, []);
 
 /** var kMORTMarkJustTableCountShift: Int { get } */
-export const kMORTMarkJustTableCountShift: number = callSDK<number>("CoreText_6be9a005889899ab", 898320232082660, undefined, []);
+export const kMORTMarkJustTableCountShift: number = callSDK<number>("CoreText_c1f28409f8601238", 898320232082660, undefined, []);
 
 /** var kMORTRearrangementType: Int { get } */
-export const kMORTRearrangementType: number = callSDK<number>("CoreText_6be9a005889899ab", 1215917301312556, undefined, []);
+export const kMORTRearrangementType: number = callSDK<number>("CoreText_c1f28409f8601238", 1215917301312556, undefined, []);
 
 /** var kMORTSwashType: Int { get } */
-export const kMORTSwashType: number = callSDK<number>("CoreText_6be9a005889899ab", 2621102595424335, undefined, []);
+export const kMORTSwashType: number = callSDK<number>("CoreText_c1f28409f8601238", 2621102595424335, undefined, []);
 
 /** var kMORTTag: Int { get } */
-export const kMORTTag: number = callSDK<number>("CoreText_6be9a005889899ab", 4397639405725740, undefined, []);
+export const kMORTTag: number = callSDK<number>("CoreText_c1f28409f8601238", 4397639405725740, undefined, []);
 
 /** var kMORTraCDx: Int { get } */
-export const kMORTraCDx: number = callSDK<number>("CoreText_6be9a005889899ab", 565120754272153, undefined, []);
+export const kMORTraCDx: number = callSDK<number>("CoreText_c1f28409f8601238", 565120754272153, undefined, []);
 
 /** var kMORTraCDxA: Int { get } */
-export const kMORTraCDxA: number = callSDK<number>("CoreText_6be9a005889899ab", 3648180650899946, undefined, []);
+export const kMORTraCDxA: number = callSDK<number>("CoreText_c1f28409f8601238", 3648180650899946, undefined, []);
 
 /** var kMORTraCDxAB: Int { get } */
-export const kMORTraCDxAB: number = callSDK<number>("CoreText_6be9a005889899ab", 4461066473103888, undefined, []);
+export const kMORTraCDxAB: number = callSDK<number>("CoreText_c1f28409f8601238", 4461066473103888, undefined, []);
 
 /** var kMORTraCDxBA: Int { get } */
-export const kMORTraCDxBA: number = callSDK<number>("CoreText_6be9a005889899ab", 3959330539485484, undefined, []);
+export const kMORTraCDxBA: number = callSDK<number>("CoreText_c1f28409f8601238", 3959330539485484, undefined, []);
 
 /** var kMORTraDCx: Int { get } */
-export const kMORTraDCx: number = callSDK<number>("CoreText_6be9a005889899ab", 4303837847565093, undefined, []);
+export const kMORTraDCx: number = callSDK<number>("CoreText_c1f28409f8601238", 4303837847565093, undefined, []);
 
 /** var kMORTraDCxA: Int { get } */
-export const kMORTraDCxA: number = callSDK<number>("CoreText_6be9a005889899ab", 4014769479153853, undefined, []);
+export const kMORTraDCxA: number = callSDK<number>("CoreText_c1f28409f8601238", 4014769479153853, undefined, []);
 
 /** var kMORTraDCxAB: Int { get } */
-export const kMORTraDCxAB: number = callSDK<number>("CoreText_6be9a005889899ab", 1044811137115849, undefined, []);
+export const kMORTraDCxAB: number = callSDK<number>("CoreText_c1f28409f8601238", 1044811137115849, undefined, []);
 
 /** var kMORTraDCxBA: Int { get } */
-export const kMORTraDCxBA: number = callSDK<number>("CoreText_6be9a005889899ab", 2282008991866507, undefined, []);
+export const kMORTraDCxBA: number = callSDK<number>("CoreText_c1f28409f8601238", 2282008991866507, undefined, []);
 
 /** var kMORTraDx: Int { get } */
-export const kMORTraDx: number = callSDK<number>("CoreText_6be9a005889899ab", 3053293628634602, undefined, []);
+export const kMORTraDx: number = callSDK<number>("CoreText_c1f28409f8601238", 3053293628634602, undefined, []);
 
 /** var kMORTraDxA: Int { get } */
-export const kMORTraDxA: number = callSDK<number>("CoreText_6be9a005889899ab", 3437035369198857, undefined, []);
+export const kMORTraDxA: number = callSDK<number>("CoreText_c1f28409f8601238", 3437035369198857, undefined, []);
 
 /** var kMORTraDxAB: Int { get } */
-export const kMORTraDxAB: number = callSDK<number>("CoreText_6be9a005889899ab", 789631535856487, undefined, []);
+export const kMORTraDxAB: number = callSDK<number>("CoreText_c1f28409f8601238", 789631535856487, undefined, []);
 
 /** var kMORTraDxBA: Int { get } */
-export const kMORTraDxBA: number = callSDK<number>("CoreText_6be9a005889899ab", 2108090063880249, undefined, []);
+export const kMORTraDxBA: number = callSDK<number>("CoreText_c1f28409f8601238", 2108090063880249, undefined, []);
 
 /** var kMORTraNoAction: Int { get } */
-export const kMORTraNoAction: number = callSDK<number>("CoreText_6be9a005889899ab", 4336973264695945, undefined, []);
+export const kMORTraNoAction: number = callSDK<number>("CoreText_c1f28409f8601238", 4336973264695945, undefined, []);
 
 /** var kMORTraxA: Int { get } */
-export const kMORTraxA: number = callSDK<number>("CoreText_6be9a005889899ab", 666649919573537, undefined, []);
+export const kMORTraxA: number = callSDK<number>("CoreText_c1f28409f8601238", 666649919573537, undefined, []);
 
 /** var kMORTraxAB: Int { get } */
-export const kMORTraxAB: number = callSDK<number>("CoreText_6be9a005889899ab", 3034588970923098, undefined, []);
+export const kMORTraxAB: number = callSDK<number>("CoreText_c1f28409f8601238", 3034588970923098, undefined, []);
 
 /** var kMORTraxBA: Int { get } */
-export const kMORTraxBA: number = callSDK<number>("CoreText_6be9a005889899ab", 718301610358958, undefined, []);
+export const kMORTraxBA: number = callSDK<number>("CoreText_c1f28409f8601238", 718301610358958, undefined, []);
 
 /** var kMORXCoverDescending: Int { get } */
-export const kMORXCoverDescending: number = callSDK<number>("CoreText_6be9a005889899ab", 3795824460441481, undefined, []);
+export const kMORXCoverDescending: number = callSDK<number>("CoreText_c1f28409f8601238", 3795824460441481, undefined, []);
 
 /** var kMORXCoverIgnoreVertical: Int { get } */
-export const kMORXCoverIgnoreVertical: number = callSDK<number>("CoreText_6be9a005889899ab", 4118008245780404, undefined, []);
+export const kMORXCoverIgnoreVertical: number = callSDK<number>("CoreText_c1f28409f8601238", 4118008245780404, undefined, []);
 
 /** var kMORXCoverLogicalOrder: Int { get } */
-export const kMORXCoverLogicalOrder: number = callSDK<number>("CoreText_6be9a005889899ab", 2345240880596032, undefined, []);
+export const kMORXCoverLogicalOrder: number = callSDK<number>("CoreText_c1f28409f8601238", 2345240880596032, undefined, []);
 
 /** var kMORXCoverTypeMask: Int { get } */
-export const kMORXCoverTypeMask: number = callSDK<number>("CoreText_6be9a005889899ab", 1216626705236553, undefined, []);
+export const kMORXCoverTypeMask: number = callSDK<number>("CoreText_c1f28409f8601238", 1216626705236553, undefined, []);
 
 /** var kMORXCoverVertical: Int { get } */
-export const kMORXCoverVertical: number = callSDK<number>("CoreText_6be9a005889899ab", 2662364912822370, undefined, []);
+export const kMORXCoverVertical: number = callSDK<number>("CoreText_c1f28409f8601238", 2662364912822370, undefined, []);
 
 /** var kMORXCurrentVersion: Int { get } */
-export const kMORXCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 1169532234965136, undefined, []);
+export const kMORXCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 1169532234965136, undefined, []);
 
 /** var kMORXTag: Int { get } */
-export const kMORXTag: number = callSDK<number>("CoreText_6be9a005889899ab", 3705097428705657, undefined, []);
+export const kMORXTag: number = callSDK<number>("CoreText_c1f28409f8601238", 3705097428705657, undefined, []);
 
 /** var kMonospacedNumbersSelector: Int { get } */
-export const kMonospacedNumbersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 469209122108284, undefined, []);
+export const kMonospacedNumbersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 469209122108284, undefined, []);
 
 /** var kProportionalNumbersSelector: Int { get } */
-export const kProportionalNumbersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 953854420346643, undefined, []);
+export const kProportionalNumbersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 953854420346643, undefined, []);
 
 /** var kQuarterWidthNumbersSelector: Int { get } */
-export const kQuarterWidthNumbersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1127848166702901, undefined, []);
+export const kQuarterWidthNumbersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1127848166702901, undefined, []);
 
 /** var kThirdWidthNumbersSelector: Int { get } */
-export const kThirdWidthNumbersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4182800449442463, undefined, []);
+export const kThirdWidthNumbersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4182800449442463, undefined, []);
 
 /** var kNoAlternatesSelector: Int { get } */
-export const kNoAlternatesSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2582342795845623, undefined, []);
+export const kNoAlternatesSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2582342795845623, undefined, []);
 
 /** var kBoxAnnotationSelector: Int { get } */
-export const kBoxAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 457992095154582, undefined, []);
+export const kBoxAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 457992095154582, undefined, []);
 
 /** var kCircleAnnotationSelector: Int { get } */
-export const kCircleAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1920191278752882, undefined, []);
+export const kCircleAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1920191278752882, undefined, []);
 
 /** var kDiamondAnnotationSelector: Int { get } */
-export const kDiamondAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 956253273709009, undefined, []);
+export const kDiamondAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 956253273709009, undefined, []);
 
 /** var kInvertedBoxAnnotationSelector: Int { get } */
-export const kInvertedBoxAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 967589881063930, undefined, []);
+export const kInvertedBoxAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 967589881063930, undefined, []);
 
 /** var kInvertedCircleAnnotationSelector: Int { get } */
-export const kInvertedCircleAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1615764497305533, undefined, []);
+export const kInvertedCircleAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1615764497305533, undefined, []);
 
 /** var kInvertedRoundedBoxAnnotationSelector: Int { get } */
-export const kInvertedRoundedBoxAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 749712235324432, undefined, []);
+export const kInvertedRoundedBoxAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 749712235324432, undefined, []);
 
 /** var kNoAnnotationSelector: Int { get } */
-export const kNoAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3444168265053913, undefined, []);
+export const kNoAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3444168265053913, undefined, []);
 
 /** var kParenthesisAnnotationSelector: Int { get } */
-export const kParenthesisAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 661268955355547, undefined, []);
+export const kParenthesisAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 661268955355547, undefined, []);
 
 /** var kPeriodAnnotationSelector: Int { get } */
-export const kPeriodAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 595958403913087, undefined, []);
+export const kPeriodAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 595958403913087, undefined, []);
 
 /** var kRomanNumeralAnnotationSelector: Int { get } */
-export const kRomanNumeralAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 96004586798359, undefined, []);
+export const kRomanNumeralAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 96004586798359, undefined, []);
 
 /** var kRoundedBoxAnnotationSelector: Int { get } */
-export const kRoundedBoxAnnotationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 207637138411699, undefined, []);
+export const kRoundedBoxAnnotationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 207637138411699, undefined, []);
 
 /** var kCJKItalicRomanOffSelector: Int { get } */
-export const kCJKItalicRomanOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1682485564864886, undefined, []);
+export const kCJKItalicRomanOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1682485564864886, undefined, []);
 
 /** var kCJKItalicRomanOnSelector: Int { get } */
-export const kCJKItalicRomanOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3708885966510357, undefined, []);
+export const kCJKItalicRomanOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3708885966510357, undefined, []);
 
 /** var kCJKItalicRomanSelector: Int { get } */
-export const kCJKItalicRomanSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2918141669555874, undefined, []);
+export const kCJKItalicRomanSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2918141669555874, undefined, []);
 
 /** var kNoCJKItalicRomanSelector: Int { get } */
-export const kNoCJKItalicRomanSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3817608163277993, undefined, []);
+export const kNoCJKItalicRomanSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3817608163277993, undefined, []);
 
 /** var kCJKSymbolAltFiveSelector: Int { get } */
-export const kCJKSymbolAltFiveSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1464938802962117, undefined, []);
+export const kCJKSymbolAltFiveSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1464938802962117, undefined, []);
 
 /** var kCJKSymbolAltFourSelector: Int { get } */
-export const kCJKSymbolAltFourSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4030036078619046, undefined, []);
+export const kCJKSymbolAltFourSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4030036078619046, undefined, []);
 
 /** var kCJKSymbolAltOneSelector: Int { get } */
-export const kCJKSymbolAltOneSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4316011113662435, undefined, []);
+export const kCJKSymbolAltOneSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4316011113662435, undefined, []);
 
 /** var kCJKSymbolAltThreeSelector: Int { get } */
-export const kCJKSymbolAltThreeSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2072854090903388, undefined, []);
+export const kCJKSymbolAltThreeSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2072854090903388, undefined, []);
 
 /** var kCJKSymbolAltTwoSelector: Int { get } */
-export const kCJKSymbolAltTwoSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3275122406475775, undefined, []);
+export const kCJKSymbolAltTwoSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3275122406475775, undefined, []);
 
 /** var kNoCJKSymbolAlternativesSelector: Int { get } */
-export const kNoCJKSymbolAlternativesSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 936361357808237, undefined, []);
+export const kNoCJKSymbolAlternativesSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 936361357808237, undefined, []);
 
 /** var kDiagonalFractionsSelector: Int { get } */
-export const kDiagonalFractionsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1463007272685011, undefined, []);
+export const kDiagonalFractionsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1463007272685011, undefined, []);
 
 /** var kNoFractionsSelector: Int { get } */
-export const kNoFractionsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1211516029913366, undefined, []);
+export const kNoFractionsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1211516029913366, undefined, []);
 
 /** var kVerticalFractionsSelector: Int { get } */
-export const kVerticalFractionsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3263656669912203, undefined, []);
+export const kVerticalFractionsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3263656669912203, undefined, []);
 
 /** var kIdeographicAltFiveSelector: Int { get } */
-export const kIdeographicAltFiveSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3690333707385632, undefined, []);
+export const kIdeographicAltFiveSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3690333707385632, undefined, []);
 
 /** var kIdeographicAltFourSelector: Int { get } */
-export const kIdeographicAltFourSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2620122764869596, undefined, []);
+export const kIdeographicAltFourSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2620122764869596, undefined, []);
 
 /** var kIdeographicAltOneSelector: Int { get } */
-export const kIdeographicAltOneSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 488356362913542, undefined, []);
+export const kIdeographicAltOneSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 488356362913542, undefined, []);
 
 /** var kIdeographicAltThreeSelector: Int { get } */
-export const kIdeographicAltThreeSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3625794601622668, undefined, []);
+export const kIdeographicAltThreeSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3625794601622668, undefined, []);
 
 /** var kIdeographicAltTwoSelector: Int { get } */
-export const kIdeographicAltTwoSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3807803050832243, undefined, []);
+export const kIdeographicAltTwoSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3807803050832243, undefined, []);
 
 /** var kNoIdeographicAlternativesSelector: Int { get } */
-export const kNoIdeographicAlternativesSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3439234400419854, undefined, []);
+export const kNoIdeographicAlternativesSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3439234400419854, undefined, []);
 
 /** var kDecorativeBordersSelector: Int { get } */
-export const kDecorativeBordersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1826732490964021, undefined, []);
+export const kDecorativeBordersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1826732490964021, undefined, []);
 
 /** var kDingbatsSelector: Int { get } */
-export const kDingbatsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3124568722961259, undefined, []);
+export const kDingbatsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3124568722961259, undefined, []);
 
 /** var kFleuronsSelector: Int { get } */
-export const kFleuronsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3887654804909912, undefined, []);
+export const kFleuronsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3887654804909912, undefined, []);
 
 /** var kInternationalSymbolsSelector: Int { get } */
-export const kInternationalSymbolsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2852567666744543, undefined, []);
+export const kInternationalSymbolsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2852567666744543, undefined, []);
 
 /** var kMathSymbolsSelector: Int { get } */
-export const kMathSymbolsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 666777605936765, undefined, []);
+export const kMathSymbolsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 666777605936765, undefined, []);
 
 /** var kNoOrnamentsSelector: Int { get } */
-export const kNoOrnamentsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4449353143324531, undefined, []);
+export const kNoOrnamentsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4449353143324531, undefined, []);
 
 /** var kPiCharactersSelector: Int { get } */
-export const kPiCharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1632857356417317, undefined, []);
+export const kPiCharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1632857356417317, undefined, []);
 
 /** var kNoRubyKanaSelector: Int { get } */
-export const kNoRubyKanaSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3266235265521520, undefined, []);
+export const kNoRubyKanaSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3266235265521520, undefined, []);
 
 /** var kRubyKanaOffSelector: Int { get } */
-export const kRubyKanaOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1683983826034123, undefined, []);
+export const kRubyKanaOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1683983826034123, undefined, []);
 
 /** var kRubyKanaOnSelector: Int { get } */
-export const kRubyKanaOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3385452369090227, undefined, []);
+export const kRubyKanaOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3385452369090227, undefined, []);
 
 /** var kRubyKanaSelector: Int { get } */
-export const kRubyKanaSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1561346010106717, undefined, []);
+export const kRubyKanaSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1561346010106717, undefined, []);
 
 /** var kDisplayTextSelector: Int { get } */
-export const kDisplayTextSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1481993669417406, undefined, []);
+export const kDisplayTextSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1481993669417406, undefined, []);
 
 /** var kEngravedTextSelector: Int { get } */
-export const kEngravedTextSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 715791683832285, undefined, []);
+export const kEngravedTextSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 715791683832285, undefined, []);
 
 /** var kIlluminatedCapsSelector: Int { get } */
-export const kIlluminatedCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 589921105221164, undefined, []);
+export const kIlluminatedCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 589921105221164, undefined, []);
 
 /** var kNoStyleOptionsSelector: Int { get } */
-export const kNoStyleOptionsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3664615191142767, undefined, []);
+export const kNoStyleOptionsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3664615191142767, undefined, []);
 
 /** var kTallCapsSelector: Int { get } */
-export const kTallCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2003515845462876, undefined, []);
+export const kTallCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2003515845462876, undefined, []);
 
 /** var kTitlingCapsSelector: Int { get } */
-export const kTitlingCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2607726884415026, undefined, []);
+export const kTitlingCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2607726884415026, undefined, []);
 
 /** var kNoStylisticAlternatesSelector: Int { get } */
-export const kNoStylisticAlternatesSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2612152046483210, undefined, []);
+export const kNoStylisticAlternatesSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2612152046483210, undefined, []);
 
 /** var kStylisticAltEightOffSelector: Int { get } */
-export const kStylisticAltEightOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 213576467740485, undefined, []);
+export const kStylisticAltEightOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 213576467740485, undefined, []);
 
 /** var kStylisticAltEightOnSelector: Int { get } */
-export const kStylisticAltEightOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2079625410559441, undefined, []);
+export const kStylisticAltEightOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2079625410559441, undefined, []);
 
 /** var kStylisticAltEighteenOffSelector: Int { get } */
-export const kStylisticAltEighteenOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1981744508357073, undefined, []);
+export const kStylisticAltEighteenOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1981744508357073, undefined, []);
 
 /** var kStylisticAltEighteenOnSelector: Int { get } */
-export const kStylisticAltEighteenOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1555098204356694, undefined, []);
+export const kStylisticAltEighteenOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1555098204356694, undefined, []);
 
 /** var kStylisticAltElevenOffSelector: Int { get } */
-export const kStylisticAltElevenOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3192442172724133, undefined, []);
+export const kStylisticAltElevenOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3192442172724133, undefined, []);
 
 /** var kStylisticAltElevenOnSelector: Int { get } */
-export const kStylisticAltElevenOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3970651510116008, undefined, []);
+export const kStylisticAltElevenOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3970651510116008, undefined, []);
 
 /** var kStylisticAltFifteenOffSelector: Int { get } */
-export const kStylisticAltFifteenOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2406028182601530, undefined, []);
+export const kStylisticAltFifteenOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2406028182601530, undefined, []);
 
 /** var kStylisticAltFifteenOnSelector: Int { get } */
-export const kStylisticAltFifteenOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3774925426430059, undefined, []);
+export const kStylisticAltFifteenOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3774925426430059, undefined, []);
 
 /** var kStylisticAltFiveOffSelector: Int { get } */
-export const kStylisticAltFiveOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1363681769469062, undefined, []);
+export const kStylisticAltFiveOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1363681769469062, undefined, []);
 
 /** var kStylisticAltFiveOnSelector: Int { get } */
-export const kStylisticAltFiveOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2093822102537143, undefined, []);
+export const kStylisticAltFiveOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2093822102537143, undefined, []);
 
 /** var kStylisticAltFourOffSelector: Int { get } */
-export const kStylisticAltFourOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 968772517278288, undefined, []);
+export const kStylisticAltFourOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 968772517278288, undefined, []);
 
 /** var kStylisticAltFourOnSelector: Int { get } */
-export const kStylisticAltFourOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1654160993845998, undefined, []);
+export const kStylisticAltFourOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1654160993845998, undefined, []);
 
 /** var kStylisticAltFourteenOffSelector: Int { get } */
-export const kStylisticAltFourteenOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4092228464766901, undefined, []);
+export const kStylisticAltFourteenOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4092228464766901, undefined, []);
 
 /** var kStylisticAltFourteenOnSelector: Int { get } */
-export const kStylisticAltFourteenOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4139556176561492, undefined, []);
+export const kStylisticAltFourteenOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4139556176561492, undefined, []);
 
 /** var kStylisticAltNineOffSelector: Int { get } */
-export const kStylisticAltNineOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1492493736662717, undefined, []);
+export const kStylisticAltNineOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1492493736662717, undefined, []);
 
 /** var kStylisticAltNineOnSelector: Int { get } */
-export const kStylisticAltNineOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 985704850311462, undefined, []);
+export const kStylisticAltNineOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 985704850311462, undefined, []);
 
 /** var kStylisticAltNineteenOffSelector: Int { get } */
-export const kStylisticAltNineteenOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 338273666750537, undefined, []);
+export const kStylisticAltNineteenOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 338273666750537, undefined, []);
 
 /** var kStylisticAltNineteenOnSelector: Int { get } */
-export const kStylisticAltNineteenOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2929885728692084, undefined, []);
+export const kStylisticAltNineteenOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2929885728692084, undefined, []);
 
 /** var kStylisticAltOneOffSelector: Int { get } */
-export const kStylisticAltOneOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2527182067120381, undefined, []);
+export const kStylisticAltOneOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2527182067120381, undefined, []);
 
 /** var kStylisticAltOneOnSelector: Int { get } */
-export const kStylisticAltOneOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4078084759505562, undefined, []);
+export const kStylisticAltOneOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4078084759505562, undefined, []);
 
 /** var kStylisticAltSevenOffSelector: Int { get } */
-export const kStylisticAltSevenOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4146896249568782, undefined, []);
+export const kStylisticAltSevenOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4146896249568782, undefined, []);
 
 /** var kStylisticAltSevenOnSelector: Int { get } */
-export const kStylisticAltSevenOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2162834882790443, undefined, []);
+export const kStylisticAltSevenOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2162834882790443, undefined, []);
 
 /** var kStylisticAltSeventeenOffSelector: Int { get } */
-export const kStylisticAltSeventeenOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 132615971725430, undefined, []);
+export const kStylisticAltSeventeenOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 132615971725430, undefined, []);
 
 /** var kStylisticAltSeventeenOnSelector: Int { get } */
-export const kStylisticAltSeventeenOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2031499695703591, undefined, []);
+export const kStylisticAltSeventeenOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2031499695703591, undefined, []);
 
 /** var kStylisticAltSixOffSelector: Int { get } */
-export const kStylisticAltSixOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 890799653371250, undefined, []);
+export const kStylisticAltSixOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 890799653371250, undefined, []);
 
 /** var kStylisticAltSixOnSelector: Int { get } */
-export const kStylisticAltSixOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 486488545853979, undefined, []);
+export const kStylisticAltSixOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 486488545853979, undefined, []);
 
 /** var kStylisticAltSixteenOffSelector: Int { get } */
-export const kStylisticAltSixteenOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4454644010950424, undefined, []);
+export const kStylisticAltSixteenOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4454644010950424, undefined, []);
 
 /** var kStylisticAltSixteenOnSelector: Int { get } */
-export const kStylisticAltSixteenOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1105713805791038, undefined, []);
+export const kStylisticAltSixteenOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1105713805791038, undefined, []);
 
 /** var kStylisticAltTenOffSelector: Int { get } */
-export const kStylisticAltTenOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 408810123215071, undefined, []);
+export const kStylisticAltTenOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 408810123215071, undefined, []);
 
 /** var kStylisticAltTenOnSelector: Int { get } */
-export const kStylisticAltTenOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1818180503583410, undefined, []);
+export const kStylisticAltTenOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1818180503583410, undefined, []);
 
 /** var kStylisticAltThirteenOffSelector: Int { get } */
-export const kStylisticAltThirteenOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3809573565748010, undefined, []);
+export const kStylisticAltThirteenOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3809573565748010, undefined, []);
 
 /** var kStylisticAltThirteenOnSelector: Int { get } */
-export const kStylisticAltThirteenOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1891006494521830, undefined, []);
+export const kStylisticAltThirteenOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1891006494521830, undefined, []);
 
 /** var kStylisticAltThreeOffSelector: Int { get } */
-export const kStylisticAltThreeOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2542497795616924, undefined, []);
+export const kStylisticAltThreeOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2542497795616924, undefined, []);
 
 /** var kStylisticAltThreeOnSelector: Int { get } */
-export const kStylisticAltThreeOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3720863205171563, undefined, []);
+export const kStylisticAltThreeOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3720863205171563, undefined, []);
 
 /** var kStylisticAltTwelveOffSelector: Int { get } */
-export const kStylisticAltTwelveOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3574817046096339, undefined, []);
+export const kStylisticAltTwelveOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3574817046096339, undefined, []);
 
 /** var kStylisticAltTwelveOnSelector: Int { get } */
-export const kStylisticAltTwelveOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1738526420396637, undefined, []);
+export const kStylisticAltTwelveOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1738526420396637, undefined, []);
 
 /** var kStylisticAltTwentyOffSelector: Int { get } */
-export const kStylisticAltTwentyOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 764224598336677, undefined, []);
+export const kStylisticAltTwentyOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 764224598336677, undefined, []);
 
 /** var kStylisticAltTwentyOnSelector: Int { get } */
-export const kStylisticAltTwentyOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1384246682023219, undefined, []);
+export const kStylisticAltTwentyOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1384246682023219, undefined, []);
 
 /** var kStylisticAltTwoOffSelector: Int { get } */
-export const kStylisticAltTwoOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1693773135103795, undefined, []);
+export const kStylisticAltTwoOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1693773135103795, undefined, []);
 
 /** var kStylisticAltTwoOnSelector: Int { get } */
-export const kStylisticAltTwoOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 422441783515100, undefined, []);
+export const kStylisticAltTwoOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 422441783515100, undefined, []);
 
 /** var kHanjaToHangulAltOneSelector: Int { get } */
-export const kHanjaToHangulAltOneSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4013315047947098, undefined, []);
+export const kHanjaToHangulAltOneSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4013315047947098, undefined, []);
 
 /** var kHanjaToHangulAltThreeSelector: Int { get } */
-export const kHanjaToHangulAltThreeSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 784581892546672, undefined, []);
+export const kHanjaToHangulAltThreeSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 784581892546672, undefined, []);
 
 /** var kHanjaToHangulAltTwoSelector: Int { get } */
-export const kHanjaToHangulAltTwoSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1989852641083918, undefined, []);
+export const kHanjaToHangulAltTwoSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1989852641083918, undefined, []);
 
 /** var kHanjaToHangulSelector: Int { get } */
-export const kHanjaToHangulSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 95816724079709, undefined, []);
+export const kHanjaToHangulSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 95816724079709, undefined, []);
 
 /** var kHiraganaToKatakanaSelector: Int { get } */
-export const kHiraganaToKatakanaSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3614137614581270, undefined, []);
+export const kHiraganaToKatakanaSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3614137614581270, undefined, []);
 
 /** var kKanaToRomanizationSelector: Int { get } */
-export const kKanaToRomanizationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2418540435097239, undefined, []);
+export const kKanaToRomanizationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2418540435097239, undefined, []);
 
 /** var kKatakanaToHiraganaSelector: Int { get } */
-export const kKatakanaToHiraganaSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1787788539051304, undefined, []);
+export const kKatakanaToHiraganaSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1787788539051304, undefined, []);
 
 /** var kNoTransliterationSelector: Int { get } */
-export const kNoTransliterationSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1818967377038701, undefined, []);
+export const kNoTransliterationSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1818967377038701, undefined, []);
 
 /** var kRomanizationToHiraganaSelector: Int { get } */
-export const kRomanizationToHiraganaSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3316076057371761, undefined, []);
+export const kRomanizationToHiraganaSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3316076057371761, undefined, []);
 
 /** var kRomanizationToKatakanaSelector: Int { get } */
-export const kRomanizationToKatakanaSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1762450779625640, undefined, []);
+export const kRomanizationToKatakanaSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1762450779625640, undefined, []);
 
 /** var kInferiorsSelector: Int { get } */
-export const kInferiorsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 194340110847450, undefined, []);
+export const kInferiorsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 194340110847450, undefined, []);
 
 /** var kNormalPositionSelector: Int { get } */
-export const kNormalPositionSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3238057973976830, undefined, []);
+export const kNormalPositionSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3238057973976830, undefined, []);
 
 /** var kOrdinalsSelector: Int { get } */
-export const kOrdinalsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2026278071299833, undefined, []);
+export const kOrdinalsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2026278071299833, undefined, []);
 
 /** var kScientificInferiorsSelector: Int { get } */
-export const kScientificInferiorsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1921467408586521, undefined, []);
+export const kScientificInferiorsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1921467408586521, undefined, []);
 
 /** var kSuperiorsSelector: Int { get } */
-export const kSuperiorsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2441518899597996, undefined, []);
+export const kSuperiorsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2441518899597996, undefined, []);
 
 /** var kOPBDControlPointFormat: Int { get } */
-export const kOPBDControlPointFormat: number = callSDK<number>("CoreText_6be9a005889899ab", 2166492825483958, undefined, []);
+export const kOPBDControlPointFormat: number = callSDK<number>("CoreText_c1f28409f8601238", 2166492825483958, undefined, []);
 
 /** var kOPBDCurrentVersion: Int { get } */
-export const kOPBDCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 3469753288483526, undefined, []);
+export const kOPBDCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 3469753288483526, undefined, []);
 
 /** var kOPBDDistanceFormat: Int { get } */
-export const kOPBDDistanceFormat: number = callSDK<number>("CoreText_6be9a005889899ab", 707469931798584, undefined, []);
+export const kOPBDDistanceFormat: number = callSDK<number>("CoreText_c1f28409f8601238", 707469931798584, undefined, []);
 
 /** var kOPBDTag: Int { get } */
-export const kOPBDTag: number = callSDK<number>("CoreText_6be9a005889899ab", 3197331288621038, undefined, []);
+export const kOPBDTag: number = callSDK<number>("CoreText_c1f28409f8601238", 3197331288621038, undefined, []);
 
 /** var kPROPALDirectionClass: Int { get } */
-export const kPROPALDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 3741133277826851, undefined, []);
+export const kPROPALDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 3741133277826851, undefined, []);
 
 /** var kPROPANDirectionClass: Int { get } */
-export const kPROPANDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 734398203536284, undefined, []);
+export const kPROPANDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 734398203536284, undefined, []);
 
 /** var kPROPBNDirectionClass: Int { get } */
-export const kPROPBNDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 3506414751206981, undefined, []);
+export const kPROPBNDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 3506414751206981, undefined, []);
 
 /** var kPROPCSDirectionClass: Int { get } */
-export const kPROPCSDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 4362794368947252, undefined, []);
+export const kPROPCSDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 4362794368947252, undefined, []);
 
 /** var kPROPENDirectionClass: Int { get } */
-export const kPROPENDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 4459741209291162, undefined, []);
+export const kPROPENDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 4459741209291162, undefined, []);
 
 /** var kPROPESDirectionClass: Int { get } */
-export const kPROPESDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 3059071658890637, undefined, []);
+export const kPROPESDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 3059071658890637, undefined, []);
 
 /** var kPROPETDirectionClass: Int { get } */
-export const kPROPETDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 970801975350639, undefined, []);
+export const kPROPETDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 970801975350639, undefined, []);
 
 /** var kPROPLDirectionClass: Int { get } */
-export const kPROPLDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 104637754220204, undefined, []);
+export const kPROPLDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 104637754220204, undefined, []);
 
 /** var kPROPLREDirectionClass: Int { get } */
-export const kPROPLREDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 2231802224495255, undefined, []);
+export const kPROPLREDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 2231802224495255, undefined, []);
 
 /** var kPROPLRODirectionClass: Int { get } */
-export const kPROPLRODirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 3276275637254497, undefined, []);
+export const kPROPLRODirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 3276275637254497, undefined, []);
 
 /** var kPROPNSMDirectionClass: Int { get } */
-export const kPROPNSMDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 1172103370683224, undefined, []);
+export const kPROPNSMDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 1172103370683224, undefined, []);
 
 /** var kPROPNumDirectionClasses: Int { get } */
-export const kPROPNumDirectionClasses: number = callSDK<number>("CoreText_6be9a005889899ab", 374868799481894, undefined, []);
+export const kPROPNumDirectionClasses: number = callSDK<number>("CoreText_c1f28409f8601238", 374868799481894, undefined, []);
 
 /** var kPROPONDirectionClass: Int { get } */
-export const kPROPONDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 2672589680744780, undefined, []);
+export const kPROPONDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 2672589680744780, undefined, []);
 
 /** var kPROPPDFDirectionClass: Int { get } */
-export const kPROPPDFDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 4044625004029209, undefined, []);
+export const kPROPPDFDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 4044625004029209, undefined, []);
 
 /** var kPROPPSDirectionClass: Int { get } */
-export const kPROPPSDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 3118795062566447, undefined, []);
+export const kPROPPSDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 3118795062566447, undefined, []);
 
 /** var kPROPRDirectionClass: Int { get } */
-export const kPROPRDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 4158509784424563, undefined, []);
+export const kPROPRDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 4158509784424563, undefined, []);
 
 /** var kPROPRLEDirectionClass: Int { get } */
-export const kPROPRLEDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 3936350407011868, undefined, []);
+export const kPROPRLEDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 3936350407011868, undefined, []);
 
 /** var kPROPRLODirectionClass: Int { get } */
-export const kPROPRLODirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 1284024747146804, undefined, []);
+export const kPROPRLODirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 1284024747146804, undefined, []);
 
 /** var kPROPSDirectionClass: Int { get } */
-export const kPROPSDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 3822393076687335, undefined, []);
+export const kPROPSDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 3822393076687335, undefined, []);
 
 /** var kPROPSENDirectionClass: Int { get } */
-export const kPROPSENDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 2948708949850584, undefined, []);
+export const kPROPSENDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 2948708949850584, undefined, []);
 
 /** var kPROPWSDirectionClass: Int { get } */
-export const kPROPWSDirectionClass: number = callSDK<number>("CoreText_6be9a005889899ab", 3847840216153926, undefined, []);
+export const kPROPWSDirectionClass: number = callSDK<number>("CoreText_c1f28409f8601238", 3847840216153926, undefined, []);
 
 /** var kPROPCanHangLTMask: Int { get } */
-export const kPROPCanHangLTMask: number = callSDK<number>("CoreText_6be9a005889899ab", 1477540123509897, undefined, []);
+export const kPROPCanHangLTMask: number = callSDK<number>("CoreText_c1f28409f8601238", 1477540123509897, undefined, []);
 
 /** var kPROPCanHangRBMask: Int { get } */
-export const kPROPCanHangRBMask: number = callSDK<number>("CoreText_6be9a005889899ab", 603616534708591, undefined, []);
+export const kPROPCanHangRBMask: number = callSDK<number>("CoreText_c1f28409f8601238", 603616534708591, undefined, []);
 
 /** var kPROPCurrentVersion: Int { get } */
-export const kPROPCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 2183724174115728, undefined, []);
+export const kPROPCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 2183724174115728, undefined, []);
 
 /** var kPROPDirectionMask: Int { get } */
-export const kPROPDirectionMask: number = callSDK<number>("CoreText_6be9a005889899ab", 3241537128759172, undefined, []);
+export const kPROPDirectionMask: number = callSDK<number>("CoreText_c1f28409f8601238", 3241537128759172, undefined, []);
 
 /** var kPROPIsFloaterMask: Int { get } */
-export const kPROPIsFloaterMask: number = callSDK<number>("CoreText_6be9a005889899ab", 2213433889741000, undefined, []);
+export const kPROPIsFloaterMask: number = callSDK<number>("CoreText_c1f28409f8601238", 2213433889741000, undefined, []);
 
 /** var kPROPPairOffsetMask: Int { get } */
-export const kPROPPairOffsetMask: number = callSDK<number>("CoreText_6be9a005889899ab", 2784039848318230, undefined, []);
+export const kPROPPairOffsetMask: number = callSDK<number>("CoreText_c1f28409f8601238", 2784039848318230, undefined, []);
 
 /** var kPROPPairOffsetShift: Int { get } */
-export const kPROPPairOffsetShift: number = callSDK<number>("CoreText_6be9a005889899ab", 1934410970195766, undefined, []);
+export const kPROPPairOffsetShift: number = callSDK<number>("CoreText_c1f28409f8601238", 1934410970195766, undefined, []);
 
 /** var kPROPPairOffsetSign: Int { get } */
-export const kPROPPairOffsetSign: number = callSDK<number>("CoreText_6be9a005889899ab", 1344009138875766, undefined, []);
+export const kPROPPairOffsetSign: number = callSDK<number>("CoreText_c1f28409f8601238", 1344009138875766, undefined, []);
 
 /** var kPROPRightConnectMask: Int { get } */
-export const kPROPRightConnectMask: number = callSDK<number>("CoreText_6be9a005889899ab", 3692591823985321, undefined, []);
+export const kPROPRightConnectMask: number = callSDK<number>("CoreText_c1f28409f8601238", 3692591823985321, undefined, []);
 
 /** var kPROPTag: Int { get } */
-export const kPROPTag: number = callSDK<number>("CoreText_6be9a005889899ab", 1091704341995753, undefined, []);
+export const kPROPTag: number = callSDK<number>("CoreText_c1f28409f8601238", 1091704341995753, undefined, []);
 
 /** var kPROPUseRLPairMask: Int { get } */
-export const kPROPUseRLPairMask: number = callSDK<number>("CoreText_6be9a005889899ab", 3952960521118818, undefined, []);
+export const kPROPUseRLPairMask: number = callSDK<number>("CoreText_c1f28409f8601238", 3952960521118818, undefined, []);
 
 /** var kPROPZeroReserved: Int { get } */
-export const kPROPZeroReserved: number = callSDK<number>("CoreText_6be9a005889899ab", 471731032949827, undefined, []);
+export const kPROPZeroReserved: number = callSDK<number>("CoreText_c1f28409f8601238", 471731032949827, undefined, []);
 
 /** var kPreventOverlapOffSelector: Int { get } */
-export const kPreventOverlapOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 391327170348815, undefined, []);
+export const kPreventOverlapOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 391327170348815, undefined, []);
 
 /** var kPreventOverlapOnSelector: Int { get } */
-export const kPreventOverlapOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1209149657014258, undefined, []);
+export const kPreventOverlapOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1209149657014258, undefined, []);
 
 /** var kAltHalfWidthTextSelector: Int { get } */
-export const kAltHalfWidthTextSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1798720036855290, undefined, []);
+export const kAltHalfWidthTextSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1798720036855290, undefined, []);
 
 /** var kAltProportionalTextSelector: Int { get } */
-export const kAltProportionalTextSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3918987809094259, undefined, []);
+export const kAltProportionalTextSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3918987809094259, undefined, []);
 
 /** var kHalfWidthTextSelector: Int { get } */
-export const kHalfWidthTextSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1546887836459108, undefined, []);
+export const kHalfWidthTextSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1546887836459108, undefined, []);
 
 /** var kMonospacedTextSelector: Int { get } */
-export const kMonospacedTextSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2657514219589891, undefined, []);
+export const kMonospacedTextSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2657514219589891, undefined, []);
 
 /** var kProportionalTextSelector: Int { get } */
-export const kProportionalTextSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1449432592297353, undefined, []);
+export const kProportionalTextSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1449432592297353, undefined, []);
 
 /** var kQuarterWidthTextSelector: Int { get } */
-export const kQuarterWidthTextSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 687000650189514, undefined, []);
+export const kQuarterWidthTextSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 687000650189514, undefined, []);
 
 /** var kThirdWidthTextSelector: Int { get } */
-export const kThirdWidthTextSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 76482784645158, undefined, []);
+export const kThirdWidthTextSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 76482784645158, undefined, []);
 
 /** var kAbbrevSquaredLigaturesOffSelector: Int { get } */
-export const kAbbrevSquaredLigaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3358365401453054, undefined, []);
+export const kAbbrevSquaredLigaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3358365401453054, undefined, []);
 
 /** var kAbbrevSquaredLigaturesOnSelector: Int { get } */
-export const kAbbrevSquaredLigaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1307671122799687, undefined, []);
+export const kAbbrevSquaredLigaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1307671122799687, undefined, []);
 
 /** var kCommonLigaturesOffSelector: Int { get } */
-export const kCommonLigaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4095463266425925, undefined, []);
+export const kCommonLigaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4095463266425925, undefined, []);
 
 /** var kCommonLigaturesOnSelector: Int { get } */
-export const kCommonLigaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2920580987808349, undefined, []);
+export const kCommonLigaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2920580987808349, undefined, []);
 
 /** var kContextualLigaturesOffSelector: Int { get } */
-export const kContextualLigaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3945160152858335, undefined, []);
+export const kContextualLigaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3945160152858335, undefined, []);
 
 /** var kContextualLigaturesOnSelector: Int { get } */
-export const kContextualLigaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1131484696600759, undefined, []);
+export const kContextualLigaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1131484696600759, undefined, []);
 
 /** var kDiphthongLigaturesOffSelector: Int { get } */
-export const kDiphthongLigaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3185970229504694, undefined, []);
+export const kDiphthongLigaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3185970229504694, undefined, []);
 
 /** var kDiphthongLigaturesOnSelector: Int { get } */
-export const kDiphthongLigaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2286684933487635, undefined, []);
+export const kDiphthongLigaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2286684933487635, undefined, []);
 
 /** var kHistoricalLigaturesOffSelector: Int { get } */
-export const kHistoricalLigaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 656424734625950, undefined, []);
+export const kHistoricalLigaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 656424734625950, undefined, []);
 
 /** var kHistoricalLigaturesOnSelector: Int { get } */
-export const kHistoricalLigaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3558055999625103, undefined, []);
+export const kHistoricalLigaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3558055999625103, undefined, []);
 
 /** var kLogosOffSelector: Int { get } */
-export const kLogosOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4214425263250828, undefined, []);
+export const kLogosOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4214425263250828, undefined, []);
 
 /** var kLogosOnSelector: Int { get } */
-export const kLogosOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2731856240463449, undefined, []);
+export const kLogosOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2731856240463449, undefined, []);
 
 /** var kRareLigaturesOffSelector: Int { get } */
-export const kRareLigaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2507385106364246, undefined, []);
+export const kRareLigaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2507385106364246, undefined, []);
 
 /** var kRareLigaturesOnSelector: Int { get } */
-export const kRareLigaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3157439652527553, undefined, []);
+export const kRareLigaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3157439652527553, undefined, []);
 
 /** var kRebusPicturesOffSelector: Int { get } */
-export const kRebusPicturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1084179955009215, undefined, []);
+export const kRebusPicturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1084179955009215, undefined, []);
 
 /** var kRebusPicturesOnSelector: Int { get } */
-export const kRebusPicturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 419288149417967, undefined, []);
+export const kRebusPicturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 419288149417967, undefined, []);
 
 /** var kRequiredLigaturesOffSelector: Int { get } */
-export const kRequiredLigaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 283423639861664, undefined, []);
+export const kRequiredLigaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 283423639861664, undefined, []);
 
 /** var kRequiredLigaturesOnSelector: Int { get } */
-export const kRequiredLigaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3088468979439705, undefined, []);
+export const kRequiredLigaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3088468979439705, undefined, []);
 
 /** var kSquaredLigaturesOffSelector: Int { get } */
-export const kSquaredLigaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4019246701127527, undefined, []);
+export const kSquaredLigaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4019246701127527, undefined, []);
 
 /** var kSquaredLigaturesOnSelector: Int { get } */
-export const kSquaredLigaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4429469752096979, undefined, []);
+export const kSquaredLigaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4429469752096979, undefined, []);
 
 /** var kSymbolLigaturesOffSelector: Int { get } */
-export const kSymbolLigaturesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 929938809875203, undefined, []);
+export const kSymbolLigaturesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 929938809875203, undefined, []);
 
 /** var kSymbolLigaturesOnSelector: Int { get } */
-export const kSymbolLigaturesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2218261815267927, undefined, []);
+export const kSymbolLigaturesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2218261815267927, undefined, []);
 
 /** var kSFNTLookupSegmentArray: Int { get } */
-export const kSFNTLookupSegmentArray: number = callSDK<number>("CoreText_6be9a005889899ab", 2169167444512540, undefined, []);
+export const kSFNTLookupSegmentArray: number = callSDK<number>("CoreText_c1f28409f8601238", 2169167444512540, undefined, []);
 
 /** var kSFNTLookupSegmentSingle: Int { get } */
-export const kSFNTLookupSegmentSingle: number = callSDK<number>("CoreText_6be9a005889899ab", 3241630631749474, undefined, []);
+export const kSFNTLookupSegmentSingle: number = callSDK<number>("CoreText_c1f28409f8601238", 3241630631749474, undefined, []);
 
 /** var kSFNTLookupSimpleArray: Int { get } */
-export const kSFNTLookupSimpleArray: number = callSDK<number>("CoreText_6be9a005889899ab", 2903035274608072, undefined, []);
+export const kSFNTLookupSimpleArray: number = callSDK<number>("CoreText_c1f28409f8601238", 2903035274608072, undefined, []);
 
 /** var kSFNTLookupSingleTable: Int { get } */
-export const kSFNTLookupSingleTable: number = callSDK<number>("CoreText_6be9a005889899ab", 2803379917363329, undefined, []);
+export const kSFNTLookupSingleTable: number = callSDK<number>("CoreText_c1f28409f8601238", 2803379917363329, undefined, []);
 
 /** var kSFNTLookupTrimmedArray: Int { get } */
-export const kSFNTLookupTrimmedArray: number = callSDK<number>("CoreText_6be9a005889899ab", 1279032602828696, undefined, []);
+export const kSFNTLookupTrimmedArray: number = callSDK<number>("CoreText_c1f28409f8601238", 1279032602828696, undefined, []);
 
 /** var kSFNTLookupVector: Int { get } */
-export const kSFNTLookupVector: number = callSDK<number>("CoreText_6be9a005889899ab", 1812149773283081, undefined, []);
+export const kSFNTLookupVector: number = callSDK<number>("CoreText_c1f28409f8601238", 1812149773283081, undefined, []);
 
 /** var kSTClassDeletedGlyph: Int { get } */
-export const kSTClassDeletedGlyph: number = callSDK<number>("CoreText_6be9a005889899ab", 350314873498963, undefined, []);
+export const kSTClassDeletedGlyph: number = callSDK<number>("CoreText_c1f28409f8601238", 350314873498963, undefined, []);
 
 /** var kSTClassEndOfLine: Int { get } */
-export const kSTClassEndOfLine: number = callSDK<number>("CoreText_6be9a005889899ab", 2227671759356960, undefined, []);
+export const kSTClassEndOfLine: number = callSDK<number>("CoreText_c1f28409f8601238", 2227671759356960, undefined, []);
 
 /** var kSTClassEndOfText: Int { get } */
-export const kSTClassEndOfText: number = callSDK<number>("CoreText_6be9a005889899ab", 3628558980394677, undefined, []);
+export const kSTClassEndOfText: number = callSDK<number>("CoreText_c1f28409f8601238", 3628558980394677, undefined, []);
 
 /** var kSTClassOutOfBounds: Int { get } */
-export const kSTClassOutOfBounds: number = callSDK<number>("CoreText_6be9a005889899ab", 2999513388299336, undefined, []);
+export const kSTClassOutOfBounds: number = callSDK<number>("CoreText_c1f28409f8601238", 2999513388299336, undefined, []);
 
 /** var kSTLigActionMask: Int { get } */
-export const kSTLigActionMask: number = callSDK<number>("CoreText_6be9a005889899ab", 1611084325267084, undefined, []);
+export const kSTLigActionMask: number = callSDK<number>("CoreText_c1f28409f8601238", 1611084325267084, undefined, []);
 
 /** var kSTMarkEnd: Int { get } */
-export const kSTMarkEnd: number = callSDK<number>("CoreText_6be9a005889899ab", 2733714662802823, undefined, []);
+export const kSTMarkEnd: number = callSDK<number>("CoreText_c1f28409f8601238", 2733714662802823, undefined, []);
 
 /** var kSTNoAdvance: Int { get } */
-export const kSTNoAdvance: number = callSDK<number>("CoreText_6be9a005889899ab", 553753780107521, undefined, []);
+export const kSTNoAdvance: number = callSDK<number>("CoreText_c1f28409f8601238", 553753780107521, undefined, []);
 
 /** var kSTRearrVerbMask: Int { get } */
-export const kSTRearrVerbMask: number = callSDK<number>("CoreText_6be9a005889899ab", 4402454058665941, undefined, []);
+export const kSTRearrVerbMask: number = callSDK<number>("CoreText_c1f28409f8601238", 4402454058665941, undefined, []);
 
 /** var kSTSetMark: Int { get } */
-export const kSTSetMark: number = callSDK<number>("CoreText_6be9a005889899ab", 593486912941839, undefined, []);
+export const kSTSetMark: number = callSDK<number>("CoreText_c1f28409f8601238", 593486912941839, undefined, []);
 
 /** var kSTKCrossStreamReset: Int { get } */
-export const kSTKCrossStreamReset: number = callSDK<number>("CoreText_6be9a005889899ab", 71423124579944, undefined, []);
+export const kSTKCrossStreamReset: number = callSDK<number>("CoreText_c1f28409f8601238", 71423124579944, undefined, []);
 
 /** var kSTXHasLigAction: Int { get } */
-export const kSTXHasLigAction: number = callSDK<number>("CoreText_6be9a005889899ab", 2798846209539992, undefined, []);
+export const kSTXHasLigAction: number = callSDK<number>("CoreText_c1f28409f8601238", 2798846209539992, undefined, []);
 
 /** var kDecomposeDiacriticsSelector: Int { get } */
-export const kDecomposeDiacriticsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1097643058019824, undefined, []);
+export const kDecomposeDiacriticsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1097643058019824, undefined, []);
 
 /** var kHideDiacriticsSelector: Int { get } */
-export const kHideDiacriticsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1102684068523122, undefined, []);
+export const kHideDiacriticsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1102684068523122, undefined, []);
 
 /** var kShowDiacriticsSelector: Int { get } */
-export const kShowDiacriticsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1756311359312543, undefined, []);
+export const kShowDiacriticsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1756311359312543, undefined, []);
 
 /** var kSubstituteVerticalFormsOffSelector: Int { get } */
-export const kSubstituteVerticalFormsOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 592627200591058, undefined, []);
+export const kSubstituteVerticalFormsOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 592627200591058, undefined, []);
 
 /** var kSubstituteVerticalFormsOnSelector: Int { get } */
-export const kSubstituteVerticalFormsOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3077874927875152, undefined, []);
+export const kSubstituteVerticalFormsOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3077874927875152, undefined, []);
 
 /** var kTRAKCurrentVersion: Int { get } */
-export const kTRAKCurrentVersion: number = callSDK<number>("CoreText_6be9a005889899ab", 3293145809014723, undefined, []);
+export const kTRAKCurrentVersion: number = callSDK<number>("CoreText_c1f28409f8601238", 3293145809014723, undefined, []);
 
 /** var kTRAKTag: Int { get } */
-export const kTRAKTag: number = callSDK<number>("CoreText_6be9a005889899ab", 4279138163400425, undefined, []);
+export const kTRAKTag: number = callSDK<number>("CoreText_c1f28409f8601238", 4279138163400425, undefined, []);
 
 /** var kTRAKUniformFormat: Int { get } */
-export const kTRAKUniformFormat: number = callSDK<number>("CoreText_6be9a005889899ab", 430363886265152, undefined, []);
+export const kTRAKUniformFormat: number = callSDK<number>("CoreText_c1f28409f8601238", 430363886265152, undefined, []);
 
 /** var kExpertCharactersSelector: Int { get } */
-export const kExpertCharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 496196513728767, undefined, []);
+export const kExpertCharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 496196513728767, undefined, []);
 
 /** var kHojoCharactersSelector: Int { get } */
-export const kHojoCharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1163671030215364, undefined, []);
+export const kHojoCharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1163671030215364, undefined, []);
 
 /** var kJIS1978CharactersSelector: Int { get } */
-export const kJIS1978CharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 883565823270986, undefined, []);
+export const kJIS1978CharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 883565823270986, undefined, []);
 
 /** var kJIS1983CharactersSelector: Int { get } */
-export const kJIS1983CharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4241376754346407, undefined, []);
+export const kJIS1983CharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4241376754346407, undefined, []);
 
 /** var kJIS1990CharactersSelector: Int { get } */
-export const kJIS1990CharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 301366422844602, undefined, []);
+export const kJIS1990CharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 301366422844602, undefined, []);
 
 /** var kJIS2004CharactersSelector: Int { get } */
-export const kJIS2004CharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1967964931104341, undefined, []);
+export const kJIS2004CharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1967964931104341, undefined, []);
 
 /** var kNLCCharactersSelector: Int { get } */
-export const kNLCCharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 102058227875621, undefined, []);
+export const kNLCCharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 102058227875621, undefined, []);
 
 /** var kSimplifiedCharactersSelector: Int { get } */
-export const kSimplifiedCharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4311390791324119, undefined, []);
+export const kSimplifiedCharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4311390791324119, undefined, []);
 
 /** var kTraditionalAltFiveSelector: Int { get } */
-export const kTraditionalAltFiveSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1005059179806324, undefined, []);
+export const kTraditionalAltFiveSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1005059179806324, undefined, []);
 
 /** var kTraditionalAltFourSelector: Int { get } */
-export const kTraditionalAltFourSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1094822080424643, undefined, []);
+export const kTraditionalAltFourSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1094822080424643, undefined, []);
 
 /** var kTraditionalAltOneSelector: Int { get } */
-export const kTraditionalAltOneSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 751629931411197, undefined, []);
+export const kTraditionalAltOneSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 751629931411197, undefined, []);
 
 /** var kTraditionalAltThreeSelector: Int { get } */
-export const kTraditionalAltThreeSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2634774708797928, undefined, []);
+export const kTraditionalAltThreeSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2634774708797928, undefined, []);
 
 /** var kTraditionalAltTwoSelector: Int { get } */
-export const kTraditionalAltTwoSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 460868932110149, undefined, []);
+export const kTraditionalAltTwoSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 460868932110149, undefined, []);
 
 /** var kTraditionalCharactersSelector: Int { get } */
-export const kTraditionalCharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2090791959089334, undefined, []);
+export const kTraditionalCharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2090791959089334, undefined, []);
 
 /** var kTraditionalNamesCharactersSelector: Int { get } */
-export const kTraditionalNamesCharactersSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4033340302289704, undefined, []);
+export const kTraditionalNamesCharactersSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4033340302289704, undefined, []);
 
 /** var kCursiveSelector: Int { get } */
-export const kCursiveSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2877075082918705, undefined, []);
+export const kCursiveSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2877075082918705, undefined, []);
 
 /** var kPartiallyConnectedSelector: Int { get } */
-export const kPartiallyConnectedSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3635590980279447, undefined, []);
+export const kPartiallyConnectedSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3635590980279447, undefined, []);
 
 /** var kUnconnectedSelector: Int { get } */
-export const kUnconnectedSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1860047446088193, undefined, []);
+export const kUnconnectedSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1860047446088193, undefined, []);
 
 /** var kAllCapsSelector: Int { get } */
-export const kAllCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3270048861405329, undefined, []);
+export const kAllCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3270048861405329, undefined, []);
 
 /** var kAllLowerCaseSelector: Int { get } */
-export const kAllLowerCaseSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3780466458018714, undefined, []);
+export const kAllLowerCaseSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3780466458018714, undefined, []);
 
 /** var kInitialCapsAndSmallCapsSelector: Int { get } */
-export const kInitialCapsAndSmallCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 2784114837008110, undefined, []);
+export const kInitialCapsAndSmallCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 2784114837008110, undefined, []);
 
 /** var kInitialCapsSelector: Int { get } */
-export const kInitialCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4400301440601511, undefined, []);
+export const kInitialCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4400301440601511, undefined, []);
 
 /** var kSmallCapsSelector: Int { get } */
-export const kSmallCapsSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 1516615263132904, undefined, []);
+export const kSmallCapsSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 1516615263132904, undefined, []);
 
 /** var kUpperAndLowerCaseSelector: Int { get } */
-export const kUpperAndLowerCaseSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3687324147970727, undefined, []);
+export const kUpperAndLowerCaseSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3687324147970727, undefined, []);
 
 /** var kLineFinalSwashesOffSelector: Int { get } */
-export const kLineFinalSwashesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4289321572850935, undefined, []);
+export const kLineFinalSwashesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4289321572850935, undefined, []);
 
 /** var kLineFinalSwashesOnSelector: Int { get } */
-export const kLineFinalSwashesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 601327346048468, undefined, []);
+export const kLineFinalSwashesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 601327346048468, undefined, []);
 
 /** var kLineInitialSwashesOffSelector: Int { get } */
-export const kLineInitialSwashesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3439348366052651, undefined, []);
+export const kLineInitialSwashesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3439348366052651, undefined, []);
 
 /** var kLineInitialSwashesOnSelector: Int { get } */
-export const kLineInitialSwashesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3353809558049600, undefined, []);
+export const kLineInitialSwashesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3353809558049600, undefined, []);
 
 /** var kNonFinalSwashesOffSelector: Int { get } */
-export const kNonFinalSwashesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 3551222651834093, undefined, []);
+export const kNonFinalSwashesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 3551222651834093, undefined, []);
 
 /** var kNonFinalSwashesOnSelector: Int { get } */
-export const kNonFinalSwashesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 497132553465577, undefined, []);
+export const kNonFinalSwashesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 497132553465577, undefined, []);
 
 /** var kWordFinalSwashesOffSelector: Int { get } */
-export const kWordFinalSwashesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 698880273463037, undefined, []);
+export const kWordFinalSwashesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 698880273463037, undefined, []);
 
 /** var kWordFinalSwashesOnSelector: Int { get } */
-export const kWordFinalSwashesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 407168763835662, undefined, []);
+export const kWordFinalSwashesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 407168763835662, undefined, []);
 
 /** var kWordInitialSwashesOffSelector: Int { get } */
-export const kWordInitialSwashesOffSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 540507950667522, undefined, []);
+export const kWordInitialSwashesOffSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 540507950667522, undefined, []);
 
 /** var kWordInitialSwashesOnSelector: Int { get } */
-export const kWordInitialSwashesOnSelector: number = callSDK<number>("CoreText_6be9a005889899ab", 4003046750885862, undefined, []);
+export const kWordInitialSwashesOnSelector: number = callSDK<number>("CoreText_c1f28409f8601238", 4003046750885862, undefined, []);
 
 /** var nameFontTableTag: Int { get } */
-export const nameFontTableTag: number = callSDK<number>("CoreText_6be9a005889899ab", 4268087021390416, undefined, []);
+export const nameFontTableTag: number = callSDK<number>("CoreText_c1f28409f8601238", 4268087021390416, undefined, []);
 
 /** var nonGlyphID: Int { get } */
-export const nonGlyphID: number = callSDK<number>("CoreText_6be9a005889899ab", 2475618230744690, undefined, []);
+export const nonGlyphID: number = callSDK<number>("CoreText_c1f28409f8601238", 2475618230744690, undefined, []);
 
 /** var os2FontTableTag: Int { get } */
-export const os2FontTableTag: number = callSDK<number>("CoreText_6be9a005889899ab", 2777216410162849, undefined, []);
+export const os2FontTableTag: number = callSDK<number>("CoreText_c1f28409f8601238", 2777216410162849, undefined, []);
 
 /** var sizeof_sfntCMapEncoding: Int { get } */
-export const sizeof_sfntCMapEncoding: number = callSDK<number>("CoreText_6be9a005889899ab", 155870477801031, undefined, []);
+export const sizeof_sfntCMapEncoding: number = callSDK<number>("CoreText_c1f28409f8601238", 155870477801031, undefined, []);
 
 /** var sizeof_sfntCMapExtendedSubHeader: Int { get } */
-export const sizeof_sfntCMapExtendedSubHeader: number = callSDK<number>("CoreText_6be9a005889899ab", 3094252900475181, undefined, []);
+export const sizeof_sfntCMapExtendedSubHeader: number = callSDK<number>("CoreText_c1f28409f8601238", 3094252900475181, undefined, []);
 
 /** var sizeof_sfntCMapHeader: Int { get } */
-export const sizeof_sfntCMapHeader: number = callSDK<number>("CoreText_6be9a005889899ab", 1621477493768171, undefined, []);
+export const sizeof_sfntCMapHeader: number = callSDK<number>("CoreText_c1f28409f8601238", 1621477493768171, undefined, []);
 
 /** var sizeof_sfntCMapSubHeader: Int { get } */
-export const sizeof_sfntCMapSubHeader: number = callSDK<number>("CoreText_6be9a005889899ab", 2251374887295062, undefined, []);
+export const sizeof_sfntCMapSubHeader: number = callSDK<number>("CoreText_c1f28409f8601238", 2251374887295062, undefined, []);
 
 /** var sizeof_sfntDescriptorHeader: Int { get } */
-export const sizeof_sfntDescriptorHeader: number = callSDK<number>("CoreText_6be9a005889899ab", 1276050985141829, undefined, []);
+export const sizeof_sfntDescriptorHeader: number = callSDK<number>("CoreText_c1f28409f8601238", 1276050985141829, undefined, []);
 
 /** var sizeof_sfntDirectory: Int { get } */
-export const sizeof_sfntDirectory: number = callSDK<number>("CoreText_6be9a005889899ab", 1199923606284503, undefined, []);
+export const sizeof_sfntDirectory: number = callSDK<number>("CoreText_c1f28409f8601238", 1199923606284503, undefined, []);
 
 /** var sizeof_sfntInstance: Int { get } */
-export const sizeof_sfntInstance: number = callSDK<number>("CoreText_6be9a005889899ab", 3557400815120013, undefined, []);
+export const sizeof_sfntInstance: number = callSDK<number>("CoreText_c1f28409f8601238", 3557400815120013, undefined, []);
 
 /** var sizeof_sfntNameHeader: Int { get } */
-export const sizeof_sfntNameHeader: number = callSDK<number>("CoreText_6be9a005889899ab", 2762277398475433, undefined, []);
+export const sizeof_sfntNameHeader: number = callSDK<number>("CoreText_c1f28409f8601238", 2762277398475433, undefined, []);
 
 /** var sizeof_sfntNameRecord: Int { get } */
-export const sizeof_sfntNameRecord: number = callSDK<number>("CoreText_6be9a005889899ab", 3149776449646703, undefined, []);
+export const sizeof_sfntNameRecord: number = callSDK<number>("CoreText_c1f28409f8601238", 3149776449646703, undefined, []);
 
 /** var sizeof_sfntVariationAxis: Int { get } */
-export const sizeof_sfntVariationAxis: number = callSDK<number>("CoreText_6be9a005889899ab", 3766036132014770, undefined, []);
+export const sizeof_sfntVariationAxis: number = callSDK<number>("CoreText_c1f28409f8601238", 3766036132014770, undefined, []);
 
 /** var sizeof_sfntVariationHeader: Int { get } */
-export const sizeof_sfntVariationHeader: number = callSDK<number>("CoreText_6be9a005889899ab", 3407842838765514, undefined, []);
+export const sizeof_sfntVariationHeader: number = callSDK<number>("CoreText_c1f28409f8601238", 3407842838765514, undefined, []);
 
 /** var variationFontTableTag: Int { get } */
-export const variationFontTableTag: number = callSDK<number>("CoreText_6be9a005889899ab", 2756471502728378, undefined, []);
+export const variationFontTableTag: number = callSDK<number>("CoreText_c1f28409f8601238", 2756471502728378, undefined, []);
 
 /**
  * let kCTAdaptiveImageProviderAttributeName: CFString
  * @availability iOS 18.0+
  */
-export const kCTAdaptiveImageProviderAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2825175561391957, undefined, []);
+export const kCTAdaptiveImageProviderAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2825175561391957, undefined, []);
 
 /**
  * let kCTBackgroundColorAttributeName: CFString
  * @availability iOS 10.0+
  */
-export const kCTBackgroundColorAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3321157788799743, undefined, []);
+export const kCTBackgroundColorAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3321157788799743, undefined, []);
 
 /**
  * let kCTBaselineClassAttributeName: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineClassAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 120859387199413, undefined, []);
+export const kCTBaselineClassAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 120859387199413, undefined, []);
 
 /**
  * let kCTBaselineClassHanging: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineClassHanging: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2938178482408191, undefined, []);
+export const kCTBaselineClassHanging: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2938178482408191, undefined, []);
 
 /**
  * let kCTBaselineClassIdeographicCentered: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineClassIdeographicCentered: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3010865422216604, undefined, []);
+export const kCTBaselineClassIdeographicCentered: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3010865422216604, undefined, []);
 
 /**
  * let kCTBaselineClassIdeographicHigh: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineClassIdeographicHigh: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2805667137451156, undefined, []);
+export const kCTBaselineClassIdeographicHigh: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2805667137451156, undefined, []);
 
 /**
  * let kCTBaselineClassIdeographicLow: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineClassIdeographicLow: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3477454817585517, undefined, []);
+export const kCTBaselineClassIdeographicLow: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3477454817585517, undefined, []);
 
 /**
  * let kCTBaselineClassMath: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineClassMath: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2368642303695847, undefined, []);
+export const kCTBaselineClassMath: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2368642303695847, undefined, []);
 
 /**
  * let kCTBaselineClassRoman: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineClassRoman: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1984313054781197, undefined, []);
+export const kCTBaselineClassRoman: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1984313054781197, undefined, []);
 
 /**
  * let kCTBaselineInfoAttributeName: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineInfoAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 11831584320370, undefined, []);
+export const kCTBaselineInfoAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 11831584320370, undefined, []);
 
 /**
  * let kCTBaselineOffsetAttributeName: CFString
  * @availability iOS 11.0+
  */
-export const kCTBaselineOffsetAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3001132495930067, undefined, []);
+export const kCTBaselineOffsetAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3001132495930067, undefined, []);
 
 /**
  * let kCTBaselineOriginalFont: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineOriginalFont: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 365277330666132, undefined, []);
+export const kCTBaselineOriginalFont: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 365277330666132, undefined, []);
 
 /**
  * let kCTBaselineReferenceFont: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineReferenceFont: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1381246366244340, undefined, []);
+export const kCTBaselineReferenceFont: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1381246366244340, undefined, []);
 
 /**
  * let kCTBaselineReferenceInfoAttributeName: CFString
  * @availability iOS 6.0+
  */
-export const kCTBaselineReferenceInfoAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2373383266682191, undefined, []);
+export const kCTBaselineReferenceInfoAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2373383266682191, undefined, []);
 
 /**
  * let kCTCharacterShapeAttributeName: CFString
  * @availability iOS 3.2+
  * @deprecated iOS 9.0
  */
-export const kCTCharacterShapeAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3833497836757177, undefined, []);
+export const kCTCharacterShapeAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3833497836757177, undefined, []);
 
 /**
  * let kCTFontAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4181954589003703, undefined, []);
+export const kCTFontAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4181954589003703, undefined, []);
 
 /**
  * let kCTFontBaselineAdjustAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontBaselineAdjustAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2225424723980425, undefined, []);
+export const kCTFontBaselineAdjustAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2225424723980425, undefined, []);
 
 /**
  * let kCTFontCascadeListAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontCascadeListAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4195436928646278, undefined, []);
+export const kCTFontCascadeListAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4195436928646278, undefined, []);
 
 /**
  * let kCTFontCharacterSetAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontCharacterSetAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1030086948198134, undefined, []);
+export const kCTFontCharacterSetAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1030086948198134, undefined, []);
 
 /**
  * let kCTFontCollectionRemoveDuplicatesOption: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontCollectionRemoveDuplicatesOption: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2346320654025908, undefined, []);
+export const kCTFontCollectionRemoveDuplicatesOption: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2346320654025908, undefined, []);
 
 /**
  * let kCTFontCopyrightNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontCopyrightNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2553793153208945, undefined, []);
+export const kCTFontCopyrightNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2553793153208945, undefined, []);
 
 /**
  * let kCTFontDescriptionNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontDescriptionNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3470166237483389, undefined, []);
+export const kCTFontDescriptionNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3470166237483389, undefined, []);
 
 /**
  * let kCTFontDescriptorLanguageAttribute: CFString
  * @availability iOS 13.0+
  */
-export const kCTFontDescriptorLanguageAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2832630277106267, undefined, []);
+export const kCTFontDescriptorLanguageAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2832630277106267, undefined, []);
 
 /**
  * let kCTFontDescriptorMatchingCurrentAssetSize: CFString
  * @availability iOS 6.0+
  */
-export const kCTFontDescriptorMatchingCurrentAssetSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 24578316055347, undefined, []);
+export const kCTFontDescriptorMatchingCurrentAssetSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 24578316055347, undefined, []);
 
 /**
  * let kCTFontDescriptorMatchingDescriptors: CFString
  * @availability iOS 6.0+
  */
-export const kCTFontDescriptorMatchingDescriptors: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2186341380210751, undefined, []);
+export const kCTFontDescriptorMatchingDescriptors: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2186341380210751, undefined, []);
 
 /**
  * let kCTFontDescriptorMatchingError: CFString
  * @availability iOS 6.0+
  */
-export const kCTFontDescriptorMatchingError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 262494877257819, undefined, []);
+export const kCTFontDescriptorMatchingError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 262494877257819, undefined, []);
 
 /**
  * let kCTFontDescriptorMatchingPercentage: CFString
  * @availability iOS 6.0+
  */
-export const kCTFontDescriptorMatchingPercentage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2723525012746991, undefined, []);
+export const kCTFontDescriptorMatchingPercentage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2723525012746991, undefined, []);
 
 /**
  * let kCTFontDescriptorMatchingResult: CFString
  * @availability iOS 6.0+
  */
-export const kCTFontDescriptorMatchingResult: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2476557079699280, undefined, []);
+export const kCTFontDescriptorMatchingResult: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2476557079699280, undefined, []);
 
 /**
  * let kCTFontDescriptorMatchingSourceDescriptor: CFString
  * @availability iOS 6.0+
  */
-export const kCTFontDescriptorMatchingSourceDescriptor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 32232774698592, undefined, []);
+export const kCTFontDescriptorMatchingSourceDescriptor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 32232774698592, undefined, []);
 
 /**
  * let kCTFontDescriptorMatchingTotalAssetSize: CFString
  * @availability iOS 6.0+
  */
-export const kCTFontDescriptorMatchingTotalAssetSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 993286845502529, undefined, []);
+export const kCTFontDescriptorMatchingTotalAssetSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 993286845502529, undefined, []);
 
 /**
  * let kCTFontDescriptorMatchingTotalDownloadedSize: CFString
  * @availability iOS 6.0+
  */
-export const kCTFontDescriptorMatchingTotalDownloadedSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1858693676392104, undefined, []);
+export const kCTFontDescriptorMatchingTotalDownloadedSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1858693676392104, undefined, []);
 
 /**
  * let kCTFontDesignerNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontDesignerNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 826862274338694, undefined, []);
+export const kCTFontDesignerNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 826862274338694, undefined, []);
 
 /**
  * let kCTFontDesignerURLNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontDesignerURLNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2652626688448947, undefined, []);
+export const kCTFontDesignerURLNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2652626688448947, undefined, []);
 
 /**
  * let kCTFontDisplayNameAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontDisplayNameAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2795499961103354, undefined, []);
+export const kCTFontDisplayNameAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2795499961103354, undefined, []);
 
 /**
  * let kCTFontDownloadableAttribute: CFString
  * @availability iOS 6.0+
  */
-export const kCTFontDownloadableAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2375437026922081, undefined, []);
+export const kCTFontDownloadableAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2375437026922081, undefined, []);
 
 /**
  * let kCTFontDownloadedAttribute: CFString
  * @availability iOS 7.0+
  */
-export const kCTFontDownloadedAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3946351359794795, undefined, []);
+export const kCTFontDownloadedAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3946351359794795, undefined, []);
 
 /**
  * let kCTFontEnabledAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontEnabledAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1011491064513905, undefined, []);
+export const kCTFontEnabledAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1011491064513905, undefined, []);
 
 /**
  * let kCTFontFamilyNameAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFamilyNameAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1778509941739222, undefined, []);
+export const kCTFontFamilyNameAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1778509941739222, undefined, []);
 
 /**
  * let kCTFontFamilyNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFamilyNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4295723172333240, undefined, []);
+export const kCTFontFamilyNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4295723172333240, undefined, []);
 
 /**
  * let kCTFontFeatureSampleTextKey: CFString
  * @availability iOS 13.0+
  */
-export const kCTFontFeatureSampleTextKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3946722911174039, undefined, []);
+export const kCTFontFeatureSampleTextKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3946722911174039, undefined, []);
 
 /**
  * let kCTFontFeatureSelectorDefaultKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFeatureSelectorDefaultKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3763089903740518, undefined, []);
+export const kCTFontFeatureSelectorDefaultKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3763089903740518, undefined, []);
 
 /**
  * let kCTFontFeatureSelectorIdentifierKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFeatureSelectorIdentifierKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1561313100339390, undefined, []);
+export const kCTFontFeatureSelectorIdentifierKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1561313100339390, undefined, []);
 
 /**
  * let kCTFontFeatureSelectorNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFeatureSelectorNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4221973730539370, undefined, []);
+export const kCTFontFeatureSelectorNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4221973730539370, undefined, []);
 
 /**
  * let kCTFontFeatureSelectorSettingKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFeatureSelectorSettingKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 462510188709852, undefined, []);
+export const kCTFontFeatureSelectorSettingKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 462510188709852, undefined, []);
 
 /**
  * let kCTFontFeatureSettingsAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFeatureSettingsAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1237588281979334, undefined, []);
+export const kCTFontFeatureSettingsAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1237588281979334, undefined, []);
 
 /**
  * let kCTFontFeatureTooltipTextKey: CFString
  * @availability iOS 13.0+
  */
-export const kCTFontFeatureTooltipTextKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2093689458336767, undefined, []);
+export const kCTFontFeatureTooltipTextKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2093689458336767, undefined, []);
 
 /**
  * let kCTFontFeatureTypeExclusiveKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFeatureTypeExclusiveKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3401343836307180, undefined, []);
+export const kCTFontFeatureTypeExclusiveKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3401343836307180, undefined, []);
 
 /**
  * let kCTFontFeatureTypeIdentifierKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFeatureTypeIdentifierKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 914768019246590, undefined, []);
+export const kCTFontFeatureTypeIdentifierKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 914768019246590, undefined, []);
 
 /**
  * let kCTFontFeatureTypeNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFeatureTypeNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4457099503621614, undefined, []);
+export const kCTFontFeatureTypeNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4457099503621614, undefined, []);
 
 /**
  * let kCTFontFeatureTypeSelectorsKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFeatureTypeSelectorsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3071889125792103, undefined, []);
+export const kCTFontFeatureTypeSelectorsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3071889125792103, undefined, []);
 
 /**
  * let kCTFontFeaturesAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFeaturesAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4036469815800861, undefined, []);
+export const kCTFontFeaturesAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4036469815800861, undefined, []);
 
 /**
  * let kCTFontFixedAdvanceAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFixedAdvanceAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2470286809273943, undefined, []);
+export const kCTFontFixedAdvanceAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2470286809273943, undefined, []);
 
 /**
  * let kCTFontFormatAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFormatAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2663030669700494, undefined, []);
+export const kCTFontFormatAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2663030669700494, undefined, []);
 
 /**
  * let kCTFontFullNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontFullNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1163551833197426, undefined, []);
+export const kCTFontFullNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1163551833197426, undefined, []);
 
 /**
  * let kCTFontLanguagesAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontLanguagesAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4134713068939770, undefined, []);
+export const kCTFontLanguagesAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4134713068939770, undefined, []);
 
 /**
  * let kCTFontLicenseNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontLicenseNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2592387654346465, undefined, []);
+export const kCTFontLicenseNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2592387654346465, undefined, []);
 
 /**
  * let kCTFontLicenseURLNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontLicenseURLNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1051748611357943, undefined, []);
+export const kCTFontLicenseURLNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1051748611357943, undefined, []);
 
 /**
  * let kCTFontMacintoshEncodingsAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontMacintoshEncodingsAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1279979885117761, undefined, []);
+export const kCTFontMacintoshEncodingsAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1279979885117761, undefined, []);
 
 /**
  * let kCTFontManagerErrorDomain: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontManagerErrorDomain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2845996228407614, undefined, []);
+export const kCTFontManagerErrorDomain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2845996228407614, undefined, []);
 
 /**
  * let kCTFontManagerErrorFontAssetNameKey: CFString
  * @availability iOS 13.0+
  */
-export const kCTFontManagerErrorFontAssetNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 87521986908021, undefined, []);
+export const kCTFontManagerErrorFontAssetNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 87521986908021, undefined, []);
 
 /**
  * let kCTFontManagerErrorFontDescriptorsKey: CFString
  * @availability iOS 13.0+
  */
-export const kCTFontManagerErrorFontDescriptorsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3910450779015275, undefined, []);
+export const kCTFontManagerErrorFontDescriptorsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3910450779015275, undefined, []);
 
 /**
  * let kCTFontManagerErrorFontURLsKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontManagerErrorFontURLsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2806617635032044, undefined, []);
+export const kCTFontManagerErrorFontURLsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2806617635032044, undefined, []);
 
 /**
  * let kCTFontManagerRegisteredFontsChangedNotification: CFString
  * @availability iOS 7.0+
  */
-export const kCTFontManagerRegisteredFontsChangedNotification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3491836001723337, undefined, []);
+export const kCTFontManagerRegisteredFontsChangedNotification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3491836001723337, undefined, []);
 
 /**
  * let kCTFontManufacturerNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontManufacturerNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2789974369157077, undefined, []);
+export const kCTFontManufacturerNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2789974369157077, undefined, []);
 
 /**
  * let kCTFontMatrixAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontMatrixAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1170283999400650, undefined, []);
+export const kCTFontMatrixAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1170283999400650, undefined, []);
 
 /**
  * let kCTFontNameAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontNameAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 282535690545317, undefined, []);
+export const kCTFontNameAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 282535690545317, undefined, []);
 
 /**
  * let kCTFontOpenTypeFeatureTag: CFString
  * @availability iOS 8.0+
  */
-export const kCTFontOpenTypeFeatureTag: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1786198249822070, undefined, []);
+export const kCTFontOpenTypeFeatureTag: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1786198249822070, undefined, []);
 
 /**
  * let kCTFontOpenTypeFeatureValue: CFString
  * @availability iOS 8.0+
  */
-export const kCTFontOpenTypeFeatureValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3362844413881050, undefined, []);
+export const kCTFontOpenTypeFeatureValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3362844413881050, undefined, []);
 
 /**
  * let kCTFontOpticalSizeAttribute: CFString
  * @availability iOS 7.0+
  */
-export const kCTFontOpticalSizeAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3877444875114970, undefined, []);
+export const kCTFontOpticalSizeAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3877444875114970, undefined, []);
 
 /**
  * let kCTFontOrientationAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontOrientationAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1993207126429616, undefined, []);
+export const kCTFontOrientationAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1993207126429616, undefined, []);
 
 /**
  * let kCTFontPostScriptCIDNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontPostScriptCIDNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2474486489993749, undefined, []);
+export const kCTFontPostScriptCIDNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2474486489993749, undefined, []);
 
 /**
  * let kCTFontPostScriptNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontPostScriptNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3525898194015510, undefined, []);
+export const kCTFontPostScriptNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3525898194015510, undefined, []);
 
 /**
  * let kCTFontPriorityAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontPriorityAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1597745063760586, undefined, []);
+export const kCTFontPriorityAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1597745063760586, undefined, []);
 
 /**
  * let kCTFontRegistrationScopeAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontRegistrationScopeAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 817960108220751, undefined, []);
+export const kCTFontRegistrationScopeAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 817960108220751, undefined, []);
 
 /**
  * let kCTFontRegistrationUserInfoAttribute: CFString
  * @availability iOS 13.0+
  */
-export const kCTFontRegistrationUserInfoAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2978255438821611, undefined, []);
+export const kCTFontRegistrationUserInfoAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2978255438821611, undefined, []);
 
 /**
  * let kCTFontSampleTextNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontSampleTextNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4398682991441741, undefined, []);
+export const kCTFontSampleTextNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4398682991441741, undefined, []);
 
 /**
  * let kCTFontSizeAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontSizeAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1608934817778308, undefined, []);
+export const kCTFontSizeAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1608934817778308, undefined, []);
 
 /**
  * let kCTFontSlantTrait: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontSlantTrait: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4029418618626798, undefined, []);
+export const kCTFontSlantTrait: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4029418618626798, undefined, []);
 
 /**
  * let kCTFontStyleNameAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontStyleNameAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 253580730111391, undefined, []);
+export const kCTFontStyleNameAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 253580730111391, undefined, []);
 
 /**
  * let kCTFontStyleNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontStyleNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 497867196792907, undefined, []);
+export const kCTFontStyleNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 497867196792907, undefined, []);
 
 /**
  * let kCTFontSubFamilyNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontSubFamilyNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3059894747628634, undefined, []);
+export const kCTFontSubFamilyNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3059894747628634, undefined, []);
 
 /**
  * let kCTFontSymbolicTrait: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontSymbolicTrait: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3309317406417835, undefined, []);
+export const kCTFontSymbolicTrait: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3309317406417835, undefined, []);
 
 /**
  * let kCTFontTrademarkNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontTrademarkNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4436792828569490, undefined, []);
+export const kCTFontTrademarkNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4436792828569490, undefined, []);
 
 /**
  * let kCTFontTraitsAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontTraitsAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2742119415172694, undefined, []);
+export const kCTFontTraitsAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2742119415172694, undefined, []);
 
 /**
  * let kCTFontURLAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontURLAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3370321060107771, undefined, []);
+export const kCTFontURLAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3370321060107771, undefined, []);
 
 /**
  * let kCTFontUniqueNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontUniqueNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3089403413088377, undefined, []);
+export const kCTFontUniqueNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3089403413088377, undefined, []);
 
 /**
  * let kCTFontVariationAttribute: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontVariationAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 873496711655247, undefined, []);
+export const kCTFontVariationAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 873496711655247, undefined, []);
 
 /**
  * let kCTFontVariationAxesAttribute: CFString
  * @availability iOS 11.0+
  */
-export const kCTFontVariationAxesAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 487627412194058, undefined, []);
+export const kCTFontVariationAxesAttribute: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 487627412194058, undefined, []);
 
 /**
  * let kCTFontVariationAxisDefaultValueKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontVariationAxisDefaultValueKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2825099006955616, undefined, []);
+export const kCTFontVariationAxisDefaultValueKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2825099006955616, undefined, []);
 
 /**
  * let kCTFontVariationAxisHiddenKey: CFString
  * @availability iOS 11.0+
  */
-export const kCTFontVariationAxisHiddenKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3981294364754046, undefined, []);
+export const kCTFontVariationAxisHiddenKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3981294364754046, undefined, []);
 
 /**
  * let kCTFontVariationAxisIdentifierKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontVariationAxisIdentifierKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 360036541661440, undefined, []);
+export const kCTFontVariationAxisIdentifierKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 360036541661440, undefined, []);
 
 /**
  * let kCTFontVariationAxisMaximumValueKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontVariationAxisMaximumValueKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 344642235290241, undefined, []);
+export const kCTFontVariationAxisMaximumValueKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 344642235290241, undefined, []);
 
 /**
  * let kCTFontVariationAxisMinimumValueKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontVariationAxisMinimumValueKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4385548524280061, undefined, []);
+export const kCTFontVariationAxisMinimumValueKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4385548524280061, undefined, []);
 
 /**
  * let kCTFontVariationAxisNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontVariationAxisNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3262470334077329, undefined, []);
+export const kCTFontVariationAxisNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3262470334077329, undefined, []);
 
 /**
  * let kCTFontVendorURLNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontVendorURLNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1003406068527459, undefined, []);
+export const kCTFontVendorURLNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1003406068527459, undefined, []);
 
 /**
  * let kCTFontVersionNameKey: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontVersionNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4015271939596976, undefined, []);
+export const kCTFontVersionNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4015271939596976, undefined, []);
 
 /**
  * let kCTFontWeightTrait: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontWeightTrait: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1464462663085114, undefined, []);
+export const kCTFontWeightTrait: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1464462663085114, undefined, []);
 
 /**
  * let kCTFontWidthTrait: CFString
  * @availability iOS 3.2+
  */
-export const kCTFontWidthTrait: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1296509775260909, undefined, []);
+export const kCTFontWidthTrait: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1296509775260909, undefined, []);
 
 /**
  * let kCTForegroundColorAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTForegroundColorAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3939323666496779, undefined, []);
+export const kCTForegroundColorAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3939323666496779, undefined, []);
 
 /**
  * let kCTForegroundColorFromContextAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTForegroundColorFromContextAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 844995241152813, undefined, []);
+export const kCTForegroundColorFromContextAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 844995241152813, undefined, []);
 
 /**
  * let kCTFrameClippingPathsAttributeName: CFString
  * @availability iOS 4.3+
  */
-export const kCTFrameClippingPathsAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1299906610418173, undefined, []);
+export const kCTFrameClippingPathsAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1299906610418173, undefined, []);
 
 /**
  * let kCTFramePathClippingPathAttributeName: CFString
  * @availability iOS 4.3+
  */
-export const kCTFramePathClippingPathAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 844545301563395, undefined, []);
+export const kCTFramePathClippingPathAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 844545301563395, undefined, []);
 
 /**
  * let kCTFramePathFillRuleAttributeName: CFString
  * @availability iOS 4.2+
  */
-export const kCTFramePathFillRuleAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3848015857410385, undefined, []);
+export const kCTFramePathFillRuleAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3848015857410385, undefined, []);
 
 /**
  * let kCTFramePathWidthAttributeName: CFString
  * @availability iOS 4.2+
  */
-export const kCTFramePathWidthAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3273468312566190, undefined, []);
+export const kCTFramePathWidthAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3273468312566190, undefined, []);
 
 /**
  * let kCTFrameProgressionAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTFrameProgressionAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3431464460207312, undefined, []);
+export const kCTFrameProgressionAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3431464460207312, undefined, []);
 
 /**
  * let kCTGlyphInfoAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTGlyphInfoAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1365388949893672, undefined, []);
+export const kCTGlyphInfoAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1365388949893672, undefined, []);
 
 /**
  * let kCTHorizontalInVerticalFormsAttributeName: CFString
  * @availability iOS 10.0+
  */
-export const kCTHorizontalInVerticalFormsAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3599135931100010, undefined, []);
+export const kCTHorizontalInVerticalFormsAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3599135931100010, undefined, []);
 
 /**
  * let kCTKernAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTKernAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3858480697586091, undefined, []);
+export const kCTKernAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3858480697586091, undefined, []);
 
 /**
  * let kCTLanguageAttributeName: CFString
  * @availability iOS 7.0+
  */
-export const kCTLanguageAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1092534770419144, undefined, []);
+export const kCTLanguageAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1092534770419144, undefined, []);
 
 /**
  * let kCTLigatureAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTLigatureAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3715976570400431, undefined, []);
+export const kCTLigatureAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3715976570400431, undefined, []);
 
 /**
  * let kCTParagraphStyleAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTParagraphStyleAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1316024466061415, undefined, []);
+export const kCTParagraphStyleAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1316024466061415, undefined, []);
 
 /**
  * let kCTRubyAnnotationAttributeName: CFString
  * @availability iOS 8.0+
  */
-export const kCTRubyAnnotationAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 860193608226853, undefined, []);
+export const kCTRubyAnnotationAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 860193608226853, undefined, []);
 
 /**
  * let kCTRubyAnnotationScaleToFitAttributeName: CFString
  * @availability iOS 10.0+
  */
-export const kCTRubyAnnotationScaleToFitAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 4489403987695049, undefined, []);
+export const kCTRubyAnnotationScaleToFitAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 4489403987695049, undefined, []);
 
 /**
  * let kCTRubyAnnotationSizeFactorAttributeName: CFString
  * @availability iOS 10.0+
  */
-export const kCTRubyAnnotationSizeFactorAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1871707879262242, undefined, []);
+export const kCTRubyAnnotationSizeFactorAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1871707879262242, undefined, []);
 
 /**
  * let kCTRunDelegateAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTRunDelegateAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2868828409027825, undefined, []);
+export const kCTRunDelegateAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2868828409027825, undefined, []);
 
 /**
  * let kCTStrokeColorAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTStrokeColorAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 155661841080260, undefined, []);
+export const kCTStrokeColorAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 155661841080260, undefined, []);
 
 /**
  * let kCTStrokeWidthAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTStrokeWidthAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2456786968912089, undefined, []);
+export const kCTStrokeWidthAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2456786968912089, undefined, []);
 
 /**
  * let kCTSuperscriptAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTSuperscriptAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 193770701519540, undefined, []);
+export const kCTSuperscriptAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 193770701519540, undefined, []);
 
 /**
  * let kCTTabColumnTerminatorsAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTTabColumnTerminatorsAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1265031104203196, undefined, []);
+export const kCTTabColumnTerminatorsAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1265031104203196, undefined, []);
 
 /**
  * let kCTTrackingAttributeName: CFString
  * @availability iOS 10.0+
  */
-export const kCTTrackingAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 739235631722546, undefined, []);
+export const kCTTrackingAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 739235631722546, undefined, []);
 
 /**
  * let kCTTypesetterOptionAllowUnboundedLayout: CFString
  * @availability iOS 12.0+
  */
-export const kCTTypesetterOptionAllowUnboundedLayout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 2147704918283, undefined, []);
+export const kCTTypesetterOptionAllowUnboundedLayout: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 2147704918283, undefined, []);
 
 /**
  * let kCTTypesetterOptionForcedEmbeddingLevel: CFString
  * @availability iOS 3.2+
  */
-export const kCTTypesetterOptionForcedEmbeddingLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1182421233842300, undefined, []);
+export const kCTTypesetterOptionForcedEmbeddingLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1182421233842300, undefined, []);
 
 /**
  * let kCTUnderlineColorAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTUnderlineColorAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 3553418832864875, undefined, []);
+export const kCTUnderlineColorAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 3553418832864875, undefined, []);
 
 /**
  * let kCTUnderlineStyleAttributeName: CFString
  * @availability iOS 3.2+
  */
-export const kCTUnderlineStyleAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1146383957774944, undefined, []);
+export const kCTUnderlineStyleAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1146383957774944, undefined, []);
 
 /**
  * let kCTVerticalFormsAttributeName: CFString
  * @availability iOS 4.3+
  */
-export const kCTVerticalFormsAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 776892126640134, undefined, []);
+export const kCTVerticalFormsAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 776892126640134, undefined, []);
 
 /**
  * let kCTWritingDirectionAttributeName: CFString
  * @availability iOS 6.0+
  */
-export const kCTWritingDirectionAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_6be9a005889899ab", 1844437626802193, undefined, []);
+export const kCTWritingDirectionAttributeName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreText_c1f28409f8601238", 1844437626802193, undefined, []);
 
 /** var ATSFONTREF_DEFINED: Int32 { get } */
-export const ATSFONTREF_DEFINED: number = callSDK<number>("CoreText_6be9a005889899ab", 569648682577, undefined, []);
+export const ATSFONTREF_DEFINED: number = callSDK<number>("CoreText_c1f28409f8601238", 569648682577, undefined, []);
 
 /** var kCTVersionNumber10_10: Int32 { get } */
-export const kCTVersionNumber10_10: number = callSDK<number>("CoreText_6be9a005889899ab", 4352709587496506, undefined, []);
+export const kCTVersionNumber10_10: number = callSDK<number>("CoreText_c1f28409f8601238", 4352709587496506, undefined, []);
 
 /** var kCTVersionNumber10_11: Int32 { get } */
-export const kCTVersionNumber10_11: number = callSDK<number>("CoreText_6be9a005889899ab", 1048961253562785, undefined, []);
+export const kCTVersionNumber10_11: number = callSDK<number>("CoreText_c1f28409f8601238", 1048961253562785, undefined, []);
 
 /** var kCTVersionNumber10_12: Int32 { get } */
-export const kCTVersionNumber10_12: number = callSDK<number>("CoreText_6be9a005889899ab", 1654820408880762, undefined, []);
+export const kCTVersionNumber10_12: number = callSDK<number>("CoreText_c1f28409f8601238", 1654820408880762, undefined, []);
 
 /** var kCTVersionNumber10_13: Int32 { get } */
-export const kCTVersionNumber10_13: number = callSDK<number>("CoreText_6be9a005889899ab", 2291997286696042, undefined, []);
+export const kCTVersionNumber10_13: number = callSDK<number>("CoreText_c1f28409f8601238", 2291997286696042, undefined, []);
 
 /** var kCTVersionNumber10_14: Int32 { get } */
-export const kCTVersionNumber10_14: number = callSDK<number>("CoreText_6be9a005889899ab", 537124088171152, undefined, []);
+export const kCTVersionNumber10_14: number = callSDK<number>("CoreText_c1f28409f8601238", 537124088171152, undefined, []);
 
 /** var kCTVersionNumber10_15: Int32 { get } */
-export const kCTVersionNumber10_15: number = callSDK<number>("CoreText_6be9a005889899ab", 2260270353314924, undefined, []);
+export const kCTVersionNumber10_15: number = callSDK<number>("CoreText_c1f28409f8601238", 2260270353314924, undefined, []);
 
 /** var kCTVersionNumber10_5: Int32 { get } */
-export const kCTVersionNumber10_5: number = callSDK<number>("CoreText_6be9a005889899ab", 1946680904741696, undefined, []);
+export const kCTVersionNumber10_5: number = callSDK<number>("CoreText_c1f28409f8601238", 1946680904741696, undefined, []);
 
 /** var kCTVersionNumber10_5_2: Int32 { get } */
-export const kCTVersionNumber10_5_2: number = callSDK<number>("CoreText_6be9a005889899ab", 1610293449817857, undefined, []);
+export const kCTVersionNumber10_5_2: number = callSDK<number>("CoreText_c1f28409f8601238", 1610293449817857, undefined, []);
 
 /** var kCTVersionNumber10_5_3: Int32 { get } */
-export const kCTVersionNumber10_5_3: number = callSDK<number>("CoreText_6be9a005889899ab", 3211588670671642, undefined, []);
+export const kCTVersionNumber10_5_3: number = callSDK<number>("CoreText_c1f28409f8601238", 3211588670671642, undefined, []);
 
 /** var kCTVersionNumber10_5_5: Int32 { get } */
-export const kCTVersionNumber10_5_5: number = callSDK<number>("CoreText_6be9a005889899ab", 3969601408410893, undefined, []);
+export const kCTVersionNumber10_5_5: number = callSDK<number>("CoreText_c1f28409f8601238", 3969601408410893, undefined, []);
 
 /** var kCTVersionNumber10_6: Int32 { get } */
-export const kCTVersionNumber10_6: number = callSDK<number>("CoreText_6be9a005889899ab", 3701377911341261, undefined, []);
+export const kCTVersionNumber10_6: number = callSDK<number>("CoreText_c1f28409f8601238", 3701377911341261, undefined, []);
 
 /** var kCTVersionNumber10_7: Int32 { get } */
-export const kCTVersionNumber10_7: number = callSDK<number>("CoreText_6be9a005889899ab", 4463970746856186, undefined, []);
+export const kCTVersionNumber10_7: number = callSDK<number>("CoreText_c1f28409f8601238", 4463970746856186, undefined, []);
 
 /** var kCTVersionNumber10_8: Int32 { get } */
-export const kCTVersionNumber10_8: number = callSDK<number>("CoreText_6be9a005889899ab", 190613353660985, undefined, []);
+export const kCTVersionNumber10_8: number = callSDK<number>("CoreText_c1f28409f8601238", 190613353660985, undefined, []);
 
 /** var kCTVersionNumber10_9: Int32 { get } */
-export const kCTVersionNumber10_9: number = callSDK<number>("CoreText_6be9a005889899ab", 338845798198297, undefined, []);
+export const kCTVersionNumber10_9: number = callSDK<number>("CoreText_c1f28409f8601238", 338845798198297, undefined, []);
 
 /** var kCTVersionNumber11_0: Int32 { get } */
-export const kCTVersionNumber11_0: number = callSDK<number>("CoreText_6be9a005889899ab", 3768696111493205, undefined, []);
+export const kCTVersionNumber11_0: number = callSDK<number>("CoreText_c1f28409f8601238", 3768696111493205, undefined, []);
 
-registerSDKClass("CoreText.ALMXGlyphEntry", ALMXGlyphEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.ALMXHeader", ALMXHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.AnchorPoint", AnchorPoint, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.AnchorPointTable", AnchorPointTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.AnkrTable", AnkrTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.AttributedString.AdaptiveImageGlyph", AttributedString_AdaptiveImageGlyph, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.AttributedString.LineHeight", AttributedString_LineHeight, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.AttributeScopes.CoreTextAttributes", AttributeScopes_CoreTextAttributes, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.AttributeScopes.CoreTextAttributes.LineHeightAttribute", AttributeScopes_CoreTextAttributes_LineHeightAttribute, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.AttributeScopes.CoreTextAttributes.TextAlignmentAttribute", AttributeScopes_CoreTextAttributes_TextAlignmentAttribute, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.BslnFormat0Part", BslnFormat0Part, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.BslnFormat1Part", BslnFormat1Part, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.BslnFormat2Part", BslnFormat2Part, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.BslnFormat3Part", BslnFormat3Part, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.BslnFormatUnion", BslnFormatUnion, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.BslnTable", BslnTable, { module: "CoreText_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreText.ALMXGlyphEntry", ALMXGlyphEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.ALMXHeader", ALMXHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.AnchorPoint", AnchorPoint, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.AnchorPointTable", AnchorPointTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.AnkrTable", AnkrTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.AttributedString.AdaptiveImageGlyph", AttributedString_AdaptiveImageGlyph, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.AttributedString.LineHeight", AttributedString_LineHeight, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.AttributeScopes.CoreTextAttributes", AttributeScopes_CoreTextAttributes, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.AttributeScopes.CoreTextAttributes.LineHeightAttribute", AttributeScopes_CoreTextAttributes_LineHeightAttribute, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.AttributeScopes.CoreTextAttributes.TextAlignmentAttribute", AttributeScopes_CoreTextAttributes_TextAlignmentAttribute, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.BslnFormat0Part", BslnFormat0Part, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.BslnFormat1Part", BslnFormat1Part, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.BslnFormat2Part", BslnFormat2Part, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.BslnFormat3Part", BslnFormat3Part, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.BslnFormatUnion", BslnFormatUnion, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.BslnTable", BslnTable, { module: "CoreText_c1f28409f8601238", properties: {} });
 registerSDKProtocol("c:objc(pl)CTAdaptiveImageProviding", {"imageForProposedSizeScaleFactorImageOffsetImageSize":"image(forProposedSize:scaleFactor:imageOffset:imageSize:)"});
-registerSDKClass("CoreText.CTFont", CTFont, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTFontCollection", CTFontCollection, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTFontDescriptor", CTFontDescriptor, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTFrame", CTFrame, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTFramesetter", CTFramesetter, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTGlyphInfo", CTGlyphInfo, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTLine", CTLine, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTMutableFontCollection", CTMutableFontCollection, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTParagraphStyle", CTParagraphStyle, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTParagraphStyleSetting", CTParagraphStyleSetting, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTRubyAnnotation", CTRubyAnnotation, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTRun", CTRun, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTRunDelegate", CTRunDelegate, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTRunDelegateCallbacks", CTRunDelegateCallbacks, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTTextTab", CTTextTab, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.CTTypesetter", CTTypesetter, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.FontVariation", FontVariation, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustDirectionTable", JustDirectionTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustPCAction", JustPCAction, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustPCActionSubrecord", JustPCActionSubrecord, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustPCConditionalAddAction", JustPCConditionalAddAction, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustPCDecompositionAction", JustPCDecompositionAction, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustPCDuctilityAction", JustPCDuctilityAction, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustPCGlyphRepeatAddAction", JustPCGlyphRepeatAddAction, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustPostcompTable", JustPostcompTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustTable", JustTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustWidthDeltaEntry", JustWidthDeltaEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.JustWidthDeltaGroup", JustWidthDeltaGroup, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernFormatSpecificHeader", KernFormatSpecificHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernIndexArrayHeader", KernIndexArrayHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernKerningPair", KernKerningPair, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernOffsetTable", KernOffsetTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernOrderedListEntry", KernOrderedListEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernOrderedListHeader", KernOrderedListHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernSimpleArrayHeader", KernSimpleArrayHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernStateEntry", KernStateEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernStateHeader", KernStateHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernSubtableHeader", KernSubtableHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernTableHeader", KernTableHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernVersion0Header", KernVersion0Header, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KernVersion0SubtableHeader", KernVersion0SubtableHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxAnchorPointAction", KerxAnchorPointAction, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxControlPointAction", KerxControlPointAction, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxControlPointEntry", KerxControlPointEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxControlPointHeader", KerxControlPointHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxCoordinateAction", KerxCoordinateAction, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxFormatSpecificHeader", KerxFormatSpecificHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxIndexArrayHeader", KerxIndexArrayHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxKerningPair", KerxKerningPair, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxOrderedListEntry", KerxOrderedListEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxOrderedListHeader", KerxOrderedListHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxSimpleArrayHeader", KerxSimpleArrayHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxStateEntry", KerxStateEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxStateHeader", KerxStateHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxSubtableHeader", KerxSubtableHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.KerxTableHeader", KerxTableHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.LcarCaretClassEntry", LcarCaretClassEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.LcarCaretTable", LcarCaretTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.LtagStringRange", LtagStringRange, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.LtagTable", LtagTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MortChain", MortChain, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MortContextualSubtable", MortContextualSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MortFeatureEntry", MortFeatureEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MortInsertionSubtable", MortInsertionSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MortLigatureSubtable", MortLigatureSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MortRearrangementSubtable", MortRearrangementSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MortSpecificSubtable", MortSpecificSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MortSubtable", MortSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MortSwashSubtable", MortSwashSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MortTable", MortTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MorxChain", MorxChain, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MorxContextualSubtable", MorxContextualSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MorxInsertionSubtable", MorxInsertionSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MorxLigatureSubtable", MorxLigatureSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MorxRearrangementSubtable", MorxRearrangementSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MorxSpecificSubtable", MorxSpecificSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MorxSubtable", MorxSubtable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.MorxTable", MorxTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.OpbdSideValues", OpbdSideValues, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.OpbdTable", OpbdTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.PropLookupSegment", PropLookupSegment, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.PropLookupSingle", PropLookupSingle, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.PropTable", PropTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.ROTAGlyphEntry", ROTAGlyphEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.ROTAHeader", ROTAHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntCMapEncoding", sfntCMapEncoding, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntCMapExtendedSubHeader", sfntCMapExtendedSubHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntCMapHeader", sfntCMapHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntCMapSubHeader", sfntCMapSubHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntDescriptorHeader", sfntDescriptorHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntDirectory", sfntDirectory, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntDirectoryEntry", sfntDirectoryEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntFeatureHeader", sfntFeatureHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntFeatureName", sfntFeatureName, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntFontDescriptor", sfntFontDescriptor, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntFontFeatureSetting", sfntFontFeatureSetting, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntFontRunFeature", sfntFontRunFeature, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntInstance", sfntInstance, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.SFNTLookupArrayHeader", SFNTLookupArrayHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.SFNTLookupBinarySearchHeader", SFNTLookupBinarySearchHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.SFNTLookupFormatSpecificHeader", SFNTLookupFormatSpecificHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.SFNTLookupSegment", SFNTLookupSegment, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.SFNTLookupSegmentHeader", SFNTLookupSegmentHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.SFNTLookupSingle", SFNTLookupSingle, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.SFNTLookupSingleHeader", SFNTLookupSingleHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.SFNTLookupTable", SFNTLookupTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.SFNTLookupTrimmedArrayHeader", SFNTLookupTrimmedArrayHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.SFNTLookupVectorHeader", SFNTLookupVectorHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntNameHeader", sfntNameHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntNameRecord", sfntNameRecord, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntVariationAxis", sfntVariationAxis, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.sfntVariationHeader", sfntVariationHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.STClassTable", STClassTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.STEntryOne", STEntryOne, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.STEntryTwo", STEntryTwo, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.STEntryZero", STEntryZero, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.STHeader", STHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.STXEntryOne", STXEntryOne, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.STXEntryTwo", STXEntryTwo, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.STXEntryZero", STXEntryZero, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.STXHeader", STXHeader, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.TrakTable", TrakTable, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.TrakTableData", TrakTableData, { module: "CoreText_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreText.TrakTableEntry", TrakTableEntry, { module: "CoreText_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreText.CTFont", CTFont, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTFontCollection", CTFontCollection, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTFontDescriptor", CTFontDescriptor, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTFrame", CTFrame, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTFramesetter", CTFramesetter, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTGlyphInfo", CTGlyphInfo, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTLine", CTLine, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTMutableFontCollection", CTMutableFontCollection, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTParagraphStyle", CTParagraphStyle, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTParagraphStyleSetting", CTParagraphStyleSetting, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTRubyAnnotation", CTRubyAnnotation, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTRun", CTRun, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTRunDelegate", CTRunDelegate, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTRunDelegateCallbacks", CTRunDelegateCallbacks, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTTextTab", CTTextTab, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.CTTypesetter", CTTypesetter, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.FontVariation", FontVariation, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustDirectionTable", JustDirectionTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustPCAction", JustPCAction, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustPCActionSubrecord", JustPCActionSubrecord, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustPCConditionalAddAction", JustPCConditionalAddAction, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustPCDecompositionAction", JustPCDecompositionAction, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustPCDuctilityAction", JustPCDuctilityAction, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustPCGlyphRepeatAddAction", JustPCGlyphRepeatAddAction, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustPostcompTable", JustPostcompTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustTable", JustTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustWidthDeltaEntry", JustWidthDeltaEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.JustWidthDeltaGroup", JustWidthDeltaGroup, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernFormatSpecificHeader", KernFormatSpecificHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernIndexArrayHeader", KernIndexArrayHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernKerningPair", KernKerningPair, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernOffsetTable", KernOffsetTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernOrderedListEntry", KernOrderedListEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernOrderedListHeader", KernOrderedListHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernSimpleArrayHeader", KernSimpleArrayHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernStateEntry", KernStateEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernStateHeader", KernStateHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernSubtableHeader", KernSubtableHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernTableHeader", KernTableHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernVersion0Header", KernVersion0Header, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KernVersion0SubtableHeader", KernVersion0SubtableHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxAnchorPointAction", KerxAnchorPointAction, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxControlPointAction", KerxControlPointAction, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxControlPointEntry", KerxControlPointEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxControlPointHeader", KerxControlPointHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxCoordinateAction", KerxCoordinateAction, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxFormatSpecificHeader", KerxFormatSpecificHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxIndexArrayHeader", KerxIndexArrayHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxKerningPair", KerxKerningPair, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxOrderedListEntry", KerxOrderedListEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxOrderedListHeader", KerxOrderedListHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxSimpleArrayHeader", KerxSimpleArrayHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxStateEntry", KerxStateEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxStateHeader", KerxStateHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxSubtableHeader", KerxSubtableHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.KerxTableHeader", KerxTableHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.LcarCaretClassEntry", LcarCaretClassEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.LcarCaretTable", LcarCaretTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.LtagStringRange", LtagStringRange, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.LtagTable", LtagTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MortChain", MortChain, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MortContextualSubtable", MortContextualSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MortFeatureEntry", MortFeatureEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MortInsertionSubtable", MortInsertionSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MortLigatureSubtable", MortLigatureSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MortRearrangementSubtable", MortRearrangementSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MortSpecificSubtable", MortSpecificSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MortSubtable", MortSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MortSwashSubtable", MortSwashSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MortTable", MortTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MorxChain", MorxChain, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MorxContextualSubtable", MorxContextualSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MorxInsertionSubtable", MorxInsertionSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MorxLigatureSubtable", MorxLigatureSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MorxRearrangementSubtable", MorxRearrangementSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MorxSpecificSubtable", MorxSpecificSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MorxSubtable", MorxSubtable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.MorxTable", MorxTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.OpbdSideValues", OpbdSideValues, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.OpbdTable", OpbdTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.PropLookupSegment", PropLookupSegment, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.PropLookupSingle", PropLookupSingle, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.PropTable", PropTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.ROTAGlyphEntry", ROTAGlyphEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.ROTAHeader", ROTAHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntCMapEncoding", sfntCMapEncoding, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntCMapExtendedSubHeader", sfntCMapExtendedSubHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntCMapHeader", sfntCMapHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntCMapSubHeader", sfntCMapSubHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntDescriptorHeader", sfntDescriptorHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntDirectory", sfntDirectory, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntDirectoryEntry", sfntDirectoryEntry, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntFeatureHeader", sfntFeatureHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntFeatureName", sfntFeatureName, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntFontDescriptor", sfntFontDescriptor, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntFontFeatureSetting", sfntFontFeatureSetting, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntFontRunFeature", sfntFontRunFeature, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntInstance", sfntInstance, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.SFNTLookupArrayHeader", SFNTLookupArrayHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.SFNTLookupBinarySearchHeader", SFNTLookupBinarySearchHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.SFNTLookupFormatSpecificHeader", SFNTLookupFormatSpecificHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.SFNTLookupSegment", SFNTLookupSegment, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.SFNTLookupSegmentHeader", SFNTLookupSegmentHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.SFNTLookupSingle", SFNTLookupSingle, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.SFNTLookupSingleHeader", SFNTLookupSingleHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.SFNTLookupTable", SFNTLookupTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.SFNTLookupTrimmedArrayHeader", SFNTLookupTrimmedArrayHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.SFNTLookupVectorHeader", SFNTLookupVectorHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntNameHeader", sfntNameHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntNameRecord", sfntNameRecord, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntVariationAxis", sfntVariationAxis, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.sfntVariationHeader", sfntVariationHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.STClassTable", STClassTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.STEntryOne", STEntryOne, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.STEntryTwo", STEntryTwo, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.STEntryZero", STEntryZero, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.STHeader", STHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.STXEntryOne", STXEntryOne, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.STXEntryTwo", STXEntryTwo, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.STXEntryZero", STXEntryZero, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.STXHeader", STXHeader, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.TrakTable", TrakTable, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.TrakTableData", TrakTableData, { module: "CoreText_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreText.TrakTableEntry", TrakTableEntry, { module: "CoreText_c1f28409f8601238", properties: {} });

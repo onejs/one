@@ -53,17 +53,17 @@ export class DataRepresentation<Item = unknown> extends SDKHandle {
    * init(contentType: UTType, exporting: @escaping @Sendable (Item) async throws -> Data, importing: @escaping @Sendable (Data) async throws -> Item)
    * @availability iOS 16.0+
    */
-  static initContentTypeExportingImporting(contentType: _UniformTypeIdentifiers_UTType, exporting: $SDK1, importing: $SDK2): $SDK0 { return callSDK<$SDK0>("CoreTransferable_6be9a005889899ab", 169343326691859, undefined, [contentType, exporting, importing], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initContentTypeExportingImporting(contentType: _UniformTypeIdentifiers_UTType, exporting: $SDK1, importing: $SDK2): $SDK0 { return callSDK<$SDK0>("CoreTransferable_c1f28409f8601238", 169343326691859, undefined, [contentType, exporting, importing], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * init(exportedContentType: UTType, exporting: @escaping @Sendable (Item) async throws -> Data)
    * @availability iOS 16.0+
    */
-  static initExportedContentTypeExporting(exportedContentType: _UniformTypeIdentifiers_UTType, exporting: $SDK1): $SDK0 { return callSDK<$SDK0>("CoreTransferable_6be9a005889899ab", 223924584084439, undefined, [exportedContentType, exporting], [null,{"callback":{"out":[]}}]); }
+  static initExportedContentTypeExporting(exportedContentType: _UniformTypeIdentifiers_UTType, exporting: $SDK1): $SDK0 { return callSDK<$SDK0>("CoreTransferable_c1f28409f8601238", 223924584084439, undefined, [exportedContentType, exporting], [null,{"callback":{"out":[]}}]); }
   /**
    * init(importedContentType: UTType, importing: @escaping @Sendable (Data) async throws -> Item)
    * @availability iOS 16.0+
    */
-  static initImportedContentTypeImporting(importedContentType: _UniformTypeIdentifiers_UTType, importing: $SDK2): $SDK0 { return callSDK<$SDK0>("CoreTransferable_6be9a005889899ab", 3801519230323605, undefined, [importedContentType, importing], [null,{"callback":{"out":[]}}]); }
+  static initImportedContentTypeImporting(importedContentType: _UniformTypeIdentifiers_UTType, importing: $SDK2): $SDK0 { return callSDK<$SDK0>("CoreTransferable_c1f28409f8601238", 3801519230323605, undefined, [importedContentType, importing], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:16CoreTransferable18DataRepresentationV": true };
 }
 
@@ -82,17 +82,17 @@ export class FileRepresentation<Item = unknown> extends SDKHandle {
    * init(contentType: UTType, shouldAttemptToOpenInPlace: Bool = false, exporting: @escaping @Sendable (Item) async throws -> SentTransferredFile, importing: @escaping @Sendable (ReceivedTransferredFile) async throws -> Item)
    * @availability iOS 16.0+
    */
-  static initContentTypeShouldAttemptToOpenInPlaceExportingImporting(contentType: _UniformTypeIdentifiers_UTType, shouldAttemptToOpenInPlace: boolean, exporting: $SDK4, importing: $SDK5): $SDK3 { return callSDK<$SDK3>("CoreTransferable_6be9a005889899ab", 149221048756197, undefined, [contentType, shouldAttemptToOpenInPlace, exporting, importing], [null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initContentTypeShouldAttemptToOpenInPlaceExportingImporting(contentType: _UniformTypeIdentifiers_UTType, shouldAttemptToOpenInPlace: boolean, exporting: $SDK4, importing: $SDK5): $SDK3 { return callSDK<$SDK3>("CoreTransferable_c1f28409f8601238", 149221048756197, undefined, [contentType, shouldAttemptToOpenInPlace, exporting, importing], [null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * init(exportedContentType: UTType, shouldAllowToOpenInPlace: Bool = false, exporting: @escaping @Sendable (Item) async throws -> SentTransferredFile)
    * @availability iOS 16.0+
    */
-  static initExportedContentTypeShouldAllowToOpenInPlaceExporting(exportedContentType: _UniformTypeIdentifiers_UTType, shouldAllowToOpenInPlace: boolean, exporting: $SDK4): $SDK3 { return callSDK<$SDK3>("CoreTransferable_6be9a005889899ab", 3341278031558467, undefined, [exportedContentType, shouldAllowToOpenInPlace, exporting], [null,null,{"callback":{"out":[]}}]); }
+  static initExportedContentTypeShouldAllowToOpenInPlaceExporting(exportedContentType: _UniformTypeIdentifiers_UTType, shouldAllowToOpenInPlace: boolean, exporting: $SDK4): $SDK3 { return callSDK<$SDK3>("CoreTransferable_c1f28409f8601238", 3341278031558467, undefined, [exportedContentType, shouldAllowToOpenInPlace, exporting], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(importedContentType: UTType, shouldAttemptToOpenInPlace: Bool = false, importing: @escaping @Sendable (ReceivedTransferredFile) async throws -> Item)
    * @availability iOS 16.0+
    */
-  static initImportedContentTypeShouldAttemptToOpenInPlaceImporting(importedContentType: _UniformTypeIdentifiers_UTType, shouldAttemptToOpenInPlace: boolean, importing: $SDK5): $SDK3 { return callSDK<$SDK3>("CoreTransferable_6be9a005889899ab", 2404546316193718, undefined, [importedContentType, shouldAttemptToOpenInPlace, importing], [null,null,{"callback":{"out":[]}}]); }
+  static initImportedContentTypeShouldAttemptToOpenInPlaceImporting(importedContentType: _UniformTypeIdentifiers_UTType, shouldAttemptToOpenInPlace: boolean, importing: $SDK5): $SDK3 { return callSDK<$SDK3>("CoreTransferable_c1f28409f8601238", 2404546316193718, undefined, [importedContentType, shouldAttemptToOpenInPlace, importing], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:16CoreTransferable18FileRepresentationV": true };
 }
 
@@ -130,18 +130,18 @@ export class ProxyRepresentation<Item = unknown, ProxyRepresentation = unknown> 
    * @availability iOS 16.1+
    * @deprecated iOS 17.0
    */
-  static initExportingImporting(exporting: $SDK7, importing: $SDK7): $SDK6 { return callSDK<$SDK6>("CoreTransferable_6be9a005889899ab", 1568716377357196, undefined, [exporting, importing], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initExportingImporting(exporting: $SDK7, importing: $SDK7): $SDK6 { return callSDK<$SDK6>("CoreTransferable_c1f28409f8601238", 1568716377357196, undefined, [exporting, importing], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * init(exporting: @escaping @Sendable (Item) async throws -> ProxyRepresentation)
    * @availability iOS 16.1+
    * @deprecated iOS 17.0
    */
-  static initExporting(exporting: $SDK7): $SDK6 { return callSDK<$SDK6>("CoreTransferable_6be9a005889899ab", 2165926339243620, undefined, [exporting], [{"callback":{"out":[]}}]); }
+  static initExporting(exporting: $SDK7): $SDK6 { return callSDK<$SDK6>("CoreTransferable_c1f28409f8601238", 2165926339243620, undefined, [exporting], [{"callback":{"out":[]}}]); }
   /**
    * init(importing: @escaping @Sendable (ProxyRepresentation) async throws -> Item)
    * @availability iOS 16.1+
    */
-  static initImporting(importing: $SDK7): $SDK6 { return callSDK<$SDK6>("CoreTransferable_6be9a005889899ab", 2641278369531816, undefined, [importing], [{"callback":{"out":[]}}]); }
+  static initImporting(importing: $SDK7): $SDK6 { return callSDK<$SDK6>("CoreTransferable_c1f28409f8601238", 2641278369531816, undefined, [importing], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:16CoreTransferable19ProxyRepresentationV": true };
 }
 
@@ -160,12 +160,12 @@ export class ReceivedTransferredFile extends SDKHandle {
    * let isOriginalFile: Bool
    * @availability iOS 16.0+
    */
-  get isOriginalFile(): boolean { return callSDK<boolean>("CoreTransferable_6be9a005889899ab", 1976151988702257, this, []); }
+  get isOriginalFile(): boolean { return callSDK<boolean>("CoreTransferable_c1f28409f8601238", 1976151988702257, this, []); }
   /**
    * let file: URL
    * @availability iOS 16.0+
    */
-  get file(): string { return callSDK<string>("CoreTransferable_6be9a005889899ab", 336993739750616, this, []); }
+  get file(): string { return callSDK<string>("CoreTransferable_c1f28409f8601238", 336993739750616, this, []); }
   declare readonly $type: { "s:16CoreTransferable23ReceivedTransferredFileV": true };
 }
 
@@ -178,17 +178,17 @@ export class SentTransferredFile extends SDKHandle {
    * let allowAccessingOriginalFile: Bool
    * @availability iOS 16.0+
    */
-  get allowAccessingOriginalFile(): boolean { return callSDK<boolean>("CoreTransferable_6be9a005889899ab", 2587828246131848, this, []); }
+  get allowAccessingOriginalFile(): boolean { return callSDK<boolean>("CoreTransferable_c1f28409f8601238", 2587828246131848, this, []); }
   /**
    * let file: URL
    * @availability iOS 16.0+
    */
-  get file(): string { return callSDK<string>("CoreTransferable_6be9a005889899ab", 2288545404773410, this, []); }
+  get file(): string { return callSDK<string>("CoreTransferable_c1f28409f8601238", 2288545404773410, this, []); }
   /**
    * init(_ file: URL, allowAccessingOriginalFile: Bool = false)
    * @availability iOS 16.0+
    */
-  static init(file: string, allowAccessingOriginalFile?: boolean): SentTransferredFile { return callSDK<SentTransferredFile>("CoreTransferable_6be9a005889899ab", 404177858972354, undefined, [file, allowAccessingOriginalFile]); }
+  static init(file: string, allowAccessingOriginalFile?: boolean): SentTransferredFile { return callSDK<SentTransferredFile>("CoreTransferable_c1f28409f8601238", 404177858972354, undefined, [file, allowAccessingOriginalFile]); }
   declare readonly $type: { "s:16CoreTransferable19SentTransferredFileV": true };
 }
 
@@ -231,17 +231,17 @@ export class TransferRepresentationVisibility extends SDKHandle {
    * static let ownProcess: TransferRepresentationVisibility
    * @availability iOS 16.0+
    */
-  static get ownProcess(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_6be9a005889899ab", 3729862353185062, undefined, []); }
+  static get ownProcess(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_c1f28409f8601238", 3729862353185062, undefined, []); }
   /**
    * static let all: TransferRepresentationVisibility
    * @availability iOS 16.0+
    */
-  static get all(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_6be9a005889899ab", 3477191520014547, undefined, []); }
+  static get all(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_c1f28409f8601238", 3477191520014547, undefined, []); }
   /**
    * static let team: TransferRepresentationVisibility
    * @availability iOS 16.0+
    */
-  static get team(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_6be9a005889899ab", 731117638315178, undefined, []); }
+  static get team(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_c1f28409f8601238", 731117638315178, undefined, []); }
   declare readonly $type: { "s:16CoreTransferable32TransferRepresentationVisibilityV": true };
 }
 
@@ -265,14 +265,14 @@ export type TupleTransferRepresentation_Body<Item = unknown, Value = unknown> = 
  */
 export type URL_Representation = SDKHandle;
 
-registerSDKClass("CoreTransferable.CodableRepresentation", CodableRepresentation, { module: "CoreTransferable_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreTransferable.DataRepresentation", DataRepresentation, { module: "CoreTransferable_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreTransferable.FileRepresentation", FileRepresentation, { module: "CoreTransferable_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreTransferable.ProxyRepresentation", ProxyRepresentation, { module: "CoreTransferable_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreTransferable.ReceivedTransferredFile", ReceivedTransferredFile, { module: "CoreTransferable_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreTransferable.SentTransferredFile", SentTransferredFile, { module: "CoreTransferable_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreTransferable.CodableRepresentation", CodableRepresentation, { module: "CoreTransferable_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreTransferable.DataRepresentation", DataRepresentation, { module: "CoreTransferable_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreTransferable.FileRepresentation", FileRepresentation, { module: "CoreTransferable_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreTransferable.ProxyRepresentation", ProxyRepresentation, { module: "CoreTransferable_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreTransferable.ReceivedTransferredFile", ReceivedTransferredFile, { module: "CoreTransferable_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreTransferable.SentTransferredFile", SentTransferredFile, { module: "CoreTransferable_c1f28409f8601238", properties: {} });
 registerSDKProtocol("s:16CoreTransferable0B0P", {});
 registerSDKProtocol("s:16CoreTransferable22TransferRepresentationP", {});
-registerSDKClass("CoreTransferable.TransferRepresentationBuilder", TransferRepresentationBuilder, { module: "CoreTransferable_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreTransferable.TransferRepresentationVisibility", TransferRepresentationVisibility, { module: "CoreTransferable_6be9a005889899ab", properties: {} });
-registerSDKClass("CoreTransferable.TupleTransferRepresentation", TupleTransferRepresentation, { module: "CoreTransferable_6be9a005889899ab", properties: {} });
+registerSDKClass("CoreTransferable.TransferRepresentationBuilder", TransferRepresentationBuilder, { module: "CoreTransferable_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreTransferable.TransferRepresentationVisibility", TransferRepresentationVisibility, { module: "CoreTransferable_c1f28409f8601238", properties: {} });
+registerSDKClass("CoreTransferable.TupleTransferRepresentation", TupleTransferRepresentation, { module: "CoreTransferable_c1f28409f8601238", properties: {} });

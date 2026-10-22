@@ -37,52 +37,52 @@ export class USDArray<Element = unknown> extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 27.0+
    */
-  get startIndex(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3818130172670889, this, []); }
+  get startIndex(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3818130172670889, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 27.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 151800647036774, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 151800647036774, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 27.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 3919777581299091, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 3919777581299091, this, [i]); }
   /**
    * mutating func append(_ newElement: Element)
    * @availability iOS 27.0+
    */
-  append(newElement: number): void { return callSDK<void>("USDKit_6be9a005889899ab", 3974495481942946, this, [newElement]); }
+  append(newElement: number): void { return callSDK<void>("USDKit_c1f28409f8601238", 3974495481942946, this, [newElement]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 27.0+
    */
-  get endIndex(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3348939727428183, this, []); }
+  get endIndex(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3348939727428183, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1265088410623462, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1265088410623462, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDArray<number> { return callSDK<USDArray<number>>("USDKit_6be9a005889899ab", 2955116444659861, undefined, []); }
+  static init(): USDArray<number> { return callSDK<USDArray<number>>("USDKit_c1f28409f8601238", 2955116444659861, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init98238(): USDArray<number> { return callSDK<USDArray<number>>("USDKit_6be9a005889899ab", 3992472316640224, undefined, []); }
+  static init98238(): USDArray<number> { return callSDK<USDArray<number>>("USDKit_c1f28409f8601238", 3992472316640224, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init38428(): USDArray<number> { return callSDK<USDArray<number>>("USDKit_6be9a005889899ab", 2516854083646440, undefined, []); }
+  static init38428(): USDArray<number> { return callSDK<USDArray<number>>("USDKit_c1f28409f8601238", 2516854083646440, undefined, []); }
   /**
    * subscript(index: Int) -> Element { get }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 614469213661968, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 614469213661968, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDArrayV": true };
 }
 
@@ -125,213 +125,213 @@ export class USDLayer extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 27.0+
    */
-  get identifier(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1486609124895377, this, []); }
+  get identifier(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1486609124895377, this, []); }
   /**
    * func timeSample(at path: USDLayer.Path, time: USDLayer.TimeCode) -> USDValue?
    * @availability iOS 27.0+
    */
-  timeSample(path: USDLayer_Path, time: USDLayer_TimeCode): (USDValue) | null { return callSDK<(USDValue) | null>("USDKit_6be9a005889899ab", 284905167098546, this, [path, time]); }
+  timeSample(path: USDLayer_Path, time: USDLayer_TimeCode): (USDValue) | null { return callSDK<(USDValue) | null>("USDKit_c1f28409f8601238", 284905167098546, this, [path, time]); }
   /**
    * var defaultPrim: USDToken? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get defaultPrim(): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_6be9a005889899ab", 3992451228931452, this, []); }
-  set defaultPrim(value: (USDToken) | null) { callSDK<void>("USDKit_6be9a005889899ab", 2675832626921939, this, [value]); }
+  get defaultPrim(): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_c1f28409f8601238", 3992451228931452, this, []); }
+  set defaultPrim(value: (USDToken) | null) { callSDK<void>("USDKit_c1f28409f8601238", 2675832626921939, this, [value]); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2104491970577119, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2104491970577119, this, []); }
   /**
    * init(displayName: String? = nil) throws
    * @availability iOS 27.0+
    */
-  static init(displayName?: (string) | null): USDLayer { return callSDK<USDLayer>("USDKit_6be9a005889899ab", 1356877890898127, undefined, [displayName]); }
+  static init(displayName?: (string) | null): USDLayer { return callSDK<USDLayer>("USDKit_c1f28409f8601238", 1356877890898127, undefined, [displayName]); }
   /**
    * var displayName: String { get }
    * @availability iOS 27.0+
    */
-  get displayName(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2269079630941699, this, []); }
+  get displayName(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2269079630941699, this, []); }
   /**
    * var endTimeCode: USDLayer.TimeCode? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get endTimeCode(): $SDK0 { return callSDK<$SDK0>("USDKit_6be9a005889899ab", 675970784001526, this, []); }
-  set endTimeCode(value: $SDK0) { callSDK<void>("USDKit_6be9a005889899ab", 4121702375130799, this, [value]); }
+  get endTimeCode(): $SDK0 { return callSDK<$SDK0>("USDKit_c1f28409f8601238", 675970784001526, this, []); }
+  set endTimeCode(value: $SDK0) { callSDK<void>("USDKit_c1f28409f8601238", 4121702375130799, this, [value]); }
   /**
    * var isAnonymous: Bool { get }
    * @availability iOS 27.0+
    */
-  get isAnonymous(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3467421401190063, this, []); }
+  get isAnonymous(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3467421401190063, this, []); }
   /**
    * func timeSamples(at path: USDLayer.Path) -> Set<USDLayer.TimeCode>
    * @availability iOS 27.0+
    */
-  timeSamples(path: USDLayer_Path): Array<USDLayer_TimeCode> { return callSDK<Array<USDLayer_TimeCode>>("USDKit_6be9a005889899ab", 2542403936612549, this, [path]); }
+  timeSamples(path: USDLayer_Path): Array<USDLayer_TimeCode> { return callSDK<Array<USDLayer_TimeCode>>("USDKit_c1f28409f8601238", 2542403936612549, this, [path]); }
   /**
    * func relationship(at path: USDLayer.Path) -> USDPrim.Relationship.Spec?
    * @availability iOS 27.0+
    */
-  relationship(path: USDLayer_Path): $SDK2 { return callSDK<$SDK2>("USDKit_6be9a005889899ab", 3438006355778392, this, [path]); }
+  relationship(path: USDLayer_Path): $SDK2 { return callSDK<$SDK2>("USDKit_c1f28409f8601238", 3438006355778392, this, [path]); }
   /**
    * var resolvedPath: FilePath? { get }
    * @availability iOS 27.0+
    */
-  get resolvedPath(): (_System_FilePath) | null { return callSDK<(_System_FilePath) | null>("USDKit_6be9a005889899ab", 4473652688151657, this, []); }
+  get resolvedPath(): (_System_FilePath) | null { return callSDK<(_System_FilePath) | null>("USDKit_c1f28409f8601238", 4473652688151657, this, []); }
   /**
    * func setTimeSample(at path: USDLayer.Path, time: USDLayer.TimeCode, value: USDValue)
    * @availability iOS 27.0+
    */
-  setTimeSampleAtTimeValue(path: USDLayer_Path, time: USDLayer_TimeCode, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 3013486102469490, this, [path, time, value]); }
+  setTimeSampleAtTimeValue(path: USDLayer_Path, time: USDLayer_TimeCode, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 3013486102469490, this, [path, time, value]); }
   /**
    * func setTimeSample<T>(at path: USDLayer.Path, time: USDLayer.TimeCode, value: T) where T : USDValueProtocol
    * @availability iOS 27.0+
    */
-  setTimeSampleAtTimeValue99996(path: USDLayer_Path, time: USDLayer_TimeCode, value: number): void { return callSDK<void>("USDKit_6be9a005889899ab", 3350265607658842, this, [path, time, value]); }
+  setTimeSampleAtTimeValue99996(path: USDLayer_Path, time: USDLayer_TimeCode, value: number): void { return callSDK<void>("USDKit_c1f28409f8601238", 3350265607658842, this, [path, time, value]); }
   /**
    * var startTimeCode: USDLayer.TimeCode? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get startTimeCode(): $SDK0 { return callSDK<$SDK0>("USDKit_6be9a005889899ab", 467130802954627, this, []); }
-  set startTimeCode(value: $SDK0) { callSDK<void>("USDKit_6be9a005889899ab", 4021335714363463, this, [value]); }
+  get startTimeCode(): $SDK0 { return callSDK<$SDK0>("USDKit_c1f28409f8601238", 467130802954627, this, []); }
+  set startTimeCode(value: $SDK0) { callSDK<void>("USDKit_c1f28409f8601238", 4021335714363463, this, [value]); }
   /**
    * var subLayerPaths: [USDLayer.AssetPath] { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get subLayerPaths(): Array<USDLayer_AssetPath> { return callSDK<Array<USDLayer_AssetPath>>("USDKit_6be9a005889899ab", 347830261756308, this, []); }
-  set subLayerPaths(value: Array<USDLayer_AssetPath>) { callSDK<void>("USDKit_6be9a005889899ab", 1125023576541332, this, [value]); }
+  get subLayerPaths(): Array<USDLayer_AssetPath> { return callSDK<Array<USDLayer_AssetPath>>("USDKit_c1f28409f8601238", 347830261756308, this, []); }
+  set subLayerPaths(value: Array<USDLayer_AssetPath>) { callSDK<void>("USDKit_c1f28409f8601238", 1125023576541332, this, [value]); }
   /**
    * var allTimeSamples: Set<USDLayer.TimeCode> { get }
    * @availability iOS 27.0+
    */
-  get allTimeSamples(): Array<USDLayer_TimeCode> { return callSDK<Array<USDLayer_TimeCode>>("USDKit_6be9a005889899ab", 3232501711987463, this, []); }
+  get allTimeSamples(): Array<USDLayer_TimeCode> { return callSDK<Array<USDLayer_TimeCode>>("USDKit_c1f28409f8601238", 3232501711987463, this, []); }
   /**
    * func importContents(from path: FilePath) throws
    * @availability iOS 27.0+
    */
-  importContentsFrom(path: _System_FilePath): void { return callSDK<void>("USDKit_6be9a005889899ab", 2192660594619313, this, [path]); }
+  importContentsFrom(path: _System_FilePath): void { return callSDK<void>("USDKit_c1f28409f8601238", 2192660594619313, this, [path]); }
   /**
    * func importContents(from string: String) throws
    * @availability iOS 27.0+
    */
-  importContentsFrom88962(string: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 3015043115666815, this, [string]); }
+  importContentsFrom88962(string: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 3015043115666815, this, [string]); }
   /**
    * func eraseTimeSample(at path: USDLayer.Path, time: USDLayer.TimeCode)
    * @availability iOS 27.0+
    */
-  eraseTimeSample(path: USDLayer_Path, time: USDLayer_TimeCode): void { return callSDK<void>("USDKit_6be9a005889899ab", 3786025988031306, this, [path, time]); }
+  eraseTimeSample(path: USDLayer_Path, time: USDLayer_TimeCode): void { return callSDK<void>("USDKit_c1f28409f8601238", 3786025988031306, this, [path, time]); }
   /**
    * var timeCodesPerSecond: Double? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get timeCodesPerSecond(): (number) | null { return callSDK<(number) | null>("USDKit_6be9a005889899ab", 3421230777038799, this, []); }
-  set timeCodesPerSecond(value: (number) | null) { callSDK<void>("USDKit_6be9a005889899ab", 3105231541762024, this, [value]); }
+  get timeCodesPerSecond(): (number) | null { return callSDK<(number) | null>("USDKit_c1f28409f8601238", 3421230777038799, this, []); }
+  set timeCodesPerSecond(value: (number) | null) { callSDK<void>("USDKit_c1f28409f8601238", 3105231541762024, this, [value]); }
   /**
    * @discardableResult func copy(from srcPath: USDLayer.Path, to dstPath: USDLayer.Path, in dstLayer: USDLayer? = nil) -> Bool
    * @availability iOS 27.0+
    */
-  copy(srcPath: USDLayer_Path, dstPath: USDLayer_Path, dstLayer?: (USDLayer) | null): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4482682191992547, this, [srcPath, dstPath, dstLayer]); }
+  copy(srcPath: USDLayer_Path, dstPath: USDLayer_Path, dstLayer?: (USDLayer) | null): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4482682191992547, this, [srcPath, dstPath, dstLayer]); }
   /**
    * static func find(identifier: String) -> USDLayer?
    * @availability iOS 27.0+
    */
-  static find(identifier: string): (USDLayer) | null { return callSDK<(USDLayer) | null>("USDKit_6be9a005889899ab", 2787944217353349, undefined, [identifier]); }
+  static find(identifier: string): (USDLayer) | null { return callSDK<(USDLayer) | null>("USDKit_c1f28409f8601238", 2787944217353349, undefined, [identifier]); }
   /**
    * static func open(_ identifier: String, options: USDLayer.OpenOptions = []) throws -> USDLayer
    * @availability iOS 27.0+
    */
-  static open(identifier: string, options?: USDLayer_OpenOptions): USDLayer { return callSDK<USDLayer>("USDKit_6be9a005889899ab", 2975763808442365, undefined, [identifier, options]); }
+  static open(identifier: string, options?: USDLayer_OpenOptions): USDLayer { return callSDK<USDLayer>("USDKit_c1f28409f8601238", 2975763808442365, undefined, [identifier, options]); }
   /**
    * func prim(at path: USDLayer.Path) -> USDPrim.Spec?
    * @availability iOS 27.0+
    */
-  prim(path: USDLayer_Path): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_6be9a005889899ab", 697645795571231, this, [path]); }
+  prim(path: USDLayer_Path): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_c1f28409f8601238", 697645795571231, this, [path]); }
   /**
    * func save() throws
    * @availability iOS 27.0+
    */
-  save(): void { return callSDK<void>("USDKit_6be9a005889899ab", 3252642094837397, this, []); }
+  save(): void { return callSDK<void>("USDKit_c1f28409f8601238", 3252642094837397, this, []); }
   /**
    * func spec(at path: USDLayer.Path) -> USDLayer.Spec?
    * @availability iOS 27.0+
    */
-  spec(path: USDLayer_Path): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_6be9a005889899ab", 3215594565669394, this, [path]); }
+  spec(path: USDLayer_Path): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_c1f28409f8601238", 3215594565669394, this, [path]); }
   /**
    * func clear()
    * @availability iOS 27.0+
    */
-  clear(): void { return callSDK<void>("USDKit_6be9a005889899ab", 1799331541447734, this, []); }
+  clear(): void { return callSDK<void>("USDKit_c1f28409f8601238", 1799331541447734, this, []); }
   /**
    * func field(at path: USDLayer.Path, name: USDToken) -> USDValue?
    * @availability iOS 27.0+
    */
-  field(path: USDLayer_Path, name: USDToken): (USDValue) | null { return callSDK<(USDValue) | null>("USDKit_6be9a005889899ab", 2544899452995671, this, [path, name]); }
+  field(path: USDLayer_Path, name: USDToken): (USDValue) | null { return callSDK<(USDValue) | null>("USDKit_c1f28409f8601238", 2544899452995671, this, [path, name]); }
   /**
    * func export(to url: URL) throws
    * @availability iOS 27.0+
    */
-  exportTo(url: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 1966463237355706, this, [url]); }
+  exportTo(url: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 1966463237355706, this, [url]); }
   /**
    * func export(to path: FilePath) throws
    * @availability iOS 27.0+
    */
-  exportTo63861(path: _System_FilePath): void { return callSDK<void>("USDKit_6be9a005889899ab", 1570339524756087, this, [path]); }
+  exportTo63861(path: _System_FilePath): void { return callSDK<void>("USDKit_c1f28409f8601238", 1570339524756087, this, [path]); }
   /**
    * func fields(at path: USDLayer.Path) -> [USDToken]
    * @availability iOS 27.0+
    */
-  fields(path: USDLayer_Path): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_6be9a005889899ab", 677193860260306, this, [path]); }
+  fields(path: USDLayer_Path): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_c1f28409f8601238", 677193860260306, this, [path]); }
   /**
    * func reload() throws
    * @availability iOS 27.0+
    */
-  reload(): void { return callSDK<void>("USDKit_6be9a005889899ab", 3002249335910826, this, []); }
+  reload(): void { return callSDK<void>("USDKit_c1f28409f8601238", 3002249335910826, this, []); }
   /**
    * var isDirty: Bool { get }
    * @availability iOS 27.0+
    */
-  get isDirty(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 668149859121695, this, []); }
+  get isDirty(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 668149859121695, this, []); }
   /**
    * var isMuted: Bool { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get isMuted(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 1380569734027078, this, []); }
-  set isMuted(value: boolean) { callSDK<void>("USDKit_6be9a005889899ab", 2213162954937069, this, [value]); }
+  get isMuted(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 1380569734027078, this, []); }
+  set isMuted(value: boolean) { callSDK<void>("USDKit_c1f28409f8601238", 2213162954937069, this, [value]); }
   /**
    * var isValid: Bool { get }
    * @availability iOS 27.0+
    */
-  get isValid(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2670171253754811, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2670171253754811, this, []); }
   /**
    * func property(at path: USDLayer.Path) -> USDPrim.Property.Spec?
    * @availability iOS 27.0+
    */
-  property(path: USDLayer_Path): $SDK5 { return callSDK<$SDK5>("USDKit_6be9a005889899ab", 1982559108174476, this, [path]); }
+  property(path: USDLayer_Path): $SDK5 { return callSDK<$SDK5>("USDKit_c1f28409f8601238", 1982559108174476, this, [path]); }
   /**
    * func setField(at path: USDLayer.Path, name: USDToken, value: USDValue)
    * @availability iOS 27.0+
    */
-  setFieldAtNameValue(path: USDLayer_Path, name: USDToken, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 2446938052751983, this, [path, name, value]); }
+  setFieldAtNameValue(path: USDLayer_Path, name: USDToken, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 2446938052751983, this, [path, name, value]); }
   /**
    * func setField<T>(at path: USDLayer.Path, name: USDToken, value: T) where T : USDValueProtocol
    * @availability iOS 27.0+
    */
-  setFieldAtNameValue77907(path: USDLayer_Path, name: USDToken, value: number): void { return callSDK<void>("USDKit_6be9a005889899ab", 3817365085748294, this, [path, name, value]); }
+  setFieldAtNameValue77907(path: USDLayer_Path, name: USDToken, value: number): void { return callSDK<void>("USDKit_c1f28409f8601238", 3817365085748294, this, [path, name, value]); }
   /**
    * func specType(at path: USDLayer.Path) -> USDLayer.SpecType?
    * @availability iOS 27.0+
    */
-  specType(path: USDLayer_Path): (USDLayer_SpecType) | null { return callSDK<(USDLayer_SpecType) | null>("USDKit_6be9a005889899ab", 2099135758996820, this, [path]); }
+  specType(path: USDLayer_Path): (USDLayer_SpecType) | null { return callSDK<(USDLayer_SpecType) | null>("USDKit_c1f28409f8601238", 2099135758996820, this, [path]); }
   /**
    * func traverse(at path: USDLayer.Path, _ body: (USDLayer.Path) -> Void)
    * @availability iOS 27.0+
    */
-  traverse(path: USDLayer_Path, body: ((arg0: USDLayer_Path) => void)): void { return callSDK<void>("USDKit_6be9a005889899ab", 3897849539924024, this, [path, body], [null,{"callback":{"out":[]}}]); }
+  traverse(path: USDLayer_Path, body: ((arg0: USDLayer_Path) => void)): void { return callSDK<void>("USDKit_c1f28409f8601238", 3897849539924024, this, [path, body], [null,{"callback":{"out":[]}}]); }
   /**
    * func attribute(at path: USDLayer.Path) -> USDPrim.Attribute.Spec?
    * @availability iOS 27.0+
    */
-  attribute(path: USDLayer_Path): $SDK8 { return callSDK<$SDK8>("USDKit_6be9a005889899ab", 1718116362854133, this, [path]); }
+  attribute(path: USDLayer_Path): $SDK8 { return callSDK<$SDK8>("USDKit_c1f28409f8601238", 1718116362854133, this, [path]); }
   declare readonly $type: { "s:6USDKit8USDLayerV": true };
 }
 
@@ -344,37 +344,37 @@ export class USDLayer_AssetPath extends SDKHandle {
    * var authoredPath: String { get }
    * @availability iOS 27.0+
    */
-  get authoredPath(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1326532365622199, this, []); }
+  get authoredPath(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1326532365622199, this, []); }
   /**
    * var resolvedPath: String? { get }
    * @availability iOS 27.0+
    */
-  get resolvedPath(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 1610020061063763, this, []); }
+  get resolvedPath(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 1610020061063763, this, []); }
   /**
    * init(stringLiteral value: String)
    * @availability iOS 27.0+
    */
-  static initStringLiteral(value: string): USDLayer_AssetPath { return callSDK<USDLayer_AssetPath>("USDKit_6be9a005889899ab", 1084343593293157, undefined, [value]); }
+  static initStringLiteral(value: string): USDLayer_AssetPath { return callSDK<USDLayer_AssetPath>("USDKit_c1f28409f8601238", 1084343593293157, undefined, [value]); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2743079553670472, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2743079553670472, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDLayer_AssetPath { return callSDK<USDLayer_AssetPath>("USDKit_6be9a005889899ab", 4498953755472058, undefined, []); }
+  static init(): USDLayer_AssetPath { return callSDK<USDLayer_AssetPath>("USDKit_c1f28409f8601238", 4498953755472058, undefined, []); }
   /**
    * init(_ path: String, resolvedPath: String)
    * @availability iOS 27.0+
    */
-  static initResolvedPath(path: string, resolvedPath: string): USDLayer_AssetPath { return callSDK<USDLayer_AssetPath>("USDKit_6be9a005889899ab", 2346941840145141, undefined, [path, resolvedPath]); }
+  static initResolvedPath(path: string, resolvedPath: string): USDLayer_AssetPath { return callSDK<USDLayer_AssetPath>("USDKit_c1f28409f8601238", 2346941840145141, undefined, [path, resolvedPath]); }
   /**
    * init(_ path: String)
    * @availability iOS 27.0+
    */
-  static init37830(path: string): USDLayer_AssetPath { return callSDK<USDLayer_AssetPath>("USDKit_6be9a005889899ab", 4248407239282445, undefined, [path]); }
+  static init37830(path: string): USDLayer_AssetPath { return callSDK<USDLayer_AssetPath>("USDKit_c1f28409f8601238", 4248407239282445, undefined, [path]); }
   declare readonly $type: { "s:6USDKit8USDLayerV9AssetPathV": true };
 }
 
@@ -405,17 +405,17 @@ export class USDLayer_ChangeList extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 3393792123496292, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 3393792123496292, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2996504495564417, this, []); }
+  get debugDescription(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2996504495564417, this, []); }
   /**
    * var entries: [(USDLayer.Path, USDLayer.ChangeList.Entry)] { get }
    * @availability iOS 27.0+
    */
-  get entries(): Array<[USDLayer_Path, USDLayer_ChangeList_Entry]> { return callSDK<Array<[USDLayer_Path, USDLayer_ChangeList_Entry]>>("USDKit_6be9a005889899ab", 719988562874818, this, []); }
+  get entries(): Array<[USDLayer_Path, USDLayer_ChangeList_Entry]> { return callSDK<Array<[USDLayer_Path, USDLayer_ChangeList_Entry]>>("USDKit_c1f28409f8601238", 719988562874818, this, []); }
   declare readonly $type: { "s:6USDKit8USDLayerV10ChangeListV": true };
 }
 
@@ -428,22 +428,22 @@ export class USDLayer_ChangeList_Entry extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1301831971438263, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1301831971438263, this, []); }
   /**
    * var infoChanged: [(USDToken, USDLayer.ChangeList.Entry.InfoChange)] { get }
    * @availability iOS 27.0+
    */
-  get infoChanged(): Array<[USDToken, USDLayer_ChangeList_Entry_InfoChange]> { return callSDK<Array<[USDToken, USDLayer_ChangeList_Entry_InfoChange]>>("USDKit_6be9a005889899ab", 2016063457073168, this, []); }
+  get infoChanged(): Array<[USDToken, USDLayer_ChangeList_Entry_InfoChange]> { return callSDK<Array<[USDToken, USDLayer_ChangeList_Entry_InfoChange]>>("USDKit_c1f28409f8601238", 2016063457073168, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("USDKit_6be9a005889899ab", 4346157009203553, this, []); }
+  get debugDescription(): string { return callSDK<string>("USDKit_c1f28409f8601238", 4346157009203553, this, []); }
   /**
    * var flags: USDLayer.ChangeList.Entry.Flags { get }
    * @availability iOS 27.0+
    */
-  get flags(): USDLayer_ChangeList_Entry_Flags { return callSDK<USDLayer_ChangeList_Entry_Flags>("USDKit_6be9a005889899ab", 3345667714743950, this, []); }
+  get flags(): USDLayer_ChangeList_Entry_Flags { return callSDK<USDLayer_ChangeList_Entry_Flags>("USDKit_c1f28409f8601238", 3345667714743950, this, []); }
   declare readonly $type: { "s:6USDKit8USDLayerV10ChangeListV5EntryV": true };
 }
 
@@ -456,132 +456,132 @@ export class USDLayer_ChangeList_Entry_Flags extends SDKHandle {
    * var didChangeIdentifier: Bool { get }
    * @availability iOS 27.0+
    */
-  get didChangeIdentifier(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2000098416456728, this, []); }
+  get didChangeIdentifier(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2000098416456728, this, []); }
   /**
    * var didChangeResolvedPath: Bool { get }
    * @availability iOS 27.0+
    */
-  get didChangeResolvedPath(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2992775582097367, this, []); }
+  get didChangeResolvedPath(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2992775582097367, this, []); }
   /**
    * var didChangePrimReferences: Bool { get }
    * @availability iOS 27.0+
    */
-  get didChangePrimReferences(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2429404551530521, this, []); }
+  get didChangePrimReferences(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2429404551530521, this, []); }
   /**
    * var didChangePrimSpecializes: Bool { get }
    * @availability iOS 27.0+
    */
-  get didChangePrimSpecializes(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4354433470730913, this, []); }
+  get didChangePrimSpecializes(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4354433470730913, this, []); }
   /**
    * var didChangePrimVariantSets: Bool { get }
    * @availability iOS 27.0+
    */
-  get didChangePrimVariantSets(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 1994537935070620, this, []); }
+  get didChangePrimVariantSets(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 1994537935070620, this, []); }
   /**
    * var didChangePrimInheritPaths: Bool { get }
    * @availability iOS 27.0+
    */
-  get didChangePrimInheritPaths(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2329786949869475, this, []); }
+  get didChangePrimInheritPaths(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2329786949869475, this, []); }
   /**
    * var didChangeAttributeConnection: Bool { get }
    * @availability iOS 27.0+
    */
-  get didChangeAttributeConnection(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 154074357432430, this, []); }
+  get didChangeAttributeConnection(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 154074357432430, this, []); }
   /**
    * var didChangeRelationshipTargets: Bool { get }
    * @availability iOS 27.0+
    */
-  get didChangeRelationshipTargets(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4493434930122694, this, []); }
+  get didChangeRelationshipTargets(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4493434930122694, this, []); }
   /**
    * var didChangeAttributeTimeSamples: Bool { get }
    * @availability iOS 27.0+
    */
-  get didChangeAttributeTimeSamples(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2534098698910638, this, []); }
+  get didChangeAttributeTimeSamples(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2534098698910638, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 3742661941259360, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 3742661941259360, this, []); }
   /**
    * var didAddTarget: Bool { get }
    * @availability iOS 27.0+
    */
-  get didAddTarget(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4178662473193910, this, []); }
+  get didAddTarget(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4178662473193910, this, []); }
   /**
    * var didAddProperty: Bool { get }
    * @availability iOS 27.0+
    */
-  get didAddProperty(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 748397010792500, this, []); }
+  get didAddProperty(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 748397010792500, this, []); }
   /**
    * var didAddInertPrim: Bool { get }
    * @availability iOS 27.0+
    */
-  get didAddInertPrim(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2464208509609437, this, []); }
+  get didAddInertPrim(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2464208509609437, this, []); }
   /**
    * var didRemoveTarget: Bool { get }
    * @availability iOS 27.0+
    */
-  get didRemoveTarget(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4367030222355616, this, []); }
+  get didRemoveTarget(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4367030222355616, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1989615511073024, this, []); }
+  get debugDescription(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1989615511073024, this, []); }
   /**
    * var didReloadContent: Bool { get }
    * @availability iOS 27.0+
    */
-  get didReloadContent(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 1291678508359104, this, []); }
+  get didReloadContent(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 1291678508359104, this, []); }
   /**
    * var didRemoveProperty: Bool { get }
    * @availability iOS 27.0+
    */
-  get didRemoveProperty(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3016636798315210, this, []); }
+  get didRemoveProperty(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3016636798315210, this, []); }
   /**
    * var didReplaceContent: Bool { get }
    * @availability iOS 27.0+
    */
-  get didReplaceContent(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 1819525522198257, this, []); }
+  get didReplaceContent(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 1819525522198257, this, []); }
   /**
    * var didAddNonInertPrim: Bool { get }
    * @availability iOS 27.0+
    */
-  get didAddNonInertPrim(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3922439905406446, this, []); }
+  get didAddNonInertPrim(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3922439905406446, this, []); }
   /**
    * var didRemoveInertPrim: Bool { get }
    * @availability iOS 27.0+
    */
-  get didRemoveInertPrim(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 99521554726581, this, []); }
+  get didRemoveInertPrim(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 99521554726581, this, []); }
   /**
    * var didReorderChildren: Bool { get }
    * @availability iOS 27.0+
    */
-  get didReorderChildren(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 1000340086690967, this, []); }
+  get didReorderChildren(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 1000340086690967, this, []); }
   /**
    * var didReorderProperties: Bool { get }
    * @availability iOS 27.0+
    */
-  get didReorderProperties(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2612508091632086, this, []); }
+  get didReorderProperties(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2612508091632086, this, []); }
   /**
    * var didRemoveNonInertPrim: Bool { get }
    * @availability iOS 27.0+
    */
-  get didRemoveNonInertPrim(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 31962879763254, this, []); }
+  get didRemoveNonInertPrim(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 31962879763254, this, []); }
   /**
    * var didAddPropertyWithOnlyRequiredFields: Bool { get }
    * @availability iOS 27.0+
    */
-  get didAddPropertyWithOnlyRequiredFields(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2119203317049766, this, []); }
+  get didAddPropertyWithOnlyRequiredFields(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2119203317049766, this, []); }
   /**
    * var didRemovePropertyWithOnlyRequiredFields: Bool { get }
    * @availability iOS 27.0+
    */
-  get didRemovePropertyWithOnlyRequiredFields(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 44775576776185, this, []); }
+  get didRemovePropertyWithOnlyRequiredFields(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 44775576776185, this, []); }
   /**
    * var didRename: Bool { get }
    * @availability iOS 27.0+
    */
-  get didRename(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 408418774035890, this, []); }
+  get didRename(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 408418774035890, this, []); }
   declare readonly $type: { "s:6USDKit8USDLayerV10ChangeListV5EntryV5FlagsV": true };
 }
 
@@ -594,12 +594,12 @@ export class USDLayer_ChangeList_Entry_InfoChange extends SDKHandle {
    * var newValue: USDValue? { get }
    * @availability iOS 27.0+
    */
-  get newValue(): (USDValue) | null { return callSDK<(USDValue) | null>("USDKit_6be9a005889899ab", 2540326358445454, this, []); }
+  get newValue(): (USDValue) | null { return callSDK<(USDValue) | null>("USDKit_c1f28409f8601238", 2540326358445454, this, []); }
   /**
    * var oldValue: USDValue? { get }
    * @availability iOS 27.0+
    */
-  get oldValue(): (USDValue) | null { return callSDK<(USDValue) | null>("USDKit_6be9a005889899ab", 2519036383096002, this, []); }
+  get oldValue(): (USDValue) | null { return callSDK<(USDValue) | null>("USDKit_c1f28409f8601238", 2519036383096002, this, []); }
   declare readonly $type: { "s:6USDKit8USDLayerV10ChangeListV5EntryV04InfoC0V": true };
 }
 
@@ -612,47 +612,47 @@ export class USDLayer_ListOperation<T = unknown> extends SDKHandle {
    * var isExplicit: Bool { get }
    * @availability iOS 27.0+
    */
-  get isExplicit(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4356879064550595, this, []); }
+  get isExplicit(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4356879064550595, this, []); }
   /**
    * mutating func clearAndMakeExplicit()
    * @availability iOS 27.0+
    */
-  clearAndMakeExplicit(): void { return callSDK<void>("USDKit_6be9a005889899ab", 2954966839362502, this, []); }
+  clearAndMakeExplicit(): void { return callSDK<void>("USDKit_c1f28409f8601238", 2954966839362502, this, []); }
   /**
    * mutating func clear()
    * @availability iOS 27.0+
    */
-  clear(): void { return callSDK<void>("USDKit_6be9a005889899ab", 2315304931648077, this, []); }
+  clear(): void { return callSDK<void>("USDKit_c1f28409f8601238", 2315304931648077, this, []); }
   /**
    * mutating func compose(stronger: USDLayer.ListOperation<T>, for operation: USDLayer.ListOperationType)
    * @availability iOS 27.0+
    */
-  compose(stronger: USDLayer_ListOperation<SDKHandle>, operation: USDLayer_ListOperationType): void { return callSDK<void>("USDKit_6be9a005889899ab", 108599750631643, this, [stronger, operation]); }
+  compose(stronger: USDLayer_ListOperation<SDKHandle>, operation: USDLayer_ListOperationType): void { return callSDK<void>("USDKit_c1f28409f8601238", 108599750631643, this, [stronger, operation]); }
   /**
    * var hasKeys: Bool { get }
    * @availability iOS 27.0+
    */
-  get hasKeys(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 1748211164452040, this, []); }
+  get hasKeys(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 1748211164452040, this, []); }
   /**
    * init(explicitItems: [Int])
    * @availability iOS 27.0+
    */
-  static initExplicitItems(explicitItems: Array<number>): $SDK12 { return callSDK<$SDK12>("USDKit_6be9a005889899ab", 681424368164980, undefined, [explicitItems]); }
+  static initExplicitItems(explicitItems: Array<number>): $SDK12 { return callSDK<$SDK12>("USDKit_c1f28409f8601238", 681424368164980, undefined, [explicitItems]); }
   /**
    * init(prependedItems: [Int] = [], appendedItems: [Int] = [], deletedItems: [Int] = [])
    * @availability iOS 27.0+
    */
-  static initPrependedItemsAppendedItemsDeletedItems(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK12 { return callSDK<$SDK12>("USDKit_6be9a005889899ab", 1307525467591579, undefined, [prependedItems, appendedItems, deletedItems]); }
+  static initPrependedItemsAppendedItemsDeletedItems(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK12 { return callSDK<$SDK12>("USDKit_c1f28409f8601238", 1307525467591579, undefined, [prependedItems, appendedItems, deletedItems]); }
   /**
    * init(explicitItems: [UInt])
    * @availability iOS 27.0+
    */
-  static initExplicitItems13658(explicitItems: Array<number>): $SDK12 { return callSDK<$SDK12>("USDKit_6be9a005889899ab", 480019683035047, undefined, [explicitItems]); }
+  static initExplicitItems13658(explicitItems: Array<number>): $SDK12 { return callSDK<$SDK12>("USDKit_c1f28409f8601238", 480019683035047, undefined, [explicitItems]); }
   /**
    * init(prependedItems: [UInt] = [], appendedItems: [UInt] = [], deletedItems: [UInt] = [])
    * @availability iOS 27.0+
    */
-  static initPrependedItemsAppendedItemsDeletedItems70000(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK12 { return callSDK<$SDK12>("USDKit_6be9a005889899ab", 323546766171429, undefined, [prependedItems, appendedItems, deletedItems]); }
+  static initPrependedItemsAppendedItemsDeletedItems70000(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK12 { return callSDK<$SDK12>("USDKit_c1f28409f8601238", 323546766171429, undefined, [prependedItems, appendedItems, deletedItems]); }
   declare readonly $type: { "s:6USDKit8USDLayerV13ListOperationV": true };
 }
 
@@ -671,12 +671,12 @@ export class USDLayer_OpenOptions extends SDKHandle {
    * static var createNew: USDLayer.OpenOptions { get }
    * @availability iOS 27.0+
    */
-  static get createNew(): USDLayer_OpenOptions { return callSDK<USDLayer_OpenOptions>("USDKit_6be9a005889899ab", 3339729789166757, undefined, []); }
+  static get createNew(): USDLayer_OpenOptions { return callSDK<USDLayer_OpenOptions>("USDKit_c1f28409f8601238", 3339729789166757, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDLayer_OpenOptions { return callSDK<USDLayer_OpenOptions>("USDKit_6be9a005889899ab", 233839574896631, undefined, []); }
+  static init(): USDLayer_OpenOptions { return callSDK<USDLayer_OpenOptions>("USDKit_c1f28409f8601238", 233839574896631, undefined, []); }
   declare readonly $type: { "s:6USDKit8USDLayerV11OpenOptionsV": true };
 }
 
@@ -695,167 +695,167 @@ export class USDLayer_Path extends SDKHandle {
    * var primPath: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 1401985953096352, this, []); }
+  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 1401985953096352, this, []); }
   /**
    * var isAbsolute: Bool { get }
    * @availability iOS 27.0+
    */
-  get isAbsolute(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 1059988262769024, this, []); }
+  get isAbsolute(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 1059988262769024, this, []); }
   /**
    * var isRootPrim: Bool { get }
    * @availability iOS 27.0+
    */
-  get isRootPrim(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3534565780302643, this, []); }
+  get isRootPrim(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3534565780302643, this, []); }
   /**
    * init?(validating path: String)
    * @availability iOS 27.0+
    */
-  static initValidating(path: string): (USDLayer_Path) | null { return callSDK<(USDLayer_Path) | null>("USDKit_6be9a005889899ab", 2376989632062984, undefined, [path]); }
+  static initValidating(path: string): (USDLayer_Path) | null { return callSDK<(USDLayer_Path) | null>("USDKit_c1f28409f8601238", 2376989632062984, undefined, [path]); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2655439337424952, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2655439337424952, this, []); }
   /**
    * static let absoluteRoot: USDLayer.Path
    * @availability iOS 27.0+
    */
-  static get absoluteRoot(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 550871050444048, undefined, []); }
+  static get absoluteRoot(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 550871050444048, undefined, []); }
   /**
    * func commonPrefix(with other: USDLayer.Path) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  commonPrefix(other: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 3934202024194901, this, [other]); }
+  commonPrefix(other: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 3934202024194901, this, [other]); }
   /**
    * init(stringLiteral: String)
    * @availability iOS 27.0+
    */
-  static initStringLiteral(stringLiteral: string): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 1318511832827904, undefined, [stringLiteral]); }
+  static initStringLiteral(stringLiteral: string): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 1318511832827904, undefined, [stringLiteral]); }
   /**
    * var isPrimProperty: Bool { get }
    * @availability iOS 27.0+
    */
-  get isPrimProperty(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3021447507378594, this, []); }
+  get isPrimProperty(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3021447507378594, this, []); }
   /**
    * var variantSelection: (set: String, variant: String)? { get }
    * @availability iOS 27.0+
    */
-  get variantSelection(): ({ "set": string; "variant": string }) | null { return callSDK<({ "set": string; "variant": string }) | null>("USDKit_6be9a005889899ab", 3941009247828104, this, []); }
+  get variantSelection(): ({ "set": string; "variant": string }) | null { return callSDK<({ "set": string; "variant": string }) | null>("USDKit_c1f28409f8601238", 3941009247828104, this, []); }
   /**
    * var isNamespacedProperty: Bool { get }
    * @availability iOS 27.0+
    */
-  get isNamespacedProperty(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2100729021322453, this, []); }
+  get isNamespacedProperty(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2100729021322453, this, []); }
   /**
    * var isRelationalAttribute: Bool { get }
    * @availability iOS 27.0+
    */
-  get isRelationalAttribute(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4225753363090176, this, []); }
+  get isRelationalAttribute(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4225753363090176, this, []); }
   /**
    * func strippingAllVariantSelections() -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  strippingAllVariantSelections(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 807605620672886, this, []); }
+  strippingAllVariantSelections(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 807605620672886, this, []); }
   /**
    * var kind: USDLayer.Path.Kind { get }
    * @availability iOS 27.0+
    */
-  get kind(): USDLayer_Path_Kind { return callSDK<USDLayer_Path_Kind>("USDKit_6be9a005889899ab", 1942960885454771, this, []); }
+  get kind(): USDLayer_Path_Kind { return callSDK<USDLayer_Path_Kind>("USDKit_c1f28409f8601238", 1942960885454771, this, []); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 1812408961458750, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 1812408961458750, this, []); }
   /**
    * var depth: Int { get }
    * @availability iOS 27.0+
    */
-  get depth(): number { return callSDK<number>("USDKit_6be9a005889899ab", 169366396729011, this, []); }
+  get depth(): number { return callSDK<number>("USDKit_c1f28409f8601238", 169366396729011, this, []); }
   /**
    * static let empty: USDLayer.Path
    * @availability iOS 27.0+
    */
-  static get empty(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 1321400155427179, undefined, []); }
+  static get empty(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 1321400155427179, undefined, []); }
   /**
    * var parent: USDLayer.Path? { get }
    * @availability iOS 27.0+
    */
-  get parent(): (USDLayer_Path) | null { return callSDK<(USDLayer_Path) | null>("USDKit_6be9a005889899ab", 2350229874506814, this, []); }
+  get parent(): (USDLayer_Path) | null { return callSDK<(USDLayer_Path) | null>("USDKit_c1f28409f8601238", 2350229874506814, this, []); }
   /**
    * var target: USDLayer.Path? { get }
    * @availability iOS 27.0+
    */
-  get target(): (USDLayer_Path) | null { return callSDK<(USDLayer_Path) | null>("USDKit_6be9a005889899ab", 3664149579998038, this, []); }
+  get target(): (USDLayer_Path) | null { return callSDK<(USDLayer_Path) | null>("USDKit_c1f28409f8601238", 3664149579998038, this, []); }
   /**
    * func absolute(at anchor: USDLayer.Path) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  absolute(anchor: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 702070645744749, this, [anchor]); }
+  absolute(anchor: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 702070645744749, this, [anchor]); }
   /**
    * func relative(to anchor: USDLayer.Path) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  relative(anchor: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 110003991716830, this, [anchor]); }
+  relative(anchor: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 110003991716830, this, [anchor]); }
   /**
    * var ancestors: [USDLayer.Path] { get }
    * @availability iOS 27.0+
    */
-  get ancestors(): Array<USDLayer_Path> { return callSDK<Array<USDLayer_Path>>("USDKit_6be9a005889899ab", 3724089998304190, this, []); }
+  get ancestors(): Array<USDLayer_Path> { return callSDK<Array<USDLayer_Path>>("USDKit_c1f28409f8601238", 3724089998304190, this, []); }
   /**
    * func appending(variantSet: USDToken, variant: USDToken) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  appendingVariantSetVariant(variantSet: USDToken, variant: USDToken): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 681329838219787, this, [variantSet, variant]); }
+  appendingVariantSetVariant(variantSet: USDToken, variant: USDToken): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 681329838219787, this, [variantSet, variant]); }
   /**
    * func appending(relationalAttribute name: USDToken) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  appendingRelationalAttribute(name: USDToken): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 2862562705914935, this, [name]); }
+  appendingRelationalAttribute(name: USDToken): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 2862562705914935, this, [name]); }
   /**
    * func appending(path newSuffix: USDLayer.Path) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  appendingPath(newSuffix: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 376324752605912, this, [newSuffix]); }
+  appendingPath(newSuffix: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 376324752605912, this, [newSuffix]); }
   /**
    * func appending(child name: USDToken) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  appendingChild(name: USDToken): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 1781821002009936, this, [name]); }
+  appendingChild(name: USDToken): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 1781821002009936, this, [name]); }
   /**
    * func appending(target name: USDLayer.Path) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  appendingTarget(name: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 1795831682987656, this, [name]); }
+  appendingTarget(name: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 1795831682987656, this, [name]); }
   /**
    * func appending(property name: USDToken) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  appendingProperty(name: USDToken): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 897256614142468, this, [name]); }
+  appendingProperty(name: USDToken): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 897256614142468, this, [name]); }
   /**
    * func hasPrefix(_ prefix: USDLayer.Path) -> Bool
    * @availability iOS 27.0+
    */
-  hasPrefix(prefix: USDLayer_Path): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 1616480327162825, this, [prefix]); }
+  hasPrefix(prefix: USDLayer_Path): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 1616480327162825, this, [prefix]); }
   /**
    * func replacing(name newName: USDToken) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  replacingName(newName: USDToken): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 1789240950893142, this, [newName]); }
+  replacingName(newName: USDToken): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 1789240950893142, this, [newName]); }
   /**
    * func replacing(target newTarget: USDLayer.Path) -> USDLayer.Path
    * @availability iOS 27.0+
    */
-  replacingTarget(newTarget: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 1631622928049931, this, [newTarget]); }
+  replacingTarget(newTarget: USDLayer_Path): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 1631622928049931, this, [newTarget]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 4246610705213972, undefined, []); }
+  static init(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 4246610705213972, undefined, []); }
   /**
    * init(_ path: String)
    * @availability iOS 27.0+
    */
-  static init11239(path: string): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 2352548232410324, undefined, [path]); }
+  static init11239(path: string): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 2352548232410324, undefined, [path]); }
   declare readonly $type: { "s:6USDKit8USDLayerV4PathV": true };
 }
 
@@ -898,57 +898,57 @@ export class USDLayer_PathExpression extends SDKHandle {
    * static var everything: USDLayer.PathExpression { get }
    * @availability iOS 27.0+
    */
-  static get everything(): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_6be9a005889899ab", 2243845736776211, undefined, []); }
+  static get everything(): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_c1f28409f8601238", 2243845736776211, undefined, []); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1692901045027292, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1692901045027292, this, []); }
   /**
    * init(stringLiteral value: String)
    * @availability iOS 27.0+
    */
-  static initStringLiteral(value: string): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_6be9a005889899ab", 2818888317333683, undefined, [value]); }
+  static initStringLiteral(value: string): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_c1f28409f8601238", 2818888317333683, undefined, [value]); }
   /**
    * static var everyDescendant: USDLayer.PathExpression { get }
    * @availability iOS 27.0+
    */
-  static get everyDescendant(): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_6be9a005889899ab", 2486275182320492, undefined, []); }
+  static get everyDescendant(): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_c1f28409f8601238", 2486275182320492, undefined, []); }
   /**
    * static var weakerReference: USDLayer.PathExpression { get }
    * @availability iOS 27.0+
    */
-  static get weakerReference(): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_6be9a005889899ab", 185477031494597, undefined, []); }
+  static get weakerReference(): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_c1f28409f8601238", 185477031494597, undefined, []); }
   /**
    * var text: String { get }
    * @availability iOS 27.0+
    */
-  get text(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2303095810563623, this, []); }
+  get text(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2303095810563623, this, []); }
   /**
    * var isEmpty: Bool { get }
    * @availability iOS 27.0+
    */
-  get isEmpty(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3213091258250876, this, []); }
+  get isEmpty(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3213091258250876, this, []); }
   /**
    * static var nothing: USDLayer.PathExpression { get }
    * @availability iOS 27.0+
    */
-  static get nothing(): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_6be9a005889899ab", 1907630234428021, undefined, []); }
+  static get nothing(): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_c1f28409f8601238", 1907630234428021, undefined, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1263623778401061, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1263623778401061, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_6be9a005889899ab", 187398852153546, undefined, []); }
+  static init(): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_c1f28409f8601238", 187398852153546, undefined, []); }
   /**
    * init(_ expression: String)
    * @availability iOS 27.0+
    */
-  static init85788(expression: string): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_6be9a005889899ab", 3695126872726071, undefined, [expression]); }
+  static init85788(expression: string): USDLayer_PathExpression { return callSDK<USDLayer_PathExpression>("USDKit_c1f28409f8601238", 3695126872726071, undefined, [expression]); }
   declare readonly $type: { "s:6USDKit8USDLayerV14PathExpressionV": true };
 }
 
@@ -997,42 +997,42 @@ export class USDLayer_Spec extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_6be9a005889899ab", 1113055175113660, undefined, []); }
+  static init(): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_c1f28409f8601238", 1113055175113660, undefined, []); }
   /**
    * init(_ pseudoRootSpec: USDPrim.PseudoRootSpec)
    * @availability iOS 27.0+
    */
-  static init4617(pseudoRootSpec: USDPrim_PseudoRootSpec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_6be9a005889899ab", 2109864981073138, undefined, [pseudoRootSpec]); }
+  static init4617(pseudoRootSpec: USDPrim_PseudoRootSpec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_c1f28409f8601238", 2109864981073138, undefined, [pseudoRootSpec]); }
   /**
    * init(_ variantSetSpec: USDPrim.VariantSetSpec)
    * @availability iOS 27.0+
    */
-  static init70836(variantSetSpec: USDPrim_VariantSetSpec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_6be9a005889899ab", 1068199838628437, undefined, [variantSetSpec]); }
+  static init70836(variantSetSpec: USDPrim_VariantSetSpec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_c1f28409f8601238", 1068199838628437, undefined, [variantSetSpec]); }
   /**
    * init(_ variantSpec: USDPrim.VariantSpec)
    * @availability iOS 27.0+
    */
-  static init12632(variantSpec: USDPrim_VariantSpec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_6be9a005889899ab", 859035583602310, undefined, [variantSpec]); }
+  static init12632(variantSpec: USDPrim_VariantSpec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_c1f28409f8601238", 859035583602310, undefined, [variantSpec]); }
   /**
    * init(_ relationshipSpec: USDPrim.Relationship.Spec)
    * @availability iOS 27.0+
    */
-  static init12505(relationshipSpec: USDPrim_Relationship_Spec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_6be9a005889899ab", 669319875503776, undefined, [relationshipSpec]); }
+  static init12505(relationshipSpec: USDPrim_Relationship_Spec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_c1f28409f8601238", 669319875503776, undefined, [relationshipSpec]); }
   /**
    * init(_ propertySpec: USDPrim.Property.Spec)
    * @availability iOS 27.0+
    */
-  static init27699(propertySpec: USDPrim_Property_Spec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_6be9a005889899ab", 3275854657288554, undefined, [propertySpec]); }
+  static init27699(propertySpec: USDPrim_Property_Spec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_c1f28409f8601238", 3275854657288554, undefined, [propertySpec]); }
   /**
    * init(_ attributeSpec: USDPrim.Attribute.Spec)
    * @availability iOS 27.0+
    */
-  static init20465(attributeSpec: USDPrim_Attribute_Spec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_6be9a005889899ab", 4396556595499013, undefined, [attributeSpec]); }
+  static init20465(attributeSpec: USDPrim_Attribute_Spec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_c1f28409f8601238", 4396556595499013, undefined, [attributeSpec]); }
   /**
    * init(_ primSpec: USDPrim.Spec)
    * @availability iOS 27.0+
    */
-  static init68150(primSpec: USDPrim_Spec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_6be9a005889899ab", 2813062652390657, undefined, [primSpec]); }
+  static init68150(primSpec: USDPrim_Spec): USDLayer_Spec { return callSDK<USDLayer_Spec>("USDKit_c1f28409f8601238", 2813062652390657, undefined, [primSpec]); }
   declare readonly $type: { "s:6USDKit8USDLayerV4SpecV": true };
 }
 
@@ -1067,27 +1067,27 @@ export class USDLayer_TimeCode extends SDKHandle {
    * init(floatLiteral value: Double)
    * @availability iOS 27.0+
    */
-  static initFloatLiteral(value: number): USDLayer_TimeCode { return callSDK<USDLayer_TimeCode>("USDKit_6be9a005889899ab", 2423193884323284, undefined, [value]); }
+  static initFloatLiteral(value: number): USDLayer_TimeCode { return callSDK<USDLayer_TimeCode>("USDKit_c1f28409f8601238", 2423193884323284, undefined, [value]); }
   /**
    * var value: Double { get }
    * @availability iOS 27.0+
    */
-  get value(): number { return callSDK<number>("USDKit_6be9a005889899ab", 4234713594603631, this, []); }
+  get value(): number { return callSDK<number>("USDKit_c1f28409f8601238", 4234713594603631, this, []); }
   /**
    * static let `default`: USDLayer.TimeCode
    * @availability iOS 27.0+
    */
-  static get default(): USDLayer_TimeCode { return callSDK<USDLayer_TimeCode>("USDKit_6be9a005889899ab", 1845220561466021, undefined, []); }
+  static get default(): USDLayer_TimeCode { return callSDK<USDLayer_TimeCode>("USDKit_c1f28409f8601238", 1845220561466021, undefined, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 392765359593551, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 392765359593551, undefined, []); }
   /**
    * init(_ time: Double)
    * @availability iOS 27.0+
    */
-  static init(time: number): USDLayer_TimeCode { return callSDK<USDLayer_TimeCode>("USDKit_6be9a005889899ab", 4153725368913349, undefined, [time]); }
+  static init(time: number): USDLayer_TimeCode { return callSDK<USDLayer_TimeCode>("USDKit_c1f28409f8601238", 4153725368913349, undefined, [time]); }
   declare readonly $type: { "s:6USDKit8USDLayerV8TimeCodeV": true };
 }
 
@@ -1106,29 +1106,29 @@ export class USDLayer_TimeOffset extends SDKHandle {
    * var isIdentity: Bool { get }
    * @availability iOS 27.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 821374527110264, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 821374527110264, this, []); }
   /**
    * var scale: Double { get set }
    * @availability iOS 27.0+
    */
-  get scale(): number { return callSDK<number>("USDKit_6be9a005889899ab", 2018470741908512, this, []); }
-  set scale(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2963792469251270, this, [value]); }
+  get scale(): number { return callSDK<number>("USDKit_c1f28409f8601238", 2018470741908512, this, []); }
+  set scale(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2963792469251270, this, [value]); }
   /**
    * init(offset: Double = 0.0, scale: Double = 1.0)
    * @availability iOS 27.0+
    */
-  static init(offset?: number, scale?: number): USDLayer_TimeOffset { return callSDK<USDLayer_TimeOffset>("USDKit_6be9a005889899ab", 1106562457635570, undefined, [offset, scale]); }
+  static init(offset?: number, scale?: number): USDLayer_TimeOffset { return callSDK<USDLayer_TimeOffset>("USDKit_c1f28409f8601238", 1106562457635570, undefined, [offset, scale]); }
   /**
    * var offset: Double { get set }
    * @availability iOS 27.0+
    */
-  get offset(): number { return callSDK<number>("USDKit_6be9a005889899ab", 95648738976721, this, []); }
-  set offset(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 1106268022741297, this, [value]); }
+  get offset(): number { return callSDK<number>("USDKit_c1f28409f8601238", 95648738976721, this, []); }
+  set offset(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 1106268022741297, this, [value]); }
   /**
    * var isValid: Bool { get }
    * @availability iOS 27.0+
    */
-  get isValid(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2054928223826822, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2054928223826822, this, []); }
   declare readonly $type: { "s:6USDKit8USDLayerV10TimeOffsetV": true };
 }
 
@@ -1141,292 +1141,292 @@ export class USDPrim extends SDKHandle {
    * var attributes: [USDPrim.Attribute] { get }
    * @availability iOS 27.0+
    */
-  get attributes(): Array<USDPrim_Attribute> { return callSDK<Array<USDPrim_Attribute>>("USDKit_6be9a005889899ab", 309110141343405, this, []); }
+  get attributes(): Array<USDPrim_Attribute> { return callSDK<Array<USDPrim_Attribute>>("USDKit_c1f28409f8601238", 309110141343405, this, []); }
   /**
    * var properties: [USDPrim.Property] { get }
    * @availability iOS 27.0+
    */
-  get properties(): Array<USDPrim_Property> { return callSDK<Array<USDPrim_Property>>("USDKit_6be9a005889899ab", 927506174416337, this, []); }
+  get properties(): Array<USDPrim_Property> { return callSDK<Array<USDPrim_Property>>("USDKit_c1f28409f8601238", 927506174416337, this, []); }
   /**
    * var references: USDPrim.ReferenceCollection { get }
    * @availability iOS 27.0+
    */
-  get references(): USDPrim_ReferenceCollection { return callSDK<USDPrim_ReferenceCollection>("USDKit_6be9a005889899ab", 2764940742390919, this, []); }
+  get references(): USDPrim_ReferenceCollection { return callSDK<USDPrim_ReferenceCollection>("USDKit_c1f28409f8601238", 2764940742390919, this, []); }
   /**
    * var allChildren: [USDPrim] { get }
    * @availability iOS 27.0+
    */
-  get allChildren(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_6be9a005889899ab", 276222329643261, this, []); }
+  get allChildren(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_c1f28409f8601238", 276222329643261, this, []); }
   /**
    * func descendants(where predicate: USDPrim.Predicate) -> [USDPrim]
    * @availability iOS 27.0+
    */
-  descendantsWhere(predicate: USDPrim_Predicate): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_6be9a005889899ab", 431407798049618, this, [predicate]); }
+  descendantsWhere(predicate: USDPrim_Predicate): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_c1f28409f8601238", 431407798049618, this, [predicate]); }
   /**
    * var descendants: [USDPrim] { get }
    * @availability iOS 27.0+
    */
-  get descendants(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_6be9a005889899ab", 3552316014656371, this, []); }
+  get descendants(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_c1f28409f8601238", 3552316014656371, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1387116861953997, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1387116861953997, this, []); }
   /**
    * func hasProperty(named name: USDToken) -> Bool
    * @availability iOS 27.0+
    */
-  hasProperty(name: USDToken): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2020968719330601, this, [name]); }
+  hasProperty(name: USDToken): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2020968719330601, this, [name]); }
   /**
    * var isPrototype: Bool { get }
    * @availability iOS 27.0+
    */
-  get isPrototype(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3619996676111457, this, []); }
+  get isPrototype(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3619996676111457, this, []); }
   /**
    * func nextSibling(where predicate: USDPrim.Predicate) -> USDPrim
    * @availability iOS 27.0+
    */
-  nextSiblingWhere(predicate: USDPrim_Predicate): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 2242757633853983, this, [predicate]); }
+  nextSiblingWhere(predicate: USDPrim_Predicate): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 2242757633853983, this, [predicate]); }
   /**
    * var nextSibling: USDPrim? { get }
    * @availability iOS 27.0+
    */
-  get nextSibling(): (USDPrim) | null { return callSDK<(USDPrim) | null>("USDKit_6be9a005889899ab", 978063881105193, this, []); }
+  get nextSibling(): (USDPrim) | null { return callSDK<(USDPrim) | null>("USDKit_c1f28409f8601238", 978063881105193, this, []); }
   /**
    * var specializes: USDPrim.SpecializeCollection { get }
    * @availability iOS 27.0+
    */
-  get specializes(): USDPrim_SpecializeCollection { return callSDK<USDPrim_SpecializeCollection>("USDKit_6be9a005889899ab", 828641825296558, this, []); }
+  get specializes(): USDPrim_SpecializeCollection { return callSDK<USDPrim_SpecializeCollection>("USDKit_c1f28409f8601238", 828641825296558, this, []); }
   /**
    * var variantSets: USDPrim.VariantSetCollection { get }
    * @availability iOS 27.0+
    */
-  get variantSets(): USDPrim_VariantSetCollection { return callSDK<USDPrim_VariantSetCollection>("USDKit_6be9a005889899ab", 395215586907705, this, []); }
+  get variantSets(): USDPrim_VariantSetCollection { return callSDK<USDPrim_VariantSetCollection>("USDKit_c1f28409f8601238", 395215586907705, this, []); }
   /**
    * func hasAPISchema(_ schemaIdentifier: USDToken) -> Bool
    * @availability iOS 27.0+
    */
-  hasAPISchema(schemaIdentifier: USDToken): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4202211408482734, this, [schemaIdentifier]); }
+  hasAPISchema(schemaIdentifier: USDToken): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4202211408482734, this, [schemaIdentifier]); }
   /**
    * func hasAttribute(named name: USDToken) -> Bool
    * @availability iOS 27.0+
    */
-  hasAttribute(name: USDToken): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2285385281871580, this, [name]); }
+  hasAttribute(name: USDToken): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2285385281871580, this, [name]); }
   /**
    * func relationship(at path: USDLayer.Path) -> USDPrim.Relationship
    * @availability iOS 27.0+
    */
-  relationshipAt(path: USDLayer_Path): USDPrim_Relationship { return callSDK<USDPrim_Relationship>("USDKit_6be9a005889899ab", 3654060929000559, this, [path]); }
+  relationshipAt(path: USDLayer_Path): USDPrim_Relationship { return callSDK<USDPrim_Relationship>("USDKit_c1f28409f8601238", 3654060929000559, this, [path]); }
   /**
    * func relationship(named name: USDToken) -> USDPrim.Relationship
    * @availability iOS 27.0+
    */
-  relationshipNamed(name: USDToken): USDPrim_Relationship { return callSDK<USDPrim_Relationship>("USDKit_6be9a005889899ab", 2897361353691783, this, [name]); }
+  relationshipNamed(name: USDToken): USDPrim_Relationship { return callSDK<USDPrim_Relationship>("USDKit_c1f28409f8601238", 2897361353691783, this, [name]); }
   /**
    * @discardableResult func makeAttribute(named name: USDToken, as type: USDPrim.Attribute.ValueType, custom: Bool = true, variability: USDPrim.Property.Variability = .varying) -> USDPrim.Attribute
    * @availability iOS 27.0+
    */
-  makeAttribute(name: USDToken, type: USDPrim_Attribute_ValueType, custom?: boolean, variability?: USDPrim_Property_Variability): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_6be9a005889899ab", 3461806976999304, this, [name, type, custom, variability]); }
+  makeAttribute(name: USDToken, type: USDPrim_Attribute_ValueType, custom?: boolean, variability?: USDPrim_Property_Variability): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_c1f28409f8601238", 3461806976999304, this, [name, type, custom, variability]); }
   /**
    * var propertyNames: [USDToken] { get }
    * @availability iOS 27.0+
    */
-  get propertyNames(): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_6be9a005889899ab", 603333085453457, this, []); }
+  get propertyNames(): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_c1f28409f8601238", 603333085453457, this, []); }
   /**
    * var allDescendants: [USDPrim] { get }
    * @availability iOS 27.0+
    */
-  get allDescendants(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_6be9a005889899ab", 4376311820204176, this, []); }
+  get allDescendants(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_c1f28409f8601238", 4376311820204176, this, []); }
   /**
    * func applyAPISchema(_ schemaIdentifier: USDToken, instanceName: USDToken) throws
    * @availability iOS 27.0+
    */
-  applyAPISchemaInstanceName(schemaIdentifier: USDToken, instanceName: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 3552171524190476, this, [schemaIdentifier, instanceName]); }
+  applyAPISchemaInstanceName(schemaIdentifier: USDToken, instanceName: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 3552171524190476, this, [schemaIdentifier, instanceName]); }
   /**
    * func applyAPISchema(_ schemaIdentifier: USDToken) throws
    * @availability iOS 27.0+
    */
-  applyAPISchema(schemaIdentifier: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 2731954412907970, this, [schemaIdentifier]); }
+  applyAPISchema(schemaIdentifier: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 2731954412907970, this, [schemaIdentifier]); }
   /**
    * func hasRelationship(named name: USDToken) -> Bool
    * @availability iOS 27.0+
    */
-  hasRelationship(name: USDToken): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4447447201170780, this, [name]); }
+  hasRelationship(name: USDToken): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4447447201170780, this, [name]); }
   /**
    * func removeAPISchema(_ schemaIdentifier: USDToken, instanceName: USDToken) throws
    * @availability iOS 27.0+
    */
-  removeAPISchemaInstanceName(schemaIdentifier: USDToken, instanceName: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 3405561625135335, this, [schemaIdentifier, instanceName]); }
+  removeAPISchemaInstanceName(schemaIdentifier: USDToken, instanceName: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 3405561625135335, this, [schemaIdentifier, instanceName]); }
   /**
    * func removeAPISchema(_ schemaIdentifier: USDToken) throws
    * @availability iOS 27.0+
    */
-  removeAPISchema(schemaIdentifier: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 2688764358734989, this, [schemaIdentifier]); }
+  removeAPISchema(schemaIdentifier: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 2688764358734989, this, [schemaIdentifier]); }
   /**
    * @discardableResult func makeRelationship(named name: USDToken, custom: Bool = true) -> USDPrim.Relationship
    * @availability iOS 27.0+
    */
-  makeRelationship(name: USDToken, custom?: boolean): USDPrim_Relationship { return callSDK<USDPrim_Relationship>("USDKit_6be9a005889899ab", 1104723791264928, this, [name, custom]); }
+  makeRelationship(name: USDToken, custom?: boolean): USDPrim_Relationship { return callSDK<USDPrim_Relationship>("USDKit_c1f28409f8601238", 1104723791264928, this, [name, custom]); }
   /**
    * var authoredAttributes: [USDPrim.Attribute] { get }
    * @availability iOS 27.0+
    */
-  get authoredAttributes(): Array<USDPrim_Attribute> { return callSDK<Array<USDPrim_Attribute>>("USDKit_6be9a005889899ab", 2509279132198253, this, []); }
+  get authoredAttributes(): Array<USDPrim_Attribute> { return callSDK<Array<USDPrim_Attribute>>("USDKit_c1f28409f8601238", 2509279132198253, this, []); }
   /**
    * var authoredProperties: [USDPrim.Property] { get }
    * @availability iOS 27.0+
    */
-  get authoredProperties(): Array<USDPrim_Property> { return callSDK<Array<USDPrim_Property>>("USDKit_6be9a005889899ab", 3494516936214032, this, []); }
+  get authoredProperties(): Array<USDPrim_Property> { return callSDK<Array<USDPrim_Property>>("USDKit_c1f28409f8601238", 3494516936214032, this, []); }
   /**
    * var hasAuthoredInherits: Bool { get }
    * @availability iOS 27.0+
    */
-  get hasAuthoredInherits(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3983398940418132, this, []); }
+  get hasAuthoredInherits(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3983398940418132, this, []); }
   /**
    * var hasAuthoredPayloads: Bool { get }
    * @availability iOS 27.0+
    */
-  get hasAuthoredPayloads(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2518709189984447, this, []); }
+  get hasAuthoredPayloads(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2518709189984447, this, []); }
   /**
    * var transformOperations: [USDTransformOperation] { get }
    * @availability iOS 27.0+
    */
-  get transformOperations(): Array<USDTransformOperation> { return callSDK<Array<USDTransformOperation>>("USDKit_6be9a005889899ab", 956115884880209, this, []); }
+  get transformOperations(): Array<USDTransformOperation> { return callSDK<Array<USDTransformOperation>>("USDKit_c1f28409f8601238", 956115884880209, this, []); }
   /**
    * func addTransformOperation(type: USDTransformOperation.Kind)
    * @availability iOS 27.0+
    */
-  addTransformOperation(type: USDTransformOperation_Kind): void { return callSDK<void>("USDKit_6be9a005889899ab", 4365724967149736, this, [type]); }
+  addTransformOperation(type: USDTransformOperation_Kind): void { return callSDK<void>("USDKit_c1f28409f8601238", 4365724967149736, this, [type]); }
   /**
    * var authoredPropertyNames: [USDToken] { get }
    * @availability iOS 27.0+
    */
-  get authoredPropertyNames(): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_6be9a005889899ab", 1293408704550796, this, []); }
+  get authoredPropertyNames(): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_c1f28409f8601238", 1293408704550796, this, []); }
   /**
    * var hasAuthoredReferences: Bool { get }
    * @availability iOS 27.0+
    */
-  get hasAuthoredReferences(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2900079268409326, this, []); }
+  get hasAuthoredReferences(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2900079268409326, this, []); }
   /**
    * var hasAuthoredSpecializes: Bool { get }
    * @availability iOS 27.0+
    */
-  get hasAuthoredSpecializes(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3197141408664144, this, []); }
+  get hasAuthoredSpecializes(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3197141408664144, this, []); }
   /**
    * func clearTransformOperations()
    * @availability iOS 27.0+
    */
-  clearTransformOperations(): void { return callSDK<void>("USDKit_6be9a005889899ab", 3856066567825674, this, []); }
+  clearTransformOperations(): void { return callSDK<void>("USDKit_c1f28409f8601238", 3856066567825674, this, []); }
   /**
    * var path: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get path(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 2892294058272427, this, []); }
+  get path(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 2892294058272427, this, []); }
   /**
    * func prim(at path: USDLayer.Path) -> USDPrim
    * @availability iOS 27.0+
    */
-  prim(path: USDLayer_Path): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 1983771987900398, this, [path]); }
+  prim(path: USDLayer_Path): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 1983771987900398, this, [path]); }
   /**
    * var stage: USDStage { get }
    * @availability iOS 27.0+
    */
-  get stage(): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 3923102650297557, this, []); }
+  get stage(): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 3923102650297557, this, []); }
   /**
    * func object(at path: USDLayer.Path) -> USDStage.Object
    * @availability iOS 27.0+
    */
-  object(path: USDLayer_Path): USDStage_Object { return callSDK<USDStage_Object>("USDKit_6be9a005889899ab", 624213781466956, this, [path]); }
+  object(path: USDLayer_Path): USDStage_Object { return callSDK<USDStage_Object>("USDKit_c1f28409f8601238", 624213781466956, this, [path]); }
   /**
    * var parent: USDPrim? { get }
    * @availability iOS 27.0+
    */
-  get parent(): (USDPrim) | null { return callSDK<(USDPrim) | null>("USDKit_6be9a005889899ab", 1390641347133733, this, []); }
+  get parent(): (USDPrim) | null { return callSDK<(USDPrim) | null>("USDKit_c1f28409f8601238", 1390641347133733, this, []); }
   /**
    * var isValid: Bool { get }
    * @availability iOS 27.0+
    */
-  get isValid(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3488692814248627, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3488692814248627, this, []); }
   /**
    * func children(where predicate: USDPrim.Predicate) -> [USDPrim]
    * @availability iOS 27.0+
    */
-  childrenWhere(predicate: USDPrim_Predicate): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_6be9a005889899ab", 874124102529189, this, [predicate]); }
+  childrenWhere(predicate: USDPrim_Predicate): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_c1f28409f8601238", 874124102529189, this, [predicate]); }
   /**
    * var children: [USDPrim] { get }
    * @availability iOS 27.0+
    */
-  get children(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_6be9a005889899ab", 1868539086024149, this, []); }
+  get children(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_c1f28409f8601238", 1868539086024149, this, []); }
   /**
    * var inherits: USDPrim.InheritCollection { get }
    * @availability iOS 27.0+
    */
-  get inherits(): USDPrim_InheritCollection { return callSDK<USDPrim_InheritCollection>("USDKit_6be9a005889899ab", 2728955190758674, this, []); }
+  get inherits(): USDPrim_InheritCollection { return callSDK<USDPrim_InheritCollection>("USDKit_c1f28409f8601238", 2728955190758674, this, []); }
   /**
    * func isSchema(_ schemaIdentifier: USDToken) -> Bool
    * @availability iOS 27.0+
    */
-  isSchema(schemaIdentifier: USDToken): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 1716084388696083, this, [schemaIdentifier]); }
+  isSchema(schemaIdentifier: USDToken): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 1716084388696083, this, [schemaIdentifier]); }
   /**
    * var payloads: USDPrim.PayloadCollection { get }
    * @availability iOS 27.0+
    */
-  get payloads(): USDPrim_PayloadCollection { return callSDK<USDPrim_PayloadCollection>("USDKit_6be9a005889899ab", 1263113075646123, this, []); }
+  get payloads(): USDPrim_PayloadCollection { return callSDK<USDPrim_PayloadCollection>("USDKit_c1f28409f8601238", 1263113075646123, this, []); }
   /**
    * var primPath: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 1921281473339354, this, []); }
+  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 1921281473339354, this, []); }
   /**
    * func property(at path: USDLayer.Path) -> USDPrim.Property
    * @availability iOS 27.0+
    */
-  propertyAt(path: USDLayer_Path): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_6be9a005889899ab", 1784092185001080, this, [path]); }
+  propertyAt(path: USDLayer_Path): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_c1f28409f8601238", 1784092185001080, this, [path]); }
   /**
    * func property(named name: USDToken) -> USDPrim.Property
    * @availability iOS 27.0+
    */
-  propertyNamed(name: USDToken): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_6be9a005889899ab", 2176389730461423, this, [name]); }
+  propertyNamed(name: USDToken): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_c1f28409f8601238", 2176389730461423, this, [name]); }
   /**
    * func attribute(at path: USDLayer.Path) -> USDPrim.Attribute
    * @availability iOS 27.0+
    */
-  attributeAt(path: USDLayer_Path): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_6be9a005889899ab", 2723661940823094, this, [path]); }
+  attributeAt(path: USDLayer_Path): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_c1f28409f8601238", 2723661940823094, this, [path]); }
   /**
    * func attribute(named name: USDToken) -> USDPrim.Attribute
    * @availability iOS 27.0+
    */
-  attributeNamed(name: USDToken): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_6be9a005889899ab", 114829479707926, this, [name]); }
+  attributeNamed(name: USDToken): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_c1f28409f8601238", 114829479707926, this, [name]); }
   /**
    * var prototype: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get prototype(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 1723116051487524, this, []); }
+  get prototype(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 1723116051487524, this, []); }
   /**
    * var specifier: USDPrim.Specifier { get }
    * @availability iOS 27.0+
    */
-  get specifier(): USDPrim_Specifier { return callSDK<USDPrim_Specifier>("USDKit_6be9a005889899ab", 3663188975877307, this, []); }
+  get specifier(): USDPrim_Specifier { return callSDK<USDPrim_Specifier>("USDKit_c1f28409f8601238", 3663188975877307, this, []); }
   /**
    * func transform(at time: USDStage.TimeCode = .default) -> USDValue.Matrix4d?
    * @availability iOS 27.0+
    */
-  transform(time?: USDStage_TimeCode): (USDValue_Matrix4d) | null { return callSDK<(USDValue_Matrix4d) | null>("USDKit_6be9a005889899ab", 3249129278826385, this, [time]); }
+  transform(time?: USDStage_TimeCode): (USDValue_Matrix4d) | null { return callSDK<(USDValue_Matrix4d) | null>("USDKit_c1f28409f8601238", 3249129278826385, this, [time]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 4404303359675832, undefined, []); }
+  static init(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 4404303359675832, undefined, []); }
   /**
    * subscript<T>(attributeName: USDToken, as type: T.Type) -> T? where T : USDPrim.Attribute.Value { get nonmutating set }
    * @availability iOS 27.0+
    */
-  subscript(attributeName: USDToken, type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "USDKit.USDLayer.AssetPath" | "USDKit.USDLayer.PathExpression" | "USDKit.USDLayer.TimeCode" | "USDKit.USDToken" | "USDKit.USDValue.Matrix2d" | "USDKit.USDValue.Matrix3d" | "USDKit.USDValue.Matrix4d" | "USDKit.USDValue.Quatd" | "USDKit.USDValue.Quatf" | "USDKit.USDValue.Quath" | "USDKit.USDValue.Vec2d" | "USDKit.USDValue.Vec2f" | "USDKit.USDValue.Vec2h" | "USDKit.USDValue.Vec2i" | "USDKit.USDValue.Vec3d" | "USDKit.USDValue.Vec3f" | "USDKit.USDValue.Vec3h" | "USDKit.USDValue.Vec3i" | "USDKit.USDValue.Vec4d" | "USDKit.USDValue.Vec4f" | "USDKit.USDValue.Vec4h" | "USDKit.USDValue.Vec4i"): (unknown) | null { return callSDK<(unknown) | null>("USDKit_6be9a005889899ab", 1332717717768164, this, [attributeName, type]); }
+  subscript(attributeName: USDToken, type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "USDKit.USDLayer.AssetPath" | "USDKit.USDLayer.PathExpression" | "USDKit.USDLayer.TimeCode" | "USDKit.USDToken" | "USDKit.USDValue.Matrix2d" | "USDKit.USDValue.Matrix3d" | "USDKit.USDValue.Matrix4d" | "USDKit.USDValue.Quatd" | "USDKit.USDValue.Quatf" | "USDKit.USDValue.Quath" | "USDKit.USDValue.Vec2d" | "USDKit.USDValue.Vec2f" | "USDKit.USDValue.Vec2h" | "USDKit.USDValue.Vec2i" | "USDKit.USDValue.Vec3d" | "USDKit.USDValue.Vec3f" | "USDKit.USDValue.Vec3h" | "USDKit.USDValue.Vec3i" | "USDKit.USDValue.Vec4d" | "USDKit.USDValue.Vec4f" | "USDKit.USDValue.Vec4h" | "USDKit.USDValue.Vec4i"): (unknown) | null { return callSDK<(unknown) | null>("USDKit_c1f28409f8601238", 1332717717768164, this, [attributeName, type]); }
   /**
    * init?(_ object: USDStage.Object)
    * @availability iOS 27.0+
    */
-  static init62301(object: USDStage_Object): (USDPrim) | null { return callSDK<(USDPrim) | null>("USDKit_6be9a005889899ab", 3892841648653073, undefined, [object]); }
+  static init62301(object: USDStage_Object): (USDPrim) | null { return callSDK<(USDPrim) | null>("USDKit_c1f28409f8601238", 3892841648653073, undefined, [object]); }
   declare readonly $type: { "s:6USDKit7USDPrimV": true };
 }
 
@@ -1439,93 +1439,93 @@ export class USDPrim_Attribute extends SDKHandle {
    * var connections: [USDLayer.Path] { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get connections(): Array<USDLayer_Path> { return callSDK<Array<USDLayer_Path>>("USDKit_6be9a005889899ab", 1558728122903560, this, []); }
-  set connections(value: Array<USDLayer_Path>) { callSDK<void>("USDKit_6be9a005889899ab", 3664254175813434, this, [value]); }
+  get connections(): Array<USDLayer_Path> { return callSDK<Array<USDLayer_Path>>("USDKit_c1f28409f8601238", 1558728122903560, this, []); }
+  set connections(value: Array<USDLayer_Path>) { callSDK<void>("USDKit_c1f28409f8601238", 3664254175813434, this, [value]); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 3536196116402300, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 3536196116402300, this, []); }
   /**
    * var timeSamples: [USDStage.TimeCode] { get }
    * @availability iOS 27.0+
    */
-  get timeSamples(): $SDK19 { return callSDK<$SDK19>("USDKit_6be9a005889899ab", 977942935242079, this, []); }
+  get timeSamples(): $SDK19 { return callSDK<$SDK19>("USDKit_c1f28409f8601238", 977942935242079, this, []); }
   /**
    * var variability: USDPrim.Property.Variability { get }
    * @availability iOS 27.0+
    */
-  get variability(): USDPrim_Property_Variability { return callSDK<USDPrim_Property_Variability>("USDKit_6be9a005889899ab", 4147705194813140, this, []); }
+  get variability(): USDPrim_Property_Variability { return callSDK<USDPrim_Property_Variability>("USDKit_c1f28409f8601238", 4147705194813140, this, []); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 3946775529285331, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 3946775529285331, this, []); }
   /**
    * var path: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get path(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 2582109336808393, this, []); }
+  get path(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 2582109336808393, this, []); }
   /**
    * var prim: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 3305490116848133, this, []); }
+  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 3305490116848133, this, []); }
   /**
    * @discardableResult func clear() -> Bool
    * @availability iOS 27.0+
    */
-  clear(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2454016851218638, this, []); }
+  clear(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2454016851218638, this, []); }
   /**
    * var stage: USDStage { get }
    * @availability iOS 27.0+
    */
-  get stage(): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 2937409109993291, this, []); }
+  get stage(): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 2937409109993291, this, []); }
   /**
    * func value<T>(at time: USDStage.TimeCode = .default) -> T? where T : USDPrim.Attribute.Value
    * @availability iOS 27.0+
    */
-  value(time?: USDStage_TimeCode): (number) | null { return callSDK<(number) | null>("USDKit_6be9a005889899ab", 4229048493454835, this, [time]); }
+  value(time?: USDStage_TimeCode): (number) | null { return callSDK<(number) | null>("USDKit_c1f28409f8601238", 4229048493454835, this, [time]); }
   /**
    * var isValid: Bool { get }
    * @availability iOS 27.0+
    */
-  get isValid(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 807007345133359, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 807007345133359, this, []); }
   /**
    * var primPath: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 375832379252891, this, []); }
+  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 375832379252891, this, []); }
   /**
    * var roleName: USDToken { get }
    * @availability iOS 27.0+
    */
-  get roleName(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 3288726688536664, this, []); }
+  get roleName(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 3288726688536664, this, []); }
   /**
    * @discardableResult func setValue<T>(_ value: T, at time: USDStage.TimeCode = .default) -> Bool where T : USDPrim.Attribute.Value
    * @availability iOS 27.0+
    */
-  setValue(value: number, time?: USDStage_TimeCode): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 198374813754729, this, [value, time]); }
+  setValue(value: number, time?: USDStage_TimeCode): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 198374813754729, this, [value, time]); }
   /**
    * var typeName: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  get typeName(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1225343175114666, this, []); }
+  get typeName(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1225343175114666, this, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_6be9a005889899ab", 1085693883540462, undefined, []); }
+  static init(): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_c1f28409f8601238", 1085693883540462, undefined, []); }
   /**
    * init?(_ object: USDStage.Object)
    * @availability iOS 27.0+
    */
-  static init82640(object: USDStage_Object): (USDPrim_Attribute) | null { return callSDK<(USDPrim_Attribute) | null>("USDKit_6be9a005889899ab", 3319693826901638, undefined, [object]); }
+  static init82640(object: USDStage_Object): (USDPrim_Attribute) | null { return callSDK<(USDPrim_Attribute) | null>("USDKit_c1f28409f8601238", 3319693826901638, undefined, [object]); }
   /**
    * init?(_ object: USDPrim.Property)
    * @availability iOS 27.0+
    */
-  static init98942(object: USDPrim_Property): (USDPrim_Attribute) | null { return callSDK<(USDPrim_Attribute) | null>("USDKit_6be9a005889899ab", 4062963771214815, undefined, [object]); }
+  static init98942(object: USDPrim_Property): (USDPrim_Attribute) | null { return callSDK<(USDPrim_Attribute) | null>("USDKit_c1f28409f8601238", 4062963771214815, undefined, [object]); }
   declare readonly $type: { "s:6USDKit7USDPrimV9AttributeV": true };
 }
 
@@ -1538,102 +1538,102 @@ export class USDPrim_Attribute_Spec extends SDKHandle {
    * var colorSpace: USDToken? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get colorSpace(): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_6be9a005889899ab", 3671394224752761, this, []); }
-  set colorSpace(value: (USDToken) | null) { callSDK<void>("USDKit_6be9a005889899ab", 66142210556028, this, [value]); }
+  get colorSpace(): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_c1f28409f8601238", 3671394224752761, this, []); }
+  set colorSpace(value: (USDToken) | null) { callSDK<void>("USDKit_c1f28409f8601238", 66142210556028, this, [value]); }
   /**
    * var customData: Dictionary<String, USDValue> { get }
    * @availability iOS 27.0+
    */
-  get customData(): $SDK20 { return callSDK<$SDK20>("USDKit_6be9a005889899ab", 3296241040469599, this, []); }
+  get customData(): $SDK20 { return callSDK<$SDK20>("USDKit_c1f28409f8601238", 3296241040469599, this, []); }
   /**
    * var permission: USDLayer.Permission { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get permission(): USDLayer_Permission { return callSDK<USDLayer_Permission>("USDKit_6be9a005889899ab", 3964893971073204, this, []); }
-  set permission(value: USDLayer_Permission) { callSDK<void>("USDKit_6be9a005889899ab", 1218714959760827, this, [value]); }
+  get permission(): USDLayer_Permission { return callSDK<USDLayer_Permission>("USDKit_c1f28409f8601238", 3964893971073204, this, []); }
+  set permission(value: USDLayer_Permission) { callSDK<void>("USDKit_c1f28409f8601238", 1218714959760827, this, [value]); }
   /**
    * func setAssetInfo(_ key: String, to value: USDValue)
    * @availability iOS 27.0+
    */
-  setAssetInfo(key: string, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 650174102779931, this, [key, value]); }
+  setAssetInfo(key: string, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 650174102779931, this, [key, value]); }
   /**
    * var documentation: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get documentation(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 1788013888851064, this, []); }
-  set documentation(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 2362429603668048, this, [value]); }
+  get documentation(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 1788013888851064, this, []); }
+  set documentation(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 2362429603668048, this, [value]); }
   /**
    * func setCustomData(_ key: String, to value: USDValue)
    * @availability iOS 27.0+
    */
-  setCustomData(key: string, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 957749700021356, this, [key, value]); }
+  setCustomData(key: string, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 957749700021356, this, [key, value]); }
   /**
    * func clearAssetInfo(_ key: String)
    * @availability iOS 27.0+
    */
-  clearAssetInfo(key: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 336667753133456, this, [key]); }
+  clearAssetInfo(key: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 336667753133456, this, [key]); }
   /**
    * func clearCustomData(_ key: String)
    * @availability iOS 27.0+
    */
-  clearCustomData(key: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 2715442208332803, this, [key]); }
+  clearCustomData(key: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 2715442208332803, this, [key]); }
   /**
    * var connectionPaths: [USDLayer.Path]? { get }
    * @availability iOS 27.0+
    */
-  get connectionPaths(): $SDK21 { return callSDK<$SDK21>("USDKit_6be9a005889899ab", 3105208150621792, this, []); }
+  get connectionPaths(): $SDK21 { return callSDK<$SDK21>("USDKit_c1f28409f8601238", 3105208150621792, this, []); }
   /**
    * func clearConnectionPaths()
    * @availability iOS 27.0+
    */
-  clearConnectionPaths(): void { return callSDK<void>("USDKit_6be9a005889899ab", 3024848927939948, this, []); }
+  clearConnectionPaths(): void { return callSDK<void>("USDKit_c1f28409f8601238", 3024848927939948, this, []); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 2154410567213202, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 2154410567213202, this, []); }
   /**
    * init?(layer: USDLayer, attributePath: USDLayer.Path, typeName: USDPrim.Attribute.ValueType, variability: USDPrim.Property.Variability = .varying, isCustom: Bool = false)
    * @availability iOS 27.0+
    */
-  static initLayerAttributePathTypeNameVariabilityIsCustom(layer: USDLayer, attributePath: USDLayer_Path, typeName: USDPrim_Attribute_ValueType, variability?: USDPrim_Property_Variability, isCustom?: boolean): (USDPrim_Attribute_Spec) | null { return callSDK<(USDPrim_Attribute_Spec) | null>("USDKit_6be9a005889899ab", 1918693649227544, undefined, [layer, attributePath, typeName, variability, isCustom]); }
+  static initLayerAttributePathTypeNameVariabilityIsCustom(layer: USDLayer, attributePath: USDLayer_Path, typeName: USDPrim_Attribute_ValueType, variability?: USDPrim_Property_Variability, isCustom?: boolean): (USDPrim_Attribute_Spec) | null { return callSDK<(USDPrim_Attribute_Spec) | null>("USDKit_c1f28409f8601238", 1918693649227544, undefined, [layer, attributePath, typeName, variability, isCustom]); }
   /**
    * init?(owner: USDPrim.Spec, name: USDToken, typeName: USDPrim.Attribute.ValueType, variability: USDPrim.Property.Variability = .varying, isCustom: Bool = false)
    * @availability iOS 27.0+
    */
-  static initOwnerNameTypeNameVariabilityIsCustom(owner: USDPrim_Spec, name: USDToken, typeName: USDPrim_Attribute_ValueType, variability?: USDPrim_Property_Variability, isCustom?: boolean): (USDPrim_Attribute_Spec) | null { return callSDK<(USDPrim_Attribute_Spec) | null>("USDKit_6be9a005889899ab", 4388476882773580, undefined, [owner, name, typeName, variability, isCustom]); }
+  static initOwnerNameTypeNameVariabilityIsCustom(owner: USDPrim_Spec, name: USDToken, typeName: USDPrim_Attribute_ValueType, variability?: USDPrim_Property_Variability, isCustom?: boolean): (USDPrim_Attribute_Spec) | null { return callSDK<(USDPrim_Attribute_Spec) | null>("USDKit_c1f28409f8601238", 4388476882773580, undefined, [owner, name, typeName, variability, isCustom]); }
   /**
    * var owner: USDLayer.Spec? { get }
    * @availability iOS 27.0+
    */
-  get owner(): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_6be9a005889899ab", 1421831389826328, this, []); }
+  get owner(): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_c1f28409f8601238", 1421831389826328, this, []); }
   /**
    * func rename(to name: USDToken) throws
    * @availability iOS 27.0+
    */
-  rename(name: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 1552604150745729, this, [name]); }
+  rename(name: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 1552604150745729, this, [name]); }
   /**
    * var comment: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get comment(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 3189965003815041, this, []); }
-  set comment(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 1453237103892923, this, [value]); }
+  get comment(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 3189965003815041, this, []); }
+  set comment(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 1453237103892923, this, [value]); }
   /**
    * var isCustom: Bool { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get isCustom(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2453534908544073, this, []); }
-  set isCustom(value: boolean) { callSDK<void>("USDKit_6be9a005889899ab", 1983720006601359, this, [value]); }
+  get isCustom(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2453534908544073, this, []); }
+  set isCustom(value: boolean) { callSDK<void>("USDKit_c1f28409f8601238", 1983720006601359, this, [value]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim_Attribute_Spec { return callSDK<USDPrim_Attribute_Spec>("USDKit_6be9a005889899ab", 848959104478056, undefined, []); }
+  static init(): USDPrim_Attribute_Spec { return callSDK<USDPrim_Attribute_Spec>("USDKit_c1f28409f8601238", 848959104478056, undefined, []); }
   /**
    * init?(_ spec: USDLayer.Spec)
    * @availability iOS 27.0+
    */
-  static init27266(spec: USDLayer_Spec): (USDPrim_Attribute_Spec) | null { return callSDK<(USDPrim_Attribute_Spec) | null>("USDKit_6be9a005889899ab", 3854865449113456, undefined, [spec]); }
+  static init27266(spec: USDLayer_Spec): (USDPrim_Attribute_Spec) | null { return callSDK<(USDPrim_Attribute_Spec) | null>("USDKit_c1f28409f8601238", 3854865449113456, undefined, [spec]); }
   declare readonly $type: { "s:6USDKit7USDPrimV9AttributeV4SpecV": true };
 }
 
@@ -1654,312 +1654,312 @@ export class USDPrim_Attribute_ValueType extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 9327946137591, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 9327946137591, this, []); }
   /**
    * static var pathExpression: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get pathExpression(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4352730777629188, undefined, []); }
+  static get pathExpression(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4352730777629188, undefined, []); }
   /**
    * static var textureCoordinate2d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get textureCoordinate2d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1434241751743451, undefined, []); }
+  static get textureCoordinate2d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1434241751743451, undefined, []); }
   /**
    * static var textureCoordinate2f: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get textureCoordinate2f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1311761556717651, undefined, []); }
+  static get textureCoordinate2f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1311761556717651, undefined, []); }
   /**
    * static var textureCoordinate2h: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get textureCoordinate2h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3234848703993096, undefined, []); }
+  static get textureCoordinate2h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3234848703993096, undefined, []); }
   /**
    * static var textureCoordinate3d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get textureCoordinate3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 748794591496447, undefined, []); }
+  static get textureCoordinate3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 748794591496447, undefined, []); }
   /**
    * static var textureCoordinate3f: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get textureCoordinate3f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2199624919043018, undefined, []); }
+  static get textureCoordinate3f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2199624919043018, undefined, []); }
   /**
    * static var textureCoordinate3h: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get textureCoordinate3h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2614632145102062, undefined, []); }
+  static get textureCoordinate3h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2614632145102062, undefined, []); }
   /**
    * static var bool: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get bool(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 547723083988499, undefined, []); }
+  static get bool(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 547723083988499, undefined, []); }
   /**
    * static var half: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get half(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4220987513467646, undefined, []); }
+  static get half(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4220987513467646, undefined, []); }
   /**
    * static var int2: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get int2(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 492959246202391, undefined, []); }
+  static get int2(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 492959246202391, undefined, []); }
   /**
    * static var int3: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get int3(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3402373152746111, undefined, []); }
+  static get int3(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3402373152746111, undefined, []); }
   /**
    * static var int4: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get int4(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 727892090176231, undefined, []); }
+  static get int4(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 727892090176231, undefined, []); }
   /**
    * var role: USDToken { get }
    * @availability iOS 27.0+
    */
-  get role(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 1587647541575308, this, []); }
+  get role(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 1587647541575308, this, []); }
   /**
    * static func type(named name: USDToken) -> USDPrim.Attribute.ValueType
    * @availability iOS 27.0+
    */
-  static type(name: USDToken): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2800296309534876, undefined, [name]); }
+  static type(name: USDToken): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2800296309534876, undefined, [name]); }
   /**
    * var array: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  get array(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1810865685376504, this, []); }
+  get array(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1810865685376504, this, []); }
   /**
    * static var asset: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get asset(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1758294280397386, undefined, []); }
+  static get asset(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1758294280397386, undefined, []); }
   /**
    * static var float: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get float(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 153521087319304, undefined, []); }
+  static get float(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 153521087319304, undefined, []); }
   /**
    * static var group: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get group(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3645493139409958, undefined, []); }
+  static get group(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3645493139409958, undefined, []); }
   /**
    * static var half2: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get half2(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1127638841724585, undefined, []); }
+  static get half2(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1127638841724585, undefined, []); }
   /**
    * static var half3: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get half3(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2331823403109694, undefined, []); }
+  static get half3(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2331823403109694, undefined, []); }
   /**
    * static var half4: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get half4(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3001317209114861, undefined, []); }
+  static get half4(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3001317209114861, undefined, []); }
   /**
    * static var int32: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get int32(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 353794563056740, undefined, []); }
+  static get int32(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 353794563056740, undefined, []); }
   /**
    * static var int64: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get int64(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4100474945438286, undefined, []); }
+  static get int64(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4100474945438286, undefined, []); }
   /**
    * static var quatd: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get quatd(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3358965328720758, undefined, []); }
+  static get quatd(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3358965328720758, undefined, []); }
   /**
    * static var quatf: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get quatf(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3674584578069364, undefined, []); }
+  static get quatf(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3674584578069364, undefined, []); }
   /**
    * static var quath: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get quath(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 596850813282888, undefined, []); }
+  static get quath(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 596850813282888, undefined, []); }
   /**
    * static var token: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get token(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2141391434201779, undefined, []); }
+  static get token(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2141391434201779, undefined, []); }
   /**
    * static var uchar: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get uchar(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 87097946830946, undefined, []); }
+  static get uchar(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 87097946830946, undefined, []); }
   /**
    * static var double: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get double(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1932803906326193, undefined, []); }
+  static get double(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1932803906326193, undefined, []); }
   /**
    * static var float2: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get float2(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1042323452310546, undefined, []); }
+  static get float2(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1042323452310546, undefined, []); }
   /**
    * static var float3: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get float3(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2450502377098471, undefined, []); }
+  static get float3(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2450502377098471, undefined, []); }
   /**
    * static var float4: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get float4(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 896436264594914, undefined, []); }
+  static get float4(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 896436264594914, undefined, []); }
   /**
    * static var opaque: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get opaque(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1026033683920708, undefined, []); }
+  static get opaque(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1026033683920708, undefined, []); }
   /**
    * var scalar: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  get scalar(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2884279249376302, this, []); }
+  get scalar(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2884279249376302, this, []); }
   /**
    * static var string: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get string(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2328108497298555, undefined, []); }
+  static get string(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2328108497298555, undefined, []); }
   /**
    * static var uint32: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get uint32(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2789502427430288, undefined, []); }
+  static get uint32(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2789502427430288, undefined, []); }
   /**
    * static var uint64: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get uint64(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 904846853472604, undefined, []); }
+  static get uint64(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 904846853472604, undefined, []); }
   /**
    * static var color3d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get color3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2921483240021640, undefined, []); }
+  static get color3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2921483240021640, undefined, []); }
   /**
    * static var color3f: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get color3f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3144531433024869, undefined, []); }
+  static get color3f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3144531433024869, undefined, []); }
   /**
    * static var color3h: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get color3h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1439218760853217, undefined, []); }
+  static get color3h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1439218760853217, undefined, []); }
   /**
    * static var color4d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get color4d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4243503306428385, undefined, []); }
+  static get color4d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4243503306428385, undefined, []); }
   /**
    * static var color4f: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get color4f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4316616244058887, undefined, []); }
+  static get color4f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4316616244058887, undefined, []); }
   /**
    * static var color4h: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get color4h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1948340802952356, undefined, []); }
+  static get color4h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1948340802952356, undefined, []); }
   /**
    * static var double2: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get double2(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 216694770530305, undefined, []); }
+  static get double2(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 216694770530305, undefined, []); }
   /**
    * static var double3: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get double3(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4192815665814844, undefined, []); }
+  static get double3(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4192815665814844, undefined, []); }
   /**
    * static var double4: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get double4(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 68922574473700, undefined, []); }
+  static get double4(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 68922574473700, undefined, []); }
   /**
    * static var frame4d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get frame4d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2878730736172752, undefined, []); }
+  static get frame4d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2878730736172752, undefined, []); }
   /**
    * static var invalid: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get invalid(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2024561187013231, undefined, []); }
+  static get invalid(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2024561187013231, undefined, []); }
   /**
    * static var point3d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get point3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2234502082283893, undefined, []); }
+  static get point3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2234502082283893, undefined, []); }
   /**
    * static var point3f: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get point3f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3548678645159209, undefined, []); }
+  static get point3f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3548678645159209, undefined, []); }
   /**
    * static var point3h: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get point3h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2364050328982462, undefined, []); }
+  static get point3h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2364050328982462, undefined, []); }
   /**
    * static var matrix2d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get matrix2d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1111560630180877, undefined, []); }
+  static get matrix2d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1111560630180877, undefined, []); }
   /**
    * static var matrix3d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get matrix3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3286069547190594, undefined, []); }
+  static get matrix3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3286069547190594, undefined, []); }
   /**
    * static var matrix4d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get matrix4d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 153634150189157, undefined, []); }
+  static get matrix4d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 153634150189157, undefined, []); }
   /**
    * static var normal3d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get normal3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 202555852633790, undefined, []); }
+  static get normal3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 202555852633790, undefined, []); }
   /**
    * static var normal3f: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get normal3f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1313483167331140, undefined, []); }
+  static get normal3f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1313483167331140, undefined, []); }
   /**
    * static var normal3h: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get normal3h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4103404818635005, undefined, []); }
+  static get normal3h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4103404818635005, undefined, []); }
   /**
    * static var timeCode: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get timeCode(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 573841868599703, undefined, []); }
+  static get timeCode(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 573841868599703, undefined, []); }
   /**
    * static var vector3d: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get vector3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4443677239880047, undefined, []); }
+  static get vector3d(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4443677239880047, undefined, []); }
   /**
    * static var vector3f: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get vector3f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 494252076606734, undefined, []); }
+  static get vector3f(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 494252076606734, undefined, []); }
   /**
    * static var vector3h: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get vector3h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3565595752434523, undefined, []); }
+  static get vector3h(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3565595752434523, undefined, []); }
   declare readonly $type: { "s:6USDKit7USDPrimV9AttributeV9ValueTypeV": true };
 }
 
@@ -1972,7 +1972,7 @@ export class USDPrim_Attribute_ValueType_TupleDimensions extends SDKHandle {
    * var componentCount: Int { get }
    * @availability iOS 27.0+
    */
-  get componentCount(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1858642572746771, this, []); }
+  get componentCount(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1858642572746771, this, []); }
   declare readonly $type: { "s:6USDKit7USDPrimV9AttributeV9ValueTypeV15TupleDimensionsO": true };
 }
 
@@ -1985,32 +1985,32 @@ export class USDPrim_InheritCollection extends SDKHandle {
    * var inheritedPaths: [USDLayer.Path] { get }
    * @availability iOS 27.0+
    */
-  get inheritedPaths(): Array<USDLayer_Path> { return callSDK<Array<USDLayer_Path>>("USDKit_6be9a005889899ab", 847410963685402, this, []); }
+  get inheritedPaths(): Array<USDLayer_Path> { return callSDK<Array<USDLayer_Path>>("USDKit_c1f28409f8601238", 847410963685402, this, []); }
   /**
    * func add(_ primPath: USDLayer.Path, position: USDPrim.ListPosition = .backOfPrependList) throws
    * @availability iOS 27.0+
    */
-  add(primPath: USDLayer_Path, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_6be9a005889899ab", 3302413457725856, this, [primPath, position]); }
+  add(primPath: USDLayer_Path, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_c1f28409f8601238", 3302413457725856, this, [primPath, position]); }
   /**
    * func set(_ primPaths: [USDLayer.Path]) throws
    * @availability iOS 27.0+
    */
-  set(primPaths: Array<USDLayer_Path>): void { return callSDK<void>("USDKit_6be9a005889899ab", 1177625867249700, this, [primPaths]); }
+  set(primPaths: Array<USDLayer_Path>): void { return callSDK<void>("USDKit_c1f28409f8601238", 1177625867249700, this, [primPaths]); }
   /**
    * var prim: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 898258090618057, this, []); }
+  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 898258090618057, this, []); }
   /**
    * func clear() throws
    * @availability iOS 27.0+
    */
-  clear(): void { return callSDK<void>("USDKit_6be9a005889899ab", 1994858125953792, this, []); }
+  clear(): void { return callSDK<void>("USDKit_c1f28409f8601238", 1994858125953792, this, []); }
   /**
    * func remove(_ primPath: USDLayer.Path) throws
    * @availability iOS 27.0+
    */
-  remove(primPath: USDLayer_Path): void { return callSDK<void>("USDKit_6be9a005889899ab", 650448339602386, this, [primPath]); }
+  remove(primPath: USDLayer_Path): void { return callSDK<void>("USDKit_c1f28409f8601238", 650448339602386, this, [primPath]); }
   declare readonly $type: { "s:6USDKit7USDPrimV17InheritCollectionV": true };
 }
 
@@ -2029,25 +2029,25 @@ export class USDPrim_Payload extends SDKHandle {
    * var layerOffset: USDLayer.TimeOffset { get set }
    * @availability iOS 27.0+
    */
-  get layerOffset(): USDLayer_TimeOffset { return callSDK<USDLayer_TimeOffset>("USDKit_6be9a005889899ab", 500846210718620, this, []); }
-  set layerOffset(value: USDLayer_TimeOffset) { callSDK<void>("USDKit_6be9a005889899ab", 39425411191822, this, [value]); }
+  get layerOffset(): USDLayer_TimeOffset { return callSDK<USDLayer_TimeOffset>("USDKit_c1f28409f8601238", 500846210718620, this, []); }
+  set layerOffset(value: USDLayer_TimeOffset) { callSDK<void>("USDKit_c1f28409f8601238", 39425411191822, this, [value]); }
   /**
    * var primPath: USDLayer.Path? { get set }
    * @availability iOS 27.0+
    */
-  get primPath(): (USDLayer_Path) | null { return callSDK<(USDLayer_Path) | null>("USDKit_6be9a005889899ab", 3532252558808686, this, []); }
-  set primPath(value: (USDLayer_Path) | null) { callSDK<void>("USDKit_6be9a005889899ab", 4394554835194409, this, [value]); }
+  get primPath(): (USDLayer_Path) | null { return callSDK<(USDLayer_Path) | null>("USDKit_c1f28409f8601238", 3532252558808686, this, []); }
+  set primPath(value: (USDLayer_Path) | null) { callSDK<void>("USDKit_c1f28409f8601238", 4394554835194409, this, [value]); }
   /**
    * init(assetPath: String? = nil, primPath: USDLayer.Path? = nil, layerOffset: USDLayer.TimeOffset = USDLayer.TimeOffset())
    * @availability iOS 27.0+
    */
-  static init(assetPath?: (string) | null, primPath?: (USDLayer_Path) | null, layerOffset?: USDLayer_TimeOffset): USDPrim_Payload { return callSDK<USDPrim_Payload>("USDKit_6be9a005889899ab", 3761247519362883, undefined, [assetPath, primPath, layerOffset]); }
+  static init(assetPath?: (string) | null, primPath?: (USDLayer_Path) | null, layerOffset?: USDLayer_TimeOffset): USDPrim_Payload { return callSDK<USDPrim_Payload>("USDKit_c1f28409f8601238", 3761247519362883, undefined, [assetPath, primPath, layerOffset]); }
   /**
    * var assetPath: String? { get set }
    * @availability iOS 27.0+
    */
-  get assetPath(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 3227316559878471, this, []); }
-  set assetPath(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 4048500785450532, this, [value]); }
+  get assetPath(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 3227316559878471, this, []); }
+  set assetPath(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 4048500785450532, this, [value]); }
   declare readonly $type: { "s:6USDKit7USDPrimV7PayloadV": true };
 }
 
@@ -2060,37 +2060,37 @@ export class USDPrim_PayloadCollection extends SDKHandle {
    * func add(to primPath: USDLayer.Path, layerOffset: USDLayer.TimeOffset = .init(), position: USDPrim.ListPosition = .backOfPrependList) throws
    * @availability iOS 27.0+
    */
-  addToLayerOffsetPosition(primPath: USDLayer_Path, layerOffset?: USDLayer_TimeOffset, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_6be9a005889899ab", 2263741109653510, this, [primPath, layerOffset, position]); }
+  addToLayerOffsetPosition(primPath: USDLayer_Path, layerOffset?: USDLayer_TimeOffset, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_c1f28409f8601238", 2263741109653510, this, [primPath, layerOffset, position]); }
   /**
    * func add(to primPath: USDLayer.Path?, from assetPath: String, layerOffset: USDLayer.TimeOffset = .init(), position: USDPrim.ListPosition = .backOfPrependList) throws
    * @availability iOS 27.0+
    */
-  addToFromLayerOffsetPosition(primPath: (USDLayer_Path) | null, assetPath: string, layerOffset?: USDLayer_TimeOffset, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_6be9a005889899ab", 2765231157678845, this, [primPath, assetPath, layerOffset, position]); }
+  addToFromLayerOffsetPosition(primPath: (USDLayer_Path) | null, assetPath: string, layerOffset?: USDLayer_TimeOffset, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_c1f28409f8601238", 2765231157678845, this, [primPath, assetPath, layerOffset, position]); }
   /**
    * func add(_ payload: USDPrim.Payload, position: USDPrim.ListPosition = .backOfPrependList) throws
    * @availability iOS 27.0+
    */
-  addPosition(payload: USDPrim_Payload, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_6be9a005889899ab", 4403303712870916, this, [payload, position]); }
+  addPosition(payload: USDPrim_Payload, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_c1f28409f8601238", 4403303712870916, this, [payload, position]); }
   /**
    * func set(_ payloads: [USDPrim.Payload]) throws
    * @availability iOS 27.0+
    */
-  set(payloads: Array<USDPrim_Payload>): void { return callSDK<void>("USDKit_6be9a005889899ab", 1419769414648700, this, [payloads]); }
+  set(payloads: Array<USDPrim_Payload>): void { return callSDK<void>("USDKit_c1f28409f8601238", 1419769414648700, this, [payloads]); }
   /**
    * var prim: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 2829444450197338, this, []); }
+  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 2829444450197338, this, []); }
   /**
    * func clear() throws
    * @availability iOS 27.0+
    */
-  clear(): void { return callSDK<void>("USDKit_6be9a005889899ab", 1816408836010893, this, []); }
+  clear(): void { return callSDK<void>("USDKit_c1f28409f8601238", 1816408836010893, this, []); }
   /**
    * func remove(_ payload: USDPrim.Payload) throws
    * @availability iOS 27.0+
    */
-  remove(payload: USDPrim_Payload): void { return callSDK<void>("USDKit_6be9a005889899ab", 2138248175210726, this, [payload]); }
+  remove(payload: USDPrim_Payload): void { return callSDK<void>("USDKit_c1f28409f8601238", 2138248175210726, this, [payload]); }
   declare readonly $type: { "s:6USDKit7USDPrimV17PayloadCollectionV": true };
 }
 
@@ -2103,62 +2103,62 @@ export class USDPrim_Predicate extends SDKHandle {
    * static var isAbstract: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get isAbstract(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 3646104565371866, undefined, []); }
+  static get isAbstract(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 3646104565371866, undefined, []); }
   /**
    * static var isInstance: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get isInstance(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 227728161786498, undefined, []); }
+  static get isInstance(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 227728161786498, undefined, []); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2030532082554687, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2030532082554687, this, []); }
   /**
    * static var isComponent: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get isComponent(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 807002802694870, undefined, []); }
+  static get isComponent(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 807002802694870, undefined, []); }
   /**
    * static var hasDefSpecifier: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get hasDefSpecifier(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 1220911060198919, undefined, []); }
+  static get hasDefSpecifier(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 1220911060198919, undefined, []); }
   /**
    * static var all: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get all(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 1908268905051549, undefined, []); }
+  static get all(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 1908268905051549, undefined, []); }
   /**
    * static var none: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get none(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 3198659323122789, undefined, []); }
+  static get none(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 3198659323122789, undefined, []); }
   /**
    * static var isGroup: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get isGroup(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 3810820139138403, undefined, []); }
+  static get isGroup(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 3810820139138403, undefined, []); }
   /**
    * static var isModel: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get isModel(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 720389554463427, undefined, []); }
+  static get isModel(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 720389554463427, undefined, []); }
   /**
    * static var isActive: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get isActive(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 2248797145835819, undefined, []); }
+  static get isActive(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 2248797145835819, undefined, []); }
   /**
    * static var isLoaded: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get isLoaded(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 664888116130071, undefined, []); }
+  static get isLoaded(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 664888116130071, undefined, []); }
   /**
    * static var isDefined: USDPrim.Predicate { get }
    * @availability iOS 27.0+
    */
-  static get isDefined(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_6be9a005889899ab", 3186692246430489, undefined, []); }
+  static get isDefined(): USDPrim_Predicate { return callSDK<USDPrim_Predicate>("USDKit_c1f28409f8601238", 3186692246430489, undefined, []); }
   declare readonly $type: { "s:6USDKit7USDPrimV9PredicateV": true };
 }
 
@@ -2177,83 +2177,83 @@ export class USDPrim_Property extends SDKHandle {
    * var isAuthored: Bool { get }
    * @availability iOS 27.0+
    */
-  get isAuthored(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 1469257443213403, this, []); }
+  get isAuthored(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 1469257443213403, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1725755887989389, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1725755887989389, this, []); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 3912842004382982, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 3912842004382982, this, []); }
   /**
    * var path: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get path(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 1769899495213339, this, []); }
+  get path(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 1769899495213339, this, []); }
   /**
    * var prim: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 201680653114147, this, []); }
+  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 201680653114147, this, []); }
   /**
    * var stage: USDStage { get }
    * @availability iOS 27.0+
    */
-  get stage(): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 706986256711084, this, []); }
+  get stage(): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 706986256711084, this, []); }
   /**
    * var isValid: Bool { get }
    * @availability iOS 27.0+
    */
-  get isValid(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 378175615457478, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 378175615457478, this, []); }
   /**
    * var baseName: USDToken { get }
    * @availability iOS 27.0+
    */
-  get baseName(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 1391581815425786, this, []); }
+  get baseName(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 1391581815425786, this, []); }
   /**
    * var isCustom: Bool { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get isCustom(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2293583776421116, this, []); }
-  set isCustom(value: boolean) { callSDK<void>("USDKit_6be9a005889899ab", 3627395762763284, this, [value]); }
+  get isCustom(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2293583776421116, this, []); }
+  set isCustom(value: boolean) { callSDK<void>("USDKit_c1f28409f8601238", 3627395762763284, this, [value]); }
   /**
    * var primPath: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 776503933391674, this, []); }
+  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 776503933391674, this, []); }
   /**
    * var isDefined: Bool { get }
    * @availability iOS 27.0+
    */
-  get isDefined(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2498060747511723, this, []); }
+  get isDefined(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2498060747511723, this, []); }
   /**
    * var namespace: USDToken { get }
    * @availability iOS 27.0+
    */
-  get namespace(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 1162346515185183, this, []); }
+  get namespace(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 1162346515185183, this, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_6be9a005889899ab", 1905696057190880, undefined, []); }
+  static init(): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_c1f28409f8601238", 1905696057190880, undefined, []); }
   /**
    * init?(_ object: USDStage.Object)
    * @availability iOS 27.0+
    */
-  static init63742(object: USDStage_Object): (USDPrim_Property) | null { return callSDK<(USDPrim_Property) | null>("USDKit_6be9a005889899ab", 269152114689194, undefined, [object]); }
+  static init63742(object: USDStage_Object): (USDPrim_Property) | null { return callSDK<(USDPrim_Property) | null>("USDKit_c1f28409f8601238", 269152114689194, undefined, [object]); }
   /**
    * init(_ relationship: USDPrim.Relationship)
    * @availability iOS 27.0+
    */
-  static init17027(relationship: USDPrim_Relationship): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_6be9a005889899ab", 3433295344760413, undefined, [relationship]); }
+  static init17027(relationship: USDPrim_Relationship): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_c1f28409f8601238", 3433295344760413, undefined, [relationship]); }
   /**
    * init(_ object: USDPrim.Attribute)
    * @availability iOS 27.0+
    */
-  static init8511(object: USDPrim_Attribute): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_6be9a005889899ab", 497225896289830, undefined, [object]); }
+  static init8511(object: USDPrim_Attribute): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_c1f28409f8601238", 497225896289830, undefined, [object]); }
   declare readonly $type: { "s:6USDKit7USDPrimV8PropertyV": true };
 }
 
@@ -2266,81 +2266,81 @@ export class USDPrim_Property_Spec extends SDKHandle {
    * var customData: Dictionary<String, USDValue> { get }
    * @availability iOS 27.0+
    */
-  get customData(): $SDK20 { return callSDK<$SDK20>("USDKit_6be9a005889899ab", 4363226662425572, this, []); }
+  get customData(): $SDK20 { return callSDK<$SDK20>("USDKit_c1f28409f8601238", 4363226662425572, this, []); }
   /**
    * var permission: USDLayer.Permission { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get permission(): USDLayer_Permission { return callSDK<USDLayer_Permission>("USDKit_6be9a005889899ab", 2169731696626534, this, []); }
-  set permission(value: USDLayer_Permission) { callSDK<void>("USDKit_6be9a005889899ab", 19809558269163, this, [value]); }
+  get permission(): USDLayer_Permission { return callSDK<USDLayer_Permission>("USDKit_c1f28409f8601238", 2169731696626534, this, []); }
+  set permission(value: USDLayer_Permission) { callSDK<void>("USDKit_c1f28409f8601238", 19809558269163, this, [value]); }
   /**
    * static func isValidName(_ name: USDToken) -> Bool
    * @availability iOS 27.0+
    */
-  static isValidName(name: USDToken): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3167526275134754, undefined, [name]); }
+  static isValidName(name: USDToken): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3167526275134754, undefined, [name]); }
   /**
    * func setAssetInfo(_ key: String, to value: USDValue)
    * @availability iOS 27.0+
    */
-  setAssetInfo(key: string, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 3895811536218055, this, [key, value]); }
+  setAssetInfo(key: string, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 3895811536218055, this, [key, value]); }
   /**
    * var documentation: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get documentation(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 1437678646579073, this, []); }
-  set documentation(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 1843842654593089, this, [value]); }
+  get documentation(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 1437678646579073, this, []); }
+  set documentation(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 1843842654593089, this, [value]); }
   /**
    * func setCustomData(_ key: String, to value: USDValue)
    * @availability iOS 27.0+
    */
-  setCustomData(key: string, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 1156639118712020, this, [key, value]); }
+  setCustomData(key: string, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 1156639118712020, this, [key, value]); }
   /**
    * func clearAssetInfo(_ key: String)
    * @availability iOS 27.0+
    */
-  clearAssetInfo(key: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 3658156965944707, this, [key]); }
+  clearAssetInfo(key: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 3658156965944707, this, [key]); }
   /**
    * func clearCustomData(_ key: String)
    * @availability iOS 27.0+
    */
-  clearCustomData(key: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 1183621861291815, this, [key]); }
+  clearCustomData(key: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 1183621861291815, this, [key]); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 2266443975580792, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 2266443975580792, this, []); }
   /**
    * var owner: USDLayer.Spec? { get }
    * @availability iOS 27.0+
    */
-  get owner(): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_6be9a005889899ab", 859904146067768, this, []); }
+  get owner(): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_c1f28409f8601238", 859904146067768, this, []); }
   /**
    * func rename(to name: USDToken) throws
    * @availability iOS 27.0+
    */
-  rename(name: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 2076872090170140, this, [name]); }
+  rename(name: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 2076872090170140, this, [name]); }
   /**
    * var comment: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get comment(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 4158618036672583, this, []); }
-  set comment(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 2746054283193399, this, [value]); }
+  get comment(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 4158618036672583, this, []); }
+  set comment(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 2746054283193399, this, [value]); }
   /**
    * var isCustom: Bool { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get isCustom(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 527887242898877, this, []); }
-  set isCustom(value: boolean) { callSDK<void>("USDKit_6be9a005889899ab", 3800215940838792, this, [value]); }
+  get isCustom(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 527887242898877, this, []); }
+  set isCustom(value: boolean) { callSDK<void>("USDKit_c1f28409f8601238", 3800215940838792, this, [value]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim_Property_Spec { return callSDK<USDPrim_Property_Spec>("USDKit_6be9a005889899ab", 1547114463670622, undefined, []); }
+  static init(): USDPrim_Property_Spec { return callSDK<USDPrim_Property_Spec>("USDKit_c1f28409f8601238", 1547114463670622, undefined, []); }
   /**
    * init?(_ spec: USDLayer.Spec)
    * @availability iOS 27.0+
    */
-  static init6968(spec: USDLayer_Spec): (USDPrim_Property_Spec) | null { return callSDK<(USDPrim_Property_Spec) | null>("USDKit_6be9a005889899ab", 2425265477556049, undefined, [spec]); }
+  static init6968(spec: USDLayer_Spec): (USDPrim_Property_Spec) | null { return callSDK<(USDPrim_Property_Spec) | null>("USDKit_c1f28409f8601238", 2425265477556049, undefined, [spec]); }
   declare readonly $type: { "s:6USDKit7USDPrimV8PropertyV4SpecV": true };
 }
 
@@ -2375,12 +2375,12 @@ export class USDPrim_PseudoRootSpec extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim_PseudoRootSpec { return callSDK<USDPrim_PseudoRootSpec>("USDKit_6be9a005889899ab", 216639631756909, undefined, []); }
+  static init(): USDPrim_PseudoRootSpec { return callSDK<USDPrim_PseudoRootSpec>("USDKit_c1f28409f8601238", 216639631756909, undefined, []); }
   /**
    * init?(_ spec: USDLayer.Spec)
    * @availability iOS 27.0+
    */
-  static init9208(spec: USDLayer_Spec): (USDPrim_PseudoRootSpec) | null { return callSDK<(USDPrim_PseudoRootSpec) | null>("USDKit_6be9a005889899ab", 1157309287605323, undefined, [spec]); }
+  static init9208(spec: USDLayer_Spec): (USDPrim_PseudoRootSpec) | null { return callSDK<(USDPrim_PseudoRootSpec) | null>("USDKit_c1f28409f8601238", 1157309287605323, undefined, [spec]); }
   declare readonly $type: { "s:6USDKit7USDPrimV14PseudoRootSpecV": true };
 }
 
@@ -2393,41 +2393,41 @@ export class USDPrim_Reference extends SDKHandle {
    * var customData: Dictionary<String, USDValue> { get set }
    * @availability iOS 27.0+
    */
-  get customData(): $SDK20 { return callSDK<$SDK20>("USDKit_6be9a005889899ab", 3813206788317205, this, []); }
-  set customData(value: $SDK20) { callSDK<void>("USDKit_6be9a005889899ab", 4039408715854849, this, [value]); }
+  get customData(): $SDK20 { return callSDK<$SDK20>("USDKit_c1f28409f8601238", 3813206788317205, this, []); }
+  set customData(value: $SDK20) { callSDK<void>("USDKit_c1f28409f8601238", 4039408715854849, this, [value]); }
   /**
    * var isInternal: Bool { get }
    * @availability iOS 27.0+
    */
-  get isInternal(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3051332695613551, this, []); }
+  get isInternal(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3051332695613551, this, []); }
   /**
    * var layerOffset: USDLayer.TimeOffset { get set }
    * @availability iOS 27.0+
    */
-  get layerOffset(): USDLayer_TimeOffset { return callSDK<USDLayer_TimeOffset>("USDKit_6be9a005889899ab", 3152675561654875, this, []); }
-  set layerOffset(value: USDLayer_TimeOffset) { callSDK<void>("USDKit_6be9a005889899ab", 4147238636050256, this, [value]); }
+  get layerOffset(): USDLayer_TimeOffset { return callSDK<USDLayer_TimeOffset>("USDKit_c1f28409f8601238", 3152675561654875, this, []); }
+  set layerOffset(value: USDLayer_TimeOffset) { callSDK<void>("USDKit_c1f28409f8601238", 4147238636050256, this, [value]); }
   /**
    * mutating func setCustomData(_ key: String, to value: USDValue)
    * @availability iOS 27.0+
    */
-  setCustomData(key: string, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 4437399069174166, this, [key, value]); }
+  setCustomData(key: string, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 4437399069174166, this, [key, value]); }
   /**
    * var primPath: USDLayer.Path? { get set }
    * @availability iOS 27.0+
    */
-  get primPath(): (USDLayer_Path) | null { return callSDK<(USDLayer_Path) | null>("USDKit_6be9a005889899ab", 1482905501677687, this, []); }
-  set primPath(value: (USDLayer_Path) | null) { callSDK<void>("USDKit_6be9a005889899ab", 689627537295331, this, [value]); }
+  get primPath(): (USDLayer_Path) | null { return callSDK<(USDLayer_Path) | null>("USDKit_c1f28409f8601238", 1482905501677687, this, []); }
+  set primPath(value: (USDLayer_Path) | null) { callSDK<void>("USDKit_c1f28409f8601238", 689627537295331, this, [value]); }
   /**
    * init(assetPath: String? = nil, primPath: USDLayer.Path? = nil, layerOffset: USDLayer.TimeOffset = USDLayer.TimeOffset(), customData: Dictionary<String, USDValue> = [:])
    * @availability iOS 27.0+
    */
-  static init(assetPath?: (string) | null, primPath?: (USDLayer_Path) | null, layerOffset?: USDLayer_TimeOffset, customData?: $SDK20): USDPrim_Reference { return callSDK<USDPrim_Reference>("USDKit_6be9a005889899ab", 679277163459013, undefined, [assetPath, primPath, layerOffset, customData]); }
+  static init(assetPath?: (string) | null, primPath?: (USDLayer_Path) | null, layerOffset?: USDLayer_TimeOffset, customData?: $SDK20): USDPrim_Reference { return callSDK<USDPrim_Reference>("USDKit_c1f28409f8601238", 679277163459013, undefined, [assetPath, primPath, layerOffset, customData]); }
   /**
    * var assetPath: String? { get set }
    * @availability iOS 27.0+
    */
-  get assetPath(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 4450340083606868, this, []); }
-  set assetPath(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 2817694445424980, this, [value]); }
+  get assetPath(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 4450340083606868, this, []); }
+  set assetPath(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 2817694445424980, this, [value]); }
   declare readonly $type: { "s:6USDKit7USDPrimV9ReferenceV": true };
 }
 
@@ -2440,37 +2440,37 @@ export class USDPrim_ReferenceCollection extends SDKHandle {
    * func add(to primPath: USDLayer.Path, layerOffset: USDLayer.TimeOffset = .init(), position: USDPrim.ListPosition = .backOfPrependList) throws
    * @availability iOS 27.0+
    */
-  addToLayerOffsetPosition(primPath: USDLayer_Path, layerOffset?: USDLayer_TimeOffset, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_6be9a005889899ab", 1828363182603647, this, [primPath, layerOffset, position]); }
+  addToLayerOffsetPosition(primPath: USDLayer_Path, layerOffset?: USDLayer_TimeOffset, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_c1f28409f8601238", 1828363182603647, this, [primPath, layerOffset, position]); }
   /**
    * func add(to primPath: USDLayer.Path?, from assetPath: String, layerOffset: USDLayer.TimeOffset = .init(), position: USDPrim.ListPosition = .backOfPrependList) throws
    * @availability iOS 27.0+
    */
-  addToFromLayerOffsetPosition(primPath: (USDLayer_Path) | null, assetPath: string, layerOffset?: USDLayer_TimeOffset, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_6be9a005889899ab", 3026356799989608, this, [primPath, assetPath, layerOffset, position]); }
+  addToFromLayerOffsetPosition(primPath: (USDLayer_Path) | null, assetPath: string, layerOffset?: USDLayer_TimeOffset, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_c1f28409f8601238", 3026356799989608, this, [primPath, assetPath, layerOffset, position]); }
   /**
    * func add(_ reference: USDPrim.Reference, position: USDPrim.ListPosition = .backOfPrependList) throws
    * @availability iOS 27.0+
    */
-  addPosition(reference: USDPrim_Reference, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_6be9a005889899ab", 1955192385644610, this, [reference, position]); }
+  addPosition(reference: USDPrim_Reference, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_c1f28409f8601238", 1955192385644610, this, [reference, position]); }
   /**
    * func set(_ references: [USDPrim.Reference]) throws
    * @availability iOS 27.0+
    */
-  set(references: Array<USDPrim_Reference>): void { return callSDK<void>("USDKit_6be9a005889899ab", 201573784669244, this, [references]); }
+  set(references: Array<USDPrim_Reference>): void { return callSDK<void>("USDKit_c1f28409f8601238", 201573784669244, this, [references]); }
   /**
    * var prim: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 1789185027262213, this, []); }
+  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 1789185027262213, this, []); }
   /**
    * func clear() throws
    * @availability iOS 27.0+
    */
-  clear(): void { return callSDK<void>("USDKit_6be9a005889899ab", 3977728908012362, this, []); }
+  clear(): void { return callSDK<void>("USDKit_c1f28409f8601238", 3977728908012362, this, []); }
   /**
    * func remove(_ reference: USDPrim.Reference) throws
    * @availability iOS 27.0+
    */
-  remove(reference: USDPrim_Reference): void { return callSDK<void>("USDKit_6be9a005889899ab", 466945650710665, this, [reference]); }
+  remove(reference: USDPrim_Reference): void { return callSDK<void>("USDKit_c1f28409f8601238", 466945650710665, this, [reference]); }
   declare readonly $type: { "s:6USDKit7USDPrimV19ReferenceCollectionV": true };
 }
 
@@ -2483,58 +2483,58 @@ export class USDPrim_Relationship extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1286014422070769, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1286014422070769, this, []); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 1007474390887028, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 1007474390887028, this, []); }
   /**
    * var path: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get path(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 3056684349168397, this, []); }
+  get path(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 3056684349168397, this, []); }
   /**
    * var prim: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 3036172644671546, this, []); }
+  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 3036172644671546, this, []); }
   /**
    * var stage: USDStage { get }
    * @availability iOS 27.0+
    */
-  get stage(): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 2206325342035171, this, []); }
+  get stage(): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 2206325342035171, this, []); }
   /**
    * var isValid: Bool { get }
    * @availability iOS 27.0+
    */
-  get isValid(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2192243862040661, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2192243862040661, this, []); }
   /**
    * var targets: [USDLayer.Path] { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get targets(): Array<USDLayer_Path> { return callSDK<Array<USDLayer_Path>>("USDKit_6be9a005889899ab", 2328408843572269, this, []); }
-  set targets(value: Array<USDLayer_Path>) { callSDK<void>("USDKit_6be9a005889899ab", 300847478224304, this, [value]); }
+  get targets(): Array<USDLayer_Path> { return callSDK<Array<USDLayer_Path>>("USDKit_c1f28409f8601238", 2328408843572269, this, []); }
+  set targets(value: Array<USDLayer_Path>) { callSDK<void>("USDKit_c1f28409f8601238", 300847478224304, this, [value]); }
   /**
    * var primPath: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 2807627168732800, this, []); }
+  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 2807627168732800, this, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim_Relationship { return callSDK<USDPrim_Relationship>("USDKit_6be9a005889899ab", 1718367739391711, undefined, []); }
+  static init(): USDPrim_Relationship { return callSDK<USDPrim_Relationship>("USDKit_c1f28409f8601238", 1718367739391711, undefined, []); }
   /**
    * init?(_ object: USDStage.Object)
    * @availability iOS 27.0+
    */
-  static init16044(object: USDStage_Object): (USDPrim_Relationship) | null { return callSDK<(USDPrim_Relationship) | null>("USDKit_6be9a005889899ab", 775858145290762, undefined, [object]); }
+  static init16044(object: USDStage_Object): (USDPrim_Relationship) | null { return callSDK<(USDPrim_Relationship) | null>("USDKit_c1f28409f8601238", 775858145290762, undefined, [object]); }
   /**
    * init?(_ object: USDPrim.Property)
    * @availability iOS 27.0+
    */
-  static init38946(object: USDPrim_Property): (USDPrim_Relationship) | null { return callSDK<(USDPrim_Relationship) | null>("USDKit_6be9a005889899ab", 4126802453001569, undefined, [object]); }
+  static init38946(object: USDPrim_Property): (USDPrim_Relationship) | null { return callSDK<(USDPrim_Relationship) | null>("USDKit_c1f28409f8601238", 4126802453001569, undefined, [object]); }
   declare readonly $type: { "s:6USDKit7USDPrimV12RelationshipV": true };
 }
 
@@ -2547,112 +2547,112 @@ export class USDPrim_Relationship_Spec extends SDKHandle {
    * var customData: Dictionary<String, USDValue> { get }
    * @availability iOS 27.0+
    */
-  get customData(): $SDK20 { return callSDK<$SDK20>("USDKit_6be9a005889899ab", 2734006676214338, this, []); }
+  get customData(): $SDK20 { return callSDK<$SDK20>("USDKit_c1f28409f8601238", 2734006676214338, this, []); }
   /**
    * var noLoadHint: Bool { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get noLoadHint(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 867594068634769, this, []); }
-  set noLoadHint(value: boolean) { callSDK<void>("USDKit_6be9a005889899ab", 869198547035471, this, [value]); }
+  get noLoadHint(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 867594068634769, this, []); }
+  set noLoadHint(value: boolean) { callSDK<void>("USDKit_c1f28409f8601238", 869198547035471, this, [value]); }
   /**
    * var permission: USDLayer.Permission { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get permission(): USDLayer_Permission { return callSDK<USDLayer_Permission>("USDKit_6be9a005889899ab", 3991880472383355, this, []); }
-  set permission(value: USDLayer_Permission) { callSDK<void>("USDKit_6be9a005889899ab", 2066417178021045, this, [value]); }
+  get permission(): USDLayer_Permission { return callSDK<USDLayer_Permission>("USDKit_c1f28409f8601238", 3991880472383355, this, []); }
+  set permission(value: USDLayer_Permission) { callSDK<void>("USDKit_c1f28409f8601238", 2066417178021045, this, [value]); }
   /**
    * var targetPaths: [USDLayer.Path]? { get }
    * @availability iOS 27.0+
    */
-  get targetPaths(): $SDK21 { return callSDK<$SDK21>("USDKit_6be9a005889899ab", 2051275246625444, this, []); }
+  get targetPaths(): $SDK21 { return callSDK<$SDK21>("USDKit_c1f28409f8601238", 2051275246625444, this, []); }
   /**
    * func removeTarget(_ path: USDLayer.Path, preservingOrder: Bool = false)
    * @availability iOS 27.0+
    */
-  removeTarget(path: USDLayer_Path, preservingOrder?: boolean): void { return callSDK<void>("USDKit_6be9a005889899ab", 2146289602071541, this, [path, preservingOrder]); }
+  removeTarget(path: USDLayer_Path, preservingOrder?: boolean): void { return callSDK<void>("USDKit_c1f28409f8601238", 2146289602071541, this, [path, preservingOrder]); }
   /**
    * func setAssetInfo(_ key: String, to value: USDValue)
    * @availability iOS 27.0+
    */
-  setAssetInfo(key: string, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 2373934178282180, this, [key, value]); }
+  setAssetInfo(key: string, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 2373934178282180, this, [key, value]); }
   /**
    * var documentation: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get documentation(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 1213674863862382, this, []); }
-  set documentation(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 224632951634974, this, [value]); }
+  get documentation(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 1213674863862382, this, []); }
+  set documentation(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 224632951634974, this, [value]); }
   /**
    * func replaceTarget(_ oldPath: USDLayer.Path, with newPath: USDLayer.Path)
    * @availability iOS 27.0+
    */
-  replaceTarget(oldPath: USDLayer_Path, newPath: USDLayer_Path): void { return callSDK<void>("USDKit_6be9a005889899ab", 1227860200052937, this, [oldPath, newPath]); }
+  replaceTarget(oldPath: USDLayer_Path, newPath: USDLayer_Path): void { return callSDK<void>("USDKit_c1f28409f8601238", 1227860200052937, this, [oldPath, newPath]); }
   /**
    * func setCustomData(_ key: String, to value: USDValue)
    * @availability iOS 27.0+
    */
-  setCustomData(key: string, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 2359402366129885, this, [key, value]); }
+  setCustomData(key: string, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 2359402366129885, this, [key, value]); }
   /**
    * func clearAssetInfo(_ key: String)
    * @availability iOS 27.0+
    */
-  clearAssetInfo(key: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 353580877360743, this, [key]); }
+  clearAssetInfo(key: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 353580877360743, this, [key]); }
   /**
    * func clearCustomData(_ key: String)
    * @availability iOS 27.0+
    */
-  clearCustomData(key: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 1683225433163035, this, [key]); }
+  clearCustomData(key: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 1683225433163035, this, [key]); }
   /**
    * func clearTargetPaths()
    * @availability iOS 27.0+
    */
-  clearTargetPaths(): void { return callSDK<void>("USDKit_6be9a005889899ab", 3353277974955886, this, []); }
+  clearTargetPaths(): void { return callSDK<void>("USDKit_c1f28409f8601238", 3353277974955886, this, []); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 1589366581982862, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 1589366581982862, this, []); }
   /**
    * init?(layer: USDLayer, relationshipPath: USDLayer.Path, variability: USDPrim.Property.Variability = .varying, isCustom: Bool = false)
    * @availability iOS 27.0+
    */
-  static initLayerRelationshipPathVariabilityIsCustom(layer: USDLayer, relationshipPath: USDLayer_Path, variability?: USDPrim_Property_Variability, isCustom?: boolean): (USDPrim_Relationship_Spec) | null { return callSDK<(USDPrim_Relationship_Spec) | null>("USDKit_6be9a005889899ab", 3576739840726678, undefined, [layer, relationshipPath, variability, isCustom]); }
+  static initLayerRelationshipPathVariabilityIsCustom(layer: USDLayer, relationshipPath: USDLayer_Path, variability?: USDPrim_Property_Variability, isCustom?: boolean): (USDPrim_Relationship_Spec) | null { return callSDK<(USDPrim_Relationship_Spec) | null>("USDKit_c1f28409f8601238", 3576739840726678, undefined, [layer, relationshipPath, variability, isCustom]); }
   /**
    * init?(owner: USDPrim.Spec, name: USDToken, variability: USDPrim.Property.Variability = .varying, isCustom: Bool = true)
    * @availability iOS 27.0+
    */
-  static initOwnerNameVariabilityIsCustom(owner: USDPrim_Spec, name: USDToken, variability?: USDPrim_Property_Variability, isCustom?: boolean): (USDPrim_Relationship_Spec) | null { return callSDK<(USDPrim_Relationship_Spec) | null>("USDKit_6be9a005889899ab", 1788708866655706, undefined, [owner, name, variability, isCustom]); }
+  static initOwnerNameVariabilityIsCustom(owner: USDPrim_Spec, name: USDToken, variability?: USDPrim_Property_Variability, isCustom?: boolean): (USDPrim_Relationship_Spec) | null { return callSDK<(USDPrim_Relationship_Spec) | null>("USDKit_c1f28409f8601238", 1788708866655706, undefined, [owner, name, variability, isCustom]); }
   /**
    * var owner: USDLayer.Spec? { get }
    * @availability iOS 27.0+
    */
-  get owner(): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_6be9a005889899ab", 584106771734682, this, []); }
+  get owner(): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_c1f28409f8601238", 584106771734682, this, []); }
   /**
    * func rename(to name: USDToken) throws
    * @availability iOS 27.0+
    */
-  rename(name: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 1889136274235501, this, [name]); }
+  rename(name: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 1889136274235501, this, [name]); }
   /**
    * var comment: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get comment(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 4224126536951461, this, []); }
-  set comment(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 746676252884176, this, [value]); }
+  get comment(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 4224126536951461, this, []); }
+  set comment(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 746676252884176, this, [value]); }
   /**
    * var isCustom: Bool { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get isCustom(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2164002444173319, this, []); }
-  set isCustom(value: boolean) { callSDK<void>("USDKit_6be9a005889899ab", 303245857657950, this, [value]); }
+  get isCustom(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2164002444173319, this, []); }
+  set isCustom(value: boolean) { callSDK<void>("USDKit_c1f28409f8601238", 303245857657950, this, [value]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim_Relationship_Spec { return callSDK<USDPrim_Relationship_Spec>("USDKit_6be9a005889899ab", 3180122030358258, undefined, []); }
+  static init(): USDPrim_Relationship_Spec { return callSDK<USDPrim_Relationship_Spec>("USDKit_c1f28409f8601238", 3180122030358258, undefined, []); }
   /**
    * init?(_ spec: USDLayer.Spec)
    * @availability iOS 27.0+
    */
-  static init24430(spec: USDLayer_Spec): (USDPrim_Relationship_Spec) | null { return callSDK<(USDPrim_Relationship_Spec) | null>("USDKit_6be9a005889899ab", 91522472986263, undefined, [spec]); }
+  static init24430(spec: USDLayer_Spec): (USDPrim_Relationship_Spec) | null { return callSDK<(USDPrim_Relationship_Spec) | null>("USDKit_c1f28409f8601238", 91522472986263, undefined, [spec]); }
   declare readonly $type: { "s:6USDKit7USDPrimV12RelationshipV4SpecV": true };
 }
 
@@ -2665,361 +2665,361 @@ export class USDPrim_Spec extends SDKHandle {
    * init?(parentPrimSpec: USDPrim.Spec, name: USDToken, specifier: USDPrim.Specifier, typeName: String = "")
    * @availability iOS 27.0+
    */
-  static initParentPrimSpecNameSpecifierTypeName(parentPrimSpec: USDPrim_Spec, name: USDToken, specifier: USDPrim_Specifier, typeName?: string): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_6be9a005889899ab", 3459823230645599, undefined, [parentPrimSpec, name, specifier, typeName]); }
+  static initParentPrimSpecNameSpecifierTypeName(parentPrimSpec: USDPrim_Spec, name: USDToken, specifier: USDPrim_Specifier, typeName?: string): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_c1f28409f8601238", 3459823230645599, undefined, [parentPrimSpec, name, specifier, typeName]); }
   /**
    * var attributes: [USDPrim.Attribute.Spec] { get }
    * @availability iOS 27.0+
    */
-  get attributes(): Array<USDPrim_Attribute_Spec> { return callSDK<Array<USDPrim_Attribute_Spec>>("USDKit_6be9a005889899ab", 3509788612902559, this, []); }
+  get attributes(): Array<USDPrim_Attribute_Spec> { return callSDK<Array<USDPrim_Attribute_Spec>>("USDKit_c1f28409f8601238", 3509788612902559, this, []); }
   /**
    * var customData: Dictionary<String, USDValue> { get }
    * @availability iOS 27.0+
    */
-  get customData(): $SDK20 { return callSDK<$SDK20>("USDKit_6be9a005889899ab", 3838110457539357, this, []); }
+  get customData(): $SDK20 { return callSDK<$SDK20>("USDKit_c1f28409f8601238", 3838110457539357, this, []); }
   /**
    * var permission: USDLayer.Permission { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get permission(): USDLayer_Permission { return callSDK<USDLayer_Permission>("USDKit_6be9a005889899ab", 1770417890729629, this, []); }
-  set permission(value: USDLayer_Permission) { callSDK<void>("USDKit_6be9a005889899ab", 168625984817410, this, [value]); }
+  get permission(): USDLayer_Permission { return callSDK<USDLayer_Permission>("USDKit_c1f28409f8601238", 1770417890729629, this, []); }
+  set permission(value: USDLayer_Permission) { callSDK<void>("USDKit_c1f28409f8601238", 168625984817410, this, [value]); }
   /**
    * var properties: [USDPrim.Property.Spec] { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get properties(): Array<USDPrim_Property_Spec> { return callSDK<Array<USDPrim_Property_Spec>>("USDKit_6be9a005889899ab", 3711429122007024, this, []); }
-  set properties(value: Array<USDPrim_Property_Spec>) { callSDK<void>("USDKit_6be9a005889899ab", 2420460359750723, this, [value]); }
+  get properties(): Array<USDPrim_Property_Spec> { return callSDK<Array<USDPrim_Property_Spec>>("USDKit_c1f28409f8601238", 3711429122007024, this, []); }
+  set properties(value: Array<USDPrim_Property_Spec>) { callSDK<void>("USDKit_c1f28409f8601238", 2420460359750723, this, [value]); }
   /**
    * var pseudoRoot: USDPrim.Spec? { get }
    * @availability iOS 27.0+
    */
-  get pseudoRoot(): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_6be9a005889899ab", 4337851055555179, this, []); }
+  get pseudoRoot(): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_c1f28409f8601238", 4337851055555179, this, []); }
   /**
    * var references: [USDPrim.Reference]? { get }
    * @availability iOS 27.0+
    */
-  get references(): (Array<USDPrim_Reference>) | null { return callSDK<(Array<USDPrim_Reference>) | null>("USDKit_6be9a005889899ab", 3950703658546238, this, []); }
+  get references(): (Array<USDPrim_Reference>) | null { return callSDK<(Array<USDPrim_Reference>) | null>("USDKit_c1f28409f8601238", 3950703658546238, this, []); }
   /**
    * func appendChild(_ child: USDPrim.Spec)
    * @availability iOS 27.0+
    */
-  appendChild(child: USDPrim_Spec): void { return callSDK<void>("USDKit_6be9a005889899ab", 4031179416972197, this, [child]); }
+  appendChild(child: USDPrim_Spec): void { return callSDK<void>("USDKit_c1f28409f8601238", 4031179416972197, this, [child]); }
   /**
    * func insertChild(_ child: USDPrim.Spec, at index: Int)
    * @availability iOS 27.0+
    */
-  insertChild(child: USDPrim_Spec, index: number): void { return callSDK<void>("USDKit_6be9a005889899ab", 2288270065269742, this, [child, index]); }
+  insertChild(child: USDPrim_Spec, index: number): void { return callSDK<void>("USDKit_c1f28409f8601238", 2288270065269742, this, [child, index]); }
   /**
    * static func isValidName(_ name: USDToken) -> Bool
    * @availability iOS 27.0+
    */
-  static isValidName(name: USDToken): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2855956521906693, undefined, [name]); }
+  static isValidName(name: USDToken): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2855956521906693, undefined, [name]); }
   /**
    * init?(parentLayer: USDLayer, name: USDToken, specifier: USDPrim.Specifier, typeName: String = "")
    * @availability iOS 27.0+
    */
-  static initParentLayerNameSpecifierTypeName(parentLayer: USDLayer, name: USDToken, specifier: USDPrim_Specifier, typeName?: string): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_6be9a005889899ab", 2532076311398844, undefined, [parentLayer, name, specifier, typeName]); }
+  static initParentLayerNameSpecifierTypeName(parentLayer: USDLayer, name: USDToken, specifier: USDPrim_Specifier, typeName?: string): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_c1f28409f8601238", 2532076311398844, undefined, [parentLayer, name, specifier, typeName]); }
   /**
    * func removeChild(_ child: USDPrim.Spec)
    * @availability iOS 27.0+
    */
-  removeChild(child: USDPrim_Spec): void { return callSDK<void>("USDKit_6be9a005889899ab", 960708355801547, this, [child]); }
+  removeChild(child: USDPrim_Spec): void { return callSDK<void>("USDKit_c1f28409f8601238", 960708355801547, this, [child]); }
   /**
    * var specializes: [USDLayer.Path]? { get }
    * @availability iOS 27.0+
    */
-  get specializes(): $SDK21 { return callSDK<$SDK21>("USDKit_6be9a005889899ab", 4339792580646618, this, []); }
+  get specializes(): $SDK21 { return callSDK<$SDK21>("USDKit_c1f28409f8601238", 4339792580646618, this, []); }
   /**
    * var variantSets: [USDToken : USDPrim.VariantSetSpec] { get }
    * @availability iOS 27.0+
    */
-  get variantSets(): $SDK26 { return callSDK<$SDK26>("USDKit_6be9a005889899ab", 1911250934773200, this, []); }
+  get variantSets(): $SDK26 { return callSDK<$SDK26>("USDKit_c1f28409f8601238", 1911250934773200, this, []); }
   /**
    * func relationship(at path: USDLayer.Path) -> USDPrim.Relationship.Spec?
    * @availability iOS 27.0+
    */
-  relationship(path: USDLayer_Path): $SDK2 { return callSDK<$SDK2>("USDKit_6be9a005889899ab", 2668542539077647, this, [path]); }
+  relationship(path: USDLayer_Path): $SDK2 { return callSDK<$SDK2>("USDKit_c1f28409f8601238", 2668542539077647, this, [path]); }
   /**
    * func setAssetInfo(_ key: String, to value: USDValue)
    * @availability iOS 27.0+
    */
-  setAssetInfo(key: string, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 1033514390478937, this, [key, value]); }
+  setAssetInfo(key: string, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 1033514390478937, this, [key, value]); }
   /**
    * func variantNames(in setName: USDToken) -> [USDToken]
    * @availability iOS 27.0+
    */
-  variantNames(setName: USDToken): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_6be9a005889899ab", 2422173245817953, this, [setName]); }
+  variantNames(setName: USDToken): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_c1f28409f8601238", 2422173245817953, this, [setName]); }
   /**
    * var childrenOrder: [USDToken]? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get childrenOrder(): $SDK27 { return callSDK<$SDK27>("USDKit_6be9a005889899ab", 3199610593661939, this, []); }
-  set childrenOrder(value: $SDK27) { callSDK<void>("USDKit_6be9a005889899ab", 2346956644807428, this, [value]); }
+  get childrenOrder(): $SDK27 { return callSDK<$SDK27>("USDKit_c1f28409f8601238", 3199610593661939, this, []); }
+  set childrenOrder(value: $SDK27) { callSDK<void>("USDKit_c1f28409f8601238", 2346956644807428, this, [value]); }
   /**
    * func clearInherits()
    * @availability iOS 27.0+
    */
-  clearInherits(): void { return callSDK<void>("USDKit_6be9a005889899ab", 270750994201531, this, []); }
+  clearInherits(): void { return callSDK<void>("USDKit_c1f28409f8601238", 270750994201531, this, []); }
   /**
    * func clearPayloads()
    * @availability iOS 27.0+
    */
-  clearPayloads(): void { return callSDK<void>("USDKit_6be9a005889899ab", 283463614756133, this, []); }
+  clearPayloads(): void { return callSDK<void>("USDKit_c1f28409f8601238", 283463614756133, this, []); }
   /**
    * var documentation: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get documentation(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 3403837018051290, this, []); }
-  set documentation(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 777826822920017, this, [value]); }
+  get documentation(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 3403837018051290, this, []); }
+  set documentation(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 777826822920017, this, [value]); }
   /**
    * var propertyOrder: [USDToken]? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get propertyOrder(): $SDK27 { return callSDK<$SDK27>("USDKit_6be9a005889899ab", 3647761053128113, this, []); }
-  set propertyOrder(value: $SDK27) { callSDK<void>("USDKit_6be9a005889899ab", 406932796435995, this, [value]); }
+  get propertyOrder(): $SDK27 { return callSDK<$SDK27>("USDKit_c1f28409f8601238", 3647761053128113, this, []); }
+  set propertyOrder(value: $SDK27) { callSDK<void>("USDKit_c1f28409f8601238", 406932796435995, this, [value]); }
   /**
    * var relationships: [USDPrim.Relationship.Spec] { get }
    * @availability iOS 27.0+
    */
-  get relationships(): Array<USDPrim_Relationship_Spec> { return callSDK<Array<USDPrim_Relationship_Spec>>("USDKit_6be9a005889899ab", 3825967167707812, this, []); }
+  get relationships(): Array<USDPrim_Relationship_Spec> { return callSDK<Array<USDPrim_Relationship_Spec>>("USDKit_c1f28409f8601238", 3825967167707812, this, []); }
   /**
    * func setCustomData(_ key: String, to value: USDValue)
    * @availability iOS 27.0+
    */
-  setCustomData(key: string, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 146733536818656, this, [key, value]); }
+  setCustomData(key: string, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 146733536818656, this, [key, value]); }
   /**
    * var symmetricPeer: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get symmetricPeer(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 2391763654479283, this, []); }
-  set symmetricPeer(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 1963362066606554, this, [value]); }
+  get symmetricPeer(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 2391763654479283, this, []); }
+  set symmetricPeer(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 1963362066606554, this, [value]); }
   /**
    * func clearAssetInfo(_ key: String)
    * @availability iOS 27.0+
    */
-  clearAssetInfo(key: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 3884187767893612, this, [key]); }
+  clearAssetInfo(key: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 3884187767893612, this, [key]); }
   /**
    * func clearRelocates()
    * @availability iOS 27.0+
    */
-  clearRelocates(): void { return callSDK<void>("USDKit_6be9a005889899ab", 1540341292461012, this, []); }
+  clearRelocates(): void { return callSDK<void>("USDKit_c1f28409f8601238", 1540341292461012, this, []); }
   /**
    * var isInstanceable: Bool? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get isInstanceable(): (boolean) | null { return callSDK<(boolean) | null>("USDKit_6be9a005889899ab", 2451717595022556, this, []); }
-  set isInstanceable(value: (boolean) | null) { callSDK<void>("USDKit_6be9a005889899ab", 6800853688490, this, [value]); }
+  get isInstanceable(): (boolean) | null { return callSDK<(boolean) | null>("USDKit_c1f28409f8601238", 2451717595022556, this, []); }
+  set isInstanceable(value: (boolean) | null) { callSDK<void>("USDKit_c1f28409f8601238", 6800853688490, this, [value]); }
   /**
    * func removeProperty(_ spec: USDPrim.Property.Spec)
    * @availability iOS 27.0+
    */
-  removeProperty(spec: USDPrim_Property_Spec): void { return callSDK<void>("USDKit_6be9a005889899ab", 3863109658346325, this, [spec]); }
+  removeProperty(spec: USDPrim_Property_Spec): void { return callSDK<void>("USDKit_c1f28409f8601238", 3863109658346325, this, [spec]); }
   /**
    * func clearCustomData(_ key: String)
    * @availability iOS 27.0+
    */
-  clearCustomData(key: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 1447261112865375, this, [key]); }
+  clearCustomData(key: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 1447261112865375, this, [key]); }
   /**
    * func clearReferences()
    * @availability iOS 27.0+
    */
-  clearReferences(): void { return callSDK<void>("USDKit_6be9a005889899ab", 3731920408011436, this, []); }
+  clearReferences(): void { return callSDK<void>("USDKit_c1f28409f8601238", 3731920408011436, this, []); }
   /**
    * var variantSetNames: [USDToken] { get }
    * @availability iOS 27.0+
    */
-  get variantSetNames(): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_6be9a005889899ab", 1090621503738961, this, []); }
+  get variantSetNames(): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_c1f28409f8601238", 1090621503738961, this, []); }
   /**
    * func clearSpecializes()
    * @availability iOS 27.0+
    */
-  clearSpecializes(): void { return callSDK<void>("USDKit_6be9a005889899ab", 172492451286519, this, []); }
+  clearSpecializes(): void { return callSDK<void>("USDKit_c1f28409f8601238", 172492451286519, this, []); }
   /**
    * func removeVariantSet(_ name: USDToken)
    * @availability iOS 27.0+
    */
-  removeVariantSet(name: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 1325644605391768, this, [name]); }
+  removeVariantSet(name: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 1325644605391768, this, [name]); }
   /**
    * var symmetryFunction: USDToken? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get symmetryFunction(): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_6be9a005889899ab", 1574501822757036, this, []); }
-  set symmetryFunction(value: (USDToken) | null) { callSDK<void>("USDKit_6be9a005889899ab", 4216975087929290, this, [value]); }
+  get symmetryFunction(): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_c1f28409f8601238", 1574501822757036, this, []); }
+  set symmetryFunction(value: (USDToken) | null) { callSDK<void>("USDKit_c1f28409f8601238", 4216975087929290, this, [value]); }
   /**
    * func variantSelection(for setName: USDToken) -> USDToken?
    * @availability iOS 27.0+
    */
-  variantSelection(setName: USDToken): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_6be9a005889899ab", 89449541257240, this, [setName]); }
+  variantSelection(setName: USDToken): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_c1f28409f8601238", 89449541257240, this, [setName]); }
   /**
    * var symmetryArguments: Dictionary<String, USDValue> { get }
    * @availability iOS 27.0+
    */
-  get symmetryArguments(): $SDK20 { return callSDK<$SDK20>("USDKit_6be9a005889899ab", 2071491960351181, this, []); }
+  get symmetryArguments(): $SDK20 { return callSDK<$SDK20>("USDKit_c1f28409f8601238", 2071491960351181, this, []); }
   /**
    * var variantSelections: [USDToken : USDToken] { get }
    * @availability iOS 27.0+
    */
-  get variantSelections(): NativeMap<USDToken, USDToken> { return callSDK<NativeMap<USDToken, USDToken>>("USDKit_6be9a005889899ab", 2967738830819016, this, []); }
+  get variantSelections(): NativeMap<USDToken, USDToken> { return callSDK<NativeMap<USDToken, USDToken>>("USDKit_c1f28409f8601238", 2967738830819016, this, []); }
   /**
    * var prefixSubstitutions: Dictionary<String, USDValue> { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get prefixSubstitutions(): $SDK20 { return callSDK<$SDK20>("USDKit_6be9a005889899ab", 3218098794722955, this, []); }
-  set prefixSubstitutions(value: $SDK20) { callSDK<void>("USDKit_6be9a005889899ab", 537626189565786, this, [value]); }
+  get prefixSubstitutions(): $SDK20 { return callSDK<$SDK20>("USDKit_c1f28409f8601238", 3218098794722955, this, []); }
+  set prefixSubstitutions(value: $SDK20) { callSDK<void>("USDKit_c1f28409f8601238", 537626189565786, this, [value]); }
   /**
    * func setSymmetryArgument(_ name: String, to value: USDValue)
    * @availability iOS 27.0+
    */
-  setSymmetryArgument(name: string, value: USDValue): void { return callSDK<void>("USDKit_6be9a005889899ab", 1639145536625824, this, [name, value]); }
+  setSymmetryArgument(name: string, value: USDValue): void { return callSDK<void>("USDKit_c1f28409f8601238", 1639145536625824, this, [name, value]); }
   /**
    * func setVariantSelection(for setName: USDToken, to variantName: USDToken)
    * @availability iOS 27.0+
    */
-  setVariantSelection(setName: USDToken, variantName: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 3796283292216561, this, [setName, variantName]); }
+  setVariantSelection(setName: USDToken, variantName: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 3796283292216561, this, [setName, variantName]); }
   /**
    * var suffixSubstitutions: Dictionary<String, USDValue> { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get suffixSubstitutions(): $SDK20 { return callSDK<$SDK20>("USDKit_6be9a005889899ab", 4450075172580310, this, []); }
-  set suffixSubstitutions(value: $SDK20) { callSDK<void>("USDKit_6be9a005889899ab", 910383169580997, this, [value]); }
+  get suffixSubstitutions(): $SDK20 { return callSDK<$SDK20>("USDKit_c1f28409f8601238", 4450075172580310, this, []); }
+  set suffixSubstitutions(value: $SDK20) { callSDK<void>("USDKit_c1f28409f8601238", 910383169580997, this, [value]); }
   /**
    * func blockVariantSelection(for setName: USDToken)
    * @availability iOS 27.0+
    */
-  blockVariantSelection(setName: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 3177137417918818, this, [setName]); }
+  blockVariantSelection(setName: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 3177137417918818, this, [setName]); }
   /**
    * func clearSymmetryArgument(_ name: String)
    * @availability iOS 27.0+
    */
-  clearSymmetryArgument(name: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 2357900758175331, this, [name]); }
+  clearSymmetryArgument(name: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 2357900758175331, this, [name]); }
   /**
    * func clearVariantSelection(for setName: USDToken)
    * @availability iOS 27.0+
    */
-  clearVariantSelection(setName: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 3752149873616222, this, [setName]); }
+  clearVariantSelection(setName: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 3752149873616222, this, [setName]); }
   /**
    * var kind: USDToken? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get kind(): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_6be9a005889899ab", 2164477242831915, this, []); }
-  set kind(value: (USDToken) | null) { callSDK<void>("USDKit_6be9a005889899ab", 1428969499425842, this, [value]); }
+  get kind(): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_c1f28409f8601238", 2164477242831915, this, []); }
+  set kind(value: (USDToken) | null) { callSDK<void>("USDKit_c1f28409f8601238", 1428969499425842, this, [value]); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 2392199223858550, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 2392199223858550, this, []); }
   /**
    * func prim(at path: USDLayer.Path) -> USDPrim.Spec?
    * @availability iOS 27.0+
    */
-  prim(path: USDLayer_Path): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_6be9a005889899ab", 1295614539172197, this, [path]); }
+  prim(path: USDLayer_Path): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_c1f28409f8601238", 1295614539172197, this, [path]); }
   /**
    * func spec(at path: USDLayer.Path) -> USDLayer.Spec?
    * @availability iOS 27.0+
    */
-  spec(path: USDLayer_Path): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_6be9a005889899ab", 3803496469703621, this, [path]); }
+  spec(path: USDLayer_Path): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_c1f28409f8601238", 3803496469703621, this, [path]); }
   /**
    * init?(layer: USDLayer, primPath: USDLayer.Path)
    * @availability iOS 27.0+
    */
-  static initLayerPrimPath(layer: USDLayer, primPath: USDLayer_Path): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_6be9a005889899ab", 700961943101976, undefined, [layer, primPath]); }
+  static initLayerPrimPath(layer: USDLayer, primPath: USDLayer_Path): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_c1f28409f8601238", 700961943101976, undefined, [layer, primPath]); }
   /**
    * var parent: USDPrim.Spec? { get }
    * @availability iOS 27.0+
    */
-  get parent(): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_6be9a005889899ab", 1413788857565268, this, []); }
+  get parent(): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_c1f28409f8601238", 1413788857565268, this, []); }
   /**
    * var prefix: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get prefix(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 2071091543150071, this, []); }
-  set prefix(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 3756615832125226, this, [value]); }
+  get prefix(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 2071091543150071, this, []); }
+  set prefix(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 3756615832125226, this, [value]); }
   /**
    * func rename(to name: USDToken) throws
    * @availability iOS 27.0+
    */
-  rename(name: USDToken): void { return callSDK<void>("USDKit_6be9a005889899ab", 1511042259024502, this, [name]); }
+  rename(name: USDToken): void { return callSDK<void>("USDKit_c1f28409f8601238", 1511042259024502, this, [name]); }
   /**
    * var suffix: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get suffix(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 4186469484510018, this, []); }
-  set suffix(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 3128702181766573, this, [value]); }
+  get suffix(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 4186469484510018, this, []); }
+  set suffix(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 3128702181766573, this, [value]); }
   /**
    * var comment: String? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get comment(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 72563841193900, this, []); }
-  set comment(value: (string) | null) { callSDK<void>("USDKit_6be9a005889899ab", 3601245353242387, this, [value]); }
+  get comment(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 72563841193900, this, []); }
+  set comment(value: (string) | null) { callSDK<void>("USDKit_c1f28409f8601238", 3601245353242387, this, [value]); }
   /**
    * var children: [USDPrim.Spec] { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get children(): Array<USDPrim_Spec> { return callSDK<Array<USDPrim_Spec>>("USDKit_6be9a005889899ab", 358177302008596, this, []); }
-  set children(value: Array<USDPrim_Spec>) { callSDK<void>("USDKit_6be9a005889899ab", 3966731496600339, this, [value]); }
+  get children(): Array<USDPrim_Spec> { return callSDK<Array<USDPrim_Spec>>("USDKit_c1f28409f8601238", 358177302008596, this, []); }
+  set children(value: Array<USDPrim_Spec>) { callSDK<void>("USDKit_c1f28409f8601238", 3966731496600339, this, [value]); }
   /**
    * var inherits: [USDLayer.Path]? { get }
    * @availability iOS 27.0+
    */
-  get inherits(): $SDK21 { return callSDK<$SDK21>("USDKit_6be9a005889899ab", 3820402551364704, this, []); }
+  get inherits(): $SDK21 { return callSDK<$SDK21>("USDKit_c1f28409f8601238", 3820402551364704, this, []); }
   /**
    * var isActive: Bool? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get isActive(): (boolean) | null { return callSDK<(boolean) | null>("USDKit_6be9a005889899ab", 358791377649975, this, []); }
-  set isActive(value: (boolean) | null) { callSDK<void>("USDKit_6be9a005889899ab", 3222129193808552, this, [value]); }
+  get isActive(): (boolean) | null { return callSDK<(boolean) | null>("USDKit_c1f28409f8601238", 358791377649975, this, []); }
+  set isActive(value: (boolean) | null) { callSDK<void>("USDKit_c1f28409f8601238", 3222129193808552, this, [value]); }
   /**
    * var payloads: [USDPrim.Payload]? { get }
    * @availability iOS 27.0+
    */
-  get payloads(): (Array<USDPrim_Payload>) | null { return callSDK<(Array<USDPrim_Payload>) | null>("USDKit_6be9a005889899ab", 3638394714245386, this, []); }
+  get payloads(): (Array<USDPrim_Payload>) | null { return callSDK<(Array<USDPrim_Payload>) | null>("USDKit_c1f28409f8601238", 3638394714245386, this, []); }
   /**
    * func property(at path: USDLayer.Path) -> USDPrim.Property.Spec?
    * @availability iOS 27.0+
    */
-  property(path: USDLayer_Path): $SDK5 { return callSDK<$SDK5>("USDKit_6be9a005889899ab", 1890038904990947, this, [path]); }
+  property(path: USDLayer_Path): $SDK5 { return callSDK<$SDK5>("USDKit_c1f28409f8601238", 1890038904990947, this, [path]); }
   /**
    * var typeName: USDToken { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get typeName(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 411062837639239, this, []); }
-  set typeName(value: USDToken) { callSDK<void>("USDKit_6be9a005889899ab", 1211385795015795, this, [value]); }
+  get typeName(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 411062837639239, this, []); }
+  set typeName(value: USDToken) { callSDK<void>("USDKit_c1f28409f8601238", 1211385795015795, this, [value]); }
   /**
    * var assetInfo: Dictionary<String, USDValue> { get }
    * @availability iOS 27.0+
    */
-  get assetInfo(): $SDK20 { return callSDK<$SDK20>("USDKit_6be9a005889899ab", 286379076632468, this, []); }
+  get assetInfo(): $SDK20 { return callSDK<$SDK20>("USDKit_c1f28409f8601238", 286379076632468, this, []); }
   /**
    * func attribute(at path: USDLayer.Path) -> USDPrim.Attribute.Spec?
    * @availability iOS 27.0+
    */
-  attribute(path: USDLayer_Path): $SDK8 { return callSDK<$SDK8>("USDKit_6be9a005889899ab", 4373918228976127, this, [path]); }
+  attribute(path: USDLayer_Path): $SDK8 { return callSDK<$SDK8>("USDKit_c1f28409f8601238", 4373918228976127, this, [path]); }
   /**
    * var relocates: USDLayer.RelocatesMap? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get relocates(): $SDK31 { return callSDK<$SDK31>("USDKit_6be9a005889899ab", 3940996543614387, this, []); }
-  set relocates(value: $SDK31) { callSDK<void>("USDKit_6be9a005889899ab", 1513096681102479, this, [value]); }
+  get relocates(): $SDK31 { return callSDK<$SDK31>("USDKit_c1f28409f8601238", 3940996543614387, this, []); }
+  set relocates(value: $SDK31) { callSDK<void>("USDKit_c1f28409f8601238", 1513096681102479, this, [value]); }
   /**
    * var specifier: USDPrim.Specifier { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get specifier(): USDPrim_Specifier { return callSDK<USDPrim_Specifier>("USDKit_6be9a005889899ab", 3856626484061664, this, []); }
-  set specifier(value: USDPrim_Specifier) { callSDK<void>("USDKit_6be9a005889899ab", 2484514552334869, this, [value]); }
+  get specifier(): USDPrim_Specifier { return callSDK<USDPrim_Specifier>("USDKit_c1f28409f8601238", 3856626484061664, this, []); }
+  set specifier(value: USDPrim_Specifier) { callSDK<void>("USDKit_c1f28409f8601238", 2484514552334869, this, [value]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim_Spec { return callSDK<USDPrim_Spec>("USDKit_6be9a005889899ab", 1339065855249256, undefined, []); }
+  static init(): USDPrim_Spec { return callSDK<USDPrim_Spec>("USDKit_c1f28409f8601238", 1339065855249256, undefined, []); }
   /**
    * init?(_ spec: USDLayer.Spec)
    * @availability iOS 27.0+
    */
-  static init59807(spec: USDLayer_Spec): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_6be9a005889899ab", 1233113793027857, undefined, [spec]); }
+  static init59807(spec: USDLayer_Spec): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_c1f28409f8601238", 1233113793027857, undefined, [spec]); }
   /**
    * init(_ pseudoRoot: USDPrim.PseudoRootSpec)
    * @availability iOS 27.0+
    */
-  static init27140(pseudoRoot: USDPrim_PseudoRootSpec): USDPrim_Spec { return callSDK<USDPrim_Spec>("USDKit_6be9a005889899ab", 2949667678263744, undefined, [pseudoRoot]); }
+  static init27140(pseudoRoot: USDPrim_PseudoRootSpec): USDPrim_Spec { return callSDK<USDPrim_Spec>("USDKit_c1f28409f8601238", 2949667678263744, undefined, [pseudoRoot]); }
   declare readonly $type: { "s:6USDKit7USDPrimV4SpecV": true };
 }
 
@@ -3032,27 +3032,27 @@ export class USDPrim_SpecializeCollection extends SDKHandle {
    * func add(_ primPath: USDLayer.Path, position: USDPrim.ListPosition = .backOfPrependList) throws
    * @availability iOS 27.0+
    */
-  add(primPath: USDLayer_Path, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_6be9a005889899ab", 984131085262083, this, [primPath, position]); }
+  add(primPath: USDLayer_Path, position?: USDPrim_ListPosition): void { return callSDK<void>("USDKit_c1f28409f8601238", 984131085262083, this, [primPath, position]); }
   /**
    * func set(_ primPaths: [USDLayer.Path]) throws
    * @availability iOS 27.0+
    */
-  set(primPaths: Array<USDLayer_Path>): void { return callSDK<void>("USDKit_6be9a005889899ab", 2036902092047143, this, [primPaths]); }
+  set(primPaths: Array<USDLayer_Path>): void { return callSDK<void>("USDKit_c1f28409f8601238", 2036902092047143, this, [primPaths]); }
   /**
    * var prim: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 4098029657321727, this, []); }
+  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 4098029657321727, this, []); }
   /**
    * func clear() throws
    * @availability iOS 27.0+
    */
-  clear(): void { return callSDK<void>("USDKit_6be9a005889899ab", 3593587128474530, this, []); }
+  clear(): void { return callSDK<void>("USDKit_c1f28409f8601238", 3593587128474530, this, []); }
   /**
    * func remove(_ primPath: USDLayer.Path) throws
    * @availability iOS 27.0+
    */
-  remove(primPath: USDLayer_Path): void { return callSDK<void>("USDKit_6be9a005889899ab", 2974376821216621, this, [primPath]); }
+  remove(primPath: USDLayer_Path): void { return callSDK<void>("USDKit_c1f28409f8601238", 2974376821216621, this, [primPath]); }
   declare readonly $type: { "s:6USDKit7USDPrimV20SpecializeCollectionV": true };
 }
 
@@ -3077,57 +3077,57 @@ export class USDPrim_VariantSet extends SDKHandle {
    * func setSelection(_ variantName: String) throws
    * @availability iOS 27.0+
    */
-  setSelection(variantName: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 1682217071163763, this, [variantName]); }
+  setSelection(variantName: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 1682217071163763, this, [variantName]); }
   /**
    * var variantNames: [String] { get }
    * @availability iOS 27.0+
    */
-  get variantNames(): Array<string> { return callSDK<Array<string>>("USDKit_6be9a005889899ab", 1134966250792803, this, []); }
+  get variantNames(): Array<string> { return callSDK<Array<string>>("USDKit_c1f28409f8601238", 1134966250792803, this, []); }
   /**
    * func blockSelection() throws
    * @availability iOS 27.0+
    */
-  blockSelection(): void { return callSDK<void>("USDKit_6be9a005889899ab", 1910246406231988, this, []); }
+  blockSelection(): void { return callSDK<void>("USDKit_c1f28409f8601238", 1910246406231988, this, []); }
   /**
    * func clearSelection() throws
    * @availability iOS 27.0+
    */
-  clearSelection(): void { return callSDK<void>("USDKit_6be9a005889899ab", 287209756080970, this, []); }
+  clearSelection(): void { return callSDK<void>("USDKit_c1f28409f8601238", 287209756080970, this, []); }
   /**
    * func withEditTarget<R>(layer: USDLayer? = nil, _ body: (USDStage.EditTarget) throws -> R) rethrows -> R
    * @availability iOS 27.0+
    */
-  withEditTarget(layer: (USDLayer) | null, body: ((arg0: USDStage_EditTarget) => unknown)): unknown { return callSDK<unknown>("USDKit_6be9a005889899ab", 2700479796305435, this, [layer, body], [null,{"callback":{"out":[]}}], true); }
+  withEditTarget(layer: (USDLayer) | null, body: ((arg0: USDStage_EditTarget) => unknown)): unknown { return callSDK<unknown>("USDKit_c1f28409f8601238", 2700479796305435, this, [layer, body], [null,{"callback":{"out":[]}}], true); }
   /**
    * var authoredSelection: String? { get }
    * @availability iOS 27.0+
    */
-  get authoredSelection(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 3784836703594384, this, []); }
+  get authoredSelection(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 3784836703594384, this, []); }
   /**
    * func add(_ variantName: String) throws
    * @availability iOS 27.0+
    */
-  add(variantName: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 1170604231311594, this, [variantName]); }
+  add(variantName: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 1170604231311594, this, [variantName]); }
   /**
    * var name: String { get }
    * @availability iOS 27.0+
    */
-  get name(): string { return callSDK<string>("USDKit_6be9a005889899ab", 782439300384618, this, []); }
+  get name(): string { return callSDK<string>("USDKit_c1f28409f8601238", 782439300384618, this, []); }
   /**
    * var prim: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 238969725931859, this, []); }
+  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 238969725931859, this, []); }
   /**
    * var isValid: Bool { get }
    * @availability iOS 27.0+
    */
-  get isValid(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3016661850831384, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3016661850831384, this, []); }
   /**
    * var selection: String? { get }
    * @availability iOS 27.0+
    */
-  get selection(): (string) | null { return callSDK<(string) | null>("USDKit_6be9a005889899ab", 2421057876576867, this, []); }
+  get selection(): (string) | null { return callSDK<(string) | null>("USDKit_c1f28409f8601238", 2421057876576867, this, []); }
   declare readonly $type: { "s:6USDKit7USDPrimV10VariantSetV": true };
 }
 
@@ -3140,22 +3140,22 @@ export class USDPrim_VariantSetCollection extends SDKHandle {
    * var selections: [String : String] { get }
    * @availability iOS 27.0+
    */
-  get selections(): Record<string, string> { return callSDK<Record<string, string>>("USDKit_6be9a005889899ab", 2771902823790685, this, []); }
+  get selections(): Record<string, string> { return callSDK<Record<string, string>>("USDKit_c1f28409f8601238", 2771902823790685, this, []); }
   /**
    * @discardableResult func add(_ variantSetName: String) throws -> USDPrim.VariantSet
    * @availability iOS 27.0+
    */
-  add(variantSetName: string): USDPrim_VariantSet { return callSDK<USDPrim_VariantSet>("USDKit_6be9a005889899ab", 1406846578393519, this, [variantSetName]); }
+  add(variantSetName: string): USDPrim_VariantSet { return callSDK<USDPrim_VariantSet>("USDKit_c1f28409f8601238", 1406846578393519, this, [variantSetName]); }
   /**
    * var names: [String] { get }
    * @availability iOS 27.0+
    */
-  get names(): Array<string> { return callSDK<Array<string>>("USDKit_6be9a005889899ab", 291895672620325, this, []); }
+  get names(): Array<string> { return callSDK<Array<string>>("USDKit_c1f28409f8601238", 291895672620325, this, []); }
   /**
    * subscript(name: String) -> USDPrim.VariantSet? { get }
    * @availability iOS 27.0+
    */
-  subscript(name: string): (USDPrim_VariantSet) | null { return callSDK<(USDPrim_VariantSet) | null>("USDKit_6be9a005889899ab", 2259465876608315, this, [name]); }
+  subscript(name: string): (USDPrim_VariantSet) | null { return callSDK<(USDPrim_VariantSet) | null>("USDKit_c1f28409f8601238", 2259465876608315, this, [name]); }
   declare readonly $type: { "s:6USDKit7USDPrimV20VariantSetCollectionV": true };
 }
 
@@ -3168,42 +3168,42 @@ export class USDPrim_VariantSetSpec extends SDKHandle {
    * func removeVariant(_ variant: USDPrim.VariantSpec)
    * @availability iOS 27.0+
    */
-  removeVariant(variant: USDPrim_VariantSpec): void { return callSDK<void>("USDKit_6be9a005889899ab", 149703231340285, this, [variant]); }
+  removeVariant(variant: USDPrim_VariantSpec): void { return callSDK<void>("USDKit_c1f28409f8601238", 149703231340285, this, [variant]); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 3866246286214036, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 3866246286214036, this, []); }
   /**
    * init?(owner: USDPrim.Spec, name: USDToken)
    * @availability iOS 27.0+
    */
-  static initOwnerName(owner: USDPrim_Spec, name: USDToken): (USDPrim_VariantSetSpec) | null { return callSDK<(USDPrim_VariantSetSpec) | null>("USDKit_6be9a005889899ab", 1544329402685407, undefined, [owner, name]); }
+  static initOwnerName(owner: USDPrim_Spec, name: USDToken): (USDPrim_VariantSetSpec) | null { return callSDK<(USDPrim_VariantSetSpec) | null>("USDKit_c1f28409f8601238", 1544329402685407, undefined, [owner, name]); }
   /**
    * init?(owner: USDPrim.VariantSpec, name: USDToken)
    * @availability iOS 27.0+
    */
-  static initOwnerName47189(owner: USDPrim_VariantSpec, name: USDToken): (USDPrim_VariantSetSpec) | null { return callSDK<(USDPrim_VariantSetSpec) | null>("USDKit_6be9a005889899ab", 4098778759508148, undefined, [owner, name]); }
+  static initOwnerName47189(owner: USDPrim_VariantSpec, name: USDToken): (USDPrim_VariantSetSpec) | null { return callSDK<(USDPrim_VariantSetSpec) | null>("USDKit_c1f28409f8601238", 4098778759508148, undefined, [owner, name]); }
   /**
    * var owner: USDLayer.Spec? { get }
    * @availability iOS 27.0+
    */
-  get owner(): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_6be9a005889899ab", 2038546019979383, this, []); }
+  get owner(): (USDLayer_Spec) | null { return callSDK<(USDLayer_Spec) | null>("USDKit_c1f28409f8601238", 2038546019979383, this, []); }
   /**
    * var variants: [USDPrim.VariantSpec] { get }
    * @availability iOS 27.0+
    */
-  get variants(): Array<USDPrim_VariantSpec> { return callSDK<Array<USDPrim_VariantSpec>>("USDKit_6be9a005889899ab", 2619953449185693, this, []); }
+  get variants(): Array<USDPrim_VariantSpec> { return callSDK<Array<USDPrim_VariantSpec>>("USDKit_c1f28409f8601238", 2619953449185693, this, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim_VariantSetSpec { return callSDK<USDPrim_VariantSetSpec>("USDKit_6be9a005889899ab", 2609179013989823, undefined, []); }
+  static init(): USDPrim_VariantSetSpec { return callSDK<USDPrim_VariantSetSpec>("USDKit_c1f28409f8601238", 2609179013989823, undefined, []); }
   /**
    * init?(_ spec: USDLayer.Spec)
    * @availability iOS 27.0+
    */
-  static init11999(spec: USDLayer_Spec): (USDPrim_VariantSetSpec) | null { return callSDK<(USDPrim_VariantSetSpec) | null>("USDKit_6be9a005889899ab", 4354881300166593, undefined, [spec]); }
+  static init11999(spec: USDLayer_Spec): (USDPrim_VariantSetSpec) | null { return callSDK<(USDPrim_VariantSetSpec) | null>("USDKit_c1f28409f8601238", 4354881300166593, undefined, [spec]); }
   declare readonly $type: { "s:6USDKit7USDPrimV14VariantSetSpecV": true };
 }
 
@@ -3222,42 +3222,42 @@ export class USDPrim_VariantSpec extends SDKHandle {
    * var primSpec: USDPrim.Spec? { get }
    * @availability iOS 27.0+
    */
-  get primSpec(): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_6be9a005889899ab", 3018271684726152, this, []); }
+  get primSpec(): (USDPrim_Spec) | null { return callSDK<(USDPrim_Spec) | null>("USDKit_c1f28409f8601238", 3018271684726152, this, []); }
   /**
    * var variantSets: [USDToken : USDPrim.VariantSetSpec] { get }
    * @availability iOS 27.0+
    */
-  get variantSets(): $SDK26 { return callSDK<$SDK26>("USDKit_6be9a005889899ab", 3499507461244974, this, []); }
+  get variantSets(): $SDK26 { return callSDK<$SDK26>("USDKit_c1f28409f8601238", 3499507461244974, this, []); }
   /**
    * func variantNames(_ variantSetName: USDToken) -> [USDToken]
    * @availability iOS 27.0+
    */
-  variantNames(variantSetName: USDToken): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_6be9a005889899ab", 849129770073537, this, [variantSetName]); }
+  variantNames(variantSetName: USDToken): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_c1f28409f8601238", 849129770073537, this, [variantSetName]); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 1498436868695263, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 1498436868695263, this, []); }
   /**
    * init?(owner: USDPrim.VariantSetSpec, name: USDToken)
    * @availability iOS 27.0+
    */
-  static initOwnerName(owner: USDPrim_VariantSetSpec, name: USDToken): (USDPrim_VariantSpec) | null { return callSDK<(USDPrim_VariantSpec) | null>("USDKit_6be9a005889899ab", 3462331928433416, undefined, [owner, name]); }
+  static initOwnerName(owner: USDPrim_VariantSetSpec, name: USDToken): (USDPrim_VariantSpec) | null { return callSDK<(USDPrim_VariantSpec) | null>("USDKit_c1f28409f8601238", 3462331928433416, undefined, [owner, name]); }
   /**
    * var owner: USDPrim.VariantSetSpec? { get }
    * @availability iOS 27.0+
    */
-  get owner(): (USDPrim_VariantSetSpec) | null { return callSDK<(USDPrim_VariantSetSpec) | null>("USDKit_6be9a005889899ab", 1461532847875298, this, []); }
+  get owner(): (USDPrim_VariantSetSpec) | null { return callSDK<(USDPrim_VariantSetSpec) | null>("USDKit_c1f28409f8601238", 1461532847875298, this, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDPrim_VariantSpec { return callSDK<USDPrim_VariantSpec>("USDKit_6be9a005889899ab", 35471894003969, undefined, []); }
+  static init(): USDPrim_VariantSpec { return callSDK<USDPrim_VariantSpec>("USDKit_c1f28409f8601238", 35471894003969, undefined, []); }
   /**
    * init?(_ spec: USDLayer.Spec)
    * @availability iOS 27.0+
    */
-  static init62147(spec: USDLayer_Spec): (USDPrim_VariantSpec) | null { return callSDK<(USDPrim_VariantSpec) | null>("USDKit_6be9a005889899ab", 324701451297494, undefined, [spec]); }
+  static init62147(spec: USDLayer_Spec): (USDPrim_VariantSpec) | null { return callSDK<(USDPrim_VariantSpec) | null>("USDKit_c1f28409f8601238", 324701451297494, undefined, [spec]); }
   declare readonly $type: { "s:6USDKit7USDPrimV11VariantSpecV": true };
 }
 
@@ -3270,203 +3270,203 @@ export class USDStage extends SDKHandle {
    * @discardableResult func definePrim(at path: USDLayer.Path, type: USDToken) -> USDPrim
    * @availability iOS 27.0+
    */
-  definePrim(path: USDLayer_Path, type: USDToken): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 2022193874605758, this, [path, type]); }
+  definePrim(path: USDLayer_Path, type: USDToken): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 2022193874605758, this, [path, type]); }
   /**
    * var editTarget: USDStage.EditTarget { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get editTarget(): USDStage_EditTarget { return callSDK<USDStage_EditTarget>("USDKit_6be9a005889899ab", 3146673241419141, this, []); }
-  set editTarget(value: USDStage_EditTarget) { callSDK<void>("USDKit_6be9a005889899ab", 3971059880248064, this, [value]); }
+  get editTarget(): USDStage_EditTarget { return callSDK<USDStage_EditTarget>("USDKit_c1f28409f8601238", 3146673241419141, this, []); }
+  set editTarget(value: USDStage_EditTarget) { callSDK<void>("USDKit_c1f28409f8601238", 3971059880248064, this, [value]); }
   /**
    * var pseudoRoot: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get pseudoRoot(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 1487125016355383, this, []); }
+  get pseudoRoot(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 1487125016355383, this, []); }
   /**
    * @discardableResult func removePrim(at path: USDLayer.Path) -> Bool
    * @availability iOS 27.0+
    */
-  removePrim(path: USDLayer_Path): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3116532118949955, this, [path]); }
+  removePrim(path: USDLayer_Path): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3116532118949955, this, [path]); }
   /**
    * var defaultPrim: USDPrim? { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get defaultPrim(): (USDPrim) | null { return callSDK<(USDPrim) | null>("USDKit_6be9a005889899ab", 2858862050925013, this, []); }
-  set defaultPrim(value: (USDPrim) | null) { callSDK<void>("USDKit_6be9a005889899ab", 1330289559785207, this, [value]); }
+  get defaultPrim(): (USDPrim) | null { return callSDK<(USDPrim) | null>("USDKit_c1f28409f8601238", 2858862050925013, this, []); }
+  set defaultPrim(value: (USDPrim) | null) { callSDK<void>("USDKit_c1f28409f8601238", 1330289559785207, this, [value]); }
   /**
    * func descendants(where predicate: USDPrim.Predicate) -> [USDPrim]
    * @availability iOS 27.0+
    */
-  descendantsWhere(predicate: USDPrim_Predicate): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_6be9a005889899ab", 1893363592346148, this, [predicate]); }
+  descendantsWhere(predicate: USDPrim_Predicate): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_c1f28409f8601238", 1893363592346148, this, [predicate]); }
   /**
    * var descendants: [USDPrim] { get }
    * @availability iOS 27.0+
    */
-  get descendants(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_6be9a005889899ab", 3865394130662702, this, []); }
+  get descendants(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_c1f28409f8601238", 3865394130662702, this, []); }
   /**
    * init(displayName: String? = nil, loadingPayloads: USDStage.InitialLoadRule = .all)
    * @availability iOS 27.0+
    */
-  static initDisplayNameLoadingPayloads(displayName?: (string) | null, loadingPayloads?: USDStage_InitialLoadRule): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 584334974213968, undefined, [displayName, loadingPayloads]); }
+  static initDisplayNameLoadingPayloads(displayName?: (string) | null, loadingPayloads?: USDStage_InitialLoadRule): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 584334974213968, undefined, [displayName, loadingPayloads]); }
   /**
    * func unmuteLayer(_ identifier: String)
    * @availability iOS 27.0+
    */
-  unmuteLayer(identifier: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 497450354476605, this, [identifier]); }
+  unmuteLayer(identifier: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 497450354476605, this, [identifier]); }
   /**
    * func isLayerMuted(_ identifier: String) -> Bool
    * @availability iOS 27.0+
    */
-  isLayerMuted(identifier: string): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2562435443423208, this, [identifier]); }
+  isLayerMuted(identifier: string): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2562435443423208, this, [identifier]); }
   /**
    * @discardableResult func overridePrim(at path: USDLayer.Path) -> USDPrim
    * @availability iOS 27.0+
    */
-  overridePrim(path: USDLayer_Path): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 4046396470615183, this, [path]); }
+  overridePrim(path: USDLayer_Path): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 4046396470615183, this, [path]); }
   /**
    * func relationship(at path: USDLayer.Path) -> USDPrim.Relationship
    * @availability iOS 27.0+
    */
-  relationship(path: USDLayer_Path): USDPrim_Relationship { return callSDK<USDPrim_Relationship>("USDKit_6be9a005889899ab", 1273594814858791, this, [path]); }
+  relationship(path: USDLayer_Path): USDPrim_Relationship { return callSDK<USDPrim_Relationship>("USDKit_c1f28409f8601238", 1273594814858791, this, [path]); }
   /**
    * func exportPackage(to url: URL, options: USDStage.ExportOptions = []) throws
    * @availability iOS 27.0+
    */
-  exportPackageToOptions(url: string, options?: USDStage_ExportOptions): void { return callSDK<void>("USDKit_6be9a005889899ab", 2889070875327475, this, [url, options]); }
+  exportPackageToOptions(url: string, options?: USDStage_ExportOptions): void { return callSDK<void>("USDKit_c1f28409f8601238", 2889070875327475, this, [url, options]); }
   /**
    * func exportPackage(to path: FilePath, options: USDStage.ExportOptions = []) throws
    * @availability iOS 27.0+
    */
-  exportPackageToOptions63733(path: _System_FilePath, options?: USDStage_ExportOptions): void { return callSDK<void>("USDKit_6be9a005889899ab", 4135994925974401, this, [path, options]); }
+  exportPackageToOptions63733(path: _System_FilePath, options?: USDStage_ExportOptions): void { return callSDK<void>("USDKit_c1f28409f8601238", 4135994925974401, this, [path, options]); }
   /**
    * func exportPackage(options: USDStage.ExportOptions = []) throws -> Data
    * @availability iOS 27.0+
    */
-  exportPackageOptions(options?: USDStage_ExportOptions): ArrayBuffer { return callSDK<ArrayBuffer>("USDKit_6be9a005889899ab", 3169936920918804, this, [options]); }
+  exportPackageOptions(options?: USDStage_ExportOptions): ArrayBuffer { return callSDK<ArrayBuffer>("USDKit_c1f28409f8601238", 3169936920918804, this, [options]); }
   /**
    * var metersPerUnit: Double { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get metersPerUnit(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3545048400694185, this, []); }
-  set metersPerUnit(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 42870424845631, this, [value]); }
+  get metersPerUnit(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3545048400694185, this, []); }
+  set metersPerUnit(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 42870424845631, this, [value]); }
   /**
    * var timeCodeRange: ClosedRange<USDStage.TimeCode> { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get timeCodeRange(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 3400582800619223, this, []); }
-  set timeCodeRange(value: SDKHandle) { callSDK<void>("USDKit_6be9a005889899ab", 613091918531685, this, [value]); }
+  get timeCodeRange(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 3400582800619223, this, []); }
+  set timeCodeRange(value: SDKHandle) { callSDK<void>("USDKit_c1f28409f8601238", 613091918531685, this, [value]); }
   /**
    * var allDescendants: [USDPrim] { get }
    * @availability iOS 27.0+
    */
-  get allDescendants(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_6be9a005889899ab", 2434557216668386, this, []); }
+  get allDescendants(): Array<USDPrim> { return callSDK<Array<USDPrim>>("USDKit_c1f28409f8601238", 2434557216668386, this, []); }
   /**
    * static var fallbackUpAxis: USDToken { get }
    * @availability iOS 27.0+
    */
-  static get fallbackUpAxis(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 2849930744386815, undefined, []); }
+  static get fallbackUpAxis(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 2849930744386815, undefined, []); }
   /**
    * var hasDefaultPrim: Bool { get }
    * @availability iOS 27.0+
    */
-  get hasDefaultPrim(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3758800001617188, this, []); }
+  get hasDefaultPrim(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3758800001617188, this, []); }
   /**
    * func exportFlattened(to url: URL) throws
    * @availability iOS 27.0+
    */
-  exportFlattenedTo(url: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 400389647698713, this, [url]); }
+  exportFlattenedTo(url: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 400389647698713, this, [url]); }
   /**
    * func exportFlattened(to path: FilePath) throws
    * @availability iOS 27.0+
    */
-  exportFlattenedTo38657(path: _System_FilePath): void { return callSDK<void>("USDKit_6be9a005889899ab", 2540418876723332, this, [path]); }
+  exportFlattenedTo38657(path: _System_FilePath): void { return callSDK<void>("USDKit_c1f28409f8601238", 2540418876723332, this, [path]); }
   /**
    * func saveSessionLayers() throws
    * @availability iOS 27.0+
    */
-  saveSessionLayers(): void { return callSDK<void>("USDKit_6be9a005889899ab", 2903727551332718, this, []); }
+  saveSessionLayers(): void { return callSDK<void>("USDKit_c1f28409f8601238", 2903727551332718, this, []); }
   /**
    * var timeCodesPerSecond: Double { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get timeCodesPerSecond(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3852132989686000, this, []); }
-  set timeCodesPerSecond(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3446877201962138, this, [value]); }
+  get timeCodesPerSecond(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3852132989686000, this, []); }
+  set timeCodesPerSecond(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3446877201962138, this, [value]); }
   /**
    * var hasAuthoredMetersPerUnit: Bool { get }
    * @availability iOS 27.0+
    */
-  get hasAuthoredMetersPerUnit(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 210858699117082, this, []); }
+  get hasAuthoredMetersPerUnit(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 210858699117082, this, []); }
   /**
    * static func open(rootLayer: USDLayer, sessionLayer: USDLayer? = nil, options: USDStage.OpenOptions = []) throws -> USDStage
    * @availability iOS 27.0+
    */
-  static openRootLayerSessionLayerOptions(rootLayer: USDLayer, sessionLayer?: (USDLayer) | null, options?: USDStage_OpenOptions): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 4258671184088843, undefined, [rootLayer, sessionLayer, options]); }
+  static openRootLayerSessionLayerOptions(rootLayer: USDLayer, sessionLayer?: (USDLayer) | null, options?: USDStage_OpenOptions): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 4258671184088843, undefined, [rootLayer, sessionLayer, options]); }
   /**
    * static func open(_ path: FilePath, sessionLayer: USDLayer? = nil, options: USDStage.OpenOptions = []) throws -> USDStage
    * @availability iOS 27.0+
    */
-  static openSessionLayerOptions(path: _System_FilePath, sessionLayer?: (USDLayer) | null, options?: USDStage_OpenOptions): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 2996540821822734, undefined, [path, sessionLayer, options]); }
+  static openSessionLayerOptions(path: _System_FilePath, sessionLayer?: (USDLayer) | null, options?: USDStage_OpenOptions): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 2996540821822734, undefined, [path, sessionLayer, options]); }
   /**
    * static func open(_ url: URL, loadingPayloads: USDStage.InitialLoadRule = .all) throws -> USDStage
    * @availability iOS 27.0+
    */
-  static openLoadingPayloads(url: string, loadingPayloads?: USDStage_InitialLoadRule): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 4487622603359193, undefined, [url, loadingPayloads]); }
+  static openLoadingPayloads(url: string, loadingPayloads?: USDStage_InitialLoadRule): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 4487622603359193, undefined, [url, loadingPayloads]); }
   /**
    * func prim(at path: USDLayer.Path) -> USDPrim
    * @availability iOS 27.0+
    */
-  prim(path: USDLayer_Path): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 774879337906320, this, [path]); }
+  prim(path: USDLayer_Path): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 774879337906320, this, [path]); }
   /**
    * func save() throws
    * @availability iOS 27.0+
    */
-  save(): void { return callSDK<void>("USDKit_6be9a005889899ab", 3736708125704074, this, []); }
+  save(): void { return callSDK<void>("USDKit_c1f28409f8601238", 3736708125704074, this, []); }
   /**
    * func object(at path: USDLayer.Path) -> USDStage.Object
    * @availability iOS 27.0+
    */
-  object(path: USDLayer_Path): USDStage_Object { return callSDK<USDStage_Object>("USDKit_6be9a005889899ab", 817057543162478, this, [path]); }
+  object(path: USDLayer_Path): USDStage_Object { return callSDK<USDStage_Object>("USDKit_c1f28409f8601238", 817057543162478, this, [path]); }
   /**
    * func reload() throws
    * @availability iOS 27.0+
    */
-  reload(): void { return callSDK<void>("USDKit_6be9a005889899ab", 2615330740063420, this, []); }
+  reload(): void { return callSDK<void>("USDKit_c1f28409f8601238", 2615330740063420, this, []); }
   /**
    * init(string: String, loadingPayloads: USDStage.InitialLoadRule = .all) throws
    * @availability iOS 27.0+
    */
-  static initStringLoadingPayloads(string: string, loadingPayloads?: USDStage_InitialLoadRule): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 883845800883874, undefined, [string, loadingPayloads]); }
+  static initStringLoadingPayloads(string: string, loadingPayloads?: USDStage_InitialLoadRule): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 883845800883874, undefined, [string, loadingPayloads]); }
   /**
    * var upAxis: USDToken { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get upAxis(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 1505417756332759, this, []); }
-  set upAxis(value: USDToken) { callSDK<void>("USDKit_6be9a005889899ab", 530639552729654, this, [value]); }
+  get upAxis(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 1505417756332759, this, []); }
+  set upAxis(value: USDToken) { callSDK<void>("USDKit_c1f28409f8601238", 530639552729654, this, [value]); }
   /**
    * func property(at path: USDLayer.Path) -> USDPrim.Property
    * @availability iOS 27.0+
    */
-  property(path: USDLayer_Path): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_6be9a005889899ab", 1038794976576318, this, [path]); }
+  property(path: USDLayer_Path): USDPrim_Property { return callSDK<USDPrim_Property>("USDKit_c1f28409f8601238", 1038794976576318, this, [path]); }
   /**
    * func attribute(at path: USDLayer.Path) -> USDPrim.Attribute
    * @availability iOS 27.0+
    */
-  attribute(path: USDLayer_Path): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_6be9a005889899ab", 3208729740369348, this, [path]); }
+  attribute(path: USDLayer_Path): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_c1f28409f8601238", 3208729740369348, this, [path]); }
   /**
    * func muteLayer(_ identifier: String)
    * @availability iOS 27.0+
    */
-  muteLayer(identifier: string): void { return callSDK<void>("USDKit_6be9a005889899ab", 3811154295507415, this, [identifier]); }
+  muteLayer(identifier: string): void { return callSDK<void>("USDKit_c1f28409f8601238", 3811154295507415, this, [identifier]); }
   /**
    * var rootLayer: USDLayer { get }
    * @availability iOS 27.0+
    */
-  get rootLayer(): USDLayer { return callSDK<USDLayer>("USDKit_6be9a005889899ab", 3323726638775572, this, []); }
+  get rootLayer(): USDLayer { return callSDK<USDLayer>("USDKit_c1f28409f8601238", 3323726638775572, this, []); }
   /**
    * init(_ buffer: Data, type: UTType, loadingPayloads: USDStage.InitialLoadRule = .all) throws
    * @availability iOS 27.0+
    */
-  static initTypeLoadingPayloads(buffer: ArrayBuffer, type: _UniformTypeIdentifiers_UTType, loadingPayloads?: USDStage_InitialLoadRule): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 2919435760150504, undefined, [buffer, type, loadingPayloads]); }
+  static initTypeLoadingPayloads(buffer: ArrayBuffer, type: _UniformTypeIdentifiers_UTType, loadingPayloads?: USDStage_InitialLoadRule): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 2919435760150504, undefined, [buffer, type, loadingPayloads]); }
   declare readonly $type: { "s:6USDKit8USDStageV": true };
 }
 
@@ -3479,12 +3479,12 @@ export class USDStage_EditTarget extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 307984502298191, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 307984502298191, this, []); }
   /**
    * var layer: USDLayer? { get }
    * @availability iOS 27.0+
    */
-  get layer(): (USDLayer) | null { return callSDK<(USDLayer) | null>("USDKit_6be9a005889899ab", 1352586028142479, this, []); }
+  get layer(): (USDLayer) | null { return callSDK<(USDLayer) | null>("USDKit_c1f28409f8601238", 1352586028142479, this, []); }
   declare readonly $type: { "s:6USDKit8USDStageV10EditTargetV": true };
 }
 
@@ -3497,17 +3497,17 @@ export class USDStage_ExportOptions extends SDKHandle {
    * static var preferSmallMeshFiles: USDStage.ExportOptions { get }
    * @availability iOS 27.0+
    */
-  static get preferSmallMeshFiles(): USDStage_ExportOptions { return callSDK<USDStage_ExportOptions>("USDKit_6be9a005889899ab", 1076063796338941, undefined, []); }
+  static get preferSmallMeshFiles(): USDStage_ExportOptions { return callSDK<USDStage_ExportOptions>("USDKit_c1f28409f8601238", 1076063796338941, undefined, []); }
   /**
    * static func preferSmallTextureFiles(quality: USDStage.ExportOptions.TextureQuality) -> USDStage.ExportOptions
    * @availability iOS 27.0+
    */
-  static preferSmallTextureFilesQuality(quality: USDStage_ExportOptions_TextureQuality): USDStage_ExportOptions { return callSDK<USDStage_ExportOptions>("USDKit_6be9a005889899ab", 323583891143552, undefined, [quality]); }
+  static preferSmallTextureFilesQuality(quality: USDStage_ExportOptions_TextureQuality): USDStage_ExportOptions { return callSDK<USDStage_ExportOptions>("USDKit_c1f28409f8601238", 323583891143552, undefined, [quality]); }
   /**
    * static var preferSmallTextureFiles: USDStage.ExportOptions { get }
    * @availability iOS 27.0+
    */
-  static get preferSmallTextureFiles(): USDStage_ExportOptions { return callSDK<USDStage_ExportOptions>("USDKit_6be9a005889899ab", 3458622410703637, undefined, []); }
+  static get preferSmallTextureFiles(): USDStage_ExportOptions { return callSDK<USDStage_ExportOptions>("USDKit_c1f28409f8601238", 3458622410703637, undefined, []); }
   declare readonly $type: { "s:6USDKit8USDStageV13ExportOptionsV": true };
 }
 
@@ -3526,17 +3526,17 @@ export class USDStage_ExportOptions_TextureQuality extends SDKHandle {
    * static var low: USDStage.ExportOptions.TextureQuality { get }
    * @availability iOS 27.0+
    */
-  static get low(): USDStage_ExportOptions_TextureQuality { return callSDK<USDStage_ExportOptions_TextureQuality>("USDKit_6be9a005889899ab", 4273178045819198, undefined, []); }
+  static get low(): USDStage_ExportOptions_TextureQuality { return callSDK<USDStage_ExportOptions_TextureQuality>("USDKit_c1f28409f8601238", 4273178045819198, undefined, []); }
   /**
    * static var medium: USDStage.ExportOptions.TextureQuality { get }
    * @availability iOS 27.0+
    */
-  static get medium(): USDStage_ExportOptions_TextureQuality { return callSDK<USDStage_ExportOptions_TextureQuality>("USDKit_6be9a005889899ab", 2642165783426071, undefined, []); }
+  static get medium(): USDStage_ExportOptions_TextureQuality { return callSDK<USDStage_ExportOptions_TextureQuality>("USDKit_c1f28409f8601238", 2642165783426071, undefined, []); }
   /**
    * static var standard: USDStage.ExportOptions.TextureQuality { get }
    * @availability iOS 27.0+
    */
-  static get standard(): USDStage_ExportOptions_TextureQuality { return callSDK<USDStage_ExportOptions_TextureQuality>("USDKit_6be9a005889899ab", 3635099780587032, undefined, []); }
+  static get standard(): USDStage_ExportOptions_TextureQuality { return callSDK<USDStage_ExportOptions_TextureQuality>("USDKit_c1f28409f8601238", 3635099780587032, undefined, []); }
   declare readonly $type: { "s:6USDKit8USDStageV13ExportOptionsV14TextureQualityV": true };
 }
 
@@ -3563,62 +3563,62 @@ export class USDStage_Object extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 418324640456948, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 418324640456948, this, []); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 1639540631660840, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 1639540631660840, this, []); }
   /**
    * var path: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get path(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 2832177198418202, this, []); }
+  get path(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 2832177198418202, this, []); }
   /**
    * var prim: USDPrim { get }
    * @availability iOS 27.0+
    */
-  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_6be9a005889899ab", 1572992902959868, this, []); }
+  get prim(): USDPrim { return callSDK<USDPrim>("USDKit_c1f28409f8601238", 1572992902959868, this, []); }
   /**
    * var stage: USDStage { get }
    * @availability iOS 27.0+
    */
-  get stage(): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 2816382316447069, this, []); }
+  get stage(): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 2816382316447069, this, []); }
   /**
    * var isValid: Bool { get }
    * @availability iOS 27.0+
    */
-  get isValid(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3254606842542286, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3254606842542286, this, []); }
   /**
    * var primPath: USDLayer.Path { get }
    * @availability iOS 27.0+
    */
-  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_6be9a005889899ab", 4096919288421687, this, []); }
+  get primPath(): USDLayer_Path { return callSDK<USDLayer_Path>("USDKit_c1f28409f8601238", 4096919288421687, this, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDStage_Object { return callSDK<USDStage_Object>("USDKit_6be9a005889899ab", 1345859304442039, undefined, []); }
+  static init(): USDStage_Object { return callSDK<USDStage_Object>("USDKit_c1f28409f8601238", 1345859304442039, undefined, []); }
   /**
    * init(_ relationship: USDPrim.Relationship)
    * @availability iOS 27.0+
    */
-  static init32719(relationship: USDPrim_Relationship): USDStage_Object { return callSDK<USDStage_Object>("USDKit_6be9a005889899ab", 1060979518588864, undefined, [relationship]); }
+  static init32719(relationship: USDPrim_Relationship): USDStage_Object { return callSDK<USDStage_Object>("USDKit_c1f28409f8601238", 1060979518588864, undefined, [relationship]); }
   /**
    * init(_ property: USDPrim.Property)
    * @availability iOS 27.0+
    */
-  static init86659(property: USDPrim_Property): USDStage_Object { return callSDK<USDStage_Object>("USDKit_6be9a005889899ab", 87955942915982, undefined, [property]); }
+  static init86659(property: USDPrim_Property): USDStage_Object { return callSDK<USDStage_Object>("USDKit_c1f28409f8601238", 87955942915982, undefined, [property]); }
   /**
    * init(_ attribute: USDPrim.Attribute)
    * @availability iOS 27.0+
    */
-  static init34475(attribute: USDPrim_Attribute): USDStage_Object { return callSDK<USDStage_Object>("USDKit_6be9a005889899ab", 3564528855291683, undefined, [attribute]); }
+  static init34475(attribute: USDPrim_Attribute): USDStage_Object { return callSDK<USDStage_Object>("USDKit_c1f28409f8601238", 3564528855291683, undefined, [attribute]); }
   /**
    * init(_ prim: USDPrim)
    * @availability iOS 27.0+
    */
-  static init67664(prim: USDPrim): USDStage_Object { return callSDK<USDStage_Object>("USDKit_6be9a005889899ab", 4167237799918214, undefined, [prim]); }
+  static init67664(prim: USDPrim): USDStage_Object { return callSDK<USDStage_Object>("USDKit_c1f28409f8601238", 4167237799918214, undefined, [prim]); }
   declare readonly $type: { "s:6USDKit8USDStageV6ObjectV": true };
 }
 
@@ -3647,17 +3647,17 @@ export class USDStage_ObjectsDidChange extends SDKHandle {
    * var changedPaths: some Collection<USDLayer.Path> { get }
    * @availability iOS 27.0+
    */
-  get changedPaths(): $SDK37 { return callSDK<$SDK37>("USDKit_6be9a005889899ab", 2641053020555067, this, []); }
+  get changedPaths(): $SDK37 { return callSDK<$SDK37>("USDKit_c1f28409f8601238", 2641053020555067, this, []); }
   /**
    * var resyncedPaths: some Collection<USDLayer.Path> { get }
    * @availability iOS 27.0+
    */
-  get resyncedPaths(): $SDK37 { return callSDK<$SDK37>("USDKit_6be9a005889899ab", 2586116769126778, this, []); }
+  get resyncedPaths(): $SDK37 { return callSDK<$SDK37>("USDKit_c1f28409f8601238", 2586116769126778, this, []); }
   /**
    * var stage: USDStage { get }
    * @availability iOS 27.0+
    */
-  get stage(): USDStage { return callSDK<USDStage>("USDKit_6be9a005889899ab", 1279788498419077, this, []); }
+  get stage(): USDStage { return callSDK<USDStage>("USDKit_c1f28409f8601238", 1279788498419077, this, []); }
   declare readonly $type: { "s:6USDKit8USDStageV16ObjectsDidChangeV": true };
 }
 
@@ -3678,12 +3678,12 @@ export class USDStage_OpenOptions extends SDKHandle {
    * static func loadRule(_ rule: USDStage.InitialLoadRule) -> USDStage.OpenOptions
    * @availability iOS 27.0+
    */
-  static loadRule(rule: USDStage_InitialLoadRule): USDStage_OpenOptions { return callSDK<USDStage_OpenOptions>("USDKit_6be9a005889899ab", 814216649655553, undefined, [rule]); }
+  static loadRule(rule: USDStage_InitialLoadRule): USDStage_OpenOptions { return callSDK<USDStage_OpenOptions>("USDKit_c1f28409f8601238", 814216649655553, undefined, [rule]); }
   /**
    * static var createNew: USDStage.OpenOptions { get }
    * @availability iOS 27.0+
    */
-  static get createNew(): USDStage_OpenOptions { return callSDK<USDStage_OpenOptions>("USDKit_6be9a005889899ab", 417278039275963, undefined, []); }
+  static get createNew(): USDStage_OpenOptions { return callSDK<USDStage_OpenOptions>("USDKit_c1f28409f8601238", 417278039275963, undefined, []); }
   declare readonly $type: { "s:6USDKit8USDStageV11OpenOptionsV": true };
 }
 
@@ -3702,57 +3702,57 @@ export class USDStage_TimeCode extends SDKHandle {
    * init(preTime instant: Double)
    * @availability iOS 27.0+
    */
-  static initPreTime(instant: number): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_6be9a005889899ab", 485742078326427, undefined, [instant]); }
+  static initPreTime(instant: number): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_c1f28409f8601238", 485742078326427, undefined, [instant]); }
   /**
    * init(preTime timeCode: USDLayer.TimeCode)
    * @availability iOS 27.0+
    */
-  static initPreTime19859(timeCode: USDLayer_TimeCode): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_6be9a005889899ab", 4337773404203352, undefined, [timeCode]); }
+  static initPreTime19859(timeCode: USDLayer_TimeCode): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_c1f28409f8601238", 4337773404203352, undefined, [timeCode]); }
   /**
    * var isPreTime: Bool { get }
    * @availability iOS 27.0+
    */
-  get isPreTime(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2522957962448117, this, []); }
+  get isPreTime(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2522957962448117, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 206399140156230, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 206399140156230, this, []); }
   /**
    * init(floatLiteral value: Double)
    * @availability iOS 27.0+
    */
-  static initFloatLiteral(value: number): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_6be9a005889899ab", 1120457963066051, undefined, [value]); }
+  static initFloatLiteral(value: number): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_c1f28409f8601238", 1120457963066051, undefined, [value]); }
   /**
    * var value: Double? { get }
    * @availability iOS 27.0+
    */
-  get value(): (number) | null { return callSDK<(number) | null>("USDKit_6be9a005889899ab", 1009654503347077, this, []); }
+  get value(): (number) | null { return callSDK<(number) | null>("USDKit_c1f28409f8601238", 1009654503347077, this, []); }
   /**
    * static var `default`: USDStage.TimeCode { get }
    * @availability iOS 27.0+
    */
-  static get default(): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_6be9a005889899ab", 3414204548847861, undefined, []); }
+  static get default(): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_c1f28409f8601238", 3414204548847861, undefined, []); }
   /**
    * static var earliest: USDStage.TimeCode { get }
    * @availability iOS 27.0+
    */
-  static get earliest(): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_6be9a005889899ab", 3390884940346964, undefined, []); }
+  static get earliest(): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_c1f28409f8601238", 3390884940346964, undefined, []); }
   /**
    * static func safeStep(maxValue: Double = 1e6, maxCompression: Double = 10.0) -> Double
    * @availability iOS 27.0+
    */
-  static safeStep(maxValue?: number, maxCompression?: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 1656719208400934, undefined, [maxValue, maxCompression]); }
+  static safeStep(maxValue?: number, maxCompression?: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 1656719208400934, undefined, [maxValue, maxCompression]); }
   /**
    * init(_ instant: Double)
    * @availability iOS 27.0+
    */
-  static init(instant: number): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_6be9a005889899ab", 3375226073404921, undefined, [instant]); }
+  static init(instant: number): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_c1f28409f8601238", 3375226073404921, undefined, [instant]); }
   /**
    * init(_ timeCode: USDLayer.TimeCode)
    * @availability iOS 27.0+
    */
-  static init28332(timeCode: USDLayer_TimeCode): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_6be9a005889899ab", 3720797807061841, undefined, [timeCode]); }
+  static init28332(timeCode: USDLayer_TimeCode): USDStage_TimeCode { return callSDK<USDStage_TimeCode>("USDKit_c1f28409f8601238", 3720797807061841, undefined, [timeCode]); }
   declare readonly $type: { "s:6USDKit8USDStageV8TimeCodeV": true };
 }
 
@@ -3771,67 +3771,67 @@ export class USDToken extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2676428341709430, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2676428341709430, this, []); }
   /**
    * init(stringLiteral: String)
    * @availability iOS 27.0+
    */
-  static initStringLiteral(stringLiteral: string): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 280337154667749, undefined, [stringLiteral]); }
+  static initStringLiteral(stringLiteral: string): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 280337154667749, undefined, [stringLiteral]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2054466904763183, this, []); }
+  get debugDescription(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2054466904763183, this, []); }
   /**
    * static func isValidIdentifier(_ name: String, namespaced: Bool = false) -> Bool
    * @availability iOS 27.0+
    */
-  static isValidIdentifier(name: string, namespaced?: boolean): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3616184166527822, undefined, [name, namespaced]); }
+  static isValidIdentifier(name: string, namespaced?: boolean): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3616184166527822, undefined, [name, namespaced]); }
   /**
    * init(namespaceComponents: [USDToken])
    * @availability iOS 27.0+
    */
-  static initNamespaceComponents(namespaceComponents: Array<USDToken>): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 370614254206787, undefined, [namespaceComponents]); }
+  static initNamespaceComponents(namespaceComponents: Array<USDToken>): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 370614254206787, undefined, [namespaceComponents]); }
   /**
    * var namespaceComponents: [USDToken] { get }
    * @availability iOS 27.0+
    */
-  get namespaceComponents(): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_6be9a005889899ab", 1746301100078608, this, []); }
+  get namespaceComponents(): Array<USDToken> { return callSDK<Array<USDToken>>("USDKit_c1f28409f8601238", 1746301100078608, this, []); }
   /**
    * func strippingNamespacePrefix(_ prefix: USDToken) -> USDToken?
    * @availability iOS 27.0+
    */
-  strippingNamespacePrefix(prefix: USDToken): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_6be9a005889899ab", 1102238378186866, this, [prefix]); }
+  strippingNamespacePrefix(prefix: USDToken): (USDToken) | null { return callSDK<(USDToken) | null>("USDKit_c1f28409f8601238", 1102238378186866, this, [prefix]); }
   /**
    * func strippingLeadingNamespace() -> USDToken
    * @availability iOS 27.0+
    */
-  strippingLeadingNamespace(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 3110211360232202, this, []); }
+  strippingLeadingNamespace(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 3110211360232202, this, []); }
   /**
    * var string: String { get }
    * @availability iOS 27.0+
    */
-  get string(): string { return callSDK<string>("USDKit_6be9a005889899ab", 4175868566801477, this, []); }
+  get string(): string { return callSDK<string>("USDKit_c1f28409f8601238", 4175868566801477, this, []); }
   /**
    * var isEmpty: Bool { get }
    * @availability iOS 27.0+
    */
-  get isEmpty(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 358905723892333, this, []); }
+  get isEmpty(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 358905723892333, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4259013192592575, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4259013192592575, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 516348489763768, undefined, []); }
+  static init(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 516348489763768, undefined, []); }
   /**
    * init(_ name: String)
    * @availability iOS 27.0+
    */
-  static init36178(name: string): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 1218131215602012, undefined, [name]); }
+  static init36178(name: string): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 1218131215602012, undefined, [name]); }
   declare readonly $type: { "s:6USDKit8USDTokenV": true };
 }
 
@@ -3862,62 +3862,62 @@ export class USDTransformOperation extends SDKHandle {
    * func timeSamples(in interval: ClosedRange<USDStage.TimeCode>) -> [USDStage.TimeCode]
    * @availability iOS 27.0+
    */
-  timeSamplesIn(interval: SDKHandle): $SDK19 { return callSDK<$SDK19>("USDKit_6be9a005889899ab", 578368860970786, this, [interval]); }
+  timeSamplesIn(interval: SDKHandle): $SDK19 { return callSDK<$SDK19>("USDKit_c1f28409f8601238", 578368860970786, this, [interval]); }
   /**
    * var timeSamples: [USDStage.TimeCode] { get }
    * @availability iOS 27.0+
    */
-  get timeSamples(): $SDK19 { return callSDK<$SDK19>("USDKit_6be9a005889899ab", 720116527392642, this, []); }
+  get timeSamples(): $SDK19 { return callSDK<$SDK19>("USDKit_c1f28409f8601238", 720116527392642, this, []); }
   /**
    * var hasTimeSamples: Bool { get }
    * @availability iOS 27.0+
    */
-  get hasTimeSamples(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4305456034925874, this, []); }
+  get hasTimeSamples(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4305456034925874, this, []); }
   /**
    * var kind: USDTransformOperation.Kind? { get }
    * @availability iOS 27.0+
    */
-  get kind(): (USDTransformOperation_Kind) | null { return callSDK<(USDTransformOperation_Kind) | null>("USDKit_6be9a005889899ab", 3776970293354899, this, []); }
+  get kind(): (USDTransformOperation_Kind) | null { return callSDK<(USDTransformOperation_Kind) | null>("USDKit_c1f28409f8601238", 3776970293354899, this, []); }
   /**
    * var name: USDToken { get }
    * @availability iOS 27.0+
    */
-  get name(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 4003067822406970, this, []); }
+  get name(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 4003067822406970, this, []); }
   /**
    * var baseName: USDToken { get }
    * @availability iOS 27.0+
    */
-  get baseName(): USDToken { return callSDK<USDToken>("USDKit_6be9a005889899ab", 4301480120510253, this, []); }
+  get baseName(): USDToken { return callSDK<USDToken>("USDKit_c1f28409f8601238", 4301480120510253, this, []); }
   /**
    * init(attribute: USDPrim.Attribute, inverted: Bool = false)
    * @availability iOS 27.0+
    */
-  static init(attribute: USDPrim_Attribute, inverted?: boolean): USDTransformOperation { return callSDK<USDTransformOperation>("USDKit_6be9a005889899ab", 2406473520654750, undefined, [attribute, inverted]); }
+  static init(attribute: USDPrim_Attribute, inverted?: boolean): USDTransformOperation { return callSDK<USDTransformOperation>("USDKit_c1f28409f8601238", 2406473520654750, undefined, [attribute, inverted]); }
   /**
    * var attribute: USDPrim.Attribute { get }
    * @availability iOS 27.0+
    */
-  get attribute(): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_6be9a005889899ab", 4067915815991802, this, []); }
+  get attribute(): USDPrim_Attribute { return callSDK<USDPrim_Attribute>("USDKit_c1f28409f8601238", 4067915815991802, this, []); }
   /**
    * var isDefined: Bool { get }
    * @availability iOS 27.0+
    */
-  get isDefined(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4296076209833174, this, []); }
+  get isDefined(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4296076209833174, this, []); }
   /**
    * var isInverse: Bool { get }
    * @availability iOS 27.0+
    */
-  get isInverse(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 4145884226666062, this, []); }
+  get isInverse(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 4145884226666062, this, []); }
   /**
    * var precision: USDTransformOperation.Precision { get }
    * @availability iOS 27.0+
    */
-  get precision(): USDTransformOperation_Precision { return callSDK<USDTransformOperation_Precision>("USDKit_6be9a005889899ab", 3900828679992191, this, []); }
+  get precision(): USDTransformOperation_Precision { return callSDK<USDTransformOperation_Precision>("USDKit_c1f28409f8601238", 3900828679992191, this, []); }
   /**
    * func transform(at time: USDStage.TimeCode) -> USDValue.Matrix4d
    * @availability iOS 27.0+
    */
-  transform(time: USDStage_TimeCode): USDValue_Matrix4d { return callSDK<USDValue_Matrix4d>("USDKit_6be9a005889899ab", 3154862669449651, this, [time]); }
+  transform(time: USDStage_TimeCode): USDValue_Matrix4d { return callSDK<USDValue_Matrix4d>("USDKit_c1f28409f8601238", 3154862669449651, this, [time]); }
   declare readonly $type: { "s:6USDKit21USDTransformOperationV": true };
 }
 
@@ -3942,47 +3942,47 @@ export class USDValue extends SDKHandle {
    * var arrayCount: Int? { get }
    * @availability iOS 27.0+
    */
-  get arrayCount(): (number) | null { return callSDK<(number) | null>("USDKit_6be9a005889899ab", 3502646808138027, this, []); }
+  get arrayCount(): (number) | null { return callSDK<(number) | null>("USDKit_c1f28409f8601238", 3502646808138027, this, []); }
   /**
    * func unsafeValue<T>(assumingType type: T.Type = T.self) -> T where T : USDValueProtocol
    * @availability iOS 27.0+
    */
-  unsafeValue(type?: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String"): unknown { return callSDK<unknown>("USDKit_6be9a005889899ab", 4050716836817248, this, [type]); }
+  unsafeValue(type?: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String"): unknown { return callSDK<unknown>("USDKit_c1f28409f8601238", 4050716836817248, this, [type]); }
   /**
    * func value<T>(as type: T.Type = T.self) -> T? where T : USDValueProtocol
    * @availability iOS 27.0+
    */
-  value(type?: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String"): (unknown) | null { return callSDK<(unknown) | null>("USDKit_6be9a005889899ab", 1125532685469896, this, [type]); }
+  value(type?: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String"): (unknown) | null { return callSDK<(unknown) | null>("USDKit_c1f28409f8601238", 1125532685469896, this, [type]); }
   /**
    * var isArray: Bool { get }
    * @availability iOS 27.0+
    */
-  get isArray(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3562105097538164, this, []); }
+  get isArray(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3562105097538164, this, []); }
   /**
    * var isEmpty: Bool { get }
    * @availability iOS 27.0+
    */
-  get isEmpty(): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 3965535804492606, this, []); }
+  get isEmpty(): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 3965535804492606, this, []); }
   /**
    * var typeName: String { get }
    * @availability iOS 27.0+
    */
-  get typeName(): string { return callSDK<string>("USDKit_6be9a005889899ab", 237856734265848, this, []); }
+  get typeName(): string { return callSDK<string>("USDKit_c1f28409f8601238", 237856734265848, this, []); }
   /**
    * func isHolding<T>(_ type: T.Type) -> Bool where T : USDValueProtocol
    * @availability iOS 27.0+
    */
-  isHolding(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String"): boolean { return callSDK<boolean>("USDKit_6be9a005889899ab", 2003685911101045, this, [type]); }
+  isHolding(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String"): boolean { return callSDK<boolean>("USDKit_c1f28409f8601238", 2003685911101045, this, [type]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue { return callSDK<USDValue>("USDKit_6be9a005889899ab", 1122230157460006, undefined, []); }
+  static init(): USDValue { return callSDK<USDValue>("USDKit_c1f28409f8601238", 1122230157460006, undefined, []); }
   /**
    * init<T>(_ value: T) where T : USDValueProtocol
    * @availability iOS 27.0+
    */
-  static init9821(value: number): USDValue { return callSDK<USDValue>("USDKit_6be9a005889899ab", 421587138297472, undefined, [value]); }
+  static init9821(value: number): USDValue { return callSDK<USDValue>("USDKit_c1f28409f8601238", 421587138297472, undefined, [value]); }
   declare readonly $type: { "s:6USDKit8USDValueV": true };
 }
 
@@ -3995,32 +3995,32 @@ export class USDValue_Matrix2d extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 431939076527252, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 431939076527252, this, []); }
   /**
    * subscript(column index: Int) -> USDValue.Matrix2d.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 3200460232809007, this, [index]); }
+  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 3200460232809007, this, [index]); }
   /**
    * init(diagonal s: Double)
    * @availability iOS 27.0+
    */
-  static initDiagonal(s: number): USDValue_Matrix2d { return callSDK<USDValue_Matrix2d>("USDKit_6be9a005889899ab", 2982582588233360, undefined, [s]); }
+  static initDiagonal(s: number): USDValue_Matrix2d { return callSDK<USDValue_Matrix2d>("USDKit_c1f28409f8601238", 2982582588233360, undefined, [s]); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1381279812562414, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1381279812562414, undefined, []); }
   /**
    * init(_ m00: Double, _ m01: Double, _ m10: Double, _ m11: Double)
    * @availability iOS 27.0+
    */
-  static init(m00: number, m01: number, m10: number, m11: number): USDValue_Matrix2d { return callSDK<USDValue_Matrix2d>("USDKit_6be9a005889899ab", 3686683453664244, undefined, [m00, m01, m10, m11]); }
+  static init(m00: number, m01: number, m10: number, m11: number): USDValue_Matrix2d { return callSDK<USDValue_Matrix2d>("USDKit_c1f28409f8601238", 3686683453664244, undefined, [m00, m01, m10, m11]); }
   /**
    * subscript(index: Int) -> USDValue.Matrix2d.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 2371422834496923, this, [index]); }
+  subscript(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 2371422834496923, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV8Matrix2dV": true };
 }
 
@@ -4039,27 +4039,27 @@ export class USDValue_Matrix2f extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 3483976613913628, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 3483976613913628, this, []); }
   /**
    * subscript(column index: Int) -> USDValue.Matrix2f.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 588906946984194, this, [index]); }
+  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 588906946984194, this, [index]); }
   /**
    * init(diagonal s: Float)
    * @availability iOS 27.0+
    */
-  static initDiagonal(s: number): USDValue_Matrix2f { return callSDK<USDValue_Matrix2f>("USDKit_6be9a005889899ab", 802565255850101, undefined, [s]); }
+  static initDiagonal(s: number): USDValue_Matrix2f { return callSDK<USDValue_Matrix2f>("USDKit_c1f28409f8601238", 802565255850101, undefined, [s]); }
   /**
    * init(_ m00: Float, _ m01: Float, _ m10: Float, _ m11: Float)
    * @availability iOS 27.0+
    */
-  static init(m00: number, m01: number, m10: number, m11: number): USDValue_Matrix2f { return callSDK<USDValue_Matrix2f>("USDKit_6be9a005889899ab", 3090111562052167, undefined, [m00, m01, m10, m11]); }
+  static init(m00: number, m01: number, m10: number, m11: number): USDValue_Matrix2f { return callSDK<USDValue_Matrix2f>("USDKit_c1f28409f8601238", 3090111562052167, undefined, [m00, m01, m10, m11]); }
   /**
    * subscript(index: Int) -> USDValue.Matrix2f.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 1220554796053663, this, [index]); }
+  subscript(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 1220554796053663, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV8Matrix2fV": true };
 }
 
@@ -4078,42 +4078,42 @@ export class USDValue_Matrix3d extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 4166545132950099, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 4166545132950099, this, []); }
   /**
    * subscript(column index: Int) -> USDValue.Matrix3d.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 2754754865467078, this, [index]); }
+  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 2754754865467078, this, [index]); }
   /**
    * var matrix: double3x3 { get }
    * @availability iOS 27.0+
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 2199845118491681, this, []); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 2199845118491681, this, []); }
   /**
    * init(diagonal s: Double)
    * @availability iOS 27.0+
    */
-  static initDiagonal(s: number): USDValue_Matrix3d { return callSDK<USDValue_Matrix3d>("USDKit_6be9a005889899ab", 60191598884615, undefined, [s]); }
+  static initDiagonal(s: number): USDValue_Matrix3d { return callSDK<USDValue_Matrix3d>("USDKit_c1f28409f8601238", 60191598884615, undefined, [s]); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4316937536434415, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4316937536434415, undefined, []); }
   /**
    * init(_ m00: Double, _ m01: Double, _ m02: Double, _ m10: Double, _ m11: Double, _ m12: Double, _ m20: Double, _ m21: Double, _ m22: Double)
    * @availability iOS 27.0+
    */
-  static init(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number): USDValue_Matrix3d { return callSDK<USDValue_Matrix3d>("USDKit_6be9a005889899ab", 958490132241480, undefined, [m00, m01, m02, m10, m11, m12, m20, m21, m22]); }
+  static init(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number): USDValue_Matrix3d { return callSDK<USDValue_Matrix3d>("USDKit_c1f28409f8601238", 958490132241480, undefined, [m00, m01, m02, m10, m11, m12, m20, m21, m22]); }
   /**
    * init(_ matrix: double3x3)
    * @availability iOS 27.0+
    */
-  static init18381(matrix: SDKHandle): USDValue_Matrix3d { return callSDK<USDValue_Matrix3d>("USDKit_6be9a005889899ab", 1157492097026191, undefined, [matrix]); }
+  static init18381(matrix: SDKHandle): USDValue_Matrix3d { return callSDK<USDValue_Matrix3d>("USDKit_c1f28409f8601238", 1157492097026191, undefined, [matrix]); }
   /**
    * subscript(index: Int) -> USDValue.Matrix3d.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 3208437720460178, this, [index]); }
+  subscript(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 3208437720460178, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV8Matrix3dV": true };
 }
 
@@ -4132,37 +4132,37 @@ export class USDValue_Matrix3f extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 4160387124641599, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 4160387124641599, this, []); }
   /**
    * subscript(column index: Int) -> USDValue.Matrix3f.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 429647051517758, this, [index]); }
+  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 429647051517758, this, [index]); }
   /**
    * var matrix: float3x3 { get }
    * @availability iOS 27.0+
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 984403950040565, this, []); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 984403950040565, this, []); }
   /**
    * init(diagonal s: Float)
    * @availability iOS 27.0+
    */
-  static initDiagonal(s: number): USDValue_Matrix3f { return callSDK<USDValue_Matrix3f>("USDKit_6be9a005889899ab", 4446751827656085, undefined, [s]); }
+  static initDiagonal(s: number): USDValue_Matrix3f { return callSDK<USDValue_Matrix3f>("USDKit_c1f28409f8601238", 4446751827656085, undefined, [s]); }
   /**
    * init(_ m00: Float, _ m01: Float, _ m02: Float, _ m10: Float, _ m11: Float, _ m12: Float, _ m20: Float, _ m21: Float, _ m22: Float)
    * @availability iOS 27.0+
    */
-  static init(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number): USDValue_Matrix3f { return callSDK<USDValue_Matrix3f>("USDKit_6be9a005889899ab", 352614462075720, undefined, [m00, m01, m02, m10, m11, m12, m20, m21, m22]); }
+  static init(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number): USDValue_Matrix3f { return callSDK<USDValue_Matrix3f>("USDKit_c1f28409f8601238", 352614462075720, undefined, [m00, m01, m02, m10, m11, m12, m20, m21, m22]); }
   /**
    * init(_ matrix: float3x3)
    * @availability iOS 27.0+
    */
-  static init10355(matrix: SDKHandle): USDValue_Matrix3f { return callSDK<USDValue_Matrix3f>("USDKit_6be9a005889899ab", 1577220560268121, undefined, [matrix]); }
+  static init10355(matrix: SDKHandle): USDValue_Matrix3f { return callSDK<USDValue_Matrix3f>("USDKit_c1f28409f8601238", 1577220560268121, undefined, [matrix]); }
   /**
    * subscript(index: Int) -> USDValue.Matrix3f.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 574217294699677, this, [index]); }
+  subscript(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 574217294699677, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV8Matrix3fV": true };
 }
 
@@ -4181,47 +4181,47 @@ export class USDValue_Matrix4d extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 3149497235496767, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 3149497235496767, this, []); }
   /**
    * var projectiveTransform: ProjectiveTransform3D { get }
    * @availability iOS 27.0+
    */
-  get projectiveTransform(): _Spatial_ProjectiveTransform3D { return callSDK<_Spatial_ProjectiveTransform3D>("USDKit_6be9a005889899ab", 429202752031371, this, []); }
+  get projectiveTransform(): _Spatial_ProjectiveTransform3D { return callSDK<_Spatial_ProjectiveTransform3D>("USDKit_c1f28409f8601238", 429202752031371, this, []); }
   /**
    * subscript(column index: Int) -> USDValue.Matrix4d.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 4284600938002537, this, [index]); }
+  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 4284600938002537, this, [index]); }
   /**
    * init(diagonal s: Double)
    * @availability iOS 27.0+
    */
-  static initDiagonal(s: number): USDValue_Matrix4d { return callSDK<USDValue_Matrix4d>("USDKit_6be9a005889899ab", 1664488541372453, undefined, [s]); }
+  static initDiagonal(s: number): USDValue_Matrix4d { return callSDK<USDValue_Matrix4d>("USDKit_c1f28409f8601238", 1664488541372453, undefined, [s]); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2734990691927615, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2734990691927615, undefined, []); }
   /**
    * init(_ m00: Double, _ m01: Double, _ m02: Double, _ m03: Double, _ m10: Double, _ m11: Double, _ m12: Double, _ m13: Double, _ m20: Double, _ m21: Double, _ m22: Double, _ m23: Double, _ m30: Double, _ m31: Double, _ m32: Double, _ m33: Double)
    * @availability iOS 27.0+
    */
-  static init(m00: number, m01: number, m02: number, m03: number, m10: number, m11: number, m12: number, m13: number, m20: number, m21: number, m22: number, m23: number, m30: number, m31: number, m32: number, m33: number): USDValue_Matrix4d { return callSDK<USDValue_Matrix4d>("USDKit_6be9a005889899ab", 28175486796743, undefined, [m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33]); }
+  static init(m00: number, m01: number, m02: number, m03: number, m10: number, m11: number, m12: number, m13: number, m20: number, m21: number, m22: number, m23: number, m30: number, m31: number, m32: number, m33: number): USDValue_Matrix4d { return callSDK<USDValue_Matrix4d>("USDKit_c1f28409f8601238", 28175486796743, undefined, [m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33]); }
   /**
    * init(_ projectiveTransform: ProjectiveTransform3D)
    * @availability iOS 27.0+
    */
-  static init33152(projectiveTransform: _Spatial_ProjectiveTransform3D): USDValue_Matrix4d { return callSDK<USDValue_Matrix4d>("USDKit_6be9a005889899ab", 1447040832785782, undefined, [projectiveTransform]); }
+  static init33152(projectiveTransform: _Spatial_ProjectiveTransform3D): USDValue_Matrix4d { return callSDK<USDValue_Matrix4d>("USDKit_c1f28409f8601238", 1447040832785782, undefined, [projectiveTransform]); }
   /**
    * init(_ projectiveTransform: ProjectiveTransform3DFloat)
    * @availability iOS 27.0+
    */
-  static init85405(projectiveTransform: _Spatial_ProjectiveTransform3DFloat): USDValue_Matrix4d { return callSDK<USDValue_Matrix4d>("USDKit_6be9a005889899ab", 1345447789472649, undefined, [projectiveTransform]); }
+  static init85405(projectiveTransform: _Spatial_ProjectiveTransform3DFloat): USDValue_Matrix4d { return callSDK<USDValue_Matrix4d>("USDKit_c1f28409f8601238", 1345447789472649, undefined, [projectiveTransform]); }
   /**
    * subscript(index: Int) -> USDValue.Matrix4d.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 3230259689251207, this, [index]); }
+  subscript(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 3230259689251207, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV8Matrix4dV": true };
 }
 
@@ -4240,37 +4240,37 @@ export class USDValue_Matrix4f extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2413883833884951, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2413883833884951, this, []); }
   /**
    * var projectiveTransform: ProjectiveTransform3DFloat { get }
    * @availability iOS 27.0+
    */
-  get projectiveTransform(): _Spatial_ProjectiveTransform3DFloat { return callSDK<_Spatial_ProjectiveTransform3DFloat>("USDKit_6be9a005889899ab", 3506493505681070, this, []); }
+  get projectiveTransform(): _Spatial_ProjectiveTransform3DFloat { return callSDK<_Spatial_ProjectiveTransform3DFloat>("USDKit_c1f28409f8601238", 3506493505681070, this, []); }
   /**
    * subscript(column index: Int) -> USDValue.Matrix4f.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 1049145391074813, this, [index]); }
+  subscriptColumn(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 1049145391074813, this, [index]); }
   /**
    * init(diagonal s: Float)
    * @availability iOS 27.0+
    */
-  static initDiagonal(s: number): USDValue_Matrix4f { return callSDK<USDValue_Matrix4f>("USDKit_6be9a005889899ab", 287416756813850, undefined, [s]); }
+  static initDiagonal(s: number): USDValue_Matrix4f { return callSDK<USDValue_Matrix4f>("USDKit_c1f28409f8601238", 287416756813850, undefined, [s]); }
   /**
    * init(_ m00: Float, _ m01: Float, _ m02: Float, _ m03: Float, _ m10: Float, _ m11: Float, _ m12: Float, _ m13: Float, _ m20: Float, _ m21: Float, _ m22: Float, _ m23: Float, _ m30: Float, _ m31: Float, _ m32: Float, _ m33: Float)
    * @availability iOS 27.0+
    */
-  static init(m00: number, m01: number, m02: number, m03: number, m10: number, m11: number, m12: number, m13: number, m20: number, m21: number, m22: number, m23: number, m30: number, m31: number, m32: number, m33: number): USDValue_Matrix4f { return callSDK<USDValue_Matrix4f>("USDKit_6be9a005889899ab", 293028776816901, undefined, [m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33]); }
+  static init(m00: number, m01: number, m02: number, m03: number, m10: number, m11: number, m12: number, m13: number, m20: number, m21: number, m22: number, m23: number, m30: number, m31: number, m32: number, m33: number): USDValue_Matrix4f { return callSDK<USDValue_Matrix4f>("USDKit_c1f28409f8601238", 293028776816901, undefined, [m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33]); }
   /**
    * init(_ projectiveTransform: ProjectiveTransform3DFloat)
    * @availability iOS 27.0+
    */
-  static init62011(projectiveTransform: _Spatial_ProjectiveTransform3DFloat): USDValue_Matrix4f { return callSDK<USDValue_Matrix4f>("USDKit_6be9a005889899ab", 2579933046873692, undefined, [projectiveTransform]); }
+  static init62011(projectiveTransform: _Spatial_ProjectiveTransform3DFloat): USDValue_Matrix4f { return callSDK<USDValue_Matrix4f>("USDKit_c1f28409f8601238", 2579933046873692, undefined, [projectiveTransform]); }
   /**
    * subscript(index: Int) -> USDValue.Matrix4f.VectorType { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number[] { return callSDK<number[]>("USDKit_6be9a005889899ab", 262805723316170, this, [index]); }
+  subscript(index: number): number[] { return callSDK<number[]>("USDKit_c1f28409f8601238", 262805723316170, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV8Matrix4fV": true };
 }
 
@@ -4289,44 +4289,44 @@ export class USDValue_Quatd extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 355363192263652, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 355363192263652, this, []); }
   /**
    * init(real: Double, imaginary: USDValue.Vec3d)
    * @availability iOS 27.0+
    */
-  static initRealImaginary(real: number, imaginary: USDValue_Vec3d): USDValue_Quatd { return callSDK<USDValue_Quatd>("USDKit_6be9a005889899ab", 4414224970127346, undefined, [real, imaginary]); }
+  static initRealImaginary(real: number, imaginary: USDValue_Vec3d): USDValue_Quatd { return callSDK<USDValue_Quatd>("USDKit_c1f28409f8601238", 4414224970127346, undefined, [real, imaginary]); }
   /**
    * var real: Double { get set }
    * @availability iOS 27.0+
    */
-  get real(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1296083396558320, this, []); }
-  set real(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 984376401323993, this, [value]); }
+  get real(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1296083396558320, this, []); }
+  set real(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 984376401323993, this, [value]); }
   /**
    * static var zero: USDValue.Quatd { get }
    * @availability iOS 27.0+
    */
-  static get zero(): USDValue_Quatd { return callSDK<USDValue_Quatd>("USDKit_6be9a005889899ab", 1944909107857610, undefined, []); }
+  static get zero(): USDValue_Quatd { return callSDK<USDValue_Quatd>("USDKit_c1f28409f8601238", 1944909107857610, undefined, []); }
   /**
    * static var identity: USDValue.Quatd { get }
    * @availability iOS 27.0+
    */
-  static get identity(): USDValue_Quatd { return callSDK<USDValue_Quatd>("USDKit_6be9a005889899ab", 1596508976902718, undefined, []); }
+  static get identity(): USDValue_Quatd { return callSDK<USDValue_Quatd>("USDKit_c1f28409f8601238", 1596508976902718, undefined, []); }
   /**
    * var imaginary: USDValue.Vec3d { get set }
    * @availability iOS 27.0+
    */
-  get imaginary(): USDValue_Vec3d { return callSDK<USDValue_Vec3d>("USDKit_6be9a005889899ab", 2163818483095864, this, []); }
-  set imaginary(value: USDValue_Vec3d) { callSDK<void>("USDKit_6be9a005889899ab", 4288674353845791, this, [value]); }
+  get imaginary(): USDValue_Vec3d { return callSDK<USDValue_Vec3d>("USDKit_c1f28409f8601238", 2163818483095864, this, []); }
+  set imaginary(value: USDValue_Vec3d) { callSDK<void>("USDKit_c1f28409f8601238", 4288674353845791, this, [value]); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3323876603482365, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3323876603482365, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Quatd { return callSDK<USDValue_Quatd>("USDKit_6be9a005889899ab", 2493949721078700, undefined, []); }
+  static init(): USDValue_Quatd { return callSDK<USDValue_Quatd>("USDKit_c1f28409f8601238", 2493949721078700, undefined, []); }
   declare readonly $type: { "s:6USDKit8USDValueV5QuatdV": true };
 }
 
@@ -4339,44 +4339,44 @@ export class USDValue_Quatf extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1611017035226340, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1611017035226340, this, []); }
   /**
    * init(real: Float, imaginary: USDValue.Vec3f)
    * @availability iOS 27.0+
    */
-  static initRealImaginary(real: number, imaginary: USDValue_Vec3f): USDValue_Quatf { return callSDK<USDValue_Quatf>("USDKit_6be9a005889899ab", 129882513655151, undefined, [real, imaginary]); }
+  static initRealImaginary(real: number, imaginary: USDValue_Vec3f): USDValue_Quatf { return callSDK<USDValue_Quatf>("USDKit_c1f28409f8601238", 129882513655151, undefined, [real, imaginary]); }
   /**
    * var real: Float { get set }
    * @availability iOS 27.0+
    */
-  get real(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3684592795646584, this, []); }
-  set real(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 1874394457534031, this, [value]); }
+  get real(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3684592795646584, this, []); }
+  set real(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 1874394457534031, this, [value]); }
   /**
    * static var zero: USDValue.Quatf { get }
    * @availability iOS 27.0+
    */
-  static get zero(): USDValue_Quatf { return callSDK<USDValue_Quatf>("USDKit_6be9a005889899ab", 1040149904378597, undefined, []); }
+  static get zero(): USDValue_Quatf { return callSDK<USDValue_Quatf>("USDKit_c1f28409f8601238", 1040149904378597, undefined, []); }
   /**
    * static var identity: USDValue.Quatf { get }
    * @availability iOS 27.0+
    */
-  static get identity(): USDValue_Quatf { return callSDK<USDValue_Quatf>("USDKit_6be9a005889899ab", 1950207694722961, undefined, []); }
+  static get identity(): USDValue_Quatf { return callSDK<USDValue_Quatf>("USDKit_c1f28409f8601238", 1950207694722961, undefined, []); }
   /**
    * var imaginary: USDValue.Vec3f { get set }
    * @availability iOS 27.0+
    */
-  get imaginary(): USDValue_Vec3f { return callSDK<USDValue_Vec3f>("USDKit_6be9a005889899ab", 1596166328383091, this, []); }
-  set imaginary(value: USDValue_Vec3f) { callSDK<void>("USDKit_6be9a005889899ab", 2219128322109080, this, [value]); }
+  get imaginary(): USDValue_Vec3f { return callSDK<USDValue_Vec3f>("USDKit_c1f28409f8601238", 1596166328383091, this, []); }
+  set imaginary(value: USDValue_Vec3f) { callSDK<void>("USDKit_c1f28409f8601238", 2219128322109080, this, [value]); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1514984856420849, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1514984856420849, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Quatf { return callSDK<USDValue_Quatf>("USDKit_6be9a005889899ab", 3816899859591725, undefined, []); }
+  static init(): USDValue_Quatf { return callSDK<USDValue_Quatf>("USDKit_c1f28409f8601238", 3816899859591725, undefined, []); }
   declare readonly $type: { "s:6USDKit8USDValueV5QuatfV": true };
 }
 
@@ -4389,44 +4389,44 @@ export class USDValue_Quath extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 33834619805338, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 33834619805338, this, []); }
   /**
    * init(real: Float16, imaginary: USDValue.Vec3h)
    * @availability iOS 27.0+
    */
-  static initRealImaginary(real: number, imaginary: USDValue_Vec3h): USDValue_Quath { return callSDK<USDValue_Quath>("USDKit_6be9a005889899ab", 1551685066474361, undefined, [real, imaginary]); }
+  static initRealImaginary(real: number, imaginary: USDValue_Vec3h): USDValue_Quath { return callSDK<USDValue_Quath>("USDKit_c1f28409f8601238", 1551685066474361, undefined, [real, imaginary]); }
   /**
    * var real: Float16 { get set }
    * @availability iOS 27.0+
    */
-  get real(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1263017662463440, this, []); }
-  set real(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3124927837164391, this, [value]); }
+  get real(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1263017662463440, this, []); }
+  set real(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3124927837164391, this, [value]); }
   /**
    * static var zero: USDValue.Quath { get }
    * @availability iOS 27.0+
    */
-  static get zero(): USDValue_Quath { return callSDK<USDValue_Quath>("USDKit_6be9a005889899ab", 2420266138653338, undefined, []); }
+  static get zero(): USDValue_Quath { return callSDK<USDValue_Quath>("USDKit_c1f28409f8601238", 2420266138653338, undefined, []); }
   /**
    * static var identity: USDValue.Quath { get }
    * @availability iOS 27.0+
    */
-  static get identity(): USDValue_Quath { return callSDK<USDValue_Quath>("USDKit_6be9a005889899ab", 4463179894131751, undefined, []); }
+  static get identity(): USDValue_Quath { return callSDK<USDValue_Quath>("USDKit_c1f28409f8601238", 4463179894131751, undefined, []); }
   /**
    * var imaginary: USDValue.Vec3h { get set }
    * @availability iOS 27.0+
    */
-  get imaginary(): USDValue_Vec3h { return callSDK<USDValue_Vec3h>("USDKit_6be9a005889899ab", 4016885413940618, this, []); }
-  set imaginary(value: USDValue_Vec3h) { callSDK<void>("USDKit_6be9a005889899ab", 157026343203552, this, [value]); }
+  get imaginary(): USDValue_Vec3h { return callSDK<USDValue_Vec3h>("USDKit_c1f28409f8601238", 4016885413940618, this, []); }
+  set imaginary(value: USDValue_Vec3h) { callSDK<void>("USDKit_c1f28409f8601238", 157026343203552, this, [value]); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3919529681033535, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3919529681033535, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Quath { return callSDK<USDValue_Quath>("USDKit_6be9a005889899ab", 1208017965600918, undefined, []); }
+  static init(): USDValue_Quath { return callSDK<USDValue_Quath>("USDKit_c1f28409f8601238", 1208017965600918, undefined, []); }
   declare readonly $type: { "s:6USDKit8USDValueV5QuathV": true };
 }
 
@@ -4439,49 +4439,49 @@ export class USDValue_Vec2d extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 34297397010901, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 34297397010901, this, []); }
   /**
    * var x: Double { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 66899048961444, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 1005640690757466, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 66899048961444, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 1005640690757466, this, [value]); }
   /**
    * var y: Double { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 538860112833850, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 4172421138734630, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 538860112833850, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 4172421138734630, this, [value]); }
   /**
    * var simd: SIMD2<Double> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 2806905222712937, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 2806905222712937, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1893808643980093, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1893808643980093, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec2d { return callSDK<USDValue_Vec2d>("USDKit_6be9a005889899ab", 3918832251969653, undefined, []); }
+  static init(): USDValue_Vec2d { return callSDK<USDValue_Vec2d>("USDKit_c1f28409f8601238", 3918832251969653, undefined, []); }
   /**
    * init(_ x: Double, _ y: Double)
    * @availability iOS 27.0+
    */
-  static init58230(x: number, y: number): USDValue_Vec2d { return callSDK<USDValue_Vec2d>("USDKit_6be9a005889899ab", 1280320841285756, undefined, [x, y]); }
+  static init58230(x: number, y: number): USDValue_Vec2d { return callSDK<USDValue_Vec2d>("USDKit_c1f28409f8601238", 1280320841285756, undefined, [x, y]); }
   /**
    * init(_ simd: SIMD2<Double>)
    * @availability iOS 27.0+
    */
-  static init64665(simd: SDKHandle): USDValue_Vec2d { return callSDK<USDValue_Vec2d>("USDKit_6be9a005889899ab", 4494501466598225, undefined, [simd]); }
+  static init64665(simd: SDKHandle): USDValue_Vec2d { return callSDK<USDValue_Vec2d>("USDKit_c1f28409f8601238", 4494501466598225, undefined, [simd]); }
   /**
    * subscript(index: Int) -> Double { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 1869572004435722, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 1869572004435722, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec2dV": true };
 }
 
@@ -4494,49 +4494,49 @@ export class USDValue_Vec2f extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1195290825617936, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1195290825617936, this, []); }
   /**
    * var x: Float { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 869348236577143, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3644394350181509, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 869348236577143, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3644394350181509, this, [value]); }
   /**
    * var y: Float { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 2354480431298030, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3567772759610930, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 2354480431298030, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3567772759610930, this, [value]); }
   /**
    * var simd: SIMD2<Float> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 3705848239623761, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 3705848239623761, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2913821983152677, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2913821983152677, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec2f { return callSDK<USDValue_Vec2f>("USDKit_6be9a005889899ab", 1029637639056682, undefined, []); }
+  static init(): USDValue_Vec2f { return callSDK<USDValue_Vec2f>("USDKit_c1f28409f8601238", 1029637639056682, undefined, []); }
   /**
    * init(_ x: Float, _ y: Float)
    * @availability iOS 27.0+
    */
-  static init28008(x: number, y: number): USDValue_Vec2f { return callSDK<USDValue_Vec2f>("USDKit_6be9a005889899ab", 1104690800237786, undefined, [x, y]); }
+  static init28008(x: number, y: number): USDValue_Vec2f { return callSDK<USDValue_Vec2f>("USDKit_c1f28409f8601238", 1104690800237786, undefined, [x, y]); }
   /**
    * init(_ simd: SIMD2<Float>)
    * @availability iOS 27.0+
    */
-  static init7273(simd: SDKHandle): USDValue_Vec2f { return callSDK<USDValue_Vec2f>("USDKit_6be9a005889899ab", 3808894375997761, undefined, [simd]); }
+  static init7273(simd: SDKHandle): USDValue_Vec2f { return callSDK<USDValue_Vec2f>("USDKit_c1f28409f8601238", 3808894375997761, undefined, [simd]); }
   /**
    * subscript(index: Int) -> Float { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 3709779066854000, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 3709779066854000, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec2fV": true };
 }
 
@@ -4549,44 +4549,44 @@ export class USDValue_Vec2h extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 4460449379727179, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 4460449379727179, this, []); }
   /**
    * var x: Float16 { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 670068150764345, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 4080736657490441, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 670068150764345, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 4080736657490441, this, [value]); }
   /**
    * var y: Float16 { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3392328496894857, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2172092466568850, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3392328496894857, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2172092466568850, this, [value]); }
   /**
    * var simd: SIMD2<Float16> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 3783186713603903, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 3783186713603903, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 844195153021671, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 844195153021671, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec2h { return callSDK<USDValue_Vec2h>("USDKit_6be9a005889899ab", 3267182234984363, undefined, []); }
+  static init(): USDValue_Vec2h { return callSDK<USDValue_Vec2h>("USDKit_c1f28409f8601238", 3267182234984363, undefined, []); }
   /**
    * init(_ x: Float16, _ y: Float16)
    * @availability iOS 27.0+
    */
-  static init16805(x: number, y: number): USDValue_Vec2h { return callSDK<USDValue_Vec2h>("USDKit_6be9a005889899ab", 3472184457942974, undefined, [x, y]); }
+  static init16805(x: number, y: number): USDValue_Vec2h { return callSDK<USDValue_Vec2h>("USDKit_c1f28409f8601238", 3472184457942974, undefined, [x, y]); }
   /**
    * subscript(index: Int) -> Float16 { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 3452390677723982, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 3452390677723982, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec2hV": true };
 }
 
@@ -4599,54 +4599,54 @@ export class USDValue_Vec2i extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 255954942792120, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 255954942792120, this, []); }
   /**
    * var x: Int32 { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3623865553079610, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 4291032356925227, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3623865553079610, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 4291032356925227, this, [value]); }
   /**
    * var y: Int32 { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3159041745292506, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2692662758558355, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3159041745292506, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2692662758558355, this, [value]); }
   /**
    * var simd: SIMD2<Int32> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 712706761530565, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 712706761530565, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2223746845519621, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2223746845519621, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec2i { return callSDK<USDValue_Vec2i>("USDKit_6be9a005889899ab", 3244661747998193, undefined, []); }
+  static init(): USDValue_Vec2i { return callSDK<USDValue_Vec2i>("USDKit_c1f28409f8601238", 3244661747998193, undefined, []); }
   /**
    * init(_ x: Int, _ y: Int)
    * @availability iOS 27.0+
    */
-  static init38321(x: number, y: number): USDValue_Vec2i { return callSDK<USDValue_Vec2i>("USDKit_6be9a005889899ab", 4199595500541775, undefined, [x, y]); }
+  static init38321(x: number, y: number): USDValue_Vec2i { return callSDK<USDValue_Vec2i>("USDKit_c1f28409f8601238", 4199595500541775, undefined, [x, y]); }
   /**
    * init(_ x: Int32, _ y: Int32)
    * @availability iOS 27.0+
    */
-  static init24323(x: number, y: number): USDValue_Vec2i { return callSDK<USDValue_Vec2i>("USDKit_6be9a005889899ab", 2950629472334710, undefined, [x, y]); }
+  static init24323(x: number, y: number): USDValue_Vec2i { return callSDK<USDValue_Vec2i>("USDKit_c1f28409f8601238", 2950629472334710, undefined, [x, y]); }
   /**
    * init(_ simd: SIMD2<Int32>)
    * @availability iOS 27.0+
    */
-  static init97661(simd: SDKHandle): USDValue_Vec2i { return callSDK<USDValue_Vec2i>("USDKit_6be9a005889899ab", 3249864363218076, undefined, [simd]); }
+  static init97661(simd: SDKHandle): USDValue_Vec2i { return callSDK<USDValue_Vec2i>("USDKit_c1f28409f8601238", 3249864363218076, undefined, [simd]); }
   /**
    * subscript(index: Int) -> Int32 { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 515407912801383, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 515407912801383, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec2iV": true };
 }
 
@@ -4659,55 +4659,55 @@ export class USDValue_Vec3d extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1142114804726795, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1142114804726795, this, []); }
   /**
    * var x: Double { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3321227604678558, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 4010800740557723, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3321227604678558, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 4010800740557723, this, [value]); }
   /**
    * var y: Double { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 186613469197935, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 1244961903121287, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 186613469197935, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 1244961903121287, this, [value]); }
   /**
    * var z: Double { get set }
    * @availability iOS 27.0+
    */
-  get z(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1719931187932182, this, []); }
-  set z(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3498249562687421, this, [value]); }
+  get z(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1719931187932182, this, []); }
+  set z(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3498249562687421, this, [value]); }
   /**
    * var simd: SIMD3<Double> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 534155530994751, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 534155530994751, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3580171048523087, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3580171048523087, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec3d { return callSDK<USDValue_Vec3d>("USDKit_6be9a005889899ab", 2997401791210022, undefined, []); }
+  static init(): USDValue_Vec3d { return callSDK<USDValue_Vec3d>("USDKit_c1f28409f8601238", 2997401791210022, undefined, []); }
   /**
    * init(_ x: Double, _ y: Double, _ z: Double)
    * @availability iOS 27.0+
    */
-  static init29309(x: number, y: number, z: number): USDValue_Vec3d { return callSDK<USDValue_Vec3d>("USDKit_6be9a005889899ab", 2883692824736877, undefined, [x, y, z]); }
+  static init29309(x: number, y: number, z: number): USDValue_Vec3d { return callSDK<USDValue_Vec3d>("USDKit_c1f28409f8601238", 2883692824736877, undefined, [x, y, z]); }
   /**
    * init(_ simd: SIMD3<Double>)
    * @availability iOS 27.0+
    */
-  static init58297(simd: SDKHandle): USDValue_Vec3d { return callSDK<USDValue_Vec3d>("USDKit_6be9a005889899ab", 1997331148084370, undefined, [simd]); }
+  static init58297(simd: SDKHandle): USDValue_Vec3d { return callSDK<USDValue_Vec3d>("USDKit_c1f28409f8601238", 1997331148084370, undefined, [simd]); }
   /**
    * subscript(index: Int) -> Double { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 845908952100173, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 845908952100173, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec3dV": true };
 }
 
@@ -4726,55 +4726,55 @@ export class USDValue_Vec3f extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 640453157811176, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 640453157811176, this, []); }
   /**
    * var x: Float { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 2017474835319128, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2393102972562088, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 2017474835319128, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2393102972562088, this, [value]); }
   /**
    * var y: Float { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1943918221297254, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2526249652540834, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1943918221297254, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2526249652540834, this, [value]); }
   /**
    * var z: Float { get set }
    * @availability iOS 27.0+
    */
-  get z(): number { return callSDK<number>("USDKit_6be9a005889899ab", 4022947832397557, this, []); }
-  set z(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 174500858781435, this, [value]); }
+  get z(): number { return callSDK<number>("USDKit_c1f28409f8601238", 4022947832397557, this, []); }
+  set z(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 174500858781435, this, [value]); }
   /**
    * var simd: SIMD3<Float> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 2697373487795429, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 2697373487795429, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1300344550778587, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1300344550778587, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec3f { return callSDK<USDValue_Vec3f>("USDKit_6be9a005889899ab", 3705262421657924, undefined, []); }
+  static init(): USDValue_Vec3f { return callSDK<USDValue_Vec3f>("USDKit_c1f28409f8601238", 3705262421657924, undefined, []); }
   /**
    * init(_ x: Float, _ y: Float, _ z: Float)
    * @availability iOS 27.0+
    */
-  static init80687(x: number, y: number, z: number): USDValue_Vec3f { return callSDK<USDValue_Vec3f>("USDKit_6be9a005889899ab", 3300939484856192, undefined, [x, y, z]); }
+  static init80687(x: number, y: number, z: number): USDValue_Vec3f { return callSDK<USDValue_Vec3f>("USDKit_c1f28409f8601238", 3300939484856192, undefined, [x, y, z]); }
   /**
    * init(_ simd: SIMD3<Float>)
    * @availability iOS 27.0+
    */
-  static init50765(simd: SDKHandle): USDValue_Vec3f { return callSDK<USDValue_Vec3f>("USDKit_6be9a005889899ab", 3090092629736963, undefined, [simd]); }
+  static init50765(simd: SDKHandle): USDValue_Vec3f { return callSDK<USDValue_Vec3f>("USDKit_c1f28409f8601238", 3090092629736963, undefined, [simd]); }
   /**
    * subscript(index: Int) -> Float { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 3117484489863101, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 3117484489863101, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec3fV": true };
 }
 
@@ -4793,50 +4793,50 @@ export class USDValue_Vec3h extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1461650677100172, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1461650677100172, this, []); }
   /**
    * var x: Float16 { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 4489714449495909, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2933853347530957, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 4489714449495909, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2933853347530957, this, [value]); }
   /**
    * var y: Float16 { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 2365284252980010, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2302942268925701, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 2365284252980010, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2302942268925701, this, [value]); }
   /**
    * var z: Float16 { get set }
    * @availability iOS 27.0+
    */
-  get z(): number { return callSDK<number>("USDKit_6be9a005889899ab", 471003534144280, this, []); }
-  set z(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3600274702488884, this, [value]); }
+  get z(): number { return callSDK<number>("USDKit_c1f28409f8601238", 471003534144280, this, []); }
+  set z(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3600274702488884, this, [value]); }
   /**
    * var simd: SIMD3<Float16> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 4115792381435959, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 4115792381435959, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 1714677796425524, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 1714677796425524, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec3h { return callSDK<USDValue_Vec3h>("USDKit_6be9a005889899ab", 1499616101789500, undefined, []); }
+  static init(): USDValue_Vec3h { return callSDK<USDValue_Vec3h>("USDKit_c1f28409f8601238", 1499616101789500, undefined, []); }
   /**
    * init(_ x: Float16, _ y: Float16, _ z: Float16)
    * @availability iOS 27.0+
    */
-  static init83342(x: number, y: number, z: number): USDValue_Vec3h { return callSDK<USDValue_Vec3h>("USDKit_6be9a005889899ab", 3626719209472536, undefined, [x, y, z]); }
+  static init83342(x: number, y: number, z: number): USDValue_Vec3h { return callSDK<USDValue_Vec3h>("USDKit_c1f28409f8601238", 3626719209472536, undefined, [x, y, z]); }
   /**
    * subscript(index: Int) -> Float16 { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 4201855226836349, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 4201855226836349, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec3hV": true };
 }
 
@@ -4849,60 +4849,60 @@ export class USDValue_Vec3i extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1606856101186237, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1606856101186237, this, []); }
   /**
    * var x: Int32 { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 881780089164660, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2189401538073350, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 881780089164660, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2189401538073350, this, [value]); }
   /**
    * var y: Int32 { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1872843785005282, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2717068647873948, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1872843785005282, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2717068647873948, this, [value]); }
   /**
    * var z: Int32 { get set }
    * @availability iOS 27.0+
    */
-  get z(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1781502927605995, this, []); }
-  set z(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 490816183254090, this, [value]); }
+  get z(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1781502927605995, this, []); }
+  set z(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 490816183254090, this, [value]); }
   /**
    * var simd: SIMD3<Int32> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 1982449396475364, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 1982449396475364, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3091658540622603, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3091658540622603, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec3i { return callSDK<USDValue_Vec3i>("USDKit_6be9a005889899ab", 4293437935912073, undefined, []); }
+  static init(): USDValue_Vec3i { return callSDK<USDValue_Vec3i>("USDKit_c1f28409f8601238", 4293437935912073, undefined, []); }
   /**
    * init(_ x: Int, _ y: Int, _ z: Int)
    * @availability iOS 27.0+
    */
-  static init99266(x: number, y: number, z: number): USDValue_Vec3i { return callSDK<USDValue_Vec3i>("USDKit_6be9a005889899ab", 2781123493929505, undefined, [x, y, z]); }
+  static init99266(x: number, y: number, z: number): USDValue_Vec3i { return callSDK<USDValue_Vec3i>("USDKit_c1f28409f8601238", 2781123493929505, undefined, [x, y, z]); }
   /**
    * init(_ x: Int32, _ y: Int32, _ z: Int32)
    * @availability iOS 27.0+
    */
-  static init64832(x: number, y: number, z: number): USDValue_Vec3i { return callSDK<USDValue_Vec3i>("USDKit_6be9a005889899ab", 1907409774281938, undefined, [x, y, z]); }
+  static init64832(x: number, y: number, z: number): USDValue_Vec3i { return callSDK<USDValue_Vec3i>("USDKit_c1f28409f8601238", 1907409774281938, undefined, [x, y, z]); }
   /**
    * init(_ simd: SIMD3<Int32>)
    * @availability iOS 27.0+
    */
-  static init4209(simd: SDKHandle): USDValue_Vec3i { return callSDK<USDValue_Vec3i>("USDKit_6be9a005889899ab", 1785567858398063, undefined, [simd]); }
+  static init4209(simd: SDKHandle): USDValue_Vec3i { return callSDK<USDValue_Vec3i>("USDKit_c1f28409f8601238", 1785567858398063, undefined, [simd]); }
   /**
    * subscript(index: Int) -> Int32 { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 3358483952042023, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 3358483952042023, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec3iV": true };
 }
 
@@ -4915,61 +4915,61 @@ export class USDValue_Vec4d extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2309208732710810, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2309208732710810, this, []); }
   /**
    * var w: Double { get set }
    * @availability iOS 27.0+
    */
-  get w(): number { return callSDK<number>("USDKit_6be9a005889899ab", 2885686277198567, this, []); }
-  set w(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3669815316464753, this, [value]); }
+  get w(): number { return callSDK<number>("USDKit_c1f28409f8601238", 2885686277198567, this, []); }
+  set w(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3669815316464753, this, [value]); }
   /**
    * var x: Double { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 707358364502347, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2643732870098026, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 707358364502347, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2643732870098026, this, [value]); }
   /**
    * var y: Double { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 4005395454962088, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 115846328851711, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 4005395454962088, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 115846328851711, this, [value]); }
   /**
    * var z: Double { get set }
    * @availability iOS 27.0+
    */
-  get z(): number { return callSDK<number>("USDKit_6be9a005889899ab", 2536389193797003, this, []); }
-  set z(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 1245992615646347, this, [value]); }
+  get z(): number { return callSDK<number>("USDKit_c1f28409f8601238", 2536389193797003, this, []); }
+  set z(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 1245992615646347, this, [value]); }
   /**
    * var simd: SIMD4<Double> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 4380752103026269, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 4380752103026269, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 240829262894548, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 240829262894548, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec4d { return callSDK<USDValue_Vec4d>("USDKit_6be9a005889899ab", 659108165551271, undefined, []); }
+  static init(): USDValue_Vec4d { return callSDK<USDValue_Vec4d>("USDKit_c1f28409f8601238", 659108165551271, undefined, []); }
   /**
    * init(_ x: Double, _ y: Double, _ z: Double, _ w: Double)
    * @availability iOS 27.0+
    */
-  static init72079(x: number, y: number, z: number, w: number): USDValue_Vec4d { return callSDK<USDValue_Vec4d>("USDKit_6be9a005889899ab", 410213640536367, undefined, [x, y, z, w]); }
+  static init72079(x: number, y: number, z: number, w: number): USDValue_Vec4d { return callSDK<USDValue_Vec4d>("USDKit_c1f28409f8601238", 410213640536367, undefined, [x, y, z, w]); }
   /**
    * init(_ simd: SIMD4<Double>)
    * @availability iOS 27.0+
    */
-  static init48225(simd: SDKHandle): USDValue_Vec4d { return callSDK<USDValue_Vec4d>("USDKit_6be9a005889899ab", 1280485551521732, undefined, [simd]); }
+  static init48225(simd: SDKHandle): USDValue_Vec4d { return callSDK<USDValue_Vec4d>("USDKit_c1f28409f8601238", 1280485551521732, undefined, [simd]); }
   /**
    * subscript(index: Int) -> Double { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 2885895519663189, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 2885895519663189, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec4dV": true };
 }
 
@@ -4988,61 +4988,61 @@ export class USDValue_Vec4f extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 1539253241989506, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 1539253241989506, this, []); }
   /**
    * var w: Float { get set }
    * @availability iOS 27.0+
    */
-  get w(): number { return callSDK<number>("USDKit_6be9a005889899ab", 756925278134946, this, []); }
-  set w(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3377582493072494, this, [value]); }
+  get w(): number { return callSDK<number>("USDKit_c1f28409f8601238", 756925278134946, this, []); }
+  set w(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3377582493072494, this, [value]); }
   /**
    * var x: Float { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1934673945686337, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2233126128179746, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1934673945686337, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2233126128179746, this, [value]); }
   /**
    * var y: Float { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1776398739646839, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 4409052009508074, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1776398739646839, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 4409052009508074, this, [value]); }
   /**
    * var z: Float { get set }
    * @availability iOS 27.0+
    */
-  get z(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1611391042178917, this, []); }
-  set z(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2031082045125932, this, [value]); }
+  get z(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1611391042178917, this, []); }
+  set z(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2031082045125932, this, [value]); }
   /**
    * var simd: SIMD4<Float> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 4096562252659764, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 4096562252659764, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 4198468485242495, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 4198468485242495, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec4f { return callSDK<USDValue_Vec4f>("USDKit_6be9a005889899ab", 1219450230663967, undefined, []); }
+  static init(): USDValue_Vec4f { return callSDK<USDValue_Vec4f>("USDKit_c1f28409f8601238", 1219450230663967, undefined, []); }
   /**
    * init(_ x: Float, _ y: Float, _ z: Float, _ w: Float)
    * @availability iOS 27.0+
    */
-  static init47957(x: number, y: number, z: number, w: number): USDValue_Vec4f { return callSDK<USDValue_Vec4f>("USDKit_6be9a005889899ab", 1879481908099910, undefined, [x, y, z, w]); }
+  static init47957(x: number, y: number, z: number, w: number): USDValue_Vec4f { return callSDK<USDValue_Vec4f>("USDKit_c1f28409f8601238", 1879481908099910, undefined, [x, y, z, w]); }
   /**
    * init(_ simd: SIMD4<Float>)
    * @availability iOS 27.0+
    */
-  static init27745(simd: SDKHandle): USDValue_Vec4f { return callSDK<USDValue_Vec4f>("USDKit_6be9a005889899ab", 2691481538855880, undefined, [simd]); }
+  static init27745(simd: SDKHandle): USDValue_Vec4f { return callSDK<USDValue_Vec4f>("USDKit_c1f28409f8601238", 2691481538855880, undefined, [simd]); }
   /**
    * subscript(index: Int) -> Float { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 634059768504260, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 634059768504260, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec4fV": true };
 }
 
@@ -5061,56 +5061,56 @@ export class USDValue_Vec4h extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 2550252198264378, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 2550252198264378, this, []); }
   /**
    * var w: Float16 { get set }
    * @availability iOS 27.0+
    */
-  get w(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3054254771432187, this, []); }
-  set w(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3540906815116196, this, [value]); }
+  get w(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3054254771432187, this, []); }
+  set w(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3540906815116196, this, [value]); }
   /**
    * var x: Float16 { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 2130686438190954, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2073212857307563, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 2130686438190954, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2073212857307563, this, [value]); }
   /**
    * var y: Float16 { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3599271293932281, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2580194647791507, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3599271293932281, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2580194647791507, this, [value]); }
   /**
    * var z: Float16 { get set }
    * @availability iOS 27.0+
    */
-  get z(): number { return callSDK<number>("USDKit_6be9a005889899ab", 3333462925275094, this, []); }
-  set z(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 1473951787715673, this, [value]); }
+  get z(): number { return callSDK<number>("USDKit_c1f28409f8601238", 3333462925275094, this, []); }
+  set z(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 1473951787715673, this, [value]); }
   /**
    * var simd: SIMD4<Float16> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 3350583286941244, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 3350583286941244, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 3146877162762510, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 3146877162762510, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec4h { return callSDK<USDValue_Vec4h>("USDKit_6be9a005889899ab", 4124400655048922, undefined, []); }
+  static init(): USDValue_Vec4h { return callSDK<USDValue_Vec4h>("USDKit_c1f28409f8601238", 4124400655048922, undefined, []); }
   /**
    * init(_ x: Float16, _ y: Float16, _ z: Float16, _ w: Float16)
    * @availability iOS 27.0+
    */
-  static init58828(x: number, y: number, z: number, w: number): USDValue_Vec4h { return callSDK<USDValue_Vec4h>("USDKit_6be9a005889899ab", 1686385653072858, undefined, [x, y, z, w]); }
+  static init58828(x: number, y: number, z: number, w: number): USDValue_Vec4h { return callSDK<USDValue_Vec4h>("USDKit_c1f28409f8601238", 1686385653072858, undefined, [x, y, z, w]); }
   /**
    * subscript(index: Int) -> Float16 { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 4161435776215168, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 4161435776215168, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec4hV": true };
 }
 
@@ -5123,66 +5123,66 @@ export class USDValue_Vec4i extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("USDKit_6be9a005889899ab", 687247943136696, this, []); }
+  get description(): string { return callSDK<string>("USDKit_c1f28409f8601238", 687247943136696, this, []); }
   /**
    * var w: Int32 { get set }
    * @availability iOS 27.0+
    */
-  get w(): number { return callSDK<number>("USDKit_6be9a005889899ab", 192660232196862, this, []); }
-  set w(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 4386437510944194, this, [value]); }
+  get w(): number { return callSDK<number>("USDKit_c1f28409f8601238", 192660232196862, this, []); }
+  set w(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 4386437510944194, this, [value]); }
   /**
    * var x: Int32 { get set }
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("USDKit_6be9a005889899ab", 4080216572592333, this, []); }
-  set x(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3212544696542069, this, [value]); }
+  get x(): number { return callSDK<number>("USDKit_c1f28409f8601238", 4080216572592333, this, []); }
+  set x(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3212544696542069, this, [value]); }
   /**
    * var y: Int32 { get set }
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("USDKit_6be9a005889899ab", 1171905035136429, this, []); }
-  set y(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 3940864586651574, this, [value]); }
+  get y(): number { return callSDK<number>("USDKit_c1f28409f8601238", 1171905035136429, this, []); }
+  set y(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 3940864586651574, this, [value]); }
   /**
    * var z: Int32 { get set }
    * @availability iOS 27.0+
    */
-  get z(): number { return callSDK<number>("USDKit_6be9a005889899ab", 2340233731569769, this, []); }
-  set z(value: number) { callSDK<void>("USDKit_6be9a005889899ab", 2382466939602984, this, [value]); }
+  get z(): number { return callSDK<number>("USDKit_c1f28409f8601238", 2340233731569769, this, []); }
+  set z(value: number) { callSDK<void>("USDKit_c1f28409f8601238", 2382466939602984, this, [value]); }
   /**
    * var simd: SIMD4<Int32> { get }
    * @availability iOS 27.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_6be9a005889899ab", 3003551800045805, this, []); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("USDKit_c1f28409f8601238", 3003551800045805, this, []); }
   /**
    * static var valueType: USDPrim.Attribute.ValueType { get }
    * @availability iOS 27.0+
    */
-  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_6be9a005889899ab", 2528793951903995, undefined, []); }
+  static get valueType(): USDPrim_Attribute_ValueType { return callSDK<USDPrim_Attribute_ValueType>("USDKit_c1f28409f8601238", 2528793951903995, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): USDValue_Vec4i { return callSDK<USDValue_Vec4i>("USDKit_6be9a005889899ab", 1144422071349125, undefined, []); }
+  static init(): USDValue_Vec4i { return callSDK<USDValue_Vec4i>("USDKit_c1f28409f8601238", 1144422071349125, undefined, []); }
   /**
    * init(_ x: Int, _ y: Int, _ z: Int, _ w: Int)
    * @availability iOS 27.0+
    */
-  static init2540(x: number, y: number, z: number, w: number): USDValue_Vec4i { return callSDK<USDValue_Vec4i>("USDKit_6be9a005889899ab", 1065479795989495, undefined, [x, y, z, w]); }
+  static init2540(x: number, y: number, z: number, w: number): USDValue_Vec4i { return callSDK<USDValue_Vec4i>("USDKit_c1f28409f8601238", 1065479795989495, undefined, [x, y, z, w]); }
   /**
    * init(_ x: Int32, _ y: Int32, _ z: Int32, _ w: Int32)
    * @availability iOS 27.0+
    */
-  static init53398(x: number, y: number, z: number, w: number): USDValue_Vec4i { return callSDK<USDValue_Vec4i>("USDKit_6be9a005889899ab", 3531329432358835, undefined, [x, y, z, w]); }
+  static init53398(x: number, y: number, z: number, w: number): USDValue_Vec4i { return callSDK<USDValue_Vec4i>("USDKit_c1f28409f8601238", 3531329432358835, undefined, [x, y, z, w]); }
   /**
    * init(_ simd: SIMD4<Int32>)
    * @availability iOS 27.0+
    */
-  static init1801(simd: SDKHandle): USDValue_Vec4i { return callSDK<USDValue_Vec4i>("USDKit_6be9a005889899ab", 2051954071345538, undefined, [simd]); }
+  static init1801(simd: SDKHandle): USDValue_Vec4i { return callSDK<USDValue_Vec4i>("USDKit_c1f28409f8601238", 2051954071345538, undefined, [simd]); }
   /**
    * subscript(index: Int) -> Int32 { get set }
    * @availability iOS 27.0+
    */
-  subscript(index: number): number { return callSDK<number>("USDKit_6be9a005889899ab", 2831883655177304, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("USDKit_c1f28409f8601238", 2831883655177304, this, [index]); }
   declare readonly $type: { "s:6USDKit8USDValueV5Vec4iV": true };
 }
 
@@ -5194,81 +5194,81 @@ export interface USDValueProtocol {
 
 }
 
-registerSDKClass("USDKit.USDArray", USDArray, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"indexAfter":{"id":151800647036774},"indexBefore":{"id":3919777581299091},"append":{"id":3974495481942946},"subscript":{"id":614469213661968}} });
-registerSDKClass("USDKit.USDLayer", USDLayer, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"timeSample":{"id":284905167098546},"timeSamples":{"id":2542403936612549},"relationship":{"id":3438006355778392},"setTimeSampleAtTimeValue":{"id":3013486102469490},"setTimeSampleAtTimeValue99996":{"id":3350265607658842},"importContentsFrom":{"id":2192660594619313},"importContentsFrom88962":{"id":3015043115666815},"eraseTimeSample":{"id":3786025988031306},"copy":{"id":4482682191992547},"prim":{"id":697645795571231},"save":{"id":3252642094837397},"spec":{"id":3215594565669394},"clear":{"id":1799331541447734},"field":{"id":2544899452995671},"exportTo":{"id":1966463237355706},"exportTo63861":{"id":1570339524756087},"fields":{"id":677193860260306},"reload":{"id":3002249335910826},"property":{"id":1982559108174476},"setFieldAtNameValue":{"id":2446938052751983},"setFieldAtNameValue77907":{"id":3817365085748294},"specType":{"id":2099135758996820},"traverse":{"id":3897849539924024,"hints":[null,{"callback":{"out":[]}}]},"attribute":{"id":1718116362854133}} });
-registerSDKClass("USDKit.USDLayer.AssetPath", USDLayer_AssetPath, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDLayer.ChangeList", USDLayer_ChangeList, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDLayer.ChangeList.Entry", USDLayer_ChangeList_Entry, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDLayer.ChangeList.Entry.Flags", USDLayer_ChangeList_Entry_Flags, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDLayer.ChangeList.Entry.InfoChange", USDLayer_ChangeList_Entry_InfoChange, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDLayer.ListOperation", USDLayer_ListOperation, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"clearAndMakeExplicit":{"id":2954966839362502},"clear":{"id":2315304931648077},"compose":{"id":108599750631643}} });
-registerSDKClass("USDKit.USDLayer.OpenOptions", USDLayer_OpenOptions, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDLayer.Path", USDLayer_Path, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"commonPrefix":{"id":3934202024194901},"strippingAllVariantSelections":{"id":807605620672886},"absolute":{"id":702070645744749},"relative":{"id":110003991716830},"appendingVariantSetVariant":{"id":681329838219787},"appendingRelationalAttribute":{"id":2862562705914935},"appendingPath":{"id":376324752605912},"appendingChild":{"id":1781821002009936},"appendingTarget":{"id":1795831682987656},"appendingProperty":{"id":897256614142468},"hasPrefix":{"id":1616480327162825},"replacingName":{"id":1789240950893142},"replacingTarget":{"id":1631622928049931}} });
-registerSDKClass("USDKit.USDLayer.PathExpression", USDLayer_PathExpression, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDLayer.Spec", USDLayer_Spec, { module: "USDKit_6be9a005889899ab", properties: {} });
+registerSDKClass("USDKit.USDArray", USDArray, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"indexAfter":{"id":151800647036774},"indexBefore":{"id":3919777581299091},"append":{"id":3974495481942946},"subscript":{"id":614469213661968}} });
+registerSDKClass("USDKit.USDLayer", USDLayer, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"timeSample":{"id":284905167098546},"timeSamples":{"id":2542403936612549},"relationship":{"id":3438006355778392},"setTimeSampleAtTimeValue":{"id":3013486102469490},"setTimeSampleAtTimeValue99996":{"id":3350265607658842},"importContentsFrom":{"id":2192660594619313},"importContentsFrom88962":{"id":3015043115666815},"eraseTimeSample":{"id":3786025988031306},"copy":{"id":4482682191992547},"prim":{"id":697645795571231},"save":{"id":3252642094837397},"spec":{"id":3215594565669394},"clear":{"id":1799331541447734},"field":{"id":2544899452995671},"exportTo":{"id":1966463237355706},"exportTo63861":{"id":1570339524756087},"fields":{"id":677193860260306},"reload":{"id":3002249335910826},"property":{"id":1982559108174476},"setFieldAtNameValue":{"id":2446938052751983},"setFieldAtNameValue77907":{"id":3817365085748294},"specType":{"id":2099135758996820},"traverse":{"id":3897849539924024,"hints":[null,{"callback":{"out":[]}}]},"attribute":{"id":1718116362854133}} });
+registerSDKClass("USDKit.USDLayer.AssetPath", USDLayer_AssetPath, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDLayer.ChangeList", USDLayer_ChangeList, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDLayer.ChangeList.Entry", USDLayer_ChangeList_Entry, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDLayer.ChangeList.Entry.Flags", USDLayer_ChangeList_Entry_Flags, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDLayer.ChangeList.Entry.InfoChange", USDLayer_ChangeList_Entry_InfoChange, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDLayer.ListOperation", USDLayer_ListOperation, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"clearAndMakeExplicit":{"id":2954966839362502},"clear":{"id":2315304931648077},"compose":{"id":108599750631643}} });
+registerSDKClass("USDKit.USDLayer.OpenOptions", USDLayer_OpenOptions, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDLayer.Path", USDLayer_Path, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"commonPrefix":{"id":3934202024194901},"strippingAllVariantSelections":{"id":807605620672886},"absolute":{"id":702070645744749},"relative":{"id":110003991716830},"appendingVariantSetVariant":{"id":681329838219787},"appendingRelationalAttribute":{"id":2862562705914935},"appendingPath":{"id":376324752605912},"appendingChild":{"id":1781821002009936},"appendingTarget":{"id":1795831682987656},"appendingProperty":{"id":897256614142468},"hasPrefix":{"id":1616480327162825},"replacingName":{"id":1789240950893142},"replacingTarget":{"id":1631622928049931}} });
+registerSDKClass("USDKit.USDLayer.PathExpression", USDLayer_PathExpression, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDLayer.Spec", USDLayer_Spec, { module: "USDKit_c1f28409f8601238", properties: {} });
 registerSDKProtocol("s:6USDKit8USDLayerV4SpecV15FieldCollectionP", {});
 registerSDKProtocol("s:6USDKit8USDLayerV4SpecV18MetadataCollectionP", {});
-registerSDKClass("USDKit.USDLayer.TimeCode", USDLayer_TimeCode, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDLayer.TimeOffset", USDLayer_TimeOffset, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDPrim", USDPrim, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"descendantsWhere":{"id":431407798049618},"hasProperty":{"id":2020968719330601},"nextSiblingWhere":{"id":2242757633853983},"hasAPISchema":{"id":4202211408482734},"hasAttribute":{"id":2285385281871580},"relationshipAt":{"id":3654060929000559},"relationshipNamed":{"id":2897361353691783},"makeAttribute":{"id":3461806976999304},"applyAPISchemaInstanceName":{"id":3552171524190476},"applyAPISchema":{"id":2731954412907970},"hasRelationship":{"id":4447447201170780},"removeAPISchemaInstanceName":{"id":3405561625135335},"removeAPISchema":{"id":2688764358734989},"makeRelationship":{"id":1104723791264928},"addTransformOperation":{"id":4365724967149736},"clearTransformOperations":{"id":3856066567825674},"prim":{"id":1983771987900398},"object":{"id":624213781466956},"childrenWhere":{"id":874124102529189},"isSchema":{"id":1716084388696083},"propertyAt":{"id":1784092185001080},"propertyNamed":{"id":2176389730461423},"attributeAt":{"id":2723661940823094},"attributeNamed":{"id":114829479707926},"transform":{"id":3249129278826385},"subscript":{"id":1332717717768164}} });
-registerSDKClass("USDKit.USDPrim.Attribute", USDPrim_Attribute, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"clear":{"id":2454016851218638},"value":{"id":4229048493454835},"setValue":{"id":198374813754729}} });
-registerSDKClass("USDKit.USDPrim.Attribute.Spec", USDPrim_Attribute_Spec, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"setAssetInfo":{"id":650174102779931},"setCustomData":{"id":957749700021356},"clearAssetInfo":{"id":336667753133456},"clearCustomData":{"id":2715442208332803},"clearConnectionPaths":{"id":3024848927939948},"rename":{"id":1552604150745729}} });
+registerSDKClass("USDKit.USDLayer.TimeCode", USDLayer_TimeCode, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDLayer.TimeOffset", USDLayer_TimeOffset, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDPrim", USDPrim, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"descendantsWhere":{"id":431407798049618},"hasProperty":{"id":2020968719330601},"nextSiblingWhere":{"id":2242757633853983},"hasAPISchema":{"id":4202211408482734},"hasAttribute":{"id":2285385281871580},"relationshipAt":{"id":3654060929000559},"relationshipNamed":{"id":2897361353691783},"makeAttribute":{"id":3461806976999304},"applyAPISchemaInstanceName":{"id":3552171524190476},"applyAPISchema":{"id":2731954412907970},"hasRelationship":{"id":4447447201170780},"removeAPISchemaInstanceName":{"id":3405561625135335},"removeAPISchema":{"id":2688764358734989},"makeRelationship":{"id":1104723791264928},"addTransformOperation":{"id":4365724967149736},"clearTransformOperations":{"id":3856066567825674},"prim":{"id":1983771987900398},"object":{"id":624213781466956},"childrenWhere":{"id":874124102529189},"isSchema":{"id":1716084388696083},"propertyAt":{"id":1784092185001080},"propertyNamed":{"id":2176389730461423},"attributeAt":{"id":2723661940823094},"attributeNamed":{"id":114829479707926},"transform":{"id":3249129278826385},"subscript":{"id":1332717717768164}} });
+registerSDKClass("USDKit.USDPrim.Attribute", USDPrim_Attribute, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"clear":{"id":2454016851218638},"value":{"id":4229048493454835},"setValue":{"id":198374813754729}} });
+registerSDKClass("USDKit.USDPrim.Attribute.Spec", USDPrim_Attribute_Spec, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"setAssetInfo":{"id":650174102779931},"setCustomData":{"id":957749700021356},"clearAssetInfo":{"id":336667753133456},"clearCustomData":{"id":2715442208332803},"clearConnectionPaths":{"id":3024848927939948},"rename":{"id":1552604150745729}} });
 registerSDKProtocol("s:6USDKit7USDPrimV9AttributeV5ValueP", {});
-registerSDKClass("USDKit.USDPrim.Attribute.ValueType", USDPrim_Attribute_ValueType, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDPrim.Attribute.ValueType.TupleDimensions", USDPrim_Attribute_ValueType_TupleDimensions, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDPrim.InheritCollection", USDPrim_InheritCollection, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"add":{"id":3302413457725856},"set":{"id":1177625867249700},"clear":{"id":1994858125953792},"remove":{"id":650448339602386}} });
-registerSDKClass("USDKit.USDPrim.Payload", USDPrim_Payload, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDPrim.PayloadCollection", USDPrim_PayloadCollection, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"addToLayerOffsetPosition":{"id":2263741109653510},"addToFromLayerOffsetPosition":{"id":2765231157678845},"addPosition":{"id":4403303712870916},"set":{"id":1419769414648700},"clear":{"id":1816408836010893},"remove":{"id":2138248175210726}} });
-registerSDKClass("USDKit.USDPrim.Predicate", USDPrim_Predicate, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDPrim.Property", USDPrim_Property, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDPrim.Property.Spec", USDPrim_Property_Spec, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"setAssetInfo":{"id":3895811536218055},"setCustomData":{"id":1156639118712020},"clearAssetInfo":{"id":3658156965944707},"clearCustomData":{"id":1183621861291815},"rename":{"id":2076872090170140}} });
+registerSDKClass("USDKit.USDPrim.Attribute.ValueType", USDPrim_Attribute_ValueType, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDPrim.Attribute.ValueType.TupleDimensions", USDPrim_Attribute_ValueType_TupleDimensions, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDPrim.InheritCollection", USDPrim_InheritCollection, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"add":{"id":3302413457725856},"set":{"id":1177625867249700},"clear":{"id":1994858125953792},"remove":{"id":650448339602386}} });
+registerSDKClass("USDKit.USDPrim.Payload", USDPrim_Payload, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDPrim.PayloadCollection", USDPrim_PayloadCollection, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"addToLayerOffsetPosition":{"id":2263741109653510},"addToFromLayerOffsetPosition":{"id":2765231157678845},"addPosition":{"id":4403303712870916},"set":{"id":1419769414648700},"clear":{"id":1816408836010893},"remove":{"id":2138248175210726}} });
+registerSDKClass("USDKit.USDPrim.Predicate", USDPrim_Predicate, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDPrim.Property", USDPrim_Property, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDPrim.Property.Spec", USDPrim_Property_Spec, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"setAssetInfo":{"id":3895811536218055},"setCustomData":{"id":1156639118712020},"clearAssetInfo":{"id":3658156965944707},"clearCustomData":{"id":1183621861291815},"rename":{"id":2076872090170140}} });
 registerSDKProtocol("s:6USDKit7USDPrimV8PropertyV4SpecV18SymmetryCollectionP", {});
 registerSDKProtocol("s:6USDKit7USDPrimV8PropertyV4SpecV15ValueCollectionP", {});
-registerSDKClass("USDKit.USDPrim.PseudoRootSpec", USDPrim_PseudoRootSpec, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDPrim.Reference", USDPrim_Reference, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"setCustomData":{"id":4437399069174166}} });
-registerSDKClass("USDKit.USDPrim.ReferenceCollection", USDPrim_ReferenceCollection, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"addToLayerOffsetPosition":{"id":1828363182603647},"addToFromLayerOffsetPosition":{"id":3026356799989608},"addPosition":{"id":1955192385644610},"set":{"id":201573784669244},"clear":{"id":3977728908012362},"remove":{"id":466945650710665}} });
-registerSDKClass("USDKit.USDPrim.Relationship", USDPrim_Relationship, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDPrim.Relationship.Spec", USDPrim_Relationship_Spec, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"removeTarget":{"id":2146289602071541},"setAssetInfo":{"id":2373934178282180},"replaceTarget":{"id":1227860200052937},"setCustomData":{"id":2359402366129885},"clearAssetInfo":{"id":353580877360743},"clearCustomData":{"id":1683225433163035},"clearTargetPaths":{"id":3353277974955886},"rename":{"id":1889136274235501}} });
-registerSDKClass("USDKit.USDPrim.Spec", USDPrim_Spec, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"appendChild":{"id":4031179416972197},"insertChild":{"id":2288270065269742},"removeChild":{"id":960708355801547},"relationship":{"id":2668542539077647},"setAssetInfo":{"id":1033514390478937},"variantNames":{"id":2422173245817953},"clearInherits":{"id":270750994201531},"clearPayloads":{"id":283463614756133},"setCustomData":{"id":146733536818656},"clearAssetInfo":{"id":3884187767893612},"clearRelocates":{"id":1540341292461012},"removeProperty":{"id":3863109658346325},"clearCustomData":{"id":1447261112865375},"clearReferences":{"id":3731920408011436},"clearSpecializes":{"id":172492451286519},"removeVariantSet":{"id":1325644605391768},"variantSelection":{"id":89449541257240},"setSymmetryArgument":{"id":1639145536625824},"setVariantSelection":{"id":3796283292216561},"blockVariantSelection":{"id":3177137417918818},"clearSymmetryArgument":{"id":2357900758175331},"clearVariantSelection":{"id":3752149873616222},"prim":{"id":1295614539172197},"spec":{"id":3803496469703621},"rename":{"id":1511042259024502},"property":{"id":1890038904990947},"attribute":{"id":4373918228976127}} });
-registerSDKClass("USDKit.USDPrim.SpecializeCollection", USDPrim_SpecializeCollection, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"add":{"id":984131085262083},"set":{"id":2036902092047143},"clear":{"id":3593587128474530},"remove":{"id":2974376821216621}} });
-registerSDKClass("USDKit.USDPrim.VariantSet", USDPrim_VariantSet, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"setSelection":{"id":1682217071163763},"blockSelection":{"id":1910246406231988},"clearSelection":{"id":287209756080970},"add":{"id":1170604231311594}} });
-registerSDKClass("USDKit.USDPrim.VariantSetCollection", USDPrim_VariantSetCollection, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"add":{"id":1406846578393519},"subscript":{"id":2259465876608315}} });
-registerSDKClass("USDKit.USDPrim.VariantSetSpec", USDPrim_VariantSetSpec, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"removeVariant":{"id":149703231340285}} });
-registerSDKClass("USDKit.USDPrim.VariantSpec", USDPrim_VariantSpec, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"variantNames":{"id":849129770073537}} });
-registerSDKClass("USDKit.USDStage", USDStage, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"definePrim":{"id":2022193874605758},"removePrim":{"id":3116532118949955},"descendantsWhere":{"id":1893363592346148},"unmuteLayer":{"id":497450354476605},"isLayerMuted":{"id":2562435443423208},"overridePrim":{"id":4046396470615183},"relationship":{"id":1273594814858791},"exportPackageToOptions":{"id":2889070875327475},"exportPackageToOptions63733":{"id":4135994925974401},"exportPackageOptions":{"id":3169936920918804},"exportFlattenedTo":{"id":400389647698713},"exportFlattenedTo38657":{"id":2540418876723332},"saveSessionLayers":{"id":2903727551332718},"prim":{"id":774879337906320},"save":{"id":3736708125704074},"object":{"id":817057543162478},"reload":{"id":2615330740063420},"property":{"id":1038794976576318},"attribute":{"id":3208729740369348},"muteLayer":{"id":3811154295507415}} });
-registerSDKClass("USDKit.USDStage.EditTarget", USDStage_EditTarget, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDStage.ExportOptions", USDStage_ExportOptions, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDStage.ExportOptions.TextureQuality", USDStage_ExportOptions_TextureQuality, { module: "USDKit_6be9a005889899ab", properties: {} });
+registerSDKClass("USDKit.USDPrim.PseudoRootSpec", USDPrim_PseudoRootSpec, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDPrim.Reference", USDPrim_Reference, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"setCustomData":{"id":4437399069174166}} });
+registerSDKClass("USDKit.USDPrim.ReferenceCollection", USDPrim_ReferenceCollection, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"addToLayerOffsetPosition":{"id":1828363182603647},"addToFromLayerOffsetPosition":{"id":3026356799989608},"addPosition":{"id":1955192385644610},"set":{"id":201573784669244},"clear":{"id":3977728908012362},"remove":{"id":466945650710665}} });
+registerSDKClass("USDKit.USDPrim.Relationship", USDPrim_Relationship, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDPrim.Relationship.Spec", USDPrim_Relationship_Spec, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"removeTarget":{"id":2146289602071541},"setAssetInfo":{"id":2373934178282180},"replaceTarget":{"id":1227860200052937},"setCustomData":{"id":2359402366129885},"clearAssetInfo":{"id":353580877360743},"clearCustomData":{"id":1683225433163035},"clearTargetPaths":{"id":3353277974955886},"rename":{"id":1889136274235501}} });
+registerSDKClass("USDKit.USDPrim.Spec", USDPrim_Spec, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"appendChild":{"id":4031179416972197},"insertChild":{"id":2288270065269742},"removeChild":{"id":960708355801547},"relationship":{"id":2668542539077647},"setAssetInfo":{"id":1033514390478937},"variantNames":{"id":2422173245817953},"clearInherits":{"id":270750994201531},"clearPayloads":{"id":283463614756133},"setCustomData":{"id":146733536818656},"clearAssetInfo":{"id":3884187767893612},"clearRelocates":{"id":1540341292461012},"removeProperty":{"id":3863109658346325},"clearCustomData":{"id":1447261112865375},"clearReferences":{"id":3731920408011436},"clearSpecializes":{"id":172492451286519},"removeVariantSet":{"id":1325644605391768},"variantSelection":{"id":89449541257240},"setSymmetryArgument":{"id":1639145536625824},"setVariantSelection":{"id":3796283292216561},"blockVariantSelection":{"id":3177137417918818},"clearSymmetryArgument":{"id":2357900758175331},"clearVariantSelection":{"id":3752149873616222},"prim":{"id":1295614539172197},"spec":{"id":3803496469703621},"rename":{"id":1511042259024502},"property":{"id":1890038904990947},"attribute":{"id":4373918228976127}} });
+registerSDKClass("USDKit.USDPrim.SpecializeCollection", USDPrim_SpecializeCollection, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"add":{"id":984131085262083},"set":{"id":2036902092047143},"clear":{"id":3593587128474530},"remove":{"id":2974376821216621}} });
+registerSDKClass("USDKit.USDPrim.VariantSet", USDPrim_VariantSet, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"setSelection":{"id":1682217071163763},"blockSelection":{"id":1910246406231988},"clearSelection":{"id":287209756080970},"add":{"id":1170604231311594}} });
+registerSDKClass("USDKit.USDPrim.VariantSetCollection", USDPrim_VariantSetCollection, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"add":{"id":1406846578393519},"subscript":{"id":2259465876608315}} });
+registerSDKClass("USDKit.USDPrim.VariantSetSpec", USDPrim_VariantSetSpec, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"removeVariant":{"id":149703231340285}} });
+registerSDKClass("USDKit.USDPrim.VariantSpec", USDPrim_VariantSpec, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"variantNames":{"id":849129770073537}} });
+registerSDKClass("USDKit.USDStage", USDStage, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"definePrim":{"id":2022193874605758},"removePrim":{"id":3116532118949955},"descendantsWhere":{"id":1893363592346148},"unmuteLayer":{"id":497450354476605},"isLayerMuted":{"id":2562435443423208},"overridePrim":{"id":4046396470615183},"relationship":{"id":1273594814858791},"exportPackageToOptions":{"id":2889070875327475},"exportPackageToOptions63733":{"id":4135994925974401},"exportPackageOptions":{"id":3169936920918804},"exportFlattenedTo":{"id":400389647698713},"exportFlattenedTo38657":{"id":2540418876723332},"saveSessionLayers":{"id":2903727551332718},"prim":{"id":774879337906320},"save":{"id":3736708125704074},"object":{"id":817057543162478},"reload":{"id":2615330740063420},"property":{"id":1038794976576318},"attribute":{"id":3208729740369348},"muteLayer":{"id":3811154295507415}} });
+registerSDKClass("USDKit.USDStage.EditTarget", USDStage_EditTarget, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDStage.ExportOptions", USDStage_ExportOptions, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDStage.ExportOptions.TextureQuality", USDStage_ExportOptions_TextureQuality, { module: "USDKit_c1f28409f8601238", properties: {} });
 registerSDKProtocol("s:6USDKit8USDStageV6NoticeP", {});
-registerSDKClass("USDKit.USDStage.Object", USDStage_Object, { module: "USDKit_6be9a005889899ab", properties: {} });
+registerSDKClass("USDKit.USDStage.Object", USDStage_Object, { module: "USDKit_c1f28409f8601238", properties: {} });
 registerSDKProtocol("s:6USDKit8USDStageV6ObjectV18MetadataCollectionP", {});
 registerSDKProtocol("s:6USDKit8USDStageV6ObjectV13MetadataValueP", {});
-registerSDKClass("USDKit.USDStage.ObjectsDidChange", USDStage_ObjectsDidChange, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDStage.ObservationToken", USDStage_ObservationToken, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDStage.OpenOptions", USDStage_OpenOptions, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDStage.TimeCode", USDStage_TimeCode, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDToken", USDToken, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"strippingNamespacePrefix":{"id":1102238378186866},"strippingLeadingNamespace":{"id":3110211360232202}} });
-registerSDKClass("USDKit.USDTransformOperation", USDTransformOperation, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"timeSamplesIn":{"id":578368860970786},"transform":{"id":3154862669449651}} });
-registerSDKClass("USDKit.USDValue", USDValue, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"unsafeValue":{"id":4050716836817248},"value":{"id":1125532685469896},"isHolding":{"id":2003685911101045}} });
-registerSDKClass("USDKit.USDValue.Matrix2d", USDValue_Matrix2d, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscriptColumn":{"id":3200460232809007},"subscript":{"id":2371422834496923}} });
-registerSDKClass("USDKit.USDValue.Matrix2f", USDValue_Matrix2f, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscriptColumn":{"id":588906946984194},"subscript":{"id":1220554796053663}} });
-registerSDKClass("USDKit.USDValue.Matrix3d", USDValue_Matrix3d, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscriptColumn":{"id":2754754865467078},"subscript":{"id":3208437720460178}} });
-registerSDKClass("USDKit.USDValue.Matrix3f", USDValue_Matrix3f, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscriptColumn":{"id":429647051517758},"subscript":{"id":574217294699677}} });
-registerSDKClass("USDKit.USDValue.Matrix4d", USDValue_Matrix4d, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscriptColumn":{"id":4284600938002537},"subscript":{"id":3230259689251207}} });
-registerSDKClass("USDKit.USDValue.Matrix4f", USDValue_Matrix4f, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscriptColumn":{"id":1049145391074813},"subscript":{"id":262805723316170}} });
-registerSDKClass("USDKit.USDValue.Quatd", USDValue_Quatd, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDValue.Quatf", USDValue_Quatf, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDValue.Quath", USDValue_Quath, { module: "USDKit_6be9a005889899ab", properties: {} });
-registerSDKClass("USDKit.USDValue.Vec2d", USDValue_Vec2d, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":1869572004435722}} });
-registerSDKClass("USDKit.USDValue.Vec2f", USDValue_Vec2f, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":3709779066854000}} });
-registerSDKClass("USDKit.USDValue.Vec2h", USDValue_Vec2h, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":3452390677723982}} });
-registerSDKClass("USDKit.USDValue.Vec2i", USDValue_Vec2i, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":515407912801383}} });
-registerSDKClass("USDKit.USDValue.Vec3d", USDValue_Vec3d, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":845908952100173}} });
-registerSDKClass("USDKit.USDValue.Vec3f", USDValue_Vec3f, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":3117484489863101}} });
-registerSDKClass("USDKit.USDValue.Vec3h", USDValue_Vec3h, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":4201855226836349}} });
-registerSDKClass("USDKit.USDValue.Vec3i", USDValue_Vec3i, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":3358483952042023}} });
-registerSDKClass("USDKit.USDValue.Vec4d", USDValue_Vec4d, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":2885895519663189}} });
-registerSDKClass("USDKit.USDValue.Vec4f", USDValue_Vec4f, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":634059768504260}} });
-registerSDKClass("USDKit.USDValue.Vec4h", USDValue_Vec4h, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":4161435776215168}} });
-registerSDKClass("USDKit.USDValue.Vec4i", USDValue_Vec4i, { module: "USDKit_6be9a005889899ab", properties: {}, methods: {"subscript":{"id":2831883655177304}} });
+registerSDKClass("USDKit.USDStage.ObjectsDidChange", USDStage_ObjectsDidChange, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDStage.ObservationToken", USDStage_ObservationToken, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDStage.OpenOptions", USDStage_OpenOptions, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDStage.TimeCode", USDStage_TimeCode, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDToken", USDToken, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"strippingNamespacePrefix":{"id":1102238378186866},"strippingLeadingNamespace":{"id":3110211360232202}} });
+registerSDKClass("USDKit.USDTransformOperation", USDTransformOperation, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"timeSamplesIn":{"id":578368860970786},"transform":{"id":3154862669449651}} });
+registerSDKClass("USDKit.USDValue", USDValue, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"unsafeValue":{"id":4050716836817248},"value":{"id":1125532685469896},"isHolding":{"id":2003685911101045}} });
+registerSDKClass("USDKit.USDValue.Matrix2d", USDValue_Matrix2d, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscriptColumn":{"id":3200460232809007},"subscript":{"id":2371422834496923}} });
+registerSDKClass("USDKit.USDValue.Matrix2f", USDValue_Matrix2f, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscriptColumn":{"id":588906946984194},"subscript":{"id":1220554796053663}} });
+registerSDKClass("USDKit.USDValue.Matrix3d", USDValue_Matrix3d, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscriptColumn":{"id":2754754865467078},"subscript":{"id":3208437720460178}} });
+registerSDKClass("USDKit.USDValue.Matrix3f", USDValue_Matrix3f, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscriptColumn":{"id":429647051517758},"subscript":{"id":574217294699677}} });
+registerSDKClass("USDKit.USDValue.Matrix4d", USDValue_Matrix4d, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscriptColumn":{"id":4284600938002537},"subscript":{"id":3230259689251207}} });
+registerSDKClass("USDKit.USDValue.Matrix4f", USDValue_Matrix4f, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscriptColumn":{"id":1049145391074813},"subscript":{"id":262805723316170}} });
+registerSDKClass("USDKit.USDValue.Quatd", USDValue_Quatd, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDValue.Quatf", USDValue_Quatf, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDValue.Quath", USDValue_Quath, { module: "USDKit_c1f28409f8601238", properties: {} });
+registerSDKClass("USDKit.USDValue.Vec2d", USDValue_Vec2d, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":1869572004435722}} });
+registerSDKClass("USDKit.USDValue.Vec2f", USDValue_Vec2f, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":3709779066854000}} });
+registerSDKClass("USDKit.USDValue.Vec2h", USDValue_Vec2h, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":3452390677723982}} });
+registerSDKClass("USDKit.USDValue.Vec2i", USDValue_Vec2i, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":515407912801383}} });
+registerSDKClass("USDKit.USDValue.Vec3d", USDValue_Vec3d, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":845908952100173}} });
+registerSDKClass("USDKit.USDValue.Vec3f", USDValue_Vec3f, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":3117484489863101}} });
+registerSDKClass("USDKit.USDValue.Vec3h", USDValue_Vec3h, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":4201855226836349}} });
+registerSDKClass("USDKit.USDValue.Vec3i", USDValue_Vec3i, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":3358483952042023}} });
+registerSDKClass("USDKit.USDValue.Vec4d", USDValue_Vec4d, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":2885895519663189}} });
+registerSDKClass("USDKit.USDValue.Vec4f", USDValue_Vec4f, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":634059768504260}} });
+registerSDKClass("USDKit.USDValue.Vec4h", USDValue_Vec4h, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":4161435776215168}} });
+registerSDKClass("USDKit.USDValue.Vec4i", USDValue_Vec4i, { module: "USDKit_c1f28409f8601238", properties: {}, methods: {"subscript":{"id":2831883655177304}} });
 registerSDKProtocol("s:6USDKit16USDValueProtocolP", {});

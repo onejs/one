@@ -24,7 +24,7 @@ export class AskCenter extends SDKHandle {
    * static let shared: AskCenter
    * @availability iOS 26.2+
    */
-  static get shared(): AskCenter { return callSDK<AskCenter>("PermissionKit_6be9a005889899ab", 2279123393417308, undefined, []); }
+  static get shared(): AskCenter { return callSDK<AskCenter>("PermissionKit_c1f28409f8601238", 2279123393417308, undefined, []); }
   declare readonly $type: { "s:13PermissionKit9AskCenterC": true };
 }
 
@@ -37,7 +37,7 @@ export class AskError extends SDKHandle {
    * var errorDescription: String? { get }
    * @availability iOS 26.1+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("PermissionKit_6be9a005889899ab", 3428744088077031, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("PermissionKit_c1f28409f8601238", 3428744088077031, this, []); }
   declare readonly $type: { "s:13PermissionKit8AskErrorO": true };
 }
 
@@ -50,19 +50,19 @@ export class CommunicationHandle extends SDKHandle {
    * var kind: CommunicationHandle.Kind { get set }
    * @availability iOS 26.0+
    */
-  get kind(): CommunicationHandle_Kind { return callSDK<CommunicationHandle_Kind>("PermissionKit_6be9a005889899ab", 1206010290081455, this, []); }
-  set kind(value: CommunicationHandle_Kind) { callSDK<void>("PermissionKit_6be9a005889899ab", 528036531464209, this, [value]); }
+  get kind(): CommunicationHandle_Kind { return callSDK<CommunicationHandle_Kind>("PermissionKit_c1f28409f8601238", 1206010290081455, this, []); }
+  set kind(value: CommunicationHandle_Kind) { callSDK<void>("PermissionKit_c1f28409f8601238", 528036531464209, this, [value]); }
   /**
    * init(value: String, kind: CommunicationHandle.Kind)
    * @availability iOS 26.0+
    */
-  static init(value: string, kind: CommunicationHandle_Kind): CommunicationHandle { return callSDK<CommunicationHandle>("PermissionKit_6be9a005889899ab", 1972028033350815, undefined, [value, kind]); }
+  static init(value: string, kind: CommunicationHandle_Kind): CommunicationHandle { return callSDK<CommunicationHandle>("PermissionKit_c1f28409f8601238", 1972028033350815, undefined, [value, kind]); }
   /**
    * var value: String { get set }
    * @availability iOS 26.0+
    */
-  get value(): string { return callSDK<string>("PermissionKit_6be9a005889899ab", 2853478692349341, this, []); }
-  set value(value: string) { callSDK<void>("PermissionKit_6be9a005889899ab", 3556424108713745, this, [value]); }
+  get value(): string { return callSDK<string>("PermissionKit_c1f28409f8601238", 2853478692349341, this, []); }
+  set value(value: string) { callSDK<void>("PermissionKit_c1f28409f8601238", 3556424108713745, this, [value]); }
   declare readonly $type: { "s:13PermissionKit19CommunicationHandleV": true };
 }
 
@@ -81,22 +81,22 @@ export class CommunicationLimits extends SDKHandle {
    * final func knownHandles(in handles: Set<CommunicationHandle>) async -> Set<CommunicationHandle>
    * @availability iOS 26.0+
    */
-  knownHandles(handles: $SDK0): Promise<$SDK0> { return callSDKAsync<$SDK0>("PermissionKit_6be9a005889899ab", 2667853790142227, this, [handles]); }
+  knownHandles(handles: $SDK0): Promise<$SDK0> { return callSDKAsync<$SDK0>("PermissionKit_c1f28409f8601238", 2667853790142227, this, [handles]); }
   /**
    * final func isKnownHandle(_ handle: CommunicationHandle) async -> Bool
    * @availability iOS 26.0+
    */
-  isKnownHandle(handle: CommunicationHandle): Promise<boolean> { return callSDKAsync<boolean>("PermissionKit_6be9a005889899ab", 421767211719610, this, [handle]); }
+  isKnownHandle(handle: CommunicationHandle): Promise<boolean> { return callSDKAsync<boolean>("PermissionKit_c1f28409f8601238", 421767211719610, this, [handle]); }
   /**
    * static let current: CommunicationLimits
    * @availability iOS 26.0+
    */
-  static get current(): CommunicationLimits { return callSDK<CommunicationLimits>("PermissionKit_6be9a005889899ab", 2526767499683935, undefined, []); }
+  static get current(): CommunicationLimits { return callSDK<CommunicationLimits>("PermissionKit_c1f28409f8601238", 2526767499683935, undefined, []); }
   /**
    * final var updates: some AsyncSequence<PermissionResponse<CommunicationTopic>, Never> { get }
    * @availability iOS 26.0+
    */
-  get updates(): SDKHandle { return callSDK<SDKHandle>("PermissionKit_6be9a005889899ab", 4404254194162526, this, []); }
+  get updates(): SDKHandle { return callSDK<SDKHandle>("PermissionKit_c1f28409f8601238", 4404254194162526, this, []); }
   declare readonly $type: { "s:13PermissionKit19CommunicationLimitsC": true };
 }
 
@@ -109,29 +109,29 @@ export class CommunicationTopic extends SDKHandle {
    * init(personInformation: [CommunicationTopic.PersonInformation], actions: Set<CommunicationTopic.Action>)
    * @availability iOS 26.0+
    */
-  static initPersonInformationActions(personInformation: $SDK1, actions: $SDK2): CommunicationTopic { return callSDK<CommunicationTopic>("PermissionKit_6be9a005889899ab", 4201539111012852, undefined, [personInformation, actions]); }
+  static initPersonInformationActions(personInformation: $SDK1, actions: $SDK2): CommunicationTopic { return callSDK<CommunicationTopic>("PermissionKit_c1f28409f8601238", 4201539111012852, undefined, [personInformation, actions]); }
   /**
    * init(personInformation: [CommunicationTopic.PersonInformation])
    * @availability iOS 26.0+
    */
-  static initPersonInformation(personInformation: $SDK1): CommunicationTopic { return callSDK<CommunicationTopic>("PermissionKit_6be9a005889899ab", 964098299193565, undefined, [personInformation]); }
+  static initPersonInformation(personInformation: $SDK1): CommunicationTopic { return callSDK<CommunicationTopic>("PermissionKit_c1f28409f8601238", 964098299193565, undefined, [personInformation]); }
   /**
    * var personInformation: [CommunicationTopic.PersonInformation]
    * @availability iOS 26.0+
    */
-  get personInformation(): $SDK1 { return callSDK<$SDK1>("PermissionKit_6be9a005889899ab", 1570142490194832, this, []); }
-  set personInformation(value: $SDK1) { callSDK<void>("PermissionKit_6be9a005889899ab", 1139302356889742, this, [value]); }
+  get personInformation(): $SDK1 { return callSDK<$SDK1>("PermissionKit_c1f28409f8601238", 1570142490194832, this, []); }
+  set personInformation(value: $SDK1) { callSDK<void>("PermissionKit_c1f28409f8601238", 1139302356889742, this, [value]); }
   /**
    * static let id: String
    * @availability iOS 26.0+
    */
-  static get id(): string { return callSDK<string>("PermissionKit_6be9a005889899ab", 2450154349646422, undefined, []); }
+  static get id(): string { return callSDK<string>("PermissionKit_c1f28409f8601238", 2450154349646422, undefined, []); }
   /**
    * var actions: Set<CommunicationTopic.Action>
    * @availability iOS 26.0+
    */
-  get actions(): $SDK2 { return callSDK<$SDK2>("PermissionKit_6be9a005889899ab", 2016373207917777, this, []); }
-  set actions(value: $SDK2) { callSDK<void>("PermissionKit_6be9a005889899ab", 83651348313767, this, [value]); }
+  get actions(): $SDK2 { return callSDK<$SDK2>("PermissionKit_c1f28409f8601238", 2016373207917777, this, []); }
+  set actions(value: $SDK2) { callSDK<void>("PermissionKit_c1f28409f8601238", 83651348313767, this, [value]); }
   declare readonly $type: { "s:13PermissionKit18CommunicationTopicV": true };
 }
 
@@ -150,25 +150,25 @@ export class CommunicationTopic_PersonInformation extends SDKHandle {
    * var avatarImage: CGImage?
    * @availability iOS 26.0+
    */
-  get avatarImage(): $SDK3 { return callSDK<$SDK3>("PermissionKit_6be9a005889899ab", 753170310625895, this, []); }
-  set avatarImage(value: $SDK3) { callSDK<void>("PermissionKit_6be9a005889899ab", 2842542551597251, this, [value]); }
+  get avatarImage(): $SDK3 { return callSDK<$SDK3>("PermissionKit_c1f28409f8601238", 753170310625895, this, []); }
+  set avatarImage(value: $SDK3) { callSDK<void>("PermissionKit_c1f28409f8601238", 2842542551597251, this, [value]); }
   /**
    * var nameComponents: PersonNameComponents?
    * @availability iOS 26.0+
    */
-  get nameComponents(): $SDK4 { return callSDK<$SDK4>("PermissionKit_6be9a005889899ab", 1595773690669426, this, []); }
-  set nameComponents(value: $SDK4) { callSDK<void>("PermissionKit_6be9a005889899ab", 1519575114981267, this, [value]); }
+  get nameComponents(): $SDK4 { return callSDK<$SDK4>("PermissionKit_c1f28409f8601238", 1595773690669426, this, []); }
+  set nameComponents(value: $SDK4) { callSDK<void>("PermissionKit_c1f28409f8601238", 1519575114981267, this, [value]); }
   /**
    * init(handle: CommunicationHandle, nameComponents: PersonNameComponents? = nil, avatarImage: CGImage? = nil)
    * @availability iOS 26.0+
    */
-  static init(handle: CommunicationHandle, nameComponents?: $SDK4, avatarImage?: $SDK3): CommunicationTopic_PersonInformation { return callSDK<CommunicationTopic_PersonInformation>("PermissionKit_6be9a005889899ab", 4488139177341093, undefined, [handle, nameComponents, avatarImage]); }
+  static init(handle: CommunicationHandle, nameComponents?: $SDK4, avatarImage?: $SDK3): CommunicationTopic_PersonInformation { return callSDK<CommunicationTopic_PersonInformation>("PermissionKit_c1f28409f8601238", 4488139177341093, undefined, [handle, nameComponents, avatarImage]); }
   /**
    * var handle: CommunicationHandle
    * @availability iOS 26.0+
    */
-  get handle(): CommunicationHandle { return callSDK<CommunicationHandle>("PermissionKit_6be9a005889899ab", 1132473199702548, this, []); }
-  set handle(value: CommunicationHandle) { callSDK<void>("PermissionKit_6be9a005889899ab", 957514253345664, this, [value]); }
+  get handle(): CommunicationHandle { return callSDK<CommunicationHandle>("PermissionKit_c1f28409f8601238", 1132473199702548, this, []); }
+  set handle(value: CommunicationHandle) { callSDK<void>("PermissionKit_c1f28409f8601238", 957514253345664, this, [value]); }
   declare readonly $type: { "s:13PermissionKit18CommunicationTopicV17PersonInformationV": true };
 }
 
@@ -181,29 +181,29 @@ export class PermissionChoice extends SDKHandle {
    * var id: String { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("PermissionKit_6be9a005889899ab", 119986459069759, this, []); }
+  get id(): string { return callSDK<string>("PermissionKit_c1f28409f8601238", 119986459069759, this, []); }
   /**
    * var title: String { get set }
    * @availability iOS 26.0+
    */
-  get title(): string { return callSDK<string>("PermissionKit_6be9a005889899ab", 795079918909937, this, []); }
-  set title(value: string) { callSDK<void>("PermissionKit_6be9a005889899ab", 3238425000088843, this, [value]); }
+  get title(): string { return callSDK<string>("PermissionKit_c1f28409f8601238", 795079918909937, this, []); }
+  set title(value: string) { callSDK<void>("PermissionKit_c1f28409f8601238", 3238425000088843, this, [value]); }
   /**
    * var answer: PermissionChoice.Answer { get set }
    * @availability iOS 26.0+
    */
-  get answer(): PermissionChoice_Answer { return callSDK<PermissionChoice_Answer>("PermissionKit_6be9a005889899ab", 3256230054091947, this, []); }
-  set answer(value: PermissionChoice_Answer) { callSDK<void>("PermissionKit_6be9a005889899ab", 1493169336124775, this, [value]); }
+  get answer(): PermissionChoice_Answer { return callSDK<PermissionChoice_Answer>("PermissionKit_c1f28409f8601238", 3256230054091947, this, []); }
+  set answer(value: PermissionChoice_Answer) { callSDK<void>("PermissionKit_c1f28409f8601238", 1493169336124775, this, [value]); }
   /**
    * static let approve: PermissionChoice
    * @availability iOS 26.0+
    */
-  static get approve(): PermissionChoice { return callSDK<PermissionChoice>("PermissionKit_6be9a005889899ab", 1941950134441172, undefined, []); }
+  static get approve(): PermissionChoice { return callSDK<PermissionChoice>("PermissionKit_c1f28409f8601238", 1941950134441172, undefined, []); }
   /**
    * static let decline: PermissionChoice
    * @availability iOS 26.0+
    */
-  static get decline(): PermissionChoice { return callSDK<PermissionChoice>("PermissionKit_6be9a005889899ab", 2814887827791797, undefined, []); }
+  static get decline(): PermissionChoice { return callSDK<PermissionChoice>("PermissionKit_c1f28409f8601238", 2814887827791797, undefined, []); }
   declare readonly $type: { "s:13PermissionKit0A6ChoiceV": true };
 }
 
@@ -234,43 +234,43 @@ export class PermissionQuestion<Topic = unknown> extends SDKHandle {
    * final var defaultChoice: PermissionChoice { get }
    * @availability iOS 26.0+
    */
-  get defaultChoice(): PermissionChoice { return callSDK<PermissionChoice>("PermissionKit_6be9a005889899ab", 2383750559221262, this, []); }
+  get defaultChoice(): PermissionChoice { return callSDK<PermissionChoice>("PermissionKit_c1f28409f8601238", 2383750559221262, this, []); }
   /**
    * final var expirationDate: Date?
    * @availability iOS 26.0+
    */
-  get expirationDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("PermissionKit_6be9a005889899ab", 1590992360230708, this, []); }
-  set expirationDate(value: (globalThis.Date) | null) { callSDK<void>("PermissionKit_6be9a005889899ab", 2566193052460533, this, [value]); }
+  get expirationDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("PermissionKit_c1f28409f8601238", 1590992360230708, this, []); }
+  set expirationDate(value: (globalThis.Date) | null) { callSDK<void>("PermissionKit_c1f28409f8601238", 2566193052460533, this, [value]); }
   /**
    * final let id: UUID
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("PermissionKit_6be9a005889899ab", 202993737835103, this, []); }
+  get id(): string { return callSDK<string>("PermissionKit_c1f28409f8601238", 202993737835103, this, []); }
   /**
    * final var choices: [PermissionChoice] { get }
    * @availability iOS 26.0+
    */
-  get choices(): Array<PermissionChoice> { return callSDK<Array<PermissionChoice>>("PermissionKit_6be9a005889899ab", 4006352005380506, this, []); }
+  get choices(): Array<PermissionChoice> { return callSDK<Array<PermissionChoice>>("PermissionKit_c1f28409f8601238", 4006352005380506, this, []); }
   /**
    * convenience init(communicationTopic: Topic)
    * @availability iOS 26.0+
    */
-  static initCommunicationTopic(communicationTopic: CommunicationTopic): $SDK6 { return callSDK<$SDK6>("PermissionKit_6be9a005889899ab", 3296913226232486, undefined, [communicationTopic]); }
+  static initCommunicationTopic(communicationTopic: CommunicationTopic): $SDK6 { return callSDK<$SDK6>("PermissionKit_c1f28409f8601238", 3296913226232486, undefined, [communicationTopic]); }
   /**
    * convenience init(handle: CommunicationHandle)
    * @availability iOS 26.0+
    */
-  static initHandle(handle: CommunicationHandle): $SDK6 { return callSDK<$SDK6>("PermissionKit_6be9a005889899ab", 1309572088764757, undefined, [handle]); }
+  static initHandle(handle: CommunicationHandle): $SDK6 { return callSDK<$SDK6>("PermissionKit_c1f28409f8601238", 1309572088764757, undefined, [handle]); }
   /**
    * convenience init(handles: [CommunicationHandle])
    * @availability iOS 26.0+
    */
-  static initHandles(handles: $SDK0): $SDK6 { return callSDK<$SDK6>("PermissionKit_6be9a005889899ab", 1948898686576630, undefined, [handles]); }
+  static initHandles(handles: $SDK0): $SDK6 { return callSDK<$SDK6>("PermissionKit_c1f28409f8601238", 1948898686576630, undefined, [handles]); }
   /**
    * convenience init(significantAppUpdateTopic: Topic)
    * @availability iOS 26.2+
    */
-  static initSignificantAppUpdateTopic(significantAppUpdateTopic: SignificantAppUpdateTopic): PermissionQuestion<SignificantAppUpdateTopic> { return callSDK<PermissionQuestion<SignificantAppUpdateTopic>>("PermissionKit_6be9a005889899ab", 3423653331988564, undefined, [significantAppUpdateTopic]); }
+  static initSignificantAppUpdateTopic(significantAppUpdateTopic: SignificantAppUpdateTopic): PermissionQuestion<SignificantAppUpdateTopic> { return callSDK<PermissionQuestion<SignificantAppUpdateTopic>>("PermissionKit_c1f28409f8601238", 3423653331988564, undefined, [significantAppUpdateTopic]); }
   declare readonly $type: { "s:13PermissionKit0A8QuestionC": true };
 }
 
@@ -289,12 +289,12 @@ export class PermissionResponse<Topic = unknown> extends SDKHandle {
    * let choice: PermissionChoice
    * @availability iOS 26.0+
    */
-  get choice(): PermissionChoice { return callSDK<PermissionChoice>("PermissionKit_6be9a005889899ab", 3457402400875025, this, []); }
+  get choice(): PermissionChoice { return callSDK<PermissionChoice>("PermissionKit_c1f28409f8601238", 3457402400875025, this, []); }
   /**
    * let question: PermissionQuestion<Topic>
    * @availability iOS 26.0+
    */
-  get question(): PermissionQuestion<SDKHandle> { return callSDK<PermissionQuestion<SDKHandle>>("PermissionKit_6be9a005889899ab", 1152633726580346, this, []); }
+  get question(): PermissionQuestion<SDKHandle> { return callSDK<PermissionQuestion<SDKHandle>>("PermissionKit_c1f28409f8601238", 1152633726580346, this, []); }
   declare readonly $type: { "s:13PermissionKit0A8ResponseV": true };
 }
 
@@ -323,29 +323,29 @@ export class SignificantAppUpdateTopic extends SDKHandle {
    * init(description: String)
    * @availability iOS 26.2+
    */
-  static init(description: string): SignificantAppUpdateTopic { return callSDK<SignificantAppUpdateTopic>("PermissionKit_6be9a005889899ab", 1014777565757079, undefined, [description]); }
+  static init(description: string): SignificantAppUpdateTopic { return callSDK<SignificantAppUpdateTopic>("PermissionKit_c1f28409f8601238", 1014777565757079, undefined, [description]); }
   /**
    * let description: String
    * @availability iOS 26.2+
    */
-  get description(): string { return callSDK<string>("PermissionKit_6be9a005889899ab", 2018110340456686, this, []); }
+  get description(): string { return callSDK<string>("PermissionKit_c1f28409f8601238", 2018110340456686, this, []); }
   /**
    * static let id: String
    * @availability iOS 26.2+
    */
-  static get id(): string { return callSDK<string>("PermissionKit_6be9a005889899ab", 2944448777184089, undefined, []); }
+  static get id(): string { return callSDK<string>("PermissionKit_c1f28409f8601238", 2944448777184089, undefined, []); }
   declare readonly $type: { "s:13PermissionKit25SignificantAppUpdateTopicV": true };
 }
 
-registerSDKClass("PermissionKit.AskCenter", AskCenter, { module: "PermissionKit_6be9a005889899ab", properties: {} });
-registerSDKClass("PermissionKit.AskError", AskError, { module: "PermissionKit_6be9a005889899ab", properties: {} });
-registerSDKClass("PermissionKit.CommunicationHandle", CommunicationHandle, { module: "PermissionKit_6be9a005889899ab", properties: {} });
-registerSDKClass("PermissionKit.CommunicationLimits", CommunicationLimits, { module: "PermissionKit_6be9a005889899ab", properties: {}, methods: {"knownHandles":{"id":2667853790142227},"isKnownHandle":{"id":421767211719610}} });
-registerSDKClass("PermissionKit.CommunicationTopic", CommunicationTopic, { module: "PermissionKit_6be9a005889899ab", properties: {} });
-registerSDKClass("PermissionKit.CommunicationTopic.PersonInformation", CommunicationTopic_PersonInformation, { module: "PermissionKit_6be9a005889899ab", properties: {} });
-registerSDKClass("PermissionKit.PermissionChoice", PermissionChoice, { module: "PermissionKit_6be9a005889899ab", properties: {} });
-registerSDKClass("PermissionKit.PermissionQuestion", PermissionQuestion, { module: "PermissionKit_6be9a005889899ab", properties: {} });
-registerSDKClass("PermissionKit.PermissionResponse", PermissionResponse, { module: "PermissionKit_6be9a005889899ab", properties: {} });
-registerSDKClass("PermissionKit.PermissionResult", PermissionResult, { module: "PermissionKit_6be9a005889899ab", properties: {} });
+registerSDKClass("PermissionKit.AskCenter", AskCenter, { module: "PermissionKit_c1f28409f8601238", properties: {} });
+registerSDKClass("PermissionKit.AskError", AskError, { module: "PermissionKit_c1f28409f8601238", properties: {} });
+registerSDKClass("PermissionKit.CommunicationHandle", CommunicationHandle, { module: "PermissionKit_c1f28409f8601238", properties: {} });
+registerSDKClass("PermissionKit.CommunicationLimits", CommunicationLimits, { module: "PermissionKit_c1f28409f8601238", properties: {}, methods: {"knownHandles":{"id":2667853790142227},"isKnownHandle":{"id":421767211719610}} });
+registerSDKClass("PermissionKit.CommunicationTopic", CommunicationTopic, { module: "PermissionKit_c1f28409f8601238", properties: {} });
+registerSDKClass("PermissionKit.CommunicationTopic.PersonInformation", CommunicationTopic_PersonInformation, { module: "PermissionKit_c1f28409f8601238", properties: {} });
+registerSDKClass("PermissionKit.PermissionChoice", PermissionChoice, { module: "PermissionKit_c1f28409f8601238", properties: {} });
+registerSDKClass("PermissionKit.PermissionQuestion", PermissionQuestion, { module: "PermissionKit_c1f28409f8601238", properties: {} });
+registerSDKClass("PermissionKit.PermissionResponse", PermissionResponse, { module: "PermissionKit_c1f28409f8601238", properties: {} });
+registerSDKClass("PermissionKit.PermissionResult", PermissionResult, { module: "PermissionKit_c1f28409f8601238", properties: {} });
 registerSDKProtocol("s:13PermissionKit13QuestionTopicP", {});
-registerSDKClass("PermissionKit.SignificantAppUpdateTopic", SignificantAppUpdateTopic, { module: "PermissionKit_6be9a005889899ab", properties: {} });
+registerSDKClass("PermissionKit.SignificantAppUpdateTopic", SignificantAppUpdateTopic, { module: "PermissionKit_c1f28409f8601238", properties: {} });

@@ -17,12 +17,12 @@ export class AUAppleCustomViewLoader extends SDKHandle {
    * @objc func customViewController(for componentDescription: AudioComponentDescription, audioUnit: AudioUnit, v3AU: AUAudioUnit? = nil) -> UIViewController?
    * @availability iOS 17.0+
    */
-  customViewController(componentDescription: _AudioToolbox_AudioComponentDescription, audioUnit: SDKHandle, v3AU?: $SDK1): $SDK0 { return callSDK<$SDK0>("CoreAudioKit_6be9a005889899ab", 983657187867379, this, [componentDescription, audioUnit, v3AU]); }
+  customViewController(componentDescription: _AudioToolbox_AudioComponentDescription, audioUnit: SDKHandle, v3AU?: $SDK1): $SDK0 { return callSDK<$SDK0>("CoreAudioKit_c1f28409f8601238", 983657187867379, this, [componentDescription, audioUnit, v3AU]); }
   /**
    * override dynamic init()
    * @availability iOS 17.0+
    */
-  static init(): AUAppleCustomViewLoader { return callSDK<AUAppleCustomViewLoader>("CoreAudioKit_6be9a005889899ab", 4007891543830966, undefined, []); }
+  static init(): AUAppleCustomViewLoader { return callSDK<AUAppleCustomViewLoader>("CoreAudioKit_c1f28409f8601238", 4007891543830966, undefined, []); }
   declare readonly $type: { "c:@M@CoreAudioKit@objc(cs)AUAppleCustomViewLoader": true; "c:objc(cs)NSObject": true };
 }
 
@@ -31,17 +31,17 @@ export class AUAudioUnit extends SDKHandle {
    * func requestViewController() async -> UIViewController?
    * @availability iOS 9.0+
    */
-  requestViewController(completionHandler: ((arg0: (_UIKit_UIViewController) | null) => void)): void { return callSDK<void>("CoreAudioKit_6be9a005889899ab", 215427935014849, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  requestViewController(completionHandler: ((arg0: (_UIKit_UIViewController) | null) => void)): void { return callSDK<void>("CoreAudioKit_c1f28409f8601238", 215427935014849, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func select(_ viewConfiguration: AUAudioUnitViewConfiguration)
    * @availability iOS 11.0+
    */
-  select(viewConfiguration: AUAudioUnitViewConfiguration): void { return callSDK<void>("CoreAudioKit_6be9a005889899ab", 4252338780425494, this, [viewConfiguration]); }
+  select(viewConfiguration: AUAudioUnitViewConfiguration): void { return callSDK<void>("CoreAudioKit_c1f28409f8601238", 4252338780425494, this, [viewConfiguration]); }
   /**
    * func supportedViewConfigurations(_ availableViewConfigurations: [AUAudioUnitViewConfiguration]) -> IndexSet
    * @availability iOS 11.0+
    */
-  supportedViewConfigurations(availableViewConfigurations: Array<AUAudioUnitViewConfiguration>): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("CoreAudioKit_6be9a005889899ab", 1569322067889073, this, [availableViewConfigurations]); }
+  supportedViewConfigurations(availableViewConfigurations: Array<AUAudioUnitViewConfiguration>): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("CoreAudioKit_c1f28409f8601238", 1569322067889073, this, [availableViewConfigurations]); }
   declare readonly $type: { "c:objc(cs)AUAudioUnit": true; "c:objc(cs)NSObject": true };
 }
 
@@ -54,22 +54,22 @@ export class AUAudioUnitViewConfiguration extends SDKHandle {
    * init(width: CGFloat, height: CGFloat, hostHasController: Bool)
    * @availability iOS 11.0+
    */
-  static init(width: number, height: number, hostHasController: boolean): AUAudioUnitViewConfiguration { return callSDK<AUAudioUnitViewConfiguration>("CoreAudioKit_6be9a005889899ab", 161339307998673, undefined, [width, height, hostHasController]); }
+  static init(width: number, height: number, hostHasController: boolean): AUAudioUnitViewConfiguration { return callSDK<AUAudioUnitViewConfiguration>("CoreAudioKit_c1f28409f8601238", 161339307998673, undefined, [width, height, hostHasController]); }
   /**
    * var height: CGFloat { get }
    * @availability iOS 11.0+
    */
-  get height(): number { return callSDK<number>("CoreAudioKit_6be9a005889899ab", 115072593043221, this, []); }
+  get height(): number { return callSDK<number>("CoreAudioKit_c1f28409f8601238", 115072593043221, this, []); }
   /**
    * var hostHasController: Bool { get }
    * @availability iOS 11.0+
    */
-  get hostHasController(): boolean { return callSDK<boolean>("CoreAudioKit_6be9a005889899ab", 2034673624204477, this, []); }
+  get hostHasController(): boolean { return callSDK<boolean>("CoreAudioKit_c1f28409f8601238", 2034673624204477, this, []); }
   /**
    * var width: CGFloat { get }
    * @availability iOS 11.0+
    */
-  get width(): number { return callSDK<number>("CoreAudioKit_6be9a005889899ab", 4439603118041930, this, []); }
+  get width(): number { return callSDK<number>("CoreAudioKit_c1f28409f8601238", 4439603118041930, this, []); }
   declare readonly $type: { "c:objc(cs)AUAudioUnitViewConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "height": true; "hostHasController": true; "width": true };
 }
@@ -80,13 +80,13 @@ export class AUAudioUnitViewConfiguration extends SDKHandle {
  */
 export class AUGenericViewController extends SDKHandle {
   /** init() */
-  static init(): Promise<AUGenericViewController> { return callSDKAsync<AUGenericViewController>("CoreAudioKit_6be9a005889899ab", 2355830280480254, undefined, []); }
+  static init(): Promise<AUGenericViewController> { return callSDKAsync<AUGenericViewController>("CoreAudioKit_c1f28409f8601238", 2355830280480254, undefined, []); }
   /**
    * var auAudioUnit: AUAudioUnit? { get set }
    * @availability iOS 16.0+
    */
-  get auAudioUnit(): Promise<$SDK1> { return callSDKAsync<$SDK1>("CoreAudioKit_6be9a005889899ab", 1257467764128836, this, []); }
-  setAuAudioUnit(value?: $SDK1): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 180727190278694, this, [value]); }
+  get auAudioUnit(): Promise<$SDK1> { return callSDKAsync<$SDK1>("CoreAudioKit_c1f28409f8601238", 1257467764128836, this, []); }
+  setAuAudioUnit(value?: $SDK1): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 180727190278694, this, [value]); }
   declare readonly $type: { "c:objc(cs)AUGenericViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "auAudioUnit": true };
 }
@@ -100,61 +100,61 @@ export class AUGenericViewInternal extends SDKHandle {
    * @MainActor @preconcurrency dynamic func collectionView(_ collectionView: UICollectionView, willDisplay item: UICollectionViewCell, forItemAt indexPath: IndexPath)
    * @availability iOS 14.0+
    */
-  collectionViewWillDisplayForItemAt(collectionView: _UIKit_UICollectionView, item: _UIKit_UICollectionViewCell, indexPath: _Foundation_IndexPath): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 2973349409097638, this, [collectionView, item, indexPath]); }
+  collectionViewWillDisplayForItemAt(collectionView: _UIKit_UICollectionView, item: _UIKit_UICollectionViewCell, indexPath: _Foundation_IndexPath): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 2973349409097638, this, [collectionView, item, indexPath]); }
   /**
    * @MainActor @preconcurrency dynamic func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: StringLiteralType, at indexPath: IndexPath)
    * @availability iOS 14.0+
    */
-  collectionViewWillDisplaySupplementaryViewForElementKindAt(collectionView: _UIKit_UICollectionView, view: _UIKit_UICollectionReusableView, elementKind: SDKHandle, indexPath: _Foundation_IndexPath): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 1882576696367410, this, [collectionView, view, elementKind, indexPath]); }
+  collectionViewWillDisplaySupplementaryViewForElementKindAt(collectionView: _UIKit_UICollectionView, view: _UIKit_UICollectionReusableView, elementKind: SDKHandle, indexPath: _Foundation_IndexPath): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 1882576696367410, this, [collectionView, view, elementKind, indexPath]); }
   /**
    * @MainActor @preconcurrency required dynamic init?(coder: NSCoder)
    * @availability iOS 14.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): Promise<(AUGenericViewInternal) | null> { return callSDKAsync<(AUGenericViewInternal) | null>("CoreAudioKit_6be9a005889899ab", 417677134633735, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): Promise<(AUGenericViewInternal) | null> { return callSDKAsync<(AUGenericViewInternal) | null>("CoreAudioKit_c1f28409f8601238", 417677134633735, undefined, [coder]); }
   /**
    * @MainActor @preconcurrency override dynamic init(frame: CGRect)
    * @availability iOS 14.0+
    */
-  static initFrame(frame: { x: number; y: number; width: number; height: number }): Promise<AUGenericViewInternal> { return callSDKAsync<AUGenericViewInternal>("CoreAudioKit_6be9a005889899ab", 3074100379996608, undefined, [frame]); }
+  static initFrame(frame: { x: number; y: number; width: number; height: number }): Promise<AUGenericViewInternal> { return callSDKAsync<AUGenericViewInternal>("CoreAudioKit_c1f28409f8601238", 3074100379996608, undefined, [frame]); }
   /**
    * @MainActor @preconcurrency override dynamic func removeFromSuperview()
    * @availability iOS 14.0+
    */
-  removeFromSuperview(): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 2459710311356589, this, []); }
+  removeFromSuperview(): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 2459710311356589, this, []); }
   /**
    * @MainActor @objc @preconcurrency func removeScheduledUpdatesTimer()
    * @availability iOS 14.0+
    */
-  removeScheduledUpdatesTimer(): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 336584951593345, this, []); }
+  removeScheduledUpdatesTimer(): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 336584951593345, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?)
    * @availability iOS 14.0+
    */
-  traitCollectionDidChange(previousTraitCollection?: (_UIKit_UITraitCollection) | null): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 2634545978138344, this, [previousTraitCollection]); }
+  traitCollectionDidChange(previousTraitCollection?: (_UIKit_UITraitCollection) | null): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 2634545978138344, this, [previousTraitCollection]); }
   /**
    * @MainActor @objc @preconcurrency var auAudioUnit: AUAudioUnit? { get set }
    * @availability iOS 14.0+
    */
-  get auAudioUnit(): Promise<$SDK1> { return callSDKAsync<$SDK1>("CoreAudioKit_6be9a005889899ab", 563430983230828, this, []); }
-  setAuAudioUnit(value?: $SDK1): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 1619518065531479, this, [value]); }
+  get auAudioUnit(): Promise<$SDK1> { return callSDKAsync<$SDK1>("CoreAudioKit_c1f28409f8601238", 563430983230828, this, []); }
+  setAuAudioUnit(value?: $SDK1): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 1619518065531479, this, [value]); }
   /**
    * @MainActor @objc @preconcurrency var owningController: UIViewController?
    * @availability iOS 14.0+
    */
-  get owningController(): Promise<$SDK0> { return callSDKAsync<$SDK0>("CoreAudioKit_6be9a005889899ab", 2276039824048391, this, []); }
-  setOwningController(value?: $SDK0): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 1540494418286393, this, [value]); }
+  get owningController(): Promise<$SDK0> { return callSDKAsync<$SDK0>("CoreAudioKit_c1f28409f8601238", 2276039824048391, this, []); }
+  setOwningController(value?: $SDK0): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 1540494418286393, this, [value]); }
   /**
    * @MainActor @objc @preconcurrency var paramObserverToken: AUParameterObserverToken?
    * @availability iOS 14.0+
    */
-  get paramObserverToken(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CoreAudioKit_6be9a005889899ab", 2689663998351770, this, []); }
-  setParamObserverToken(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 390741736035498, this, [value]); }
+  get paramObserverToken(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CoreAudioKit_c1f28409f8601238", 2689663998351770, this, []); }
+  setParamObserverToken(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 390741736035498, this, [value]); }
   /**
    * @MainActor @preconcurrency var showSingleClumpIndex: Int? { get set }
    * @availability iOS 14.0+
    */
-  get showSingleClumpIndex(): Promise<(number) | null> { return callSDKAsync<(number) | null>("CoreAudioKit_6be9a005889899ab", 1411448157058027, this, []); }
-  setShowSingleClumpIndex(value?: (number) | null): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 3703896696735431, this, [value]); }
+  get showSingleClumpIndex(): Promise<(number) | null> { return callSDKAsync<(number) | null>("CoreAudioKit_c1f28409f8601238", 1411448157058027, this, []); }
+  setShowSingleClumpIndex(value?: (number) | null): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 3703896696735431, this, [value]); }
   declare readonly $type: { "c:@M@CoreAudioKit@objc(cs)AUGenericViewInternal": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -167,7 +167,7 @@ export type AUGenericViewInternalBase = _UIKit_UIView;
  */
 export class AUViewController extends SDKHandle {
   /** init() */
-  static init(): Promise<AUViewController> { return callSDKAsync<AUViewController>("CoreAudioKit_6be9a005889899ab", 2435862886245158, undefined, []); }
+  static init(): Promise<AUViewController> { return callSDKAsync<AUViewController>("CoreAudioKit_c1f28409f8601238", 2435862886245158, undefined, []); }
   declare readonly $type: { "c:objc(cs)AUViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -177,7 +177,7 @@ export class AUViewController extends SDKHandle {
  */
 export class CABTMIDICentralViewController extends SDKHandle {
   /** init() */
-  static init(): Promise<CABTMIDICentralViewController> { return callSDKAsync<CABTMIDICentralViewController>("CoreAudioKit_6be9a005889899ab", 2524852454798808, undefined, []); }
+  static init(): Promise<CABTMIDICentralViewController> { return callSDKAsync<CABTMIDICentralViewController>("CoreAudioKit_c1f28409f8601238", 2524852454798808, undefined, []); }
   declare readonly $type: { "c:objc(cs)CABTMIDICentralViewController": true; "c:objc(cs)UITableViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -187,7 +187,7 @@ export class CABTMIDICentralViewController extends SDKHandle {
  */
 export class CABTMIDILocalPeripheralViewController extends SDKHandle {
   /** init() */
-  static init(): Promise<CABTMIDILocalPeripheralViewController> { return callSDKAsync<CABTMIDILocalPeripheralViewController>("CoreAudioKit_6be9a005889899ab", 4024397690955390, undefined, []); }
+  static init(): Promise<CABTMIDILocalPeripheralViewController> { return callSDKAsync<CABTMIDILocalPeripheralViewController>("CoreAudioKit_c1f28409f8601238", 4024397690955390, undefined, []); }
   declare readonly $type: { "c:objc(cs)CABTMIDILocalPeripheralViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -202,22 +202,22 @@ export class CAInterAppAudioSwitcherView extends SDKHandle {
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  contentWidth(): Promise<number> { return callSDKAsync<number>("CoreAudioKit_6be9a005889899ab", 4284500456147757, this, []); }
+  contentWidth(): Promise<number> { return callSDKAsync<number>("CoreAudioKit_c1f28409f8601238", 4284500456147757, this, []); }
   /** init() */
-  static init(): Promise<CAInterAppAudioSwitcherView> { return callSDKAsync<CAInterAppAudioSwitcherView>("CoreAudioKit_6be9a005889899ab", 3553040533231235, undefined, []); }
+  static init(): Promise<CAInterAppAudioSwitcherView> { return callSDKAsync<CAInterAppAudioSwitcherView>("CoreAudioKit_c1f28409f8601238", 3553040533231235, undefined, []); }
   /**
    * func setOutputAudioUnit(_ au: AudioUnit?)
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  setOutputAudioUnit(au?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 4116473258738312, this, [au]); }
+  setOutputAudioUnit(au?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 4116473258738312, this, [au]); }
   /**
    * var isShowingAppNames: Bool { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get isShowingAppNames(): Promise<boolean> { return callSDKAsync<boolean>("CoreAudioKit_6be9a005889899ab", 3839637479867282, this, []); }
-  setIsShowingAppNames(value: boolean): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 187250758432711, this, [value]); }
+  get isShowingAppNames(): Promise<boolean> { return callSDKAsync<boolean>("CoreAudioKit_c1f28409f8601238", 3839637479867282, this, []); }
+  setIsShowingAppNames(value: boolean): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 187250758432711, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAInterAppAudioSwitcherView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isShowingAppNames": true };
 }
@@ -229,91 +229,91 @@ export class CAInterAppAudioSwitcherView extends SDKHandle {
  */
 export class CAInterAppAudioTransportView extends SDKHandle {
   /** init() */
-  static init(): Promise<CAInterAppAudioTransportView> { return callSDKAsync<CAInterAppAudioTransportView>("CoreAudioKit_6be9a005889899ab", 541622604360712, undefined, []); }
+  static init(): Promise<CAInterAppAudioTransportView> { return callSDKAsync<CAInterAppAudioTransportView>("CoreAudioKit_c1f28409f8601238", 541622604360712, undefined, []); }
   /**
    * func setOutputAudioUnit(_ au: AudioUnit)
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  setOutputAudioUnit(au: SDKHandle): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 1927614290751832, this, [au]); }
+  setOutputAudioUnit(au: SDKHandle): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 1927614290751832, this, [au]); }
   /**
    * var isConnected: Bool { get }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get isConnected(): Promise<boolean> { return callSDKAsync<boolean>("CoreAudioKit_6be9a005889899ab", 714469471962917, this, []); }
+  get isConnected(): Promise<boolean> { return callSDKAsync<boolean>("CoreAudioKit_c1f28409f8601238", 714469471962917, this, []); }
   /**
    * var currentTimeLabelFont: UIFont { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get currentTimeLabelFont(): Promise<_UIKit_UIFont> { return callSDKAsync<_UIKit_UIFont>("CoreAudioKit_6be9a005889899ab", 3148564821509625, this, []); }
-  setCurrentTimeLabelFont(value: _UIKit_UIFont): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 4425194449870661, this, [value]); }
+  get currentTimeLabelFont(): Promise<_UIKit_UIFont> { return callSDKAsync<_UIKit_UIFont>("CoreAudioKit_c1f28409f8601238", 3148564821509625, this, []); }
+  setCurrentTimeLabelFont(value: _UIKit_UIFont): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 4425194449870661, this, [value]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CoreAudioKit_6be9a005889899ab", 4288824070547764, this, []); }
-  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 2021396343323161, this, [value]); }
+  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CoreAudioKit_c1f28409f8601238", 4288824070547764, this, []); }
+  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 2021396343323161, this, [value]); }
   /**
    * var labelColor: UIColor { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get labelColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CoreAudioKit_6be9a005889899ab", 1320973498371917, this, []); }
-  setLabelColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 3481775999943928, this, [value]); }
+  get labelColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CoreAudioKit_c1f28409f8601238", 1320973498371917, this, []); }
+  setLabelColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 3481775999943928, this, [value]); }
   /**
    * var pauseButtonColor: UIColor { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get pauseButtonColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CoreAudioKit_6be9a005889899ab", 3117638099758226, this, []); }
-  setPauseButtonColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 4243941088895812, this, [value]); }
+  get pauseButtonColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CoreAudioKit_c1f28409f8601238", 3117638099758226, this, []); }
+  setPauseButtonColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 4243941088895812, this, [value]); }
   /**
    * var playButtonColor: UIColor { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get playButtonColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CoreAudioKit_6be9a005889899ab", 1492957136990947, this, []); }
-  setPlayButtonColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 1273266869048783, this, [value]); }
+  get playButtonColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CoreAudioKit_c1f28409f8601238", 1492957136990947, this, []); }
+  setPlayButtonColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 1273266869048783, this, [value]); }
   /**
    * var isPlaying: Bool { get }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get isPlaying(): Promise<boolean> { return callSDKAsync<boolean>("CoreAudioKit_6be9a005889899ab", 4162185589694639, this, []); }
+  get isPlaying(): Promise<boolean> { return callSDKAsync<boolean>("CoreAudioKit_c1f28409f8601238", 4162185589694639, this, []); }
   /**
    * var recordButtonColor: UIColor { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get recordButtonColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CoreAudioKit_6be9a005889899ab", 3187106596628742, this, []); }
-  setRecordButtonColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 3690946644482692, this, [value]); }
+  get recordButtonColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CoreAudioKit_c1f28409f8601238", 3187106596628742, this, []); }
+  setRecordButtonColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 3690946644482692, this, [value]); }
   /**
    * var isRecording: Bool { get }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get isRecording(): Promise<boolean> { return callSDKAsync<boolean>("CoreAudioKit_6be9a005889899ab", 832663029871, this, []); }
+  get isRecording(): Promise<boolean> { return callSDKAsync<boolean>("CoreAudioKit_c1f28409f8601238", 832663029871, this, []); }
   /**
    * var rewindButtonColor: UIColor { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  get rewindButtonColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CoreAudioKit_6be9a005889899ab", 2773594277547286, this, []); }
-  setRewindButtonColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CoreAudioKit_6be9a005889899ab", 562535283905990, this, [value]); }
+  get rewindButtonColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CoreAudioKit_c1f28409f8601238", 2773594277547286, this, []); }
+  setRewindButtonColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CoreAudioKit_c1f28409f8601238", 562535283905990, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAInterAppAudioTransportView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isConnected": true; "currentTimeLabelFont": true; "isEnabled": true; "labelColor": true; "pauseButtonColor": true; "playButtonColor": true; "isPlaying": true; "recordButtonColor": true; "isRecording": true; "rewindButtonColor": true };
 }
 
-registerSDKClass("CoreAudioKit.AUAppleCustomViewLoader", AUAppleCustomViewLoader, { module: "CoreAudioKit_6be9a005889899ab", properties: {}, methods: {"customViewController":{"id":983657187867379}} });
-registerSDKClass("AUAudioUnit", AUAudioUnit, { module: "CoreAudioKit_6be9a005889899ab", properties: {}, methods: {"requestViewController":{"id":215427935014849,"hints":[{"callback":{"out":[]}}]},"select":{"id":4252338780425494},"supportedViewConfigurations":{"id":1569322067889073}} }, true);
-registerSDKClass("AUAudioUnitViewConfiguration", AUAudioUnitViewConfiguration, { module: "CoreAudioKit_6be9a005889899ab", properties: {"height":115072593043221,"hostHasController":2034673624204477,"width":4439603118041930} });
-registerSDKClass("AUGenericViewController", AUGenericViewController, { module: "CoreAudioKit_6be9a005889899ab", properties: {"auAudioUnit":1257467764128836} });
-registerSDKClass("CoreAudioKit.AUGenericViewInternal", AUGenericViewInternal, { module: "CoreAudioKit_6be9a005889899ab", properties: {}, methods: {"collectionViewWillDisplayForItemAt":{"id":2973349409097638},"collectionViewWillDisplaySupplementaryViewForElementKindAt":{"id":1882576696367410},"removeFromSuperview":{"id":2459710311356589},"removeScheduledUpdatesTimer":{"id":336584951593345},"traitCollectionDidChange":{"id":2634545978138344}} });
-registerSDKClass("AUViewController", AUViewController, { module: "CoreAudioKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CABTMIDICentralViewController", CABTMIDICentralViewController, { module: "CoreAudioKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CABTMIDILocalPeripheralViewController", CABTMIDILocalPeripheralViewController, { module: "CoreAudioKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CAInterAppAudioSwitcherView", CAInterAppAudioSwitcherView, { module: "CoreAudioKit_6be9a005889899ab", properties: {"isShowingAppNames":3839637479867282}, methods: {"contentWidth":{"id":4284500456147757},"setOutputAudioUnit":{"id":4116473258738312}} });
-registerSDKClass("CAInterAppAudioTransportView", CAInterAppAudioTransportView, { module: "CoreAudioKit_6be9a005889899ab", properties: {"isConnected":714469471962917,"currentTimeLabelFont":3148564821509625,"isEnabled":4288824070547764,"labelColor":1320973498371917,"pauseButtonColor":3117638099758226,"playButtonColor":1492957136990947,"isPlaying":4162185589694639,"recordButtonColor":3187106596628742,"isRecording":832663029871,"rewindButtonColor":2773594277547286}, methods: {"setOutputAudioUnit":{"id":1927614290751832}} });
+registerSDKClass("CoreAudioKit.AUAppleCustomViewLoader", AUAppleCustomViewLoader, { module: "CoreAudioKit_c1f28409f8601238", properties: {}, methods: {"customViewController":{"id":983657187867379}} });
+registerSDKClass("AUAudioUnit", AUAudioUnit, { module: "CoreAudioKit_c1f28409f8601238", properties: {}, methods: {"requestViewController":{"id":215427935014849,"hints":[{"callback":{"out":[]}}]},"select":{"id":4252338780425494},"supportedViewConfigurations":{"id":1569322067889073}} }, true);
+registerSDKClass("AUAudioUnitViewConfiguration", AUAudioUnitViewConfiguration, { module: "CoreAudioKit_c1f28409f8601238", properties: {"height":115072593043221,"hostHasController":2034673624204477,"width":4439603118041930} });
+registerSDKClass("AUGenericViewController", AUGenericViewController, { module: "CoreAudioKit_c1f28409f8601238", properties: {"auAudioUnit":1257467764128836} });
+registerSDKClass("CoreAudioKit.AUGenericViewInternal", AUGenericViewInternal, { module: "CoreAudioKit_c1f28409f8601238", properties: {}, methods: {"collectionViewWillDisplayForItemAt":{"id":2973349409097638},"collectionViewWillDisplaySupplementaryViewForElementKindAt":{"id":1882576696367410},"removeFromSuperview":{"id":2459710311356589},"removeScheduledUpdatesTimer":{"id":336584951593345},"traitCollectionDidChange":{"id":2634545978138344}} });
+registerSDKClass("AUViewController", AUViewController, { module: "CoreAudioKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CABTMIDICentralViewController", CABTMIDICentralViewController, { module: "CoreAudioKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CABTMIDILocalPeripheralViewController", CABTMIDILocalPeripheralViewController, { module: "CoreAudioKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CAInterAppAudioSwitcherView", CAInterAppAudioSwitcherView, { module: "CoreAudioKit_c1f28409f8601238", properties: {"isShowingAppNames":3839637479867282}, methods: {"contentWidth":{"id":4284500456147757},"setOutputAudioUnit":{"id":4116473258738312}} });
+registerSDKClass("CAInterAppAudioTransportView", CAInterAppAudioTransportView, { module: "CoreAudioKit_c1f28409f8601238", properties: {"isConnected":714469471962917,"currentTimeLabelFont":3148564821509625,"isEnabled":4288824070547764,"labelColor":1320973498371917,"pauseButtonColor":3117638099758226,"playButtonColor":1492957136990947,"isPlaying":4162185589694639,"recordButtonColor":3187106596628742,"isRecording":832663029871,"rewindButtonColor":2773594277547286}, methods: {"setOutputAudioUnit":{"id":1927614290751832}} });

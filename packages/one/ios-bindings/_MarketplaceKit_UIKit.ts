@@ -14,84 +14,84 @@ export class ActionButton extends SDKHandle {
    * @MainActor @preconcurrency override dynamic var backgroundColor: UIColor? { get set }
    * @availability iOS 17.4+
    */
-  get backgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("_MarketplaceKit_UIKit_6be9a005889899ab", 623887987888320, this, []); }
-  setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 1410198665070417, this, [value]); }
+  get backgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("_MarketplaceKit_UIKit_c1f28409f8601238", 623887987888320, this, []); }
+  setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 1410198665070417, this, [value]); }
   /**
    * @MainActor @preconcurrency override dynamic var isEnabled: Bool { get set }
    * @availability iOS 17.4+
    */
-  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("_MarketplaceKit_UIKit_6be9a005889899ab", 3299177788341430, this, []); }
-  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 740789264200392, this, [value]); }
+  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("_MarketplaceKit_UIKit_c1f28409f8601238", 3299177788341430, this, []); }
+  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 740789264200392, this, [value]); }
   /**
    * @MainActor @preconcurrency override dynamic var isHighlighted: Bool { get set }
    * @availability iOS 17.4+
    */
-  get isHighlighted(): Promise<boolean> { return callSDKAsync<boolean>("_MarketplaceKit_UIKit_6be9a005889899ab", 3019452315603679, this, []); }
-  setIsHighlighted(value: boolean): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 221482959172292, this, [value]); }
+  get isHighlighted(): Promise<boolean> { return callSDKAsync<boolean>("_MarketplaceKit_UIKit_c1f28409f8601238", 3019452315603679, this, []); }
+  setIsHighlighted(value: boolean): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 221482959172292, this, [value]); }
   /**
    * @MainActor @preconcurrency override dynamic var tintColor: UIColor! { get set }
    * @availability iOS 17.4+
    */
-  get tintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("_MarketplaceKit_UIKit_6be9a005889899ab", 1273893651430775, this, []); }
-  setTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 1902326879258229, this, [value]); }
+  get tintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("_MarketplaceKit_UIKit_c1f28409f8601238", 1273893651430775, this, []); }
+  setTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 1902326879258229, this, [value]); }
   /**
    * @MainActor @preconcurrency var borderColor: UIColor { get set }
    * @availability iOS 17.4+
    */
-  get borderColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("_MarketplaceKit_UIKit_6be9a005889899ab", 2204920180624972, this, []); }
-  setBorderColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 1939325256607786, this, [value]); }
+  get borderColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("_MarketplaceKit_UIKit_c1f28409f8601238", 2204920180624972, this, []); }
+  setBorderColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 1939325256607786, this, [value]); }
   /**
    * @MainActor @preconcurrency var borderWidth: CGFloat { get set }
    * @availability iOS 17.4+
    */
-  get borderWidth(): Promise<number> { return callSDKAsync<number>("_MarketplaceKit_UIKit_6be9a005889899ab", 1897467765258672, this, []); }
-  setBorderWidth(value: number): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 3684501465313452, this, [value]); }
+  get borderWidth(): Promise<number> { return callSDKAsync<number>("_MarketplaceKit_UIKit_c1f28409f8601238", 1897467765258672, this, []); }
+  setBorderWidth(value: number): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 3684501465313452, this, [value]); }
   /**
    * @MainActor @preconcurrency var cornerRadius: CGFloat { get set }
    * @availability iOS 17.4+
    */
-  get cornerRadius(): Promise<number> { return callSDKAsync<number>("_MarketplaceKit_UIKit_6be9a005889899ab", 1333031150853704, this, []); }
-  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 1521786278226454, this, [value]); }
+  get cornerRadius(): Promise<number> { return callSDKAsync<number>("_MarketplaceKit_UIKit_c1f28409f8601238", 1333031150853704, this, []); }
+  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 1521786278226454, this, [value]); }
   /**
    * @MainActor @preconcurrency var imagePlacement: ActionButton.ButtonImagePlacement { get set }
    * @availability iOS 17.4+
    */
-  get imagePlacement(): Promise<ActionButton_ButtonImagePlacement> { return callSDKAsync<ActionButton_ButtonImagePlacement>("_MarketplaceKit_UIKit_6be9a005889899ab", 3020551067442182, this, []); }
-  setImagePlacement(value: ActionButton_ButtonImagePlacement): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 3991264670400323, this, [value]); }
+  get imagePlacement(): Promise<ActionButton_ButtonImagePlacement> { return callSDKAsync<ActionButton_ButtonImagePlacement>("_MarketplaceKit_UIKit_c1f28409f8601238", 3020551067442182, this, []); }
+  setImagePlacement(value: ActionButton_ButtonImagePlacement): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 3991264670400323, this, [value]); }
   /**
    * @MainActor @preconcurrency var size: CGSize { get set }
    * @availability iOS 17.4+
    */
-  get size(): Promise<$SDK0> { return callSDKAsync<$SDK0>("_MarketplaceKit_UIKit_6be9a005889899ab", 1233431900544070, this, []); }
-  setSize(value: $SDK0): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 1233820395486830, this, [value]); }
+  get size(): Promise<$SDK0> { return callSDKAsync<$SDK0>("_MarketplaceKit_UIKit_c1f28409f8601238", 1233431900544070, this, []); }
+  setSize(value: $SDK0): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 1233820395486830, this, [value]); }
   /**
    * @MainActor @preconcurrency var label: String { get set }
    * @availability iOS 17.4+
    */
-  get label(): Promise<string> { return callSDKAsync<string>("_MarketplaceKit_UIKit_6be9a005889899ab", 711101496511449, this, []); }
-  setLabel(value: string): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 1648491869825376, this, [value]); }
+  get label(): Promise<string> { return callSDKAsync<string>("_MarketplaceKit_UIKit_c1f28409f8601238", 711101496511449, this, []); }
+  setLabel(value: string): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 1648491869825376, this, [value]); }
   /**
    * @MainActor @preconcurrency init(action: ActionButton.Action)
    * @availability iOS 17.4+
    */
-  static init(action: ActionButton_Action): Promise<ActionButton> { return callSDKAsync<ActionButton>("_MarketplaceKit_UIKit_6be9a005889899ab", 4440387258527034, undefined, [action]); }
+  static init(action: ActionButton_Action): Promise<ActionButton> { return callSDKAsync<ActionButton>("_MarketplaceKit_UIKit_c1f28409f8601238", 4440387258527034, undefined, [action]); }
   /**
    * @MainActor @preconcurrency final let action: ActionButton.Action
    * @availability iOS 17.4+
    */
-  get action(): Promise<ActionButton_Action> { return callSDKAsync<ActionButton_Action>("_MarketplaceKit_UIKit_6be9a005889899ab", 648415992175518, this, []); }
+  get action(): Promise<ActionButton_Action> { return callSDKAsync<ActionButton_Action>("_MarketplaceKit_UIKit_c1f28409f8601238", 648415992175518, this, []); }
   /**
    * @MainActor @preconcurrency var fontSize: CGFloat { get set }
    * @availability iOS 17.4+
    */
-  get fontSize(): Promise<number> { return callSDKAsync<number>("_MarketplaceKit_UIKit_6be9a005889899ab", 1651096858750928, this, []); }
-  setFontSize(value: number): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 190085201470901, this, [value]); }
+  get fontSize(): Promise<number> { return callSDKAsync<number>("_MarketplaceKit_UIKit_c1f28409f8601238", 1651096858750928, this, []); }
+  setFontSize(value: number): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 190085201470901, this, [value]); }
   /**
    * @MainActor @preconcurrency var imageName: String? { get set }
    * @availability iOS 17.4+
    */
-  get imageName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("_MarketplaceKit_UIKit_6be9a005889899ab", 438605287222772, this, []); }
-  setImageName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 2569076289043893, this, [value]); }
+  get imageName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("_MarketplaceKit_UIKit_c1f28409f8601238", 438605287222772, this, []); }
+  setImageName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 2569076289043893, this, [value]); }
   declare readonly $type: { "c:@M@_MarketplaceKit_UIKit@objc(cs)ActionButton": true; "c:objc(cs)UIControl": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -114,12 +114,12 @@ export const ActionButton_ButtonImagePlacement = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): Promise<(ActionButton_ButtonImagePlacement) | null> { return callSDKAsync<(ActionButton_ButtonImagePlacement) | null>("_MarketplaceKit_UIKit_6be9a005889899ab", 4091147884306139, undefined, [rawValue]); },
+  init(rawValue: number): Promise<(ActionButton_ButtonImagePlacement) | null> { return callSDKAsync<(ActionButton_ButtonImagePlacement) | null>("_MarketplaceKit_UIKit_c1f28409f8601238", 4091147884306139, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 17.4+
    */
-  getRawValue($self: ActionButton_ButtonImagePlacement): Promise<number> { return callSDKAsync<number>("_MarketplaceKit_UIKit_6be9a005889899ab", 354691785960673, $self, []); }
+  getRawValue($self: ActionButton_ButtonImagePlacement): Promise<number> { return callSDKAsync<number>("_MarketplaceKit_UIKit_c1f28409f8601238", 354691785960673, $self, []); }
 };
 
 /**
@@ -133,7 +133,7 @@ export class AppLibrary_App extends SDKHandle {
    * @MainActor final func requestDeletion(in scene: UIWindowScene) async throws
    * @availability iOS 26.4+
    */
-  requestDeletion(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 3336060648350158, this, [scene]); }
+  requestDeletion(scene: _UIKit_UIWindowScene): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 3336060648350158, this, [scene]); }
   declare readonly $type: { "s:14MarketplaceKit10AppLibraryC0C0C": true };
 }
 
@@ -146,12 +146,12 @@ export class BatchInstallConfiguration extends SDKHandle {
    * let confirmInstall: @Sendable () async -> BatchInstallConfirmationResult
    * @availability iOS 17.4+
    */
-  get confirmInstall(): (() => Promise<BatchInstallConfirmationResult>) { return callSDK<(() => Promise<BatchInstallConfirmationResult>)>("_MarketplaceKit_UIKit_6be9a005889899ab", 2106343792203212, this, []); }
+  get confirmInstall(): (() => Promise<BatchInstallConfirmationResult>) { return callSDK<(() => Promise<BatchInstallConfirmationResult>)>("_MarketplaceKit_UIKit_c1f28409f8601238", 2106343792203212, this, []); }
   /**
    * let installs: [InstallMetadata]
    * @availability iOS 17.4+
    */
-  get installs(): Array<InstallMetadata> { return callSDK<Array<InstallMetadata>>("_MarketplaceKit_UIKit_6be9a005889899ab", 3601890299724016, this, []); }
+  get installs(): Array<InstallMetadata> { return callSDK<Array<InstallMetadata>>("_MarketplaceKit_UIKit_c1f28409f8601238", 3601890299724016, this, []); }
   declare readonly $type: { "s:21_MarketplaceKit_UIKit25BatchInstallConfigurationV": true };
 }
 
@@ -172,12 +172,12 @@ export class InstallConfiguration extends SDKHandle {
    * let confirmInstall: @Sendable () async -> InstallConfirmationResult
    * @availability iOS 17.4+
    */
-  get confirmInstall(): (() => Promise<InstallConfirmationResult>) { return callSDK<(() => Promise<InstallConfirmationResult>)>("_MarketplaceKit_UIKit_6be9a005889899ab", 3357897147768916, this, []); }
+  get confirmInstall(): (() => Promise<InstallConfirmationResult>) { return callSDK<(() => Promise<InstallConfirmationResult>)>("_MarketplaceKit_UIKit_c1f28409f8601238", 3357897147768916, this, []); }
   /**
    * let install: InstallMetadata
    * @availability iOS 17.4+
    */
-  get install(): InstallMetadata { return callSDK<InstallMetadata>("_MarketplaceKit_UIKit_6be9a005889899ab", 2939435051828350, this, []); }
+  get install(): InstallMetadata { return callSDK<InstallMetadata>("_MarketplaceKit_UIKit_c1f28409f8601238", 2939435051828350, this, []); }
   declare readonly $type: { "s:21_MarketplaceKit_UIKit20InstallConfigurationV": true };
 }
 
@@ -198,44 +198,44 @@ export class InstallMetadata extends SDKHandle {
    * var appShareURL: URL?
    * @availability iOS 18.0+
    */
-  get appShareURL(): (string) | null { return callSDK<(string) | null>("_MarketplaceKit_UIKit_6be9a005889899ab", 3383343483192007, this, []); }
-  set appShareURL(value: (string) | null) { callSDK<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 577617462149964, this, [value]); }
+  get appShareURL(): (string) | null { return callSDK<(string) | null>("_MarketplaceKit_UIKit_c1f28409f8601238", 3383343483192007, this, []); }
+  set appShareURL(value: (string) | null) { callSDK<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 577617462149964, this, [value]); }
   /**
    * let appleItemID: AppleItemID
    * @availability iOS 17.4+
    */
-  get appleItemID(): number { return callSDK<number>("_MarketplaceKit_UIKit_6be9a005889899ab", 1631052084925533, this, []); }
+  get appleItemID(): number { return callSDK<number>("_MarketplaceKit_UIKit_c1f28409f8601238", 1631052084925533, this, []); }
   /**
    * var requestAgeException: Bool
    * @availability iOS 26.1+
    */
-  get requestAgeException(): boolean { return callSDK<boolean>("_MarketplaceKit_UIKit_6be9a005889899ab", 4062400231023019, this, []); }
-  set requestAgeException(value: boolean) { callSDK<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 1194597070589556, this, [value]); }
+  get requestAgeException(): boolean { return callSDK<boolean>("_MarketplaceKit_UIKit_c1f28409f8601238", 4062400231023019, this, []); }
+  set requestAgeException(value: boolean) { callSDK<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 1194597070589556, this, [value]); }
   /**
    * let alternativeDistributionPackage: URL
    * @availability iOS 17.4+
    */
-  get alternativeDistributionPackage(): string { return callSDK<string>("_MarketplaceKit_UIKit_6be9a005889899ab", 1414730655095571, this, []); }
+  get alternativeDistributionPackage(): string { return callSDK<string>("_MarketplaceKit_UIKit_c1f28409f8601238", 1414730655095571, this, []); }
   /**
    * init(account: String, appleItemID: AppleItemID, alternativeDistributionPackage: URL, isUpdate: Bool, appShareURL: URL?, requestAgeException: Bool = false)
    * @availability iOS 26.1+
    */
-  static initAccountAppleItemIDAlternativeDistributionPackageIsUpdateAppShareURLRequestAgeException(account: string, appleItemID: number, alternativeDistributionPackage: string, isUpdate: boolean, appShareURL?: (string) | null, requestAgeException?: boolean): InstallMetadata { return callSDK<InstallMetadata>("_MarketplaceKit_UIKit_6be9a005889899ab", 2216158729862167, undefined, [account, appleItemID, alternativeDistributionPackage, isUpdate, appShareURL, requestAgeException]); }
+  static initAccountAppleItemIDAlternativeDistributionPackageIsUpdateAppShareURLRequestAgeException(account: string, appleItemID: number, alternativeDistributionPackage: string, isUpdate: boolean, appShareURL?: (string) | null, requestAgeException?: boolean): InstallMetadata { return callSDK<InstallMetadata>("_MarketplaceKit_UIKit_c1f28409f8601238", 2216158729862167, undefined, [account, appleItemID, alternativeDistributionPackage, isUpdate, appShareURL, requestAgeException]); }
   /**
    * init(account: String, appleItemID: AppleItemID, alternativeDistributionPackage: URL, isUpdate: Bool)
    * @availability iOS 17.4+
    */
-  static initAccountAppleItemIDAlternativeDistributionPackageIsUpdate(account: string, appleItemID: number, alternativeDistributionPackage: string, isUpdate: boolean): InstallMetadata { return callSDK<InstallMetadata>("_MarketplaceKit_UIKit_6be9a005889899ab", 3398563958175333, undefined, [account, appleItemID, alternativeDistributionPackage, isUpdate]); }
+  static initAccountAppleItemIDAlternativeDistributionPackageIsUpdate(account: string, appleItemID: number, alternativeDistributionPackage: string, isUpdate: boolean): InstallMetadata { return callSDK<InstallMetadata>("_MarketplaceKit_UIKit_c1f28409f8601238", 3398563958175333, undefined, [account, appleItemID, alternativeDistributionPackage, isUpdate]); }
   /**
    * let account: String
    * @availability iOS 17.4+
    */
-  get account(): string { return callSDK<string>("_MarketplaceKit_UIKit_6be9a005889899ab", 2146522141551850, this, []); }
+  get account(): string { return callSDK<string>("_MarketplaceKit_UIKit_c1f28409f8601238", 2146522141551850, this, []); }
   /**
    * let isUpdate: Bool
    * @availability iOS 17.4+
    */
-  get isUpdate(): boolean { return callSDK<boolean>("_MarketplaceKit_UIKit_6be9a005889899ab", 2500941433167244, this, []); }
+  get isUpdate(): boolean { return callSDK<boolean>("_MarketplaceKit_UIKit_c1f28409f8601238", 2500941433167244, this, []); }
   declare readonly $type: { "s:21_MarketplaceKit_UIKit15InstallMetadataV": true };
 }
 
@@ -268,7 +268,7 @@ export class RequestAppDeletionAction extends SDKHandle {
    * func callAsFunction(_ app: AppLibrary.App) async throws
    * @availability iOS 26.4+
    */
-  callAsFunction(app: _MarketplaceKit_AppLibrary_App): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_6be9a005889899ab", 1468746422150861, this, [app]); }
+  callAsFunction(app: _MarketplaceKit_AppLibrary_App): Promise<void> { return callSDKAsync<void>("_MarketplaceKit_UIKit_c1f28409f8601238", 1468746422150861, this, [app]); }
   declare readonly $type: { "s:21_MarketplaceKit_UIKit24RequestAppDeletionActionV": true };
 }
 
@@ -277,19 +277,19 @@ export class UIScene_ConnectionOptions extends SDKHandle {
    * @MainActor @preconcurrency var marketplaceDisplayOption: MarketplaceDisplayOption? { get }
    * @availability iOS 17.4+
    */
-  get marketplaceDisplayOption(): Promise<(MarketplaceDisplayOption) | null> { return callSDKAsync<(MarketplaceDisplayOption) | null>("_MarketplaceKit_UIKit_6be9a005889899ab", 1420250782367119, this, []); }
+  get marketplaceDisplayOption(): Promise<(MarketplaceDisplayOption) | null> { return callSDKAsync<(MarketplaceDisplayOption) | null>("_MarketplaceKit_UIKit_c1f28409f8601238", 1420250782367119, this, []); }
   declare readonly $type: { "c:objc(cs)UISceneConnectionOptions": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("_MarketplaceKit_UIKit.ActionButton", ActionButton, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {} });
-registerSDKClass("_MarketplaceKit_UIKit.ActionButton.Action", ActionButton_Action, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {} });
-registerSDKClass("MarketplaceKit.AppLibrary.App", AppLibrary_App, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {}, methods: {"requestDeletion":{"id":3336060648350158}} }, true);
-registerSDKClass("_MarketplaceKit_UIKit.BatchInstallConfiguration", BatchInstallConfiguration, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {} });
-registerSDKClass("_MarketplaceKit_UIKit.BatchInstallConfirmationResult", BatchInstallConfirmationResult, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {} });
-registerSDKClass("_MarketplaceKit_UIKit.InstallConfiguration", InstallConfiguration, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {} });
-registerSDKClass("_MarketplaceKit_UIKit.InstallConfirmationResult", InstallConfirmationResult, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {} });
-registerSDKClass("_MarketplaceKit_UIKit.InstallMetadata", InstallMetadata, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {} });
-registerSDKClass("_MarketplaceKit_UIKit.MarketplaceDisplayOption", MarketplaceDisplayOption, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {} });
+registerSDKClass("_MarketplaceKit_UIKit.ActionButton", ActionButton, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {} });
+registerSDKClass("_MarketplaceKit_UIKit.ActionButton.Action", ActionButton_Action, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {} });
+registerSDKClass("MarketplaceKit.AppLibrary.App", AppLibrary_App, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {}, methods: {"requestDeletion":{"id":3336060648350158}} }, true);
+registerSDKClass("_MarketplaceKit_UIKit.BatchInstallConfiguration", BatchInstallConfiguration, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {} });
+registerSDKClass("_MarketplaceKit_UIKit.BatchInstallConfirmationResult", BatchInstallConfirmationResult, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {} });
+registerSDKClass("_MarketplaceKit_UIKit.InstallConfiguration", InstallConfiguration, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {} });
+registerSDKClass("_MarketplaceKit_UIKit.InstallConfirmationResult", InstallConfirmationResult, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {} });
+registerSDKClass("_MarketplaceKit_UIKit.InstallMetadata", InstallMetadata, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {} });
+registerSDKClass("_MarketplaceKit_UIKit.MarketplaceDisplayOption", MarketplaceDisplayOption, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {} });
 registerSDKProtocol("s:21_MarketplaceKit_UIKit0A13SceneDelegateP", {"sceneAskedToDisplay":"scene(_:askedToDisplay:)"});
-registerSDKClass("_MarketplaceKit_UIKit.RequestAppDeletionAction", RequestAppDeletionAction, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {}, methods: {"callAsFunction":{"id":1468746422150861}} });
-registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "_MarketplaceKit_UIKit_6be9a005889899ab", properties: {} }, true);
+registerSDKClass("_MarketplaceKit_UIKit.RequestAppDeletionAction", RequestAppDeletionAction, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {}, methods: {"callAsFunction":{"id":1468746422150861}} });
+registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "_MarketplaceKit_UIKit_c1f28409f8601238", properties: {} }, true);

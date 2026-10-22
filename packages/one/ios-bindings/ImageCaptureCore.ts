@@ -38,27 +38,27 @@ export const ICAuthorizationStatus = {
    * static let authorized: ICAuthorizationStatus
    * @availability iOS 14.0+
    */
-  get authorized(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_6be9a005889899ab", 3386870920596775, undefined, []); },
+  get authorized(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_c1f28409f8601238", 3386870920596775, undefined, []); },
   /**
    * static let denied: ICAuthorizationStatus
    * @availability iOS 14.0+
    */
-  get denied(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_6be9a005889899ab", 2595941086737285, undefined, []); },
+  get denied(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_c1f28409f8601238", 2595941086737285, undefined, []); },
   /**
    * static let notDetermined: ICAuthorizationStatus
    * @availability iOS 14.0+
    */
-  get notDetermined(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_6be9a005889899ab", 3967575518798721, undefined, []); },
+  get notDetermined(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_c1f28409f8601238", 3967575518798721, undefined, []); },
   /**
    * static let restricted: ICAuthorizationStatus
    * @availability iOS 14.0+
    */
-  get restricted(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_6be9a005889899ab", 4492662005280510, undefined, []); },
+  get restricted(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_c1f28409f8601238", 4492662005280510, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_6be9a005889899ab", 1772524173557862, undefined, [rawValue]); }
+  init(rawValue: string): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_c1f28409f8601238", 1772524173557862, undefined, [rawValue]); }
 };
 
 /**
@@ -67,108 +67,108 @@ export const ICAuthorizationStatus = {
  */
 export class ICDevice extends SDKHandle {
   /** init() */
-  static init(): ICDevice { return callSDK<ICDevice>("ImageCaptureCore_6be9a005889899ab", 4045510030003391, undefined, []); }
+  static init(): ICDevice { return callSDK<ICDevice>("ImageCaptureCore_c1f28409f8601238", 4045510030003391, undefined, []); }
   /**
    * func requestCloseSession()
    * @availability iOS 13.0+
    */
-  requestCloseSession(): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 1398511354005269, this, []); }
+  requestCloseSession(): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 1398511354005269, this, []); }
   /**
    * func requestCloseSession(options: [ICSessionOptions : Any]? = nil) async throws
    * @availability iOS 13.0+
    */
-  requestCloseSessionOptionsCompletion(options: $SDK0, completion: $SDK1): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 2359233577840149, this, [options, completion], [null,{"callback":{"out":[]}}]); }
+  requestCloseSessionOptionsCompletion(options: $SDK0, completion: $SDK1): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 2359233577840149, this, [options, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func requestEject()
    * @availability iOS 13.0+
    */
-  requestEject(): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 189170754339985, this, []); }
+  requestEject(): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 189170754339985, this, []); }
   /**
    * func requestEject() async throws
    * @availability iOS 13.0+
    */
-  requestEjectCompletion(completion: $SDK1): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 2986746059519810, this, [completion], [{"callback":{"out":[]}}]); }
+  requestEjectCompletion(completion: $SDK1): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 2986746059519810, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func requestOpenSession()
    * @availability iOS 13.0+
    */
-  requestOpenSession(): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 3585320024552402, this, []); }
+  requestOpenSession(): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 3585320024552402, this, []); }
   /**
    * func requestOpenSession(options: [ICSessionOptions : Any]? = nil) async throws
    * @availability iOS 13.0+
    */
-  requestOpenSessionOptionsCompletion(options: $SDK0, completion: $SDK1): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 2480044114090685, this, [options, completion], [null,{"callback":{"out":[]}}]); }
+  requestOpenSessionOptionsCompletion(options: $SDK0, completion: $SDK1): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 2480044114090685, this, [options, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var uuidString: String? { get }
    * @availability iOS 13.0+
    */
-  get uuidString(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 1365159838713238, this, []); }
+  get uuidString(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 1365159838713238, this, []); }
   /**
    * var capabilities: [String] { get }
    * @availability iOS 13.0+
    */
-  get capabilities(): Array<string> { return callSDK<Array<string>>("ImageCaptureCore_6be9a005889899ab", 4080453095939598, this, []); }
+  get capabilities(): Array<string> { return callSDK<Array<string>>("ImageCaptureCore_c1f28409f8601238", 4080453095939598, this, []); }
   /**
    * unowned(unsafe) var delegate: (any ICDeviceDelegate)? { get set }
    * @availability iOS 13.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ImageCaptureCore_6be9a005889899ab", 2662685178836596, this, []); }
-  set delegate(value: (Implements<ICDeviceDelegate> | SDKHandle) | null) { callSDK<void>("ImageCaptureCore_6be9a005889899ab", 3930593562782920, this, [value], [{"protocol":"c:objc(pl)ICDeviceDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ImageCaptureCore_c1f28409f8601238", 2662685178836596, this, []); }
+  set delegate(value: (Implements<ICDeviceDelegate> | SDKHandle) | null) { callSDK<void>("ImageCaptureCore_c1f28409f8601238", 3930593562782920, this, [value], [{"protocol":"c:objc(pl)ICDeviceDelegate"}]); }
   /**
    * var hasOpenSession: Bool { get }
    * @availability iOS 13.0+
    */
-  get hasOpenSession(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 2894448445655492, this, []); }
+  get hasOpenSession(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 2894448445655492, this, []); }
   /**
    * var icon: CGImage? { get }
    * @availability iOS 13.0+
    */
-  get icon(): $SDK3 { return callSDK<$SDK3>("ImageCaptureCore_6be9a005889899ab", 4128706007937421, this, []); }
+  get icon(): $SDK3 { return callSDK<$SDK3>("ImageCaptureCore_c1f28409f8601238", 4128706007937421, this, []); }
   /**
    * var name: String? { get }
    * @availability iOS 13.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 233579650257186, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 233579650257186, this, []); }
   /**
    * var productKind: String? { get }
    * @availability iOS 13.0+
    */
-  get productKind(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 2398782575640277, this, []); }
+  get productKind(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 2398782575640277, this, []); }
   /**
    * var systemSymbolName: String? { get }
    * @availability iOS 15.2+
    */
-  get systemSymbolName(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 1851537811910793, this, []); }
+  get systemSymbolName(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 1851537811910793, this, []); }
   /**
    * var transportType: String? { get }
    * @availability iOS 13.0+
    */
-  get transportType(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 259442276965274, this, []); }
+  get transportType(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 259442276965274, this, []); }
   /**
    * var type: ICDeviceType { get }
    * @availability iOS 13.0+
    */
-  get type(): ICDeviceType { return callSDK<ICDeviceType>("ImageCaptureCore_6be9a005889899ab", 2862646481271879, this, []); }
+  get type(): ICDeviceType { return callSDK<ICDeviceType>("ImageCaptureCore_c1f28409f8601238", 2862646481271879, this, []); }
   /**
    * var usbLocationID: Int32 { get }
    * @availability iOS 13.0+
    */
-  get usbLocationID(): number { return callSDK<number>("ImageCaptureCore_6be9a005889899ab", 3364987352901881, this, []); }
+  get usbLocationID(): number { return callSDK<number>("ImageCaptureCore_c1f28409f8601238", 3364987352901881, this, []); }
   /**
    * var usbProductID: Int32 { get }
    * @availability iOS 13.0+
    */
-  get usbProductID(): number { return callSDK<number>("ImageCaptureCore_6be9a005889899ab", 2770054345091981, this, []); }
+  get usbProductID(): number { return callSDK<number>("ImageCaptureCore_c1f28409f8601238", 2770054345091981, this, []); }
   /**
    * var usbVendorID: Int32 { get }
    * @availability iOS 13.0+
    */
-  get usbVendorID(): number { return callSDK<number>("ImageCaptureCore_6be9a005889899ab", 3573738116502378, this, []); }
+  get usbVendorID(): number { return callSDK<number>("ImageCaptureCore_c1f28409f8601238", 3573738116502378, this, []); }
   /**
    * var userData: NSMutableDictionary? { get }
    * @availability iOS 13.0+
    */
-  get userData(): $SDK4 { return callSDK<$SDK4>("ImageCaptureCore_6be9a005889899ab", 2444085490194871, this, []); }
+  get userData(): $SDK4 { return callSDK<$SDK4>("ImageCaptureCore_c1f28409f8601238", 2444085490194871, this, []); }
   declare readonly $type: { "c:objc(cs)ICDevice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuidString": true; "capabilities": true; "delegate": true; "hasOpenSession": true; "icon": true; "name": true; "productKind": true; "systemSymbolName": true; "transportType": true; "type": true; "usbLocationID": true; "usbProductID": true; "usbVendorID": true; "userData": true };
 }
@@ -182,91 +182,91 @@ export class ICCameraDevice extends (ICDevice as unknown as Omit<typeof ICDevice
    * func files(ofType fileUTType: String) -> [String]?
    * @availability iOS 13.0+
    */
-  files(fileUTType: string): (Array<string>) | null { return callSDK<(Array<string>) | null>("ImageCaptureCore_6be9a005889899ab", 974416737019572, this, [fileUTType]); }
+  files(fileUTType: string): (Array<string>) | null { return callSDK<(Array<string>) | null>("ImageCaptureCore_c1f28409f8601238", 974416737019572, this, [fileUTType]); }
   /** init() */
-  static init(): ICCameraDevice { return callSDK<ICCameraDevice>("ImageCaptureCore_6be9a005889899ab", 1038782711637828, undefined, []); }
+  static init(): ICCameraDevice { return callSDK<ICCameraDevice>("ImageCaptureCore_c1f28409f8601238", 1038782711637828, undefined, []); }
   /**
    * func requestDeleteFiles(_ files: [ICCameraItem])
    * @availability iOS 13.0+
    */
-  requestDeleteFiles(files: Array<ICCameraItem>): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 502605497521933, this, [files]); }
+  requestDeleteFiles(files: Array<ICCameraItem>): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 502605497521933, this, [files]); }
   /**
    * func requestDeleteFiles(_ files: [ICCameraItem], deleteFailed: @escaping ([ICDeleteError : ICCameraItem]) -> Void, completion: @escaping ([ICDeleteResult : [ICCameraItem]], (any Error)?) -> Void) -> Progress?
    * @availability iOS 13.0+
    */
-  requestDeleteFilesDeleteFailedCompletion(files: Array<ICCameraItem>, deleteFailed: ((arg0: NativeMap<ICDeleteError, ICCameraItem>) => void), completion: ((arg0: NativeMap<ICDeleteResult, Array<ICCameraItem>>, arg1: (NativeError) | null) => void)): $SDK5 { return callSDK<$SDK5>("ImageCaptureCore_6be9a005889899ab", 3570051180485380, this, [files, deleteFailed, completion], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  requestDeleteFilesDeleteFailedCompletion(files: Array<ICCameraItem>, deleteFailed: ((arg0: NativeMap<ICDeleteError, ICCameraItem>) => void), completion: ((arg0: NativeMap<ICDeleteResult, Array<ICCameraItem>>, arg1: (NativeError) | null) => void)): $SDK5 { return callSDK<$SDK5>("ImageCaptureCore_c1f28409f8601238", 3570051180485380, this, [files, deleteFailed, completion], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * func requestSendPTPCommand(_ ptpCommand: Data, outData ptpData: Data?) async throws -> (Data, Data)
    * @availability iOS 13.0+
    */
-  requestSendPTPCommand(ptpCommand: ArrayBuffer, ptpData: (ArrayBuffer) | null, completion: ((arg0: ArrayBuffer, arg1: ArrayBuffer, arg2: (NativeError) | null) => void)): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 1292990513511572, this, [ptpCommand, ptpData, completion], [null,null,{"callback":{"out":[]}}]); }
+  requestSendPTPCommand(ptpCommand: ArrayBuffer, ptpData: (ArrayBuffer) | null, completion: ((arg0: ArrayBuffer, arg1: ArrayBuffer, arg2: (NativeError) | null) => void)): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 1292990513511572, this, [ptpCommand, ptpData, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var isAccessRestrictedAppleDevice: Bool { get }
    * @availability iOS 13.0+
    */
-  get isAccessRestrictedAppleDevice(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 3878446760097959, this, []); }
+  get isAccessRestrictedAppleDevice(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 3878446760097959, this, []); }
   /**
    * var batteryLevel: Int { get }
    * @availability iOS 13.0+
    */
-  get batteryLevel(): number { return callSDK<number>("ImageCaptureCore_6be9a005889899ab", 904850355344417, this, []); }
+  get batteryLevel(): number { return callSDK<number>("ImageCaptureCore_c1f28409f8601238", 904850355344417, this, []); }
   /**
    * var batteryLevelAvailable: Bool { get }
    * @availability iOS 13.0+
    */
-  get batteryLevelAvailable(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 4175406058583805, this, []); }
+  get batteryLevelAvailable(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 4175406058583805, this, []); }
   /**
    * var contentCatalogPercentCompleted: Int { get }
    * @availability iOS 13.0+
    */
-  get contentCatalogPercentCompleted(): number { return callSDK<number>("ImageCaptureCore_6be9a005889899ab", 2580463008061672, this, []); }
+  get contentCatalogPercentCompleted(): number { return callSDK<number>("ImageCaptureCore_c1f28409f8601238", 2580463008061672, this, []); }
   /**
    * var contents: [ICCameraItem]? { get }
    * @availability iOS 13.0+
    */
-  get contents(): $SDK9 { return callSDK<$SDK9>("ImageCaptureCore_6be9a005889899ab", 2811404702438841, this, []); }
+  get contents(): $SDK9 { return callSDK<$SDK9>("ImageCaptureCore_c1f28409f8601238", 2811404702438841, this, []); }
   /**
    * var isEjectable: Bool { get }
    * @availability iOS 13.0+
    */
-  get isEjectable(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 2641702534702022, this, []); }
+  get isEjectable(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 2641702534702022, this, []); }
   /**
    * var iCloudPhotosEnabled: Bool { get }
    * @availability iOS 13.0+
    */
-  get iCloudPhotosEnabled(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 631675685993847, this, []); }
+  get iCloudPhotosEnabled(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 631675685993847, this, []); }
   /**
    * var isLocked: Bool { get }
    * @availability iOS 13.0+
    */
-  get isLocked(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 3051516986877800, this, []); }
+  get isLocked(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 3051516986877800, this, []); }
   /**
    * var mediaFiles: [ICCameraItem]? { get }
    * @availability iOS 13.0+
    */
-  get mediaFiles(): $SDK9 { return callSDK<$SDK9>("ImageCaptureCore_6be9a005889899ab", 3197521407286754, this, []); }
+  get mediaFiles(): $SDK9 { return callSDK<$SDK9>("ImageCaptureCore_c1f28409f8601238", 3197521407286754, this, []); }
   /**
    * var mediaPresentation: ICMediaPresentation { get set }
    * @availability iOS 14.0+
    */
-  get mediaPresentation(): ICMediaPresentation { return callSDK<ICMediaPresentation>("ImageCaptureCore_6be9a005889899ab", 1468406737738030, this, []); }
-  set mediaPresentation(value: ICMediaPresentation) { callSDK<void>("ImageCaptureCore_6be9a005889899ab", 1545561433922563, this, [value]); }
+  get mediaPresentation(): ICMediaPresentation { return callSDK<ICMediaPresentation>("ImageCaptureCore_c1f28409f8601238", 1468406737738030, this, []); }
+  set mediaPresentation(value: ICMediaPresentation) { callSDK<void>("ImageCaptureCore_c1f28409f8601238", 1545561433922563, this, [value]); }
   /**
    * var ptpEventHandler: (Data) -> Void { get set }
    * @availability iOS 13.0+
    */
-  get ptpEventHandler(): ((arg0: ArrayBuffer) => Promise<void>) { return callSDK<((arg0: ArrayBuffer) => Promise<void>)>("ImageCaptureCore_6be9a005889899ab", 3932628048390370, this, []); }
-  set ptpEventHandler(value: ((arg0: ArrayBuffer) => void)) { callSDK<void>("ImageCaptureCore_6be9a005889899ab", 4164383091796287, this, [value], [{"callback":{"out":[]}}]); }
+  get ptpEventHandler(): ((arg0: ArrayBuffer) => Promise<void>) { return callSDK<((arg0: ArrayBuffer) => Promise<void>)>("ImageCaptureCore_c1f28409f8601238", 3932628048390370, this, []); }
+  set ptpEventHandler(value: ((arg0: ArrayBuffer) => void)) { callSDK<void>("ImageCaptureCore_c1f28409f8601238", 4164383091796287, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var tetheredCaptureEnabled: Bool { get }
    * @availability iOS 13.0+
    */
-  get tetheredCaptureEnabled(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 2380974644964103, this, []); }
+  get tetheredCaptureEnabled(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 2380974644964103, this, []); }
   /**
    * var timeOffset: TimeInterval { get }
    * @availability iOS 13.0+
    */
-  get timeOffset(): number { return callSDK<number>("ImageCaptureCore_6be9a005889899ab", 1837740402802651, this, []); }
+  get timeOffset(): number { return callSDK<number>("ImageCaptureCore_c1f28409f8601238", 1837740402802651, this, []); }
   declare readonly $type: { "c:objc(cs)ICCameraDevice": true; "c:objc(cs)ICDevice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuidString": true; "capabilities": true; "delegate": true; "hasOpenSession": true; "icon": true; "name": true; "productKind": true; "systemSymbolName": true; "transportType": true; "type": true; "usbLocationID": true; "usbProductID": true; "usbVendorID": true; "userData": true; "isAccessRestrictedAppleDevice": true; "batteryLevel": true; "batteryLevelAvailable": true; "contentCatalogPercentCompleted": true; "contents": true; "isEjectable": true; "iCloudPhotosEnabled": true; "isLocked": true; "mediaFiles": true; "mediaPresentation": true; "tetheredCaptureEnabled": true; "timeOffset": true };
 }
@@ -398,109 +398,109 @@ export class ICCameraItem extends SDKHandle {
    * func flushMetadataCache()
    * @availability iOS 13.0+
    */
-  flushMetadataCache(): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 2959970209608140, this, []); }
+  flushMetadataCache(): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 2959970209608140, this, []); }
   /**
    * func flushThumbnailCache()
    * @availability iOS 13.0+
    */
-  flushThumbnailCache(): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 1100202394241029, this, []); }
+  flushThumbnailCache(): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 1100202394241029, this, []); }
   /** init() */
-  static init(): ICCameraItem { return callSDK<ICCameraItem>("ImageCaptureCore_6be9a005889899ab", 1926863231099850, undefined, []); }
+  static init(): ICCameraItem { return callSDK<ICCameraItem>("ImageCaptureCore_c1f28409f8601238", 1926863231099850, undefined, []); }
   /**
    * func requestMetadata()
    * @availability iOS 13.0+
    */
-  requestMetadata(): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 2290352158955776, this, []); }
+  requestMetadata(): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 2290352158955776, this, []); }
   /**
    * func requestThumbnail()
    * @availability iOS 13.0+
    */
-  requestThumbnail(): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 3859981029983509, this, []); }
+  requestThumbnail(): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 3859981029983509, this, []); }
   /**
    * var uti: String? { get }
    * @availability iOS 13.0+
    */
-  get uti(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 816025876467189, this, []); }
+  get uti(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 816025876467189, this, []); }
   /**
    * var wasAddedAfterContentCatalogCompleted: Bool { get }
    * @availability iOS 13.0+
    */
-  get wasAddedAfterContentCatalogCompleted(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 3363727477681128, this, []); }
+  get wasAddedAfterContentCatalogCompleted(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 3363727477681128, this, []); }
   /**
    * var creationDate: Date? { get }
    * @availability iOS 13.0+
    */
-  get creationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_6be9a005889899ab", 313129687867831, this, []); }
+  get creationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_c1f28409f8601238", 313129687867831, this, []); }
   /**
    * var device: ICCameraDevice? { get }
    * @availability iOS 13.0+
    */
-  get device(): (ICCameraDevice) | null { return callSDK<(ICCameraDevice) | null>("ImageCaptureCore_6be9a005889899ab", 3944064875520896, this, []); }
+  get device(): (ICCameraDevice) | null { return callSDK<(ICCameraDevice) | null>("ImageCaptureCore_c1f28409f8601238", 3944064875520896, this, []); }
   /**
    * var isInTemporaryStore: Bool { get }
    * @availability iOS 13.0+
    */
-  get isInTemporaryStore(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 3201648681186565, this, []); }
+  get isInTemporaryStore(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 3201648681186565, this, []); }
   /**
    * var largeThumbnailIfAvailable: CGImage? { get }
    * @availability iOS 13.0+
    */
-  get largeThumbnailIfAvailable(): $SDK3 { return callSDK<$SDK3>("ImageCaptureCore_6be9a005889899ab", 2307066338499633, this, []); }
+  get largeThumbnailIfAvailable(): $SDK3 { return callSDK<$SDK3>("ImageCaptureCore_c1f28409f8601238", 2307066338499633, this, []); }
   /**
    * var isLocked: Bool { get }
    * @availability iOS 13.0+
    */
-  get isLocked(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 2515143125203833, this, []); }
+  get isLocked(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 2515143125203833, this, []); }
   /**
    * var metadata: [AnyHashable : Any]? { get }
    * @availability iOS 13.0+
    */
-  get metadata(): $SDK13 { return callSDK<$SDK13>("ImageCaptureCore_6be9a005889899ab", 2551964975779279, this, []); }
+  get metadata(): $SDK13 { return callSDK<$SDK13>("ImageCaptureCore_c1f28409f8601238", 2551964975779279, this, []); }
   /**
    * var metadataIfAvailable: [String : Any]? { get }
    * @availability iOS 13.0+
    */
-  get metadataIfAvailable(): (Record<string, unknown>) | null { return callSDK<(Record<string, unknown>) | null>("ImageCaptureCore_6be9a005889899ab", 2568495318158364, this, []); }
+  get metadataIfAvailable(): (Record<string, unknown>) | null { return callSDK<(Record<string, unknown>) | null>("ImageCaptureCore_c1f28409f8601238", 2568495318158364, this, []); }
   /**
    * var modificationDate: Date? { get }
    * @availability iOS 13.0+
    */
-  get modificationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_6be9a005889899ab", 3823776697854041, this, []); }
+  get modificationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_c1f28409f8601238", 3823776697854041, this, []); }
   /**
    * var name: String? { get }
    * @availability iOS 13.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 1656146585481921, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 1656146585481921, this, []); }
   /**
    * var parentFolder: ICCameraFolder? { get }
    * @availability iOS 13.0+
    */
-  get parentFolder(): (ICCameraFolder) | null { return callSDK<(ICCameraFolder) | null>("ImageCaptureCore_6be9a005889899ab", 2190377365647633, this, []); }
+  get parentFolder(): (ICCameraFolder) | null { return callSDK<(ICCameraFolder) | null>("ImageCaptureCore_c1f28409f8601238", 2190377365647633, this, []); }
   /**
    * var ptpObjectHandle: UInt32 { get }
    * @availability iOS 13.0+
    */
-  get ptpObjectHandle(): number { return callSDK<number>("ImageCaptureCore_6be9a005889899ab", 3549012917651495, this, []); }
+  get ptpObjectHandle(): number { return callSDK<number>("ImageCaptureCore_c1f28409f8601238", 3549012917651495, this, []); }
   /**
    * var isRaw: Bool { get }
    * @availability iOS 13.0+
    */
-  get isRaw(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 1058956399604073, this, []); }
+  get isRaw(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 1058956399604073, this, []); }
   /**
    * var thumbnail: CGImage? { get }
    * @availability iOS 13.0+
    */
-  get thumbnail(): $SDK3 { return callSDK<$SDK3>("ImageCaptureCore_6be9a005889899ab", 520136230724249, this, []); }
+  get thumbnail(): $SDK3 { return callSDK<$SDK3>("ImageCaptureCore_c1f28409f8601238", 520136230724249, this, []); }
   /**
    * var thumbnailIfAvailable: CGImage? { get }
    * @availability iOS 13.0+
    */
-  get thumbnailIfAvailable(): $SDK3 { return callSDK<$SDK3>("ImageCaptureCore_6be9a005889899ab", 2518235390527490, this, []); }
+  get thumbnailIfAvailable(): $SDK3 { return callSDK<$SDK3>("ImageCaptureCore_c1f28409f8601238", 2518235390527490, this, []); }
   /**
    * var userData: NSMutableDictionary? { get }
    * @availability iOS 13.0+
    */
-  get userData(): $SDK4 { return callSDK<$SDK4>("ImageCaptureCore_6be9a005889899ab", 3584919005453601, this, []); }
+  get userData(): $SDK4 { return callSDK<$SDK4>("ImageCaptureCore_c1f28409f8601238", 3584919005453601, this, []); }
   declare readonly $type: { "c:objc(cs)ICCameraItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uti": true; "wasAddedAfterContentCatalogCompleted": true; "creationDate": true; "device": true; "isInTemporaryStore": true; "largeThumbnailIfAvailable": true; "isLocked": true; "metadata": true; "metadataIfAvailable": true; "modificationDate": true; "name": true; "parentFolder": true; "ptpObjectHandle": true; "isRaw": true; "thumbnail": true; "thumbnailIfAvailable": true; "userData": true };
 }
@@ -514,160 +514,160 @@ export class ICCameraFile extends (ICCameraItem as unknown as Omit<typeof ICCame
    * class func fingerprintForFile(at url: URL) -> String?
    * @availability iOS 13.0+
    */
-  static fingerprintForFile(url: string): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 814567859760625, undefined, [url]); }
+  static fingerprintForFile(url: string): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 814567859760625, undefined, [url]); }
   /** init() */
-  static init(): ICCameraFile { return callSDK<ICCameraFile>("ImageCaptureCore_6be9a005889899ab", 3998396925717228, undefined, []); }
+  static init(): ICCameraFile { return callSDK<ICCameraFile>("ImageCaptureCore_c1f28409f8601238", 3998396925717228, undefined, []); }
   /**
    * func requestDownload(options: [ICDownloadOption : Any]? = nil, completion: @escaping (String?, (any Error)?) -> Void) -> Progress?
    * @availability iOS 13.0+
    */
-  requestDownload(options: (NativeMap<ICDownloadOption, unknown>) | null, completion: $SDK17): $SDK5 { return callSDK<$SDK5>("ImageCaptureCore_6be9a005889899ab", 2579230924548903, this, [options, completion], [null,{"callback":{"out":[]}}]); }
+  requestDownload(options: (NativeMap<ICDownloadOption, unknown>) | null, completion: $SDK17): $SDK5 { return callSDK<$SDK5>("ImageCaptureCore_c1f28409f8601238", 2579230924548903, this, [options, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func requestFingerprint() async throws -> String
    * @availability iOS 18.0+
    */
-  requestFingerprint(completion: $SDK17): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 1202245617728802, this, [completion], [{"callback":{"out":[]}}]); }
+  requestFingerprint(completion: $SDK17): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 1202245617728802, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func requestMetadataDictionary(options: [ICCameraItemMetadataOption : Any]? = nil) async throws -> [AnyHashable : Any]
    * @availability iOS 13.0+
    */
-  requestMetadataDictionary(options: (NativeMap<ICCameraItemMetadataOption, unknown>) | null, completion: ((arg0: (NativeMap<unknown, unknown>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 2138979378352363, this, [options, completion], [null,{"callback":{"out":[]}}]); }
+  requestMetadataDictionary(options: (NativeMap<ICCameraItemMetadataOption, unknown>) | null, completion: ((arg0: (NativeMap<unknown, unknown>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 2138979378352363, this, [options, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func requestReadData(atOffset offset: off_t, length: off_t) async throws -> Data
    * @availability iOS 13.0+
    */
-  requestReadData(offset: SDKHandle, length: SDKHandle, completion: $SDK20): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 2976963472558644, this, [offset, length, completion], [null,null,{"callback":{"out":[]}}]); }
+  requestReadData(offset: SDKHandle, length: SDKHandle, completion: $SDK20): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 2976963472558644, this, [offset, length, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func requestSecurityScopedURL() async throws -> URL
    * @availability iOS 17.0+
    */
-  requestSecurityScopedURL(completion: $SDK17): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 3196641509278617, this, [completion], [{"callback":{"out":[]}}]); }
+  requestSecurityScopedURL(completion: $SDK17): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 3196641509278617, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func requestThumbnailData(options: [ICCameraItemThumbnailOption : Any]? = nil) async throws -> Data
    * @availability iOS 13.0+
    */
-  requestThumbnailData(options: (NativeMap<ICCameraItemThumbnailOption, unknown>) | null, completion: $SDK20): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 4122094196342535, this, [options, completion], [null,{"callback":{"out":[]}}]); }
+  requestThumbnailData(options: (NativeMap<ICCameraItemThumbnailOption, unknown>) | null, completion: $SDK20): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 4122094196342535, this, [options, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var burstFavorite: Bool { get }
    * @availability iOS 13.0+
    */
-  get burstFavorite(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 3705753618295560, this, []); }
+  get burstFavorite(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 3705753618295560, this, []); }
   /**
    * var burstPicked: Bool { get }
    * @availability iOS 13.0+
    */
-  get burstPicked(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 194488476762963, this, []); }
+  get burstPicked(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 194488476762963, this, []); }
   /**
    * var burstUUID: String? { get }
    * @availability iOS 13.0+
    */
-  get burstUUID(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 631528456375882, this, []); }
+  get burstUUID(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 631528456375882, this, []); }
   /**
    * var createdFilename: String? { get }
    * @availability iOS 13.0+
    */
-  get createdFilename(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 76150183989624, this, []); }
+  get createdFilename(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 76150183989624, this, []); }
   /**
    * var duration: Double { get }
    * @availability iOS 13.0+
    */
-  get duration(): number { return callSDK<number>("ImageCaptureCore_6be9a005889899ab", 4392931567814811, this, []); }
+  get duration(): number { return callSDK<number>("ImageCaptureCore_c1f28409f8601238", 4392931567814811, this, []); }
   /**
    * var exifCreationDate: Date? { get }
    * @availability iOS 13.0+
    */
-  get exifCreationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_6be9a005889899ab", 1560144499281844, this, []); }
+  get exifCreationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_c1f28409f8601238", 1560144499281844, this, []); }
   /**
    * var exifModificationDate: Date? { get }
    * @availability iOS 13.0+
    */
-  get exifModificationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_6be9a005889899ab", 1876400869407678, this, []); }
+  get exifModificationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_c1f28409f8601238", 1876400869407678, this, []); }
   /**
    * var fileCreationDate: Date? { get }
    * @availability iOS 13.0+
    */
-  get fileCreationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_6be9a005889899ab", 2644078852414368, this, []); }
+  get fileCreationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_c1f28409f8601238", 2644078852414368, this, []); }
   /**
    * var fileModificationDate: Date? { get }
    * @availability iOS 13.0+
    */
-  get fileModificationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_6be9a005889899ab", 3830852381890780, this, []); }
+  get fileModificationDate(): $SDK14 { return callSDK<$SDK14>("ImageCaptureCore_c1f28409f8601238", 3830852381890780, this, []); }
   /**
    * var fileSize: off_t { get }
    * @availability iOS 13.0+
    */
-  get fileSize(): SDKHandle { return callSDK<SDKHandle>("ImageCaptureCore_6be9a005889899ab", 30193760352281, this, []); }
+  get fileSize(): SDKHandle { return callSDK<SDKHandle>("ImageCaptureCore_c1f28409f8601238", 30193760352281, this, []); }
   /**
    * var fingerprint: String? { get }
    * @availability iOS 13.0+
    */
-  get fingerprint(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 937448886832213, this, []); }
+  get fingerprint(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 937448886832213, this, []); }
   /**
    * var firstPicked: Bool { get }
    * @availability iOS 13.0+
    */
-  get firstPicked(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 3481345568232164, this, []); }
+  get firstPicked(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 3481345568232164, this, []); }
   /**
    * var gpsString: String? { get }
    * @availability iOS 13.0+
    */
-  get gpsString(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 3266279896105571, this, []); }
+  get gpsString(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 3266279896105571, this, []); }
   /**
    * var groupUUID: String? { get }
    * @availability iOS 13.0+
    */
-  get groupUUID(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 852183362847846, this, []); }
+  get groupUUID(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 852183362847846, this, []); }
   /**
    * var height: Int { get }
    * @availability iOS 13.0+
    */
-  get height(): number { return callSDK<number>("ImageCaptureCore_6be9a005889899ab", 1227313380419263, this, []); }
+  get height(): number { return callSDK<number>("ImageCaptureCore_c1f28409f8601238", 1227313380419263, this, []); }
   /**
    * var highFramerate: Bool { get }
    * @availability iOS 13.0+
    */
-  get highFramerate(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 1554917482694989, this, []); }
+  get highFramerate(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 1554917482694989, this, []); }
   /**
    * var orientation: ICEXIFOrientationType { get set }
    * @availability iOS 13.0+
    */
-  get orientation(): ICEXIFOrientationType { return callSDK<ICEXIFOrientationType>("ImageCaptureCore_6be9a005889899ab", 4230467768345749, this, []); }
-  set orientation(value: ICEXIFOrientationType) { callSDK<void>("ImageCaptureCore_6be9a005889899ab", 2644298567737760, this, [value]); }
+  get orientation(): ICEXIFOrientationType { return callSDK<ICEXIFOrientationType>("ImageCaptureCore_c1f28409f8601238", 4230467768345749, this, []); }
+  set orientation(value: ICEXIFOrientationType) { callSDK<void>("ImageCaptureCore_c1f28409f8601238", 2644298567737760, this, [value]); }
   /**
    * var originalFilename: String? { get }
    * @availability iOS 13.0+
    */
-  get originalFilename(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 358337891136558, this, []); }
+  get originalFilename(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 358337891136558, this, []); }
   /**
    * var originatingAssetID: String? { get }
    * @availability iOS 13.0+
    */
-  get originatingAssetID(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 1929800620602172, this, []); }
+  get originatingAssetID(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 1929800620602172, this, []); }
   /**
    * var pairedRawImage: ICCameraFile? { get }
    * @availability iOS 13.0+
    */
-  get pairedRawImage(): (ICCameraFile) | null { return callSDK<(ICCameraFile) | null>("ImageCaptureCore_6be9a005889899ab", 2394664535396722, this, []); }
+  get pairedRawImage(): (ICCameraFile) | null { return callSDK<(ICCameraFile) | null>("ImageCaptureCore_c1f28409f8601238", 2394664535396722, this, []); }
   /**
    * var relatedUUID: String? { get }
    * @availability iOS 13.0+
    */
-  get relatedUUID(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_6be9a005889899ab", 2575425447096089, this, []); }
+  get relatedUUID(): (string) | null { return callSDK<(string) | null>("ImageCaptureCore_c1f28409f8601238", 2575425447096089, this, []); }
   /**
    * var sidecarFiles: [ICCameraItem]? { get }
    * @availability iOS 13.0+
    */
-  get sidecarFiles(): $SDK9 { return callSDK<$SDK9>("ImageCaptureCore_6be9a005889899ab", 537255786099811, this, []); }
+  get sidecarFiles(): $SDK9 { return callSDK<$SDK9>("ImageCaptureCore_c1f28409f8601238", 537255786099811, this, []); }
   /**
    * var timeLapse: Bool { get }
    * @availability iOS 13.0+
    */
-  get timeLapse(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 3229356336081741, this, []); }
+  get timeLapse(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 3229356336081741, this, []); }
   /**
    * var width: Int { get }
    * @availability iOS 13.0+
    */
-  get width(): number { return callSDK<number>("ImageCaptureCore_6be9a005889899ab", 4166671389083599, this, []); }
+  get width(): number { return callSDK<number>("ImageCaptureCore_c1f28409f8601238", 4166671389083599, this, []); }
   declare readonly $type: { "c:objc(cs)ICCameraFile": true; "c:objc(cs)ICCameraItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uti": true; "wasAddedAfterContentCatalogCompleted": true; "creationDate": true; "device": true; "isInTemporaryStore": true; "largeThumbnailIfAvailable": true; "isLocked": true; "metadata": true; "metadataIfAvailable": true; "modificationDate": true; "name": true; "parentFolder": true; "ptpObjectHandle": true; "isRaw": true; "thumbnail": true; "thumbnailIfAvailable": true; "userData": true; "burstFavorite": true; "burstPicked": true; "burstUUID": true; "createdFilename": true; "duration": true; "exifCreationDate": true; "exifModificationDate": true; "fileCreationDate": true; "fileModificationDate": true; "fileSize": true; "fingerprint": true; "firstPicked": true; "gpsString": true; "groupUUID": true; "height": true; "highFramerate": true; "orientation": true; "originalFilename": true; "originatingAssetID": true; "pairedRawImage": true; "relatedUUID": true; "sidecarFiles": true; "timeLapse": true; "width": true };
 }
@@ -678,12 +678,12 @@ export class ICCameraFile extends (ICCameraItem as unknown as Omit<typeof ICCame
  */
 export class ICCameraFolder extends (ICCameraItem as unknown as Omit<typeof ICCameraItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ICCameraItem)) {
   /** init() */
-  static init(): ICCameraFolder { return callSDK<ICCameraFolder>("ImageCaptureCore_6be9a005889899ab", 4451945590316382, undefined, []); }
+  static init(): ICCameraFolder { return callSDK<ICCameraFolder>("ImageCaptureCore_c1f28409f8601238", 4451945590316382, undefined, []); }
   /**
    * var contents: [ICCameraItem]? { get }
    * @availability iOS 13.0+
    */
-  get contents(): $SDK9 { return callSDK<$SDK9>("ImageCaptureCore_6be9a005889899ab", 1076466126510598, this, []); }
+  get contents(): $SDK9 { return callSDK<$SDK9>("ImageCaptureCore_c1f28409f8601238", 1076466126510598, this, []); }
   declare readonly $type: { "c:objc(cs)ICCameraFolder": true; "c:objc(cs)ICCameraItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uti": true; "wasAddedAfterContentCatalogCompleted": true; "creationDate": true; "device": true; "isInTemporaryStore": true; "largeThumbnailIfAvailable": true; "isLocked": true; "metadata": true; "metadataIfAvailable": true; "modificationDate": true; "name": true; "parentFolder": true; "ptpObjectHandle": true; "isRaw": true; "thumbnail": true; "thumbnailIfAvailable": true; "userData": true; "contents": true };
 }
@@ -699,7 +699,7 @@ export const ICCameraItemMetadataOption = {
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ICCameraItemMetadataOption { return callSDK<ICCameraItemMetadataOption>("ImageCaptureCore_6be9a005889899ab", 1648998162827532, undefined, [rawValue]); }
+  init(rawValue: string): ICCameraItemMetadataOption { return callSDK<ICCameraItemMetadataOption>("ImageCaptureCore_c1f28409f8601238", 1648998162827532, undefined, [rawValue]); }
 };
 
 /**
@@ -713,17 +713,17 @@ export const ICCameraItemThumbnailOption = {
    * static let imageSourceShouldCache: ICCameraItemThumbnailOption
    * @availability iOS 13.0+
    */
-  get imageSourceShouldCache(): ICCameraItemThumbnailOption { return callSDK<ICCameraItemThumbnailOption>("ImageCaptureCore_6be9a005889899ab", 3640453699410523, undefined, []); },
+  get imageSourceShouldCache(): ICCameraItemThumbnailOption { return callSDK<ICCameraItemThumbnailOption>("ImageCaptureCore_c1f28409f8601238", 3640453699410523, undefined, []); },
   /**
    * static let imageSourceThumbnailMaxPixelSize: ICCameraItemThumbnailOption
    * @availability iOS 13.0+
    */
-  get imageSourceThumbnailMaxPixelSize(): ICCameraItemThumbnailOption { return callSDK<ICCameraItemThumbnailOption>("ImageCaptureCore_6be9a005889899ab", 2541556499593579, undefined, []); },
+  get imageSourceThumbnailMaxPixelSize(): ICCameraItemThumbnailOption { return callSDK<ICCameraItemThumbnailOption>("ImageCaptureCore_c1f28409f8601238", 2541556499593579, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ICCameraItemThumbnailOption { return callSDK<ICCameraItemThumbnailOption>("ImageCaptureCore_6be9a005889899ab", 533956931829702, undefined, [rawValue]); }
+  init(rawValue: string): ICCameraItemThumbnailOption { return callSDK<ICCameraItemThumbnailOption>("ImageCaptureCore_c1f28409f8601238", 533956931829702, undefined, [rawValue]); }
 };
 
 /**
@@ -737,27 +737,27 @@ export const ICDeleteError = {
    * static let canceled: ICDeleteError
    * @availability iOS 13.0+
    */
-  get canceled(): ICDeleteError { return callSDK<ICDeleteError>("ImageCaptureCore_6be9a005889899ab", 1620993535279296, undefined, []); },
+  get canceled(): ICDeleteError { return callSDK<ICDeleteError>("ImageCaptureCore_c1f28409f8601238", 1620993535279296, undefined, []); },
   /**
    * static let deviceMissing: ICDeleteError
    * @availability iOS 13.0+
    */
-  get deviceMissing(): ICDeleteError { return callSDK<ICDeleteError>("ImageCaptureCore_6be9a005889899ab", 402281863905035, undefined, []); },
+  get deviceMissing(): ICDeleteError { return callSDK<ICDeleteError>("ImageCaptureCore_c1f28409f8601238", 402281863905035, undefined, []); },
   /**
    * static let fileMissing: ICDeleteError
    * @availability iOS 13.0+
    */
-  get fileMissing(): ICDeleteError { return callSDK<ICDeleteError>("ImageCaptureCore_6be9a005889899ab", 669808477027641, undefined, []); },
+  get fileMissing(): ICDeleteError { return callSDK<ICDeleteError>("ImageCaptureCore_c1f28409f8601238", 669808477027641, undefined, []); },
   /**
    * static let readOnly: ICDeleteError
    * @availability iOS 13.0+
    */
-  get readOnly(): ICDeleteError { return callSDK<ICDeleteError>("ImageCaptureCore_6be9a005889899ab", 874234413018348, undefined, []); },
+  get readOnly(): ICDeleteError { return callSDK<ICDeleteError>("ImageCaptureCore_c1f28409f8601238", 874234413018348, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ICDeleteError { return callSDK<ICDeleteError>("ImageCaptureCore_6be9a005889899ab", 736464008789926, undefined, [rawValue]); }
+  init(rawValue: string): ICDeleteError { return callSDK<ICDeleteError>("ImageCaptureCore_c1f28409f8601238", 736464008789926, undefined, [rawValue]); }
 };
 
 /**
@@ -771,22 +771,22 @@ export const ICDeleteResult = {
    * static let canceled: ICDeleteResult
    * @availability iOS 13.0+
    */
-  get canceled(): ICDeleteResult { return callSDK<ICDeleteResult>("ImageCaptureCore_6be9a005889899ab", 420120299240445, undefined, []); },
+  get canceled(): ICDeleteResult { return callSDK<ICDeleteResult>("ImageCaptureCore_c1f28409f8601238", 420120299240445, undefined, []); },
   /**
    * static let failed: ICDeleteResult
    * @availability iOS 13.0+
    */
-  get failed(): ICDeleteResult { return callSDK<ICDeleteResult>("ImageCaptureCore_6be9a005889899ab", 2236958807493053, undefined, []); },
+  get failed(): ICDeleteResult { return callSDK<ICDeleteResult>("ImageCaptureCore_c1f28409f8601238", 2236958807493053, undefined, []); },
   /**
    * static let successful: ICDeleteResult
    * @availability iOS 13.0+
    */
-  get successful(): ICDeleteResult { return callSDK<ICDeleteResult>("ImageCaptureCore_6be9a005889899ab", 4014033898954469, undefined, []); },
+  get successful(): ICDeleteResult { return callSDK<ICDeleteResult>("ImageCaptureCore_c1f28409f8601238", 4014033898954469, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ICDeleteResult { return callSDK<ICDeleteResult>("ImageCaptureCore_6be9a005889899ab", 2449619362279962, undefined, [rawValue]); }
+  init(rawValue: string): ICDeleteResult { return callSDK<ICDeleteResult>("ImageCaptureCore_c1f28409f8601238", 2449619362279962, undefined, [rawValue]); }
 };
 
 /**
@@ -798,74 +798,74 @@ export class ICDeviceBrowser extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): ICDeviceBrowser { return callSDK<ICDeviceBrowser>("ImageCaptureCore_6be9a005889899ab", 3009316878133266, undefined, []); }
+  static init(): ICDeviceBrowser { return callSDK<ICDeviceBrowser>("ImageCaptureCore_c1f28409f8601238", 3009316878133266, undefined, []); }
   /**
    * func requestContentsAuthorization() async -> ICAuthorizationStatus
    * @availability iOS 14.0+
    */
-  requestContentsAuthorization(completion: $SDK22): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 2805849212972148, this, [completion], [{"callback":{"out":[]}}]); }
+  requestContentsAuthorization(completion: $SDK22): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 2805849212972148, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func requestControlAuthorization() async -> ICAuthorizationStatus
    * @availability iOS 14.0+
    */
-  requestControlAuthorization(completion: $SDK22): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 1290024983919370, this, [completion], [{"callback":{"out":[]}}]); }
+  requestControlAuthorization(completion: $SDK22): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 1290024983919370, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func resetContentsAuthorization() async -> ICAuthorizationStatus
    * @availability iOS 15.0+
    */
-  resetContentsAuthorization(completion: $SDK22): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 879475415329703, this, [completion], [{"callback":{"out":[]}}]); }
+  resetContentsAuthorization(completion: $SDK22): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 879475415329703, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func resetControlAuthorization() async -> ICAuthorizationStatus
    * @availability iOS 15.0+
    */
-  resetControlAuthorization(completion: $SDK22): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 2065196826177217, this, [completion], [{"callback":{"out":[]}}]); }
+  resetControlAuthorization(completion: $SDK22): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 2065196826177217, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func start()
    * @availability iOS 13.0+
    */
-  start(): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 3122262932303410, this, []); }
+  start(): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 3122262932303410, this, []); }
   /**
    * func stop()
    * @availability iOS 13.0+
    */
-  stop(): void { return callSDK<void>("ImageCaptureCore_6be9a005889899ab", 1855074997356797, this, []); }
+  stop(): void { return callSDK<void>("ImageCaptureCore_c1f28409f8601238", 1855074997356797, this, []); }
   /**
    * var browsedDeviceTypeMask: ICDeviceTypeMask { get set }
    * @availability iOS 15.2+
    */
-  get browsedDeviceTypeMask(): ICDeviceTypeMask { return callSDK<ICDeviceTypeMask>("ImageCaptureCore_6be9a005889899ab", 2696067425611545, this, []); }
-  set browsedDeviceTypeMask(value: ICDeviceTypeMask) { callSDK<void>("ImageCaptureCore_6be9a005889899ab", 3689159253787619, this, [value]); }
+  get browsedDeviceTypeMask(): ICDeviceTypeMask { return callSDK<ICDeviceTypeMask>("ImageCaptureCore_c1f28409f8601238", 2696067425611545, this, []); }
+  set browsedDeviceTypeMask(value: ICDeviceTypeMask) { callSDK<void>("ImageCaptureCore_c1f28409f8601238", 3689159253787619, this, [value]); }
   /**
    * var isBrowsing: Bool { get }
    * @availability iOS 13.0+
    */
-  get isBrowsing(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 2849661467796192, this, []); }
+  get isBrowsing(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 2849661467796192, this, []); }
   /**
    * var contentsAuthorizationStatus: ICAuthorizationStatus { get }
    * @availability iOS 14.0+
    */
-  get contentsAuthorizationStatus(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_6be9a005889899ab", 2376031424574915, this, []); }
+  get contentsAuthorizationStatus(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_c1f28409f8601238", 2376031424574915, this, []); }
   /**
    * var controlAuthorizationStatus: ICAuthorizationStatus { get }
    * @availability iOS 14.0+
    */
-  get controlAuthorizationStatus(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_6be9a005889899ab", 190514308418678, this, []); }
+  get controlAuthorizationStatus(): ICAuthorizationStatus { return callSDK<ICAuthorizationStatus>("ImageCaptureCore_c1f28409f8601238", 190514308418678, this, []); }
   /**
    * unowned(unsafe) var delegate: (any ICDeviceBrowserDelegate)? { get set }
    * @availability iOS 13.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ImageCaptureCore_6be9a005889899ab", 4036428669504069, this, []); }
-  set delegate(value: (Implements<ICDeviceBrowserDelegate> | SDKHandle) | null) { callSDK<void>("ImageCaptureCore_6be9a005889899ab", 3147639759533018, this, [value], [{"protocol":"c:objc(pl)ICDeviceBrowserDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ImageCaptureCore_c1f28409f8601238", 4036428669504069, this, []); }
+  set delegate(value: (Implements<ICDeviceBrowserDelegate> | SDKHandle) | null) { callSDK<void>("ImageCaptureCore_c1f28409f8601238", 3147639759533018, this, [value], [{"protocol":"c:objc(pl)ICDeviceBrowserDelegate"}]); }
   /**
    * var devices: [ICDevice]? { get }
    * @availability iOS 13.0+
    */
-  get devices(): (Array<ICDevice>) | null { return callSDK<(Array<ICDevice>) | null>("ImageCaptureCore_6be9a005889899ab", 3520936117473079, this, []); }
+  get devices(): (Array<ICDevice>) | null { return callSDK<(Array<ICDevice>) | null>("ImageCaptureCore_c1f28409f8601238", 3520936117473079, this, []); }
   /**
    * var isSuspended: Bool { get }
    * @availability iOS 14.0+
    */
-  get isSuspended(): boolean { return callSDK<boolean>("ImageCaptureCore_6be9a005889899ab", 2603499294450992, this, []); }
+  get isSuspended(): boolean { return callSDK<boolean>("ImageCaptureCore_c1f28409f8601238", 2603499294450992, this, []); }
   declare readonly $type: { "c:objc(cs)ICDeviceBrowser": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "browsedDeviceTypeMask": true; "isBrowsing": true; "contentsAuthorizationStatus": true; "controlAuthorizationStatus": true; "delegate": true; "devices": true; "isSuspended": true };
 }
@@ -922,49 +922,49 @@ export const ICDeviceCapability = {
    * static let cameraDeviceCanAcceptPTPCommands: ICDeviceCapability
    * @availability iOS 13.0+
    */
-  get cameraDeviceCanAcceptPTPCommands(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_6be9a005889899ab", 873088390720573, undefined, []); },
+  get cameraDeviceCanAcceptPTPCommands(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_c1f28409f8601238", 873088390720573, undefined, []); },
   /**
    * static let cameraDeviceCanDeleteAllFiles: ICDeviceCapability
    * @availability iOS 13.0+
    */
-  get cameraDeviceCanDeleteAllFiles(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_6be9a005889899ab", 3230528178934197, undefined, []); },
+  get cameraDeviceCanDeleteAllFiles(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_c1f28409f8601238", 3230528178934197, undefined, []); },
   /**
    * static let cameraDeviceCanDeleteOneFile: ICDeviceCapability
    * @availability iOS 13.0+
    */
-  get cameraDeviceCanDeleteOneFile(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_6be9a005889899ab", 3790492717792159, undefined, []); },
+  get cameraDeviceCanDeleteOneFile(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_c1f28409f8601238", 3790492717792159, undefined, []); },
   /**
    * static let cameraDeviceCanReceiveFile: ICDeviceCapability
    * @availability iOS 13.0+
    */
-  get cameraDeviceCanReceiveFile(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_6be9a005889899ab", 2851829273408222, undefined, []); },
+  get cameraDeviceCanReceiveFile(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_c1f28409f8601238", 2851829273408222, undefined, []); },
   /**
    * static let cameraDeviceCanSyncClock: ICDeviceCapability
    * @availability iOS 13.0+
    */
-  get cameraDeviceCanSyncClock(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_6be9a005889899ab", 1721603875703394, undefined, []); },
+  get cameraDeviceCanSyncClock(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_c1f28409f8601238", 1721603875703394, undefined, []); },
   /**
    * static let cameraDeviceCanTakePicture: ICDeviceCapability
    * @availability iOS 13.0+
    */
-  get cameraDeviceCanTakePicture(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_6be9a005889899ab", 157121350518189, undefined, []); },
+  get cameraDeviceCanTakePicture(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_c1f28409f8601238", 157121350518189, undefined, []); },
   /**
    * static let cameraDeviceCanTakePictureUsingShutterReleaseOnCamera: ICDeviceCapability
    * @availability iOS 13.0+
    */
-  get cameraDeviceCanTakePictureUsingShutterReleaseOnCamera(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_6be9a005889899ab", 2394193832605211, undefined, []); },
+  get cameraDeviceCanTakePictureUsingShutterReleaseOnCamera(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_c1f28409f8601238", 2394193832605211, undefined, []); },
   /**
    * static let cameraDeviceSupportsHEIF: ICDeviceCapability
    * @availability iOS 14.0+
    */
-  get cameraDeviceSupportsHEIF(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_6be9a005889899ab", 3615205815215126, undefined, []); },
+  get cameraDeviceSupportsHEIF(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_c1f28409f8601238", 3615205815215126, undefined, []); },
   /**
    * static let canEjectOrDisconnect: ICDeviceCapability
    * @availability iOS 13.0+
    */
-  get canEjectOrDisconnect(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_6be9a005889899ab", 4480359880764685, undefined, []); },
+  get canEjectOrDisconnect(): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_c1f28409f8601238", 4480359880764685, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_6be9a005889899ab", 4003913748360608, undefined, [rawValue]); }
+  init(rawValue: string): ICDeviceCapability { return callSDK<ICDeviceCapability>("ImageCaptureCore_c1f28409f8601238", 4003913748360608, undefined, [rawValue]); }
 };
 
 /** protocol ICDeviceDelegate : NSObjectProtocol */
@@ -1014,24 +1014,24 @@ export const ICDeviceLocationOptions = {
    * static let descriptionBluetooth: ICDeviceLocationOptions
    * @availability iOS 16.0+
    */
-  get descriptionBluetooth(): ICDeviceLocationOptions { return callSDK<ICDeviceLocationOptions>("ImageCaptureCore_6be9a005889899ab", 3685350027963116, undefined, []); },
+  get descriptionBluetooth(): ICDeviceLocationOptions { return callSDK<ICDeviceLocationOptions>("ImageCaptureCore_c1f28409f8601238", 3685350027963116, undefined, []); },
   /**
    * static let descriptionFireWire: ICDeviceLocationOptions
    * @availability iOS 16.0+
    */
-  get descriptionFireWire(): ICDeviceLocationOptions { return callSDK<ICDeviceLocationOptions>("ImageCaptureCore_6be9a005889899ab", 1864923086850005, undefined, []); },
+  get descriptionFireWire(): ICDeviceLocationOptions { return callSDK<ICDeviceLocationOptions>("ImageCaptureCore_c1f28409f8601238", 1864923086850005, undefined, []); },
   /**
    * static let descriptionMassStorage: ICDeviceLocationOptions
    * @availability iOS 16.0+
    */
-  get descriptionMassStorage(): ICDeviceLocationOptions { return callSDK<ICDeviceLocationOptions>("ImageCaptureCore_6be9a005889899ab", 542026790038541, undefined, []); },
+  get descriptionMassStorage(): ICDeviceLocationOptions { return callSDK<ICDeviceLocationOptions>("ImageCaptureCore_c1f28409f8601238", 542026790038541, undefined, []); },
   /**
    * static let descriptionUSB: ICDeviceLocationOptions
    * @availability iOS 16.0+
    */
-  get descriptionUSB(): ICDeviceLocationOptions { return callSDK<ICDeviceLocationOptions>("ImageCaptureCore_6be9a005889899ab", 2004667980352333, undefined, []); },
+  get descriptionUSB(): ICDeviceLocationOptions { return callSDK<ICDeviceLocationOptions>("ImageCaptureCore_c1f28409f8601238", 2004667980352333, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): ICDeviceLocationOptions { return callSDK<ICDeviceLocationOptions>("ImageCaptureCore_6be9a005889899ab", 4235604296216947, undefined, [rawValue]); }
+  init(rawValue: string): ICDeviceLocationOptions { return callSDK<ICDeviceLocationOptions>("ImageCaptureCore_c1f28409f8601238", 4235604296216947, undefined, [rawValue]); }
 };
 
 /**
@@ -1045,7 +1045,7 @@ export const ICDeviceLocationType = {
    * init?(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (ICDeviceLocationType) | null { return callSDK<(ICDeviceLocationType) | null>("ImageCaptureCore_6be9a005889899ab", 2945859015069650, undefined, [rawValue]); }
+  init(rawValue: number): (ICDeviceLocationType) | null { return callSDK<(ICDeviceLocationType) | null>("ImageCaptureCore_c1f28409f8601238", 2945859015069650, undefined, [rawValue]); }
 };
 
 /**
@@ -1059,7 +1059,7 @@ export const ICDeviceLocationTypeMask = {
    * init?(rawValue: UInt)
    * @availability iOS 15.2+
    */
-  init(rawValue: number): (ICDeviceLocationTypeMask) | null { return callSDK<(ICDeviceLocationTypeMask) | null>("ImageCaptureCore_6be9a005889899ab", 2199460502948148, undefined, [rawValue]); }
+  init(rawValue: number): (ICDeviceLocationTypeMask) | null { return callSDK<(ICDeviceLocationTypeMask) | null>("ImageCaptureCore_c1f28409f8601238", 2199460502948148, undefined, [rawValue]); }
 };
 
 /** struct ICDeviceStatus */
@@ -1070,9 +1070,9 @@ export const ICDeviceStatus = {
    * static let statusNotificationKey: ICDeviceStatus
    * @availability iOS 13.0+
    */
-  get statusNotificationKey(): ICDeviceStatus { return callSDK<ICDeviceStatus>("ImageCaptureCore_6be9a005889899ab", 2827004273876590, undefined, []); },
+  get statusNotificationKey(): ICDeviceStatus { return callSDK<ICDeviceStatus>("ImageCaptureCore_c1f28409f8601238", 2827004273876590, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): ICDeviceStatus { return callSDK<ICDeviceStatus>("ImageCaptureCore_6be9a005889899ab", 2648615115925779, undefined, [rawValue]); }
+  init(rawValue: string): ICDeviceStatus { return callSDK<ICDeviceStatus>("ImageCaptureCore_c1f28409f8601238", 2648615115925779, undefined, [rawValue]); }
 };
 
 /**
@@ -1086,32 +1086,32 @@ export const ICDeviceTransport = {
    * static let transportTypeExFAT: ICDeviceTransport
    * @availability iOS 10.0+
    */
-  get transportTypeExFAT(): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_6be9a005889899ab", 102683790488874, undefined, []); },
+  get transportTypeExFAT(): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_c1f28409f8601238", 102683790488874, undefined, []); },
   /**
    * static let transportTypeMassStorage: ICDeviceTransport
    * @availability iOS 13.0+
    */
-  get transportTypeMassStorage(): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_6be9a005889899ab", 2012254363297976, undefined, []); },
+  get transportTypeMassStorage(): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_c1f28409f8601238", 2012254363297976, undefined, []); },
   /**
    * static let transportTypeProximity: ICDeviceTransport
    * @availability iOS 17.0+
    */
-  get transportTypeProximity(): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_6be9a005889899ab", 2918790086389982, undefined, []); },
+  get transportTypeProximity(): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_c1f28409f8601238", 2918790086389982, undefined, []); },
   /**
    * static let transportTypeTCPIP: ICDeviceTransport
    * @availability iOS 13.0+
    */
-  get transportTypeTCPIP(): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_6be9a005889899ab", 563167979010072, undefined, []); },
+  get transportTypeTCPIP(): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_c1f28409f8601238", 563167979010072, undefined, []); },
   /**
    * static let transportTypeUSB: ICDeviceTransport
    * @availability iOS 13.0+
    */
-  get transportTypeUSB(): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_6be9a005889899ab", 2793204608716538, undefined, []); },
+  get transportTypeUSB(): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_c1f28409f8601238", 2793204608716538, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_6be9a005889899ab", 160414198826342, undefined, [rawValue]); }
+  init(rawValue: string): ICDeviceTransport { return callSDK<ICDeviceTransport>("ImageCaptureCore_c1f28409f8601238", 160414198826342, undefined, [rawValue]); }
 };
 
 /**
@@ -1125,7 +1125,7 @@ export const ICDeviceType = {
    * init?(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ICDeviceType) | null { return callSDK<(ICDeviceType) | null>("ImageCaptureCore_6be9a005889899ab", 1600708924409951, undefined, [rawValue]); }
+  init(rawValue: number): (ICDeviceType) | null { return callSDK<(ICDeviceType) | null>("ImageCaptureCore_c1f28409f8601238", 1600708924409951, undefined, [rawValue]); }
 };
 
 /**
@@ -1139,7 +1139,7 @@ export const ICDeviceTypeMask = {
    * init?(rawValue: UInt)
    * @availability iOS 15.2+
    */
-  init(rawValue: number): (ICDeviceTypeMask) | null { return callSDK<(ICDeviceTypeMask) | null>("ImageCaptureCore_6be9a005889899ab", 309236016551278, undefined, [rawValue]); }
+  init(rawValue: number): (ICDeviceTypeMask) | null { return callSDK<(ICDeviceTypeMask) | null>("ImageCaptureCore_c1f28409f8601238", 309236016551278, undefined, [rawValue]); }
 };
 
 /**
@@ -1153,47 +1153,47 @@ export const ICDownloadOption = {
    * static let deleteAfterSuccessfulDownload: ICDownloadOption
    * @availability iOS 13.0+
    */
-  get deleteAfterSuccessfulDownload(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_6be9a005889899ab", 4375617924416663, undefined, []); },
+  get deleteAfterSuccessfulDownload(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_c1f28409f8601238", 4375617924416663, undefined, []); },
   /**
    * static let sidecarFiles: ICDownloadOption
    * @availability iOS 13.0+
    */
-  get sidecarFiles(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_6be9a005889899ab", 3711617499542295, undefined, []); },
+  get sidecarFiles(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_c1f28409f8601238", 3711617499542295, undefined, []); },
   /**
    * static let downloadsDirectoryURL: ICDownloadOption
    * @availability iOS 13.0+
    */
-  get downloadsDirectoryURL(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_6be9a005889899ab", 798643853599170, undefined, []); },
+  get downloadsDirectoryURL(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_c1f28409f8601238", 798643853599170, undefined, []); },
   /**
    * static let overwrite: ICDownloadOption
    * @availability iOS 13.0+
    */
-  get overwrite(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_6be9a005889899ab", 3729320848881002, undefined, []); },
+  get overwrite(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_c1f28409f8601238", 3729320848881002, undefined, []); },
   /**
    * static let saveAsFilename: ICDownloadOption
    * @availability iOS 13.0+
    */
-  get saveAsFilename(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_6be9a005889899ab", 2659091801324184, undefined, []); },
+  get saveAsFilename(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_c1f28409f8601238", 2659091801324184, undefined, []); },
   /**
    * static let savedAncillaryFiles: ICDownloadOption
    * @availability iOS 13.0+
    */
-  get savedAncillaryFiles(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_6be9a005889899ab", 4276152291216630, undefined, []); },
+  get savedAncillaryFiles(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_c1f28409f8601238", 4276152291216630, undefined, []); },
   /**
    * static let savedFilename: ICDownloadOption
    * @availability iOS 13.0+
    */
-  get savedFilename(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_6be9a005889899ab", 2293961982044539, undefined, []); },
+  get savedFilename(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_c1f28409f8601238", 2293961982044539, undefined, []); },
   /**
    * static let truncateAfterSuccessfulDownload: ICDownloadOption
    * @availability iOS 14.0+
    */
-  get truncateAfterSuccessfulDownload(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_6be9a005889899ab", 1261945421581403, undefined, []); },
+  get truncateAfterSuccessfulDownload(): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_c1f28409f8601238", 1261945421581403, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_6be9a005889899ab", 1630438931567304, undefined, [rawValue]); }
+  init(rawValue: string): ICDownloadOption { return callSDK<ICDownloadOption>("ImageCaptureCore_c1f28409f8601238", 1630438931567304, undefined, [rawValue]); }
 };
 
 /** enum ICEXIFOrientationType */
@@ -1201,57 +1201,57 @@ export type ICEXIFOrientationType = "orientation1" | "orientation2" | "orientati
 
 export const ICEXIFOrientationType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (ICEXIFOrientationType) | null { return callSDK<(ICEXIFOrientationType) | null>("ImageCaptureCore_6be9a005889899ab", 3832781109913966, undefined, [rawValue]); }
+  init(rawValue: number): (ICEXIFOrientationType) | null { return callSDK<(ICEXIFOrientationType) | null>("ImageCaptureCore_c1f28409f8601238", 3832781109913966, undefined, [rawValue]); }
 };
 
 /** struct ICLegacyReturn */
 export class ICLegacyReturn extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_6be9a005889899ab", 2746139415397137, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_c1f28409f8601238", 2746139415397137, undefined, []); }
   /** static var ioPendingErr: ICLegacyReturn.Code { get } */
-  static get ioPendingErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 519567418903822, undefined, []); }
+  static get ioPendingErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 519567418903822, undefined, []); }
   /** static var communicationErr: ICLegacyReturn.Code { get } */
-  static get communicationErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2885901715903609, undefined, []); }
+  static get communicationErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2885901715903609, undefined, []); }
   /** static var deviceNotOpenErr: ICLegacyReturn.Code { get } */
-  static get deviceNotOpenErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1767159446404884, undefined, []); }
+  static get deviceNotOpenErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1767159446404884, undefined, []); }
   /** static var fileCorruptedErr: ICLegacyReturn.Code { get } */
-  static get fileCorruptedErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2599399001289745, undefined, []); }
+  static get fileCorruptedErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2599399001289745, undefined, []); }
   /** static var invalidObjectErr: ICLegacyReturn.Code { get } */
-  static get invalidObjectErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 4216757131751345, undefined, []); }
+  static get invalidObjectErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 4216757131751345, undefined, []); }
   /** static var cannotYieldDevice: ICLegacyReturn.Code { get } */
-  static get cannotYieldDevice(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2494288393613981, undefined, []); }
+  static get cannotYieldDevice(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2494288393613981, undefined, []); }
   /** static var deviceInternalErr: ICLegacyReturn.Code { get } */
-  static get deviceInternalErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 325165712697549, undefined, []); }
+  static get deviceInternalErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 325165712697549, undefined, []); }
   /** static var deviceNotFoundErr: ICLegacyReturn.Code { get } */
-  static get deviceNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 720346160149203, undefined, []); }
+  static get deviceNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 720346160149203, undefined, []); }
   /** static var invalidSessionErr: ICLegacyReturn.Code { get } */
-  static get invalidSessionErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 4150313559314962, undefined, []); }
+  static get invalidSessionErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 4150313559314962, undefined, []); }
   /** static var indexOutOfRangeErr: ICLegacyReturn.Code { get } */
-  static get indexOutOfRangeErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2418182413981745, undefined, []); }
+  static get indexOutOfRangeErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2418182413981745, undefined, []); }
   /** static var invalidPropertyErr: ICLegacyReturn.Code { get } */
-  static get invalidPropertyErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 4256632757285018, undefined, []); }
+  static get invalidPropertyErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 4256632757285018, undefined, []); }
   /** static var dataTypeNotFoundErr: ICLegacyReturn.Code { get } */
-  static get dataTypeNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2888142408270704, undefined, []); }
+  static get dataTypeNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2888142408270704, undefined, []); }
   /** static var deviceAlreadyOpenErr: ICLegacyReturn.Code { get } */
-  static get deviceAlreadyOpenErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2666503466743551, undefined, []); }
+  static get deviceAlreadyOpenErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2666503466743551, undefined, []); }
   /** static var deviceUnsupportedErr: ICLegacyReturn.Code { get } */
-  static get deviceUnsupportedErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1781305971050297, undefined, []); }
+  static get deviceUnsupportedErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1781305971050297, undefined, []); }
   /** static var extensionInternalErr: ICLegacyReturn.Code { get } */
-  static get extensionInternalErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2318645327499200, undefined, []); }
+  static get extensionInternalErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2318645327499200, undefined, []); }
   /** static var frameworkInternalErr: ICLegacyReturn.Code { get } */
-  static get frameworkInternalErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1895755991764458, undefined, []); }
+  static get frameworkInternalErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1895755991764458, undefined, []); }
   /** static var deviceGUIDNotFoundErr: ICLegacyReturn.Code { get } */
-  static get deviceGUIDNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 3407560711995644, undefined, []); }
+  static get deviceGUIDNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 3407560711995644, undefined, []); }
   /** static var deviceInvalidParamErr: ICLegacyReturn.Code { get } */
-  static get deviceInvalidParamErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2582446619992000, undefined, []); }
+  static get deviceInvalidParamErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2582446619992000, undefined, []); }
   /** static var propertyTypeNotFoundErr: ICLegacyReturn.Code { get } */
-  static get propertyTypeNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 3333386406476240, undefined, []); }
+  static get propertyTypeNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 3333386406476240, undefined, []); }
   /** static var deviceMemoryAllocationErr: ICLegacyReturn.Code { get } */
-  static get deviceMemoryAllocationErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 3489706497559204, undefined, []); }
+  static get deviceMemoryAllocationErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 3489706497559204, undefined, []); }
   /** static var deviceLocationIDNotFoundErr: ICLegacyReturn.Code { get } */
-  static get deviceLocationIDNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 759284063382448, undefined, []); }
+  static get deviceLocationIDNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 759284063382448, undefined, []); }
   /** static var deviceIOServicePathNotFoundErr: ICLegacyReturn.Code { get } */
-  static get deviceIOServicePathNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_6be9a005889899ab", 471800160143727, undefined, []); }
+  static get deviceIOServicePathNotFoundErr(): ICLegacyReturn_Code { return callSDK<ICLegacyReturn_Code>("ImageCaptureCore_c1f28409f8601238", 471800160143727, undefined, []); }
   declare readonly $type: { "s:SC18ICLegacyReturnCodeLeV": true };
 }
 
@@ -1260,7 +1260,7 @@ export type ICLegacyReturn_Code = "communicationErr" | "deviceNotFoundErr" | "de
 
 export const ICLegacyReturn_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ICLegacyReturn_Code) | null { return callSDK<(ICLegacyReturn_Code) | null>("ImageCaptureCore_6be9a005889899ab", 2787337336510893, undefined, [rawValue]); }
+  init(rawValue: number): (ICLegacyReturn_Code) | null { return callSDK<(ICLegacyReturn_Code) | null>("ImageCaptureCore_c1f28409f8601238", 2787337336510893, undefined, [rawValue]); }
 };
 
 /**
@@ -1274,93 +1274,93 @@ export const ICMediaPresentation = {
    * init?(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (ICMediaPresentation) | null { return callSDK<(ICMediaPresentation) | null>("ImageCaptureCore_6be9a005889899ab", 3985110391481444, undefined, [rawValue]); }
+  init(rawValue: number): (ICMediaPresentation) | null { return callSDK<(ICMediaPresentation) | null>("ImageCaptureCore_c1f28409f8601238", 3985110391481444, undefined, [rawValue]); }
 };
 
 /** struct ICReturn */
 export class ICReturn extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_6be9a005889899ab", 2911694613329621, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_c1f28409f8601238", 2911694613329621, undefined, []); }
   /** static var invalidParam: ICReturn.Code { get } */
-  static get invalidParam(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1747306176650937, undefined, []); }
+  static get invalidParam(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1747306176650937, undefined, []); }
   /** static var uploadFailed: ICReturn.Code { get } */
-  static get uploadFailed(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 341654375757787, undefined, []); }
+  static get uploadFailed(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 341654375757787, undefined, []); }
   /** static var downloadFailed: ICReturn.Code { get } */
-  static get downloadFailed(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 4237728352000709, undefined, []); }
+  static get downloadFailed(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 4237728352000709, undefined, []); }
   /** static var downloadCanceled: ICReturn.Code { get } */
-  static get downloadCanceled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 516454231738, undefined, []); }
+  static get downloadCanceled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 516454231738, undefined, []); }
   /** static var sessionNotOpened: ICReturn.Code { get } */
-  static get sessionNotOpened(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 4306359270507447, undefined, []); }
+  static get sessionNotOpened(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 4306359270507447, undefined, []); }
   /** static var deleteFilesFailed: ICReturn.Code { get } */
-  static get deleteFilesFailed(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 3020069244486174, undefined, []); }
+  static get deleteFilesFailed(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 3020069244486174, undefined, []); }
   /** static var deviceCouldNotPair: ICReturn.Code { get } */
-  static get deviceCouldNotPair(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1239906662047435, undefined, []); }
+  static get deviceCouldNotPair(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1239906662047435, undefined, []); }
   /** static var exFATVolumeInvalid: ICReturn.Code { get } */
-  static get exFATVolumeInvalid(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2669175606514198, undefined, []); }
+  static get exFATVolumeInvalid(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2669175606514198, undefined, []); }
   /** static var deleteFilesCanceled: ICReturn.Code { get } */
-  static get deleteFilesCanceled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1435950292299793, undefined, []); }
+  static get deleteFilesCanceled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1435950292299793, undefined, []); }
   /** static var deviceCouldNotUnpair: ICReturn.Code { get } */
-  static get deviceCouldNotUnpair(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 3266381561357530, undefined, []); }
+  static get deviceCouldNotUnpair(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 3266381561357530, undefined, []); }
   /** static var multiErrorDictionary: ICReturn.Code { get } */
-  static get multiErrorDictionary(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2141898367081097, undefined, []); }
+  static get multiErrorDictionary(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2141898367081097, undefined, []); }
   /** static var communicationTimedOut: ICReturn.Code { get } */
-  static get communicationTimedOut(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 786194059346396, undefined, []); }
+  static get communicationTimedOut(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 786194059346396, undefined, []); }
   /** static var scanOperationCanceled: ICReturn.Code { get } */
-  static get scanOperationCanceled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 4123205945129838, undefined, []); }
+  static get scanOperationCanceled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 4123205945129838, undefined, []); }
   /** static var deviceFailedToSendData: ICReturn.Code { get } */
-  static get deviceFailedToSendData(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 236204812762071, undefined, []); }
+  static get deviceFailedToSendData(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 236204812762071, undefined, []); }
   /** static var deviceIsPasscodeLocked: ICReturn.Code { get } */
-  static get deviceIsPasscodeLocked(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1038811924297128, undefined, []); }
+  static get deviceIsPasscodeLocked(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1038811924297128, undefined, []); }
   /** static var deviceNeedsCredentials: ICReturn.Code { get } */
-  static get deviceNeedsCredentials(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1714610524297507, undefined, []); }
+  static get deviceNeedsCredentials(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1714610524297507, undefined, []); }
   /** static var failedToEnabeTethering: ICReturn.Code { get } */
-  static get failedToEnabeTethering(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 3662789103499733, undefined, []); }
+  static get failedToEnabeTethering(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 3662789103499733, undefined, []); }
   /** static var deviceIsBusyEnumerating: ICReturn.Code { get } */
-  static get deviceIsBusyEnumerating(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 700654066224604, undefined, []); }
+  static get deviceIsBusyEnumerating(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 700654066224604, undefined, []); }
   /** static var failedToDisabeTethering: ICReturn.Code { get } */
-  static get failedToDisabeTethering(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1708099716062088, undefined, []); }
+  static get failedToDisabeTethering(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1708099716062088, undefined, []); }
   /** static var scannerInUseByLocalUser: ICReturn.Code { get } */
-  static get scannerInUseByLocalUser(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2666512353975295, undefined, []); }
+  static get scannerInUseByLocalUser(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2666512353975295, undefined, []); }
   /** static var scannerInUseByRemoteUser: ICReturn.Code { get } */
-  static get scannerInUseByRemoteUser(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 3979920822981869, undefined, []); }
+  static get scannerInUseByRemoteUser(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 3979920822981869, undefined, []); }
   /** static var deviceFailedToOpenSession: ICReturn.Code { get } */
-  static get deviceFailedToOpenSession(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 4267289652207706, undefined, []); }
+  static get deviceFailedToOpenSession(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 4267289652207706, undefined, []); }
   /** static var deviceFailedToTakePicture: ICReturn.Code { get } */
-  static get deviceFailedToTakePicture(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 728913303597898, undefined, []); }
+  static get deviceFailedToTakePicture(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 728913303597898, undefined, []); }
   /** static var deviceFailedToCloseSession: ICReturn.Code { get } */
-  static get deviceFailedToCloseSession(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1746277428535968, undefined, []); }
+  static get deviceFailedToCloseSession(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1746277428535968, undefined, []); }
   /** static var deviceSoftwareNotAvailable: ICReturn.Code { get } */
-  static get deviceSoftwareNotAvailable(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 438153843695866, undefined, []); }
+  static get deviceSoftwareNotAvailable(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 438153843695866, undefined, []); }
   /** static var deviceSoftwareNotInstalled: ICReturn.Code { get } */
-  static get deviceSoftwareNotInstalled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 4436237117824022, undefined, []); }
+  static get deviceSoftwareNotInstalled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 4436237117824022, undefined, []); }
   /** static var deviceCommandGeneralFailure: ICReturn.Code { get } */
-  static get deviceCommandGeneralFailure(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 4493032175622448, undefined, []); }
+  static get deviceCommandGeneralFailure(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 4493032175622448, undefined, []); }
   /** static var scannerFailedToCompleteScan: ICReturn.Code { get } */
-  static get scannerFailedToCompleteScan(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 219134598836094, undefined, []); }
+  static get scannerFailedToCompleteScan(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 219134598836094, undefined, []); }
   /** static var deviceFailedToCompleteTransfer: ICReturn.Code { get } */
-  static get deviceFailedToCompleteTransfer(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2596376877239933, undefined, []); }
+  static get deviceFailedToCompleteTransfer(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2596376877239933, undefined, []); }
   /** static var deviceSoftwareIsBeingInstalled: ICReturn.Code { get } */
-  static get deviceSoftwareIsBeingInstalled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1919488749304862, undefined, []); }
+  static get deviceSoftwareIsBeingInstalled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1919488749304862, undefined, []); }
   /** static var deviceSoftwareInstallationFailed: ICReturn.Code { get } */
-  static get deviceSoftwareInstallationFailed(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 3180594219060417, undefined, []); }
+  static get deviceSoftwareInstallationFailed(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 3180594219060417, undefined, []); }
   /** static var deviceSoftwareInstallationCanceled: ICReturn.Code { get } */
-  static get deviceSoftwareInstallationCanceled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 3125438468672598, undefined, []); }
+  static get deviceSoftwareInstallationCanceled(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 3125438468672598, undefined, []); }
   /** static var failedToCompletePassThroughCommand: ICReturn.Code { get } */
-  static get failedToCompletePassThroughCommand(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 56284384918773, undefined, []); }
+  static get failedToCompletePassThroughCommand(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 56284384918773, undefined, []); }
   /** static var failedToCompleteSendMessageRequest: ICReturn.Code { get } */
-  static get failedToCompleteSendMessageRequest(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1007100615955807, undefined, []); }
+  static get failedToCompleteSendMessageRequest(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1007100615955807, undefined, []); }
   /** static var deviceSoftwareInstallationCompleted: ICReturn.Code { get } */
-  static get deviceSoftwareInstallationCompleted(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 3179504507002667, undefined, []); }
+  static get deviceSoftwareInstallationCompleted(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 3179504507002667, undefined, []); }
   /** static var receivedUnsolicitedScannerErrorInfo: ICReturn.Code { get } */
-  static get receivedUnsolicitedScannerErrorInfo(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 1077117431877672, undefined, []); }
+  static get receivedUnsolicitedScannerErrorInfo(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 1077117431877672, undefined, []); }
   /** static var scannerFailedToCompleteOverviewScan: ICReturn.Code { get } */
-  static get scannerFailedToCompleteOverviewScan(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2738041150996922, undefined, []); }
+  static get scannerFailedToCompleteOverviewScan(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2738041150996922, undefined, []); }
   /** static var scannerFailedToSelectFunctionalUnit: ICReturn.Code { get } */
-  static get scannerFailedToSelectFunctionalUnit(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 217507504183388, undefined, []); }
+  static get scannerFailedToSelectFunctionalUnit(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 217507504183388, undefined, []); }
   /** static var receivedUnsolicitedScannerStatusInfo: ICReturn.Code { get } */
-  static get receivedUnsolicitedScannerStatusInfo(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 4219605756355612, undefined, []); }
+  static get receivedUnsolicitedScannerStatusInfo(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 4219605756355612, undefined, []); }
   /** static var success: ICReturn.Code { get } */
-  static get success(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_6be9a005889899ab", 2878350005060886, undefined, []); }
+  static get success(): ICReturn_Code { return callSDK<ICReturn_Code>("ImageCaptureCore_c1f28409f8601238", 2878350005060886, undefined, []); }
   declare readonly $type: { "s:SC12ICReturnCodeLeV": true };
 }
 
@@ -1369,7 +1369,7 @@ export type ICReturn_Code = "success" | "invalidParam" | "communicationTimedOut"
 
 export const ICReturn_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ICReturn_Code) | null { return callSDK<(ICReturn_Code) | null>("ImageCaptureCore_6be9a005889899ab", 2448992511236875, undefined, [rawValue]); }
+  init(rawValue: number): (ICReturn_Code) | null { return callSDK<(ICReturn_Code) | null>("ImageCaptureCore_c1f28409f8601238", 2448992511236875, undefined, [rawValue]); }
 };
 
 /** enum ICReturnCodeOffset */
@@ -1377,29 +1377,29 @@ export type ICReturnCodeOffset = "thumbnailOffset" | "metadataOffset" | "downloa
 
 export const ICReturnCodeOffset = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ICReturnCodeOffset) | null { return callSDK<(ICReturnCodeOffset) | null>("ImageCaptureCore_6be9a005889899ab", 2430935915606893, undefined, [rawValue]); }
+  init(rawValue: number): (ICReturnCodeOffset) | null { return callSDK<(ICReturnCodeOffset) | null>("ImageCaptureCore_c1f28409f8601238", 2430935915606893, undefined, [rawValue]); }
 };
 
 /** struct ICReturnConnectionError */
 export class ICReturnConnectionError extends SDKHandle {
   /** static var ejectFailed: ICReturnConnectionError.Code { get } */
-  static get ejectFailed(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_6be9a005889899ab", 377967808490145, undefined, []); }
+  static get ejectFailed(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_c1f28409f8601238", 377967808490145, undefined, []); }
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_6be9a005889899ab", 2240526021335064, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_c1f28409f8601238", 2240526021335064, undefined, []); }
   /** static var driverExited: ICReturnConnectionError.Code { get } */
-  static get driverExited(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_6be9a005889899ab", 2380068279369574, undefined, []); }
+  static get driverExited(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_c1f28409f8601238", 2380068279369574, undefined, []); }
   /** static var failedToOpen: ICReturnConnectionError.Code { get } */
-  static get failedToOpen(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_6be9a005889899ab", 4315940052379346, undefined, []); }
+  static get failedToOpen(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_c1f28409f8601238", 4315940052379346, undefined, []); }
   /** static var ejectedSuddenly: ICReturnConnectionError.Code { get } */
-  static get ejectedSuddenly(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_6be9a005889899ab", 2987729438845879, undefined, []); }
+  static get ejectedSuddenly(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_c1f28409f8601238", 2987729438845879, undefined, []); }
   /** static var failedToOpenDevice: ICReturnConnectionError.Code { get } */
-  static get failedToOpenDevice(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_6be9a005889899ab", 184482700159327, undefined, []); }
+  static get failedToOpenDevice(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_c1f28409f8601238", 184482700159327, undefined, []); }
   /** static var sessionAlreadyOpen: ICReturnConnectionError.Code { get } */
-  static get sessionAlreadyOpen(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_6be9a005889899ab", 4187433438687493, undefined, []); }
+  static get sessionAlreadyOpen(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_c1f28409f8601238", 4187433438687493, undefined, []); }
   /** static var closedSessionSuddenly: ICReturnConnectionError.Code { get } */
-  static get closedSessionSuddenly(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_6be9a005889899ab", 1452799839296864, undefined, []); }
+  static get closedSessionSuddenly(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_c1f28409f8601238", 1452799839296864, undefined, []); }
   /** static var notAuthorizedToOpenDevice: ICReturnConnectionError.Code { get } */
-  static get notAuthorizedToOpenDevice(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_6be9a005889899ab", 2323756506914218, undefined, []); }
+  static get notAuthorizedToOpenDevice(): ICReturnConnectionError_Code { return callSDK<ICReturnConnectionError_Code>("ImageCaptureCore_c1f28409f8601238", 2323756506914218, undefined, []); }
   declare readonly $type: { "s:SC27ICReturnConnectionErrorCodeLeV": true };
 }
 
@@ -1408,17 +1408,17 @@ export type ICReturnConnectionError_Code = "driverExited" | "closedSessionSudden
 
 export const ICReturnConnectionError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ICReturnConnectionError_Code) | null { return callSDK<(ICReturnConnectionError_Code) | null>("ImageCaptureCore_6be9a005889899ab", 516353897914955, undefined, [rawValue]); }
+  init(rawValue: number): (ICReturnConnectionError_Code) | null { return callSDK<(ICReturnConnectionError_Code) | null>("ImageCaptureCore_c1f28409f8601238", 516353897914955, undefined, [rawValue]); }
 };
 
 /** struct ICReturnDownloadError */
 export class ICReturnDownloadError extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_6be9a005889899ab", 561523837593035, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_c1f28409f8601238", 561523837593035, undefined, []); }
   /** static var pathInvalid: ICReturnDownloadError.Code { get } */
-  static get pathInvalid(): ICReturnDownloadError_Code { return callSDK<ICReturnDownloadError_Code>("ImageCaptureCore_6be9a005889899ab", 1365110761609253, undefined, []); }
+  static get pathInvalid(): ICReturnDownloadError_Code { return callSDK<ICReturnDownloadError_Code>("ImageCaptureCore_c1f28409f8601238", 1365110761609253, undefined, []); }
   /** static var fileWritable: ICReturnDownloadError.Code { get } */
-  static get fileWritable(): ICReturnDownloadError_Code { return callSDK<ICReturnDownloadError_Code>("ImageCaptureCore_6be9a005889899ab", 3178721622168474, undefined, []); }
+  static get fileWritable(): ICReturnDownloadError_Code { return callSDK<ICReturnDownloadError_Code>("ImageCaptureCore_c1f28409f8601238", 3178721622168474, undefined, []); }
   declare readonly $type: { "s:SC25ICReturnDownloadErrorCodeLeV": true };
 }
 
@@ -1427,21 +1427,21 @@ export type ICReturnDownloadError_Code = "pathInvalid" | "fileWritable";
 
 export const ICReturnDownloadError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ICReturnDownloadError_Code) | null { return callSDK<(ICReturnDownloadError_Code) | null>("ImageCaptureCore_6be9a005889899ab", 524818678000931, undefined, [rawValue]); }
+  init(rawValue: number): (ICReturnDownloadError_Code) | null { return callSDK<(ICReturnDownloadError_Code) | null>("ImageCaptureCore_c1f28409f8601238", 524818678000931, undefined, [rawValue]); }
 };
 
 /** struct ICReturnMetadataError */
 export class ICReturnMetadataError extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_6be9a005889899ab", 902141461614362, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_c1f28409f8601238", 902141461614362, undefined, []); }
   /** static var notAvailable: ICReturnMetadataError.Code { get } */
-  static get notAvailable(): ICReturnMetadataError_Code { return callSDK<ICReturnMetadataError_Code>("ImageCaptureCore_6be9a005889899ab", 1496177369952646, undefined, []); }
+  static get notAvailable(): ICReturnMetadataError_Code { return callSDK<ICReturnMetadataError_Code>("ImageCaptureCore_c1f28409f8601238", 1496177369952646, undefined, []); }
   /** static var alreadyFetching: ICReturnMetadataError.Code { get } */
-  static get alreadyFetching(): ICReturnMetadataError_Code { return callSDK<ICReturnMetadataError_Code>("ImageCaptureCore_6be9a005889899ab", 108236678860464, undefined, []); }
+  static get alreadyFetching(): ICReturnMetadataError_Code { return callSDK<ICReturnMetadataError_Code>("ImageCaptureCore_c1f28409f8601238", 108236678860464, undefined, []); }
   /** static var invalid: ICReturnMetadataError.Code { get } */
-  static get invalid(): ICReturnMetadataError_Code { return callSDK<ICReturnMetadataError_Code>("ImageCaptureCore_6be9a005889899ab", 1853944223493948, undefined, []); }
+  static get invalid(): ICReturnMetadataError_Code { return callSDK<ICReturnMetadataError_Code>("ImageCaptureCore_c1f28409f8601238", 1853944223493948, undefined, []); }
   /** static var canceled: ICReturnMetadataError.Code { get } */
-  static get canceled(): ICReturnMetadataError_Code { return callSDK<ICReturnMetadataError_Code>("ImageCaptureCore_6be9a005889899ab", 1034434312448971, undefined, []); }
+  static get canceled(): ICReturnMetadataError_Code { return callSDK<ICReturnMetadataError_Code>("ImageCaptureCore_c1f28409f8601238", 1034434312448971, undefined, []); }
   declare readonly $type: { "s:SC25ICReturnMetadataErrorCodeLeV": true };
 }
 
@@ -1450,23 +1450,23 @@ export type ICReturnMetadataError_Code = "notAvailable" | "alreadyFetching" | "c
 
 export const ICReturnMetadataError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ICReturnMetadataError_Code) | null { return callSDK<(ICReturnMetadataError_Code) | null>("ImageCaptureCore_6be9a005889899ab", 1075709243565549, undefined, [rawValue]); }
+  init(rawValue: number): (ICReturnMetadataError_Code) | null { return callSDK<(ICReturnMetadataError_Code) | null>("ImageCaptureCore_c1f28409f8601238", 1075709243565549, undefined, [rawValue]); }
 };
 
 /** struct ICReturnObjectError */
 export class ICReturnObjectError extends SDKHandle {
   /** static var codeObjectDoesNotExist: ICReturnObjectError.Code { get } */
-  static get codeObjectDoesNotExist(): ICReturnObjectError_Code { return callSDK<ICReturnObjectError_Code>("ImageCaptureCore_6be9a005889899ab", 1587602827194366, undefined, []); }
+  static get codeObjectDoesNotExist(): ICReturnObjectError_Code { return callSDK<ICReturnObjectError_Code>("ImageCaptureCore_c1f28409f8601238", 1587602827194366, undefined, []); }
   /** static var codeObjectCouldNotBeRead: ICReturnObjectError.Code { get } */
-  static get codeObjectCouldNotBeRead(): ICReturnObjectError_Code { return callSDK<ICReturnObjectError_Code>("ImageCaptureCore_6be9a005889899ab", 1261810148858127, undefined, []); }
+  static get codeObjectCouldNotBeRead(): ICReturnObjectError_Code { return callSDK<ICReturnObjectError_Code>("ImageCaptureCore_c1f28409f8601238", 1261810148858127, undefined, []); }
   /** static var codeObjectDataOffsetInvalid: ICReturnObjectError.Code { get } */
-  static get codeObjectDataOffsetInvalid(): ICReturnObjectError_Code { return callSDK<ICReturnObjectError_Code>("ImageCaptureCore_6be9a005889899ab", 1147755048713663, undefined, []); }
+  static get codeObjectDataOffsetInvalid(): ICReturnObjectError_Code { return callSDK<ICReturnObjectError_Code>("ImageCaptureCore_c1f28409f8601238", 1147755048713663, undefined, []); }
   /** static var codeObjectDataRequestTooLarge: ICReturnObjectError.Code { get } */
-  static get codeObjectDataRequestTooLarge(): ICReturnObjectError_Code { return callSDK<ICReturnObjectError_Code>("ImageCaptureCore_6be9a005889899ab", 4275641540363456, undefined, []); }
+  static get codeObjectDataRequestTooLarge(): ICReturnObjectError_Code { return callSDK<ICReturnObjectError_Code>("ImageCaptureCore_c1f28409f8601238", 4275641540363456, undefined, []); }
   /** static var codeObjectDataEmpty: ICReturnObjectError.Code { get } */
-  static get codeObjectDataEmpty(): ICReturnObjectError_Code { return callSDK<ICReturnObjectError_Code>("ImageCaptureCore_6be9a005889899ab", 927670995546915, undefined, []); }
+  static get codeObjectDataEmpty(): ICReturnObjectError_Code { return callSDK<ICReturnObjectError_Code>("ImageCaptureCore_c1f28409f8601238", 927670995546915, undefined, []); }
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_6be9a005889899ab", 1929742851746208, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_c1f28409f8601238", 1929742851746208, undefined, []); }
   declare readonly $type: { "s:SC23ICReturnObjectErrorCodeLeV": true };
 }
 
@@ -1475,17 +1475,17 @@ export type ICReturnObjectError_Code = "codeObjectDoesNotExist" | "codeObjectDat
 
 export const ICReturnObjectError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ICReturnObjectError_Code) | null { return callSDK<(ICReturnObjectError_Code) | null>("ImageCaptureCore_6be9a005889899ab", 284737042792673, undefined, [rawValue]); }
+  init(rawValue: number): (ICReturnObjectError_Code) | null { return callSDK<(ICReturnObjectError_Code) | null>("ImageCaptureCore_c1f28409f8601238", 284737042792673, undefined, [rawValue]); }
 };
 
 /** struct ICReturnPTPDeviceError */
 export class ICReturnPTPDeviceError extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_6be9a005889899ab", 2978585335124309, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_c1f28409f8601238", 2978585335124309, undefined, []); }
   /** static var failedToSendCommand: ICReturnPTPDeviceError.Code { get } */
-  static get failedToSendCommand(): ICReturnPTPDeviceError_Code { return callSDK<ICReturnPTPDeviceError_Code>("ImageCaptureCore_6be9a005889899ab", 4084145727830676, undefined, []); }
+  static get failedToSendCommand(): ICReturnPTPDeviceError_Code { return callSDK<ICReturnPTPDeviceError_Code>("ImageCaptureCore_c1f28409f8601238", 4084145727830676, undefined, []); }
   /** static var notAuthorizedToSendCommand: ICReturnPTPDeviceError.Code { get } */
-  static get notAuthorizedToSendCommand(): ICReturnPTPDeviceError_Code { return callSDK<ICReturnPTPDeviceError_Code>("ImageCaptureCore_6be9a005889899ab", 3904277132643164, undefined, []); }
+  static get notAuthorizedToSendCommand(): ICReturnPTPDeviceError_Code { return callSDK<ICReturnPTPDeviceError_Code>("ImageCaptureCore_c1f28409f8601238", 3904277132643164, undefined, []); }
   declare readonly $type: { "s:SC26ICReturnPTPDeviceErrorCodeLeV": true };
 }
 
@@ -1494,21 +1494,21 @@ export type ICReturnPTPDeviceError_Code = "failedToSendCommand" | "notAuthorized
 
 export const ICReturnPTPDeviceError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ICReturnPTPDeviceError_Code) | null { return callSDK<(ICReturnPTPDeviceError_Code) | null>("ImageCaptureCore_6be9a005889899ab", 307763541489307, undefined, [rawValue]); }
+  init(rawValue: number): (ICReturnPTPDeviceError_Code) | null { return callSDK<(ICReturnPTPDeviceError_Code) | null>("ImageCaptureCore_c1f28409f8601238", 307763541489307, undefined, [rawValue]); }
 };
 
 /** struct ICReturnThumbnailError */
 export class ICReturnThumbnailError extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_6be9a005889899ab", 4292491342880986, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ImageCaptureCore_c1f28409f8601238", 4292491342880986, undefined, []); }
   /** static var notAvailable: ICReturnThumbnailError.Code { get } */
-  static get notAvailable(): ICReturnThumbnailError_Code { return callSDK<ICReturnThumbnailError_Code>("ImageCaptureCore_6be9a005889899ab", 2490756571701746, undefined, []); }
+  static get notAvailable(): ICReturnThumbnailError_Code { return callSDK<ICReturnThumbnailError_Code>("ImageCaptureCore_c1f28409f8601238", 2490756571701746, undefined, []); }
   /** static var alreadyFetching: ICReturnThumbnailError.Code { get } */
-  static get alreadyFetching(): ICReturnThumbnailError_Code { return callSDK<ICReturnThumbnailError_Code>("ImageCaptureCore_6be9a005889899ab", 4126937473099096, undefined, []); }
+  static get alreadyFetching(): ICReturnThumbnailError_Code { return callSDK<ICReturnThumbnailError_Code>("ImageCaptureCore_c1f28409f8601238", 4126937473099096, undefined, []); }
   /** static var invalid: ICReturnThumbnailError.Code { get } */
-  static get invalid(): ICReturnThumbnailError_Code { return callSDK<ICReturnThumbnailError_Code>("ImageCaptureCore_6be9a005889899ab", 911790377139904, undefined, []); }
+  static get invalid(): ICReturnThumbnailError_Code { return callSDK<ICReturnThumbnailError_Code>("ImageCaptureCore_c1f28409f8601238", 911790377139904, undefined, []); }
   /** static var canceled: ICReturnThumbnailError.Code { get } */
-  static get canceled(): ICReturnThumbnailError_Code { return callSDK<ICReturnThumbnailError_Code>("ImageCaptureCore_6be9a005889899ab", 4343188997108887, undefined, []); }
+  static get canceled(): ICReturnThumbnailError_Code { return callSDK<ICReturnThumbnailError_Code>("ImageCaptureCore_c1f28409f8601238", 4343188997108887, undefined, []); }
   declare readonly $type: { "s:SC26ICReturnThumbnailErrorCodeLeV": true };
 }
 
@@ -1517,7 +1517,7 @@ export type ICReturnThumbnailError_Code = "notAvailable" | "alreadyFetching" | "
 
 export const ICReturnThumbnailError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ICReturnThumbnailError_Code) | null { return callSDK<(ICReturnThumbnailError_Code) | null>("ImageCaptureCore_6be9a005889899ab", 493358842381399, undefined, [rawValue]); }
+  init(rawValue: number): (ICReturnThumbnailError_Code) | null { return callSDK<(ICReturnThumbnailError_Code) | null>("ImageCaptureCore_c1f28409f8601238", 493358842381399, undefined, [rawValue]); }
 };
 
 /**
@@ -1531,12 +1531,12 @@ export const ICSessionOptions = {
    * static let enumerationChronologicalOrder: ICSessionOptions
    * @availability iOS 13.0+
    */
-  get enumerationChronologicalOrder(): ICSessionOptions { return callSDK<ICSessionOptions>("ImageCaptureCore_6be9a005889899ab", 3233515991093884, undefined, []); },
+  get enumerationChronologicalOrder(): ICSessionOptions { return callSDK<ICSessionOptions>("ImageCaptureCore_c1f28409f8601238", 3233515991093884, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ICSessionOptions { return callSDK<ICSessionOptions>("ImageCaptureCore_6be9a005889899ab", 375722085450844, undefined, [rawValue]); }
+  init(rawValue: string): ICSessionOptions { return callSDK<ICSessionOptions>("ImageCaptureCore_c1f28409f8601238", 375722085450844, undefined, [rawValue]); }
 };
 
 /**
@@ -1550,30 +1550,30 @@ export const ICUploadOption = {
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ICUploadOption { return callSDK<ICUploadOption>("ImageCaptureCore_6be9a005889899ab", 1995401966272699, undefined, [rawValue]); }
+  init(rawValue: string): ICUploadOption { return callSDK<ICUploadOption>("ImageCaptureCore_c1f28409f8601238", 1995401966272699, undefined, [rawValue]); }
 };
 
 /**
  * let ICErrorDomain: String
  * @availability iOS 13.0+
  */
-export const ICErrorDomain: string = callSDK<string>("ImageCaptureCore_6be9a005889899ab", 3487653898045639, undefined, []);
+export const ICErrorDomain: string = callSDK<string>("ImageCaptureCore_c1f28409f8601238", 3487653898045639, undefined, []);
 
-registerSDKClass("ICDevice", ICDevice, { module: "ImageCaptureCore_6be9a005889899ab", properties: {"uuidString":1365159838713238,"capabilities":4080453095939598,"delegate":2662685178836596,"hasOpenSession":2894448445655492,"icon":4128706007937421,"name":233579650257186,"productKind":2398782575640277,"systemSymbolName":1851537811910793,"transportType":259442276965274,"type":2862646481271879,"usbLocationID":3364987352901881,"usbProductID":2770054345091981,"usbVendorID":3573738116502378,"userData":2444085490194871}, methods: {"requestCloseSession":{"id":1398511354005269},"requestCloseSessionOptionsCompletion":{"id":2359233577840149,"hints":[null,{"callback":{"out":[]}}]},"requestEject":{"id":189170754339985},"requestEjectCompletion":{"id":2986746059519810,"hints":[{"callback":{"out":[]}}]},"requestOpenSession":{"id":3585320024552402},"requestOpenSessionOptionsCompletion":{"id":2480044114090685,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("ICCameraDevice", ICCameraDevice, { module: "ImageCaptureCore_6be9a005889899ab", properties: {"isAccessRestrictedAppleDevice":3878446760097959,"batteryLevel":904850355344417,"batteryLevelAvailable":4175406058583805,"contentCatalogPercentCompleted":2580463008061672,"contents":2811404702438841,"isEjectable":2641702534702022,"iCloudPhotosEnabled":631675685993847,"isLocked":3051516986877800,"mediaFiles":3197521407286754,"mediaPresentation":1468406737738030,"tetheredCaptureEnabled":2380974644964103,"timeOffset":1837740402802651}, methods: {"files":{"id":974416737019572},"requestDeleteFiles":{"id":502605497521933},"requestDeleteFilesDeleteFailedCompletion":{"id":3570051180485380,"hints":[null,{"callback":{"out":[]}},{"callback":{"out":[]}}]},"requestSendPTPCommand":{"id":1292990513511572,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("ICDevice", ICDevice, { module: "ImageCaptureCore_c1f28409f8601238", properties: {"uuidString":1365159838713238,"capabilities":4080453095939598,"delegate":2662685178836596,"hasOpenSession":2894448445655492,"icon":4128706007937421,"name":233579650257186,"productKind":2398782575640277,"systemSymbolName":1851537811910793,"transportType":259442276965274,"type":2862646481271879,"usbLocationID":3364987352901881,"usbProductID":2770054345091981,"usbVendorID":3573738116502378,"userData":2444085490194871}, methods: {"requestCloseSession":{"id":1398511354005269},"requestCloseSessionOptionsCompletion":{"id":2359233577840149,"hints":[null,{"callback":{"out":[]}}]},"requestEject":{"id":189170754339985},"requestEjectCompletion":{"id":2986746059519810,"hints":[{"callback":{"out":[]}}]},"requestOpenSession":{"id":3585320024552402},"requestOpenSessionOptionsCompletion":{"id":2480044114090685,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("ICCameraDevice", ICCameraDevice, { module: "ImageCaptureCore_c1f28409f8601238", properties: {"isAccessRestrictedAppleDevice":3878446760097959,"batteryLevel":904850355344417,"batteryLevelAvailable":4175406058583805,"contentCatalogPercentCompleted":2580463008061672,"contents":2811404702438841,"isEjectable":2641702534702022,"iCloudPhotosEnabled":631675685993847,"isLocked":3051516986877800,"mediaFiles":3197521407286754,"mediaPresentation":1468406737738030,"tetheredCaptureEnabled":2380974644964103,"timeOffset":1837740402802651}, methods: {"files":{"id":974416737019572},"requestDeleteFiles":{"id":502605497521933},"requestDeleteFilesDeleteFailedCompletion":{"id":3570051180485380,"hints":[null,{"callback":{"out":[]}},{"callback":{"out":[]}}]},"requestSendPTPCommand":{"id":1292990513511572,"hints":[null,null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)ICCameraDeviceDelegate", {"deviceDidCloseSessionWithError":"device(_:didCloseSessionWithError:)","didRemove":"didRemove(_:)","deviceDidOpenSessionWithError":"device(_:didOpenSessionWithError:)","deviceDidBecomeReady":"deviceDidBecomeReady(_:)","deviceDidReceiveStatusInformation":"device(_:didReceiveStatusInformation:)","deviceDidEncounterError":"device(_:didEncounterError:)","deviceDidEjectWithError":"device(_:didEjectWithError:)","cameraDeviceDidAdd":"cameraDevice(_:didAdd:)","cameraDeviceDidRemove":"cameraDevice(_:didRemove:)","cameraDeviceDidReceiveThumbnailForError":"cameraDevice(_:didReceiveThumbnail:for:error:)","cameraDeviceDidReceiveMetadataForError":"cameraDevice(_:didReceiveMetadata:for:error:)","cameraDeviceDidRenameItems":"cameraDevice(_:didRenameItems:)","cameraDeviceDidChangeCapability":"cameraDeviceDidChangeCapability(_:)","cameraDeviceDidReceivePTPEvent":"cameraDevice(_:didReceivePTPEvent:)","deviceDidBecomeReadyWithCompleteContentCatalog":"deviceDidBecomeReady(withCompleteContentCatalog:)","cameraDeviceDidRemoveAccessRestriction":"cameraDeviceDidRemoveAccessRestriction(_:)","cameraDeviceDidEnableAccessRestriction":"cameraDeviceDidEnableAccessRestriction(_:)","cameraDeviceDidCompleteDeleteFilesWithError":"cameraDevice(_:didCompleteDeleteFilesWithError:)","cameraDeviceDidReceiveThumbnailFor":"cameraDevice(_:didReceiveThumbnailFor:)","cameraDeviceDidReceiveMetadataFor":"cameraDevice(_:didReceiveMetadataFor:)"});
 registerSDKProtocol("c:objc(pl)ICCameraDeviceDownloadDelegate", {"didDownloadFileErrorOptionsContextInfo":"didDownloadFile(_:error:options:contextInfo:)","didReceiveDownloadProgressForDownloadedBytesMaxBytes":"didReceiveDownloadProgress(for:downloadedBytes:maxBytes:)"});
-registerSDKClass("ICCameraItem", ICCameraItem, { module: "ImageCaptureCore_6be9a005889899ab", properties: {"uti":816025876467189,"wasAddedAfterContentCatalogCompleted":3363727477681128,"creationDate":313129687867831,"device":3944064875520896,"isInTemporaryStore":3201648681186565,"largeThumbnailIfAvailable":2307066338499633,"isLocked":2515143125203833,"metadata":2551964975779279,"metadataIfAvailable":2568495318158364,"modificationDate":3823776697854041,"name":1656146585481921,"parentFolder":2190377365647633,"ptpObjectHandle":3549012917651495,"isRaw":1058956399604073,"thumbnail":520136230724249,"thumbnailIfAvailable":2518235390527490,"userData":3584919005453601}, methods: {"flushMetadataCache":{"id":2959970209608140},"flushThumbnailCache":{"id":1100202394241029},"requestMetadata":{"id":2290352158955776},"requestThumbnail":{"id":3859981029983509}} });
-registerSDKClass("ICCameraFile", ICCameraFile, { module: "ImageCaptureCore_6be9a005889899ab", properties: {"burstFavorite":3705753618295560,"burstPicked":194488476762963,"burstUUID":631528456375882,"createdFilename":76150183989624,"duration":4392931567814811,"exifCreationDate":1560144499281844,"exifModificationDate":1876400869407678,"fileCreationDate":2644078852414368,"fileModificationDate":3830852381890780,"fileSize":30193760352281,"fingerprint":937448886832213,"firstPicked":3481345568232164,"gpsString":3266279896105571,"groupUUID":852183362847846,"height":1227313380419263,"highFramerate":1554917482694989,"orientation":4230467768345749,"originalFilename":358337891136558,"originatingAssetID":1929800620602172,"pairedRawImage":2394664535396722,"relatedUUID":2575425447096089,"sidecarFiles":537255786099811,"timeLapse":3229356336081741,"width":4166671389083599}, methods: {"requestDownload":{"id":2579230924548903,"hints":[null,{"callback":{"out":[]}}]},"requestFingerprint":{"id":1202245617728802,"hints":[{"callback":{"out":[]}}]},"requestMetadataDictionary":{"id":2138979378352363,"hints":[null,{"callback":{"out":[]}}]},"requestReadData":{"id":2976963472558644,"hints":[null,null,{"callback":{"out":[]}}]},"requestSecurityScopedURL":{"id":3196641509278617,"hints":[{"callback":{"out":[]}}]},"requestThumbnailData":{"id":4122094196342535,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("ICCameraFolder", ICCameraFolder, { module: "ImageCaptureCore_6be9a005889899ab", properties: {"contents":1076466126510598} });
-registerSDKClass("ICDeviceBrowser", ICDeviceBrowser, { module: "ImageCaptureCore_6be9a005889899ab", properties: {"browsedDeviceTypeMask":2696067425611545,"isBrowsing":2849661467796192,"contentsAuthorizationStatus":2376031424574915,"controlAuthorizationStatus":190514308418678,"delegate":4036428669504069,"devices":3520936117473079,"isSuspended":2603499294450992}, methods: {"requestContentsAuthorization":{"id":2805849212972148,"hints":[{"callback":{"out":[]}}]},"requestControlAuthorization":{"id":1290024983919370,"hints":[{"callback":{"out":[]}}]},"resetContentsAuthorization":{"id":879475415329703,"hints":[{"callback":{"out":[]}}]},"resetControlAuthorization":{"id":2065196826177217,"hints":[{"callback":{"out":[]}}]},"start":{"id":3122262932303410},"stop":{"id":1855074997356797}} });
+registerSDKClass("ICCameraItem", ICCameraItem, { module: "ImageCaptureCore_c1f28409f8601238", properties: {"uti":816025876467189,"wasAddedAfterContentCatalogCompleted":3363727477681128,"creationDate":313129687867831,"device":3944064875520896,"isInTemporaryStore":3201648681186565,"largeThumbnailIfAvailable":2307066338499633,"isLocked":2515143125203833,"metadata":2551964975779279,"metadataIfAvailable":2568495318158364,"modificationDate":3823776697854041,"name":1656146585481921,"parentFolder":2190377365647633,"ptpObjectHandle":3549012917651495,"isRaw":1058956399604073,"thumbnail":520136230724249,"thumbnailIfAvailable":2518235390527490,"userData":3584919005453601}, methods: {"flushMetadataCache":{"id":2959970209608140},"flushThumbnailCache":{"id":1100202394241029},"requestMetadata":{"id":2290352158955776},"requestThumbnail":{"id":3859981029983509}} });
+registerSDKClass("ICCameraFile", ICCameraFile, { module: "ImageCaptureCore_c1f28409f8601238", properties: {"burstFavorite":3705753618295560,"burstPicked":194488476762963,"burstUUID":631528456375882,"createdFilename":76150183989624,"duration":4392931567814811,"exifCreationDate":1560144499281844,"exifModificationDate":1876400869407678,"fileCreationDate":2644078852414368,"fileModificationDate":3830852381890780,"fileSize":30193760352281,"fingerprint":937448886832213,"firstPicked":3481345568232164,"gpsString":3266279896105571,"groupUUID":852183362847846,"height":1227313380419263,"highFramerate":1554917482694989,"orientation":4230467768345749,"originalFilename":358337891136558,"originatingAssetID":1929800620602172,"pairedRawImage":2394664535396722,"relatedUUID":2575425447096089,"sidecarFiles":537255786099811,"timeLapse":3229356336081741,"width":4166671389083599}, methods: {"requestDownload":{"id":2579230924548903,"hints":[null,{"callback":{"out":[]}}]},"requestFingerprint":{"id":1202245617728802,"hints":[{"callback":{"out":[]}}]},"requestMetadataDictionary":{"id":2138979378352363,"hints":[null,{"callback":{"out":[]}}]},"requestReadData":{"id":2976963472558644,"hints":[null,null,{"callback":{"out":[]}}]},"requestSecurityScopedURL":{"id":3196641509278617,"hints":[{"callback":{"out":[]}}]},"requestThumbnailData":{"id":4122094196342535,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("ICCameraFolder", ICCameraFolder, { module: "ImageCaptureCore_c1f28409f8601238", properties: {"contents":1076466126510598} });
+registerSDKClass("ICDeviceBrowser", ICDeviceBrowser, { module: "ImageCaptureCore_c1f28409f8601238", properties: {"browsedDeviceTypeMask":2696067425611545,"isBrowsing":2849661467796192,"contentsAuthorizationStatus":2376031424574915,"controlAuthorizationStatus":190514308418678,"delegate":4036428669504069,"devices":3520936117473079,"isSuspended":2603499294450992}, methods: {"requestContentsAuthorization":{"id":2805849212972148,"hints":[{"callback":{"out":[]}}]},"requestControlAuthorization":{"id":1290024983919370,"hints":[{"callback":{"out":[]}}]},"resetContentsAuthorization":{"id":879475415329703,"hints":[{"callback":{"out":[]}}]},"resetControlAuthorization":{"id":2065196826177217,"hints":[{"callback":{"out":[]}}]},"start":{"id":3122262932303410},"stop":{"id":1855074997356797}} });
 registerSDKProtocol("c:objc(pl)ICDeviceBrowserDelegate", {"deviceBrowserDidAddMoreComing":"deviceBrowser(_:didAdd:moreComing:)","deviceBrowserDidRemoveMoreGoing":"deviceBrowser(_:didRemove:moreGoing:)","deviceBrowserDeviceDidChangeName":"deviceBrowser(_:deviceDidChangeName:)","deviceBrowserDeviceDidChangeSharingState":"deviceBrowser(_:deviceDidChangeSharingState:)","deviceBrowserWillSuspendOperations":"deviceBrowserWillSuspendOperations(_:)","deviceBrowserDidSuspendOperations":"deviceBrowserDidSuspendOperations(_:)","deviceBrowserDidCancelSuspendOperations":"deviceBrowserDidCancelSuspendOperations(_:)","deviceBrowserDidResumeOperations":"deviceBrowserDidResumeOperations(_:)"});
 registerSDKProtocol("c:objc(pl)ICDeviceDelegate", {"deviceDidCloseSessionWithError":"device(_:didCloseSessionWithError:)","didRemove":"didRemove(_:)","deviceDidOpenSessionWithError":"device(_:didOpenSessionWithError:)","deviceDidBecomeReady":"deviceDidBecomeReady(_:)","deviceDidReceiveStatusInformation":"device(_:didReceiveStatusInformation:)","deviceDidEncounterError":"device(_:didEncounterError:)","deviceDidEjectWithError":"device(_:didEjectWithError:)"});
-registerSDKClass("ImageCaptureCore.ICLegacyReturn", ICLegacyReturn, { module: "ImageCaptureCore_6be9a005889899ab", properties: {} });
-registerSDKClass("ImageCaptureCore.ICReturn", ICReturn, { module: "ImageCaptureCore_6be9a005889899ab", properties: {} });
-registerSDKClass("ImageCaptureCore.ICReturnConnectionError", ICReturnConnectionError, { module: "ImageCaptureCore_6be9a005889899ab", properties: {} });
-registerSDKClass("ImageCaptureCore.ICReturnDownloadError", ICReturnDownloadError, { module: "ImageCaptureCore_6be9a005889899ab", properties: {} });
-registerSDKClass("ImageCaptureCore.ICReturnMetadataError", ICReturnMetadataError, { module: "ImageCaptureCore_6be9a005889899ab", properties: {} });
-registerSDKClass("ImageCaptureCore.ICReturnObjectError", ICReturnObjectError, { module: "ImageCaptureCore_6be9a005889899ab", properties: {} });
-registerSDKClass("ImageCaptureCore.ICReturnPTPDeviceError", ICReturnPTPDeviceError, { module: "ImageCaptureCore_6be9a005889899ab", properties: {} });
-registerSDKClass("ImageCaptureCore.ICReturnThumbnailError", ICReturnThumbnailError, { module: "ImageCaptureCore_6be9a005889899ab", properties: {} });
+registerSDKClass("ImageCaptureCore.ICLegacyReturn", ICLegacyReturn, { module: "ImageCaptureCore_c1f28409f8601238", properties: {} });
+registerSDKClass("ImageCaptureCore.ICReturn", ICReturn, { module: "ImageCaptureCore_c1f28409f8601238", properties: {} });
+registerSDKClass("ImageCaptureCore.ICReturnConnectionError", ICReturnConnectionError, { module: "ImageCaptureCore_c1f28409f8601238", properties: {} });
+registerSDKClass("ImageCaptureCore.ICReturnDownloadError", ICReturnDownloadError, { module: "ImageCaptureCore_c1f28409f8601238", properties: {} });
+registerSDKClass("ImageCaptureCore.ICReturnMetadataError", ICReturnMetadataError, { module: "ImageCaptureCore_c1f28409f8601238", properties: {} });
+registerSDKClass("ImageCaptureCore.ICReturnObjectError", ICReturnObjectError, { module: "ImageCaptureCore_c1f28409f8601238", properties: {} });
+registerSDKClass("ImageCaptureCore.ICReturnPTPDeviceError", ICReturnPTPDeviceError, { module: "ImageCaptureCore_c1f28409f8601238", properties: {} });
+registerSDKClass("ImageCaptureCore.ICReturnThumbnailError", ICReturnThumbnailError, { module: "ImageCaptureCore_c1f28409f8601238", properties: {} });

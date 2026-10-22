@@ -30,31 +30,31 @@ export const ENActivityFlags = {
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get periodicRun(): ENActivityFlags { return callSDK<ENActivityFlags>("ExposureNotification_6be9a005889899ab", 3131595344311678, undefined, []); },
+  get periodicRun(): ENActivityFlags { return callSDK<ENActivityFlags>("ExposureNotification_c1f28409f8601238", 3131595344311678, undefined, []); },
   /**
    * static var preAuthorizedKeyReleaseNotificationTapped: ENActivityFlags { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get preAuthorizedKeyReleaseNotificationTapped(): ENActivityFlags { return callSDK<ENActivityFlags>("ExposureNotification_6be9a005889899ab", 1405663824797780, undefined, []); },
+  get preAuthorizedKeyReleaseNotificationTapped(): ENActivityFlags { return callSDK<ENActivityFlags>("ExposureNotification_c1f28409f8601238", 1405663824797780, undefined, []); },
   /**
    * static var reserved1: ENActivityFlags { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get reserved1(): ENActivityFlags { return callSDK<ENActivityFlags>("ExposureNotification_6be9a005889899ab", 711102903502133, undefined, []); },
+  get reserved1(): ENActivityFlags { return callSDK<ENActivityFlags>("ExposureNotification_c1f28409f8601238", 711102903502133, undefined, []); },
   /**
    * static var reserved2: ENActivityFlags { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get reserved2(): ENActivityFlags { return callSDK<ENActivityFlags>("ExposureNotification_6be9a005889899ab", 2616848168152628, undefined, []); },
+  get reserved2(): ENActivityFlags { return callSDK<ENActivityFlags>("ExposureNotification_c1f28409f8601238", 2616848168152628, undefined, []); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): ENActivityFlags { return callSDK<ENActivityFlags>("ExposureNotification_6be9a005889899ab", 2690834921292924, undefined, [rawValue]); }
+  init(rawValue: number): ENActivityFlags { return callSDK<ENActivityFlags>("ExposureNotification_c1f28409f8601238", 2690834921292924, undefined, [rawValue]); }
 };
 
 /**
@@ -84,7 +84,7 @@ export const ENAuthorizationStatus = {
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (ENAuthorizationStatus) | null { return callSDK<(ENAuthorizationStatus) | null>("ExposureNotification_6be9a005889899ab", 2464567836505549, undefined, [rawValue]); }
+  init(rawValue: number): (ENAuthorizationStatus) | null { return callSDK<(ENAuthorizationStatus) | null>("ExposureNotification_c1f28409f8601238", 2464567836505549, undefined, [rawValue]); }
 };
 
 /**
@@ -100,7 +100,7 @@ export const ENCalibrationConfidence = {
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (ENCalibrationConfidence) | null { return callSDK<(ENCalibrationConfidence) | null>("ExposureNotification_6be9a005889899ab", 1764745890643782, undefined, [rawValue]); }
+  init(rawValue: number): (ENCalibrationConfidence) | null { return callSDK<(ENCalibrationConfidence) | null>("ExposureNotification_c1f28409f8601238", 1764745890643782, undefined, [rawValue]); }
 };
 
 /**
@@ -130,7 +130,7 @@ export const ENDiagnosisReportType = {
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (ENDiagnosisReportType) | null { return callSDK<(ENDiagnosisReportType) | null>("ExposureNotification_6be9a005889899ab", 148534949760569, undefined, [rawValue]); }
+  init(rawValue: number): (ENDiagnosisReportType) | null { return callSDK<(ENDiagnosisReportType) | null>("ExposureNotification_c1f28409f8601238", 148534949760569, undefined, [rawValue]); }
 };
 
 /**
@@ -144,109 +144,109 @@ export class ENError extends SDKHandle {
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get notEnabled(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 792531992845158, undefined, []); }
+  static get notEnabled(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 792531992845158, undefined, []); }
   /**
    * static var restricted: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get restricted(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 4142187189338627, undefined, []); }
+  static get restricted(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 4142187189338627, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get errorDomain(): string { return callSDK<string>("ExposureNotification_6be9a005889899ab", 2112415590995559, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ExposureNotification_c1f28409f8601238", 2112415590995559, undefined, []); }
   /**
    * static var invalidated: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get invalidated(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 1361189658248763, undefined, []); }
+  static get invalidated(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 1361189658248763, undefined, []); }
   /**
    * static var notEntitled: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get notEntitled(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 407526380334498, undefined, []); }
+  static get notEntitled(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 407526380334498, undefined, []); }
   /**
    * static var rateLimited: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get rateLimited(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 2766150592554863, undefined, []); }
+  static get rateLimited(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 2766150592554863, undefined, []); }
   /**
    * static var unsupported: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get unsupported(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 4190350796354011, undefined, []); }
+  static get unsupported(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 4190350796354011, undefined, []); }
   /**
    * static var badParameter: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get badParameter(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 2652907368360794, undefined, []); }
+  static get badParameter(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 2652907368360794, undefined, []); }
   /**
    * static var bluetoothOff: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get bluetoothOff(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 2613375832161097, undefined, []); }
+  static get bluetoothOff(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 2613375832161097, undefined, []); }
   /**
    * static var notAuthorized: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get notAuthorized(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 423270759619896, undefined, []); }
+  static get notAuthorized(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 423270759619896, undefined, []); }
   /**
    * static var dataInaccessible: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get dataInaccessible(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 4351030690278885, undefined, []); }
+  static get dataInaccessible(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 4351030690278885, undefined, []); }
   /**
    * static var insufficientMemory: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get insufficientMemory(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 645291150638316, undefined, []); }
+  static get insufficientMemory(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 645291150638316, undefined, []); }
   /**
    * static var insufficientStorage: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get insufficientStorage(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 1512575255970600, undefined, []); }
+  static get insufficientStorage(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 1512575255970600, undefined, []); }
   /**
    * static var travelStatusNotAvailable: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get travelStatusNotAvailable(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 669584253956137, undefined, []); }
+  static get travelStatusNotAvailable(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 669584253956137, undefined, []); }
   /**
    * static var unknown: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get unknown(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 3070651558369717, undefined, []); }
+  static get unknown(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 3070651558369717, undefined, []); }
   /**
    * static var `internal`: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get internal(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 1882767705104191, undefined, []); }
+  static get internal(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 1882767705104191, undefined, []); }
   /**
    * static var apiMisuse: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get apiMisuse(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 1704434453465723, undefined, []); }
+  static get apiMisuse(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 1704434453465723, undefined, []); }
   /**
    * static var badFormat: ENError.Code { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get badFormat(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_6be9a005889899ab", 1726752295850007, undefined, []); }
+  static get badFormat(): ENError_Code { return callSDK<ENError_Code>("ExposureNotification_c1f28409f8601238", 1726752295850007, undefined, []); }
   declare readonly $type: { "s:SC11ENErrorCodeLeV": true };
 }
 
@@ -263,7 +263,7 @@ export const ENError_Code = {
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (ENError_Code) | null { return callSDK<(ENError_Code) | null>("ExposureNotification_6be9a005889899ab", 2603251814623835, undefined, [rawValue]); }
+  init(rawValue: number): (ENError_Code) | null { return callSDK<(ENError_Code) | null>("ExposureNotification_c1f28409f8601238", 2603251814623835, undefined, [rawValue]); }
 };
 
 /**
@@ -287,182 +287,182 @@ export type ENErrorOutType = unknown;
  */
 export class ENExposureConfiguration extends SDKHandle {
   /** init() */
-  static init(): ENExposureConfiguration { return callSDK<ENExposureConfiguration>("ExposureNotification_6be9a005889899ab", 3697310669535648, undefined, []); }
+  static init(): ENExposureConfiguration { return callSDK<ENExposureConfiguration>("ExposureNotification_c1f28409f8601238", 3697310669535648, undefined, []); }
   /**
    * var attenuationDurationThresholds: [NSNumber] { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get attenuationDurationThresholds(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_6be9a005889899ab", 2862629224732180, this, []); }
-  set attenuationDurationThresholds(value: $SDK4) { callSDK<void>("ExposureNotification_6be9a005889899ab", 2459124276806469, this, [value]); }
+  get attenuationDurationThresholds(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_c1f28409f8601238", 2862629224732180, this, []); }
+  set attenuationDurationThresholds(value: $SDK4) { callSDK<void>("ExposureNotification_c1f28409f8601238", 2459124276806469, this, [value]); }
   /**
    * var attenuationLevelValues: [NSNumber] { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get attenuationLevelValues(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_6be9a005889899ab", 2950700984663155, this, []); }
-  set attenuationLevelValues(value: $SDK4) { callSDK<void>("ExposureNotification_6be9a005889899ab", 4093828354985592, this, [value]); }
+  get attenuationLevelValues(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_c1f28409f8601238", 2950700984663155, this, []); }
+  set attenuationLevelValues(value: $SDK4) { callSDK<void>("ExposureNotification_c1f28409f8601238", 4093828354985592, this, [value]); }
   /**
    * var attenuationWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get attenuationWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 1519148940885470, this, []); }
-  set attenuationWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1047806774373571, this, [value]); }
+  get attenuationWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 1519148940885470, this, []); }
+  set attenuationWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1047806774373571, this, [value]); }
   /**
    * var daysSinceLastExposureLevelValues: [NSNumber] { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get daysSinceLastExposureLevelValues(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_6be9a005889899ab", 2905562411291872, this, []); }
-  set daysSinceLastExposureLevelValues(value: $SDK4) { callSDK<void>("ExposureNotification_6be9a005889899ab", 3566638887383091, this, [value]); }
+  get daysSinceLastExposureLevelValues(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_c1f28409f8601238", 2905562411291872, this, []); }
+  set daysSinceLastExposureLevelValues(value: $SDK4) { callSDK<void>("ExposureNotification_c1f28409f8601238", 3566638887383091, this, [value]); }
   /**
    * var daysSinceLastExposureThreshold: Int { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get daysSinceLastExposureThreshold(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 949473732776035, this, []); }
-  set daysSinceLastExposureThreshold(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1888327788002336, this, [value]); }
+  get daysSinceLastExposureThreshold(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 949473732776035, this, []); }
+  set daysSinceLastExposureThreshold(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1888327788002336, this, [value]); }
   /**
    * var daysSinceLastExposureWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get daysSinceLastExposureWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 1867777791993329, this, []); }
-  set daysSinceLastExposureWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1895038645904925, this, [value]); }
+  get daysSinceLastExposureWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 1867777791993329, this, []); }
+  set daysSinceLastExposureWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1895038645904925, this, [value]); }
   /**
    * var durationLevelValues: [NSNumber] { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get durationLevelValues(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_6be9a005889899ab", 3013909210102666, this, []); }
-  set durationLevelValues(value: $SDK4) { callSDK<void>("ExposureNotification_6be9a005889899ab", 3835297614974002, this, [value]); }
+  get durationLevelValues(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_c1f28409f8601238", 3013909210102666, this, []); }
+  set durationLevelValues(value: $SDK4) { callSDK<void>("ExposureNotification_c1f28409f8601238", 3835297614974002, this, [value]); }
   /**
    * var durationWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get durationWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 3955761128580837, this, []); }
-  set durationWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1164840383519013, this, [value]); }
+  get durationWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 3955761128580837, this, []); }
+  set durationWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1164840383519013, this, [value]); }
   /**
    * var immediateDurationWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get immediateDurationWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 3803923013032262, this, []); }
-  set immediateDurationWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 209346889504357, this, [value]); }
+  get immediateDurationWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 3803923013032262, this, []); }
+  set immediateDurationWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 209346889504357, this, [value]); }
   /**
    * var infectiousnessForDaysSinceOnsetOfSymptoms: [NSNumber : NSNumber]? { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get infectiousnessForDaysSinceOnsetOfSymptoms(): $SDK5 { return callSDK<$SDK5>("ExposureNotification_6be9a005889899ab", 4015750105151275, this, []); }
-  set infectiousnessForDaysSinceOnsetOfSymptoms(value: $SDK5) { callSDK<void>("ExposureNotification_6be9a005889899ab", 3483003531782246, this, [value]); }
+  get infectiousnessForDaysSinceOnsetOfSymptoms(): $SDK5 { return callSDK<$SDK5>("ExposureNotification_c1f28409f8601238", 4015750105151275, this, []); }
+  set infectiousnessForDaysSinceOnsetOfSymptoms(value: $SDK5) { callSDK<void>("ExposureNotification_c1f28409f8601238", 3483003531782246, this, [value]); }
   /**
    * var infectiousnessHighWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get infectiousnessHighWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 1752441277178823, this, []); }
-  set infectiousnessHighWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 3666296614649830, this, [value]); }
+  get infectiousnessHighWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 1752441277178823, this, []); }
+  set infectiousnessHighWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 3666296614649830, this, [value]); }
   /**
    * var infectiousnessStandardWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get infectiousnessStandardWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 2468633133074640, this, []); }
-  set infectiousnessStandardWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 2895390622732035, this, [value]); }
+  get infectiousnessStandardWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 2468633133074640, this, []); }
+  set infectiousnessStandardWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 2895390622732035, this, [value]); }
   /**
    * var mediumDurationWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get mediumDurationWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 4142667103326589, this, []); }
-  set mediumDurationWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 3411066853612162, this, [value]); }
+  get mediumDurationWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 4142667103326589, this, []); }
+  set mediumDurationWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 3411066853612162, this, [value]); }
   /**
    * var metadata: [AnyHashable : Any]? { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get metadata(): $SDK6 { return callSDK<$SDK6>("ExposureNotification_6be9a005889899ab", 3487667929927354, this, []); }
-  set metadata(value: $SDK6) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1274862207239272, this, [value]); }
+  get metadata(): $SDK6 { return callSDK<$SDK6>("ExposureNotification_c1f28409f8601238", 3487667929927354, this, []); }
+  set metadata(value: $SDK6) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1274862207239272, this, [value]); }
   /**
    * var minimumRiskScore: ENRiskScore { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get minimumRiskScore(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 312619656166304, this, []); }
-  set minimumRiskScore(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1267284016417262, this, [value]); }
+  get minimumRiskScore(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 312619656166304, this, []); }
+  set minimumRiskScore(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1267284016417262, this, [value]); }
   /**
    * var minimumRiskScoreFullRange: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get minimumRiskScoreFullRange(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 3550130726737681, this, []); }
-  set minimumRiskScoreFullRange(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 2697786337303347, this, [value]); }
+  get minimumRiskScoreFullRange(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 3550130726737681, this, []); }
+  set minimumRiskScoreFullRange(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 2697786337303347, this, [value]); }
   /**
    * var nearDurationWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get nearDurationWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 4032627718022625, this, []); }
-  set nearDurationWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 2608160167451679, this, [value]); }
+  get nearDurationWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 4032627718022625, this, []); }
+  set nearDurationWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 2608160167451679, this, [value]); }
   /**
    * var otherDurationWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get otherDurationWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 1691227924944658, this, []); }
-  set otherDurationWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1393994336849431, this, [value]); }
+  get otherDurationWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 1691227924944658, this, []); }
+  set otherDurationWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1393994336849431, this, [value]); }
   /**
    * var reportTypeConfirmedClinicalDiagnosisWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get reportTypeConfirmedClinicalDiagnosisWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 2823050649509479, this, []); }
-  set reportTypeConfirmedClinicalDiagnosisWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1076236831802457, this, [value]); }
+  get reportTypeConfirmedClinicalDiagnosisWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 2823050649509479, this, []); }
+  set reportTypeConfirmedClinicalDiagnosisWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1076236831802457, this, [value]); }
   /**
    * var reportTypeConfirmedTestWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get reportTypeConfirmedTestWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 4120417705138003, this, []); }
-  set reportTypeConfirmedTestWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1844458579571039, this, [value]); }
+  get reportTypeConfirmedTestWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 4120417705138003, this, []); }
+  set reportTypeConfirmedTestWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1844458579571039, this, [value]); }
   /**
    * var reportTypeNoneMap: ENDiagnosisReportType { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get reportTypeNoneMap(): ENDiagnosisReportType { return callSDK<ENDiagnosisReportType>("ExposureNotification_6be9a005889899ab", 2697903428236593, this, []); }
-  set reportTypeNoneMap(value: ENDiagnosisReportType) { callSDK<void>("ExposureNotification_6be9a005889899ab", 2879316757945779, this, [value]); }
+  get reportTypeNoneMap(): ENDiagnosisReportType { return callSDK<ENDiagnosisReportType>("ExposureNotification_c1f28409f8601238", 2697903428236593, this, []); }
+  set reportTypeNoneMap(value: ENDiagnosisReportType) { callSDK<void>("ExposureNotification_c1f28409f8601238", 2879316757945779, this, [value]); }
   /**
    * var reportTypeRecursiveWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get reportTypeRecursiveWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 928179767170302, this, []); }
-  set reportTypeRecursiveWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1839751496493, this, [value]); }
+  get reportTypeRecursiveWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 928179767170302, this, []); }
+  set reportTypeRecursiveWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1839751496493, this, [value]); }
   /**
    * var reportTypeSelfReportedWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get reportTypeSelfReportedWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 3270534493185995, this, []); }
-  set reportTypeSelfReportedWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 2965514534028675, this, [value]); }
+  get reportTypeSelfReportedWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 3270534493185995, this, []); }
+  set reportTypeSelfReportedWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 2965514534028675, this, [value]); }
   /**
    * var transmissionRiskLevelValues: [NSNumber] { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get transmissionRiskLevelValues(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_6be9a005889899ab", 230822728075556, this, []); }
-  set transmissionRiskLevelValues(value: $SDK4) { callSDK<void>("ExposureNotification_6be9a005889899ab", 2959044422540310, this, [value]); }
+  get transmissionRiskLevelValues(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_c1f28409f8601238", 230822728075556, this, []); }
+  set transmissionRiskLevelValues(value: $SDK4) { callSDK<void>("ExposureNotification_c1f28409f8601238", 2959044422540310, this, [value]); }
   /**
    * var transmissionRiskWeight: Double { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get transmissionRiskWeight(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 2779891254418845, this, []); }
-  set transmissionRiskWeight(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 722796829765507, this, [value]); }
+  get transmissionRiskWeight(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 2779891254418845, this, []); }
+  set transmissionRiskWeight(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 722796829765507, this, [value]); }
   declare readonly $type: { "c:objc(cs)ENExposureConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attenuationDurationThresholds": true; "attenuationLevelValues": true; "attenuationWeight": true; "daysSinceLastExposureLevelValues": true; "daysSinceLastExposureThreshold": true; "daysSinceLastExposureWeight": true; "durationLevelValues": true; "durationWeight": true; "immediateDurationWeight": true; "infectiousnessForDaysSinceOnsetOfSymptoms": true; "infectiousnessHighWeight": true; "infectiousnessStandardWeight": true; "mediumDurationWeight": true; "metadata": true; "minimumRiskScore": true; "minimumRiskScoreFullRange": true; "nearDurationWeight": true; "otherDurationWeight": true; "reportTypeConfirmedClinicalDiagnosisWeight": true; "reportTypeConfirmedTestWeight": true; "reportTypeNoneMap": true; "reportTypeRecursiveWeight": true; "reportTypeSelfReportedWeight": true; "transmissionRiskLevelValues": true; "transmissionRiskWeight": true };
 }
@@ -474,43 +474,43 @@ export class ENExposureConfiguration extends SDKHandle {
  */
 export class ENExposureDaySummary extends SDKHandle {
   /** init() */
-  static init(): ENExposureDaySummary { return callSDK<ENExposureDaySummary>("ExposureNotification_6be9a005889899ab", 1181326470147311, undefined, []); }
+  static init(): ENExposureDaySummary { return callSDK<ENExposureDaySummary>("ExposureNotification_c1f28409f8601238", 1181326470147311, undefined, []); }
   /**
    * var confirmedClinicalDiagnosisSummary: ENExposureSummaryItem? { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get confirmedClinicalDiagnosisSummary(): $SDK7 { return callSDK<$SDK7>("ExposureNotification_6be9a005889899ab", 3982289227908226, this, []); }
+  get confirmedClinicalDiagnosisSummary(): $SDK7 { return callSDK<$SDK7>("ExposureNotification_c1f28409f8601238", 3982289227908226, this, []); }
   /**
    * var confirmedTestSummary: ENExposureSummaryItem? { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get confirmedTestSummary(): $SDK7 { return callSDK<$SDK7>("ExposureNotification_6be9a005889899ab", 3459605128848595, this, []); }
+  get confirmedTestSummary(): $SDK7 { return callSDK<$SDK7>("ExposureNotification_c1f28409f8601238", 3459605128848595, this, []); }
   /**
    * var date: Date { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("ExposureNotification_6be9a005889899ab", 505270672067546, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("ExposureNotification_c1f28409f8601238", 505270672067546, this, []); }
   /**
    * var daySummary: ENExposureSummaryItem { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get daySummary(): ENExposureSummaryItem { return callSDK<ENExposureSummaryItem>("ExposureNotification_6be9a005889899ab", 2432400679833171, this, []); }
+  get daySummary(): ENExposureSummaryItem { return callSDK<ENExposureSummaryItem>("ExposureNotification_c1f28409f8601238", 2432400679833171, this, []); }
   /**
    * var recursiveSummary: ENExposureSummaryItem? { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get recursiveSummary(): $SDK7 { return callSDK<$SDK7>("ExposureNotification_6be9a005889899ab", 2240654435507302, this, []); }
+  get recursiveSummary(): $SDK7 { return callSDK<$SDK7>("ExposureNotification_c1f28409f8601238", 2240654435507302, this, []); }
   /**
    * var selfReportedSummary: ENExposureSummaryItem? { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get selfReportedSummary(): $SDK7 { return callSDK<$SDK7>("ExposureNotification_6be9a005889899ab", 1810893839652020, this, []); }
+  get selfReportedSummary(): $SDK7 { return callSDK<$SDK7>("ExposureNotification_c1f28409f8601238", 1810893839652020, this, []); }
   declare readonly $type: { "c:objc(cs)ENExposureDaySummary": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confirmedClinicalDiagnosisSummary": true; "confirmedTestSummary": true; "date": true; "daySummary": true; "recursiveSummary": true; "selfReportedSummary": true };
 }
@@ -522,55 +522,55 @@ export class ENExposureDaySummary extends SDKHandle {
  */
 export class ENExposureDetectionSummary extends SDKHandle {
   /** init() */
-  static init(): ENExposureDetectionSummary { return callSDK<ENExposureDetectionSummary>("ExposureNotification_6be9a005889899ab", 2320233050434577, undefined, []); }
+  static init(): ENExposureDetectionSummary { return callSDK<ENExposureDetectionSummary>("ExposureNotification_c1f28409f8601238", 2320233050434577, undefined, []); }
   /**
    * var attenuationDurations: [NSNumber] { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get attenuationDurations(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_6be9a005889899ab", 3049447752963677, this, []); }
+  get attenuationDurations(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_c1f28409f8601238", 3049447752963677, this, []); }
   /**
    * var daySummaries: [ENExposureDaySummary] { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get daySummaries(): Array<ENExposureDaySummary> { return callSDK<Array<ENExposureDaySummary>>("ExposureNotification_6be9a005889899ab", 3701322231708438, this, []); }
+  get daySummaries(): Array<ENExposureDaySummary> { return callSDK<Array<ENExposureDaySummary>>("ExposureNotification_c1f28409f8601238", 3701322231708438, this, []); }
   /**
    * var daysSinceLastExposure: Int { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get daysSinceLastExposure(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 740148738740585, this, []); }
+  get daysSinceLastExposure(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 740148738740585, this, []); }
   /**
    * var matchedKeyCount: UInt64 { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get matchedKeyCount(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 1551258450763310, this, []); }
+  get matchedKeyCount(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 1551258450763310, this, []); }
   /**
    * var maximumRiskScore: ENRiskScore { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get maximumRiskScore(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 1594536775633904, this, []); }
+  get maximumRiskScore(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 1594536775633904, this, []); }
   /**
    * var maximumRiskScoreFullRange: Double { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get maximumRiskScoreFullRange(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 3320714060281598, this, []); }
+  get maximumRiskScoreFullRange(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 3320714060281598, this, []); }
   /**
    * var metadata: [AnyHashable : Any]? { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get metadata(): $SDK6 { return callSDK<$SDK6>("ExposureNotification_6be9a005889899ab", 3377504088073539, this, []); }
+  get metadata(): $SDK6 { return callSDK<$SDK6>("ExposureNotification_c1f28409f8601238", 3377504088073539, this, []); }
   /**
    * var riskScoreSumFullRange: Double { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get riskScoreSumFullRange(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 1168703617750847, this, []); }
+  get riskScoreSumFullRange(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 1168703617750847, this, []); }
   declare readonly $type: { "c:objc(cs)ENExposureDetectionSummary": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attenuationDurations": true; "daySummaries": true; "daysSinceLastExposure": true; "matchedKeyCount": true; "maximumRiskScore": true; "maximumRiskScoreFullRange": true; "metadata": true; "riskScoreSumFullRange": true };
 }
@@ -582,67 +582,67 @@ export class ENExposureDetectionSummary extends SDKHandle {
  */
 export class ENExposureInfo extends SDKHandle {
   /** init() */
-  static init(): ENExposureInfo { return callSDK<ENExposureInfo>("ExposureNotification_6be9a005889899ab", 2090017246503069, undefined, []); }
+  static init(): ENExposureInfo { return callSDK<ENExposureInfo>("ExposureNotification_c1f28409f8601238", 2090017246503069, undefined, []); }
   /**
    * var attenuationDurations: [NSNumber] { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get attenuationDurations(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_6be9a005889899ab", 2027638847816117, this, []); }
+  get attenuationDurations(): $SDK4 { return callSDK<$SDK4>("ExposureNotification_c1f28409f8601238", 2027638847816117, this, []); }
   /**
    * var attenuationValue: ENAttenuation { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get attenuationValue(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 2917789066143317, this, []); }
+  get attenuationValue(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 2917789066143317, this, []); }
   /**
    * var date: Date { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("ExposureNotification_6be9a005889899ab", 342077357648987, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("ExposureNotification_c1f28409f8601238", 342077357648987, this, []); }
   /**
    * var daysSinceOnsetOfSymptoms: Int { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get daysSinceOnsetOfSymptoms(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 2788342338490569, this, []); }
+  get daysSinceOnsetOfSymptoms(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 2788342338490569, this, []); }
   /**
    * var diagnosisReportType: ENDiagnosisReportType { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get diagnosisReportType(): ENDiagnosisReportType { return callSDK<ENDiagnosisReportType>("ExposureNotification_6be9a005889899ab", 1363380136940292, this, []); }
+  get diagnosisReportType(): ENDiagnosisReportType { return callSDK<ENDiagnosisReportType>("ExposureNotification_c1f28409f8601238", 1363380136940292, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get duration(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 2163290613120296, this, []); }
+  get duration(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 2163290613120296, this, []); }
   /**
    * var metadata: [AnyHashable : Any]? { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get metadata(): $SDK6 { return callSDK<$SDK6>("ExposureNotification_6be9a005889899ab", 532932878251409, this, []); }
+  get metadata(): $SDK6 { return callSDK<$SDK6>("ExposureNotification_c1f28409f8601238", 532932878251409, this, []); }
   /**
    * var totalRiskScore: ENRiskScore { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get totalRiskScore(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 2192443241131004, this, []); }
+  get totalRiskScore(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 2192443241131004, this, []); }
   /**
    * var totalRiskScoreFullRange: Double { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get totalRiskScoreFullRange(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 4109559959754685, this, []); }
+  get totalRiskScoreFullRange(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 4109559959754685, this, []); }
   /**
    * var transmissionRiskLevel: ENRiskLevel { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get transmissionRiskLevel(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 3436369960923032, this, []); }
+  get transmissionRiskLevel(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 3436369960923032, this, []); }
   declare readonly $type: { "c:objc(cs)ENExposureInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attenuationDurations": true; "attenuationValue": true; "date": true; "daysSinceOnsetOfSymptoms": true; "diagnosisReportType": true; "duration": true; "metadata": true; "totalRiskScore": true; "totalRiskScoreFullRange": true; "transmissionRiskLevel": true };
 }
@@ -654,25 +654,25 @@ export class ENExposureInfo extends SDKHandle {
  */
 export class ENExposureSummaryItem extends SDKHandle {
   /** init() */
-  static init(): ENExposureSummaryItem { return callSDK<ENExposureSummaryItem>("ExposureNotification_6be9a005889899ab", 3360887619164678, undefined, []); }
+  static init(): ENExposureSummaryItem { return callSDK<ENExposureSummaryItem>("ExposureNotification_c1f28409f8601238", 3360887619164678, undefined, []); }
   /**
    * var maximumScore: Double { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get maximumScore(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 4419318158377034, this, []); }
+  get maximumScore(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 4419318158377034, this, []); }
   /**
    * var scoreSum: Double { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get scoreSum(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 370440480977727, this, []); }
+  get scoreSum(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 370440480977727, this, []); }
   /**
    * var weightedDurationSum: TimeInterval { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get weightedDurationSum(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 98306642347694, this, []); }
+  get weightedDurationSum(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 98306642347694, this, []); }
   declare readonly $type: { "c:objc(cs)ENExposureSummaryItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "maximumScore": true; "scoreSum": true; "weightedDurationSum": true };
 }
@@ -684,43 +684,43 @@ export class ENExposureSummaryItem extends SDKHandle {
  */
 export class ENExposureWindow extends SDKHandle {
   /** init() */
-  static init(): ENExposureWindow { return callSDK<ENExposureWindow>("ExposureNotification_6be9a005889899ab", 3001580349164353, undefined, []); }
+  static init(): ENExposureWindow { return callSDK<ENExposureWindow>("ExposureNotification_c1f28409f8601238", 3001580349164353, undefined, []); }
   /**
    * var calibrationConfidence: ENCalibrationConfidence { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get calibrationConfidence(): ENCalibrationConfidence { return callSDK<ENCalibrationConfidence>("ExposureNotification_6be9a005889899ab", 3825735394040788, this, []); }
+  get calibrationConfidence(): ENCalibrationConfidence { return callSDK<ENCalibrationConfidence>("ExposureNotification_c1f28409f8601238", 3825735394040788, this, []); }
   /**
    * var date: Date { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("ExposureNotification_6be9a005889899ab", 2114083938107469, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("ExposureNotification_c1f28409f8601238", 2114083938107469, this, []); }
   /**
    * var diagnosisReportType: ENDiagnosisReportType { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get diagnosisReportType(): ENDiagnosisReportType { return callSDK<ENDiagnosisReportType>("ExposureNotification_6be9a005889899ab", 3010533071858968, this, []); }
+  get diagnosisReportType(): ENDiagnosisReportType { return callSDK<ENDiagnosisReportType>("ExposureNotification_c1f28409f8601238", 3010533071858968, this, []); }
   /**
    * var infectiousness: ENInfectiousness { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get infectiousness(): ENInfectiousness { return callSDK<ENInfectiousness>("ExposureNotification_6be9a005889899ab", 1878402756246267, this, []); }
+  get infectiousness(): ENInfectiousness { return callSDK<ENInfectiousness>("ExposureNotification_c1f28409f8601238", 1878402756246267, this, []); }
   /**
    * var scanInstances: [ENScanInstance] { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get scanInstances(): Array<ENScanInstance> { return callSDK<Array<ENScanInstance>>("ExposureNotification_6be9a005889899ab", 668630722428921, this, []); }
+  get scanInstances(): Array<ENScanInstance> { return callSDK<Array<ENScanInstance>>("ExposureNotification_c1f28409f8601238", 668630722428921, this, []); }
   /**
    * var variantOfConcernType: ENVariantOfConcernType { get }
    * @availability iOS 15.2+
    * @deprecated iOS 27.0
    */
-  get variantOfConcernType(): ENVariantOfConcernType { return callSDK<ENVariantOfConcernType>("ExposureNotification_6be9a005889899ab", 69077372223073, this, []); }
+  get variantOfConcernType(): ENVariantOfConcernType { return callSDK<ENVariantOfConcernType>("ExposureNotification_c1f28409f8601238", 69077372223073, this, []); }
   declare readonly $type: { "c:objc(cs)ENExposureWindow": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "calibrationConfidence": true; "date": true; "diagnosisReportType": true; "infectiousness": true; "scanInstances": true; "variantOfConcernType": true };
 }
@@ -766,7 +766,7 @@ export const ENInfectiousness = {
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (ENInfectiousness) | null { return callSDK<(ENInfectiousness) | null>("ExposureNotification_6be9a005889899ab", 1811214976655245, undefined, [rawValue]); }
+  init(rawValue: number): (ENInfectiousness) | null { return callSDK<(ENInfectiousness) | null>("ExposureNotification_c1f28409f8601238", 1811214976655245, undefined, [rawValue]); }
 };
 
 /**
@@ -787,114 +787,114 @@ export class ENManager extends SDKHandle {
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  static get authorizationStatus(): ENAuthorizationStatus { return callSDK<ENAuthorizationStatus>("ExposureNotification_6be9a005889899ab", 2389534642007587, undefined, []); }
+  static get authorizationStatus(): ENAuthorizationStatus { return callSDK<ENAuthorizationStatus>("ExposureNotification_c1f28409f8601238", 2389534642007587, undefined, []); }
   /**
    * func activate() async throws
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  activate(completionHandler: $SDK13): void { return callSDK<void>("ExposureNotification_6be9a005889899ab", 4429445523189376, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  activate(completionHandler: $SDK13): void { return callSDK<void>("ExposureNotification_c1f28409f8601238", 4429445523189376, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func detectExposures(configuration: ENExposureConfiguration, completionHandler: @escaping ENDetectExposuresHandler) -> Progress
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  detectExposuresConfigurationCompletionHandler(configuration: ENExposureConfiguration, completionHandler: $SDK14): _Foundation_Progress { return callSDK<_Foundation_Progress>("ExposureNotification_6be9a005889899ab", 4065156250058539, this, [configuration, completionHandler], [null,{"callback":{"out":[]}}]); }
+  detectExposuresConfigurationCompletionHandler(configuration: ENExposureConfiguration, completionHandler: $SDK14): _Foundation_Progress { return callSDK<_Foundation_Progress>("ExposureNotification_c1f28409f8601238", 4065156250058539, this, [configuration, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func detectExposures(configuration: ENExposureConfiguration, diagnosisKeyURLs: [URL], completionHandler: @escaping ENDetectExposuresHandler) -> Progress
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  detectExposuresConfigurationDiagnosisKeyURLsCompletionHandler(configuration: ENExposureConfiguration, diagnosisKeyURLs: Array<string>, completionHandler: $SDK14): _Foundation_Progress { return callSDK<_Foundation_Progress>("ExposureNotification_6be9a005889899ab", 2500928173155340, this, [configuration, diagnosisKeyURLs, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  detectExposuresConfigurationDiagnosisKeyURLsCompletionHandler(configuration: ENExposureConfiguration, diagnosisKeyURLs: Array<string>, completionHandler: $SDK14): _Foundation_Progress { return callSDK<_Foundation_Progress>("ExposureNotification_c1f28409f8601238", 2500928173155340, this, [configuration, diagnosisKeyURLs, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func diagnosisKeys() async throws -> [ENTemporaryExposureKey]
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  getDiagnosisKeys(completionHandler: $SDK15): void { return callSDK<void>("ExposureNotification_6be9a005889899ab", 2709953423641993, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getDiagnosisKeys(completionHandler: $SDK15): void { return callSDK<void>("ExposureNotification_c1f28409f8601238", 2709953423641993, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func getExposureInfo(summary: ENExposureDetectionSummary, userExplanation: String, completionHandler: @escaping ENGetExposureInfoHandler) -> Progress
    * @availability iOS 13.5+
    * @deprecated iOS 13.6
    */
-  getExposureInfo(summary: ENExposureDetectionSummary, userExplanation: string, completionHandler: ((arg0: (Array<ENExposureInfo>) | null, arg1: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("ExposureNotification_6be9a005889899ab", 3741040224171786, this, [summary, userExplanation, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  getExposureInfo(summary: ENExposureDetectionSummary, userExplanation: string, completionHandler: ((arg0: (Array<ENExposureInfo>) | null, arg1: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("ExposureNotification_c1f28409f8601238", 3741040224171786, this, [summary, userExplanation, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func getExposureWindows(summary: ENExposureDetectionSummary, completionHandler: @escaping ENGetExposureWindowsHandler) -> Progress
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  getExposureWindows(summary: ENExposureDetectionSummary, completionHandler: ((arg0: (Array<ENExposureWindow>) | null, arg1: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("ExposureNotification_6be9a005889899ab", 1562297742264554, this, [summary, completionHandler], [null,{"callback":{"out":[]}}]); }
+  getExposureWindows(summary: ENExposureDetectionSummary, completionHandler: ((arg0: (Array<ENExposureWindow>) | null, arg1: (NativeError) | null) => void)): _Foundation_Progress { return callSDK<_Foundation_Progress>("ExposureNotification_c1f28409f8601238", 1562297742264554, this, [summary, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func testDiagnosisKeys() async throws -> [ENTemporaryExposureKey]
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  getTestDiagnosisKeys(completionHandler: $SDK15): void { return callSDK<void>("ExposureNotification_6be9a005889899ab", 1228115758277087, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getTestDiagnosisKeys(completionHandler: $SDK15): void { return callSDK<void>("ExposureNotification_c1f28409f8601238", 1228115758277087, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func userTraveled() async throws -> Bool
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  getUserTraveled(completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ExposureNotification_6be9a005889899ab", 447235721354339, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getUserTraveled(completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ExposureNotification_c1f28409f8601238", 447235721354339, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): ENManager { return callSDK<ENManager>("ExposureNotification_6be9a005889899ab", 3430959569549668, undefined, []); }
+  static init(): ENManager { return callSDK<ENManager>("ExposureNotification_c1f28409f8601238", 3430959569549668, undefined, []); }
   /**
    * func invalidate()
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  invalidate(): void { return callSDK<void>("ExposureNotification_6be9a005889899ab", 3267037943136493, this, []); }
+  invalidate(): void { return callSDK<void>("ExposureNotification_c1f28409f8601238", 3267037943136493, this, []); }
   /**
    * func preAuthorizeDiagnosisKeys() async throws
    * @availability iOS 14.4+
    * @deprecated iOS 27.0
    */
-  preAuthorizeDiagnosisKeys(completionHandler: $SDK13): void { return callSDK<void>("ExposureNotification_6be9a005889899ab", 1858656395671349, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  preAuthorizeDiagnosisKeys(completionHandler: $SDK13): void { return callSDK<void>("ExposureNotification_c1f28409f8601238", 1858656395671349, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func requestPreAuthorizedDiagnosisKeys() async throws
    * @availability iOS 14.4+
    * @deprecated iOS 27.0
    */
-  requestPreAuthorizedDiagnosisKeys(completionHandler: $SDK13): void { return callSDK<void>("ExposureNotification_6be9a005889899ab", 1968104054384673, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  requestPreAuthorizedDiagnosisKeys(completionHandler: $SDK13): void { return callSDK<void>("ExposureNotification_c1f28409f8601238", 1968104054384673, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func setExposureNotificationEnabled(_ enabled: Bool) async throws
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  setExposureNotificationEnabled(enabled: boolean, completionHandler: $SDK13): void { return callSDK<void>("ExposureNotification_6be9a005889899ab", 1827286921356203, this, [enabled, completionHandler], [null,{"callback":{"out":[]}}]); }
+  setExposureNotificationEnabled(enabled: boolean, completionHandler: $SDK13): void { return callSDK<void>("ExposureNotification_c1f28409f8601238", 1827286921356203, this, [enabled, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var diagnosisKeysAvailableHandler: ENDiagnosisKeysAvailableHandler? { get set }
    * @availability iOS 14.4+
    * @deprecated iOS 27.0
    */
-  get diagnosisKeysAvailableHandler(): (((arg0: Array<ENTemporaryExposureKey>) => Promise<void>)) | null { return callSDK<(((arg0: Array<ENTemporaryExposureKey>) => Promise<void>)) | null>("ExposureNotification_6be9a005889899ab", 1354179505708441, this, []); }
-  set diagnosisKeysAvailableHandler(value: (((arg0: Array<ENTemporaryExposureKey>) => void)) | null) { callSDK<void>("ExposureNotification_6be9a005889899ab", 3261193398099127, this, [value], [{"callback":{"out":[]}}]); }
+  get diagnosisKeysAvailableHandler(): (((arg0: Array<ENTemporaryExposureKey>) => Promise<void>)) | null { return callSDK<(((arg0: Array<ENTemporaryExposureKey>) => Promise<void>)) | null>("ExposureNotification_c1f28409f8601238", 1354179505708441, this, []); }
+  set diagnosisKeysAvailableHandler(value: (((arg0: Array<ENTemporaryExposureKey>) => void)) | null) { callSDK<void>("ExposureNotification_c1f28409f8601238", 3261193398099127, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var dispatchQueue: dispatch_queue_t { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get dispatchQueue(): _Dispatch_DispatchQueue { return callSDK<_Dispatch_DispatchQueue>("ExposureNotification_6be9a005889899ab", 967214495823312, this, []); }
-  set dispatchQueue(value: _Dispatch_DispatchQueue) { callSDK<void>("ExposureNotification_6be9a005889899ab", 3625889909490222, this, [value]); }
+  get dispatchQueue(): _Dispatch_DispatchQueue { return callSDK<_Dispatch_DispatchQueue>("ExposureNotification_c1f28409f8601238", 967214495823312, this, []); }
+  set dispatchQueue(value: _Dispatch_DispatchQueue) { callSDK<void>("ExposureNotification_c1f28409f8601238", 3625889909490222, this, [value]); }
   /**
    * var exposureNotificationEnabled: Bool { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get exposureNotificationEnabled(): boolean { return callSDK<boolean>("ExposureNotification_6be9a005889899ab", 1697340038122754, this, []); }
+  get exposureNotificationEnabled(): boolean { return callSDK<boolean>("ExposureNotification_c1f28409f8601238", 1697340038122754, this, []); }
   /**
    * var exposureNotificationStatus: ENStatus { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get exposureNotificationStatus(): ENStatus { return callSDK<ENStatus>("ExposureNotification_6be9a005889899ab", 2754767346414244, this, []); }
+  get exposureNotificationStatus(): ENStatus { return callSDK<ENStatus>("ExposureNotification_c1f28409f8601238", 2754767346414244, this, []); }
   /**
    * var invalidationHandler: (() -> Void)? { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get invalidationHandler(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("ExposureNotification_6be9a005889899ab", 3465361630086256, this, []); }
-  set invalidationHandler(value: ((() => void)) | null) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1294078755162745, this, [value], [{"callback":{"out":[]}}]); }
+  get invalidationHandler(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("ExposureNotification_c1f28409f8601238", 3465361630086256, this, []); }
+  set invalidationHandler(value: ((() => void)) | null) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1294078755162745, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)ENManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dispatchQueue": true; "exposureNotificationEnabled": true; "exposureNotificationStatus": true };
 }
@@ -927,25 +927,25 @@ export type ENRiskScore = number;
  */
 export class ENScanInstance extends SDKHandle {
   /** init() */
-  static init(): ENScanInstance { return callSDK<ENScanInstance>("ExposureNotification_6be9a005889899ab", 17236117865309, undefined, []); }
+  static init(): ENScanInstance { return callSDK<ENScanInstance>("ExposureNotification_c1f28409f8601238", 17236117865309, undefined, []); }
   /**
    * var minimumAttenuation: ENAttenuation { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get minimumAttenuation(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 2379638621955134, this, []); }
+  get minimumAttenuation(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 2379638621955134, this, []); }
   /**
    * var secondsSinceLastScan: Int { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get secondsSinceLastScan(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 611642290672797, this, []); }
+  get secondsSinceLastScan(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 611642290672797, this, []); }
   /**
    * var typicalAttenuation: ENAttenuation { get }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get typicalAttenuation(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 906808266256206, this, []); }
+  get typicalAttenuation(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 906808266256206, this, []); }
   declare readonly $type: { "c:objc(cs)ENScanInstance": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "minimumAttenuation": true; "secondsSinceLastScan": true; "typicalAttenuation": true };
 }
@@ -963,7 +963,7 @@ export const ENStatus = {
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (ENStatus) | null { return callSDK<(ENStatus) | null>("ExposureNotification_6be9a005889899ab", 3070415664457609, undefined, [rawValue]); }
+  init(rawValue: number): (ENStatus) | null { return callSDK<(ENStatus) | null>("ExposureNotification_c1f28409f8601238", 3070415664457609, undefined, [rawValue]); }
 };
 
 /**
@@ -973,35 +973,35 @@ export const ENStatus = {
  */
 export class ENTemporaryExposureKey extends SDKHandle {
   /** init() */
-  static init(): ENTemporaryExposureKey { return callSDK<ENTemporaryExposureKey>("ExposureNotification_6be9a005889899ab", 303299955771181, undefined, []); }
+  static init(): ENTemporaryExposureKey { return callSDK<ENTemporaryExposureKey>("ExposureNotification_c1f28409f8601238", 303299955771181, undefined, []); }
   /**
    * var keyData: Data { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get keyData(): ArrayBuffer { return callSDK<ArrayBuffer>("ExposureNotification_6be9a005889899ab", 135586886412072, this, []); }
-  set keyData(value: ArrayBuffer) { callSDK<void>("ExposureNotification_6be9a005889899ab", 4321618261972168, this, [value]); }
+  get keyData(): ArrayBuffer { return callSDK<ArrayBuffer>("ExposureNotification_c1f28409f8601238", 135586886412072, this, []); }
+  set keyData(value: ArrayBuffer) { callSDK<void>("ExposureNotification_c1f28409f8601238", 4321618261972168, this, [value]); }
   /**
    * var rollingPeriod: ENIntervalNumber { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get rollingPeriod(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 3430794145880944, this, []); }
-  set rollingPeriod(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 1156218011749205, this, [value]); }
+  get rollingPeriod(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 3430794145880944, this, []); }
+  set rollingPeriod(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 1156218011749205, this, [value]); }
   /**
    * var rollingStartNumber: ENIntervalNumber { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get rollingStartNumber(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 4276943651639730, this, []); }
-  set rollingStartNumber(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 4126476948928391, this, [value]); }
+  get rollingStartNumber(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 4276943651639730, this, []); }
+  set rollingStartNumber(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 4126476948928391, this, [value]); }
   /**
    * var transmissionRiskLevel: ENRiskLevel { get set }
    * @availability iOS 12.5+
    * @deprecated iOS 27.0
    */
-  get transmissionRiskLevel(): number { return callSDK<number>("ExposureNotification_6be9a005889899ab", 1389681740945617, this, []); }
-  set transmissionRiskLevel(value: number) { callSDK<void>("ExposureNotification_6be9a005889899ab", 3880344596468494, this, [value]); }
+  get transmissionRiskLevel(): number { return callSDK<number>("ExposureNotification_c1f28409f8601238", 1389681740945617, this, []); }
+  set transmissionRiskLevel(value: number) { callSDK<void>("ExposureNotification_c1f28409f8601238", 3880344596468494, this, [value]); }
   declare readonly $type: { "c:objc(cs)ENTemporaryExposureKey": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "keyData": true; "rollingPeriod": true; "rollingStartNumber": true; "transmissionRiskLevel": true };
 }
@@ -1019,7 +1019,7 @@ export const ENVariantOfConcernType = {
    * @availability iOS 15.2+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (ENVariantOfConcernType) | null { return callSDK<(ENVariantOfConcernType) | null>("ExposureNotification_6be9a005889899ab", 2659969370842630, undefined, [rawValue]); }
+  init(rawValue: number): (ENVariantOfConcernType) | null { return callSDK<(ENVariantOfConcernType) | null>("ExposureNotification_c1f28409f8601238", 2659969370842630, undefined, [rawValue]); }
 };
 
 /**
@@ -1027,116 +1027,116 @@ export const ENVariantOfConcernType = {
  * @availability iOS 14.0+
  * @deprecated iOS 14.2
  */
-export const ENDaysSinceOnsetOfSymptomsUnknown: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 3015583225507676, undefined, []);
+export const ENDaysSinceOnsetOfSymptomsUnknown: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 3015583225507676, undefined, []);
 
 /**
  * let ENErrorDomain: String
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENErrorDomain: string = callSDK<string>("ExposureNotification_6be9a005889899ab", 957956211419447, undefined, []);
+export const ENErrorDomain: string = callSDK<string>("ExposureNotification_c1f28409f8601238", 957956211419447, undefined, []);
 
 /**
  * var ENAttenuationMax: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENAttenuationMax: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 2354434142231044, undefined, []);
+export const ENAttenuationMax: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 2354434142231044, undefined, []);
 
 /**
  * var ENAttenuationMin: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENAttenuationMin: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 753291886467081, undefined, []);
+export const ENAttenuationMin: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 753291886467081, undefined, []);
 
 /**
  * var ENRiskLevelMax: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskLevelMax: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 1794925608218988, undefined, []);
+export const ENRiskLevelMax: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 1794925608218988, undefined, []);
 
 /**
  * var ENRiskLevelMin: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskLevelMin: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 4079832411024099, undefined, []);
+export const ENRiskLevelMin: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 4079832411024099, undefined, []);
 
 /**
  * var ENRiskLevelValueMax: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskLevelValueMax: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 470293118720158, undefined, []);
+export const ENRiskLevelValueMax: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 470293118720158, undefined, []);
 
 /**
  * var ENRiskLevelValueMin: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskLevelValueMin: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 2571139381996239, undefined, []);
+export const ENRiskLevelValueMin: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 2571139381996239, undefined, []);
 
 /**
  * var ENRiskScoreMax: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskScoreMax: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 432104597978093, undefined, []);
+export const ENRiskScoreMax: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 432104597978093, undefined, []);
 
 /**
  * var ENRiskScoreMin: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskScoreMin: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 2365690056896459, undefined, []);
+export const ENRiskScoreMin: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 2365690056896459, undefined, []);
 
 /**
  * var ENRiskWeightDefault: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskWeightDefault: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 878052871281923, undefined, []);
+export const ENRiskWeightDefault: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 878052871281923, undefined, []);
 
 /**
  * var ENRiskWeightDefaultV2: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskWeightDefaultV2: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 302727718953033, undefined, []);
+export const ENRiskWeightDefaultV2: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 302727718953033, undefined, []);
 
 /**
  * var ENRiskWeightMax: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskWeightMax: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 3246035272904963, undefined, []);
+export const ENRiskWeightMax: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 3246035272904963, undefined, []);
 
 /**
  * var ENRiskWeightMaxV2: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskWeightMaxV2: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 1454206790383950, undefined, []);
+export const ENRiskWeightMaxV2: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 1454206790383950, undefined, []);
 
 /**
  * var ENRiskWeightMin: Int { get }
  * @availability iOS 12.5+
  * @deprecated iOS 27.0
  */
-export const ENRiskWeightMin: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 3228260698081051, undefined, []);
+export const ENRiskWeightMin: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 3228260698081051, undefined, []);
 
 /** var EN_FEATURE_GENERAL: Int32 { get } */
-export const EN_FEATURE_GENERAL: number = callSDK<number>("ExposureNotification_6be9a005889899ab", 2113071336549881, undefined, []);
+export const EN_FEATURE_GENERAL: number = callSDK<number>("ExposureNotification_c1f28409f8601238", 2113071336549881, undefined, []);
 
-registerSDKClass("ExposureNotification.ENError", ENError, { module: "ExposureNotification_6be9a005889899ab", properties: {} });
-registerSDKClass("ENExposureConfiguration", ENExposureConfiguration, { module: "ExposureNotification_6be9a005889899ab", properties: {"attenuationDurationThresholds":2862629224732180,"attenuationLevelValues":2950700984663155,"attenuationWeight":1519148940885470,"daysSinceLastExposureLevelValues":2905562411291872,"daysSinceLastExposureThreshold":949473732776035,"daysSinceLastExposureWeight":1867777791993329,"durationLevelValues":3013909210102666,"durationWeight":3955761128580837,"immediateDurationWeight":3803923013032262,"infectiousnessForDaysSinceOnsetOfSymptoms":4015750105151275,"infectiousnessHighWeight":1752441277178823,"infectiousnessStandardWeight":2468633133074640,"mediumDurationWeight":4142667103326589,"metadata":3487667929927354,"minimumRiskScore":312619656166304,"minimumRiskScoreFullRange":3550130726737681,"nearDurationWeight":4032627718022625,"otherDurationWeight":1691227924944658,"reportTypeConfirmedClinicalDiagnosisWeight":2823050649509479,"reportTypeConfirmedTestWeight":4120417705138003,"reportTypeNoneMap":2697903428236593,"reportTypeRecursiveWeight":928179767170302,"reportTypeSelfReportedWeight":3270534493185995,"transmissionRiskLevelValues":230822728075556,"transmissionRiskWeight":2779891254418845} });
-registerSDKClass("ENExposureDaySummary", ENExposureDaySummary, { module: "ExposureNotification_6be9a005889899ab", properties: {"confirmedClinicalDiagnosisSummary":3982289227908226,"confirmedTestSummary":3459605128848595,"date":505270672067546,"daySummary":2432400679833171,"recursiveSummary":2240654435507302,"selfReportedSummary":1810893839652020} });
-registerSDKClass("ENExposureDetectionSummary", ENExposureDetectionSummary, { module: "ExposureNotification_6be9a005889899ab", properties: {"attenuationDurations":3049447752963677,"daySummaries":3701322231708438,"daysSinceLastExposure":740148738740585,"matchedKeyCount":1551258450763310,"maximumRiskScore":1594536775633904,"maximumRiskScoreFullRange":3320714060281598,"metadata":3377504088073539,"riskScoreSumFullRange":1168703617750847} });
-registerSDKClass("ENExposureInfo", ENExposureInfo, { module: "ExposureNotification_6be9a005889899ab", properties: {"attenuationDurations":2027638847816117,"attenuationValue":2917789066143317,"date":342077357648987,"daysSinceOnsetOfSymptoms":2788342338490569,"diagnosisReportType":1363380136940292,"duration":2163290613120296,"metadata":532932878251409,"totalRiskScore":2192443241131004,"totalRiskScoreFullRange":4109559959754685,"transmissionRiskLevel":3436369960923032} });
-registerSDKClass("ENExposureSummaryItem", ENExposureSummaryItem, { module: "ExposureNotification_6be9a005889899ab", properties: {"maximumScore":4419318158377034,"scoreSum":370440480977727,"weightedDurationSum":98306642347694} });
-registerSDKClass("ENExposureWindow", ENExposureWindow, { module: "ExposureNotification_6be9a005889899ab", properties: {"calibrationConfidence":3825735394040788,"date":2114083938107469,"diagnosisReportType":3010533071858968,"infectiousness":1878402756246267,"scanInstances":668630722428921,"variantOfConcernType":69077372223073} });
-registerSDKClass("ENManager", ENManager, { module: "ExposureNotification_6be9a005889899ab", properties: {"dispatchQueue":967214495823312,"exposureNotificationEnabled":1697340038122754,"exposureNotificationStatus":2754767346414244}, methods: {"activate":{"id":4429445523189376,"hints":[{"callback":{"out":[]}}]},"detectExposuresConfigurationCompletionHandler":{"id":4065156250058539,"hints":[null,{"callback":{"out":[]}}]},"detectExposuresConfigurationDiagnosisKeyURLsCompletionHandler":{"id":2500928173155340,"hints":[null,null,{"callback":{"out":[]}}]},"getDiagnosisKeys":{"id":2709953423641993,"hints":[{"callback":{"out":[]}}]},"getExposureInfo":{"id":3741040224171786,"hints":[null,null,{"callback":{"out":[]}}]},"getExposureWindows":{"id":1562297742264554,"hints":[null,{"callback":{"out":[]}}]},"getTestDiagnosisKeys":{"id":1228115758277087,"hints":[{"callback":{"out":[]}}]},"getUserTraveled":{"id":447235721354339,"hints":[{"callback":{"out":[]}}]},"invalidate":{"id":3267037943136493},"preAuthorizeDiagnosisKeys":{"id":1858656395671349,"hints":[{"callback":{"out":[]}}]},"requestPreAuthorizedDiagnosisKeys":{"id":1968104054384673,"hints":[{"callback":{"out":[]}}]},"setExposureNotificationEnabled":{"id":1827286921356203,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("ENScanInstance", ENScanInstance, { module: "ExposureNotification_6be9a005889899ab", properties: {"minimumAttenuation":2379638621955134,"secondsSinceLastScan":611642290672797,"typicalAttenuation":906808266256206} });
-registerSDKClass("ENTemporaryExposureKey", ENTemporaryExposureKey, { module: "ExposureNotification_6be9a005889899ab", properties: {"keyData":135586886412072,"rollingPeriod":3430794145880944,"rollingStartNumber":4276943651639730,"transmissionRiskLevel":1389681740945617} });
+registerSDKClass("ExposureNotification.ENError", ENError, { module: "ExposureNotification_c1f28409f8601238", properties: {} });
+registerSDKClass("ENExposureConfiguration", ENExposureConfiguration, { module: "ExposureNotification_c1f28409f8601238", properties: {"attenuationDurationThresholds":2862629224732180,"attenuationLevelValues":2950700984663155,"attenuationWeight":1519148940885470,"daysSinceLastExposureLevelValues":2905562411291872,"daysSinceLastExposureThreshold":949473732776035,"daysSinceLastExposureWeight":1867777791993329,"durationLevelValues":3013909210102666,"durationWeight":3955761128580837,"immediateDurationWeight":3803923013032262,"infectiousnessForDaysSinceOnsetOfSymptoms":4015750105151275,"infectiousnessHighWeight":1752441277178823,"infectiousnessStandardWeight":2468633133074640,"mediumDurationWeight":4142667103326589,"metadata":3487667929927354,"minimumRiskScore":312619656166304,"minimumRiskScoreFullRange":3550130726737681,"nearDurationWeight":4032627718022625,"otherDurationWeight":1691227924944658,"reportTypeConfirmedClinicalDiagnosisWeight":2823050649509479,"reportTypeConfirmedTestWeight":4120417705138003,"reportTypeNoneMap":2697903428236593,"reportTypeRecursiveWeight":928179767170302,"reportTypeSelfReportedWeight":3270534493185995,"transmissionRiskLevelValues":230822728075556,"transmissionRiskWeight":2779891254418845} });
+registerSDKClass("ENExposureDaySummary", ENExposureDaySummary, { module: "ExposureNotification_c1f28409f8601238", properties: {"confirmedClinicalDiagnosisSummary":3982289227908226,"confirmedTestSummary":3459605128848595,"date":505270672067546,"daySummary":2432400679833171,"recursiveSummary":2240654435507302,"selfReportedSummary":1810893839652020} });
+registerSDKClass("ENExposureDetectionSummary", ENExposureDetectionSummary, { module: "ExposureNotification_c1f28409f8601238", properties: {"attenuationDurations":3049447752963677,"daySummaries":3701322231708438,"daysSinceLastExposure":740148738740585,"matchedKeyCount":1551258450763310,"maximumRiskScore":1594536775633904,"maximumRiskScoreFullRange":3320714060281598,"metadata":3377504088073539,"riskScoreSumFullRange":1168703617750847} });
+registerSDKClass("ENExposureInfo", ENExposureInfo, { module: "ExposureNotification_c1f28409f8601238", properties: {"attenuationDurations":2027638847816117,"attenuationValue":2917789066143317,"date":342077357648987,"daysSinceOnsetOfSymptoms":2788342338490569,"diagnosisReportType":1363380136940292,"duration":2163290613120296,"metadata":532932878251409,"totalRiskScore":2192443241131004,"totalRiskScoreFullRange":4109559959754685,"transmissionRiskLevel":3436369960923032} });
+registerSDKClass("ENExposureSummaryItem", ENExposureSummaryItem, { module: "ExposureNotification_c1f28409f8601238", properties: {"maximumScore":4419318158377034,"scoreSum":370440480977727,"weightedDurationSum":98306642347694} });
+registerSDKClass("ENExposureWindow", ENExposureWindow, { module: "ExposureNotification_c1f28409f8601238", properties: {"calibrationConfidence":3825735394040788,"date":2114083938107469,"diagnosisReportType":3010533071858968,"infectiousness":1878402756246267,"scanInstances":668630722428921,"variantOfConcernType":69077372223073} });
+registerSDKClass("ENManager", ENManager, { module: "ExposureNotification_c1f28409f8601238", properties: {"dispatchQueue":967214495823312,"exposureNotificationEnabled":1697340038122754,"exposureNotificationStatus":2754767346414244}, methods: {"activate":{"id":4429445523189376,"hints":[{"callback":{"out":[]}}]},"detectExposuresConfigurationCompletionHandler":{"id":4065156250058539,"hints":[null,{"callback":{"out":[]}}]},"detectExposuresConfigurationDiagnosisKeyURLsCompletionHandler":{"id":2500928173155340,"hints":[null,null,{"callback":{"out":[]}}]},"getDiagnosisKeys":{"id":2709953423641993,"hints":[{"callback":{"out":[]}}]},"getExposureInfo":{"id":3741040224171786,"hints":[null,null,{"callback":{"out":[]}}]},"getExposureWindows":{"id":1562297742264554,"hints":[null,{"callback":{"out":[]}}]},"getTestDiagnosisKeys":{"id":1228115758277087,"hints":[{"callback":{"out":[]}}]},"getUserTraveled":{"id":447235721354339,"hints":[{"callback":{"out":[]}}]},"invalidate":{"id":3267037943136493},"preAuthorizeDiagnosisKeys":{"id":1858656395671349,"hints":[{"callback":{"out":[]}}]},"requestPreAuthorizedDiagnosisKeys":{"id":1968104054384673,"hints":[{"callback":{"out":[]}}]},"setExposureNotificationEnabled":{"id":1827286921356203,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("ENScanInstance", ENScanInstance, { module: "ExposureNotification_c1f28409f8601238", properties: {"minimumAttenuation":2379638621955134,"secondsSinceLastScan":611642290672797,"typicalAttenuation":906808266256206} });
+registerSDKClass("ENTemporaryExposureKey", ENTemporaryExposureKey, { module: "ExposureNotification_c1f28409f8601238", properties: {"keyData":135586886412072,"rollingPeriod":3430794145880944,"rollingStartNumber":4276943651639730,"transmissionRiskLevel":1389681740945617} });

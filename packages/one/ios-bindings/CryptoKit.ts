@@ -28,22 +28,22 @@ export class AES_GCM extends SDKHandle {
    * static func open(_ sealedBox: AES.GCM.SealedBox, using key: SymmetricKey) throws -> Data
    * @availability iOS 13.0+
    */
-  static openUsing(sealedBox: AES_GCM_SealedBox, key: SymmetricKey): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2083865074170529, undefined, [sealedBox, key]); }
+  static openUsing(sealedBox: AES_GCM_SealedBox, key: SymmetricKey): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2083865074170529, undefined, [sealedBox, key]); }
   /**
    * static func open<AuthenticatedData>(_ sealedBox: AES.GCM.SealedBox, using key: SymmetricKey, authenticating authenticatedData: AuthenticatedData) throws -> Data where AuthenticatedData : DataProtocol
    * @availability iOS 13.0+
    */
-  static openUsingAuthenticating(sealedBox: AES_GCM_SealedBox, key: SymmetricKey, authenticatedData: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1203777725528810, undefined, [sealedBox, key, authenticatedData]); }
+  static openUsingAuthenticating(sealedBox: AES_GCM_SealedBox, key: SymmetricKey, authenticatedData: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1203777725528810, undefined, [sealedBox, key, authenticatedData]); }
   /**
    * static func seal<Plaintext, AuthenticatedData>(_ message: Plaintext, using key: SymmetricKey, nonce: AES.GCM.Nonce? = nil, authenticating authenticatedData: AuthenticatedData) throws -> AES.GCM.SealedBox where Plaintext : DataProtocol, AuthenticatedData : DataProtocol
    * @availability iOS 13.0+
    */
-  static sealUsingNonceAuthenticating(message: ArrayBuffer, key: SymmetricKey, nonce: (AES_GCM_Nonce) | null, authenticatedData: ArrayBuffer): AES_GCM_SealedBox { return callSDK<AES_GCM_SealedBox>("CryptoKit_6be9a005889899ab", 4143888087083352, undefined, [message, key, nonce, authenticatedData]); }
+  static sealUsingNonceAuthenticating(message: ArrayBuffer, key: SymmetricKey, nonce: (AES_GCM_Nonce) | null, authenticatedData: ArrayBuffer): AES_GCM_SealedBox { return callSDK<AES_GCM_SealedBox>("CryptoKit_c1f28409f8601238", 4143888087083352, undefined, [message, key, nonce, authenticatedData]); }
   /**
    * static func seal<Plaintext>(_ message: Plaintext, using key: SymmetricKey, nonce: AES.GCM.Nonce? = nil) throws -> AES.GCM.SealedBox where Plaintext : DataProtocol
    * @availability iOS 13.0+
    */
-  static sealUsingNonce(message: ArrayBuffer, key: SymmetricKey, nonce?: (AES_GCM_Nonce) | null): AES_GCM_SealedBox { return callSDK<AES_GCM_SealedBox>("CryptoKit_6be9a005889899ab", 1595050421701182, undefined, [message, key, nonce]); }
+  static sealUsingNonce(message: ArrayBuffer, key: SymmetricKey, nonce?: (AES_GCM_Nonce) | null): AES_GCM_SealedBox { return callSDK<AES_GCM_SealedBox>("CryptoKit_c1f28409f8601238", 1595050421701182, undefined, [message, key, nonce]); }
   declare readonly $type: { "s:9CryptoKit3AESO3GCMO": true };
 }
 
@@ -56,27 +56,27 @@ export class AES_GCM_Nonce extends SDKHandle {
    * func makeIterator() -> Array<UInt8>.Iterator
    * @availability iOS 13.0+
    */
-  makeIterator(): SDKHandle { return callSDK<SDKHandle>("CryptoKit_6be9a005889899ab", 2696902037414047, this, []); }
+  makeIterator(): SDKHandle { return callSDK<SDKHandle>("CryptoKit_c1f28409f8601238", 2696902037414047, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 2439438360296692, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 2439438360296692, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * init<D>(data: D) throws where D : DataProtocol
    * @availability iOS 13.0+
    */
-  static initData(data: ArrayBuffer): AES_GCM_Nonce { return callSDK<AES_GCM_Nonce>("CryptoKit_6be9a005889899ab", 382917215138066, undefined, [data]); }
+  static initData(data: ArrayBuffer): AES_GCM_Nonce { return callSDK<AES_GCM_Nonce>("CryptoKit_c1f28409f8601238", 382917215138066, undefined, [data]); }
   /**
    * var count: Int { get }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 3850586243903450, this, []); }
+  get count(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 3850586243903450, this, []); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): AES_GCM_Nonce { return callSDK<AES_GCM_Nonce>("CryptoKit_6be9a005889899ab", 3579193710064725, undefined, []); }
+  static init(): AES_GCM_Nonce { return callSDK<AES_GCM_Nonce>("CryptoKit_c1f28409f8601238", 3579193710064725, undefined, []); }
   declare readonly $type: { "s:9CryptoKit3AESO3GCMO5NonceV": true };
 }
 
@@ -101,32 +101,32 @@ export class AES_GCM_SealedBox extends SDKHandle {
    * var ciphertext: Data { get }
    * @availability iOS 13.0+
    */
-  get ciphertext(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2179447724247478, this, []); }
+  get ciphertext(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2179447724247478, this, []); }
   /**
    * var tag: Data { get }
    * @availability iOS 13.0+
    */
-  get tag(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2993110201386937, this, []); }
+  get tag(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2993110201386937, this, []); }
   /**
    * init<C, T>(nonce: AES.GCM.Nonce, ciphertext: C, tag: T) throws where C : DataProtocol, T : DataProtocol
    * @availability iOS 13.0+
    */
-  static initNonceCiphertextTag(nonce: AES_GCM_Nonce, ciphertext: ArrayBuffer, tag: ArrayBuffer): AES_GCM_SealedBox { return callSDK<AES_GCM_SealedBox>("CryptoKit_6be9a005889899ab", 592241712575646, undefined, [nonce, ciphertext, tag]); }
+  static initNonceCiphertextTag(nonce: AES_GCM_Nonce, ciphertext: ArrayBuffer, tag: ArrayBuffer): AES_GCM_SealedBox { return callSDK<AES_GCM_SealedBox>("CryptoKit_c1f28409f8601238", 592241712575646, undefined, [nonce, ciphertext, tag]); }
   /**
    * var nonce: AES.GCM.Nonce { get }
    * @availability iOS 13.0+
    */
-  get nonce(): AES_GCM_Nonce { return callSDK<AES_GCM_Nonce>("CryptoKit_6be9a005889899ab", 4441309062473564, this, []); }
+  get nonce(): AES_GCM_Nonce { return callSDK<AES_GCM_Nonce>("CryptoKit_c1f28409f8601238", 4441309062473564, this, []); }
   /**
    * var combined: Data? { get }
    * @availability iOS 13.0+
    */
-  get combined(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_6be9a005889899ab", 3338714166164145, this, []); }
+  get combined(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_c1f28409f8601238", 3338714166164145, this, []); }
   /**
    * init<D>(combined: D) throws where D : DataProtocol
    * @availability iOS 13.0+
    */
-  static initCombined(combined: ArrayBuffer): AES_GCM_SealedBox { return callSDK<AES_GCM_SealedBox>("CryptoKit_6be9a005889899ab", 1283509837878274, undefined, [combined]); }
+  static initCombined(combined: ArrayBuffer): AES_GCM_SealedBox { return callSDK<AES_GCM_SealedBox>("CryptoKit_c1f28409f8601238", 1283509837878274, undefined, [combined]); }
   declare readonly $type: { "s:9CryptoKit3AESO3GCMO9SealedBoxV": true };
 }
 
@@ -139,12 +139,12 @@ export class AES_KeyWrap extends SDKHandle {
    * static func wrap(_ keyToWrap: SymmetricKey, using kek: SymmetricKey) throws -> Data
    * @availability iOS 15.0+
    */
-  static wrap(keyToWrap: SymmetricKey, kek: SymmetricKey): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 320536427225361, undefined, [keyToWrap, kek]); }
+  static wrap(keyToWrap: SymmetricKey, kek: SymmetricKey): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 320536427225361, undefined, [keyToWrap, kek]); }
   /**
    * static func unwrap<WrappedKey>(_ wrappedKey: WrappedKey, using kek: SymmetricKey) throws -> SymmetricKey where WrappedKey : DataProtocol
    * @availability iOS 15.0+
    */
-  static unwrap(wrappedKey: ArrayBuffer, kek: SymmetricKey): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 3373890967984525, undefined, [wrappedKey, kek]); }
+  static unwrap(wrappedKey: ArrayBuffer, kek: SymmetricKey): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 3373890967984525, undefined, [wrappedKey, kek]); }
   declare readonly $type: { "s:9CryptoKit3AESO7KeyWrapO": true };
 }
 
@@ -157,22 +157,22 @@ export class ChaChaPoly extends SDKHandle {
    * static func open(_ sealedBox: ChaChaPoly.SealedBox, using key: SymmetricKey) throws -> Data
    * @availability iOS 13.0+
    */
-  static openUsing(sealedBox: ChaChaPoly_SealedBox, key: SymmetricKey): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 4487821606280298, undefined, [sealedBox, key]); }
+  static openUsing(sealedBox: ChaChaPoly_SealedBox, key: SymmetricKey): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 4487821606280298, undefined, [sealedBox, key]); }
   /**
    * static func open<AuthenticatedData>(_ sealedBox: ChaChaPoly.SealedBox, using key: SymmetricKey, authenticating authenticatedData: AuthenticatedData) throws -> Data where AuthenticatedData : DataProtocol
    * @availability iOS 13.0+
    */
-  static openUsingAuthenticating(sealedBox: ChaChaPoly_SealedBox, key: SymmetricKey, authenticatedData: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 96251948398523, undefined, [sealedBox, key, authenticatedData]); }
+  static openUsingAuthenticating(sealedBox: ChaChaPoly_SealedBox, key: SymmetricKey, authenticatedData: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 96251948398523, undefined, [sealedBox, key, authenticatedData]); }
   /**
    * static func seal<Plaintext, AuthenticatedData>(_ message: Plaintext, using key: SymmetricKey, nonce: ChaChaPoly.Nonce? = nil, authenticating authenticatedData: AuthenticatedData) throws -> ChaChaPoly.SealedBox where Plaintext : DataProtocol, AuthenticatedData : DataProtocol
    * @availability iOS 13.0+
    */
-  static sealUsingNonceAuthenticating(message: ArrayBuffer, key: SymmetricKey, nonce: (ChaChaPoly_Nonce) | null, authenticatedData: ArrayBuffer): ChaChaPoly_SealedBox { return callSDK<ChaChaPoly_SealedBox>("CryptoKit_6be9a005889899ab", 888138987789854, undefined, [message, key, nonce, authenticatedData]); }
+  static sealUsingNonceAuthenticating(message: ArrayBuffer, key: SymmetricKey, nonce: (ChaChaPoly_Nonce) | null, authenticatedData: ArrayBuffer): ChaChaPoly_SealedBox { return callSDK<ChaChaPoly_SealedBox>("CryptoKit_c1f28409f8601238", 888138987789854, undefined, [message, key, nonce, authenticatedData]); }
   /**
    * static func seal<Plaintext>(_ message: Plaintext, using key: SymmetricKey, nonce: ChaChaPoly.Nonce? = nil) throws -> ChaChaPoly.SealedBox where Plaintext : DataProtocol
    * @availability iOS 13.0+
    */
-  static sealUsingNonce(message: ArrayBuffer, key: SymmetricKey, nonce?: (ChaChaPoly_Nonce) | null): ChaChaPoly_SealedBox { return callSDK<ChaChaPoly_SealedBox>("CryptoKit_6be9a005889899ab", 2484514948221571, undefined, [message, key, nonce]); }
+  static sealUsingNonce(message: ArrayBuffer, key: SymmetricKey, nonce?: (ChaChaPoly_Nonce) | null): ChaChaPoly_SealedBox { return callSDK<ChaChaPoly_SealedBox>("CryptoKit_c1f28409f8601238", 2484514948221571, undefined, [message, key, nonce]); }
   declare readonly $type: { "s:9CryptoKit03ChaC4PolyO": true };
 }
 
@@ -185,27 +185,27 @@ export class ChaChaPoly_Nonce extends SDKHandle {
    * func makeIterator() -> Array<UInt8>.Iterator
    * @availability iOS 13.0+
    */
-  makeIterator(): SDKHandle { return callSDK<SDKHandle>("CryptoKit_6be9a005889899ab", 193254530644435, this, []); }
+  makeIterator(): SDKHandle { return callSDK<SDKHandle>("CryptoKit_c1f28409f8601238", 193254530644435, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 4043388879937681, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 4043388879937681, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * init<D>(data: D) throws where D : DataProtocol
    * @availability iOS 13.0+
    */
-  static initData(data: ArrayBuffer): ChaChaPoly_Nonce { return callSDK<ChaChaPoly_Nonce>("CryptoKit_6be9a005889899ab", 951601062227062, undefined, [data]); }
+  static initData(data: ArrayBuffer): ChaChaPoly_Nonce { return callSDK<ChaChaPoly_Nonce>("CryptoKit_c1f28409f8601238", 951601062227062, undefined, [data]); }
   /**
    * var count: Int { get }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 2287170235288221, this, []); }
+  get count(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 2287170235288221, this, []); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): ChaChaPoly_Nonce { return callSDK<ChaChaPoly_Nonce>("CryptoKit_6be9a005889899ab", 3495320333219430, undefined, []); }
+  static init(): ChaChaPoly_Nonce { return callSDK<ChaChaPoly_Nonce>("CryptoKit_c1f28409f8601238", 3495320333219430, undefined, []); }
   declare readonly $type: { "s:9CryptoKit03ChaC4PolyO5NonceV": true };
 }
 
@@ -230,32 +230,32 @@ export class ChaChaPoly_SealedBox extends SDKHandle {
    * var ciphertext: Data { get }
    * @availability iOS 13.0+
    */
-  get ciphertext(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3388274535814723, this, []); }
+  get ciphertext(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3388274535814723, this, []); }
   /**
    * var tag: Data { get }
    * @availability iOS 13.0+
    */
-  get tag(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1674668029315257, this, []); }
+  get tag(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1674668029315257, this, []); }
   /**
    * init<C, T>(nonce: ChaChaPoly.Nonce, ciphertext: C, tag: T) throws where C : DataProtocol, T : DataProtocol
    * @availability iOS 13.0+
    */
-  static initNonceCiphertextTag(nonce: ChaChaPoly_Nonce, ciphertext: ArrayBuffer, tag: ArrayBuffer): ChaChaPoly_SealedBox { return callSDK<ChaChaPoly_SealedBox>("CryptoKit_6be9a005889899ab", 2536383954182758, undefined, [nonce, ciphertext, tag]); }
+  static initNonceCiphertextTag(nonce: ChaChaPoly_Nonce, ciphertext: ArrayBuffer, tag: ArrayBuffer): ChaChaPoly_SealedBox { return callSDK<ChaChaPoly_SealedBox>("CryptoKit_c1f28409f8601238", 2536383954182758, undefined, [nonce, ciphertext, tag]); }
   /**
    * var nonce: ChaChaPoly.Nonce { get }
    * @availability iOS 13.0+
    */
-  get nonce(): ChaChaPoly_Nonce { return callSDK<ChaChaPoly_Nonce>("CryptoKit_6be9a005889899ab", 2949613709531253, this, []); }
+  get nonce(): ChaChaPoly_Nonce { return callSDK<ChaChaPoly_Nonce>("CryptoKit_c1f28409f8601238", 2949613709531253, this, []); }
   /**
    * let combined: Data
    * @availability iOS 13.0+
    */
-  get combined(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2192788632696636, this, []); }
+  get combined(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2192788632696636, this, []); }
   /**
    * init<D>(combined: D) throws where D : DataProtocol
    * @availability iOS 13.0+
    */
-  static initCombined(combined: ArrayBuffer): ChaChaPoly_SealedBox { return callSDK<ChaChaPoly_SealedBox>("CryptoKit_6be9a005889899ab", 2438624702841113, undefined, [combined]); }
+  static initCombined(combined: ArrayBuffer): ChaChaPoly_SealedBox { return callSDK<ChaChaPoly_SealedBox>("CryptoKit_c1f28409f8601238", 2438624702841113, undefined, [combined]); }
   declare readonly $type: { "s:9CryptoKit03ChaC4PolyO9SealedBoxV": true };
 }
 
@@ -309,27 +309,27 @@ export class Curve25519_KeyAgreement_PrivateKey extends SDKHandle {
    * func sharedSecretFromKeyAgreement(with publicKeyShare: Curve25519.KeyAgreement.PublicKey) throws -> SharedSecret
    * @availability iOS 13.0+
    */
-  sharedSecretFromKeyAgreement(publicKeyShare: Curve25519_KeyAgreement_PublicKey): SharedSecret { return callSDK<SharedSecret>("CryptoKit_6be9a005889899ab", 585496188990394, this, [publicKeyShare]); }
+  sharedSecretFromKeyAgreement(publicKeyShare: Curve25519_KeyAgreement_PublicKey): SharedSecret { return callSDK<SharedSecret>("CryptoKit_c1f28409f8601238", 585496188990394, this, [publicKeyShare]); }
   /**
    * var publicKey: Curve25519.KeyAgreement.PublicKey { get }
    * @availability iOS 13.0+
    */
-  get publicKey(): Curve25519_KeyAgreement_PublicKey { return callSDK<Curve25519_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 1173701814124505, this, []); }
+  get publicKey(): Curve25519_KeyAgreement_PublicKey { return callSDK<Curve25519_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 1173701814124505, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1137403299792188, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1137403299792188, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): Curve25519_KeyAgreement_PrivateKey { return callSDK<Curve25519_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 4469124074521349, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): Curve25519_KeyAgreement_PrivateKey { return callSDK<Curve25519_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 4469124074521349, undefined, [rawRepresentation]); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): Curve25519_KeyAgreement_PrivateKey { return callSDK<Curve25519_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 3643196237171185, undefined, []); }
+  static init(): Curve25519_KeyAgreement_PrivateKey { return callSDK<Curve25519_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 3643196237171185, undefined, []); }
   declare readonly $type: { "s:9CryptoKit10Curve25519O12KeyAgreementO07PrivateD0V": true };
 }
 
@@ -348,22 +348,22 @@ export class Curve25519_KeyAgreement_PublicKey extends SDKHandle {
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3308882407395459, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3308882407395459, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): Curve25519_KeyAgreement_PublicKey { return callSDK<Curve25519_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 2304810021525623, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): Curve25519_KeyAgreement_PublicKey { return callSDK<Curve25519_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 2304810021525623, undefined, [rawRepresentation]); }
   /**
    * func hpkeRepresentation(kem: HPKE.KEM) throws -> Data
    * @availability iOS 17.0+
    */
-  hpkeRepresentation(kem: HPKE_KEM): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 4185221226935615, this, [kem]); }
+  hpkeRepresentation(kem: HPKE_KEM): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 4185221226935615, this, [kem]); }
   /**
    * init<D>(_ serialization: D, kem: HPKE.KEM) throws where D : ContiguousBytes
    * @availability iOS 17.0+
    */
-  static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): Curve25519_KeyAgreement_PublicKey { return callSDK<Curve25519_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 1113959930800494, undefined, [serialization, kem]); }
+  static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): Curve25519_KeyAgreement_PublicKey { return callSDK<Curve25519_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 1113959930800494, undefined, [serialization, kem]); }
   declare readonly $type: { "s:9CryptoKit10Curve25519O12KeyAgreementO06PublicD0V": true };
 }
 
@@ -396,27 +396,27 @@ export class Curve25519_Signing_PrivateKey extends SDKHandle {
    * var publicKey: Curve25519.Signing.PublicKey { get }
    * @availability iOS 13.0+
    */
-  get publicKey(): Curve25519_Signing_PublicKey { return callSDK<Curve25519_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 1537319302055494, this, []); }
+  get publicKey(): Curve25519_Signing_PublicKey { return callSDK<Curve25519_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 1537319302055494, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 12451600269885, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 12451600269885, this, []); }
   /**
    * init<D>(rawRepresentation data: D) throws where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(data: ArrayBuffer): Curve25519_Signing_PrivateKey { return callSDK<Curve25519_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 2134814003555821, undefined, [data]); }
+  static initRawRepresentation(data: ArrayBuffer): Curve25519_Signing_PrivateKey { return callSDK<Curve25519_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 2134814003555821, undefined, [data]); }
   /**
    * func signature<D>(for data: D) throws -> Data where D : DataProtocol
    * @availability iOS 13.0+
    */
-  signature(data: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1491164552901184, this, [data]); }
+  signature(data: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1491164552901184, this, [data]); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): Curve25519_Signing_PrivateKey { return callSDK<Curve25519_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 1583392650218507, undefined, []); }
+  static init(): Curve25519_Signing_PrivateKey { return callSDK<Curve25519_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 1583392650218507, undefined, []); }
   declare readonly $type: { "s:9CryptoKit10Curve25519O7SigningO10PrivateKeyV": true };
 }
 
@@ -429,17 +429,17 @@ export class Curve25519_Signing_PublicKey extends SDKHandle {
    * func isValidSignature<S, D>(_ signature: S, for data: D) -> Bool where S : DataProtocol, D : DataProtocol
    * @availability iOS 13.0+
    */
-  isValidSignature(signature: ArrayBuffer, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_6be9a005889899ab", 3560179468132238, this, [signature, data]); }
+  isValidSignature(signature: ArrayBuffer, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_c1f28409f8601238", 3560179468132238, this, [signature, data]); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 4219606327944915, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 4219606327944915, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static init(rawRepresentation: ArrayBuffer): Curve25519_Signing_PublicKey { return callSDK<Curve25519_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 2970544382572078, undefined, [rawRepresentation]); }
+  static init(rawRepresentation: ArrayBuffer): Curve25519_Signing_PublicKey { return callSDK<Curve25519_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 2970544382572078, undefined, [rawRepresentation]); }
   declare readonly $type: { "s:9CryptoKit10Curve25519O7SigningO9PublicKeyV": true };
 }
 
@@ -473,12 +473,12 @@ export class HashedAuthenticationCode<H = unknown> extends SDKHandle {
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 3385799992984397, this, []); }
+  get description(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 3385799992984397, this, []); }
   /**
    * var byteCount: Int { get }
    * @availability iOS 13.0+
    */
-  get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 3475995794717084, this, []); }
+  get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 3475995794717084, this, []); }
   declare readonly $type: { "s:9CryptoKit24HashedAuthenticationCodeV": true };
 }
 
@@ -533,7 +533,7 @@ export class HMAC<H = unknown> extends SDKHandle {
    * func finalize() -> HMAC<H>.MAC
    * @availability iOS 13.0+
    */
-  finalize(): HashedAuthenticationCode<SDKHandle> { return callSDK<HashedAuthenticationCode<SDKHandle>>("CryptoKit_6be9a005889899ab", 1747091855557253, this, []); }
+  finalize(): HashedAuthenticationCode<SDKHandle> { return callSDK<HashedAuthenticationCode<SDKHandle>>("CryptoKit_c1f28409f8601238", 1747091855557253, this, []); }
   declare readonly $type: { "s:9CryptoKit4HMACV": true };
 }
 
@@ -568,7 +568,7 @@ export const HPKE_AEAD = {
    * nonisolated static var allCases: [HPKE.AEAD] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<HPKE_AEAD> { return callSDK<Array<HPKE_AEAD>>("CryptoKit_6be9a005889899ab", 2340290511713389, undefined, []); }
+  get allCases(): Array<HPKE_AEAD> { return callSDK<Array<HPKE_AEAD>>("CryptoKit_c1f28409f8601238", 2340290511713389, undefined, []); }
 };
 
 /**
@@ -586,47 +586,47 @@ export class HPKE_Ciphersuite extends SDKHandle {
    * static let P256_SHA256_AES_GCM_256: HPKE.Ciphersuite
    * @availability iOS 17.0+
    */
-  static get P256_SHA256_AES_GCM_256(): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_6be9a005889899ab", 659708895837408, undefined, []); }
+  static get P256_SHA256_AES_GCM_256(): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_c1f28409f8601238", 659708895837408, undefined, []); }
   /**
    * static let P384_SHA384_AES_GCM_256: HPKE.Ciphersuite
    * @availability iOS 17.0+
    */
-  static get P384_SHA384_AES_GCM_256(): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_6be9a005889899ab", 2031334228688683, undefined, []); }
+  static get P384_SHA384_AES_GCM_256(): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_c1f28409f8601238", 2031334228688683, undefined, []); }
   /**
    * static let P521_SHA512_AES_GCM_256: HPKE.Ciphersuite
    * @availability iOS 17.0+
    */
-  static get P521_SHA512_AES_GCM_256(): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_6be9a005889899ab", 2776111604191286, undefined, []); }
+  static get P521_SHA512_AES_GCM_256(): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_c1f28409f8601238", 2776111604191286, undefined, []); }
   /**
    * static let Curve25519_SHA256_ChachaPoly: HPKE.Ciphersuite
    * @availability iOS 17.0+
    */
-  static get Curve25519_SHA256_ChachaPoly(): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_6be9a005889899ab", 853444014845099, undefined, []); }
+  static get Curve25519_SHA256_ChachaPoly(): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_c1f28409f8601238", 853444014845099, undefined, []); }
   /**
    * static let XWingMLKEM768X25519_SHA256_AES_GCM_256: HPKE.Ciphersuite
    * @availability iOS 26.0+
    */
-  static get XWingMLKEM768X25519_SHA256_AES_GCM_256(): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_6be9a005889899ab", 2825148178161022, undefined, []); }
+  static get XWingMLKEM768X25519_SHA256_AES_GCM_256(): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_c1f28409f8601238", 2825148178161022, undefined, []); }
   /**
    * let kdf: HPKE.KDF
    * @availability iOS 17.0+
    */
-  get kdf(): HPKE_KDF { return callSDK<HPKE_KDF>("CryptoKit_6be9a005889899ab", 2377822193801378, this, []); }
+  get kdf(): HPKE_KDF { return callSDK<HPKE_KDF>("CryptoKit_c1f28409f8601238", 2377822193801378, this, []); }
   /**
    * init(kem: HPKE.KEM, kdf: HPKE.KDF, aead: HPKE.AEAD)
    * @availability iOS 17.0+
    */
-  static init(kem: HPKE_KEM, kdf: HPKE_KDF, aead: HPKE_AEAD): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_6be9a005889899ab", 1517807246479138, undefined, [kem, kdf, aead]); }
+  static init(kem: HPKE_KEM, kdf: HPKE_KDF, aead: HPKE_AEAD): HPKE_Ciphersuite { return callSDK<HPKE_Ciphersuite>("CryptoKit_c1f28409f8601238", 1517807246479138, undefined, [kem, kdf, aead]); }
   /**
    * let kem: HPKE.KEM
    * @availability iOS 17.0+
    */
-  get kem(): HPKE_KEM { return callSDK<HPKE_KEM>("CryptoKit_6be9a005889899ab", 564743346702232, this, []); }
+  get kem(): HPKE_KEM { return callSDK<HPKE_KEM>("CryptoKit_c1f28409f8601238", 564743346702232, this, []); }
   /**
    * let aead: HPKE.AEAD
    * @availability iOS 17.0+
    */
-  get aead(): HPKE_AEAD { return callSDK<HPKE_AEAD>("CryptoKit_6be9a005889899ab", 2201298389973463, this, []); }
+  get aead(): HPKE_AEAD { return callSDK<HPKE_AEAD>("CryptoKit_c1f28409f8601238", 2201298389973463, this, []); }
   declare readonly $type: { "s:9CryptoKit4HPKEO11CiphersuiteV": true };
 }
 
@@ -655,7 +655,7 @@ export const HPKE_KDF = {
    * nonisolated static var allCases: [HPKE.KDF] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<HPKE_KDF> { return callSDK<Array<HPKE_KDF>>("CryptoKit_6be9a005889899ab", 3786962977325973, undefined, []); }
+  get allCases(): Array<HPKE_KDF> { return callSDK<Array<HPKE_KDF>>("CryptoKit_c1f28409f8601238", 3786962977325973, undefined, []); }
 };
 
 /**
@@ -675,7 +675,7 @@ export const HPKE_KEM = {
    * static var allCases: [HPKE.KEM] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<HPKE_KEM> { return callSDK<Array<HPKE_KEM>>("CryptoKit_6be9a005889899ab", 1881100167490559, undefined, []); }
+  get allCases(): Array<HPKE_KEM> { return callSDK<Array<HPKE_KEM>>("CryptoKit_c1f28409f8601238", 1881100167490559, undefined, []); }
 };
 
 /**
@@ -693,22 +693,22 @@ export class HPKE_Recipient extends SDKHandle {
    * init<SK>(privateKey: SK, ciphersuite: HPKE.Ciphersuite, info: Data, encapsulatedKey: Data) throws where SK : HPKEKEMPrivateKey
    * @availability iOS 26.0+
    */
-  static init(privateKey: XWingMLKEM768X25519_PrivateKey, ciphersuite: HPKE_Ciphersuite, info: ArrayBuffer, encapsulatedKey: ArrayBuffer): HPKE_Recipient { return callSDK<HPKE_Recipient>("CryptoKit_6be9a005889899ab", 2080664521912236, undefined, [privateKey, ciphersuite, info, encapsulatedKey]); }
+  static init(privateKey: XWingMLKEM768X25519_PrivateKey, ciphersuite: HPKE_Ciphersuite, info: ArrayBuffer, encapsulatedKey: ArrayBuffer): HPKE_Recipient { return callSDK<HPKE_Recipient>("CryptoKit_c1f28409f8601238", 2080664521912236, undefined, [privateKey, ciphersuite, info, encapsulatedKey]); }
   /**
    * func exportSecret<Context>(context: Context, outputByteCount: Int) throws -> SymmetricKey where Context : DataProtocol
    * @availability iOS 17.0+
    */
-  exportSecret(context: ArrayBuffer, outputByteCount: number): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 438706753020766, this, [context, outputByteCount]); }
+  exportSecret(context: ArrayBuffer, outputByteCount: number): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 438706753020766, this, [context, outputByteCount]); }
   /**
    * mutating func open<C, AD>(_ ciphertext: C, authenticating aad: AD) throws -> Data where C : DataProtocol, AD : DataProtocol
    * @availability iOS 17.0+
    */
-  openAuthenticating(ciphertext: ArrayBuffer, aad: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2815585294363357, this, [ciphertext, aad]); }
+  openAuthenticating(ciphertext: ArrayBuffer, aad: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2815585294363357, this, [ciphertext, aad]); }
   /**
    * mutating func open<C>(_ ciphertext: C) throws -> Data where C : DataProtocol
    * @availability iOS 17.0+
    */
-  open(ciphertext: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 656979000521995, this, [ciphertext]); }
+  open(ciphertext: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 656979000521995, this, [ciphertext]); }
   declare readonly $type: { "s:9CryptoKit4HPKEO9RecipientV": true };
 }
 
@@ -721,27 +721,27 @@ export class HPKE_Sender extends SDKHandle {
    * func exportSecret<Context>(context: Context, outputByteCount: Int) throws -> SymmetricKey where Context : DataProtocol
    * @availability iOS 17.0+
    */
-  exportSecret(context: ArrayBuffer, outputByteCount: number): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 3360400121882512, this, [context, outputByteCount]); }
+  exportSecret(context: ArrayBuffer, outputByteCount: number): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 3360400121882512, this, [context, outputByteCount]); }
   /**
    * init<PK>(recipientKey: PK, ciphersuite: HPKE.Ciphersuite, info: Data) throws where PK : HPKEKEMPublicKey
    * @availability iOS 26.0+
    */
-  static init(recipientKey: XWingMLKEM768X25519_PublicKey, ciphersuite: HPKE_Ciphersuite, info: ArrayBuffer): HPKE_Sender { return callSDK<HPKE_Sender>("CryptoKit_6be9a005889899ab", 2989118941111326, undefined, [recipientKey, ciphersuite, info]); }
+  static init(recipientKey: XWingMLKEM768X25519_PublicKey, ciphersuite: HPKE_Ciphersuite, info: ArrayBuffer): HPKE_Sender { return callSDK<HPKE_Sender>("CryptoKit_c1f28409f8601238", 2989118941111326, undefined, [recipientKey, ciphersuite, info]); }
   /**
    * let encapsulatedKey: Data
    * @availability iOS 17.0+
    */
-  get encapsulatedKey(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3407114672099354, this, []); }
+  get encapsulatedKey(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3407114672099354, this, []); }
   /**
    * mutating func seal<M, AD>(_ msg: M, authenticating aad: AD) throws -> Data where M : DataProtocol, AD : DataProtocol
    * @availability iOS 17.0+
    */
-  sealAuthenticating(msg: ArrayBuffer, aad: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 262099664721216, this, [msg, aad]); }
+  sealAuthenticating(msg: ArrayBuffer, aad: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 262099664721216, this, [msg, aad]); }
   /**
    * mutating func seal<M>(_ msg: M) throws -> Data where M : DataProtocol
    * @availability iOS 17.0+
    */
-  seal(msg: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3027318419935421, this, [msg]); }
+  seal(msg: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3027318419935421, this, [msg]); }
   declare readonly $type: { "s:9CryptoKit4HPKEO6SenderV": true };
 }
 
@@ -886,27 +886,27 @@ export class Insecure_MD5 extends SDKHandle {
    * static let blockByteCount: Int
    * @availability iOS 13.2+
    */
-  static get blockByteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 3523828993791542, undefined, []); }
+  static get blockByteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 3523828993791542, undefined, []); }
   /**
    * mutating func update(bufferPointer: UnsafeRawBufferPointer)
    * @availability iOS 13.0+
    */
-  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_6be9a005889899ab", 4279195915092310, this, [bufferPointer]); }
+  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_c1f28409f8601238", 4279195915092310, this, [bufferPointer]); }
   /**
    * func finalize() -> Insecure.MD5.Digest
    * @availability iOS 13.0+
    */
-  finalize(): Insecure_MD5Digest { return callSDK<Insecure_MD5Digest>("CryptoKit_6be9a005889899ab", 264693382924205, this, []); }
+  finalize(): Insecure_MD5Digest { return callSDK<Insecure_MD5Digest>("CryptoKit_c1f28409f8601238", 264693382924205, this, []); }
   /**
    * static let byteCount: Int
    * @availability iOS 13.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 1226425830063726, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 1226425830063726, undefined, []); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): Insecure_MD5 { return callSDK<Insecure_MD5>("CryptoKit_6be9a005889899ab", 1724622632314250, undefined, []); }
+  static init(): Insecure_MD5 { return callSDK<Insecure_MD5>("CryptoKit_c1f28409f8601238", 1724622632314250, undefined, []); }
   declare readonly $type: { "s:9CryptoKit8InsecureO3MD5V": true };
 }
 
@@ -925,17 +925,17 @@ export class Insecure_MD5Digest extends SDKHandle {
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 2761009003689973, this, []); }
+  get description(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 2761009003689973, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 4422282329956070, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 4422282329956070, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * static var byteCount: Int { get }
    * @availability iOS 13.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 592743876973935, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 592743876973935, undefined, []); }
   declare readonly $type: { "s:9CryptoKit8InsecureO9MD5DigestV": true };
 }
 
@@ -960,27 +960,27 @@ export class Insecure_SHA1 extends SDKHandle {
    * static let blockByteCount: Int
    * @availability iOS 13.2+
    */
-  static get blockByteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 3783949109341817, undefined, []); }
+  static get blockByteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 3783949109341817, undefined, []); }
   /**
    * mutating func update(bufferPointer: UnsafeRawBufferPointer)
    * @availability iOS 13.0+
    */
-  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_6be9a005889899ab", 2503770055558904, this, [bufferPointer]); }
+  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_c1f28409f8601238", 2503770055558904, this, [bufferPointer]); }
   /**
    * func finalize() -> Insecure.SHA1.Digest
    * @availability iOS 13.0+
    */
-  finalize(): Insecure_SHA1Digest { return callSDK<Insecure_SHA1Digest>("CryptoKit_6be9a005889899ab", 1946093218777120, this, []); }
+  finalize(): Insecure_SHA1Digest { return callSDK<Insecure_SHA1Digest>("CryptoKit_c1f28409f8601238", 1946093218777120, this, []); }
   /**
    * static let byteCount: Int
    * @availability iOS 13.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 3860704713053257, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 3860704713053257, undefined, []); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): Insecure_SHA1 { return callSDK<Insecure_SHA1>("CryptoKit_6be9a005889899ab", 3332223046312153, undefined, []); }
+  static init(): Insecure_SHA1 { return callSDK<Insecure_SHA1>("CryptoKit_c1f28409f8601238", 3332223046312153, undefined, []); }
   declare readonly $type: { "s:9CryptoKit8InsecureO4SHA1V": true };
 }
 
@@ -999,17 +999,17 @@ export class Insecure_SHA1Digest extends SDKHandle {
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 3289291967737180, this, []); }
+  get description(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 3289291967737180, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 3296350595581630, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 3296350595581630, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * static var byteCount: Int { get }
    * @availability iOS 13.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 3443282550042083, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 3443282550042083, undefined, []); }
   declare readonly $type: { "s:9CryptoKit8InsecureO10SHA1DigestV": true };
 }
 
@@ -1042,17 +1042,17 @@ export class KEM_EncapsulationResult extends SDKHandle {
    * let encapsulated: Data
    * @availability iOS 17.0+
    */
-  get encapsulated(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1135136890765521, this, []); }
+  get encapsulated(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1135136890765521, this, []); }
   /**
    * init(sharedSecret: SymmetricKey, encapsulated: Data)
    * @availability iOS 17.0+
    */
-  static init(sharedSecret: SymmetricKey, encapsulated: ArrayBuffer): KEM_EncapsulationResult { return callSDK<KEM_EncapsulationResult>("CryptoKit_6be9a005889899ab", 1491221934236814, undefined, [sharedSecret, encapsulated]); }
+  static init(sharedSecret: SymmetricKey, encapsulated: ArrayBuffer): KEM_EncapsulationResult { return callSDK<KEM_EncapsulationResult>("CryptoKit_c1f28409f8601238", 1491221934236814, undefined, [sharedSecret, encapsulated]); }
   /**
    * let sharedSecret: SymmetricKey
    * @availability iOS 17.0+
    */
-  get sharedSecret(): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 2042064735121848, this, []); }
+  get sharedSecret(): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 2042064735121848, this, []); }
   declare readonly $type: { "s:9CryptoKit3KEMO19EncapsulationResultV": true };
 }
 
@@ -1134,42 +1134,42 @@ export class MLDSA65_PrivateKey extends SDKHandle {
    * var publicKey: MLDSA65.PublicKey { get }
    * @availability iOS 26.0+
    */
-  get publicKey(): MLDSA65_PublicKey { return callSDK<MLDSA65_PublicKey>("CryptoKit_6be9a005889899ab", 3614942786809115, this, []); }
+  get publicKey(): MLDSA65_PublicKey { return callSDK<MLDSA65_PublicKey>("CryptoKit_c1f28409f8601238", 3614942786809115, this, []); }
   /**
    * init<D>(seedRepresentation: D, publicKey: MLDSA65.PublicKey?) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initSeedRepresentationPublicKey(seedRepresentation: ArrayBuffer, publicKey?: (MLDSA65_PublicKey) | null): MLDSA65_PrivateKey { return callSDK<MLDSA65_PrivateKey>("CryptoKit_6be9a005889899ab", 2194029561430607, undefined, [seedRepresentation, publicKey]); }
+  static initSeedRepresentationPublicKey(seedRepresentation: ArrayBuffer, publicKey?: (MLDSA65_PublicKey) | null): MLDSA65_PrivateKey { return callSDK<MLDSA65_PrivateKey>("CryptoKit_c1f28409f8601238", 2194029561430607, undefined, [seedRepresentation, publicKey]); }
   /**
    * var seedRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get seedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1627847980807629, this, []); }
+  get seedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1627847980807629, this, []); }
   /**
    * var integrityCheckedRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get integrityCheckedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 206783505160240, this, []); }
+  get integrityCheckedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 206783505160240, this, []); }
   /**
    * init<D>(integrityCheckedRepresentation: D) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initIntegrityCheckedRepresentation(integrityCheckedRepresentation: ArrayBuffer): MLDSA65_PrivateKey { return callSDK<MLDSA65_PrivateKey>("CryptoKit_6be9a005889899ab", 2131761818929418, undefined, [integrityCheckedRepresentation]); }
+  static initIntegrityCheckedRepresentation(integrityCheckedRepresentation: ArrayBuffer): MLDSA65_PrivateKey { return callSDK<MLDSA65_PrivateKey>("CryptoKit_c1f28409f8601238", 2131761818929418, undefined, [integrityCheckedRepresentation]); }
   /**
    * func signature<D>(for data: D) throws -> Data where D : DataProtocol
    * @availability iOS 26.0+
    */
-  signatureFor(data: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2550286428548486, this, [data]); }
+  signatureFor(data: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2550286428548486, this, [data]); }
   /**
    * func signature<D, C>(for data: D, context: C) throws -> Data where D : DataProtocol, C : DataProtocol
    * @availability iOS 26.0+
    */
-  signatureForContext(data: ArrayBuffer, context: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3639880115362703, this, [data, context]); }
+  signatureForContext(data: ArrayBuffer, context: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3639880115362703, this, [data, context]); }
   /**
    * init() throws
    * @availability iOS 26.0+
    */
-  static init(): MLDSA65_PrivateKey { return callSDK<MLDSA65_PrivateKey>("CryptoKit_6be9a005889899ab", 2263540072750669, undefined, []); }
+  static init(): MLDSA65_PrivateKey { return callSDK<MLDSA65_PrivateKey>("CryptoKit_c1f28409f8601238", 2263540072750669, undefined, []); }
   declare readonly $type: { "s:9CryptoKit7MLDSA65O10PrivateKeyV": true };
 }
 
@@ -1182,22 +1182,22 @@ export class MLDSA65_PublicKey extends SDKHandle {
    * func isValidSignature<S, D, C>(_ signature: S, for data: D, context: C) -> Bool where S : DataProtocol, D : DataProtocol, C : DataProtocol
    * @availability iOS 26.0+
    */
-  isValidSignatureForContext(signature: ArrayBuffer, data: ArrayBuffer, context: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_6be9a005889899ab", 1826791443770465, this, [signature, data, context]); }
+  isValidSignatureForContext(signature: ArrayBuffer, data: ArrayBuffer, context: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_c1f28409f8601238", 1826791443770465, this, [signature, data, context]); }
   /**
    * func isValidSignature<S, D>(_ signature: S, for data: D) -> Bool where S : DataProtocol, D : DataProtocol
    * @availability iOS 26.0+
    */
-  isValidSignatureFor(signature: ArrayBuffer, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_6be9a005889899ab", 3098566465187557, this, [signature, data]); }
+  isValidSignatureFor(signature: ArrayBuffer, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_c1f28409f8601238", 3098566465187557, this, [signature, data]); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3716940017411812, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3716940017411812, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static init(rawRepresentation: ArrayBuffer): MLDSA65_PublicKey { return callSDK<MLDSA65_PublicKey>("CryptoKit_6be9a005889899ab", 3021331365296677, undefined, [rawRepresentation]); }
+  static init(rawRepresentation: ArrayBuffer): MLDSA65_PublicKey { return callSDK<MLDSA65_PublicKey>("CryptoKit_c1f28409f8601238", 3021331365296677, undefined, [rawRepresentation]); }
   declare readonly $type: { "s:9CryptoKit7MLDSA65O9PublicKeyV": true };
 }
 
@@ -1218,42 +1218,42 @@ export class MLDSA87_PrivateKey extends SDKHandle {
    * var publicKey: MLDSA87.PublicKey { get }
    * @availability iOS 26.0+
    */
-  get publicKey(): MLDSA87_PublicKey { return callSDK<MLDSA87_PublicKey>("CryptoKit_6be9a005889899ab", 3694170073530551, this, []); }
+  get publicKey(): MLDSA87_PublicKey { return callSDK<MLDSA87_PublicKey>("CryptoKit_c1f28409f8601238", 3694170073530551, this, []); }
   /**
    * init<D>(seedRepresentation: D, publicKey: MLDSA87.PublicKey?) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initSeedRepresentationPublicKey(seedRepresentation: ArrayBuffer, publicKey?: (MLDSA87_PublicKey) | null): MLDSA87_PrivateKey { return callSDK<MLDSA87_PrivateKey>("CryptoKit_6be9a005889899ab", 10714310425339, undefined, [seedRepresentation, publicKey]); }
+  static initSeedRepresentationPublicKey(seedRepresentation: ArrayBuffer, publicKey?: (MLDSA87_PublicKey) | null): MLDSA87_PrivateKey { return callSDK<MLDSA87_PrivateKey>("CryptoKit_c1f28409f8601238", 10714310425339, undefined, [seedRepresentation, publicKey]); }
   /**
    * var seedRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get seedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 294604803834535, this, []); }
+  get seedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 294604803834535, this, []); }
   /**
    * var integrityCheckedRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get integrityCheckedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 515554944927676, this, []); }
+  get integrityCheckedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 515554944927676, this, []); }
   /**
    * init<D>(integrityCheckedRepresentation: D) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initIntegrityCheckedRepresentation(integrityCheckedRepresentation: ArrayBuffer): MLDSA87_PrivateKey { return callSDK<MLDSA87_PrivateKey>("CryptoKit_6be9a005889899ab", 3502941507017881, undefined, [integrityCheckedRepresentation]); }
+  static initIntegrityCheckedRepresentation(integrityCheckedRepresentation: ArrayBuffer): MLDSA87_PrivateKey { return callSDK<MLDSA87_PrivateKey>("CryptoKit_c1f28409f8601238", 3502941507017881, undefined, [integrityCheckedRepresentation]); }
   /**
    * func signature<D>(for data: D) throws -> Data where D : DataProtocol
    * @availability iOS 26.0+
    */
-  signatureFor(data: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1749580673442012, this, [data]); }
+  signatureFor(data: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1749580673442012, this, [data]); }
   /**
    * func signature<D, C>(for data: D, context: C) throws -> Data where D : DataProtocol, C : DataProtocol
    * @availability iOS 26.0+
    */
-  signatureForContext(data: ArrayBuffer, context: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 442410208378690, this, [data, context]); }
+  signatureForContext(data: ArrayBuffer, context: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 442410208378690, this, [data, context]); }
   /**
    * init() throws
    * @availability iOS 26.0+
    */
-  static init(): MLDSA87_PrivateKey { return callSDK<MLDSA87_PrivateKey>("CryptoKit_6be9a005889899ab", 4200506254486281, undefined, []); }
+  static init(): MLDSA87_PrivateKey { return callSDK<MLDSA87_PrivateKey>("CryptoKit_c1f28409f8601238", 4200506254486281, undefined, []); }
   declare readonly $type: { "s:9CryptoKit7MLDSA87O10PrivateKeyV": true };
 }
 
@@ -1266,22 +1266,22 @@ export class MLDSA87_PublicKey extends SDKHandle {
    * func isValidSignature<S, D, C>(_ signature: S, for data: D, context: C) -> Bool where S : DataProtocol, D : DataProtocol, C : DataProtocol
    * @availability iOS 26.0+
    */
-  isValidSignatureForContext(signature: ArrayBuffer, data: ArrayBuffer, context: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_6be9a005889899ab", 4383476215435674, this, [signature, data, context]); }
+  isValidSignatureForContext(signature: ArrayBuffer, data: ArrayBuffer, context: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_c1f28409f8601238", 4383476215435674, this, [signature, data, context]); }
   /**
    * func isValidSignature<S, D>(_ signature: S, for data: D) -> Bool where S : DataProtocol, D : DataProtocol
    * @availability iOS 26.0+
    */
-  isValidSignatureFor(signature: ArrayBuffer, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_6be9a005889899ab", 2155850418553167, this, [signature, data]); }
+  isValidSignatureFor(signature: ArrayBuffer, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_c1f28409f8601238", 2155850418553167, this, [signature, data]); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3928785887140921, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3928785887140921, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static init(rawRepresentation: ArrayBuffer): MLDSA87_PublicKey { return callSDK<MLDSA87_PublicKey>("CryptoKit_6be9a005889899ab", 3848151223303216, undefined, [rawRepresentation]); }
+  static init(rawRepresentation: ArrayBuffer): MLDSA87_PublicKey { return callSDK<MLDSA87_PublicKey>("CryptoKit_c1f28409f8601238", 3848151223303216, undefined, [rawRepresentation]); }
   declare readonly $type: { "s:9CryptoKit7MLDSA87O9PublicKeyV": true };
 }
 
@@ -1316,42 +1316,42 @@ export class MLKEM1024_PrivateKey extends SDKHandle {
    * var publicKey: MLKEM1024.PublicKey { get }
    * @availability iOS 26.0+
    */
-  get publicKey(): MLKEM1024_PublicKey { return callSDK<MLKEM1024_PublicKey>("CryptoKit_6be9a005889899ab", 679001795918391, this, []); }
+  get publicKey(): MLKEM1024_PublicKey { return callSDK<MLKEM1024_PublicKey>("CryptoKit_c1f28409f8601238", 679001795918391, this, []); }
   /**
    * func decapsulate<D>(_ encapsulated: D) throws -> SymmetricKey where D : DataProtocol
    * @availability iOS 26.0+
    */
-  decapsulate(encapsulated: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 2818103016594659, this, [encapsulated]); }
+  decapsulate(encapsulated: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 2818103016594659, this, [encapsulated]); }
   /**
    * init<D>(seedRepresentation: D, publicKey: MLKEM1024.PublicKey?) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initSeedRepresentationPublicKey(seedRepresentation: ArrayBuffer, publicKey?: (MLKEM1024_PublicKey) | null): MLKEM1024_PrivateKey { return callSDK<MLKEM1024_PrivateKey>("CryptoKit_6be9a005889899ab", 4486502198268711, undefined, [seedRepresentation, publicKey]); }
+  static initSeedRepresentationPublicKey(seedRepresentation: ArrayBuffer, publicKey?: (MLKEM1024_PublicKey) | null): MLKEM1024_PrivateKey { return callSDK<MLKEM1024_PrivateKey>("CryptoKit_c1f28409f8601238", 4486502198268711, undefined, [seedRepresentation, publicKey]); }
   /**
    * var seedRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get seedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1573527379295884, this, []); }
+  get seedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1573527379295884, this, []); }
   /**
    * var integrityCheckedRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get integrityCheckedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1897844261959606, this, []); }
+  get integrityCheckedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1897844261959606, this, []); }
   /**
    * init<D>(integrityCheckedRepresentation: D) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initIntegrityCheckedRepresentation(integrityCheckedRepresentation: ArrayBuffer): MLKEM1024_PrivateKey { return callSDK<MLKEM1024_PrivateKey>("CryptoKit_6be9a005889899ab", 3072951039657199, undefined, [integrityCheckedRepresentation]); }
+  static initIntegrityCheckedRepresentation(integrityCheckedRepresentation: ArrayBuffer): MLKEM1024_PrivateKey { return callSDK<MLKEM1024_PrivateKey>("CryptoKit_c1f28409f8601238", 3072951039657199, undefined, [integrityCheckedRepresentation]); }
   /**
    * static func generate() throws -> MLKEM1024.PrivateKey
    * @availability iOS 26.0+
    */
-  static generate(): MLKEM1024_PrivateKey { return callSDK<MLKEM1024_PrivateKey>("CryptoKit_6be9a005889899ab", 919189093593681, undefined, []); }
+  static generate(): MLKEM1024_PrivateKey { return callSDK<MLKEM1024_PrivateKey>("CryptoKit_c1f28409f8601238", 919189093593681, undefined, []); }
   /**
    * init() throws
    * @availability iOS 26.0+
    */
-  static init(): MLKEM1024_PrivateKey { return callSDK<MLKEM1024_PrivateKey>("CryptoKit_6be9a005889899ab", 2616106648686515, undefined, []); }
+  static init(): MLKEM1024_PrivateKey { return callSDK<MLKEM1024_PrivateKey>("CryptoKit_c1f28409f8601238", 2616106648686515, undefined, []); }
   declare readonly $type: { "s:9CryptoKit9MLKEM1024O10PrivateKeyV": true };
 }
 
@@ -1370,17 +1370,17 @@ export class MLKEM1024_PublicKey extends SDKHandle {
    * func encapsulate() throws -> KEM.EncapsulationResult
    * @availability iOS 26.0+
    */
-  encapsulate(): KEM_EncapsulationResult { return callSDK<KEM_EncapsulationResult>("CryptoKit_6be9a005889899ab", 1912889849679756, this, []); }
+  encapsulate(): KEM_EncapsulationResult { return callSDK<KEM_EncapsulationResult>("CryptoKit_c1f28409f8601238", 1912889849679756, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1372183624982064, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1372183624982064, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static init(rawRepresentation: ArrayBuffer): MLKEM1024_PublicKey { return callSDK<MLKEM1024_PublicKey>("CryptoKit_6be9a005889899ab", 889851202443232, undefined, [rawRepresentation]); }
+  static init(rawRepresentation: ArrayBuffer): MLKEM1024_PublicKey { return callSDK<MLKEM1024_PublicKey>("CryptoKit_c1f28409f8601238", 889851202443232, undefined, [rawRepresentation]); }
   declare readonly $type: { "s:9CryptoKit9MLKEM1024O9PublicKeyV": true };
 }
 
@@ -1415,42 +1415,42 @@ export class MLKEM768_PrivateKey extends SDKHandle {
    * var publicKey: MLKEM768.PublicKey { get }
    * @availability iOS 26.0+
    */
-  get publicKey(): MLKEM768_PublicKey { return callSDK<MLKEM768_PublicKey>("CryptoKit_6be9a005889899ab", 76064893395353, this, []); }
+  get publicKey(): MLKEM768_PublicKey { return callSDK<MLKEM768_PublicKey>("CryptoKit_c1f28409f8601238", 76064893395353, this, []); }
   /**
    * func decapsulate<D>(_ encapsulated: D) throws -> SymmetricKey where D : DataProtocol
    * @availability iOS 26.0+
    */
-  decapsulate(encapsulated: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 1083833221601299, this, [encapsulated]); }
+  decapsulate(encapsulated: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 1083833221601299, this, [encapsulated]); }
   /**
    * init<D>(seedRepresentation: D, publicKey: MLKEM768.PublicKey?) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initSeedRepresentationPublicKey(seedRepresentation: ArrayBuffer, publicKey?: (MLKEM768_PublicKey) | null): MLKEM768_PrivateKey { return callSDK<MLKEM768_PrivateKey>("CryptoKit_6be9a005889899ab", 3880895639879098, undefined, [seedRepresentation, publicKey]); }
+  static initSeedRepresentationPublicKey(seedRepresentation: ArrayBuffer, publicKey?: (MLKEM768_PublicKey) | null): MLKEM768_PrivateKey { return callSDK<MLKEM768_PrivateKey>("CryptoKit_c1f28409f8601238", 3880895639879098, undefined, [seedRepresentation, publicKey]); }
   /**
    * var seedRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get seedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 553354160344214, this, []); }
+  get seedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 553354160344214, this, []); }
   /**
    * var integrityCheckedRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get integrityCheckedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1708677023604555, this, []); }
+  get integrityCheckedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1708677023604555, this, []); }
   /**
    * init<D>(integrityCheckedRepresentation: D) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initIntegrityCheckedRepresentation(integrityCheckedRepresentation: ArrayBuffer): MLKEM768_PrivateKey { return callSDK<MLKEM768_PrivateKey>("CryptoKit_6be9a005889899ab", 4003666657439806, undefined, [integrityCheckedRepresentation]); }
+  static initIntegrityCheckedRepresentation(integrityCheckedRepresentation: ArrayBuffer): MLKEM768_PrivateKey { return callSDK<MLKEM768_PrivateKey>("CryptoKit_c1f28409f8601238", 4003666657439806, undefined, [integrityCheckedRepresentation]); }
   /**
    * static func generate() throws -> MLKEM768.PrivateKey
    * @availability iOS 26.0+
    */
-  static generate(): MLKEM768_PrivateKey { return callSDK<MLKEM768_PrivateKey>("CryptoKit_6be9a005889899ab", 2224530460727503, undefined, []); }
+  static generate(): MLKEM768_PrivateKey { return callSDK<MLKEM768_PrivateKey>("CryptoKit_c1f28409f8601238", 2224530460727503, undefined, []); }
   /**
    * init() throws
    * @availability iOS 26.0+
    */
-  static init(): MLKEM768_PrivateKey { return callSDK<MLKEM768_PrivateKey>("CryptoKit_6be9a005889899ab", 2981985718711897, undefined, []); }
+  static init(): MLKEM768_PrivateKey { return callSDK<MLKEM768_PrivateKey>("CryptoKit_c1f28409f8601238", 2981985718711897, undefined, []); }
   declare readonly $type: { "s:9CryptoKit8MLKEM768O10PrivateKeyV": true };
 }
 
@@ -1469,17 +1469,17 @@ export class MLKEM768_PublicKey extends SDKHandle {
    * func encapsulate() throws -> KEM.EncapsulationResult
    * @availability iOS 26.0+
    */
-  encapsulate(): KEM_EncapsulationResult { return callSDK<KEM_EncapsulationResult>("CryptoKit_6be9a005889899ab", 460704986649790, this, []); }
+  encapsulate(): KEM_EncapsulationResult { return callSDK<KEM_EncapsulationResult>("CryptoKit_c1f28409f8601238", 460704986649790, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2983802617861073, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2983802617861073, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static init(rawRepresentation: ArrayBuffer): MLKEM768_PublicKey { return callSDK<MLKEM768_PublicKey>("CryptoKit_6be9a005889899ab", 905222899053675, undefined, [rawRepresentation]); }
+  static init(rawRepresentation: ArrayBuffer): MLKEM768_PublicKey { return callSDK<MLKEM768_PublicKey>("CryptoKit_c1f28409f8601238", 905222899053675, undefined, [rawRepresentation]); }
   declare readonly $type: { "s:9CryptoKit8MLKEM768O9PublicKeyV": true };
 }
 
@@ -1508,62 +1508,62 @@ export class P256_KeyAgreement_PrivateKey extends SDKHandle {
    * func sharedSecretFromKeyAgreement(with publicKeyShare: P256.KeyAgreement.PublicKey) throws -> SharedSecret
    * @availability iOS 13.0+
    */
-  sharedSecretFromKeyAgreement(publicKeyShare: P256_KeyAgreement_PublicKey): SharedSecret { return callSDK<SharedSecret>("CryptoKit_6be9a005889899ab", 3824176911792982, this, [publicKeyShare]); }
+  sharedSecretFromKeyAgreement(publicKeyShare: P256_KeyAgreement_PublicKey): SharedSecret { return callSDK<SharedSecret>("CryptoKit_c1f28409f8601238", 3824176911792982, this, [publicKeyShare]); }
   /**
    * var publicKey: P256.KeyAgreement.PublicKey { get }
    * @availability iOS 13.0+
    */
-  get publicKey(): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 1868069424101411, this, []); }
+  get publicKey(): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 1868069424101411, this, []); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3223726335537586, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3223726335537586, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 945602758535613, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 945602758535613, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 3257730291583664, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 3257730291583664, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 1583030115450917, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 1583030115450917, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1022011743265407, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1022011743265407, this, []); }
   /**
    * init<Bytes>(rawRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 3620666599372524, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 3620666599372524, undefined, [rawRepresentation]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2182771645748388, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2182771645748388, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 3621329179049271, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 3621329179049271, undefined, [x963Representation]); }
   /**
    * init(compactRepresentable: Bool = true)
    * @availability iOS 13.0+
    */
-  static initCompactRepresentable(compactRepresentable?: boolean): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 117778354493222, undefined, [compactRepresentable]); }
+  static initCompactRepresentable(compactRepresentable?: boolean): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 117778354493222, undefined, [compactRepresentable]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 1182178330529965, undefined, []); }
+  static init(): P256_KeyAgreement_PrivateKey { return callSDK<P256_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 1182178330529965, undefined, []); }
   declare readonly $type: { "s:9CryptoKit4P256O12KeyAgreementO07PrivateD0V": true };
 }
 
@@ -1582,72 +1582,72 @@ export class P256_KeyAgreement_PublicKey extends SDKHandle {
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3369042715992149, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3369042715992149, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 4106340570943159, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 4106340570943159, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 571173171913082, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 571173171913082, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 2967998857208486, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 2967998857208486, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2567960990663170, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2567960990663170, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 2089613409813767, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 2089613409813767, undefined, [rawRepresentation]); }
   /**
    * func hpkeRepresentation(kem: HPKE.KEM) throws -> Data
    * @availability iOS 17.0+
    */
-  hpkeRepresentation(kem: HPKE_KEM): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2647483741568586, this, [kem]); }
+  hpkeRepresentation(kem: HPKE_KEM): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2647483741568586, this, [kem]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2098690727041760, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2098690727041760, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 3475991103520849, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 3475991103520849, undefined, [x963Representation]); }
   /**
    * var compactRepresentation: Data? { get }
    * @availability iOS 13.0+
    */
-  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_6be9a005889899ab", 3182446764271809, this, []); }
+  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_c1f28409f8601238", 3182446764271809, this, []); }
   /**
    * init<Bytes>(compactRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 1033412069885838, undefined, [compactRepresentation]); }
+  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 1033412069885838, undefined, [compactRepresentation]); }
   /**
    * var compressedRepresentation: Data { get }
    * @availability iOS 16.0+
    */
-  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 543403042493015, this, []); }
+  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 543403042493015, this, []); }
   /**
    * init<Bytes>(compressedRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 16.0+
    */
-  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 967427579210023, undefined, [compressedRepresentation]); }
+  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 967427579210023, undefined, [compressedRepresentation]); }
   /**
    * init<D>(_ serialization: D, kem: HPKE.KEM) throws where D : ContiguousBytes
    * @availability iOS 17.0+
    */
-  static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 924594371783179, undefined, [serialization, kem]); }
+  static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 924594371783179, undefined, [serialization, kem]); }
   declare readonly $type: { "s:9CryptoKit4P256O12KeyAgreementO06PublicD0V": true };
 }
 
@@ -1680,28 +1680,28 @@ export class P256_Signing_ECDSASignature extends SDKHandle {
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 1134922366908533, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 1134922366908533, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1743570329695742, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1743570329695742, this, []); }
   /**
    * init<D>(derRepresentation: D) throws where D : DataProtocol
    * @availability iOS 13.0+
    */
-  static initDerRepresentation(derRepresentation: ArrayBuffer): P256_Signing_ECDSASignature { return callSDK<P256_Signing_ECDSASignature>("CryptoKit_6be9a005889899ab", 1891461916161875, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: ArrayBuffer): P256_Signing_ECDSASignature { return callSDK<P256_Signing_ECDSASignature>("CryptoKit_c1f28409f8601238", 1891461916161875, undefined, [derRepresentation]); }
   /**
    * var rawRepresentation: Data
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3769553448071320, this, []); }
-  set rawRepresentation(value: ArrayBuffer) { callSDK<void>("CryptoKit_6be9a005889899ab", 3653118579129966, this, [value]); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3769553448071320, this, []); }
+  set rawRepresentation(value: ArrayBuffer) { callSDK<void>("CryptoKit_c1f28409f8601238", 3653118579129966, this, [value]); }
   /**
    * init<D>(rawRepresentation: D) throws where D : DataProtocol
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_Signing_ECDSASignature { return callSDK<P256_Signing_ECDSASignature>("CryptoKit_6be9a005889899ab", 1186669233619927, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_Signing_ECDSASignature { return callSDK<P256_Signing_ECDSASignature>("CryptoKit_c1f28409f8601238", 1186669233619927, undefined, [rawRepresentation]); }
   declare readonly $type: { "s:9CryptoKit4P256O7SigningO14ECDSASignatureV": true };
 }
 
@@ -1714,57 +1714,57 @@ export class P256_Signing_PrivateKey extends SDKHandle {
    * var publicKey: P256.Signing.PublicKey { get }
    * @availability iOS 13.0+
    */
-  get publicKey(): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 2816867383801936, this, []); }
+  get publicKey(): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 2816867383801936, this, []); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2256454438421569, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2256454438421569, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P256_Signing_PrivateKey { return callSDK<P256_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 4044125741759548, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P256_Signing_PrivateKey { return callSDK<P256_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 4044125741759548, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P256_Signing_PrivateKey { return callSDK<P256_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 2547593716801955, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P256_Signing_PrivateKey { return callSDK<P256_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 2547593716801955, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 1382222616352816, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 1382222616352816, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2805775974667016, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2805775974667016, this, []); }
   /**
    * init<Bytes>(rawRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_Signing_PrivateKey { return callSDK<P256_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 3684224945920593, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_Signing_PrivateKey { return callSDK<P256_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 3684224945920593, undefined, [rawRepresentation]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2053498924628777, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2053498924628777, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P256_Signing_PrivateKey { return callSDK<P256_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 1538251036848311, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P256_Signing_PrivateKey { return callSDK<P256_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 1538251036848311, undefined, [x963Representation]); }
   /**
    * init(compactRepresentable: Bool = true)
    * @availability iOS 13.0+
    */
-  static initCompactRepresentable(compactRepresentable?: boolean): P256_Signing_PrivateKey { return callSDK<P256_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 3729799092321891, undefined, [compactRepresentable]); }
+  static initCompactRepresentable(compactRepresentable?: boolean): P256_Signing_PrivateKey { return callSDK<P256_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 3729799092321891, undefined, [compactRepresentable]); }
   /**
    * func signature<D>(for data: D) throws -> P256.Signing.ECDSASignature where D : DataProtocol
    * @availability iOS 13.0+
    */
-  signature(data: ArrayBuffer): P256_Signing_ECDSASignature { return callSDK<P256_Signing_ECDSASignature>("CryptoKit_6be9a005889899ab", 3500034083752490, this, [data]); }
+  signature(data: ArrayBuffer): P256_Signing_ECDSASignature { return callSDK<P256_Signing_ECDSASignature>("CryptoKit_c1f28409f8601238", 3500034083752490, this, [data]); }
   declare readonly $type: { "s:9CryptoKit4P256O7SigningO10PrivateKeyV": true };
 }
 
@@ -1777,67 +1777,67 @@ export class P256_Signing_PublicKey extends SDKHandle {
    * func isValidSignature<D>(_ signature: P256.Signing.ECDSASignature, for data: D) -> Bool where D : DataProtocol
    * @availability iOS 13.0+
    */
-  isValidSignature(signature: P256_Signing_ECDSASignature, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_6be9a005889899ab", 2700054416001444, this, [signature, data]); }
+  isValidSignature(signature: P256_Signing_ECDSASignature, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_c1f28409f8601238", 2700054416001444, this, [signature, data]); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 4231697594634063, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 4231697594634063, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 2320318849870774, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 2320318849870774, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 2075086861853128, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 2075086861853128, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 1023004548789000, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 1023004548789000, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2471541196318430, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2471541196318430, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 2373008962486379, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 2373008962486379, undefined, [rawRepresentation]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3240278980085431, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3240278980085431, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 227253048999920, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 227253048999920, undefined, [x963Representation]); }
   /**
    * var compactRepresentation: Data? { get }
    * @availability iOS 13.0+
    */
-  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_6be9a005889899ab", 3657686059611462, this, []); }
+  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_c1f28409f8601238", 3657686059611462, this, []); }
   /**
    * init<Bytes>(compactRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 2149157134387360, undefined, [compactRepresentation]); }
+  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 2149157134387360, undefined, [compactRepresentation]); }
   /**
    * var compressedRepresentation: Data { get }
    * @availability iOS 16.0+
    */
-  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2127394542277416, this, []); }
+  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2127394542277416, this, []); }
   /**
    * init<Bytes>(compressedRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 16.0+
    */
-  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 1965585947190592, undefined, [compressedRepresentation]); }
+  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 1965585947190592, undefined, [compressedRepresentation]); }
   declare readonly $type: { "s:9CryptoKit4P256O7SigningO9PublicKeyV": true };
 }
 
@@ -1866,62 +1866,62 @@ export class P384_KeyAgreement_PrivateKey extends SDKHandle {
    * func sharedSecretFromKeyAgreement(with publicKeyShare: P384.KeyAgreement.PublicKey) throws -> SharedSecret
    * @availability iOS 13.0+
    */
-  sharedSecretFromKeyAgreement(publicKeyShare: P384_KeyAgreement_PublicKey): SharedSecret { return callSDK<SharedSecret>("CryptoKit_6be9a005889899ab", 3457253372420064, this, [publicKeyShare]); }
+  sharedSecretFromKeyAgreement(publicKeyShare: P384_KeyAgreement_PublicKey): SharedSecret { return callSDK<SharedSecret>("CryptoKit_c1f28409f8601238", 3457253372420064, this, [publicKeyShare]); }
   /**
    * var publicKey: P384.KeyAgreement.PublicKey { get }
    * @availability iOS 13.0+
    */
-  get publicKey(): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 1297803015110680, this, []); }
+  get publicKey(): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 1297803015110680, this, []); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3966364793520604, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3966364793520604, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 2837995886593380, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 2837995886593380, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 482060278452677, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 482060278452677, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 54978085895516, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 54978085895516, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 434259806106173, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 434259806106173, this, []); }
   /**
    * init<Bytes>(rawRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 1440177165840202, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 1440177165840202, undefined, [rawRepresentation]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 4500225060075466, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 4500225060075466, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 2960445677264797, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 2960445677264797, undefined, [x963Representation]); }
   /**
    * init(compactRepresentable: Bool = true)
    * @availability iOS 13.0+
    */
-  static initCompactRepresentable(compactRepresentable?: boolean): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 1062572673974419, undefined, [compactRepresentable]); }
+  static initCompactRepresentable(compactRepresentable?: boolean): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 1062572673974419, undefined, [compactRepresentable]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 2328813666775856, undefined, []); }
+  static init(): P384_KeyAgreement_PrivateKey { return callSDK<P384_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 2328813666775856, undefined, []); }
   declare readonly $type: { "s:9CryptoKit4P384O12KeyAgreementO07PrivateD0V": true };
 }
 
@@ -1940,72 +1940,72 @@ export class P384_KeyAgreement_PublicKey extends SDKHandle {
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3560284614738222, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3560284614738222, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 1531814157578334, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 1531814157578334, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 2829658357089029, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 2829658357089029, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 1789796929821248, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 1789796929821248, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 78940355997040, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 78940355997040, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 1221858054270243, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 1221858054270243, undefined, [rawRepresentation]); }
   /**
    * func hpkeRepresentation(kem: HPKE.KEM) throws -> Data
    * @availability iOS 17.0+
    */
-  hpkeRepresentation(kem: HPKE_KEM): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 4063859349458249, this, [kem]); }
+  hpkeRepresentation(kem: HPKE_KEM): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 4063859349458249, this, [kem]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 455150787142858, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 455150787142858, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 2940589819530509, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 2940589819530509, undefined, [x963Representation]); }
   /**
    * var compactRepresentation: Data? { get }
    * @availability iOS 13.0+
    */
-  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_6be9a005889899ab", 1168110036620305, this, []); }
+  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_c1f28409f8601238", 1168110036620305, this, []); }
   /**
    * init<Bytes>(compactRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 2338824483895526, undefined, [compactRepresentation]); }
+  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 2338824483895526, undefined, [compactRepresentation]); }
   /**
    * var compressedRepresentation: Data { get }
    * @availability iOS 16.0+
    */
-  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 4131997306707263, this, []); }
+  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 4131997306707263, this, []); }
   /**
    * init<Bytes>(compressedRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 16.0+
    */
-  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 3812688598246194, undefined, [compressedRepresentation]); }
+  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 3812688598246194, undefined, [compressedRepresentation]); }
   /**
    * init<D>(_ serialization: D, kem: HPKE.KEM) throws where D : ContiguousBytes
    * @availability iOS 17.0+
    */
-  static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 4405813820358196, undefined, [serialization, kem]); }
+  static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): P384_KeyAgreement_PublicKey { return callSDK<P384_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 4405813820358196, undefined, [serialization, kem]); }
   declare readonly $type: { "s:9CryptoKit4P384O12KeyAgreementO06PublicD0V": true };
 }
 
@@ -2032,28 +2032,28 @@ export class P384_Signing_ECDSASignature extends SDKHandle {
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 2314615611514686, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 2314615611514686, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 98396923911136, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 98396923911136, this, []); }
   /**
    * init<D>(derRepresentation: D) throws where D : DataProtocol
    * @availability iOS 13.0+
    */
-  static initDerRepresentation(derRepresentation: ArrayBuffer): P384_Signing_ECDSASignature { return callSDK<P384_Signing_ECDSASignature>("CryptoKit_6be9a005889899ab", 3428825982530319, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: ArrayBuffer): P384_Signing_ECDSASignature { return callSDK<P384_Signing_ECDSASignature>("CryptoKit_c1f28409f8601238", 3428825982530319, undefined, [derRepresentation]); }
   /**
    * var rawRepresentation: Data
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1343857624948871, this, []); }
-  set rawRepresentation(value: ArrayBuffer) { callSDK<void>("CryptoKit_6be9a005889899ab", 2124989659328369, this, [value]); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1343857624948871, this, []); }
+  set rawRepresentation(value: ArrayBuffer) { callSDK<void>("CryptoKit_c1f28409f8601238", 2124989659328369, this, [value]); }
   /**
    * init<D>(rawRepresentation: D) throws where D : DataProtocol
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_Signing_ECDSASignature { return callSDK<P384_Signing_ECDSASignature>("CryptoKit_6be9a005889899ab", 3796503461811497, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_Signing_ECDSASignature { return callSDK<P384_Signing_ECDSASignature>("CryptoKit_c1f28409f8601238", 3796503461811497, undefined, [rawRepresentation]); }
   declare readonly $type: { "s:9CryptoKit4P384O7SigningO14ECDSASignatureV": true };
 }
 
@@ -2066,57 +2066,57 @@ export class P384_Signing_PrivateKey extends SDKHandle {
    * var publicKey: P384.Signing.PublicKey { get }
    * @availability iOS 13.0+
    */
-  get publicKey(): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 797251709366428, this, []); }
+  get publicKey(): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 797251709366428, this, []); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 4202392655895174, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 4202392655895174, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P384_Signing_PrivateKey { return callSDK<P384_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 698840352513829, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P384_Signing_PrivateKey { return callSDK<P384_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 698840352513829, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P384_Signing_PrivateKey { return callSDK<P384_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 2008991357468926, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P384_Signing_PrivateKey { return callSDK<P384_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 2008991357468926, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 2095993610743967, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 2095993610743967, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2175062878167955, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2175062878167955, this, []); }
   /**
    * init<Bytes>(rawRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_Signing_PrivateKey { return callSDK<P384_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 2264714589983960, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_Signing_PrivateKey { return callSDK<P384_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 2264714589983960, undefined, [rawRepresentation]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1501898961280476, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1501898961280476, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P384_Signing_PrivateKey { return callSDK<P384_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 2949868500827570, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P384_Signing_PrivateKey { return callSDK<P384_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 2949868500827570, undefined, [x963Representation]); }
   /**
    * init(compactRepresentable: Bool = true)
    * @availability iOS 13.0+
    */
-  static initCompactRepresentable(compactRepresentable?: boolean): P384_Signing_PrivateKey { return callSDK<P384_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 534690124085497, undefined, [compactRepresentable]); }
+  static initCompactRepresentable(compactRepresentable?: boolean): P384_Signing_PrivateKey { return callSDK<P384_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 534690124085497, undefined, [compactRepresentable]); }
   /**
    * func signature<D>(for data: D) throws -> P384.Signing.ECDSASignature where D : DataProtocol
    * @availability iOS 13.0+
    */
-  signature(data: ArrayBuffer): P384_Signing_ECDSASignature { return callSDK<P384_Signing_ECDSASignature>("CryptoKit_6be9a005889899ab", 4098867964367565, this, [data]); }
+  signature(data: ArrayBuffer): P384_Signing_ECDSASignature { return callSDK<P384_Signing_ECDSASignature>("CryptoKit_c1f28409f8601238", 4098867964367565, this, [data]); }
   declare readonly $type: { "s:9CryptoKit4P384O7SigningO10PrivateKeyV": true };
 }
 
@@ -2129,67 +2129,67 @@ export class P384_Signing_PublicKey extends SDKHandle {
    * func isValidSignature<D>(_ signature: P384.Signing.ECDSASignature, for data: D) -> Bool where D : DataProtocol
    * @availability iOS 13.0+
    */
-  isValidSignature(signature: P384_Signing_ECDSASignature, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_6be9a005889899ab", 2179711790468243, this, [signature, data]); }
+  isValidSignature(signature: P384_Signing_ECDSASignature, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_c1f28409f8601238", 2179711790468243, this, [signature, data]); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2389871348315684, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2389871348315684, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 4462514422857146, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 4462514422857146, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 333834653382709, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 333834653382709, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 112216644675423, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 112216644675423, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2168641666814197, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2168641666814197, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 1780009939383218, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 1780009939383218, undefined, [rawRepresentation]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2353191655854508, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2353191655854508, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 4434193225273584, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 4434193225273584, undefined, [x963Representation]); }
   /**
    * var compactRepresentation: Data? { get }
    * @availability iOS 13.0+
    */
-  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_6be9a005889899ab", 3141325752551831, this, []); }
+  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_c1f28409f8601238", 3141325752551831, this, []); }
   /**
    * init<Bytes>(compactRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 3013509226496336, undefined, [compactRepresentation]); }
+  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 3013509226496336, undefined, [compactRepresentation]); }
   /**
    * var compressedRepresentation: Data { get }
    * @availability iOS 16.0+
    */
-  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2976299281132991, this, []); }
+  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2976299281132991, this, []); }
   /**
    * init<Bytes>(compressedRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 16.0+
    */
-  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 1088250893550627, undefined, [compressedRepresentation]); }
+  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P384_Signing_PublicKey { return callSDK<P384_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 1088250893550627, undefined, [compressedRepresentation]); }
   declare readonly $type: { "s:9CryptoKit4P384O7SigningO9PublicKeyV": true };
 }
 
@@ -2218,62 +2218,62 @@ export class P521_KeyAgreement_PrivateKey extends SDKHandle {
    * func sharedSecretFromKeyAgreement(with publicKeyShare: P521.KeyAgreement.PublicKey) throws -> SharedSecret
    * @availability iOS 13.0+
    */
-  sharedSecretFromKeyAgreement(publicKeyShare: P521_KeyAgreement_PublicKey): SharedSecret { return callSDK<SharedSecret>("CryptoKit_6be9a005889899ab", 3593512296115260, this, [publicKeyShare]); }
+  sharedSecretFromKeyAgreement(publicKeyShare: P521_KeyAgreement_PublicKey): SharedSecret { return callSDK<SharedSecret>("CryptoKit_c1f28409f8601238", 3593512296115260, this, [publicKeyShare]); }
   /**
    * var publicKey: P521.KeyAgreement.PublicKey { get }
    * @availability iOS 13.0+
    */
-  get publicKey(): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 4277391947728304, this, []); }
+  get publicKey(): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 4277391947728304, this, []); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3751479074645938, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3751479074645938, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 1551803895757016, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 1551803895757016, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 266064197922941, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 266064197922941, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 2850068255801832, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 2850068255801832, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1947907207028069, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1947907207028069, this, []); }
   /**
    * init<Bytes>(rawRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 896554795890651, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 896554795890651, undefined, [rawRepresentation]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2937286460911278, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2937286460911278, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 4435329830729249, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 4435329830729249, undefined, [x963Representation]); }
   /**
    * init(compactRepresentable: Bool = true)
    * @availability iOS 13.0+
    */
-  static initCompactRepresentable(compactRepresentable?: boolean): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 4203134133276724, undefined, [compactRepresentable]); }
+  static initCompactRepresentable(compactRepresentable?: boolean): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 4203134133276724, undefined, [compactRepresentable]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 2925214307989461, undefined, []); }
+  static init(): P521_KeyAgreement_PrivateKey { return callSDK<P521_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 2925214307989461, undefined, []); }
   declare readonly $type: { "s:9CryptoKit4P521O12KeyAgreementO07PrivateD0V": true };
 }
 
@@ -2292,72 +2292,72 @@ export class P521_KeyAgreement_PublicKey extends SDKHandle {
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2630016505242249, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2630016505242249, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 2428656459933509, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 2428656459933509, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 3347051493726333, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 3347051493726333, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 682004452428921, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 682004452428921, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 129147171443584, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 129147171443584, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 1545366746419109, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 1545366746419109, undefined, [rawRepresentation]); }
   /**
    * func hpkeRepresentation(kem: HPKE.KEM) throws -> Data
    * @availability iOS 17.0+
    */
-  hpkeRepresentation(kem: HPKE_KEM): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3718768036334332, this, [kem]); }
+  hpkeRepresentation(kem: HPKE_KEM): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3718768036334332, this, [kem]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3613206290986173, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3613206290986173, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 3548688430361977, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 3548688430361977, undefined, [x963Representation]); }
   /**
    * var compactRepresentation: Data? { get }
    * @availability iOS 13.0+
    */
-  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_6be9a005889899ab", 3276304903496869, this, []); }
+  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_c1f28409f8601238", 3276304903496869, this, []); }
   /**
    * init<Bytes>(compactRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 2905731876741957, undefined, [compactRepresentation]); }
+  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 2905731876741957, undefined, [compactRepresentation]); }
   /**
    * var compressedRepresentation: Data { get }
    * @availability iOS 16.0+
    */
-  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 322573949084049, this, []); }
+  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 322573949084049, this, []); }
   /**
    * init<Bytes>(compressedRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 16.0+
    */
-  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 1957634810393894, undefined, [compressedRepresentation]); }
+  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 1957634810393894, undefined, [compressedRepresentation]); }
   /**
    * init<D>(_ serialization: D, kem: HPKE.KEM) throws where D : ContiguousBytes
    * @availability iOS 17.0+
    */
-  static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 1032658241054500, undefined, [serialization, kem]); }
+  static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): P521_KeyAgreement_PublicKey { return callSDK<P521_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 1032658241054500, undefined, [serialization, kem]); }
   declare readonly $type: { "s:9CryptoKit4P521O12KeyAgreementO06PublicD0V": true };
 }
 
@@ -2390,28 +2390,28 @@ export class P521_Signing_ECDSASignature extends SDKHandle {
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 99833284210840, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 99833284210840, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2979180944047036, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2979180944047036, this, []); }
   /**
    * init<D>(derRepresentation: D) throws where D : DataProtocol
    * @availability iOS 13.0+
    */
-  static initDerRepresentation(derRepresentation: ArrayBuffer): P521_Signing_ECDSASignature { return callSDK<P521_Signing_ECDSASignature>("CryptoKit_6be9a005889899ab", 1956932328408072, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: ArrayBuffer): P521_Signing_ECDSASignature { return callSDK<P521_Signing_ECDSASignature>("CryptoKit_c1f28409f8601238", 1956932328408072, undefined, [derRepresentation]); }
   /**
    * var rawRepresentation: Data
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3665751076005657, this, []); }
-  set rawRepresentation(value: ArrayBuffer) { callSDK<void>("CryptoKit_6be9a005889899ab", 1605442235414147, this, [value]); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3665751076005657, this, []); }
+  set rawRepresentation(value: ArrayBuffer) { callSDK<void>("CryptoKit_c1f28409f8601238", 1605442235414147, this, [value]); }
   /**
    * init<D>(rawRepresentation: D) throws where D : DataProtocol
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_Signing_ECDSASignature { return callSDK<P521_Signing_ECDSASignature>("CryptoKit_6be9a005889899ab", 3313267287446028, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_Signing_ECDSASignature { return callSDK<P521_Signing_ECDSASignature>("CryptoKit_c1f28409f8601238", 3313267287446028, undefined, [rawRepresentation]); }
   declare readonly $type: { "s:9CryptoKit4P521O7SigningO14ECDSASignatureV": true };
 }
 
@@ -2424,57 +2424,57 @@ export class P521_Signing_PrivateKey extends SDKHandle {
    * var publicKey: P521.Signing.PublicKey { get }
    * @availability iOS 13.0+
    */
-  get publicKey(): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 3051711127765493, this, []); }
+  get publicKey(): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 3051711127765493, this, []); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2719945562163993, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2719945562163993, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P521_Signing_PrivateKey { return callSDK<P521_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 3710006203913513, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P521_Signing_PrivateKey { return callSDK<P521_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 3710006203913513, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P521_Signing_PrivateKey { return callSDK<P521_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 2977358229942312, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P521_Signing_PrivateKey { return callSDK<P521_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 2977358229942312, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 2695831566555835, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 2695831566555835, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2622644722631308, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2622644722631308, this, []); }
   /**
    * init<Bytes>(rawRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_Signing_PrivateKey { return callSDK<P521_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 2938069078835864, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_Signing_PrivateKey { return callSDK<P521_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 2938069078835864, undefined, [rawRepresentation]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2331705081955880, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2331705081955880, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P521_Signing_PrivateKey { return callSDK<P521_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 1090489210411492, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P521_Signing_PrivateKey { return callSDK<P521_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 1090489210411492, undefined, [x963Representation]); }
   /**
    * init(compactRepresentable: Bool = true)
    * @availability iOS 13.0+
    */
-  static initCompactRepresentable(compactRepresentable?: boolean): P521_Signing_PrivateKey { return callSDK<P521_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 2427829124308844, undefined, [compactRepresentable]); }
+  static initCompactRepresentable(compactRepresentable?: boolean): P521_Signing_PrivateKey { return callSDK<P521_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 2427829124308844, undefined, [compactRepresentable]); }
   /**
    * func signature<D>(for data: D) throws -> P521.Signing.ECDSASignature where D : DataProtocol
    * @availability iOS 13.0+
    */
-  signature(data: ArrayBuffer): P521_Signing_ECDSASignature { return callSDK<P521_Signing_ECDSASignature>("CryptoKit_6be9a005889899ab", 1013282766187120, this, [data]); }
+  signature(data: ArrayBuffer): P521_Signing_ECDSASignature { return callSDK<P521_Signing_ECDSASignature>("CryptoKit_c1f28409f8601238", 1013282766187120, this, [data]); }
   declare readonly $type: { "s:9CryptoKit4P521O7SigningO10PrivateKeyV": true };
 }
 
@@ -2487,67 +2487,67 @@ export class P521_Signing_PublicKey extends SDKHandle {
    * func isValidSignature<D>(_ signature: P521.Signing.ECDSASignature, for data: D) -> Bool where D : DataProtocol
    * @availability iOS 13.0+
    */
-  isValidSignature(signature: P521_Signing_ECDSASignature, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_6be9a005889899ab", 4153952874311988, this, [signature, data]); }
+  isValidSignature(signature: P521_Signing_ECDSASignature, data: ArrayBuffer): boolean { return callSDK<boolean>("CryptoKit_c1f28409f8601238", 4153952874311988, this, [signature, data]); }
   /**
    * var derRepresentation: Data { get }
    * @availability iOS 14.0+
    */
-  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1340863750682700, this, []); }
+  get derRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1340863750682700, this, []); }
   /**
    * init<Bytes>(derRepresentation: Bytes) throws where Bytes : RandomAccessCollection, Bytes.Element == UInt8
    * @availability iOS 14.0+
    */
-  static initDerRepresentation(derRepresentation: Array<number>): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 4300776965153490, undefined, [derRepresentation]); }
+  static initDerRepresentation(derRepresentation: Array<number>): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 4300776965153490, undefined, [derRepresentation]); }
   /**
    * init(pemRepresentation: String) throws
    * @availability iOS 14.0+
    */
-  static initPemRepresentation(pemRepresentation: string): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 2203217987101356, undefined, [pemRepresentation]); }
+  static initPemRepresentation(pemRepresentation: string): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 2203217987101356, undefined, [pemRepresentation]); }
   /**
    * var pemRepresentation: String { get }
    * @availability iOS 14.0+
    */
-  get pemRepresentation(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 2301374615558748, this, []); }
+  get pemRepresentation(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 2301374615558748, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 13.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1472553537514602, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1472553537514602, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 4055563946799682, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 4055563946799682, undefined, [rawRepresentation]); }
   /**
    * var x963Representation: Data { get }
    * @availability iOS 13.0+
    */
-  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 791360286553836, this, []); }
+  get x963Representation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 791360286553836, this, []); }
   /**
    * init<Bytes>(x963Representation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initX963Representation(x963Representation: ArrayBuffer): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 4429979180146954, undefined, [x963Representation]); }
+  static initX963Representation(x963Representation: ArrayBuffer): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 4429979180146954, undefined, [x963Representation]); }
   /**
    * var compactRepresentation: Data? { get }
    * @availability iOS 13.0+
    */
-  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_6be9a005889899ab", 475277489213986, this, []); }
+  get compactRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CryptoKit_c1f28409f8601238", 475277489213986, this, []); }
   /**
    * init<Bytes>(compactRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 2242629782599337, undefined, [compactRepresentation]); }
+  static initCompactRepresentation(compactRepresentation: ArrayBuffer): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 2242629782599337, undefined, [compactRepresentation]); }
   /**
    * var compressedRepresentation: Data { get }
    * @availability iOS 16.0+
    */
-  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 166310591243525, this, []); }
+  get compressedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 166310591243525, this, []); }
   /**
    * init<Bytes>(compressedRepresentation: Bytes) throws where Bytes : ContiguousBytes
    * @availability iOS 16.0+
    */
-  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 4161585638615457, undefined, [compressedRepresentation]); }
+  static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P521_Signing_PublicKey { return callSDK<P521_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 4161585638615457, undefined, [compressedRepresentation]); }
   declare readonly $type: { "s:9CryptoKit4P521O7SigningO9PublicKeyV": true };
 }
 
@@ -2560,7 +2560,7 @@ export class SecureEnclave extends SDKHandle {
    * static var isAvailable: Bool { get }
    * @availability iOS 13.0+
    */
-  static get isAvailable(): boolean { return callSDK<boolean>("CryptoKit_6be9a005889899ab", 4184486641663633, undefined, []); }
+  static get isAvailable(): boolean { return callSDK<boolean>("CryptoKit_c1f28409f8601238", 4184486641663633, undefined, []); }
   declare readonly $type: { "s:9CryptoKit13SecureEnclaveO": true };
 }
 
@@ -2581,32 +2581,32 @@ export class SecureEnclave_MLDSA65_PrivateKey extends SDKHandle {
    * let publicKey: MLDSA65.PublicKey
    * @availability iOS 26.0+
    */
-  get publicKey(): MLDSA65_PublicKey { return callSDK<MLDSA65_PublicKey>("CryptoKit_6be9a005889899ab", 1481707074985110, this, []); }
+  get publicKey(): MLDSA65_PublicKey { return callSDK<MLDSA65_PublicKey>("CryptoKit_c1f28409f8601238", 1481707074985110, this, []); }
   /**
    * init(accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
    * @availability iOS 26.0+
    */
-  static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLDSA65_PrivateKey { return callSDK<SecureEnclave_MLDSA65_PrivateKey>("CryptoKit_6be9a005889899ab", 3092155588573779, undefined, [accessControl, authenticationContext]); }
+  static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLDSA65_PrivateKey { return callSDK<SecureEnclave_MLDSA65_PrivateKey>("CryptoKit_c1f28409f8601238", 3092155588573779, undefined, [accessControl, authenticationContext]); }
   /**
    * let dataRepresentation: Data
    * @availability iOS 26.0+
    */
-  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1847634112895887, this, []); }
+  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1847634112895887, this, []); }
   /**
    * init<D>(dataRepresentation: D, authenticationContext: LAContext? = nil) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLDSA65_PrivateKey { return callSDK<SecureEnclave_MLDSA65_PrivateKey>("CryptoKit_6be9a005889899ab", 3768053198263799, undefined, [dataRepresentation, authenticationContext]); }
+  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLDSA65_PrivateKey { return callSDK<SecureEnclave_MLDSA65_PrivateKey>("CryptoKit_c1f28409f8601238", 3768053198263799, undefined, [dataRepresentation, authenticationContext]); }
   /**
    * func signature<D>(for data: D) throws -> Data where D : DataProtocol
    * @availability iOS 26.0+
    */
-  signatureFor(data: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1713324124413606, this, [data]); }
+  signatureFor(data: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1713324124413606, this, [data]); }
   /**
    * func signature<D, C>(for data: D, context: C) throws -> Data where D : DataProtocol, C : DataProtocol
    * @availability iOS 26.0+
    */
-  signatureForContext(data: ArrayBuffer, context: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3321823080702601, this, [data, context]); }
+  signatureForContext(data: ArrayBuffer, context: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3321823080702601, this, [data, context]); }
   declare readonly $type: { "s:9CryptoKit13SecureEnclaveO7MLDSA65O10PrivateKeyV": true };
 }
 
@@ -2627,32 +2627,32 @@ export class SecureEnclave_MLDSA87_PrivateKey extends SDKHandle {
    * let publicKey: MLDSA87.PublicKey
    * @availability iOS 26.0+
    */
-  get publicKey(): MLDSA87_PublicKey { return callSDK<MLDSA87_PublicKey>("CryptoKit_6be9a005889899ab", 1729241069215311, this, []); }
+  get publicKey(): MLDSA87_PublicKey { return callSDK<MLDSA87_PublicKey>("CryptoKit_c1f28409f8601238", 1729241069215311, this, []); }
   /**
    * init(accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
    * @availability iOS 26.0+
    */
-  static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLDSA87_PrivateKey { return callSDK<SecureEnclave_MLDSA87_PrivateKey>("CryptoKit_6be9a005889899ab", 4464861791169018, undefined, [accessControl, authenticationContext]); }
+  static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLDSA87_PrivateKey { return callSDK<SecureEnclave_MLDSA87_PrivateKey>("CryptoKit_c1f28409f8601238", 4464861791169018, undefined, [accessControl, authenticationContext]); }
   /**
    * let dataRepresentation: Data
    * @availability iOS 26.0+
    */
-  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 4397107575989481, this, []); }
+  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 4397107575989481, this, []); }
   /**
    * init<D>(dataRepresentation: D, authenticationContext: LAContext? = nil) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLDSA87_PrivateKey { return callSDK<SecureEnclave_MLDSA87_PrivateKey>("CryptoKit_6be9a005889899ab", 3416659729957365, undefined, [dataRepresentation, authenticationContext]); }
+  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLDSA87_PrivateKey { return callSDK<SecureEnclave_MLDSA87_PrivateKey>("CryptoKit_c1f28409f8601238", 3416659729957365, undefined, [dataRepresentation, authenticationContext]); }
   /**
    * func signature<D>(for data: D) throws -> Data where D : DataProtocol
    * @availability iOS 26.0+
    */
-  signatureFor(data: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2263818565680044, this, [data]); }
+  signatureFor(data: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2263818565680044, this, [data]); }
   /**
    * func signature<D, C>(for data: D, context: C) throws -> Data where D : DataProtocol, C : DataProtocol
    * @availability iOS 26.0+
    */
-  signatureForContext(data: ArrayBuffer, context: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1933208629195532, this, [data, context]); }
+  signatureForContext(data: ArrayBuffer, context: ArrayBuffer): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1933208629195532, this, [data, context]); }
   declare readonly $type: { "s:9CryptoKit13SecureEnclaveO7MLDSA87O10PrivateKeyV": true };
 }
 
@@ -2673,32 +2673,32 @@ export class SecureEnclave_MLKEM1024_PrivateKey extends SDKHandle {
    * let publicKey: MLKEM1024.PublicKey
    * @availability iOS 26.0+
    */
-  get publicKey(): MLKEM1024_PublicKey { return callSDK<MLKEM1024_PublicKey>("CryptoKit_6be9a005889899ab", 3032407965171748, this, []); }
+  get publicKey(): MLKEM1024_PublicKey { return callSDK<MLKEM1024_PublicKey>("CryptoKit_c1f28409f8601238", 3032407965171748, this, []); }
   /**
    * func decapsulate<D>(_ encapsulated: D) throws -> SymmetricKey where D : DataProtocol
    * @availability iOS 26.0+
    */
-  decapsulate(encapsulated: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 4335825706555910, this, [encapsulated]); }
+  decapsulate(encapsulated: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 4335825706555910, this, [encapsulated]); }
   /**
    * init(accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
    * @availability iOS 26.0+
    */
-  static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLKEM1024_PrivateKey { return callSDK<SecureEnclave_MLKEM1024_PrivateKey>("CryptoKit_6be9a005889899ab", 2849132229141206, undefined, [accessControl, authenticationContext]); }
+  static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLKEM1024_PrivateKey { return callSDK<SecureEnclave_MLKEM1024_PrivateKey>("CryptoKit_c1f28409f8601238", 2849132229141206, undefined, [accessControl, authenticationContext]); }
   /**
    * let dataRepresentation: Data
    * @availability iOS 26.0+
    */
-  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3677601606019313, this, []); }
+  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3677601606019313, this, []); }
   /**
    * init<D>(dataRepresentation: D, authenticationContext: LAContext? = nil) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLKEM1024_PrivateKey { return callSDK<SecureEnclave_MLKEM1024_PrivateKey>("CryptoKit_6be9a005889899ab", 3733078930902872, undefined, [dataRepresentation, authenticationContext]); }
+  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLKEM1024_PrivateKey { return callSDK<SecureEnclave_MLKEM1024_PrivateKey>("CryptoKit_c1f28409f8601238", 3733078930902872, undefined, [dataRepresentation, authenticationContext]); }
   /**
    * static func generate() throws -> SecureEnclave.MLKEM1024.PrivateKey
    * @availability iOS 26.0+
    */
-  static generate(): SecureEnclave_MLKEM1024_PrivateKey { return callSDK<SecureEnclave_MLKEM1024_PrivateKey>("CryptoKit_6be9a005889899ab", 1011173562861013, undefined, []); }
+  static generate(): SecureEnclave_MLKEM1024_PrivateKey { return callSDK<SecureEnclave_MLKEM1024_PrivateKey>("CryptoKit_c1f28409f8601238", 1011173562861013, undefined, []); }
   declare readonly $type: { "s:9CryptoKit13SecureEnclaveO9MLKEM1024O10PrivateKeyV": true };
 }
 
@@ -2725,32 +2725,32 @@ export class SecureEnclave_MLKEM768_PrivateKey extends SDKHandle {
    * let publicKey: MLKEM768.PublicKey
    * @availability iOS 26.0+
    */
-  get publicKey(): MLKEM768_PublicKey { return callSDK<MLKEM768_PublicKey>("CryptoKit_6be9a005889899ab", 1487273455331066, this, []); }
+  get publicKey(): MLKEM768_PublicKey { return callSDK<MLKEM768_PublicKey>("CryptoKit_c1f28409f8601238", 1487273455331066, this, []); }
   /**
    * func decapsulate<D>(_ encapsulated: D) throws -> SymmetricKey where D : DataProtocol
    * @availability iOS 26.0+
    */
-  decapsulate(encapsulated: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 3819093599717375, this, [encapsulated]); }
+  decapsulate(encapsulated: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 3819093599717375, this, [encapsulated]); }
   /**
    * init(accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
    * @availability iOS 26.0+
    */
-  static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLKEM768_PrivateKey { return callSDK<SecureEnclave_MLKEM768_PrivateKey>("CryptoKit_6be9a005889899ab", 3656567566523991, undefined, [accessControl, authenticationContext]); }
+  static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLKEM768_PrivateKey { return callSDK<SecureEnclave_MLKEM768_PrivateKey>("CryptoKit_c1f28409f8601238", 3656567566523991, undefined, [accessControl, authenticationContext]); }
   /**
    * let dataRepresentation: Data
    * @availability iOS 26.0+
    */
-  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 3258630493165041, this, []); }
+  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 3258630493165041, this, []); }
   /**
    * init<D>(dataRepresentation: D, authenticationContext: LAContext? = nil) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLKEM768_PrivateKey { return callSDK<SecureEnclave_MLKEM768_PrivateKey>("CryptoKit_6be9a005889899ab", 857512200799790, undefined, [dataRepresentation, authenticationContext]); }
+  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLKEM768_PrivateKey { return callSDK<SecureEnclave_MLKEM768_PrivateKey>("CryptoKit_c1f28409f8601238", 857512200799790, undefined, [dataRepresentation, authenticationContext]); }
   /**
    * static func generate() throws -> SecureEnclave.MLKEM768.PrivateKey
    * @availability iOS 26.0+
    */
-  static generate(): SecureEnclave_MLKEM768_PrivateKey { return callSDK<SecureEnclave_MLKEM768_PrivateKey>("CryptoKit_6be9a005889899ab", 588775857664774, undefined, []); }
+  static generate(): SecureEnclave_MLKEM768_PrivateKey { return callSDK<SecureEnclave_MLKEM768_PrivateKey>("CryptoKit_c1f28409f8601238", 588775857664774, undefined, []); }
   declare readonly $type: { "s:9CryptoKit13SecureEnclaveO8MLKEM768O10PrivateKeyV": true };
 }
 
@@ -2785,27 +2785,27 @@ export class SecureEnclave_P256_KeyAgreement_PrivateKey extends SDKHandle {
    * func sharedSecretFromKeyAgreement(with publicKeyShare: P256.KeyAgreement.PublicKey) throws -> SharedSecret
    * @availability iOS 13.0+
    */
-  sharedSecretFromKeyAgreement(publicKeyShare: P256_KeyAgreement_PublicKey): SharedSecret { return callSDK<SharedSecret>("CryptoKit_6be9a005889899ab", 3569255625729531, this, [publicKeyShare]); }
+  sharedSecretFromKeyAgreement(publicKeyShare: P256_KeyAgreement_PublicKey): SharedSecret { return callSDK<SharedSecret>("CryptoKit_c1f28409f8601238", 3569255625729531, this, [publicKeyShare]); }
   /**
    * let publicKey: P256.KeyAgreement.PublicKey
    * @availability iOS 13.0+
    */
-  get publicKey(): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_6be9a005889899ab", 3873536783056694, this, []); }
+  get publicKey(): P256_KeyAgreement_PublicKey { return callSDK<P256_KeyAgreement_PublicKey>("CryptoKit_c1f28409f8601238", 3873536783056694, this, []); }
   /**
    * let dataRepresentation: Data
    * @availability iOS 13.0+
    */
-  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1228763235375593, this, []); }
+  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1228763235375593, this, []); }
   /**
    * init(dataRepresentation: Data, authenticationContext: LAContext? = nil) throws
    * @availability iOS 13.0+
    */
-  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_P256_KeyAgreement_PrivateKey { return callSDK<SecureEnclave_P256_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 3002741297105905, undefined, [dataRepresentation, authenticationContext]); }
+  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_P256_KeyAgreement_PrivateKey { return callSDK<SecureEnclave_P256_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 3002741297105905, undefined, [dataRepresentation, authenticationContext]); }
   /**
    * init(compactRepresentable: Bool = true, accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
    * @availability iOS 13.0+
    */
-  static initCompactRepresentableAccessControlAuthenticationContext(compactRepresentable?: boolean, accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_P256_KeyAgreement_PrivateKey { return callSDK<SecureEnclave_P256_KeyAgreement_PrivateKey>("CryptoKit_6be9a005889899ab", 642024058874371, undefined, [compactRepresentable, accessControl, authenticationContext]); }
+  static initCompactRepresentableAccessControlAuthenticationContext(compactRepresentable?: boolean, accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_P256_KeyAgreement_PrivateKey { return callSDK<SecureEnclave_P256_KeyAgreement_PrivateKey>("CryptoKit_c1f28409f8601238", 642024058874371, undefined, [compactRepresentable, accessControl, authenticationContext]); }
   declare readonly $type: { "s:9CryptoKit13SecureEnclaveO4P256O12KeyAgreementO07PrivateF0V": true };
 }
 
@@ -2832,27 +2832,27 @@ export class SecureEnclave_P256_Signing_PrivateKey extends SDKHandle {
    * let publicKey: P256.Signing.PublicKey
    * @availability iOS 13.0+
    */
-  get publicKey(): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_6be9a005889899ab", 4151245751814300, this, []); }
+  get publicKey(): P256_Signing_PublicKey { return callSDK<P256_Signing_PublicKey>("CryptoKit_c1f28409f8601238", 4151245751814300, this, []); }
   /**
    * let dataRepresentation: Data
    * @availability iOS 13.0+
    */
-  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1253983014005660, this, []); }
+  get dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1253983014005660, this, []); }
   /**
    * init(dataRepresentation: Data, authenticationContext: LAContext? = nil) throws
    * @availability iOS 13.0+
    */
-  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_P256_Signing_PrivateKey { return callSDK<SecureEnclave_P256_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 2133440973475717, undefined, [dataRepresentation, authenticationContext]); }
+  static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_P256_Signing_PrivateKey { return callSDK<SecureEnclave_P256_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 2133440973475717, undefined, [dataRepresentation, authenticationContext]); }
   /**
    * init(compactRepresentable: Bool = true, accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
    * @availability iOS 13.0+
    */
-  static initCompactRepresentableAccessControlAuthenticationContext(compactRepresentable?: boolean, accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_P256_Signing_PrivateKey { return callSDK<SecureEnclave_P256_Signing_PrivateKey>("CryptoKit_6be9a005889899ab", 2666774545066145, undefined, [compactRepresentable, accessControl, authenticationContext]); }
+  static initCompactRepresentableAccessControlAuthenticationContext(compactRepresentable?: boolean, accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_P256_Signing_PrivateKey { return callSDK<SecureEnclave_P256_Signing_PrivateKey>("CryptoKit_c1f28409f8601238", 2666774545066145, undefined, [compactRepresentable, accessControl, authenticationContext]); }
   /**
    * func signature<D>(for data: D) throws -> P256.Signing.ECDSASignature where D : DataProtocol
    * @availability iOS 13.0+
    */
-  signature(data: ArrayBuffer): P256_Signing_ECDSASignature { return callSDK<P256_Signing_ECDSASignature>("CryptoKit_6be9a005889899ab", 986661172079946, this, [data]); }
+  signature(data: ArrayBuffer): P256_Signing_ECDSASignature { return callSDK<P256_Signing_ECDSASignature>("CryptoKit_c1f28409f8601238", 986661172079946, this, [data]); }
   declare readonly $type: { "s:9CryptoKit13SecureEnclaveO4P256O7SigningO10PrivateKeyV": true };
 }
 
@@ -2883,27 +2883,27 @@ export class SHA256 extends SDKHandle {
    * static let blockByteCount: Int
    * @availability iOS 13.2+
    */
-  static get blockByteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 4173791150068853, undefined, []); }
+  static get blockByteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 4173791150068853, undefined, []); }
   /**
    * mutating func update(bufferPointer: UnsafeRawBufferPointer)
    * @availability iOS 13.0+
    */
-  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_6be9a005889899ab", 2992955040607557, this, [bufferPointer]); }
+  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_c1f28409f8601238", 2992955040607557, this, [bufferPointer]); }
   /**
    * func finalize() -> SHA256.Digest
    * @availability iOS 13.0+
    */
-  finalize(): SHA256Digest { return callSDK<SHA256Digest>("CryptoKit_6be9a005889899ab", 3552807765475636, this, []); }
+  finalize(): SHA256Digest { return callSDK<SHA256Digest>("CryptoKit_c1f28409f8601238", 3552807765475636, this, []); }
   /**
    * static let byteCount: Int
    * @availability iOS 13.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 1237495080234996, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 1237495080234996, undefined, []); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): SHA256 { return callSDK<SHA256>("CryptoKit_6be9a005889899ab", 589389630770704, undefined, []); }
+  static init(): SHA256 { return callSDK<SHA256>("CryptoKit_c1f28409f8601238", 589389630770704, undefined, []); }
   declare readonly $type: { "s:9CryptoKit6SHA256V": true };
 }
 
@@ -2922,17 +2922,17 @@ export class SHA256Digest extends SDKHandle {
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 1434074767000195, this, []); }
+  get description(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 1434074767000195, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 47633577529642, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 47633577529642, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * static var byteCount: Int { get }
    * @availability iOS 13.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 2063035633631749, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 2063035633631749, undefined, []); }
   declare readonly $type: { "s:9CryptoKit12SHA256DigestV": true };
 }
 
@@ -2957,27 +2957,27 @@ export class SHA3_256 extends SDKHandle {
    * static let blockByteCount: Int
    * @availability iOS 26.0+
    */
-  static get blockByteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 1411788386863086, undefined, []); }
+  static get blockByteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 1411788386863086, undefined, []); }
   /**
    * mutating func update(bufferPointer: UnsafeRawBufferPointer)
    * @availability iOS 26.0+
    */
-  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_6be9a005889899ab", 2541596129223845, this, [bufferPointer]); }
+  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_c1f28409f8601238", 2541596129223845, this, [bufferPointer]); }
   /**
    * func finalize() -> SHA3_256.Digest
    * @availability iOS 26.0+
    */
-  finalize(): SHA3_256Digest { return callSDK<SHA3_256Digest>("CryptoKit_6be9a005889899ab", 3857423569948553, this, []); }
+  finalize(): SHA3_256Digest { return callSDK<SHA3_256Digest>("CryptoKit_c1f28409f8601238", 3857423569948553, this, []); }
   /**
    * static let byteCount: Int
    * @availability iOS 26.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 4364322737629332, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 4364322737629332, undefined, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): SHA3_256 { return callSDK<SHA3_256>("CryptoKit_6be9a005889899ab", 2227334814970514, undefined, []); }
+  static init(): SHA3_256 { return callSDK<SHA3_256>("CryptoKit_c1f28409f8601238", 2227334814970514, undefined, []); }
   declare readonly $type: { "s:9CryptoKit8SHA3_256V": true };
 }
 
@@ -2996,17 +2996,17 @@ export class SHA3_256Digest extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 575136710251854, this, []); }
+  get description(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 575136710251854, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 26.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 3957565937445532, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 3957565937445532, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * static var byteCount: Int { get }
    * @availability iOS 26.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 924578160282155, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 924578160282155, undefined, []); }
   declare readonly $type: { "s:9CryptoKit14SHA3_256DigestV": true };
 }
 
@@ -3031,27 +3031,27 @@ export class SHA3_384 extends SDKHandle {
    * static let blockByteCount: Int
    * @availability iOS 26.0+
    */
-  static get blockByteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 2980917010536063, undefined, []); }
+  static get blockByteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 2980917010536063, undefined, []); }
   /**
    * mutating func update(bufferPointer: UnsafeRawBufferPointer)
    * @availability iOS 26.0+
    */
-  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_6be9a005889899ab", 1471945407081111, this, [bufferPointer]); }
+  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_c1f28409f8601238", 1471945407081111, this, [bufferPointer]); }
   /**
    * func finalize() -> SHA3_384.Digest
    * @availability iOS 26.0+
    */
-  finalize(): SHA3_384Digest { return callSDK<SHA3_384Digest>("CryptoKit_6be9a005889899ab", 4400862038210066, this, []); }
+  finalize(): SHA3_384Digest { return callSDK<SHA3_384Digest>("CryptoKit_c1f28409f8601238", 4400862038210066, this, []); }
   /**
    * static let byteCount: Int
    * @availability iOS 26.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 723271308573156, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 723271308573156, undefined, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): SHA3_384 { return callSDK<SHA3_384>("CryptoKit_6be9a005889899ab", 1778154497256036, undefined, []); }
+  static init(): SHA3_384 { return callSDK<SHA3_384>("CryptoKit_c1f28409f8601238", 1778154497256036, undefined, []); }
   declare readonly $type: { "s:9CryptoKit8SHA3_384V": true };
 }
 
@@ -3070,17 +3070,17 @@ export class SHA3_384Digest extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 2373122417273978, this, []); }
+  get description(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 2373122417273978, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 26.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 2821822850663121, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 2821822850663121, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * static var byteCount: Int { get }
    * @availability iOS 26.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 989704809046045, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 989704809046045, undefined, []); }
   declare readonly $type: { "s:9CryptoKit14SHA3_384DigestV": true };
 }
 
@@ -3105,27 +3105,27 @@ export class SHA3_512 extends SDKHandle {
    * static let blockByteCount: Int
    * @availability iOS 26.0+
    */
-  static get blockByteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 2391282045275859, undefined, []); }
+  static get blockByteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 2391282045275859, undefined, []); }
   /**
    * mutating func update(bufferPointer: UnsafeRawBufferPointer)
    * @availability iOS 26.0+
    */
-  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_6be9a005889899ab", 1225163381430002, this, [bufferPointer]); }
+  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_c1f28409f8601238", 1225163381430002, this, [bufferPointer]); }
   /**
    * func finalize() -> SHA3_512.Digest
    * @availability iOS 26.0+
    */
-  finalize(): SHA3_512Digest { return callSDK<SHA3_512Digest>("CryptoKit_6be9a005889899ab", 1324777600491045, this, []); }
+  finalize(): SHA3_512Digest { return callSDK<SHA3_512Digest>("CryptoKit_c1f28409f8601238", 1324777600491045, this, []); }
   /**
    * static let byteCount: Int
    * @availability iOS 26.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 3835227160295439, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 3835227160295439, undefined, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): SHA3_512 { return callSDK<SHA3_512>("CryptoKit_6be9a005889899ab", 2083775995941328, undefined, []); }
+  static init(): SHA3_512 { return callSDK<SHA3_512>("CryptoKit_c1f28409f8601238", 2083775995941328, undefined, []); }
   declare readonly $type: { "s:9CryptoKit8SHA3_512V": true };
 }
 
@@ -3144,17 +3144,17 @@ export class SHA3_512Digest extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 22921246366454, this, []); }
+  get description(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 22921246366454, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 26.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 595550320332516, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 595550320332516, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * static var byteCount: Int { get }
    * @availability iOS 26.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 903412462937953, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 903412462937953, undefined, []); }
   declare readonly $type: { "s:9CryptoKit14SHA3_512DigestV": true };
 }
 
@@ -3179,27 +3179,27 @@ export class SHA384 extends SDKHandle {
    * static let blockByteCount: Int
    * @availability iOS 13.2+
    */
-  static get blockByteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 2009108421839895, undefined, []); }
+  static get blockByteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 2009108421839895, undefined, []); }
   /**
    * mutating func update(bufferPointer: UnsafeRawBufferPointer)
    * @availability iOS 13.0+
    */
-  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_6be9a005889899ab", 3483930691949133, this, [bufferPointer]); }
+  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_c1f28409f8601238", 3483930691949133, this, [bufferPointer]); }
   /**
    * func finalize() -> SHA384.Digest
    * @availability iOS 13.0+
    */
-  finalize(): SHA384Digest { return callSDK<SHA384Digest>("CryptoKit_6be9a005889899ab", 3090969150485057, this, []); }
+  finalize(): SHA384Digest { return callSDK<SHA384Digest>("CryptoKit_c1f28409f8601238", 3090969150485057, this, []); }
   /**
    * static let byteCount: Int
    * @availability iOS 13.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 2962643040959160, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 2962643040959160, undefined, []); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): SHA384 { return callSDK<SHA384>("CryptoKit_6be9a005889899ab", 2406597355553199, undefined, []); }
+  static init(): SHA384 { return callSDK<SHA384>("CryptoKit_c1f28409f8601238", 2406597355553199, undefined, []); }
   declare readonly $type: { "s:9CryptoKit6SHA384V": true };
 }
 
@@ -3218,17 +3218,17 @@ export class SHA384Digest extends SDKHandle {
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 804060732726902, this, []); }
+  get description(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 804060732726902, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 3520054913155440, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 3520054913155440, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * static var byteCount: Int { get }
    * @availability iOS 13.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 2079298136772652, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 2079298136772652, undefined, []); }
   declare readonly $type: { "s:9CryptoKit12SHA384DigestV": true };
 }
 
@@ -3253,27 +3253,27 @@ export class SHA512 extends SDKHandle {
    * static let blockByteCount: Int
    * @availability iOS 13.2+
    */
-  static get blockByteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 2677744772278416, undefined, []); }
+  static get blockByteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 2677744772278416, undefined, []); }
   /**
    * mutating func update(bufferPointer: UnsafeRawBufferPointer)
    * @availability iOS 13.0+
    */
-  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_6be9a005889899ab", 2448576980239631, this, [bufferPointer]); }
+  update(bufferPointer: ArrayBuffer): void { return callSDK<void>("CryptoKit_c1f28409f8601238", 2448576980239631, this, [bufferPointer]); }
   /**
    * func finalize() -> SHA512.Digest
    * @availability iOS 13.0+
    */
-  finalize(): SHA512Digest { return callSDK<SHA512Digest>("CryptoKit_6be9a005889899ab", 3412864257647332, this, []); }
+  finalize(): SHA512Digest { return callSDK<SHA512Digest>("CryptoKit_c1f28409f8601238", 3412864257647332, this, []); }
   /**
    * static let byteCount: Int
    * @availability iOS 13.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 1017203422288812, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 1017203422288812, undefined, []); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): SHA512 { return callSDK<SHA512>("CryptoKit_6be9a005889899ab", 981254693426183, undefined, []); }
+  static init(): SHA512 { return callSDK<SHA512>("CryptoKit_c1f28409f8601238", 981254693426183, undefined, []); }
   declare readonly $type: { "s:9CryptoKit6SHA512V": true };
 }
 
@@ -3292,17 +3292,17 @@ export class SHA512Digest extends SDKHandle {
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 4075377221381395, this, []); }
+  get description(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 4075377221381395, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 3744428750173520, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 3744428750173520, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * static var byteCount: Int { get }
    * @availability iOS 13.0+
    */
-  static get byteCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 289498119272555, undefined, []); }
+  static get byteCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 289498119272555, undefined, []); }
   declare readonly $type: { "s:9CryptoKit12SHA512DigestV": true };
 }
 
@@ -3327,12 +3327,12 @@ export class SharedSecret extends SDKHandle {
    * var description: String { get }
    * @availability iOS 13.0+
    */
-  get description(): string { return callSDK<string>("CryptoKit_6be9a005889899ab", 2043588486575373, this, []); }
+  get description(): string { return callSDK<string>("CryptoKit_c1f28409f8601238", 2043588486575373, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 1597326168262286, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 1597326168262286, this, [body], [{"callback":{"out":[]}}], true); }
   declare readonly $type: { "s:9CryptoKit12SharedSecretV": true };
 }
 
@@ -3345,22 +3345,22 @@ export class SymmetricKey extends SDKHandle {
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 13.0+
    */
-  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_6be9a005889899ab", 2299440573552318, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: $SDK0): unknown { return callSDK<unknown>("CryptoKit_c1f28409f8601238", 2299440573552318, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * init<D>(data: D) where D : ContiguousBytes
    * @availability iOS 13.0+
    */
-  static initData(data: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 4142287209585674, undefined, [data]); }
+  static initData(data: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 4142287209585674, undefined, [data]); }
   /**
    * init(size: SymmetricKeySize)
    * @availability iOS 13.0+
    */
-  static initSize(size: SymmetricKeySize): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 2845571755305373, undefined, [size]); }
+  static initSize(size: SymmetricKeySize): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 2845571755305373, undefined, [size]); }
   /**
    * var bitCount: Int { get }
    * @availability iOS 13.0+
    */
-  get bitCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 2508455118769370, this, []); }
+  get bitCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 2508455118769370, this, []); }
   declare readonly $type: { "s:9CryptoKit12SymmetricKeyV": true };
 }
 
@@ -3373,27 +3373,27 @@ export class SymmetricKeySize extends SDKHandle {
    * static var bits128: SymmetricKeySize { get }
    * @availability iOS 13.0+
    */
-  static get bits128(): SymmetricKeySize { return callSDK<SymmetricKeySize>("CryptoKit_6be9a005889899ab", 887297491299158, undefined, []); }
+  static get bits128(): SymmetricKeySize { return callSDK<SymmetricKeySize>("CryptoKit_c1f28409f8601238", 887297491299158, undefined, []); }
   /**
    * static var bits192: SymmetricKeySize { get }
    * @availability iOS 13.0+
    */
-  static get bits192(): SymmetricKeySize { return callSDK<SymmetricKeySize>("CryptoKit_6be9a005889899ab", 2151002324585800, undefined, []); }
+  static get bits192(): SymmetricKeySize { return callSDK<SymmetricKeySize>("CryptoKit_c1f28409f8601238", 2151002324585800, undefined, []); }
   /**
    * static var bits256: SymmetricKeySize { get }
    * @availability iOS 13.0+
    */
-  static get bits256(): SymmetricKeySize { return callSDK<SymmetricKeySize>("CryptoKit_6be9a005889899ab", 3005926203502296, undefined, []); }
+  static get bits256(): SymmetricKeySize { return callSDK<SymmetricKeySize>("CryptoKit_c1f28409f8601238", 3005926203502296, undefined, []); }
   /**
    * init(bitCount: Int)
    * @availability iOS 13.0+
    */
-  static init(bitCount: number): SymmetricKeySize { return callSDK<SymmetricKeySize>("CryptoKit_6be9a005889899ab", 3126297183947409, undefined, [bitCount]); }
+  static init(bitCount: number): SymmetricKeySize { return callSDK<SymmetricKeySize>("CryptoKit_c1f28409f8601238", 3126297183947409, undefined, [bitCount]); }
   /**
    * let bitCount: Int
    * @availability iOS 13.0+
    */
-  get bitCount(): number { return callSDK<number>("CryptoKit_6be9a005889899ab", 85067223886773, this, []); }
+  get bitCount(): number { return callSDK<number>("CryptoKit_c1f28409f8601238", 85067223886773, this, []); }
   declare readonly $type: { "s:9CryptoKit16SymmetricKeySizeV": true };
 }
 
@@ -3428,42 +3428,42 @@ export class XWingMLKEM768X25519_PrivateKey extends SDKHandle {
    * var publicKey: XWingMLKEM768X25519.PublicKey { get }
    * @availability iOS 26.0+
    */
-  get publicKey(): XWingMLKEM768X25519_PublicKey { return callSDK<XWingMLKEM768X25519_PublicKey>("CryptoKit_6be9a005889899ab", 3857166250255259, this, []); }
+  get publicKey(): XWingMLKEM768X25519_PublicKey { return callSDK<XWingMLKEM768X25519_PublicKey>("CryptoKit_c1f28409f8601238", 3857166250255259, this, []); }
   /**
    * func decapsulate(_ encapsulated: Data) throws -> SymmetricKey
    * @availability iOS 26.0+
    */
-  decapsulate(encapsulated: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_6be9a005889899ab", 3675674012868377, this, [encapsulated]); }
+  decapsulate(encapsulated: ArrayBuffer): SymmetricKey { return callSDK<SymmetricKey>("CryptoKit_c1f28409f8601238", 3675674012868377, this, [encapsulated]); }
   /**
    * init<D>(seedRepresentation: D, publicKey: XWingMLKEM768X25519.PublicKey?) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initSeedRepresentationPublicKey(seedRepresentation: ArrayBuffer, publicKey?: (XWingMLKEM768X25519_PublicKey) | null): XWingMLKEM768X25519_PrivateKey { return callSDK<XWingMLKEM768X25519_PrivateKey>("CryptoKit_6be9a005889899ab", 3506100253650021, undefined, [seedRepresentation, publicKey]); }
+  static initSeedRepresentationPublicKey(seedRepresentation: ArrayBuffer, publicKey?: (XWingMLKEM768X25519_PublicKey) | null): XWingMLKEM768X25519_PrivateKey { return callSDK<XWingMLKEM768X25519_PrivateKey>("CryptoKit_c1f28409f8601238", 3506100253650021, undefined, [seedRepresentation, publicKey]); }
   /**
    * var seedRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get seedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 1665060961042110, this, []); }
+  get seedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 1665060961042110, this, []); }
   /**
    * var integrityCheckedRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get integrityCheckedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 144124863778465, this, []); }
+  get integrityCheckedRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 144124863778465, this, []); }
   /**
    * init<D>(integrityCheckedRepresentation: D) throws where D : DataProtocol
    * @availability iOS 26.0+
    */
-  static initIntegrityCheckedRepresentation(integrityCheckedRepresentation: ArrayBuffer): XWingMLKEM768X25519_PrivateKey { return callSDK<XWingMLKEM768X25519_PrivateKey>("CryptoKit_6be9a005889899ab", 262483388235239, undefined, [integrityCheckedRepresentation]); }
+  static initIntegrityCheckedRepresentation(integrityCheckedRepresentation: ArrayBuffer): XWingMLKEM768X25519_PrivateKey { return callSDK<XWingMLKEM768X25519_PrivateKey>("CryptoKit_c1f28409f8601238", 262483388235239, undefined, [integrityCheckedRepresentation]); }
   /**
    * static func generate() throws -> XWingMLKEM768X25519.PrivateKey
    * @availability iOS 26.0+
    */
-  static generate(): XWingMLKEM768X25519_PrivateKey { return callSDK<XWingMLKEM768X25519_PrivateKey>("CryptoKit_6be9a005889899ab", 4442746881546409, undefined, []); }
+  static generate(): XWingMLKEM768X25519_PrivateKey { return callSDK<XWingMLKEM768X25519_PrivateKey>("CryptoKit_c1f28409f8601238", 4442746881546409, undefined, []); }
   /**
    * init() throws
    * @availability iOS 26.0+
    */
-  static init(): XWingMLKEM768X25519_PrivateKey { return callSDK<XWingMLKEM768X25519_PrivateKey>("CryptoKit_6be9a005889899ab", 1933252029519089, undefined, []); }
+  static init(): XWingMLKEM768X25519_PrivateKey { return callSDK<XWingMLKEM768X25519_PrivateKey>("CryptoKit_c1f28409f8601238", 1933252029519089, undefined, []); }
   declare readonly $type: { "s:9CryptoKit19XWingMLKEM768X25519O10PrivateKeyV": true };
 }
 
@@ -3482,27 +3482,27 @@ export class XWingMLKEM768X25519_PublicKey extends SDKHandle {
    * func encapsulate() throws -> KEM.EncapsulationResult
    * @availability iOS 26.0+
    */
-  encapsulate(): KEM_EncapsulationResult { return callSDK<KEM_EncapsulationResult>("CryptoKit_6be9a005889899ab", 965749299246778, this, []); }
+  encapsulate(): KEM_EncapsulationResult { return callSDK<KEM_EncapsulationResult>("CryptoKit_c1f28409f8601238", 965749299246778, this, []); }
   /**
    * var rawRepresentation: Data { get }
    * @availability iOS 26.0+
    */
-  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 2684689892093235, this, []); }
+  get rawRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 2684689892093235, this, []); }
   /**
    * init<D>(rawRepresentation: D) throws where D : ContiguousBytes
    * @availability iOS 26.0+
    */
-  static initRawRepresentation(rawRepresentation: ArrayBuffer): XWingMLKEM768X25519_PublicKey { return callSDK<XWingMLKEM768X25519_PublicKey>("CryptoKit_6be9a005889899ab", 3588167199816257, undefined, [rawRepresentation]); }
+  static initRawRepresentation(rawRepresentation: ArrayBuffer): XWingMLKEM768X25519_PublicKey { return callSDK<XWingMLKEM768X25519_PublicKey>("CryptoKit_c1f28409f8601238", 3588167199816257, undefined, [rawRepresentation]); }
   /**
    * func hpkeRepresentation(kem: HPKE.KEM) throws -> Data
    * @availability iOS 26.0+
    */
-  hpkeRepresentation(kem: HPKE_KEM): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_6be9a005889899ab", 245602207359331, this, [kem]); }
+  hpkeRepresentation(kem: HPKE_KEM): ArrayBuffer { return callSDK<ArrayBuffer>("CryptoKit_c1f28409f8601238", 245602207359331, this, [kem]); }
   /**
    * init<D>(_ serialization: D, kem: HPKE.KEM) throws where D : ContiguousBytes
    * @availability iOS 26.0+
    */
-  static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): XWingMLKEM768X25519_PublicKey { return callSDK<XWingMLKEM768X25519_PublicKey>("CryptoKit_6be9a005889899ab", 2260334075892377, undefined, [serialization, kem]); }
+  static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): XWingMLKEM768X25519_PublicKey { return callSDK<XWingMLKEM768X25519_PublicKey>("CryptoKit_c1f28409f8601238", 2260334075892377, undefined, [serialization, kem]); }
   declare readonly $type: { "s:9CryptoKit19XWingMLKEM768X25519O9PublicKeyV": true };
 }
 
@@ -3518,34 +3518,34 @@ export type XWingMLKEM768X25519_PublicKey_EphemeralPrivateKey = XWingMLKEM768X25
  */
 export type XWingMLKEM768X25519_PublicKey_HPKEEphemeralPrivateKey = XWingMLKEM768X25519_PrivateKey;
 
-registerSDKClass("CryptoKit.AES", AES, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.AES.GCM", AES_GCM, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.AES.GCM.Nonce", AES_GCM_Nonce, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"makeIterator":{"id":2696902037414047}} });
-registerSDKClass("CryptoKit.AES.GCM.SealedBox", AES_GCM_SealedBox, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.AES.KeyWrap", AES_KeyWrap, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.ChaChaPoly", ChaChaPoly, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.ChaChaPoly.Nonce", ChaChaPoly_Nonce, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"makeIterator":{"id":193254530644435}} });
-registerSDKClass("CryptoKit.ChaChaPoly.SealedBox", ChaChaPoly_SealedBox, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.CorecryptoCurveType", CorecryptoCurveType, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.CryptoKitError", CryptoKitError, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.Curve25519", Curve25519, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.Curve25519.KeyAgreement", Curve25519_KeyAgreement, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.Curve25519.KeyAgreement.PrivateKey", Curve25519_KeyAgreement_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"sharedSecretFromKeyAgreement":{"id":585496188990394}} });
-registerSDKClass("CryptoKit.Curve25519.KeyAgreement.PublicKey", Curve25519_KeyAgreement_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"hpkeRepresentation":{"id":4185221226935615}} });
-registerSDKClass("CryptoKit.Curve25519.Signing", Curve25519_Signing, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.Curve25519.Signing.PrivateKey", Curve25519_Signing_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"signature":{"id":1491164552901184}} });
-registerSDKClass("CryptoKit.Curve25519.Signing.PublicKey", Curve25519_Signing_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"isValidSignature":{"id":3560179468132238}} });
+registerSDKClass("CryptoKit.AES", AES, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.AES.GCM", AES_GCM, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.AES.GCM.Nonce", AES_GCM_Nonce, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"makeIterator":{"id":2696902037414047}} });
+registerSDKClass("CryptoKit.AES.GCM.SealedBox", AES_GCM_SealedBox, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.AES.KeyWrap", AES_KeyWrap, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.ChaChaPoly", ChaChaPoly, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.ChaChaPoly.Nonce", ChaChaPoly_Nonce, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"makeIterator":{"id":193254530644435}} });
+registerSDKClass("CryptoKit.ChaChaPoly.SealedBox", ChaChaPoly_SealedBox, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.CorecryptoCurveType", CorecryptoCurveType, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.CryptoKitError", CryptoKitError, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.Curve25519", Curve25519, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.Curve25519.KeyAgreement", Curve25519_KeyAgreement, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.Curve25519.KeyAgreement.PrivateKey", Curve25519_KeyAgreement_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"sharedSecretFromKeyAgreement":{"id":585496188990394}} });
+registerSDKClass("CryptoKit.Curve25519.KeyAgreement.PublicKey", Curve25519_KeyAgreement_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"hpkeRepresentation":{"id":4185221226935615}} });
+registerSDKClass("CryptoKit.Curve25519.Signing", Curve25519_Signing, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.Curve25519.Signing.PrivateKey", Curve25519_Signing_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"signature":{"id":1491164552901184}} });
+registerSDKClass("CryptoKit.Curve25519.Signing.PublicKey", Curve25519_Signing_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"isValidSignature":{"id":3560179468132238}} });
 registerSDKProtocol("s:9CryptoKit25DiffieHellmanKeyAgreementP", {"sharedSecretFromKeyAgreementWith":"sharedSecretFromKeyAgreement(with:)"});
 registerSDKProtocol("s:9CryptoKit6DigestP", {"withUnsafeBytes":"withUnsafeBytes(_:)","withBytes":"withBytes(_:)"});
-registerSDKClass("CryptoKit.HashedAuthenticationCode", HashedAuthenticationCode, { module: "CryptoKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CryptoKit.HashedAuthenticationCode", HashedAuthenticationCode, { module: "CryptoKit_c1f28409f8601238", properties: {} });
 registerSDKProtocol("s:9CryptoKit12HashFunctionP", {"init":"init()","updateBufferPointer":"update(bufferPointer:)","finalize":"finalize()"});
-registerSDKClass("CryptoKit.HKDF", HKDF, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.HMAC", HMAC, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"finalize":{"id":1747091855557253}} });
-registerSDKClass("CryptoKit.HPKE", HPKE, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.HPKE.Ciphersuite", HPKE_Ciphersuite, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.HPKE.DHKEM", HPKE_DHKEM, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.HPKE.Recipient", HPKE_Recipient, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"exportSecret":{"id":438706753020766},"openAuthenticating":{"id":2815585294363357},"open":{"id":656979000521995}} });
-registerSDKClass("CryptoKit.HPKE.Sender", HPKE_Sender, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"exportSecret":{"id":3360400121882512},"sealAuthenticating":{"id":262099664721216},"seal":{"id":3027318419935421}} });
+registerSDKClass("CryptoKit.HKDF", HKDF, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.HMAC", HMAC, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"finalize":{"id":1747091855557253}} });
+registerSDKClass("CryptoKit.HPKE", HPKE, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.HPKE.Ciphersuite", HPKE_Ciphersuite, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.HPKE.DHKEM", HPKE_DHKEM, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.HPKE.Recipient", HPKE_Recipient, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"exportSecret":{"id":438706753020766},"openAuthenticating":{"id":2815585294363357},"open":{"id":656979000521995}} });
+registerSDKClass("CryptoKit.HPKE.Sender", HPKE_Sender, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"exportSecret":{"id":3360400121882512},"sealAuthenticating":{"id":262099664721216},"seal":{"id":3027318419935421}} });
 registerSDKProtocol("s:9CryptoKit27HPKEDiffieHellmanPrivateKeyP", {"sharedSecretFromKeyAgreementWith":"sharedSecretFromKeyAgreement(with:)"});
 registerSDKProtocol("s:9CryptoKit37HPKEDiffieHellmanPrivateKeyGenerationP", {"sharedSecretFromKeyAgreementWith":"sharedSecretFromKeyAgreement(with:)","init":"init()"});
 registerSDKProtocol("s:9CryptoKit26HPKEDiffieHellmanPublicKeyP", {"initKem":"init(_:kem:)","hpkeRepresentationKem":"hpkeRepresentation(kem:)"});
@@ -3553,85 +3553,85 @@ registerSDKProtocol("s:9CryptoKit17HPKEKEMPrivateKeyP", {"generate":"generate()"
 registerSDKProtocol("s:9CryptoKit27HPKEKEMPrivateKeyGenerationP", {"generate":"generate()","decapsulate":"decapsulate(_:)","init":"init()"});
 registerSDKProtocol("s:9CryptoKit16HPKEKEMPublicKeyP", {"encapsulate":"encapsulate()","initKem":"init(_:kem:)","hpkeRepresentationKem":"hpkeRepresentation(kem:)"});
 registerSDKProtocol("s:9CryptoKit26HPKEPublicKeySerializationP", {"initKem":"init(_:kem:)","hpkeRepresentationKem":"hpkeRepresentation(kem:)"});
-registerSDKClass("CryptoKit.Insecure", Insecure, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.Insecure.MD5", Insecure_MD5, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"update":{"id":4279195915092310},"finalize":{"id":264693382924205}} });
-registerSDKClass("CryptoKit.Insecure.MD5Digest", Insecure_MD5Digest, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.Insecure.SHA1", Insecure_SHA1, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"update":{"id":2503770055558904},"finalize":{"id":1946093218777120}} });
-registerSDKClass("CryptoKit.Insecure.SHA1Digest", Insecure_SHA1Digest, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.KEM", KEM, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.KEM.EncapsulationResult", KEM_EncapsulationResult, { module: "CryptoKit_6be9a005889899ab", properties: {} });
+registerSDKClass("CryptoKit.Insecure", Insecure, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.Insecure.MD5", Insecure_MD5, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"update":{"id":4279195915092310},"finalize":{"id":264693382924205}} });
+registerSDKClass("CryptoKit.Insecure.MD5Digest", Insecure_MD5Digest, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.Insecure.SHA1", Insecure_SHA1, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"update":{"id":2503770055558904},"finalize":{"id":1946093218777120}} });
+registerSDKClass("CryptoKit.Insecure.SHA1Digest", Insecure_SHA1Digest, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.KEM", KEM, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.KEM.EncapsulationResult", KEM_EncapsulationResult, { module: "CryptoKit_c1f28409f8601238", properties: {} });
 registerSDKProtocol("s:9CryptoKit20KEMOneTimePrivateKeyP", {"generate":"generate()","decapsulate":"decapsulate(_:)"});
 registerSDKProtocol("s:9CryptoKit13KEMPrivateKeyP", {"generate":"generate()","decapsulate":"decapsulate(_:)"});
 registerSDKProtocol("s:9CryptoKit12KEMPublicKeyP", {"encapsulate":"encapsulate()"});
 registerSDKProtocol("s:9CryptoKit25MessageAuthenticationCodeP", {"withUnsafeBytes":"withUnsafeBytes(_:)","withBytes":"withBytes(_:)"});
-registerSDKClass("CryptoKit.MLDSA65", MLDSA65, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.MLDSA65.PrivateKey", MLDSA65_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"signatureFor":{"id":2550286428548486},"signatureForContext":{"id":3639880115362703}} });
-registerSDKClass("CryptoKit.MLDSA65.PublicKey", MLDSA65_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"isValidSignatureForContext":{"id":1826791443770465},"isValidSignatureFor":{"id":3098566465187557}} });
-registerSDKClass("CryptoKit.MLDSA87", MLDSA87, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.MLDSA87.PrivateKey", MLDSA87_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"signatureFor":{"id":1749580673442012},"signatureForContext":{"id":442410208378690}} });
-registerSDKClass("CryptoKit.MLDSA87.PublicKey", MLDSA87_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"isValidSignatureForContext":{"id":4383476215435674},"isValidSignatureFor":{"id":2155850418553167}} });
-registerSDKClass("CryptoKit.MLKEM1024", MLKEM1024, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.MLKEM1024.OneTimePrivateKey", MLKEM1024_OneTimePrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.MLKEM1024.PrivateKey", MLKEM1024_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"decapsulate":{"id":2818103016594659}} });
-registerSDKClass("CryptoKit.MLKEM1024.PublicKey", MLKEM1024_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"encapsulate":{"id":1912889849679756}} });
-registerSDKClass("CryptoKit.MLKEM768", MLKEM768, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.MLKEM768.OneTimePrivateKey", MLKEM768_OneTimePrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.MLKEM768.PrivateKey", MLKEM768_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"decapsulate":{"id":1083833221601299}} });
-registerSDKClass("CryptoKit.MLKEM768.PublicKey", MLKEM768_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"encapsulate":{"id":460704986649790}} });
-registerSDKClass("CryptoKit.P256", P256, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P256.KeyAgreement", P256_KeyAgreement, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P256.KeyAgreement.PrivateKey", P256_KeyAgreement_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"sharedSecretFromKeyAgreement":{"id":3824176911792982}} });
-registerSDKClass("CryptoKit.P256.KeyAgreement.PublicKey", P256_KeyAgreement_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"hpkeRepresentation":{"id":2647483741568586}} });
-registerSDKClass("CryptoKit.P256.Signing", P256_Signing, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P256.Signing.ECDSASignature", P256_Signing_ECDSASignature, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P256.Signing.PrivateKey", P256_Signing_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"signature":{"id":3500034083752490}} });
-registerSDKClass("CryptoKit.P256.Signing.PublicKey", P256_Signing_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"isValidSignature":{"id":2700054416001444}} });
-registerSDKClass("CryptoKit.P384", P384, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P384.KeyAgreement", P384_KeyAgreement, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P384.KeyAgreement.PrivateKey", P384_KeyAgreement_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"sharedSecretFromKeyAgreement":{"id":3457253372420064}} });
-registerSDKClass("CryptoKit.P384.KeyAgreement.PublicKey", P384_KeyAgreement_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"hpkeRepresentation":{"id":4063859349458249}} });
-registerSDKClass("CryptoKit.P384.Signing", P384_Signing, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P384.Signing.ECDSASignature", P384_Signing_ECDSASignature, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P384.Signing.PrivateKey", P384_Signing_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"signature":{"id":4098867964367565}} });
-registerSDKClass("CryptoKit.P384.Signing.PublicKey", P384_Signing_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"isValidSignature":{"id":2179711790468243}} });
-registerSDKClass("CryptoKit.P521", P521, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P521.KeyAgreement", P521_KeyAgreement, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P521.KeyAgreement.PrivateKey", P521_KeyAgreement_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"sharedSecretFromKeyAgreement":{"id":3593512296115260}} });
-registerSDKClass("CryptoKit.P521.KeyAgreement.PublicKey", P521_KeyAgreement_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"hpkeRepresentation":{"id":3718768036334332}} });
-registerSDKClass("CryptoKit.P521.Signing", P521_Signing, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P521.Signing.ECDSASignature", P521_Signing_ECDSASignature, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.P521.Signing.PrivateKey", P521_Signing_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"signature":{"id":1013282766187120}} });
-registerSDKClass("CryptoKit.P521.Signing.PublicKey", P521_Signing_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"isValidSignature":{"id":4153952874311988}} });
-registerSDKClass("CryptoKit.SecureEnclave", SecureEnclave, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SecureEnclave.MLDSA65", SecureEnclave_MLDSA65, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SecureEnclave.MLDSA65.PrivateKey", SecureEnclave_MLDSA65_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"signatureFor":{"id":1713324124413606},"signatureForContext":{"id":3321823080702601}} });
-registerSDKClass("CryptoKit.SecureEnclave.MLDSA87", SecureEnclave_MLDSA87, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SecureEnclave.MLDSA87.PrivateKey", SecureEnclave_MLDSA87_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"signatureFor":{"id":2263818565680044},"signatureForContext":{"id":1933208629195532}} });
-registerSDKClass("CryptoKit.SecureEnclave.MLKEM1024", SecureEnclave_MLKEM1024, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SecureEnclave.MLKEM1024.PrivateKey", SecureEnclave_MLKEM1024_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"decapsulate":{"id":4335825706555910}} });
-registerSDKClass("CryptoKit.SecureEnclave.MLKEM768", SecureEnclave_MLKEM768, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SecureEnclave.MLKEM768.PrivateKey", SecureEnclave_MLKEM768_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"decapsulate":{"id":3819093599717375}} });
-registerSDKClass("CryptoKit.SecureEnclave.P256", SecureEnclave_P256, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SecureEnclave.P256.KeyAgreement", SecureEnclave_P256_KeyAgreement, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SecureEnclave.P256.KeyAgreement.PrivateKey", SecureEnclave_P256_KeyAgreement_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"sharedSecretFromKeyAgreement":{"id":3569255625729531}} });
-registerSDKClass("CryptoKit.SecureEnclave.P256.Signing", SecureEnclave_P256_Signing, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SecureEnclave.P256.Signing.PrivateKey", SecureEnclave_P256_Signing_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"signature":{"id":986661172079946}} });
-registerSDKClass("CryptoKit.SHA256", SHA256, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"update":{"id":2992955040607557},"finalize":{"id":3552807765475636}} });
-registerSDKClass("CryptoKit.SHA256Digest", SHA256Digest, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SHA3_256", SHA3_256, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"update":{"id":2541596129223845},"finalize":{"id":3857423569948553}} });
-registerSDKClass("CryptoKit.SHA3_256Digest", SHA3_256Digest, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SHA3_384", SHA3_384, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"update":{"id":1471945407081111},"finalize":{"id":4400862038210066}} });
-registerSDKClass("CryptoKit.SHA3_384Digest", SHA3_384Digest, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SHA3_512", SHA3_512, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"update":{"id":1225163381430002},"finalize":{"id":1324777600491045}} });
-registerSDKClass("CryptoKit.SHA3_512Digest", SHA3_512Digest, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SHA384", SHA384, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"update":{"id":3483930691949133},"finalize":{"id":3090969150485057}} });
-registerSDKClass("CryptoKit.SHA384Digest", SHA384Digest, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SHA512", SHA512, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"update":{"id":2448576980239631},"finalize":{"id":3412864257647332}} });
-registerSDKClass("CryptoKit.SHA512Digest", SHA512Digest, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SharedSecret", SharedSecret, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SymmetricKey", SymmetricKey, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.SymmetricKeySize", SymmetricKeySize, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.XWingMLKEM768X25519", XWingMLKEM768X25519, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.XWingMLKEM768X25519.OneTimePrivateKey", XWingMLKEM768X25519_OneTimePrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {} });
-registerSDKClass("CryptoKit.XWingMLKEM768X25519.PrivateKey", XWingMLKEM768X25519_PrivateKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"decapsulate":{"id":3675674012868377}} });
-registerSDKClass("CryptoKit.XWingMLKEM768X25519.PublicKey", XWingMLKEM768X25519_PublicKey, { module: "CryptoKit_6be9a005889899ab", properties: {}, methods: {"encapsulate":{"id":965749299246778},"hpkeRepresentation":{"id":245602207359331}} });
+registerSDKClass("CryptoKit.MLDSA65", MLDSA65, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.MLDSA65.PrivateKey", MLDSA65_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"signatureFor":{"id":2550286428548486},"signatureForContext":{"id":3639880115362703}} });
+registerSDKClass("CryptoKit.MLDSA65.PublicKey", MLDSA65_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"isValidSignatureForContext":{"id":1826791443770465},"isValidSignatureFor":{"id":3098566465187557}} });
+registerSDKClass("CryptoKit.MLDSA87", MLDSA87, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.MLDSA87.PrivateKey", MLDSA87_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"signatureFor":{"id":1749580673442012},"signatureForContext":{"id":442410208378690}} });
+registerSDKClass("CryptoKit.MLDSA87.PublicKey", MLDSA87_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"isValidSignatureForContext":{"id":4383476215435674},"isValidSignatureFor":{"id":2155850418553167}} });
+registerSDKClass("CryptoKit.MLKEM1024", MLKEM1024, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.MLKEM1024.OneTimePrivateKey", MLKEM1024_OneTimePrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.MLKEM1024.PrivateKey", MLKEM1024_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"decapsulate":{"id":2818103016594659}} });
+registerSDKClass("CryptoKit.MLKEM1024.PublicKey", MLKEM1024_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"encapsulate":{"id":1912889849679756}} });
+registerSDKClass("CryptoKit.MLKEM768", MLKEM768, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.MLKEM768.OneTimePrivateKey", MLKEM768_OneTimePrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.MLKEM768.PrivateKey", MLKEM768_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"decapsulate":{"id":1083833221601299}} });
+registerSDKClass("CryptoKit.MLKEM768.PublicKey", MLKEM768_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"encapsulate":{"id":460704986649790}} });
+registerSDKClass("CryptoKit.P256", P256, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P256.KeyAgreement", P256_KeyAgreement, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P256.KeyAgreement.PrivateKey", P256_KeyAgreement_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"sharedSecretFromKeyAgreement":{"id":3824176911792982}} });
+registerSDKClass("CryptoKit.P256.KeyAgreement.PublicKey", P256_KeyAgreement_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"hpkeRepresentation":{"id":2647483741568586}} });
+registerSDKClass("CryptoKit.P256.Signing", P256_Signing, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P256.Signing.ECDSASignature", P256_Signing_ECDSASignature, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P256.Signing.PrivateKey", P256_Signing_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"signature":{"id":3500034083752490}} });
+registerSDKClass("CryptoKit.P256.Signing.PublicKey", P256_Signing_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"isValidSignature":{"id":2700054416001444}} });
+registerSDKClass("CryptoKit.P384", P384, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P384.KeyAgreement", P384_KeyAgreement, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P384.KeyAgreement.PrivateKey", P384_KeyAgreement_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"sharedSecretFromKeyAgreement":{"id":3457253372420064}} });
+registerSDKClass("CryptoKit.P384.KeyAgreement.PublicKey", P384_KeyAgreement_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"hpkeRepresentation":{"id":4063859349458249}} });
+registerSDKClass("CryptoKit.P384.Signing", P384_Signing, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P384.Signing.ECDSASignature", P384_Signing_ECDSASignature, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P384.Signing.PrivateKey", P384_Signing_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"signature":{"id":4098867964367565}} });
+registerSDKClass("CryptoKit.P384.Signing.PublicKey", P384_Signing_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"isValidSignature":{"id":2179711790468243}} });
+registerSDKClass("CryptoKit.P521", P521, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P521.KeyAgreement", P521_KeyAgreement, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P521.KeyAgreement.PrivateKey", P521_KeyAgreement_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"sharedSecretFromKeyAgreement":{"id":3593512296115260}} });
+registerSDKClass("CryptoKit.P521.KeyAgreement.PublicKey", P521_KeyAgreement_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"hpkeRepresentation":{"id":3718768036334332}} });
+registerSDKClass("CryptoKit.P521.Signing", P521_Signing, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P521.Signing.ECDSASignature", P521_Signing_ECDSASignature, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.P521.Signing.PrivateKey", P521_Signing_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"signature":{"id":1013282766187120}} });
+registerSDKClass("CryptoKit.P521.Signing.PublicKey", P521_Signing_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"isValidSignature":{"id":4153952874311988}} });
+registerSDKClass("CryptoKit.SecureEnclave", SecureEnclave, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SecureEnclave.MLDSA65", SecureEnclave_MLDSA65, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SecureEnclave.MLDSA65.PrivateKey", SecureEnclave_MLDSA65_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"signatureFor":{"id":1713324124413606},"signatureForContext":{"id":3321823080702601}} });
+registerSDKClass("CryptoKit.SecureEnclave.MLDSA87", SecureEnclave_MLDSA87, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SecureEnclave.MLDSA87.PrivateKey", SecureEnclave_MLDSA87_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"signatureFor":{"id":2263818565680044},"signatureForContext":{"id":1933208629195532}} });
+registerSDKClass("CryptoKit.SecureEnclave.MLKEM1024", SecureEnclave_MLKEM1024, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SecureEnclave.MLKEM1024.PrivateKey", SecureEnclave_MLKEM1024_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"decapsulate":{"id":4335825706555910}} });
+registerSDKClass("CryptoKit.SecureEnclave.MLKEM768", SecureEnclave_MLKEM768, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SecureEnclave.MLKEM768.PrivateKey", SecureEnclave_MLKEM768_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"decapsulate":{"id":3819093599717375}} });
+registerSDKClass("CryptoKit.SecureEnclave.P256", SecureEnclave_P256, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SecureEnclave.P256.KeyAgreement", SecureEnclave_P256_KeyAgreement, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SecureEnclave.P256.KeyAgreement.PrivateKey", SecureEnclave_P256_KeyAgreement_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"sharedSecretFromKeyAgreement":{"id":3569255625729531}} });
+registerSDKClass("CryptoKit.SecureEnclave.P256.Signing", SecureEnclave_P256_Signing, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SecureEnclave.P256.Signing.PrivateKey", SecureEnclave_P256_Signing_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"signature":{"id":986661172079946}} });
+registerSDKClass("CryptoKit.SHA256", SHA256, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"update":{"id":2992955040607557},"finalize":{"id":3552807765475636}} });
+registerSDKClass("CryptoKit.SHA256Digest", SHA256Digest, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SHA3_256", SHA3_256, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"update":{"id":2541596129223845},"finalize":{"id":3857423569948553}} });
+registerSDKClass("CryptoKit.SHA3_256Digest", SHA3_256Digest, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SHA3_384", SHA3_384, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"update":{"id":1471945407081111},"finalize":{"id":4400862038210066}} });
+registerSDKClass("CryptoKit.SHA3_384Digest", SHA3_384Digest, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SHA3_512", SHA3_512, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"update":{"id":1225163381430002},"finalize":{"id":1324777600491045}} });
+registerSDKClass("CryptoKit.SHA3_512Digest", SHA3_512Digest, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SHA384", SHA384, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"update":{"id":3483930691949133},"finalize":{"id":3090969150485057}} });
+registerSDKClass("CryptoKit.SHA384Digest", SHA384Digest, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SHA512", SHA512, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"update":{"id":2448576980239631},"finalize":{"id":3412864257647332}} });
+registerSDKClass("CryptoKit.SHA512Digest", SHA512Digest, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SharedSecret", SharedSecret, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SymmetricKey", SymmetricKey, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.SymmetricKeySize", SymmetricKeySize, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.XWingMLKEM768X25519", XWingMLKEM768X25519, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.XWingMLKEM768X25519.OneTimePrivateKey", XWingMLKEM768X25519_OneTimePrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {} });
+registerSDKClass("CryptoKit.XWingMLKEM768X25519.PrivateKey", XWingMLKEM768X25519_PrivateKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"decapsulate":{"id":3675674012868377}} });
+registerSDKClass("CryptoKit.XWingMLKEM768X25519.PublicKey", XWingMLKEM768X25519_PublicKey, { module: "CryptoKit_c1f28409f8601238", properties: {}, methods: {"encapsulate":{"id":965749299246778},"hpkeRepresentation":{"id":245602207359331}} });

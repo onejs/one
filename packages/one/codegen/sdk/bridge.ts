@@ -145,6 +145,12 @@ const TYPED_ARRAYS: Record<string, string> = {
   UInt64: 'BigUint64Array', UInt: 'BigUint64Array', Float: 'Float32Array', Double: 'Float64Array', CGFloat: 'Float64Array',
 }
 const POINTERS = /^(Unsafe(Mutable)?(Raw)?(Buffer)?Pointer|OpaquePointer|AutoreleasingUnsafeMutablePointer|CVaListPointer)$/
+// App Store processing rejects a new app whose binary references UIWebView
+// (ITMS-90809), so no binding names it: its class, delegate, enums and members,
+// nor any member whose signature carries one of them. clang and swift usrs both
+// spell the imported names (c:objc(cs)UIWebView, s:So24UIWebViewNavigationTypeV)
+const APP_STORE_REJECTED = /UIWebView|UIWebPagination/
+
 const UNBRIDGEABLE_NAMES: Record<string, string> = {
   Selector: 'selector', NSZone: 'pointer',
   ObjectIdentifier: 'identity', Hasher: 'hashing', AnyKeyPath: 'key path', PartialKeyPath: 'key path',
@@ -187,6 +193,7 @@ export function collectFacts(graph: Graph): IndexFacts {
   const parents = new Map(graph.relationships.filter((r) => r.kind === 'inheritsFrom').map((r) => [r.source, r.target]))
   for (const symbol of graph.symbols) {
     if (!TYPE_KINDS.has(symbol.kind.identifier)) continue
+    if (APP_STORE_REJECTED.test(symbol.identifier.precise)) continue
     facts.declarations.push({
       usr: symbol.identifier.precise,
       module: graph.module,
@@ -571,6 +578,7 @@ export class Bridge {
     }
     if (UNBRIDGEABLE_NAMES[last]) return { ok: false, reason: UNBRIDGEABLE_NAMES[last] }
     const usr = type.usr ?? VALUE_NAMES[type.name]
+    if (usr && APP_STORE_REJECTED.test(usr)) return { ok: false, reason: 'rejected by App Store processing' }
     if (usr && VALUES[usr]) return { ok: true, ts: VALUES[usr] }
     if (type.name === 'Any' || type.name === 'AnyObject' || type.name === 'AnyHashable') {
       return { ok: true, ts: 'unknown' }
@@ -916,6 +924,7 @@ export function inUniverse(symbol: Symbol, requirementUsrs: Set<string>): boolea
   if (symbol.pathComponents.some((p) => p.startsWith('_'))) return false
   if (SKIP_NAMES.has(symbol.pathComponents.at(-1)!)) return false
   if (requirementUsrs.has(symbol.identifier.precise)) return false
+  if (APP_STORE_REJECTED.test(symbol.identifier.precise)) return false
   const ios = symbol.availability?.find((a) => a.domain === 'iOS')
   if (ios?.isUnconditionallyUnavailable || ios?.obsoleted) return false
   const anyUnavailable = symbol.availability?.find((a) => a.domain === '*' && a.isUnconditionallyUnavailable)

@@ -15,42 +15,42 @@ export class PlaceDescriptor extends SDKHandle {
    * let commonName: String?
    * @availability iOS 26.0+
    */
-  get commonName(): (string) | null { return callSDK<(string) | null>("GeoToolbox_6be9a005889899ab", 343727940679758, this, []); }
+  get commonName(): (string) | null { return callSDK<(string) | null>("GeoToolbox_c1f28409f8601238", 343727940679758, this, []); }
   /**
    * var coordinate: CLLocationCoordinate2D? { get }
    * @availability iOS 26.0+
    */
-  get coordinate(): ({ latitude: number; longitude: number }) | null { return callSDK<({ latitude: number; longitude: number }) | null>("GeoToolbox_6be9a005889899ab", 2518702994794038, this, []); }
+  get coordinate(): ({ latitude: number; longitude: number }) | null { return callSDK<({ latitude: number; longitude: number }) | null>("GeoToolbox_c1f28409f8601238", 2518702994794038, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.4+
    */
-  get description(): string { return callSDK<string>("GeoToolbox_6be9a005889899ab", 4424199811228627, this, []); }
+  get description(): string { return callSDK<string>("GeoToolbox_c1f28409f8601238", 4424199811228627, this, []); }
   /**
    * init(representations: [PlaceDescriptor.PlaceRepresentation], commonName: String?, supportingRepresentations: [PlaceDescriptor.SupportingPlaceRepresentation] = [])
    * @availability iOS 26.0+
    */
-  static init(representations: $SDK1, commonName?: (string) | null, supportingRepresentations?: $SDK2): PlaceDescriptor { return callSDK<PlaceDescriptor>("GeoToolbox_6be9a005889899ab", 2628424303484811, undefined, [representations, commonName, supportingRepresentations]); }
+  static init(representations: $SDK1, commonName?: (string) | null, supportingRepresentations?: $SDK2): PlaceDescriptor { return callSDK<PlaceDescriptor>("GeoToolbox_c1f28409f8601238", 2628424303484811, undefined, [representations, commonName, supportingRepresentations]); }
   /**
    * let representations: [PlaceDescriptor.PlaceRepresentation]
    * @availability iOS 26.0+
    */
-  get representations(): $SDK1 { return callSDK<$SDK1>("GeoToolbox_6be9a005889899ab", 2318649909475634, this, []); }
+  get representations(): $SDK1 { return callSDK<$SDK1>("GeoToolbox_c1f28409f8601238", 2318649909475634, this, []); }
   /**
    * func serviceIdentifier(for serviceProvider: String) -> String?
    * @availability iOS 26.0+
    */
-  serviceIdentifier(serviceProvider: string): (string) | null { return callSDK<(string) | null>("GeoToolbox_6be9a005889899ab", 623280226239394, this, [serviceProvider]); }
+  serviceIdentifier(serviceProvider: string): (string) | null { return callSDK<(string) | null>("GeoToolbox_c1f28409f8601238", 623280226239394, this, [serviceProvider]); }
   /**
    * let supportingRepresentations: [PlaceDescriptor.SupportingPlaceRepresentation]
    * @availability iOS 26.0+
    */
-  get supportingRepresentations(): $SDK2 { return callSDK<$SDK2>("GeoToolbox_6be9a005889899ab", 3914609983886194, this, []); }
+  get supportingRepresentations(): $SDK2 { return callSDK<$SDK2>("GeoToolbox_c1f28409f8601238", 3914609983886194, this, []); }
   /**
    * var address: String? { get }
    * @availability iOS 26.0+
    */
-  get address(): (string) | null { return callSDK<(string) | null>("GeoToolbox_6be9a005889899ab", 14305979453535, this, []); }
+  get address(): (string) | null { return callSDK<(string) | null>("GeoToolbox_c1f28409f8601238", 14305979453535, this, []); }
   declare readonly $type: { "s:10GeoToolbox15PlaceDescriptorV": true };
 }
 
@@ -70,6 +70,6 @@ export class PlaceDescriptor_SupportingPlaceRepresentation extends SDKHandle {
   declare readonly $type: { "s:10GeoToolbox15PlaceDescriptorV010SupportingC14RepresentationO": true };
 }
 
-registerSDKClass("GeoToolbox.PlaceDescriptor", PlaceDescriptor, { module: "GeoToolbox_6be9a005889899ab", properties: {}, methods: {"serviceIdentifier":{"id":623280226239394}} });
-registerSDKClass("GeoToolbox.PlaceDescriptor.PlaceRepresentation", PlaceDescriptor_PlaceRepresentation, { module: "GeoToolbox_6be9a005889899ab", properties: {} });
-registerSDKClass("GeoToolbox.PlaceDescriptor.SupportingPlaceRepresentation", PlaceDescriptor_SupportingPlaceRepresentation, { module: "GeoToolbox_6be9a005889899ab", properties: {} });
+registerSDKClass("GeoToolbox.PlaceDescriptor", PlaceDescriptor, { module: "GeoToolbox_c1f28409f8601238", properties: {}, methods: {"serviceIdentifier":{"id":623280226239394}} });
+registerSDKClass("GeoToolbox.PlaceDescriptor.PlaceRepresentation", PlaceDescriptor_PlaceRepresentation, { module: "GeoToolbox_c1f28409f8601238", properties: {} });
+registerSDKClass("GeoToolbox.PlaceDescriptor.SupportingPlaceRepresentation", PlaceDescriptor_SupportingPlaceRepresentation, { module: "GeoToolbox_c1f28409f8601238", properties: {} });
