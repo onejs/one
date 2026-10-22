@@ -729,6 +729,22 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       entryKind = isStatic ? 'static' : 'method'
     }
     const returnType = !returnsVoid && kind !== 'swift.init' ? bridge.functions(bridge.substitute(parseType(symbol.functionSignature?.returns ?? []), generics)) : undefined
+    // swift 6.4 crashes deserializing these CoreNFC async overlay bodies with
+    // c++ interop. the overlays convert raw response flags to option sets; resume
+    // from the public Result overload, which performs the sdk's conversion,
+    // while keeping the async entry's signature, identity and output handling.
+    if (graph.module === 'CoreNFC' && owner === 'CoreNFC.NFCISO15693Tag' && isAsync &&
+      ['authenticate', 'keyUpdate', 'readBuffer', 'sendRequest'].includes(base)) {
+      const result = replace(swiftTypeText(symbol.functionSignature!.returns!))
+      // argument decoding can throw; the continuation body cannot.
+      const inputs = args.map((arg, i) => {
+        const argLabel = labels[i] ?? '_'
+        const prefix = argLabel === '_' ? '' : `${label(argLabel)}: `
+        hoisted.push(`let a${i} = ${arg.slice(prefix.length)}`)
+        return `${prefix}a${i}`
+      })
+      call = `withCheckedThrowingContinuation { (continuation: CheckedContinuation<${result}, any Error>) in o.${member(base)}(${[...inputs, 'resultHandler: { continuation.resume(with: $0) }'].join(', ')}) }`
+    }
     if (specialization && returnType) call = `(${call} as ${replace(swiftTypeText(symbol.functionSignature?.returns ?? []))})`
     const needsReceiver = (entryKind === 'method' || entryKind === 'subscript') && !isStatic
     const lines = [
