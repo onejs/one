@@ -22,7 +22,7 @@ export const CXX_INTEROP = ['-cxx-interoperability-mode=default', '-Xcc', '-std=
 // xcode builds clang modules explicitly, and with c++ interop that drops some
 // imports implicit modules keep (UIEvent.ButtonMask.button), so the typecheck
 // builds them the same way
-const SDKS = [
+export const SDKS = [
   { sdk: 'iphonesimulator', suffix: '-simulator' },
   { sdk: 'iphoneos', suffix: '' },
 ] as const
@@ -47,7 +47,7 @@ function oneModule(sdk: Sdk) {
   if (!module) {
     module = (async () => {
       const dir = mkdtempSync(join(tmpdir(), 'one-sdk-runtime-'))
-      const moduleMap = writeCLinkageModules(join(dir, 'CLinkage'))
+      const moduleMap = writeCLinkageModules(join(dir, 'CLinkage'), target(sdk).sdkRoot)
       await run('xcrun', ['swiftc', '-emit-module', '-parse-as-library', '-module-name', 'One', ...target(sdk).args,
         ...cLinkageSwiftFlags(moduleMap, target(sdk).sdkRoot),
         '-emit-module-path', join(dir, 'One.swiftmodule'), RUNTIME])

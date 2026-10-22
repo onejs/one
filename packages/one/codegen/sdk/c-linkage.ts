@@ -13,15 +13,13 @@ export function cLinkageSwiftFlags(moduleMap: string, sdkRoot: string): string[]
   ])]
 }
 
-export function writeCLinkageModules(dir: string): string {
+export function writeCLinkageModules(dir: string, sdkRoot: string): string {
   mkdirSync(dir, { recursive: true })
-  for (const framework of FRAMEWORKS) {
-    mkdirSync(join(dir, framework), { recursive: true })
-    writeFileSync(join(dir, framework, 'SDK.h'), `#import <${framework}/${framework}.h>\n`)
-  }
   const path = join(dir, 'module.modulemap')
-  writeFileSync(path, FRAMEWORKS.map((framework) => `module ${framework} [system] [extern_c] {
-  umbrella header "${framework}/SDK.h"
+  // the original umbrella owns every sdk header. a wrapper umbrella instead
+  // lets frameworks importing individual headers redeclare their native types.
+  writeFileSync(path, FRAMEWORKS.map((framework) => `framework module ${framework} [system] [extern_c] {
+  umbrella header ${JSON.stringify(join(sdkRoot, 'System/Library/Frameworks', `${framework}.framework/Headers`, `${framework}.h`))}
   link framework "${framework}"
   export *
   module * { export * }

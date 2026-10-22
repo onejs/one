@@ -13,7 +13,7 @@ export class ColorResource extends SDKHandle {
    * init(name: String, bundle: Bundle)
    * @availability iOS 17.0+
    */
-  static init(name: string, bundle: _Foundation_Bundle): ColorResource { return callSDK<ColorResource>("DeveloperToolsSupport_e11dfd5beee01da3", 2089037098139384, undefined, [name, bundle]); }
+  static init(name: string, bundle: _Foundation_Bundle): ColorResource { return callSDK<ColorResource>("DeveloperToolsSupport_3864e7f38681b875", 2089037098139384, undefined, [name, bundle]); }
   declare readonly $type: { "s:21DeveloperToolsSupport13ColorResourceV": true };
 }
 
@@ -26,7 +26,7 @@ export class ImageResource extends SDKHandle {
    * init(name: String, bundle: Bundle)
    * @availability iOS 17.0+
    */
-  static init(name: string, bundle: _Foundation_Bundle): ImageResource { return callSDK<ImageResource>("DeveloperToolsSupport_e11dfd5beee01da3", 3376778614653288, undefined, [name, bundle]); }
+  static init(name: string, bundle: _Foundation_Bundle): ImageResource { return callSDK<ImageResource>("DeveloperToolsSupport_3864e7f38681b875", 3376778614653288, undefined, [name, bundle]); }
   declare readonly $type: { "s:21DeveloperToolsSupport13ImageResourceV": true };
 }
 
@@ -39,12 +39,12 @@ export class LibraryContentBuilder extends SDKHandle {
    * static func buildExpression(_ item: LibraryItem) -> [LibraryItem]
    * @availability iOS 14.0+
    */
-  static buildExpression(item: LibraryItem): Array<LibraryItem> { return callSDK<Array<LibraryItem>>("DeveloperToolsSupport_e11dfd5beee01da3", 2640556083074520, undefined, [item]); }
+  static buildExpression(item: LibraryItem): Array<LibraryItem> { return callSDK<Array<LibraryItem>>("DeveloperToolsSupport_3864e7f38681b875", 2640556083074520, undefined, [item]); }
   /**
    * static func buildExpression(_ items: [LibraryItem]) -> [LibraryItem]
    * @availability iOS 14.0+
    */
-  static buildExpression84173(items: Array<LibraryItem>): Array<LibraryItem> { return callSDK<Array<LibraryItem>>("DeveloperToolsSupport_e11dfd5beee01da3", 4268400660508830, undefined, [items]); }
+  static buildExpression84173(items: Array<LibraryItem>): Array<LibraryItem> { return callSDK<Array<LibraryItem>>("DeveloperToolsSupport_3864e7f38681b875", 4268400660508830, undefined, [items]); }
   declare readonly $type: { "s:21DeveloperToolsSupport21LibraryContentBuilderV": true };
 }
 
@@ -77,22 +77,22 @@ export class LibraryItem_Category extends SDKHandle {
    * static let other: LibraryItem.Category
    * @availability iOS 14.0+
    */
-  static get other(): LibraryItem_Category { return callSDK<LibraryItem_Category>("DeveloperToolsSupport_e11dfd5beee01da3", 1756332779281117, undefined, []); }
+  static get other(): LibraryItem_Category { return callSDK<LibraryItem_Category>("DeveloperToolsSupport_3864e7f38681b875", 1756332779281117, undefined, []); }
   /**
    * static let effect: LibraryItem.Category
    * @availability iOS 14.0+
    */
-  static get effect(): LibraryItem_Category { return callSDK<LibraryItem_Category>("DeveloperToolsSupport_e11dfd5beee01da3", 2490989595928395, undefined, []); }
+  static get effect(): LibraryItem_Category { return callSDK<LibraryItem_Category>("DeveloperToolsSupport_3864e7f38681b875", 2490989595928395, undefined, []); }
   /**
    * static let layout: LibraryItem.Category
    * @availability iOS 14.0+
    */
-  static get layout(): LibraryItem_Category { return callSDK<LibraryItem_Category>("DeveloperToolsSupport_e11dfd5beee01da3", 2901994948229686, undefined, []); }
+  static get layout(): LibraryItem_Category { return callSDK<LibraryItem_Category>("DeveloperToolsSupport_3864e7f38681b875", 2901994948229686, undefined, []); }
   /**
    * static let control: LibraryItem.Category
    * @availability iOS 14.0+
    */
-  static get control(): LibraryItem_Category { return callSDK<LibraryItem_Category>("DeveloperToolsSupport_e11dfd5beee01da3", 1571235058877992, undefined, []); }
+  static get control(): LibraryItem_Category { return callSDK<LibraryItem_Category>("DeveloperToolsSupport_3864e7f38681b875", 1571235058877992, undefined, []); }
   declare readonly $type: { "s:21DeveloperToolsSupport11LibraryItemV8CategoryV": true };
 }
 
@@ -129,7 +129,7 @@ export class PreviewBodyBuilder<Content = unknown> extends SDKHandle {
    * static func buildBlock(_ content: Content) -> Content
    * @availability iOS 18.0+
    */
-  static buildBlock(content: unknown): unknown { return callSDK<unknown>("DeveloperToolsSupport_e11dfd5beee01da3", 3652329000241192, undefined, [content]); }
+  static buildBlock(content: unknown): unknown { return callSDK<unknown>("DeveloperToolsSupport_3864e7f38681b875", 3652329000241192, undefined, [content]); }
   declare readonly $type: { "s:21DeveloperToolsSupport18PreviewBodyBuilderV": true };
 }
 
@@ -150,7 +150,7 @@ export class PreviewMacroBodyBuilder<Content = unknown> extends SDKHandle {
    * static func buildBlock(_: Content) -> Content
    * @availability iOS 17.0+
    */
-  static buildBlock(arg0: unknown): unknown { return callSDK<unknown>("DeveloperToolsSupport_e11dfd5beee01da3", 4462531476933726, undefined, [arg0]); }
+  static buildBlock(arg0: unknown): unknown { return callSDK<unknown>("DeveloperToolsSupport_3864e7f38681b875", 4462531476933726, undefined, [arg0]); }
   declare readonly $type: { "s:21DeveloperToolsSupport23PreviewMacroBodyBuilderV": true };
 }
 
@@ -175,42 +175,42 @@ export class PreviewTrait<T = unknown> extends SDKHandle {
    * @MainActor static func fixedLayout(width: CGFloat, height: CGFloat) -> PreviewTrait<T>
    * @availability iOS 17.0+
    */
-  static fixedLayout(width: number, height: number): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_e11dfd5beee01da3", 3826169803705181, undefined, [width, height]); }
+  static fixedLayout(width: number, height: number): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_3864e7f38681b875", 3826169803705181, undefined, [width, height]); }
   /**
    * @MainActor static var defaultLayout: PreviewTrait<Preview.ViewTraits> { get }
    * @availability iOS 17.0+
    */
-  static get defaultLayout(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_e11dfd5beee01da3", 3352859091743511, undefined, []); }
+  static get defaultLayout(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_3864e7f38681b875", 3352859091743511, undefined, []); }
   /**
    * @MainActor static var landscapeLeft: PreviewTrait<Preview.ViewTraits> { get }
    * @availability iOS 17.0+
    */
-  static get landscapeLeft(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_e11dfd5beee01da3", 275309790543138, undefined, []); }
+  static get landscapeLeft(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_3864e7f38681b875", 275309790543138, undefined, []); }
   /**
    * @MainActor static var landscapeRight: PreviewTrait<Preview.ViewTraits> { get }
    * @availability iOS 17.0+
    */
-  static get landscapeRight(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_e11dfd5beee01da3", 4045118120522377, undefined, []); }
+  static get landscapeRight(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_3864e7f38681b875", 4045118120522377, undefined, []); }
   /**
    * @MainActor static var assistiveAccess: PreviewTrait<Preview.ViewTraits> { get }
    * @availability iOS 26.0+
    */
-  static get assistiveAccess(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_e11dfd5beee01da3", 830817760258651, undefined, []); }
+  static get assistiveAccess(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_3864e7f38681b875", 830817760258651, undefined, []); }
   /**
    * @MainActor static var portraitUpsideDown: PreviewTrait<Preview.ViewTraits> { get }
    * @availability iOS 17.0+
    */
-  static get portraitUpsideDown(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_e11dfd5beee01da3", 1911223613820283, undefined, []); }
+  static get portraitUpsideDown(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_3864e7f38681b875", 1911223613820283, undefined, []); }
   /**
    * @MainActor static var sizeThatFitsLayout: PreviewTrait<Preview.ViewTraits> { get }
    * @availability iOS 17.0+
    */
-  static get sizeThatFitsLayout(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_e11dfd5beee01da3", 4386635517374565, undefined, []); }
+  static get sizeThatFitsLayout(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_3864e7f38681b875", 4386635517374565, undefined, []); }
   /**
    * @MainActor static var portrait: PreviewTrait<Preview.ViewTraits> { get }
    * @availability iOS 17.0+
    */
-  static get portrait(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_e11dfd5beee01da3", 3073896002422564, undefined, []); }
+  static get portrait(): Promise<$SDK0> { return callSDKAsync<$SDK0>("DeveloperToolsSupport_3864e7f38681b875", 3073896002422564, undefined, []); }
   declare readonly $type: { "s:21DeveloperToolsSupport12PreviewTraitV": true };
 }
 
@@ -223,22 +223,22 @@ export class PreviewUnavailable extends SDKHandle {
    * init()
    * @availability iOS 17.0+
    */
-  static init(): PreviewUnavailable { return callSDK<PreviewUnavailable>("DeveloperToolsSupport_e11dfd5beee01da3", 3445141087908578, undefined, []); }
+  static init(): PreviewUnavailable { return callSDK<PreviewUnavailable>("DeveloperToolsSupport_3864e7f38681b875", 3445141087908578, undefined, []); }
   declare readonly $type: { "s:21DeveloperToolsSupport18PreviewUnavailableV": true };
 }
 
-registerSDKClass("DeveloperToolsSupport.ColorResource", ColorResource, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeveloperToolsSupport.ImageResource", ImageResource, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeveloperToolsSupport.LibraryContentBuilder", LibraryContentBuilder, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DeveloperToolsSupport.ColorResource", ColorResource, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
+registerSDKClass("DeveloperToolsSupport.ImageResource", ImageResource, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
+registerSDKClass("DeveloperToolsSupport.LibraryContentBuilder", LibraryContentBuilder, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:21DeveloperToolsSupport22LibraryContentProviderP", {"modifiersBase":"modifiers(base:)"});
-registerSDKClass("DeveloperToolsSupport.LibraryItem", LibraryItem, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeveloperToolsSupport.LibraryItem.Category", LibraryItem_Category, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeveloperToolsSupport.Preview", Preview, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeveloperToolsSupport.Preview.ViewTraits", Preview_ViewTraits, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeveloperToolsSupport.PreviewArguments", PreviewArguments, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeveloperToolsSupport.PreviewBodyBuilder", PreviewBodyBuilder, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeveloperToolsSupport.PreviewLayout", PreviewLayout, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeveloperToolsSupport.PreviewMacroBodyBuilder", PreviewMacroBodyBuilder, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DeveloperToolsSupport.LibraryItem", LibraryItem, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
+registerSDKClass("DeveloperToolsSupport.LibraryItem.Category", LibraryItem_Category, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
+registerSDKClass("DeveloperToolsSupport.Preview", Preview, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
+registerSDKClass("DeveloperToolsSupport.Preview.ViewTraits", Preview_ViewTraits, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
+registerSDKClass("DeveloperToolsSupport.PreviewArguments", PreviewArguments, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
+registerSDKClass("DeveloperToolsSupport.PreviewBodyBuilder", PreviewBodyBuilder, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
+registerSDKClass("DeveloperToolsSupport.PreviewLayout", PreviewLayout, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
+registerSDKClass("DeveloperToolsSupport.PreviewMacroBodyBuilder", PreviewMacroBodyBuilder, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:21DeveloperToolsSupport15PreviewRegistryP", {"makePreview":"makePreview()"});
-registerSDKClass("DeveloperToolsSupport.PreviewTrait", PreviewTrait, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeveloperToolsSupport.PreviewUnavailable", PreviewUnavailable, { module: "DeveloperToolsSupport_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DeveloperToolsSupport.PreviewTrait", PreviewTrait, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });
+registerSDKClass("DeveloperToolsSupport.PreviewUnavailable", PreviewUnavailable, { module: "DeveloperToolsSupport_3864e7f38681b875", properties: {} });

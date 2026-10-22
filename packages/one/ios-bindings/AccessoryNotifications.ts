@@ -32,77 +32,77 @@ export class AccessoryNotification extends SDKHandle {
    * let attributes: AccessoryNotification.Attributes
    * @availability iOS 26.5+
    */
-  get attributes(): AccessoryNotification_Attributes { return callSDK<AccessoryNotification_Attributes>("AccessoryNotifications_e11dfd5beee01da3", 1227217026595009, this, []); }
+  get attributes(): AccessoryNotification_Attributes { return callSDK<AccessoryNotification_Attributes>("AccessoryNotifications_3864e7f38681b875", 1227217026595009, this, []); }
   /**
    * init(identifier: AccessoryNotification.Identifier, sourceName: String, deliveryDate: Date, displayDate: AccessoryNotification.DisplayDate = .deliveryDate, title: String? = nil, subtitle: String? = nil, body: NSAttributedString? = nil, threadIdentifier: String? = nil, attributes: AccessoryNotification.Attributes = [], summary: NSAttributedString? = nil, actions: [AccessoryNotification.Action] = [], sourceIcon: AccessoryNotification.File? = nil, contextIcon: AccessoryNotification.File? = nil, attachments: [AccessoryNotification.File] = [])
    * @availability iOS 26.5+
    */
-  static init(identifier: AccessoryNotification_Identifier, sourceName: string, deliveryDate: globalThis.Date, displayDate?: AccessoryNotification_DisplayDate, title?: (string) | null, subtitle?: (string) | null, body?: $SDK0, threadIdentifier?: (string) | null, attributes?: AccessoryNotification_Attributes, summary?: $SDK0, actions?: $SDK1, sourceIcon?: $SDK2, contextIcon?: $SDK2, attachments?: $SDK3): AccessoryNotification { return callSDK<AccessoryNotification>("AccessoryNotifications_e11dfd5beee01da3", 3801282590515458, undefined, [identifier, sourceName, deliveryDate, displayDate, title, subtitle, body, threadIdentifier, attributes, summary, actions, sourceIcon, contextIcon, attachments]); }
+  static init(identifier: AccessoryNotification_Identifier, sourceName: string, deliveryDate: globalThis.Date, displayDate?: AccessoryNotification_DisplayDate, title?: (string) | null, subtitle?: (string) | null, body?: $SDK0, threadIdentifier?: (string) | null, attributes?: AccessoryNotification_Attributes, summary?: $SDK0, actions?: $SDK1, sourceIcon?: $SDK2, contextIcon?: $SDK2, attachments?: $SDK3): AccessoryNotification { return callSDK<AccessoryNotification>("AccessoryNotifications_3864e7f38681b875", 3801282590515458, undefined, [identifier, sourceName, deliveryDate, displayDate, title, subtitle, body, threadIdentifier, attributes, summary, actions, sourceIcon, contextIcon, attachments]); }
   /**
    * let identifier: AccessoryNotification.Identifier
    * @availability iOS 26.5+
    */
-  get identifier(): AccessoryNotification_Identifier { return callSDK<AccessoryNotification_Identifier>("AccessoryNotifications_e11dfd5beee01da3", 383882640483565, this, []); }
+  get identifier(): AccessoryNotification_Identifier { return callSDK<AccessoryNotification_Identifier>("AccessoryNotifications_3864e7f38681b875", 383882640483565, this, []); }
   /**
    * let sourceIcon: AccessoryNotification.File?
    * @availability iOS 26.5+
    */
-  get sourceIcon(): $SDK2 { return callSDK<$SDK2>("AccessoryNotifications_e11dfd5beee01da3", 2625070366122517, this, []); }
+  get sourceIcon(): $SDK2 { return callSDK<$SDK2>("AccessoryNotifications_3864e7f38681b875", 2625070366122517, this, []); }
   /**
    * let sourceName: String
    * @availability iOS 26.5+
    */
-  get sourceName(): string { return callSDK<string>("AccessoryNotifications_e11dfd5beee01da3", 864514208070037, this, []); }
+  get sourceName(): string { return callSDK<string>("AccessoryNotifications_3864e7f38681b875", 864514208070037, this, []); }
   /**
    * let attachments: [AccessoryNotification.File]
    * @availability iOS 26.5+
    */
-  get attachments(): $SDK3 { return callSDK<$SDK3>("AccessoryNotifications_e11dfd5beee01da3", 2502421713953149, this, []); }
+  get attachments(): $SDK3 { return callSDK<$SDK3>("AccessoryNotifications_3864e7f38681b875", 2502421713953149, this, []); }
   /**
    * let contextIcon: AccessoryNotification.File?
    * @availability iOS 26.5+
    */
-  get contextIcon(): $SDK2 { return callSDK<$SDK2>("AccessoryNotifications_e11dfd5beee01da3", 1817948872673576, this, []); }
+  get contextIcon(): $SDK2 { return callSDK<$SDK2>("AccessoryNotifications_3864e7f38681b875", 1817948872673576, this, []); }
   /**
    * let displayDate: AccessoryNotification.DisplayDate
    * @availability iOS 26.5+
    */
-  get displayDate(): AccessoryNotification_DisplayDate { return callSDK<AccessoryNotification_DisplayDate>("AccessoryNotifications_e11dfd5beee01da3", 2241925399924083, this, []); }
+  get displayDate(): AccessoryNotification_DisplayDate { return callSDK<AccessoryNotification_DisplayDate>("AccessoryNotifications_3864e7f38681b875", 2241925399924083, this, []); }
   /**
    * let deliveryDate: Date
    * @availability iOS 26.5+
    */
-  get deliveryDate(): globalThis.Date { return callSDK<globalThis.Date>("AccessoryNotifications_e11dfd5beee01da3", 31109059512310, this, []); }
+  get deliveryDate(): globalThis.Date { return callSDK<globalThis.Date>("AccessoryNotifications_3864e7f38681b875", 31109059512310, this, []); }
   /**
    * let threadIdentifier: String?
    * @availability iOS 26.5+
    */
-  get threadIdentifier(): (string) | null { return callSDK<(string) | null>("AccessoryNotifications_e11dfd5beee01da3", 458924869851711, this, []); }
+  get threadIdentifier(): (string) | null { return callSDK<(string) | null>("AccessoryNotifications_3864e7f38681b875", 458924869851711, this, []); }
   /**
    * let body: NSAttributedString?
    * @availability iOS 26.5+
    */
-  get body(): $SDK0 { return callSDK<$SDK0>("AccessoryNotifications_e11dfd5beee01da3", 3079111088699242, this, []); }
+  get body(): $SDK0 { return callSDK<$SDK0>("AccessoryNotifications_3864e7f38681b875", 3079111088699242, this, []); }
   /**
    * let title: String?
    * @availability iOS 26.5+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("AccessoryNotifications_e11dfd5beee01da3", 2241369705043949, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("AccessoryNotifications_3864e7f38681b875", 2241369705043949, this, []); }
   /**
    * let actions: [AccessoryNotification.Action]
    * @availability iOS 26.5+
    */
-  get actions(): $SDK1 { return callSDK<$SDK1>("AccessoryNotifications_e11dfd5beee01da3", 2546353694468618, this, []); }
+  get actions(): $SDK1 { return callSDK<$SDK1>("AccessoryNotifications_3864e7f38681b875", 2546353694468618, this, []); }
   /**
    * let summary: NSAttributedString?
    * @availability iOS 26.5+
    */
-  get summary(): $SDK0 { return callSDK<$SDK0>("AccessoryNotifications_e11dfd5beee01da3", 3456609552335968, this, []); }
+  get summary(): $SDK0 { return callSDK<$SDK0>("AccessoryNotifications_3864e7f38681b875", 3456609552335968, this, []); }
   /**
    * let subtitle: String?
    * @availability iOS 26.5+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("AccessoryNotifications_e11dfd5beee01da3", 3707337527015743, this, []); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("AccessoryNotifications_3864e7f38681b875", 3707337527015743, this, []); }
   declare readonly $type: { "s:22AccessoryNotifications0A12NotificationV": true };
 }
 
@@ -115,22 +115,22 @@ export class AccessoryNotification_Action extends SDKHandle {
    * init(identifier: String, title: String? = nil, type: AccessoryNotification.Action.ActionType)
    * @availability iOS 26.5+
    */
-  static init(identifier: string, title: (string) | null, type: AccessoryNotification_Action_ActionType): AccessoryNotification_Action { return callSDK<AccessoryNotification_Action>("AccessoryNotifications_e11dfd5beee01da3", 3145547729218016, undefined, [identifier, title, type]); }
+  static init(identifier: string, title: (string) | null, type: AccessoryNotification_Action_ActionType): AccessoryNotification_Action { return callSDK<AccessoryNotification_Action>("AccessoryNotifications_3864e7f38681b875", 3145547729218016, undefined, [identifier, title, type]); }
   /**
    * let identifier: String
    * @availability iOS 26.5+
    */
-  get identifier(): string { return callSDK<string>("AccessoryNotifications_e11dfd5beee01da3", 869917720653534, this, []); }
+  get identifier(): string { return callSDK<string>("AccessoryNotifications_3864e7f38681b875", 869917720653534, this, []); }
   /**
    * let type: AccessoryNotification.Action.ActionType
    * @availability iOS 26.5+
    */
-  get type(): AccessoryNotification_Action_ActionType { return callSDK<AccessoryNotification_Action_ActionType>("AccessoryNotifications_e11dfd5beee01da3", 3739129193934491, this, []); }
+  get type(): AccessoryNotification_Action_ActionType { return callSDK<AccessoryNotification_Action_ActionType>("AccessoryNotifications_3864e7f38681b875", 3739129193934491, this, []); }
   /**
    * let title: String?
    * @availability iOS 26.5+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("AccessoryNotifications_e11dfd5beee01da3", 2777069525928486, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("AccessoryNotifications_3864e7f38681b875", 2777069525928486, this, []); }
   declare readonly $type: { "s:22AccessoryNotifications0A12NotificationV6ActionV": true };
 }
 
@@ -153,27 +153,27 @@ export const AccessoryNotification_Attributes = {
    * static let timeSensitive: AccessoryNotification.Attributes
    * @availability iOS 26.5+
    */
-  get timeSensitive(): AccessoryNotification_Attributes { return callSDK<AccessoryNotification_Attributes>("AccessoryNotifications_e11dfd5beee01da3", 1593919152147930, undefined, []); },
+  get timeSensitive(): AccessoryNotification_Attributes { return callSDK<AccessoryNotification_Attributes>("AccessoryNotifications_3864e7f38681b875", 1593919152147930, undefined, []); },
   /**
    * static let critical: AccessoryNotification.Attributes
    * @availability iOS 26.5+
    */
-  get critical(): AccessoryNotification_Attributes { return callSDK<AccessoryNotification_Attributes>("AccessoryNotifications_e11dfd5beee01da3", 39690356912506, undefined, []); },
+  get critical(): AccessoryNotification_Attributes { return callSDK<AccessoryNotification_Attributes>("AccessoryNotifications_3864e7f38681b875", 39690356912506, undefined, []); },
   /**
    * static let priority: AccessoryNotification.Attributes
    * @availability iOS 26.5+
    */
-  get priority(): AccessoryNotification_Attributes { return callSDK<AccessoryNotification_Attributes>("AccessoryNotifications_e11dfd5beee01da3", 390972901928981, undefined, []); },
+  get priority(): AccessoryNotification_Attributes { return callSDK<AccessoryNotification_Attributes>("AccessoryNotifications_3864e7f38681b875", 390972901928981, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.5+
    */
-  init(rawValue: number): AccessoryNotification_Attributes { return callSDK<AccessoryNotification_Attributes>("AccessoryNotifications_e11dfd5beee01da3", 2795575509484558, undefined, [rawValue]); },
+  init(rawValue: number): AccessoryNotification_Attributes { return callSDK<AccessoryNotification_Attributes>("AccessoryNotifications_3864e7f38681b875", 2795575509484558, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 26.5+
    */
-  getRawValue($self: AccessoryNotification_Attributes): number { return callSDK<number>("AccessoryNotifications_e11dfd5beee01da3", 1747644637140147, $self, []); }
+  getRawValue($self: AccessoryNotification_Attributes): number { return callSDK<number>("AccessoryNotifications_3864e7f38681b875", 1747644637140147, $self, []); }
 };
 
 /**
@@ -211,12 +211,12 @@ export class AccessoryNotification_File extends SDKHandle {
    * var url: URL { get async throws }
    * @availability iOS 26.5+
    */
-  get url(): Promise<string> { return callSDKAsync<string>("AccessoryNotifications_e11dfd5beee01da3", 3877554400558797, this, []); }
+  get url(): Promise<string> { return callSDKAsync<string>("AccessoryNotifications_3864e7f38681b875", 3877554400558797, this, []); }
   /**
    * var type: UTType { get }
    * @availability iOS 26.5+
    */
-  get type(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("AccessoryNotifications_e11dfd5beee01da3", 3355029095129203, this, []); }
+  get type(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("AccessoryNotifications_3864e7f38681b875", 3355029095129203, this, []); }
   declare readonly $type: { "s:22AccessoryNotifications0A12NotificationV4FileV": true };
 }
 
@@ -229,17 +229,17 @@ export class AccessoryNotification_Identifier extends SDKHandle {
    * init(notificationIdentifier: String, sourceIdentifier: String)
    * @availability iOS 26.5+
    */
-  static init(notificationIdentifier: string, sourceIdentifier: string): AccessoryNotification_Identifier { return callSDK<AccessoryNotification_Identifier>("AccessoryNotifications_e11dfd5beee01da3", 472119896871175, undefined, [notificationIdentifier, sourceIdentifier]); }
+  static init(notificationIdentifier: string, sourceIdentifier: string): AccessoryNotification_Identifier { return callSDK<AccessoryNotification_Identifier>("AccessoryNotifications_3864e7f38681b875", 472119896871175, undefined, [notificationIdentifier, sourceIdentifier]); }
   /**
    * let notificationIdentifier: String
    * @availability iOS 26.5+
    */
-  get notificationIdentifier(): string { return callSDK<string>("AccessoryNotifications_e11dfd5beee01da3", 4300334731861766, this, []); }
+  get notificationIdentifier(): string { return callSDK<string>("AccessoryNotifications_3864e7f38681b875", 4300334731861766, this, []); }
   /**
    * let sourceIdentifier: String
    * @availability iOS 26.5+
    */
-  get sourceIdentifier(): string { return callSDK<string>("AccessoryNotifications_e11dfd5beee01da3", 3631878195230797, this, []); }
+  get sourceIdentifier(): string { return callSDK<string>("AccessoryNotifications_3864e7f38681b875", 3631878195230797, this, []); }
   declare readonly $type: { "s:22AccessoryNotifications0A12NotificationV10IdentifierV": true };
 }
 
@@ -252,22 +252,22 @@ export class AccessoryNotificationCenter extends SDKHandle {
    * func presentSettings(for accessory: ASAccessory, scenePersistentIdentifier: String? = nil) async throws -> ForwardingDecision
    * @availability iOS 26.5+
    */
-  presentSettings(accessory: _AccessorySetupKit_ASAccessory, scenePersistentIdentifier?: (string) | null): Promise<ForwardingDecision> { return callSDKAsync<ForwardingDecision>("AccessoryNotifications_e11dfd5beee01da3", 3322326812105149, this, [accessory, scenePersistentIdentifier]); }
+  presentSettings(accessory: _AccessorySetupKit_ASAccessory, scenePersistentIdentifier?: (string) | null): Promise<ForwardingDecision> { return callSDKAsync<ForwardingDecision>("AccessoryNotifications_3864e7f38681b875", 3322326812105149, this, [accessory, scenePersistentIdentifier]); }
   /**
    * func forwardingStatus(for accessory: ASAccessory) async throws -> ForwardingDecision
    * @availability iOS 26.5+
    */
-  forwardingStatus(accessory: _AccessorySetupKit_ASAccessory): Promise<ForwardingDecision> { return callSDKAsync<ForwardingDecision>("AccessoryNotifications_e11dfd5beee01da3", 1401845811877913, this, [accessory]); }
+  forwardingStatus(accessory: _AccessorySetupKit_ASAccessory): Promise<ForwardingDecision> { return callSDKAsync<ForwardingDecision>("AccessoryNotifications_3864e7f38681b875", 1401845811877913, this, [accessory]); }
   /**
    * func requestForwarding(for accessory: ASAccessory) async throws -> ForwardingDecision
    * @availability iOS 26.5+
    */
-  requestForwarding(accessory: _AccessorySetupKit_ASAccessory): Promise<ForwardingDecision> { return callSDKAsync<ForwardingDecision>("AccessoryNotifications_e11dfd5beee01da3", 4434019953768455, this, [accessory]); }
+  requestForwarding(accessory: _AccessorySetupKit_ASAccessory): Promise<ForwardingDecision> { return callSDKAsync<ForwardingDecision>("AccessoryNotifications_3864e7f38681b875", 4434019953768455, this, [accessory]); }
   /**
    * init()
    * @availability iOS 26.5+
    */
-  static init(): AccessoryNotificationCenter { return callSDK<AccessoryNotificationCenter>("AccessoryNotifications_e11dfd5beee01da3", 246392225414609, undefined, []); }
+  static init(): AccessoryNotificationCenter { return callSDK<AccessoryNotificationCenter>("AccessoryNotifications_3864e7f38681b875", 246392225414609, undefined, []); }
   declare readonly $type: { "s:22AccessoryNotifications0A18NotificationCenterC": true };
 }
 
@@ -280,33 +280,33 @@ export class AlertingContext extends SDKHandle {
    * var shouldAlert: Bool { get }
    * @availability iOS 26.5+
    */
-  get shouldAlert(): boolean { return callSDK<boolean>("AccessoryNotifications_e11dfd5beee01da3", 3033174077787149, this, []); }
+  get shouldAlert(): boolean { return callSDK<boolean>("AccessoryNotifications_3864e7f38681b875", 3033174077787149, this, []); }
   /**
    * var isSuppressedByFocus: Bool { get }
    * @availability iOS 26.5+
    */
-  get isSuppressedByFocus(): boolean { return callSDK<boolean>("AccessoryNotifications_e11dfd5beee01da3", 1540705454538358, this, []); }
+  get isSuppressedByFocus(): boolean { return callSDK<boolean>("AccessoryNotifications_3864e7f38681b875", 1540705454538358, this, []); }
   /**
    * init(notificationCanAlert: Bool = false, suppressedByFocus: Bool = false, kind: AlertingContext.Kind = .notification, sound: AlertingContext.Sound? = nil)
    * @availability iOS 26.5+
    */
-  static init(notificationCanAlert?: boolean, suppressedByFocus?: boolean, kind?: AlertingContext_Kind, sound?: $SDK4): AlertingContext { return callSDK<AlertingContext>("AccessoryNotifications_e11dfd5beee01da3", 2624105963140823, undefined, [notificationCanAlert, suppressedByFocus, kind, sound]); }
+  static init(notificationCanAlert?: boolean, suppressedByFocus?: boolean, kind?: AlertingContext_Kind, sound?: $SDK4): AlertingContext { return callSDK<AlertingContext>("AccessoryNotifications_3864e7f38681b875", 2624105963140823, undefined, [notificationCanAlert, suppressedByFocus, kind, sound]); }
   /**
    * var notificationCanAlert: Bool
    * @availability iOS 26.5+
    */
-  get notificationCanAlert(): boolean { return callSDK<boolean>("AccessoryNotifications_e11dfd5beee01da3", 921314940830475, this, []); }
-  set notificationCanAlert(value: boolean) { callSDK<void>("AccessoryNotifications_e11dfd5beee01da3", 379023528206632, this, [value]); }
+  get notificationCanAlert(): boolean { return callSDK<boolean>("AccessoryNotifications_3864e7f38681b875", 921314940830475, this, []); }
+  set notificationCanAlert(value: boolean) { callSDK<void>("AccessoryNotifications_3864e7f38681b875", 379023528206632, this, [value]); }
   /**
    * var kind: AlertingContext.Kind { get }
    * @availability iOS 26.5+
    */
-  get kind(): AlertingContext_Kind { return callSDK<AlertingContext_Kind>("AccessoryNotifications_e11dfd5beee01da3", 3144482198107165, this, []); }
+  get kind(): AlertingContext_Kind { return callSDK<AlertingContext_Kind>("AccessoryNotifications_3864e7f38681b875", 3144482198107165, this, []); }
   /**
    * var sound: AlertingContext.Sound? { get }
    * @availability iOS 26.5+
    */
-  get sound(): $SDK4 { return callSDK<$SDK4>("AccessoryNotifications_e11dfd5beee01da3", 723690311251079, this, []); }
+  get sound(): $SDK4 { return callSDK<$SDK4>("AccessoryNotifications_3864e7f38681b875", 723690311251079, this, []); }
   declare readonly $type: { "s:22AccessoryNotifications15AlertingContextV": true };
 }
 
@@ -325,8 +325,8 @@ export class AlertingContext_Sound extends SDKHandle {
    * var shouldIgnoreSilentMode: Bool
    * @availability iOS 26.5+
    */
-  get shouldIgnoreSilentMode(): boolean { return callSDK<boolean>("AccessoryNotifications_e11dfd5beee01da3", 56149170834729, this, []); }
-  set shouldIgnoreSilentMode(value: boolean) { callSDK<void>("AccessoryNotifications_e11dfd5beee01da3", 1824705116336940, this, [value]); }
+  get shouldIgnoreSilentMode(): boolean { return callSDK<boolean>("AccessoryNotifications_3864e7f38681b875", 56149170834729, this, []); }
+  set shouldIgnoreSilentMode(value: boolean) { callSDK<void>("AccessoryNotifications_3864e7f38681b875", 1824705116336940, this, [value]); }
   declare readonly $type: { "s:22AccessoryNotifications15AlertingContextV5SoundV": true };
 }
 
@@ -341,7 +341,7 @@ export const ForwardingDecision = {
    * var description: String { get }
    * @availability iOS 26.5+
    */
-  getDescription($self: ForwardingDecision): string { return callSDK<string>("AccessoryNotifications_e11dfd5beee01da3", 2961951746295673, $self, []); }
+  getDescription($self: ForwardingDecision): string { return callSDK<string>("AccessoryNotifications_3864e7f38681b875", 2961951746295673, $self, []); }
 };
 
 /**
@@ -353,31 +353,31 @@ export class NotificationResponse extends SDKHandle {
    * var actionIdentifier: String
    * @availability iOS 26.5+
    */
-  get actionIdentifier(): string { return callSDK<string>("AccessoryNotifications_e11dfd5beee01da3", 3256884842166705, this, []); }
-  set actionIdentifier(value: string) { callSDK<void>("AccessoryNotifications_e11dfd5beee01da3", 701148293464953, this, [value]); }
+  get actionIdentifier(): string { return callSDK<string>("AccessoryNotifications_3864e7f38681b875", 3256884842166705, this, []); }
+  set actionIdentifier(value: string) { callSDK<void>("AccessoryNotifications_3864e7f38681b875", 701148293464953, this, [value]); }
   /**
    * init(sourceIdentifier: String, notificationIdentifier: String, actionIdentifier: String, userText: String?)
    * @availability iOS 26.5+
    */
-  static init(sourceIdentifier: string, notificationIdentifier: string, actionIdentifier: string, userText?: (string) | null): NotificationResponse { return callSDK<NotificationResponse>("AccessoryNotifications_e11dfd5beee01da3", 4155615524894599, undefined, [sourceIdentifier, notificationIdentifier, actionIdentifier, userText]); }
+  static init(sourceIdentifier: string, notificationIdentifier: string, actionIdentifier: string, userText?: (string) | null): NotificationResponse { return callSDK<NotificationResponse>("AccessoryNotifications_3864e7f38681b875", 4155615524894599, undefined, [sourceIdentifier, notificationIdentifier, actionIdentifier, userText]); }
   /**
    * var sourceIdentifier: String
    * @availability iOS 26.5+
    */
-  get sourceIdentifier(): string { return callSDK<string>("AccessoryNotifications_e11dfd5beee01da3", 1128542128067478, this, []); }
-  set sourceIdentifier(value: string) { callSDK<void>("AccessoryNotifications_e11dfd5beee01da3", 2656263656972931, this, [value]); }
+  get sourceIdentifier(): string { return callSDK<string>("AccessoryNotifications_3864e7f38681b875", 1128542128067478, this, []); }
+  set sourceIdentifier(value: string) { callSDK<void>("AccessoryNotifications_3864e7f38681b875", 2656263656972931, this, [value]); }
   /**
    * var notificationIdentifier: String
    * @availability iOS 26.5+
    */
-  get notificationIdentifier(): string { return callSDK<string>("AccessoryNotifications_e11dfd5beee01da3", 3560814609881229, this, []); }
-  set notificationIdentifier(value: string) { callSDK<void>("AccessoryNotifications_e11dfd5beee01da3", 3967606718997321, this, [value]); }
+  get notificationIdentifier(): string { return callSDK<string>("AccessoryNotifications_3864e7f38681b875", 3560814609881229, this, []); }
+  set notificationIdentifier(value: string) { callSDK<void>("AccessoryNotifications_3864e7f38681b875", 3967606718997321, this, [value]); }
   /**
    * var userText: String?
    * @availability iOS 26.5+
    */
-  get userText(): (string) | null { return callSDK<(string) | null>("AccessoryNotifications_e11dfd5beee01da3", 3650943556395316, this, []); }
-  set userText(value: (string) | null) { callSDK<void>("AccessoryNotifications_e11dfd5beee01da3", 3098591610624432, this, [value]); }
+  get userText(): (string) | null { return callSDK<(string) | null>("AccessoryNotifications_3864e7f38681b875", 3650943556395316, this, []); }
+  set userText(value: (string) | null) { callSDK<void>("AccessoryNotifications_3864e7f38681b875", 3098591610624432, this, [value]); }
   declare readonly $type: { "s:22AccessoryNotifications20NotificationResponseV": true };
 }
 
@@ -390,7 +390,7 @@ export class NotificationsForwarding extends SDKHandle {
    * static let featureID: String
    * @availability iOS 26.5+
    */
-  static get featureID(): string { return callSDK<string>("AccessoryNotifications_e11dfd5beee01da3", 1954126193567681, undefined, []); }
+  static get featureID(): string { return callSDK<string>("AccessoryNotifications_3864e7f38681b875", 1954126193567681, undefined, []); }
   declare readonly $type: { "s:22AccessoryNotifications0B10ForwardingC": true };
 }
 
@@ -473,31 +473,31 @@ export class NotificationsForwarding_Session extends SDKHandle {
    * final func removeNotifications(identifiers: [AccessoryNotification.Identifier]) async throws
    * @availability iOS 26.5+
    */
-  removeNotifications(identifiers: $SDK5): Promise<void> { return callSDKAsync<void>("AccessoryNotifications_e11dfd5beee01da3", 2245975021200899, this, [identifiers]); }
+  removeNotifications(identifiers: $SDK5): Promise<void> { return callSDKAsync<void>("AccessoryNotifications_3864e7f38681b875", 2245975021200899, this, [identifiers]); }
   /**
    * final func sendResponse(_ response: NotificationResponse) async throws
    * @availability iOS 26.5+
    */
-  sendResponse(response: NotificationResponse): Promise<void> { return callSDKAsync<void>("AccessoryNotifications_e11dfd5beee01da3", 1175294774067145, this, [response]); }
+  sendResponse(response: NotificationResponse): Promise<void> { return callSDKAsync<void>("AccessoryNotifications_3864e7f38681b875", 1175294774067145, this, [response]); }
   /**
    * final func send(message: AccessoryMessage) async throws
    * @availability iOS 26.5+
    */
-  send(message: _AccessoryTransportExtension_AccessoryMessage): Promise<void> { return callSDKAsync<void>("AccessoryNotifications_e11dfd5beee01da3", 2839132553848333, this, [message]); }
+  send(message: _AccessoryTransportExtension_AccessoryMessage): Promise<void> { return callSDKAsync<void>("AccessoryNotifications_3864e7f38681b875", 2839132553848333, this, [message]); }
   declare readonly $type: { "s:22AccessoryNotifications0B10ForwardingC7SessionC": true };
 }
 
-registerSDKClass("AccessoryNotifications.AccessoryNotification", AccessoryNotification, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {} });
-registerSDKClass("AccessoryNotifications.AccessoryNotification.Action", AccessoryNotification_Action, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {} });
-registerSDKClass("AccessoryNotifications.AccessoryNotification.Action.ActionType", AccessoryNotification_Action_ActionType, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {} });
-registerSDKClass("AccessoryNotifications.AccessoryNotification.DisplayDate", AccessoryNotification_DisplayDate, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {} });
-registerSDKClass("AccessoryNotifications.AccessoryNotification.File", AccessoryNotification_File, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {} });
-registerSDKClass("AccessoryNotifications.AccessoryNotification.Identifier", AccessoryNotification_Identifier, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {} });
-registerSDKClass("AccessoryNotifications.AccessoryNotificationCenter", AccessoryNotificationCenter, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {}, methods: {"presentSettings":{"id":3322326812105149},"forwardingStatus":{"id":1401845811877913},"requestForwarding":{"id":4434019953768455}} });
-registerSDKClass("AccessoryNotifications.AlertingContext", AlertingContext, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {} });
-registerSDKClass("AccessoryNotifications.AlertingContext.Sound", AlertingContext_Sound, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {} });
-registerSDKClass("AccessoryNotifications.NotificationResponse", NotificationResponse, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {} });
-registerSDKClass("AccessoryNotifications.NotificationsForwarding", NotificationsForwarding, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {} });
+registerSDKClass("AccessoryNotifications.AccessoryNotification", AccessoryNotification, { module: "AccessoryNotifications_3864e7f38681b875", properties: {} });
+registerSDKClass("AccessoryNotifications.AccessoryNotification.Action", AccessoryNotification_Action, { module: "AccessoryNotifications_3864e7f38681b875", properties: {} });
+registerSDKClass("AccessoryNotifications.AccessoryNotification.Action.ActionType", AccessoryNotification_Action_ActionType, { module: "AccessoryNotifications_3864e7f38681b875", properties: {} });
+registerSDKClass("AccessoryNotifications.AccessoryNotification.DisplayDate", AccessoryNotification_DisplayDate, { module: "AccessoryNotifications_3864e7f38681b875", properties: {} });
+registerSDKClass("AccessoryNotifications.AccessoryNotification.File", AccessoryNotification_File, { module: "AccessoryNotifications_3864e7f38681b875", properties: {} });
+registerSDKClass("AccessoryNotifications.AccessoryNotification.Identifier", AccessoryNotification_Identifier, { module: "AccessoryNotifications_3864e7f38681b875", properties: {} });
+registerSDKClass("AccessoryNotifications.AccessoryNotificationCenter", AccessoryNotificationCenter, { module: "AccessoryNotifications_3864e7f38681b875", properties: {}, methods: {"presentSettings":{"id":3322326812105149},"forwardingStatus":{"id":1401845811877913},"requestForwarding":{"id":4434019953768455}} });
+registerSDKClass("AccessoryNotifications.AlertingContext", AlertingContext, { module: "AccessoryNotifications_3864e7f38681b875", properties: {} });
+registerSDKClass("AccessoryNotifications.AlertingContext.Sound", AlertingContext_Sound, { module: "AccessoryNotifications_3864e7f38681b875", properties: {} });
+registerSDKClass("AccessoryNotifications.NotificationResponse", NotificationResponse, { module: "AccessoryNotifications_3864e7f38681b875", properties: {} });
+registerSDKClass("AccessoryNotifications.NotificationsForwarding", NotificationsForwarding, { module: "AccessoryNotifications_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:22AccessoryNotifications0B10ForwardingC0aB7HandlerP", {"didActivateFor":"didActivate(for:)","didInvalidate":"didInvalidate()","addNotificationAlertingContext":"addNotification(_:alertingContext:)","updateNotification":"updateNotification(_:)","removeNotificationIdentifier":"removeNotification(identifier:)","removeAllNotifications":"removeAllNotifications()","messageHandler":"messageHandler(_:)"});
 registerSDKProtocol("s:22AccessoryNotifications0B10ForwardingC0aB7SessionP", {"sendResponse":"sendResponse(_:)","removeNotificationsIdentifiers":"removeNotifications(identifiers:)","sendMessage":"send(message:)"});
-registerSDKClass("AccessoryNotifications.NotificationsForwarding.Session", NotificationsForwarding_Session, { module: "AccessoryNotifications_e11dfd5beee01da3", properties: {}, methods: {"removeNotifications":{"id":2245975021200899},"sendResponse":{"id":1175294774067145},"send":{"id":2839132553848333}} });
+registerSDKClass("AccessoryNotifications.NotificationsForwarding.Session", NotificationsForwarding_Session, { module: "AccessoryNotifications_3864e7f38681b875", properties: {}, methods: {"removeNotifications":{"id":2245975021200899},"sendResponse":{"id":1175294774067145},"send":{"id":2839132553848333}} });

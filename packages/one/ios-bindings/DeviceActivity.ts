@@ -28,33 +28,33 @@ export class DeviceActivityAuthorization extends SDKHandle {
    * static func isAuthorized(_ bundleIdentifier: String) -> Bool
    * @availability iOS 17.0+
    */
-  static isAuthorized(bundleIdentifier: string): boolean { return callSDK<boolean>("DeviceActivity_e11dfd5beee01da3", 59307781823034, undefined, [bundleIdentifier]); }
+  static isAuthorized(bundleIdentifier: string): boolean { return callSDK<boolean>("DeviceActivity_3864e7f38681b875", 59307781823034, undefined, [bundleIdentifier]); }
   /**
    * @objc static var authorizedClientIdentifiers: [String] { get }
    * @availability iOS 17.0+
    */
-  static get authorizedClientIdentifiers(): Array<string> { return callSDK<Array<string>>("DeviceActivity_e11dfd5beee01da3", 2281630792202, undefined, []); }
+  static get authorizedClientIdentifiers(): Array<string> { return callSDK<Array<string>>("DeviceActivity_3864e7f38681b875", 2281630792202, undefined, []); }
   /**
    * static var isAuthorized: Bool { get }
    * @availability iOS 17.0+
    */
-  static get isAuthorized57125(): boolean { return callSDK<boolean>("DeviceActivity_e11dfd5beee01da3", 666025504922139, undefined, []); }
+  static get isAuthorized57125(): boolean { return callSDK<boolean>("DeviceActivity_3864e7f38681b875", 666025504922139, undefined, []); }
   /**
    * @objc static var isOverridden: Bool { get set }
    * @availability iOS 17.0+
    */
-  static get isOverridden(): boolean { return callSDK<boolean>("DeviceActivity_e11dfd5beee01da3", 4267060009609328, undefined, []); }
-  static set isOverridden(value: boolean) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 2398083585906788, undefined, [value]); }
+  static get isOverridden(): boolean { return callSDK<boolean>("DeviceActivity_3864e7f38681b875", 4267060009609328, undefined, []); }
+  static set isOverridden(value: boolean) { callSDK<void>("DeviceActivity_3864e7f38681b875", 2398083585906788, undefined, [value]); }
   /**
    * @objc static var sharingEnabled: Bool { get }
    * @availability iOS 17.0+
    */
-  static get sharingEnabled(): boolean { return callSDK<boolean>("DeviceActivity_e11dfd5beee01da3", 1364706123812559, undefined, []); }
+  static get sharingEnabled(): boolean { return callSDK<boolean>("DeviceActivity_3864e7f38681b875", 1364706123812559, undefined, []); }
   /**
    * override dynamic init()
    * @availability iOS 17.0+
    */
-  static init(): DeviceActivityAuthorization { return callSDK<DeviceActivityAuthorization>("DeviceActivity_e11dfd5beee01da3", 4006185168254353, undefined, []); }
+  static init(): DeviceActivityAuthorization { return callSDK<DeviceActivityAuthorization>("DeviceActivity_3864e7f38681b875", 4006185168254353, undefined, []); }
   declare readonly $type: { "c:@M@DeviceActivity@objc(cs)DeviceActivityAuthorization": true; "c:objc(cs)NSObject": true };
 }
 
@@ -79,32 +79,32 @@ export class DeviceActivityCenter extends SDKHandle {
    * var activities: [DeviceActivityName] { get }
    * @availability iOS 15.0+
    */
-  get activities(): Array<DeviceActivityName> { return callSDK<Array<DeviceActivityName>>("DeviceActivity_e11dfd5beee01da3", 122893899849489, this, []); }
+  get activities(): Array<DeviceActivityName> { return callSDK<Array<DeviceActivityName>>("DeviceActivity_3864e7f38681b875", 122893899849489, this, []); }
   /**
    * func stopMonitoring(_ activities: [DeviceActivityName] = [])
    * @availability iOS 15.0+
    */
-  stopMonitoring(activities?: Array<DeviceActivityName>): void { return callSDK<void>("DeviceActivity_e11dfd5beee01da3", 460182075052269, this, [activities]); }
+  stopMonitoring(activities?: Array<DeviceActivityName>): void { return callSDK<void>("DeviceActivity_3864e7f38681b875", 460182075052269, this, [activities]); }
   /**
    * func startMonitoring(_ activity: DeviceActivityName, during schedule: DeviceActivitySchedule, events: [DeviceActivityEvent.Name : DeviceActivityEvent] = [:]) throws
    * @availability iOS 15.0+
    */
-  startMonitoring(activity: DeviceActivityName, schedule: DeviceActivitySchedule, events?: $SDK1): void { return callSDK<void>("DeviceActivity_e11dfd5beee01da3", 2171217497262151, this, [activity, schedule, events]); }
+  startMonitoring(activity: DeviceActivityName, schedule: DeviceActivitySchedule, events?: $SDK1): void { return callSDK<void>("DeviceActivity_3864e7f38681b875", 2171217497262151, this, [activity, schedule, events]); }
   /**
    * func events(for activity: DeviceActivityName) -> [DeviceActivityEvent.Name : DeviceActivityEvent]
    * @availability iOS 15.0+
    */
-  events(activity: DeviceActivityName): $SDK1 { return callSDK<$SDK1>("DeviceActivity_e11dfd5beee01da3", 4034211818021709, this, [activity]); }
+  events(activity: DeviceActivityName): $SDK1 { return callSDK<$SDK1>("DeviceActivity_3864e7f38681b875", 4034211818021709, this, [activity]); }
   /**
    * func schedule(for activity: DeviceActivityName) -> DeviceActivitySchedule?
    * @availability iOS 15.0+
    */
-  schedule(activity: DeviceActivityName): (DeviceActivitySchedule) | null { return callSDK<(DeviceActivitySchedule) | null>("DeviceActivity_e11dfd5beee01da3", 1754463336155186, this, [activity]); }
+  schedule(activity: DeviceActivityName): (DeviceActivitySchedule) | null { return callSDK<(DeviceActivitySchedule) | null>("DeviceActivity_3864e7f38681b875", 1754463336155186, this, [activity]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): DeviceActivityCenter { return callSDK<DeviceActivityCenter>("DeviceActivity_e11dfd5beee01da3", 1234200112436889, undefined, []); }
+  static init(): DeviceActivityCenter { return callSDK<DeviceActivityCenter>("DeviceActivity_3864e7f38681b875", 1234200112436889, undefined, []); }
   declare readonly $type: { "s:14DeviceActivity0aB6CenterV": true };
 }
 
@@ -119,12 +119,12 @@ export const DeviceActivityCenter_MonitoringError = {
    * var errorDescription: String? { get }
    * @availability iOS 15.0+
    */
-  getErrorDescription($self: DeviceActivityCenter_MonitoringError): (string) | null { return callSDK<(string) | null>("DeviceActivity_e11dfd5beee01da3", 3445651000110609, $self, []); },
+  getErrorDescription($self: DeviceActivityCenter_MonitoringError): (string) | null { return callSDK<(string) | null>("DeviceActivity_3864e7f38681b875", 3445651000110609, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 15.0+
    */
-  getRecoverySuggestion($self: DeviceActivityCenter_MonitoringError): (string) | null { return callSDK<(string) | null>("DeviceActivity_e11dfd5beee01da3", 786534644228700, $self, []); }
+  getRecoverySuggestion($self: DeviceActivityCenter_MonitoringError): (string) | null { return callSDK<(string) | null>("DeviceActivity_3864e7f38681b875", 786534644228700, $self, []); }
 };
 
 /**
@@ -137,31 +137,31 @@ export class DeviceActivityData extends SDKHandle {
   
    * @availability iOS 26.4+
    */
-  static activityData(filter?: DeviceActivityFilter, policy?: DeviceActivityData_Policy): SDKHandle { return callSDK<SDKHandle>("DeviceActivity_e11dfd5beee01da3", 3548001915556265, undefined, [filter, policy]); }
+  static activityData(filter?: DeviceActivityFilter, policy?: DeviceActivityData_Policy): SDKHandle { return callSDK<SDKHandle>("DeviceActivity_3864e7f38681b875", 3548001915556265, undefined, [filter, policy]); }
   /**
    * var lastUpdatedDate: Date
    * @availability iOS 16.0+
    */
-  get lastUpdatedDate(): globalThis.Date { return callSDK<globalThis.Date>("DeviceActivity_e11dfd5beee01da3", 2349291926850143, this, []); }
-  set lastUpdatedDate(value: globalThis.Date) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 2853250820730608, this, [value]); }
+  get lastUpdatedDate(): globalThis.Date { return callSDK<globalThis.Date>("DeviceActivity_3864e7f38681b875", 2349291926850143, this, []); }
+  set lastUpdatedDate(value: globalThis.Date) { callSDK<void>("DeviceActivity_3864e7f38681b875", 2853250820730608, this, [value]); }
   /**
    * var segmentInterval: DeviceActivityFilter.SegmentInterval
    * @availability iOS 16.0+
    */
-  get segmentInterval(): DeviceActivityFilter_SegmentInterval { return callSDK<DeviceActivityFilter_SegmentInterval>("DeviceActivity_e11dfd5beee01da3", 4204170508083334, this, []); }
-  set segmentInterval(value: DeviceActivityFilter_SegmentInterval) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 301243121304440, this, [value]); }
+  get segmentInterval(): DeviceActivityFilter_SegmentInterval { return callSDK<DeviceActivityFilter_SegmentInterval>("DeviceActivity_3864e7f38681b875", 4204170508083334, this, []); }
+  set segmentInterval(value: DeviceActivityFilter_SegmentInterval) { callSDK<void>("DeviceActivity_3864e7f38681b875", 301243121304440, this, [value]); }
   /**
    * var user: DeviceActivityData.User
    * @availability iOS 16.0+
    */
-  get user(): DeviceActivityData_User { return callSDK<DeviceActivityData_User>("DeviceActivity_e11dfd5beee01da3", 3968600890369329, this, []); }
-  set user(value: DeviceActivityData_User) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 901557522601240, this, [value]); }
+  get user(): DeviceActivityData_User { return callSDK<DeviceActivityData_User>("DeviceActivity_3864e7f38681b875", 3968600890369329, this, []); }
+  set user(value: DeviceActivityData_User) { callSDK<void>("DeviceActivity_3864e7f38681b875", 901557522601240, this, [value]); }
   /**
    * var device: DeviceActivityData.Device
    * @availability iOS 16.0+
    */
-  get device(): DeviceActivityData_Device { return callSDK<DeviceActivityData_Device>("DeviceActivity_e11dfd5beee01da3", 1114276396935532, this, []); }
-  set device(value: DeviceActivityData_Device) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 593703107936363, this, [value]); }
+  get device(): DeviceActivityData_Device { return callSDK<DeviceActivityData_Device>("DeviceActivity_3864e7f38681b875", 1114276396935532, this, []); }
+  set device(value: DeviceActivityData_Device) { callSDK<void>("DeviceActivity_3864e7f38681b875", 593703107936363, this, [value]); }
   declare readonly $type: { "s:14DeviceActivity0aB4DataV": true };
 }
 
@@ -174,32 +174,32 @@ export class DeviceActivityData_ActivitySegment extends SDKHandle {
    * var totalPickupsWithoutApplicationActivity: Int
    * @availability iOS 16.0+
    */
-  get totalPickupsWithoutApplicationActivity(): number { return callSDK<number>("DeviceActivity_e11dfd5beee01da3", 3392272302383056, this, []); }
-  set totalPickupsWithoutApplicationActivity(value: number) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 3068411303176040, this, [value]); }
+  get totalPickupsWithoutApplicationActivity(): number { return callSDK<number>("DeviceActivity_3864e7f38681b875", 3392272302383056, this, []); }
+  set totalPickupsWithoutApplicationActivity(value: number) { callSDK<void>("DeviceActivity_3864e7f38681b875", 3068411303176040, this, [value]); }
   /**
    * var totalActivityDuration: TimeInterval
    * @availability iOS 16.0+
    */
-  get totalActivityDuration(): number { return callSDK<number>("DeviceActivity_e11dfd5beee01da3", 2491393677275858, this, []); }
-  set totalActivityDuration(value: number) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 1502759243645354, this, [value]); }
+  get totalActivityDuration(): number { return callSDK<number>("DeviceActivity_3864e7f38681b875", 2491393677275858, this, []); }
+  set totalActivityDuration(value: number) { callSDK<void>("DeviceActivity_3864e7f38681b875", 1502759243645354, this, [value]); }
   /**
    * var longestActivity: DateInterval?
    * @availability iOS 16.0+
    */
-  get longestActivity(): $SDK3 { return callSDK<$SDK3>("DeviceActivity_e11dfd5beee01da3", 523912945836057, this, []); }
-  set longestActivity(value: $SDK3) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 2242501744067595, this, [value]); }
+  get longestActivity(): $SDK3 { return callSDK<$SDK3>("DeviceActivity_3864e7f38681b875", 523912945836057, this, []); }
+  set longestActivity(value: $SDK3) { callSDK<void>("DeviceActivity_3864e7f38681b875", 2242501744067595, this, [value]); }
   /**
    * var firstPickup: Date?
    * @availability iOS 16.0+
    */
-  get firstPickup(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("DeviceActivity_e11dfd5beee01da3", 1220388638656337, this, []); }
-  set firstPickup(value: (globalThis.Date) | null) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 2753404590863305, this, [value]); }
+  get firstPickup(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("DeviceActivity_3864e7f38681b875", 1220388638656337, this, []); }
+  set firstPickup(value: (globalThis.Date) | null) { callSDK<void>("DeviceActivity_3864e7f38681b875", 2753404590863305, this, [value]); }
   /**
    * var dateInterval: DateInterval
    * @availability iOS 16.0+
    */
-  get dateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("DeviceActivity_e11dfd5beee01da3", 2158242101601557, this, []); }
-  set dateInterval(value: _Foundation_DateInterval) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 4399425580098823, this, [value]); }
+  get dateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("DeviceActivity_3864e7f38681b875", 2158242101601557, this, []); }
+  set dateInterval(value: _Foundation_DateInterval) { callSDK<void>("DeviceActivity_3864e7f38681b875", 4399425580098823, this, [value]); }
   declare readonly $type: { "s:14DeviceActivity0aB4DataV0B7SegmentV": true };
 }
 
@@ -212,26 +212,26 @@ export class DeviceActivityData_ApplicationActivity extends SDKHandle {
    * var totalActivityDuration: TimeInterval
    * @availability iOS 16.0+
    */
-  get totalActivityDuration(): number { return callSDK<number>("DeviceActivity_e11dfd5beee01da3", 465813123156614, this, []); }
-  set totalActivityDuration(value: number) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 3566796494893835, this, [value]); }
+  get totalActivityDuration(): number { return callSDK<number>("DeviceActivity_3864e7f38681b875", 465813123156614, this, []); }
+  set totalActivityDuration(value: number) { callSDK<void>("DeviceActivity_3864e7f38681b875", 3566796494893835, this, [value]); }
   /**
    * var application: Application
    * @availability iOS 16.0+
    */
-  get application(): _ManagedSettings_Application { return callSDK<_ManagedSettings_Application>("DeviceActivity_e11dfd5beee01da3", 3086861999407400, this, []); }
-  set application(value: _ManagedSettings_Application) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 3998193987471434, this, [value]); }
+  get application(): _ManagedSettings_Application { return callSDK<_ManagedSettings_Application>("DeviceActivity_3864e7f38681b875", 3086861999407400, this, []); }
+  set application(value: _ManagedSettings_Application) { callSDK<void>("DeviceActivity_3864e7f38681b875", 3998193987471434, this, [value]); }
   /**
    * var numberOfPickups: Int
    * @availability iOS 16.0+
    */
-  get numberOfPickups(): number { return callSDK<number>("DeviceActivity_e11dfd5beee01da3", 1651896325617993, this, []); }
-  set numberOfPickups(value: number) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 635054734526214, this, [value]); }
+  get numberOfPickups(): number { return callSDK<number>("DeviceActivity_3864e7f38681b875", 1651896325617993, this, []); }
+  set numberOfPickups(value: number) { callSDK<void>("DeviceActivity_3864e7f38681b875", 635054734526214, this, [value]); }
   /**
    * var numberOfNotifications: Int
    * @availability iOS 16.0+
    */
-  get numberOfNotifications(): number { return callSDK<number>("DeviceActivity_e11dfd5beee01da3", 4477012719925999, this, []); }
-  set numberOfNotifications(value: number) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 4411278803016967, this, [value]); }
+  get numberOfNotifications(): number { return callSDK<number>("DeviceActivity_3864e7f38681b875", 4477012719925999, this, []); }
+  set numberOfNotifications(value: number) { callSDK<void>("DeviceActivity_3864e7f38681b875", 4411278803016967, this, [value]); }
   declare readonly $type: { "s:14DeviceActivity0aB4DataV011ApplicationB0V": true };
 }
 
@@ -244,14 +244,14 @@ export class DeviceActivityData_CategoryActivity extends SDKHandle {
    * var totalActivityDuration: TimeInterval
    * @availability iOS 16.0+
    */
-  get totalActivityDuration(): number { return callSDK<number>("DeviceActivity_e11dfd5beee01da3", 571427570430544, this, []); }
-  set totalActivityDuration(value: number) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 4469992339476360, this, [value]); }
+  get totalActivityDuration(): number { return callSDK<number>("DeviceActivity_3864e7f38681b875", 571427570430544, this, []); }
+  set totalActivityDuration(value: number) { callSDK<void>("DeviceActivity_3864e7f38681b875", 4469992339476360, this, [value]); }
   /**
    * var category: ActivityCategory
    * @availability iOS 16.0+
    */
-  get category(): _ManagedSettings_ActivityCategory { return callSDK<_ManagedSettings_ActivityCategory>("DeviceActivity_e11dfd5beee01da3", 3380283500945132, this, []); }
-  set category(value: _ManagedSettings_ActivityCategory) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 3387426988275174, this, [value]); }
+  get category(): _ManagedSettings_ActivityCategory { return callSDK<_ManagedSettings_ActivityCategory>("DeviceActivity_3864e7f38681b875", 3380283500945132, this, []); }
+  set category(value: _ManagedSettings_ActivityCategory) { callSDK<void>("DeviceActivity_3864e7f38681b875", 3387426988275174, this, [value]); }
   declare readonly $type: { "s:14DeviceActivity0aB4DataV08CategoryB0V": true };
 }
 
@@ -264,14 +264,14 @@ export class DeviceActivityData_Device extends SDKHandle {
    * var name: String?
    * @availability iOS 16.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("DeviceActivity_e11dfd5beee01da3", 927257425986638, this, []); }
-  set name(value: (string) | null) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 474051688706792, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("DeviceActivity_3864e7f38681b875", 927257425986638, this, []); }
+  set name(value: (string) | null) { callSDK<void>("DeviceActivity_3864e7f38681b875", 474051688706792, this, [value]); }
   /**
    * var model: DeviceActivityData.Device.Model
    * @availability iOS 16.0+
    */
-  get model(): DeviceActivityData_Device_Model { return callSDK<DeviceActivityData_Device_Model>("DeviceActivity_e11dfd5beee01da3", 3673653212380081, this, []); }
-  set model(value: DeviceActivityData_Device_Model) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 665257324191434, this, [value]); }
+  get model(): DeviceActivityData_Device_Model { return callSDK<DeviceActivityData_Device_Model>("DeviceActivity_3864e7f38681b875", 3673653212380081, this, []); }
+  set model(value: DeviceActivityData_Device_Model) { callSDK<void>("DeviceActivity_3864e7f38681b875", 665257324191434, this, [value]); }
   declare readonly $type: { "s:14DeviceActivity0aB4DataV0A0V": true };
 }
 
@@ -286,12 +286,12 @@ export const DeviceActivityData_Device_Model = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (DeviceActivityData_Device_Model) | null { return callSDK<(DeviceActivityData_Device_Model) | null>("DeviceActivity_e11dfd5beee01da3", 3733048589684640, undefined, [rawValue]); },
+  init(rawValue: number): (DeviceActivityData_Device_Model) | null { return callSDK<(DeviceActivityData_Device_Model) | null>("DeviceActivity_3864e7f38681b875", 3733048589684640, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: DeviceActivityData_Device_Model): number { return callSDK<number>("DeviceActivity_e11dfd5beee01da3", 3764694878627720, $self, []); }
+  getRawValue($self: DeviceActivityData_Device_Model): number { return callSDK<number>("DeviceActivity_3864e7f38681b875", 3764694878627720, $self, []); }
 };
 
 /**
@@ -311,7 +311,7 @@ export const DeviceActivityData_Error = {
    * var errorDescription: String? { get }
    * @availability iOS 26.4+
    */
-  getErrorDescription($self: DeviceActivityData_Error): (string) | null { return callSDK<(string) | null>("DeviceActivity_e11dfd5beee01da3", 1915728374847393, $self, []); }
+  getErrorDescription($self: DeviceActivityData_Error): (string) | null { return callSDK<(string) | null>("DeviceActivity_3864e7f38681b875", 1915728374847393, $self, []); }
 };
 
 /**
@@ -329,20 +329,20 @@ export class DeviceActivityData_User extends SDKHandle {
    * var nameComponents: PersonNameComponents?
    * @availability iOS 16.0+
    */
-  get nameComponents(): $SDK5 { return callSDK<$SDK5>("DeviceActivity_e11dfd5beee01da3", 2044466197081636, this, []); }
-  set nameComponents(value: $SDK5) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 2787586219097163, this, [value]); }
+  get nameComponents(): $SDK5 { return callSDK<$SDK5>("DeviceActivity_3864e7f38681b875", 2044466197081636, this, []); }
+  set nameComponents(value: $SDK5) { callSDK<void>("DeviceActivity_3864e7f38681b875", 2787586219097163, this, [value]); }
   /**
    * var role: DeviceActivityData.User.FamilyRole
    * @availability iOS 16.0+
    */
-  get role(): DeviceActivityData_User_FamilyRole { return callSDK<DeviceActivityData_User_FamilyRole>("DeviceActivity_e11dfd5beee01da3", 444891615607975, this, []); }
-  set role(value: DeviceActivityData_User_FamilyRole) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 1943277766059666, this, [value]); }
+  get role(): DeviceActivityData_User_FamilyRole { return callSDK<DeviceActivityData_User_FamilyRole>("DeviceActivity_3864e7f38681b875", 444891615607975, this, []); }
+  set role(value: DeviceActivityData_User_FamilyRole) { callSDK<void>("DeviceActivity_3864e7f38681b875", 1943277766059666, this, [value]); }
   /**
    * var appleID: String?
    * @availability iOS 16.0+
    */
-  get appleID(): (string) | null { return callSDK<(string) | null>("DeviceActivity_e11dfd5beee01da3", 914979330960039, this, []); }
-  set appleID(value: (string) | null) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 919831089023068, this, [value]); }
+  get appleID(): (string) | null { return callSDK<(string) | null>("DeviceActivity_3864e7f38681b875", 914979330960039, this, []); }
+  set appleID(value: (string) | null) { callSDK<void>("DeviceActivity_3864e7f38681b875", 919831089023068, this, [value]); }
   declare readonly $type: { "s:14DeviceActivity0aB4DataV4UserV": true };
 }
 
@@ -357,12 +357,12 @@ export const DeviceActivityData_User_FamilyRole = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (DeviceActivityData_User_FamilyRole) | null { return callSDK<(DeviceActivityData_User_FamilyRole) | null>("DeviceActivity_e11dfd5beee01da3", 4308832714791057, undefined, [rawValue]); },
+  init(rawValue: number): (DeviceActivityData_User_FamilyRole) | null { return callSDK<(DeviceActivityData_User_FamilyRole) | null>("DeviceActivity_3864e7f38681b875", 4308832714791057, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: DeviceActivityData_User_FamilyRole): number { return callSDK<number>("DeviceActivity_e11dfd5beee01da3", 237105232760050, $self, []); }
+  getRawValue($self: DeviceActivityData_User_FamilyRole): number { return callSDK<number>("DeviceActivity_3864e7f38681b875", 237105232760050, $self, []); }
 };
 
 /**
@@ -380,14 +380,14 @@ export class DeviceActivityData_WebDomainActivity extends SDKHandle {
    * var webDomain: WebDomain
    * @availability iOS 16.0+
    */
-  get webDomain(): _ManagedSettings_WebDomain { return callSDK<_ManagedSettings_WebDomain>("DeviceActivity_e11dfd5beee01da3", 3287131884059047, this, []); }
-  set webDomain(value: _ManagedSettings_WebDomain) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 649002212092880, this, [value]); }
+  get webDomain(): _ManagedSettings_WebDomain { return callSDK<_ManagedSettings_WebDomain>("DeviceActivity_3864e7f38681b875", 3287131884059047, this, []); }
+  set webDomain(value: _ManagedSettings_WebDomain) { callSDK<void>("DeviceActivity_3864e7f38681b875", 649002212092880, this, [value]); }
   /**
    * var totalActivityDuration: TimeInterval
    * @availability iOS 16.0+
    */
-  get totalActivityDuration(): number { return callSDK<number>("DeviceActivity_e11dfd5beee01da3", 2012103302268268, this, []); }
-  set totalActivityDuration(value: number) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 755210574162087, this, [value]); }
+  get totalActivityDuration(): number { return callSDK<number>("DeviceActivity_3864e7f38681b875", 2012103302268268, this, []); }
+  set totalActivityDuration(value: number) { callSDK<void>("DeviceActivity_3864e7f38681b875", 755210574162087, this, [value]); }
   declare readonly $type: { "s:14DeviceActivity0aB4DataV09WebDomainB0V": true };
 }
 
@@ -400,42 +400,42 @@ export class DeviceActivityEvent extends SDKHandle {
    * var includesAllActivity: Bool { get }
    * @availability iOS 15.0+
    */
-  get includesAllActivity(): boolean { return callSDK<boolean>("DeviceActivity_e11dfd5beee01da3", 4250141272490193, this, []); }
+  get includesAllActivity(): boolean { return callSDK<boolean>("DeviceActivity_3864e7f38681b875", 4250141272490193, this, []); }
   /**
    * var includesPastActivity: Bool { get }
    * @availability iOS 17.4+
    */
-  get includesPastActivity(): boolean { return callSDK<boolean>("DeviceActivity_e11dfd5beee01da3", 977552822121586, this, []); }
+  get includesPastActivity(): boolean { return callSDK<boolean>("DeviceActivity_3864e7f38681b875", 977552822121586, this, []); }
   /**
    * var categories: Set<ActivityCategoryToken> { get }
    * @availability iOS 15.0+
    */
-  get categories(): $SDK6 { return callSDK<$SDK6>("DeviceActivity_e11dfd5beee01da3", 3944444103567051, this, []); }
+  get categories(): $SDK6 { return callSDK<$SDK6>("DeviceActivity_3864e7f38681b875", 3944444103567051, this, []); }
   /**
    * var webDomains: Set<WebDomainToken> { get }
    * @availability iOS 15.0+
    */
-  get webDomains(): $SDK7 { return callSDK<$SDK7>("DeviceActivity_e11dfd5beee01da3", 1333669540091801, this, []); }
+  get webDomains(): $SDK7 { return callSDK<$SDK7>("DeviceActivity_3864e7f38681b875", 1333669540091801, this, []); }
   /**
    * init(applications: Set<ApplicationToken> = [], categories: Set<ActivityCategoryToken> = [], webDomains: Set<WebDomainToken> = [], threshold: DateComponents, includesPastActivity: Bool)
    * @availability iOS 17.4+
    */
-  static initApplicationsCategoriesWebDomainsThresholdIncludesPastActivity(applications: $SDK8, categories: $SDK6, webDomains: $SDK7, threshold: _Foundation_DateComponents, includesPastActivity: boolean): DeviceActivityEvent { return callSDK<DeviceActivityEvent>("DeviceActivity_e11dfd5beee01da3", 383347806764752, undefined, [applications, categories, webDomains, threshold, includesPastActivity]); }
+  static initApplicationsCategoriesWebDomainsThresholdIncludesPastActivity(applications: $SDK8, categories: $SDK6, webDomains: $SDK7, threshold: _Foundation_DateComponents, includesPastActivity: boolean): DeviceActivityEvent { return callSDK<DeviceActivityEvent>("DeviceActivity_3864e7f38681b875", 383347806764752, undefined, [applications, categories, webDomains, threshold, includesPastActivity]); }
   /**
    * init(applications: Set<ApplicationToken> = [], categories: Set<ActivityCategoryToken> = [], webDomains: Set<WebDomainToken> = [], threshold: DateComponents)
    * @availability iOS 15.0+
    */
-  static initApplicationsCategoriesWebDomainsThreshold(applications: $SDK8, categories: $SDK6, webDomains: $SDK7, threshold: _Foundation_DateComponents): DeviceActivityEvent { return callSDK<DeviceActivityEvent>("DeviceActivity_e11dfd5beee01da3", 607893062576844, undefined, [applications, categories, webDomains, threshold]); }
+  static initApplicationsCategoriesWebDomainsThreshold(applications: $SDK8, categories: $SDK6, webDomains: $SDK7, threshold: _Foundation_DateComponents): DeviceActivityEvent { return callSDK<DeviceActivityEvent>("DeviceActivity_3864e7f38681b875", 607893062576844, undefined, [applications, categories, webDomains, threshold]); }
   /**
    * var applications: Set<ApplicationToken> { get }
    * @availability iOS 15.0+
    */
-  get applications(): $SDK8 { return callSDK<$SDK8>("DeviceActivity_e11dfd5beee01da3", 2338864071740950, this, []); }
+  get applications(): $SDK8 { return callSDK<$SDK8>("DeviceActivity_3864e7f38681b875", 2338864071740950, this, []); }
   /**
    * var threshold: DateComponents { get }
    * @availability iOS 15.0+
    */
-  get threshold(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("DeviceActivity_e11dfd5beee01da3", 1353577472615968, this, []); }
+  get threshold(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("DeviceActivity_3864e7f38681b875", 1353577472615968, this, []); }
   declare readonly $type: { "s:14DeviceActivity0aB5EventV": true };
 }
 
@@ -450,18 +450,18 @@ export const DeviceActivityEvent_Name = {
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: string): DeviceActivityEvent_Name { return callSDK<DeviceActivityEvent_Name>("DeviceActivity_e11dfd5beee01da3", 3228779362290859, undefined, [rawValue]); },
+  initRawValue(rawValue: string): DeviceActivityEvent_Name { return callSDK<DeviceActivityEvent_Name>("DeviceActivity_3864e7f38681b875", 3228779362290859, undefined, [rawValue]); },
   /**
    * var rawValue: String
    * @availability iOS 15.0+
    */
-  getRawValue($self: DeviceActivityEvent_Name): string { return callSDK<string>("DeviceActivity_e11dfd5beee01da3", 4280712248909406, $self, []); },
-  setRawValue($self: DeviceActivityEvent_Name, value: string): void { return callSDK<void>("DeviceActivity_e11dfd5beee01da3", 848468094327394, $self, [value]); },
+  getRawValue($self: DeviceActivityEvent_Name): string { return callSDK<string>("DeviceActivity_3864e7f38681b875", 4280712248909406, $self, []); },
+  setRawValue($self: DeviceActivityEvent_Name, value: string): void { return callSDK<void>("DeviceActivity_3864e7f38681b875", 848468094327394, $self, [value]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): DeviceActivityEvent_Name { return callSDK<DeviceActivityEvent_Name>("DeviceActivity_e11dfd5beee01da3", 634512128591534, undefined, [rawValue]); }
+  init(rawValue: string): DeviceActivityEvent_Name { return callSDK<DeviceActivityEvent_Name>("DeviceActivity_3864e7f38681b875", 634512128591534, undefined, [rawValue]); }
 };
 
 /**
@@ -479,46 +479,46 @@ export class DeviceActivityFilter extends SDKHandle {
    * var categories: Set<ActivityCategoryToken>
    * @availability iOS 16.0+
    */
-  get categories(): $SDK6 { return callSDK<$SDK6>("DeviceActivity_e11dfd5beee01da3", 4453406291326656, this, []); }
-  set categories(value: $SDK6) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 1409806844025380, this, [value]); }
+  get categories(): $SDK6 { return callSDK<$SDK6>("DeviceActivity_3864e7f38681b875", 4453406291326656, this, []); }
+  set categories(value: $SDK6) { callSDK<void>("DeviceActivity_3864e7f38681b875", 1409806844025380, this, [value]); }
   /**
    * var webDomains: Set<WebDomainToken>
    * @availability iOS 16.0+
    */
-  get webDomains(): $SDK7 { return callSDK<$SDK7>("DeviceActivity_e11dfd5beee01da3", 904768170511764, this, []); }
-  set webDomains(value: $SDK7) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 4079442211652472, this, [value]); }
+  get webDomains(): $SDK7 { return callSDK<$SDK7>("DeviceActivity_3864e7f38681b875", 904768170511764, this, []); }
+  set webDomains(value: $SDK7) { callSDK<void>("DeviceActivity_3864e7f38681b875", 4079442211652472, this, [value]); }
   /**
    * var applications: Set<ApplicationToken>
    * @availability iOS 16.0+
    */
-  get applications(): $SDK8 { return callSDK<$SDK8>("DeviceActivity_e11dfd5beee01da3", 4381720294116086, this, []); }
-  set applications(value: $SDK8) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 3890772085224899, this, [value]); }
+  get applications(): $SDK8 { return callSDK<$SDK8>("DeviceActivity_3864e7f38681b875", 4381720294116086, this, []); }
+  set applications(value: $SDK8) { callSDK<void>("DeviceActivity_3864e7f38681b875", 3890772085224899, this, [value]); }
   /**
    * var segmentInterval: DeviceActivityFilter.SegmentInterval
    * @availability iOS 16.0+
    */
-  get segmentInterval(): DeviceActivityFilter_SegmentInterval { return callSDK<DeviceActivityFilter_SegmentInterval>("DeviceActivity_e11dfd5beee01da3", 65153374716103, this, []); }
-  set segmentInterval(value: DeviceActivityFilter_SegmentInterval) { callSDK<void>("DeviceActivity_e11dfd5beee01da3", 3757364553907027, this, [value]); }
+  get segmentInterval(): DeviceActivityFilter_SegmentInterval { return callSDK<DeviceActivityFilter_SegmentInterval>("DeviceActivity_3864e7f38681b875", 65153374716103, this, []); }
+  set segmentInterval(value: DeviceActivityFilter_SegmentInterval) { callSDK<void>("DeviceActivity_3864e7f38681b875", 3757364553907027, this, [value]); }
   /**
    * let users: DeviceActivityFilter.Users?
    * @availability iOS 16.0+
    */
-  get users(): (DeviceActivityFilter_Users) | null { return callSDK<(DeviceActivityFilter_Users) | null>("DeviceActivity_e11dfd5beee01da3", 3050536170802133, this, []); }
+  get users(): (DeviceActivityFilter_Users) | null { return callSDK<(DeviceActivityFilter_Users) | null>("DeviceActivity_3864e7f38681b875", 3050536170802133, this, []); }
   /**
    * let devices: DeviceActivityFilter.Devices?
    * @availability iOS 16.0+
    */
-  get devices(): $SDK10 { return callSDK<$SDK10>("DeviceActivity_e11dfd5beee01da3", 2949924311822736, this, []); }
+  get devices(): $SDK10 { return callSDK<$SDK10>("DeviceActivity_3864e7f38681b875", 2949924311822736, this, []); }
   /**
    * init(segment segmentInterval: DeviceActivityFilter.SegmentInterval = .hourly(), users: DeviceActivityFilter.Users, devices: DeviceActivityFilter.Devices, applications: Set<ApplicationToken> = [], categories: Set<ActivityCategoryToken> = [], webDomains: Set<WebDomainToken> = [])
    * @availability iOS 16.0+
    */
-  static initSegmentUsersDevicesApplicationsCategoriesWebDomains(segmentInterval: DeviceActivityFilter_SegmentInterval, users: DeviceActivityFilter_Users, devices: DeviceActivityFilter_Devices, applications?: $SDK8, categories?: $SDK6, webDomains?: $SDK7): DeviceActivityFilter { return callSDK<DeviceActivityFilter>("DeviceActivity_e11dfd5beee01da3", 94325763110656, undefined, [segmentInterval, users, devices, applications, categories, webDomains]); }
+  static initSegmentUsersDevicesApplicationsCategoriesWebDomains(segmentInterval: DeviceActivityFilter_SegmentInterval, users: DeviceActivityFilter_Users, devices: DeviceActivityFilter_Devices, applications?: $SDK8, categories?: $SDK6, webDomains?: $SDK7): DeviceActivityFilter { return callSDK<DeviceActivityFilter>("DeviceActivity_3864e7f38681b875", 94325763110656, undefined, [segmentInterval, users, devices, applications, categories, webDomains]); }
   /**
    * init(segment segmentInterval: DeviceActivityFilter.SegmentInterval = .hourly(), devices: DeviceActivityFilter.Devices? = nil, applications: Set<ApplicationToken> = [], categories: Set<ActivityCategoryToken> = [], webDomains: Set<WebDomainToken> = [])
    * @availability iOS 16.0+
    */
-  static initSegmentDevicesApplicationsCategoriesWebDomains(segmentInterval?: DeviceActivityFilter_SegmentInterval, devices?: $SDK10, applications?: $SDK8, categories?: $SDK6, webDomains?: $SDK7): DeviceActivityFilter { return callSDK<DeviceActivityFilter>("DeviceActivity_e11dfd5beee01da3", 602256041439424, undefined, [segmentInterval, devices, applications, categories, webDomains]); }
+  static initSegmentDevicesApplicationsCategoriesWebDomains(segmentInterval?: DeviceActivityFilter_SegmentInterval, devices?: $SDK10, applications?: $SDK8, categories?: $SDK6, webDomains?: $SDK7): DeviceActivityFilter { return callSDK<DeviceActivityFilter>("DeviceActivity_3864e7f38681b875", 602256041439424, undefined, [segmentInterval, devices, applications, categories, webDomains]); }
   declare readonly $type: { "s:14DeviceActivity0aB6FilterV": true };
 }
 
@@ -531,12 +531,12 @@ export class DeviceActivityFilter_Devices extends SDKHandle {
    * static let all: DeviceActivityFilter.Devices
    * @availability iOS 16.0+
    */
-  static get all(): DeviceActivityFilter_Devices { return callSDK<DeviceActivityFilter_Devices>("DeviceActivity_e11dfd5beee01da3", 3561160872197195, undefined, []); }
+  static get all(): DeviceActivityFilter_Devices { return callSDK<DeviceActivityFilter_Devices>("DeviceActivity_3864e7f38681b875", 3561160872197195, undefined, []); }
   /**
    * init(_ models: Set<DeviceActivityData.Device.Model>)
    * @availability iOS 16.0+
    */
-  static init(models: Array<DeviceActivityData_Device_Model>): DeviceActivityFilter_Devices { return callSDK<DeviceActivityFilter_Devices>("DeviceActivity_e11dfd5beee01da3", 4259535979003418, undefined, [models]); }
+  static init(models: Array<DeviceActivityData_Device_Model>): DeviceActivityFilter_Devices { return callSDK<DeviceActivityFilter_Devices>("DeviceActivity_3864e7f38681b875", 4259535979003418, undefined, [models]); }
   declare readonly $type: { "s:14DeviceActivity0aB6FilterV7DevicesV": true };
 }
 
@@ -557,12 +557,12 @@ export class DeviceActivityFilter_Users extends SDKHandle {
    * static let all: DeviceActivityFilter.Users
    * @availability iOS 16.0+
    */
-  static get all(): DeviceActivityFilter_Users { return callSDK<DeviceActivityFilter_Users>("DeviceActivity_e11dfd5beee01da3", 2534547521868773, undefined, []); }
+  static get all(): DeviceActivityFilter_Users { return callSDK<DeviceActivityFilter_Users>("DeviceActivity_3864e7f38681b875", 2534547521868773, undefined, []); }
   /**
    * static let children: DeviceActivityFilter.Users
    * @availability iOS 16.0+
    */
-  static get children(): DeviceActivityFilter_Users { return callSDK<DeviceActivityFilter_Users>("DeviceActivity_e11dfd5beee01da3", 3435247711282968, undefined, []); }
+  static get children(): DeviceActivityFilter_Users { return callSDK<DeviceActivityFilter_Users>("DeviceActivity_3864e7f38681b875", 3435247711282968, undefined, []); }
   declare readonly $type: { "s:14DeviceActivity0aB6FilterV5UsersV": true };
 }
 
@@ -575,37 +575,37 @@ export class DeviceActivityMonitor extends SDKHandle {
    * override dynamic init()
    * @availability iOS 15.0+
    */
-  static init(): DeviceActivityMonitor { return callSDK<DeviceActivityMonitor>("DeviceActivity_e11dfd5beee01da3", 1266284084727030, undefined, []); }
+  static init(): DeviceActivityMonitor { return callSDK<DeviceActivityMonitor>("DeviceActivity_3864e7f38681b875", 1266284084727030, undefined, []); }
   /**
    * func intervalDidEnd(for activity: DeviceActivityName)
    * @availability iOS 15.0+
    */
-  intervalDidEnd(activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_e11dfd5beee01da3", 2308524475800169, this, [activity]); }
+  intervalDidEnd(activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_3864e7f38681b875", 2308524475800169, this, [activity]); }
   /**
    * func intervalDidStart(for activity: DeviceActivityName)
    * @availability iOS 15.0+
    */
-  intervalDidStart(activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_e11dfd5beee01da3", 9227775345461, this, [activity]); }
+  intervalDidStart(activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_3864e7f38681b875", 9227775345461, this, [activity]); }
   /**
    * func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName)
    * @availability iOS 15.0+
    */
-  eventDidReachThreshold(event: DeviceActivityEvent_Name, activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_e11dfd5beee01da3", 680886266187335, this, [event, activity]); }
+  eventDidReachThreshold(event: DeviceActivityEvent_Name, activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_3864e7f38681b875", 680886266187335, this, [event, activity]); }
   /**
    * func intervalWillEndWarning(for activity: DeviceActivityName)
    * @availability iOS 15.0+
    */
-  intervalWillEndWarning(activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_e11dfd5beee01da3", 1686601906754918, this, [activity]); }
+  intervalWillEndWarning(activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_3864e7f38681b875", 1686601906754918, this, [activity]); }
   /**
    * func intervalWillStartWarning(for activity: DeviceActivityName)
    * @availability iOS 15.0+
    */
-  intervalWillStartWarning(activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_e11dfd5beee01da3", 2666471851015213, this, [activity]); }
+  intervalWillStartWarning(activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_3864e7f38681b875", 2666471851015213, this, [activity]); }
   /**
    * func eventWillReachThresholdWarning(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName)
    * @availability iOS 15.0+
    */
-  eventWillReachThresholdWarning(event: DeviceActivityEvent_Name, activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_e11dfd5beee01da3", 4102521870921743, this, [event, activity]); }
+  eventWillReachThresholdWarning(event: DeviceActivityEvent_Name, activity: DeviceActivityName): void { return callSDK<void>("DeviceActivity_3864e7f38681b875", 4102521870921743, this, [event, activity]); }
   declare readonly $type: { "c:@M@DeviceActivity@objc(cs)DeviceActivityMonitor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -620,18 +620,18 @@ export const DeviceActivityName = {
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: string): DeviceActivityName { return callSDK<DeviceActivityName>("DeviceActivity_e11dfd5beee01da3", 2218084012243680, undefined, [rawValue]); },
+  initRawValue(rawValue: string): DeviceActivityName { return callSDK<DeviceActivityName>("DeviceActivity_3864e7f38681b875", 2218084012243680, undefined, [rawValue]); },
   /**
    * var rawValue: String
    * @availability iOS 15.0+
    */
-  getRawValue($self: DeviceActivityName): string { return callSDK<string>("DeviceActivity_e11dfd5beee01da3", 142861353223311, $self, []); },
-  setRawValue($self: DeviceActivityName, value: string): void { return callSDK<void>("DeviceActivity_e11dfd5beee01da3", 3340581330309407, $self, [value]); },
+  getRawValue($self: DeviceActivityName): string { return callSDK<string>("DeviceActivity_3864e7f38681b875", 142861353223311, $self, []); },
+  setRawValue($self: DeviceActivityName, value: string): void { return callSDK<void>("DeviceActivity_3864e7f38681b875", 3340581330309407, $self, [value]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): DeviceActivityName { return callSDK<DeviceActivityName>("DeviceActivity_e11dfd5beee01da3", 3592240403831816, undefined, [rawValue]); }
+  init(rawValue: string): DeviceActivityName { return callSDK<DeviceActivityName>("DeviceActivity_3864e7f38681b875", 3592240403831816, undefined, [rawValue]); }
 };
 
 /**
@@ -649,49 +649,49 @@ export class DeviceActivitySchedule extends SDKHandle {
    * var intervalEnd: DateComponents { get }
    * @availability iOS 15.0+
    */
-  get intervalEnd(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("DeviceActivity_e11dfd5beee01da3", 2058669645949232, this, []); }
+  get intervalEnd(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("DeviceActivity_3864e7f38681b875", 2058669645949232, this, []); }
   /**
    * var warningTime: DateComponents? { get }
    * @availability iOS 15.0+
    */
-  get warningTime(): $SDK12 { return callSDK<$SDK12>("DeviceActivity_e11dfd5beee01da3", 3210781031073353, this, []); }
+  get warningTime(): $SDK12 { return callSDK<$SDK12>("DeviceActivity_3864e7f38681b875", 3210781031073353, this, []); }
   /**
    * var nextInterval: DateInterval? { get }
    * @availability iOS 15.0+
    */
-  get nextInterval(): $SDK3 { return callSDK<$SDK3>("DeviceActivity_e11dfd5beee01da3", 3205202578666703, this, []); }
+  get nextInterval(): $SDK3 { return callSDK<$SDK3>("DeviceActivity_3864e7f38681b875", 3205202578666703, this, []); }
   /**
    * init(intervalStart: DateComponents, intervalEnd: DateComponents, repeats: Bool, warningTime: DateComponents? = nil)
    * @availability iOS 15.0+
    */
-  static init(intervalStart: _Foundation_DateComponents, intervalEnd: _Foundation_DateComponents, repeats: boolean, warningTime?: $SDK12): DeviceActivitySchedule { return callSDK<DeviceActivitySchedule>("DeviceActivity_e11dfd5beee01da3", 3048012021949100, undefined, [intervalStart, intervalEnd, repeats, warningTime]); }
+  static init(intervalStart: _Foundation_DateComponents, intervalEnd: _Foundation_DateComponents, repeats: boolean, warningTime?: $SDK12): DeviceActivitySchedule { return callSDK<DeviceActivitySchedule>("DeviceActivity_3864e7f38681b875", 3048012021949100, undefined, [intervalStart, intervalEnd, repeats, warningTime]); }
   /**
    * var intervalStart: DateComponents { get }
    * @availability iOS 15.0+
    */
-  get intervalStart(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("DeviceActivity_e11dfd5beee01da3", 1980470002180873, this, []); }
+  get intervalStart(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("DeviceActivity_3864e7f38681b875", 1980470002180873, this, []); }
   /**
    * var repeats: Bool { get }
    * @availability iOS 15.0+
    */
-  get repeats(): boolean { return callSDK<boolean>("DeviceActivity_e11dfd5beee01da3", 4267304925082422, this, []); }
+  get repeats(): boolean { return callSDK<boolean>("DeviceActivity_3864e7f38681b875", 4267304925082422, this, []); }
   declare readonly $type: { "s:14DeviceActivity0aB8ScheduleV": true };
 }
 
-registerSDKClass("DeviceActivity.DeviceActivityAuthorization", DeviceActivityAuthorization, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityAuthorization", DeviceActivityAuthorization, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:@M@DeviceActivity@objc(pl)DeviceActivityAuthorizing", {"isAuthorized":"isAuthorized(_:)"});
-registerSDKClass("DeviceActivity.DeviceActivityCenter", DeviceActivityCenter, { module: "DeviceActivity_e11dfd5beee01da3", properties: {}, methods: {"stopMonitoring":{"id":460182075052269},"startMonitoring":{"id":2171217497262151},"events":{"id":4034211818021709},"schedule":{"id":1754463336155186}} });
-registerSDKClass("DeviceActivity.DeviceActivityData", DeviceActivityData, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityData.ActivitySegment", DeviceActivityData_ActivitySegment, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityData.ApplicationActivity", DeviceActivityData_ApplicationActivity, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityData.CategoryActivity", DeviceActivityData_CategoryActivity, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityData.Device", DeviceActivityData_Device, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityData.User", DeviceActivityData_User, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityData.WebDomainActivity", DeviceActivityData_WebDomainActivity, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityEvent", DeviceActivityEvent, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityFilter", DeviceActivityFilter, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityFilter.Devices", DeviceActivityFilter_Devices, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityFilter.SegmentInterval", DeviceActivityFilter_SegmentInterval, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityFilter.Users", DeviceActivityFilter_Users, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
-registerSDKClass("DeviceActivity.DeviceActivityMonitor", DeviceActivityMonitor, { module: "DeviceActivity_e11dfd5beee01da3", properties: {}, methods: {"intervalDidEnd":{"id":2308524475800169},"intervalDidStart":{"id":9227775345461},"eventDidReachThreshold":{"id":680886266187335},"intervalWillEndWarning":{"id":1686601906754918},"intervalWillStartWarning":{"id":2666471851015213},"eventWillReachThresholdWarning":{"id":4102521870921743}} });
-registerSDKClass("DeviceActivity.DeviceActivitySchedule", DeviceActivitySchedule, { module: "DeviceActivity_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityCenter", DeviceActivityCenter, { module: "DeviceActivity_3864e7f38681b875", properties: {}, methods: {"stopMonitoring":{"id":460182075052269},"startMonitoring":{"id":2171217497262151},"events":{"id":4034211818021709},"schedule":{"id":1754463336155186}} });
+registerSDKClass("DeviceActivity.DeviceActivityData", DeviceActivityData, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityData.ActivitySegment", DeviceActivityData_ActivitySegment, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityData.ApplicationActivity", DeviceActivityData_ApplicationActivity, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityData.CategoryActivity", DeviceActivityData_CategoryActivity, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityData.Device", DeviceActivityData_Device, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityData.User", DeviceActivityData_User, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityData.WebDomainActivity", DeviceActivityData_WebDomainActivity, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityEvent", DeviceActivityEvent, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityFilter", DeviceActivityFilter, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityFilter.Devices", DeviceActivityFilter_Devices, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityFilter.SegmentInterval", DeviceActivityFilter_SegmentInterval, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityFilter.Users", DeviceActivityFilter_Users, { module: "DeviceActivity_3864e7f38681b875", properties: {} });
+registerSDKClass("DeviceActivity.DeviceActivityMonitor", DeviceActivityMonitor, { module: "DeviceActivity_3864e7f38681b875", properties: {}, methods: {"intervalDidEnd":{"id":2308524475800169},"intervalDidStart":{"id":9227775345461},"eventDidReachThreshold":{"id":680886266187335},"intervalWillEndWarning":{"id":1686601906754918},"intervalWillStartWarning":{"id":2666471851015213},"eventWillReachThresholdWarning":{"id":4102521870921743}} });
+registerSDKClass("DeviceActivity.DeviceActivitySchedule", DeviceActivitySchedule, { module: "DeviceActivity_3864e7f38681b875", properties: {} });

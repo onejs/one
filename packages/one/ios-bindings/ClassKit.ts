@@ -18,12 +18,12 @@ export class CLSObject extends SDKHandle {
    * var dateCreated: Date { get }
    * @availability iOS 11.3+
    */
-  get dateCreated(): globalThis.Date { return callSDK<globalThis.Date>("ClassKit_e11dfd5beee01da3", 1458863093825595, this, []); }
+  get dateCreated(): globalThis.Date { return callSDK<globalThis.Date>("ClassKit_3864e7f38681b875", 1458863093825595, this, []); }
   /**
    * var dateLastModified: Date { get }
    * @availability iOS 11.3+
    */
-  get dateLastModified(): globalThis.Date { return callSDK<globalThis.Date>("ClassKit_e11dfd5beee01da3", 2269303644536606, this, []); }
+  get dateLastModified(): globalThis.Date { return callSDK<globalThis.Date>("ClassKit_3864e7f38681b875", 2269303644536606, this, []); }
   declare readonly $type: { "c:objc(cs)CLSObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateCreated": true; "dateLastModified": true };
 }
@@ -37,54 +37,54 @@ export class CLSActivity extends CLSObject {
    * func addAdditionalActivityItem(_ activityItem: CLSActivityItem)
    * @availability iOS 11.3+
    */
-  addAdditionalActivityItem(activityItem: CLSActivityItem): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 2026029437635281, this, [activityItem]); }
+  addAdditionalActivityItem(activityItem: CLSActivityItem): void { return callSDK<void>("ClassKit_3864e7f38681b875", 2026029437635281, this, [activityItem]); }
   /**
    * func addProgressRange(fromStart start: Double, toEnd end: Double)
    * @availability iOS 11.3+
    */
-  addProgressRange(start: number, end: number): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 3181158624545606, this, [start, end]); }
+  addProgressRange(start: number, end: number): void { return callSDK<void>("ClassKit_3864e7f38681b875", 3181158624545606, this, [start, end]); }
   /**
    * func removeAllActivityItems()
    * @availability iOS 14.5+
    */
-  removeAllActivityItems(): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 3317667085021999, this, []); }
+  removeAllActivityItems(): void { return callSDK<void>("ClassKit_3864e7f38681b875", 3317667085021999, this, []); }
   /**
    * func start()
    * @availability iOS 11.3+
    */
-  start(): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 2492236499455436, this, []); }
+  start(): void { return callSDK<void>("ClassKit_3864e7f38681b875", 2492236499455436, this, []); }
   /**
    * func stop()
    * @availability iOS 11.3+
    */
-  stop(): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 4031522759853236, this, []); }
+  stop(): void { return callSDK<void>("ClassKit_3864e7f38681b875", 4031522759853236, this, []); }
   /**
    * var additionalActivityItems: [CLSActivityItem] { get }
    * @availability iOS 11.3+
    */
-  get additionalActivityItems(): Array<CLSActivityItem> { return callSDK<Array<CLSActivityItem>>("ClassKit_e11dfd5beee01da3", 918515235057272, this, []); }
+  get additionalActivityItems(): Array<CLSActivityItem> { return callSDK<Array<CLSActivityItem>>("ClassKit_3864e7f38681b875", 918515235057272, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 11.3+
    */
-  get duration(): number { return callSDK<number>("ClassKit_e11dfd5beee01da3", 3361039116122497, this, []); }
+  get duration(): number { return callSDK<number>("ClassKit_3864e7f38681b875", 3361039116122497, this, []); }
   /**
    * var primaryActivityItem: CLSActivityItem? { get set }
    * @availability iOS 11.3+
    */
-  get primaryActivityItem(): (CLSActivityItem) | null { return callSDK<(CLSActivityItem) | null>("ClassKit_e11dfd5beee01da3", 884206953445515, this, []); }
-  set primaryActivityItem(value: (CLSActivityItem) | null) { callSDK<void>("ClassKit_e11dfd5beee01da3", 568155527148296, this, [value]); }
+  get primaryActivityItem(): (CLSActivityItem) | null { return callSDK<(CLSActivityItem) | null>("ClassKit_3864e7f38681b875", 884206953445515, this, []); }
+  set primaryActivityItem(value: (CLSActivityItem) | null) { callSDK<void>("ClassKit_3864e7f38681b875", 568155527148296, this, [value]); }
   /**
    * var progress: Double { get set }
    * @availability iOS 11.3+
    */
-  get progress(): number { return callSDK<number>("ClassKit_e11dfd5beee01da3", 2912619320479158, this, []); }
-  set progress(value: number) { callSDK<void>("ClassKit_e11dfd5beee01da3", 2389966392449781, this, [value]); }
+  get progress(): number { return callSDK<number>("ClassKit_3864e7f38681b875", 2912619320479158, this, []); }
+  set progress(value: number) { callSDK<void>("ClassKit_3864e7f38681b875", 2389966392449781, this, [value]); }
   /**
    * var isStarted: Bool { get }
    * @availability iOS 11.3+
    */
-  get isStarted(): boolean { return callSDK<boolean>("ClassKit_e11dfd5beee01da3", 1156513920926680, this, []); }
+  get isStarted(): boolean { return callSDK<boolean>("ClassKit_3864e7f38681b875", 1156513920926680, this, []); }
   declare readonly $type: { "c:objc(cs)CLSActivity": true; "c:objc(cs)CLSObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateCreated": true; "dateLastModified": true; "additionalActivityItems": true; "duration": true; "primaryActivityItem": true; "progress": true; "isStarted": true };
 }
@@ -98,13 +98,13 @@ export class CLSActivityItem extends CLSObject {
    * var identifier: String { get }
    * @availability iOS 11.3+
    */
-  get identifier(): string { return callSDK<string>("ClassKit_e11dfd5beee01da3", 4235420146249673, this, []); }
+  get identifier(): string { return callSDK<string>("ClassKit_3864e7f38681b875", 4235420146249673, this, []); }
   /**
    * var title: String { get set }
    * @availability iOS 11.3+
    */
-  get title(): string { return callSDK<string>("ClassKit_e11dfd5beee01da3", 2983905994696900, this, []); }
-  set title(value: string) { callSDK<void>("ClassKit_e11dfd5beee01da3", 3299988516029266, this, [value]); }
+  get title(): string { return callSDK<string>("ClassKit_3864e7f38681b875", 2983905994696900, this, []); }
+  set title(value: string) { callSDK<void>("ClassKit_3864e7f38681b875", 3299988516029266, this, [value]); }
   declare readonly $type: { "c:objc(cs)CLSActivityItem": true; "c:objc(cs)CLSObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateCreated": true; "dateLastModified": true; "identifier": true; "title": true };
 }
@@ -118,18 +118,18 @@ export class CLSBinaryItem extends CLSActivityItem {
    * init(identifier: String, title: String, type valueType: CLSBinaryValueType)
    * @availability iOS 11.3+
    */
-  static init(identifier: string, title: string, valueType: CLSBinaryValueType): CLSBinaryItem { return callSDK<CLSBinaryItem>("ClassKit_e11dfd5beee01da3", 3246507131774679, undefined, [identifier, title, valueType]); }
+  static init(identifier: string, title: string, valueType: CLSBinaryValueType): CLSBinaryItem { return callSDK<CLSBinaryItem>("ClassKit_3864e7f38681b875", 3246507131774679, undefined, [identifier, title, valueType]); }
   /**
    * var value: Bool { get set }
    * @availability iOS 11.3+
    */
-  get value(): boolean { return callSDK<boolean>("ClassKit_e11dfd5beee01da3", 2320737570242235, this, []); }
-  set value(value: boolean) { callSDK<void>("ClassKit_e11dfd5beee01da3", 1894730723381504, this, [value]); }
+  get value(): boolean { return callSDK<boolean>("ClassKit_3864e7f38681b875", 2320737570242235, this, []); }
+  set value(value: boolean) { callSDK<void>("ClassKit_3864e7f38681b875", 1894730723381504, this, [value]); }
   /**
    * var valueType: CLSBinaryValueType { get }
    * @availability iOS 11.3+
    */
-  get valueType(): CLSBinaryValueType { return callSDK<CLSBinaryValueType>("ClassKit_e11dfd5beee01da3", 4351244923715713, this, []); }
+  get valueType(): CLSBinaryValueType { return callSDK<CLSBinaryValueType>("ClassKit_3864e7f38681b875", 4351244923715713, this, []); }
   declare readonly $type: { "c:objc(cs)CLSBinaryItem": true; "c:objc(cs)CLSActivityItem": true; "c:objc(cs)CLSObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateCreated": true; "dateLastModified": true; "identifier": true; "title": true; "value": true; "valueType": true };
 }
@@ -145,7 +145,7 @@ export const CLSBinaryValueType = {
    * init?(rawValue: Int)
    * @availability iOS 11.3+
    */
-  init(rawValue: number): (CLSBinaryValueType) | null { return callSDK<(CLSBinaryValueType) | null>("ClassKit_e11dfd5beee01da3", 1823178570869738, undefined, [rawValue]); }
+  init(rawValue: number): (CLSBinaryValueType) | null { return callSDK<(CLSBinaryValueType) | null>("ClassKit_3864e7f38681b875", 1823178570869738, undefined, [rawValue]); }
 };
 
 /**
@@ -154,153 +154,153 @@ export const CLSBinaryValueType = {
  */
 export class CLSContext extends CLSObject {
   /** func addChildContext(_ child: CLSContext) */
-  addChildContext(child: CLSContext): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 725946665945326, this, [child]); }
+  addChildContext(child: CLSContext): void { return callSDK<void>("ClassKit_3864e7f38681b875", 725946665945326, this, [child]); }
   /**
    * func addNavigationChildContext(_ child: CLSContext)
    * @availability iOS 14.5+
    */
-  addNavigationChildContext(child: CLSContext): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 2871541860368939, this, [child]); }
+  addNavigationChildContext(child: CLSContext): void { return callSDK<void>("ClassKit_3864e7f38681b875", 2871541860368939, this, [child]); }
   /**
    * func addProgressReportingCapabilities(_ capabilities: Set<CLSProgressReportingCapability>)
    * @availability iOS 14.0+
    */
-  addProgressReportingCapabilities(capabilities: $SDK1): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 3796848776687230, this, [capabilities]); }
+  addProgressReportingCapabilities(capabilities: $SDK1): void { return callSDK<void>("ClassKit_3864e7f38681b875", 3796848776687230, this, [capabilities]); }
   /**
    * func becomeActive()
    * @availability iOS 11.3+
    */
-  becomeActive(): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 3966238109979178, this, []); }
+  becomeActive(): void { return callSDK<void>("ClassKit_3864e7f38681b875", 3966238109979178, this, []); }
   /**
    * func createNewActivity() -> CLSActivity
    * @availability iOS 11.3+
    */
-  createNewActivity(): CLSActivity { return callSDK<CLSActivity>("ClassKit_e11dfd5beee01da3", 3084404776237194, this, []); }
+  createNewActivity(): CLSActivity { return callSDK<CLSActivity>("ClassKit_3864e7f38681b875", 3084404776237194, this, []); }
   /** func descendant(matchingIdentifierPath identifierPath: [String]) async throws -> CLSContext */
-  descendant(identifierPath: Array<string>, completion: ((arg0: (CLSContext) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 1853586755088398, this, [identifierPath, completion], [null,{"callback":{"out":[]}}]); }
+  descendant(identifierPath: Array<string>, completion: ((arg0: (CLSContext) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ClassKit_3864e7f38681b875", 1853586755088398, this, [identifierPath, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * init(type: CLSContextType, identifier: String, title: String)
    * @availability iOS 11.3+
    */
-  static init(type: CLSContextType, identifier: string, title: string): CLSContext { return callSDK<CLSContext>("ClassKit_e11dfd5beee01da3", 509714100632912, undefined, [type, identifier, title]); }
+  static init(type: CLSContextType, identifier: string, title: string): CLSContext { return callSDK<CLSContext>("ClassKit_3864e7f38681b875", 509714100632912, undefined, [type, identifier, title]); }
   /** func removeFromParent() */
-  removeFromParent(): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 3711093876916638, this, []); }
+  removeFromParent(): void { return callSDK<void>("ClassKit_3864e7f38681b875", 3711093876916638, this, []); }
   /**
    * func removeNavigationChildContext(_ child: CLSContext)
    * @availability iOS 14.5+
    */
-  removeNavigationChildContext(child: CLSContext): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 766648513620617, this, [child]); }
+  removeNavigationChildContext(child: CLSContext): void { return callSDK<void>("ClassKit_3864e7f38681b875", 766648513620617, this, [child]); }
   /**
    * func resetProgressReportingCapabilities()
    * @availability iOS 14.0+
    */
-  resetProgressReportingCapabilities(): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 972315790084971, this, []); }
+  resetProgressReportingCapabilities(): void { return callSDK<void>("ClassKit_3864e7f38681b875", 972315790084971, this, []); }
   /**
    * func resignActive()
    * @availability iOS 11.3+
    */
-  resignActive(): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 2286986228490315, this, []); }
+  resignActive(): void { return callSDK<void>("ClassKit_3864e7f38681b875", 2286986228490315, this, []); }
   /**
    * func setType(_ type: CLSContextType)
    * @availability iOS 14.0+
    */
-  setType(type: CLSContextType): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 182386795665505, this, [type]); }
+  setType(type: CLSContextType): void { return callSDK<void>("ClassKit_3864e7f38681b875", 182386795665505, this, [type]); }
   /**
    * var isActive: Bool { get }
    * @availability iOS 11.3+
    */
-  get isActive(): boolean { return callSDK<boolean>("ClassKit_e11dfd5beee01da3", 1978936093168428, this, []); }
+  get isActive(): boolean { return callSDK<boolean>("ClassKit_3864e7f38681b875", 1978936093168428, this, []); }
   /**
    * var isAssignable: Bool { get set }
    * @availability iOS 14.0+
    */
-  get isAssignable(): boolean { return callSDK<boolean>("ClassKit_e11dfd5beee01da3", 4337145296879860, this, []); }
-  set isAssignable(value: boolean) { callSDK<void>("ClassKit_e11dfd5beee01da3", 2995462629810237, this, [value]); }
+  get isAssignable(): boolean { return callSDK<boolean>("ClassKit_3864e7f38681b875", 4337145296879860, this, []); }
+  set isAssignable(value: boolean) { callSDK<void>("ClassKit_3864e7f38681b875", 2995462629810237, this, [value]); }
   /**
    * var currentActivity: CLSActivity? { get }
    * @availability iOS 11.3+
    */
-  get currentActivity(): (CLSActivity) | null { return callSDK<(CLSActivity) | null>("ClassKit_e11dfd5beee01da3", 4259650630907426, this, []); }
+  get currentActivity(): (CLSActivity) | null { return callSDK<(CLSActivity) | null>("ClassKit_3864e7f38681b875", 4259650630907426, this, []); }
   /**
    * var customTypeName: String? { get set }
    * @availability iOS 13.4+
    */
-  get customTypeName(): (string) | null { return callSDK<(string) | null>("ClassKit_e11dfd5beee01da3", 3706532732623271, this, []); }
-  set customTypeName(value: (string) | null) { callSDK<void>("ClassKit_e11dfd5beee01da3", 3523138154604179, this, [value]); }
+  get customTypeName(): (string) | null { return callSDK<(string) | null>("ClassKit_3864e7f38681b875", 3706532732623271, this, []); }
+  set customTypeName(value: (string) | null) { callSDK<void>("ClassKit_3864e7f38681b875", 3523138154604179, this, [value]); }
   /**
    * var displayOrder: Int { get set }
    * @availability iOS 11.3+
    */
-  get displayOrder(): number { return callSDK<number>("ClassKit_e11dfd5beee01da3", 2714794918067078, this, []); }
-  set displayOrder(value: number) { callSDK<void>("ClassKit_e11dfd5beee01da3", 1404085488203568, this, [value]); }
+  get displayOrder(): number { return callSDK<number>("ClassKit_3864e7f38681b875", 2714794918067078, this, []); }
+  set displayOrder(value: number) { callSDK<void>("ClassKit_3864e7f38681b875", 1404085488203568, this, [value]); }
   /**
    * var identifier: String { get }
    * @availability iOS 11.3+
    */
-  get identifier(): string { return callSDK<string>("ClassKit_e11dfd5beee01da3", 4149452532935140, this, []); }
+  get identifier(): string { return callSDK<string>("ClassKit_3864e7f38681b875", 4149452532935140, this, []); }
   /**
    * var identifierPath: [String] { get }
    * @availability iOS 13.4+
    */
-  get identifierPath(): Array<string> { return callSDK<Array<string>>("ClassKit_e11dfd5beee01da3", 3394736225329328, this, []); }
+  get identifierPath(): Array<string> { return callSDK<Array<string>>("ClassKit_3864e7f38681b875", 3394736225329328, this, []); }
   /**
    * var navigationChildContexts: [CLSContext] { get }
    * @availability iOS 14.5+
    */
-  get navigationChildContexts(): Array<CLSContext> { return callSDK<Array<CLSContext>>("ClassKit_e11dfd5beee01da3", 3038150607900103, this, []); }
+  get navigationChildContexts(): Array<CLSContext> { return callSDK<Array<CLSContext>>("ClassKit_3864e7f38681b875", 3038150607900103, this, []); }
   /** weak var parent: CLSContext? { get } */
-  get parent(): (CLSContext) | null { return callSDK<(CLSContext) | null>("ClassKit_e11dfd5beee01da3", 3925671578952719, this, []); }
+  get parent(): (CLSContext) | null { return callSDK<(CLSContext) | null>("ClassKit_3864e7f38681b875", 3925671578952719, this, []); }
   /**
    * var progressReportingCapabilities: Set<CLSProgressReportingCapability> { get }
    * @availability iOS 14.0+
    */
-  get progressReportingCapabilities(): $SDK1 { return callSDK<$SDK1>("ClassKit_e11dfd5beee01da3", 2770699956009284, this, []); }
+  get progressReportingCapabilities(): $SDK1 { return callSDK<$SDK1>("ClassKit_3864e7f38681b875", 2770699956009284, this, []); }
   /**
    * var suggestedAge: NSRange { get set }
    * @availability iOS 14.0+
    */
-  get suggestedAge(): SDKHandle { return callSDK<SDKHandle>("ClassKit_e11dfd5beee01da3", 205362165135089, this, []); }
-  set suggestedAge(value: SDKHandle) { callSDK<void>("ClassKit_e11dfd5beee01da3", 1949528467490499, this, [value]); }
+  get suggestedAge(): SDKHandle { return callSDK<SDKHandle>("ClassKit_3864e7f38681b875", 205362165135089, this, []); }
+  set suggestedAge(value: SDKHandle) { callSDK<void>("ClassKit_3864e7f38681b875", 1949528467490499, this, [value]); }
   /**
    * var suggestedCompletionTime: NSRange { get set }
    * @availability iOS 14.0+
    */
-  get suggestedCompletionTime(): SDKHandle { return callSDK<SDKHandle>("ClassKit_e11dfd5beee01da3", 3024392956225362, this, []); }
-  set suggestedCompletionTime(value: SDKHandle) { callSDK<void>("ClassKit_e11dfd5beee01da3", 1904280502609801, this, [value]); }
+  get suggestedCompletionTime(): SDKHandle { return callSDK<SDKHandle>("ClassKit_3864e7f38681b875", 3024392956225362, this, []); }
+  set suggestedCompletionTime(value: SDKHandle) { callSDK<void>("ClassKit_3864e7f38681b875", 1904280502609801, this, [value]); }
   /**
    * var summary: String? { get set }
    * @availability iOS 13.4+
    */
-  get summary(): (string) | null { return callSDK<(string) | null>("ClassKit_e11dfd5beee01da3", 4391589043691037, this, []); }
-  set summary(value: (string) | null) { callSDK<void>("ClassKit_e11dfd5beee01da3", 2219290795160049, this, [value]); }
+  get summary(): (string) | null { return callSDK<(string) | null>("ClassKit_3864e7f38681b875", 4391589043691037, this, []); }
+  set summary(value: (string) | null) { callSDK<void>("ClassKit_3864e7f38681b875", 2219290795160049, this, [value]); }
   /**
    * var thumbnail: CGImage? { get set }
    * @availability iOS 13.4+
    */
-  get thumbnail(): $SDK3 { return callSDK<$SDK3>("ClassKit_e11dfd5beee01da3", 1704079724116570, this, []); }
-  set thumbnail(value: $SDK3) { callSDK<void>("ClassKit_e11dfd5beee01da3", 2664388625353432, this, [value]); }
+  get thumbnail(): $SDK3 { return callSDK<$SDK3>("ClassKit_3864e7f38681b875", 1704079724116570, this, []); }
+  set thumbnail(value: $SDK3) { callSDK<void>("ClassKit_3864e7f38681b875", 2664388625353432, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 11.3+
    */
-  get title(): string { return callSDK<string>("ClassKit_e11dfd5beee01da3", 1068554013962622, this, []); }
-  set title(value: string) { callSDK<void>("ClassKit_e11dfd5beee01da3", 1196092458307036, this, [value]); }
+  get title(): string { return callSDK<string>("ClassKit_3864e7f38681b875", 1068554013962622, this, []); }
+  set title(value: string) { callSDK<void>("ClassKit_3864e7f38681b875", 1196092458307036, this, [value]); }
   /**
    * var topic: CLSContextTopic? { get set }
    * @availability iOS 11.3+
    */
-  get topic(): (CLSContextTopic) | null { return callSDK<(CLSContextTopic) | null>("ClassKit_e11dfd5beee01da3", 2335615992834594, this, []); }
-  set topic(value: (CLSContextTopic) | null) { callSDK<void>("ClassKit_e11dfd5beee01da3", 3437093787844504, this, [value]); }
+  get topic(): (CLSContextTopic) | null { return callSDK<(CLSContextTopic) | null>("ClassKit_3864e7f38681b875", 2335615992834594, this, []); }
+  set topic(value: (CLSContextTopic) | null) { callSDK<void>("ClassKit_3864e7f38681b875", 3437093787844504, this, [value]); }
   /**
    * var type: CLSContextType { get }
    * @availability iOS 11.3+
    */
-  get type(): CLSContextType { return callSDK<CLSContextType>("ClassKit_e11dfd5beee01da3", 4136428069096290, this, []); }
+  get type(): CLSContextType { return callSDK<CLSContextType>("ClassKit_3864e7f38681b875", 4136428069096290, this, []); }
   /**
    * var universalLinkURL: URL? { get set }
    * @availability iOS 11.4+
    */
-  get universalLinkURL(): (string) | null { return callSDK<(string) | null>("ClassKit_e11dfd5beee01da3", 3869483449665738, this, []); }
-  set universalLinkURL(value: (string) | null) { callSDK<void>("ClassKit_e11dfd5beee01da3", 1229247945322856, this, [value]); }
+  get universalLinkURL(): (string) | null { return callSDK<(string) | null>("ClassKit_3864e7f38681b875", 3869483449665738, this, []); }
+  set universalLinkURL(value: (string) | null) { callSDK<void>("ClassKit_3864e7f38681b875", 1229247945322856, this, [value]); }
   declare readonly $type: { "c:objc(cs)CLSContext": true; "c:objc(cs)CLSObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateCreated": true; "dateLastModified": true; "isActive": true; "isAssignable": true; "currentActivity": true; "customTypeName": true; "displayOrder": true; "identifier": true; "identifierPath": true; "navigationChildContexts": true; "parent": true; "progressReportingCapabilities": true; "suggestedAge": true; "suggestedCompletionTime": true; "summary": true; "thumbnail": true; "title": true; "topic": true; "type": true; "universalLinkURL": true };
 }
@@ -328,47 +328,47 @@ export const CLSContextTopic = {
    * static let artsAndMusic: CLSContextTopic
    * @availability iOS 11.3+
    */
-  get artsAndMusic(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_e11dfd5beee01da3", 2164778744553727, undefined, []); },
+  get artsAndMusic(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_3864e7f38681b875", 2164778744553727, undefined, []); },
   /**
    * static let computerScienceAndEngineering: CLSContextTopic
    * @availability iOS 11.3+
    */
-  get computerScienceAndEngineering(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_e11dfd5beee01da3", 4223314511469255, undefined, []); },
+  get computerScienceAndEngineering(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_3864e7f38681b875", 4223314511469255, undefined, []); },
   /**
    * static let healthAndFitness: CLSContextTopic
    * @availability iOS 11.3+
    */
-  get healthAndFitness(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_e11dfd5beee01da3", 2409989367965408, undefined, []); },
+  get healthAndFitness(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_3864e7f38681b875", 2409989367965408, undefined, []); },
   /**
    * static let literacyAndWriting: CLSContextTopic
    * @availability iOS 11.3+
    */
-  get literacyAndWriting(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_e11dfd5beee01da3", 1433091672172017, undefined, []); },
+  get literacyAndWriting(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_3864e7f38681b875", 1433091672172017, undefined, []); },
   /**
    * static let math: CLSContextTopic
    * @availability iOS 11.3+
    */
-  get math(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_e11dfd5beee01da3", 4416766291862520, undefined, []); },
+  get math(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_3864e7f38681b875", 4416766291862520, undefined, []); },
   /**
    * static let science: CLSContextTopic
    * @availability iOS 11.3+
    */
-  get science(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_e11dfd5beee01da3", 580407818963009, undefined, []); },
+  get science(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_3864e7f38681b875", 580407818963009, undefined, []); },
   /**
    * static let socialScience: CLSContextTopic
    * @availability iOS 11.3+
    */
-  get socialScience(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_e11dfd5beee01da3", 2357126703862632, undefined, []); },
+  get socialScience(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_3864e7f38681b875", 2357126703862632, undefined, []); },
   /**
    * static let worldLanguage: CLSContextTopic
    * @availability iOS 11.3+
    */
-  get worldLanguage(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_e11dfd5beee01da3", 3879498049764987, undefined, []); },
+  get worldLanguage(): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_3864e7f38681b875", 3879498049764987, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 11.3+
    */
-  init(rawValue: string): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_e11dfd5beee01da3", 2520947242071733, undefined, [rawValue]); }
+  init(rawValue: string): CLSContextTopic { return callSDK<CLSContextTopic>("ClassKit_3864e7f38681b875", 2520947242071733, undefined, [rawValue]); }
 };
 
 /**
@@ -382,7 +382,7 @@ export const CLSContextType = {
    * init?(rawValue: Int)
    * @availability iOS 11.3+
    */
-  init(rawValue: number): (CLSContextType) | null { return callSDK<(CLSContextType) | null>("ClassKit_e11dfd5beee01da3", 835037972604087, undefined, [rawValue]); }
+  init(rawValue: number): (CLSContextType) | null { return callSDK<(CLSContextType) | null>("ClassKit_3864e7f38681b875", 835037972604087, undefined, [rawValue]); }
 };
 
 /**
@@ -394,63 +394,63 @@ export class CLSDataStore extends SDKHandle {
    * class var shared: CLSDataStore { get }
    * @availability iOS 11.3+
    */
-  static get shared(): CLSDataStore { return callSDK<CLSDataStore>("ClassKit_e11dfd5beee01da3", 1447475986849484, undefined, []); }
+  static get shared(): CLSDataStore { return callSDK<CLSDataStore>("ClassKit_3864e7f38681b875", 1447475986849484, undefined, []); }
   /**
    * func isAssignedDocument(_ documentURL: URL) async throws -> Bool
    * @availability iOS 26.4+
    */
-  checkIsAssignedDocument(documentURL: string, completion: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 1190375322084825, this, [documentURL, completion], [null,{"callback":{"out":[]}}]); }
+  checkIsAssignedDocument(documentURL: string, completion: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ClassKit_3864e7f38681b875", 1190375322084825, this, [documentURL, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func completeAllAssignedActivities(matching contextPath: [String])
    * @availability iOS 12.2+
    */
-  completeAllAssignedActivities(contextPath: Array<string>): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 150221901866357, this, [contextPath]); }
+  completeAllAssignedActivities(contextPath: Array<string>): void { return callSDK<void>("ClassKit_3864e7f38681b875", 150221901866357, this, [contextPath]); }
   /**
    * func contexts(matchingIdentifierPath identifierPath: [String]) async throws -> [CLSContext]
    * @availability iOS 11.3+
    */
-  contextsMatchingIdentifierPathCompletion(identifierPath: Array<string>, completion: $SDK6): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 3622741440289538, this, [identifierPath, completion], [null,{"callback":{"out":[]}}]); }
+  contextsMatchingIdentifierPathCompletion(identifierPath: Array<string>, completion: $SDK6): void { return callSDK<void>("ClassKit_3864e7f38681b875", 3622741440289538, this, [identifierPath, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func contexts(matching predicate: NSPredicate) async throws -> [CLSContext]
    * @availability iOS 11.3+
    */
-  contextsMatchingCompletion(predicate: _Foundation_NSPredicate, completion: $SDK6): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 3987042467237393, this, [predicate, completion], [null,{"callback":{"out":[]}}]); }
+  contextsMatchingCompletion(predicate: _Foundation_NSPredicate, completion: $SDK6): void { return callSDK<void>("ClassKit_3864e7f38681b875", 3987042467237393, this, [predicate, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func fetchActivity(for url: URL) async throws -> CLSActivity
    * @availability iOS 14.5+
    */
-  fetchActivity(url: string, completion: ((arg0: (CLSActivity) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 566546297662700, this, [url, completion], [null,{"callback":{"out":[]}}]); }
+  fetchActivity(url: string, completion: ((arg0: (CLSActivity) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ClassKit_3864e7f38681b875", 566546297662700, this, [url, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func remove(_ context: CLSContext)
    * @availability iOS 11.3+
    */
-  remove(context: CLSContext): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 1584473738285649, this, [context]); }
+  remove(context: CLSContext): void { return callSDK<void>("ClassKit_3864e7f38681b875", 1584473738285649, this, [context]); }
   /**
    * func save() async throws
    * @availability iOS 11.3+
    */
-  save(completion?: (((arg0: (NativeError) | null) => void)) | null): void { return callSDK<void>("ClassKit_e11dfd5beee01da3", 4379403549453882, this, [completion], [{"callback":{"out":[]}}]); }
+  save(completion?: (((arg0: (NativeError) | null) => void)) | null): void { return callSDK<void>("ClassKit_3864e7f38681b875", 4379403549453882, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * var activeContext: CLSContext? { get }
    * @availability iOS 11.3+
    */
-  get activeContext(): (CLSContext) | null { return callSDK<(CLSContext) | null>("ClassKit_e11dfd5beee01da3", 657722824129157, this, []); }
+  get activeContext(): (CLSContext) | null { return callSDK<(CLSContext) | null>("ClassKit_3864e7f38681b875", 657722824129157, this, []); }
   /**
    * weak var delegate: (any CLSDataStoreDelegate)? { get set }
    * @availability iOS 11.3+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ClassKit_e11dfd5beee01da3", 1900575645061776, this, []); }
-  set delegate(value: (SDKHandle) | null) { callSDK<void>("ClassKit_e11dfd5beee01da3", 1379808733076575, this, [value]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ClassKit_3864e7f38681b875", 1900575645061776, this, []); }
+  set delegate(value: (SDKHandle) | null) { callSDK<void>("ClassKit_3864e7f38681b875", 1379808733076575, this, [value]); }
   /**
    * var mainAppContext: CLSContext { get }
    * @availability iOS 11.3+
    */
-  get mainAppContext(): CLSContext { return callSDK<CLSContext>("ClassKit_e11dfd5beee01da3", 2120003753829422, this, []); }
+  get mainAppContext(): CLSContext { return callSDK<CLSContext>("ClassKit_3864e7f38681b875", 2120003753829422, this, []); }
   /**
    * var runningActivity: CLSActivity? { get }
    * @availability iOS 11.3+
    */
-  get runningActivity(): (CLSActivity) | null { return callSDK<(CLSActivity) | null>("ClassKit_e11dfd5beee01da3", 1269927111709834, this, []); }
+  get runningActivity(): (CLSActivity) | null { return callSDK<(CLSActivity) | null>("ClassKit_3864e7f38681b875", 1269927111709834, this, []); }
   declare readonly $type: { "c:objc(cs)CLSDataStore": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activeContext": true; "delegate": true; "mainAppContext": true; "runningActivity": true };
 }
@@ -476,62 +476,62 @@ export class CLSError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 11.3+
    */
-  static get errorDomain(): string { return callSDK<string>("ClassKit_e11dfd5beee01da3", 2161059402801592, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ClassKit_3864e7f38681b875", 2161059402801592, undefined, []); }
   /**
    * static var invalidCreate: CLSError.Code { get }
    * @availability iOS 11.3+
    */
-  static get invalidCreate(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 2038644104295950, undefined, []); }
+  static get invalidCreate(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 2038644104295950, undefined, []); }
   /**
    * static var invalidUpdate: CLSError.Code { get }
    * @availability iOS 11.3+
    */
-  static get invalidUpdate(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 1733090862873008, undefined, []); }
+  static get invalidUpdate(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 1733090862873008, undefined, []); }
   /**
    * static var partialFailure: CLSError.Code { get }
    * @availability iOS 11.3+
    */
-  static get partialFailure(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 2371456287261136, undefined, []); }
+  static get partialFailure(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 2371456287261136, undefined, []); }
   /**
    * static var invalidArgument: CLSError.Code { get }
    * @availability iOS 11.3+
    */
-  static get invalidArgument(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 2180812473112353, undefined, []); }
+  static get invalidArgument(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 2180812473112353, undefined, []); }
   /**
    * static var authorizationDenied: CLSError.Code { get }
    * @availability iOS 11.3+
    */
-  static get authorizationDenied(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 4131664896054065, undefined, []); }
+  static get authorizationDenied(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 4131664896054065, undefined, []); }
   /**
    * static var classKitUnavailable: CLSError.Code { get }
    * @availability iOS 11.3+
    */
-  static get classKitUnavailable(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 1818035481670359, undefined, []); }
+  static get classKitUnavailable(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 1818035481670359, undefined, []); }
   /**
    * static var invalidModification: CLSError.Code { get }
    * @availability iOS 11.3+
    */
-  static get invalidModification(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 3067610304306892, undefined, []); }
+  static get invalidModification(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 3067610304306892, undefined, []); }
   /**
    * static var databaseInaccessible: CLSError.Code { get }
    * @availability iOS 11.3+
    */
-  static get databaseInaccessible(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 3240047819655726, undefined, []); }
+  static get databaseInaccessible(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 3240047819655726, undefined, []); }
   /**
    * static var invalidAccountCredentials: CLSError.Code { get }
    * @availability iOS 15.1+
    */
-  static get invalidAccountCredentials(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 1357057827710045, undefined, []); }
+  static get invalidAccountCredentials(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 1357057827710045, undefined, []); }
   /**
    * static var none: CLSError.Code { get }
    * @availability iOS 11.3+
    */
-  static get none(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 2399469220755668, undefined, []); }
+  static get none(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 2399469220755668, undefined, []); }
   /**
    * static var limits: CLSError.Code { get }
    * @availability iOS 11.3+
    */
-  static get limits(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_e11dfd5beee01da3", 3365149727046574, undefined, []); }
+  static get limits(): CLSError_Code { return callSDK<CLSError_Code>("ClassKit_3864e7f38681b875", 3365149727046574, undefined, []); }
   declare readonly $type: { "s:SC12CLSErrorCodeLeV": true };
 }
 
@@ -546,7 +546,7 @@ export const CLSError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 11.3+
    */
-  init(rawValue: number): (CLSError_Code) | null { return callSDK<(CLSError_Code) | null>("ClassKit_e11dfd5beee01da3", 1975754769373014, undefined, [rawValue]); }
+  init(rawValue: number): (CLSError_Code) | null { return callSDK<(CLSError_Code) | null>("ClassKit_3864e7f38681b875", 1975754769373014, undefined, [rawValue]); }
 };
 
 /**
@@ -560,27 +560,27 @@ export const CLSErrorUserInfoKey = {
    * static let objectKey: CLSErrorUserInfoKey
    * @availability iOS 11.3+
    */
-  get objectKey(): CLSErrorUserInfoKey { return callSDK<CLSErrorUserInfoKey>("ClassKit_e11dfd5beee01da3", 1990222920319822, undefined, []); },
+  get objectKey(): CLSErrorUserInfoKey { return callSDK<CLSErrorUserInfoKey>("ClassKit_3864e7f38681b875", 1990222920319822, undefined, []); },
   /**
    * static let successfulObjectsKey: CLSErrorUserInfoKey
    * @availability iOS 15.0+
    */
-  get successfulObjectsKey(): CLSErrorUserInfoKey { return callSDK<CLSErrorUserInfoKey>("ClassKit_e11dfd5beee01da3", 2523977599062033, undefined, []); },
+  get successfulObjectsKey(): CLSErrorUserInfoKey { return callSDK<CLSErrorUserInfoKey>("ClassKit_3864e7f38681b875", 2523977599062033, undefined, []); },
   /**
    * static let underlyingErrorsKey: CLSErrorUserInfoKey
    * @availability iOS 11.3+
    */
-  get underlyingErrorsKey(): CLSErrorUserInfoKey { return callSDK<CLSErrorUserInfoKey>("ClassKit_e11dfd5beee01da3", 3161701552534624, undefined, []); },
+  get underlyingErrorsKey(): CLSErrorUserInfoKey { return callSDK<CLSErrorUserInfoKey>("ClassKit_3864e7f38681b875", 3161701552534624, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 11.3+
    */
-  initRawValue(rawValue: string): CLSErrorUserInfoKey { return callSDK<CLSErrorUserInfoKey>("ClassKit_e11dfd5beee01da3", 956190277589112, undefined, [rawValue]); },
+  initRawValue(rawValue: string): CLSErrorUserInfoKey { return callSDK<CLSErrorUserInfoKey>("ClassKit_3864e7f38681b875", 956190277589112, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 11.3+
    */
-  init(rawValue: string): CLSErrorUserInfoKey { return callSDK<CLSErrorUserInfoKey>("ClassKit_e11dfd5beee01da3", 868696174860237, undefined, [rawValue]); }
+  init(rawValue: string): CLSErrorUserInfoKey { return callSDK<CLSErrorUserInfoKey>("ClassKit_3864e7f38681b875", 868696174860237, undefined, [rawValue]); }
 };
 
 /**
@@ -594,42 +594,42 @@ export const CLSPredicateKeyPath = {
    * static let dateCreated: CLSPredicateKeyPath
    * @availability iOS 11.3+
    */
-  get dateCreated(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_e11dfd5beee01da3", 899251050659253, undefined, []); },
+  get dateCreated(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_3864e7f38681b875", 899251050659253, undefined, []); },
   /**
    * static let identifier: CLSPredicateKeyPath
    * @availability iOS 11.3+
    */
-  get identifier(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_e11dfd5beee01da3", 3063247361125865, undefined, []); },
+  get identifier(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_3864e7f38681b875", 3063247361125865, undefined, []); },
   /**
    * static let parent: CLSPredicateKeyPath
    * @availability iOS 11.3+
    */
-  get parent(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_e11dfd5beee01da3", 2754672882792519, undefined, []); },
+  get parent(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_3864e7f38681b875", 2754672882792519, undefined, []); },
   /**
    * static let title: CLSPredicateKeyPath
    * @availability iOS 11.3+
    */
-  get title(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_e11dfd5beee01da3", 2870316697439824, undefined, []); },
+  get title(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_3864e7f38681b875", 2870316697439824, undefined, []); },
   /**
    * static let topic: CLSPredicateKeyPath
    * @availability iOS 11.3+
    */
-  get topic(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_e11dfd5beee01da3", 1321744335796071, undefined, []); },
+  get topic(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_3864e7f38681b875", 1321744335796071, undefined, []); },
   /**
    * static let universalLinkURL: CLSPredicateKeyPath
    * @availability iOS 11.3+
    */
-  get universalLinkURL(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_e11dfd5beee01da3", 4446906597776359, undefined, []); },
+  get universalLinkURL(): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_3864e7f38681b875", 4446906597776359, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 11.3+
    */
-  initRawValue(rawValue: string): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_e11dfd5beee01da3", 1401325262924290, undefined, [rawValue]); },
+  initRawValue(rawValue: string): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_3864e7f38681b875", 1401325262924290, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 11.3+
    */
-  init(rawValue: string): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_e11dfd5beee01da3", 543285086905199, undefined, [rawValue]); }
+  init(rawValue: string): CLSPredicateKeyPath { return callSDK<CLSPredicateKeyPath>("ClassKit_3864e7f38681b875", 543285086905199, undefined, [rawValue]); }
 };
 
 /**
@@ -641,17 +641,17 @@ export class CLSProgressReportingCapability extends CLSObject {
    * init(kind: CLSProgressReportingCapability.Kind, details: String?)
    * @availability iOS 14.0+
    */
-  static init(kind: CLSProgressReportingCapability_Kind, details?: (string) | null): CLSProgressReportingCapability { return callSDK<CLSProgressReportingCapability>("ClassKit_e11dfd5beee01da3", 3145192317123067, undefined, [kind, details]); }
+  static init(kind: CLSProgressReportingCapability_Kind, details?: (string) | null): CLSProgressReportingCapability { return callSDK<CLSProgressReportingCapability>("ClassKit_3864e7f38681b875", 3145192317123067, undefined, [kind, details]); }
   /**
    * var details: String? { get }
    * @availability iOS 14.0+
    */
-  get details(): (string) | null { return callSDK<(string) | null>("ClassKit_e11dfd5beee01da3", 4476991600984328, this, []); }
+  get details(): (string) | null { return callSDK<(string) | null>("ClassKit_3864e7f38681b875", 4476991600984328, this, []); }
   /**
    * var kind: CLSProgressReportingCapability.Kind { get }
    * @availability iOS 14.0+
    */
-  get kind(): CLSProgressReportingCapability_Kind { return callSDK<CLSProgressReportingCapability_Kind>("ClassKit_e11dfd5beee01da3", 4075336826453505, this, []); }
+  get kind(): CLSProgressReportingCapability_Kind { return callSDK<CLSProgressReportingCapability_Kind>("ClassKit_3864e7f38681b875", 4075336826453505, this, []); }
   declare readonly $type: { "c:objc(cs)CLSProgressReportingCapability": true; "c:objc(cs)CLSObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateCreated": true; "dateLastModified": true; "details": true; "kind": true };
 }
@@ -667,7 +667,7 @@ export const CLSProgressReportingCapability_Kind = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (CLSProgressReportingCapability_Kind) | null { return callSDK<(CLSProgressReportingCapability_Kind) | null>("ClassKit_e11dfd5beee01da3", 1598638760222002, undefined, [rawValue]); }
+  init(rawValue: number): (CLSProgressReportingCapability_Kind) | null { return callSDK<(CLSProgressReportingCapability_Kind) | null>("ClassKit_3864e7f38681b875", 1598638760222002, undefined, [rawValue]); }
 };
 
 /**
@@ -679,13 +679,13 @@ export class CLSQuantityItem extends CLSActivityItem {
    * init(identifier: String, title: String)
    * @availability iOS 11.3+
    */
-  static init(identifier: string, title: string): CLSQuantityItem { return callSDK<CLSQuantityItem>("ClassKit_e11dfd5beee01da3", 3263948319364852, undefined, [identifier, title]); }
+  static init(identifier: string, title: string): CLSQuantityItem { return callSDK<CLSQuantityItem>("ClassKit_3864e7f38681b875", 3263948319364852, undefined, [identifier, title]); }
   /**
    * var quantity: Double { get set }
    * @availability iOS 11.3+
    */
-  get quantity(): number { return callSDK<number>("ClassKit_e11dfd5beee01da3", 3229809914036039, this, []); }
-  set quantity(value: number) { callSDK<void>("ClassKit_e11dfd5beee01da3", 145686838189153, this, [value]); }
+  get quantity(): number { return callSDK<number>("ClassKit_3864e7f38681b875", 3229809914036039, this, []); }
+  set quantity(value: number) { callSDK<void>("ClassKit_3864e7f38681b875", 145686838189153, this, [value]); }
   declare readonly $type: { "c:objc(cs)CLSQuantityItem": true; "c:objc(cs)CLSActivityItem": true; "c:objc(cs)CLSObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateCreated": true; "dateLastModified": true; "identifier": true; "title": true; "quantity": true };
 }
@@ -699,19 +699,19 @@ export class CLSScoreItem extends CLSActivityItem {
    * init(identifier: String, title: String, score: Double, maxScore: Double)
    * @availability iOS 11.3+
    */
-  static init(identifier: string, title: string, score: number, maxScore: number): CLSScoreItem { return callSDK<CLSScoreItem>("ClassKit_e11dfd5beee01da3", 2202765891397747, undefined, [identifier, title, score, maxScore]); }
+  static init(identifier: string, title: string, score: number, maxScore: number): CLSScoreItem { return callSDK<CLSScoreItem>("ClassKit_3864e7f38681b875", 2202765891397747, undefined, [identifier, title, score, maxScore]); }
   /**
    * var maxScore: Double { get set }
    * @availability iOS 11.3+
    */
-  get maxScore(): number { return callSDK<number>("ClassKit_e11dfd5beee01da3", 3748890860035817, this, []); }
-  set maxScore(value: number) { callSDK<void>("ClassKit_e11dfd5beee01da3", 2193796586250237, this, [value]); }
+  get maxScore(): number { return callSDK<number>("ClassKit_3864e7f38681b875", 3748890860035817, this, []); }
+  set maxScore(value: number) { callSDK<void>("ClassKit_3864e7f38681b875", 2193796586250237, this, [value]); }
   /**
    * var score: Double { get set }
    * @availability iOS 11.3+
    */
-  get score(): number { return callSDK<number>("ClassKit_e11dfd5beee01da3", 1561036054092089, this, []); }
-  set score(value: number) { callSDK<void>("ClassKit_e11dfd5beee01da3", 3851742180883257, this, [value]); }
+  get score(): number { return callSDK<number>("ClassKit_3864e7f38681b875", 1561036054092089, this, []); }
+  set score(value: number) { callSDK<void>("ClassKit_3864e7f38681b875", 3851742180883257, this, [value]); }
   declare readonly $type: { "c:objc(cs)CLSScoreItem": true; "c:objc(cs)CLSActivityItem": true; "c:objc(cs)CLSObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateCreated": true; "dateLastModified": true; "identifier": true; "title": true; "maxScore": true; "score": true };
 }
@@ -721,12 +721,12 @@ export class NSUserActivity extends SDKHandle {
    * var contextIdentifierPath: [String]? { get }
    * @availability iOS 11.3+
    */
-  get contextIdentifierPath(): (Array<string>) | null { return callSDK<(Array<string>) | null>("ClassKit_e11dfd5beee01da3", 2763115764899874, this, []); }
+  get contextIdentifierPath(): (Array<string>) | null { return callSDK<(Array<string>) | null>("ClassKit_3864e7f38681b875", 2763115764899874, this, []); }
   /**
    * var isClassKitDeepLink: Bool { get }
    * @availability iOS 11.3+
    */
-  get isClassKitDeepLink(): boolean { return callSDK<boolean>("ClassKit_e11dfd5beee01da3", 824918501908758, this, []); }
+  get isClassKitDeepLink(): boolean { return callSDK<boolean>("ClassKit_3864e7f38681b875", 824918501908758, this, []); }
   declare readonly $type: { "c:objc(cs)NSUserActivity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contextIdentifierPath": true; "isClassKitDeepLink": true };
 }
@@ -735,18 +735,18 @@ export class NSUserActivity extends SDKHandle {
  * let CLSErrorCodeDomain: String
  * @availability iOS 11.3+
  */
-export const CLSErrorCodeDomain: string = callSDK<string>("ClassKit_e11dfd5beee01da3", 776972472804226, undefined, []);
+export const CLSErrorCodeDomain: string = callSDK<string>("ClassKit_3864e7f38681b875", 776972472804226, undefined, []);
 
-registerSDKClass("CLSObject", CLSObject, { module: "ClassKit_e11dfd5beee01da3", properties: {"dateCreated":1458863093825595,"dateLastModified":2269303644536606} });
-registerSDKClass("CLSActivity", CLSActivity, { module: "ClassKit_e11dfd5beee01da3", properties: {"additionalActivityItems":918515235057272,"duration":3361039116122497,"primaryActivityItem":884206953445515,"progress":2912619320479158,"isStarted":1156513920926680}, methods: {"addAdditionalActivityItem":{"id":2026029437635281},"addProgressRange":{"id":3181158624545606},"removeAllActivityItems":{"id":3317667085021999},"start":{"id":2492236499455436},"stop":{"id":4031522759853236}} });
-registerSDKClass("CLSActivityItem", CLSActivityItem, { module: "ClassKit_e11dfd5beee01da3", properties: {"identifier":4235420146249673,"title":2983905994696900} });
-registerSDKClass("CLSBinaryItem", CLSBinaryItem, { module: "ClassKit_e11dfd5beee01da3", properties: {"value":2320737570242235,"valueType":4351244923715713} });
-registerSDKClass("CLSContext", CLSContext, { module: "ClassKit_e11dfd5beee01da3", properties: {"isActive":1978936093168428,"isAssignable":4337145296879860,"currentActivity":4259650630907426,"customTypeName":3706532732623271,"displayOrder":2714794918067078,"identifier":4149452532935140,"identifierPath":3394736225329328,"navigationChildContexts":3038150607900103,"parent":3925671578952719,"progressReportingCapabilities":2770699956009284,"suggestedAge":205362165135089,"suggestedCompletionTime":3024392956225362,"summary":4391589043691037,"thumbnail":1704079724116570,"title":1068554013962622,"topic":2335615992834594,"type":4136428069096290,"universalLinkURL":3869483449665738}, methods: {"addChildContext":{"id":725946665945326},"addNavigationChildContext":{"id":2871541860368939},"addProgressReportingCapabilities":{"id":3796848776687230},"becomeActive":{"id":3966238109979178},"createNewActivity":{"id":3084404776237194},"descendant":{"id":1853586755088398,"hints":[null,{"callback":{"out":[]}}]},"removeFromParent":{"id":3711093876916638},"removeNavigationChildContext":{"id":766648513620617},"resetProgressReportingCapabilities":{"id":972315790084971},"resignActive":{"id":2286986228490315},"setType":{"id":182386795665505}} });
+registerSDKClass("CLSObject", CLSObject, { module: "ClassKit_3864e7f38681b875", properties: {"dateCreated":1458863093825595,"dateLastModified":2269303644536606} });
+registerSDKClass("CLSActivity", CLSActivity, { module: "ClassKit_3864e7f38681b875", properties: {"additionalActivityItems":918515235057272,"duration":3361039116122497,"primaryActivityItem":884206953445515,"progress":2912619320479158,"isStarted":1156513920926680}, methods: {"addAdditionalActivityItem":{"id":2026029437635281},"addProgressRange":{"id":3181158624545606},"removeAllActivityItems":{"id":3317667085021999},"start":{"id":2492236499455436},"stop":{"id":4031522759853236}} });
+registerSDKClass("CLSActivityItem", CLSActivityItem, { module: "ClassKit_3864e7f38681b875", properties: {"identifier":4235420146249673,"title":2983905994696900} });
+registerSDKClass("CLSBinaryItem", CLSBinaryItem, { module: "ClassKit_3864e7f38681b875", properties: {"value":2320737570242235,"valueType":4351244923715713} });
+registerSDKClass("CLSContext", CLSContext, { module: "ClassKit_3864e7f38681b875", properties: {"isActive":1978936093168428,"isAssignable":4337145296879860,"currentActivity":4259650630907426,"customTypeName":3706532732623271,"displayOrder":2714794918067078,"identifier":4149452532935140,"identifierPath":3394736225329328,"navigationChildContexts":3038150607900103,"parent":3925671578952719,"progressReportingCapabilities":2770699956009284,"suggestedAge":205362165135089,"suggestedCompletionTime":3024392956225362,"summary":4391589043691037,"thumbnail":1704079724116570,"title":1068554013962622,"topic":2335615992834594,"type":4136428069096290,"universalLinkURL":3869483449665738}, methods: {"addChildContext":{"id":725946665945326},"addNavigationChildContext":{"id":2871541860368939},"addProgressReportingCapabilities":{"id":3796848776687230},"becomeActive":{"id":3966238109979178},"createNewActivity":{"id":3084404776237194},"descendant":{"id":1853586755088398,"hints":[null,{"callback":{"out":[]}}]},"removeFromParent":{"id":3711093876916638},"removeNavigationChildContext":{"id":766648513620617},"resetProgressReportingCapabilities":{"id":972315790084971},"resignActive":{"id":2286986228490315},"setType":{"id":182386795665505}} });
 registerSDKProtocol("c:objc(pl)CLSContextProvider", {"updateDescendantsOf":"updateDescendants(of:)"});
-registerSDKClass("CLSDataStore", CLSDataStore, { module: "ClassKit_e11dfd5beee01da3", properties: {"activeContext":657722824129157,"delegate":1900575645061776,"mainAppContext":2120003753829422,"runningActivity":1269927111709834}, methods: {"checkIsAssignedDocument":{"id":1190375322084825,"hints":[null,{"callback":{"out":[]}}]},"completeAllAssignedActivities":{"id":150221901866357},"contextsMatchingIdentifierPathCompletion":{"id":3622741440289538,"hints":[null,{"callback":{"out":[]}}]},"contextsMatchingCompletion":{"id":3987042467237393,"hints":[null,{"callback":{"out":[]}}]},"fetchActivity":{"id":566546297662700,"hints":[null,{"callback":{"out":[]}}]},"remove":{"id":1584473738285649},"save":{"id":4379403549453882,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("CLSDataStore", CLSDataStore, { module: "ClassKit_3864e7f38681b875", properties: {"activeContext":657722824129157,"delegate":1900575645061776,"mainAppContext":2120003753829422,"runningActivity":1269927111709834}, methods: {"checkIsAssignedDocument":{"id":1190375322084825,"hints":[null,{"callback":{"out":[]}}]},"completeAllAssignedActivities":{"id":150221901866357},"contextsMatchingIdentifierPathCompletion":{"id":3622741440289538,"hints":[null,{"callback":{"out":[]}}]},"contextsMatchingCompletion":{"id":3987042467237393,"hints":[null,{"callback":{"out":[]}}]},"fetchActivity":{"id":566546297662700,"hints":[null,{"callback":{"out":[]}}]},"remove":{"id":1584473738285649},"save":{"id":4379403549453882,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)CLSDataStoreDelegate", {"createContextForIdentifierParentContextParentIdentifierPath":"createContext(forIdentifier:parentContext:parentIdentifierPath:)"});
-registerSDKClass("ClassKit.CLSError", CLSError, { module: "ClassKit_e11dfd5beee01da3", properties: {} });
-registerSDKClass("CLSProgressReportingCapability", CLSProgressReportingCapability, { module: "ClassKit_e11dfd5beee01da3", properties: {"details":4476991600984328,"kind":4075336826453505} });
-registerSDKClass("CLSQuantityItem", CLSQuantityItem, { module: "ClassKit_e11dfd5beee01da3", properties: {"quantity":3229809914036039} });
-registerSDKClass("CLSScoreItem", CLSScoreItem, { module: "ClassKit_e11dfd5beee01da3", properties: {"maxScore":3748890860035817,"score":1561036054092089} });
-registerSDKClass("NSUserActivity", NSUserActivity, { module: "ClassKit_e11dfd5beee01da3", properties: {"contextIdentifierPath":2763115764899874,"isClassKitDeepLink":824918501908758} }, true);
+registerSDKClass("ClassKit.CLSError", CLSError, { module: "ClassKit_3864e7f38681b875", properties: {} });
+registerSDKClass("CLSProgressReportingCapability", CLSProgressReportingCapability, { module: "ClassKit_3864e7f38681b875", properties: {"details":4476991600984328,"kind":4075336826453505} });
+registerSDKClass("CLSQuantityItem", CLSQuantityItem, { module: "ClassKit_3864e7f38681b875", properties: {"quantity":3229809914036039} });
+registerSDKClass("CLSScoreItem", CLSScoreItem, { module: "ClassKit_3864e7f38681b875", properties: {"maxScore":3748890860035817,"score":1561036054092089} });
+registerSDKClass("NSUserActivity", NSUserActivity, { module: "ClassKit_3864e7f38681b875", properties: {"contextIdentifierPath":2763115764899874,"isClassKitDeepLink":824918501908758} }, true);

@@ -12,7 +12,7 @@ export class SceneView extends SDKHandle {
    * @MainActor @preconcurrency init(scene: SCNScene? = nil, pointOfView: SCNNode? = nil, options: SceneView.Options = [], preferredFramesPerSecond: Int = 60, antialiasingMode: SCNAntialiasingMode = .multisampling4X, delegate: (any SCNSceneRendererDelegate)? = nil, technique: SCNTechnique? = nil)
    * @availability iOS 14.0+
    */
-  static init(scene?: (_SceneKit_SCNScene) | null, pointOfView?: (_SceneKit_SCNNode) | null, options?: SceneView_Options, preferredFramesPerSecond?: number, antialiasingMode?: _SceneKit_SCNAntialiasingMode, delegate?: (Implements<_SceneKit_SCNSceneRendererDelegate> | SDKHandle) | null, technique?: (_SceneKit_SCNTechnique) | null): Promise<SceneView> { return callSDKAsync<SceneView>("_SceneKit_SwiftUI_e11dfd5beee01da3", 2888588391263986, undefined, [scene, pointOfView, options, preferredFramesPerSecond, antialiasingMode, delegate, technique], [null,null,null,null,null,{"protocol":"c:objc(pl)SCNSceneRendererDelegate"},null]); }
+  static init(scene?: (_SceneKit_SCNScene) | null, pointOfView?: (_SceneKit_SCNNode) | null, options?: SceneView_Options, preferredFramesPerSecond?: number, antialiasingMode?: _SceneKit_SCNAntialiasingMode, delegate?: (Implements<_SceneKit_SCNSceneRendererDelegate> | SDKHandle) | null, technique?: (_SceneKit_SCNTechnique) | null): Promise<SceneView> { return callSDKAsync<SceneView>("_SceneKit_SwiftUI_3864e7f38681b875", 2888588391263986, undefined, [scene, pointOfView, options, preferredFramesPerSecond, antialiasingMode, delegate, technique], [null,null,null,null,null,{"protocol":"c:objc(pl)SCNSceneRendererDelegate"},null]); }
   declare readonly $type: { "s:17_SceneKit_SwiftUI0A4ViewV": true };
 }
 
@@ -33,37 +33,37 @@ export const SceneView_Options = {
    * static let jitteringEnabled: SceneView.Options
    * @availability iOS 14.0+
    */
-  get jitteringEnabled(): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_e11dfd5beee01da3", 2988087689263080, undefined, []); },
+  get jitteringEnabled(): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_3864e7f38681b875", 2988087689263080, undefined, []); },
   /**
    * static let allowsCameraControl: SceneView.Options
    * @availability iOS 14.0+
    */
-  get allowsCameraControl(): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_e11dfd5beee01da3", 964939698008852, undefined, []); },
+  get allowsCameraControl(): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_3864e7f38681b875", 964939698008852, undefined, []); },
   /**
    * static let rendersContinuously: SceneView.Options
    * @availability iOS 14.0+
    */
-  get rendersContinuously(): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_e11dfd5beee01da3", 1661156686024232, undefined, []); },
+  get rendersContinuously(): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_3864e7f38681b875", 1661156686024232, undefined, []); },
   /**
    * static let autoenablesDefaultLighting: SceneView.Options
    * @availability iOS 14.0+
    */
-  get autoenablesDefaultLighting(): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_e11dfd5beee01da3", 3695404110683818, undefined, []); },
+  get autoenablesDefaultLighting(): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_3864e7f38681b875", 3695404110683818, undefined, []); },
   /**
    * static let temporalAntialiasingEnabled: SceneView.Options
    * @availability iOS 14.0+
    */
-  get temporalAntialiasingEnabled(): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_e11dfd5beee01da3", 4107985921079534, undefined, []); },
+  get temporalAntialiasingEnabled(): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_3864e7f38681b875", 4107985921079534, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_e11dfd5beee01da3", 3373208944900841, undefined, [rawValue]); },
+  init(rawValue: number): Promise<SceneView_Options> { return callSDKAsync<SceneView_Options>("_SceneKit_SwiftUI_3864e7f38681b875", 3373208944900841, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 14.0+
    */
-  getRawValue($self: SceneView_Options): Promise<number> { return callSDKAsync<number>("_SceneKit_SwiftUI_e11dfd5beee01da3", 2222155421426170, $self, []); }
+  getRawValue($self: SceneView_Options): Promise<number> { return callSDKAsync<number>("_SceneKit_SwiftUI_3864e7f38681b875", 2222155421426170, $self, []); }
 };
 
 /**
@@ -84,5 +84,5 @@ export type SceneView_Options_Element = SceneView_Options;
  */
 export type SceneView_Options_RawValue = number;
 
-registerSDKClass("_SceneKit_SwiftUI.SceneView", SceneView, { module: "_SceneKit_SwiftUI_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_SceneKit_SwiftUI.SceneView", SceneView, { module: "_SceneKit_SwiftUI_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)SCNSceneRendererDelegate", {"rendererUpdateAtTime":"renderer(_:updateAtTime:)","rendererDidApplyAnimationsAtTime":"renderer(_:didApplyAnimationsAtTime:)","rendererDidSimulatePhysicsAtTime":"renderer(_:didSimulatePhysicsAtTime:)","rendererDidApplyConstraintsAtTime":"renderer(_:didApplyConstraintsAtTime:)","rendererWillRenderSceneAtTime":"renderer(_:willRenderScene:atTime:)","rendererDidRenderSceneAtTime":"renderer(_:didRenderScene:atTime:)"});

@@ -17,136 +17,136 @@ export class DDDevice extends SDKHandle {
    * init(displayName: String, category: DDDevice.Category, protocolType: UTType, identifier: String)
    * @availability iOS 16.0+
    */
-  static init(displayName: string, category: DDDevice_Category, protocolType: _UniformTypeIdentifiers_UTType, identifier: string): DDDevice { return callSDK<DDDevice>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1823767245335337, undefined, [displayName, category, protocolType, identifier]); }
+  static init(displayName: string, category: DDDevice_Category, protocolType: _UniformTypeIdentifiers_UTType, identifier: string): DDDevice { return callSDK<DDDevice>("DeviceDiscoveryExtension_3864e7f38681b875", 1823767245335337, undefined, [displayName, category, protocolType, identifier]); }
   /**
    * var ssid: String? { get set }
    * @availability iOS 18.0+
    */
-  get ssid(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1399483020974219, this, []); }
-  set ssid(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 191737682315821, this, [value]); }
+  get ssid(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 1399483020974219, this, []); }
+  set ssid(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 191737682315821, this, [value]); }
   /**
    * var bluetoothIdentifier: UUID? { get set }
    * @availability iOS 16.0+
    */
-  get bluetoothIdentifier(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 928750287138625, this, []); }
-  set bluetoothIdentifier(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 753594601616006, this, [value]); }
+  get bluetoothIdentifier(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 928750287138625, this, []); }
+  set bluetoothIdentifier(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 753594601616006, this, [value]); }
   /**
    * var category: DDDevice.Category { get set }
    * @availability iOS 16.0+
    */
-  get category(): DDDevice_Category { return callSDK<DDDevice_Category>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3297978488996085, this, []); }
-  set category(value: DDDevice_Category) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3590503547971256, this, [value]); }
+  get category(): DDDevice_Category { return callSDK<DDDevice_Category>("DeviceDiscoveryExtension_3864e7f38681b875", 3297978488996085, this, []); }
+  set category(value: DDDevice_Category) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 3590503547971256, this, [value]); }
   /**
    * var deviceSupports: DDDeviceSupports { get set }
    * @availability iOS 18.0+
    */
-  get deviceSupports(): DDDeviceSupports { return callSDK<DDDeviceSupports>("DeviceDiscoveryExtension_e11dfd5beee01da3", 246551930222253, this, []); }
-  set deviceSupports(value: DDDeviceSupports) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 4053166085172566, this, [value]); }
+  get deviceSupports(): DDDeviceSupports { return callSDK<DDDeviceSupports>("DeviceDiscoveryExtension_3864e7f38681b875", 246551930222253, this, []); }
+  set deviceSupports(value: DDDeviceSupports) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 4053166085172566, this, [value]); }
   /**
    * var displayImageName: String? { get set }
    * @availability iOS 18.0+
    */
-  get displayImageName(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3087771991128984, this, []); }
-  set displayImageName(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1459267654051346, this, [value]); }
+  get displayImageName(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 3087771991128984, this, []); }
+  set displayImageName(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 1459267654051346, this, [value]); }
   /**
    * var displayName: String { get set }
    * @availability iOS 16.0+
    */
-  get displayName(): string { return callSDK<string>("DeviceDiscoveryExtension_e11dfd5beee01da3", 4219669186452434, this, []); }
-  set displayName(value: string) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1672621256794545, this, [value]); }
+  get displayName(): string { return callSDK<string>("DeviceDiscoveryExtension_3864e7f38681b875", 4219669186452434, this, []); }
+  set displayName(value: string) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 1672621256794545, this, [value]); }
   /**
    * var identifier: String { get set }
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("DeviceDiscoveryExtension_e11dfd5beee01da3", 700725255330043, this, []); }
-  set identifier(value: string) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1054588892028647, this, [value]); }
+  get identifier(): string { return callSDK<string>("DeviceDiscoveryExtension_3864e7f38681b875", 700725255330043, this, []); }
+  set identifier(value: string) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 1054588892028647, this, [value]); }
   /**
    * var mediaContentSubtitle: String? { get set }
    * @availability iOS 16.0+
    * @deprecated iOS 27.0
    */
-  get mediaContentSubtitle(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 175771328947099, this, []); }
-  set mediaContentSubtitle(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3624498550027996, this, [value]); }
+  get mediaContentSubtitle(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 175771328947099, this, []); }
+  set mediaContentSubtitle(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 3624498550027996, this, [value]); }
   /**
    * var mediaContentTitle: String? { get set }
    * @availability iOS 16.0+
    * @deprecated iOS 27.0
    */
-  get mediaContentTitle(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3937238418974204, this, []); }
-  set mediaContentTitle(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 487825061692358, this, [value]); }
+  get mediaContentTitle(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 3937238418974204, this, []); }
+  set mediaContentTitle(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 487825061692358, this, [value]); }
   /**
    * var mediaPlaybackState: DDDevice.MediaPlaybackState { get set }
    * @availability iOS 16.0+
    * @deprecated iOS 27.0
    */
-  get mediaPlaybackState(): DDDevice_MediaPlaybackState { return callSDK<DDDevice_MediaPlaybackState>("DeviceDiscoveryExtension_e11dfd5beee01da3", 4220898873181543, this, []); }
-  set mediaPlaybackState(value: DDDevice_MediaPlaybackState) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3648366291068880, this, [value]); }
+  get mediaPlaybackState(): DDDevice_MediaPlaybackState { return callSDK<DDDevice_MediaPlaybackState>("DeviceDiscoveryExtension_3864e7f38681b875", 4220898873181543, this, []); }
+  set mediaPlaybackState(value: DDDevice_MediaPlaybackState) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 3648366291068880, this, [value]); }
   /**
    * var `protocol`: DDDevice.Protocol { get set }
    * @availability iOS 16.0+
    */
-  get protocol(): DDDevice_Protocol { return callSDK<DDDevice_Protocol>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3546652266010822, this, []); }
-  set protocol(value: DDDevice_Protocol) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1932213044235813, this, [value]); }
+  get protocol(): DDDevice_Protocol { return callSDK<DDDevice_Protocol>("DeviceDiscoveryExtension_3864e7f38681b875", 3546652266010822, this, []); }
+  set protocol(value: DDDevice_Protocol) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 1932213044235813, this, [value]); }
   /**
    * var protocolType: UTType { get set }
    * @availability iOS 16.0+
    */
-  get protocolType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3460768586466421, this, []); }
-  set protocolType(value: _UniformTypeIdentifiers_UTType) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3515503861838237, this, [value]); }
+  get protocolType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("DeviceDiscoveryExtension_3864e7f38681b875", 3460768586466421, this, []); }
+  set protocolType(value: _UniformTypeIdentifiers_UTType) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 3515503861838237, this, [value]); }
   /**
    * var state: DDDeviceState { get set }
    * @availability iOS 16.0+
    */
-  get state(): DDDeviceState { return callSDK<DDDeviceState>("DeviceDiscoveryExtension_e11dfd5beee01da3", 664062888612684, this, []); }
-  set state(value: DDDeviceState) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1199899931432722, this, [value]); }
+  get state(): DDDeviceState { return callSDK<DDDeviceState>("DeviceDiscoveryExtension_3864e7f38681b875", 664062888612684, this, []); }
+  set state(value: DDDeviceState) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 1199899931432722, this, [value]); }
   /**
    * var supportsGrouping: Bool { get set }
    * @availability iOS 17.0+
    */
-  get supportsGrouping(): boolean { return callSDK<boolean>("DeviceDiscoveryExtension_e11dfd5beee01da3", 311541830521970, this, []); }
-  set supportsGrouping(value: boolean) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 4454913707344160, this, [value]); }
+  get supportsGrouping(): boolean { return callSDK<boolean>("DeviceDiscoveryExtension_3864e7f38681b875", 311541830521970, this, []); }
+  set supportsGrouping(value: boolean) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 4454913707344160, this, [value]); }
   /**
    * var url: URL { get set }
    * @availability iOS 16.0+
    */
-  get url(): string { return callSDK<string>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1346595970130660, this, []); }
-  set url(value: string) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3258769980047273, this, [value]); }
+  get url(): string { return callSDK<string>("DeviceDiscoveryExtension_3864e7f38681b875", 1346595970130660, this, []); }
+  set url(value: string) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 3258769980047273, this, [value]); }
   /**
    * var wifiAwareModelName: String? { get set }
    * @availability iOS 26.0+
    */
-  get wifiAwareModelName(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 233464354353983, this, []); }
-  set wifiAwareModelName(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 2144063363577241, this, [value]); }
+  get wifiAwareModelName(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 233464354353983, this, []); }
+  set wifiAwareModelName(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 2144063363577241, this, [value]); }
   /**
    * var wifiAwareServiceName: String? { get set }
    * @availability iOS 26.0+
    */
-  get wifiAwareServiceName(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1010106466538038, this, []); }
-  set wifiAwareServiceName(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 4384249231217691, this, [value]); }
+  get wifiAwareServiceName(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 1010106466538038, this, []); }
+  set wifiAwareServiceName(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 4384249231217691, this, [value]); }
   /**
    * var wifiAwareServiceRole: DDDevice.WiFiAwareServiceRole { get set }
    * @availability iOS 26.0+
    */
-  get wifiAwareServiceRole(): DDDevice_WiFiAwareServiceRole { return callSDK<DDDevice_WiFiAwareServiceRole>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1792018159422653, this, []); }
-  set wifiAwareServiceRole(value: DDDevice_WiFiAwareServiceRole) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1107937329284153, this, [value]); }
+  get wifiAwareServiceRole(): DDDevice_WiFiAwareServiceRole { return callSDK<DDDevice_WiFiAwareServiceRole>("DeviceDiscoveryExtension_3864e7f38681b875", 1792018159422653, this, []); }
+  set wifiAwareServiceRole(value: DDDevice_WiFiAwareServiceRole) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 1107937329284153, this, [value]); }
   /**
    * var wifiAwareVendorName: String? { get set }
    * @availability iOS 26.0+
    */
-  get wifiAwareVendorName(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1097980893173916, this, []); }
-  set wifiAwareVendorName(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3425181714030153, this, [value]); }
+  get wifiAwareVendorName(): (string) | null { return callSDK<(string) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 1097980893173916, this, []); }
+  set wifiAwareVendorName(value: (string) | null) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 3425181714030153, this, [value]); }
   /**
    * var networkEndpoint: NWEndpoint? { get set }
    * @availability iOS 16.0+
    */
-  get networkEndpoint(): $SDK0 { return callSDK<$SDK0>("DeviceDiscoveryExtension_e11dfd5beee01da3", 207907288309332, this, []); }
-  set networkEndpoint(value: $SDK0) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 2977090167570811, this, [value]); }
+  get networkEndpoint(): $SDK0 { return callSDK<$SDK0>("DeviceDiscoveryExtension_3864e7f38681b875", 207907288309332, this, []); }
+  set networkEndpoint(value: $SDK0) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 2977090167570811, this, [value]); }
   /**
    * var txtRecord: NWTXTRecord? { get set }
    * @availability iOS 16.0+
    */
-  get txtRecord(): $SDK1 { return callSDK<$SDK1>("DeviceDiscoveryExtension_e11dfd5beee01da3", 4413280241813522, this, []); }
-  set txtRecord(value: $SDK1) { callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3890174153351911, this, [value]); }
+  get txtRecord(): $SDK1 { return callSDK<$SDK1>("DeviceDiscoveryExtension_3864e7f38681b875", 4413280241813522, this, []); }
+  set txtRecord(value: $SDK1) { callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 3890174153351911, this, [value]); }
   declare readonly $type: { "c:objc(cs)DDDevice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ssid": true; "bluetoothIdentifier": true; "category": true; "deviceSupports": true; "displayImageName": true; "displayName": true; "identifier": true; "mediaContentSubtitle": true; "mediaContentTitle": true; "mediaPlaybackState": true; "protocol": true; "protocolType": true; "state": true; "supportsGrouping": true; "url": true; "wifiAwareModelName": true; "wifiAwareServiceName": true; "wifiAwareServiceRole": true; "wifiAwareVendorName": true };
 }
@@ -156,7 +156,7 @@ export type DDDevice_Category = "hifiSpeaker" | "hifiSpeakerMultiple" | "tvWithM
 
 export const DDDevice_Category = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (DDDevice_Category) | null { return callSDK<(DDDevice_Category) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 2695773519519862, undefined, [rawValue]); }
+  init(rawValue: number): (DDDevice_Category) | null { return callSDK<(DDDevice_Category) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 2695773519519862, undefined, [rawValue]); }
 };
 
 /** enum MediaPlaybackState */
@@ -164,7 +164,7 @@ export type DDDevice_MediaPlaybackState = "noContent" | "paused" | "playing";
 
 export const DDDevice_MediaPlaybackState = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (DDDevice_MediaPlaybackState) | null { return callSDK<(DDDevice_MediaPlaybackState) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 4268742553462482, undefined, [rawValue]); }
+  init(rawValue: number): (DDDevice_MediaPlaybackState) | null { return callSDK<(DDDevice_MediaPlaybackState) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 4268742553462482, undefined, [rawValue]); }
 };
 
 /** enum `Protocol` */
@@ -175,7 +175,7 @@ export type DDDevice_WiFiAwareServiceRole = "subscriber" | "publisher";
 
 export const DDDevice_WiFiAwareServiceRole = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (DDDevice_WiFiAwareServiceRole) | null { return callSDK<(DDDevice_WiFiAwareServiceRole) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3796076665445990, undefined, [rawValue]); }
+  init(rawValue: number): (DDDevice_WiFiAwareServiceRole) | null { return callSDK<(DDDevice_WiFiAwareServiceRole) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 3796076665445990, undefined, [rawValue]); }
 };
 
 /**
@@ -187,17 +187,17 @@ export class DDDeviceEvent extends SDKHandle {
    * init(eventType type: DDDeviceEvent.EventType, device: DDDevice)
    * @availability iOS 16.0+
    */
-  static init(type: DDDeviceEvent_EventType, device: DDDevice): DDDeviceEvent { return callSDK<DDDeviceEvent>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3966483614438662, undefined, [type, device]); }
+  static init(type: DDDeviceEvent_EventType, device: DDDevice): DDDeviceEvent { return callSDK<DDDeviceEvent>("DeviceDiscoveryExtension_3864e7f38681b875", 3966483614438662, undefined, [type, device]); }
   /**
    * var device: DDDevice { get }
    * @availability iOS 16.0+
    */
-  get device(): DDDevice { return callSDK<DDDevice>("DeviceDiscoveryExtension_e11dfd5beee01da3", 441157195855273, this, []); }
+  get device(): DDDevice { return callSDK<DDDevice>("DeviceDiscoveryExtension_3864e7f38681b875", 441157195855273, this, []); }
   /**
    * var eventType: DDDeviceEvent.EventType { get }
    * @availability iOS 16.0+
    */
-  get eventType(): DDDeviceEvent_EventType { return callSDK<DDDeviceEvent_EventType>("DeviceDiscoveryExtension_e11dfd5beee01da3", 9666473925566, this, []); }
+  get eventType(): DDDeviceEvent_EventType { return callSDK<DDDeviceEvent_EventType>("DeviceDiscoveryExtension_3864e7f38681b875", 9666473925566, this, []); }
   declare readonly $type: { "c:objc(cs)DDDeviceEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "device": true; "eventType": true };
 }
@@ -207,7 +207,7 @@ export type DDDeviceEvent_EventType = "unknown" | "deviceFound" | "deviceLost" |
 
 export const DDDeviceEvent_EventType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (DDDeviceEvent_EventType) | null { return callSDK<(DDDeviceEvent_EventType) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 2626941093564385, undefined, [rawValue]); }
+  init(rawValue: number): (DDDeviceEvent_EventType) | null { return callSDK<(DDDeviceEvent_EventType) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 2626941093564385, undefined, [rawValue]); }
 };
 
 /** struct DDDeviceProtocolString */
@@ -218,14 +218,14 @@ export const DDDeviceProtocolString = {
    * static let dial: DDDeviceProtocolString
    * @availability iOS 16.0+
    */
-  get dial(): DDDeviceProtocolString { return callSDK<DDDeviceProtocolString>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1748250918560239, undefined, []); },
+  get dial(): DDDeviceProtocolString { return callSDK<DDDeviceProtocolString>("DeviceDiscoveryExtension_3864e7f38681b875", 1748250918560239, undefined, []); },
   /**
    * static let invalid: DDDeviceProtocolString
    * @availability iOS 16.0+
    */
-  get invalid(): DDDeviceProtocolString { return callSDK<DDDeviceProtocolString>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3067303928126157, undefined, []); },
+  get invalid(): DDDeviceProtocolString { return callSDK<DDDeviceProtocolString>("DeviceDiscoveryExtension_3864e7f38681b875", 3067303928126157, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): DDDeviceProtocolString { return callSDK<DDDeviceProtocolString>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1684747329568820, undefined, [rawValue]); }
+  init(rawValue: string): DDDeviceProtocolString { return callSDK<DDDeviceProtocolString>("DeviceDiscoveryExtension_3864e7f38681b875", 1684747329568820, undefined, [rawValue]); }
 };
 
 /** enum DDDeviceState */
@@ -233,7 +233,7 @@ export type DDDeviceState = "invalid" | "activating" | "activated" | "authorized
 
 export const DDDeviceState = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (DDDeviceState) | null { return callSDK<(DDDeviceState) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1413094424808779, undefined, [rawValue]); }
+  init(rawValue: number): (DDDeviceState) | null { return callSDK<(DDDeviceState) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 1413094424808779, undefined, [rawValue]); }
 };
 
 /** struct DDDeviceSupports */
@@ -244,13 +244,13 @@ export const DDDeviceSupports = {
    * static var bluetoothHID: DDDeviceSupports { get }
    * @availability iOS 26.0+
    */
-  get bluetoothHID(): DDDeviceSupports { return callSDK<DDDeviceSupports>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3648047557448939, undefined, []); },
+  get bluetoothHID(): DDDeviceSupports { return callSDK<DDDeviceSupports>("DeviceDiscoveryExtension_3864e7f38681b875", 3648047557448939, undefined, []); },
   /** static var bluetoothPairingLE: DDDeviceSupports { get } */
-  get bluetoothPairingLE(): DDDeviceSupports { return callSDK<DDDeviceSupports>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3052804518689189, undefined, []); },
+  get bluetoothPairingLE(): DDDeviceSupports { return callSDK<DDDeviceSupports>("DeviceDiscoveryExtension_3864e7f38681b875", 3052804518689189, undefined, []); },
   /** static var bluetoothTransportBridging: DDDeviceSupports { get } */
-  get bluetoothTransportBridging(): DDDeviceSupports { return callSDK<DDDeviceSupports>("DeviceDiscoveryExtension_e11dfd5beee01da3", 2964857363034673, undefined, []); },
+  get bluetoothTransportBridging(): DDDeviceSupports { return callSDK<DDDeviceSupports>("DeviceDiscoveryExtension_3864e7f38681b875", 2964857363034673, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): DDDeviceSupports { return callSDK<DDDeviceSupports>("DeviceDiscoveryExtension_e11dfd5beee01da3", 2507002045590083, undefined, [rawValue]); }
+  init(rawValue: number): DDDeviceSupports { return callSDK<DDDeviceSupports>("DeviceDiscoveryExtension_3864e7f38681b875", 2507002045590083, undefined, [rawValue]); }
 };
 
 /**
@@ -287,9 +287,9 @@ export interface DDDiscoveryExtensionConfigurationProtocol {
 /** class DDDiscoverySession */
 export class DDDiscoverySession extends SDKHandle {
   /** init() */
-  static init(): DDDiscoverySession { return callSDK<DDDiscoverySession>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3207446227484487, undefined, []); }
+  static init(): DDDiscoverySession { return callSDK<DDDiscoverySession>("DeviceDiscoveryExtension_3864e7f38681b875", 3207446227484487, undefined, []); }
   /** func report(_ inEvent: DDDeviceEvent) */
-  report(inEvent: DDDeviceEvent): void { return callSDK<void>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3203472410264648, this, [inEvent]); }
+  report(inEvent: DDDeviceEvent): void { return callSDK<void>("DeviceDiscoveryExtension_3864e7f38681b875", 3203472410264648, this, [inEvent]); }
   declare readonly $type: { "c:objc(cs)DDDiscoverySession": true; "c:objc(cs)NSObject": true };
 }
 
@@ -302,52 +302,52 @@ export class DDError extends SDKHandle {
    * static var permission: DDError.Code { get }
    * @availability iOS 16.0+
    */
-  static get permission(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3593756544781884, undefined, []); }
+  static get permission(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_3864e7f38681b875", 3593756544781884, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 16.0+
    */
-  static get errorDomain(): string { return callSDK<string>("DeviceDiscoveryExtension_e11dfd5beee01da3", 460452379454022, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("DeviceDiscoveryExtension_3864e7f38681b875", 460452379454022, undefined, []); }
   /**
    * static var unsupported: DDError.Code { get }
    * @availability iOS 16.0+
    */
-  static get unsupported(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1307222931042059, undefined, []); }
+  static get unsupported(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_3864e7f38681b875", 1307222931042059, undefined, []); }
   /**
    * static var badParameter: DDError.Code { get }
    * @availability iOS 16.0+
    */
-  static get badParameter(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_e11dfd5beee01da3", 351061703087949, undefined, []); }
+  static get badParameter(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_3864e7f38681b875", 351061703087949, undefined, []); }
   /**
    * static var missingEntitlement: DDError.Code { get }
    * @availability iOS 16.0+
    */
-  static get missingEntitlement(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_e11dfd5beee01da3", 127720051358661, undefined, []); }
+  static get missingEntitlement(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_3864e7f38681b875", 127720051358661, undefined, []); }
   /**
    * static var next: DDError.Code { get }
    * @availability iOS 16.0+
    */
-  static get next(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3681034084185298, undefined, []); }
+  static get next(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_3864e7f38681b875", 3681034084185298, undefined, []); }
   /**
    * static var success: DDError.Code { get }
    * @availability iOS 16.0+
    */
-  static get success(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_e11dfd5beee01da3", 2300108467214058, undefined, []); }
+  static get success(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_3864e7f38681b875", 2300108467214058, undefined, []); }
   /**
    * static var timeout: DDError.Code { get }
    * @availability iOS 16.0+
    */
-  static get timeout(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_e11dfd5beee01da3", 2061396401109607, undefined, []); }
+  static get timeout(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_3864e7f38681b875", 2061396401109607, undefined, []); }
   /**
    * static var unknown: DDError.Code { get }
    * @availability iOS 16.0+
    */
-  static get unknown(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1054086391725091, undefined, []); }
+  static get unknown(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_3864e7f38681b875", 1054086391725091, undefined, []); }
   /**
    * static var `internal`: DDError.Code { get }
    * @availability iOS 16.0+
    */
-  static get internal(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3489531352714169, undefined, []); }
+  static get internal(): DDError_Code { return callSDK<DDError_Code>("DeviceDiscoveryExtension_3864e7f38681b875", 3489531352714169, undefined, []); }
   declare readonly $type: { "s:SC11DDErrorCodeLeV": true };
 }
 
@@ -362,7 +362,7 @@ export const DDError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (DDError_Code) | null { return callSDK<(DDError_Code) | null>("DeviceDiscoveryExtension_e11dfd5beee01da3", 42325994847657, undefined, [rawValue]); }
+  init(rawValue: number): (DDError_Code) | null { return callSDK<(DDError_Code) | null>("DeviceDiscoveryExtension_3864e7f38681b875", 42325994847657, undefined, [rawValue]); }
 };
 
 /**
@@ -384,35 +384,35 @@ export type DDEventHandler = ((arg0: DDDeviceEvent) => Promise<void>);
  * func DDDeviceCategoryToString(_ inValue: DDDevice.Category) -> String
  * @availability iOS 16.0+
  */
-export function DDDeviceCategoryToString(inValue: DDDevice_Category): string { return callSDK<string>("DeviceDiscoveryExtension_e11dfd5beee01da3", 2385336888421452, undefined, [inValue]); }
+export function DDDeviceCategoryToString(inValue: DDDevice_Category): string { return callSDK<string>("DeviceDiscoveryExtension_3864e7f38681b875", 2385336888421452, undefined, [inValue]); }
 
 /**
  * func DDDeviceMediaPlaybackStateToString(_ inValue: DDDevice.MediaPlaybackState) -> String
  * @availability iOS 16.0+
  */
-export function DDDeviceMediaPlaybackStateToString(inValue: DDDevice_MediaPlaybackState): string { return callSDK<string>("DeviceDiscoveryExtension_e11dfd5beee01da3", 176743076047679, undefined, [inValue]); }
+export function DDDeviceMediaPlaybackStateToString(inValue: DDDevice_MediaPlaybackState): string { return callSDK<string>("DeviceDiscoveryExtension_3864e7f38681b875", 176743076047679, undefined, [inValue]); }
 
 /**
  * func DDDeviceStateToString(_ inValue: DDDeviceState) -> String
  * @availability iOS 16.0+
  */
-export function DDDeviceStateToString(inValue: DDDeviceState): string { return callSDK<string>("DeviceDiscoveryExtension_e11dfd5beee01da3", 3910929287958495, undefined, [inValue]); }
+export function DDDeviceStateToString(inValue: DDDeviceState): string { return callSDK<string>("DeviceDiscoveryExtension_3864e7f38681b875", 3910929287958495, undefined, [inValue]); }
 
 /**
  * func DDEventTypeToString(_ inValue: DDDeviceEvent.EventType) -> String
  * @availability iOS 16.0+
  */
-export function DDEventTypeToString(inValue: DDDeviceEvent_EventType): string { return callSDK<string>("DeviceDiscoveryExtension_e11dfd5beee01da3", 389829131332268, undefined, [inValue]); }
+export function DDEventTypeToString(inValue: DDDeviceEvent_EventType): string { return callSDK<string>("DeviceDiscoveryExtension_3864e7f38681b875", 389829131332268, undefined, [inValue]); }
 
 /**
  * let DDErrorDomain: String
  * @availability iOS 16.0+
  */
-export const DDErrorDomain: string = callSDK<string>("DeviceDiscoveryExtension_e11dfd5beee01da3", 1227210989156252, undefined, []);
+export const DDErrorDomain: string = callSDK<string>("DeviceDiscoveryExtension_3864e7f38681b875", 1227210989156252, undefined, []);
 
-registerSDKClass("DDDevice", DDDevice, { module: "DeviceDiscoveryExtension_e11dfd5beee01da3", properties: {"ssid":1399483020974219,"bluetoothIdentifier":928750287138625,"category":3297978488996085,"deviceSupports":246551930222253,"displayImageName":3087771991128984,"displayName":4219669186452434,"identifier":700725255330043,"mediaContentSubtitle":175771328947099,"mediaContentTitle":3937238418974204,"mediaPlaybackState":4220898873181543,"protocol":3546652266010822,"protocolType":3460768586466421,"state":664062888612684,"supportsGrouping":311541830521970,"url":1346595970130660,"wifiAwareModelName":233464354353983,"wifiAwareServiceName":1010106466538038,"wifiAwareServiceRole":1792018159422653,"wifiAwareVendorName":1097980893173916} });
-registerSDKClass("DDDeviceEvent", DDDeviceEvent, { module: "DeviceDiscoveryExtension_e11dfd5beee01da3", properties: {"device":441157195855273,"eventType":9666473925566} });
+registerSDKClass("DDDevice", DDDevice, { module: "DeviceDiscoveryExtension_3864e7f38681b875", properties: {"ssid":1399483020974219,"bluetoothIdentifier":928750287138625,"category":3297978488996085,"deviceSupports":246551930222253,"displayImageName":3087771991128984,"displayName":4219669186452434,"identifier":700725255330043,"mediaContentSubtitle":175771328947099,"mediaContentTitle":3937238418974204,"mediaPlaybackState":4220898873181543,"protocol":3546652266010822,"protocolType":3460768586466421,"state":664062888612684,"supportsGrouping":311541830521970,"url":1346595970130660,"wifiAwareModelName":233464354353983,"wifiAwareServiceName":1010106466538038,"wifiAwareServiceRole":1792018159422653,"wifiAwareVendorName":1097980893173916} });
+registerSDKClass("DDDeviceEvent", DDDeviceEvent, { module: "DeviceDiscoveryExtension_3864e7f38681b875", properties: {"device":441157195855273,"eventType":9666473925566} });
 registerSDKProtocol("s:24DeviceDiscoveryExtension011DDDiscoveryC0P", {"init":"init()","startDiscoverySession":"startDiscovery(session:)","stopDiscoverySession":"stopDiscovery(session:)","didReceiveEvent":"didReceiveEvent(_:)"});
 registerSDKProtocol("s:24DeviceDiscoveryExtension011DDDiscoveryC21ConfigurationProtocolP", {"acceptConnection":"accept(connection:)"});
-registerSDKClass("DDDiscoverySession", DDDiscoverySession, { module: "DeviceDiscoveryExtension_e11dfd5beee01da3", properties: {}, methods: {"report":{"id":3203472410264648}} });
-registerSDKClass("DeviceDiscoveryExtension.DDError", DDError, { module: "DeviceDiscoveryExtension_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DDDiscoverySession", DDDiscoverySession, { module: "DeviceDiscoveryExtension_3864e7f38681b875", properties: {}, methods: {"report":{"id":3203472410264648}} });
+registerSDKClass("DeviceDiscoveryExtension.DDError", DDError, { module: "DeviceDiscoveryExtension_3864e7f38681b875", properties: {} });

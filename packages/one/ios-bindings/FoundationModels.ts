@@ -85,12 +85,12 @@ export class AnyDynamicInstructions extends SDKHandle {
    * var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): never { return callSDK<never>("FoundationModels_e11dfd5beee01da3", 4420431463739133, this, []); }
+  get body(): never { return callSDK<never>("FoundationModels_3864e7f38681b875", 4420431463739133, this, []); }
   /**
    * init(_ dynamicInstructions: any DynamicInstructions)
    * @availability iOS 27.0+
    */
-  static init(dynamicInstructions: SDKHandle): AnyDynamicInstructions { return callSDK<AnyDynamicInstructions>("FoundationModels_e11dfd5beee01da3", 4261590286515444, undefined, [dynamicInstructions]); }
+  static init(dynamicInstructions: SDKHandle): AnyDynamicInstructions { return callSDK<AnyDynamicInstructions>("FoundationModels_3864e7f38681b875", 4261590286515444, undefined, [dynamicInstructions]); }
   declare readonly $type: { "s:16FoundationModels22AnyDynamicInstructionsV": true };
 }
 
@@ -127,37 +127,37 @@ export class Attachment<Content = unknown> extends SDKHandle {
    * var promptRepresentation: Prompt { get }
    * @availability iOS 27.0+
    */
-  get promptRepresentation(): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 200715229036365, this, []); }
+  get promptRepresentation(): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 200715229036365, this, []); }
   /**
    * var instructionsRepresentation: Instructions { get }
    * @availability iOS 27.0+
    */
-  get instructionsRepresentation(): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 1372249767862547, this, []); }
+  get instructionsRepresentation(): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 1372249767862547, this, []); }
   /**
    * func label(_ label: String) -> Attachment<Content>
    * @availability iOS 27.0+
    */
-  label(label: string): Attachment<unknown> { return callSDK<Attachment<unknown>>("FoundationModels_e11dfd5beee01da3", 4143592580516225, this, [label]); }
+  label(label: string): Attachment<unknown> { return callSDK<Attachment<unknown>>("FoundationModels_3864e7f38681b875", 4143592580516225, this, [label]); }
   /**
    * init(imageURL: URL, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 27.0+
    */
-  static initImageURLOrientation(imageURL: string, orientation?: $SDK3): $SDK2 { return callSDK<$SDK2>("FoundationModels_e11dfd5beee01da3", 2957894637198428, undefined, [imageURL, orientation]); }
+  static initImageURLOrientation(imageURL: string, orientation?: $SDK3): $SDK2 { return callSDK<$SDK2>("FoundationModels_3864e7f38681b875", 2957894637198428, undefined, [imageURL, orientation]); }
   /**
    * init(_ cgImage: CGImage, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 27.0+
    */
-  static initOrientation(cgImage: _CoreGraphics_CGImage, orientation?: $SDK3): $SDK2 { return callSDK<$SDK2>("FoundationModels_e11dfd5beee01da3", 4439533002529228, undefined, [cgImage, orientation]); }
+  static initOrientation(cgImage: _CoreGraphics_CGImage, orientation?: $SDK3): $SDK2 { return callSDK<$SDK2>("FoundationModels_3864e7f38681b875", 4439533002529228, undefined, [cgImage, orientation]); }
   /**
    * init(_ pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 27.0+
    */
-  static initOrientation19088(pixelBuffer: _CoreVideo_CVBuffer, orientation?: $SDK3): $SDK2 { return callSDK<$SDK2>("FoundationModels_e11dfd5beee01da3", 600579874723628, undefined, [pixelBuffer, orientation]); }
+  static initOrientation19088(pixelBuffer: _CoreVideo_CVBuffer, orientation?: $SDK3): $SDK2 { return callSDK<$SDK2>("FoundationModels_3864e7f38681b875", 600579874723628, undefined, [pixelBuffer, orientation]); }
   /**
    * init(_ ciImage: CIImage, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 27.0+
    */
-  static initOrientation7102(ciImage: _CoreImage_CIImage, orientation?: $SDK3): $SDK2 { return callSDK<$SDK2>("FoundationModels_e11dfd5beee01da3", 613871386862959, undefined, [ciImage, orientation]); }
+  static initOrientation7102(ciImage: _CoreImage_CIImage, orientation?: $SDK3): $SDK2 { return callSDK<$SDK2>("FoundationModels_3864e7f38681b875", 613871386862959, undefined, [ciImage, orientation]); }
   declare readonly $type: { "s:16FoundationModels10AttachmentV": true };
 }
 
@@ -176,7 +176,7 @@ export class ConditionalDynamicInstructions<TrueContent = unknown, FalseContent 
    * var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): never { return callSDK<never>("FoundationModels_e11dfd5beee01da3", 2230197232785684, this, []); }
+  get body(): never { return callSDK<never>("FoundationModels_3864e7f38681b875", 2230197232785684, this, []); }
   declare readonly $type: { "s:16FoundationModels30ConditionalDynamicInstructionsV": true };
 }
 
@@ -215,19 +215,19 @@ export class ContextOptions extends SDKHandle {
    * var reasoningLevel: ContextOptions.ReasoningLevel?
    * @availability iOS 27.0+
    */
-  get reasoningLevel(): $SDK4 { return callSDK<$SDK4>("FoundationModels_e11dfd5beee01da3", 2248767006597624, this, []); }
-  set reasoningLevel(value: $SDK4) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1687940151224420, this, [value]); }
+  get reasoningLevel(): $SDK4 { return callSDK<$SDK4>("FoundationModels_3864e7f38681b875", 2248767006597624, this, []); }
+  set reasoningLevel(value: $SDK4) { callSDK<void>("FoundationModels_3864e7f38681b875", 1687940151224420, this, [value]); }
   /**
    * init(includeSchemaInPrompt: Bool? = nil, reasoningLevel: ContextOptions.ReasoningLevel? = nil)
    * @availability iOS 27.0+
    */
-  static init(includeSchemaInPrompt?: (boolean) | null, reasoningLevel?: $SDK4): ContextOptions { return callSDK<ContextOptions>("FoundationModels_e11dfd5beee01da3", 2785309370145667, undefined, [includeSchemaInPrompt, reasoningLevel]); }
+  static init(includeSchemaInPrompt?: (boolean) | null, reasoningLevel?: $SDK4): ContextOptions { return callSDK<ContextOptions>("FoundationModels_3864e7f38681b875", 2785309370145667, undefined, [includeSchemaInPrompt, reasoningLevel]); }
   /**
    * var includeSchemaInPrompt: Bool?
    * @availability iOS 27.0+
    */
-  get includeSchemaInPrompt(): (boolean) | null { return callSDK<(boolean) | null>("FoundationModels_e11dfd5beee01da3", 3908070264524163, this, []); }
-  set includeSchemaInPrompt(value: (boolean) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3001184558189103, this, [value]); }
+  get includeSchemaInPrompt(): (boolean) | null { return callSDK<(boolean) | null>("FoundationModels_3864e7f38681b875", 3908070264524163, this, []); }
+  set includeSchemaInPrompt(value: (boolean) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 3001184558189103, this, [value]); }
   declare readonly $type: { "s:16FoundationModels14ContextOptionsV": true };
 }
 
@@ -264,27 +264,27 @@ export class Decimal extends SDKHandle {
    * var generatedContent: GeneratedContent { get }
    * @availability iOS 26.0+
    */
-  get generatedContent(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 2874364460375878, this, []); }
+  get generatedContent(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 2874364460375878, this, []); }
   /**
    * static var generationSchema: GenerationSchema { get }
    * @availability iOS 26.0+
    */
-  static get generationSchema(): GenerationSchema { return callSDK<GenerationSchema>("FoundationModels_e11dfd5beee01da3", 169564234016084, undefined, []); }
+  static get generationSchema(): GenerationSchema { return callSDK<GenerationSchema>("FoundationModels_3864e7f38681b875", 169564234016084, undefined, []); }
   /**
    * var promptRepresentation: Prompt { get }
    * @availability iOS 26.0+
    */
-  get promptRepresentation(): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 3248693709156080, this, []); }
+  get promptRepresentation(): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 3248693709156080, this, []); }
   /**
    * var instructionsRepresentation: Instructions { get }
    * @availability iOS 26.0+
    */
-  get instructionsRepresentation(): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 4237772948008556, this, []); }
+  get instructionsRepresentation(): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 4237772948008556, this, []); }
   /**
    * init(_ content: GeneratedContent) throws
    * @availability iOS 26.0+
    */
-  static init(content: GeneratedContent): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("FoundationModels_e11dfd5beee01da3", 1133109276377804, undefined, [content]); }
+  static init(content: GeneratedContent): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("FoundationModels_3864e7f38681b875", 1133109276377804, undefined, [content]); }
   declare readonly $type: { "c:@SA@NSDecimal": true };
 }
 
@@ -309,37 +309,37 @@ export class DynamicGenerationSchema extends SDKHandle {
    * init(referenceTo name: String)
    * @availability iOS 26.0+
    */
-  static initReferenceTo(name: string): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_e11dfd5beee01da3", 766363732021143, undefined, [name]); }
+  static initReferenceTo(name: string): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_3864e7f38681b875", 766363732021143, undefined, [name]); }
   /**
    * init(name: String, description: String? = nil, properties: [DynamicGenerationSchema.Property])
    * @availability iOS 26.0+
    */
-  static initNameDescriptionProperties(name: string, description: (string) | null, properties: $SDK5): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_e11dfd5beee01da3", 3101702342968483, undefined, [name, description, properties]); }
+  static initNameDescriptionProperties(name: string, description: (string) | null, properties: $SDK5): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_3864e7f38681b875", 3101702342968483, undefined, [name, description, properties]); }
   /**
    * init(name: String, description: String? = nil, representNilExplicitlyInGeneratedContent explicitNil: Bool, properties: [DynamicGenerationSchema.Property])
    * @availability iOS 26.4+
    */
-  static initNameDescriptionRepresentNilExplicitlyInGeneratedContentProperties(name: string, description: (string) | null, explicitNil: boolean, properties: $SDK5): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_e11dfd5beee01da3", 1451623936920134, undefined, [name, description, explicitNil, properties]); }
+  static initNameDescriptionRepresentNilExplicitlyInGeneratedContentProperties(name: string, description: (string) | null, explicitNil: boolean, properties: $SDK5): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_3864e7f38681b875", 1451623936920134, undefined, [name, description, explicitNil, properties]); }
   /**
    * init(name: String, description: String? = nil, anyOf choices: [DynamicGenerationSchema])
    * @availability iOS 26.0+
    */
-  static initNameDescriptionAnyOf(name: string, description: (string) | null, choices: $SDK6): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_e11dfd5beee01da3", 2322473874061443, undefined, [name, description, choices]); }
+  static initNameDescriptionAnyOf(name: string, description: (string) | null, choices: $SDK6): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_3864e7f38681b875", 2322473874061443, undefined, [name, description, choices]); }
   /**
    * init(name: String, description: String? = nil, anyOf choices: [String])
    * @availability iOS 26.0+
    */
-  static initNameDescriptionAnyOf6353(name: string, description: (string) | null, choices: Array<string>): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_e11dfd5beee01da3", 4332864808195956, undefined, [name, description, choices]); }
+  static initNameDescriptionAnyOf6353(name: string, description: (string) | null, choices: Array<string>): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_3864e7f38681b875", 4332864808195956, undefined, [name, description, choices]); }
   /**
    * static var null: DynamicGenerationSchema { get }
    * @availability iOS 26.4+
    */
-  static get null(): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_e11dfd5beee01da3", 1910736071387631, undefined, []); }
+  static get null(): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_3864e7f38681b875", 1910736071387631, undefined, []); }
   /**
    * init(arrayOf itemSchema: DynamicGenerationSchema, minimumElements: Int? = nil, maximumElements: Int? = nil)
    * @availability iOS 26.0+
    */
-  static initArrayOfMinimumElementsMaximumElements(itemSchema: DynamicGenerationSchema, minimumElements?: (number) | null, maximumElements?: (number) | null): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_e11dfd5beee01da3", 1601603863920594, undefined, [itemSchema, minimumElements, maximumElements]); }
+  static initArrayOfMinimumElementsMaximumElements(itemSchema: DynamicGenerationSchema, minimumElements?: (number) | null, maximumElements?: (number) | null): DynamicGenerationSchema { return callSDK<DynamicGenerationSchema>("FoundationModels_3864e7f38681b875", 1601603863920594, undefined, [itemSchema, minimumElements, maximumElements]); }
   declare readonly $type: { "s:16FoundationModels23DynamicGenerationSchemaV": true };
 }
 
@@ -352,7 +352,7 @@ export class DynamicGenerationSchema_Property extends SDKHandle {
    * init(name: String, description: String? = nil, schema: DynamicGenerationSchema, isOptional: Bool = false)
    * @availability iOS 26.0+
    */
-  static init(name: string, description: (string) | null, schema: DynamicGenerationSchema, isOptional?: boolean): DynamicGenerationSchema_Property { return callSDK<DynamicGenerationSchema_Property>("FoundationModels_e11dfd5beee01da3", 2767647279011800, undefined, [name, description, schema, isOptional]); }
+  static init(name: string, description: (string) | null, schema: DynamicGenerationSchema, isOptional?: boolean): DynamicGenerationSchema_Property { return callSDK<DynamicGenerationSchema_Property>("FoundationModels_3864e7f38681b875", 2767647279011800, undefined, [name, description, schema, isOptional]); }
   declare readonly $type: { "s:16FoundationModels23DynamicGenerationSchemaV8PropertyV": true };
 }
 
@@ -385,7 +385,7 @@ export class DynamicInstructionsBuilder extends SDKHandle {
    * @export(implementation) static func buildBlock() -> EmptyDynamicInstructions
    * @availability iOS 27.0+
    */
-  static buildBlock(): EmptyDynamicInstructions { return callSDK<EmptyDynamicInstructions>("FoundationModels_e11dfd5beee01da3", 1246673155956027, undefined, []); }
+  static buildBlock(): EmptyDynamicInstructions { return callSDK<EmptyDynamicInstructions>("FoundationModels_3864e7f38681b875", 1246673155956027, undefined, []); }
   declare readonly $type: { "s:16FoundationModels26DynamicInstructionsBuilderV": true };
 }
 
@@ -398,7 +398,7 @@ export class DynamicInstructionsForEach<Data = unknown, ID = unknown, Content = 
    * var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): never { return callSDK<never>("FoundationModels_e11dfd5beee01da3", 3711404793595248, this, []); }
+  get body(): never { return callSDK<never>("FoundationModels_3864e7f38681b875", 3711404793595248, this, []); }
   declare readonly $type: { "s:16FoundationModels26DynamicInstructionsForEachV": true };
 }
 
@@ -429,12 +429,12 @@ export class EmptyDynamicInstructions extends SDKHandle {
    * var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): never { return callSDK<never>("FoundationModels_e11dfd5beee01da3", 467409527260267, this, []); }
+  get body(): never { return callSDK<never>("FoundationModels_3864e7f38681b875", 467409527260267, this, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): EmptyDynamicInstructions { return callSDK<EmptyDynamicInstructions>("FoundationModels_e11dfd5beee01da3", 3215353182011172, undefined, []); }
+  static init(): EmptyDynamicInstructions { return callSDK<EmptyDynamicInstructions>("FoundationModels_3864e7f38681b875", 3215353182011172, undefined, []); }
   declare readonly $type: { "s:16FoundationModels24EmptyDynamicInstructionsV": true };
 }
 
@@ -489,93 +489,93 @@ export class GeneratedContent extends SDKHandle {
    * var generatedContent: GeneratedContent { get }
    * @availability iOS 26.0+
    */
-  get generatedContent(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 3299644675149766, this, []); }
+  get generatedContent(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 3299644675149766, this, []); }
   /**
    * var isComplete: Bool { get }
    * @availability iOS 26.0+
    */
-  get isComplete(): boolean { return callSDK<boolean>("FoundationModels_e11dfd5beee01da3", 1689025482858555, this, []); }
+  get isComplete(): boolean { return callSDK<boolean>("FoundationModels_3864e7f38681b875", 1689025482858555, this, []); }
   /**
    * var jsonString: String { get }
    * @availability iOS 26.0+
    */
-  get jsonString(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 4303642813184673, this, []); }
+  get jsonString(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 4303642813184673, this, []); }
   /**
    * init<S>(properties: S, id: GenerationID? = nil, uniquingKeysWith combine: (GeneratedContent, GeneratedContent) throws -> some ConvertibleToGeneratedContent) rethrows where S : Sequence, S.Element == (String, any ConvertibleToGeneratedContent)
    * @availability iOS 26.0+
    */
-  static initPropertiesIdUniquingKeysWith(properties: Array<[string, SDKHandle]>, id: (GenerationID) | null, combine: ((arg0: GeneratedContent, arg1: GeneratedContent) => SDKHandle)): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 4220371076815929, undefined, [properties, id, combine], [null,null,{"callback":{"out":[]}}], true); }
+  static initPropertiesIdUniquingKeysWith(properties: Array<[string, SDKHandle]>, id: (GenerationID) | null, combine: ((arg0: GeneratedContent, arg1: GeneratedContent) => SDKHandle)): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 4220371076815929, undefined, [properties, id, combine], [null,null,{"callback":{"out":[]}}], true); }
   /**
    * init(properties: KeyValuePairs<String, any ConvertibleToGeneratedContent>, id: GenerationID? = nil)
    * @availability iOS 26.0+
    */
-  static initPropertiesId(properties: SDKHandle, id?: (GenerationID) | null): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 2426485499204480, undefined, [properties, id]); }
+  static initPropertiesId(properties: SDKHandle, id?: (GenerationID) | null): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 2426485499204480, undefined, [properties, id]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2632046724221504, this, []); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2632046724221504, this, []); }
   /**
    * static var generationSchema: GenerationSchema { get }
    * @availability iOS 26.0+
    */
-  static get generationSchema(): GenerationSchema { return callSDK<GenerationSchema>("FoundationModels_e11dfd5beee01da3", 1715537965180882, undefined, []); }
+  static get generationSchema(): GenerationSchema { return callSDK<GenerationSchema>("FoundationModels_3864e7f38681b875", 1715537965180882, undefined, []); }
   /**
    * var id: GenerationID?
    * @availability iOS 26.0+
    */
-  get id(): (GenerationID) | null { return callSDK<(GenerationID) | null>("FoundationModels_e11dfd5beee01da3", 3928222027321620, this, []); }
-  set id(value: (GenerationID) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1561703926719575, this, [value]); }
+  get id(): (GenerationID) | null { return callSDK<(GenerationID) | null>("FoundationModels_3864e7f38681b875", 3928222027321620, this, []); }
+  set id(value: (GenerationID) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 1561703926719575, this, [value]); }
   /**
    * init(json: String) throws
    * @availability iOS 26.0+
    */
-  static initJson(json: string): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 828882693293230, undefined, [json]); }
+  static initJson(json: string): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 828882693293230, undefined, [json]); }
   /**
    * init(kind: GeneratedContent.Kind, id: GenerationID? = nil)
    * @availability iOS 26.0+
    */
-  static initKindId(kind: GeneratedContent_Kind, id?: (GenerationID) | null): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 4423908131863066, undefined, [kind, id]); }
+  static initKindId(kind: GeneratedContent_Kind, id?: (GenerationID) | null): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 4423908131863066, undefined, [kind, id]); }
   /**
    * var kind: GeneratedContent.Kind { get }
    * @availability iOS 26.0+
    */
-  get kind(): GeneratedContent_Kind { return callSDK<GeneratedContent_Kind>("FoundationModels_e11dfd5beee01da3", 1089284221470592, this, []); }
+  get kind(): GeneratedContent_Kind { return callSDK<GeneratedContent_Kind>("FoundationModels_3864e7f38681b875", 1089284221470592, this, []); }
   /**
    * func value<Value>(_ type: Value?.Type = Value?.self, forProperty property: String) throws -> Value? where Value : ConvertibleFromGeneratedContent
    * @availability iOS 26.0+
    */
-  valueForProperty(property: string): (number) | null { return callSDK<(number) | null>("FoundationModels_e11dfd5beee01da3", 470782876039686, this, [property]); }
+  valueForProperty(property: string): (number) | null { return callSDK<(number) | null>("FoundationModels_3864e7f38681b875", 470782876039686, this, [property]); }
   /**
    * func value<Value>(_ type: Value.Type = Value.self, forProperty property: String) throws -> Value where Value : ConvertibleFromGeneratedContent
    * @availability iOS 26.0+
    */
-  valueForProperty41093(property: string): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 1408682214668201, this, [property]); }
+  valueForProperty41093(property: string): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 1408682214668201, this, [property]); }
   /**
    * func value<Value>(_ type: Value.Type = Value.self) throws -> Value where Value : ConvertibleFromGeneratedContent
    * @availability iOS 26.0+
    */
-  value(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 146072501115617, this, []); }
+  value(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 146072501115617, this, []); }
   /**
    * init<S>(elements: S, id: GenerationID? = nil) where S : Sequence, S.Element == any ConvertibleToGeneratedContent
    * @availability iOS 26.0+
    */
-  static initElementsId(elements: Array<SDKHandle>, id?: (GenerationID) | null): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 3811959568266335, undefined, [elements, id]); }
+  static initElementsId(elements: Array<SDKHandle>, id?: (GenerationID) | null): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 3811959568266335, undefined, [elements, id]); }
   /**
    * init(_ value: some ConvertibleToGeneratedContent, id: GenerationID)
    * @availability iOS 26.0+
    */
-  static initId(value: SDKHandle, id: GenerationID): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 2566962961951300, undefined, [value, id]); }
+  static initId(value: SDKHandle, id: GenerationID): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 2566962961951300, undefined, [value, id]); }
   /**
    * init(_ content: GeneratedContent) throws
    * @availability iOS 26.0+
    */
-  static init(content: GeneratedContent): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 3356835382661332, undefined, [content]); }
+  static init(content: GeneratedContent): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 3356835382661332, undefined, [content]); }
   /**
    * init(_ value: some ConvertibleToGeneratedContent)
    * @availability iOS 26.0+
    */
-  static init83790(value: SDKHandle): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 3438127556353202, undefined, [value]); }
+  static init83790(value: SDKHandle): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 3438127556353202, undefined, [value]); }
   declare readonly $type: { "s:16FoundationModels16GeneratedContentV": true };
 }
 
@@ -596,30 +596,30 @@ export class GeneratedContent_ParsingError extends SDKHandle {
    * var underlyingError: (any Error)?
    * @availability iOS 27.0+
    */
-  get underlyingError(): (NativeError) | null { return callSDK<(NativeError) | null>("FoundationModels_e11dfd5beee01da3", 4491455592125092, this, []); }
-  set underlyingError(value: (NativeError) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4284357910282967, this, [value]); }
+  get underlyingError(): (NativeError) | null { return callSDK<(NativeError) | null>("FoundationModels_3864e7f38681b875", 4491455592125092, this, []); }
+  set underlyingError(value: (NativeError) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 4284357910282967, this, [value]); }
   /**
    * init(rawContent: String, underlyingError: (any Error)? = nil, debugDescription: String)
    * @availability iOS 27.0+
    */
-  static init(rawContent: string, underlyingError: (NativeError) | null, debugDescription: string): GeneratedContent_ParsingError { return callSDK<GeneratedContent_ParsingError>("FoundationModels_e11dfd5beee01da3", 4308152887065077, undefined, [rawContent, underlyingError, debugDescription]); }
+  static init(rawContent: string, underlyingError: (NativeError) | null, debugDescription: string): GeneratedContent_ParsingError { return callSDK<GeneratedContent_ParsingError>("FoundationModels_3864e7f38681b875", 4308152887065077, undefined, [rawContent, underlyingError, debugDescription]); }
   /**
    * var rawContent: String
    * @availability iOS 27.0+
    */
-  get rawContent(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3836166331091369, this, []); }
-  set rawContent(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3827090147785197, this, [value]); }
+  get rawContent(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3836166331091369, this, []); }
+  set rawContent(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3827090147785197, this, [value]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1842370768456983, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3603547409424539, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1842370768456983, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3603547409424539, this, [value]); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 27.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 146554452656198, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 146554452656198, this, []); }
   declare readonly $type: { "s:16FoundationModels16GeneratedContentV12ParsingErrorV": true };
 }
 
@@ -638,102 +638,102 @@ export class GenerationGuide<Value = unknown> extends SDKHandle {
    * static func maximumCount<Element>(_ count: Int) -> GenerationGuide<[Element]> where Value == [Element]
    * @availability iOS 26.0+
    */
-  static maximumCount(count: number): $SDK9 { return callSDK<$SDK9>("FoundationModels_e11dfd5beee01da3", 2473937605931047, undefined, [count]); }
+  static maximumCount(count: number): $SDK9 { return callSDK<$SDK9>("FoundationModels_3864e7f38681b875", 2473937605931047, undefined, [count]); }
   /**
    * static func minimumCount<Element>(_ count: Int) -> GenerationGuide<[Element]> where Value == [Element]
    * @availability iOS 26.0+
    */
-  static minimumCount(count: number): $SDK9 { return callSDK<$SDK9>("FoundationModels_e11dfd5beee01da3", 300158948008417, undefined, [count]); }
+  static minimumCount(count: number): $SDK9 { return callSDK<$SDK9>("FoundationModels_3864e7f38681b875", 300158948008417, undefined, [count]); }
   /**
    * static func count<Element>(_ range: ClosedRange<Int>) -> GenerationGuide<[Element]> where Value == [Element]
    * @availability iOS 26.0+
    */
-  static count(range: SDKHandle): $SDK9 { return callSDK<$SDK9>("FoundationModels_e11dfd5beee01da3", 1750475373138249, undefined, [range]); }
+  static count(range: SDKHandle): $SDK9 { return callSDK<$SDK9>("FoundationModels_3864e7f38681b875", 1750475373138249, undefined, [range]); }
   /**
    * static func count<Element>(_ count: Int) -> GenerationGuide<[Element]> where Value == [Element]
    * @availability iOS 26.0+
    */
-  static count21523(count: number): $SDK9 { return callSDK<$SDK9>("FoundationModels_e11dfd5beee01da3", 3381086112510944, undefined, [count]); }
+  static count21523(count: number): $SDK9 { return callSDK<$SDK9>("FoundationModels_3864e7f38681b875", 3381086112510944, undefined, [count]); }
   /**
    * static func element<Element>(_ guide: GenerationGuide<Element>) -> GenerationGuide<[Element]> where Value == [Element]
    * @availability iOS 26.0+
    */
-  static element(guide: GenerationGuide<unknown>): $SDK9 { return callSDK<$SDK9>("FoundationModels_e11dfd5beee01da3", 4390884891916106, undefined, [guide]); }
+  static element(guide: GenerationGuide<unknown>): $SDK9 { return callSDK<$SDK9>("FoundationModels_3864e7f38681b875", 4390884891916106, undefined, [guide]); }
   /**
    * static func anyOf(_ values: [String]) -> GenerationGuide<String>
    * @availability iOS 26.0+
    */
-  static anyOf(values: Array<string>): GenerationGuide<string> { return callSDK<GenerationGuide<string>>("FoundationModels_e11dfd5beee01da3", 948752516744191, undefined, [values]); }
+  static anyOf(values: Array<string>): GenerationGuide<string> { return callSDK<GenerationGuide<string>>("FoundationModels_3864e7f38681b875", 948752516744191, undefined, [values]); }
   /**
    * static func pattern<Output>(_ regex: Regex<Output>) -> GenerationGuide<String>
    * @availability iOS 26.0+
    */
-  static pattern(regex: SDKHandle): GenerationGuide<string> { return callSDK<GenerationGuide<string>>("FoundationModels_e11dfd5beee01da3", 2678833757368019, undefined, [regex]); }
+  static pattern(regex: SDKHandle): GenerationGuide<string> { return callSDK<GenerationGuide<string>>("FoundationModels_3864e7f38681b875", 2678833757368019, undefined, [regex]); }
   /**
    * static func constant(_ value: String) -> GenerationGuide<String>
    * @availability iOS 26.0+
    */
-  static constant(value: string): GenerationGuide<string> { return callSDK<GenerationGuide<string>>("FoundationModels_e11dfd5beee01da3", 4003185656864091, undefined, [value]); }
+  static constant(value: string): GenerationGuide<string> { return callSDK<GenerationGuide<string>>("FoundationModels_3864e7f38681b875", 4003185656864091, undefined, [value]); }
   /**
    * static func range(_ range: ClosedRange<Double>) -> GenerationGuide<Double>
    * @availability iOS 26.0+
    */
-  static range(range: SDKHandle): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_e11dfd5beee01da3", 2562818289236635, undefined, [range]); }
+  static range(range: SDKHandle): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_3864e7f38681b875", 2562818289236635, undefined, [range]); }
   /**
    * static func maximum(_ value: Double) -> GenerationGuide<Double>
    * @availability iOS 26.0+
    */
-  static maximum(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_e11dfd5beee01da3", 1793045581801544, undefined, [value]); }
+  static maximum(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_3864e7f38681b875", 1793045581801544, undefined, [value]); }
   /**
    * static func minimum(_ value: Double) -> GenerationGuide<Double>
    * @availability iOS 26.0+
    */
-  static minimum(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_e11dfd5beee01da3", 3753202865349224, undefined, [value]); }
+  static minimum(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_3864e7f38681b875", 3753202865349224, undefined, [value]); }
   /**
    * static func range(_ range: ClosedRange<Float>) -> GenerationGuide<Float>
    * @availability iOS 26.0+
    */
-  static range38979(range: SDKHandle): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_e11dfd5beee01da3", 486560036942933, undefined, [range]); }
+  static range38979(range: SDKHandle): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_3864e7f38681b875", 486560036942933, undefined, [range]); }
   /**
    * static func maximum(_ value: Float) -> GenerationGuide<Float>
    * @availability iOS 26.0+
    */
-  static maximum19423(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_e11dfd5beee01da3", 1919254637035786, undefined, [value]); }
+  static maximum19423(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_3864e7f38681b875", 1919254637035786, undefined, [value]); }
   /**
    * static func minimum(_ value: Float) -> GenerationGuide<Float>
    * @availability iOS 26.0+
    */
-  static minimum35033(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_e11dfd5beee01da3", 2292461035226744, undefined, [value]); }
+  static minimum35033(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_3864e7f38681b875", 2292461035226744, undefined, [value]); }
   /**
    * static func range(_ range: ClosedRange<Int>) -> GenerationGuide<Int>
    * @availability iOS 26.0+
    */
-  static range61894(range: SDKHandle): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_e11dfd5beee01da3", 3503810863931683, undefined, [range]); }
+  static range61894(range: SDKHandle): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_3864e7f38681b875", 3503810863931683, undefined, [range]); }
   /**
    * static func maximum(_ value: Int) -> GenerationGuide<Int>
    * @availability iOS 26.0+
    */
-  static maximum26712(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_e11dfd5beee01da3", 1263158619917315, undefined, [value]); }
+  static maximum26712(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_3864e7f38681b875", 1263158619917315, undefined, [value]); }
   /**
    * static func minimum(_ value: Int) -> GenerationGuide<Int>
    * @availability iOS 26.0+
    */
-  static minimum75018(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_e11dfd5beee01da3", 1770276405469591, undefined, [value]); }
+  static minimum75018(value: number): GenerationGuide<number> { return callSDK<GenerationGuide<number>>("FoundationModels_3864e7f38681b875", 1770276405469591, undefined, [value]); }
   /**
    * static func range(_ range: ClosedRange<Decimal>) -> GenerationGuide<Decimal>
    * @availability iOS 26.0+
    */
-  static range56578(range: SDKHandle): $SDK11 { return callSDK<$SDK11>("FoundationModels_e11dfd5beee01da3", 1918022309021004, undefined, [range]); }
+  static range56578(range: SDKHandle): $SDK11 { return callSDK<$SDK11>("FoundationModels_3864e7f38681b875", 1918022309021004, undefined, [range]); }
   /**
    * static func maximum(_ value: Decimal) -> GenerationGuide<Decimal>
    * @availability iOS 26.0+
    */
-  static maximum79040(value: _Foundation_Decimal): $SDK11 { return callSDK<$SDK11>("FoundationModels_e11dfd5beee01da3", 169335167720245, undefined, [value]); }
+  static maximum79040(value: _Foundation_Decimal): $SDK11 { return callSDK<$SDK11>("FoundationModels_3864e7f38681b875", 169335167720245, undefined, [value]); }
   /**
    * static func minimum(_ value: Decimal) -> GenerationGuide<Decimal>
    * @availability iOS 26.0+
    */
-  static minimum37386(value: _Foundation_Decimal): $SDK11 { return callSDK<$SDK11>("FoundationModels_e11dfd5beee01da3", 900931815095639, undefined, [value]); }
+  static minimum37386(value: _Foundation_Decimal): $SDK11 { return callSDK<$SDK11>("FoundationModels_3864e7f38681b875", 900931815095639, undefined, [value]); }
   declare readonly $type: { "s:16FoundationModels15GenerationGuideV": true };
 }
 
@@ -746,7 +746,7 @@ export class GenerationID extends SDKHandle {
    * init()
    * @availability iOS 26.0+
    */
-  static init(): GenerationID { return callSDK<GenerationID>("FoundationModels_e11dfd5beee01da3", 4087923371045514, undefined, []); }
+  static init(): GenerationID { return callSDK<GenerationID>("FoundationModels_3864e7f38681b875", 4087923371045514, undefined, []); }
   declare readonly $type: { "s:16FoundationModels12GenerationIDV": true };
 }
 
@@ -759,49 +759,49 @@ export class GenerationOptions extends SDKHandle {
    * var temperature: Double?
    * @availability iOS 26.0+
    */
-  get temperature(): (number) | null { return callSDK<(number) | null>("FoundationModels_e11dfd5beee01da3", 1817516766323580, this, []); }
-  set temperature(value: (number) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1640906842991176, this, [value]); }
+  get temperature(): (number) | null { return callSDK<(number) | null>("FoundationModels_3864e7f38681b875", 1817516766323580, this, []); }
+  set temperature(value: (number) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 1640906842991176, this, [value]); }
   /**
    * init(samplingMode: GenerationOptions.SamplingMode? = nil, temperature: Double? = nil, maximumResponseTokens: Int? = nil, toolCallingMode: GenerationOptions.ToolCallingMode?)
    * @availability iOS 27.0+
    */
-  static initSamplingModeTemperatureMaximumResponseTokensToolCallingMode(samplingMode?: $SDK12, temperature?: (number) | null, maximumResponseTokens?: (number) | null, toolCallingMode?: $SDK13): GenerationOptions { return callSDK<GenerationOptions>("FoundationModels_e11dfd5beee01da3", 1306148479955834, undefined, [samplingMode, temperature, maximumResponseTokens, toolCallingMode]); }
+  static initSamplingModeTemperatureMaximumResponseTokensToolCallingMode(samplingMode?: $SDK12, temperature?: (number) | null, maximumResponseTokens?: (number) | null, toolCallingMode?: $SDK13): GenerationOptions { return callSDK<GenerationOptions>("FoundationModels_3864e7f38681b875", 1306148479955834, undefined, [samplingMode, temperature, maximumResponseTokens, toolCallingMode]); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, visionOS 27.0)
   init(samplingMode: GenerationOptions.SamplingMode? = nil, temperature: Double? = nil, maximumResponseTokens: Int? = nil)
    * @availability iOS 26.0+
    */
-  static initSamplingModeTemperatureMaximumResponseTokens(samplingMode?: $SDK12, temperature?: (number) | null, maximumResponseTokens?: (number) | null): GenerationOptions { return callSDK<GenerationOptions>("FoundationModels_e11dfd5beee01da3", 4098033763065104, undefined, [samplingMode, temperature, maximumResponseTokens]); }
+  static initSamplingModeTemperatureMaximumResponseTokens(samplingMode?: $SDK12, temperature?: (number) | null, maximumResponseTokens?: (number) | null): GenerationOptions { return callSDK<GenerationOptions>("FoundationModels_3864e7f38681b875", 4098033763065104, undefined, [samplingMode, temperature, maximumResponseTokens]); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, visionOS 27.0)
   var samplingMode: GenerationOptions.SamplingMode? { get set }
    * @availability iOS 26.0+
    */
-  get samplingMode(): $SDK12 { return callSDK<$SDK12>("FoundationModels_e11dfd5beee01da3", 2221263696898118, this, []); }
-  set samplingMode(value: $SDK12) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1591154031591419, this, [value]); }
+  get samplingMode(): $SDK12 { return callSDK<$SDK12>("FoundationModels_3864e7f38681b875", 2221263696898118, this, []); }
+  set samplingMode(value: $SDK12) { callSDK<void>("FoundationModels_3864e7f38681b875", 1591154031591419, this, [value]); }
   /**
    * var toolCallingMode: GenerationOptions.ToolCallingMode?
    * @availability iOS 27.0+
    */
-  get toolCallingMode(): $SDK13 { return callSDK<$SDK13>("FoundationModels_e11dfd5beee01da3", 2570492046125710, this, []); }
-  set toolCallingMode(value: $SDK13) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 226285346934135, this, [value]); }
+  get toolCallingMode(): $SDK13 { return callSDK<$SDK13>("FoundationModels_3864e7f38681b875", 2570492046125710, this, []); }
+  set toolCallingMode(value: $SDK13) { callSDK<void>("FoundationModels_3864e7f38681b875", 226285346934135, this, [value]); }
   /**
    * var maximumResponseTokens: Int?
    * @availability iOS 26.0+
    */
-  get maximumResponseTokens(): (number) | null { return callSDK<(number) | null>("FoundationModels_e11dfd5beee01da3", 533923835378769, this, []); }
-  set maximumResponseTokens(value: (number) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1729348437191499, this, [value]); }
+  get maximumResponseTokens(): (number) | null { return callSDK<(number) | null>("FoundationModels_3864e7f38681b875", 533923835378769, this, []); }
+  set maximumResponseTokens(value: (number) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 1729348437191499, this, [value]); }
   /**
    * init(sampling: GenerationOptions.SamplingMode?, temperature: Double? = nil, maximumResponseTokens: Int? = nil)
    * @availability iOS 26.0+
    */
-  static initSamplingTemperatureMaximumResponseTokens(sampling?: $SDK12, temperature?: (number) | null, maximumResponseTokens?: (number) | null): GenerationOptions { return callSDK<GenerationOptions>("FoundationModels_e11dfd5beee01da3", 2867481983968914, undefined, [sampling, temperature, maximumResponseTokens]); }
+  static initSamplingTemperatureMaximumResponseTokens(sampling?: $SDK12, temperature?: (number) | null, maximumResponseTokens?: (number) | null): GenerationOptions { return callSDK<GenerationOptions>("FoundationModels_3864e7f38681b875", 2867481983968914, undefined, [sampling, temperature, maximumResponseTokens]); }
   /**
    * var sampling: GenerationOptions.SamplingMode?
    * @availability iOS 26.0+
    */
-  get sampling(): $SDK12 { return callSDK<$SDK12>("FoundationModels_e11dfd5beee01da3", 2095965780906145, this, []); }
-  set sampling(value: $SDK12) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2041079617340490, this, [value]); }
+  get sampling(): $SDK12 { return callSDK<$SDK12>("FoundationModels_3864e7f38681b875", 2095965780906145, this, []); }
+  set sampling(value: $SDK12) { callSDK<void>("FoundationModels_3864e7f38681b875", 2041079617340490, this, [value]); }
   declare readonly $type: { "s:16FoundationModels17GenerationOptionsV": true };
 }
 
@@ -814,22 +814,22 @@ export class GenerationOptions_SamplingMode extends SDKHandle {
    * let kind: GenerationOptions.SamplingMode.Kind
    * @availability iOS 27.0+
    */
-  get kind(): GenerationOptions_SamplingMode_Kind { return callSDK<GenerationOptions_SamplingMode_Kind>("FoundationModels_e11dfd5beee01da3", 79846918272249, this, []); }
+  get kind(): GenerationOptions_SamplingMode_Kind { return callSDK<GenerationOptions_SamplingMode_Kind>("FoundationModels_3864e7f38681b875", 79846918272249, this, []); }
   /**
    * static var greedy: GenerationOptions.SamplingMode { get }
    * @availability iOS 26.0+
    */
-  static get greedy(): GenerationOptions_SamplingMode { return callSDK<GenerationOptions_SamplingMode>("FoundationModels_e11dfd5beee01da3", 3013859957828111, undefined, []); }
+  static get greedy(): GenerationOptions_SamplingMode { return callSDK<GenerationOptions_SamplingMode>("FoundationModels_3864e7f38681b875", 3013859957828111, undefined, []); }
   /**
    * static func random(probabilityThreshold: Double, seed: UInt64? = nil) -> GenerationOptions.SamplingMode
    * @availability iOS 26.0+
    */
-  static randomProbabilityThresholdSeed(probabilityThreshold: number, seed?: (number) | null): GenerationOptions_SamplingMode { return callSDK<GenerationOptions_SamplingMode>("FoundationModels_e11dfd5beee01da3", 779354222491902, undefined, [probabilityThreshold, seed]); }
+  static randomProbabilityThresholdSeed(probabilityThreshold: number, seed?: (number) | null): GenerationOptions_SamplingMode { return callSDK<GenerationOptions_SamplingMode>("FoundationModels_3864e7f38681b875", 779354222491902, undefined, [probabilityThreshold, seed]); }
   /**
    * static func random(top k: Int, seed: UInt64? = nil) -> GenerationOptions.SamplingMode
    * @availability iOS 26.0+
    */
-  static randomTopSeed(k: number, seed?: (number) | null): GenerationOptions_SamplingMode { return callSDK<GenerationOptions_SamplingMode>("FoundationModels_e11dfd5beee01da3", 281208671138219, undefined, [k, seed]); }
+  static randomTopSeed(k: number, seed?: (number) | null): GenerationOptions_SamplingMode { return callSDK<GenerationOptions_SamplingMode>("FoundationModels_3864e7f38681b875", 281208671138219, undefined, [k, seed]); }
   declare readonly $type: { "s:16FoundationModels17GenerationOptionsV12SamplingModeV": true };
 }
 
@@ -850,23 +850,23 @@ export class GenerationOptions_ToolCallingMode extends SDKHandle {
    * static let disallowed: GenerationOptions.ToolCallingMode
    * @availability iOS 27.0+
    */
-  static get disallowed(): GenerationOptions_ToolCallingMode { return callSDK<GenerationOptions_ToolCallingMode>("FoundationModels_e11dfd5beee01da3", 2154383008276767, undefined, []); }
+  static get disallowed(): GenerationOptions_ToolCallingMode { return callSDK<GenerationOptions_ToolCallingMode>("FoundationModels_3864e7f38681b875", 2154383008276767, undefined, []); }
   /**
    * var kind: GenerationOptions.ToolCallingMode.Kind
    * @availability iOS 27.0+
    */
-  get kind(): GenerationOptions_ToolCallingMode_Kind { return callSDK<GenerationOptions_ToolCallingMode_Kind>("FoundationModels_e11dfd5beee01da3", 3838411676444820, this, []); }
-  set kind(value: GenerationOptions_ToolCallingMode_Kind) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1319811397228656, this, [value]); }
+  get kind(): GenerationOptions_ToolCallingMode_Kind { return callSDK<GenerationOptions_ToolCallingMode_Kind>("FoundationModels_3864e7f38681b875", 3838411676444820, this, []); }
+  set kind(value: GenerationOptions_ToolCallingMode_Kind) { callSDK<void>("FoundationModels_3864e7f38681b875", 1319811397228656, this, [value]); }
   /**
    * static let allowed: GenerationOptions.ToolCallingMode
    * @availability iOS 27.0+
    */
-  static get allowed(): GenerationOptions_ToolCallingMode { return callSDK<GenerationOptions_ToolCallingMode>("FoundationModels_e11dfd5beee01da3", 4285075928670720, undefined, []); }
+  static get allowed(): GenerationOptions_ToolCallingMode { return callSDK<GenerationOptions_ToolCallingMode>("FoundationModels_3864e7f38681b875", 4285075928670720, undefined, []); }
   /**
    * static let required: GenerationOptions.ToolCallingMode
    * @availability iOS 27.0+
    */
-  static get required(): GenerationOptions_ToolCallingMode { return callSDK<GenerationOptions_ToolCallingMode>("FoundationModels_e11dfd5beee01da3", 3995039228792990, undefined, []); }
+  static get required(): GenerationOptions_ToolCallingMode { return callSDK<GenerationOptions_ToolCallingMode>("FoundationModels_3864e7f38681b875", 3995039228792990, undefined, []); }
   declare readonly $type: { "s:16FoundationModels17GenerationOptionsV15ToolCallingModeV": true };
 }
 
@@ -885,17 +885,17 @@ export class GenerationSchema extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1371190739709339, this, []); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1371190739709339, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 27.0+
    */
-  get name(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1741523358734844, this, []); }
+  get name(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1741523358734844, this, []); }
   /**
    * init(root: DynamicGenerationSchema, dependencies: [DynamicGenerationSchema]) throws
    * @availability iOS 26.0+
    */
-  static init(root: DynamicGenerationSchema, dependencies: $SDK6): GenerationSchema { return callSDK<GenerationSchema>("FoundationModels_e11dfd5beee01da3", 3878447174578071, undefined, [root, dependencies]); }
+  static init(root: DynamicGenerationSchema, dependencies: $SDK6): GenerationSchema { return callSDK<GenerationSchema>("FoundationModels_3864e7f38681b875", 3878447174578071, undefined, [root, dependencies]); }
   declare readonly $type: { "s:16FoundationModels16GenerationSchemaV": true };
 }
 
@@ -916,12 +916,12 @@ export class GenerationSchema_SchemaError extends SDKHandle {
    * var errorDescription: String? { get }
    * @availability iOS 26.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 2018071644552908, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 2018071644552908, this, []); }
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 26.0+
    */
-  get recoverySuggestion(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 4307598275845948, this, []); }
+  get recoverySuggestion(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 4307598275845948, this, []); }
   declare readonly $type: { "s:16FoundationModels16GenerationSchemaV0D5ErrorO": true };
 }
 
@@ -934,12 +934,12 @@ export class GenerationSchema_SchemaError_Context extends SDKHandle {
    * init(debugDescription: String)
    * @availability iOS 26.0+
    */
-  static init(debugDescription: string): GenerationSchema_SchemaError_Context { return callSDK<GenerationSchema_SchemaError_Context>("FoundationModels_e11dfd5beee01da3", 3509630751123584, undefined, [debugDescription]); }
+  static init(debugDescription: string): GenerationSchema_SchemaError_Context { return callSDK<GenerationSchema_SchemaError_Context>("FoundationModels_3864e7f38681b875", 3509630751123584, undefined, [debugDescription]); }
   /**
    * let debugDescription: String
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2866100643061652, this, []); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2866100643061652, this, []); }
   declare readonly $type: { "s:16FoundationModels16GenerationSchemaV0D5ErrorO7ContextV": true };
 }
 
@@ -960,22 +960,22 @@ export class ImageReference extends SDKHandle {
    * let attachmentLabel: String
    * @availability iOS 27.0+
    */
-  get attachmentLabel(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 542955664160103, this, []); }
+  get attachmentLabel(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 542955664160103, this, []); }
   /**
    * nonisolated var generatedContent: GeneratedContent { get }
    * @availability iOS 27.0+
    */
-  get generatedContent(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 3593710488906544, this, []); }
+  get generatedContent(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 3593710488906544, this, []); }
   /**
    * nonisolated static var generationSchema: GenerationSchema { get }
    * @availability iOS 27.0+
    */
-  static get generationSchema(): GenerationSchema { return callSDK<GenerationSchema>("FoundationModels_e11dfd5beee01da3", 169741499425285, undefined, []); }
+  static get generationSchema(): GenerationSchema { return callSDK<GenerationSchema>("FoundationModels_3864e7f38681b875", 169741499425285, undefined, []); }
   /**
    * nonisolated init(_ content: GeneratedContent) throws
    * @availability iOS 27.0+
    */
-  static init(content: GeneratedContent): ImageReference { return callSDK<ImageReference>("FoundationModels_e11dfd5beee01da3", 2132575948421960, undefined, [content]); }
+  static init(content: GeneratedContent): ImageReference { return callSDK<ImageReference>("FoundationModels_3864e7f38681b875", 2132575948421960, undefined, [content]); }
   declare readonly $type: { "s:16FoundationModels14ImageReferenceV": true };
 }
 
@@ -1000,17 +1000,17 @@ export class Instructions extends SDKHandle {
    * var instructionsRepresentation: Instructions { get }
    * @availability iOS 26.0+
    */
-  get instructionsRepresentation(): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 1736604601451868, this, []); }
+  get instructionsRepresentation(): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 1736604601451868, this, []); }
   /**
    * init(@InstructionsBuilder _ content: () throws -> Instructions) rethrows
    * @availability iOS 26.0+
    */
-  static init(content: (() => Instructions)): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 2514128722483494, undefined, [content], [{"callback":{"out":[]}}], true); }
+  static init(content: (() => Instructions)): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 2514128722483494, undefined, [content], [{"callback":{"out":[]}}], true); }
   /**
    * init(_ content: some InstructionsRepresentable)
    * @availability iOS 26.0+
    */
-  static init78303(content: SDKHandle): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 2979542446932693, undefined, [content]); }
+  static init78303(content: SDKHandle): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 2979542446932693, undefined, [content]); }
   declare readonly $type: { "s:16FoundationModels12InstructionsV": true };
 }
 
@@ -1041,37 +1041,37 @@ export class InstructionsBuilder extends SDKHandle {
    * @export(implementation) static func buildArray(_ instructions: [some InstructionsRepresentable]) -> Instructions
    * @availability iOS 26.0+
    */
-  static buildArray(instructions: Array<SDKHandle>): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 2055782572297288, undefined, [instructions]); }
+  static buildArray(instructions: Array<SDKHandle>): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 2055782572297288, undefined, [instructions]); }
   /**
    * @export(implementation) static func buildEither(first component: some InstructionsRepresentable) -> Instructions
    * @availability iOS 26.0+
    */
-  static buildEitherFirst(component: SDKHandle): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 1381528156221519, undefined, [component]); }
+  static buildEitherFirst(component: SDKHandle): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 1381528156221519, undefined, [component]); }
   /**
    * @export(implementation) static func buildEither(second component: some InstructionsRepresentable) -> Instructions
    * @availability iOS 26.0+
    */
-  static buildEitherSecond(component: SDKHandle): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 58578948189062, undefined, [component]); }
+  static buildEitherSecond(component: SDKHandle): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 58578948189062, undefined, [component]); }
   /**
    * @export(implementation) static func buildOptional(_ instructions: Instructions?) -> Instructions
    * @availability iOS 26.0+
    */
-  static buildOptional(instructions?: (Instructions) | null): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 2212577345356269, undefined, [instructions]); }
+  static buildOptional(instructions?: (Instructions) | null): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 2212577345356269, undefined, [instructions]); }
   /**
    * @export(implementation) static func buildExpression(_ expression: Instructions) -> Instructions
    * @availability iOS 26.0+
    */
-  static buildExpression(expression: Instructions): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 1647041044915025, undefined, [expression]); }
+  static buildExpression(expression: Instructions): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 1647041044915025, undefined, [expression]); }
   /**
    * @export(implementation) static func buildExpression<I>(_ expression: I) -> I where I : InstructionsRepresentable
    * @availability iOS 26.0+
    */
-  static buildExpression39964(expression: number): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3336032556656992, undefined, [expression]); }
+  static buildExpression39964(expression: number): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3336032556656992, undefined, [expression]); }
   /**
    * @export(implementation) static func buildLimitedAvailability(_ instructions: some InstructionsRepresentable) -> Instructions
    * @availability iOS 26.0+
    */
-  static buildLimitedAvailability(instructions: SDKHandle): Instructions { return callSDK<Instructions>("FoundationModels_e11dfd5beee01da3", 965182751464032, undefined, [instructions]); }
+  static buildLimitedAvailability(instructions: SDKHandle): Instructions { return callSDK<Instructions>("FoundationModels_3864e7f38681b875", 965182751464032, undefined, [instructions]); }
   declare readonly $type: { "s:16FoundationModels19InstructionsBuilderV": true };
 }
 
@@ -1106,12 +1106,12 @@ export class LanguageModelCapabilities extends SDKHandle {
    * func contains(_ capability: LanguageModelCapabilities.Capability) -> Bool
    * @availability iOS 27.0+
    */
-  contains(capability: LanguageModelCapabilities_Capability): boolean { return callSDK<boolean>("FoundationModels_e11dfd5beee01da3", 2351384922661831, this, [capability]); }
+  contains(capability: LanguageModelCapabilities_Capability): boolean { return callSDK<boolean>("FoundationModels_3864e7f38681b875", 2351384922661831, this, [capability]); }
   /**
    * init(_ capabilities: [LanguageModelCapabilities.Capability])
    * @availability iOS 27.0+
    */
-  static init(capabilities: Array<LanguageModelCapabilities_Capability>): LanguageModelCapabilities { return callSDK<LanguageModelCapabilities>("FoundationModels_e11dfd5beee01da3", 3639036859415533, undefined, [capabilities]); }
+  static init(capabilities: Array<LanguageModelCapabilities_Capability>): LanguageModelCapabilities { return callSDK<LanguageModelCapabilities>("FoundationModels_3864e7f38681b875", 3639036859415533, undefined, [capabilities]); }
   declare readonly $type: { "s:16FoundationModels25LanguageModelCapabilitiesV": true };
 }
 
@@ -1124,22 +1124,22 @@ export class LanguageModelCapabilities_Capability extends SDKHandle {
    * static var toolCalling: LanguageModelCapabilities.Capability { get }
    * @availability iOS 27.0+
    */
-  static get toolCalling(): LanguageModelCapabilities_Capability { return callSDK<LanguageModelCapabilities_Capability>("FoundationModels_e11dfd5beee01da3", 1608850935954160, undefined, []); }
+  static get toolCalling(): LanguageModelCapabilities_Capability { return callSDK<LanguageModelCapabilities_Capability>("FoundationModels_3864e7f38681b875", 1608850935954160, undefined, []); }
   /**
    * static var guidedGeneration: LanguageModelCapabilities.Capability { get }
    * @availability iOS 27.0+
    */
-  static get guidedGeneration(): LanguageModelCapabilities_Capability { return callSDK<LanguageModelCapabilities_Capability>("FoundationModels_e11dfd5beee01da3", 1635118461127430, undefined, []); }
+  static get guidedGeneration(): LanguageModelCapabilities_Capability { return callSDK<LanguageModelCapabilities_Capability>("FoundationModels_3864e7f38681b875", 1635118461127430, undefined, []); }
   /**
    * static var vision: LanguageModelCapabilities.Capability { get }
    * @availability iOS 27.0+
    */
-  static get vision(): LanguageModelCapabilities_Capability { return callSDK<LanguageModelCapabilities_Capability>("FoundationModels_e11dfd5beee01da3", 4421608520386225, undefined, []); }
+  static get vision(): LanguageModelCapabilities_Capability { return callSDK<LanguageModelCapabilities_Capability>("FoundationModels_3864e7f38681b875", 4421608520386225, undefined, []); }
   /**
    * static var reasoning: LanguageModelCapabilities.Capability { get }
    * @availability iOS 27.0+
    */
-  static get reasoning(): LanguageModelCapabilities_Capability { return callSDK<LanguageModelCapabilities_Capability>("FoundationModels_e11dfd5beee01da3", 2177590470715185, undefined, []); }
+  static get reasoning(): LanguageModelCapabilities_Capability { return callSDK<LanguageModelCapabilities_Capability>("FoundationModels_3864e7f38681b875", 2177590470715185, undefined, []); }
   declare readonly $type: { "s:16FoundationModels25LanguageModelCapabilitiesV10CapabilityV": true };
 }
 
@@ -1152,12 +1152,12 @@ export class LanguageModelError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 188497894612529, this, []); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 188497894612529, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 27.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 3883390534761871, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 3883390534761871, this, []); }
   declare readonly $type: { "s:16FoundationModels18LanguageModelErrorO": true };
 }
 
@@ -1170,31 +1170,31 @@ export class LanguageModelError_ContextSizeExceeded extends SDKHandle {
    * init(contextSize: Int, tokenCount: Int, debugDescription: String, metadata: [String : any Sendable] = [:])
    * @availability iOS 27.0+
    */
-  static init(contextSize: number, tokenCount: number, debugDescription: string, metadata?: $SDK15): LanguageModelError_ContextSizeExceeded { return callSDK<LanguageModelError_ContextSizeExceeded>("FoundationModels_e11dfd5beee01da3", 585639481904400, undefined, [contextSize, tokenCount, debugDescription, metadata]); }
+  static init(contextSize: number, tokenCount: number, debugDescription: string, metadata?: $SDK15): LanguageModelError_ContextSizeExceeded { return callSDK<LanguageModelError_ContextSizeExceeded>("FoundationModels_3864e7f38681b875", 585639481904400, undefined, [contextSize, tokenCount, debugDescription, metadata]); }
   /**
    * var contextSize: Int
    * @availability iOS 27.0+
    */
-  get contextSize(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3283290333816770, this, []); }
-  set contextSize(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2548927136151412, this, [value]); }
+  get contextSize(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3283290333816770, this, []); }
+  set contextSize(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 2548927136151412, this, [value]); }
   /**
    * var tokenCount: Int
    * @availability iOS 27.0+
    */
-  get tokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 1367597305744104, this, []); }
-  set tokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 453409248797984, this, [value]); }
+  get tokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 1367597305744104, this, []); }
+  set tokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 453409248797984, this, [value]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3399303193023831, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3872445149882483, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3399303193023831, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3872445149882483, this, [value]); }
   /**
    * var metadata: [String : any Sendable]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_e11dfd5beee01da3", 3172593767669959, this, []); }
-  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1671205992125500, this, [value]); }
+  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_3864e7f38681b875", 3172593767669959, this, []); }
+  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_3864e7f38681b875", 1671205992125500, this, [value]); }
   declare readonly $type: { "s:16FoundationModels18LanguageModelErrorO19ContextSizeExceededV": true };
 }
 
@@ -1207,19 +1207,19 @@ export class LanguageModelError_GuardrailViolation extends SDKHandle {
    * init(debugDescription: String, metadata: [String : any Sendable] = [:])
    * @availability iOS 27.0+
    */
-  static init(debugDescription: string, metadata?: $SDK15): LanguageModelError_GuardrailViolation { return callSDK<LanguageModelError_GuardrailViolation>("FoundationModels_e11dfd5beee01da3", 1246866852346103, undefined, [debugDescription, metadata]); }
+  static init(debugDescription: string, metadata?: $SDK15): LanguageModelError_GuardrailViolation { return callSDK<LanguageModelError_GuardrailViolation>("FoundationModels_3864e7f38681b875", 1246866852346103, undefined, [debugDescription, metadata]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1840728300402145, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4306519916836953, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1840728300402145, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 4306519916836953, this, [value]); }
   /**
    * var metadata: [String : any Sendable]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_e11dfd5beee01da3", 4057520089886357, this, []); }
-  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1989169554793355, this, [value]); }
+  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_3864e7f38681b875", 4057520089886357, this, []); }
+  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_3864e7f38681b875", 1989169554793355, this, [value]); }
   declare readonly $type: { "s:16FoundationModels18LanguageModelErrorO18GuardrailViolationV": true };
 }
 
@@ -1232,25 +1232,25 @@ export class LanguageModelError_RateLimited extends SDKHandle {
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 611465473263588, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3976767791367597, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 611465473263588, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3976767791367597, this, [value]); }
   /**
    * var metadata: [String : any Sendable]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_e11dfd5beee01da3", 1057169502016987, this, []); }
-  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1985849152956149, this, [value]); }
+  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_3864e7f38681b875", 1057169502016987, this, []); }
+  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_3864e7f38681b875", 1985849152956149, this, [value]); }
   /**
    * var resetDate: Date?
    * @availability iOS 27.0+
    */
-  get resetDate(): $SDK16 { return callSDK<$SDK16>("FoundationModels_e11dfd5beee01da3", 80750068543191, this, []); }
-  set resetDate(value: $SDK16) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3845080057261784, this, [value]); }
+  get resetDate(): $SDK16 { return callSDK<$SDK16>("FoundationModels_3864e7f38681b875", 80750068543191, this, []); }
+  set resetDate(value: $SDK16) { callSDK<void>("FoundationModels_3864e7f38681b875", 3845080057261784, this, [value]); }
   /**
    * init(resetDate: Date?, debugDescription: String, metadata: [String : any Sendable] = [:])
    * @availability iOS 27.0+
    */
-  static init(resetDate: $SDK16, debugDescription: string, metadata?: $SDK15): LanguageModelError_RateLimited { return callSDK<LanguageModelError_RateLimited>("FoundationModels_e11dfd5beee01da3", 1142515282880006, undefined, [resetDate, debugDescription, metadata]); }
+  static init(resetDate: $SDK16, debugDescription: string, metadata?: $SDK15): LanguageModelError_RateLimited { return callSDK<LanguageModelError_RateLimited>("FoundationModels_3864e7f38681b875", 1142515282880006, undefined, [resetDate, debugDescription, metadata]); }
   declare readonly $type: { "s:16FoundationModels18LanguageModelErrorO11RateLimitedV": true };
 }
 
@@ -1263,29 +1263,29 @@ export class LanguageModelError_Refusal extends SDKHandle {
    * init(explanation: String, debugDescription: String, metadata: [String : any Sendable] = [:])
    * @availability iOS 27.0+
    */
-  static init(explanation: string, debugDescription: string, metadata?: $SDK15): LanguageModelError_Refusal { return callSDK<LanguageModelError_Refusal>("FoundationModels_e11dfd5beee01da3", 2078596419605397, undefined, [explanation, debugDescription, metadata]); }
+  static init(explanation: string, debugDescription: string, metadata?: $SDK15): LanguageModelError_Refusal { return callSDK<LanguageModelError_Refusal>("FoundationModels_3864e7f38681b875", 2078596419605397, undefined, [explanation, debugDescription, metadata]); }
   /**
    * nonisolated(nonsending) var explanation: LanguageModelSession.Response<String> { get async throws }
    * @availability iOS 27.0+
    */
-  get explanation(): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_e11dfd5beee01da3", 2992004482473623, this, []); }
+  get explanation(): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_3864e7f38681b875", 2992004482473623, this, []); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2652465320435844, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3731342839195412, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2652465320435844, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3731342839195412, this, [value]); }
   /**
    * var explanationStream: LanguageModelSession.ResponseStream<String> { get }
    * @availability iOS 27.0+
    */
-  get explanationStream(): $SDK18 { return callSDK<$SDK18>("FoundationModels_e11dfd5beee01da3", 4051793919852617, this, []); }
+  get explanationStream(): $SDK18 { return callSDK<$SDK18>("FoundationModels_3864e7f38681b875", 4051793919852617, this, []); }
   /**
    * var metadata: [String : any Sendable]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_e11dfd5beee01da3", 4296723511991475, this, []); }
-  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4263619062006008, this, [value]); }
+  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_3864e7f38681b875", 4296723511991475, this, []); }
+  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_3864e7f38681b875", 4263619062006008, this, [value]); }
   declare readonly $type: { "s:16FoundationModels18LanguageModelErrorO7RefusalV": true };
 }
 
@@ -1298,19 +1298,19 @@ export class LanguageModelError_Timeout extends SDKHandle {
    * init(debugDescription: String, metadata: [String : any Sendable] = [:])
    * @availability iOS 27.0+
    */
-  static init(debugDescription: string, metadata?: $SDK15): LanguageModelError_Timeout { return callSDK<LanguageModelError_Timeout>("FoundationModels_e11dfd5beee01da3", 1271537856907186, undefined, [debugDescription, metadata]); }
+  static init(debugDescription: string, metadata?: $SDK15): LanguageModelError_Timeout { return callSDK<LanguageModelError_Timeout>("FoundationModels_3864e7f38681b875", 1271537856907186, undefined, [debugDescription, metadata]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 4369591275674485, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3048287665003424, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 4369591275674485, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3048287665003424, this, [value]); }
   /**
    * var metadata: [String : any Sendable]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_e11dfd5beee01da3", 1481080933213225, this, []); }
-  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4412488499137475, this, [value]); }
+  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_3864e7f38681b875", 1481080933213225, this, []); }
+  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_3864e7f38681b875", 4412488499137475, this, [value]); }
   declare readonly $type: { "s:16FoundationModels18LanguageModelErrorO7TimeoutV": true };
 }
 
@@ -1323,25 +1323,25 @@ export class LanguageModelError_UnsupportedCapability extends SDKHandle {
    * init(capability: LanguageModelCapabilities.Capability, debugDescription: String, metadata: [String : any Sendable] = [:])
    * @availability iOS 27.0+
    */
-  static init(capability: LanguageModelCapabilities_Capability, debugDescription: string, metadata?: $SDK15): LanguageModelError_UnsupportedCapability { return callSDK<LanguageModelError_UnsupportedCapability>("FoundationModels_e11dfd5beee01da3", 2772487305544591, undefined, [capability, debugDescription, metadata]); }
+  static init(capability: LanguageModelCapabilities_Capability, debugDescription: string, metadata?: $SDK15): LanguageModelError_UnsupportedCapability { return callSDK<LanguageModelError_UnsupportedCapability>("FoundationModels_3864e7f38681b875", 2772487305544591, undefined, [capability, debugDescription, metadata]); }
   /**
    * var capability: LanguageModelCapabilities.Capability
    * @availability iOS 27.0+
    */
-  get capability(): LanguageModelCapabilities_Capability { return callSDK<LanguageModelCapabilities_Capability>("FoundationModels_e11dfd5beee01da3", 3795218379183060, this, []); }
-  set capability(value: LanguageModelCapabilities_Capability) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 728473762872854, this, [value]); }
+  get capability(): LanguageModelCapabilities_Capability { return callSDK<LanguageModelCapabilities_Capability>("FoundationModels_3864e7f38681b875", 3795218379183060, this, []); }
+  set capability(value: LanguageModelCapabilities_Capability) { callSDK<void>("FoundationModels_3864e7f38681b875", 728473762872854, this, [value]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3238086243339689, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4345747023090050, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3238086243339689, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 4345747023090050, this, [value]); }
   /**
    * var metadata: [String : any Sendable]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_e11dfd5beee01da3", 1599707957156122, this, []); }
-  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2061634769732019, this, [value]); }
+  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_3864e7f38681b875", 1599707957156122, this, []); }
+  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_3864e7f38681b875", 2061634769732019, this, [value]); }
   declare readonly $type: { "s:16FoundationModels18LanguageModelErrorO21UnsupportedCapabilityV": true };
 }
 
@@ -1354,25 +1354,25 @@ export class LanguageModelError_UnsupportedGenerationGuide extends SDKHandle {
    * init(schemaName: String?, debugDescription: String, metadata: [String : any Sendable] = [:])
    * @availability iOS 27.0+
    */
-  static init(schemaName: (string) | null, debugDescription: string, metadata?: $SDK15): LanguageModelError_UnsupportedGenerationGuide { return callSDK<LanguageModelError_UnsupportedGenerationGuide>("FoundationModels_e11dfd5beee01da3", 1703204116598471, undefined, [schemaName, debugDescription, metadata]); }
+  static init(schemaName: (string) | null, debugDescription: string, metadata?: $SDK15): LanguageModelError_UnsupportedGenerationGuide { return callSDK<LanguageModelError_UnsupportedGenerationGuide>("FoundationModels_3864e7f38681b875", 1703204116598471, undefined, [schemaName, debugDescription, metadata]); }
   /**
    * var schemaName: String?
    * @availability iOS 27.0+
    */
-  get schemaName(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 3354259686655026, this, []); }
-  set schemaName(value: (string) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1949329987598639, this, [value]); }
+  get schemaName(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 3354259686655026, this, []); }
+  set schemaName(value: (string) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 1949329987598639, this, [value]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1931643446065431, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4067275821877280, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1931643446065431, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 4067275821877280, this, [value]); }
   /**
    * var metadata: [String : any Sendable]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_e11dfd5beee01da3", 2627158227703291, this, []); }
-  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1449776914393600, this, [value]); }
+  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_3864e7f38681b875", 2627158227703291, this, []); }
+  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_3864e7f38681b875", 1449776914393600, this, [value]); }
   declare readonly $type: { "s:16FoundationModels18LanguageModelErrorO26UnsupportedGenerationGuideV": true };
 }
 
@@ -1385,25 +1385,25 @@ export class LanguageModelError_UnsupportedLanguageOrLocale extends SDKHandle {
    * var languageCode: Locale.LanguageCode
    * @availability iOS 27.0+
    */
-  get languageCode(): _Foundation_Locale_LanguageCode { return callSDK<_Foundation_Locale_LanguageCode>("FoundationModels_e11dfd5beee01da3", 161721626052196, this, []); }
-  set languageCode(value: _Foundation_Locale_LanguageCode) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4275033838251035, this, [value]); }
+  get languageCode(): _Foundation_Locale_LanguageCode { return callSDK<_Foundation_Locale_LanguageCode>("FoundationModels_3864e7f38681b875", 161721626052196, this, []); }
+  set languageCode(value: _Foundation_Locale_LanguageCode) { callSDK<void>("FoundationModels_3864e7f38681b875", 4275033838251035, this, [value]); }
   /**
    * init(languageCode: Locale.LanguageCode, debugDescription: String, metadata: [String : any Sendable] = [:])
    * @availability iOS 27.0+
    */
-  static init(languageCode: _Foundation_Locale_LanguageCode, debugDescription: string, metadata?: $SDK15): LanguageModelError_UnsupportedLanguageOrLocale { return callSDK<LanguageModelError_UnsupportedLanguageOrLocale>("FoundationModels_e11dfd5beee01da3", 16014391474236, undefined, [languageCode, debugDescription, metadata]); }
+  static init(languageCode: _Foundation_Locale_LanguageCode, debugDescription: string, metadata?: $SDK15): LanguageModelError_UnsupportedLanguageOrLocale { return callSDK<LanguageModelError_UnsupportedLanguageOrLocale>("FoundationModels_3864e7f38681b875", 16014391474236, undefined, [languageCode, debugDescription, metadata]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3578623655219418, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1575237889576014, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3578623655219418, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1575237889576014, this, [value]); }
   /**
    * var metadata: [String : any Sendable]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_e11dfd5beee01da3", 339679234687530, this, []); }
-  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2227537950163830, this, [value]); }
+  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_3864e7f38681b875", 339679234687530, this, []); }
+  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_3864e7f38681b875", 2227537950163830, this, [value]); }
   declare readonly $type: { "s:16FoundationModels18LanguageModelErrorO011UnsupportedC8OrLocaleV": true };
 }
 
@@ -1416,25 +1416,25 @@ export class LanguageModelError_UnsupportedTranscriptContent extends SDKHandle {
    * init(unsupportedContent: [Transcript.Entry], debugDescription: String, metadata: [String : any Sendable] = [:])
    * @availability iOS 27.0+
    */
-  static init(unsupportedContent: Array<Transcript_Entry>, debugDescription: string, metadata?: $SDK15): LanguageModelError_UnsupportedTranscriptContent { return callSDK<LanguageModelError_UnsupportedTranscriptContent>("FoundationModels_e11dfd5beee01da3", 1951558435216739, undefined, [unsupportedContent, debugDescription, metadata]); }
+  static init(unsupportedContent: Array<Transcript_Entry>, debugDescription: string, metadata?: $SDK15): LanguageModelError_UnsupportedTranscriptContent { return callSDK<LanguageModelError_UnsupportedTranscriptContent>("FoundationModels_3864e7f38681b875", 1951558435216739, undefined, [unsupportedContent, debugDescription, metadata]); }
   /**
    * var unsupportedContent: [Transcript.Entry]
    * @availability iOS 27.0+
    */
-  get unsupportedContent(): Array<Transcript_Entry> { return callSDK<Array<Transcript_Entry>>("FoundationModels_e11dfd5beee01da3", 1904694754670133, this, []); }
-  set unsupportedContent(value: Array<Transcript_Entry>) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1026050181603234, this, [value]); }
+  get unsupportedContent(): Array<Transcript_Entry> { return callSDK<Array<Transcript_Entry>>("FoundationModels_3864e7f38681b875", 1904694754670133, this, []); }
+  set unsupportedContent(value: Array<Transcript_Entry>) { callSDK<void>("FoundationModels_3864e7f38681b875", 1026050181603234, this, [value]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 376519011328338, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3082174390290490, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 376519011328338, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3082174390290490, this, [value]); }
   /**
    * var metadata: [String : any Sendable]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_e11dfd5beee01da3", 3514165368499916, this, []); }
-  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1917333049619528, this, [value]); }
+  get metadata(): $SDK15 { return callSDK<$SDK15>("FoundationModels_3864e7f38681b875", 3514165368499916, this, []); }
+  set metadata(value: $SDK15) { callSDK<void>("FoundationModels_3864e7f38681b875", 1917333049619528, this, [value]); }
   declare readonly $type: { "s:16FoundationModels18LanguageModelErrorO28UnsupportedTranscriptContentV": true };
 }
 
@@ -1469,17 +1469,17 @@ export class LanguageModelExecutorGenerationChannel extends SDKHandle {
    * func makeAsyncIterator() -> LanguageModelExecutorGenerationChannel.AsyncIterator
    * @availability iOS 27.0+
    */
-  makeAsyncIterator(): LanguageModelExecutorGenerationChannel_AsyncIterator { return callSDK<LanguageModelExecutorGenerationChannel_AsyncIterator>("FoundationModels_e11dfd5beee01da3", 4138209749792502, this, []); }
+  makeAsyncIterator(): LanguageModelExecutorGenerationChannel_AsyncIterator { return callSDK<LanguageModelExecutorGenerationChannel_AsyncIterator>("FoundationModels_3864e7f38681b875", 4138209749792502, this, []); }
   /**
    * nonisolated(nonsending) func send(_ event: LanguageModelExecutorGenerationChannel.Event) async
    * @availability iOS 27.0+
    */
-  send(event: LanguageModelExecutorGenerationChannel_Event): Promise<void> { return callSDKAsync<void>("FoundationModels_e11dfd5beee01da3", 1067459761820654, this, [event]); }
+  send(event: LanguageModelExecutorGenerationChannel_Event): Promise<void> { return callSDKAsync<void>("FoundationModels_3864e7f38681b875", 1067459761820654, this, [event]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): LanguageModelExecutorGenerationChannel { return callSDK<LanguageModelExecutorGenerationChannel>("FoundationModels_e11dfd5beee01da3", 508578183896641, undefined, []); }
+  static init(): LanguageModelExecutorGenerationChannel { return callSDK<LanguageModelExecutorGenerationChannel>("FoundationModels_3864e7f38681b875", 508578183896641, undefined, []); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV": true };
   declare readonly $element: LanguageModelExecutorGenerationChannel_Event;
 }
@@ -1493,7 +1493,7 @@ export class LanguageModelExecutorGenerationChannel_AsyncIterator extends SDKHan
    * mutating func next(isolation actor: isolated (any Actor)?) async throws -> LanguageModelExecutorGenerationChannel.Event?
    * @availability iOS 27.0+
    */
-  next(actor?: (SDKHandle) | null): Promise<(LanguageModelExecutorGenerationChannel_Event) | null> { return callSDKAsync<(LanguageModelExecutorGenerationChannel_Event) | null>("FoundationModels_e11dfd5beee01da3", 420596780735478, this, [actor]); }
+  next(actor?: (SDKHandle) | null): Promise<(LanguageModelExecutorGenerationChannel_Event) | null> { return callSDKAsync<(LanguageModelExecutorGenerationChannel_Event) | null>("FoundationModels_3864e7f38681b875", 420596780735478, this, [actor]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV13AsyncIteratorV": true };
 }
 
@@ -1518,17 +1518,17 @@ export class LanguageModelExecutorGenerationChannel_Event extends SDKHandle {
    * static func response(entryID: String? = nil, action: LanguageModelExecutorGenerationChannel.Response.Action) -> LanguageModelExecutorGenerationChannel.Event
    * @availability iOS 27.0+
    */
-  static response(entryID: (string) | null, action: LanguageModelExecutorGenerationChannel_Response_Action): LanguageModelExecutorGenerationChannel_Event { return callSDK<LanguageModelExecutorGenerationChannel_Event>("FoundationModels_e11dfd5beee01da3", 3283301412157289, undefined, [entryID, action]); }
+  static response(entryID: (string) | null, action: LanguageModelExecutorGenerationChannel_Response_Action): LanguageModelExecutorGenerationChannel_Event { return callSDK<LanguageModelExecutorGenerationChannel_Event>("FoundationModels_3864e7f38681b875", 3283301412157289, undefined, [entryID, action]); }
   /**
    * static func reasoning(entryID: String? = nil, action: LanguageModelExecutorGenerationChannel.Reasoning.Action) -> LanguageModelExecutorGenerationChannel.Event
    * @availability iOS 27.0+
    */
-  static reasoning(entryID: (string) | null, action: LanguageModelExecutorGenerationChannel_Reasoning_Action): LanguageModelExecutorGenerationChannel_Event { return callSDK<LanguageModelExecutorGenerationChannel_Event>("FoundationModels_e11dfd5beee01da3", 1908659433506191, undefined, [entryID, action]); }
+  static reasoning(entryID: (string) | null, action: LanguageModelExecutorGenerationChannel_Reasoning_Action): LanguageModelExecutorGenerationChannel_Event { return callSDK<LanguageModelExecutorGenerationChannel_Event>("FoundationModels_3864e7f38681b875", 1908659433506191, undefined, [entryID, action]); }
   /**
    * static func toolCalls(entryID: String? = nil, action: LanguageModelExecutorGenerationChannel.ToolCalls.Action) -> LanguageModelExecutorGenerationChannel.Event
    * @availability iOS 27.0+
    */
-  static toolCalls(entryID: (string) | null, action: LanguageModelExecutorGenerationChannel_ToolCalls_Action): LanguageModelExecutorGenerationChannel_Event { return callSDK<LanguageModelExecutorGenerationChannel_Event>("FoundationModels_e11dfd5beee01da3", 2641959299385287, undefined, [entryID, action]); }
+  static toolCalls(entryID: (string) | null, action: LanguageModelExecutorGenerationChannel_ToolCalls_Action): LanguageModelExecutorGenerationChannel_Event { return callSDK<LanguageModelExecutorGenerationChannel_Event>("FoundationModels_3864e7f38681b875", 2641959299385287, undefined, [entryID, action]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV5EventV": true };
 }
 
@@ -1541,8 +1541,8 @@ export class LanguageModelExecutorGenerationChannel_Metadata extends SDKHandle {
    * var values: [String : GeneratedContent]
    * @availability iOS 27.0+
    */
-  get values(): $SDK20 { return callSDK<$SDK20>("FoundationModels_e11dfd5beee01da3", 3380373133733909, this, []); }
-  set values(value: $SDK20) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1156651735726994, this, [value]); }
+  get values(): $SDK20 { return callSDK<$SDK20>("FoundationModels_3864e7f38681b875", 3380373133733909, this, []); }
+  set values(value: $SDK20) { callSDK<void>("FoundationModels_3864e7f38681b875", 1156651735726994, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV8MetadataV": true };
 }
 
@@ -1555,14 +1555,14 @@ export class LanguageModelExecutorGenerationChannel_Reasoning extends SDKHandle 
    * var action: LanguageModelExecutorGenerationChannel.Reasoning.Action
    * @availability iOS 27.0+
    */
-  get action(): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_e11dfd5beee01da3", 751575183778147, this, []); }
-  set action(value: LanguageModelExecutorGenerationChannel_Reasoning_Action) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1482382960997831, this, [value]); }
+  get action(): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_3864e7f38681b875", 751575183778147, this, []); }
+  set action(value: LanguageModelExecutorGenerationChannel_Reasoning_Action) { callSDK<void>("FoundationModels_3864e7f38681b875", 1482382960997831, this, [value]); }
   /**
    * var entryID: String?
    * @availability iOS 27.0+
    */
-  get entryID(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 1981974830526823, this, []); }
-  set entryID(value: (string) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1558175479234114, this, [value]); }
+  get entryID(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 1981974830526823, this, []); }
+  set entryID(value: (string) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 1558175479234114, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ReasoningV": true };
 }
 
@@ -1575,27 +1575,27 @@ export class LanguageModelExecutorGenerationChannel_Reasoning_Action extends SDK
    * static func appendText(_ text: String, segmentID: String? = nil, tokenCount: Int) -> LanguageModelExecutorGenerationChannel.Reasoning.Action
    * @availability iOS 27.0+
    */
-  static appendText(text: string, segmentID: (string) | null, tokenCount: number): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_e11dfd5beee01da3", 922994102470558, undefined, [text, segmentID, tokenCount]); }
+  static appendText(text: string, segmentID: (string) | null, tokenCount: number): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_3864e7f38681b875", 922994102470558, undefined, [text, segmentID, tokenCount]); }
   /**
    * static func updateUsage(input: LanguageModelExecutorGenerationChannel.Usage.Input, output: LanguageModelExecutorGenerationChannel.Usage.Output, metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> LanguageModelExecutorGenerationChannel.Reasoning.Action
    * @availability iOS 27.0+
    */
-  static updateUsage(input: LanguageModelExecutorGenerationChannel_Usage_Input, output: LanguageModelExecutorGenerationChannel_Usage_Output, metadata?: $SDK15): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_e11dfd5beee01da3", 1812437083397785, undefined, [input, output, metadata]); }
+  static updateUsage(input: LanguageModelExecutorGenerationChannel_Usage_Input, output: LanguageModelExecutorGenerationChannel_Usage_Output, metadata?: $SDK15): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_3864e7f38681b875", 1812437083397785, undefined, [input, output, metadata]); }
   /**
    * static func updateMetadata(_ values: [String : any ConvertibleToGeneratedContent]) -> LanguageModelExecutorGenerationChannel.Reasoning.Action
    * @availability iOS 27.0+
    */
-  static updateMetadata(values: $SDK15): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_e11dfd5beee01da3", 1730187733150582, undefined, [values]); }
+  static updateMetadata(values: $SDK15): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_3864e7f38681b875", 1730187733150582, undefined, [values]); }
   /**
    * static func updateSignature(_ signature: Data, tokenCount: Int) -> LanguageModelExecutorGenerationChannel.Reasoning.Action
    * @availability iOS 27.0+
    */
-  static updateSignature(signature: ArrayBuffer, tokenCount: number): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_e11dfd5beee01da3", 3171835068999982, undefined, [signature, tokenCount]); }
+  static updateSignature(signature: ArrayBuffer, tokenCount: number): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_3864e7f38681b875", 3171835068999982, undefined, [signature, tokenCount]); }
   /**
    * static func replaceTextSegment(_ text: String, segmentID: String? = nil, tokenCount: Int) -> LanguageModelExecutorGenerationChannel.Reasoning.Action
    * @availability iOS 27.0+
    */
-  static replaceTextSegment(text: string, segmentID: (string) | null, tokenCount: number): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_e11dfd5beee01da3", 4198959930238991, undefined, [text, segmentID, tokenCount]); }
+  static replaceTextSegment(text: string, segmentID: (string) | null, tokenCount: number): LanguageModelExecutorGenerationChannel_Reasoning_Action { return callSDK<LanguageModelExecutorGenerationChannel_Reasoning_Action>("FoundationModels_3864e7f38681b875", 4198959930238991, undefined, [text, segmentID, tokenCount]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ReasoningV6ActionV": true };
 }
 
@@ -1608,14 +1608,14 @@ export class LanguageModelExecutorGenerationChannel_ReasoningSignature extends S
    * var tokenCount: Int
    * @availability iOS 27.0+
    */
-  get tokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3992079721406897, this, []); }
-  set tokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2373893358559787, this, [value]); }
+  get tokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3992079721406897, this, []); }
+  set tokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 2373893358559787, this, [value]); }
   /**
    * var signature: Data
    * @availability iOS 27.0+
    */
-  get signature(): ArrayBuffer { return callSDK<ArrayBuffer>("FoundationModels_e11dfd5beee01da3", 201566791027400, this, []); }
-  set signature(value: ArrayBuffer) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2228099262195817, this, [value]); }
+  get signature(): ArrayBuffer { return callSDK<ArrayBuffer>("FoundationModels_3864e7f38681b875", 201566791027400, this, []); }
+  set signature(value: ArrayBuffer) { callSDK<void>("FoundationModels_3864e7f38681b875", 2228099262195817, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV18ReasoningSignatureV": true };
 }
 
@@ -1628,14 +1628,14 @@ export class LanguageModelExecutorGenerationChannel_Response extends SDKHandle {
    * var action: LanguageModelExecutorGenerationChannel.Response.Action
    * @availability iOS 27.0+
    */
-  get action(): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_e11dfd5beee01da3", 3798465163050051, this, []); }
-  set action(value: LanguageModelExecutorGenerationChannel_Response_Action) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1849447182233490, this, [value]); }
+  get action(): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_3864e7f38681b875", 3798465163050051, this, []); }
+  set action(value: LanguageModelExecutorGenerationChannel_Response_Action) { callSDK<void>("FoundationModels_3864e7f38681b875", 1849447182233490, this, [value]); }
   /**
    * var entryID: String?
    * @availability iOS 27.0+
    */
-  get entryID(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 365919235514324, this, []); }
-  set entryID(value: (string) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2528465975046160, this, [value]); }
+  get entryID(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 365919235514324, this, []); }
+  set entryID(value: (string) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 2528465975046160, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV8ResponseV": true };
 }
 
@@ -1648,32 +1648,32 @@ export class LanguageModelExecutorGenerationChannel_Response_Action extends SDKH
    * static func appendText(_ text: String, segmentID: String? = nil, tokenCount: Int) -> LanguageModelExecutorGenerationChannel.Response.Action
    * @availability iOS 27.0+
    */
-  static appendText(text: string, segmentID: (string) | null, tokenCount: number): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_e11dfd5beee01da3", 247992804612924, undefined, [text, segmentID, tokenCount]); }
+  static appendText(text: string, segmentID: (string) | null, tokenCount: number): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_3864e7f38681b875", 247992804612924, undefined, [text, segmentID, tokenCount]); }
   /**
    * static func updateUsage(input: LanguageModelExecutorGenerationChannel.Usage.Input, output: LanguageModelExecutorGenerationChannel.Usage.Output, metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> LanguageModelExecutorGenerationChannel.Response.Action
    * @availability iOS 27.0+
    */
-  static updateUsage(input: LanguageModelExecutorGenerationChannel_Usage_Input, output: LanguageModelExecutorGenerationChannel_Usage_Output, metadata?: $SDK15): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_e11dfd5beee01da3", 2288324781295424, undefined, [input, output, metadata]); }
+  static updateUsage(input: LanguageModelExecutorGenerationChannel_Usage_Input, output: LanguageModelExecutorGenerationChannel_Usage_Output, metadata?: $SDK15): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_3864e7f38681b875", 2288324781295424, undefined, [input, output, metadata]); }
   /**
    * static func updateMetadata(_ values: [String : any ConvertibleToGeneratedContent]) -> LanguageModelExecutorGenerationChannel.Response.Action
    * @availability iOS 27.0+
    */
-  static updateMetadata(values: $SDK15): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_e11dfd5beee01da3", 339701778098443, undefined, [values]); }
+  static updateMetadata(values: $SDK15): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_3864e7f38681b875", 339701778098443, undefined, [values]); }
   /**
    * static func replaceTextSegment(_ text: String, segmentID: String? = nil, tokenCount: Int) -> LanguageModelExecutorGenerationChannel.Response.Action
    * @availability iOS 27.0+
    */
-  static replaceTextSegment(text: string, segmentID: (string) | null, tokenCount: number): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_e11dfd5beee01da3", 3716692513471776, undefined, [text, segmentID, tokenCount]); }
+  static replaceTextSegment(text: string, segmentID: (string) | null, tokenCount: number): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_3864e7f38681b875", 3716692513471776, undefined, [text, segmentID, tokenCount]); }
   /**
    * static func addAttachmentSegment(_ segment: Transcript.AttachmentSegment) -> LanguageModelExecutorGenerationChannel.Response.Action
    * @availability iOS 27.0+
    */
-  static addAttachmentSegment(segment: Transcript_AttachmentSegment): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_e11dfd5beee01da3", 2209453685314378, undefined, [segment]); }
+  static addAttachmentSegment(segment: Transcript_AttachmentSegment): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_3864e7f38681b875", 2209453685314378, undefined, [segment]); }
   /**
    * static func removeAttachmentSegment(id: String) -> LanguageModelExecutorGenerationChannel.Response.Action
    * @availability iOS 27.0+
    */
-  static removeAttachmentSegment(id: string): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_e11dfd5beee01da3", 4253151291704311, undefined, [id]); }
+  static removeAttachmentSegment(id: string): LanguageModelExecutorGenerationChannel_Response_Action { return callSDK<LanguageModelExecutorGenerationChannel_Response_Action>("FoundationModels_3864e7f38681b875", 4253151291704311, undefined, [id]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV8ResponseV6ActionV": true };
 }
 
@@ -1686,20 +1686,20 @@ export class LanguageModelExecutorGenerationChannel_TextFragment extends SDKHand
    * var tokenCount: Int
    * @availability iOS 27.0+
    */
-  get tokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3112896630735044, this, []); }
-  set tokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1023470964522735, this, [value]); }
+  get tokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3112896630735044, this, []); }
+  set tokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 1023470964522735, this, [value]); }
   /**
    * var content: String
    * @availability iOS 27.0+
    */
-  get content(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 246111342221024, this, []); }
-  set content(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3095581320179357, this, [value]); }
+  get content(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 246111342221024, this, []); }
+  set content(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3095581320179357, this, [value]); }
   /**
    * var segmentID: String?
    * @availability iOS 27.0+
    */
-  get segmentID(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 980767809173062, this, []); }
-  set segmentID(value: (string) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1100951099745367, this, [value]); }
+  get segmentID(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 980767809173062, this, []); }
+  set segmentID(value: (string) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 1100951099745367, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV12TextFragmentV": true };
 }
 
@@ -1712,20 +1712,20 @@ export class LanguageModelExecutorGenerationChannel_TextSegmentReplacement exten
    * var tokenCount: Int
    * @availability iOS 27.0+
    */
-  get tokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3315595086951077, this, []); }
-  set tokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4220390987058931, this, [value]); }
+  get tokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3315595086951077, this, []); }
+  set tokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 4220390987058931, this, [value]); }
   /**
    * var content: String
    * @availability iOS 27.0+
    */
-  get content(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1917453600083057, this, []); }
-  set content(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1132170205633827, this, [value]); }
+  get content(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1917453600083057, this, []); }
+  set content(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1132170205633827, this, [value]); }
   /**
    * var segmentID: String?
    * @availability iOS 27.0+
    */
-  get segmentID(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 1493459299468665, this, []); }
-  set segmentID(value: (string) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1611325602011316, this, [value]); }
+  get segmentID(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 1493459299468665, this, []); }
+  set segmentID(value: (string) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 1611325602011316, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV22TextSegmentReplacementV": true };
 }
 
@@ -1738,14 +1738,14 @@ export class LanguageModelExecutorGenerationChannel_ToolCalls extends SDKHandle 
    * var action: LanguageModelExecutorGenerationChannel.ToolCalls.Action
    * @availability iOS 27.0+
    */
-  get action(): LanguageModelExecutorGenerationChannel_ToolCalls_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_Action>("FoundationModels_e11dfd5beee01da3", 4078748007936138, this, []); }
-  set action(value: LanguageModelExecutorGenerationChannel_ToolCalls_Action) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1984086322548867, this, [value]); }
+  get action(): LanguageModelExecutorGenerationChannel_ToolCalls_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_Action>("FoundationModels_3864e7f38681b875", 4078748007936138, this, []); }
+  set action(value: LanguageModelExecutorGenerationChannel_ToolCalls_Action) { callSDK<void>("FoundationModels_3864e7f38681b875", 1984086322548867, this, [value]); }
   /**
    * var entryID: String?
    * @availability iOS 27.0+
    */
-  get entryID(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 1034119633359729, this, []); }
-  set entryID(value: (string) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3743085427387952, this, [value]); }
+  get entryID(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 1034119633359729, this, []); }
+  set entryID(value: (string) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 3743085427387952, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ToolCallsV": true };
 }
 
@@ -1758,22 +1758,22 @@ export class LanguageModelExecutorGenerationChannel_ToolCalls_Action extends SDK
    * static func removeToolCall(id: String) -> LanguageModelExecutorGenerationChannel.ToolCalls.Action
    * @availability iOS 27.0+
    */
-  static removeToolCall(id: string): LanguageModelExecutorGenerationChannel_ToolCalls_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_Action>("FoundationModels_e11dfd5beee01da3", 966686157761123, undefined, [id]); }
+  static removeToolCall(id: string): LanguageModelExecutorGenerationChannel_ToolCalls_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_Action>("FoundationModels_3864e7f38681b875", 966686157761123, undefined, [id]); }
   /**
    * static func updateUsage(input: LanguageModelExecutorGenerationChannel.Usage.Input, output: LanguageModelExecutorGenerationChannel.Usage.Output, metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> LanguageModelExecutorGenerationChannel.ToolCalls.Action
    * @availability iOS 27.0+
    */
-  static updateUsage(input: LanguageModelExecutorGenerationChannel_Usage_Input, output: LanguageModelExecutorGenerationChannel_Usage_Output, metadata?: $SDK15): LanguageModelExecutorGenerationChannel_ToolCalls_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_Action>("FoundationModels_e11dfd5beee01da3", 4261261726851523, undefined, [input, output, metadata]); }
+  static updateUsage(input: LanguageModelExecutorGenerationChannel_Usage_Input, output: LanguageModelExecutorGenerationChannel_Usage_Output, metadata?: $SDK15): LanguageModelExecutorGenerationChannel_ToolCalls_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_Action>("FoundationModels_3864e7f38681b875", 4261261726851523, undefined, [input, output, metadata]); }
   /**
    * static func updateMetadata(_ values: [String : any ConvertibleToGeneratedContent]) -> LanguageModelExecutorGenerationChannel.ToolCalls.Action
    * @availability iOS 27.0+
    */
-  static updateMetadata(values: $SDK15): LanguageModelExecutorGenerationChannel_ToolCalls_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_Action>("FoundationModels_e11dfd5beee01da3", 3314369954692327, undefined, [values]); }
+  static updateMetadata(values: $SDK15): LanguageModelExecutorGenerationChannel_ToolCalls_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_Action>("FoundationModels_3864e7f38681b875", 3314369954692327, undefined, [values]); }
   /**
    * static func toolCall(id: String, name: String, action: LanguageModelExecutorGenerationChannel.ToolCalls.ToolCall.Action) -> LanguageModelExecutorGenerationChannel.ToolCalls.Action
    * @availability iOS 27.0+
    */
-  static toolCall(id: string, name: string, action: LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action): LanguageModelExecutorGenerationChannel_ToolCalls_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_Action>("FoundationModels_e11dfd5beee01da3", 343007672408354, undefined, [id, name, action]); }
+  static toolCall(id: string, name: string, action: LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action): LanguageModelExecutorGenerationChannel_ToolCalls_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_Action>("FoundationModels_3864e7f38681b875", 343007672408354, undefined, [id, name, action]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ToolCallsV6ActionV": true };
 }
 
@@ -1786,20 +1786,20 @@ export class LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall extends S
    * var id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 328046017502384, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4253784840079054, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 328046017502384, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 4253784840079054, this, [value]); }
   /**
    * var name: String
    * @availability iOS 27.0+
    */
-  get name(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1085045215985933, this, []); }
-  set name(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2288021374249852, this, [value]); }
+  get name(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1085045215985933, this, []); }
+  set name(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 2288021374249852, this, [value]); }
   /**
    * var action: LanguageModelExecutorGenerationChannel.ToolCalls.ToolCall.Action
    * @availability iOS 27.0+
    */
-  get action(): LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action>("FoundationModels_e11dfd5beee01da3", 680350789551514, this, []); }
-  set action(value: LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 950329113546615, this, [value]); }
+  get action(): LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action>("FoundationModels_3864e7f38681b875", 680350789551514, this, []); }
+  set action(value: LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action) { callSDK<void>("FoundationModels_3864e7f38681b875", 950329113546615, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ToolCallsV0H4CallV": true };
 }
 
@@ -1812,12 +1812,12 @@ export class LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action ex
    * static func updateMetadata(_ values: [String : any ConvertibleToGeneratedContent]) -> LanguageModelExecutorGenerationChannel.ToolCalls.ToolCall.Action
    * @availability iOS 27.0+
    */
-  static updateMetadata(values: $SDK15): LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action>("FoundationModels_e11dfd5beee01da3", 526574661927541, undefined, [values]); }
+  static updateMetadata(values: $SDK15): LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action>("FoundationModels_3864e7f38681b875", 526574661927541, undefined, [values]); }
   /**
    * static func appendArguments(_ content: String, tokenCount: Int) -> LanguageModelExecutorGenerationChannel.ToolCalls.ToolCall.Action
    * @availability iOS 27.0+
    */
-  static appendArguments(content: string, tokenCount: number): LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action>("FoundationModels_e11dfd5beee01da3", 612436232332091, undefined, [content, tokenCount]); }
+  static appendArguments(content: string, tokenCount: number): LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action { return callSDK<LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action>("FoundationModels_3864e7f38681b875", 612436232332091, undefined, [content, tokenCount]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ToolCallsV0H4CallV6ActionV": true };
 }
 
@@ -1830,14 +1830,14 @@ export class LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Arguments
    * var tokenCount: Int
    * @availability iOS 27.0+
    */
-  get tokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 4069822113397809, this, []); }
-  set tokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3509981677416216, this, [value]); }
+  get tokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 4069822113397809, this, []); }
+  set tokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 3509981677416216, this, [value]); }
   /**
    * var content: String
    * @availability iOS 27.0+
    */
-  get content(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1755348485671394, this, []); }
-  set content(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3809137956762140, this, [value]); }
+  get content(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1755348485671394, this, []); }
+  set content(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3809137956762140, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ToolCallsV0H4CallV17ArgumentsFragmentV": true };
 }
 
@@ -1850,25 +1850,25 @@ export class LanguageModelExecutorGenerationChannel_Usage extends SDKHandle {
    * init(input: LanguageModelExecutorGenerationChannel.Usage.Input, output: LanguageModelExecutorGenerationChannel.Usage.Output, metadata: [String : any ConvertibleToGeneratedContent] = [:])
    * @availability iOS 27.0+
    */
-  static init(input: LanguageModelExecutorGenerationChannel_Usage_Input, output: LanguageModelExecutorGenerationChannel_Usage_Output, metadata?: $SDK15): LanguageModelExecutorGenerationChannel_Usage { return callSDK<LanguageModelExecutorGenerationChannel_Usage>("FoundationModels_e11dfd5beee01da3", 1740573107349220, undefined, [input, output, metadata]); }
+  static init(input: LanguageModelExecutorGenerationChannel_Usage_Input, output: LanguageModelExecutorGenerationChannel_Usage_Output, metadata?: $SDK15): LanguageModelExecutorGenerationChannel_Usage { return callSDK<LanguageModelExecutorGenerationChannel_Usage>("FoundationModels_3864e7f38681b875", 1740573107349220, undefined, [input, output, metadata]); }
   /**
    * var input: LanguageModelExecutorGenerationChannel.Usage.Input
    * @availability iOS 27.0+
    */
-  get input(): LanguageModelExecutorGenerationChannel_Usage_Input { return callSDK<LanguageModelExecutorGenerationChannel_Usage_Input>("FoundationModels_e11dfd5beee01da3", 28693935433706, this, []); }
-  set input(value: LanguageModelExecutorGenerationChannel_Usage_Input) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4381076272441253, this, [value]); }
+  get input(): LanguageModelExecutorGenerationChannel_Usage_Input { return callSDK<LanguageModelExecutorGenerationChannel_Usage_Input>("FoundationModels_3864e7f38681b875", 28693935433706, this, []); }
+  set input(value: LanguageModelExecutorGenerationChannel_Usage_Input) { callSDK<void>("FoundationModels_3864e7f38681b875", 4381076272441253, this, [value]); }
   /**
    * var output: LanguageModelExecutorGenerationChannel.Usage.Output
    * @availability iOS 27.0+
    */
-  get output(): LanguageModelExecutorGenerationChannel_Usage_Output { return callSDK<LanguageModelExecutorGenerationChannel_Usage_Output>("FoundationModels_e11dfd5beee01da3", 4327450109954317, this, []); }
-  set output(value: LanguageModelExecutorGenerationChannel_Usage_Output) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2269022612246974, this, [value]); }
+  get output(): LanguageModelExecutorGenerationChannel_Usage_Output { return callSDK<LanguageModelExecutorGenerationChannel_Usage_Output>("FoundationModels_3864e7f38681b875", 4327450109954317, this, []); }
+  set output(value: LanguageModelExecutorGenerationChannel_Usage_Output) { callSDK<void>("FoundationModels_3864e7f38681b875", 2269022612246974, this, [value]); }
   /**
    * var metadata: [String : GeneratedContent]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_e11dfd5beee01da3", 3654333002499908, this, []); }
-  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3145324955661857, this, [value]); }
+  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_3864e7f38681b875", 3654333002499908, this, []); }
+  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_3864e7f38681b875", 3145324955661857, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV5UsageV": true };
 }
 
@@ -1881,19 +1881,19 @@ export class LanguageModelExecutorGenerationChannel_Usage_Input extends SDKHandl
    * init(totalTokenCount: Int, cachedTokenCount: Int)
    * @availability iOS 27.0+
    */
-  static init(totalTokenCount: number, cachedTokenCount: number): LanguageModelExecutorGenerationChannel_Usage_Input { return callSDK<LanguageModelExecutorGenerationChannel_Usage_Input>("FoundationModels_e11dfd5beee01da3", 3730432487814591, undefined, [totalTokenCount, cachedTokenCount]); }
+  static init(totalTokenCount: number, cachedTokenCount: number): LanguageModelExecutorGenerationChannel_Usage_Input { return callSDK<LanguageModelExecutorGenerationChannel_Usage_Input>("FoundationModels_3864e7f38681b875", 3730432487814591, undefined, [totalTokenCount, cachedTokenCount]); }
   /**
    * var totalTokenCount: Int
    * @availability iOS 27.0+
    */
-  get totalTokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 4026005036473394, this, []); }
-  set totalTokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2702355934017102, this, [value]); }
+  get totalTokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 4026005036473394, this, []); }
+  set totalTokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 2702355934017102, this, [value]); }
   /**
    * var cachedTokenCount: Int
    * @availability iOS 27.0+
    */
-  get cachedTokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3001967872478649, this, []); }
-  set cachedTokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3348307115401128, this, [value]); }
+  get cachedTokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3001967872478649, this, []); }
+  set cachedTokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 3348307115401128, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV5UsageV5InputV": true };
 }
 
@@ -1906,19 +1906,19 @@ export class LanguageModelExecutorGenerationChannel_Usage_Output extends SDKHand
    * init(totalTokenCount: Int, reasoningTokenCount: Int)
    * @availability iOS 27.0+
    */
-  static init(totalTokenCount: number, reasoningTokenCount: number): LanguageModelExecutorGenerationChannel_Usage_Output { return callSDK<LanguageModelExecutorGenerationChannel_Usage_Output>("FoundationModels_e11dfd5beee01da3", 4470160962339978, undefined, [totalTokenCount, reasoningTokenCount]); }
+  static init(totalTokenCount: number, reasoningTokenCount: number): LanguageModelExecutorGenerationChannel_Usage_Output { return callSDK<LanguageModelExecutorGenerationChannel_Usage_Output>("FoundationModels_3864e7f38681b875", 4470160962339978, undefined, [totalTokenCount, reasoningTokenCount]); }
   /**
    * var totalTokenCount: Int
    * @availability iOS 27.0+
    */
-  get totalTokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3694686355069105, this, []); }
-  set totalTokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2096877372287645, this, [value]); }
+  get totalTokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3694686355069105, this, []); }
+  set totalTokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 2096877372287645, this, [value]); }
   /**
    * var reasoningTokenCount: Int
    * @availability iOS 27.0+
    */
-  get reasoningTokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3277828812740505, this, []); }
-  set reasoningTokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 806664374529966, this, [value]); }
+  get reasoningTokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3277828812740505, this, []); }
+  set reasoningTokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 806664374529966, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationChannelV5UsageV6OutputV": true };
 }
 
@@ -1931,49 +1931,49 @@ export class LanguageModelExecutorGenerationRequest extends SDKHandle {
    * var transcript: Transcript
    * @availability iOS 27.0+
    */
-  get transcript(): Transcript { return callSDK<Transcript>("FoundationModels_e11dfd5beee01da3", 2683103919845023, this, []); }
-  set transcript(value: Transcript) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4140531626397241, this, [value]); }
+  get transcript(): Transcript { return callSDK<Transcript>("FoundationModels_3864e7f38681b875", 2683103919845023, this, []); }
+  set transcript(value: Transcript) { callSDK<void>("FoundationModels_3864e7f38681b875", 4140531626397241, this, [value]); }
   /**
    * var contextOptions: ContextOptions
    * @availability iOS 27.0+
    */
-  get contextOptions(): ContextOptions { return callSDK<ContextOptions>("FoundationModels_e11dfd5beee01da3", 3774441409393601, this, []); }
-  set contextOptions(value: ContextOptions) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1253472801710042, this, [value]); }
+  get contextOptions(): ContextOptions { return callSDK<ContextOptions>("FoundationModels_3864e7f38681b875", 3774441409393601, this, []); }
+  set contextOptions(value: ContextOptions) { callSDK<void>("FoundationModels_3864e7f38681b875", 1253472801710042, this, [value]); }
   /**
    * var generationOptions: GenerationOptions
    * @availability iOS 27.0+
    */
-  get generationOptions(): GenerationOptions { return callSDK<GenerationOptions>("FoundationModels_e11dfd5beee01da3", 4132125555002149, this, []); }
-  set generationOptions(value: GenerationOptions) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4012375157756749, this, [value]); }
+  get generationOptions(): GenerationOptions { return callSDK<GenerationOptions>("FoundationModels_3864e7f38681b875", 4132125555002149, this, []); }
+  set generationOptions(value: GenerationOptions) { callSDK<void>("FoundationModels_3864e7f38681b875", 4012375157756749, this, [value]); }
   /**
    * var enabledToolDefinitions: [Transcript.ToolDefinition]
    * @availability iOS 27.0+
    */
-  get enabledToolDefinitions(): $SDK21 { return callSDK<$SDK21>("FoundationModels_e11dfd5beee01da3", 1884140005638147, this, []); }
-  set enabledToolDefinitions(value: $SDK21) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2454536087003693, this, [value]); }
+  get enabledToolDefinitions(): $SDK21 { return callSDK<$SDK21>("FoundationModels_3864e7f38681b875", 1884140005638147, this, []); }
+  set enabledToolDefinitions(value: $SDK21) { callSDK<void>("FoundationModels_3864e7f38681b875", 2454536087003693, this, [value]); }
   /**
    * var id: UUID
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3381720114860005, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3872760809366241, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3381720114860005, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3872760809366241, this, [value]); }
   /**
    * init(id: UUID, transcript: Transcript, enabledTools: [Transcript.ToolDefinition], schema: GenerationSchema? = nil, generationOptions: GenerationOptions, contextOptions: ContextOptions, metadata: [String : any ConvertibleToGeneratedContent])
    * @availability iOS 27.0+
    */
-  static init(id: string, transcript: Transcript, enabledTools: $SDK21, schema: $SDK22, generationOptions: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15): LanguageModelExecutorGenerationRequest { return callSDK<LanguageModelExecutorGenerationRequest>("FoundationModels_e11dfd5beee01da3", 3303384426286302, undefined, [id, transcript, enabledTools, schema, generationOptions, contextOptions, metadata]); }
+  static init(id: string, transcript: Transcript, enabledTools: $SDK21, schema: $SDK22, generationOptions: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15): LanguageModelExecutorGenerationRequest { return callSDK<LanguageModelExecutorGenerationRequest>("FoundationModels_3864e7f38681b875", 3303384426286302, undefined, [id, transcript, enabledTools, schema, generationOptions, contextOptions, metadata]); }
   /**
    * var schema: GenerationSchema?
    * @availability iOS 27.0+
    */
-  get schema(): $SDK22 { return callSDK<$SDK22>("FoundationModels_e11dfd5beee01da3", 3208700424544756, this, []); }
-  set schema(value: $SDK22) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1643255380251248, this, [value]); }
+  get schema(): $SDK22 { return callSDK<$SDK22>("FoundationModels_3864e7f38681b875", 3208700424544756, this, []); }
+  set schema(value: $SDK22) { callSDK<void>("FoundationModels_3864e7f38681b875", 1643255380251248, this, [value]); }
   /**
    * var metadata: [String : GeneratedContent]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_e11dfd5beee01da3", 2770139959820979, this, []); }
-  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1082423536342885, this, [value]); }
+  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_3864e7f38681b875", 2770139959820979, this, []); }
+  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_3864e7f38681b875", 1082423536342885, this, [value]); }
   declare readonly $type: { "s:16FoundationModels38LanguageModelExecutorGenerationRequestV": true };
 }
 
@@ -1994,7 +1994,7 @@ export class LanguageModelFeedback_Issue extends SDKHandle {
    * init(category: LanguageModelFeedback.Issue.Category, explanation: String? = nil)
    * @availability iOS 26.0+
    */
-  static init(category: LanguageModelFeedback_Issue_Category, explanation?: (string) | null): LanguageModelFeedback_Issue { return callSDK<LanguageModelFeedback_Issue>("FoundationModels_e11dfd5beee01da3", 2640976545441397, undefined, [category, explanation]); }
+  static init(category: LanguageModelFeedback_Issue_Category, explanation?: (string) | null): LanguageModelFeedback_Issue { return callSDK<LanguageModelFeedback_Issue>("FoundationModels_3864e7f38681b875", 2640976545441397, undefined, [category, explanation]); }
   declare readonly $type: { "s:16FoundationModels21LanguageModelFeedbackV5IssueV": true };
 }
 
@@ -2009,7 +2009,7 @@ export const LanguageModelFeedback_Issue_Category = {
    * nonisolated static var allCases: [LanguageModelFeedback.Issue.Category] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK23 { return callSDK<$SDK23>("FoundationModels_e11dfd5beee01da3", 2461619489406724, undefined, []); }
+  get allCases(): $SDK23 { return callSDK<$SDK23>("FoundationModels_3864e7f38681b875", 2461619489406724, undefined, []); }
 };
 
 /**
@@ -2029,7 +2029,7 @@ export const LanguageModelFeedback_Sentiment = {
    * nonisolated static var allCases: [LanguageModelFeedback.Sentiment] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK24 { return callSDK<$SDK24>("FoundationModels_e11dfd5beee01da3", 993445655986901, undefined, []); }
+  get allCases(): $SDK24 { return callSDK<$SDK24>("FoundationModels_3864e7f38681b875", 993445655986901, undefined, []); }
 };
 
 /**
@@ -2047,220 +2047,220 @@ export class LanguageModelSession extends SDKHandle {
    * final var properties: SessionPropertyValues { get }
    * @availability iOS 27.0+
    */
-  get properties(): SessionPropertyValues { return callSDK<SessionPropertyValues>("FoundationModels_e11dfd5beee01da3", 2455111829518592, this, []); }
+  get properties(): SessionPropertyValues { return callSDK<SessionPropertyValues>("FoundationModels_3864e7f38681b875", 2455111829518592, this, []); }
   /**
    * final var transcript: Transcript { get set }
    * @availability iOS 26.0+
    */
-  get transcript(): Transcript { return callSDK<Transcript>("FoundationModels_e11dfd5beee01da3", 945236981933091, this, []); }
+  get transcript(): Transcript { return callSDK<Transcript>("FoundationModels_3864e7f38681b875", 945236981933091, this, []); }
   /**
    * final var isResponding: Bool { get }
    * @availability iOS 26.0+
    */
-  get isResponding(): boolean { return callSDK<boolean>("FoundationModels_e11dfd5beee01da3", 3015019624342877, this, []); }
+  get isResponding(): boolean { return callSDK<boolean>("FoundationModels_3864e7f38681b875", 3015019624342877, this, []); }
   /**
    * final func streamResponse<Content>(generating type: Content.Type = Content.self, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions(), @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
    * @availability iOS 26.0+
    */
-  streamResponseIncludeSchemaInPromptOptionsPrompt(includeSchemaInPrompt: boolean, options: GenerationOptions, prompt: (() => Prompt)): $SDK25 { return callSDK<$SDK25>("FoundationModels_e11dfd5beee01da3", 3826078174895738, this, [includeSchemaInPrompt, options, prompt], [null,null,{"callback":{"out":[]}}], true); }
+  streamResponseIncludeSchemaInPromptOptionsPrompt(includeSchemaInPrompt: boolean, options: GenerationOptions, prompt: (() => Prompt)): $SDK25 { return callSDK<$SDK25>("FoundationModels_3864e7f38681b875", 3826078174895738, this, [includeSchemaInPrompt, options, prompt], [null,null,{"callback":{"out":[]}}], true); }
   /**
    * final func streamResponse<Content>(generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:], @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
    * @availability iOS 27.0+
    */
-  streamResponseGeneratingOptionsContextOptionsMetadataPrompt(type: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK26 { return callSDK<$SDK26>("FoundationModels_e11dfd5beee01da3", 755907202908271, this, [type, options, contextOptions, metadata, prompt], [null,null,null,null,{"callback":{"out":[]}}], true); }
+  streamResponseGeneratingOptionsContextOptionsMetadataPrompt(type: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK26 { return callSDK<$SDK26>("FoundationModels_3864e7f38681b875", 755907202908271, this, [type, options, contextOptions, metadata, prompt], [null,null,null,null,{"callback":{"out":[]}}], true); }
   /**
    * final func streamResponse<Content>(to prompt: Prompt, generating type: Content.Type = Content.self, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
    * @availability iOS 26.0+
    */
-  streamResponseToIncludeSchemaInPromptOptions(prompt: Prompt, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK25 { return callSDK<$SDK25>("FoundationModels_e11dfd5beee01da3", 1236248509414384, this, [prompt, includeSchemaInPrompt, options]); }
+  streamResponseToIncludeSchemaInPromptOptions(prompt: Prompt, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK25 { return callSDK<$SDK25>("FoundationModels_3864e7f38681b875", 1236248509414384, this, [prompt, includeSchemaInPrompt, options]); }
   /**
    * final func streamResponse<Content>(to prompt: String, generating type: Content.Type = Content.self, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
    * @availability iOS 26.0+
    */
-  streamResponseToIncludeSchemaInPromptOptions49503(prompt: string, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK25 { return callSDK<$SDK25>("FoundationModels_e11dfd5beee01da3", 3853901606373567, this, [prompt, includeSchemaInPrompt, options]); }
+  streamResponseToIncludeSchemaInPromptOptions49503(prompt: string, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK25 { return callSDK<$SDK25>("FoundationModels_3864e7f38681b875", 3853901606373567, this, [prompt, includeSchemaInPrompt, options]); }
   /**
    * final func streamResponse<Content>(to prompt: Prompt, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
    * @availability iOS 27.0+
    */
-  streamResponseToGeneratingOptionsContextOptionsMetadata(prompt: Prompt, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK26 { return callSDK<$SDK26>("FoundationModels_e11dfd5beee01da3", 4126766946252977, this, [prompt, type, options, contextOptions, metadata]); }
+  streamResponseToGeneratingOptionsContextOptionsMetadata(prompt: Prompt, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK26 { return callSDK<$SDK26>("FoundationModels_3864e7f38681b875", 4126766946252977, this, [prompt, type, options, contextOptions, metadata]); }
   /**
    * final func streamResponse<Content>(to prompt: String, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
    * @availability iOS 27.0+
    */
-  streamResponseToGeneratingOptionsContextOptionsMetadata69944(prompt: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK26 { return callSDK<$SDK26>("FoundationModels_e11dfd5beee01da3", 4450577388368033, this, [prompt, type, options, contextOptions, metadata]); }
+  streamResponseToGeneratingOptionsContextOptionsMetadata69944(prompt: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK26 { return callSDK<$SDK26>("FoundationModels_3864e7f38681b875", 4450577388368033, this, [prompt, type, options, contextOptions, metadata]); }
   /**
    * final func streamResponse(to prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
    * @availability iOS 26.0+
    */
-  streamResponseToSchemaIncludeSchemaInPromptOptions(prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK27 { return callSDK<$SDK27>("FoundationModels_e11dfd5beee01da3", 399715005566168, this, [prompt, schema, includeSchemaInPrompt, options]); }
+  streamResponseToSchemaIncludeSchemaInPromptOptions(prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK27 { return callSDK<$SDK27>("FoundationModels_3864e7f38681b875", 399715005566168, this, [prompt, schema, includeSchemaInPrompt, options]); }
   /**
    * final func streamResponse(to prompt: String, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
    * @availability iOS 26.0+
    */
-  streamResponseToSchemaIncludeSchemaInPromptOptions56182(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK27 { return callSDK<$SDK27>("FoundationModels_e11dfd5beee01da3", 3242735980576364, this, [prompt, schema, includeSchemaInPrompt, options]); }
+  streamResponseToSchemaIncludeSchemaInPromptOptions56182(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK27 { return callSDK<$SDK27>("FoundationModels_3864e7f38681b875", 3242735980576364, this, [prompt, schema, includeSchemaInPrompt, options]); }
   /**
    * final func streamResponse(to prompt: Prompt, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
    * @availability iOS 27.0+
    */
-  streamResponseToSchemaOptionsContextOptionsMetadata(prompt: Prompt, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK27 { return callSDK<$SDK27>("FoundationModels_e11dfd5beee01da3", 2978370907006718, this, [prompt, schema, options, contextOptions, metadata]); }
+  streamResponseToSchemaOptionsContextOptionsMetadata(prompt: Prompt, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK27 { return callSDK<$SDK27>("FoundationModels_3864e7f38681b875", 2978370907006718, this, [prompt, schema, options, contextOptions, metadata]); }
   /**
    * final func streamResponse(to prompt: String, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
    * @availability iOS 27.0+
    */
-  streamResponseToSchemaOptionsContextOptionsMetadata77454(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK27 { return callSDK<$SDK27>("FoundationModels_e11dfd5beee01da3", 4204360378658980, this, [prompt, schema, options, contextOptions, metadata]); }
+  streamResponseToSchemaOptionsContextOptionsMetadata77454(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK27 { return callSDK<$SDK27>("FoundationModels_3864e7f38681b875", 4204360378658980, this, [prompt, schema, options, contextOptions, metadata]); }
   /**
    * final func streamResponse(to prompt: Prompt, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<String>
    * @availability iOS 27.0+
    */
-  streamResponseToOptionsContextOptionsMetadata(prompt: Prompt, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK18 { return callSDK<$SDK18>("FoundationModels_e11dfd5beee01da3", 3505162905131687, this, [prompt, options, contextOptions, metadata]); }
+  streamResponseToOptionsContextOptionsMetadata(prompt: Prompt, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK18 { return callSDK<$SDK18>("FoundationModels_3864e7f38681b875", 3505162905131687, this, [prompt, options, contextOptions, metadata]); }
   /**
    * final func streamResponse(to prompt: String, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<String>
    * @availability iOS 27.0+
    */
-  streamResponseToOptionsContextOptionsMetadata41858(prompt: string, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK18 { return callSDK<$SDK18>("FoundationModels_e11dfd5beee01da3", 1711933723755984, this, [prompt, options, contextOptions, metadata]); }
+  streamResponseToOptionsContextOptionsMetadata41858(prompt: string, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK18 { return callSDK<$SDK18>("FoundationModels_3864e7f38681b875", 1711933723755984, this, [prompt, options, contextOptions, metadata]); }
   /**
    * final func streamResponse(to prompt: Prompt, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<String>
    * @availability iOS 26.0+
    */
-  streamResponseToOptions(prompt: Prompt, options?: GenerationOptions): $SDK18 { return callSDK<$SDK18>("FoundationModels_e11dfd5beee01da3", 4341541715162208, this, [prompt, options]); }
+  streamResponseToOptions(prompt: Prompt, options?: GenerationOptions): $SDK18 { return callSDK<$SDK18>("FoundationModels_3864e7f38681b875", 4341541715162208, this, [prompt, options]); }
   /**
    * final func streamResponse(to prompt: String, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<String>
    * @availability iOS 26.0+
    */
-  streamResponseToOptions65097(prompt: string, options?: GenerationOptions): $SDK18 { return callSDK<$SDK18>("FoundationModels_e11dfd5beee01da3", 4136404272600686, this, [prompt, options]); }
+  streamResponseToOptions65097(prompt: string, options?: GenerationOptions): $SDK18 { return callSDK<$SDK18>("FoundationModels_3864e7f38681b875", 4136404272600686, this, [prompt, options]); }
   /**
    * final func streamResponse(schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions(), @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<GeneratedContent>
    * @availability iOS 26.0+
    */
-  streamResponseSchemaIncludeSchemaInPromptOptionsPrompt(schema: GenerationSchema, includeSchemaInPrompt: boolean, options: GenerationOptions, prompt: (() => Prompt)): $SDK27 { return callSDK<$SDK27>("FoundationModels_e11dfd5beee01da3", 2274686957666559, this, [schema, includeSchemaInPrompt, options, prompt], [null,null,null,{"callback":{"out":[]}}], true); }
+  streamResponseSchemaIncludeSchemaInPromptOptionsPrompt(schema: GenerationSchema, includeSchemaInPrompt: boolean, options: GenerationOptions, prompt: (() => Prompt)): $SDK27 { return callSDK<$SDK27>("FoundationModels_3864e7f38681b875", 2274686957666559, this, [schema, includeSchemaInPrompt, options, prompt], [null,null,null,{"callback":{"out":[]}}], true); }
   /**
    * final func streamResponse(schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:], @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<GeneratedContent>
    * @availability iOS 27.0+
    */
-  streamResponseSchemaOptionsContextOptionsMetadataPrompt(schema: GenerationSchema, options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK27 { return callSDK<$SDK27>("FoundationModels_e11dfd5beee01da3", 3226890344879560, this, [schema, options, contextOptions, metadata, prompt], [null,null,null,null,{"callback":{"out":[]}}], true); }
+  streamResponseSchemaOptionsContextOptionsMetadataPrompt(schema: GenerationSchema, options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK27 { return callSDK<$SDK27>("FoundationModels_3864e7f38681b875", 3226890344879560, this, [schema, options, contextOptions, metadata, prompt], [null,null,null,null,{"callback":{"out":[]}}], true); }
   /**
    * final func streamResponse(options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:], @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<String>
    * @availability iOS 27.0+
    */
-  streamResponseOptionsContextOptionsMetadataPrompt(options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK18 { return callSDK<$SDK18>("FoundationModels_e11dfd5beee01da3", 4127828959415530, this, [options, contextOptions, metadata, prompt], [null,null,null,{"callback":{"out":[]}}], true); }
+  streamResponseOptionsContextOptionsMetadataPrompt(options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK18 { return callSDK<$SDK18>("FoundationModels_3864e7f38681b875", 4127828959415530, this, [options, contextOptions, metadata, prompt], [null,null,null,{"callback":{"out":[]}}], true); }
   /**
    * final func streamResponse(options: GenerationOptions = GenerationOptions(), @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<String>
    * @availability iOS 26.0+
    */
-  streamResponseOptionsPrompt(options: GenerationOptions, prompt: (() => Prompt)): $SDK18 { return callSDK<$SDK18>("FoundationModels_e11dfd5beee01da3", 483805475384895, this, [options, prompt], [null,{"callback":{"out":[]}}], true); }
+  streamResponseOptionsPrompt(options: GenerationOptions, prompt: (() => Prompt)): $SDK18 { return callSDK<$SDK18>("FoundationModels_3864e7f38681b875", 483805475384895, this, [options, prompt], [null,{"callback":{"out":[]}}], true); }
   /**
    * @discardableResult final func logFeedbackAttachment(sentiment: LanguageModelFeedback.Sentiment?, issues: [LanguageModelFeedback.Issue] = [], desiredOutput: Transcript.Entry? = nil) -> Data
    * @availability iOS 26.0+
    */
-  logFeedbackAttachmentSentimentIssuesDesiredOutput(sentiment?: $SDK28, issues?: $SDK29, desiredOutput?: (Transcript_Entry) | null): ArrayBuffer { return callSDK<ArrayBuffer>("FoundationModels_e11dfd5beee01da3", 929223981190728, this, [sentiment, issues, desiredOutput]); }
+  logFeedbackAttachmentSentimentIssuesDesiredOutput(sentiment?: $SDK28, issues?: $SDK29, desiredOutput?: (Transcript_Entry) | null): ArrayBuffer { return callSDK<ArrayBuffer>("FoundationModels_3864e7f38681b875", 929223981190728, this, [sentiment, issues, desiredOutput]); }
   /**
    * @backDeployed(before: iOS 26.1, macOS 26.1, visionOS 26.1)
   @discardableResult final func logFeedbackAttachment(sentiment: LanguageModelFeedback.Sentiment?, issues: [LanguageModelFeedback.Issue] = [], desiredResponseText: String?) -> Data
    * @availability iOS 26.0+
    */
-  logFeedbackAttachmentSentimentIssuesDesiredResponseText(sentiment?: $SDK28, issues?: $SDK29, desiredResponseText?: (string) | null): ArrayBuffer { return callSDK<ArrayBuffer>("FoundationModels_e11dfd5beee01da3", 3717487865610060, this, [sentiment, issues, desiredResponseText]); }
+  logFeedbackAttachmentSentimentIssuesDesiredResponseText(sentiment?: $SDK28, issues?: $SDK29, desiredResponseText?: (string) | null): ArrayBuffer { return callSDK<ArrayBuffer>("FoundationModels_3864e7f38681b875", 3717487865610060, this, [sentiment, issues, desiredResponseText]); }
   /**
    * @backDeployed(before: iOS 26.1, macOS 26.1, visionOS 26.1)
   @discardableResult final func logFeedbackAttachment(sentiment: LanguageModelFeedback.Sentiment?, issues: [LanguageModelFeedback.Issue] = [], desiredResponseContent: (any ConvertibleToGeneratedContent)?) -> Data
    * @availability iOS 26.0+
    */
-  logFeedbackAttachmentSentimentIssuesDesiredResponseContent(sentiment?: $SDK28, issues?: $SDK29, desiredResponseContent?: (SDKHandle) | null): ArrayBuffer { return callSDK<ArrayBuffer>("FoundationModels_e11dfd5beee01da3", 3075316127267089, this, [sentiment, issues, desiredResponseContent]); }
+  logFeedbackAttachmentSentimentIssuesDesiredResponseContent(sentiment?: $SDK28, issues?: $SDK29, desiredResponseContent?: (SDKHandle) | null): ArrayBuffer { return callSDK<ArrayBuffer>("FoundationModels_3864e7f38681b875", 3075316127267089, this, [sentiment, issues, desiredResponseContent]); }
   /**
    * final var transcriptErrorHandlingPolicy: TranscriptErrorHandlingPolicy? { get set }
    * @availability iOS 27.0+
    */
-  get transcriptErrorHandlingPolicy(): $SDK31 { return callSDK<$SDK31>("FoundationModels_e11dfd5beee01da3", 3857686829074380, this, []); }
-  set transcriptErrorHandlingPolicy(value: $SDK31) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1768217318717299, this, [value]); }
+  get transcriptErrorHandlingPolicy(): $SDK31 { return callSDK<$SDK31>("FoundationModels_3864e7f38681b875", 3857686829074380, this, []); }
+  set transcriptErrorHandlingPolicy(value: $SDK31) { callSDK<void>("FoundationModels_3864e7f38681b875", 1768217318717299, this, [value]); }
   /**
    * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], transcript: Transcript)
    * @availability iOS 26.0+
    */
-  static initModelToolsTranscript(model: SystemLanguageModel, tools: Array<SDKHandle>, transcript: Transcript): LanguageModelSession { return callSDK<LanguageModelSession>("FoundationModels_e11dfd5beee01da3", 230662387580373, undefined, [model, tools, transcript]); }
+  static initModelToolsTranscript(model: SystemLanguageModel, tools: Array<SDKHandle>, transcript: Transcript): LanguageModelSession { return callSDK<LanguageModelSession>("FoundationModels_3864e7f38681b875", 230662387580373, undefined, [model, tools, transcript]); }
   /**
    * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], instructions: Instructions? = nil)
    * @availability iOS 26.0+
    */
-  static initModelToolsInstructions(model?: SystemLanguageModel, tools?: Array<SDKHandle>, instructions?: (Instructions) | null): LanguageModelSession { return callSDK<LanguageModelSession>("FoundationModels_e11dfd5beee01da3", 2433473628472686, undefined, [model, tools, instructions]); }
+  static initModelToolsInstructions(model?: SystemLanguageModel, tools?: Array<SDKHandle>, instructions?: (Instructions) | null): LanguageModelSession { return callSDK<LanguageModelSession>("FoundationModels_3864e7f38681b875", 2433473628472686, undefined, [model, tools, instructions]); }
   /**
    * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], @InstructionsBuilder instructions: () throws -> Instructions) rethrows
    * @availability iOS 26.0+
    */
-  static initModelToolsInstructions11508(model: SystemLanguageModel, tools: Array<SDKHandle>, instructions: (() => Instructions)): LanguageModelSession { return callSDK<LanguageModelSession>("FoundationModels_e11dfd5beee01da3", 3635661166521314, undefined, [model, tools, instructions], [null,null,{"callback":{"out":[]}}], true); }
+  static initModelToolsInstructions11508(model: SystemLanguageModel, tools: Array<SDKHandle>, instructions: (() => Instructions)): LanguageModelSession { return callSDK<LanguageModelSession>("FoundationModels_3864e7f38681b875", 3635661166521314, undefined, [model, tools, instructions], [null,null,{"callback":{"out":[]}}], true); }
   /**
    * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], instructions: String? = nil)
    * @availability iOS 26.0+
    */
-  static initModelToolsInstructions81584(model?: SystemLanguageModel, tools?: Array<SDKHandle>, instructions?: (string) | null): LanguageModelSession { return callSDK<LanguageModelSession>("FoundationModels_e11dfd5beee01da3", 3960945271648416, undefined, [model, tools, instructions]); }
+  static initModelToolsInstructions81584(model?: SystemLanguageModel, tools?: Array<SDKHandle>, instructions?: (string) | null): LanguageModelSession { return callSDK<LanguageModelSession>("FoundationModels_3864e7f38681b875", 3960945271648416, undefined, [model, tools, instructions]); }
   /**
    * final var usage: LanguageModelSession.Usage { get }
    * @availability iOS 27.0+
    */
-  get usage(): LanguageModelSession_Usage { return callSDK<LanguageModelSession_Usage>("FoundationModels_e11dfd5beee01da3", 3532701394483219, this, []); }
+  get usage(): LanguageModelSession_Usage { return callSDK<LanguageModelSession_Usage>("FoundationModels_3864e7f38681b875", 3532701394483219, this, []); }
   /**
    * final func prewarm(promptPrefix: Prompt? = nil)
    * @availability iOS 26.0+
    */
-  prewarm(promptPrefix?: (Prompt) | null): void { return callSDK<void>("FoundationModels_e11dfd5beee01da3", 311158441753425, this, [promptPrefix]); }
+  prewarm(promptPrefix?: (Prompt) | null): void { return callSDK<void>("FoundationModels_3864e7f38681b875", 311158441753425, this, [promptPrefix]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: Prompt, generating type: Content.Type = Content.self, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<Content> where Content : Generable
    * @availability iOS 26.0+
    */
-  respondToIncludeSchemaInPromptOptions(prompt: Prompt, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK32> { return callSDKAsync<$SDK32>("FoundationModels_e11dfd5beee01da3", 2912499548473227, this, [prompt, includeSchemaInPrompt, options]); }
+  respondToIncludeSchemaInPromptOptions(prompt: Prompt, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK32> { return callSDKAsync<$SDK32>("FoundationModels_3864e7f38681b875", 2912499548473227, this, [prompt, includeSchemaInPrompt, options]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: String, generating type: Content.Type = Content.self, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<Content> where Content : Generable
    * @availability iOS 26.0+
    */
-  respondToIncludeSchemaInPromptOptions42884(prompt: string, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK32> { return callSDKAsync<$SDK32>("FoundationModels_e11dfd5beee01da3", 4353248353135102, this, [prompt, includeSchemaInPrompt, options]); }
+  respondToIncludeSchemaInPromptOptions42884(prompt: string, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK32> { return callSDKAsync<$SDK32>("FoundationModels_3864e7f38681b875", 4353248353135102, this, [prompt, includeSchemaInPrompt, options]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: Prompt, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<Content> where Content : Generable
    * @availability iOS 27.0+
    */
-  respondToGeneratingOptionsContextOptionsMetadata(prompt: Prompt, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK33> { return callSDKAsync<$SDK33>("FoundationModels_e11dfd5beee01da3", 2646353838823340, this, [prompt, type, options, contextOptions, metadata]); }
+  respondToGeneratingOptionsContextOptionsMetadata(prompt: Prompt, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK33> { return callSDKAsync<$SDK33>("FoundationModels_3864e7f38681b875", 2646353838823340, this, [prompt, type, options, contextOptions, metadata]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: String, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<Content> where Content : Generable
    * @availability iOS 27.0+
    */
-  respondToGeneratingOptionsContextOptionsMetadata53237(prompt: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK33> { return callSDKAsync<$SDK33>("FoundationModels_e11dfd5beee01da3", 2093591653343301, this, [prompt, type, options, contextOptions, metadata]); }
+  respondToGeneratingOptionsContextOptionsMetadata53237(prompt: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK33> { return callSDKAsync<$SDK33>("FoundationModels_3864e7f38681b875", 2093591653343301, this, [prompt, type, options, contextOptions, metadata]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<GeneratedContent>
    * @availability iOS 26.0+
    */
-  respondToSchemaIncludeSchemaInPromptOptions(prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK34> { return callSDKAsync<$SDK34>("FoundationModels_e11dfd5beee01da3", 3328642119272550, this, [prompt, schema, includeSchemaInPrompt, options]); }
+  respondToSchemaIncludeSchemaInPromptOptions(prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK34> { return callSDKAsync<$SDK34>("FoundationModels_3864e7f38681b875", 3328642119272550, this, [prompt, schema, includeSchemaInPrompt, options]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<GeneratedContent>
    * @availability iOS 26.0+
    */
-  respondToSchemaIncludeSchemaInPromptOptions36651(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK34> { return callSDKAsync<$SDK34>("FoundationModels_e11dfd5beee01da3", 20551075873347, this, [prompt, schema, includeSchemaInPrompt, options]); }
+  respondToSchemaIncludeSchemaInPromptOptions36651(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK34> { return callSDKAsync<$SDK34>("FoundationModels_3864e7f38681b875", 20551075873347, this, [prompt, schema, includeSchemaInPrompt, options]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<GeneratedContent>
    * @availability iOS 27.0+
    */
-  respondToSchemaOptionsContextOptionsMetadata(prompt: Prompt, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK34> { return callSDKAsync<$SDK34>("FoundationModels_e11dfd5beee01da3", 3788943670192690, this, [prompt, schema, options, contextOptions, metadata]); }
+  respondToSchemaOptionsContextOptionsMetadata(prompt: Prompt, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK34> { return callSDKAsync<$SDK34>("FoundationModels_3864e7f38681b875", 3788943670192690, this, [prompt, schema, options, contextOptions, metadata]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<GeneratedContent>
    * @availability iOS 27.0+
    */
-  respondToSchemaOptionsContextOptionsMetadata41640(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK34> { return callSDKAsync<$SDK34>("FoundationModels_e11dfd5beee01da3", 541687495008156, this, [prompt, schema, options, contextOptions, metadata]); }
+  respondToSchemaOptionsContextOptionsMetadata41640(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK34> { return callSDKAsync<$SDK34>("FoundationModels_3864e7f38681b875", 541687495008156, this, [prompt, schema, options, contextOptions, metadata]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<String>
    * @availability iOS 27.0+
    */
-  respondToOptionsContextOptionsMetadata(prompt: Prompt, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_e11dfd5beee01da3", 4076078780919898, this, [prompt, options, contextOptions, metadata]); }
+  respondToOptionsContextOptionsMetadata(prompt: Prompt, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_3864e7f38681b875", 4076078780919898, this, [prompt, options, contextOptions, metadata]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<String>
    * @availability iOS 27.0+
    */
-  respondToOptionsContextOptionsMetadata6997(prompt: string, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_e11dfd5beee01da3", 3717631950218758, this, [prompt, options, contextOptions, metadata]); }
+  respondToOptionsContextOptionsMetadata6997(prompt: string, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_3864e7f38681b875", 3717631950218758, this, [prompt, options, contextOptions, metadata]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<String>
    * @availability iOS 26.0+
    */
-  respondToOptions(prompt: Prompt, options?: GenerationOptions): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_e11dfd5beee01da3", 2615324552950618, this, [prompt, options]); }
+  respondToOptions(prompt: Prompt, options?: GenerationOptions): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_3864e7f38681b875", 2615324552950618, this, [prompt, options]); }
   /**
    * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<String>
    * @availability iOS 26.0+
    */
-  respondToOptions26720(prompt: string, options?: GenerationOptions): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_e11dfd5beee01da3", 2795210791839200, this, [prompt, options]); }
+  respondToOptions26720(prompt: string, options?: GenerationOptions): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_3864e7f38681b875", 2795210791839200, this, [prompt, options]); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC": true };
   declare readonly $observable: { "properties": true; "transcript": true; "isResponding": true; "transcriptErrorHandlingPolicy": true; "usage": true };
 }
@@ -2274,12 +2274,12 @@ export class LanguageModelSession_AnyDynamicProfile extends SDKHandle {
    * var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): never { return callSDK<never>("FoundationModels_e11dfd5beee01da3", 2483380967227108, this, []); }
+  get body(): never { return callSDK<never>("FoundationModels_3864e7f38681b875", 2483380967227108, this, []); }
   /**
    * init(_ dynamicProfile: any LanguageModelSession.DynamicProfile)
    * @availability iOS 27.0+
    */
-  static init(dynamicProfile: SDKHandle): LanguageModelSession_AnyDynamicProfile { return callSDK<LanguageModelSession_AnyDynamicProfile>("FoundationModels_e11dfd5beee01da3", 3268254884959574, undefined, [dynamicProfile]); }
+  static init(dynamicProfile: SDKHandle): LanguageModelSession_AnyDynamicProfile { return callSDK<LanguageModelSession_AnyDynamicProfile>("FoundationModels_3864e7f38681b875", 3268254884959574, undefined, [dynamicProfile]); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC17AnyDynamicProfileV": true };
 }
 
@@ -2316,7 +2316,7 @@ export class LanguageModelSession_ConditionalDynamicProfile<TrueContent = unknow
    * var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): never { return callSDK<never>("FoundationModels_e11dfd5beee01da3", 4097079658595689, this, []); }
+  get body(): never { return callSDK<never>("FoundationModels_3864e7f38681b875", 4097079658595689, this, []); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC25ConditionalDynamicProfileV": true };
 }
 
@@ -2417,7 +2417,7 @@ export class LanguageModelSession_DynamicProfileModifierContent<Modifier = unkno
    * var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): never { return callSDK<never>("FoundationModels_e11dfd5beee01da3", 1423045692178678, this, []); }
+  get body(): never { return callSDK<never>("FoundationModels_3864e7f38681b875", 1423045692178678, this, []); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC29DynamicProfileModifierContentV": true };
 }
 
@@ -2456,12 +2456,12 @@ export const LanguageModelSession_Error = {
    * var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  getDebugDescription($self: LanguageModelSession_Error): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 540387329945764, $self, []); },
+  getDebugDescription($self: LanguageModelSession_Error): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 540387329945764, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 27.0+
    */
-  getErrorDescription($self: LanguageModelSession_Error): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 1138944130339287, $self, []); }
+  getErrorDescription($self: LanguageModelSession_Error): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 1138944130339287, $self, []); }
 };
 
 /**
@@ -2474,17 +2474,17 @@ export class LanguageModelSession_GenerationError extends SDKHandle {
    * var failureReason: String? { get }
    * @availability iOS 26.0+
    */
-  get failureReason(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 4172664620296791, this, []); }
+  get failureReason(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 4172664620296791, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 26.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 3615299901930068, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 3615299901930068, this, []); }
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 26.0+
    */
-  get recoverySuggestion(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 1529882326245287, this, []); }
+  get recoverySuggestion(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 1529882326245287, this, []); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC15GenerationErrorO": true };
 }
 
@@ -2497,12 +2497,12 @@ export class LanguageModelSession_GenerationError_Context extends SDKHandle {
    * init(debugDescription: String)
    * @availability iOS 26.0+
    */
-  static init(debugDescription: string): LanguageModelSession_GenerationError_Context { return callSDK<LanguageModelSession_GenerationError_Context>("FoundationModels_e11dfd5beee01da3", 4393036880383017, undefined, [debugDescription]); }
+  static init(debugDescription: string): LanguageModelSession_GenerationError_Context { return callSDK<LanguageModelSession_GenerationError_Context>("FoundationModels_3864e7f38681b875", 4393036880383017, undefined, [debugDescription]); }
   /**
    * let debugDescription: String
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1977371903008374, this, []); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1977371903008374, this, []); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC15GenerationErrorO7ContextV": true };
 }
 
@@ -2515,17 +2515,17 @@ export class LanguageModelSession_GenerationError_Refusal extends SDKHandle {
    * nonisolated(nonsending) var explanation: LanguageModelSession.Response<String> { get async throws }
    * @availability iOS 26.0+
    */
-  get explanation(): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_e11dfd5beee01da3", 3802691065557230, this, []); }
+  get explanation(): Promise<$SDK17> { return callSDKAsync<$SDK17>("FoundationModels_3864e7f38681b875", 3802691065557230, this, []); }
   /**
    * var explanationStream: LanguageModelSession.ResponseStream<String> { get }
    * @availability iOS 26.0+
    */
-  get explanationStream(): $SDK18 { return callSDK<$SDK18>("FoundationModels_e11dfd5beee01da3", 255019605086145, this, []); }
+  get explanationStream(): $SDK18 { return callSDK<$SDK18>("FoundationModels_3864e7f38681b875", 255019605086145, this, []); }
   /**
    * init(transcriptEntries: [Transcript.Entry])
    * @availability iOS 26.0+
    */
-  static init(transcriptEntries: Array<Transcript_Entry>): LanguageModelSession_GenerationError_Refusal { return callSDK<LanguageModelSession_GenerationError_Refusal>("FoundationModels_e11dfd5beee01da3", 2670282286972971, undefined, [transcriptEntries]); }
+  static init(transcriptEntries: Array<Transcript_Entry>): LanguageModelSession_GenerationError_Refusal { return callSDK<LanguageModelSession_GenerationError_Refusal>("FoundationModels_3864e7f38681b875", 2670282286972971, undefined, [transcriptEntries]); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC15GenerationErrorO7RefusalV": true };
 }
 
@@ -2538,7 +2538,7 @@ export class LanguageModelSession_ModifiedDynamicProfile<Content = unknown, Modi
    * var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): never { return callSDK<never>("FoundationModels_e11dfd5beee01da3", 4007150520044262, this, []); }
+  get body(): never { return callSDK<never>("FoundationModels_3864e7f38681b875", 4007150520044262, this, []); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC22ModifiedDynamicProfileV": true };
 }
 
@@ -2575,7 +2575,7 @@ export class LanguageModelSession_Profile extends SDKHandle {
    * var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): never { return callSDK<never>("FoundationModels_e11dfd5beee01da3", 4283214649567504, this, []); }
+  get body(): never { return callSDK<never>("FoundationModels_3864e7f38681b875", 4283214649567504, this, []); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC7ProfileV": true };
 }
 
@@ -2612,22 +2612,22 @@ export class LanguageModelSession_Response<Content = unknown> extends SDKHandle 
    * let rawContent: GeneratedContent
    * @availability iOS 26.0+
    */
-  get rawContent(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 780988759124152, this, []); }
+  get rawContent(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 780988759124152, this, []); }
   /**
    * let transcriptEntries: ArraySlice<Transcript.Entry>
    * @availability iOS 26.0+
    */
-  get transcriptEntries(): SDKHandle { return callSDK<SDKHandle>("FoundationModels_e11dfd5beee01da3", 3805063659748300, this, []); }
+  get transcriptEntries(): SDKHandle { return callSDK<SDKHandle>("FoundationModels_3864e7f38681b875", 3805063659748300, this, []); }
   /**
    * let usage: LanguageModelSession.Usage
    * @availability iOS 27.0+
    */
-  get usage(): LanguageModelSession_Usage { return callSDK<LanguageModelSession_Usage>("FoundationModels_e11dfd5beee01da3", 99945999134176, this, []); }
+  get usage(): LanguageModelSession_Usage { return callSDK<LanguageModelSession_Usage>("FoundationModels_3864e7f38681b875", 99945999134176, this, []); }
   /**
    * let content: Content
    * @availability iOS 26.0+
    */
-  get content(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 129634968206779, this, []); }
+  get content(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 129634968206779, this, []); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC8ResponseV": true };
 }
 
@@ -2640,12 +2640,12 @@ export class LanguageModelSession_ResponseStream<Content = unknown> extends SDKH
    * func makeAsyncIterator() -> LanguageModelSession.ResponseStream<Content>.AsyncIterator
    * @availability iOS 26.0+
    */
-  makeAsyncIterator(): LanguageModelSession_ResponseStream_AsyncIterator<number> { return callSDK<LanguageModelSession_ResponseStream_AsyncIterator<number>>("FoundationModels_e11dfd5beee01da3", 4088413631010992, this, []); }
+  makeAsyncIterator(): LanguageModelSession_ResponseStream_AsyncIterator<number> { return callSDK<LanguageModelSession_ResponseStream_AsyncIterator<number>>("FoundationModels_3864e7f38681b875", 4088413631010992, this, []); }
   /**
    * nonisolated(nonsending) func collect() async throws -> sending LanguageModelSession.Response<Content>
    * @availability iOS 26.0+
    */
-  collect(): Promise<$SDK32> { return callSDKAsync<$SDK32>("FoundationModels_e11dfd5beee01da3", 590447835443307, this, []); }
+  collect(): Promise<$SDK32> { return callSDKAsync<$SDK32>("FoundationModels_3864e7f38681b875", 590447835443307, this, []); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC14ResponseStreamV": true };
   declare readonly $element: LanguageModelSession_ResponseStream_Element<unknown>;
 }
@@ -2659,7 +2659,7 @@ export class LanguageModelSession_ResponseStream_AsyncIterator<Content = unknown
    * mutating func next(isolation actor: isolated (any Actor)? = #isolation) async throws -> LanguageModelSession.ResponseStream<Content>.Snapshot?
    * @availability iOS 26.0+
    */
-  next(): Promise<(LanguageModelSession_ResponseStream_Snapshot<number>) | null> { return callSDKAsync<(LanguageModelSession_ResponseStream_Snapshot<number>) | null>("FoundationModels_e11dfd5beee01da3", 3646772146552274, this, []); }
+  next(): Promise<(LanguageModelSession_ResponseStream_Snapshot<number>) | null> { return callSDKAsync<(LanguageModelSession_ResponseStream_Snapshot<number>) | null>("FoundationModels_3864e7f38681b875", 3646772146552274, this, []); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC14ResponseStreamV13AsyncIteratorV": true };
 }
 
@@ -2684,26 +2684,26 @@ export class LanguageModelSession_ResponseStream_Snapshot<Content = unknown> ext
    * var rawContent: GeneratedContent
    * @availability iOS 26.0+
    */
-  get rawContent(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 2757344822571325, this, []); }
-  set rawContent(value: GeneratedContent) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1292179724541008, this, [value]); }
+  get rawContent(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 2757344822571325, this, []); }
+  set rawContent(value: GeneratedContent) { callSDK<void>("FoundationModels_3864e7f38681b875", 1292179724541008, this, [value]); }
   /**
    * var transcriptEntries: ArraySlice<Transcript.Entry>
    * @availability iOS 27.0+
    */
-  get transcriptEntries(): SDKHandle { return callSDK<SDKHandle>("FoundationModels_e11dfd5beee01da3", 807441811170048, this, []); }
-  set transcriptEntries(value: SDKHandle) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 407926866645868, this, [value]); }
+  get transcriptEntries(): SDKHandle { return callSDK<SDKHandle>("FoundationModels_3864e7f38681b875", 807441811170048, this, []); }
+  set transcriptEntries(value: SDKHandle) { callSDK<void>("FoundationModels_3864e7f38681b875", 407926866645868, this, [value]); }
   /**
    * var usage: LanguageModelSession.Usage
    * @availability iOS 27.0+
    */
-  get usage(): LanguageModelSession_Usage { return callSDK<LanguageModelSession_Usage>("FoundationModels_e11dfd5beee01da3", 2993302613435633, this, []); }
-  set usage(value: LanguageModelSession_Usage) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1083351621358785, this, [value]); }
+  get usage(): LanguageModelSession_Usage { return callSDK<LanguageModelSession_Usage>("FoundationModels_3864e7f38681b875", 2993302613435633, this, []); }
+  set usage(value: LanguageModelSession_Usage) { callSDK<void>("FoundationModels_3864e7f38681b875", 1083351621358785, this, [value]); }
   /**
    * var content: Content.PartiallyGenerated
    * @availability iOS 26.0+
    */
-  get content(): unknown { return callSDK<unknown>("FoundationModels_e11dfd5beee01da3", 1625237192362159, this, []); }
-  set content(value: unknown) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3283384293679697, this, [value]); }
+  get content(): unknown { return callSDK<unknown>("FoundationModels_3864e7f38681b875", 1625237192362159, this, []); }
+  set content(value: unknown) { callSDK<void>("FoundationModels_3864e7f38681b875", 3283384293679697, this, [value]); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC14ResponseStreamV8SnapshotV": true };
 }
 
@@ -2716,13 +2716,13 @@ export class LanguageModelSession_SessionProperty<Value = unknown> extends SDKHa
    * var wrappedValue: Value { get nonmutating set }
    * @availability iOS 27.0+
    */
-  get wrappedValue(): unknown { return callSDK<unknown>("FoundationModels_e11dfd5beee01da3", 2461507632255581, this, []); }
-  set wrappedValue(value: unknown) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4321009524970438, this, [value]); }
+  get wrappedValue(): unknown { return callSDK<unknown>("FoundationModels_3864e7f38681b875", 2461507632255581, this, []); }
+  set wrappedValue(value: unknown) { callSDK<void>("FoundationModels_3864e7f38681b875", 4321009524970438, this, [value]); }
   /**
    * init(_ keyPath: ReferenceWritableKeyPath<SessionPropertyValues, Value>)
    * @availability iOS 27.0+
    */
-  static init(keyPath: SDKHandle): $SDK1 { return callSDK<$SDK1>("FoundationModels_e11dfd5beee01da3", 4137408130429048, undefined, [keyPath]); }
+  static init(keyPath: SDKHandle): $SDK1 { return callSDK<$SDK1>("FoundationModels_3864e7f38681b875", 4137408130429048, undefined, [keyPath]); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC0E8PropertyV": true };
 }
 
@@ -2735,24 +2735,24 @@ export class LanguageModelSession_ToolCallError extends SDKHandle {
    * var underlyingError: any Error
    * @availability iOS 26.0+
    */
-  get underlyingError(): NativeError { return callSDK<NativeError>("FoundationModels_e11dfd5beee01da3", 1294963718652441, this, []); }
-  set underlyingError(value: NativeError) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3829819963216875, this, [value]); }
+  get underlyingError(): NativeError { return callSDK<NativeError>("FoundationModels_3864e7f38681b875", 1294963718652441, this, []); }
+  set underlyingError(value: NativeError) { callSDK<void>("FoundationModels_3864e7f38681b875", 3829819963216875, this, [value]); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 26.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 128257977913624, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 128257977913624, this, []); }
   /**
    * init(tool: any Tool, underlyingError: any Error)
    * @availability iOS 26.0+
    */
-  static init(tool: SDKHandle, underlyingError: NativeError): LanguageModelSession_ToolCallError { return callSDK<LanguageModelSession_ToolCallError>("FoundationModels_e11dfd5beee01da3", 438704614434302, undefined, [tool, underlyingError]); }
+  static init(tool: SDKHandle, underlyingError: NativeError): LanguageModelSession_ToolCallError { return callSDK<LanguageModelSession_ToolCallError>("FoundationModels_3864e7f38681b875", 438704614434302, undefined, [tool, underlyingError]); }
   /**
    * var tool: any Tool
    * @availability iOS 26.0+
    */
-  get tool(): SDKHandle { return callSDK<SDKHandle>("FoundationModels_e11dfd5beee01da3", 4106684606921089, this, []); }
-  set tool(value: SDKHandle) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4083637894467556, this, [value]); }
+  get tool(): SDKHandle { return callSDK<SDKHandle>("FoundationModels_3864e7f38681b875", 4106684606921089, this, []); }
+  set tool(value: SDKHandle) { callSDK<void>("FoundationModels_3864e7f38681b875", 4083637894467556, this, [value]); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC13ToolCallErrorV": true };
 }
 
@@ -2765,30 +2765,30 @@ export class LanguageModelSession_Usage extends SDKHandle {
    * var totalTokenCount: Int { get }
    * @availability iOS 27.0+
    */
-  get totalTokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 2663391477890898, this, []); }
+  get totalTokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 2663391477890898, this, []); }
   /**
    * init(input: LanguageModelSession.Usage.Input, output: LanguageModelSession.Usage.Output, metadata: [String : any ConvertibleToGeneratedContent] = [:])
    * @availability iOS 27.0+
    */
-  static init(input: LanguageModelSession_Usage_Input, output: LanguageModelSession_Usage_Output, metadata?: $SDK15): LanguageModelSession_Usage { return callSDK<LanguageModelSession_Usage>("FoundationModels_e11dfd5beee01da3", 1674808287517550, undefined, [input, output, metadata]); }
+  static init(input: LanguageModelSession_Usage_Input, output: LanguageModelSession_Usage_Output, metadata?: $SDK15): LanguageModelSession_Usage { return callSDK<LanguageModelSession_Usage>("FoundationModels_3864e7f38681b875", 1674808287517550, undefined, [input, output, metadata]); }
   /**
    * var input: LanguageModelSession.Usage.Input
    * @availability iOS 27.0+
    */
-  get input(): LanguageModelSession_Usage_Input { return callSDK<LanguageModelSession_Usage_Input>("FoundationModels_e11dfd5beee01da3", 2101360806476596, this, []); }
-  set input(value: LanguageModelSession_Usage_Input) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1018880274772550, this, [value]); }
+  get input(): LanguageModelSession_Usage_Input { return callSDK<LanguageModelSession_Usage_Input>("FoundationModels_3864e7f38681b875", 2101360806476596, this, []); }
+  set input(value: LanguageModelSession_Usage_Input) { callSDK<void>("FoundationModels_3864e7f38681b875", 1018880274772550, this, [value]); }
   /**
    * var output: LanguageModelSession.Usage.Output
    * @availability iOS 27.0+
    */
-  get output(): LanguageModelSession_Usage_Output { return callSDK<LanguageModelSession_Usage_Output>("FoundationModels_e11dfd5beee01da3", 634125230811721, this, []); }
-  set output(value: LanguageModelSession_Usage_Output) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2239647442021101, this, [value]); }
+  get output(): LanguageModelSession_Usage_Output { return callSDK<LanguageModelSession_Usage_Output>("FoundationModels_3864e7f38681b875", 634125230811721, this, []); }
+  set output(value: LanguageModelSession_Usage_Output) { callSDK<void>("FoundationModels_3864e7f38681b875", 2239647442021101, this, [value]); }
   /**
    * var metadata: [String : GeneratedContent]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_e11dfd5beee01da3", 1436347542579549, this, []); }
-  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4330990041825683, this, [value]); }
+  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_3864e7f38681b875", 1436347542579549, this, []); }
+  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_3864e7f38681b875", 4330990041825683, this, [value]); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC5UsageV": true };
 }
 
@@ -2801,19 +2801,19 @@ export class LanguageModelSession_Usage_Input extends SDKHandle {
    * init(totalTokenCount: Int, cachedTokenCount: Int)
    * @availability iOS 27.0+
    */
-  static init(totalTokenCount: number, cachedTokenCount: number): LanguageModelSession_Usage_Input { return callSDK<LanguageModelSession_Usage_Input>("FoundationModels_e11dfd5beee01da3", 347002249359967, undefined, [totalTokenCount, cachedTokenCount]); }
+  static init(totalTokenCount: number, cachedTokenCount: number): LanguageModelSession_Usage_Input { return callSDK<LanguageModelSession_Usage_Input>("FoundationModels_3864e7f38681b875", 347002249359967, undefined, [totalTokenCount, cachedTokenCount]); }
   /**
    * var totalTokenCount: Int
    * @availability iOS 27.0+
    */
-  get totalTokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 308122393138346, this, []); }
-  set totalTokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 576002690240324, this, [value]); }
+  get totalTokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 308122393138346, this, []); }
+  set totalTokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 576002690240324, this, [value]); }
   /**
    * var cachedTokenCount: Int
    * @availability iOS 27.0+
    */
-  get cachedTokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 40081957363276, this, []); }
-  set cachedTokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1001387735505683, this, [value]); }
+  get cachedTokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 40081957363276, this, []); }
+  set cachedTokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 1001387735505683, this, [value]); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC5UsageV5InputV": true };
 }
 
@@ -2826,19 +2826,19 @@ export class LanguageModelSession_Usage_Output extends SDKHandle {
    * init(totalTokenCount: Int, reasoningTokenCount: Int)
    * @availability iOS 27.0+
    */
-  static init(totalTokenCount: number, reasoningTokenCount: number): LanguageModelSession_Usage_Output { return callSDK<LanguageModelSession_Usage_Output>("FoundationModels_e11dfd5beee01da3", 1656390675335509, undefined, [totalTokenCount, reasoningTokenCount]); }
+  static init(totalTokenCount: number, reasoningTokenCount: number): LanguageModelSession_Usage_Output { return callSDK<LanguageModelSession_Usage_Output>("FoundationModels_3864e7f38681b875", 1656390675335509, undefined, [totalTokenCount, reasoningTokenCount]); }
   /**
    * var totalTokenCount: Int
    * @availability iOS 27.0+
    */
-  get totalTokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3967195505049836, this, []); }
-  set totalTokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1474361444488583, this, [value]); }
+  get totalTokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3967195505049836, this, []); }
+  set totalTokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 1474361444488583, this, [value]); }
   /**
    * var reasoningTokenCount: Int
    * @availability iOS 27.0+
    */
-  get reasoningTokenCount(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 87227393736658, this, []); }
-  set reasoningTokenCount(value: number) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4006047781258908, this, [value]); }
+  get reasoningTokenCount(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 87227393736658, this, []); }
+  set reasoningTokenCount(value: number) { callSDK<void>("FoundationModels_3864e7f38681b875", 4006047781258908, this, [value]); }
   declare readonly $type: { "s:16FoundationModels20LanguageModelSessionC5UsageV6OutputV": true };
 }
 
@@ -2911,47 +2911,47 @@ export class PrivateCloudComputeLanguageModel extends SDKHandle {
    * final var quotaUsage: PrivateCloudComputeLanguageModel.QuotaUsage { get }
    * @availability iOS 27.0+
    */
-  get quotaUsage(): PrivateCloudComputeLanguageModel_QuotaUsage { return callSDK<PrivateCloudComputeLanguageModel_QuotaUsage>("FoundationModels_e11dfd5beee01da3", 1225966112851561, this, []); }
+  get quotaUsage(): PrivateCloudComputeLanguageModel_QuotaUsage { return callSDK<PrivateCloudComputeLanguageModel_QuotaUsage>("FoundationModels_3864e7f38681b875", 1225966112851561, this, []); }
   /**
    * nonisolated(nonsending) final var contextSize: Int { get async throws }
    * @availability iOS 27.0+
    */
-  get contextSize(): Promise<number> { return callSDKAsync<number>("FoundationModels_e11dfd5beee01da3", 2277905597801530, this, []); }
+  get contextSize(): Promise<number> { return callSDKAsync<number>("FoundationModels_3864e7f38681b875", 2277905597801530, this, []); }
   /**
    * final var isAvailable: Bool { get }
    * @availability iOS 27.0+
    */
-  get isAvailable(): boolean { return callSDK<boolean>("FoundationModels_e11dfd5beee01da3", 2951028051461656, this, []); }
+  get isAvailable(): boolean { return callSDK<boolean>("FoundationModels_3864e7f38681b875", 2951028051461656, this, []); }
   /**
    * final var availability: PrivateCloudComputeLanguageModel.Availability { get }
    * @availability iOS 27.0+
    */
-  get availability(): PrivateCloudComputeLanguageModel_Availability { return callSDK<PrivateCloudComputeLanguageModel_Availability>("FoundationModels_e11dfd5beee01da3", 3334091463384209, this, []); }
+  get availability(): PrivateCloudComputeLanguageModel_Availability { return callSDK<PrivateCloudComputeLanguageModel_Availability>("FoundationModels_3864e7f38681b875", 3334091463384209, this, []); }
   /**
    * final var capabilities: LanguageModelCapabilities { get }
    * @availability iOS 27.0+
    */
-  get capabilities(): LanguageModelCapabilities { return callSDK<LanguageModelCapabilities>("FoundationModels_e11dfd5beee01da3", 3828209166286145, this, []); }
+  get capabilities(): LanguageModelCapabilities { return callSDK<LanguageModelCapabilities>("FoundationModels_3864e7f38681b875", 3828209166286145, this, []); }
   /**
    * nonisolated(nonsending) final func supportsLocale(_ locale: Locale = Locale.current) async throws -> Bool
    * @availability iOS 27.0+
    */
-  supportsLocale(locale?: _Foundation_Locale): Promise<boolean> { return callSDKAsync<boolean>("FoundationModels_e11dfd5beee01da3", 1681042369894809, this, [locale]); }
+  supportsLocale(locale?: _Foundation_Locale): Promise<boolean> { return callSDKAsync<boolean>("FoundationModels_3864e7f38681b875", 1681042369894809, this, [locale]); }
   /**
    * nonisolated(nonsending) final var supportedLanguages: Set<Locale.Language> { get async throws }
    * @availability iOS 27.0+
    */
-  get supportedLanguages(): Promise<$SDK40> { return callSDKAsync<$SDK40>("FoundationModels_e11dfd5beee01da3", 3451990855091959, this, []); }
+  get supportedLanguages(): Promise<$SDK40> { return callSDKAsync<$SDK40>("FoundationModels_3864e7f38681b875", 3451990855091959, this, []); }
   /**
    * final var executorConfiguration: PrivateCloudComputeLanguageModel.Executor.Configuration { get }
    * @availability iOS 27.0+
    */
-  get executorConfiguration(): PrivateCloudComputeLanguageModel_Executor_Configuration { return callSDK<PrivateCloudComputeLanguageModel_Executor_Configuration>("FoundationModels_e11dfd5beee01da3", 1493953419315021, this, []); }
+  get executorConfiguration(): PrivateCloudComputeLanguageModel_Executor_Configuration { return callSDK<PrivateCloudComputeLanguageModel_Executor_Configuration>("FoundationModels_3864e7f38681b875", 1493953419315021, this, []); }
   /**
    * convenience init()
    * @availability iOS 27.0+
    */
-  static init(): PrivateCloudComputeLanguageModel { return callSDK<PrivateCloudComputeLanguageModel>("FoundationModels_e11dfd5beee01da3", 138035722367536, undefined, []); }
+  static init(): PrivateCloudComputeLanguageModel { return callSDK<PrivateCloudComputeLanguageModel>("FoundationModels_3864e7f38681b875", 138035722367536, undefined, []); }
   declare readonly $type: { "s:16FoundationModels32PrivateCloudComputeLanguageModelC": true };
   declare readonly $observable: { "quotaUsage": true; "isAvailable": true; "availability": true; "capabilities": true; "executorConfiguration": true };
 }
@@ -2979,12 +2979,12 @@ export class PrivateCloudComputeLanguageModel_Error extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1123133382181387, this, []); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1123133382181387, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 27.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 3630375765493047, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 3630375765493047, this, []); }
   declare readonly $type: { "s:16FoundationModels32PrivateCloudComputeLanguageModelC5ErrorO": true };
 }
 
@@ -2997,13 +2997,13 @@ export class PrivateCloudComputeLanguageModel_Error_NetworkFailure extends SDKHa
    * init(debugDescription: String)
    * @availability iOS 27.0+
    */
-  static init(debugDescription: string): PrivateCloudComputeLanguageModel_Error_NetworkFailure { return callSDK<PrivateCloudComputeLanguageModel_Error_NetworkFailure>("FoundationModels_e11dfd5beee01da3", 207408543449596, undefined, [debugDescription]); }
+  static init(debugDescription: string): PrivateCloudComputeLanguageModel_Error_NetworkFailure { return callSDK<PrivateCloudComputeLanguageModel_Error_NetworkFailure>("FoundationModels_3864e7f38681b875", 207408543449596, undefined, [debugDescription]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2061442913094601, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1604368383529435, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2061442913094601, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1604368383529435, this, [value]); }
   declare readonly $type: { "s:16FoundationModels32PrivateCloudComputeLanguageModelC5ErrorO14NetworkFailureV": true };
 }
 
@@ -3016,25 +3016,25 @@ export class PrivateCloudComputeLanguageModel_Error_QuotaLimitReached extends SD
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 4129938961081672, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1322023103490776, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 4129938961081672, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1322023103490776, this, [value]); }
   /**
    * init(limitIncreaseSuggestion: PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion? = nil, resetDate: Date? = nil, debugDescription: String)
    * @availability iOS 27.0+
    */
-  static init(limitIncreaseSuggestion: $SDK41, resetDate: $SDK16, debugDescription: string): PrivateCloudComputeLanguageModel_Error_QuotaLimitReached { return callSDK<PrivateCloudComputeLanguageModel_Error_QuotaLimitReached>("FoundationModels_e11dfd5beee01da3", 3507450203720529, undefined, [limitIncreaseSuggestion, resetDate, debugDescription]); }
+  static init(limitIncreaseSuggestion: $SDK41, resetDate: $SDK16, debugDescription: string): PrivateCloudComputeLanguageModel_Error_QuotaLimitReached { return callSDK<PrivateCloudComputeLanguageModel_Error_QuotaLimitReached>("FoundationModels_3864e7f38681b875", 3507450203720529, undefined, [limitIncreaseSuggestion, resetDate, debugDescription]); }
   /**
    * var limitIncreaseSuggestion: PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion?
    * @availability iOS 27.0+
    */
-  get limitIncreaseSuggestion(): $SDK41 { return callSDK<$SDK41>("FoundationModels_e11dfd5beee01da3", 2586277342667982, this, []); }
-  set limitIncreaseSuggestion(value: $SDK41) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2937833272643917, this, [value]); }
+  get limitIncreaseSuggestion(): $SDK41 { return callSDK<$SDK41>("FoundationModels_3864e7f38681b875", 2586277342667982, this, []); }
+  set limitIncreaseSuggestion(value: $SDK41) { callSDK<void>("FoundationModels_3864e7f38681b875", 2937833272643917, this, [value]); }
   /**
    * var resetDate: Date?
    * @availability iOS 27.0+
    */
-  get resetDate(): $SDK16 { return callSDK<$SDK16>("FoundationModels_e11dfd5beee01da3", 2827621262586751, this, []); }
-  set resetDate(value: $SDK16) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1230131133878611, this, [value]); }
+  get resetDate(): $SDK16 { return callSDK<$SDK16>("FoundationModels_3864e7f38681b875", 2827621262586751, this, []); }
+  set resetDate(value: $SDK16) { callSDK<void>("FoundationModels_3864e7f38681b875", 1230131133878611, this, [value]); }
   declare readonly $type: { "s:16FoundationModels32PrivateCloudComputeLanguageModelC5ErrorO17QuotaLimitReachedV": true };
 }
 
@@ -3047,13 +3047,13 @@ export class PrivateCloudComputeLanguageModel_Error_ServiceUnavailable extends S
    * init(debugDescription: String)
    * @availability iOS 27.0+
    */
-  static init(debugDescription: string): PrivateCloudComputeLanguageModel_Error_ServiceUnavailable { return callSDK<PrivateCloudComputeLanguageModel_Error_ServiceUnavailable>("FoundationModels_e11dfd5beee01da3", 1478505871610185, undefined, [debugDescription]); }
+  static init(debugDescription: string): PrivateCloudComputeLanguageModel_Error_ServiceUnavailable { return callSDK<PrivateCloudComputeLanguageModel_Error_ServiceUnavailable>("FoundationModels_3864e7f38681b875", 1478505871610185, undefined, [debugDescription]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3606241097979377, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1310623169980217, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3606241097979377, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1310623169980217, this, [value]); }
   declare readonly $type: { "s:16FoundationModels32PrivateCloudComputeLanguageModelC5ErrorO18ServiceUnavailableV": true };
 }
 
@@ -3066,17 +3066,17 @@ export class PrivateCloudComputeLanguageModel_Executor extends SDKHandle {
    * init(configuration: PrivateCloudComputeLanguageModel.Executor.Configuration)
    * @availability iOS 27.0+
    */
-  static init(configuration: PrivateCloudComputeLanguageModel_Executor_Configuration): PrivateCloudComputeLanguageModel_Executor { return callSDK<PrivateCloudComputeLanguageModel_Executor>("FoundationModels_e11dfd5beee01da3", 1432980798786878, undefined, [configuration]); }
+  static init(configuration: PrivateCloudComputeLanguageModel_Executor_Configuration): PrivateCloudComputeLanguageModel_Executor { return callSDK<PrivateCloudComputeLanguageModel_Executor>("FoundationModels_3864e7f38681b875", 1432980798786878, undefined, [configuration]); }
   /**
    * func prewarm(model: PrivateCloudComputeLanguageModel.Executor.Model, transcript: Transcript)
    * @availability iOS 27.0+
    */
-  prewarm(model: PrivateCloudComputeLanguageModel, transcript: Transcript): void { return callSDK<void>("FoundationModels_e11dfd5beee01da3", 1585793160965479, this, [model, transcript]); }
+  prewarm(model: PrivateCloudComputeLanguageModel, transcript: Transcript): void { return callSDK<void>("FoundationModels_3864e7f38681b875", 1585793160965479, this, [model, transcript]); }
   /**
    * nonisolated(nonsending) func respond(to request: LanguageModelExecutorGenerationRequest, model: PrivateCloudComputeLanguageModel, streamingInto channel: LanguageModelExecutorGenerationChannel) async throws
    * @availability iOS 27.0+
    */
-  respond(request: LanguageModelExecutorGenerationRequest, model: PrivateCloudComputeLanguageModel, channel: LanguageModelExecutorGenerationChannel): Promise<void> { return callSDKAsync<void>("FoundationModels_e11dfd5beee01da3", 2055066597506132, this, [request, model, channel]); }
+  respond(request: LanguageModelExecutorGenerationRequest, model: PrivateCloudComputeLanguageModel, channel: LanguageModelExecutorGenerationChannel): Promise<void> { return callSDKAsync<void>("FoundationModels_3864e7f38681b875", 2055066597506132, this, [request, model, channel]); }
   declare readonly $type: { "s:16FoundationModels32PrivateCloudComputeLanguageModelC8ExecutorV": true };
 }
 
@@ -3103,25 +3103,25 @@ export class PrivateCloudComputeLanguageModel_QuotaUsage extends SDKHandle {
    * var isLimitReached: Bool { get }
    * @availability iOS 27.0+
    */
-  get isLimitReached(): boolean { return callSDK<boolean>("FoundationModels_e11dfd5beee01da3", 938859816474159, this, []); }
+  get isLimitReached(): boolean { return callSDK<boolean>("FoundationModels_3864e7f38681b875", 938859816474159, this, []); }
   /**
    * var limitIncreaseSuggestion: PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion?
    * @availability iOS 27.0+
    */
-  get limitIncreaseSuggestion(): $SDK41 { return callSDK<$SDK41>("FoundationModels_e11dfd5beee01da3", 3969532484070909, this, []); }
-  set limitIncreaseSuggestion(value: $SDK41) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1991950417564152, this, [value]); }
+  get limitIncreaseSuggestion(): $SDK41 { return callSDK<$SDK41>("FoundationModels_3864e7f38681b875", 3969532484070909, this, []); }
+  set limitIncreaseSuggestion(value: $SDK41) { callSDK<void>("FoundationModels_3864e7f38681b875", 1991950417564152, this, [value]); }
   /**
    * var status: PrivateCloudComputeLanguageModel.QuotaUsage.Status
    * @availability iOS 27.0+
    */
-  get status(): PrivateCloudComputeLanguageModel_QuotaUsage_Status { return callSDK<PrivateCloudComputeLanguageModel_QuotaUsage_Status>("FoundationModels_e11dfd5beee01da3", 2010800910724767, this, []); }
-  set status(value: PrivateCloudComputeLanguageModel_QuotaUsage_Status) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4144650306750935, this, [value]); }
+  get status(): PrivateCloudComputeLanguageModel_QuotaUsage_Status { return callSDK<PrivateCloudComputeLanguageModel_QuotaUsage_Status>("FoundationModels_3864e7f38681b875", 2010800910724767, this, []); }
+  set status(value: PrivateCloudComputeLanguageModel_QuotaUsage_Status) { callSDK<void>("FoundationModels_3864e7f38681b875", 4144650306750935, this, [value]); }
   /**
    * var resetDate: Date?
    * @availability iOS 27.0+
    */
-  get resetDate(): $SDK16 { return callSDK<$SDK16>("FoundationModels_e11dfd5beee01da3", 578110201879821, this, []); }
-  set resetDate(value: $SDK16) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2297741794314912, this, [value]); }
+  get resetDate(): $SDK16 { return callSDK<$SDK16>("FoundationModels_3864e7f38681b875", 578110201879821, this, []); }
+  set resetDate(value: $SDK16) { callSDK<void>("FoundationModels_3864e7f38681b875", 2297741794314912, this, [value]); }
   declare readonly $type: { "s:16FoundationModels32PrivateCloudComputeLanguageModelC10QuotaUsageV": true };
 }
 
@@ -3134,7 +3134,7 @@ export class PrivateCloudComputeLanguageModel_QuotaUsage_LimitIncreaseSuggestion
    * func show()
    * @availability iOS 27.0+
    */
-  show(): void { return callSDK<void>("FoundationModels_e11dfd5beee01da3", 848330445573785, this, []); }
+  show(): void { return callSDK<void>("FoundationModels_3864e7f38681b875", 848330445573785, this, []); }
   declare readonly $type: { "s:16FoundationModels32PrivateCloudComputeLanguageModelC10QuotaUsageV23LimitIncreaseSuggestionV": true };
 }
 
@@ -3155,8 +3155,8 @@ export class PrivateCloudComputeLanguageModel_QuotaUsage_Status_BelowLimit exten
    * var isApproachingLimit: Bool
    * @availability iOS 27.0+
    */
-  get isApproachingLimit(): boolean { return callSDK<boolean>("FoundationModels_e11dfd5beee01da3", 3024944153647101, this, []); }
-  set isApproachingLimit(value: boolean) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2649798277212173, this, [value]); }
+  get isApproachingLimit(): boolean { return callSDK<boolean>("FoundationModels_3864e7f38681b875", 3024944153647101, this, []); }
+  set isApproachingLimit(value: boolean) { callSDK<void>("FoundationModels_3864e7f38681b875", 2649798277212173, this, [value]); }
   declare readonly $type: { "s:16FoundationModels32PrivateCloudComputeLanguageModelC10QuotaUsageV6StatusO10BelowLimitV": true };
 }
 
@@ -3177,17 +3177,17 @@ export class Prompt extends SDKHandle {
    * var promptRepresentation: Prompt { get }
    * @availability iOS 26.0+
    */
-  get promptRepresentation(): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 1706065756319967, this, []); }
+  get promptRepresentation(): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 1706065756319967, this, []); }
   /**
    * init(@PromptBuilder _ content: () throws -> Prompt) rethrows
    * @availability iOS 26.0+
    */
-  static init(content: (() => Prompt)): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 3445332292637793, undefined, [content], [{"callback":{"out":[]}}], true); }
+  static init(content: (() => Prompt)): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 3445332292637793, undefined, [content], [{"callback":{"out":[]}}], true); }
   /**
    * init(_ content: some PromptRepresentable)
    * @availability iOS 26.0+
    */
-  static init35397(content: SDKHandle): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 1838141643424705, undefined, [content]); }
+  static init35397(content: SDKHandle): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 1838141643424705, undefined, [content]); }
   declare readonly $type: { "s:16FoundationModels6PromptV": true };
 }
 
@@ -3200,37 +3200,37 @@ export class PromptBuilder extends SDKHandle {
    * @export(implementation) static func buildArray(_ prompts: [some PromptRepresentable]) -> Prompt
    * @availability iOS 26.0+
    */
-  static buildArray(prompts: Array<SDKHandle>): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 2407342417414136, undefined, [prompts]); }
+  static buildArray(prompts: Array<SDKHandle>): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 2407342417414136, undefined, [prompts]); }
   /**
    * @export(implementation) static func buildEither(first component: some PromptRepresentable) -> Prompt
    * @availability iOS 26.0+
    */
-  static buildEitherFirst(component: SDKHandle): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 2436106968900789, undefined, [component]); }
+  static buildEitherFirst(component: SDKHandle): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 2436106968900789, undefined, [component]); }
   /**
    * @export(implementation) static func buildEither(second component: some PromptRepresentable) -> Prompt
    * @availability iOS 26.0+
    */
-  static buildEitherSecond(component: SDKHandle): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 4186856244649684, undefined, [component]); }
+  static buildEitherSecond(component: SDKHandle): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 4186856244649684, undefined, [component]); }
   /**
    * @export(implementation) static func buildOptional(_ component: Prompt?) -> Prompt
    * @availability iOS 26.0+
    */
-  static buildOptional(component?: (Prompt) | null): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 1388088733480024, undefined, [component]); }
+  static buildOptional(component?: (Prompt) | null): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 1388088733480024, undefined, [component]); }
   /**
    * @export(implementation) static func buildExpression(_ expression: Prompt) -> Prompt
    * @availability iOS 26.0+
    */
-  static buildExpression(expression: Prompt): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 1195498103564720, undefined, [expression]); }
+  static buildExpression(expression: Prompt): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 1195498103564720, undefined, [expression]); }
   /**
    * @export(implementation) static func buildExpression<P>(_ expression: P) -> P where P : PromptRepresentable
    * @availability iOS 26.0+
    */
-  static buildExpression41437(expression: number): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3195023955273095, undefined, [expression]); }
+  static buildExpression41437(expression: number): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3195023955273095, undefined, [expression]); }
   /**
    * @export(implementation) static func buildLimitedAvailability(_ prompt: some PromptRepresentable) -> Prompt
    * @availability iOS 26.0+
    */
-  static buildLimitedAvailability(prompt: SDKHandle): Prompt { return callSDK<Prompt>("FoundationModels_e11dfd5beee01da3", 1557130475763836, undefined, [prompt]); }
+  static buildLimitedAvailability(prompt: SDKHandle): Prompt { return callSDK<Prompt>("FoundationModels_3864e7f38681b875", 1557130475763836, undefined, [prompt]); }
   declare readonly $type: { "s:16FoundationModels13PromptBuilderV": true };
 }
 
@@ -3259,8 +3259,8 @@ export class SessionPropertyValues extends SDKHandle {
    * final var history: Transcript.HistoryView { get set }
    * @availability iOS 27.0+
    */
-  get history(): Transcript_HistoryView { return callSDK<Transcript_HistoryView>("FoundationModels_e11dfd5beee01da3", 179164260496238, this, []); }
-  set history(value: Transcript_HistoryView) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1686675059517354, this, [value]); }
+  get history(): Transcript_HistoryView { return callSDK<Transcript_HistoryView>("FoundationModels_3864e7f38681b875", 179164260496238, this, []); }
+  set history(value: Transcript_HistoryView) { callSDK<void>("FoundationModels_3864e7f38681b875", 1686675059517354, this, [value]); }
   declare readonly $type: { "s:16FoundationModels21SessionPropertyValuesC": true };
   declare readonly $observable: { "history": true };
 }
@@ -3280,73 +3280,73 @@ export class SystemLanguageModel extends SDKHandle {
    * nonisolated(nonsending) final func tokenCount(for instructions: Instructions) async throws -> Int
    * @availability iOS 26.4+
    */
-  tokenCountFor(instructions: Instructions): Promise<number> { return callSDKAsync<number>("FoundationModels_e11dfd5beee01da3", 2402127899432337, this, [instructions]); }
+  tokenCountFor(instructions: Instructions): Promise<number> { return callSDKAsync<number>("FoundationModels_3864e7f38681b875", 2402127899432337, this, [instructions]); }
   /**
    * nonisolated(nonsending) final func tokenCount(for schema: GenerationSchema) async throws -> Int
    * @availability iOS 26.4+
    */
-  tokenCountFor79776(schema: GenerationSchema): Promise<number> { return callSDKAsync<number>("FoundationModels_e11dfd5beee01da3", 2670882335057629, this, [schema]); }
+  tokenCountFor79776(schema: GenerationSchema): Promise<number> { return callSDKAsync<number>("FoundationModels_3864e7f38681b875", 2670882335057629, this, [schema]); }
   /**
    * nonisolated(nonsending) final func tokenCount(for tools: [any Tool]) async throws -> Int
    * @availability iOS 26.4+
    */
-  tokenCountFor31777(tools: Array<SDKHandle>): Promise<number> { return callSDKAsync<number>("FoundationModels_e11dfd5beee01da3", 287161528400860, this, [tools]); }
+  tokenCountFor31777(tools: Array<SDKHandle>): Promise<number> { return callSDKAsync<number>("FoundationModels_3864e7f38681b875", 287161528400860, this, [tools]); }
   /**
    * nonisolated(nonsending) final func tokenCount(for prompt: some PromptRepresentable) async throws -> Int
    * @availability iOS 26.4+
    */
-  tokenCountFor15824(prompt: SDKHandle): Promise<number> { return callSDKAsync<number>("FoundationModels_e11dfd5beee01da3", 3861410486410726, this, [prompt]); }
+  tokenCountFor15824(prompt: SDKHandle): Promise<number> { return callSDKAsync<number>("FoundationModels_3864e7f38681b875", 3861410486410726, this, [prompt]); }
   /**
    * @backDeployed(before: iOS 26.4, macOS 26.4, visionOS 26.4)
   final var contextSize: Int { get }
    * @availability iOS 26.0+
    */
-  get contextSize(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 1234917338588563, this, []); }
+  get contextSize(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 1234917338588563, this, []); }
   /**
    * final var isAvailable: Bool { get }
    * @availability iOS 26.0+
    */
-  get isAvailable(): boolean { return callSDK<boolean>("FoundationModels_e11dfd5beee01da3", 4007861974793648, this, []); }
+  get isAvailable(): boolean { return callSDK<boolean>("FoundationModels_3864e7f38681b875", 4007861974793648, this, []); }
   /**
    * final var availability: SystemLanguageModel.Availability { get }
    * @availability iOS 26.0+
    */
-  get availability(): SystemLanguageModel_Availability { return callSDK<SystemLanguageModel_Availability>("FoundationModels_e11dfd5beee01da3", 1207666882822427, this, []); }
+  get availability(): SystemLanguageModel_Availability { return callSDK<SystemLanguageModel_Availability>("FoundationModels_3864e7f38681b875", 1207666882822427, this, []); }
   /**
    * final var capabilities: LanguageModelCapabilities { get }
    * @availability iOS 27.0+
    */
-  get capabilities(): LanguageModelCapabilities { return callSDK<LanguageModelCapabilities>("FoundationModels_e11dfd5beee01da3", 79285211262748, this, []); }
+  get capabilities(): LanguageModelCapabilities { return callSDK<LanguageModelCapabilities>("FoundationModels_3864e7f38681b875", 79285211262748, this, []); }
   /**
    * final func supportsLocale(_ locale: Locale = Locale.current) -> Bool
    * @availability iOS 26.0+
    */
-  supportsLocale(locale?: _Foundation_Locale): boolean { return callSDK<boolean>("FoundationModels_e11dfd5beee01da3", 1696329662178123, this, [locale]); }
+  supportsLocale(locale?: _Foundation_Locale): boolean { return callSDK<boolean>("FoundationModels_3864e7f38681b875", 1696329662178123, this, [locale]); }
   /**
    * final var supportedLanguages: Set<Locale.Language> { get }
    * @availability iOS 26.0+
    */
-  get supportedLanguages(): $SDK40 { return callSDK<$SDK40>("FoundationModels_e11dfd5beee01da3", 342028961821810, this, []); }
+  get supportedLanguages(): $SDK40 { return callSDK<$SDK40>("FoundationModels_3864e7f38681b875", 342028961821810, this, []); }
   /**
    * final var executorConfiguration: SystemLanguageModel.Executor.Configuration { get }
    * @availability iOS 27.0+
    */
-  get executorConfiguration(): SystemLanguageModel_Executor_Configuration { return callSDK<SystemLanguageModel_Executor_Configuration>("FoundationModels_e11dfd5beee01da3", 187996776679239, this, []); }
+  get executorConfiguration(): SystemLanguageModel_Executor_Configuration { return callSDK<SystemLanguageModel_Executor_Configuration>("FoundationModels_3864e7f38681b875", 187996776679239, this, []); }
   /**
    * static var `default`: SystemLanguageModel { get }
    * @availability iOS 26.0+
    */
-  static get default(): SystemLanguageModel { return callSDK<SystemLanguageModel>("FoundationModels_e11dfd5beee01da3", 3829167742425826, undefined, []); }
+  static get default(): SystemLanguageModel { return callSDK<SystemLanguageModel>("FoundationModels_3864e7f38681b875", 3829167742425826, undefined, []); }
   /**
    * convenience init(useCase: SystemLanguageModel.UseCase = .general, guardrails: SystemLanguageModel.Guardrails = Guardrails.default)
    * @availability iOS 26.0+
    */
-  static init(useCase?: SystemLanguageModel_UseCase, guardrails?: SystemLanguageModel_Guardrails): SystemLanguageModel { return callSDK<SystemLanguageModel>("FoundationModels_e11dfd5beee01da3", 2216190655217866, undefined, [useCase, guardrails]); }
+  static init(useCase?: SystemLanguageModel_UseCase, guardrails?: SystemLanguageModel_Guardrails): SystemLanguageModel { return callSDK<SystemLanguageModel>("FoundationModels_3864e7f38681b875", 2216190655217866, undefined, [useCase, guardrails]); }
   /**
    * final var variant: SystemLanguageModel.Variant { get }
    * @availability iOS 27.0+
    */
-  get variant(): SystemLanguageModel_Variant { return callSDK<SystemLanguageModel_Variant>("FoundationModels_e11dfd5beee01da3", 1669496578431451, this, []); }
+  get variant(): SystemLanguageModel_Variant { return callSDK<SystemLanguageModel_Variant>("FoundationModels_3864e7f38681b875", 1669496578431451, this, []); }
   declare readonly $type: { "s:16FoundationModels19SystemLanguageModelC": true };
   declare readonly $observable: { "contextSize": true; "isAvailable": true; "availability": true; "capabilities": true; "supportedLanguages": true; "executorConfiguration": true; "variant": true };
 }
@@ -3371,13 +3371,13 @@ export class SystemLanguageModel_Adapter_AssetError extends SDKHandle {
    * @availability iOS 26.0+
    * @deprecated iOS 26.4
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 1320086594283983, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 1320086594283983, this, []); }
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 26.0+
    * @deprecated iOS 26.4
    */
-  get recoverySuggestion(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 2926519258597052, this, []); }
+  get recoverySuggestion(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 2926519258597052, this, []); }
   declare readonly $type: { "s:16FoundationModels19SystemLanguageModelC7AdapterV10AssetErrorO": true };
 }
 
@@ -3392,13 +3392,13 @@ export class SystemLanguageModel_Adapter_AssetError_Context extends SDKHandle {
    * @availability iOS 26.0+
    * @deprecated iOS 26.4
    */
-  static init(debugDescription: string): SystemLanguageModel_Adapter_AssetError_Context { return callSDK<SystemLanguageModel_Adapter_AssetError_Context>("FoundationModels_e11dfd5beee01da3", 3176273021158602, undefined, [debugDescription]); }
+  static init(debugDescription: string): SystemLanguageModel_Adapter_AssetError_Context { return callSDK<SystemLanguageModel_Adapter_AssetError_Context>("FoundationModels_3864e7f38681b875", 3176273021158602, undefined, [debugDescription]); }
   /**
    * let debugDescription: String
    * @availability iOS 26.0+
    * @deprecated iOS 26.4
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1598450076277149, this, []); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1598450076277149, this, []); }
   declare readonly $type: { "s:16FoundationModels19SystemLanguageModelC7AdapterV10AssetErrorO7ContextV": true };
 }
 
@@ -3425,12 +3425,12 @@ export class SystemLanguageModel_Error extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 5853379537285, this, []); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 5853379537285, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 27.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 3507736851755861, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 3507736851755861, this, []); }
   declare readonly $type: { "s:16FoundationModels19SystemLanguageModelC5ErrorO": true };
 }
 
@@ -3443,13 +3443,13 @@ export class SystemLanguageModel_Error_AssetsUnavailable extends SDKHandle {
    * init(debugDescription: String)
    * @availability iOS 27.0+
    */
-  static init(debugDescription: string): SystemLanguageModel_Error_AssetsUnavailable { return callSDK<SystemLanguageModel_Error_AssetsUnavailable>("FoundationModels_e11dfd5beee01da3", 728623587897974, undefined, [debugDescription]); }
+  static init(debugDescription: string): SystemLanguageModel_Error_AssetsUnavailable { return callSDK<SystemLanguageModel_Error_AssetsUnavailable>("FoundationModels_3864e7f38681b875", 728623587897974, undefined, [debugDescription]); }
   /**
    * var debugDescription: String
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2135583362061819, this, []); }
-  set debugDescription(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2330003397394878, this, [value]); }
+  get debugDescription(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2135583362061819, this, []); }
+  set debugDescription(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 2330003397394878, this, [value]); }
   declare readonly $type: { "s:16FoundationModels19SystemLanguageModelC5ErrorO17AssetsUnavailableV": true };
 }
 
@@ -3462,17 +3462,17 @@ export class SystemLanguageModel_Executor extends SDKHandle {
    * init(configuration: SystemLanguageModel.Executor.Configuration)
    * @availability iOS 27.0+
    */
-  static init(configuration: SystemLanguageModel_Executor_Configuration): SystemLanguageModel_Executor { return callSDK<SystemLanguageModel_Executor>("FoundationModels_e11dfd5beee01da3", 45889820173210, undefined, [configuration]); }
+  static init(configuration: SystemLanguageModel_Executor_Configuration): SystemLanguageModel_Executor { return callSDK<SystemLanguageModel_Executor>("FoundationModels_3864e7f38681b875", 45889820173210, undefined, [configuration]); }
   /**
    * func prewarm(model: SystemLanguageModel.Executor.Model, transcript: Transcript)
    * @availability iOS 27.0+
    */
-  prewarm(model: SystemLanguageModel, transcript: Transcript): void { return callSDK<void>("FoundationModels_e11dfd5beee01da3", 4254682717879434, this, [model, transcript]); }
+  prewarm(model: SystemLanguageModel, transcript: Transcript): void { return callSDK<void>("FoundationModels_3864e7f38681b875", 4254682717879434, this, [model, transcript]); }
   /**
    * nonisolated(nonsending) func respond(to request: LanguageModelExecutorGenerationRequest, model: SystemLanguageModel, streamingInto channel: LanguageModelExecutorGenerationChannel) async throws
    * @availability iOS 27.0+
    */
-  respond(request: LanguageModelExecutorGenerationRequest, model: SystemLanguageModel, channel: LanguageModelExecutorGenerationChannel): Promise<void> { return callSDKAsync<void>("FoundationModels_e11dfd5beee01da3", 170138794250958, this, [request, model, channel]); }
+  respond(request: LanguageModelExecutorGenerationRequest, model: SystemLanguageModel, channel: LanguageModelExecutorGenerationChannel): Promise<void> { return callSDKAsync<void>("FoundationModels_3864e7f38681b875", 170138794250958, this, [request, model, channel]); }
   declare readonly $type: { "s:16FoundationModels19SystemLanguageModelC8ExecutorV": true };
 }
 
@@ -3499,12 +3499,12 @@ export class SystemLanguageModel_Guardrails extends SDKHandle {
    * static let permissiveContentTransformations: SystemLanguageModel.Guardrails
    * @availability iOS 26.0+
    */
-  static get permissiveContentTransformations(): SystemLanguageModel_Guardrails { return callSDK<SystemLanguageModel_Guardrails>("FoundationModels_e11dfd5beee01da3", 3920628975410573, undefined, []); }
+  static get permissiveContentTransformations(): SystemLanguageModel_Guardrails { return callSDK<SystemLanguageModel_Guardrails>("FoundationModels_3864e7f38681b875", 3920628975410573, undefined, []); }
   /**
    * static let `default`: SystemLanguageModel.Guardrails
    * @availability iOS 26.0+
    */
-  static get default(): SystemLanguageModel_Guardrails { return callSDK<SystemLanguageModel_Guardrails>("FoundationModels_e11dfd5beee01da3", 2464243907949671, undefined, []); }
+  static get default(): SystemLanguageModel_Guardrails { return callSDK<SystemLanguageModel_Guardrails>("FoundationModels_3864e7f38681b875", 2464243907949671, undefined, []); }
   declare readonly $type: { "s:16FoundationModels19SystemLanguageModelC10GuardrailsV": true };
 }
 
@@ -3517,12 +3517,12 @@ export class SystemLanguageModel_UseCase extends SDKHandle {
    * static let contentTagging: SystemLanguageModel.UseCase
    * @availability iOS 26.0+
    */
-  static get contentTagging(): SystemLanguageModel_UseCase { return callSDK<SystemLanguageModel_UseCase>("FoundationModels_e11dfd5beee01da3", 4203566693372455, undefined, []); }
+  static get contentTagging(): SystemLanguageModel_UseCase { return callSDK<SystemLanguageModel_UseCase>("FoundationModels_3864e7f38681b875", 4203566693372455, undefined, []); }
   /**
    * static let general: SystemLanguageModel.UseCase
    * @availability iOS 26.0+
    */
-  static get general(): SystemLanguageModel_UseCase { return callSDK<SystemLanguageModel_UseCase>("FoundationModels_e11dfd5beee01da3", 4237514321213103, undefined, []); }
+  static get general(): SystemLanguageModel_UseCase { return callSDK<SystemLanguageModel_UseCase>("FoundationModels_3864e7f38681b875", 4237514321213103, undefined, []); }
   declare readonly $type: { "s:16FoundationModels19SystemLanguageModelC7UseCaseV": true };
 }
 
@@ -3535,17 +3535,17 @@ export class SystemLanguageModel_Variant extends SDKHandle {
    * let displayName: String
    * @availability iOS 27.0+
    */
-  get displayName(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3100364406860558, this, []); }
+  get displayName(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3100364406860558, this, []); }
   /**
    * static var coreAdvanced3: SystemLanguageModel.Variant { get }
    * @availability iOS 27.0+
    */
-  static get coreAdvanced3(): SystemLanguageModel_Variant { return callSDK<SystemLanguageModel_Variant>("FoundationModels_e11dfd5beee01da3", 1013957959369481, undefined, []); }
+  static get coreAdvanced3(): SystemLanguageModel_Variant { return callSDK<SystemLanguageModel_Variant>("FoundationModels_3864e7f38681b875", 1013957959369481, undefined, []); }
   /**
    * static var core3: SystemLanguageModel.Variant { get }
    * @availability iOS 27.0+
    */
-  static get core3(): SystemLanguageModel_Variant { return callSDK<SystemLanguageModel_Variant>("FoundationModels_e11dfd5beee01da3", 2353896120605251, undefined, []); }
+  static get core3(): SystemLanguageModel_Variant { return callSDK<SystemLanguageModel_Variant>("FoundationModels_3864e7f38681b875", 2353896120605251, undefined, []); }
   declare readonly $type: { "s:16FoundationModels19SystemLanguageModelC7VariantV": true };
 }
 
@@ -3576,33 +3576,33 @@ export class Transcript extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 26.0+
    */
-  get startIndex(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 616747845904768, this, []); }
+  get startIndex(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 616747845904768, this, []); }
   /**
    * mutating func replaceSubrange<C>(_ subrange: Range<Int>, with newElements: consuming C) where C : Collection, C.Element == Transcript.Entry
    * @availability iOS 27.0+
    */
-  replaceSubrange(subrange: SDKHandle, newElements: Array<Transcript_Entry>): void { return callSDK<void>("FoundationModels_e11dfd5beee01da3", 2957889638722561, this, [subrange, newElements]); }
+  replaceSubrange(subrange: SDKHandle, newElements: Array<Transcript_Entry>): void { return callSDK<void>("FoundationModels_3864e7f38681b875", 2957889638722561, this, [subrange, newElements]); }
   /**
    * var history: Transcript.HistoryView { get set }
    * @availability iOS 27.0+
    */
-  get history(): Transcript_HistoryView { return callSDK<Transcript_HistoryView>("FoundationModels_e11dfd5beee01da3", 630617992603232, this, []); }
-  set history(value: Transcript_HistoryView) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1410879636116961, this, [value]); }
+  get history(): Transcript_HistoryView { return callSDK<Transcript_HistoryView>("FoundationModels_3864e7f38681b875", 630617992603232, this, []); }
+  set history(value: Transcript_HistoryView) { callSDK<void>("FoundationModels_3864e7f38681b875", 1410879636116961, this, [value]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 26.0+
    */
-  get endIndex(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 566090261105804, this, []); }
+  get endIndex(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 566090261105804, this, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): Transcript { return callSDK<Transcript>("FoundationModels_e11dfd5beee01da3", 837535900909479, undefined, []); }
+  static init(): Transcript { return callSDK<Transcript>("FoundationModels_3864e7f38681b875", 837535900909479, undefined, []); }
   /**
    * subscript(index: Transcript.Index) -> Transcript.Entry { get set }
    * @availability iOS 26.0+
    */
-  subscript(index: number): Transcript_Entry { return callSDK<Transcript_Entry>("FoundationModels_e11dfd5beee01da3", 549061021988677, this, [index]); }
+  subscript(index: number): Transcript_Entry { return callSDK<Transcript_Entry>("FoundationModels_3864e7f38681b875", 549061021988677, this, [index]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV": true };
 }
 
@@ -3623,30 +3623,30 @@ export class Transcript_AttachmentSegment extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2910168637789025, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2910168637789025, this, []); }
   /**
    * init(id: String = UUID().uuidString, content: Transcript.Attachment, label: String? = nil)
    * @availability iOS 27.0+
    */
-  static init(id: string, content: Transcript_Attachment, label?: (string) | null): Transcript_AttachmentSegment { return callSDK<Transcript_AttachmentSegment>("FoundationModels_e11dfd5beee01da3", 1288658374703587, undefined, [id, content, label]); }
+  static init(id: string, content: Transcript_Attachment, label?: (string) | null): Transcript_AttachmentSegment { return callSDK<Transcript_AttachmentSegment>("FoundationModels_3864e7f38681b875", 1288658374703587, undefined, [id, content, label]); }
   /**
    * var id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 372815534615265, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1157050116858575, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 372815534615265, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1157050116858575, this, [value]); }
   /**
    * var label: String?
    * @availability iOS 27.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 2173109547914494, this, []); }
-  set label(value: (string) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3494680509995056, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 2173109547914494, this, []); }
+  set label(value: (string) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 3494680509995056, this, [value]); }
   /**
    * var content: Transcript.Attachment
    * @availability iOS 27.0+
    */
-  get content(): Transcript_Attachment { return callSDK<Transcript_Attachment>("FoundationModels_e11dfd5beee01da3", 3426109187957767, this, []); }
-  set content(value: Transcript_Attachment) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3259352990802357, this, [value]); }
+  get content(): Transcript_Attachment { return callSDK<Transcript_Attachment>("FoundationModels_3864e7f38681b875", 3426109187957767, this, []); }
+  set content(value: Transcript_Attachment) { callSDK<void>("FoundationModels_3864e7f38681b875", 3259352990802357, this, [value]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV17AttachmentSegmentV": true };
 }
 
@@ -3671,12 +3671,12 @@ export class Transcript_Entry extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1856209830891725, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1856209830891725, this, []); }
   /**
    * var id: String { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3403971474690098, this, []); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3403971474690098, this, []); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV5EntryO": true };
 }
 
@@ -3695,37 +3695,37 @@ export class Transcript_HistoryView extends SDKHandle {
    * var startIndex: Transcript.HistoryView.Index { get }
    * @availability iOS 27.0+
    */
-  get startIndex(): Transcript_HistoryView_Index { return callSDK<Transcript_HistoryView_Index>("FoundationModels_e11dfd5beee01da3", 3538486177039340, this, []); }
+  get startIndex(): Transcript_HistoryView_Index { return callSDK<Transcript_HistoryView_Index>("FoundationModels_3864e7f38681b875", 3538486177039340, this, []); }
   /**
    * mutating func replaceSubrange<C>(_ subrange: Range<Transcript.HistoryView.Index>, with newElements: C) where C : Collection, C.Element == Transcript.Entry
    * @availability iOS 27.0+
    */
-  replaceSubrange(subrange: SDKHandle, newElements: Array<Transcript_Entry>): void { return callSDK<void>("FoundationModels_e11dfd5beee01da3", 2105046918036357, this, [subrange, newElements]); }
+  replaceSubrange(subrange: SDKHandle, newElements: Array<Transcript_Entry>): void { return callSDK<void>("FoundationModels_3864e7f38681b875", 2105046918036357, this, [subrange, newElements]); }
   /**
    * mutating func append(_ newElement: Transcript.Entry)
    * @availability iOS 27.0+
    */
-  append(newElement: Transcript_Entry): void { return callSDK<void>("FoundationModels_e11dfd5beee01da3", 2624159989110573, this, [newElement]); }
+  append(newElement: Transcript_Entry): void { return callSDK<void>("FoundationModels_3864e7f38681b875", 2624159989110573, this, [newElement]); }
   /**
    * var endIndex: Transcript.HistoryView.Index { get }
    * @availability iOS 27.0+
    */
-  get endIndex(): Transcript_HistoryView_Index { return callSDK<Transcript_HistoryView_Index>("FoundationModels_e11dfd5beee01da3", 237307543170488, this, []); }
+  get endIndex(): Transcript_HistoryView_Index { return callSDK<Transcript_HistoryView_Index>("FoundationModels_3864e7f38681b875", 237307543170488, this, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): Transcript_HistoryView { return callSDK<Transcript_HistoryView>("FoundationModels_e11dfd5beee01da3", 2698894594500710, undefined, []); }
+  static init(): Transcript_HistoryView { return callSDK<Transcript_HistoryView>("FoundationModels_3864e7f38681b875", 2698894594500710, undefined, []); }
   /**
    * subscript(position: Transcript.HistoryView.Index) -> Transcript.Entry { get set }
    * @availability iOS 27.0+
    */
-  subscript(position: Transcript_HistoryView_Index): Transcript_Entry { return callSDK<Transcript_Entry>("FoundationModels_e11dfd5beee01da3", 990814928478235, this, [position]); }
+  subscript(position: Transcript_HistoryView_Index): Transcript_Entry { return callSDK<Transcript_Entry>("FoundationModels_3864e7f38681b875", 990814928478235, this, [position]); }
   /**
    * subscript(bounds: Range<Transcript.HistoryView.Index>) -> Transcript.HistoryView { get set }
    * @availability iOS 27.0+
    */
-  subscript34821(bounds: SDKHandle): Transcript_HistoryView { return callSDK<Transcript_HistoryView>("FoundationModels_e11dfd5beee01da3", 4452264284251653, this, [bounds]); }
+  subscript34821(bounds: SDKHandle): Transcript_HistoryView { return callSDK<Transcript_HistoryView>("FoundationModels_3864e7f38681b875", 4452264284251653, this, [bounds]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV11HistoryViewV": true };
 }
 
@@ -3750,12 +3750,12 @@ export class Transcript_HistoryView_Index extends SDKHandle {
    * func advanced(by n: Int) -> Transcript.HistoryView.Index
    * @availability iOS 27.0+
    */
-  advanced(n: number): Transcript_HistoryView_Index { return callSDK<Transcript_HistoryView_Index>("FoundationModels_e11dfd5beee01da3", 1954864218622850, this, [n]); }
+  advanced(n: number): Transcript_HistoryView_Index { return callSDK<Transcript_HistoryView_Index>("FoundationModels_3864e7f38681b875", 1954864218622850, this, [n]); }
   /**
    * func distance(to other: Transcript.HistoryView.Index) -> Int
    * @availability iOS 27.0+
    */
-  distance(other: Transcript_HistoryView_Index): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 3031198757281225, this, [other]); }
+  distance(other: Transcript_HistoryView_Index): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 3031198757281225, this, [other]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV11HistoryViewV5IndexV": true };
 }
 
@@ -3792,47 +3792,47 @@ export class Transcript_ImageAttachment extends SDKHandle {
    * var cgImage: CGImage { get }
    * @availability iOS 27.0+
    */
-  get cgImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("FoundationModels_e11dfd5beee01da3", 1896703856761845, this, []); }
+  get cgImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("FoundationModels_3864e7f38681b875", 1896703856761845, this, []); }
   /**
    * var ciImage: CIImage { get }
    * @availability iOS 27.0+
    */
-  get ciImage(): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("FoundationModels_e11dfd5beee01da3", 2274755347825596, this, []); }
+  get ciImage(): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("FoundationModels_3864e7f38681b875", 2274755347825596, this, []); }
   /**
    * var orientation: CGImagePropertyOrientation { get }
    * @availability iOS 27.0+
    */
-  get orientation(): _ImageIO_CGImagePropertyOrientation { return callSDK<_ImageIO_CGImagePropertyOrientation>("FoundationModels_e11dfd5beee01da3", 4283478060784309, this, []); }
+  get orientation(): _ImageIO_CGImagePropertyOrientation { return callSDK<_ImageIO_CGImagePropertyOrientation>("FoundationModels_3864e7f38681b875", 4283478060784309, this, []); }
   /**
    * func pixelBuffer(resolution: CGSize? = nil, pixelFormat: OSType? = nil) throws -> CVReadOnlyPixelBuffer
    * @availability iOS 27.0+
    */
-  pixelBuffer(resolution?: ({ width: number; height: number }) | null, pixelFormat?: (SDKHandle) | null): _CoreVideo_CVReadOnlyPixelBuffer { return callSDK<_CoreVideo_CVReadOnlyPixelBuffer>("FoundationModels_e11dfd5beee01da3", 3146410863916355, this, [resolution, pixelFormat]); }
+  pixelBuffer(resolution?: ({ width: number; height: number }) | null, pixelFormat?: (SDKHandle) | null): _CoreVideo_CVReadOnlyPixelBuffer { return callSDK<_CoreVideo_CVReadOnlyPixelBuffer>("FoundationModels_3864e7f38681b875", 3146410863916355, this, [resolution, pixelFormat]); }
   /**
    * var url: URL? { get }
    * @availability iOS 27.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("FoundationModels_e11dfd5beee01da3", 359045121453487, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("FoundationModels_3864e7f38681b875", 359045121453487, this, []); }
   /**
    * init(imageURL: URL, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 27.0+
    */
-  static initImageURLOrientation(imageURL: string, orientation?: $SDK3): Transcript_ImageAttachment { return callSDK<Transcript_ImageAttachment>("FoundationModels_e11dfd5beee01da3", 1473950986604670, undefined, [imageURL, orientation]); }
+  static initImageURLOrientation(imageURL: string, orientation?: $SDK3): Transcript_ImageAttachment { return callSDK<Transcript_ImageAttachment>("FoundationModels_3864e7f38681b875", 1473950986604670, undefined, [imageURL, orientation]); }
   /**
    * init(_ cgImage: CGImage, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 27.0+
    */
-  static initOrientation(cgImage: _CoreGraphics_CGImage, orientation?: $SDK3): Transcript_ImageAttachment { return callSDK<Transcript_ImageAttachment>("FoundationModels_e11dfd5beee01da3", 1083819867504871, undefined, [cgImage, orientation]); }
+  static initOrientation(cgImage: _CoreGraphics_CGImage, orientation?: $SDK3): Transcript_ImageAttachment { return callSDK<Transcript_ImageAttachment>("FoundationModels_3864e7f38681b875", 1083819867504871, undefined, [cgImage, orientation]); }
   /**
    * init(_ pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 27.0+
    */
-  static initOrientation56194(pixelBuffer: _CoreVideo_CVBuffer, orientation?: $SDK3): Transcript_ImageAttachment { return callSDK<Transcript_ImageAttachment>("FoundationModels_e11dfd5beee01da3", 3538421505463088, undefined, [pixelBuffer, orientation]); }
+  static initOrientation56194(pixelBuffer: _CoreVideo_CVBuffer, orientation?: $SDK3): Transcript_ImageAttachment { return callSDK<Transcript_ImageAttachment>("FoundationModels_3864e7f38681b875", 3538421505463088, undefined, [pixelBuffer, orientation]); }
   /**
    * init(_ ciImage: CIImage, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 27.0+
    */
-  static initOrientation16012(ciImage: _CoreImage_CIImage, orientation?: $SDK3): Transcript_ImageAttachment { return callSDK<Transcript_ImageAttachment>("FoundationModels_e11dfd5beee01da3", 227336358269997, undefined, [ciImage, orientation]); }
+  static initOrientation16012(ciImage: _CoreImage_CIImage, orientation?: $SDK3): Transcript_ImageAttachment { return callSDK<Transcript_ImageAttachment>("FoundationModels_3864e7f38681b875", 227336358269997, undefined, [ciImage, orientation]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV15ImageAttachmentV": true };
 }
 
@@ -3857,30 +3857,30 @@ export class Transcript_Instructions extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1942376445646852, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1942376445646852, this, []); }
   /**
    * var toolDefinitions: [Transcript.ToolDefinition]
    * @availability iOS 26.0+
    */
-  get toolDefinitions(): $SDK21 { return callSDK<$SDK21>("FoundationModels_e11dfd5beee01da3", 3641909433028254, this, []); }
-  set toolDefinitions(value: $SDK21) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4385276617680278, this, [value]); }
+  get toolDefinitions(): $SDK21 { return callSDK<$SDK21>("FoundationModels_3864e7f38681b875", 3641909433028254, this, []); }
+  set toolDefinitions(value: $SDK21) { callSDK<void>("FoundationModels_3864e7f38681b875", 4385276617680278, this, [value]); }
   /**
    * init(id: String = UUID().uuidString, segments: [Transcript.Segment], toolDefinitions: [Transcript.ToolDefinition])
    * @availability iOS 26.0+
    */
-  static init(id: string, segments: $SDK43, toolDefinitions: $SDK21): Transcript_Instructions { return callSDK<Transcript_Instructions>("FoundationModels_e11dfd5beee01da3", 1761495785035825, undefined, [id, segments, toolDefinitions]); }
+  static init(id: string, segments: $SDK43, toolDefinitions: $SDK21): Transcript_Instructions { return callSDK<Transcript_Instructions>("FoundationModels_3864e7f38681b875", 1761495785035825, undefined, [id, segments, toolDefinitions]); }
   /**
    * var id: String
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 4183803237928725, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 863704788428946, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 4183803237928725, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 863704788428946, this, [value]); }
   /**
    * var segments: [Transcript.Segment]
    * @availability iOS 26.0+
    */
-  get segments(): $SDK43 { return callSDK<$SDK43>("FoundationModels_e11dfd5beee01da3", 336864111705993, this, []); }
-  set segments(value: $SDK43) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3633938199059219, this, [value]); }
+  get segments(): $SDK43 { return callSDK<$SDK43>("FoundationModels_3864e7f38681b875", 336864111705993, this, []); }
+  set segments(value: $SDK43) { callSDK<void>("FoundationModels_3864e7f38681b875", 3633938199059219, this, [value]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV12InstructionsV": true };
 }
 
@@ -3905,53 +3905,53 @@ export class Transcript_Prompt extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3764734008356386, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3764734008356386, this, []); }
   /**
    * var contextOptions: ContextOptions
    * @availability iOS 27.0+
    */
-  get contextOptions(): ContextOptions { return callSDK<ContextOptions>("FoundationModels_e11dfd5beee01da3", 3023736279168893, this, []); }
-  set contextOptions(value: ContextOptions) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 719497598451161, this, [value]); }
+  get contextOptions(): ContextOptions { return callSDK<ContextOptions>("FoundationModels_3864e7f38681b875", 3023736279168893, this, []); }
+  set contextOptions(value: ContextOptions) { callSDK<void>("FoundationModels_3864e7f38681b875", 719497598451161, this, [value]); }
   /**
    * var responseFormat: Transcript.ResponseFormat?
    * @availability iOS 26.0+
    */
-  get responseFormat(): $SDK44 { return callSDK<$SDK44>("FoundationModels_e11dfd5beee01da3", 1737874427299167, this, []); }
-  set responseFormat(value: $SDK44) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4349239344543015, this, [value]); }
+  get responseFormat(): $SDK44 { return callSDK<$SDK44>("FoundationModels_3864e7f38681b875", 1737874427299167, this, []); }
+  set responseFormat(value: $SDK44) { callSDK<void>("FoundationModels_3864e7f38681b875", 4349239344543015, this, [value]); }
   /**
    * init(id: String = UUID().uuidString, metadata: [String : any ConvertibleToGeneratedContent] = [:], segments: [Transcript.Segment], options: GenerationOptions = GenerationOptions(), responseFormat: Transcript.ResponseFormat? = nil, contextOptions: ContextOptions = ContextOptions())
    * @availability iOS 27.0+
    */
-  static initIdMetadataSegmentsOptionsResponseFormatContextOptions(id: string, metadata: $SDK15, segments: $SDK43, options?: GenerationOptions, responseFormat?: $SDK44, contextOptions?: ContextOptions): Transcript_Prompt { return callSDK<Transcript_Prompt>("FoundationModels_e11dfd5beee01da3", 2976878343319581, undefined, [id, metadata, segments, options, responseFormat, contextOptions]); }
+  static initIdMetadataSegmentsOptionsResponseFormatContextOptions(id: string, metadata: $SDK15, segments: $SDK43, options?: GenerationOptions, responseFormat?: $SDK44, contextOptions?: ContextOptions): Transcript_Prompt { return callSDK<Transcript_Prompt>("FoundationModels_3864e7f38681b875", 2976878343319581, undefined, [id, metadata, segments, options, responseFormat, contextOptions]); }
   /**
    * init(id: String = UUID().uuidString, segments: [Transcript.Segment], options: GenerationOptions = GenerationOptions(), responseFormat: Transcript.ResponseFormat? = nil)
    * @availability iOS 26.0+
    */
-  static initIdSegmentsOptionsResponseFormat(id: string, segments: $SDK43, options?: GenerationOptions, responseFormat?: $SDK44): Transcript_Prompt { return callSDK<Transcript_Prompt>("FoundationModels_e11dfd5beee01da3", 2307392598173786, undefined, [id, segments, options, responseFormat]); }
+  static initIdSegmentsOptionsResponseFormat(id: string, segments: $SDK43, options?: GenerationOptions, responseFormat?: $SDK44): Transcript_Prompt { return callSDK<Transcript_Prompt>("FoundationModels_3864e7f38681b875", 2307392598173786, undefined, [id, segments, options, responseFormat]); }
   /**
    * var id: String
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1181482490589450, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3183198552856279, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1181482490589450, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3183198552856279, this, [value]); }
   /**
    * var options: GenerationOptions
    * @availability iOS 26.0+
    */
-  get options(): GenerationOptions { return callSDK<GenerationOptions>("FoundationModels_e11dfd5beee01da3", 4082669526197131, this, []); }
-  set options(value: GenerationOptions) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3811452481963529, this, [value]); }
+  get options(): GenerationOptions { return callSDK<GenerationOptions>("FoundationModels_3864e7f38681b875", 4082669526197131, this, []); }
+  set options(value: GenerationOptions) { callSDK<void>("FoundationModels_3864e7f38681b875", 3811452481963529, this, [value]); }
   /**
    * var metadata: [String : GeneratedContent]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_e11dfd5beee01da3", 562921041605371, this, []); }
-  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1740793547114571, this, [value]); }
+  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_3864e7f38681b875", 562921041605371, this, []); }
+  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_3864e7f38681b875", 1740793547114571, this, [value]); }
   /**
    * var segments: [Transcript.Segment]
    * @availability iOS 26.0+
    */
-  get segments(): $SDK43 { return callSDK<$SDK43>("FoundationModels_e11dfd5beee01da3", 3263713203370557, this, []); }
-  set segments(value: $SDK43) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3479074854372466, this, [value]); }
+  get segments(): $SDK43 { return callSDK<$SDK43>("FoundationModels_3864e7f38681b875", 3263713203370557, this, []); }
+  set segments(value: $SDK43) { callSDK<void>("FoundationModels_3864e7f38681b875", 3479074854372466, this, [value]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV6PromptV": true };
 }
 
@@ -3970,36 +3970,36 @@ export class Transcript_Reasoning extends SDKHandle {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 4363078258906934, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 4363078258906934, this, []); }
   /**
    * init(id: String = UUID().uuidString, metadata: [String : any ConvertibleToGeneratedContent] = [:], segments: [Transcript.Segment], signature: Data? = nil)
    * @availability iOS 27.0+
    */
-  static init(id: string, metadata: $SDK15, segments: $SDK43, signature?: (ArrayBuffer) | null): Transcript_Reasoning { return callSDK<Transcript_Reasoning>("FoundationModels_e11dfd5beee01da3", 1453231090867098, undefined, [id, metadata, segments, signature]); }
+  static init(id: string, metadata: $SDK15, segments: $SDK43, signature?: (ArrayBuffer) | null): Transcript_Reasoning { return callSDK<Transcript_Reasoning>("FoundationModels_3864e7f38681b875", 1453231090867098, undefined, [id, metadata, segments, signature]); }
   /**
    * var id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1223702399243421, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3599007265766109, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1223702399243421, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3599007265766109, this, [value]); }
   /**
    * var metadata: [String : GeneratedContent]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_e11dfd5beee01da3", 184667687471991, this, []); }
-  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2492599657938109, this, [value]); }
+  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_3864e7f38681b875", 184667687471991, this, []); }
+  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_3864e7f38681b875", 2492599657938109, this, [value]); }
   /**
    * var segments: [Transcript.Segment]
    * @availability iOS 27.0+
    */
-  get segments(): $SDK43 { return callSDK<$SDK43>("FoundationModels_e11dfd5beee01da3", 1651362469937485, this, []); }
-  set segments(value: $SDK43) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2154733843496755, this, [value]); }
+  get segments(): $SDK43 { return callSDK<$SDK43>("FoundationModels_3864e7f38681b875", 1651362469937485, this, []); }
+  set segments(value: $SDK43) { callSDK<void>("FoundationModels_3864e7f38681b875", 2154733843496755, this, [value]); }
   /**
    * var signature: Data?
    * @availability iOS 27.0+
    */
-  get signature(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("FoundationModels_e11dfd5beee01da3", 244370032656504, this, []); }
-  set signature(value: (ArrayBuffer) | null) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 103642207998778, this, [value]); }
+  get signature(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("FoundationModels_3864e7f38681b875", 244370032656504, this, []); }
+  set signature(value: (ArrayBuffer) | null) { callSDK<void>("FoundationModels_3864e7f38681b875", 103642207998778, this, [value]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV9ReasoningV": true };
 }
 
@@ -4018,41 +4018,41 @@ export class Transcript_Response extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 270781999792192, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 270781999792192, this, []); }
   /**
    * init(id: String = UUID().uuidString, assetIDs: [String], segments: [Transcript.Segment])
    * @availability iOS 26.0+
    */
-  static initIdAssetIDsSegments(id: string, assetIDs: Array<string>, segments: $SDK43): Transcript_Response { return callSDK<Transcript_Response>("FoundationModels_e11dfd5beee01da3", 2347695890220043, undefined, [id, assetIDs, segments]); }
+  static initIdAssetIDsSegments(id: string, assetIDs: Array<string>, segments: $SDK43): Transcript_Response { return callSDK<Transcript_Response>("FoundationModels_3864e7f38681b875", 2347695890220043, undefined, [id, assetIDs, segments]); }
   /**
    * init(id: String = UUID().uuidString, metadata: [String : any ConvertibleToGeneratedContent] = [:], segments: [Transcript.Segment])
    * @availability iOS 27.0+
    */
-  static initIdMetadataSegments(id: string, metadata: $SDK15, segments: $SDK43): Transcript_Response { return callSDK<Transcript_Response>("FoundationModels_e11dfd5beee01da3", 2360081185312662, undefined, [id, metadata, segments]); }
+  static initIdMetadataSegments(id: string, metadata: $SDK15, segments: $SDK43): Transcript_Response { return callSDK<Transcript_Response>("FoundationModels_3864e7f38681b875", 2360081185312662, undefined, [id, metadata, segments]); }
   /**
    * var id: String
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 4236067545831292, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1135859600362615, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 4236067545831292, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1135859600362615, this, [value]); }
   /**
    * var assetIDs: [String]
    * @availability iOS 26.0+
    */
-  get assetIDs(): Array<string> { return callSDK<Array<string>>("FoundationModels_e11dfd5beee01da3", 4238045100111679, this, []); }
-  set assetIDs(value: Array<string>) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4275892217901466, this, [value]); }
+  get assetIDs(): Array<string> { return callSDK<Array<string>>("FoundationModels_3864e7f38681b875", 4238045100111679, this, []); }
+  set assetIDs(value: Array<string>) { callSDK<void>("FoundationModels_3864e7f38681b875", 4275892217901466, this, [value]); }
   /**
    * @backDeployed(before: iOS 27.0, macOS 27.0, visionOS 27.0)
   var metadata: [String : GeneratedContent] { get }
    * @availability iOS 26.0+
    */
-  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_e11dfd5beee01da3", 4396476202094309, this, []); }
+  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_3864e7f38681b875", 4396476202094309, this, []); }
   /**
    * var segments: [Transcript.Segment]
    * @availability iOS 26.0+
    */
-  get segments(): $SDK43 { return callSDK<$SDK43>("FoundationModels_e11dfd5beee01da3", 1567484359886046, this, []); }
-  set segments(value: $SDK43) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3775170838717656, this, [value]); }
+  get segments(): $SDK43 { return callSDK<$SDK43>("FoundationModels_3864e7f38681b875", 1567484359886046, this, []); }
+  set segments(value: $SDK43) { callSDK<void>("FoundationModels_3864e7f38681b875", 3775170838717656, this, [value]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV8ResponseV": true };
 }
 
@@ -4071,22 +4071,22 @@ export class Transcript_ResponseFormat extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3805150314679713, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3805150314679713, this, []); }
   /**
    * let kind: Transcript.ResponseFormat.Kind
    * @availability iOS 27.0+
    */
-  get kind(): Transcript_ResponseFormat_Kind { return callSDK<Transcript_ResponseFormat_Kind>("FoundationModels_e11dfd5beee01da3", 3265381838962226, this, []); }
+  get kind(): Transcript_ResponseFormat_Kind { return callSDK<Transcript_ResponseFormat_Kind>("FoundationModels_3864e7f38681b875", 3265381838962226, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 26.0+
    */
-  get name(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1877484138817429, this, []); }
+  get name(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1877484138817429, this, []); }
   /**
    * init(schema: GenerationSchema)
    * @availability iOS 26.0+
    */
-  static init(schema: GenerationSchema): Transcript_ResponseFormat { return callSDK<Transcript_ResponseFormat>("FoundationModels_e11dfd5beee01da3", 4360953386003328, undefined, [schema]); }
+  static init(schema: GenerationSchema): Transcript_ResponseFormat { return callSDK<Transcript_ResponseFormat>("FoundationModels_3864e7f38681b875", 4360953386003328, undefined, [schema]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV14ResponseFormatV": true };
 }
 
@@ -4107,12 +4107,12 @@ export class Transcript_Segment extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1986394854783799, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1986394854783799, this, []); }
   /**
    * var id: String { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2577721341157702, this, []); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2577721341157702, this, []); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV7SegmentO": true };
 }
 
@@ -4132,43 +4132,43 @@ export class Transcript_StructuredSegment extends SDKHandle {
   var schemaName: String { get set }
    * @availability iOS 26.0+
    */
-  get schemaName(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3814759499945361, this, []); }
-  set schemaName(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1333879566760585, this, [value]); }
+  get schemaName(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3814759499945361, this, []); }
+  set schemaName(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1333879566760585, this, [value]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2781140683997978, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2781140683997978, this, []); }
   /**
    * init(id: String = UUID().uuidString, schemaName: String, content: GeneratedContent)
    * @availability iOS 27.0+
    */
-  static initIdSchemaNameContent(id: string, schemaName: string, content: GeneratedContent): Transcript_StructuredSegment { return callSDK<Transcript_StructuredSegment>("FoundationModels_e11dfd5beee01da3", 4208512679393394, undefined, [id, schemaName, content]); }
+  static initIdSchemaNameContent(id: string, schemaName: string, content: GeneratedContent): Transcript_StructuredSegment { return callSDK<Transcript_StructuredSegment>("FoundationModels_3864e7f38681b875", 4208512679393394, undefined, [id, schemaName, content]); }
   /**
    * init(id: String = UUID().uuidString, source: String, content: GeneratedContent)
    * @availability iOS 26.0+
    * @deprecated iOS 27.0
    */
-  static initIdSourceContent(id: string, source: string, content: GeneratedContent): Transcript_StructuredSegment { return callSDK<Transcript_StructuredSegment>("FoundationModels_e11dfd5beee01da3", 2872396593720789, undefined, [id, source, content]); }
+  static initIdSourceContent(id: string, source: string, content: GeneratedContent): Transcript_StructuredSegment { return callSDK<Transcript_StructuredSegment>("FoundationModels_3864e7f38681b875", 2872396593720789, undefined, [id, source, content]); }
   /**
    * var id: String
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1607331748550607, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2961546958004080, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1607331748550607, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 2961546958004080, this, [value]); }
   /**
    * var source: String
    * @availability iOS 26.0+
    * @deprecated iOS 27.0
    */
-  get source(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 4438834627339777, this, []); }
-  set source(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2738710734605069, this, [value]); }
+  get source(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 4438834627339777, this, []); }
+  set source(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 2738710734605069, this, [value]); }
   /**
    * var content: GeneratedContent { get set }
    * @availability iOS 26.0+
    */
-  get content(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 4293614770023273, this, []); }
-  set content(value: GeneratedContent) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 51220582419657, this, [value]); }
+  get content(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 4293614770023273, this, []); }
+  set content(value: GeneratedContent) { callSDK<void>("FoundationModels_3864e7f38681b875", 51220582419657, this, [value]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV17StructuredSegmentV": true };
 }
 
@@ -4193,24 +4193,24 @@ export class Transcript_TextSegment extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 802692993394608, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 802692993394608, this, []); }
   /**
    * init(id: String = UUID().uuidString, content: String)
    * @availability iOS 26.0+
    */
-  static init(id: string, content: string): Transcript_TextSegment { return callSDK<Transcript_TextSegment>("FoundationModels_e11dfd5beee01da3", 59170725173253, undefined, [id, content]); }
+  static init(id: string, content: string): Transcript_TextSegment { return callSDK<Transcript_TextSegment>("FoundationModels_3864e7f38681b875", 59170725173253, undefined, [id, content]); }
   /**
    * var id: String
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2045847814782568, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1411396901484864, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2045847814782568, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1411396901484864, this, [value]); }
   /**
    * var content: String
    * @availability iOS 26.0+
    */
-  get content(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2732548842373497, this, []); }
-  set content(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1532004111137807, this, [value]); }
+  get content(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2732548842373497, this, []); }
+  set content(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1532004111137807, this, [value]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV11TextSegmentV": true };
 }
 
@@ -4229,41 +4229,41 @@ export class Transcript_ToolCall extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3292624567601876, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3292624567601876, this, []); }
   /**
    * init(id: String, metadata: [String : any ConvertibleToGeneratedContent], toolName: String, arguments: GeneratedContent)
    * @availability iOS 27.0+
    */
-  static initIdMetadataToolNameArguments(id: string, metadata: $SDK15, toolName: string, arguments_: GeneratedContent): Transcript_ToolCall { return callSDK<Transcript_ToolCall>("FoundationModels_e11dfd5beee01da3", 4053613921501151, undefined, [id, metadata, toolName, arguments_]); }
+  static initIdMetadataToolNameArguments(id: string, metadata: $SDK15, toolName: string, arguments_: GeneratedContent): Transcript_ToolCall { return callSDK<Transcript_ToolCall>("FoundationModels_3864e7f38681b875", 4053613921501151, undefined, [id, metadata, toolName, arguments_]); }
   /**
    * init(id: String, toolName: String, arguments: GeneratedContent)
    * @availability iOS 26.0+
    */
-  static initIdToolNameArguments(id: string, toolName: string, arguments_: GeneratedContent): Transcript_ToolCall { return callSDK<Transcript_ToolCall>("FoundationModels_e11dfd5beee01da3", 838006976056818, undefined, [id, toolName, arguments_]); }
+  static initIdToolNameArguments(id: string, toolName: string, arguments_: GeneratedContent): Transcript_ToolCall { return callSDK<Transcript_ToolCall>("FoundationModels_3864e7f38681b875", 838006976056818, undefined, [id, toolName, arguments_]); }
   /**
    * var id: String
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 970224057208398, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2972891672318676, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 970224057208398, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 2972891672318676, this, [value]); }
   /**
    * var metadata: [String : GeneratedContent]
    * @availability iOS 27.0+
    */
-  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_e11dfd5beee01da3", 3128112880628070, this, []); }
-  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1759243331573241, this, [value]); }
+  get metadata(): $SDK20 { return callSDK<$SDK20>("FoundationModels_3864e7f38681b875", 3128112880628070, this, []); }
+  set metadata(value: $SDK20) { callSDK<void>("FoundationModels_3864e7f38681b875", 1759243331573241, this, [value]); }
   /**
    * var toolName: String
    * @availability iOS 26.0+
    */
-  get toolName(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 426255502379994, this, []); }
-  set toolName(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 3832295714969317, this, [value]); }
+  get toolName(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 426255502379994, this, []); }
+  set toolName(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 3832295714969317, this, [value]); }
   /**
    * var arguments: GeneratedContent { get set }
    * @availability iOS 26.0+
    */
-  get arguments(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_e11dfd5beee01da3", 2754806978909170, this, []); }
-  set arguments(value: GeneratedContent) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 4256097838353447, this, [value]); }
+  get arguments(): GeneratedContent { return callSDK<GeneratedContent>("FoundationModels_3864e7f38681b875", 2754806978909170, this, []); }
+  set arguments(value: GeneratedContent) { callSDK<void>("FoundationModels_3864e7f38681b875", 4256097838353447, this, [value]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV8ToolCallV": true };
 }
 
@@ -4282,33 +4282,33 @@ export class Transcript_ToolCalls extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 26.0+
    */
-  get startIndex(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 1494431216007863, this, []); }
+  get startIndex(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 1494431216007863, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 237723978211005, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 237723978211005, this, []); }
   /**
    * var id: String
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 3203674132577645, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 244612103032548, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 3203674132577645, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 244612103032548, this, [value]); }
   /**
    * init<S>(id: String = UUID().uuidString, _ calls: S) where S : Sequence, S.Element == Transcript.ToolCall
    * @availability iOS 26.0+
    */
-  static init(id: string, calls: Array<Transcript_ToolCall>): Transcript_ToolCalls { return callSDK<Transcript_ToolCalls>("FoundationModels_e11dfd5beee01da3", 4058077301727184, undefined, [id, calls]); }
+  static init(id: string, calls: Array<Transcript_ToolCall>): Transcript_ToolCalls { return callSDK<Transcript_ToolCalls>("FoundationModels_3864e7f38681b875", 4058077301727184, undefined, [id, calls]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 26.0+
    */
-  get endIndex(): number { return callSDK<number>("FoundationModels_e11dfd5beee01da3", 1934125350837050, this, []); }
+  get endIndex(): number { return callSDK<number>("FoundationModels_3864e7f38681b875", 1934125350837050, this, []); }
   /**
    * subscript(position: Int) -> Transcript.ToolCall { get }
    * @availability iOS 26.0+
    */
-  subscript(position: number): Transcript_ToolCall { return callSDK<Transcript_ToolCall>("FoundationModels_e11dfd5beee01da3", 3242809483670281, this, [position]); }
+  subscript(position: number): Transcript_ToolCall { return callSDK<Transcript_ToolCall>("FoundationModels_3864e7f38681b875", 3242809483670281, this, [position]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV9ToolCallsV": true };
 }
 
@@ -4357,25 +4357,25 @@ export class Transcript_ToolDefinition extends SDKHandle {
    * var parameters: GenerationSchema { get set }
    * @availability iOS 27.0+
    */
-  get parameters(): GenerationSchema { return callSDK<GenerationSchema>("FoundationModels_e11dfd5beee01da3", 1023683738622265, this, []); }
-  set parameters(value: GenerationSchema) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 240006523880536, this, [value]); }
+  get parameters(): GenerationSchema { return callSDK<GenerationSchema>("FoundationModels_3864e7f38681b875", 1023683738622265, this, []); }
+  set parameters(value: GenerationSchema) { callSDK<void>("FoundationModels_3864e7f38681b875", 240006523880536, this, [value]); }
   /**
    * var description: String
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 877607538575051, this, []); }
-  set description(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2598036561575476, this, [value]); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 877607538575051, this, []); }
+  set description(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 2598036561575476, this, [value]); }
   /**
    * init(name: String, description: String, parameters: GenerationSchema)
    * @availability iOS 26.0+
    */
-  static init(name: string, description: string, parameters: GenerationSchema): Transcript_ToolDefinition { return callSDK<Transcript_ToolDefinition>("FoundationModels_e11dfd5beee01da3", 841456714614606, undefined, [name, description, parameters]); }
+  static init(name: string, description: string, parameters: GenerationSchema): Transcript_ToolDefinition { return callSDK<Transcript_ToolDefinition>("FoundationModels_3864e7f38681b875", 841456714614606, undefined, [name, description, parameters]); }
   /**
    * var name: String
    * @availability iOS 26.0+
    */
-  get name(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 1906843164071666, this, []); }
-  set name(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 365913044858537, this, [value]); }
+  get name(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 1906843164071666, this, []); }
+  set name(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 365913044858537, this, [value]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV14ToolDefinitionV": true };
 }
 
@@ -4388,30 +4388,30 @@ export class Transcript_ToolOutput extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 4104484963235765, this, []); }
+  get description(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 4104484963235765, this, []); }
   /**
    * init(id: String, toolName: String, segments: [Transcript.Segment])
    * @availability iOS 26.0+
    */
-  static init(id: string, toolName: string, segments: $SDK43): Transcript_ToolOutput { return callSDK<Transcript_ToolOutput>("FoundationModels_e11dfd5beee01da3", 315653183448558, undefined, [id, toolName, segments]); }
+  static init(id: string, toolName: string, segments: $SDK43): Transcript_ToolOutput { return callSDK<Transcript_ToolOutput>("FoundationModels_3864e7f38681b875", 315653183448558, undefined, [id, toolName, segments]); }
   /**
    * var id: String
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 4243037818831486, this, []); }
-  set id(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2740675684961740, this, [value]); }
+  get id(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 4243037818831486, this, []); }
+  set id(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 2740675684961740, this, [value]); }
   /**
    * var segments: [Transcript.Segment]
    * @availability iOS 26.0+
    */
-  get segments(): $SDK43 { return callSDK<$SDK43>("FoundationModels_e11dfd5beee01da3", 1612640147529787, this, []); }
-  set segments(value: $SDK43) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 2770147096711068, this, [value]); }
+  get segments(): $SDK43 { return callSDK<$SDK43>("FoundationModels_3864e7f38681b875", 1612640147529787, this, []); }
+  set segments(value: $SDK43) { callSDK<void>("FoundationModels_3864e7f38681b875", 2770147096711068, this, [value]); }
   /**
    * var toolName: String
    * @availability iOS 26.0+
    */
-  get toolName(): string { return callSDK<string>("FoundationModels_e11dfd5beee01da3", 2401068238966515, this, []); }
-  set toolName(value: string) { callSDK<void>("FoundationModels_e11dfd5beee01da3", 1107696164180783, this, [value]); }
+  get toolName(): string { return callSDK<string>("FoundationModels_3864e7f38681b875", 2401068238966515, this, []); }
+  set toolName(value: string) { callSDK<void>("FoundationModels_3864e7f38681b875", 1107696164180783, this, [value]); }
   declare readonly $type: { "s:16FoundationModels10TranscriptV10ToolOutputV": true };
 }
 
@@ -4430,12 +4430,12 @@ export class TranscriptErrorHandlingPolicy extends SDKHandle {
    * static let revertTranscript: TranscriptErrorHandlingPolicy
    * @availability iOS 27.0+
    */
-  static get revertTranscript(): TranscriptErrorHandlingPolicy { return callSDK<TranscriptErrorHandlingPolicy>("FoundationModels_e11dfd5beee01da3", 153388519378430, undefined, []); }
+  static get revertTranscript(): TranscriptErrorHandlingPolicy { return callSDK<TranscriptErrorHandlingPolicy>("FoundationModels_3864e7f38681b875", 153388519378430, undefined, []); }
   /**
    * static let preserveTranscript: TranscriptErrorHandlingPolicy
    * @availability iOS 27.0+
    */
-  static get preserveTranscript(): TranscriptErrorHandlingPolicy { return callSDK<TranscriptErrorHandlingPolicy>("FoundationModels_e11dfd5beee01da3", 1222880230511700, undefined, []); }
+  static get preserveTranscript(): TranscriptErrorHandlingPolicy { return callSDK<TranscriptErrorHandlingPolicy>("FoundationModels_3864e7f38681b875", 1222880230511700, undefined, []); }
   declare readonly $type: { "s:16FoundationModels29TranscriptErrorHandlingPolicyV": true };
 }
 
@@ -4465,147 +4465,147 @@ export type TupleDynamicInstructions_ForEach = $SDK0;
  */
 export type TupleDynamicInstructions_SessionProperty = $SDK1;
 
-registerSDKClass("FoundationModels.AnyDynamicInstructions", AnyDynamicInstructions, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Attachment", Attachment, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"label":{"id":4143592580516225}} });
-registerSDKClass("FoundationModels.ConditionalDynamicInstructions", ConditionalDynamicInstructions, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.ConditionalDynamicInstructions.Branch", ConditionalDynamicInstructions_Branch, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.ContextOptions", ContextOptions, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.ContextOptions.ReasoningLevel", ContextOptions_ReasoningLevel, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
+registerSDKClass("FoundationModels.AnyDynamicInstructions", AnyDynamicInstructions, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Attachment", Attachment, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"label":{"id":4143592580516225}} });
+registerSDKClass("FoundationModels.ConditionalDynamicInstructions", ConditionalDynamicInstructions, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.ConditionalDynamicInstructions.Branch", ConditionalDynamicInstructions_Branch, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.ContextOptions", ContextOptions, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.ContextOptions.ReasoningLevel", ContextOptions_ReasoningLevel, { module: "FoundationModels_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:16FoundationModels31ConvertibleFromGeneratedContentP", {"init":"init(_:)"});
 registerSDKProtocol("s:16FoundationModels29ConvertibleToGeneratedContentP", {});
-registerSDKClass("Foundation.Decimal", Decimal, { module: "FoundationModels_e11dfd5beee01da3", properties: {} }, true);
-registerSDKClass("FoundationModels.DynamicGenerationSchema", DynamicGenerationSchema, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.DynamicGenerationSchema.Property", DynamicGenerationSchema_Property, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Foundation.Decimal", Decimal, { module: "FoundationModels_3864e7f38681b875", properties: {} }, true);
+registerSDKClass("FoundationModels.DynamicGenerationSchema", DynamicGenerationSchema, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.DynamicGenerationSchema.Property", DynamicGenerationSchema_Property, { module: "FoundationModels_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:16FoundationModels19DynamicInstructionsP", {});
-registerSDKClass("FoundationModels.DynamicInstructionsBuilder", DynamicInstructionsBuilder, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.DynamicInstructionsForEach", DynamicInstructionsForEach, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.EmptyDynamicInstructions", EmptyDynamicInstructions, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
+registerSDKClass("FoundationModels.DynamicInstructionsBuilder", DynamicInstructionsBuilder, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.DynamicInstructionsForEach", DynamicInstructionsForEach, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.EmptyDynamicInstructions", EmptyDynamicInstructions, { module: "FoundationModels_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:16FoundationModels9GenerableP", {"init":"init(_:)"});
-registerSDKClass("FoundationModels.GeneratedContent", GeneratedContent, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"valueForProperty":{"id":470782876039686},"valueForProperty41093":{"id":1408682214668201},"value":{"id":146072501115617}} });
-registerSDKClass("FoundationModels.GeneratedContent.Kind", GeneratedContent_Kind, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GeneratedContent.ParsingError", GeneratedContent_ParsingError, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GenerationGuide", GenerationGuide, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GenerationID", GenerationID, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GenerationOptions", GenerationOptions, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GenerationOptions.SamplingMode", GenerationOptions_SamplingMode, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GenerationOptions.SamplingMode.Kind", GenerationOptions_SamplingMode_Kind, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GenerationOptions.ToolCallingMode", GenerationOptions_ToolCallingMode, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GenerationSchema", GenerationSchema, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GenerationSchema.Property", GenerationSchema_Property, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GenerationSchema.SchemaError", GenerationSchema_SchemaError, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.GenerationSchema.SchemaError.Context", GenerationSchema_SchemaError_Context, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.ImageAttachmentContent", ImageAttachmentContent, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.ImageReference", ImageReference, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Instructions", Instructions, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.InstructionsBuilder", InstructionsBuilder, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
+registerSDKClass("FoundationModels.GeneratedContent", GeneratedContent, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"valueForProperty":{"id":470782876039686},"valueForProperty41093":{"id":1408682214668201},"value":{"id":146072501115617}} });
+registerSDKClass("FoundationModels.GeneratedContent.Kind", GeneratedContent_Kind, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GeneratedContent.ParsingError", GeneratedContent_ParsingError, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GenerationGuide", GenerationGuide, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GenerationID", GenerationID, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GenerationOptions", GenerationOptions, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GenerationOptions.SamplingMode", GenerationOptions_SamplingMode, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GenerationOptions.SamplingMode.Kind", GenerationOptions_SamplingMode_Kind, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GenerationOptions.ToolCallingMode", GenerationOptions_ToolCallingMode, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GenerationSchema", GenerationSchema, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GenerationSchema.Property", GenerationSchema_Property, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GenerationSchema.SchemaError", GenerationSchema_SchemaError, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.GenerationSchema.SchemaError.Context", GenerationSchema_SchemaError_Context, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.ImageAttachmentContent", ImageAttachmentContent, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.ImageReference", ImageReference, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Instructions", Instructions, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.InstructionsBuilder", InstructionsBuilder, { module: "FoundationModels_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:16FoundationModels25InstructionsRepresentableP", {});
 registerSDKProtocol("s:16FoundationModels13LanguageModelP", {});
-registerSDKClass("FoundationModels.LanguageModelCapabilities", LanguageModelCapabilities, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"contains":{"id":2351384922661831}} });
-registerSDKClass("FoundationModels.LanguageModelCapabilities.Capability", LanguageModelCapabilities_Capability, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelError", LanguageModelError, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelError.ContextSizeExceeded", LanguageModelError_ContextSizeExceeded, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelError.GuardrailViolation", LanguageModelError_GuardrailViolation, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelError.RateLimited", LanguageModelError_RateLimited, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelError.Refusal", LanguageModelError_Refusal, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelError.Timeout", LanguageModelError_Timeout, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelError.UnsupportedCapability", LanguageModelError_UnsupportedCapability, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelError.UnsupportedGenerationGuide", LanguageModelError_UnsupportedGenerationGuide, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelError.UnsupportedLanguageOrLocale", LanguageModelError_UnsupportedLanguageOrLocale, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelError.UnsupportedTranscriptContent", LanguageModelError_UnsupportedTranscriptContent, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelCapabilities", LanguageModelCapabilities, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"contains":{"id":2351384922661831}} });
+registerSDKClass("FoundationModels.LanguageModelCapabilities.Capability", LanguageModelCapabilities_Capability, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelError", LanguageModelError, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelError.ContextSizeExceeded", LanguageModelError_ContextSizeExceeded, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelError.GuardrailViolation", LanguageModelError_GuardrailViolation, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelError.RateLimited", LanguageModelError_RateLimited, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelError.Refusal", LanguageModelError_Refusal, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelError.Timeout", LanguageModelError_Timeout, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelError.UnsupportedCapability", LanguageModelError_UnsupportedCapability, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelError.UnsupportedGenerationGuide", LanguageModelError_UnsupportedGenerationGuide, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelError.UnsupportedLanguageOrLocale", LanguageModelError_UnsupportedLanguageOrLocale, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelError.UnsupportedTranscriptContent", LanguageModelError_UnsupportedTranscriptContent, { module: "FoundationModels_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:16FoundationModels21LanguageModelExecutorP", {"prewarmModelTranscript":"prewarm(model:transcript:)","initConfiguration":"init(configuration:)","respondToModelStreamingInto":"respond(to:model:streamingInto:)"});
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel", LanguageModelExecutorGenerationChannel, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":4138209749792502},"send":{"id":1067459761820654}} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.AsyncIterator", LanguageModelExecutorGenerationChannel_AsyncIterator, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":420596780735478}} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Event", LanguageModelExecutorGenerationChannel_Event, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Metadata", LanguageModelExecutorGenerationChannel_Metadata, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Reasoning", LanguageModelExecutorGenerationChannel_Reasoning, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Reasoning.Action", LanguageModelExecutorGenerationChannel_Reasoning_Action, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ReasoningSignature", LanguageModelExecutorGenerationChannel_ReasoningSignature, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Response", LanguageModelExecutorGenerationChannel_Response, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Response.Action", LanguageModelExecutorGenerationChannel_Response_Action, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.TextFragment", LanguageModelExecutorGenerationChannel_TextFragment, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.TextSegmentReplacement", LanguageModelExecutorGenerationChannel_TextSegmentReplacement, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ToolCalls", LanguageModelExecutorGenerationChannel_ToolCalls, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ToolCalls.Action", LanguageModelExecutorGenerationChannel_ToolCalls_Action, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ToolCalls.ToolCall", LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ToolCalls.ToolCall.Action", LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ToolCalls.ToolCall.ArgumentsFragment", LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_ArgumentsFragment, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Usage", LanguageModelExecutorGenerationChannel_Usage, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Usage.Input", LanguageModelExecutorGenerationChannel_Usage_Input, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Usage.Output", LanguageModelExecutorGenerationChannel_Usage_Output, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelExecutorGenerationRequest", LanguageModelExecutorGenerationRequest, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelFeedback", LanguageModelFeedback, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelFeedback.Issue", LanguageModelFeedback_Issue, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession", LanguageModelSession, { module: "FoundationModels_e11dfd5beee01da3", properties: {"properties":2455111829518592,"transcript":945236981933091,"isResponding":3015019624342877,"transcriptErrorHandlingPolicy":3857686829074380,"usage":3532701394483219}, methods: {"streamResponseToIncludeSchemaInPromptOptions":{"id":1236248509414384},"streamResponseToIncludeSchemaInPromptOptions49503":{"id":3853901606373567},"streamResponseToGeneratingOptionsContextOptionsMetadata":{"id":4126766946252977},"streamResponseToGeneratingOptionsContextOptionsMetadata69944":{"id":4450577388368033},"streamResponseToSchemaIncludeSchemaInPromptOptions":{"id":399715005566168},"streamResponseToSchemaIncludeSchemaInPromptOptions56182":{"id":3242735980576364},"streamResponseToSchemaOptionsContextOptionsMetadata":{"id":2978370907006718},"streamResponseToSchemaOptionsContextOptionsMetadata77454":{"id":4204360378658980},"streamResponseToOptionsContextOptionsMetadata":{"id":3505162905131687},"streamResponseToOptionsContextOptionsMetadata41858":{"id":1711933723755984},"streamResponseToOptions":{"id":4341541715162208},"streamResponseToOptions65097":{"id":4136404272600686},"logFeedbackAttachmentSentimentIssuesDesiredOutput":{"id":929223981190728},"logFeedbackAttachmentSentimentIssuesDesiredResponseText":{"id":3717487865610060},"logFeedbackAttachmentSentimentIssuesDesiredResponseContent":{"id":3075316127267089},"prewarm":{"id":311158441753425},"respondToIncludeSchemaInPromptOptions":{"id":2912499548473227},"respondToIncludeSchemaInPromptOptions42884":{"id":4353248353135102},"respondToGeneratingOptionsContextOptionsMetadata":{"id":2646353838823340},"respondToGeneratingOptionsContextOptionsMetadata53237":{"id":2093591653343301},"respondToSchemaIncludeSchemaInPromptOptions":{"id":3328642119272550},"respondToSchemaIncludeSchemaInPromptOptions36651":{"id":20551075873347},"respondToSchemaOptionsContextOptionsMetadata":{"id":3788943670192690},"respondToSchemaOptionsContextOptionsMetadata41640":{"id":541687495008156},"respondToOptionsContextOptionsMetadata":{"id":4076078780919898},"respondToOptionsContextOptionsMetadata6997":{"id":3717631950218758},"respondToOptions":{"id":2615324552950618},"respondToOptions26720":{"id":2795210791839200}} });
-registerSDKClass("FoundationModels.LanguageModelSession.AnyDynamicProfile", LanguageModelSession_AnyDynamicProfile, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.ConditionalDynamicProfile", LanguageModelSession_ConditionalDynamicProfile, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel", LanguageModelExecutorGenerationChannel, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"makeAsyncIterator":{"id":4138209749792502},"send":{"id":1067459761820654}} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.AsyncIterator", LanguageModelExecutorGenerationChannel_AsyncIterator, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"next":{"id":420596780735478}} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Event", LanguageModelExecutorGenerationChannel_Event, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Metadata", LanguageModelExecutorGenerationChannel_Metadata, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Reasoning", LanguageModelExecutorGenerationChannel_Reasoning, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Reasoning.Action", LanguageModelExecutorGenerationChannel_Reasoning_Action, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ReasoningSignature", LanguageModelExecutorGenerationChannel_ReasoningSignature, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Response", LanguageModelExecutorGenerationChannel_Response, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Response.Action", LanguageModelExecutorGenerationChannel_Response_Action, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.TextFragment", LanguageModelExecutorGenerationChannel_TextFragment, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.TextSegmentReplacement", LanguageModelExecutorGenerationChannel_TextSegmentReplacement, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ToolCalls", LanguageModelExecutorGenerationChannel_ToolCalls, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ToolCalls.Action", LanguageModelExecutorGenerationChannel_ToolCalls_Action, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ToolCalls.ToolCall", LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ToolCalls.ToolCall.Action", LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.ToolCalls.ToolCall.ArgumentsFragment", LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_ArgumentsFragment, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Usage", LanguageModelExecutorGenerationChannel_Usage, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Usage.Input", LanguageModelExecutorGenerationChannel_Usage_Input, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationChannel.Usage.Output", LanguageModelExecutorGenerationChannel_Usage_Output, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelExecutorGenerationRequest", LanguageModelExecutorGenerationRequest, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelFeedback", LanguageModelFeedback, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelFeedback.Issue", LanguageModelFeedback_Issue, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession", LanguageModelSession, { module: "FoundationModels_3864e7f38681b875", properties: {"properties":2455111829518592,"transcript":945236981933091,"isResponding":3015019624342877,"transcriptErrorHandlingPolicy":3857686829074380,"usage":3532701394483219}, methods: {"streamResponseToIncludeSchemaInPromptOptions":{"id":1236248509414384},"streamResponseToIncludeSchemaInPromptOptions49503":{"id":3853901606373567},"streamResponseToGeneratingOptionsContextOptionsMetadata":{"id":4126766946252977},"streamResponseToGeneratingOptionsContextOptionsMetadata69944":{"id":4450577388368033},"streamResponseToSchemaIncludeSchemaInPromptOptions":{"id":399715005566168},"streamResponseToSchemaIncludeSchemaInPromptOptions56182":{"id":3242735980576364},"streamResponseToSchemaOptionsContextOptionsMetadata":{"id":2978370907006718},"streamResponseToSchemaOptionsContextOptionsMetadata77454":{"id":4204360378658980},"streamResponseToOptionsContextOptionsMetadata":{"id":3505162905131687},"streamResponseToOptionsContextOptionsMetadata41858":{"id":1711933723755984},"streamResponseToOptions":{"id":4341541715162208},"streamResponseToOptions65097":{"id":4136404272600686},"logFeedbackAttachmentSentimentIssuesDesiredOutput":{"id":929223981190728},"logFeedbackAttachmentSentimentIssuesDesiredResponseText":{"id":3717487865610060},"logFeedbackAttachmentSentimentIssuesDesiredResponseContent":{"id":3075316127267089},"prewarm":{"id":311158441753425},"respondToIncludeSchemaInPromptOptions":{"id":2912499548473227},"respondToIncludeSchemaInPromptOptions42884":{"id":4353248353135102},"respondToGeneratingOptionsContextOptionsMetadata":{"id":2646353838823340},"respondToGeneratingOptionsContextOptionsMetadata53237":{"id":2093591653343301},"respondToSchemaIncludeSchemaInPromptOptions":{"id":3328642119272550},"respondToSchemaIncludeSchemaInPromptOptions36651":{"id":20551075873347},"respondToSchemaOptionsContextOptionsMetadata":{"id":3788943670192690},"respondToSchemaOptionsContextOptionsMetadata41640":{"id":541687495008156},"respondToOptionsContextOptionsMetadata":{"id":4076078780919898},"respondToOptionsContextOptionsMetadata6997":{"id":3717631950218758},"respondToOptions":{"id":2615324552950618},"respondToOptions26720":{"id":2795210791839200}} });
+registerSDKClass("FoundationModels.LanguageModelSession.AnyDynamicProfile", LanguageModelSession_AnyDynamicProfile, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.ConditionalDynamicProfile", LanguageModelSession_ConditionalDynamicProfile, { module: "FoundationModels_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:16FoundationModels20LanguageModelSessionC14DynamicProfileP", {});
-registerSDKClass("FoundationModels.LanguageModelSession.DynamicProfileBuilder", LanguageModelSession_DynamicProfileBuilder, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.DynamicProfileBuilder", LanguageModelSession_DynamicProfileBuilder, { module: "FoundationModels_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:16FoundationModels20LanguageModelSessionC22DynamicProfileModifierP", {"bodyContent":"body(content:)"});
-registerSDKClass("FoundationModels.LanguageModelSession.DynamicProfileModifierContent", LanguageModelSession_DynamicProfileModifierContent, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.GenerationError", LanguageModelSession_GenerationError, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.GenerationError.Context", LanguageModelSession_GenerationError_Context, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.GenerationError.Refusal", LanguageModelSession_GenerationError_Refusal, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.ModifiedDynamicProfile", LanguageModelSession_ModifiedDynamicProfile, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.Profile", LanguageModelSession_Profile, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.Response", LanguageModelSession_Response, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.ResponseStream", LanguageModelSession_ResponseStream, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":4088413631010992},"collect":{"id":590447835443307}} });
-registerSDKClass("FoundationModels.LanguageModelSession.ResponseStream.AsyncIterator", LanguageModelSession_ResponseStream_AsyncIterator, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":3646772146552274}} });
-registerSDKClass("FoundationModels.LanguageModelSession.ResponseStream.Snapshot", LanguageModelSession_ResponseStream_Snapshot, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.SessionProperty", LanguageModelSession_SessionProperty, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.ToolCallError", LanguageModelSession_ToolCallError, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.Usage", LanguageModelSession_Usage, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.Usage.Input", LanguageModelSession_Usage_Input, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.LanguageModelSession.Usage.Output", LanguageModelSession_Usage_Output, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel", PrivateCloudComputeLanguageModel, { module: "FoundationModels_e11dfd5beee01da3", properties: {"quotaUsage":1225966112851561,"isAvailable":2951028051461656,"availability":3334091463384209,"capabilities":3828209166286145,"executorConfiguration":1493953419315021}, methods: {"supportsLocale":{"id":1681042369894809}} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Availability", PrivateCloudComputeLanguageModel_Availability, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Error", PrivateCloudComputeLanguageModel_Error, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Error.NetworkFailure", PrivateCloudComputeLanguageModel_Error_NetworkFailure, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Error.QuotaLimitReached", PrivateCloudComputeLanguageModel_Error_QuotaLimitReached, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Error.ServiceUnavailable", PrivateCloudComputeLanguageModel_Error_ServiceUnavailable, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Executor", PrivateCloudComputeLanguageModel_Executor, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"prewarm":{"id":1585793160965479},"respond":{"id":2055066597506132}} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Executor.Configuration", PrivateCloudComputeLanguageModel_Executor_Configuration, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.QuotaUsage", PrivateCloudComputeLanguageModel_QuotaUsage, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion", PrivateCloudComputeLanguageModel_QuotaUsage_LimitIncreaseSuggestion, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"show":{"id":848330445573785}} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.QuotaUsage.Status", PrivateCloudComputeLanguageModel_QuotaUsage_Status, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.QuotaUsage.Status.BelowLimit", PrivateCloudComputeLanguageModel_QuotaUsage_Status_BelowLimit, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.QuotaUsage.Status.LimitReached", PrivateCloudComputeLanguageModel_QuotaUsage_Status_LimitReached, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Prompt", Prompt, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.PromptBuilder", PromptBuilder, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.DynamicProfileModifierContent", LanguageModelSession_DynamicProfileModifierContent, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.GenerationError", LanguageModelSession_GenerationError, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.GenerationError.Context", LanguageModelSession_GenerationError_Context, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.GenerationError.Refusal", LanguageModelSession_GenerationError_Refusal, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.ModifiedDynamicProfile", LanguageModelSession_ModifiedDynamicProfile, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.Profile", LanguageModelSession_Profile, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.Response", LanguageModelSession_Response, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.ResponseStream", LanguageModelSession_ResponseStream, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"makeAsyncIterator":{"id":4088413631010992},"collect":{"id":590447835443307}} });
+registerSDKClass("FoundationModels.LanguageModelSession.ResponseStream.AsyncIterator", LanguageModelSession_ResponseStream_AsyncIterator, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"next":{"id":3646772146552274}} });
+registerSDKClass("FoundationModels.LanguageModelSession.ResponseStream.Snapshot", LanguageModelSession_ResponseStream_Snapshot, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.SessionProperty", LanguageModelSession_SessionProperty, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.ToolCallError", LanguageModelSession_ToolCallError, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.Usage", LanguageModelSession_Usage, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.Usage.Input", LanguageModelSession_Usage_Input, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.LanguageModelSession.Usage.Output", LanguageModelSession_Usage_Output, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel", PrivateCloudComputeLanguageModel, { module: "FoundationModels_3864e7f38681b875", properties: {"quotaUsage":1225966112851561,"isAvailable":2951028051461656,"availability":3334091463384209,"capabilities":3828209166286145,"executorConfiguration":1493953419315021}, methods: {"supportsLocale":{"id":1681042369894809}} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Availability", PrivateCloudComputeLanguageModel_Availability, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Error", PrivateCloudComputeLanguageModel_Error, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Error.NetworkFailure", PrivateCloudComputeLanguageModel_Error_NetworkFailure, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Error.QuotaLimitReached", PrivateCloudComputeLanguageModel_Error_QuotaLimitReached, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Error.ServiceUnavailable", PrivateCloudComputeLanguageModel_Error_ServiceUnavailable, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Executor", PrivateCloudComputeLanguageModel_Executor, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"prewarm":{"id":1585793160965479},"respond":{"id":2055066597506132}} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.Executor.Configuration", PrivateCloudComputeLanguageModel_Executor_Configuration, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.QuotaUsage", PrivateCloudComputeLanguageModel_QuotaUsage, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion", PrivateCloudComputeLanguageModel_QuotaUsage_LimitIncreaseSuggestion, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"show":{"id":848330445573785}} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.QuotaUsage.Status", PrivateCloudComputeLanguageModel_QuotaUsage_Status, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.QuotaUsage.Status.BelowLimit", PrivateCloudComputeLanguageModel_QuotaUsage_Status_BelowLimit, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PrivateCloudComputeLanguageModel.QuotaUsage.Status.LimitReached", PrivateCloudComputeLanguageModel_QuotaUsage_Status_LimitReached, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Prompt", Prompt, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.PromptBuilder", PromptBuilder, { module: "FoundationModels_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:16FoundationModels19PromptRepresentableP", {});
 registerSDKProtocol("s:16FoundationModels18SessionPropertyKeyP", {});
-registerSDKClass("FoundationModels.SessionPropertyValues", SessionPropertyValues, { module: "FoundationModels_e11dfd5beee01da3", properties: {"history":179164260496238} });
-registerSDKClass("FoundationModels.SystemLanguageModel", SystemLanguageModel, { module: "FoundationModels_e11dfd5beee01da3", properties: {"contextSize":1234917338588563,"isAvailable":4007861974793648,"availability":1207666882822427,"capabilities":79285211262748,"supportedLanguages":342028961821810,"executorConfiguration":187996776679239,"variant":1669496578431451}, methods: {"tokenCountFor":{"id":2402127899432337},"tokenCountFor79776":{"id":2670882335057629},"tokenCountFor31777":{"id":287161528400860},"tokenCountFor15824":{"id":3861410486410726},"supportsLocale":{"id":1696329662178123}} });
-registerSDKClass("FoundationModels.SystemLanguageModel.Adapter", SystemLanguageModel_Adapter, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.SystemLanguageModel.Adapter.AssetError", SystemLanguageModel_Adapter_AssetError, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.SystemLanguageModel.Adapter.AssetError.Context", SystemLanguageModel_Adapter_AssetError_Context, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.SystemLanguageModel.Availability", SystemLanguageModel_Availability, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.SystemLanguageModel.Error", SystemLanguageModel_Error, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.SystemLanguageModel.Error.AssetsUnavailable", SystemLanguageModel_Error_AssetsUnavailable, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.SystemLanguageModel.Executor", SystemLanguageModel_Executor, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"prewarm":{"id":4254682717879434},"respond":{"id":170138794250958}} });
-registerSDKClass("FoundationModels.SystemLanguageModel.Executor.Configuration", SystemLanguageModel_Executor_Configuration, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.SystemLanguageModel.Guardrails", SystemLanguageModel_Guardrails, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.SystemLanguageModel.UseCase", SystemLanguageModel_UseCase, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.SystemLanguageModel.Variant", SystemLanguageModel_Variant, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
+registerSDKClass("FoundationModels.SessionPropertyValues", SessionPropertyValues, { module: "FoundationModels_3864e7f38681b875", properties: {"history":179164260496238} });
+registerSDKClass("FoundationModels.SystemLanguageModel", SystemLanguageModel, { module: "FoundationModels_3864e7f38681b875", properties: {"contextSize":1234917338588563,"isAvailable":4007861974793648,"availability":1207666882822427,"capabilities":79285211262748,"supportedLanguages":342028961821810,"executorConfiguration":187996776679239,"variant":1669496578431451}, methods: {"tokenCountFor":{"id":2402127899432337},"tokenCountFor79776":{"id":2670882335057629},"tokenCountFor31777":{"id":287161528400860},"tokenCountFor15824":{"id":3861410486410726},"supportsLocale":{"id":1696329662178123}} });
+registerSDKClass("FoundationModels.SystemLanguageModel.Adapter", SystemLanguageModel_Adapter, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.SystemLanguageModel.Adapter.AssetError", SystemLanguageModel_Adapter_AssetError, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.SystemLanguageModel.Adapter.AssetError.Context", SystemLanguageModel_Adapter_AssetError_Context, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.SystemLanguageModel.Availability", SystemLanguageModel_Availability, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.SystemLanguageModel.Error", SystemLanguageModel_Error, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.SystemLanguageModel.Error.AssetsUnavailable", SystemLanguageModel_Error_AssetsUnavailable, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.SystemLanguageModel.Executor", SystemLanguageModel_Executor, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"prewarm":{"id":4254682717879434},"respond":{"id":170138794250958}} });
+registerSDKClass("FoundationModels.SystemLanguageModel.Executor.Configuration", SystemLanguageModel_Executor_Configuration, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.SystemLanguageModel.Guardrails", SystemLanguageModel_Guardrails, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.SystemLanguageModel.UseCase", SystemLanguageModel_UseCase, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.SystemLanguageModel.Variant", SystemLanguageModel_Variant, { module: "FoundationModels_3864e7f38681b875", properties: {} });
 registerSDKProtocol("s:16FoundationModels4ToolP", {"callArguments":"call(arguments:)"});
-registerSDKClass("FoundationModels.Transcript", Transcript, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"replaceSubrange":{"id":2957889638722561},"subscript":{"id":549061021988677}} });
-registerSDKClass("FoundationModels.Transcript.Attachment", Transcript_Attachment, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.AttachmentSegment", Transcript_AttachmentSegment, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.Entry", Transcript_Entry, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.HistoryView", Transcript_HistoryView, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"replaceSubrange":{"id":2105046918036357},"append":{"id":2624159989110573},"subscript":{"id":990814928478235},"subscript34821":{"id":4452264284251653}} });
-registerSDKClass("FoundationModels.Transcript.HistoryView.Index", Transcript_HistoryView_Index, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"advanced":{"id":1954864218622850},"distance":{"id":3031198757281225}} });
-registerSDKClass("FoundationModels.Transcript.ImageAttachment", Transcript_ImageAttachment, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"pixelBuffer":{"id":3146410863916355}} });
-registerSDKClass("FoundationModels.Transcript.Instructions", Transcript_Instructions, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.Prompt", Transcript_Prompt, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.Reasoning", Transcript_Reasoning, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.Response", Transcript_Response, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.ResponseFormat", Transcript_ResponseFormat, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.ResponseFormat.Kind", Transcript_ResponseFormat_Kind, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.Segment", Transcript_Segment, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.StructuredSegment", Transcript_StructuredSegment, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.TextSegment", Transcript_TextSegment, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.ToolCall", Transcript_ToolCall, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.ToolCalls", Transcript_ToolCalls, { module: "FoundationModels_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":3242809483670281}} });
-registerSDKClass("FoundationModels.Transcript.ToolDefinition", Transcript_ToolDefinition, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.Transcript.ToolOutput", Transcript_ToolOutput, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.TranscriptErrorHandlingPolicy", TranscriptErrorHandlingPolicy, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
-registerSDKClass("FoundationModels.TupleDynamicInstructions", TupleDynamicInstructions, { module: "FoundationModels_e11dfd5beee01da3", properties: {} });
+registerSDKClass("FoundationModels.Transcript", Transcript, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"replaceSubrange":{"id":2957889638722561},"subscript":{"id":549061021988677}} });
+registerSDKClass("FoundationModels.Transcript.Attachment", Transcript_Attachment, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.AttachmentSegment", Transcript_AttachmentSegment, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.Entry", Transcript_Entry, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.HistoryView", Transcript_HistoryView, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"replaceSubrange":{"id":2105046918036357},"append":{"id":2624159989110573},"subscript":{"id":990814928478235},"subscript34821":{"id":4452264284251653}} });
+registerSDKClass("FoundationModels.Transcript.HistoryView.Index", Transcript_HistoryView_Index, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"advanced":{"id":1954864218622850},"distance":{"id":3031198757281225}} });
+registerSDKClass("FoundationModels.Transcript.ImageAttachment", Transcript_ImageAttachment, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"pixelBuffer":{"id":3146410863916355}} });
+registerSDKClass("FoundationModels.Transcript.Instructions", Transcript_Instructions, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.Prompt", Transcript_Prompt, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.Reasoning", Transcript_Reasoning, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.Response", Transcript_Response, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.ResponseFormat", Transcript_ResponseFormat, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.ResponseFormat.Kind", Transcript_ResponseFormat_Kind, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.Segment", Transcript_Segment, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.StructuredSegment", Transcript_StructuredSegment, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.TextSegment", Transcript_TextSegment, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.ToolCall", Transcript_ToolCall, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.ToolCalls", Transcript_ToolCalls, { module: "FoundationModels_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":3242809483670281}} });
+registerSDKClass("FoundationModels.Transcript.ToolDefinition", Transcript_ToolDefinition, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.Transcript.ToolOutput", Transcript_ToolOutput, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.TranscriptErrorHandlingPolicy", TranscriptErrorHandlingPolicy, { module: "FoundationModels_3864e7f38681b875", properties: {} });
+registerSDKClass("FoundationModels.TupleDynamicInstructions", TupleDynamicInstructions, { module: "FoundationModels_3864e7f38681b875", properties: {} });
