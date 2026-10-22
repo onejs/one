@@ -250,6 +250,8 @@ jobs:
               adb -s "$FIXTURE_SERIAL" logcat -d -v threadtime -b main,system,events,crash > "$evidence/logcat.txt" || true
               adb -s "$FIXTURE_SERIAL" shell dumpsys window > "$evidence/dumpsys-window.txt" || true
               adb -s "$FIXTURE_SERIAL" shell dumpsys input_method > "$evidence/dumpsys-input-method.txt" || true
+              adb -s "$FIXTURE_SERIAL" shell dumpsys notification --noredact > "$evidence/dumpsys-notification.txt" || true
+              adb -s "$FIXTURE_SERIAL" shell dumpsys activity service com.android.systemui/.SystemUIService > "$evidence/dumpsys-systemui.txt" || true
             fi
             echo "::endgroup::"
           done
