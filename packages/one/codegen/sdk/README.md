@@ -57,10 +57,14 @@ or callable IDs are replaced.
 
 Tools compiling cached tables outside the pod must import
 `writeSdkNativeSupport` from the installed `dist/sdk/app.mjs` and call it with
-a fresh build support directory. Check its returned `generation` against the
+a fresh build support directory and the compiler's selected SDK root. The SDK
+root defaults to the selected iPhone simulator SDK when omitted. Check its returned `generation` against the
 tables' generation and append its returned `swiftFlags` to the compiler
 arguments. The support directory contains `module.modulemap` and framework
-header imports, uses the compiler's selected SDK and never modifies the cache.
+header imports and never modifies the cache. The flags also search the selected
+SDK's original API notes, which supply Swift names and private declarations
+needed by distributed overlays. Generated pods use `$(SDKROOT)` for these
+paths, so device and simulator builds each read their own SDK's notes.
 
 `ColorSyncTransform.h` marks `kColorSyncPreferredCMM` unavailable on iOS.
 `ColorSyncBase.h` erases that annotation when imported by Swift, but neither

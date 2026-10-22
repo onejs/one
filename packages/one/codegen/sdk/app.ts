@@ -13,20 +13,20 @@ import { fileURLToPath } from 'node:url'
 import { emitModule, typeUsrs, type Entry, type ModuleOutput } from './emit'
 import { emitFacade } from './emit-ts'
 import { CXX_INTEROP, generateModule, prepare } from './generate'
-import { extractGraphs, loadGraph, sdkModules, sdkVersion } from './graph'
+import { extractGraphs, loadGraph, sdkModules, sdkPath, sdkVersion } from './graph'
 import { generatorFingerprint } from './fingerprint'
 import { minimumVersion } from '../../schema.json'
-import { writeCLinkageModules } from './c-linkage'
+import { cLinkageSwiftFlags, writeCLinkageModules } from './c-linkage'
 
 export const SDK_POD = 'OneSDKBindings'
 
 // native consumers compiling cached tables need the same import policy as
 // the pod. write support into their build directory, never into the sdk cache.
-export function writeSdkNativeSupport(dir: string) {
+export function writeSdkNativeSupport(dir: string, sdkRoot = sdkPath()) {
   const moduleMap = writeCLinkageModules(dir)
   return {
     generation: generatorFingerprint().slice(0, 16),
-    swiftFlags: ['-Xcc', `-fmodule-map-file=${moduleMap}`],
+    swiftFlags: cLinkageSwiftFlags(moduleMap, sdkRoot),
   }
 }
 
@@ -199,7 +199,7 @@ export async function writeAppSdkPod(root: string, log = console.info) {
   # they need One's module policy
   s.pod_target_xcconfig = {
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
-    'OTHER_SWIFT_FLAGS' => '$(inherited) ${CXX_INTEROP.join(' ')} -Xcc -fmodule-map-file="$(PODS_TARGET_SRCROOT)/CLinkage/module.modulemap" -Xcc -Wno-non-modular-include-in-framework-module',
+    'OTHER_SWIFT_FLAGS' => '$(inherited) ${CXX_INTEROP.join(' ')} ${cLinkageSwiftFlags('$(PODS_TARGET_SRCROOT)/CLinkage/module.modulemap', '$(SDKROOT)').map((flag) => `"${flag}"`).join(' ')} -Xcc -Wno-non-modular-include-in-framework-module',
   }
 end
 `)
