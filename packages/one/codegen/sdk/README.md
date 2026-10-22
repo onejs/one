@@ -50,7 +50,7 @@ what either rejects: each declares API the other lacks.
 
 CarPlay, GameController, AVFoundation and AuthenticationServices declare some
 C exports without C++ linkage guards in the iOS 27.1 SDK. The generator and
-generated pod import their original headers through `extern_c` modulemaps,
+generated pod name their original SDK umbrella headers in `extern_c` framework modulemaps,
 with the original framework autolinks. C++20 interop stays enabled and the
 framework tables still compile together. No function declarations, signatures
 or callable IDs are replaced.
@@ -60,11 +60,16 @@ Tools compiling cached tables outside the pod must import
 a fresh build support directory and the compiler's selected SDK root. The SDK
 root defaults to the selected iPhone simulator SDK when omitted. Check its returned `generation` against the
 tables' generation and append its returned `swiftFlags` to the compiler
-arguments. The support directory contains `module.modulemap` and framework
-header imports and never modifies the cache. The flags also search the selected
+arguments. The support directory contains `module.modulemap`, whose umbrella
+paths name the selected SDK's original headers. Regenerate support when changing
+SDK roots; it never modifies the SDK or cache. The flags also search the selected
 SDK's original API notes, which supply Swift names and private declarations
 needed by distributed overlays. Generated pods use `$(SDKROOT)` for these
-paths, so device and simulator builds each read their own SDK's notes.
+paths, so device and simulator builds each read their own SDK's notes. Pods
+contain a map for each target SDK and select it through `$(PLATFORM_NAME)`.
+Using the SDK's actual umbrella preserves header ownership when another
+framework imports an individual header. A wrapper umbrella can instead make
+that framework redeclare the header's classes and shadow their nested types.
 
 `ColorSyncTransform.h` marks `kColorSyncPreferredCMM` unavailable on iOS.
 `ColorSyncBase.h` erases that annotation when imported by Swift, but neither

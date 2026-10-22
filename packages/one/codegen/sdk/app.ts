@@ -12,7 +12,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { emitModule, typeUsrs, type Entry, type ModuleOutput } from './emit'
 import { emitFacade } from './emit-ts'
-import { CXX_INTEROP, generateModule, prepare } from './generate'
+import { CXX_INTEROP, generateModule, prepare, SDKS } from './generate'
 import { extractGraphs, loadGraph, sdkModules, sdkPath, sdkVersion } from './graph'
 import { generatorFingerprint } from './fingerprint'
 import { minimumVersion } from '../../schema.json'
@@ -23,7 +23,7 @@ export const SDK_POD = 'OneSDKBindings'
 // native consumers compiling cached tables need the same import policy as
 // the pod. write support into their build directory, never into the sdk cache.
 export function writeSdkNativeSupport(dir: string, sdkRoot = sdkPath()) {
-  const moduleMap = writeCLinkageModules(dir)
+  const moduleMap = writeCLinkageModules(dir, sdkRoot)
   return {
     generation: generatorFingerprint().slice(0, 16),
     swiftFlags: cLinkageSwiftFlags(moduleMap, sdkRoot),
@@ -177,11 +177,14 @@ export async function writeAppSdkPod(root: string, log = console.info) {
     throw new Error('[one] installed iOS facades do not match the SDK generator; regenerate One SDK bindings before building')
   }
   const { files } = await generateAppSdk(frameworks, log)
+  const sdkRoots = SDKS.map((target) => ({ name: target.sdk, root: sdkPath(target.sdk) }))
   // keep the previous coherent pod if validation or generation fails.
   rmSync(podDir, { recursive: true, force: true })
   mkdirSync(join(podDir, 'Sources'), { recursive: true })
   for (const [name, from] of files) copyFileSync(from, join(podDir, 'Sources', name))
-  writeCLinkageModules(join(podDir, 'CLinkage'))
+  for (const sdk of sdkRoots) {
+    writeCLinkageModules(join(podDir, 'CLinkage', sdk.name), sdk.root)
+  }
   writeFileSync(join(podDir, `${SDK_POD}.podspec`), `Pod::Spec.new do |s|
   s.name = '${SDK_POD}'
   s.version = '0.0.0'
@@ -199,7 +202,7 @@ export async function writeAppSdkPod(root: string, log = console.info) {
   # they need One's module policy
   s.pod_target_xcconfig = {
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
-    'OTHER_SWIFT_FLAGS' => '$(inherited) ${CXX_INTEROP.join(' ')} ${cLinkageSwiftFlags('$(PODS_TARGET_SRCROOT)/CLinkage/module.modulemap', '$(SDKROOT)').map((flag) => `"${flag}"`).join(' ')} -Xcc -Wno-non-modular-include-in-framework-module',
+    'OTHER_SWIFT_FLAGS' => '$(inherited) ${CXX_INTEROP.join(' ')} ${cLinkageSwiftFlags('$(PODS_TARGET_SRCROOT)/CLinkage/$(PLATFORM_NAME)/module.modulemap', '$(SDKROOT)').map((flag) => `"${flag}"`).join(' ')} -Xcc -Wno-non-modular-include-in-framework-module',
   }
 end
 `)

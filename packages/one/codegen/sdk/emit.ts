@@ -719,7 +719,12 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       } else call = `${owner}(${args.join(', ')})`
       entryKind = 'init'
     } else if (kind === 'swift.subscript') {
-      call = `${isStatic ? owner : 'o'}[${args.join(', ')}]`
+      // coredata's public string subscript has a local implementation but no
+      // runtime export. its native getter bridges the key and calls valueForKey:;
+      // use that public accessor with the same swift bridging and entry identity.
+      call = usr === 's:So15NSManagedObjectC8CoreDataEyypSgSScip'
+        ? `o.value(forKey: ${args[0]})`
+        : `${isStatic ? owner : 'o'}[${args.join(', ')}]`
       entryKind = 'subscript'
     } else if (kind === 'swift.func') {
       call = `${graph.module}.${member(base)}(${args.join(', ')})`
