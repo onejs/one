@@ -13,6 +13,17 @@ witnesses while keeping the native receiver's generic parameters and writing
 mutated values back to the original handle. These internal names do not change
 callable IDs or which APIs a framework exposes.
 
+Swift 6.4 in Xcode 27.1 crashes while deserializing CoreNFC's async
+`authenticate`, `keyUpdate`, `readBuffer` and `sendRequest` overlays with C++
+interop enabled. Their generated async entries await checked continuations
+resumed by the corresponding public `resultHandler` overloads. The SDK keeps
+responsibility for converting response flags, and argument decoding happens
+before entering the nonthrowing continuation body. C++ interop, callable IDs,
+signatures and API coverage are preserved. The complete CoreNFC table was
+compiled to SIL against both device and simulator SDKs with explicit modules,
+C++20 interop and both `-Onone` and `-O`; the original emitter crashed on both
+targets with the same entry manifest.
+
 To emit declarations from an existing directory of generated `.ts` facades, run
 `bun run generate:ios-types --facades /path/to/facades`. This mode does not load
 Xcode or the SDK. The TypeScript compiler removes implementations and registrations;
