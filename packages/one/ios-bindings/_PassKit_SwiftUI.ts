@@ -21,22 +21,22 @@ export class AddPassToWalletButton<Fallback = unknown> extends SDKHandle {
    * nonisolated init(carKeyPassword: String, supportedRadioTechnologies: PKRadioTechnology, issuerIdentifier: String, onCompletion: @escaping (Result<PKSecureElementPass, any Error>) -> Void)
    * @availability iOS 16.0+
    */
-  static initCarKeyPasswordSupportedRadioTechnologiesIssuerIdentifierOnCompletion(carKeyPassword: string, supportedRadioTechnologies: _PassKit_PKRadioTechnology, issuerIdentifier: string, onCompletion: $SDK1): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PassKit_SwiftUI_e11dfd5beee01da3", 2377406899914376, undefined, [carKeyPassword, supportedRadioTechnologies, issuerIdentifier, onCompletion], [null,null,null,{"callback":{"out":[]}}]); }
+  static initCarKeyPasswordSupportedRadioTechnologiesIssuerIdentifierOnCompletion(carKeyPassword: string, supportedRadioTechnologies: _PassKit_PKRadioTechnology, issuerIdentifier: string, onCompletion: $SDK1): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PassKit_SwiftUI_3864e7f38681b875", 2377406899914376, undefined, [carKeyPassword, supportedRadioTechnologies, issuerIdentifier, onCompletion], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(action: @escaping () -> Void)
    * @availability iOS 16.0+
    */
-  static initAction(action: (() => void)): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PassKit_SwiftUI_e11dfd5beee01da3", 3996043650950254, undefined, [action], [{"callback":{"out":[]}}]); }
+  static initAction(action: (() => void)): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PassKit_SwiftUI_3864e7f38681b875", 3996043650950254, undefined, [action], [{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ passes: [PKPass], onCompletion: @escaping (Bool) -> Void)
    * @availability iOS 16.0+
    */
-  static initOnCompletion(passes: Array<_PassKit_PKPass>, onCompletion: ((arg0: boolean) => void)): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PassKit_SwiftUI_e11dfd5beee01da3", 386403753203638, undefined, [passes, onCompletion], [null,{"callback":{"out":[]}}]); }
+  static initOnCompletion(passes: Array<_PassKit_PKPass>, onCompletion: ((arg0: boolean) => void)): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PassKit_SwiftUI_3864e7f38681b875", 386403753203638, undefined, [passes, onCompletion], [null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ configuration: PKAddSecureElementPassConfiguration, onCompletion: @escaping (Result<[PKSecureElementPass], any Error>) -> Void)
    * @availability iOS 16.0+
    */
-  static initOnCompletion63283(configuration: _PassKit_PKAddSecureElementPassConfiguration, onCompletion: $SDK1): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PassKit_SwiftUI_e11dfd5beee01da3", 1528737315231247, undefined, [configuration, onCompletion], [null,{"callback":{"out":[]}}]); }
+  static initOnCompletion63283(configuration: _PassKit_PKAddSecureElementPassConfiguration, onCompletion: $SDK1): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PassKit_SwiftUI_3864e7f38681b875", 1528737315231247, undefined, [configuration, onCompletion], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:16_PassKit_SwiftUI03AddA14ToWalletButtonV": true };
 }
 
@@ -55,17 +55,17 @@ export class AddPassToWalletButtonFilter extends SDKHandle {
    * static func paymentNetwork(_ paymentNetwork: PKPaymentNetwork) -> AddPassToWalletButtonFilter
    * @availability iOS 16.0+
    */
-  static paymentNetwork(paymentNetwork: _PassKit_PKPaymentNetwork): AddPassToWalletButtonFilter { return callSDK<AddPassToWalletButtonFilter>("_PassKit_SwiftUI_e11dfd5beee01da3", 3936951473411109, undefined, [paymentNetwork]); }
+  static paymentNetwork(paymentNetwork: _PassKit_PKPaymentNetwork): AddPassToWalletButtonFilter { return callSDK<AddPassToWalletButtonFilter>("_PassKit_SwiftUI_3864e7f38681b875", 3936951473411109, undefined, [paymentNetwork]); }
   /**
    * static func productIdentifier(_ productIdentifier: String) -> AddPassToWalletButtonFilter
    * @availability iOS 16.0+
    */
-  static productIdentifier(productIdentifier: string): AddPassToWalletButtonFilter { return callSDK<AddPassToWalletButtonFilter>("_PassKit_SwiftUI_e11dfd5beee01da3", 3590101470355568, undefined, [productIdentifier]); }
+  static productIdentifier(productIdentifier: string): AddPassToWalletButtonFilter { return callSDK<AddPassToWalletButtonFilter>("_PassKit_SwiftUI_3864e7f38681b875", 3590101470355568, undefined, [productIdentifier]); }
   /**
    * static func primaryAccountIdentifier(_ primaryAccountIdentifier: String) -> AddPassToWalletButtonFilter
    * @availability iOS 16.0+
    */
-  static primaryAccountIdentifier(primaryAccountIdentifier: string): AddPassToWalletButtonFilter { return callSDK<AddPassToWalletButtonFilter>("_PassKit_SwiftUI_e11dfd5beee01da3", 1747222567884589, undefined, [primaryAccountIdentifier]); }
+  static primaryAccountIdentifier(primaryAccountIdentifier: string): AddPassToWalletButtonFilter { return callSDK<AddPassToWalletButtonFilter>("_PassKit_SwiftUI_3864e7f38681b875", 1747222567884589, undefined, [primaryAccountIdentifier]); }
   declare readonly $type: { "s:16_PassKit_SwiftUI03AddA20ToWalletButtonFilterV": true };
 }
 
@@ -78,20 +78,20 @@ export class AddPassToWalletButtonResponse extends SDKHandle {
    * var certificates: [Data]
    * @availability iOS 16.0+
    */
-  get certificates(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("_PassKit_SwiftUI_e11dfd5beee01da3", 2142550768050230, this, []); }
-  set certificates(value: Array<ArrayBuffer>) { callSDK<void>("_PassKit_SwiftUI_e11dfd5beee01da3", 3583028768194422, this, [value]); }
+  get certificates(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("_PassKit_SwiftUI_3864e7f38681b875", 2142550768050230, this, []); }
+  set certificates(value: Array<ArrayBuffer>) { callSDK<void>("_PassKit_SwiftUI_3864e7f38681b875", 3583028768194422, this, [value]); }
   /**
    * var nonceSignature: Data
    * @availability iOS 16.0+
    */
-  get nonceSignature(): ArrayBuffer { return callSDK<ArrayBuffer>("_PassKit_SwiftUI_e11dfd5beee01da3", 1272785149224350, this, []); }
-  set nonceSignature(value: ArrayBuffer) { callSDK<void>("_PassKit_SwiftUI_e11dfd5beee01da3", 3319518318591956, this, [value]); }
+  get nonceSignature(): ArrayBuffer { return callSDK<ArrayBuffer>("_PassKit_SwiftUI_3864e7f38681b875", 1272785149224350, this, []); }
+  set nonceSignature(value: ArrayBuffer) { callSDK<void>("_PassKit_SwiftUI_3864e7f38681b875", 3319518318591956, this, [value]); }
   /**
    * var nonce: Data
    * @availability iOS 16.0+
    */
-  get nonce(): ArrayBuffer { return callSDK<ArrayBuffer>("_PassKit_SwiftUI_e11dfd5beee01da3", 575473704763676, this, []); }
-  set nonce(value: ArrayBuffer) { callSDK<void>("_PassKit_SwiftUI_e11dfd5beee01da3", 3450489687578495, this, [value]); }
+  get nonce(): ArrayBuffer { return callSDK<ArrayBuffer>("_PassKit_SwiftUI_3864e7f38681b875", 575473704763676, this, []); }
+  set nonce(value: ArrayBuffer) { callSDK<void>("_PassKit_SwiftUI_3864e7f38681b875", 3450489687578495, this, [value]); }
   declare readonly $type: { "s:16_PassKit_SwiftUI03AddA22ToWalletButtonResponseV": true };
 }
 
@@ -104,12 +104,12 @@ export class AddPassToWalletButtonStyle extends SDKHandle {
    * static let blackOutline: AddPassToWalletButtonStyle
    * @availability iOS 16.0+
    */
-  static get blackOutline(): AddPassToWalletButtonStyle { return callSDK<AddPassToWalletButtonStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 2983785209344301, undefined, []); }
+  static get blackOutline(): AddPassToWalletButtonStyle { return callSDK<AddPassToWalletButtonStyle>("_PassKit_SwiftUI_3864e7f38681b875", 2983785209344301, undefined, []); }
   /**
    * static let black: AddPassToWalletButtonStyle
    * @availability iOS 16.0+
    */
-  static get black(): AddPassToWalletButtonStyle { return callSDK<AddPassToWalletButtonStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 1608764889334405, undefined, []); }
+  static get black(): AddPassToWalletButtonStyle { return callSDK<AddPassToWalletButtonStyle>("_PassKit_SwiftUI_3864e7f38681b875", 1608764889334405, undefined, []); }
   declare readonly $type: { "s:16_PassKit_SwiftUI03AddA19ToWalletButtonStyleV": true };
 }
 
@@ -124,18 +124,18 @@ export const ApplePayMerchandisingAction = {
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): ApplePayMerchandisingAction { return callSDK<ApplePayMerchandisingAction>("_PassKit_SwiftUI_e11dfd5beee01da3", 2719441629323793, undefined, [rawValue]); },
+  init(rawValue: string): ApplePayMerchandisingAction { return callSDK<ApplePayMerchandisingAction>("_PassKit_SwiftUI_3864e7f38681b875", 2719441629323793, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: ApplePayMerchandisingAction): string { return callSDK<string>("_PassKit_SwiftUI_e11dfd5beee01da3", 205375779094187, $self, []); },
+  getRawValue($self: ApplePayMerchandisingAction): string { return callSDK<string>("_PassKit_SwiftUI_3864e7f38681b875", 205375779094187, $self, []); },
   /**
    * static var learnMore: ApplePayMerchandisingAction
    * @availability iOS 27.0+
    */
-  get learnMore(): ApplePayMerchandisingAction { return callSDK<ApplePayMerchandisingAction>("_PassKit_SwiftUI_e11dfd5beee01da3", 1289518026742940, undefined, []); },
-  set learnMore(value: ApplePayMerchandisingAction) { callSDK<void>("_PassKit_SwiftUI_e11dfd5beee01da3", 2449225303246517, undefined, [value]); }
+  get learnMore(): ApplePayMerchandisingAction { return callSDK<ApplePayMerchandisingAction>("_PassKit_SwiftUI_3864e7f38681b875", 1289518026742940, undefined, []); },
+  set learnMore(value: ApplePayMerchandisingAction) { callSDK<void>("_PassKit_SwiftUI_3864e7f38681b875", 2449225303246517, undefined, [value]); }
 };
 
 /**
@@ -153,17 +153,17 @@ export class ApplePayMerchandisingPartnerConfiguration extends SDKHandle {
    * static let all: ApplePayMerchandisingPartnerConfiguration
    * @availability iOS 27.0+
    */
-  static get all(): ApplePayMerchandisingPartnerConfiguration { return callSDK<ApplePayMerchandisingPartnerConfiguration>("_PassKit_SwiftUI_e11dfd5beee01da3", 2279120015659345, undefined, []); }
+  static get all(): ApplePayMerchandisingPartnerConfiguration { return callSDK<ApplePayMerchandisingPartnerConfiguration>("_PassKit_SwiftUI_3864e7f38681b875", 2279120015659345, undefined, []); }
   /**
    * static let none: ApplePayMerchandisingPartnerConfiguration
    * @availability iOS 27.0+
    */
-  static get none(): ApplePayMerchandisingPartnerConfiguration { return callSDK<ApplePayMerchandisingPartnerConfiguration>("_PassKit_SwiftUI_e11dfd5beee01da3", 1364692155474863, undefined, []); }
+  static get none(): ApplePayMerchandisingPartnerConfiguration { return callSDK<ApplePayMerchandisingPartnerConfiguration>("_PassKit_SwiftUI_3864e7f38681b875", 1364692155474863, undefined, []); }
   /**
    * static func limited(partnerIdentifiers: [String]) -> ApplePayMerchandisingPartnerConfiguration
    * @availability iOS 27.0+
    */
-  static limited(partnerIdentifiers: Array<string>): ApplePayMerchandisingPartnerConfiguration { return callSDK<ApplePayMerchandisingPartnerConfiguration>("_PassKit_SwiftUI_e11dfd5beee01da3", 4169585396244095, undefined, [partnerIdentifiers]); }
+  static limited(partnerIdentifiers: Array<string>): ApplePayMerchandisingPartnerConfiguration { return callSDK<ApplePayMerchandisingPartnerConfiguration>("_PassKit_SwiftUI_3864e7f38681b875", 4169585396244095, undefined, [partnerIdentifiers]); }
   declare readonly $type: { "s:16_PassKit_SwiftUI41ApplePayMerchandisingPartnerConfigurationV": true };
 }
 
@@ -178,18 +178,18 @@ export const ApplePayMerchandisingStyle = {
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): ApplePayMerchandisingStyle { return callSDK<ApplePayMerchandisingStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 2151816126814801, undefined, [rawValue]); },
+  init(rawValue: string): ApplePayMerchandisingStyle { return callSDK<ApplePayMerchandisingStyle>("_PassKit_SwiftUI_3864e7f38681b875", 2151816126814801, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: ApplePayMerchandisingStyle): string { return callSDK<string>("_PassKit_SwiftUI_e11dfd5beee01da3", 1051566652790272, $self, []); },
+  getRawValue($self: ApplePayMerchandisingStyle): string { return callSDK<string>("_PassKit_SwiftUI_3864e7f38681b875", 1051566652790272, $self, []); },
   /**
    * static var standard: ApplePayMerchandisingStyle
    * @availability iOS 27.0+
    */
-  get standard(): ApplePayMerchandisingStyle { return callSDK<ApplePayMerchandisingStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 3843679663433060, undefined, []); },
-  set standard(value: ApplePayMerchandisingStyle) { callSDK<void>("_PassKit_SwiftUI_e11dfd5beee01da3", 1513316799628487, undefined, [value]); }
+  get standard(): ApplePayMerchandisingStyle { return callSDK<ApplePayMerchandisingStyle>("_PassKit_SwiftUI_3864e7f38681b875", 3843679663433060, undefined, []); },
+  set standard(value: ApplePayMerchandisingStyle) { callSDK<void>("_PassKit_SwiftUI_3864e7f38681b875", 1513316799628487, undefined, [value]); }
 };
 
 /**
@@ -243,7 +243,7 @@ export class PayLaterView<FallbackView = unknown> extends SDKHandle {
    * nonisolated init(amount: Decimal, currency: Locale.Currency)
    * @availability iOS 17.0+
    */
-  static init(amount: _Foundation_Decimal, currency: _Foundation_Locale_Currency): Promise<PayLaterView<_SwiftUICore_EmptyView>> { return callSDKAsync<PayLaterView<_SwiftUICore_EmptyView>>("_PassKit_SwiftUI_e11dfd5beee01da3", 201166909580919, undefined, [amount, currency]); }
+  static init(amount: _Foundation_Decimal, currency: _Foundation_Locale_Currency): Promise<PayLaterView<_SwiftUICore_EmptyView>> { return callSDKAsync<PayLaterView<_SwiftUICore_EmptyView>>("_PassKit_SwiftUI_3864e7f38681b875", 201166909580919, undefined, [amount, currency]); }
   declare readonly $type: { "s:16_PassKit_SwiftUI12PayLaterViewV": true };
 }
 
@@ -262,12 +262,12 @@ export class PayLaterViewAction extends SDKHandle {
    * static let calculator: PayLaterViewAction
    * @availability iOS 17.0+
    */
-  static get calculator(): PayLaterViewAction { return callSDK<PayLaterViewAction>("_PassKit_SwiftUI_e11dfd5beee01da3", 3005978835983935, undefined, []); }
+  static get calculator(): PayLaterViewAction { return callSDK<PayLaterViewAction>("_PassKit_SwiftUI_3864e7f38681b875", 3005978835983935, undefined, []); }
   /**
    * static let learnMore: PayLaterViewAction
    * @availability iOS 17.0+
    */
-  static get learnMore(): PayLaterViewAction { return callSDK<PayLaterViewAction>("_PassKit_SwiftUI_e11dfd5beee01da3", 538150787932091, undefined, []); }
+  static get learnMore(): PayLaterViewAction { return callSDK<PayLaterViewAction>("_PassKit_SwiftUI_3864e7f38681b875", 538150787932091, undefined, []); }
   declare readonly $type: { "s:16_PassKit_SwiftUI18PayLaterViewActionV": true };
 }
 
@@ -280,22 +280,22 @@ export class PayLaterViewDisplayStyle extends SDKHandle {
    * static let badge: PayLaterViewDisplayStyle
    * @availability iOS 17.0+
    */
-  static get badge(): PayLaterViewDisplayStyle { return callSDK<PayLaterViewDisplayStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 2921573799545616, undefined, []); }
+  static get badge(): PayLaterViewDisplayStyle { return callSDK<PayLaterViewDisplayStyle>("_PassKit_SwiftUI_3864e7f38681b875", 2921573799545616, undefined, []); }
   /**
    * static let price: PayLaterViewDisplayStyle
    * @availability iOS 17.0+
    */
-  static get price(): PayLaterViewDisplayStyle { return callSDK<PayLaterViewDisplayStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 2922968925331805, undefined, []); }
+  static get price(): PayLaterViewDisplayStyle { return callSDK<PayLaterViewDisplayStyle>("_PassKit_SwiftUI_3864e7f38681b875", 2922968925331805, undefined, []); }
   /**
    * static let checkout: PayLaterViewDisplayStyle
    * @availability iOS 17.0+
    */
-  static get checkout(): PayLaterViewDisplayStyle { return callSDK<PayLaterViewDisplayStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 405116952672186, undefined, []); }
+  static get checkout(): PayLaterViewDisplayStyle { return callSDK<PayLaterViewDisplayStyle>("_PassKit_SwiftUI_3864e7f38681b875", 405116952672186, undefined, []); }
   /**
    * static let standard: PayLaterViewDisplayStyle
    * @availability iOS 17.0+
    */
-  static get standard(): PayLaterViewDisplayStyle { return callSDK<PayLaterViewDisplayStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 3348406688104700, undefined, []); }
+  static get standard(): PayLaterViewDisplayStyle { return callSDK<PayLaterViewDisplayStyle>("_PassKit_SwiftUI_3864e7f38681b875", 3348406688104700, undefined, []); }
   declare readonly $type: { "s:16_PassKit_SwiftUI24PayLaterViewDisplayStyleV": true };
 }
 
@@ -308,12 +308,12 @@ export class PayWithApplePayButton<Fallback = unknown> extends SDKHandle {
    * nonisolated init(_ label: PayWithApplePayButtonLabel = .plain, action: @escaping () -> Void)
    * @availability iOS 16.0+
    */
-  static initAction(label: PayWithApplePayButtonLabel, action: (() => void)): Promise<$SDK4> { return callSDKAsync<$SDK4>("_PassKit_SwiftUI_e11dfd5beee01da3", 3277639343795530, undefined, [label, action], [null,{"callback":{"out":[]}}]); }
+  static initAction(label: PayWithApplePayButtonLabel, action: (() => void)): Promise<$SDK4> { return callSDKAsync<$SDK4>("_PassKit_SwiftUI_3864e7f38681b875", 3277639343795530, undefined, [label, action], [null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ label: PayWithApplePayButtonLabel = .plain, request: PKPaymentRequest, onPaymentAuthorizationChange: @escaping (PayWithApplePayButtonPaymentAuthorizationPhase) -> Void)
    * @availability iOS 16.0+
    */
-  static initRequestOnPaymentAuthorizationChange(label: PayWithApplePayButtonLabel, request: _PassKit_PKPaymentRequest, onPaymentAuthorizationChange: ((arg0: PayWithApplePayButtonPaymentAuthorizationPhase) => void)): Promise<$SDK4> { return callSDKAsync<$SDK4>("_PassKit_SwiftUI_e11dfd5beee01da3", 3972380539220161, undefined, [label, request, onPaymentAuthorizationChange], [null,null,{"callback":{"out":[]}}]); }
+  static initRequestOnPaymentAuthorizationChange(label: PayWithApplePayButtonLabel, request: _PassKit_PKPaymentRequest, onPaymentAuthorizationChange: ((arg0: PayWithApplePayButtonPaymentAuthorizationPhase) => void)): Promise<$SDK4> { return callSDKAsync<$SDK4>("_PassKit_SwiftUI_3864e7f38681b875", 3972380539220161, undefined, [label, request, onPaymentAuthorizationChange], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:16_PassKit_SwiftUI012PayWithAppleE6ButtonV": true };
 }
 
@@ -332,87 +332,87 @@ export class PayWithApplePayButtonLabel extends SDKHandle {
    * static let contribute: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get contribute(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 3826965888493648, undefined, []); }
+  static get contribute(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 3826965888493648, undefined, []); }
   /**
    * static let buy: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get buy(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 3528415852851859, undefined, []); }
+  static get buy(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 3528415852851859, undefined, []); }
   /**
    * static let tip: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get tip(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 2667689467198981, undefined, []); }
+  static get tip(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 2667689467198981, undefined, []); }
   /**
    * static let book: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get book(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 1273853095656644, undefined, []); }
+  static get book(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 1273853095656644, undefined, []); }
   /**
    * static let rent: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get rent(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 1238679410203682, undefined, []); }
+  static get rent(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 1238679410203682, undefined, []); }
   /**
    * static let order: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get order(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 913437212360684, undefined, []); }
+  static get order(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 913437212360684, undefined, []); }
   /**
    * static let plain: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get plain(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 3898183115428423, undefined, []); }
+  static get plain(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 3898183115428423, undefined, []); }
   /**
    * static let setUp: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get setUp(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 1426550658940124, undefined, []); }
+  static get setUp(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 1426550658940124, undefined, []); }
   /**
    * static let topUp: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get topUp(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 1449420901420862, undefined, []); }
+  static get topUp(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 1449420901420862, undefined, []); }
   /**
    * static let donate: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get donate(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 2955587905989205, undefined, []); }
+  static get donate(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 2955587905989205, undefined, []); }
   /**
    * static let reload: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get reload(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 4447805873954300, undefined, []); }
+  static get reload(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 4447805873954300, undefined, []); }
   /**
    * static let inStore: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get inStore(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 4074270264229286, undefined, []); }
+  static get inStore(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 4074270264229286, undefined, []); }
   /**
    * static let support: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get support(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 1408570484686817, undefined, []); }
+  static get support(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 1408570484686817, undefined, []); }
   /**
    * static let addMoney: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get addMoney(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 3210179180974988, undefined, []); }
+  static get addMoney(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 3210179180974988, undefined, []); }
   /**
    * static let checkout: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get checkout(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 3525452831109743, undefined, []); }
+  static get checkout(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 3525452831109743, undefined, []); }
   /**
    * static let `continue`: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get continue(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 736829718299681, undefined, []); }
+  static get continue(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 736829718299681, undefined, []); }
   /**
    * static let subscribe: PayWithApplePayButtonLabel
    * @availability iOS 16.0+
    */
-  static get subscribe(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 3564832893552598, undefined, []); }
+  static get subscribe(): PayWithApplePayButtonLabel { return callSDK<PayWithApplePayButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 3564832893552598, undefined, []); }
   declare readonly $type: { "s:16_PassKit_SwiftUI012PayWithAppleE11ButtonLabelV": true };
 }
 
@@ -433,22 +433,22 @@ export class PayWithApplePayButtonStyle extends SDKHandle {
    * static let whiteOutline: PayWithApplePayButtonStyle
    * @availability iOS 16.0+
    */
-  static get whiteOutline(): PayWithApplePayButtonStyle { return callSDK<PayWithApplePayButtonStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 435988329191416, undefined, []); }
+  static get whiteOutline(): PayWithApplePayButtonStyle { return callSDK<PayWithApplePayButtonStyle>("_PassKit_SwiftUI_3864e7f38681b875", 435988329191416, undefined, []); }
   /**
    * static let black: PayWithApplePayButtonStyle
    * @availability iOS 16.0+
    */
-  static get black(): PayWithApplePayButtonStyle { return callSDK<PayWithApplePayButtonStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 4185407755604873, undefined, []); }
+  static get black(): PayWithApplePayButtonStyle { return callSDK<PayWithApplePayButtonStyle>("_PassKit_SwiftUI_3864e7f38681b875", 4185407755604873, undefined, []); }
   /**
    * static let white: PayWithApplePayButtonStyle
    * @availability iOS 16.0+
    */
-  static get white(): PayWithApplePayButtonStyle { return callSDK<PayWithApplePayButtonStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 509251848928138, undefined, []); }
+  static get white(): PayWithApplePayButtonStyle { return callSDK<PayWithApplePayButtonStyle>("_PassKit_SwiftUI_3864e7f38681b875", 509251848928138, undefined, []); }
   /**
    * static let automatic: PayWithApplePayButtonStyle
    * @availability iOS 16.0+
    */
-  static get automatic(): PayWithApplePayButtonStyle { return callSDK<PayWithApplePayButtonStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 4413196659548021, undefined, []); }
+  static get automatic(): PayWithApplePayButtonStyle { return callSDK<PayWithApplePayButtonStyle>("_PassKit_SwiftUI_3864e7f38681b875", 4413196659548021, undefined, []); }
   declare readonly $type: { "s:16_PassKit_SwiftUI012PayWithAppleE11ButtonStyleV": true };
 }
 
@@ -461,12 +461,12 @@ export class VerifyIdentityWithWalletButton<Fallback = unknown> extends SDKHandl
    * nonisolated init(_ label: VerifyIdentityWithWalletButtonLabel = .verifyIdentity, action: @escaping () -> Void)
    * @availability iOS 16.0+
    */
-  static initAction(label: VerifyIdentityWithWalletButtonLabel, action: (() => void)): Promise<$SDK6> { return callSDKAsync<$SDK6>("_PassKit_SwiftUI_e11dfd5beee01da3", 2306508567212860, undefined, [label, action], [null,{"callback":{"out":[]}}]); }
+  static initAction(label: VerifyIdentityWithWalletButtonLabel, action: (() => void)): Promise<$SDK6> { return callSDKAsync<$SDK6>("_PassKit_SwiftUI_3864e7f38681b875", 2306508567212860, undefined, [label, action], [null,{"callback":{"out":[]}}]); }
   /**
    * nonisolated init(_ label: VerifyIdentityWithWalletButtonLabel = .verifyIdentity, request: PKIdentityRequest, onCompletion: @escaping (Result<PKIdentityDocument, any Error>) -> Void)
    * @availability iOS 16.0+
    */
-  static initRequestOnCompletion(label: VerifyIdentityWithWalletButtonLabel, request: _PassKit_PKIdentityRequest, onCompletion: $SDK1): Promise<$SDK6> { return callSDKAsync<$SDK6>("_PassKit_SwiftUI_e11dfd5beee01da3", 1268499582230500, undefined, [label, request, onCompletion], [null,null,{"callback":{"out":[]}}]); }
+  static initRequestOnCompletion(label: VerifyIdentityWithWalletButtonLabel, request: _PassKit_PKIdentityRequest, onCompletion: $SDK1): Promise<$SDK6> { return callSDKAsync<$SDK6>("_PassKit_SwiftUI_3864e7f38681b875", 1268499582230500, undefined, [label, request, onCompletion], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:16_PassKit_SwiftUI30VerifyIdentityWithWalletButtonV": true };
 }
 
@@ -485,22 +485,22 @@ export class VerifyIdentityWithWalletButtonLabel extends SDKHandle {
    * static let verifyIdentity: VerifyIdentityWithWalletButtonLabel
    * @availability iOS 16.0+
    */
-  static get verifyIdentity(): VerifyIdentityWithWalletButtonLabel { return callSDK<VerifyIdentityWithWalletButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 3609295588257732, undefined, []); }
+  static get verifyIdentity(): VerifyIdentityWithWalletButtonLabel { return callSDK<VerifyIdentityWithWalletButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 3609295588257732, undefined, []); }
   /**
    * static let verify: VerifyIdentityWithWalletButtonLabel
    * @availability iOS 16.0+
    */
-  static get verify(): VerifyIdentityWithWalletButtonLabel { return callSDK<VerifyIdentityWithWalletButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 1906611512901198, undefined, []); }
+  static get verify(): VerifyIdentityWithWalletButtonLabel { return callSDK<VerifyIdentityWithWalletButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 1906611512901198, undefined, []); }
   /**
    * static let `continue`: VerifyIdentityWithWalletButtonLabel
    * @availability iOS 16.0+
    */
-  static get continue(): VerifyIdentityWithWalletButtonLabel { return callSDK<VerifyIdentityWithWalletButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 178484874089073, undefined, []); }
+  static get continue(): VerifyIdentityWithWalletButtonLabel { return callSDK<VerifyIdentityWithWalletButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 178484874089073, undefined, []); }
   /**
    * static let verifyAge: VerifyIdentityWithWalletButtonLabel
    * @availability iOS 16.0+
    */
-  static get verifyAge(): VerifyIdentityWithWalletButtonLabel { return callSDK<VerifyIdentityWithWalletButtonLabel>("_PassKit_SwiftUI_e11dfd5beee01da3", 2125946123756748, undefined, []); }
+  static get verifyAge(): VerifyIdentityWithWalletButtonLabel { return callSDK<VerifyIdentityWithWalletButtonLabel>("_PassKit_SwiftUI_3864e7f38681b875", 2125946123756748, undefined, []); }
   declare readonly $type: { "s:16_PassKit_SwiftUI35VerifyIdentityWithWalletButtonLabelV": true };
 }
 
@@ -513,30 +513,30 @@ export class VerifyIdentityWithWalletButtonStyle extends SDKHandle {
    * static let blackOutline: VerifyIdentityWithWalletButtonStyle
    * @availability iOS 16.0+
    */
-  static get blackOutline(): VerifyIdentityWithWalletButtonStyle { return callSDK<VerifyIdentityWithWalletButtonStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 2837201084543547, undefined, []); }
+  static get blackOutline(): VerifyIdentityWithWalletButtonStyle { return callSDK<VerifyIdentityWithWalletButtonStyle>("_PassKit_SwiftUI_3864e7f38681b875", 2837201084543547, undefined, []); }
   /**
    * static let black: VerifyIdentityWithWalletButtonStyle
    * @availability iOS 16.0+
    */
-  static get black(): VerifyIdentityWithWalletButtonStyle { return callSDK<VerifyIdentityWithWalletButtonStyle>("_PassKit_SwiftUI_e11dfd5beee01da3", 4017247810382905, undefined, []); }
+  static get black(): VerifyIdentityWithWalletButtonStyle { return callSDK<VerifyIdentityWithWalletButtonStyle>("_PassKit_SwiftUI_3864e7f38681b875", 4017247810382905, undefined, []); }
   declare readonly $type: { "s:16_PassKit_SwiftUI35VerifyIdentityWithWalletButtonStyleV": true };
 }
 
-registerSDKClass("_PassKit_SwiftUI.AddPassToWalletButton", AddPassToWalletButton, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.AddPassToWalletButtonFilter", AddPassToWalletButtonFilter, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.AddPassToWalletButtonResponse", AddPassToWalletButtonResponse, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.AddPassToWalletButtonStyle", AddPassToWalletButtonStyle, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.ApplePayMerchandisingPartnerConfiguration", ApplePayMerchandisingPartnerConfiguration, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.ApplePayMerchandisingView", ApplePayMerchandisingView, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.AsyncShareablePassConfiguration", AsyncShareablePassConfiguration, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.AsyncShareablePassConfiguration.Result", AsyncShareablePassConfiguration_Result, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.PayLaterView", PayLaterView, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.PayLaterViewAction", PayLaterViewAction, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.PayLaterViewDisplayStyle", PayLaterViewDisplayStyle, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.PayWithApplePayButton", PayWithApplePayButton, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.PayWithApplePayButtonLabel", PayWithApplePayButtonLabel, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.PayWithApplePayButtonPaymentAuthorizationPhase", PayWithApplePayButtonPaymentAuthorizationPhase, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.PayWithApplePayButtonStyle", PayWithApplePayButtonStyle, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.VerifyIdentityWithWalletButton", VerifyIdentityWithWalletButton, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.VerifyIdentityWithWalletButtonLabel", VerifyIdentityWithWalletButtonLabel, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
-registerSDKClass("_PassKit_SwiftUI.VerifyIdentityWithWalletButtonStyle", VerifyIdentityWithWalletButtonStyle, { module: "_PassKit_SwiftUI_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.AddPassToWalletButton", AddPassToWalletButton, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.AddPassToWalletButtonFilter", AddPassToWalletButtonFilter, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.AddPassToWalletButtonResponse", AddPassToWalletButtonResponse, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.AddPassToWalletButtonStyle", AddPassToWalletButtonStyle, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.ApplePayMerchandisingPartnerConfiguration", ApplePayMerchandisingPartnerConfiguration, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.ApplePayMerchandisingView", ApplePayMerchandisingView, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.AsyncShareablePassConfiguration", AsyncShareablePassConfiguration, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.AsyncShareablePassConfiguration.Result", AsyncShareablePassConfiguration_Result, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.PayLaterView", PayLaterView, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.PayLaterViewAction", PayLaterViewAction, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.PayLaterViewDisplayStyle", PayLaterViewDisplayStyle, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.PayWithApplePayButton", PayWithApplePayButton, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.PayWithApplePayButtonLabel", PayWithApplePayButtonLabel, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.PayWithApplePayButtonPaymentAuthorizationPhase", PayWithApplePayButtonPaymentAuthorizationPhase, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.PayWithApplePayButtonStyle", PayWithApplePayButtonStyle, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.VerifyIdentityWithWalletButton", VerifyIdentityWithWalletButton, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.VerifyIdentityWithWalletButtonLabel", VerifyIdentityWithWalletButtonLabel, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });
+registerSDKClass("_PassKit_SwiftUI.VerifyIdentityWithWalletButtonStyle", VerifyIdentityWithWalletButtonStyle, { module: "_PassKit_SwiftUI_3864e7f38681b875", properties: {} });

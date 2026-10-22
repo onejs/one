@@ -58,15 +58,15 @@ type $SDK45 = Array<MTLFunctionStitchingGraph>;
 /** struct MTL4BufferRange */
 export class MTL4BufferRange extends SDKHandle {
   /** var bufferAddress: MTLGPUAddress */
-  get bufferAddress(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1311887260173304, this, []); }
-  set bufferAddress(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1029701740150632, this, [value]); }
+  get bufferAddress(): number { return callSDK<number>("Metal_3864e7f38681b875", 1311887260173304, this, []); }
+  set bufferAddress(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1029701740150632, this, [value]); }
   /** var length: UInt64 */
-  get length(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 937304326530651, this, []); }
-  set length(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3276815403009657, this, [value]); }
+  get length(): number { return callSDK<number>("Metal_3864e7f38681b875", 937304326530651, this, []); }
+  set length(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3276815403009657, this, [value]); }
   /** init(bufferAddress: MTLGPUAddress, length: UInt64) */
-  static initBufferAddressLength(bufferAddress: number, length: number): MTL4BufferRange { return callSDK<MTL4BufferRange>("Metal_e11dfd5beee01da3", 3800147159098569, undefined, [bufferAddress, length]); }
+  static initBufferAddressLength(bufferAddress: number, length: number): MTL4BufferRange { return callSDK<MTL4BufferRange>("Metal_3864e7f38681b875", 3800147159098569, undefined, [bufferAddress, length]); }
   /** init() */
-  static init(): MTL4BufferRange { return callSDK<MTL4BufferRange>("Metal_e11dfd5beee01da3", 1411728143225887, undefined, []); }
+  static init(): MTL4BufferRange { return callSDK<MTL4BufferRange>("Metal_3864e7f38681b875", 1411728143225887, undefined, []); }
   declare readonly $type: { "c:@S@MTL4BufferRange": true };
 }
 
@@ -98,55 +98,55 @@ export interface MTLAccelerationStructure {
  */
 export class MTLAccelerationStructureGeometryDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLAccelerationStructureGeometryDescriptor { return callSDK<MTLAccelerationStructureGeometryDescriptor>("Metal_e11dfd5beee01da3", 562928941821507, undefined, []); }
+  static init(): MTLAccelerationStructureGeometryDescriptor { return callSDK<MTLAccelerationStructureGeometryDescriptor>("Metal_3864e7f38681b875", 562928941821507, undefined, []); }
   /**
    * var allowDuplicateIntersectionFunctionInvocation: Bool { get set }
    * @availability iOS 14.0+
    */
-  get allowDuplicateIntersectionFunctionInvocation(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 260432746829601, this, []); }
-  set allowDuplicateIntersectionFunctionInvocation(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 2079812314091776, this, [value]); }
+  get allowDuplicateIntersectionFunctionInvocation(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 260432746829601, this, []); }
+  set allowDuplicateIntersectionFunctionInvocation(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 2079812314091776, this, [value]); }
   /**
    * var intersectionFunctionTableOffset: Int { get set }
    * @availability iOS 14.0+
    */
-  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1812160549105435, this, []); }
-  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2860921036108515, this, [value]); }
+  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 1812160549105435, this, []); }
+  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2860921036108515, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 15.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 2841137625794200, this, []); }
-  set label(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1396032496588412, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 2841137625794200, this, []); }
+  set label(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 1396032496588412, this, [value]); }
   /**
    * var opaque: Bool { get set }
    * @availability iOS 14.0+
    */
-  get opaque(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2053979587863862, this, []); }
-  set opaque(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 2735487175170469, this, [value]); }
+  get opaque(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2053979587863862, this, []); }
+  set opaque(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 2735487175170469, this, [value]); }
   /**
    * var primitiveDataBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 16.0+
    */
-  get primitiveDataBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3134671318768785, this, []); }
-  set primitiveDataBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3783533957770554, this, [value]); }
+  get primitiveDataBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3134671318768785, this, []); }
+  set primitiveDataBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 3783533957770554, this, [value]); }
   /**
    * var primitiveDataBufferOffset: Int { get set }
    * @availability iOS 16.0+
    */
-  get primitiveDataBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4338796648359176, this, []); }
-  set primitiveDataBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1673187337823622, this, [value]); }
+  get primitiveDataBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 4338796648359176, this, []); }
+  set primitiveDataBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1673187337823622, this, [value]); }
   /**
    * var primitiveDataElementSize: Int { get set }
    * @availability iOS 16.0+
    */
-  get primitiveDataElementSize(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 279574880094954, this, []); }
-  set primitiveDataElementSize(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 165763443172852, this, [value]); }
+  get primitiveDataElementSize(): number { return callSDK<number>("Metal_3864e7f38681b875", 279574880094954, this, []); }
+  set primitiveDataElementSize(value: number) { callSDK<void>("Metal_3864e7f38681b875", 165763443172852, this, [value]); }
   /**
    * var primitiveDataStride: Int { get set }
    * @availability iOS 16.0+
    */
-  get primitiveDataStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 126385167009726, this, []); }
-  set primitiveDataStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 556342417015967, this, [value]); }
+  get primitiveDataStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 126385167009726, this, []); }
+  set primitiveDataStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 556342417015967, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowDuplicateIntersectionFunctionInvocation": true; "intersectionFunctionTableOffset": true; "label": true; "opaque": true; "primitiveDataBuffer": true; "primitiveDataBufferOffset": true; "primitiveDataElementSize": true; "primitiveDataStride": true };
 }
@@ -157,31 +157,31 @@ export class MTLAccelerationStructureGeometryDescriptor extends SDKHandle {
  */
 export class MTLAccelerationStructureBoundingBoxGeometryDescriptor extends (MTLAccelerationStructureGeometryDescriptor as unknown as Omit<typeof MTLAccelerationStructureGeometryDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureGeometryDescriptor)) {
   /** init() */
-  static init(): MTLAccelerationStructureBoundingBoxGeometryDescriptor { return callSDK<MTLAccelerationStructureBoundingBoxGeometryDescriptor>("Metal_e11dfd5beee01da3", 3958576264133942, undefined, []); }
+  static init(): MTLAccelerationStructureBoundingBoxGeometryDescriptor { return callSDK<MTLAccelerationStructureBoundingBoxGeometryDescriptor>("Metal_3864e7f38681b875", 3958576264133942, undefined, []); }
   /**
    * var boundingBoxBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 14.0+
    */
-  get boundingBoxBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 2310032445569315, this, []); }
-  set boundingBoxBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3318851655963626, this, [value]); }
+  get boundingBoxBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 2310032445569315, this, []); }
+  set boundingBoxBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 3318851655963626, this, [value]); }
   /**
    * var boundingBoxBufferOffset: Int { get set }
    * @availability iOS 14.0+
    */
-  get boundingBoxBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3467911026379964, this, []); }
-  set boundingBoxBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1695964627360332, this, [value]); }
+  get boundingBoxBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 3467911026379964, this, []); }
+  set boundingBoxBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1695964627360332, this, [value]); }
   /**
    * var boundingBoxCount: Int { get set }
    * @availability iOS 14.0+
    */
-  get boundingBoxCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2469018803468359, this, []); }
-  set boundingBoxCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1486455221452313, this, [value]); }
+  get boundingBoxCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 2469018803468359, this, []); }
+  set boundingBoxCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1486455221452313, this, [value]); }
   /**
    * var boundingBoxStride: Int { get set }
    * @availability iOS 14.0+
    */
-  get boundingBoxStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3115950907085599, this, []); }
-  set boundingBoxStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 479100620291292, this, [value]); }
+  get boundingBoxStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 3115950907085599, this, []); }
+  set boundingBoxStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 479100620291292, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructureBoundingBoxGeometryDescriptor": true; "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowDuplicateIntersectionFunctionInvocation": true; "intersectionFunctionTableOffset": true; "label": true; "opaque": true; "primitiveDataBuffer": true; "primitiveDataBufferOffset": true; "primitiveDataElementSize": true; "primitiveDataStride": true; "boundingBoxBuffer": true; "boundingBoxBufferOffset": true; "boundingBoxCount": true; "boundingBoxStride": true };
 }
@@ -284,109 +284,109 @@ export interface MTLAccelerationStructureCommandEncoder {
  */
 export class MTLAccelerationStructureCurveGeometryDescriptor extends (MTLAccelerationStructureGeometryDescriptor as unknown as Omit<typeof MTLAccelerationStructureGeometryDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureGeometryDescriptor)) {
   /** init() */
-  static init(): MTLAccelerationStructureCurveGeometryDescriptor { return callSDK<MTLAccelerationStructureCurveGeometryDescriptor>("Metal_e11dfd5beee01da3", 1326377637733036, undefined, []); }
+  static init(): MTLAccelerationStructureCurveGeometryDescriptor { return callSDK<MTLAccelerationStructureCurveGeometryDescriptor>("Metal_3864e7f38681b875", 1326377637733036, undefined, []); }
   /**
    * var controlPointBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 17.0+
    */
-  get controlPointBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 1110884274898299, this, []); }
-  set controlPointBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1640112058974641, this, [value]); }
+  get controlPointBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 1110884274898299, this, []); }
+  set controlPointBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 1640112058974641, this, [value]); }
   /**
    * var controlPointBufferOffset: Int { get set }
    * @availability iOS 17.0+
    */
-  get controlPointBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4232461039215895, this, []); }
-  set controlPointBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3976635167263985, this, [value]); }
+  get controlPointBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 4232461039215895, this, []); }
+  set controlPointBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3976635167263985, this, [value]); }
   /**
    * var controlPointCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get controlPointCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 352601656486638, this, []); }
-  set controlPointCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 877707036409477, this, [value]); }
+  get controlPointCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 352601656486638, this, []); }
+  set controlPointCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 877707036409477, this, [value]); }
   /**
    * var controlPointFormat: MTLAttributeFormat { get set }
    * @availability iOS 17.0+
    */
-  get controlPointFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_e11dfd5beee01da3", 1678442321640627, this, []); }
-  set controlPointFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 97607631056386, this, [value]); }
+  get controlPointFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_3864e7f38681b875", 1678442321640627, this, []); }
+  set controlPointFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_3864e7f38681b875", 97607631056386, this, [value]); }
   /**
    * var controlPointStride: Int { get set }
    * @availability iOS 17.0+
    */
-  get controlPointStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1529603510931226, this, []); }
-  set controlPointStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1517153195817759, this, [value]); }
+  get controlPointStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 1529603510931226, this, []); }
+  set controlPointStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1517153195817759, this, [value]); }
   /**
    * var curveBasis: MTLCurveBasis { get set }
    * @availability iOS 17.0+
    */
-  get curveBasis(): MTLCurveBasis { return callSDK<MTLCurveBasis>("Metal_e11dfd5beee01da3", 2945687687400385, this, []); }
-  set curveBasis(value: MTLCurveBasis) { callSDK<void>("Metal_e11dfd5beee01da3", 1698008573786227, this, [value]); }
+  get curveBasis(): MTLCurveBasis { return callSDK<MTLCurveBasis>("Metal_3864e7f38681b875", 2945687687400385, this, []); }
+  set curveBasis(value: MTLCurveBasis) { callSDK<void>("Metal_3864e7f38681b875", 1698008573786227, this, [value]); }
   /**
    * var curveEndCaps: MTLCurveEndCaps { get set }
    * @availability iOS 17.0+
    */
-  get curveEndCaps(): MTLCurveEndCaps { return callSDK<MTLCurveEndCaps>("Metal_e11dfd5beee01da3", 4076858196414476, this, []); }
-  set curveEndCaps(value: MTLCurveEndCaps) { callSDK<void>("Metal_e11dfd5beee01da3", 1813063301731655, this, [value]); }
+  get curveEndCaps(): MTLCurveEndCaps { return callSDK<MTLCurveEndCaps>("Metal_3864e7f38681b875", 4076858196414476, this, []); }
+  set curveEndCaps(value: MTLCurveEndCaps) { callSDK<void>("Metal_3864e7f38681b875", 1813063301731655, this, [value]); }
   /**
    * var curveType: MTLCurveType { get set }
    * @availability iOS 17.0+
    */
-  get curveType(): MTLCurveType { return callSDK<MTLCurveType>("Metal_e11dfd5beee01da3", 4501946472767444, this, []); }
-  set curveType(value: MTLCurveType) { callSDK<void>("Metal_e11dfd5beee01da3", 959681435890275, this, [value]); }
+  get curveType(): MTLCurveType { return callSDK<MTLCurveType>("Metal_3864e7f38681b875", 4501946472767444, this, []); }
+  set curveType(value: MTLCurveType) { callSDK<void>("Metal_3864e7f38681b875", 959681435890275, this, [value]); }
   /**
    * var indexBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 17.0+
    */
-  get indexBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3316372077246528, this, []); }
-  set indexBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2603241915070540, this, [value]); }
+  get indexBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3316372077246528, this, []); }
+  set indexBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 2603241915070540, this, [value]); }
   /**
    * var indexBufferOffset: Int { get set }
    * @availability iOS 17.0+
    */
-  get indexBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3570059979919735, this, []); }
-  set indexBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3499498006041251, this, [value]); }
+  get indexBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 3570059979919735, this, []); }
+  set indexBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3499498006041251, this, [value]); }
   /**
    * var indexType: MTLIndexType { get set }
    * @availability iOS 17.0+
    */
-  get indexType(): MTLIndexType { return callSDK<MTLIndexType>("Metal_e11dfd5beee01da3", 890977364739115, this, []); }
-  set indexType(value: MTLIndexType) { callSDK<void>("Metal_e11dfd5beee01da3", 2584448897793929, this, [value]); }
+  get indexType(): MTLIndexType { return callSDK<MTLIndexType>("Metal_3864e7f38681b875", 890977364739115, this, []); }
+  set indexType(value: MTLIndexType) { callSDK<void>("Metal_3864e7f38681b875", 2584448897793929, this, [value]); }
   /**
    * var radiusBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 17.0+
    */
-  get radiusBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 1767812774385201, this, []); }
-  set radiusBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2710129486296434, this, [value]); }
+  get radiusBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 1767812774385201, this, []); }
+  set radiusBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 2710129486296434, this, [value]); }
   /**
    * var radiusBufferOffset: Int { get set }
    * @availability iOS 17.0+
    */
-  get radiusBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 960792732388192, this, []); }
-  set radiusBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 818434810780601, this, [value]); }
+  get radiusBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 960792732388192, this, []); }
+  set radiusBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 818434810780601, this, [value]); }
   /**
    * var radiusFormat: MTLAttributeFormat { get set }
    * @availability iOS 17.0+
    */
-  get radiusFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_e11dfd5beee01da3", 4348788052132903, this, []); }
-  set radiusFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 1549571305923045, this, [value]); }
+  get radiusFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_3864e7f38681b875", 4348788052132903, this, []); }
+  set radiusFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_3864e7f38681b875", 1549571305923045, this, [value]); }
   /**
    * var radiusStride: Int { get set }
    * @availability iOS 17.0+
    */
-  get radiusStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4459205386682921, this, []); }
-  set radiusStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1832918444338512, this, [value]); }
+  get radiusStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 4459205386682921, this, []); }
+  set radiusStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1832918444338512, this, [value]); }
   /**
    * var segmentControlPointCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get segmentControlPointCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1537983111749534, this, []); }
-  set segmentControlPointCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2284977886199058, this, [value]); }
+  get segmentControlPointCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1537983111749534, this, []); }
+  set segmentControlPointCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2284977886199058, this, [value]); }
   /**
    * var segmentCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get segmentCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 57360801518972, this, []); }
-  set segmentCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 877425611536801, this, [value]); }
+  get segmentCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 57360801518972, this, []); }
+  set segmentCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 877425611536801, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructureCurveGeometryDescriptor": true; "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowDuplicateIntersectionFunctionInvocation": true; "intersectionFunctionTableOffset": true; "label": true; "opaque": true; "primitiveDataBuffer": true; "primitiveDataBufferOffset": true; "primitiveDataElementSize": true; "primitiveDataStride": true; "controlPointBuffer": true; "controlPointBufferOffset": true; "controlPointCount": true; "controlPointFormat": true; "controlPointStride": true; "curveBasis": true; "curveEndCaps": true; "curveType": true; "indexBuffer": true; "indexBufferOffset": true; "indexType": true; "radiusBuffer": true; "radiusBufferOffset": true; "radiusFormat": true; "radiusStride": true; "segmentControlPointCount": true; "segmentCount": true };
 }
@@ -397,13 +397,13 @@ export class MTLAccelerationStructureCurveGeometryDescriptor extends (MTLAcceler
  */
 export class MTLAccelerationStructureDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLAccelerationStructureDescriptor { return callSDK<MTLAccelerationStructureDescriptor>("Metal_e11dfd5beee01da3", 1423937423875060, undefined, []); }
+  static init(): MTLAccelerationStructureDescriptor { return callSDK<MTLAccelerationStructureDescriptor>("Metal_3864e7f38681b875", 1423937423875060, undefined, []); }
   /**
    * var usage: MTLAccelerationStructureUsage { get set }
    * @availability iOS 14.0+
    */
-  get usage(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_e11dfd5beee01da3", 209402337148444, this, []); }
-  set usage(value: MTLAccelerationStructureUsage) { callSDK<void>("Metal_e11dfd5beee01da3", 2318609035907931, this, [value]); }
+  get usage(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_3864e7f38681b875", 209402337148444, this, []); }
+  set usage(value: MTLAccelerationStructureUsage) { callSDK<void>("Metal_3864e7f38681b875", 2318609035907931, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructureDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "usage": true };
 }
@@ -417,42 +417,42 @@ export class MTLAccelerationStructureInstanceDescriptor extends SDKHandle {
    * var accelerationStructureIndex: UInt32
    * @availability iOS 14.0+
    */
-  get accelerationStructureIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4014769053180776, this, []); }
-  set accelerationStructureIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2746883367025182, this, [value]); }
+  get accelerationStructureIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 4014769053180776, this, []); }
+  set accelerationStructureIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2746883367025182, this, [value]); }
   /**
    * var intersectionFunctionTableOffset: UInt32
    * @availability iOS 14.0+
    */
-  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 396972968280569, this, []); }
-  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2237441867708279, this, [value]); }
+  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 396972968280569, this, []); }
+  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2237441867708279, this, [value]); }
   /**
    * var mask: UInt32
    * @availability iOS 14.0+
    */
-  get mask(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2291025768871745, this, []); }
-  set mask(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1278165458307458, this, [value]); }
+  get mask(): number { return callSDK<number>("Metal_3864e7f38681b875", 2291025768871745, this, []); }
+  set mask(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1278165458307458, this, [value]); }
   /**
    * var options: MTLAccelerationStructureInstanceOptions
    * @availability iOS 14.0+
    */
-  get options(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_e11dfd5beee01da3", 3547690681512259, this, []); }
-  set options(value: MTLAccelerationStructureInstanceOptions) { callSDK<void>("Metal_e11dfd5beee01da3", 1054566195768460, this, [value]); }
+  get options(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_3864e7f38681b875", 3547690681512259, this, []); }
+  set options(value: MTLAccelerationStructureInstanceOptions) { callSDK<void>("Metal_3864e7f38681b875", 1054566195768460, this, [value]); }
   /**
    * var transformationMatrix: MTLPackedFloat4x3
    * @availability iOS 14.0+
    */
-  get transformationMatrix(): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 120640841782612, this, []); }
-  set transformationMatrix(value: SDKHandle) { callSDK<void>("Metal_e11dfd5beee01da3", 280820345189473, this, [value]); }
+  get transformationMatrix(): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 120640841782612, this, []); }
+  set transformationMatrix(value: SDKHandle) { callSDK<void>("Metal_3864e7f38681b875", 280820345189473, this, [value]); }
   /**
    * init(transformationMatrix: MTLPackedFloat4x3, options: MTLAccelerationStructureInstanceOptions, mask: UInt32, intersectionFunctionTableOffset: UInt32, accelerationStructureIndex: UInt32)
    * @availability iOS 14.0+
    */
-  static initTransformationMatrixOptionsMaskIntersectionFunctionTableOffsetAccelerationStructureIndex(transformationMatrix: SDKHandle, options: MTLAccelerationStructureInstanceOptions, mask: number, intersectionFunctionTableOffset: number, accelerationStructureIndex: number): MTLAccelerationStructureInstanceDescriptor { return callSDK<MTLAccelerationStructureInstanceDescriptor>("Metal_e11dfd5beee01da3", 1755655461723728, undefined, [transformationMatrix, options, mask, intersectionFunctionTableOffset, accelerationStructureIndex]); }
+  static initTransformationMatrixOptionsMaskIntersectionFunctionTableOffsetAccelerationStructureIndex(transformationMatrix: SDKHandle, options: MTLAccelerationStructureInstanceOptions, mask: number, intersectionFunctionTableOffset: number, accelerationStructureIndex: number): MTLAccelerationStructureInstanceDescriptor { return callSDK<MTLAccelerationStructureInstanceDescriptor>("Metal_3864e7f38681b875", 1755655461723728, undefined, [transformationMatrix, options, mask, intersectionFunctionTableOffset, accelerationStructureIndex]); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): MTLAccelerationStructureInstanceDescriptor { return callSDK<MTLAccelerationStructureInstanceDescriptor>("Metal_e11dfd5beee01da3", 4496747319313130, undefined, []); }
+  static init(): MTLAccelerationStructureInstanceDescriptor { return callSDK<MTLAccelerationStructureInstanceDescriptor>("Metal_3864e7f38681b875", 4496747319313130, undefined, []); }
   declare readonly $type: { "c:@SA@MTLAccelerationStructureInstanceDescriptor": true };
 }
 
@@ -467,7 +467,7 @@ export const MTLAccelerationStructureInstanceDescriptorType = {
    * init?(rawValue: UInt)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (MTLAccelerationStructureInstanceDescriptorType) | null { return callSDK<(MTLAccelerationStructureInstanceDescriptorType) | null>("Metal_e11dfd5beee01da3", 1047379868078017, undefined, [rawValue]); }
+  init(rawValue: number): (MTLAccelerationStructureInstanceDescriptorType) | null { return callSDK<(MTLAccelerationStructureInstanceDescriptorType) | null>("Metal_3864e7f38681b875", 1047379868078017, undefined, [rawValue]); }
 };
 
 /**
@@ -481,27 +481,27 @@ export const MTLAccelerationStructureInstanceOptions = {
    * static var disableTriangleCulling: MTLAccelerationStructureInstanceOptions { get }
    * @availability iOS 14.0+
    */
-  get disableTriangleCulling(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_e11dfd5beee01da3", 2503819115822485, undefined, []); },
+  get disableTriangleCulling(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_3864e7f38681b875", 2503819115822485, undefined, []); },
   /**
    * static var nonOpaque: MTLAccelerationStructureInstanceOptions { get }
    * @availability iOS 14.0+
    */
-  get nonOpaque(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_e11dfd5beee01da3", 1032305907992767, undefined, []); },
+  get nonOpaque(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_3864e7f38681b875", 1032305907992767, undefined, []); },
   /**
    * static var opaque: MTLAccelerationStructureInstanceOptions { get }
    * @availability iOS 14.0+
    */
-  get opaque(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_e11dfd5beee01da3", 553113960037248, undefined, []); },
+  get opaque(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_3864e7f38681b875", 553113960037248, undefined, []); },
   /**
    * static var triangleFrontFacingWindingCounterClockwise: MTLAccelerationStructureInstanceOptions { get }
    * @availability iOS 14.0+
    */
-  get triangleFrontFacingWindingCounterClockwise(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_e11dfd5beee01da3", 94363705653713, undefined, []); },
+  get triangleFrontFacingWindingCounterClockwise(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_3864e7f38681b875", 94363705653713, undefined, []); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_e11dfd5beee01da3", 1783032426378952, undefined, [rawValue]); }
+  init(rawValue: number): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_3864e7f38681b875", 1783032426378952, undefined, [rawValue]); }
 };
 
 /**
@@ -510,25 +510,25 @@ export const MTLAccelerationStructureInstanceOptions = {
  */
 export class MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor extends (MTLAccelerationStructureGeometryDescriptor as unknown as Omit<typeof MTLAccelerationStructureGeometryDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureGeometryDescriptor)) {
   /** init() */
-  static init(): MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor { return callSDK<MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor>("Metal_e11dfd5beee01da3", 3773866581642222, undefined, []); }
+  static init(): MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor { return callSDK<MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor>("Metal_3864e7f38681b875", 3773866581642222, undefined, []); }
   /**
    * var boundingBoxBuffers: [MTLMotionKeyframeData] { get set }
    * @availability iOS 15.0+
    */
-  get boundingBoxBuffers(): $SDK0 { return callSDK<$SDK0>("Metal_e11dfd5beee01da3", 1141688194329643, this, []); }
-  set boundingBoxBuffers(value: $SDK0) { callSDK<void>("Metal_e11dfd5beee01da3", 2648795321440093, this, [value]); }
+  get boundingBoxBuffers(): $SDK0 { return callSDK<$SDK0>("Metal_3864e7f38681b875", 1141688194329643, this, []); }
+  set boundingBoxBuffers(value: $SDK0) { callSDK<void>("Metal_3864e7f38681b875", 2648795321440093, this, [value]); }
   /**
    * var boundingBoxCount: Int { get set }
    * @availability iOS 15.0+
    */
-  get boundingBoxCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1599559468120841, this, []); }
-  set boundingBoxCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1799779119585999, this, [value]); }
+  get boundingBoxCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1599559468120841, this, []); }
+  set boundingBoxCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1799779119585999, this, [value]); }
   /**
    * var boundingBoxStride: Int { get set }
    * @availability iOS 15.0+
    */
-  get boundingBoxStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 15308440916853, this, []); }
-  set boundingBoxStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 936590947999702, this, [value]); }
+  get boundingBoxStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 15308440916853, this, []); }
+  set boundingBoxStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 936590947999702, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor": true; "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowDuplicateIntersectionFunctionInvocation": true; "intersectionFunctionTableOffset": true; "label": true; "opaque": true; "primitiveDataBuffer": true; "primitiveDataBufferOffset": true; "primitiveDataElementSize": true; "primitiveDataStride": true; "boundingBoxBuffers": true; "boundingBoxCount": true; "boundingBoxStride": true };
 }
@@ -539,97 +539,97 @@ export class MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor extends
  */
 export class MTLAccelerationStructureMotionCurveGeometryDescriptor extends (MTLAccelerationStructureGeometryDescriptor as unknown as Omit<typeof MTLAccelerationStructureGeometryDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureGeometryDescriptor)) {
   /** init() */
-  static init(): MTLAccelerationStructureMotionCurveGeometryDescriptor { return callSDK<MTLAccelerationStructureMotionCurveGeometryDescriptor>("Metal_e11dfd5beee01da3", 1957038734108577, undefined, []); }
+  static init(): MTLAccelerationStructureMotionCurveGeometryDescriptor { return callSDK<MTLAccelerationStructureMotionCurveGeometryDescriptor>("Metal_3864e7f38681b875", 1957038734108577, undefined, []); }
   /**
    * var controlPointBuffers: [MTLMotionKeyframeData] { get set }
    * @availability iOS 17.0+
    */
-  get controlPointBuffers(): $SDK0 { return callSDK<$SDK0>("Metal_e11dfd5beee01da3", 4339829333010115, this, []); }
-  set controlPointBuffers(value: $SDK0) { callSDK<void>("Metal_e11dfd5beee01da3", 4291210235563077, this, [value]); }
+  get controlPointBuffers(): $SDK0 { return callSDK<$SDK0>("Metal_3864e7f38681b875", 4339829333010115, this, []); }
+  set controlPointBuffers(value: $SDK0) { callSDK<void>("Metal_3864e7f38681b875", 4291210235563077, this, [value]); }
   /**
    * var controlPointCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get controlPointCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1200190342071980, this, []); }
-  set controlPointCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2638828302213405, this, [value]); }
+  get controlPointCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1200190342071980, this, []); }
+  set controlPointCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2638828302213405, this, [value]); }
   /**
    * var controlPointFormat: MTLAttributeFormat { get set }
    * @availability iOS 17.0+
    */
-  get controlPointFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_e11dfd5beee01da3", 2116484580900615, this, []); }
-  set controlPointFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 3442462129187669, this, [value]); }
+  get controlPointFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_3864e7f38681b875", 2116484580900615, this, []); }
+  set controlPointFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_3864e7f38681b875", 3442462129187669, this, [value]); }
   /**
    * var controlPointStride: Int { get set }
    * @availability iOS 17.0+
    */
-  get controlPointStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 499263359265392, this, []); }
-  set controlPointStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4181822961978868, this, [value]); }
+  get controlPointStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 499263359265392, this, []); }
+  set controlPointStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4181822961978868, this, [value]); }
   /**
    * var curveBasis: MTLCurveBasis { get set }
    * @availability iOS 17.0+
    */
-  get curveBasis(): MTLCurveBasis { return callSDK<MTLCurveBasis>("Metal_e11dfd5beee01da3", 3862056024464983, this, []); }
-  set curveBasis(value: MTLCurveBasis) { callSDK<void>("Metal_e11dfd5beee01da3", 1209780574977842, this, [value]); }
+  get curveBasis(): MTLCurveBasis { return callSDK<MTLCurveBasis>("Metal_3864e7f38681b875", 3862056024464983, this, []); }
+  set curveBasis(value: MTLCurveBasis) { callSDK<void>("Metal_3864e7f38681b875", 1209780574977842, this, [value]); }
   /**
    * var curveEndCaps: MTLCurveEndCaps { get set }
    * @availability iOS 17.0+
    */
-  get curveEndCaps(): MTLCurveEndCaps { return callSDK<MTLCurveEndCaps>("Metal_e11dfd5beee01da3", 1738917437718678, this, []); }
-  set curveEndCaps(value: MTLCurveEndCaps) { callSDK<void>("Metal_e11dfd5beee01da3", 1980931133466968, this, [value]); }
+  get curveEndCaps(): MTLCurveEndCaps { return callSDK<MTLCurveEndCaps>("Metal_3864e7f38681b875", 1738917437718678, this, []); }
+  set curveEndCaps(value: MTLCurveEndCaps) { callSDK<void>("Metal_3864e7f38681b875", 1980931133466968, this, [value]); }
   /**
    * var curveType: MTLCurveType { get set }
    * @availability iOS 17.0+
    */
-  get curveType(): MTLCurveType { return callSDK<MTLCurveType>("Metal_e11dfd5beee01da3", 1198162236821030, this, []); }
-  set curveType(value: MTLCurveType) { callSDK<void>("Metal_e11dfd5beee01da3", 3271759550049675, this, [value]); }
+  get curveType(): MTLCurveType { return callSDK<MTLCurveType>("Metal_3864e7f38681b875", 1198162236821030, this, []); }
+  set curveType(value: MTLCurveType) { callSDK<void>("Metal_3864e7f38681b875", 3271759550049675, this, [value]); }
   /**
    * var indexBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 17.0+
    */
-  get indexBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3581094620597966, this, []); }
-  set indexBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1225280243532284, this, [value]); }
+  get indexBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3581094620597966, this, []); }
+  set indexBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 1225280243532284, this, [value]); }
   /**
    * var indexBufferOffset: Int { get set }
    * @availability iOS 17.0+
    */
-  get indexBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3448297599637253, this, []); }
-  set indexBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1989766127049893, this, [value]); }
+  get indexBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 3448297599637253, this, []); }
+  set indexBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1989766127049893, this, [value]); }
   /**
    * var indexType: MTLIndexType { get set }
    * @availability iOS 17.0+
    */
-  get indexType(): MTLIndexType { return callSDK<MTLIndexType>("Metal_e11dfd5beee01da3", 3501076186315150, this, []); }
-  set indexType(value: MTLIndexType) { callSDK<void>("Metal_e11dfd5beee01da3", 517961748837909, this, [value]); }
+  get indexType(): MTLIndexType { return callSDK<MTLIndexType>("Metal_3864e7f38681b875", 3501076186315150, this, []); }
+  set indexType(value: MTLIndexType) { callSDK<void>("Metal_3864e7f38681b875", 517961748837909, this, [value]); }
   /**
    * var radiusBuffers: [MTLMotionKeyframeData] { get set }
    * @availability iOS 17.0+
    */
-  get radiusBuffers(): $SDK0 { return callSDK<$SDK0>("Metal_e11dfd5beee01da3", 3502887926883377, this, []); }
-  set radiusBuffers(value: $SDK0) { callSDK<void>("Metal_e11dfd5beee01da3", 2682941719235391, this, [value]); }
+  get radiusBuffers(): $SDK0 { return callSDK<$SDK0>("Metal_3864e7f38681b875", 3502887926883377, this, []); }
+  set radiusBuffers(value: $SDK0) { callSDK<void>("Metal_3864e7f38681b875", 2682941719235391, this, [value]); }
   /**
    * var radiusFormat: MTLAttributeFormat { get set }
    * @availability iOS 17.0+
    */
-  get radiusFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_e11dfd5beee01da3", 237344082262150, this, []); }
-  set radiusFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 121016540669534, this, [value]); }
+  get radiusFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_3864e7f38681b875", 237344082262150, this, []); }
+  set radiusFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_3864e7f38681b875", 121016540669534, this, [value]); }
   /**
    * var radiusStride: Int { get set }
    * @availability iOS 17.0+
    */
-  get radiusStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4038560699644554, this, []); }
-  set radiusStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1898281944814148, this, [value]); }
+  get radiusStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 4038560699644554, this, []); }
+  set radiusStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1898281944814148, this, [value]); }
   /**
    * var segmentControlPointCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get segmentControlPointCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1095986004944526, this, []); }
-  set segmentControlPointCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1495699106557849, this, [value]); }
+  get segmentControlPointCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1095986004944526, this, []); }
+  set segmentControlPointCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1495699106557849, this, [value]); }
   /**
    * var segmentCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get segmentCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1387307576498826, this, []); }
-  set segmentCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2263658183732339, this, [value]); }
+  get segmentCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1387307576498826, this, []); }
+  set segmentCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2263658183732339, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructureMotionCurveGeometryDescriptor": true; "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowDuplicateIntersectionFunctionInvocation": true; "intersectionFunctionTableOffset": true; "label": true; "opaque": true; "primitiveDataBuffer": true; "primitiveDataBufferOffset": true; "primitiveDataElementSize": true; "primitiveDataStride": true; "controlPointBuffers": true; "controlPointCount": true; "controlPointFormat": true; "controlPointStride": true; "curveBasis": true; "curveEndCaps": true; "curveType": true; "indexBuffer": true; "indexBufferOffset": true; "indexType": true; "radiusBuffers": true; "radiusFormat": true; "radiusStride": true; "segmentControlPointCount": true; "segmentCount": true };
 }
@@ -643,78 +643,78 @@ export class MTLAccelerationStructureMotionInstanceDescriptor extends SDKHandle 
    * var accelerationStructureIndex: UInt32
    * @availability iOS 15.0+
    */
-  get accelerationStructureIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1944363341848200, this, []); }
-  set accelerationStructureIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2207147160844147, this, [value]); }
+  get accelerationStructureIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 1944363341848200, this, []); }
+  set accelerationStructureIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2207147160844147, this, [value]); }
   /**
    * var intersectionFunctionTableOffset: UInt32
    * @availability iOS 15.0+
    */
-  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 597838926979160, this, []); }
-  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3624463563562401, this, [value]); }
+  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 597838926979160, this, []); }
+  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3624463563562401, this, [value]); }
   /**
    * var mask: UInt32
    * @availability iOS 15.0+
    */
-  get mask(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1368572665418441, this, []); }
-  set mask(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1726496525867372, this, [value]); }
+  get mask(): number { return callSDK<number>("Metal_3864e7f38681b875", 1368572665418441, this, []); }
+  set mask(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1726496525867372, this, [value]); }
   /**
    * var motionEndBorderMode: MTLMotionBorderMode
    * @availability iOS 15.0+
    */
-  get motionEndBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_e11dfd5beee01da3", 3521843870206403, this, []); }
-  set motionEndBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_e11dfd5beee01da3", 1658369950841568, this, [value]); }
+  get motionEndBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_3864e7f38681b875", 3521843870206403, this, []); }
+  set motionEndBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_3864e7f38681b875", 1658369950841568, this, [value]); }
   /**
    * var motionEndTime: Float
    * @availability iOS 15.0+
    */
-  get motionEndTime(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2544048692861427, this, []); }
-  set motionEndTime(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1743200675835771, this, [value]); }
+  get motionEndTime(): number { return callSDK<number>("Metal_3864e7f38681b875", 2544048692861427, this, []); }
+  set motionEndTime(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1743200675835771, this, [value]); }
   /**
    * var motionStartBorderMode: MTLMotionBorderMode
    * @availability iOS 15.0+
    */
-  get motionStartBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_e11dfd5beee01da3", 1664834648900847, this, []); }
-  set motionStartBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_e11dfd5beee01da3", 234378967701436, this, [value]); }
+  get motionStartBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_3864e7f38681b875", 1664834648900847, this, []); }
+  set motionStartBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_3864e7f38681b875", 234378967701436, this, [value]); }
   /**
    * var motionStartTime: Float
    * @availability iOS 15.0+
    */
-  get motionStartTime(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3890927170886894, this, []); }
-  set motionStartTime(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 112601528568924, this, [value]); }
+  get motionStartTime(): number { return callSDK<number>("Metal_3864e7f38681b875", 3890927170886894, this, []); }
+  set motionStartTime(value: number) { callSDK<void>("Metal_3864e7f38681b875", 112601528568924, this, [value]); }
   /**
    * var motionTransformsCount: UInt32
    * @availability iOS 15.0+
    */
-  get motionTransformsCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1678003106648327, this, []); }
-  set motionTransformsCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2455748083336654, this, [value]); }
+  get motionTransformsCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1678003106648327, this, []); }
+  set motionTransformsCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2455748083336654, this, [value]); }
   /**
    * var motionTransformsStartIndex: UInt32
    * @availability iOS 15.0+
    */
-  get motionTransformsStartIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1012709640356628, this, []); }
-  set motionTransformsStartIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1973365556468474, this, [value]); }
+  get motionTransformsStartIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 1012709640356628, this, []); }
+  set motionTransformsStartIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1973365556468474, this, [value]); }
   /**
    * var options: MTLAccelerationStructureInstanceOptions
    * @availability iOS 15.0+
    */
-  get options(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_e11dfd5beee01da3", 3396480774124957, this, []); }
-  set options(value: MTLAccelerationStructureInstanceOptions) { callSDK<void>("Metal_e11dfd5beee01da3", 3244008669018203, this, [value]); }
+  get options(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_3864e7f38681b875", 3396480774124957, this, []); }
+  set options(value: MTLAccelerationStructureInstanceOptions) { callSDK<void>("Metal_3864e7f38681b875", 3244008669018203, this, [value]); }
   /**
    * var userID: UInt32
    * @availability iOS 15.0+
    */
-  get userID(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 540413215310560, this, []); }
-  set userID(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1454732845914158, this, [value]); }
+  get userID(): number { return callSDK<number>("Metal_3864e7f38681b875", 540413215310560, this, []); }
+  set userID(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1454732845914158, this, [value]); }
   /**
    * init(options: MTLAccelerationStructureInstanceOptions, mask: UInt32, intersectionFunctionTableOffset: UInt32, accelerationStructureIndex: UInt32, userID: UInt32, motionTransformsStartIndex: UInt32, motionTransformsCount: UInt32, motionStartBorderMode: MTLMotionBorderMode, motionEndBorderMode: MTLMotionBorderMode, motionStartTime: Float, motionEndTime: Float)
    * @availability iOS 15.0+
    */
-  static initOptionsMaskIntersectionFunctionTableOffsetAccelerationStructureIndexUserIDMotionTransformsStartIndexMotionTransformsCountMotionStartBorderModeMotionEndBorderModeMotionStartTimeMotionEndTime(options: MTLAccelerationStructureInstanceOptions, mask: number, intersectionFunctionTableOffset: number, accelerationStructureIndex: number, userID: number, motionTransformsStartIndex: number, motionTransformsCount: number, motionStartBorderMode: MTLMotionBorderMode, motionEndBorderMode: MTLMotionBorderMode, motionStartTime: number, motionEndTime: number): MTLAccelerationStructureMotionInstanceDescriptor { return callSDK<MTLAccelerationStructureMotionInstanceDescriptor>("Metal_e11dfd5beee01da3", 1402398170684293, undefined, [options, mask, intersectionFunctionTableOffset, accelerationStructureIndex, userID, motionTransformsStartIndex, motionTransformsCount, motionStartBorderMode, motionEndBorderMode, motionStartTime, motionEndTime]); }
+  static initOptionsMaskIntersectionFunctionTableOffsetAccelerationStructureIndexUserIDMotionTransformsStartIndexMotionTransformsCountMotionStartBorderModeMotionEndBorderModeMotionStartTimeMotionEndTime(options: MTLAccelerationStructureInstanceOptions, mask: number, intersectionFunctionTableOffset: number, accelerationStructureIndex: number, userID: number, motionTransformsStartIndex: number, motionTransformsCount: number, motionStartBorderMode: MTLMotionBorderMode, motionEndBorderMode: MTLMotionBorderMode, motionStartTime: number, motionEndTime: number): MTLAccelerationStructureMotionInstanceDescriptor { return callSDK<MTLAccelerationStructureMotionInstanceDescriptor>("Metal_3864e7f38681b875", 1402398170684293, undefined, [options, mask, intersectionFunctionTableOffset, accelerationStructureIndex, userID, motionTransformsStartIndex, motionTransformsCount, motionStartBorderMode, motionEndBorderMode, motionStartTime, motionEndTime]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): MTLAccelerationStructureMotionInstanceDescriptor { return callSDK<MTLAccelerationStructureMotionInstanceDescriptor>("Metal_e11dfd5beee01da3", 200364760648044, undefined, []); }
+  static init(): MTLAccelerationStructureMotionInstanceDescriptor { return callSDK<MTLAccelerationStructureMotionInstanceDescriptor>("Metal_3864e7f38681b875", 200364760648044, undefined, []); }
   declare readonly $type: { "c:@SA@MTLAccelerationStructureMotionInstanceDescriptor": true };
 }
 
@@ -724,67 +724,67 @@ export class MTLAccelerationStructureMotionInstanceDescriptor extends SDKHandle 
  */
 export class MTLAccelerationStructureMotionTriangleGeometryDescriptor extends (MTLAccelerationStructureGeometryDescriptor as unknown as Omit<typeof MTLAccelerationStructureGeometryDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureGeometryDescriptor)) {
   /** init() */
-  static init(): MTLAccelerationStructureMotionTriangleGeometryDescriptor { return callSDK<MTLAccelerationStructureMotionTriangleGeometryDescriptor>("Metal_e11dfd5beee01da3", 4047873681722179, undefined, []); }
+  static init(): MTLAccelerationStructureMotionTriangleGeometryDescriptor { return callSDK<MTLAccelerationStructureMotionTriangleGeometryDescriptor>("Metal_3864e7f38681b875", 4047873681722179, undefined, []); }
   /**
    * var indexBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 15.0+
    */
-  get indexBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3425757579876069, this, []); }
-  set indexBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1384396253567630, this, [value]); }
+  get indexBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3425757579876069, this, []); }
+  set indexBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 1384396253567630, this, [value]); }
   /**
    * var indexBufferOffset: Int { get set }
    * @availability iOS 15.0+
    */
-  get indexBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 286309014819816, this, []); }
-  set indexBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3153987889059459, this, [value]); }
+  get indexBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 286309014819816, this, []); }
+  set indexBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3153987889059459, this, [value]); }
   /**
    * var indexType: MTLIndexType { get set }
    * @availability iOS 15.0+
    */
-  get indexType(): MTLIndexType { return callSDK<MTLIndexType>("Metal_e11dfd5beee01da3", 3675356727169139, this, []); }
-  set indexType(value: MTLIndexType) { callSDK<void>("Metal_e11dfd5beee01da3", 3382758596424398, this, [value]); }
+  get indexType(): MTLIndexType { return callSDK<MTLIndexType>("Metal_3864e7f38681b875", 3675356727169139, this, []); }
+  set indexType(value: MTLIndexType) { callSDK<void>("Metal_3864e7f38681b875", 3382758596424398, this, [value]); }
   /**
    * var transformationMatrixBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 16.0+
    */
-  get transformationMatrixBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 283635242710323, this, []); }
-  set transformationMatrixBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 4258828578578758, this, [value]); }
+  get transformationMatrixBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 283635242710323, this, []); }
+  set transformationMatrixBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 4258828578578758, this, [value]); }
   /**
    * var transformationMatrixBufferOffset: Int { get set }
    * @availability iOS 16.0+
    */
-  get transformationMatrixBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1889707634103856, this, []); }
-  set transformationMatrixBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1060991781007554, this, [value]); }
+  get transformationMatrixBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 1889707634103856, this, []); }
+  set transformationMatrixBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1060991781007554, this, [value]); }
   /**
    * var transformationMatrixLayout: MTLMatrixLayout { get set }
    * @availability iOS 18.0+
    */
-  get transformationMatrixLayout(): MTLMatrixLayout { return callSDK<MTLMatrixLayout>("Metal_e11dfd5beee01da3", 1303108401955868, this, []); }
-  set transformationMatrixLayout(value: MTLMatrixLayout) { callSDK<void>("Metal_e11dfd5beee01da3", 3921623690736184, this, [value]); }
+  get transformationMatrixLayout(): MTLMatrixLayout { return callSDK<MTLMatrixLayout>("Metal_3864e7f38681b875", 1303108401955868, this, []); }
+  set transformationMatrixLayout(value: MTLMatrixLayout) { callSDK<void>("Metal_3864e7f38681b875", 3921623690736184, this, [value]); }
   /**
    * var triangleCount: Int { get set }
    * @availability iOS 15.0+
    */
-  get triangleCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3963516588708997, this, []); }
-  set triangleCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1652813076118529, this, [value]); }
+  get triangleCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 3963516588708997, this, []); }
+  set triangleCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1652813076118529, this, [value]); }
   /**
    * var vertexBuffers: [MTLMotionKeyframeData] { get set }
    * @availability iOS 15.0+
    */
-  get vertexBuffers(): $SDK0 { return callSDK<$SDK0>("Metal_e11dfd5beee01da3", 825940679455432, this, []); }
-  set vertexBuffers(value: $SDK0) { callSDK<void>("Metal_e11dfd5beee01da3", 1245612960168190, this, [value]); }
+  get vertexBuffers(): $SDK0 { return callSDK<$SDK0>("Metal_3864e7f38681b875", 825940679455432, this, []); }
+  set vertexBuffers(value: $SDK0) { callSDK<void>("Metal_3864e7f38681b875", 1245612960168190, this, [value]); }
   /**
    * var vertexFormat: MTLAttributeFormat { get set }
    * @availability iOS 16.0+
    */
-  get vertexFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_e11dfd5beee01da3", 3051089478364508, this, []); }
-  set vertexFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 869338599096471, this, [value]); }
+  get vertexFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_3864e7f38681b875", 3051089478364508, this, []); }
+  set vertexFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_3864e7f38681b875", 869338599096471, this, [value]); }
   /**
    * var vertexStride: Int { get set }
    * @availability iOS 15.0+
    */
-  get vertexStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2938252736172247, this, []); }
-  set vertexStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2743495136868206, this, [value]); }
+  get vertexStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 2938252736172247, this, []); }
+  set vertexStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2743495136868206, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructureMotionTriangleGeometryDescriptor": true; "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowDuplicateIntersectionFunctionInvocation": true; "intersectionFunctionTableOffset": true; "label": true; "opaque": true; "primitiveDataBuffer": true; "primitiveDataBufferOffset": true; "primitiveDataElementSize": true; "primitiveDataStride": true; "indexBuffer": true; "indexBufferOffset": true; "indexType": true; "transformationMatrixBuffer": true; "transformationMatrixBufferOffset": true; "transformationMatrixLayout": true; "triangleCount": true; "vertexBuffers": true; "vertexFormat": true; "vertexStride": true };
 }
@@ -795,12 +795,12 @@ export class MTLAccelerationStructureMotionTriangleGeometryDescriptor extends (M
  */
 export class MTLAccelerationStructurePassDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLAccelerationStructurePassDescriptor { return callSDK<MTLAccelerationStructurePassDescriptor>("Metal_e11dfd5beee01da3", 2635059334778027, undefined, []); }
+  static init(): MTLAccelerationStructurePassDescriptor { return callSDK<MTLAccelerationStructurePassDescriptor>("Metal_3864e7f38681b875", 2635059334778027, undefined, []); }
   /**
    * var sampleBufferAttachments: MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray { get }
    * @availability iOS 16.0+
    */
-  get sampleBufferAttachments(): MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 902875324597688, this, []); }
+  get sampleBufferAttachments(): MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray>("Metal_3864e7f38681b875", 902875324597688, this, []); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructurePassDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "sampleBufferAttachments": true };
 }
@@ -811,25 +811,25 @@ export class MTLAccelerationStructurePassDescriptor extends SDKHandle {
  */
 export class MTLAccelerationStructurePassSampleBufferAttachmentDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLAccelerationStructurePassSampleBufferAttachmentDescriptor { return callSDK<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>("Metal_e11dfd5beee01da3", 694089395253096, undefined, []); }
+  static init(): MTLAccelerationStructurePassSampleBufferAttachmentDescriptor { return callSDK<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>("Metal_3864e7f38681b875", 694089395253096, undefined, []); }
   /**
    * var endOfEncoderSampleIndex: Int { get set }
    * @availability iOS 16.0+
    */
-  get endOfEncoderSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 295382591747408, this, []); }
-  set endOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2321479243954220, this, [value]); }
+  get endOfEncoderSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 295382591747408, this, []); }
+  set endOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2321479243954220, this, [value]); }
   /**
    * var sampleBuffer: (any MTLCounterSampleBuffer)? { get set }
    * @availability iOS 16.0+
    */
-  get sampleBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 803813827980396, this, []); }
-  set sampleBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 992654832903394, this, [value]); }
+  get sampleBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 803813827980396, this, []); }
+  set sampleBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 992654832903394, this, [value]); }
   /**
    * var startOfEncoderSampleIndex: Int { get set }
    * @availability iOS 16.0+
    */
-  get startOfEncoderSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4184871397943073, this, []); }
-  set startOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1363815660132215, this, [value]); }
+  get startOfEncoderSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 4184871397943073, this, []); }
+  set startOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1363815660132215, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructurePassSampleBufferAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endOfEncoderSampleIndex": true; "sampleBuffer": true; "startOfEncoderSampleIndex": true };
 }
@@ -840,12 +840,12 @@ export class MTLAccelerationStructurePassSampleBufferAttachmentDescriptor extend
  */
 export class MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 4404150788444904, undefined, []); }
+  static init(): MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray>("Metal_3864e7f38681b875", 4404150788444904, undefined, []); }
   /**
    * subscript(attachmentIndex: Int) -> MTLAccelerationStructurePassSampleBufferAttachmentDescriptor! { get set }
    * @availability iOS 16.0+
    */
-  subscript(attachmentIndex: number): (MTLAccelerationStructurePassSampleBufferAttachmentDescriptor) | null { return callSDK<(MTLAccelerationStructurePassSampleBufferAttachmentDescriptor) | null>("Metal_e11dfd5beee01da3", 2102793762425249, this, [attachmentIndex]); }
+  subscript(attachmentIndex: number): (MTLAccelerationStructurePassSampleBufferAttachmentDescriptor) | null { return callSDK<(MTLAccelerationStructurePassSampleBufferAttachmentDescriptor) | null>("Metal_3864e7f38681b875", 2102793762425249, this, [attachmentIndex]); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -860,34 +860,34 @@ export const MTLAccelerationStructureRefitOptions = {
    * static var perPrimitiveData: MTLAccelerationStructureRefitOptions { get }
    * @availability iOS 16.0+
    */
-  get perPrimitiveData(): MTLAccelerationStructureRefitOptions { return callSDK<MTLAccelerationStructureRefitOptions>("Metal_e11dfd5beee01da3", 2291672821455543, undefined, []); },
+  get perPrimitiveData(): MTLAccelerationStructureRefitOptions { return callSDK<MTLAccelerationStructureRefitOptions>("Metal_3864e7f38681b875", 2291672821455543, undefined, []); },
   /**
    * static var vertexData: MTLAccelerationStructureRefitOptions { get }
    * @availability iOS 16.0+
    */
-  get vertexData(): MTLAccelerationStructureRefitOptions { return callSDK<MTLAccelerationStructureRefitOptions>("Metal_e11dfd5beee01da3", 2397161667526698, undefined, []); },
+  get vertexData(): MTLAccelerationStructureRefitOptions { return callSDK<MTLAccelerationStructureRefitOptions>("Metal_3864e7f38681b875", 2397161667526698, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): MTLAccelerationStructureRefitOptions { return callSDK<MTLAccelerationStructureRefitOptions>("Metal_e11dfd5beee01da3", 4412634800662589, undefined, [rawValue]); }
+  init(rawValue: number): MTLAccelerationStructureRefitOptions { return callSDK<MTLAccelerationStructureRefitOptions>("Metal_3864e7f38681b875", 4412634800662589, undefined, [rawValue]); }
 };
 
 /** struct MTLAccelerationStructureSizes */
 export class MTLAccelerationStructureSizes extends SDKHandle {
   /** var accelerationStructureSize: Int */
-  get accelerationStructureSize(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 211075142631353, this, []); }
-  set accelerationStructureSize(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2877285729514821, this, [value]); }
+  get accelerationStructureSize(): number { return callSDK<number>("Metal_3864e7f38681b875", 211075142631353, this, []); }
+  set accelerationStructureSize(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2877285729514821, this, [value]); }
   /** var buildScratchBufferSize: Int */
-  get buildScratchBufferSize(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2380613974607046, this, []); }
-  set buildScratchBufferSize(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2644843392777794, this, [value]); }
+  get buildScratchBufferSize(): number { return callSDK<number>("Metal_3864e7f38681b875", 2380613974607046, this, []); }
+  set buildScratchBufferSize(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2644843392777794, this, [value]); }
   /** var refitScratchBufferSize: Int */
-  get refitScratchBufferSize(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3815111333518309, this, []); }
-  set refitScratchBufferSize(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3711894561328575, this, [value]); }
+  get refitScratchBufferSize(): number { return callSDK<number>("Metal_3864e7f38681b875", 3815111333518309, this, []); }
+  set refitScratchBufferSize(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3711894561328575, this, [value]); }
   /** init(accelerationStructureSize: Int, buildScratchBufferSize: Int, refitScratchBufferSize: Int) */
-  static initAccelerationStructureSizeBuildScratchBufferSizeRefitScratchBufferSize(accelerationStructureSize: number, buildScratchBufferSize: number, refitScratchBufferSize: number): MTLAccelerationStructureSizes { return callSDK<MTLAccelerationStructureSizes>("Metal_e11dfd5beee01da3", 2557651739986547, undefined, [accelerationStructureSize, buildScratchBufferSize, refitScratchBufferSize]); }
+  static initAccelerationStructureSizeBuildScratchBufferSizeRefitScratchBufferSize(accelerationStructureSize: number, buildScratchBufferSize: number, refitScratchBufferSize: number): MTLAccelerationStructureSizes { return callSDK<MTLAccelerationStructureSizes>("Metal_3864e7f38681b875", 2557651739986547, undefined, [accelerationStructureSize, buildScratchBufferSize, refitScratchBufferSize]); }
   /** init() */
-  static init(): MTLAccelerationStructureSizes { return callSDK<MTLAccelerationStructureSizes>("Metal_e11dfd5beee01da3", 796949130587622, undefined, []); }
+  static init(): MTLAccelerationStructureSizes { return callSDK<MTLAccelerationStructureSizes>("Metal_3864e7f38681b875", 796949130587622, undefined, []); }
   declare readonly $type: { "c:@SA@MTLAccelerationStructureSizes": true };
 }
 
@@ -897,73 +897,73 @@ export class MTLAccelerationStructureSizes extends SDKHandle {
  */
 export class MTLAccelerationStructureTriangleGeometryDescriptor extends (MTLAccelerationStructureGeometryDescriptor as unknown as Omit<typeof MTLAccelerationStructureGeometryDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureGeometryDescriptor)) {
   /** init() */
-  static init(): MTLAccelerationStructureTriangleGeometryDescriptor { return callSDK<MTLAccelerationStructureTriangleGeometryDescriptor>("Metal_e11dfd5beee01da3", 577274424814037, undefined, []); }
+  static init(): MTLAccelerationStructureTriangleGeometryDescriptor { return callSDK<MTLAccelerationStructureTriangleGeometryDescriptor>("Metal_3864e7f38681b875", 577274424814037, undefined, []); }
   /**
    * var indexBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 14.0+
    */
-  get indexBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 1795612470943896, this, []); }
-  set indexBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3911495713056745, this, [value]); }
+  get indexBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 1795612470943896, this, []); }
+  set indexBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 3911495713056745, this, [value]); }
   /**
    * var indexBufferOffset: Int { get set }
    * @availability iOS 14.0+
    */
-  get indexBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3572111626083449, this, []); }
-  set indexBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1348785450144748, this, [value]); }
+  get indexBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 3572111626083449, this, []); }
+  set indexBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1348785450144748, this, [value]); }
   /**
    * var indexType: MTLIndexType { get set }
    * @availability iOS 14.0+
    */
-  get indexType(): MTLIndexType { return callSDK<MTLIndexType>("Metal_e11dfd5beee01da3", 417322261761410, this, []); }
-  set indexType(value: MTLIndexType) { callSDK<void>("Metal_e11dfd5beee01da3", 616720243186282, this, [value]); }
+  get indexType(): MTLIndexType { return callSDK<MTLIndexType>("Metal_3864e7f38681b875", 417322261761410, this, []); }
+  set indexType(value: MTLIndexType) { callSDK<void>("Metal_3864e7f38681b875", 616720243186282, this, [value]); }
   /**
    * var transformationMatrixBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 16.0+
    */
-  get transformationMatrixBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 4192017712354902, this, []); }
-  set transformationMatrixBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3541016141132224, this, [value]); }
+  get transformationMatrixBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 4192017712354902, this, []); }
+  set transformationMatrixBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 3541016141132224, this, [value]); }
   /**
    * var transformationMatrixBufferOffset: Int { get set }
    * @availability iOS 16.0+
    */
-  get transformationMatrixBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 811830879517514, this, []); }
-  set transformationMatrixBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2890777300266438, this, [value]); }
+  get transformationMatrixBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 811830879517514, this, []); }
+  set transformationMatrixBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2890777300266438, this, [value]); }
   /**
    * var transformationMatrixLayout: MTLMatrixLayout { get set }
    * @availability iOS 18.0+
    */
-  get transformationMatrixLayout(): MTLMatrixLayout { return callSDK<MTLMatrixLayout>("Metal_e11dfd5beee01da3", 3678019430992386, this, []); }
-  set transformationMatrixLayout(value: MTLMatrixLayout) { callSDK<void>("Metal_e11dfd5beee01da3", 4244987698841580, this, [value]); }
+  get transformationMatrixLayout(): MTLMatrixLayout { return callSDK<MTLMatrixLayout>("Metal_3864e7f38681b875", 3678019430992386, this, []); }
+  set transformationMatrixLayout(value: MTLMatrixLayout) { callSDK<void>("Metal_3864e7f38681b875", 4244987698841580, this, [value]); }
   /**
    * var triangleCount: Int { get set }
    * @availability iOS 14.0+
    */
-  get triangleCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 344310440711004, this, []); }
-  set triangleCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 700708870736113, this, [value]); }
+  get triangleCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 344310440711004, this, []); }
+  set triangleCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 700708870736113, this, [value]); }
   /**
    * var vertexBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 14.0+
    */
-  get vertexBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3085283782154536, this, []); }
-  set vertexBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1058445687317885, this, [value]); }
+  get vertexBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3085283782154536, this, []); }
+  set vertexBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 1058445687317885, this, [value]); }
   /**
    * var vertexBufferOffset: Int { get set }
    * @availability iOS 14.0+
    */
-  get vertexBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3645334252586894, this, []); }
-  set vertexBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 846041543546475, this, [value]); }
+  get vertexBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 3645334252586894, this, []); }
+  set vertexBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 846041543546475, this, [value]); }
   /**
    * var vertexFormat: MTLAttributeFormat { get set }
    * @availability iOS 16.0+
    */
-  get vertexFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_e11dfd5beee01da3", 3691077341696689, this, []); }
-  set vertexFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 4084820612359089, this, [value]); }
+  get vertexFormat(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_3864e7f38681b875", 3691077341696689, this, []); }
+  set vertexFormat(value: MTLAttributeFormat) { callSDK<void>("Metal_3864e7f38681b875", 4084820612359089, this, [value]); }
   /**
    * var vertexStride: Int { get set }
    * @availability iOS 14.0+
    */
-  get vertexStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3937313014707711, this, []); }
-  set vertexStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1479334560565074, this, [value]); }
+  get vertexStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 3937313014707711, this, []); }
+  set vertexStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1479334560565074, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLAccelerationStructureTriangleGeometryDescriptor": true; "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowDuplicateIntersectionFunctionInvocation": true; "intersectionFunctionTableOffset": true; "label": true; "opaque": true; "primitiveDataBuffer": true; "primitiveDataBufferOffset": true; "primitiveDataElementSize": true; "primitiveDataStride": true; "indexBuffer": true; "indexBufferOffset": true; "indexType": true; "transformationMatrixBuffer": true; "transformationMatrixBufferOffset": true; "transformationMatrixLayout": true; "triangleCount": true; "vertexBuffer": true; "vertexBufferOffset": true; "vertexFormat": true; "vertexStride": true };
 }
@@ -979,32 +979,32 @@ export const MTLAccelerationStructureUsage = {
    * static var extendedLimits: MTLAccelerationStructureUsage { get }
    * @availability iOS 15.0+
    */
-  get extendedLimits(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_e11dfd5beee01da3", 2693199324185208, undefined, []); },
+  get extendedLimits(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_3864e7f38681b875", 2693199324185208, undefined, []); },
   /**
    * static var minimizeMemory: MTLAccelerationStructureUsage { get }
    * @availability iOS 26.0+
    */
-  get minimizeMemory(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_e11dfd5beee01da3", 250732477147475, undefined, []); },
+  get minimizeMemory(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_3864e7f38681b875", 250732477147475, undefined, []); },
   /**
    * static var preferFastBuild: MTLAccelerationStructureUsage { get }
    * @availability iOS 14.0+
    */
-  get preferFastBuild(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_e11dfd5beee01da3", 3110815772784013, undefined, []); },
+  get preferFastBuild(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_3864e7f38681b875", 3110815772784013, undefined, []); },
   /**
    * static var preferFastIntersection: MTLAccelerationStructureUsage { get }
    * @availability iOS 26.0+
    */
-  get preferFastIntersection(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_e11dfd5beee01da3", 644657133669254, undefined, []); },
+  get preferFastIntersection(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_3864e7f38681b875", 644657133669254, undefined, []); },
   /**
    * static var refit: MTLAccelerationStructureUsage { get }
    * @availability iOS 14.0+
    */
-  get refit(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_e11dfd5beee01da3", 1084119279913415, undefined, []); },
+  get refit(): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_3864e7f38681b875", 1084119279913415, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_e11dfd5beee01da3", 3426389036106925, undefined, [rawValue]); }
+  init(rawValue: number): MTLAccelerationStructureUsage { return callSDK<MTLAccelerationStructureUsage>("Metal_3864e7f38681b875", 3426389036106925, undefined, [rawValue]); }
 };
 
 /**
@@ -1016,48 +1016,48 @@ export class MTLAccelerationStructureUserIDInstanceDescriptor extends SDKHandle 
    * var accelerationStructureIndex: UInt32
    * @availability iOS 15.0+
    */
-  get accelerationStructureIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1796223124673247, this, []); }
-  set accelerationStructureIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3398603995674401, this, [value]); }
+  get accelerationStructureIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 1796223124673247, this, []); }
+  set accelerationStructureIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3398603995674401, this, [value]); }
   /**
    * var intersectionFunctionTableOffset: UInt32
    * @availability iOS 15.0+
    */
-  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4200784927409937, this, []); }
-  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4262881883984586, this, [value]); }
+  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 4200784927409937, this, []); }
+  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4262881883984586, this, [value]); }
   /**
    * var mask: UInt32
    * @availability iOS 15.0+
    */
-  get mask(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4234351039416202, this, []); }
-  set mask(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4034041460492935, this, [value]); }
+  get mask(): number { return callSDK<number>("Metal_3864e7f38681b875", 4234351039416202, this, []); }
+  set mask(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4034041460492935, this, [value]); }
   /**
    * var options: MTLAccelerationStructureInstanceOptions
    * @availability iOS 15.0+
    */
-  get options(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_e11dfd5beee01da3", 4035748081937245, this, []); }
-  set options(value: MTLAccelerationStructureInstanceOptions) { callSDK<void>("Metal_e11dfd5beee01da3", 1515084422643418, this, [value]); }
+  get options(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_3864e7f38681b875", 4035748081937245, this, []); }
+  set options(value: MTLAccelerationStructureInstanceOptions) { callSDK<void>("Metal_3864e7f38681b875", 1515084422643418, this, [value]); }
   /**
    * var transformationMatrix: MTLPackedFloat4x3
    * @availability iOS 15.0+
    */
-  get transformationMatrix(): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 571730680222894, this, []); }
-  set transformationMatrix(value: SDKHandle) { callSDK<void>("Metal_e11dfd5beee01da3", 3382329213290995, this, [value]); }
+  get transformationMatrix(): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 571730680222894, this, []); }
+  set transformationMatrix(value: SDKHandle) { callSDK<void>("Metal_3864e7f38681b875", 3382329213290995, this, [value]); }
   /**
    * var userID: UInt32
    * @availability iOS 15.0+
    */
-  get userID(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2043407494453730, this, []); }
-  set userID(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 110870309158928, this, [value]); }
+  get userID(): number { return callSDK<number>("Metal_3864e7f38681b875", 2043407494453730, this, []); }
+  set userID(value: number) { callSDK<void>("Metal_3864e7f38681b875", 110870309158928, this, [value]); }
   /**
    * init(transformationMatrix: MTLPackedFloat4x3, options: MTLAccelerationStructureInstanceOptions, mask: UInt32, intersectionFunctionTableOffset: UInt32, accelerationStructureIndex: UInt32, userID: UInt32)
    * @availability iOS 15.0+
    */
-  static initTransformationMatrixOptionsMaskIntersectionFunctionTableOffsetAccelerationStructureIndexUserID(transformationMatrix: SDKHandle, options: MTLAccelerationStructureInstanceOptions, mask: number, intersectionFunctionTableOffset: number, accelerationStructureIndex: number, userID: number): MTLAccelerationStructureUserIDInstanceDescriptor { return callSDK<MTLAccelerationStructureUserIDInstanceDescriptor>("Metal_e11dfd5beee01da3", 684809906156982, undefined, [transformationMatrix, options, mask, intersectionFunctionTableOffset, accelerationStructureIndex, userID]); }
+  static initTransformationMatrixOptionsMaskIntersectionFunctionTableOffsetAccelerationStructureIndexUserID(transformationMatrix: SDKHandle, options: MTLAccelerationStructureInstanceOptions, mask: number, intersectionFunctionTableOffset: number, accelerationStructureIndex: number, userID: number): MTLAccelerationStructureUserIDInstanceDescriptor { return callSDK<MTLAccelerationStructureUserIDInstanceDescriptor>("Metal_3864e7f38681b875", 684809906156982, undefined, [transformationMatrix, options, mask, intersectionFunctionTableOffset, accelerationStructureIndex, userID]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): MTLAccelerationStructureUserIDInstanceDescriptor { return callSDK<MTLAccelerationStructureUserIDInstanceDescriptor>("Metal_e11dfd5beee01da3", 3288583321429, undefined, []); }
+  static init(): MTLAccelerationStructureUserIDInstanceDescriptor { return callSDK<MTLAccelerationStructureUserIDInstanceDescriptor>("Metal_3864e7f38681b875", 3288583321429, undefined, []); }
   declare readonly $type: { "c:@SA@MTLAccelerationStructureUserIDInstanceDescriptor": true };
 }
 
@@ -1075,12 +1075,12 @@ export interface MTLAllocation {
  */
 export class MTLArchitecture extends SDKHandle {
   /** init() */
-  static init(): MTLArchitecture { return callSDK<MTLArchitecture>("Metal_e11dfd5beee01da3", 924312859048126, undefined, []); }
+  static init(): MTLArchitecture { return callSDK<MTLArchitecture>("Metal_3864e7f38681b875", 924312859048126, undefined, []); }
   /**
    * var name: String { get }
    * @availability iOS 17.0+
    */
-  get name(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 1520335703980706, this, []); }
+  get name(): string { return callSDK<string>("Metal_3864e7f38681b875", 1520335703980706, this, []); }
   declare readonly $type: { "c:objc(cs)MTLArchitecture": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true };
 }
@@ -1092,103 +1092,103 @@ export class MTLArchitecture extends SDKHandle {
  */
 export class MTLArgument extends SDKHandle {
   /** init() */
-  static init(): MTLArgument { return callSDK<MTLArgument>("Metal_e11dfd5beee01da3", 1538446784506017, undefined, []); }
+  static init(): MTLArgument { return callSDK<MTLArgument>("Metal_3864e7f38681b875", 1538446784506017, undefined, []); }
   /**
    * var access: MTLBindingAccess { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get access(): MTLBindingAccess { return callSDK<MTLBindingAccess>("Metal_e11dfd5beee01da3", 4228290196513714, this, []); }
+  get access(): MTLBindingAccess { return callSDK<MTLBindingAccess>("Metal_3864e7f38681b875", 4228290196513714, this, []); }
   /**
    * var isActive: Bool { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get isActive(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 556874902082286, this, []); }
+  get isActive(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 556874902082286, this, []); }
   /**
    * var arrayLength: Int { get }
    * @availability iOS 10.0+
    * @deprecated iOS 16.0
    */
-  get arrayLength(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 834132209509098, this, []); }
+  get arrayLength(): number { return callSDK<number>("Metal_3864e7f38681b875", 834132209509098, this, []); }
   /**
    * var bufferAlignment: Int { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get bufferAlignment(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2538966148139917, this, []); }
+  get bufferAlignment(): number { return callSDK<number>("Metal_3864e7f38681b875", 2538966148139917, this, []); }
   /**
    * var bufferDataSize: Int { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get bufferDataSize(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2037378178287143, this, []); }
+  get bufferDataSize(): number { return callSDK<number>("Metal_3864e7f38681b875", 2037378178287143, this, []); }
   /**
    * var bufferDataType: MTLDataType { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get bufferDataType(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 164498880396931, this, []); }
+  get bufferDataType(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 164498880396931, this, []); }
   /**
    * var bufferPointerType: MTLPointerType? { get }
    * @availability iOS 11.0+
    * @deprecated iOS 16.0
    */
-  get bufferPointerType(): (MTLPointerType) | null { return callSDK<(MTLPointerType) | null>("Metal_e11dfd5beee01da3", 2894422025249077, this, []); }
+  get bufferPointerType(): (MTLPointerType) | null { return callSDK<(MTLPointerType) | null>("Metal_3864e7f38681b875", 2894422025249077, this, []); }
   /**
    * var bufferStructType: MTLStructType? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get bufferStructType(): (MTLStructType) | null { return callSDK<(MTLStructType) | null>("Metal_e11dfd5beee01da3", 2275585561161170, this, []); }
+  get bufferStructType(): (MTLStructType) | null { return callSDK<(MTLStructType) | null>("Metal_3864e7f38681b875", 2275585561161170, this, []); }
   /**
    * var index: Int { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get index(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1502008713759238, this, []); }
+  get index(): number { return callSDK<number>("Metal_3864e7f38681b875", 1502008713759238, this, []); }
   /**
    * var isDepthTexture: Bool { get }
    * @availability iOS 10.0+
    * @deprecated iOS 16.0
    */
-  get isDepthTexture(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2108237675497099, this, []); }
+  get isDepthTexture(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2108237675497099, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get name(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 2969431005594719, this, []); }
+  get name(): string { return callSDK<string>("Metal_3864e7f38681b875", 2969431005594719, this, []); }
   /**
    * var textureDataType: MTLDataType { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get textureDataType(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 88729904862661, this, []); }
+  get textureDataType(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 88729904862661, this, []); }
   /**
    * var textureType: MTLTextureType { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get textureType(): MTLTextureType { return callSDK<MTLTextureType>("Metal_e11dfd5beee01da3", 3299647494409288, this, []); }
+  get textureType(): MTLTextureType { return callSDK<MTLTextureType>("Metal_3864e7f38681b875", 3299647494409288, this, []); }
   /**
    * var threadgroupMemoryAlignment: Int { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get threadgroupMemoryAlignment(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 259429919992000, this, []); }
+  get threadgroupMemoryAlignment(): number { return callSDK<number>("Metal_3864e7f38681b875", 259429919992000, this, []); }
   /**
    * var threadgroupMemoryDataSize: Int { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get threadgroupMemoryDataSize(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2713094882033978, this, []); }
+  get threadgroupMemoryDataSize(): number { return callSDK<number>("Metal_3864e7f38681b875", 2713094882033978, this, []); }
   /**
    * var type: MTLArgumentType { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get type(): MTLArgumentType { return callSDK<MTLArgumentType>("Metal_e11dfd5beee01da3", 1570603195885825, this, []); }
+  get type(): MTLArgumentType { return callSDK<MTLArgumentType>("Metal_3864e7f38681b875", 1570603195885825, this, []); }
   declare readonly $type: { "c:objc(cs)MTLArgument": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "access": true; "isActive": true; "arrayLength": true; "bufferAlignment": true; "bufferDataSize": true; "bufferDataType": true; "bufferPointerType": true; "bufferStructType": true; "index": true; "isDepthTexture": true; "name": true; "textureDataType": true; "textureType": true; "threadgroupMemoryAlignment": true; "threadgroupMemoryDataSize": true; "type": true };
 }
@@ -1211,7 +1211,7 @@ export const MTLArgumentBuffersTier = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (MTLArgumentBuffersTier) | null { return callSDK<(MTLArgumentBuffersTier) | null>("Metal_e11dfd5beee01da3", 864111460178950, undefined, [rawValue]); }
+  init(rawValue: number): (MTLArgumentBuffersTier) | null { return callSDK<(MTLArgumentBuffersTier) | null>("Metal_3864e7f38681b875", 864111460178950, undefined, [rawValue]); }
 };
 
 /**
@@ -1220,43 +1220,43 @@ export const MTLArgumentBuffersTier = {
  */
 export class MTLArgumentDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLArgumentDescriptor { return callSDK<MTLArgumentDescriptor>("Metal_e11dfd5beee01da3", 3466436585224029, undefined, []); }
+  static init(): MTLArgumentDescriptor { return callSDK<MTLArgumentDescriptor>("Metal_3864e7f38681b875", 3466436585224029, undefined, []); }
   /**
    * var access: MTLBindingAccess { get set }
    * @availability iOS 11.0+
    */
-  get access(): MTLBindingAccess { return callSDK<MTLBindingAccess>("Metal_e11dfd5beee01da3", 2537907887963300, this, []); }
-  set access(value: MTLBindingAccess) { callSDK<void>("Metal_e11dfd5beee01da3", 860170985857990, this, [value]); }
+  get access(): MTLBindingAccess { return callSDK<MTLBindingAccess>("Metal_3864e7f38681b875", 2537907887963300, this, []); }
+  set access(value: MTLBindingAccess) { callSDK<void>("Metal_3864e7f38681b875", 860170985857990, this, [value]); }
   /**
    * var arrayLength: Int { get set }
    * @availability iOS 11.0+
    */
-  get arrayLength(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3073283573560794, this, []); }
-  set arrayLength(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 52326015407841, this, [value]); }
+  get arrayLength(): number { return callSDK<number>("Metal_3864e7f38681b875", 3073283573560794, this, []); }
+  set arrayLength(value: number) { callSDK<void>("Metal_3864e7f38681b875", 52326015407841, this, [value]); }
   /**
    * var constantBlockAlignment: Int { get set }
    * @availability iOS 11.0+
    */
-  get constantBlockAlignment(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1878167149166379, this, []); }
-  set constantBlockAlignment(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1837915098042623, this, [value]); }
+  get constantBlockAlignment(): number { return callSDK<number>("Metal_3864e7f38681b875", 1878167149166379, this, []); }
+  set constantBlockAlignment(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1837915098042623, this, [value]); }
   /**
    * var dataType: MTLDataType { get set }
    * @availability iOS 11.0+
    */
-  get dataType(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 584253819789331, this, []); }
-  set dataType(value: MTLDataType) { callSDK<void>("Metal_e11dfd5beee01da3", 599093182012998, this, [value]); }
+  get dataType(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 584253819789331, this, []); }
+  set dataType(value: MTLDataType) { callSDK<void>("Metal_3864e7f38681b875", 599093182012998, this, [value]); }
   /**
    * var index: Int { get set }
    * @availability iOS 11.0+
    */
-  get index(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 130288196470784, this, []); }
-  set index(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1945704325201417, this, [value]); }
+  get index(): number { return callSDK<number>("Metal_3864e7f38681b875", 130288196470784, this, []); }
+  set index(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1945704325201417, this, [value]); }
   /**
    * var textureType: MTLTextureType { get set }
    * @availability iOS 11.0+
    */
-  get textureType(): MTLTextureType { return callSDK<MTLTextureType>("Metal_e11dfd5beee01da3", 1862194671405337, this, []); }
-  set textureType(value: MTLTextureType) { callSDK<void>("Metal_e11dfd5beee01da3", 2499609725454680, this, [value]); }
+  get textureType(): MTLTextureType { return callSDK<MTLTextureType>("Metal_3864e7f38681b875", 1862194671405337, this, []); }
+  set textureType(value: MTLTextureType) { callSDK<void>("Metal_3864e7f38681b875", 2499609725454680, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLArgumentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "access": true; "arrayLength": true; "constantBlockAlignment": true; "dataType": true; "index": true; "textureType": true };
 }
@@ -1346,7 +1346,7 @@ export const MTLArgumentType = {
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  init(rawValue: number): (MTLArgumentType) | null { return callSDK<(MTLArgumentType) | null>("Metal_e11dfd5beee01da3", 3017099861552863, undefined, [rawValue]); }
+  init(rawValue: number): (MTLArgumentType) | null { return callSDK<(MTLArgumentType) | null>("Metal_3864e7f38681b875", 3017099861552863, undefined, [rawValue]); }
 };
 
 /**
@@ -1355,12 +1355,12 @@ export const MTLArgumentType = {
  */
 export class MTLType extends SDKHandle {
   /** init() */
-  static init(): MTLType { return callSDK<MTLType>("Metal_e11dfd5beee01da3", 4252100720712845, undefined, []); }
+  static init(): MTLType { return callSDK<MTLType>("Metal_3864e7f38681b875", 4252100720712845, undefined, []); }
   /**
    * var dataType: MTLDataType { get }
    * @availability iOS 11.0+
    */
-  get dataType(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 1818320327359680, this, []); }
+  get dataType(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 1818320327359680, this, []); }
   declare readonly $type: { "c:objc(cs)MTLType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true };
 }
@@ -1374,44 +1374,44 @@ export class MTLArrayType extends (MTLType as unknown as Omit<typeof MTLType, "i
    * func element() -> MTLArrayType?
    * @availability iOS 8.0+
    */
-  element(): (MTLArrayType) | null { return callSDK<(MTLArrayType) | null>("Metal_e11dfd5beee01da3", 3926964346609855, this, []); }
+  element(): (MTLArrayType) | null { return callSDK<(MTLArrayType) | null>("Metal_3864e7f38681b875", 3926964346609855, this, []); }
   /**
    * func elementPointerType() -> MTLPointerType?
    * @availability iOS 11.0+
    */
-  elementPointerType(): (MTLPointerType) | null { return callSDK<(MTLPointerType) | null>("Metal_e11dfd5beee01da3", 1321965641578284, this, []); }
+  elementPointerType(): (MTLPointerType) | null { return callSDK<(MTLPointerType) | null>("Metal_3864e7f38681b875", 1321965641578284, this, []); }
   /**
    * func elementStructType() -> MTLStructType?
    * @availability iOS 8.0+
    */
-  elementStructType(): (MTLStructType) | null { return callSDK<(MTLStructType) | null>("Metal_e11dfd5beee01da3", 2227158050148303, this, []); }
+  elementStructType(): (MTLStructType) | null { return callSDK<(MTLStructType) | null>("Metal_3864e7f38681b875", 2227158050148303, this, []); }
   /**
    * func elementTextureReferenceType() -> MTLTextureReferenceType?
    * @availability iOS 11.0+
    */
-  elementTextureReferenceType(): $SDK2 { return callSDK<$SDK2>("Metal_e11dfd5beee01da3", 220562475413788, this, []); }
+  elementTextureReferenceType(): $SDK2 { return callSDK<$SDK2>("Metal_3864e7f38681b875", 220562475413788, this, []); }
   /** init() */
-  static init(): MTLArrayType { return callSDK<MTLArrayType>("Metal_e11dfd5beee01da3", 2768312813688502, undefined, []); }
+  static init(): MTLArrayType { return callSDK<MTLArrayType>("Metal_3864e7f38681b875", 2768312813688502, undefined, []); }
   /**
    * var argumentIndexStride: Int { get }
    * @availability iOS 11.0+
    */
-  get argumentIndexStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1406426702085079, this, []); }
+  get argumentIndexStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 1406426702085079, this, []); }
   /**
    * var arrayLength: Int { get }
    * @availability iOS 8.0+
    */
-  get arrayLength(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1902350028094453, this, []); }
+  get arrayLength(): number { return callSDK<number>("Metal_3864e7f38681b875", 1902350028094453, this, []); }
   /**
    * var elementType: MTLDataType { get }
    * @availability iOS 8.0+
    */
-  get elementType(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 3072042434440535, this, []); }
+  get elementType(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 3072042434440535, this, []); }
   /**
    * var stride: Int { get }
    * @availability iOS 8.0+
    */
-  get stride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2014673892530569, this, []); }
+  get stride(): number { return callSDK<number>("Metal_3864e7f38681b875", 2014673892530569, this, []); }
   declare readonly $type: { "c:objc(cs)MTLArrayType": true; "c:objc(cs)MTLType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true; "argumentIndexStride": true; "arrayLength": true; "elementType": true; "stride": true };
 }
@@ -1422,37 +1422,37 @@ export class MTLArrayType extends (MTLType as unknown as Omit<typeof MTLType, "i
  */
 export class MTLAttribute extends SDKHandle {
   /** init() */
-  static init(): MTLAttribute { return callSDK<MTLAttribute>("Metal_e11dfd5beee01da3", 4057743176828718, undefined, []); }
+  static init(): MTLAttribute { return callSDK<MTLAttribute>("Metal_3864e7f38681b875", 4057743176828718, undefined, []); }
   /**
    * var isActive: Bool { get }
    * @availability iOS 10.0+
    */
-  get isActive(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 24975234649604, this, []); }
+  get isActive(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 24975234649604, this, []); }
   /**
    * var attributeIndex: Int { get }
    * @availability iOS 10.0+
    */
-  get attributeIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2027170355921381, this, []); }
+  get attributeIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 2027170355921381, this, []); }
   /**
    * var attributeType: MTLDataType { get }
    * @availability iOS 10.0+
    */
-  get attributeType(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 2826244782742369, this, []); }
+  get attributeType(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 2826244782742369, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 10.0+
    */
-  get name(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 2842846303462071, this, []); }
+  get name(): string { return callSDK<string>("Metal_3864e7f38681b875", 2842846303462071, this, []); }
   /**
    * var isPatchControlPointData: Bool { get }
    * @availability iOS 10.0+
    */
-  get isPatchControlPointData(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 3691510721777584, this, []); }
+  get isPatchControlPointData(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 3691510721777584, this, []); }
   /**
    * var isPatchData: Bool { get }
    * @availability iOS 10.0+
    */
-  get isPatchData(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 4200964036763844, this, []); }
+  get isPatchData(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 4200964036763844, this, []); }
   declare readonly $type: { "c:objc(cs)MTLAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isActive": true; "attributeIndex": true; "attributeType": true; "name": true; "isPatchControlPointData": true; "isPatchData": true };
 }
@@ -1463,25 +1463,25 @@ export class MTLAttribute extends SDKHandle {
  */
 export class MTLAttributeDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLAttributeDescriptor { return callSDK<MTLAttributeDescriptor>("Metal_e11dfd5beee01da3", 1186894832716349, undefined, []); }
+  static init(): MTLAttributeDescriptor { return callSDK<MTLAttributeDescriptor>("Metal_3864e7f38681b875", 1186894832716349, undefined, []); }
   /**
    * var bufferIndex: Int { get set }
    * @availability iOS 10.0+
    */
-  get bufferIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4405685825788867, this, []); }
-  set bufferIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3308130220534118, this, [value]); }
+  get bufferIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 4405685825788867, this, []); }
+  set bufferIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3308130220534118, this, [value]); }
   /**
    * var format: MTLAttributeFormat { get set }
    * @availability iOS 10.0+
    */
-  get format(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_e11dfd5beee01da3", 1566928818812681, this, []); }
-  set format(value: MTLAttributeFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 417872932537461, this, [value]); }
+  get format(): MTLAttributeFormat { return callSDK<MTLAttributeFormat>("Metal_3864e7f38681b875", 1566928818812681, this, []); }
+  set format(value: MTLAttributeFormat) { callSDK<void>("Metal_3864e7f38681b875", 417872932537461, this, [value]); }
   /**
    * var offset: Int { get set }
    * @availability iOS 10.0+
    */
-  get offset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 613662740992558, this, []); }
-  set offset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1721719888963665, this, [value]); }
+  get offset(): number { return callSDK<number>("Metal_3864e7f38681b875", 613662740992558, this, []); }
+  set offset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1721719888963665, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLAttributeDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bufferIndex": true; "format": true; "offset": true };
 }
@@ -1492,12 +1492,12 @@ export class MTLAttributeDescriptor extends SDKHandle {
  */
 export class MTLAttributeDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLAttributeDescriptorArray { return callSDK<MTLAttributeDescriptorArray>("Metal_e11dfd5beee01da3", 4006888681581754, undefined, []); }
+  static init(): MTLAttributeDescriptorArray { return callSDK<MTLAttributeDescriptorArray>("Metal_3864e7f38681b875", 4006888681581754, undefined, []); }
   /**
    * subscript(index: Int) -> MTLAttributeDescriptor! { get set }
    * @availability iOS 10.0+
    */
-  subscript(index: number): (MTLAttributeDescriptor) | null { return callSDK<(MTLAttributeDescriptor) | null>("Metal_e11dfd5beee01da3", 1683432342531732, this, [index]); }
+  subscript(index: number): (MTLAttributeDescriptor) | null { return callSDK<(MTLAttributeDescriptor) | null>("Metal_3864e7f38681b875", 1683432342531732, this, [index]); }
   declare readonly $type: { "c:objc(cs)MTLAttributeDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1512,7 +1512,7 @@ export const MTLAttributeFormat = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MTLAttributeFormat) | null { return callSDK<(MTLAttributeFormat) | null>("Metal_e11dfd5beee01da3", 3608218622981003, undefined, [rawValue]); }
+  init(rawValue: number): (MTLAttributeFormat) | null { return callSDK<(MTLAttributeFormat) | null>("Metal_3864e7f38681b875", 3608218622981003, undefined, [rawValue]); }
 };
 
 /**
@@ -1542,17 +1542,17 @@ export const MTLBarrierScope = {
    * static var buffers: MTLBarrierScope { get }
    * @availability iOS 12.0+
    */
-  get buffers(): MTLBarrierScope { return callSDK<MTLBarrierScope>("Metal_e11dfd5beee01da3", 3159203837318946, undefined, []); },
+  get buffers(): MTLBarrierScope { return callSDK<MTLBarrierScope>("Metal_3864e7f38681b875", 3159203837318946, undefined, []); },
   /**
    * static var textures: MTLBarrierScope { get }
    * @availability iOS 12.0+
    */
-  get textures(): MTLBarrierScope { return callSDK<MTLBarrierScope>("Metal_e11dfd5beee01da3", 3643570832492213, undefined, []); },
+  get textures(): MTLBarrierScope { return callSDK<MTLBarrierScope>("Metal_3864e7f38681b875", 3643570832492213, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): MTLBarrierScope { return callSDK<MTLBarrierScope>("Metal_e11dfd5beee01da3", 2140360115856538, undefined, [rawValue]); }
+  init(rawValue: number): MTLBarrierScope { return callSDK<MTLBarrierScope>("Metal_3864e7f38681b875", 2140360115856538, undefined, [rawValue]); }
 };
 
 /**
@@ -1603,13 +1603,13 @@ export interface MTLBinaryArchive {
  */
 export class MTLBinaryArchiveDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLBinaryArchiveDescriptor { return callSDK<MTLBinaryArchiveDescriptor>("Metal_e11dfd5beee01da3", 1225494674949099, undefined, []); }
+  static init(): MTLBinaryArchiveDescriptor { return callSDK<MTLBinaryArchiveDescriptor>("Metal_3864e7f38681b875", 1225494674949099, undefined, []); }
   /**
    * var url: URL? { get set }
    * @availability iOS 14.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 3860237457565817, this, []); }
-  set url(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2457793815611380, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 3860237457565817, this, []); }
+  set url(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 2457793815611380, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLBinaryArchiveDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true };
 }
@@ -1623,32 +1623,32 @@ export class MTLBinaryArchiveError extends SDKHandle {
    * static var internalError: MTLBinaryArchiveError.Code { get }
    * @availability iOS 16.0+
    */
-  static get internalError(): MTLBinaryArchiveError_Code { return callSDK<MTLBinaryArchiveError_Code>("Metal_e11dfd5beee01da3", 2071630851724187, undefined, []); }
+  static get internalError(): MTLBinaryArchiveError_Code { return callSDK<MTLBinaryArchiveError_Code>("Metal_3864e7f38681b875", 2071630851724187, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 14.0+
    */
-  static get errorDomain(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 3224188750384146, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("Metal_3864e7f38681b875", 3224188750384146, undefined, []); }
   /**
    * static var invalidFile: MTLBinaryArchiveError.Code { get }
    * @availability iOS 14.0+
    */
-  static get invalidFile(): MTLBinaryArchiveError_Code { return callSDK<MTLBinaryArchiveError_Code>("Metal_e11dfd5beee01da3", 1191380684962707, undefined, []); }
+  static get invalidFile(): MTLBinaryArchiveError_Code { return callSDK<MTLBinaryArchiveError_Code>("Metal_3864e7f38681b875", 1191380684962707, undefined, []); }
   /**
    * static var unexpectedElement: MTLBinaryArchiveError.Code { get }
    * @availability iOS 14.0+
    */
-  static get unexpectedElement(): MTLBinaryArchiveError_Code { return callSDK<MTLBinaryArchiveError_Code>("Metal_e11dfd5beee01da3", 3155056871873452, undefined, []); }
+  static get unexpectedElement(): MTLBinaryArchiveError_Code { return callSDK<MTLBinaryArchiveError_Code>("Metal_3864e7f38681b875", 3155056871873452, undefined, []); }
   /**
    * static var compilationFailure: MTLBinaryArchiveError.Code { get }
    * @availability iOS 14.0+
    */
-  static get compilationFailure(): MTLBinaryArchiveError_Code { return callSDK<MTLBinaryArchiveError_Code>("Metal_e11dfd5beee01da3", 2492412646868849, undefined, []); }
+  static get compilationFailure(): MTLBinaryArchiveError_Code { return callSDK<MTLBinaryArchiveError_Code>("Metal_3864e7f38681b875", 2492412646868849, undefined, []); }
   /**
    * static var none: MTLBinaryArchiveError.Code { get }
    * @availability iOS 14.0+
    */
-  static get none(): MTLBinaryArchiveError_Code { return callSDK<MTLBinaryArchiveError_Code>("Metal_e11dfd5beee01da3", 1003134249374745, undefined, []); }
+  static get none(): MTLBinaryArchiveError_Code { return callSDK<MTLBinaryArchiveError_Code>("Metal_3864e7f38681b875", 1003134249374745, undefined, []); }
   declare readonly $type: { "s:SC21MTLBinaryArchiveErrorLeV": true };
 }
 
@@ -1663,7 +1663,7 @@ export const MTLBinaryArchiveError_Code = {
    * init?(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (MTLBinaryArchiveError_Code) | null { return callSDK<(MTLBinaryArchiveError_Code) | null>("Metal_e11dfd5beee01da3", 366819599163777, undefined, [rawValue]); }
+  init(rawValue: number): (MTLBinaryArchiveError_Code) | null { return callSDK<(MTLBinaryArchiveError_Code) | null>("Metal_3864e7f38681b875", 366819599163777, undefined, [rawValue]); }
 };
 
 /**
@@ -1679,7 +1679,7 @@ export type MTLBindingAccess = "readOnly" | "readWrite" | "writeOnly";
 
 export const MTLBindingAccess = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MTLBindingAccess) | null { return callSDK<(MTLBindingAccess) | null>("Metal_e11dfd5beee01da3", 922182412476285, undefined, [rawValue]); }
+  init(rawValue: number): (MTLBindingAccess) | null { return callSDK<(MTLBindingAccess) | null>("Metal_3864e7f38681b875", 922182412476285, undefined, [rawValue]); }
 };
 
 /**
@@ -1693,7 +1693,7 @@ export const MTLBindingType = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (MTLBindingType) | null { return callSDK<(MTLBindingType) | null>("Metal_e11dfd5beee01da3", 4186464765480523, undefined, [rawValue]); }
+  init(rawValue: number): (MTLBindingType) | null { return callSDK<(MTLBindingType) | null>("Metal_3864e7f38681b875", 4186464765480523, undefined, [rawValue]); }
 };
 
 /**
@@ -1707,7 +1707,7 @@ export const MTLBlendFactor = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLBlendFactor) | null { return callSDK<(MTLBlendFactor) | null>("Metal_e11dfd5beee01da3", 2702616459005346, undefined, [rawValue]); }
+  init(rawValue: number): (MTLBlendFactor) | null { return callSDK<(MTLBlendFactor) | null>("Metal_3864e7f38681b875", 2702616459005346, undefined, [rawValue]); }
 };
 
 /**
@@ -1721,7 +1721,7 @@ export const MTLBlendOperation = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLBlendOperation) | null { return callSDK<(MTLBlendOperation) | null>("Metal_e11dfd5beee01da3", 1439744173218588, undefined, [rawValue]); }
+  init(rawValue: number): (MTLBlendOperation) | null { return callSDK<(MTLBlendOperation) | null>("Metal_3864e7f38681b875", 1439744173218588, undefined, [rawValue]); }
 };
 
 /**
@@ -1859,22 +1859,22 @@ export const MTLBlitOption = {
    * static var depthFromDepthStencil: MTLBlitOption { get }
    * @availability iOS 9.0+
    */
-  get depthFromDepthStencil(): MTLBlitOption { return callSDK<MTLBlitOption>("Metal_e11dfd5beee01da3", 1940526798506113, undefined, []); },
+  get depthFromDepthStencil(): MTLBlitOption { return callSDK<MTLBlitOption>("Metal_3864e7f38681b875", 1940526798506113, undefined, []); },
   /**
    * static var rowLinearPVRTC: MTLBlitOption { get }
    * @availability iOS 9.0+
    */
-  get rowLinearPVRTC(): MTLBlitOption { return callSDK<MTLBlitOption>("Metal_e11dfd5beee01da3", 1674033551200819, undefined, []); },
+  get rowLinearPVRTC(): MTLBlitOption { return callSDK<MTLBlitOption>("Metal_3864e7f38681b875", 1674033551200819, undefined, []); },
   /**
    * static var stencilFromDepthStencil: MTLBlitOption { get }
    * @availability iOS 9.0+
    */
-  get stencilFromDepthStencil(): MTLBlitOption { return callSDK<MTLBlitOption>("Metal_e11dfd5beee01da3", 3754896000008691, undefined, []); },
+  get stencilFromDepthStencil(): MTLBlitOption { return callSDK<MTLBlitOption>("Metal_3864e7f38681b875", 3754896000008691, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): MTLBlitOption { return callSDK<MTLBlitOption>("Metal_e11dfd5beee01da3", 201271949287928, undefined, [rawValue]); }
+  init(rawValue: number): MTLBlitOption { return callSDK<MTLBlitOption>("Metal_3864e7f38681b875", 201271949287928, undefined, [rawValue]); }
 };
 
 /**
@@ -1883,12 +1883,12 @@ export const MTLBlitOption = {
  */
 export class MTLBlitPassDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLBlitPassDescriptor { return callSDK<MTLBlitPassDescriptor>("Metal_e11dfd5beee01da3", 3210736544350295, undefined, []); }
+  static init(): MTLBlitPassDescriptor { return callSDK<MTLBlitPassDescriptor>("Metal_3864e7f38681b875", 3210736544350295, undefined, []); }
   /**
    * var sampleBufferAttachments: MTLBlitPassSampleBufferAttachmentDescriptorArray { get }
    * @availability iOS 14.0+
    */
-  get sampleBufferAttachments(): MTLBlitPassSampleBufferAttachmentDescriptorArray { return callSDK<MTLBlitPassSampleBufferAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 2437769392873324, this, []); }
+  get sampleBufferAttachments(): MTLBlitPassSampleBufferAttachmentDescriptorArray { return callSDK<MTLBlitPassSampleBufferAttachmentDescriptorArray>("Metal_3864e7f38681b875", 2437769392873324, this, []); }
   declare readonly $type: { "c:objc(cs)MTLBlitPassDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "sampleBufferAttachments": true };
 }
@@ -1899,25 +1899,25 @@ export class MTLBlitPassDescriptor extends SDKHandle {
  */
 export class MTLBlitPassSampleBufferAttachmentDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLBlitPassSampleBufferAttachmentDescriptor { return callSDK<MTLBlitPassSampleBufferAttachmentDescriptor>("Metal_e11dfd5beee01da3", 560330730473673, undefined, []); }
+  static init(): MTLBlitPassSampleBufferAttachmentDescriptor { return callSDK<MTLBlitPassSampleBufferAttachmentDescriptor>("Metal_3864e7f38681b875", 560330730473673, undefined, []); }
   /**
    * var endOfEncoderSampleIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get endOfEncoderSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 930804096808436, this, []); }
-  set endOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1691315792178776, this, [value]); }
+  get endOfEncoderSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 930804096808436, this, []); }
+  set endOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1691315792178776, this, [value]); }
   /**
    * var sampleBuffer: (any MTLCounterSampleBuffer)? { get set }
    * @availability iOS 14.0+
    */
-  get sampleBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 1104877398082205, this, []); }
-  set sampleBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2607299647695809, this, [value]); }
+  get sampleBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 1104877398082205, this, []); }
+  set sampleBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 2607299647695809, this, [value]); }
   /**
    * var startOfEncoderSampleIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get startOfEncoderSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2672273225252200, this, []); }
-  set startOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 255624969560192, this, [value]); }
+  get startOfEncoderSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 2672273225252200, this, []); }
+  set startOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 255624969560192, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLBlitPassSampleBufferAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endOfEncoderSampleIndex": true; "sampleBuffer": true; "startOfEncoderSampleIndex": true };
 }
@@ -1928,12 +1928,12 @@ export class MTLBlitPassSampleBufferAttachmentDescriptor extends SDKHandle {
  */
 export class MTLBlitPassSampleBufferAttachmentDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLBlitPassSampleBufferAttachmentDescriptorArray { return callSDK<MTLBlitPassSampleBufferAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 1076033393758292, undefined, []); }
+  static init(): MTLBlitPassSampleBufferAttachmentDescriptorArray { return callSDK<MTLBlitPassSampleBufferAttachmentDescriptorArray>("Metal_3864e7f38681b875", 1076033393758292, undefined, []); }
   /**
    * subscript(attachmentIndex: Int) -> MTLBlitPassSampleBufferAttachmentDescriptor! { get set }
    * @availability iOS 14.0+
    */
-  subscript(attachmentIndex: number): (MTLBlitPassSampleBufferAttachmentDescriptor) | null { return callSDK<(MTLBlitPassSampleBufferAttachmentDescriptor) | null>("Metal_e11dfd5beee01da3", 3903315962363230, this, [attachmentIndex]); }
+  subscript(attachmentIndex: number): (MTLBlitPassSampleBufferAttachmentDescriptor) | null { return callSDK<(MTLBlitPassSampleBufferAttachmentDescriptor) | null>("Metal_3864e7f38681b875", 3903315962363230, this, [attachmentIndex]); }
   declare readonly $type: { "c:objc(cs)MTLBlitPassSampleBufferAttachmentDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1988,25 +1988,25 @@ export interface MTLBufferBinding {
  */
 export class MTLBufferLayoutDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLBufferLayoutDescriptor { return callSDK<MTLBufferLayoutDescriptor>("Metal_e11dfd5beee01da3", 4400603246375960, undefined, []); }
+  static init(): MTLBufferLayoutDescriptor { return callSDK<MTLBufferLayoutDescriptor>("Metal_3864e7f38681b875", 4400603246375960, undefined, []); }
   /**
    * var stepFunction: MTLStepFunction { get set }
    * @availability iOS 10.0+
    */
-  get stepFunction(): MTLStepFunction { return callSDK<MTLStepFunction>("Metal_e11dfd5beee01da3", 1142906040523542, this, []); }
-  set stepFunction(value: MTLStepFunction) { callSDK<void>("Metal_e11dfd5beee01da3", 3656630680428395, this, [value]); }
+  get stepFunction(): MTLStepFunction { return callSDK<MTLStepFunction>("Metal_3864e7f38681b875", 1142906040523542, this, []); }
+  set stepFunction(value: MTLStepFunction) { callSDK<void>("Metal_3864e7f38681b875", 3656630680428395, this, [value]); }
   /**
    * var stepRate: Int { get set }
    * @availability iOS 10.0+
    */
-  get stepRate(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 127888639333079, this, []); }
-  set stepRate(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3682918912981524, this, [value]); }
+  get stepRate(): number { return callSDK<number>("Metal_3864e7f38681b875", 127888639333079, this, []); }
+  set stepRate(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3682918912981524, this, [value]); }
   /**
    * var stride: Int { get set }
    * @availability iOS 10.0+
    */
-  get stride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3499536176224294, this, []); }
-  set stride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2443602844983117, this, [value]); }
+  get stride(): number { return callSDK<number>("Metal_3864e7f38681b875", 3499536176224294, this, []); }
+  set stride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2443602844983117, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLBufferLayoutDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "stepFunction": true; "stepRate": true; "stride": true };
 }
@@ -2017,12 +2017,12 @@ export class MTLBufferLayoutDescriptor extends SDKHandle {
  */
 export class MTLBufferLayoutDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLBufferLayoutDescriptorArray { return callSDK<MTLBufferLayoutDescriptorArray>("Metal_e11dfd5beee01da3", 4420433574677387, undefined, []); }
+  static init(): MTLBufferLayoutDescriptorArray { return callSDK<MTLBufferLayoutDescriptorArray>("Metal_3864e7f38681b875", 4420433574677387, undefined, []); }
   /**
    * subscript(index: Int) -> MTLBufferLayoutDescriptor! { get set }
    * @availability iOS 10.0+
    */
-  subscript(index: number): (MTLBufferLayoutDescriptor) | null { return callSDK<(MTLBufferLayoutDescriptor) | null>("Metal_e11dfd5beee01da3", 2728768819736427, this, [index]); }
+  subscript(index: number): (MTLBufferLayoutDescriptor) | null { return callSDK<(MTLBufferLayoutDescriptor) | null>("Metal_3864e7f38681b875", 2728768819736427, this, [index]); }
   declare readonly $type: { "c:objc(cs)MTLBufferLayoutDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2032,25 +2032,25 @@ export class MTLBufferLayoutDescriptorArray extends SDKHandle {
  */
 export class MTLCaptureDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLCaptureDescriptor { return callSDK<MTLCaptureDescriptor>("Metal_e11dfd5beee01da3", 282934056595420, undefined, []); }
+  static init(): MTLCaptureDescriptor { return callSDK<MTLCaptureDescriptor>("Metal_3864e7f38681b875", 282934056595420, undefined, []); }
   /**
    * var captureObject: Any? { get set }
    * @availability iOS 13.0+
    */
-  get captureObject(): (unknown) | null { return callSDK<(unknown) | null>("Metal_e11dfd5beee01da3", 2935158344365846, this, []); }
-  set captureObject(value: (unknown) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2558044776168960, this, [value]); }
+  get captureObject(): (unknown) | null { return callSDK<(unknown) | null>("Metal_3864e7f38681b875", 2935158344365846, this, []); }
+  set captureObject(value: (unknown) | null) { callSDK<void>("Metal_3864e7f38681b875", 2558044776168960, this, [value]); }
   /**
    * var destination: MTLCaptureDestination { get set }
    * @availability iOS 13.0+
    */
-  get destination(): MTLCaptureDestination { return callSDK<MTLCaptureDestination>("Metal_e11dfd5beee01da3", 3934047454535142, this, []); }
-  set destination(value: MTLCaptureDestination) { callSDK<void>("Metal_e11dfd5beee01da3", 2171741527334528, this, [value]); }
+  get destination(): MTLCaptureDestination { return callSDK<MTLCaptureDestination>("Metal_3864e7f38681b875", 3934047454535142, this, []); }
+  set destination(value: MTLCaptureDestination) { callSDK<void>("Metal_3864e7f38681b875", 2171741527334528, this, [value]); }
   /**
    * var outputURL: URL? { get set }
    * @availability iOS 13.0+
    */
-  get outputURL(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 291934766952142, this, []); }
-  set outputURL(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2589603085387151, this, [value]); }
+  get outputURL(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 291934766952142, this, []); }
+  set outputURL(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 2589603085387151, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLCaptureDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "captureObject": true; "destination": true; "outputURL": true };
 }
@@ -2066,7 +2066,7 @@ export const MTLCaptureDestination = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (MTLCaptureDestination) | null { return callSDK<(MTLCaptureDestination) | null>("Metal_e11dfd5beee01da3", 1842780188139329, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCaptureDestination) | null { return callSDK<(MTLCaptureDestination) | null>("Metal_3864e7f38681b875", 1842780188139329, undefined, [rawValue]); }
 };
 
 /**
@@ -2080,7 +2080,7 @@ export const MTLCaptureError = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (MTLCaptureError) | null { return callSDK<(MTLCaptureError) | null>("Metal_e11dfd5beee01da3", 540665802896085, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCaptureError) | null { return callSDK<(MTLCaptureError) | null>("Metal_3864e7f38681b875", 540665802896085, undefined, [rawValue]); }
 };
 
 /**
@@ -2092,61 +2092,61 @@ export class MTLCaptureManager extends SDKHandle {
    * class func shared() -> MTLCaptureManager
    * @availability iOS 11.0+
    */
-  static shared(): MTLCaptureManager { return callSDK<MTLCaptureManager>("Metal_e11dfd5beee01da3", 1349857998208863, undefined, []); }
+  static shared(): MTLCaptureManager { return callSDK<MTLCaptureManager>("Metal_3864e7f38681b875", 1349857998208863, undefined, []); }
   /**
    * func makeCaptureScope(commandQueue: any MTLCommandQueue) -> any MTLCaptureScope
    * @availability iOS 11.0+
    */
-  makeCaptureScopeCommandQueue(commandQueue: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 4419655996529114, this, [commandQueue]); }
+  makeCaptureScopeCommandQueue(commandQueue: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 4419655996529114, this, [commandQueue]); }
   /**
    * func makeCaptureScope(device: any MTLDevice) -> any MTLCaptureScope
    * @availability iOS 11.0+
    */
-  makeCaptureScopeDevice(device: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 2326129577185691, this, [device]); }
+  makeCaptureScopeDevice(device: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 2326129577185691, this, [device]); }
   /**
    * func startCapture(commandQueue: any MTLCommandQueue)
    * @availability iOS 11.0+
    * @deprecated iOS 13.0
    */
-  startCaptureCommandQueue(commandQueue: SDKHandle): void { return callSDK<void>("Metal_e11dfd5beee01da3", 787579423681409, this, [commandQueue]); }
+  startCaptureCommandQueue(commandQueue: SDKHandle): void { return callSDK<void>("Metal_3864e7f38681b875", 787579423681409, this, [commandQueue]); }
   /**
    * func startCapture(with descriptor: MTLCaptureDescriptor) throws
    * @availability iOS 13.0+
    */
-  startCaptureWith(descriptor: MTLCaptureDescriptor): void { return callSDK<void>("Metal_e11dfd5beee01da3", 1119694891830936, this, [descriptor]); }
+  startCaptureWith(descriptor: MTLCaptureDescriptor): void { return callSDK<void>("Metal_3864e7f38681b875", 1119694891830936, this, [descriptor]); }
   /**
    * func startCapture(device: any MTLDevice)
    * @availability iOS 11.0+
    * @deprecated iOS 13.0
    */
-  startCaptureDevice(device: SDKHandle): void { return callSDK<void>("Metal_e11dfd5beee01da3", 4313900551171368, this, [device]); }
+  startCaptureDevice(device: SDKHandle): void { return callSDK<void>("Metal_3864e7f38681b875", 4313900551171368, this, [device]); }
   /**
    * func startCapture(scope captureScope: any MTLCaptureScope)
    * @availability iOS 11.0+
    * @deprecated iOS 13.0
    */
-  startCaptureScope(captureScope: SDKHandle): void { return callSDK<void>("Metal_e11dfd5beee01da3", 2555451984245352, this, [captureScope]); }
+  startCaptureScope(captureScope: SDKHandle): void { return callSDK<void>("Metal_3864e7f38681b875", 2555451984245352, this, [captureScope]); }
   /**
    * func stopCapture()
    * @availability iOS 11.0+
    */
-  stopCapture(): void { return callSDK<void>("Metal_e11dfd5beee01da3", 2744702978000528, this, []); }
+  stopCapture(): void { return callSDK<void>("Metal_3864e7f38681b875", 2744702978000528, this, []); }
   /**
    * func supportsDestination(_ destination: MTLCaptureDestination) -> Bool
    * @availability iOS 13.0+
    */
-  supportsDestination(destination: MTLCaptureDestination): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2852247299942968, this, [destination]); }
+  supportsDestination(destination: MTLCaptureDestination): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2852247299942968, this, [destination]); }
   /**
    * var defaultCaptureScope: (any MTLCaptureScope)? { get set }
    * @availability iOS 11.0+
    */
-  get defaultCaptureScope(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3805860376272189, this, []); }
-  set defaultCaptureScope(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 4428054712048254, this, [value]); }
+  get defaultCaptureScope(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3805860376272189, this, []); }
+  set defaultCaptureScope(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 4428054712048254, this, [value]); }
   /**
    * var isCapturing: Bool { get }
    * @availability iOS 11.0+
    */
-  get isCapturing(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 3015732570667955, this, []); }
+  get isCapturing(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 3015732570667955, this, []); }
   declare readonly $type: { "c:objc(cs)MTLCaptureManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "defaultCaptureScope": true; "isCapturing": true };
 }
@@ -2171,21 +2171,21 @@ export interface MTLCaptureScope {
 /** struct MTLClearColor */
 export class MTLClearColor extends SDKHandle {
   /** var alpha: Double */
-  get alpha(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1137140129429419, this, []); }
-  set alpha(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3093528198924244, this, [value]); }
+  get alpha(): number { return callSDK<number>("Metal_3864e7f38681b875", 1137140129429419, this, []); }
+  set alpha(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3093528198924244, this, [value]); }
   /** var blue: Double */
-  get blue(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1953426216770232, this, []); }
-  set blue(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3009469600083967, this, [value]); }
+  get blue(): number { return callSDK<number>("Metal_3864e7f38681b875", 1953426216770232, this, []); }
+  set blue(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3009469600083967, this, [value]); }
   /** var green: Double */
-  get green(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4097125453605255, this, []); }
-  set green(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 288138808028690, this, [value]); }
+  get green(): number { return callSDK<number>("Metal_3864e7f38681b875", 4097125453605255, this, []); }
+  set green(value: number) { callSDK<void>("Metal_3864e7f38681b875", 288138808028690, this, [value]); }
   /** var red: Double */
-  get red(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3199677964387828, this, []); }
-  set red(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1592464572658622, this, [value]); }
+  get red(): number { return callSDK<number>("Metal_3864e7f38681b875", 3199677964387828, this, []); }
+  set red(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1592464572658622, this, [value]); }
   /** init(red: Double, green: Double, blue: Double, alpha: Double) */
-  static initRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): MTLClearColor { return callSDK<MTLClearColor>("Metal_e11dfd5beee01da3", 1153852837698555, undefined, [red, green, blue, alpha]); }
+  static initRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): MTLClearColor { return callSDK<MTLClearColor>("Metal_3864e7f38681b875", 1153852837698555, undefined, [red, green, blue, alpha]); }
   /** init() */
-  static init(): MTLClearColor { return callSDK<MTLClearColor>("Metal_e11dfd5beee01da3", 1112955330220391, undefined, []); }
+  static init(): MTLClearColor { return callSDK<MTLClearColor>("Metal_3864e7f38681b875", 1112955330220391, undefined, []); }
   declare readonly $type: { "c:@SA@MTLClearColor": true };
 }
 
@@ -2200,32 +2200,32 @@ export const MTLColorWriteMask = {
    * static var all: MTLColorWriteMask { get }
    * @availability iOS 8.0+
    */
-  get all(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_e11dfd5beee01da3", 2703806058725408, undefined, []); },
+  get all(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_3864e7f38681b875", 2703806058725408, undefined, []); },
   /**
    * static var alpha: MTLColorWriteMask { get }
    * @availability iOS 8.0+
    */
-  get alpha(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_e11dfd5beee01da3", 4458202465896774, undefined, []); },
+  get alpha(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_3864e7f38681b875", 4458202465896774, undefined, []); },
   /**
    * static var blue: MTLColorWriteMask { get }
    * @availability iOS 8.0+
    */
-  get blue(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_e11dfd5beee01da3", 3684402668377849, undefined, []); },
+  get blue(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_3864e7f38681b875", 3684402668377849, undefined, []); },
   /**
    * static var green: MTLColorWriteMask { get }
    * @availability iOS 8.0+
    */
-  get green(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_e11dfd5beee01da3", 805430718165507, undefined, []); },
+  get green(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_3864e7f38681b875", 805430718165507, undefined, []); },
   /**
    * static var red: MTLColorWriteMask { get }
    * @availability iOS 8.0+
    */
-  get red(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_e11dfd5beee01da3", 2402331150410703, undefined, []); },
+  get red(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_3864e7f38681b875", 2402331150410703, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_e11dfd5beee01da3", 2846498191261019, undefined, [rawValue]); }
+  init(rawValue: number): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_3864e7f38681b875", 2846498191261019, undefined, [rawValue]); }
 };
 
 /**
@@ -2361,25 +2361,25 @@ export interface MTLCommandBuffer {
  */
 export class MTLCommandBufferDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLCommandBufferDescriptor { return callSDK<MTLCommandBufferDescriptor>("Metal_e11dfd5beee01da3", 817352942830865, undefined, []); }
+  static init(): MTLCommandBufferDescriptor { return callSDK<MTLCommandBufferDescriptor>("Metal_3864e7f38681b875", 817352942830865, undefined, []); }
   /**
    * var errorOptions: MTLCommandBufferErrorOption { get set }
    * @availability iOS 14.0+
    */
-  get errorOptions(): MTLCommandBufferErrorOption { return callSDK<MTLCommandBufferErrorOption>("Metal_e11dfd5beee01da3", 458901821597491, this, []); }
-  set errorOptions(value: MTLCommandBufferErrorOption) { callSDK<void>("Metal_e11dfd5beee01da3", 3226431473321911, this, [value]); }
+  get errorOptions(): MTLCommandBufferErrorOption { return callSDK<MTLCommandBufferErrorOption>("Metal_3864e7f38681b875", 458901821597491, this, []); }
+  set errorOptions(value: MTLCommandBufferErrorOption) { callSDK<void>("Metal_3864e7f38681b875", 3226431473321911, this, [value]); }
   /**
    * var logState: (any MTLLogState)? { get set }
    * @availability iOS 18.0+
    */
-  get logState(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 1982359566826420, this, []); }
-  set logState(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2458781953400807, this, [value]); }
+  get logState(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 1982359566826420, this, []); }
+  set logState(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 2458781953400807, this, [value]); }
   /**
    * var retainedReferences: Bool { get set }
    * @availability iOS 14.0+
    */
-  get retainedReferences(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 1677550193168950, this, []); }
-  set retainedReferences(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 393665817551788, this, [value]); }
+  get retainedReferences(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 1677550193168950, this, []); }
+  set retainedReferences(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 393665817551788, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLCommandBufferDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "errorOptions": true; "logState": true; "retainedReferences": true };
 }
@@ -2401,63 +2401,63 @@ export class MTLCommandBufferError extends SDKHandle {
    * static var memoryless: MTLCommandBufferError.Code { get }
    * @availability iOS 10.0+
    */
-  static get memoryless(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 572402438386062, undefined, []); }
+  static get memoryless(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 572402438386062, undefined, []); }
   /**
    * static var blacklisted: MTLCommandBufferError.Code { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  static get blacklisted(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 4084505850871139, undefined, []); }
+  static get blacklisted(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 4084505850871139, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 8.0+
    */
-  static get errorDomain(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 196922519315659, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("Metal_3864e7f38681b875", 196922519315659, undefined, []); }
   /**
    * static var outOfMemory: MTLCommandBufferError.Code { get }
    * @availability iOS 8.0+
    */
-  static get outOfMemory(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 564655336378028, undefined, []); }
+  static get outOfMemory(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 564655336378028, undefined, []); }
   /**
    * static var notPermitted: MTLCommandBufferError.Code { get }
    * @availability iOS 8.0+
    */
-  static get notPermitted(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 3255000993991702, undefined, []); }
+  static get notPermitted(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 3255000993991702, undefined, []); }
   /**
    * static var accessRevoked: MTLCommandBufferError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessRevoked(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 1174167671310426, undefined, []); }
+  static get accessRevoked(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 1174167671310426, undefined, []); }
   /**
    * static var stackOverflow: MTLCommandBufferError.Code { get }
    * @availability iOS 15.0+
    */
-  static get stackOverflow(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 380110272728781, undefined, []); }
+  static get stackOverflow(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 380110272728781, undefined, []); }
   /**
    * static var invalidResource: MTLCommandBufferError.Code { get }
    * @availability iOS 8.0+
    */
-  static get invalidResource(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 399694505781936, undefined, []); }
+  static get invalidResource(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 399694505781936, undefined, []); }
   /**
    * static var none: MTLCommandBufferError.Code { get }
    * @availability iOS 8.0+
    */
-  static get none(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 694497021183012, undefined, []); }
+  static get none(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 694497021183012, undefined, []); }
   /**
    * static var timeout: MTLCommandBufferError.Code { get }
    * @availability iOS 8.0+
    */
-  static get timeout(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 13100081837299, undefined, []); }
+  static get timeout(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 13100081837299, undefined, []); }
   /**
    * static var `internal`: MTLCommandBufferError.Code { get }
    * @availability iOS 8.0+
    */
-  static get internal(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 2023914150264243, undefined, []); }
+  static get internal(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 2023914150264243, undefined, []); }
   /**
    * static var pageFault: MTLCommandBufferError.Code { get }
    * @availability iOS 8.0+
    */
-  static get pageFault(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 3943515828958102, undefined, []); }
+  static get pageFault(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 3943515828958102, undefined, []); }
   declare readonly $type: { "s:SC21MTLCommandBufferErrorLeV": true };
 }
 
@@ -2472,12 +2472,12 @@ export const MTLCommandBufferError_Code = {
    * static var accessRevoked: MTLCommandBufferError.Code { get }
    * @availability iOS 8.0+
    */
-  get accessRevoked(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_e11dfd5beee01da3", 3924625895076486, undefined, []); },
+  get accessRevoked(): MTLCommandBufferError_Code { return callSDK<MTLCommandBufferError_Code>("Metal_3864e7f38681b875", 3924625895076486, undefined, []); },
   /**
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLCommandBufferError_Code) | null { return callSDK<(MTLCommandBufferError_Code) | null>("Metal_e11dfd5beee01da3", 3773866931186435, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCommandBufferError_Code) | null { return callSDK<(MTLCommandBufferError_Code) | null>("Metal_3864e7f38681b875", 3773866931186435, undefined, [rawValue]); }
 };
 
 /**
@@ -2491,12 +2491,12 @@ export const MTLCommandBufferErrorOption = {
    * static var encoderExecutionStatus: MTLCommandBufferErrorOption { get }
    * @availability iOS 14.0+
    */
-  get encoderExecutionStatus(): MTLCommandBufferErrorOption { return callSDK<MTLCommandBufferErrorOption>("Metal_e11dfd5beee01da3", 682463108441024, undefined, []); },
+  get encoderExecutionStatus(): MTLCommandBufferErrorOption { return callSDK<MTLCommandBufferErrorOption>("Metal_3864e7f38681b875", 682463108441024, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): MTLCommandBufferErrorOption { return callSDK<MTLCommandBufferErrorOption>("Metal_e11dfd5beee01da3", 269147099881001, undefined, [rawValue]); }
+  init(rawValue: number): MTLCommandBufferErrorOption { return callSDK<MTLCommandBufferErrorOption>("Metal_3864e7f38681b875", 269147099881001, undefined, [rawValue]); }
 };
 
 /** typealias MTLCommandBufferHandler = @Sendable (any MTLCommandBuffer) -> Void */
@@ -2513,7 +2513,7 @@ export const MTLCommandBufferStatus = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLCommandBufferStatus) | null { return callSDK<(MTLCommandBufferStatus) | null>("Metal_e11dfd5beee01da3", 3042500345475641, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCommandBufferStatus) | null { return callSDK<(MTLCommandBufferStatus) | null>("Metal_3864e7f38681b875", 3042500345475641, undefined, [rawValue]); }
 };
 
 /**
@@ -2559,7 +2559,7 @@ export const MTLCommandEncoderErrorState = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (MTLCommandEncoderErrorState) | null { return callSDK<(MTLCommandEncoderErrorState) | null>("Metal_e11dfd5beee01da3", 3423705487198764, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCommandEncoderErrorState) | null { return callSDK<(MTLCommandEncoderErrorState) | null>("Metal_3864e7f38681b875", 3423705487198764, undefined, [rawValue]); }
 };
 
 /**
@@ -2606,19 +2606,19 @@ export interface MTLCommandQueue {
  */
 export class MTLCommandQueueDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLCommandQueueDescriptor { return callSDK<MTLCommandQueueDescriptor>("Metal_e11dfd5beee01da3", 1745823436582580, undefined, []); }
+  static init(): MTLCommandQueueDescriptor { return callSDK<MTLCommandQueueDescriptor>("Metal_3864e7f38681b875", 1745823436582580, undefined, []); }
   /**
    * var logState: (any MTLLogState)? { get set }
    * @availability iOS 18.0+
    */
-  get logState(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 4081892844624778, this, []); }
-  set logState(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 624314145540672, this, [value]); }
+  get logState(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 4081892844624778, this, []); }
+  set logState(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 624314145540672, this, [value]); }
   /**
    * var maxCommandBufferCount: Int { get set }
    * @availability iOS 18.0+
    */
-  get maxCommandBufferCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1851575699378425, this, []); }
-  set maxCommandBufferCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2340389887806132, this, [value]); }
+  get maxCommandBufferCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1851575699378425, this, []); }
+  set maxCommandBufferCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2340389887806132, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLCommandQueueDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "logState": true; "maxCommandBufferCount": true };
 }
@@ -2634,82 +2634,82 @@ export const MTLCommonCounter = {
    * static let clipperInvocations: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get clipperInvocations(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 931212516671500, undefined, []); },
+  get clipperInvocations(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 931212516671500, undefined, []); },
   /**
    * static let clipperPrimitivesOut: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get clipperPrimitivesOut(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 2271297027826640, undefined, []); },
+  get clipperPrimitivesOut(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 2271297027826640, undefined, []); },
   /**
    * static let computeKernelInvocations: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get computeKernelInvocations(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 1291508878304817, undefined, []); },
+  get computeKernelInvocations(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 1291508878304817, undefined, []); },
   /**
    * static let fragmentCycles: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get fragmentCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 4062912536466494, undefined, []); },
+  get fragmentCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 4062912536466494, undefined, []); },
   /**
    * static let fragmentInvocations: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get fragmentInvocations(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 4045819385387047, undefined, []); },
+  get fragmentInvocations(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 4045819385387047, undefined, []); },
   /**
    * static let fragmentsPassed: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get fragmentsPassed(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 1402866395946823, undefined, []); },
+  get fragmentsPassed(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 1402866395946823, undefined, []); },
   /**
    * static let postTessellationVertexCycles: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get postTessellationVertexCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 708295427369392, undefined, []); },
+  get postTessellationVertexCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 708295427369392, undefined, []); },
   /**
    * static let postTessellationVertexInvocations: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get postTessellationVertexInvocations(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 1532798372855430, undefined, []); },
+  get postTessellationVertexInvocations(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 1532798372855430, undefined, []); },
   /**
    * static let renderTargetWriteCycles: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get renderTargetWriteCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 1273181792623285, undefined, []); },
+  get renderTargetWriteCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 1273181792623285, undefined, []); },
   /**
    * static let tessellationCycles: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get tessellationCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 3534301445325962, undefined, []); },
+  get tessellationCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 3534301445325962, undefined, []); },
   /**
    * static let tessellationInputPatches: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get tessellationInputPatches(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 2990641747553177, undefined, []); },
+  get tessellationInputPatches(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 2990641747553177, undefined, []); },
   /**
    * static let timestamp: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get timestamp(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 4076997438712751, undefined, []); },
+  get timestamp(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 4076997438712751, undefined, []); },
   /**
    * static let totalCycles: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get totalCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 387756629635415, undefined, []); },
+  get totalCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 387756629635415, undefined, []); },
   /**
    * static let vertexCycles: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get vertexCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 709798759770357, undefined, []); },
+  get vertexCycles(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 709798759770357, undefined, []); },
   /**
    * static let vertexInvocations: MTLCommonCounter
    * @availability iOS 14.0+
    */
-  get vertexInvocations(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 3202989026424326, undefined, []); },
+  get vertexInvocations(): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 3202989026424326, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 14.0+
    */
-  init(rawValue: string): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_e11dfd5beee01da3", 2591120438821508, undefined, [rawValue]); }
+  init(rawValue: string): MTLCommonCounter { return callSDK<MTLCommonCounter>("Metal_3864e7f38681b875", 2591120438821508, undefined, [rawValue]); }
 };
 
 /**
@@ -2723,22 +2723,22 @@ export const MTLCommonCounterSet = {
    * static let stageUtilization: MTLCommonCounterSet
    * @availability iOS 14.0+
    */
-  get stageUtilization(): MTLCommonCounterSet { return callSDK<MTLCommonCounterSet>("Metal_e11dfd5beee01da3", 2163969524168949, undefined, []); },
+  get stageUtilization(): MTLCommonCounterSet { return callSDK<MTLCommonCounterSet>("Metal_3864e7f38681b875", 2163969524168949, undefined, []); },
   /**
    * static let statistic: MTLCommonCounterSet
    * @availability iOS 14.0+
    */
-  get statistic(): MTLCommonCounterSet { return callSDK<MTLCommonCounterSet>("Metal_e11dfd5beee01da3", 4264318078935039, undefined, []); },
+  get statistic(): MTLCommonCounterSet { return callSDK<MTLCommonCounterSet>("Metal_3864e7f38681b875", 4264318078935039, undefined, []); },
   /**
    * static let timestamp: MTLCommonCounterSet
    * @availability iOS 14.0+
    */
-  get timestamp(): MTLCommonCounterSet { return callSDK<MTLCommonCounterSet>("Metal_e11dfd5beee01da3", 2437567641002576, undefined, []); },
+  get timestamp(): MTLCommonCounterSet { return callSDK<MTLCommonCounterSet>("Metal_3864e7f38681b875", 2437567641002576, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 14.0+
    */
-  init(rawValue: string): MTLCommonCounterSet { return callSDK<MTLCommonCounterSet>("Metal_e11dfd5beee01da3", 1642016987701241, undefined, [rawValue]); }
+  init(rawValue: string): MTLCommonCounterSet { return callSDK<MTLCommonCounterSet>("Metal_3864e7f38681b875", 1642016987701241, undefined, [rawValue]); }
 };
 
 /**
@@ -2752,7 +2752,7 @@ export const MTLCompareFunction = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLCompareFunction) | null { return callSDK<(MTLCompareFunction) | null>("Metal_e11dfd5beee01da3", 4386090416372747, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCompareFunction) | null { return callSDK<(MTLCompareFunction) | null>("Metal_3864e7f38681b875", 4386090416372747, undefined, [rawValue]); }
 };
 
 /**
@@ -2761,98 +2761,98 @@ export const MTLCompareFunction = {
  */
 export class MTLCompileOptions extends SDKHandle {
   /** init() */
-  static init(): MTLCompileOptions { return callSDK<MTLCompileOptions>("Metal_e11dfd5beee01da3", 1056432879202673, undefined, []); }
+  static init(): MTLCompileOptions { return callSDK<MTLCompileOptions>("Metal_3864e7f38681b875", 1056432879202673, undefined, []); }
   /**
    * var allowReferencingUndefinedSymbols: Bool { get set }
    * @availability iOS 16.4+
    */
-  get allowReferencingUndefinedSymbols(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 3751012157838658, this, []); }
-  set allowReferencingUndefinedSymbols(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1414571382905227, this, [value]); }
+  get allowReferencingUndefinedSymbols(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 3751012157838658, this, []); }
+  set allowReferencingUndefinedSymbols(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1414571382905227, this, [value]); }
   /**
    * var compileSymbolVisibility: MTLCompileSymbolVisibility { get set }
    * @availability iOS 16.4+
    */
-  get compileSymbolVisibility(): MTLCompileSymbolVisibility { return callSDK<MTLCompileSymbolVisibility>("Metal_e11dfd5beee01da3", 1290262132200547, this, []); }
-  set compileSymbolVisibility(value: MTLCompileSymbolVisibility) { callSDK<void>("Metal_e11dfd5beee01da3", 3758204896893229, this, [value]); }
+  get compileSymbolVisibility(): MTLCompileSymbolVisibility { return callSDK<MTLCompileSymbolVisibility>("Metal_3864e7f38681b875", 1290262132200547, this, []); }
+  set compileSymbolVisibility(value: MTLCompileSymbolVisibility) { callSDK<void>("Metal_3864e7f38681b875", 3758204896893229, this, [value]); }
   /**
    * var enableLogging: Bool { get set }
    * @availability iOS 18.0+
    */
-  get enableLogging(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 3256337692703842, this, []); }
-  set enableLogging(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1091182824246009, this, [value]); }
+  get enableLogging(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 3256337692703842, this, []); }
+  set enableLogging(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1091182824246009, this, [value]); }
   /**
    * var fastMathEnabled: Bool { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 18.0
    */
-  get fastMathEnabled(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 1599953203522796, this, []); }
-  set fastMathEnabled(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1852107059526263, this, [value]); }
+  get fastMathEnabled(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 1599953203522796, this, []); }
+  set fastMathEnabled(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1852107059526263, this, [value]); }
   /**
    * var floatingPointConversionRoundingMode: MTLFloatingPointConversionRoundingMode { get set }
    * @availability iOS 27.0+
    */
-  get floatingPointConversionRoundingMode(): MTLFloatingPointConversionRoundingMode { return callSDK<MTLFloatingPointConversionRoundingMode>("Metal_e11dfd5beee01da3", 843823234507811, this, []); }
-  set floatingPointConversionRoundingMode(value: MTLFloatingPointConversionRoundingMode) { callSDK<void>("Metal_e11dfd5beee01da3", 2558759065318292, this, [value]); }
+  get floatingPointConversionRoundingMode(): MTLFloatingPointConversionRoundingMode { return callSDK<MTLFloatingPointConversionRoundingMode>("Metal_3864e7f38681b875", 843823234507811, this, []); }
+  set floatingPointConversionRoundingMode(value: MTLFloatingPointConversionRoundingMode) { callSDK<void>("Metal_3864e7f38681b875", 2558759065318292, this, [value]); }
   /**
    * var installName: String? { get set }
    * @availability iOS 14.0+
    */
-  get installName(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 986977920515551, this, []); }
-  set installName(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 644398486791761, this, [value]); }
+  get installName(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 986977920515551, this, []); }
+  set installName(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 644398486791761, this, [value]); }
   /**
    * var languageVersion: MTLLanguageVersion { get set }
    * @availability iOS 9.0+
    */
-  get languageVersion(): MTLLanguageVersion { return callSDK<MTLLanguageVersion>("Metal_e11dfd5beee01da3", 3387036748107051, this, []); }
-  set languageVersion(value: MTLLanguageVersion) { callSDK<void>("Metal_e11dfd5beee01da3", 2304743049926851, this, [value]); }
+  get languageVersion(): MTLLanguageVersion { return callSDK<MTLLanguageVersion>("Metal_3864e7f38681b875", 3387036748107051, this, []); }
+  set languageVersion(value: MTLLanguageVersion) { callSDK<void>("Metal_3864e7f38681b875", 2304743049926851, this, [value]); }
   /**
    * var libraries: [any MTLDynamicLibrary]? { get set }
    * @availability iOS 14.0+
    */
-  get libraries(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 319769727831069, this, []); }
-  set libraries(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 4474863544594075, this, [value]); }
+  get libraries(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 319769727831069, this, []); }
+  set libraries(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 4474863544594075, this, [value]); }
   /**
    * var libraryType: MTLLibraryType { get set }
    * @availability iOS 14.0+
    */
-  get libraryType(): MTLLibraryType { return callSDK<MTLLibraryType>("Metal_e11dfd5beee01da3", 1916849865619628, this, []); }
-  set libraryType(value: MTLLibraryType) { callSDK<void>("Metal_e11dfd5beee01da3", 1901282630451514, this, [value]); }
+  get libraryType(): MTLLibraryType { return callSDK<MTLLibraryType>("Metal_3864e7f38681b875", 1916849865619628, this, []); }
+  set libraryType(value: MTLLibraryType) { callSDK<void>("Metal_3864e7f38681b875", 1901282630451514, this, [value]); }
   /**
    * var mathFloatingPointFunctions: MTLMathFloatingPointFunctions { get set }
    * @availability iOS 18.0+
    */
-  get mathFloatingPointFunctions(): MTLMathFloatingPointFunctions { return callSDK<MTLMathFloatingPointFunctions>("Metal_e11dfd5beee01da3", 2702005894351567, this, []); }
-  set mathFloatingPointFunctions(value: MTLMathFloatingPointFunctions) { callSDK<void>("Metal_e11dfd5beee01da3", 1389319180753543, this, [value]); }
+  get mathFloatingPointFunctions(): MTLMathFloatingPointFunctions { return callSDK<MTLMathFloatingPointFunctions>("Metal_3864e7f38681b875", 2702005894351567, this, []); }
+  set mathFloatingPointFunctions(value: MTLMathFloatingPointFunctions) { callSDK<void>("Metal_3864e7f38681b875", 1389319180753543, this, [value]); }
   /**
    * var mathMode: MTLMathMode { get set }
    * @availability iOS 18.0+
    */
-  get mathMode(): MTLMathMode { return callSDK<MTLMathMode>("Metal_e11dfd5beee01da3", 2434791089943780, this, []); }
-  set mathMode(value: MTLMathMode) { callSDK<void>("Metal_e11dfd5beee01da3", 2405782319418291, this, [value]); }
+  get mathMode(): MTLMathMode { return callSDK<MTLMathMode>("Metal_3864e7f38681b875", 2434791089943780, this, []); }
+  set mathMode(value: MTLMathMode) { callSDK<void>("Metal_3864e7f38681b875", 2405782319418291, this, [value]); }
   /**
    * var maxTotalThreadsPerThreadgroup: Int { get set }
    * @availability iOS 16.4+
    */
-  get maxTotalThreadsPerThreadgroup(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2383091758436042, this, []); }
-  set maxTotalThreadsPerThreadgroup(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4426183691337418, this, [value]); }
+  get maxTotalThreadsPerThreadgroup(): number { return callSDK<number>("Metal_3864e7f38681b875", 2383091758436042, this, []); }
+  set maxTotalThreadsPerThreadgroup(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4426183691337418, this, [value]); }
   /**
    * var optimizationLevel: MTLLibraryOptimizationLevel { get set }
    * @availability iOS 16.0+
    */
-  get optimizationLevel(): MTLLibraryOptimizationLevel { return callSDK<MTLLibraryOptimizationLevel>("Metal_e11dfd5beee01da3", 1067616610901106, this, []); }
-  set optimizationLevel(value: MTLLibraryOptimizationLevel) { callSDK<void>("Metal_e11dfd5beee01da3", 3836990800554899, this, [value]); }
+  get optimizationLevel(): MTLLibraryOptimizationLevel { return callSDK<MTLLibraryOptimizationLevel>("Metal_3864e7f38681b875", 1067616610901106, this, []); }
+  set optimizationLevel(value: MTLLibraryOptimizationLevel) { callSDK<void>("Metal_3864e7f38681b875", 3836990800554899, this, [value]); }
   /**
    * var preprocessorMacros: [String : NSObject]? { get set }
    * @availability iOS 8.0+
    */
-  get preprocessorMacros(): $SDK8 { return callSDK<$SDK8>("Metal_e11dfd5beee01da3", 284921829522965, this, []); }
-  set preprocessorMacros(value: $SDK8) { callSDK<void>("Metal_e11dfd5beee01da3", 1812773948019580, this, [value]); }
+  get preprocessorMacros(): $SDK8 { return callSDK<$SDK8>("Metal_3864e7f38681b875", 284921829522965, this, []); }
+  set preprocessorMacros(value: $SDK8) { callSDK<void>("Metal_3864e7f38681b875", 1812773948019580, this, [value]); }
   /**
    * var preserveInvariance: Bool { get set }
    * @availability iOS 14.0+
    */
-  get preserveInvariance(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 1378813075832052, this, []); }
-  set preserveInvariance(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1971441737557056, this, [value]); }
+  get preserveInvariance(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 1378813075832052, this, []); }
+  set preserveInvariance(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1971441737557056, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLCompileOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowReferencingUndefinedSymbols": true; "compileSymbolVisibility": true; "enableLogging": true; "fastMathEnabled": true; "floatingPointConversionRoundingMode": true; "installName": true; "languageVersion": true; "libraries": true; "libraryType": true; "mathFloatingPointFunctions": true; "mathMode": true; "maxTotalThreadsPerThreadgroup": true; "optimizationLevel": true; "preprocessorMacros": true; "preserveInvariance": true };
 }
@@ -2868,30 +2868,30 @@ export const MTLCompileSymbolVisibility = {
    * init?(rawValue: Int)
    * @availability iOS 16.4+
    */
-  init(rawValue: number): (MTLCompileSymbolVisibility) | null { return callSDK<(MTLCompileSymbolVisibility) | null>("Metal_e11dfd5beee01da3", 2942182879154488, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCompileSymbolVisibility) | null { return callSDK<(MTLCompileSymbolVisibility) | null>("Metal_3864e7f38681b875", 2942182879154488, undefined, [rawValue]); }
 };
 
 /** struct MTLComponentTransform */
 export class MTLComponentTransform extends SDKHandle {
   /** var pivot: MTLPackedFloat3 */
-  get pivot(): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 3040144336378645, this, []); }
-  set pivot(value: SDKHandle) { callSDK<void>("Metal_e11dfd5beee01da3", 3320031991426125, this, [value]); }
+  get pivot(): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 3040144336378645, this, []); }
+  set pivot(value: SDKHandle) { callSDK<void>("Metal_3864e7f38681b875", 3320031991426125, this, [value]); }
   /** var rotation: MTLPackedFloatQuaternion */
-  get rotation(): MTLPackedFloatQuaternion { return callSDK<MTLPackedFloatQuaternion>("Metal_e11dfd5beee01da3", 18463535902702, this, []); }
-  set rotation(value: MTLPackedFloatQuaternion) { callSDK<void>("Metal_e11dfd5beee01da3", 3291541824467677, this, [value]); }
+  get rotation(): MTLPackedFloatQuaternion { return callSDK<MTLPackedFloatQuaternion>("Metal_3864e7f38681b875", 18463535902702, this, []); }
+  set rotation(value: MTLPackedFloatQuaternion) { callSDK<void>("Metal_3864e7f38681b875", 3291541824467677, this, [value]); }
   /** var scale: MTLPackedFloat3 */
-  get scale(): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 4387300134335119, this, []); }
-  set scale(value: SDKHandle) { callSDK<void>("Metal_e11dfd5beee01da3", 3257366985529726, this, [value]); }
+  get scale(): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 4387300134335119, this, []); }
+  set scale(value: SDKHandle) { callSDK<void>("Metal_3864e7f38681b875", 3257366985529726, this, [value]); }
   /** var shear: MTLPackedFloat3 */
-  get shear(): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 3959396174651084, this, []); }
-  set shear(value: SDKHandle) { callSDK<void>("Metal_e11dfd5beee01da3", 2082827685217112, this, [value]); }
+  get shear(): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 3959396174651084, this, []); }
+  set shear(value: SDKHandle) { callSDK<void>("Metal_3864e7f38681b875", 2082827685217112, this, [value]); }
   /** var translation: MTLPackedFloat3 */
-  get translation(): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 2818877240643786, this, []); }
-  set translation(value: SDKHandle) { callSDK<void>("Metal_e11dfd5beee01da3", 15446203956998, this, [value]); }
+  get translation(): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 2818877240643786, this, []); }
+  set translation(value: SDKHandle) { callSDK<void>("Metal_3864e7f38681b875", 15446203956998, this, [value]); }
   /** init(scale: MTLPackedFloat3, shear: MTLPackedFloat3, pivot: MTLPackedFloat3, rotation: MTLPackedFloatQuaternion, translation: MTLPackedFloat3) */
-  static initScaleShearPivotRotationTranslation(scale: SDKHandle, shear: SDKHandle, pivot: SDKHandle, rotation: MTLPackedFloatQuaternion, translation: SDKHandle): MTLComponentTransform { return callSDK<MTLComponentTransform>("Metal_e11dfd5beee01da3", 3285582531078694, undefined, [scale, shear, pivot, rotation, translation]); }
+  static initScaleShearPivotRotationTranslation(scale: SDKHandle, shear: SDKHandle, pivot: SDKHandle, rotation: MTLPackedFloatQuaternion, translation: SDKHandle): MTLComponentTransform { return callSDK<MTLComponentTransform>("Metal_3864e7f38681b875", 3285582531078694, undefined, [scale, shear, pivot, rotation, translation]); }
   /** init() */
-  static init(): MTLComponentTransform { return callSDK<MTLComponentTransform>("Metal_e11dfd5beee01da3", 1302736641797643, undefined, []); }
+  static init(): MTLComponentTransform { return callSDK<MTLComponentTransform>("Metal_3864e7f38681b875", 1302736641797643, undefined, []); }
   declare readonly $type: { "c:@SA@MTLComponentTransform": true };
 }
 
@@ -3063,18 +3063,18 @@ export interface MTLComputeCommandEncoder {
  */
 export class MTLComputePassDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLComputePassDescriptor { return callSDK<MTLComputePassDescriptor>("Metal_e11dfd5beee01da3", 51758340260871, undefined, []); }
+  static init(): MTLComputePassDescriptor { return callSDK<MTLComputePassDescriptor>("Metal_3864e7f38681b875", 51758340260871, undefined, []); }
   /**
    * var dispatchType: MTLDispatchType { get set }
    * @availability iOS 14.0+
    */
-  get dispatchType(): MTLDispatchType { return callSDK<MTLDispatchType>("Metal_e11dfd5beee01da3", 2218066873051037, this, []); }
-  set dispatchType(value: MTLDispatchType) { callSDK<void>("Metal_e11dfd5beee01da3", 3340665891185656, this, [value]); }
+  get dispatchType(): MTLDispatchType { return callSDK<MTLDispatchType>("Metal_3864e7f38681b875", 2218066873051037, this, []); }
+  set dispatchType(value: MTLDispatchType) { callSDK<void>("Metal_3864e7f38681b875", 3340665891185656, this, [value]); }
   /**
    * var sampleBufferAttachments: MTLComputePassSampleBufferAttachmentDescriptorArray { get }
    * @availability iOS 14.0+
    */
-  get sampleBufferAttachments(): MTLComputePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLComputePassSampleBufferAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 4357305005433988, this, []); }
+  get sampleBufferAttachments(): MTLComputePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLComputePassSampleBufferAttachmentDescriptorArray>("Metal_3864e7f38681b875", 4357305005433988, this, []); }
   declare readonly $type: { "c:objc(cs)MTLComputePassDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dispatchType": true; "sampleBufferAttachments": true };
 }
@@ -3085,25 +3085,25 @@ export class MTLComputePassDescriptor extends SDKHandle {
  */
 export class MTLComputePassSampleBufferAttachmentDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLComputePassSampleBufferAttachmentDescriptor { return callSDK<MTLComputePassSampleBufferAttachmentDescriptor>("Metal_e11dfd5beee01da3", 1799870664683401, undefined, []); }
+  static init(): MTLComputePassSampleBufferAttachmentDescriptor { return callSDK<MTLComputePassSampleBufferAttachmentDescriptor>("Metal_3864e7f38681b875", 1799870664683401, undefined, []); }
   /**
    * var endOfEncoderSampleIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get endOfEncoderSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1346925760046606, this, []); }
-  set endOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 766799621722585, this, [value]); }
+  get endOfEncoderSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 1346925760046606, this, []); }
+  set endOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 766799621722585, this, [value]); }
   /**
    * var sampleBuffer: (any MTLCounterSampleBuffer)? { get set }
    * @availability iOS 14.0+
    */
-  get sampleBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 1341261311321474, this, []); }
-  set sampleBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3310862998412219, this, [value]); }
+  get sampleBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 1341261311321474, this, []); }
+  set sampleBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 3310862998412219, this, [value]); }
   /**
    * var startOfEncoderSampleIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get startOfEncoderSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1797955604657898, this, []); }
-  set startOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4345122437433225, this, [value]); }
+  get startOfEncoderSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 1797955604657898, this, []); }
+  set startOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4345122437433225, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLComputePassSampleBufferAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endOfEncoderSampleIndex": true; "sampleBuffer": true; "startOfEncoderSampleIndex": true };
 }
@@ -3114,12 +3114,12 @@ export class MTLComputePassSampleBufferAttachmentDescriptor extends SDKHandle {
  */
 export class MTLComputePassSampleBufferAttachmentDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLComputePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLComputePassSampleBufferAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 3109990128369332, undefined, []); }
+  static init(): MTLComputePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLComputePassSampleBufferAttachmentDescriptorArray>("Metal_3864e7f38681b875", 3109990128369332, undefined, []); }
   /**
    * subscript(attachmentIndex: Int) -> MTLComputePassSampleBufferAttachmentDescriptor! { get set }
    * @availability iOS 14.0+
    */
-  subscript(attachmentIndex: number): (MTLComputePassSampleBufferAttachmentDescriptor) | null { return callSDK<(MTLComputePassSampleBufferAttachmentDescriptor) | null>("Metal_e11dfd5beee01da3", 1923894406388181, this, [attachmentIndex]); }
+  subscript(attachmentIndex: number): (MTLComputePassSampleBufferAttachmentDescriptor) | null { return callSDK<(MTLComputePassSampleBufferAttachmentDescriptor) | null>("Metal_3864e7f38681b875", 1923894406388181, this, [attachmentIndex]); }
   declare readonly $type: { "c:objc(cs)MTLComputePassSampleBufferAttachmentDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3129,114 +3129,114 @@ export class MTLComputePassSampleBufferAttachmentDescriptorArray extends SDKHand
  */
 export class MTLComputePipelineDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLComputePipelineDescriptor { return callSDK<MTLComputePipelineDescriptor>("Metal_e11dfd5beee01da3", 2443407424045563, undefined, []); }
+  static init(): MTLComputePipelineDescriptor { return callSDK<MTLComputePipelineDescriptor>("Metal_3864e7f38681b875", 2443407424045563, undefined, []); }
   /**
    * func reset()
    * @availability iOS 9.0+
    */
-  reset(): void { return callSDK<void>("Metal_e11dfd5beee01da3", 1596727713418511, this, []); }
+  reset(): void { return callSDK<void>("Metal_3864e7f38681b875", 1596727713418511, this, []); }
   /**
    * var binaryArchives: [any MTLBinaryArchive]? { get set }
    * @availability iOS 14.0+
    */
-  get binaryArchives(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 3889989897411876, this, []); }
-  set binaryArchives(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 190666293518271, this, [value]); }
+  get binaryArchives(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 3889989897411876, this, []); }
+  set binaryArchives(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 190666293518271, this, [value]); }
   /**
    * var buffers: MTLPipelineBufferDescriptorArray { get }
    * @availability iOS 11.0+
    */
-  get buffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_e11dfd5beee01da3", 1605356264803191, this, []); }
+  get buffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_3864e7f38681b875", 1605356264803191, this, []); }
   /**
    * var computeFunction: (any MTLFunction)? { get set }
    * @availability iOS 9.0+
    */
-  get computeFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 4241145353424329, this, []); }
-  set computeFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2072031961646095, this, [value]); }
+  get computeFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 4241145353424329, this, []); }
+  set computeFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 2072031961646095, this, [value]); }
   /**
    * var contentionRelief: MTLContentionRelief { get set }
    * @availability iOS 27.0+
    */
-  get contentionRelief(): MTLContentionRelief { return callSDK<MTLContentionRelief>("Metal_e11dfd5beee01da3", 1570560387625904, this, []); }
-  set contentionRelief(value: MTLContentionRelief) { callSDK<void>("Metal_e11dfd5beee01da3", 345791344909617, this, [value]); }
+  get contentionRelief(): MTLContentionRelief { return callSDK<MTLContentionRelief>("Metal_3864e7f38681b875", 1570560387625904, this, []); }
+  set contentionRelief(value: MTLContentionRelief) { callSDK<void>("Metal_3864e7f38681b875", 345791344909617, this, [value]); }
   /**
    * var forwardProgressUsage: MTLForwardProgressUsage { get set }
    * @availability iOS 27.0+
    */
-  get forwardProgressUsage(): MTLForwardProgressUsage { return callSDK<MTLForwardProgressUsage>("Metal_e11dfd5beee01da3", 110457115219560, this, []); }
-  set forwardProgressUsage(value: MTLForwardProgressUsage) { callSDK<void>("Metal_e11dfd5beee01da3", 2425014196402413, this, [value]); }
+  get forwardProgressUsage(): MTLForwardProgressUsage { return callSDK<MTLForwardProgressUsage>("Metal_3864e7f38681b875", 110457115219560, this, []); }
+  set forwardProgressUsage(value: MTLForwardProgressUsage) { callSDK<void>("Metal_3864e7f38681b875", 2425014196402413, this, [value]); }
   /**
    * var insertLibraries: [any MTLDynamicLibrary]? { get set }
    * @availability iOS 14.0+
    * @deprecated iOS 15.0
    */
-  get insertLibraries(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 2569360213415583, this, []); }
-  set insertLibraries(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 3377289197384025, this, [value]); }
+  get insertLibraries(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 2569360213415583, this, []); }
+  set insertLibraries(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 3377289197384025, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 9.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 2261920589515738, this, []); }
-  set label(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1193484146249535, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 2261920589515738, this, []); }
+  set label(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 1193484146249535, this, [value]); }
   /**
    * @NSCopying var linkedFunctions: MTLLinkedFunctions? { get set }
    * @availability iOS 14.0+
    */
-  get linkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_e11dfd5beee01da3", 1811030403969964, this, []); }
-  set linkedFunctions(value: $SDK10) { callSDK<void>("Metal_e11dfd5beee01da3", 3382563859588634, this, [value]); }
+  get linkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_3864e7f38681b875", 1811030403969964, this, []); }
+  set linkedFunctions(value: $SDK10) { callSDK<void>("Metal_3864e7f38681b875", 3382563859588634, this, [value]); }
   /**
    * var maxCallStackDepth: Int { get set }
    * @availability iOS 14.0+
    */
-  get maxCallStackDepth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2564516783569396, this, []); }
-  set maxCallStackDepth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 523612453782365, this, [value]); }
+  get maxCallStackDepth(): number { return callSDK<number>("Metal_3864e7f38681b875", 2564516783569396, this, []); }
+  set maxCallStackDepth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 523612453782365, this, [value]); }
   /**
    * var maxTotalThreadsPerThreadgroup: Int { get set }
    * @availability iOS 12.0+
    */
-  get maxTotalThreadsPerThreadgroup(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 61329258748053, this, []); }
-  set maxTotalThreadsPerThreadgroup(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 187015088251304, this, [value]); }
+  get maxTotalThreadsPerThreadgroup(): number { return callSDK<number>("Metal_3864e7f38681b875", 61329258748053, this, []); }
+  set maxTotalThreadsPerThreadgroup(value: number) { callSDK<void>("Metal_3864e7f38681b875", 187015088251304, this, [value]); }
   /**
    * var optimizeForPersistentKernel: Bool { get set }
    * @availability iOS 27.0+
    */
-  get optimizeForPersistentKernel(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 4496858936602025, this, []); }
-  set optimizeForPersistentKernel(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 2337963485558386, this, [value]); }
+  get optimizeForPersistentKernel(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 4496858936602025, this, []); }
+  set optimizeForPersistentKernel(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 2337963485558386, this, [value]); }
   /**
    * var preloadedLibraries: [any MTLDynamicLibrary] { get set }
    * @availability iOS 15.0+
    */
-  get preloadedLibraries(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 702912432432089, this, []); }
-  set preloadedLibraries(value: Array<SDKHandle>) { callSDK<void>("Metal_e11dfd5beee01da3", 3582327151177651, this, [value]); }
+  get preloadedLibraries(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 702912432432089, this, []); }
+  set preloadedLibraries(value: Array<SDKHandle>) { callSDK<void>("Metal_3864e7f38681b875", 3582327151177651, this, [value]); }
   /**
    * var shaderValidation: MTLShaderValidation { get set }
    * @availability iOS 18.0+
    */
-  get shaderValidation(): MTLShaderValidation { return callSDK<MTLShaderValidation>("Metal_e11dfd5beee01da3", 4275729711451359, this, []); }
-  set shaderValidation(value: MTLShaderValidation) { callSDK<void>("Metal_e11dfd5beee01da3", 696994069658298, this, [value]); }
+  get shaderValidation(): MTLShaderValidation { return callSDK<MTLShaderValidation>("Metal_3864e7f38681b875", 4275729711451359, this, []); }
+  set shaderValidation(value: MTLShaderValidation) { callSDK<void>("Metal_3864e7f38681b875", 696994069658298, this, [value]); }
   /**
    * @NSCopying var stageInputDescriptor: MTLStageInputOutputDescriptor? { get set }
    * @availability iOS 10.0+
    */
-  get stageInputDescriptor(): $SDK11 { return callSDK<$SDK11>("Metal_e11dfd5beee01da3", 1068794653034960, this, []); }
-  set stageInputDescriptor(value: $SDK11) { callSDK<void>("Metal_e11dfd5beee01da3", 3510564008765600, this, [value]); }
+  get stageInputDescriptor(): $SDK11 { return callSDK<$SDK11>("Metal_3864e7f38681b875", 1068794653034960, this, []); }
+  set stageInputDescriptor(value: $SDK11) { callSDK<void>("Metal_3864e7f38681b875", 3510564008765600, this, [value]); }
   /**
    * var supportAddingBinaryFunctions: Bool { get set }
    * @availability iOS 14.0+
    */
-  get supportAddingBinaryFunctions(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 722704157252444, this, []); }
-  set supportAddingBinaryFunctions(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 3305952710988252, this, [value]); }
+  get supportAddingBinaryFunctions(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 722704157252444, this, []); }
+  set supportAddingBinaryFunctions(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 3305952710988252, this, [value]); }
   /**
    * var supportIndirectCommandBuffers: Bool { get set }
    * @availability iOS 13.0+
    */
-  get supportIndirectCommandBuffers(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 3442438286963602, this, []); }
-  set supportIndirectCommandBuffers(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 2964898314825695, this, [value]); }
+  get supportIndirectCommandBuffers(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 3442438286963602, this, []); }
+  set supportIndirectCommandBuffers(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 2964898314825695, this, [value]); }
   /**
    * var threadGroupSizeIsMultipleOfThreadExecutionWidth: Bool { get set }
    * @availability iOS 9.0+
    */
-  get threadGroupSizeIsMultipleOfThreadExecutionWidth(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 871202065151838, this, []); }
-  set threadGroupSizeIsMultipleOfThreadExecutionWidth(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 3493844492800882, this, [value]); }
+  get threadGroupSizeIsMultipleOfThreadExecutionWidth(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 871202065151838, this, []); }
+  set threadGroupSizeIsMultipleOfThreadExecutionWidth(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 3493844492800882, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLComputePipelineDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "binaryArchives": true; "buffers": true; "computeFunction": true; "contentionRelief": true; "forwardProgressUsage": true; "insertLibraries": true; "label": true; "linkedFunctions": true; "maxCallStackDepth": true; "maxTotalThreadsPerThreadgroup": true; "optimizeForPersistentKernel": true; "preloadedLibraries": true; "shaderValidation": true; "stageInputDescriptor": true; "supportAddingBinaryFunctions": true; "supportIndirectCommandBuffers": true; "threadGroupSizeIsMultipleOfThreadExecutionWidth": true };
 }
@@ -3247,18 +3247,18 @@ export class MTLComputePipelineDescriptor extends SDKHandle {
  */
 export class MTLComputePipelineReflection extends SDKHandle {
   /** init() */
-  static init(): MTLComputePipelineReflection { return callSDK<MTLComputePipelineReflection>("Metal_e11dfd5beee01da3", 2422600062081541, undefined, []); }
+  static init(): MTLComputePipelineReflection { return callSDK<MTLComputePipelineReflection>("Metal_3864e7f38681b875", 2422600062081541, undefined, []); }
   /**
    * var arguments: [MTLArgument] { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get arguments(): Array<MTLArgument> { return callSDK<Array<MTLArgument>>("Metal_e11dfd5beee01da3", 2557908565390893, this, []); }
+  get arguments(): Array<MTLArgument> { return callSDK<Array<MTLArgument>>("Metal_3864e7f38681b875", 2557908565390893, this, []); }
   /**
    * var bindings: [any MTLBinding] { get }
    * @availability iOS 16.0+
    */
-  get bindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 3120674890900433, this, []); }
+  get bindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 3120674890900433, this, []); }
   declare readonly $type: { "c:objc(cs)MTLComputePipelineReflection": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "arguments": true; "bindings": true };
 }
@@ -3316,7 +3316,7 @@ export const MTLContentionRelief = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (MTLContentionRelief) | null { return callSDK<(MTLContentionRelief) | null>("Metal_e11dfd5beee01da3", 1134386921974675, undefined, [rawValue]); }
+  init(rawValue: number): (MTLContentionRelief) | null { return callSDK<(MTLContentionRelief) | null>("Metal_3864e7f38681b875", 1134386921974675, undefined, [rawValue]); }
 };
 
 /** typealias MTLCoordinate2D = MTLSamplePosition */
@@ -3339,48 +3339,48 @@ export class MTLCounterResultStageUtilization extends SDKHandle {
    * var fragmentCycles: UInt64
    * @availability iOS 14.0+
    */
-  get fragmentCycles(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2186446045002291, this, []); }
-  set fragmentCycles(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2368954056505954, this, [value]); }
+  get fragmentCycles(): number { return callSDK<number>("Metal_3864e7f38681b875", 2186446045002291, this, []); }
+  set fragmentCycles(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2368954056505954, this, [value]); }
   /**
    * var postTessellationVertexCycles: UInt64
    * @availability iOS 14.0+
    */
-  get postTessellationVertexCycles(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3742598790120983, this, []); }
-  set postTessellationVertexCycles(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 755313376651205, this, [value]); }
+  get postTessellationVertexCycles(): number { return callSDK<number>("Metal_3864e7f38681b875", 3742598790120983, this, []); }
+  set postTessellationVertexCycles(value: number) { callSDK<void>("Metal_3864e7f38681b875", 755313376651205, this, [value]); }
   /**
    * var renderTargetCycles: UInt64
    * @availability iOS 14.0+
    */
-  get renderTargetCycles(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4331661628126862, this, []); }
-  set renderTargetCycles(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2066527133198230, this, [value]); }
+  get renderTargetCycles(): number { return callSDK<number>("Metal_3864e7f38681b875", 4331661628126862, this, []); }
+  set renderTargetCycles(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2066527133198230, this, [value]); }
   /**
    * var tessellationCycles: UInt64
    * @availability iOS 14.0+
    */
-  get tessellationCycles(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1971194376960694, this, []); }
-  set tessellationCycles(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 496440471971022, this, [value]); }
+  get tessellationCycles(): number { return callSDK<number>("Metal_3864e7f38681b875", 1971194376960694, this, []); }
+  set tessellationCycles(value: number) { callSDK<void>("Metal_3864e7f38681b875", 496440471971022, this, [value]); }
   /**
    * var totalCycles: UInt64
    * @availability iOS 14.0+
    */
-  get totalCycles(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1148842256960528, this, []); }
-  set totalCycles(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3925403588634536, this, [value]); }
+  get totalCycles(): number { return callSDK<number>("Metal_3864e7f38681b875", 1148842256960528, this, []); }
+  set totalCycles(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3925403588634536, this, [value]); }
   /**
    * var vertexCycles: UInt64
    * @availability iOS 14.0+
    */
-  get vertexCycles(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 154875197196758, this, []); }
-  set vertexCycles(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 846287598434619, this, [value]); }
+  get vertexCycles(): number { return callSDK<number>("Metal_3864e7f38681b875", 154875197196758, this, []); }
+  set vertexCycles(value: number) { callSDK<void>("Metal_3864e7f38681b875", 846287598434619, this, [value]); }
   /**
    * init(totalCycles: UInt64, vertexCycles: UInt64, tessellationCycles: UInt64, postTessellationVertexCycles: UInt64, fragmentCycles: UInt64, renderTargetCycles: UInt64)
    * @availability iOS 14.0+
    */
-  static initTotalCyclesVertexCyclesTessellationCyclesPostTessellationVertexCyclesFragmentCyclesRenderTargetCycles(totalCycles: number, vertexCycles: number, tessellationCycles: number, postTessellationVertexCycles: number, fragmentCycles: number, renderTargetCycles: number): MTLCounterResultStageUtilization { return callSDK<MTLCounterResultStageUtilization>("Metal_e11dfd5beee01da3", 2793396024879122, undefined, [totalCycles, vertexCycles, tessellationCycles, postTessellationVertexCycles, fragmentCycles, renderTargetCycles]); }
+  static initTotalCyclesVertexCyclesTessellationCyclesPostTessellationVertexCyclesFragmentCyclesRenderTargetCycles(totalCycles: number, vertexCycles: number, tessellationCycles: number, postTessellationVertexCycles: number, fragmentCycles: number, renderTargetCycles: number): MTLCounterResultStageUtilization { return callSDK<MTLCounterResultStageUtilization>("Metal_3864e7f38681b875", 2793396024879122, undefined, [totalCycles, vertexCycles, tessellationCycles, postTessellationVertexCycles, fragmentCycles, renderTargetCycles]); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): MTLCounterResultStageUtilization { return callSDK<MTLCounterResultStageUtilization>("Metal_e11dfd5beee01da3", 2186305404587036, undefined, []); }
+  static init(): MTLCounterResultStageUtilization { return callSDK<MTLCounterResultStageUtilization>("Metal_3864e7f38681b875", 2186305404587036, undefined, []); }
   declare readonly $type: { "c:@SA@MTLCounterResultStageUtilization": true };
 }
 
@@ -3393,60 +3393,60 @@ export class MTLCounterResultStatistic extends SDKHandle {
    * var clipperInvocations: UInt64
    * @availability iOS 14.0+
    */
-  get clipperInvocations(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3088784726320439, this, []); }
-  set clipperInvocations(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 896033404308472, this, [value]); }
+  get clipperInvocations(): number { return callSDK<number>("Metal_3864e7f38681b875", 3088784726320439, this, []); }
+  set clipperInvocations(value: number) { callSDK<void>("Metal_3864e7f38681b875", 896033404308472, this, [value]); }
   /**
    * var clipperPrimitivesOut: UInt64
    * @availability iOS 14.0+
    */
-  get clipperPrimitivesOut(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4223487969002048, this, []); }
-  set clipperPrimitivesOut(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2749360191787288, this, [value]); }
+  get clipperPrimitivesOut(): number { return callSDK<number>("Metal_3864e7f38681b875", 4223487969002048, this, []); }
+  set clipperPrimitivesOut(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2749360191787288, this, [value]); }
   /**
    * var computeKernelInvocations: UInt64
    * @availability iOS 14.0+
    */
-  get computeKernelInvocations(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2815880789675553, this, []); }
-  set computeKernelInvocations(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1728195767701450, this, [value]); }
+  get computeKernelInvocations(): number { return callSDK<number>("Metal_3864e7f38681b875", 2815880789675553, this, []); }
+  set computeKernelInvocations(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1728195767701450, this, [value]); }
   /**
    * var fragmentInvocations: UInt64
    * @availability iOS 14.0+
    */
-  get fragmentInvocations(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1036361519684723, this, []); }
-  set fragmentInvocations(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3679644168102848, this, [value]); }
+  get fragmentInvocations(): number { return callSDK<number>("Metal_3864e7f38681b875", 1036361519684723, this, []); }
+  set fragmentInvocations(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3679644168102848, this, [value]); }
   /**
    * var fragmentsPassed: UInt64
    * @availability iOS 14.0+
    */
-  get fragmentsPassed(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2796513144080511, this, []); }
-  set fragmentsPassed(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3596690457747727, this, [value]); }
+  get fragmentsPassed(): number { return callSDK<number>("Metal_3864e7f38681b875", 2796513144080511, this, []); }
+  set fragmentsPassed(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3596690457747727, this, [value]); }
   /**
    * var postTessellationVertexInvocations: UInt64
    * @availability iOS 14.0+
    */
-  get postTessellationVertexInvocations(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4352134987118155, this, []); }
-  set postTessellationVertexInvocations(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2326373627894484, this, [value]); }
+  get postTessellationVertexInvocations(): number { return callSDK<number>("Metal_3864e7f38681b875", 4352134987118155, this, []); }
+  set postTessellationVertexInvocations(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2326373627894484, this, [value]); }
   /**
    * var tessellationInputPatches: UInt64
    * @availability iOS 14.0+
    */
-  get tessellationInputPatches(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3684559176672975, this, []); }
-  set tessellationInputPatches(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2015877772719554, this, [value]); }
+  get tessellationInputPatches(): number { return callSDK<number>("Metal_3864e7f38681b875", 3684559176672975, this, []); }
+  set tessellationInputPatches(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2015877772719554, this, [value]); }
   /**
    * var vertexInvocations: UInt64
    * @availability iOS 14.0+
    */
-  get vertexInvocations(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 816369910102047, this, []); }
-  set vertexInvocations(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 257151824927141, this, [value]); }
+  get vertexInvocations(): number { return callSDK<number>("Metal_3864e7f38681b875", 816369910102047, this, []); }
+  set vertexInvocations(value: number) { callSDK<void>("Metal_3864e7f38681b875", 257151824927141, this, [value]); }
   /**
    * init(tessellationInputPatches: UInt64, vertexInvocations: UInt64, postTessellationVertexInvocations: UInt64, clipperInvocations: UInt64, clipperPrimitivesOut: UInt64, fragmentInvocations: UInt64, fragmentsPassed: UInt64, computeKernelInvocations: UInt64)
    * @availability iOS 14.0+
    */
-  static initTessellationInputPatchesVertexInvocationsPostTessellationVertexInvocationsClipperInvocationsClipperPrimitivesOutFragmentInvocationsFragmentsPassedComputeKernelInvocations(tessellationInputPatches: number, vertexInvocations: number, postTessellationVertexInvocations: number, clipperInvocations: number, clipperPrimitivesOut: number, fragmentInvocations: number, fragmentsPassed: number, computeKernelInvocations: number): MTLCounterResultStatistic { return callSDK<MTLCounterResultStatistic>("Metal_e11dfd5beee01da3", 1020626947359331, undefined, [tessellationInputPatches, vertexInvocations, postTessellationVertexInvocations, clipperInvocations, clipperPrimitivesOut, fragmentInvocations, fragmentsPassed, computeKernelInvocations]); }
+  static initTessellationInputPatchesVertexInvocationsPostTessellationVertexInvocationsClipperInvocationsClipperPrimitivesOutFragmentInvocationsFragmentsPassedComputeKernelInvocations(tessellationInputPatches: number, vertexInvocations: number, postTessellationVertexInvocations: number, clipperInvocations: number, clipperPrimitivesOut: number, fragmentInvocations: number, fragmentsPassed: number, computeKernelInvocations: number): MTLCounterResultStatistic { return callSDK<MTLCounterResultStatistic>("Metal_3864e7f38681b875", 1020626947359331, undefined, [tessellationInputPatches, vertexInvocations, postTessellationVertexInvocations, clipperInvocations, clipperPrimitivesOut, fragmentInvocations, fragmentsPassed, computeKernelInvocations]); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): MTLCounterResultStatistic { return callSDK<MTLCounterResultStatistic>("Metal_e11dfd5beee01da3", 3551792886211961, undefined, []); }
+  static init(): MTLCounterResultStatistic { return callSDK<MTLCounterResultStatistic>("Metal_3864e7f38681b875", 3551792886211961, undefined, []); }
   declare readonly $type: { "c:@SA@MTLCounterResultStatistic": true };
 }
 
@@ -3459,18 +3459,18 @@ export class MTLCounterResultTimestamp extends SDKHandle {
    * var timestamp: UInt64
    * @availability iOS 14.0+
    */
-  get timestamp(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4477065017728193, this, []); }
-  set timestamp(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 77337315037205, this, [value]); }
+  get timestamp(): number { return callSDK<number>("Metal_3864e7f38681b875", 4477065017728193, this, []); }
+  set timestamp(value: number) { callSDK<void>("Metal_3864e7f38681b875", 77337315037205, this, [value]); }
   /**
    * init(timestamp: UInt64)
    * @availability iOS 14.0+
    */
-  static initTimestamp(timestamp: number): MTLCounterResultTimestamp { return callSDK<MTLCounterResultTimestamp>("Metal_e11dfd5beee01da3", 1452772640701134, undefined, [timestamp]); }
+  static initTimestamp(timestamp: number): MTLCounterResultTimestamp { return callSDK<MTLCounterResultTimestamp>("Metal_3864e7f38681b875", 1452772640701134, undefined, [timestamp]); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): MTLCounterResultTimestamp { return callSDK<MTLCounterResultTimestamp>("Metal_e11dfd5beee01da3", 835388747749170, undefined, []); }
+  static init(): MTLCounterResultTimestamp { return callSDK<MTLCounterResultTimestamp>("Metal_3864e7f38681b875", 835388747749170, undefined, []); }
   declare readonly $type: { "c:@SA@MTLCounterResultTimestamp": true };
 }
 
@@ -3488,31 +3488,31 @@ export interface MTLCounterSampleBuffer {
  */
 export class MTLCounterSampleBufferDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLCounterSampleBufferDescriptor { return callSDK<MTLCounterSampleBufferDescriptor>("Metal_e11dfd5beee01da3", 1660534196712650, undefined, []); }
+  static init(): MTLCounterSampleBufferDescriptor { return callSDK<MTLCounterSampleBufferDescriptor>("Metal_3864e7f38681b875", 1660534196712650, undefined, []); }
   /**
    * var counterSet: (any MTLCounterSet)? { get set }
    * @availability iOS 14.0+
    */
-  get counterSet(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3425337366307307, this, []); }
-  set counterSet(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1295675944453126, this, [value]); }
+  get counterSet(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3425337366307307, this, []); }
+  set counterSet(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 1295675944453126, this, [value]); }
   /**
    * var label: String { get set }
    * @availability iOS 14.0+
    */
-  get label(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 1800531054684097, this, []); }
-  set label(value: string) { callSDK<void>("Metal_e11dfd5beee01da3", 1923553836273878, this, [value]); }
+  get label(): string { return callSDK<string>("Metal_3864e7f38681b875", 1800531054684097, this, []); }
+  set label(value: string) { callSDK<void>("Metal_3864e7f38681b875", 1923553836273878, this, [value]); }
   /**
    * var sampleCount: Int { get set }
    * @availability iOS 14.0+
    */
-  get sampleCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2293027839575562, this, []); }
-  set sampleCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3987242446825400, this, [value]); }
+  get sampleCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 2293027839575562, this, []); }
+  set sampleCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3987242446825400, this, [value]); }
   /**
    * var storageMode: MTLStorageMode { get set }
    * @availability iOS 14.0+
    */
-  get storageMode(): MTLStorageMode { return callSDK<MTLStorageMode>("Metal_e11dfd5beee01da3", 3555549802861016, this, []); }
-  set storageMode(value: MTLStorageMode) { callSDK<void>("Metal_e11dfd5beee01da3", 4117695957051039, this, [value]); }
+  get storageMode(): MTLStorageMode { return callSDK<MTLStorageMode>("Metal_3864e7f38681b875", 3555549802861016, this, []); }
+  set storageMode(value: MTLStorageMode) { callSDK<void>("Metal_3864e7f38681b875", 4117695957051039, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLCounterSampleBufferDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "counterSet": true; "label": true; "sampleCount": true; "storageMode": true };
 }
@@ -3526,22 +3526,22 @@ export class MTLCounterSampleBufferError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 14.0+
    */
-  static get errorDomain(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 3709756716147590, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("Metal_3864e7f38681b875", 3709756716147590, undefined, []); }
   /**
    * static var outOfMemory: MTLCounterSampleBufferError.Code { get }
    * @availability iOS 14.0+
    */
-  static get outOfMemory(): MTLCounterSampleBufferError_Code { return callSDK<MTLCounterSampleBufferError_Code>("Metal_e11dfd5beee01da3", 2889440732484072, undefined, []); }
+  static get outOfMemory(): MTLCounterSampleBufferError_Code { return callSDK<MTLCounterSampleBufferError_Code>("Metal_3864e7f38681b875", 2889440732484072, undefined, []); }
   /**
    * static var invalid: MTLCounterSampleBufferError.Code { get }
    * @availability iOS 14.0+
    */
-  static get invalid(): MTLCounterSampleBufferError_Code { return callSDK<MTLCounterSampleBufferError_Code>("Metal_e11dfd5beee01da3", 2647877260572888, undefined, []); }
+  static get invalid(): MTLCounterSampleBufferError_Code { return callSDK<MTLCounterSampleBufferError_Code>("Metal_3864e7f38681b875", 2647877260572888, undefined, []); }
   /**
    * static var `internal`: MTLCounterSampleBufferError.Code { get }
    * @availability iOS 14.0+
    */
-  static get internal(): MTLCounterSampleBufferError_Code { return callSDK<MTLCounterSampleBufferError_Code>("Metal_e11dfd5beee01da3", 4211918960970111, undefined, []); }
+  static get internal(): MTLCounterSampleBufferError_Code { return callSDK<MTLCounterSampleBufferError_Code>("Metal_3864e7f38681b875", 4211918960970111, undefined, []); }
   declare readonly $type: { "s:SC27MTLCounterSampleBufferErrorLeV": true };
 }
 
@@ -3556,7 +3556,7 @@ export const MTLCounterSampleBufferError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (MTLCounterSampleBufferError_Code) | null { return callSDK<(MTLCounterSampleBufferError_Code) | null>("Metal_e11dfd5beee01da3", 3279519836444959, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCounterSampleBufferError_Code) | null { return callSDK<(MTLCounterSampleBufferError_Code) | null>("Metal_3864e7f38681b875", 3279519836444959, undefined, [rawValue]); }
 };
 
 /**
@@ -3570,7 +3570,7 @@ export const MTLCounterSamplingPoint = {
    * init?(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (MTLCounterSamplingPoint) | null { return callSDK<(MTLCounterSamplingPoint) | null>("Metal_e11dfd5beee01da3", 2386458620886327, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCounterSamplingPoint) | null { return callSDK<(MTLCounterSamplingPoint) | null>("Metal_3864e7f38681b875", 2386458620886327, undefined, [rawValue]); }
 };
 
 /**
@@ -3592,7 +3592,7 @@ export const MTLCPUCacheMode = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLCPUCacheMode) | null { return callSDK<(MTLCPUCacheMode) | null>("Metal_e11dfd5beee01da3", 3765354832979046, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCPUCacheMode) | null { return callSDK<(MTLCPUCacheMode) | null>("Metal_3864e7f38681b875", 3765354832979046, undefined, [rawValue]); }
 };
 
 /**
@@ -3606,7 +3606,7 @@ export const MTLCullMode = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLCullMode) | null { return callSDK<(MTLCullMode) | null>("Metal_e11dfd5beee01da3", 3362117069746110, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCullMode) | null { return callSDK<(MTLCullMode) | null>("Metal_3864e7f38681b875", 3362117069746110, undefined, [rawValue]); }
 };
 
 /**
@@ -3620,7 +3620,7 @@ export const MTLCurveBasis = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (MTLCurveBasis) | null { return callSDK<(MTLCurveBasis) | null>("Metal_e11dfd5beee01da3", 2605081598238024, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCurveBasis) | null { return callSDK<(MTLCurveBasis) | null>("Metal_3864e7f38681b875", 2605081598238024, undefined, [rawValue]); }
 };
 
 /**
@@ -3634,7 +3634,7 @@ export const MTLCurveEndCaps = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (MTLCurveEndCaps) | null { return callSDK<(MTLCurveEndCaps) | null>("Metal_e11dfd5beee01da3", 3549365509702000, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCurveEndCaps) | null { return callSDK<(MTLCurveEndCaps) | null>("Metal_3864e7f38681b875", 3549365509702000, undefined, [rawValue]); }
 };
 
 /**
@@ -3648,7 +3648,7 @@ export const MTLCurveType = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (MTLCurveType) | null { return callSDK<(MTLCurveType) | null>("Metal_e11dfd5beee01da3", 3800278937764125, undefined, [rawValue]); }
+  init(rawValue: number): (MTLCurveType) | null { return callSDK<(MTLCurveType) | null>("Metal_3864e7f38681b875", 3800278937764125, undefined, [rawValue]); }
 };
 
 /**
@@ -3662,7 +3662,7 @@ export const MTLDataType = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLDataType) | null { return callSDK<(MTLDataType) | null>("Metal_e11dfd5beee01da3", 3300229647111599, undefined, [rawValue]); }
+  init(rawValue: number): (MTLDataType) | null { return callSDK<(MTLDataType) | null>("Metal_3864e7f38681b875", 3300229647111599, undefined, [rawValue]); }
 };
 
 /**
@@ -3676,7 +3676,7 @@ export const MTLDepthClipMode = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (MTLDepthClipMode) | null { return callSDK<(MTLDepthClipMode) | null>("Metal_e11dfd5beee01da3", 405761524902793, undefined, [rawValue]); }
+  init(rawValue: number): (MTLDepthClipMode) | null { return callSDK<(MTLDepthClipMode) | null>("Metal_3864e7f38681b875", 405761524902793, undefined, [rawValue]); }
 };
 
 /**
@@ -3685,37 +3685,37 @@ export const MTLDepthClipMode = {
  */
 export class MTLDepthStencilDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLDepthStencilDescriptor { return callSDK<MTLDepthStencilDescriptor>("Metal_e11dfd5beee01da3", 2147902626477400, undefined, []); }
+  static init(): MTLDepthStencilDescriptor { return callSDK<MTLDepthStencilDescriptor>("Metal_3864e7f38681b875", 2147902626477400, undefined, []); }
   /**
    * @NSCopying var backFaceStencil: MTLStencilDescriptor! { get set }
    * @availability iOS 8.0+
    */
-  get backFaceStencil(): $SDK12 { return callSDK<$SDK12>("Metal_e11dfd5beee01da3", 2855013542621230, this, []); }
-  set backFaceStencil(value: $SDK12) { callSDK<void>("Metal_e11dfd5beee01da3", 874098036999305, this, [value]); }
+  get backFaceStencil(): $SDK12 { return callSDK<$SDK12>("Metal_3864e7f38681b875", 2855013542621230, this, []); }
+  set backFaceStencil(value: $SDK12) { callSDK<void>("Metal_3864e7f38681b875", 874098036999305, this, [value]); }
   /**
    * var depthCompareFunction: MTLCompareFunction { get set }
    * @availability iOS 8.0+
    */
-  get depthCompareFunction(): MTLCompareFunction { return callSDK<MTLCompareFunction>("Metal_e11dfd5beee01da3", 1568375561205674, this, []); }
-  set depthCompareFunction(value: MTLCompareFunction) { callSDK<void>("Metal_e11dfd5beee01da3", 4434574060738810, this, [value]); }
+  get depthCompareFunction(): MTLCompareFunction { return callSDK<MTLCompareFunction>("Metal_3864e7f38681b875", 1568375561205674, this, []); }
+  set depthCompareFunction(value: MTLCompareFunction) { callSDK<void>("Metal_3864e7f38681b875", 4434574060738810, this, [value]); }
   /**
    * var isDepthWriteEnabled: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isDepthWriteEnabled(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 3581622878588624, this, []); }
-  set isDepthWriteEnabled(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1078438198221571, this, [value]); }
+  get isDepthWriteEnabled(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 3581622878588624, this, []); }
+  set isDepthWriteEnabled(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1078438198221571, this, [value]); }
   /**
    * @NSCopying var frontFaceStencil: MTLStencilDescriptor! { get set }
    * @availability iOS 8.0+
    */
-  get frontFaceStencil(): $SDK12 { return callSDK<$SDK12>("Metal_e11dfd5beee01da3", 1418622732782780, this, []); }
-  set frontFaceStencil(value: $SDK12) { callSDK<void>("Metal_e11dfd5beee01da3", 2648508666339236, this, [value]); }
+  get frontFaceStencil(): $SDK12 { return callSDK<$SDK12>("Metal_3864e7f38681b875", 1418622732782780, this, []); }
+  set frontFaceStencil(value: $SDK12) { callSDK<void>("Metal_3864e7f38681b875", 2648508666339236, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 8.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 1016150622163737, this, []); }
-  set label(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2619785376063193, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 1016150622163737, this, []); }
+  set label(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 2619785376063193, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLDepthStencilDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backFaceStencil": true; "depthCompareFunction": true; "isDepthWriteEnabled": true; "frontFaceStencil": true; "label": true };
 }
@@ -4061,17 +4061,17 @@ export class MTLDeviceError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 26.4+
    */
-  static get errorDomain(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 2817010478254179, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("Metal_3864e7f38681b875", 2817010478254179, undefined, []); }
   /**
    * static var notSupported: MTLDeviceError.Code { get }
    * @availability iOS 26.4+
    */
-  static get notSupported(): MTLDeviceError_Code { return callSDK<MTLDeviceError_Code>("Metal_e11dfd5beee01da3", 597299558595590, undefined, []); }
+  static get notSupported(): MTLDeviceError_Code { return callSDK<MTLDeviceError_Code>("Metal_3864e7f38681b875", 597299558595590, undefined, []); }
   /**
    * static var none: MTLDeviceError.Code { get }
    * @availability iOS 26.4+
    */
-  static get none(): MTLDeviceError_Code { return callSDK<MTLDeviceError_Code>("Metal_e11dfd5beee01da3", 2527308789094062, undefined, []); }
+  static get none(): MTLDeviceError_Code { return callSDK<MTLDeviceError_Code>("Metal_3864e7f38681b875", 2527308789094062, undefined, []); }
   declare readonly $type: { "s:SC14MTLDeviceErrorLeV": true };
 }
 
@@ -4086,33 +4086,33 @@ export const MTLDeviceError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): (MTLDeviceError_Code) | null { return callSDK<(MTLDeviceError_Code) | null>("Metal_e11dfd5beee01da3", 477320083719901, undefined, [rawValue]); }
+  init(rawValue: number): (MTLDeviceError_Code) | null { return callSDK<(MTLDeviceError_Code) | null>("Metal_3864e7f38681b875", 477320083719901, undefined, [rawValue]); }
 };
 
 /** struct MTLDispatchThreadgroupsIndirectArguments */
 export class MTLDispatchThreadgroupsIndirectArguments extends SDKHandle {
   /** var threadgroupsPerGrid: (UInt32, UInt32, UInt32) */
-  get threadgroupsPerGrid(): $SDK18 { return callSDK<$SDK18>("Metal_e11dfd5beee01da3", 572035027392109, this, []); }
-  set threadgroupsPerGrid(value: $SDK18) { callSDK<void>("Metal_e11dfd5beee01da3", 1046386508269794, this, [value]); }
+  get threadgroupsPerGrid(): $SDK18 { return callSDK<$SDK18>("Metal_3864e7f38681b875", 572035027392109, this, []); }
+  set threadgroupsPerGrid(value: $SDK18) { callSDK<void>("Metal_3864e7f38681b875", 1046386508269794, this, [value]); }
   /** init(threadgroupsPerGrid: (UInt32, UInt32, UInt32)) */
-  static initThreadgroupsPerGrid(threadgroupsPerGrid: $SDK18): MTLDispatchThreadgroupsIndirectArguments { return callSDK<MTLDispatchThreadgroupsIndirectArguments>("Metal_e11dfd5beee01da3", 1233563071503076, undefined, [threadgroupsPerGrid]); }
+  static initThreadgroupsPerGrid(threadgroupsPerGrid: $SDK18): MTLDispatchThreadgroupsIndirectArguments { return callSDK<MTLDispatchThreadgroupsIndirectArguments>("Metal_3864e7f38681b875", 1233563071503076, undefined, [threadgroupsPerGrid]); }
   /** init() */
-  static init(): MTLDispatchThreadgroupsIndirectArguments { return callSDK<MTLDispatchThreadgroupsIndirectArguments>("Metal_e11dfd5beee01da3", 4359782233204307, undefined, []); }
+  static init(): MTLDispatchThreadgroupsIndirectArguments { return callSDK<MTLDispatchThreadgroupsIndirectArguments>("Metal_3864e7f38681b875", 4359782233204307, undefined, []); }
   declare readonly $type: { "c:@SA@MTLDispatchThreadgroupsIndirectArguments": true };
 }
 
 /** struct MTLDispatchThreadsIndirectArguments */
 export class MTLDispatchThreadsIndirectArguments extends SDKHandle {
   /** var threadsPerGrid: (UInt32, UInt32, UInt32) */
-  get threadsPerGrid(): $SDK18 { return callSDK<$SDK18>("Metal_e11dfd5beee01da3", 1792459806522615, this, []); }
-  set threadsPerGrid(value: $SDK18) { callSDK<void>("Metal_e11dfd5beee01da3", 4103360036279348, this, [value]); }
+  get threadsPerGrid(): $SDK18 { return callSDK<$SDK18>("Metal_3864e7f38681b875", 1792459806522615, this, []); }
+  set threadsPerGrid(value: $SDK18) { callSDK<void>("Metal_3864e7f38681b875", 4103360036279348, this, [value]); }
   /** var threadsPerThreadgroup: (UInt32, UInt32, UInt32) */
-  get threadsPerThreadgroup(): $SDK18 { return callSDK<$SDK18>("Metal_e11dfd5beee01da3", 2868033642296043, this, []); }
-  set threadsPerThreadgroup(value: $SDK18) { callSDK<void>("Metal_e11dfd5beee01da3", 935582853805738, this, [value]); }
+  get threadsPerThreadgroup(): $SDK18 { return callSDK<$SDK18>("Metal_3864e7f38681b875", 2868033642296043, this, []); }
+  set threadsPerThreadgroup(value: $SDK18) { callSDK<void>("Metal_3864e7f38681b875", 935582853805738, this, [value]); }
   /** init(threadsPerGrid: (UInt32, UInt32, UInt32), threadsPerThreadgroup: (UInt32, UInt32, UInt32)) */
-  static initThreadsPerGridThreadsPerThreadgroup(threadsPerGrid: $SDK18, threadsPerThreadgroup: $SDK18): MTLDispatchThreadsIndirectArguments { return callSDK<MTLDispatchThreadsIndirectArguments>("Metal_e11dfd5beee01da3", 3066942552176447, undefined, [threadsPerGrid, threadsPerThreadgroup]); }
+  static initThreadsPerGridThreadsPerThreadgroup(threadsPerGrid: $SDK18, threadsPerThreadgroup: $SDK18): MTLDispatchThreadsIndirectArguments { return callSDK<MTLDispatchThreadsIndirectArguments>("Metal_3864e7f38681b875", 3066942552176447, undefined, [threadsPerGrid, threadsPerThreadgroup]); }
   /** init() */
-  static init(): MTLDispatchThreadsIndirectArguments { return callSDK<MTLDispatchThreadsIndirectArguments>("Metal_e11dfd5beee01da3", 2911997269320930, undefined, []); }
+  static init(): MTLDispatchThreadsIndirectArguments { return callSDK<MTLDispatchThreadsIndirectArguments>("Metal_3864e7f38681b875", 2911997269320930, undefined, []); }
   declare readonly $type: { "c:@SA@MTLDispatchThreadsIndirectArguments": true };
 }
 
@@ -4127,7 +4127,7 @@ export const MTLDispatchType = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (MTLDispatchType) | null { return callSDK<(MTLDispatchType) | null>("Metal_e11dfd5beee01da3", 3027091296650854, undefined, [rawValue]); }
+  init(rawValue: number): (MTLDispatchType) | null { return callSDK<(MTLDispatchType) | null>("Metal_3864e7f38681b875", 3027091296650854, undefined, [rawValue]); }
 };
 
 /**
@@ -4153,66 +4153,66 @@ export type MTLDrawablePresentedHandler = $SDK6;
 /** struct MTLDrawIndexedPrimitivesIndirectArguments */
 export class MTLDrawIndexedPrimitivesIndirectArguments extends SDKHandle {
   /** var baseInstance: UInt32 */
-  get baseInstance(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3217784399358321, this, []); }
-  set baseInstance(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1748750971303428, this, [value]); }
+  get baseInstance(): number { return callSDK<number>("Metal_3864e7f38681b875", 3217784399358321, this, []); }
+  set baseInstance(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1748750971303428, this, [value]); }
   /** var baseVertex: Int32 */
-  get baseVertex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2414492338472403, this, []); }
-  set baseVertex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2053363098408648, this, [value]); }
+  get baseVertex(): number { return callSDK<number>("Metal_3864e7f38681b875", 2414492338472403, this, []); }
+  set baseVertex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2053363098408648, this, [value]); }
   /** var indexCount: UInt32 */
-  get indexCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3849887362316469, this, []); }
-  set indexCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1448509566610084, this, [value]); }
+  get indexCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 3849887362316469, this, []); }
+  set indexCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1448509566610084, this, [value]); }
   /** var indexStart: UInt32 */
-  get indexStart(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1825847751901805, this, []); }
-  set indexStart(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3362768388471785, this, [value]); }
+  get indexStart(): number { return callSDK<number>("Metal_3864e7f38681b875", 1825847751901805, this, []); }
+  set indexStart(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3362768388471785, this, [value]); }
   /** var instanceCount: UInt32 */
-  get instanceCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 888479555121301, this, []); }
-  set instanceCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2653083484030930, this, [value]); }
+  get instanceCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 888479555121301, this, []); }
+  set instanceCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2653083484030930, this, [value]); }
   /** init(indexCount: UInt32, instanceCount: UInt32, indexStart: UInt32, baseVertex: Int32, baseInstance: UInt32) */
-  static initIndexCountInstanceCountIndexStartBaseVertexBaseInstance(indexCount: number, instanceCount: number, indexStart: number, baseVertex: number, baseInstance: number): MTLDrawIndexedPrimitivesIndirectArguments { return callSDK<MTLDrawIndexedPrimitivesIndirectArguments>("Metal_e11dfd5beee01da3", 2674949284628506, undefined, [indexCount, instanceCount, indexStart, baseVertex, baseInstance]); }
+  static initIndexCountInstanceCountIndexStartBaseVertexBaseInstance(indexCount: number, instanceCount: number, indexStart: number, baseVertex: number, baseInstance: number): MTLDrawIndexedPrimitivesIndirectArguments { return callSDK<MTLDrawIndexedPrimitivesIndirectArguments>("Metal_3864e7f38681b875", 2674949284628506, undefined, [indexCount, instanceCount, indexStart, baseVertex, baseInstance]); }
   /** init() */
-  static init(): MTLDrawIndexedPrimitivesIndirectArguments { return callSDK<MTLDrawIndexedPrimitivesIndirectArguments>("Metal_e11dfd5beee01da3", 2210906348841841, undefined, []); }
+  static init(): MTLDrawIndexedPrimitivesIndirectArguments { return callSDK<MTLDrawIndexedPrimitivesIndirectArguments>("Metal_3864e7f38681b875", 2210906348841841, undefined, []); }
   declare readonly $type: { "c:@SA@MTLDrawIndexedPrimitivesIndirectArguments": true };
 }
 
 /** struct MTLDrawPatchIndirectArguments */
 export class MTLDrawPatchIndirectArguments extends SDKHandle {
   /** var baseInstance: UInt32 */
-  get baseInstance(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1388425648480100, this, []); }
-  set baseInstance(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4098736578382163, this, [value]); }
+  get baseInstance(): number { return callSDK<number>("Metal_3864e7f38681b875", 1388425648480100, this, []); }
+  set baseInstance(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4098736578382163, this, [value]); }
   /** var instanceCount: UInt32 */
-  get instanceCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4249644157082989, this, []); }
-  set instanceCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4421879458130229, this, [value]); }
+  get instanceCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 4249644157082989, this, []); }
+  set instanceCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4421879458130229, this, [value]); }
   /** var patchCount: UInt32 */
-  get patchCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3079810557812596, this, []); }
-  set patchCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4329041134166474, this, [value]); }
+  get patchCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 3079810557812596, this, []); }
+  set patchCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4329041134166474, this, [value]); }
   /** var patchStart: UInt32 */
-  get patchStart(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1185117616980161, this, []); }
-  set patchStart(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2042753452019663, this, [value]); }
+  get patchStart(): number { return callSDK<number>("Metal_3864e7f38681b875", 1185117616980161, this, []); }
+  set patchStart(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2042753452019663, this, [value]); }
   /** init(patchCount: UInt32, instanceCount: UInt32, patchStart: UInt32, baseInstance: UInt32) */
-  static initPatchCountInstanceCountPatchStartBaseInstance(patchCount: number, instanceCount: number, patchStart: number, baseInstance: number): MTLDrawPatchIndirectArguments { return callSDK<MTLDrawPatchIndirectArguments>("Metal_e11dfd5beee01da3", 2984439521041305, undefined, [patchCount, instanceCount, patchStart, baseInstance]); }
+  static initPatchCountInstanceCountPatchStartBaseInstance(patchCount: number, instanceCount: number, patchStart: number, baseInstance: number): MTLDrawPatchIndirectArguments { return callSDK<MTLDrawPatchIndirectArguments>("Metal_3864e7f38681b875", 2984439521041305, undefined, [patchCount, instanceCount, patchStart, baseInstance]); }
   /** init() */
-  static init(): MTLDrawPatchIndirectArguments { return callSDK<MTLDrawPatchIndirectArguments>("Metal_e11dfd5beee01da3", 781164007637062, undefined, []); }
+  static init(): MTLDrawPatchIndirectArguments { return callSDK<MTLDrawPatchIndirectArguments>("Metal_3864e7f38681b875", 781164007637062, undefined, []); }
   declare readonly $type: { "c:@SA@MTLDrawPatchIndirectArguments": true };
 }
 
 /** struct MTLDrawPrimitivesIndirectArguments */
 export class MTLDrawPrimitivesIndirectArguments extends SDKHandle {
   /** var baseInstance: UInt32 */
-  get baseInstance(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 328853829172399, this, []); }
-  set baseInstance(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 910054893390135, this, [value]); }
+  get baseInstance(): number { return callSDK<number>("Metal_3864e7f38681b875", 328853829172399, this, []); }
+  set baseInstance(value: number) { callSDK<void>("Metal_3864e7f38681b875", 910054893390135, this, [value]); }
   /** var instanceCount: UInt32 */
-  get instanceCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3072593005040148, this, []); }
-  set instanceCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 146452623632622, this, [value]); }
+  get instanceCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 3072593005040148, this, []); }
+  set instanceCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 146452623632622, this, [value]); }
   /** var vertexCount: UInt32 */
-  get vertexCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4082632605967741, this, []); }
-  set vertexCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3049483937470926, this, [value]); }
+  get vertexCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 4082632605967741, this, []); }
+  set vertexCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3049483937470926, this, [value]); }
   /** var vertexStart: UInt32 */
-  get vertexStart(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4455954577364933, this, []); }
-  set vertexStart(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 245506545614407, this, [value]); }
+  get vertexStart(): number { return callSDK<number>("Metal_3864e7f38681b875", 4455954577364933, this, []); }
+  set vertexStart(value: number) { callSDK<void>("Metal_3864e7f38681b875", 245506545614407, this, [value]); }
   /** init(vertexCount: UInt32, instanceCount: UInt32, vertexStart: UInt32, baseInstance: UInt32) */
-  static initVertexCountInstanceCountVertexStartBaseInstance(vertexCount: number, instanceCount: number, vertexStart: number, baseInstance: number): MTLDrawPrimitivesIndirectArguments { return callSDK<MTLDrawPrimitivesIndirectArguments>("Metal_e11dfd5beee01da3", 2479282089282224, undefined, [vertexCount, instanceCount, vertexStart, baseInstance]); }
+  static initVertexCountInstanceCountVertexStartBaseInstance(vertexCount: number, instanceCount: number, vertexStart: number, baseInstance: number): MTLDrawPrimitivesIndirectArguments { return callSDK<MTLDrawPrimitivesIndirectArguments>("Metal_3864e7f38681b875", 2479282089282224, undefined, [vertexCount, instanceCount, vertexStart, baseInstance]); }
   /** init() */
-  static init(): MTLDrawPrimitivesIndirectArguments { return callSDK<MTLDrawPrimitivesIndirectArguments>("Metal_e11dfd5beee01da3", 642752448351779, undefined, []); }
+  static init(): MTLDrawPrimitivesIndirectArguments { return callSDK<MTLDrawPrimitivesIndirectArguments>("Metal_3864e7f38681b875", 642752448351779, undefined, []); }
   declare readonly $type: { "c:@SA@MTLDrawPrimitivesIndirectArguments": true };
 }
 
@@ -4237,37 +4237,37 @@ export class MTLDynamicLibraryError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 14.0+
    */
-  static get errorDomain(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 210303722253557, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("Metal_3864e7f38681b875", 210303722253557, undefined, []); }
   /**
    * static var invalidFile: MTLDynamicLibraryError.Code { get }
    * @availability iOS 14.0+
    */
-  static get invalidFile(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_e11dfd5beee01da3", 272348602069250, undefined, []); }
+  static get invalidFile(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_3864e7f38681b875", 272348602069250, undefined, []); }
   /**
    * static var unsupported: MTLDynamicLibraryError.Code { get }
    * @availability iOS 14.0+
    */
-  static get unsupported(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_e11dfd5beee01da3", 1816026652421966, undefined, []); }
+  static get unsupported(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_3864e7f38681b875", 1816026652421966, undefined, []); }
   /**
    * static var compilationFailure: MTLDynamicLibraryError.Code { get }
    * @availability iOS 14.0+
    */
-  static get compilationFailure(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_e11dfd5beee01da3", 1913361429961250, undefined, []); }
+  static get compilationFailure(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_3864e7f38681b875", 1913361429961250, undefined, []); }
   /**
    * static var dependencyLoadFailure: MTLDynamicLibraryError.Code { get }
    * @availability iOS 14.0+
    */
-  static get dependencyLoadFailure(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_e11dfd5beee01da3", 1295684462816672, undefined, []); }
+  static get dependencyLoadFailure(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_3864e7f38681b875", 1295684462816672, undefined, []); }
   /**
    * static var unresolvedInstallName: MTLDynamicLibraryError.Code { get }
    * @availability iOS 14.0+
    */
-  static get unresolvedInstallName(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_e11dfd5beee01da3", 2519839842202797, undefined, []); }
+  static get unresolvedInstallName(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_3864e7f38681b875", 2519839842202797, undefined, []); }
   /**
    * static var none: MTLDynamicLibraryError.Code { get }
    * @availability iOS 14.0+
    */
-  static get none(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_e11dfd5beee01da3", 1366118296375559, undefined, []); }
+  static get none(): MTLDynamicLibraryError_Code { return callSDK<MTLDynamicLibraryError_Code>("Metal_3864e7f38681b875", 1366118296375559, undefined, []); }
   declare readonly $type: { "s:SC22MTLDynamicLibraryErrorLeV": true };
 }
 
@@ -4282,7 +4282,7 @@ export const MTLDynamicLibraryError_Code = {
    * init?(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (MTLDynamicLibraryError_Code) | null { return callSDK<(MTLDynamicLibraryError_Code) | null>("Metal_e11dfd5beee01da3", 4483475461484730, undefined, [rawValue]); }
+  init(rawValue: number): (MTLDynamicLibraryError_Code) | null { return callSDK<(MTLDynamicLibraryError_Code) | null>("Metal_3864e7f38681b875", 4483475461484730, undefined, [rawValue]); }
 };
 
 /**
@@ -4306,7 +4306,7 @@ export const MTLFeatureSet = {
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  init(rawValue: number): (MTLFeatureSet) | null { return callSDK<(MTLFeatureSet) | null>("Metal_e11dfd5beee01da3", 55184035137850, undefined, [rawValue]); }
+  init(rawValue: number): (MTLFeatureSet) | null { return callSDK<(MTLFeatureSet) | null>("Metal_3864e7f38681b875", 55184035137850, undefined, [rawValue]); }
 };
 
 /**
@@ -4322,7 +4322,7 @@ export type MTLFloatingPointConversionRoundingMode = "toNearestEven" | "towardZe
 
 export const MTLFloatingPointConversionRoundingMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (MTLFloatingPointConversionRoundingMode) | null { return callSDK<(MTLFloatingPointConversionRoundingMode) | null>("Metal_e11dfd5beee01da3", 2520547902446649, undefined, [rawValue]); }
+  init(rawValue: number): (MTLFloatingPointConversionRoundingMode) | null { return callSDK<(MTLFloatingPointConversionRoundingMode) | null>("Metal_3864e7f38681b875", 2520547902446649, undefined, [rawValue]); }
 };
 
 /**
@@ -4336,7 +4336,7 @@ export const MTLForwardProgressUsage = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (MTLForwardProgressUsage) | null { return callSDK<(MTLForwardProgressUsage) | null>("Metal_e11dfd5beee01da3", 2001117177220515, undefined, [rawValue]); }
+  init(rawValue: number): (MTLForwardProgressUsage) | null { return callSDK<(MTLForwardProgressUsage) | null>("Metal_3864e7f38681b875", 2001117177220515, undefined, [rawValue]); }
 };
 
 /**
@@ -4363,27 +4363,27 @@ export interface MTLFunction {
  */
 export class MTLFunctionConstant extends SDKHandle {
   /** init() */
-  static init(): MTLFunctionConstant { return callSDK<MTLFunctionConstant>("Metal_e11dfd5beee01da3", 1162206700771652, undefined, []); }
+  static init(): MTLFunctionConstant { return callSDK<MTLFunctionConstant>("Metal_3864e7f38681b875", 1162206700771652, undefined, []); }
   /**
    * var index: Int { get }
    * @availability iOS 10.0+
    */
-  get index(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3869010279880133, this, []); }
+  get index(): number { return callSDK<number>("Metal_3864e7f38681b875", 3869010279880133, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 10.0+
    */
-  get name(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 2936784491954621, this, []); }
+  get name(): string { return callSDK<string>("Metal_3864e7f38681b875", 2936784491954621, this, []); }
   /**
    * var required: Bool { get }
    * @availability iOS 10.0+
    */
-  get required(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 3431316243639182, this, []); }
+  get required(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 3431316243639182, this, []); }
   /**
    * var type: MTLDataType { get }
    * @availability iOS 10.0+
    */
-  get type(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 3642342676583682, this, []); }
+  get type(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 3642342676583682, this, []); }
   declare readonly $type: { "c:objc(cs)MTLFunctionConstant": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "index": true; "name": true; "required": true; "type": true };
 }
@@ -4394,27 +4394,27 @@ export class MTLFunctionConstant extends SDKHandle {
  */
 export class MTLFunctionConstantValues extends SDKHandle {
   /** init() */
-  static init(): MTLFunctionConstantValues { return callSDK<MTLFunctionConstantValues>("Metal_e11dfd5beee01da3", 1189653371111229, undefined, []); }
+  static init(): MTLFunctionConstantValues { return callSDK<MTLFunctionConstantValues>("Metal_3864e7f38681b875", 1189653371111229, undefined, []); }
   /**
    * func reset()
    * @availability iOS 10.0+
    */
-  reset(): void { return callSDK<void>("Metal_e11dfd5beee01da3", 182387353541005, this, []); }
+  reset(): void { return callSDK<void>("Metal_3864e7f38681b875", 182387353541005, this, []); }
   /**
    * func setConstantValue(_ value: UnsafeRawPointer, type: MTLDataType, index: Int)
    * @availability iOS 10.0+
    */
-  setConstantValueTypeIndex(value: SDKHandle, type: MTLDataType, index: number): void { return callSDK<void>("Metal_e11dfd5beee01da3", 3843836667658561, this, [value, type, index]); }
+  setConstantValueTypeIndex(value: SDKHandle, type: MTLDataType, index: number): void { return callSDK<void>("Metal_3864e7f38681b875", 3843836667658561, this, [value, type, index]); }
   /**
    * func setConstantValue(_ value: UnsafeRawPointer, type: MTLDataType, withName name: String)
    * @availability iOS 10.0+
    */
-  setConstantValueTypeWithName(value: SDKHandle, type: MTLDataType, name: string): void { return callSDK<void>("Metal_e11dfd5beee01da3", 1838625730683526, this, [value, type, name]); }
+  setConstantValueTypeWithName(value: SDKHandle, type: MTLDataType, name: string): void { return callSDK<void>("Metal_3864e7f38681b875", 1838625730683526, this, [value, type, name]); }
   /**
    * func setConstantValues(_ values: UnsafeRawPointer, type: MTLDataType, range: Range<Int>)
    * @availability iOS 10.0+
    */
-  setConstantValues(values: SDKHandle, type: MTLDataType, range: SDKHandle): void { return callSDK<void>("Metal_e11dfd5beee01da3", 1722840793882186, this, [values, type, range]); }
+  setConstantValues(values: SDKHandle, type: MTLDataType, range: SDKHandle): void { return callSDK<void>("Metal_3864e7f38681b875", 1722840793882186, this, [values, type, range]); }
   declare readonly $type: { "c:objc(cs)MTLFunctionConstantValues": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4424,37 +4424,37 @@ export class MTLFunctionConstantValues extends SDKHandle {
  */
 export class MTLFunctionDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLFunctionDescriptor { return callSDK<MTLFunctionDescriptor>("Metal_e11dfd5beee01da3", 4240534453223433, undefined, []); }
+  static init(): MTLFunctionDescriptor { return callSDK<MTLFunctionDescriptor>("Metal_3864e7f38681b875", 4240534453223433, undefined, []); }
   /**
    * var binaryArchives: [any MTLBinaryArchive]? { get set }
    * @availability iOS 15.0+
    */
-  get binaryArchives(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 4274737829798032, this, []); }
-  set binaryArchives(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 1550174210122164, this, [value]); }
+  get binaryArchives(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 4274737829798032, this, []); }
+  set binaryArchives(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 1550174210122164, this, [value]); }
   /**
    * @NSCopying var constantValues: MTLFunctionConstantValues? { get set }
    * @availability iOS 14.0+
    */
-  get constantValues(): $SDK19 { return callSDK<$SDK19>("Metal_e11dfd5beee01da3", 2744059228841976, this, []); }
-  set constantValues(value: $SDK19) { callSDK<void>("Metal_e11dfd5beee01da3", 1553635061643721, this, [value]); }
+  get constantValues(): $SDK19 { return callSDK<$SDK19>("Metal_3864e7f38681b875", 2744059228841976, this, []); }
+  set constantValues(value: $SDK19) { callSDK<void>("Metal_3864e7f38681b875", 1553635061643721, this, [value]); }
   /**
    * var name: String? { get set }
    * @availability iOS 14.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 48600330322089, this, []); }
-  set name(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 4359613925782197, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 48600330322089, this, []); }
+  set name(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 4359613925782197, this, [value]); }
   /**
    * var options: MTLFunctionOptions { get set }
    * @availability iOS 14.0+
    */
-  get options(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_e11dfd5beee01da3", 239908779760773, this, []); }
-  set options(value: MTLFunctionOptions) { callSDK<void>("Metal_e11dfd5beee01da3", 4211675061609332, this, [value]); }
+  get options(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_3864e7f38681b875", 239908779760773, this, []); }
+  set options(value: MTLFunctionOptions) { callSDK<void>("Metal_3864e7f38681b875", 4211675061609332, this, [value]); }
   /**
    * var specializedName: String? { get set }
    * @availability iOS 14.0+
    */
-  get specializedName(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 3469145700441274, this, []); }
-  set specializedName(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3321920038478628, this, [value]); }
+  get specializedName(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 3469145700441274, this, []); }
+  set specializedName(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 3321920038478628, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLFunctionDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "binaryArchives": true; "constantValues": true; "name": true; "options": true; "specializedName": true };
 }
@@ -4494,7 +4494,7 @@ export const MTLFunctionLogType = {
    * init?(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (MTLFunctionLogType) | null { return callSDK<(MTLFunctionLogType) | null>("Metal_e11dfd5beee01da3", 1201425340237235, undefined, [rawValue]); }
+  init(rawValue: number): (MTLFunctionLogType) | null { return callSDK<(MTLFunctionLogType) | null>("Metal_3864e7f38681b875", 1201425340237235, undefined, [rawValue]); }
 };
 
 /**
@@ -4508,33 +4508,33 @@ export const MTLFunctionOptions = {
    * static var compileToBinary: MTLFunctionOptions { get }
    * @availability iOS 14.0+
    */
-  get compileToBinary(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_e11dfd5beee01da3", 276446436099742, undefined, []); },
+  get compileToBinary(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_3864e7f38681b875", 276446436099742, undefined, []); },
   /**
    * static var failOnBinaryArchiveMiss: MTLFunctionOptions { get }
    * @availability iOS 18.0+
    */
-  get failOnBinaryArchiveMiss(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_e11dfd5beee01da3", 411561338076113, undefined, []); },
+  get failOnBinaryArchiveMiss(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_3864e7f38681b875", 411561338076113, undefined, []); },
   /**
    * static var pipelineIndependent: MTLFunctionOptions { get }
    * @availability iOS 26.0+
    */
-  get pipelineIndependent(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_e11dfd5beee01da3", 3272860515927781, undefined, []); },
+  get pipelineIndependent(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_3864e7f38681b875", 3272860515927781, undefined, []); },
   /**
    * static var storeFunctionInMetalPipelinesScript: MTLFunctionOptions { get }
    * @availability iOS 18.0+
    */
-  get storeFunctionInMetalPipelinesScript(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_e11dfd5beee01da3", 2529109412849484, undefined, []); },
+  get storeFunctionInMetalPipelinesScript(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_3864e7f38681b875", 2529109412849484, undefined, []); },
   /**
    * static var storeFunctionInMetalScript: MTLFunctionOptions { get }
    * @availability iOS 17.0+
    * @deprecated iOS 18.0
    */
-  get storeFunctionInMetalScript(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_e11dfd5beee01da3", 3899528941358909, undefined, []); },
+  get storeFunctionInMetalScript(): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_3864e7f38681b875", 3899528941358909, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_e11dfd5beee01da3", 2049403737915580, undefined, [rawValue]); }
+  init(rawValue: number): MTLFunctionOptions { return callSDK<MTLFunctionOptions>("Metal_3864e7f38681b875", 2049403737915580, undefined, [rawValue]); }
 };
 
 /**
@@ -4551,7 +4551,7 @@ export interface MTLFunctionStitchingAttribute {
  */
 export class MTLFunctionStitchingAttributeAlwaysInline extends SDKHandle {
   /** init() */
-  static init(): MTLFunctionStitchingAttributeAlwaysInline { return callSDK<MTLFunctionStitchingAttributeAlwaysInline>("Metal_e11dfd5beee01da3", 1175516364540444, undefined, []); }
+  static init(): MTLFunctionStitchingAttributeAlwaysInline { return callSDK<MTLFunctionStitchingAttributeAlwaysInline>("Metal_3864e7f38681b875", 1175516364540444, undefined, []); }
   declare readonly $type: { "c:objc(cs)MTLFunctionStitchingAttributeAlwaysInline": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4564,25 +4564,25 @@ export class MTLFunctionStitchingFunctionNode extends SDKHandle {
    * init(name: String, arguments: [any MTLFunctionStitchingNode], controlDependencies: [MTLFunctionStitchingFunctionNode])
    * @availability iOS 15.0+
    */
-  static init(name: string, arguments_: Array<SDKHandle>, controlDependencies: $SDK20): MTLFunctionStitchingFunctionNode { return callSDK<MTLFunctionStitchingFunctionNode>("Metal_e11dfd5beee01da3", 834447222789617, undefined, [name, arguments_, controlDependencies]); }
+  static init(name: string, arguments_: Array<SDKHandle>, controlDependencies: $SDK20): MTLFunctionStitchingFunctionNode { return callSDK<MTLFunctionStitchingFunctionNode>("Metal_3864e7f38681b875", 834447222789617, undefined, [name, arguments_, controlDependencies]); }
   /**
    * var arguments: [any MTLFunctionStitchingNode] { get set }
    * @availability iOS 15.0+
    */
-  get arguments(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 487757022804038, this, []); }
-  set arguments(value: Array<SDKHandle>) { callSDK<void>("Metal_e11dfd5beee01da3", 1965274634812543, this, [value]); }
+  get arguments(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 487757022804038, this, []); }
+  set arguments(value: Array<SDKHandle>) { callSDK<void>("Metal_3864e7f38681b875", 1965274634812543, this, [value]); }
   /**
    * var controlDependencies: [MTLFunctionStitchingFunctionNode] { get set }
    * @availability iOS 15.0+
    */
-  get controlDependencies(): $SDK20 { return callSDK<$SDK20>("Metal_e11dfd5beee01da3", 3031392420634173, this, []); }
-  set controlDependencies(value: $SDK20) { callSDK<void>("Metal_e11dfd5beee01da3", 2894569506679049, this, [value]); }
+  get controlDependencies(): $SDK20 { return callSDK<$SDK20>("Metal_3864e7f38681b875", 3031392420634173, this, []); }
+  set controlDependencies(value: $SDK20) { callSDK<void>("Metal_3864e7f38681b875", 2894569506679049, this, [value]); }
   /**
    * var name: String { get set }
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 1169876077752573, this, []); }
-  set name(value: string) { callSDK<void>("Metal_e11dfd5beee01da3", 2308348102547644, this, [value]); }
+  get name(): string { return callSDK<string>("Metal_3864e7f38681b875", 1169876077752573, this, []); }
+  set name(value: string) { callSDK<void>("Metal_3864e7f38681b875", 2308348102547644, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLFunctionStitchingFunctionNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "arguments": true; "controlDependencies": true; "name": true };
 }
@@ -4596,31 +4596,31 @@ export class MTLFunctionStitchingGraph extends SDKHandle {
    * init(functionName: String, nodes: [MTLFunctionStitchingFunctionNode], outputNode: MTLFunctionStitchingFunctionNode?, attributes: [any MTLFunctionStitchingAttribute])
    * @availability iOS 15.0+
    */
-  static init(functionName: string, nodes: $SDK20, outputNode: $SDK21, attributes: $SDK22): MTLFunctionStitchingGraph { return callSDK<MTLFunctionStitchingGraph>("Metal_e11dfd5beee01da3", 3531721562076273, undefined, [functionName, nodes, outputNode, attributes], [null,null,null,{"array":{"protocol":"c:objc(pl)MTLFunctionStitchingAttribute"}}]); }
+  static init(functionName: string, nodes: $SDK20, outputNode: $SDK21, attributes: $SDK22): MTLFunctionStitchingGraph { return callSDK<MTLFunctionStitchingGraph>("Metal_3864e7f38681b875", 3531721562076273, undefined, [functionName, nodes, outputNode, attributes], [null,null,null,{"array":{"protocol":"c:objc(pl)MTLFunctionStitchingAttribute"}}]); }
   /**
    * var attributes: [any MTLFunctionStitchingAttribute] { get set }
    * @availability iOS 15.0+
    */
-  get attributes(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 325446424344288, this, []); }
-  set attributes(value: $SDK22) { callSDK<void>("Metal_e11dfd5beee01da3", 919098705919036, this, [value], [{"array":{"protocol":"c:objc(pl)MTLFunctionStitchingAttribute"}}]); }
+  get attributes(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 325446424344288, this, []); }
+  set attributes(value: $SDK22) { callSDK<void>("Metal_3864e7f38681b875", 919098705919036, this, [value], [{"array":{"protocol":"c:objc(pl)MTLFunctionStitchingAttribute"}}]); }
   /**
    * var functionName: String { get set }
    * @availability iOS 15.0+
    */
-  get functionName(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 1917059879058983, this, []); }
-  set functionName(value: string) { callSDK<void>("Metal_e11dfd5beee01da3", 1324235319978594, this, [value]); }
+  get functionName(): string { return callSDK<string>("Metal_3864e7f38681b875", 1917059879058983, this, []); }
+  set functionName(value: string) { callSDK<void>("Metal_3864e7f38681b875", 1324235319978594, this, [value]); }
   /**
    * var nodes: [MTLFunctionStitchingFunctionNode] { get set }
    * @availability iOS 15.0+
    */
-  get nodes(): $SDK20 { return callSDK<$SDK20>("Metal_e11dfd5beee01da3", 4233370752002374, this, []); }
-  set nodes(value: $SDK20) { callSDK<void>("Metal_e11dfd5beee01da3", 169721503480973, this, [value]); }
+  get nodes(): $SDK20 { return callSDK<$SDK20>("Metal_3864e7f38681b875", 4233370752002374, this, []); }
+  set nodes(value: $SDK20) { callSDK<void>("Metal_3864e7f38681b875", 169721503480973, this, [value]); }
   /**
    * var outputNode: MTLFunctionStitchingFunctionNode? { get set }
    * @availability iOS 15.0+
    */
-  get outputNode(): $SDK21 { return callSDK<$SDK21>("Metal_e11dfd5beee01da3", 2983601059060443, this, []); }
-  set outputNode(value: $SDK21) { callSDK<void>("Metal_e11dfd5beee01da3", 3264468077294501, this, [value]); }
+  get outputNode(): $SDK21 { return callSDK<$SDK21>("Metal_3864e7f38681b875", 2983601059060443, this, []); }
+  set outputNode(value: $SDK21) { callSDK<void>("Metal_3864e7f38681b875", 3264468077294501, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLFunctionStitchingGraph": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributes": true; "functionName": true; "nodes": true; "outputNode": true };
 }
@@ -4634,13 +4634,13 @@ export class MTLFunctionStitchingInputNode extends SDKHandle {
    * init(argumentIndex argument: Int)
    * @availability iOS 15.0+
    */
-  static init(argument: number): MTLFunctionStitchingInputNode { return callSDK<MTLFunctionStitchingInputNode>("Metal_e11dfd5beee01da3", 2072254738050258, undefined, [argument]); }
+  static init(argument: number): MTLFunctionStitchingInputNode { return callSDK<MTLFunctionStitchingInputNode>("Metal_3864e7f38681b875", 2072254738050258, undefined, [argument]); }
   /**
    * var argumentIndex: Int { get set }
    * @availability iOS 15.0+
    */
-  get argumentIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 454305211338196, this, []); }
-  set argumentIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2816896388121691, this, [value]); }
+  get argumentIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 454305211338196, this, []); }
+  set argumentIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2816896388121691, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLFunctionStitchingInputNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "argumentIndex": true };
 }
@@ -4664,7 +4664,7 @@ export const MTLFunctionType = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLFunctionType) | null { return callSDK<(MTLFunctionType) | null>("Metal_e11dfd5beee01da3", 936525779992870, undefined, [rawValue]); }
+  init(rawValue: number): (MTLFunctionType) | null { return callSDK<(MTLFunctionType) | null>("Metal_3864e7f38681b875", 936525779992870, undefined, [rawValue]); }
 };
 
 /** typealias MTLGPUAddress = UInt64 */
@@ -4681,7 +4681,7 @@ export const MTLGPUFamily = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (MTLGPUFamily) | null { return callSDK<(MTLGPUFamily) | null>("Metal_e11dfd5beee01da3", 542190558126121, undefined, [rawValue]); }
+  init(rawValue: number): (MTLGPUFamily) | null { return callSDK<(MTLGPUFamily) | null>("Metal_3864e7f38681b875", 542190558126121, undefined, [rawValue]); }
 };
 
 /**
@@ -4695,7 +4695,7 @@ export const MTLHazardTrackingMode = {
    * init?(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (MTLHazardTrackingMode) | null { return callSDK<(MTLHazardTrackingMode) | null>("Metal_e11dfd5beee01da3", 4196454961226846, undefined, [rawValue]); }
+  init(rawValue: number): (MTLHazardTrackingMode) | null { return callSDK<(MTLHazardTrackingMode) | null>("Metal_3864e7f38681b875", 4196454961226846, undefined, [rawValue]); }
 };
 
 /**
@@ -4761,49 +4761,49 @@ export interface MTLHeap {
  */
 export class MTLHeapDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLHeapDescriptor { return callSDK<MTLHeapDescriptor>("Metal_e11dfd5beee01da3", 2107719853168521, undefined, []); }
+  static init(): MTLHeapDescriptor { return callSDK<MTLHeapDescriptor>("Metal_3864e7f38681b875", 2107719853168521, undefined, []); }
   /**
    * var cpuCacheMode: MTLCPUCacheMode { get set }
    * @availability iOS 10.0+
    */
-  get cpuCacheMode(): MTLCPUCacheMode { return callSDK<MTLCPUCacheMode>("Metal_e11dfd5beee01da3", 31205111929670, this, []); }
-  set cpuCacheMode(value: MTLCPUCacheMode) { callSDK<void>("Metal_e11dfd5beee01da3", 3066212021617741, this, [value]); }
+  get cpuCacheMode(): MTLCPUCacheMode { return callSDK<MTLCPUCacheMode>("Metal_3864e7f38681b875", 31205111929670, this, []); }
+  set cpuCacheMode(value: MTLCPUCacheMode) { callSDK<void>("Metal_3864e7f38681b875", 3066212021617741, this, [value]); }
   /**
    * var hazardTrackingMode: MTLHazardTrackingMode { get set }
    * @availability iOS 13.0+
    */
-  get hazardTrackingMode(): MTLHazardTrackingMode { return callSDK<MTLHazardTrackingMode>("Metal_e11dfd5beee01da3", 1361305619886420, this, []); }
-  set hazardTrackingMode(value: MTLHazardTrackingMode) { callSDK<void>("Metal_e11dfd5beee01da3", 1572520611482216, this, [value]); }
+  get hazardTrackingMode(): MTLHazardTrackingMode { return callSDK<MTLHazardTrackingMode>("Metal_3864e7f38681b875", 1361305619886420, this, []); }
+  set hazardTrackingMode(value: MTLHazardTrackingMode) { callSDK<void>("Metal_3864e7f38681b875", 1572520611482216, this, [value]); }
   /**
    * var resourceOptions: MTLResourceOptions { get set }
    * @availability iOS 13.0+
    */
-  get resourceOptions(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_e11dfd5beee01da3", 852767721829914, this, []); }
-  set resourceOptions(value: MTLResourceOptions) { callSDK<void>("Metal_e11dfd5beee01da3", 3111475167766354, this, [value]); }
+  get resourceOptions(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_3864e7f38681b875", 852767721829914, this, []); }
+  set resourceOptions(value: MTLResourceOptions) { callSDK<void>("Metal_3864e7f38681b875", 3111475167766354, this, [value]); }
   /**
    * var size: Int { get set }
    * @availability iOS 10.0+
    */
-  get size(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1938615301060449, this, []); }
-  set size(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3002032401844257, this, [value]); }
+  get size(): number { return callSDK<number>("Metal_3864e7f38681b875", 1938615301060449, this, []); }
+  set size(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3002032401844257, this, [value]); }
   /**
    * var sparsePageSize: MTLSparsePageSize { get set }
    * @availability iOS 16.0+
    */
-  get sparsePageSize(): MTLSparsePageSize { return callSDK<MTLSparsePageSize>("Metal_e11dfd5beee01da3", 1463960735793526, this, []); }
-  set sparsePageSize(value: MTLSparsePageSize) { callSDK<void>("Metal_e11dfd5beee01da3", 2397689973640031, this, [value]); }
+  get sparsePageSize(): MTLSparsePageSize { return callSDK<MTLSparsePageSize>("Metal_3864e7f38681b875", 1463960735793526, this, []); }
+  set sparsePageSize(value: MTLSparsePageSize) { callSDK<void>("Metal_3864e7f38681b875", 2397689973640031, this, [value]); }
   /**
    * var storageMode: MTLStorageMode { get set }
    * @availability iOS 10.0+
    */
-  get storageMode(): MTLStorageMode { return callSDK<MTLStorageMode>("Metal_e11dfd5beee01da3", 4112315058966146, this, []); }
-  set storageMode(value: MTLStorageMode) { callSDK<void>("Metal_e11dfd5beee01da3", 1691966791083051, this, [value]); }
+  get storageMode(): MTLStorageMode { return callSDK<MTLStorageMode>("Metal_3864e7f38681b875", 4112315058966146, this, []); }
+  set storageMode(value: MTLStorageMode) { callSDK<void>("Metal_3864e7f38681b875", 1691966791083051, this, [value]); }
   /**
    * var type: MTLHeapType { get set }
    * @availability iOS 13.0+
    */
-  get type(): MTLHeapType { return callSDK<MTLHeapType>("Metal_e11dfd5beee01da3", 2449630861858554, this, []); }
-  set type(value: MTLHeapType) { callSDK<void>("Metal_e11dfd5beee01da3", 2789759973328524, this, [value]); }
+  get type(): MTLHeapType { return callSDK<MTLHeapType>("Metal_3864e7f38681b875", 2449630861858554, this, []); }
+  set type(value: MTLHeapType) { callSDK<void>("Metal_3864e7f38681b875", 2789759973328524, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLHeapDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cpuCacheMode": true; "hazardTrackingMode": true; "resourceOptions": true; "size": true; "sparsePageSize": true; "storageMode": true; "type": true };
 }
@@ -4819,7 +4819,7 @@ export const MTLHeapType = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (MTLHeapType) | null { return callSDK<(MTLHeapType) | null>("Metal_e11dfd5beee01da3", 380203406029236, undefined, [rawValue]); }
+  init(rawValue: number): (MTLHeapType) | null { return callSDK<(MTLHeapType) | null>("Metal_3864e7f38681b875", 380203406029236, undefined, [rawValue]); }
 };
 
 /**
@@ -4833,7 +4833,7 @@ export const MTLIndexType = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLIndexType) | null { return callSDK<(MTLIndexType) | null>("Metal_e11dfd5beee01da3", 1558062832149641, undefined, [rawValue]); }
+  init(rawValue: number): (MTLIndexType) | null { return callSDK<(MTLIndexType) | null>("Metal_3864e7f38681b875", 1558062832149641, undefined, [rawValue]); }
 };
 
 /**
@@ -4845,48 +4845,48 @@ export class MTLIndirectAccelerationStructureInstanceDescriptor extends SDKHandl
    * var accelerationStructureID: MTLResourceID
    * @availability iOS 17.0+
    */
-  get accelerationStructureID(): MTLResourceID { return callSDK<MTLResourceID>("Metal_e11dfd5beee01da3", 3287612503715071, this, []); }
-  set accelerationStructureID(value: MTLResourceID) { callSDK<void>("Metal_e11dfd5beee01da3", 2325856941022239, this, [value]); }
+  get accelerationStructureID(): MTLResourceID { return callSDK<MTLResourceID>("Metal_3864e7f38681b875", 3287612503715071, this, []); }
+  set accelerationStructureID(value: MTLResourceID) { callSDK<void>("Metal_3864e7f38681b875", 2325856941022239, this, [value]); }
   /**
    * var intersectionFunctionTableOffset: UInt32
    * @availability iOS 17.0+
    */
-  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3177926814717172, this, []); }
-  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4077451059963265, this, [value]); }
+  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 3177926814717172, this, []); }
+  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4077451059963265, this, [value]); }
   /**
    * var mask: UInt32
    * @availability iOS 17.0+
    */
-  get mask(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 986777282471603, this, []); }
-  set mask(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2603012873465481, this, [value]); }
+  get mask(): number { return callSDK<number>("Metal_3864e7f38681b875", 986777282471603, this, []); }
+  set mask(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2603012873465481, this, [value]); }
   /**
    * var options: MTLAccelerationStructureInstanceOptions
    * @availability iOS 17.0+
    */
-  get options(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_e11dfd5beee01da3", 76636102677152, this, []); }
-  set options(value: MTLAccelerationStructureInstanceOptions) { callSDK<void>("Metal_e11dfd5beee01da3", 88374570439130, this, [value]); }
+  get options(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_3864e7f38681b875", 76636102677152, this, []); }
+  set options(value: MTLAccelerationStructureInstanceOptions) { callSDK<void>("Metal_3864e7f38681b875", 88374570439130, this, [value]); }
   /**
    * var transformationMatrix: MTLPackedFloat4x3
    * @availability iOS 17.0+
    */
-  get transformationMatrix(): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 1379942143776588, this, []); }
-  set transformationMatrix(value: SDKHandle) { callSDK<void>("Metal_e11dfd5beee01da3", 2022629271426352, this, [value]); }
+  get transformationMatrix(): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 1379942143776588, this, []); }
+  set transformationMatrix(value: SDKHandle) { callSDK<void>("Metal_3864e7f38681b875", 2022629271426352, this, [value]); }
   /**
    * var userID: UInt32
    * @availability iOS 17.0+
    */
-  get userID(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2626347187531187, this, []); }
-  set userID(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3464458933084140, this, [value]); }
+  get userID(): number { return callSDK<number>("Metal_3864e7f38681b875", 2626347187531187, this, []); }
+  set userID(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3464458933084140, this, [value]); }
   /**
    * init(transformationMatrix: MTLPackedFloat4x3, options: MTLAccelerationStructureInstanceOptions, mask: UInt32, intersectionFunctionTableOffset: UInt32, userID: UInt32, accelerationStructureID: MTLResourceID)
    * @availability iOS 17.0+
    */
-  static initTransformationMatrixOptionsMaskIntersectionFunctionTableOffsetUserIDAccelerationStructureID(transformationMatrix: SDKHandle, options: MTLAccelerationStructureInstanceOptions, mask: number, intersectionFunctionTableOffset: number, userID: number, accelerationStructureID: MTLResourceID): MTLIndirectAccelerationStructureInstanceDescriptor { return callSDK<MTLIndirectAccelerationStructureInstanceDescriptor>("Metal_e11dfd5beee01da3", 1608320819776724, undefined, [transformationMatrix, options, mask, intersectionFunctionTableOffset, userID, accelerationStructureID]); }
+  static initTransformationMatrixOptionsMaskIntersectionFunctionTableOffsetUserIDAccelerationStructureID(transformationMatrix: SDKHandle, options: MTLAccelerationStructureInstanceOptions, mask: number, intersectionFunctionTableOffset: number, userID: number, accelerationStructureID: MTLResourceID): MTLIndirectAccelerationStructureInstanceDescriptor { return callSDK<MTLIndirectAccelerationStructureInstanceDescriptor>("Metal_3864e7f38681b875", 1608320819776724, undefined, [transformationMatrix, options, mask, intersectionFunctionTableOffset, userID, accelerationStructureID]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): MTLIndirectAccelerationStructureInstanceDescriptor { return callSDK<MTLIndirectAccelerationStructureInstanceDescriptor>("Metal_e11dfd5beee01da3", 2925340373149456, undefined, []); }
+  static init(): MTLIndirectAccelerationStructureInstanceDescriptor { return callSDK<MTLIndirectAccelerationStructureInstanceDescriptor>("Metal_3864e7f38681b875", 2925340373149456, undefined, []); }
   declare readonly $type: { "c:@SA@MTLIndirectAccelerationStructureInstanceDescriptor": true };
 }
 
@@ -4899,78 +4899,78 @@ export class MTLIndirectAccelerationStructureMotionInstanceDescriptor extends SD
    * var accelerationStructureID: MTLResourceID
    * @availability iOS 17.0+
    */
-  get accelerationStructureID(): MTLResourceID { return callSDK<MTLResourceID>("Metal_e11dfd5beee01da3", 4302048148105248, this, []); }
-  set accelerationStructureID(value: MTLResourceID) { callSDK<void>("Metal_e11dfd5beee01da3", 1980474161986334, this, [value]); }
+  get accelerationStructureID(): MTLResourceID { return callSDK<MTLResourceID>("Metal_3864e7f38681b875", 4302048148105248, this, []); }
+  set accelerationStructureID(value: MTLResourceID) { callSDK<void>("Metal_3864e7f38681b875", 1980474161986334, this, [value]); }
   /**
    * var intersectionFunctionTableOffset: UInt32
    * @availability iOS 17.0+
    */
-  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3306348772465989, this, []); }
-  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1562436691251348, this, [value]); }
+  get intersectionFunctionTableOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 3306348772465989, this, []); }
+  set intersectionFunctionTableOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1562436691251348, this, [value]); }
   /**
    * var mask: UInt32
    * @availability iOS 17.0+
    */
-  get mask(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3162294604628161, this, []); }
-  set mask(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3292007692861104, this, [value]); }
+  get mask(): number { return callSDK<number>("Metal_3864e7f38681b875", 3162294604628161, this, []); }
+  set mask(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3292007692861104, this, [value]); }
   /**
    * var motionEndBorderMode: MTLMotionBorderMode
    * @availability iOS 17.0+
    */
-  get motionEndBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_e11dfd5beee01da3", 3358829871020668, this, []); }
-  set motionEndBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_e11dfd5beee01da3", 2390553464385332, this, [value]); }
+  get motionEndBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_3864e7f38681b875", 3358829871020668, this, []); }
+  set motionEndBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_3864e7f38681b875", 2390553464385332, this, [value]); }
   /**
    * var motionEndTime: Float
    * @availability iOS 17.0+
    */
-  get motionEndTime(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 354222884520131, this, []); }
-  set motionEndTime(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 853945314942460, this, [value]); }
+  get motionEndTime(): number { return callSDK<number>("Metal_3864e7f38681b875", 354222884520131, this, []); }
+  set motionEndTime(value: number) { callSDK<void>("Metal_3864e7f38681b875", 853945314942460, this, [value]); }
   /**
    * var motionStartBorderMode: MTLMotionBorderMode
    * @availability iOS 17.0+
    */
-  get motionStartBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_e11dfd5beee01da3", 4078569524765249, this, []); }
-  set motionStartBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_e11dfd5beee01da3", 1107839345986196, this, [value]); }
+  get motionStartBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_3864e7f38681b875", 4078569524765249, this, []); }
+  set motionStartBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_3864e7f38681b875", 1107839345986196, this, [value]); }
   /**
    * var motionStartTime: Float
    * @availability iOS 17.0+
    */
-  get motionStartTime(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1516689455304068, this, []); }
-  set motionStartTime(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1208228434535800, this, [value]); }
+  get motionStartTime(): number { return callSDK<number>("Metal_3864e7f38681b875", 1516689455304068, this, []); }
+  set motionStartTime(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1208228434535800, this, [value]); }
   /**
    * var motionTransformsCount: UInt32
    * @availability iOS 17.0+
    */
-  get motionTransformsCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1020044014405674, this, []); }
-  set motionTransformsCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1722751756752746, this, [value]); }
+  get motionTransformsCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1020044014405674, this, []); }
+  set motionTransformsCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1722751756752746, this, [value]); }
   /**
    * var motionTransformsStartIndex: UInt32
    * @availability iOS 17.0+
    */
-  get motionTransformsStartIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3475587672144702, this, []); }
-  set motionTransformsStartIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3666454930726973, this, [value]); }
+  get motionTransformsStartIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 3475587672144702, this, []); }
+  set motionTransformsStartIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3666454930726973, this, [value]); }
   /**
    * var options: MTLAccelerationStructureInstanceOptions
    * @availability iOS 17.0+
    */
-  get options(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_e11dfd5beee01da3", 672633372323200, this, []); }
-  set options(value: MTLAccelerationStructureInstanceOptions) { callSDK<void>("Metal_e11dfd5beee01da3", 2529809069883810, this, [value]); }
+  get options(): MTLAccelerationStructureInstanceOptions { return callSDK<MTLAccelerationStructureInstanceOptions>("Metal_3864e7f38681b875", 672633372323200, this, []); }
+  set options(value: MTLAccelerationStructureInstanceOptions) { callSDK<void>("Metal_3864e7f38681b875", 2529809069883810, this, [value]); }
   /**
    * var userID: UInt32
    * @availability iOS 17.0+
    */
-  get userID(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3148076046941759, this, []); }
-  set userID(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2291230530029759, this, [value]); }
+  get userID(): number { return callSDK<number>("Metal_3864e7f38681b875", 3148076046941759, this, []); }
+  set userID(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2291230530029759, this, [value]); }
   /**
    * init(options: MTLAccelerationStructureInstanceOptions, mask: UInt32, intersectionFunctionTableOffset: UInt32, userID: UInt32, accelerationStructureID: MTLResourceID, motionTransformsStartIndex: UInt32, motionTransformsCount: UInt32, motionStartBorderMode: MTLMotionBorderMode, motionEndBorderMode: MTLMotionBorderMode, motionStartTime: Float, motionEndTime: Float)
    * @availability iOS 17.0+
    */
-  static initOptionsMaskIntersectionFunctionTableOffsetUserIDAccelerationStructureIDMotionTransformsStartIndexMotionTransformsCountMotionStartBorderModeMotionEndBorderModeMotionStartTimeMotionEndTime(options: MTLAccelerationStructureInstanceOptions, mask: number, intersectionFunctionTableOffset: number, userID: number, accelerationStructureID: MTLResourceID, motionTransformsStartIndex: number, motionTransformsCount: number, motionStartBorderMode: MTLMotionBorderMode, motionEndBorderMode: MTLMotionBorderMode, motionStartTime: number, motionEndTime: number): MTLIndirectAccelerationStructureMotionInstanceDescriptor { return callSDK<MTLIndirectAccelerationStructureMotionInstanceDescriptor>("Metal_e11dfd5beee01da3", 1323181979653608, undefined, [options, mask, intersectionFunctionTableOffset, userID, accelerationStructureID, motionTransformsStartIndex, motionTransformsCount, motionStartBorderMode, motionEndBorderMode, motionStartTime, motionEndTime]); }
+  static initOptionsMaskIntersectionFunctionTableOffsetUserIDAccelerationStructureIDMotionTransformsStartIndexMotionTransformsCountMotionStartBorderModeMotionEndBorderModeMotionStartTimeMotionEndTime(options: MTLAccelerationStructureInstanceOptions, mask: number, intersectionFunctionTableOffset: number, userID: number, accelerationStructureID: MTLResourceID, motionTransformsStartIndex: number, motionTransformsCount: number, motionStartBorderMode: MTLMotionBorderMode, motionEndBorderMode: MTLMotionBorderMode, motionStartTime: number, motionEndTime: number): MTLIndirectAccelerationStructureMotionInstanceDescriptor { return callSDK<MTLIndirectAccelerationStructureMotionInstanceDescriptor>("Metal_3864e7f38681b875", 1323181979653608, undefined, [options, mask, intersectionFunctionTableOffset, userID, accelerationStructureID, motionTransformsStartIndex, motionTransformsCount, motionStartBorderMode, motionEndBorderMode, motionStartTime, motionEndTime]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): MTLIndirectAccelerationStructureMotionInstanceDescriptor { return callSDK<MTLIndirectAccelerationStructureMotionInstanceDescriptor>("Metal_e11dfd5beee01da3", 427091867649251, undefined, []); }
+  static init(): MTLIndirectAccelerationStructureMotionInstanceDescriptor { return callSDK<MTLIndirectAccelerationStructureMotionInstanceDescriptor>("Metal_3864e7f38681b875", 427091867649251, undefined, []); }
   declare readonly $type: { "c:@SA@MTLIndirectAccelerationStructureMotionInstanceDescriptor": true };
 }
 
@@ -5012,79 +5012,79 @@ export interface MTLIndirectCommandBuffer {
  */
 export class MTLIndirectCommandBufferDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLIndirectCommandBufferDescriptor { return callSDK<MTLIndirectCommandBufferDescriptor>("Metal_e11dfd5beee01da3", 4130492640791530, undefined, []); }
+  static init(): MTLIndirectCommandBufferDescriptor { return callSDK<MTLIndirectCommandBufferDescriptor>("Metal_3864e7f38681b875", 4130492640791530, undefined, []); }
   /**
    * var commandTypes: MTLIndirectCommandType { get set }
    * @availability iOS 12.0+
    */
-  get commandTypes(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_e11dfd5beee01da3", 2359863482656771, this, []); }
-  set commandTypes(value: MTLIndirectCommandType) { callSDK<void>("Metal_e11dfd5beee01da3", 2166786375274157, this, [value]); }
+  get commandTypes(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_3864e7f38681b875", 2359863482656771, this, []); }
+  set commandTypes(value: MTLIndirectCommandType) { callSDK<void>("Metal_3864e7f38681b875", 2166786375274157, this, [value]); }
   /**
    * var inheritBuffers: Bool { get set }
    * @availability iOS 12.0+
    */
-  get inheritBuffers(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 3348354937101311, this, []); }
-  set inheritBuffers(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 716521986872658, this, [value]); }
+  get inheritBuffers(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 3348354937101311, this, []); }
+  set inheritBuffers(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 716521986872658, this, [value]); }
   /**
    * var inheritPipelineState: Bool { get set }
    * @availability iOS 13.0+
    */
-  get inheritPipelineState(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2873144675141612, this, []); }
-  set inheritPipelineState(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 4353695049309385, this, [value]); }
+  get inheritPipelineState(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2873144675141612, this, []); }
+  set inheritPipelineState(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 4353695049309385, this, [value]); }
   /**
    * var maxFragmentBufferBindCount: Int { get set }
    * @availability iOS 12.0+
    */
-  get maxFragmentBufferBindCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1122789093225092, this, []); }
-  set maxFragmentBufferBindCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 308497463438598, this, [value]); }
+  get maxFragmentBufferBindCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1122789093225092, this, []); }
+  set maxFragmentBufferBindCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 308497463438598, this, [value]); }
   /**
    * var maxKernelBufferBindCount: Int { get set }
    * @availability iOS 13.0+
    */
-  get maxKernelBufferBindCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 730823363525815, this, []); }
-  set maxKernelBufferBindCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1299811874997452, this, [value]); }
+  get maxKernelBufferBindCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 730823363525815, this, []); }
+  set maxKernelBufferBindCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1299811874997452, this, [value]); }
   /**
    * var maxKernelThreadgroupMemoryBindCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get maxKernelThreadgroupMemoryBindCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1229875488229745, this, []); }
-  set maxKernelThreadgroupMemoryBindCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3880492390351743, this, [value]); }
+  get maxKernelThreadgroupMemoryBindCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1229875488229745, this, []); }
+  set maxKernelThreadgroupMemoryBindCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3880492390351743, this, [value]); }
   /**
    * var maxMeshBufferBindCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get maxMeshBufferBindCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2736379046470446, this, []); }
-  set maxMeshBufferBindCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1215603825519487, this, [value]); }
+  get maxMeshBufferBindCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 2736379046470446, this, []); }
+  set maxMeshBufferBindCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1215603825519487, this, [value]); }
   /**
    * var maxObjectBufferBindCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get maxObjectBufferBindCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1795552937161631, this, []); }
-  set maxObjectBufferBindCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3986004279380520, this, [value]); }
+  get maxObjectBufferBindCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1795552937161631, this, []); }
+  set maxObjectBufferBindCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3986004279380520, this, [value]); }
   /**
    * var maxObjectThreadgroupMemoryBindCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get maxObjectThreadgroupMemoryBindCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3426289992533677, this, []); }
-  set maxObjectThreadgroupMemoryBindCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1966314639809137, this, [value]); }
+  get maxObjectThreadgroupMemoryBindCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 3426289992533677, this, []); }
+  set maxObjectThreadgroupMemoryBindCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1966314639809137, this, [value]); }
   /**
    * var maxVertexBufferBindCount: Int { get set }
    * @availability iOS 12.0+
    */
-  get maxVertexBufferBindCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2593477605744488, this, []); }
-  set maxVertexBufferBindCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2612811382756391, this, [value]); }
+  get maxVertexBufferBindCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 2593477605744488, this, []); }
+  set maxVertexBufferBindCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2612811382756391, this, [value]); }
   /**
    * var supportDynamicAttributeStride: Bool { get set }
    * @availability iOS 17.0+
    */
-  get supportDynamicAttributeStride(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2226645864186803, this, []); }
-  set supportDynamicAttributeStride(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 4310434273340237, this, [value]); }
+  get supportDynamicAttributeStride(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2226645864186803, this, []); }
+  set supportDynamicAttributeStride(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 4310434273340237, this, [value]); }
   /**
    * var supportRayTracing: Bool { get set }
    * @availability iOS 16.0+
    */
-  get supportRayTracing(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 3799363391500028, this, []); }
-  set supportRayTracing(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 316392857292467, this, [value]); }
+  get supportRayTracing(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 3799363391500028, this, []); }
+  set supportRayTracing(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 316392857292467, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLIndirectCommandBufferDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "commandTypes": true; "inheritBuffers": true; "inheritPipelineState": true; "maxFragmentBufferBindCount": true; "maxKernelBufferBindCount": true; "maxKernelThreadgroupMemoryBindCount": true; "maxMeshBufferBindCount": true; "maxObjectBufferBindCount": true; "maxObjectThreadgroupMemoryBindCount": true; "maxVertexBufferBindCount": true; "supportDynamicAttributeStride": true; "supportRayTracing": true };
 }
@@ -5098,24 +5098,24 @@ export class MTLIndirectCommandBufferExecutionRange extends SDKHandle {
    * var length: UInt32
    * @availability iOS 13.0+
    */
-  get length(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2419370222921627, this, []); }
-  set length(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3730050538643007, this, [value]); }
+  get length(): number { return callSDK<number>("Metal_3864e7f38681b875", 2419370222921627, this, []); }
+  set length(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3730050538643007, this, [value]); }
   /**
    * var location: UInt32
    * @availability iOS 13.0+
    */
-  get location(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3686720575830059, this, []); }
-  set location(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1739083904431970, this, [value]); }
+  get location(): number { return callSDK<number>("Metal_3864e7f38681b875", 3686720575830059, this, []); }
+  set location(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1739083904431970, this, [value]); }
   /**
    * init(location: UInt32, length: UInt32)
    * @availability iOS 13.0+
    */
-  static initLocationLength(location: number, length: number): MTLIndirectCommandBufferExecutionRange { return callSDK<MTLIndirectCommandBufferExecutionRange>("Metal_e11dfd5beee01da3", 761228489065118, undefined, [location, length]); }
+  static initLocationLength(location: number, length: number): MTLIndirectCommandBufferExecutionRange { return callSDK<MTLIndirectCommandBufferExecutionRange>("Metal_3864e7f38681b875", 761228489065118, undefined, [location, length]); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): MTLIndirectCommandBufferExecutionRange { return callSDK<MTLIndirectCommandBufferExecutionRange>("Metal_e11dfd5beee01da3", 4067036295294682, undefined, []); }
+  static init(): MTLIndirectCommandBufferExecutionRange { return callSDK<MTLIndirectCommandBufferExecutionRange>("Metal_3864e7f38681b875", 4067036295294682, undefined, []); }
   declare readonly $type: { "c:@SA@MTLIndirectCommandBufferExecutionRange": true };
 }
 
@@ -5130,47 +5130,47 @@ export const MTLIndirectCommandType = {
    * static var concurrentDispatch: MTLIndirectCommandType { get }
    * @availability iOS 13.0+
    */
-  get concurrentDispatch(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_e11dfd5beee01da3", 832364801493884, undefined, []); },
+  get concurrentDispatch(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_3864e7f38681b875", 832364801493884, undefined, []); },
   /**
    * static var concurrentDispatchThreads: MTLIndirectCommandType { get }
    * @availability iOS 13.0+
    */
-  get concurrentDispatchThreads(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_e11dfd5beee01da3", 3990618101590152, undefined, []); },
+  get concurrentDispatchThreads(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_3864e7f38681b875", 3990618101590152, undefined, []); },
   /**
    * static var draw: MTLIndirectCommandType { get }
    * @availability iOS 12.0+
    */
-  get draw(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_e11dfd5beee01da3", 2730042648813525, undefined, []); },
+  get draw(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_3864e7f38681b875", 2730042648813525, undefined, []); },
   /**
    * static var drawIndexed: MTLIndirectCommandType { get }
    * @availability iOS 12.0+
    */
-  get drawIndexed(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_e11dfd5beee01da3", 2023260025980014, undefined, []); },
+  get drawIndexed(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_3864e7f38681b875", 2023260025980014, undefined, []); },
   /**
    * static var drawIndexedPatches: MTLIndirectCommandType { get }
    * @availability iOS 12.0+
    */
-  get drawIndexedPatches(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_e11dfd5beee01da3", 2700823932807687, undefined, []); },
+  get drawIndexedPatches(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_3864e7f38681b875", 2700823932807687, undefined, []); },
   /**
    * static var drawMeshThreadgroups: MTLIndirectCommandType { get }
    * @availability iOS 17.0+
    */
-  get drawMeshThreadgroups(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_e11dfd5beee01da3", 4468267299505717, undefined, []); },
+  get drawMeshThreadgroups(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_3864e7f38681b875", 4468267299505717, undefined, []); },
   /**
    * static var drawMeshThreads: MTLIndirectCommandType { get }
    * @availability iOS 17.0+
    */
-  get drawMeshThreads(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_e11dfd5beee01da3", 2919007009978769, undefined, []); },
+  get drawMeshThreads(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_3864e7f38681b875", 2919007009978769, undefined, []); },
   /**
    * static var drawPatches: MTLIndirectCommandType { get }
    * @availability iOS 12.0+
    */
-  get drawPatches(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_e11dfd5beee01da3", 3764970512555867, undefined, []); },
+  get drawPatches(): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_3864e7f38681b875", 3764970512555867, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_e11dfd5beee01da3", 7848162213083, undefined, [rawValue]); }
+  init(rawValue: number): MTLIndirectCommandType { return callSDK<MTLIndirectCommandType>("Metal_3864e7f38681b875", 7848162213083, undefined, [rawValue]); }
 };
 
 /**
@@ -5241,97 +5241,97 @@ export interface MTLIndirectComputeCommand {
  */
 export class MTLIndirectInstanceAccelerationStructureDescriptor extends (MTLAccelerationStructureDescriptor as unknown as Omit<typeof MTLAccelerationStructureDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureDescriptor)) {
   /** init() */
-  static init(): MTLIndirectInstanceAccelerationStructureDescriptor { return callSDK<MTLIndirectInstanceAccelerationStructureDescriptor>("Metal_e11dfd5beee01da3", 3158078720334522, undefined, []); }
+  static init(): MTLIndirectInstanceAccelerationStructureDescriptor { return callSDK<MTLIndirectInstanceAccelerationStructureDescriptor>("Metal_3864e7f38681b875", 3158078720334522, undefined, []); }
   /**
    * var instanceCountBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 17.0+
    */
-  get instanceCountBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 2269262206877363, this, []); }
-  set instanceCountBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 4453979545683912, this, [value]); }
+  get instanceCountBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 2269262206877363, this, []); }
+  set instanceCountBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 4453979545683912, this, [value]); }
   /**
    * var instanceCountBufferOffset: Int { get set }
    * @availability iOS 17.0+
    */
-  get instanceCountBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 957209252544804, this, []); }
-  set instanceCountBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3794948045029231, this, [value]); }
+  get instanceCountBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 957209252544804, this, []); }
+  set instanceCountBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3794948045029231, this, [value]); }
   /**
    * var instanceDescriptorBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 17.0+
    */
-  get instanceDescriptorBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 837923836299621, this, []); }
-  set instanceDescriptorBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 830986989290834, this, [value]); }
+  get instanceDescriptorBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 837923836299621, this, []); }
+  set instanceDescriptorBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 830986989290834, this, [value]); }
   /**
    * var instanceDescriptorBufferOffset: Int { get set }
    * @availability iOS 17.0+
    */
-  get instanceDescriptorBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 726345289928587, this, []); }
-  set instanceDescriptorBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2417631702774174, this, [value]); }
+  get instanceDescriptorBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 726345289928587, this, []); }
+  set instanceDescriptorBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2417631702774174, this, [value]); }
   /**
    * var instanceDescriptorStride: Int { get set }
    * @availability iOS 17.0+
    */
-  get instanceDescriptorStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4454472754011601, this, []); }
-  set instanceDescriptorStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4121375679993458, this, [value]); }
+  get instanceDescriptorStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 4454472754011601, this, []); }
+  set instanceDescriptorStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4121375679993458, this, [value]); }
   /**
    * var instanceDescriptorType: MTLAccelerationStructureInstanceDescriptorType { get set }
    * @availability iOS 17.0+
    */
-  get instanceDescriptorType(): MTLAccelerationStructureInstanceDescriptorType { return callSDK<MTLAccelerationStructureInstanceDescriptorType>("Metal_e11dfd5beee01da3", 2165627376571221, this, []); }
-  set instanceDescriptorType(value: MTLAccelerationStructureInstanceDescriptorType) { callSDK<void>("Metal_e11dfd5beee01da3", 882647806148384, this, [value]); }
+  get instanceDescriptorType(): MTLAccelerationStructureInstanceDescriptorType { return callSDK<MTLAccelerationStructureInstanceDescriptorType>("Metal_3864e7f38681b875", 2165627376571221, this, []); }
+  set instanceDescriptorType(value: MTLAccelerationStructureInstanceDescriptorType) { callSDK<void>("Metal_3864e7f38681b875", 882647806148384, this, [value]); }
   /**
    * var instanceTransformationMatrixLayout: MTLMatrixLayout { get set }
    * @availability iOS 18.0+
    */
-  get instanceTransformationMatrixLayout(): MTLMatrixLayout { return callSDK<MTLMatrixLayout>("Metal_e11dfd5beee01da3", 538500620024290, this, []); }
-  set instanceTransformationMatrixLayout(value: MTLMatrixLayout) { callSDK<void>("Metal_e11dfd5beee01da3", 421716356346052, this, [value]); }
+  get instanceTransformationMatrixLayout(): MTLMatrixLayout { return callSDK<MTLMatrixLayout>("Metal_3864e7f38681b875", 538500620024290, this, []); }
+  set instanceTransformationMatrixLayout(value: MTLMatrixLayout) { callSDK<void>("Metal_3864e7f38681b875", 421716356346052, this, [value]); }
   /**
    * var maxInstanceCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get maxInstanceCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 251412428107141, this, []); }
-  set maxInstanceCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4025088729720298, this, [value]); }
+  get maxInstanceCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 251412428107141, this, []); }
+  set maxInstanceCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4025088729720298, this, [value]); }
   /**
    * var maxMotionTransformCount: Int { get set }
    * @availability iOS 17.0+
    */
-  get maxMotionTransformCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3310803863140697, this, []); }
-  set maxMotionTransformCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1065002850447831, this, [value]); }
+  get maxMotionTransformCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 3310803863140697, this, []); }
+  set maxMotionTransformCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1065002850447831, this, [value]); }
   /**
    * var motionTransformBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 17.0+
    */
-  get motionTransformBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 815937562041271, this, []); }
-  set motionTransformBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3009268825159437, this, [value]); }
+  get motionTransformBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 815937562041271, this, []); }
+  set motionTransformBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 3009268825159437, this, [value]); }
   /**
    * var motionTransformBufferOffset: Int { get set }
    * @availability iOS 17.0+
    */
-  get motionTransformBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4208023594370591, this, []); }
-  set motionTransformBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2864615286662882, this, [value]); }
+  get motionTransformBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 4208023594370591, this, []); }
+  set motionTransformBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2864615286662882, this, [value]); }
   /**
    * var motionTransformCountBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 17.0+
    */
-  get motionTransformCountBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3695608703888489, this, []); }
-  set motionTransformCountBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1885282439401035, this, [value]); }
+  get motionTransformCountBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3695608703888489, this, []); }
+  set motionTransformCountBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 1885282439401035, this, [value]); }
   /**
    * var motionTransformCountBufferOffset: Int { get set }
    * @availability iOS 17.0+
    */
-  get motionTransformCountBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 986770178793210, this, []); }
-  set motionTransformCountBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3384030098588443, this, [value]); }
+  get motionTransformCountBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 986770178793210, this, []); }
+  set motionTransformCountBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3384030098588443, this, [value]); }
   /**
    * var motionTransformStride: Int { get set }
    * @availability iOS 18.0+
    */
-  get motionTransformStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2258567642838599, this, []); }
-  set motionTransformStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1980626990241321, this, [value]); }
+  get motionTransformStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 2258567642838599, this, []); }
+  set motionTransformStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1980626990241321, this, [value]); }
   /**
    * var motionTransformType: MTLTransformType { get set }
    * @availability iOS 18.0+
    */
-  get motionTransformType(): MTLTransformType { return callSDK<MTLTransformType>("Metal_e11dfd5beee01da3", 3467492755805914, this, []); }
-  set motionTransformType(value: MTLTransformType) { callSDK<void>("Metal_e11dfd5beee01da3", 3211939883263201, this, [value]); }
+  get motionTransformType(): MTLTransformType { return callSDK<MTLTransformType>("Metal_3864e7f38681b875", 3467492755805914, this, []); }
+  set motionTransformType(value: MTLTransformType) { callSDK<void>("Metal_3864e7f38681b875", 3211939883263201, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLIndirectInstanceAccelerationStructureDescriptor": true; "c:objc(cs)MTLAccelerationStructureDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "usage": true; "instanceCountBuffer": true; "instanceCountBufferOffset": true; "instanceDescriptorBuffer": true; "instanceDescriptorBufferOffset": true; "instanceDescriptorStride": true; "instanceDescriptorType": true; "instanceTransformationMatrixLayout": true; "maxInstanceCount": true; "maxMotionTransformCount": true; "motionTransformBuffer": true; "motionTransformBufferOffset": true; "motionTransformCountBuffer": true; "motionTransformCountBufferOffset": true; "motionTransformStride": true; "motionTransformType": true };
 }
@@ -5429,79 +5429,79 @@ export interface MTLIndirectRenderCommand {
  */
 export class MTLInstanceAccelerationStructureDescriptor extends (MTLAccelerationStructureDescriptor as unknown as Omit<typeof MTLAccelerationStructureDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureDescriptor)) {
   /** init() */
-  static init(): MTLInstanceAccelerationStructureDescriptor { return callSDK<MTLInstanceAccelerationStructureDescriptor>("Metal_e11dfd5beee01da3", 996433396837406, undefined, []); }
+  static init(): MTLInstanceAccelerationStructureDescriptor { return callSDK<MTLInstanceAccelerationStructureDescriptor>("Metal_3864e7f38681b875", 996433396837406, undefined, []); }
   /**
    * var instanceCount: Int { get set }
    * @availability iOS 14.0+
    */
-  get instanceCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2339192757920603, this, []); }
-  set instanceCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1015600998430453, this, [value]); }
+  get instanceCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 2339192757920603, this, []); }
+  set instanceCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1015600998430453, this, [value]); }
   /**
    * var instanceDescriptorBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 14.0+
    */
-  get instanceDescriptorBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 4394672460627216, this, []); }
-  set instanceDescriptorBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3027508317543521, this, [value]); }
+  get instanceDescriptorBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 4394672460627216, this, []); }
+  set instanceDescriptorBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 3027508317543521, this, [value]); }
   /**
    * var instanceDescriptorBufferOffset: Int { get set }
    * @availability iOS 14.0+
    */
-  get instanceDescriptorBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3966428084799787, this, []); }
-  set instanceDescriptorBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2540064867737100, this, [value]); }
+  get instanceDescriptorBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 3966428084799787, this, []); }
+  set instanceDescriptorBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2540064867737100, this, [value]); }
   /**
    * var instanceDescriptorStride: Int { get set }
    * @availability iOS 14.0+
    */
-  get instanceDescriptorStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 682642891100790, this, []); }
-  set instanceDescriptorStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2017428238811710, this, [value]); }
+  get instanceDescriptorStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 682642891100790, this, []); }
+  set instanceDescriptorStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2017428238811710, this, [value]); }
   /**
    * var instanceDescriptorType: MTLAccelerationStructureInstanceDescriptorType { get set }
    * @availability iOS 15.0+
    */
-  get instanceDescriptorType(): MTLAccelerationStructureInstanceDescriptorType { return callSDK<MTLAccelerationStructureInstanceDescriptorType>("Metal_e11dfd5beee01da3", 3319245263791066, this, []); }
-  set instanceDescriptorType(value: MTLAccelerationStructureInstanceDescriptorType) { callSDK<void>("Metal_e11dfd5beee01da3", 4035468911421097, this, [value]); }
+  get instanceDescriptorType(): MTLAccelerationStructureInstanceDescriptorType { return callSDK<MTLAccelerationStructureInstanceDescriptorType>("Metal_3864e7f38681b875", 3319245263791066, this, []); }
+  set instanceDescriptorType(value: MTLAccelerationStructureInstanceDescriptorType) { callSDK<void>("Metal_3864e7f38681b875", 4035468911421097, this, [value]); }
   /**
    * var instanceTransformationMatrixLayout: MTLMatrixLayout { get set }
    * @availability iOS 18.0+
    */
-  get instanceTransformationMatrixLayout(): MTLMatrixLayout { return callSDK<MTLMatrixLayout>("Metal_e11dfd5beee01da3", 4184195028888458, this, []); }
-  set instanceTransformationMatrixLayout(value: MTLMatrixLayout) { callSDK<void>("Metal_e11dfd5beee01da3", 2680916443157457, this, [value]); }
+  get instanceTransformationMatrixLayout(): MTLMatrixLayout { return callSDK<MTLMatrixLayout>("Metal_3864e7f38681b875", 4184195028888458, this, []); }
+  set instanceTransformationMatrixLayout(value: MTLMatrixLayout) { callSDK<void>("Metal_3864e7f38681b875", 2680916443157457, this, [value]); }
   /**
    * var instancedAccelerationStructures: [any MTLAccelerationStructure]? { get set }
    * @availability iOS 14.0+
    */
-  get instancedAccelerationStructures(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 1437203157910892, this, []); }
-  set instancedAccelerationStructures(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 1287089105890242, this, [value]); }
+  get instancedAccelerationStructures(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 1437203157910892, this, []); }
+  set instancedAccelerationStructures(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 1287089105890242, this, [value]); }
   /**
    * var motionTransformBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 15.0+
    */
-  get motionTransformBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 2776945970260020, this, []); }
-  set motionTransformBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3719449537945903, this, [value]); }
+  get motionTransformBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 2776945970260020, this, []); }
+  set motionTransformBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 3719449537945903, this, [value]); }
   /**
    * var motionTransformBufferOffset: Int { get set }
    * @availability iOS 15.0+
    */
-  get motionTransformBufferOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 917686245669357, this, []); }
-  set motionTransformBufferOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2550284678305492, this, [value]); }
+  get motionTransformBufferOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 917686245669357, this, []); }
+  set motionTransformBufferOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2550284678305492, this, [value]); }
   /**
    * var motionTransformCount: Int { get set }
    * @availability iOS 15.0+
    */
-  get motionTransformCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1625007272160241, this, []); }
-  set motionTransformCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3730236994918026, this, [value]); }
+  get motionTransformCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1625007272160241, this, []); }
+  set motionTransformCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3730236994918026, this, [value]); }
   /**
    * var motionTransformStride: Int { get set }
    * @availability iOS 18.0+
    */
-  get motionTransformStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4489965718569769, this, []); }
-  set motionTransformStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3373538347667130, this, [value]); }
+  get motionTransformStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 4489965718569769, this, []); }
+  set motionTransformStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3373538347667130, this, [value]); }
   /**
    * var motionTransformType: MTLTransformType { get set }
    * @availability iOS 18.0+
    */
-  get motionTransformType(): MTLTransformType { return callSDK<MTLTransformType>("Metal_e11dfd5beee01da3", 3612870486596654, this, []); }
-  set motionTransformType(value: MTLTransformType) { callSDK<void>("Metal_e11dfd5beee01da3", 1782655229430264, this, [value]); }
+  get motionTransformType(): MTLTransformType { return callSDK<MTLTransformType>("Metal_3864e7f38681b875", 3612870486596654, this, []); }
+  set motionTransformType(value: MTLTransformType) { callSDK<void>("Metal_3864e7f38681b875", 1782655229430264, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLInstanceAccelerationStructureDescriptor": true; "c:objc(cs)MTLAccelerationStructureDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "usage": true; "instanceCount": true; "instanceDescriptorBuffer": true; "instanceDescriptorBufferOffset": true; "instanceDescriptorStride": true; "instanceDescriptorType": true; "instanceTransformationMatrixLayout": true; "instancedAccelerationStructures": true; "motionTransformBuffer": true; "motionTransformBufferOffset": true; "motionTransformCount": true; "motionTransformStride": true; "motionTransformType": true };
 }
@@ -5509,18 +5509,18 @@ export class MTLInstanceAccelerationStructureDescriptor extends (MTLAcceleration
 /** struct MTLIntersectionFunctionBufferArguments */
 export class MTLIntersectionFunctionBufferArguments extends SDKHandle {
   /** var intersectionFunctionBuffer: UInt64 */
-  get intersectionFunctionBuffer(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4428091050525632, this, []); }
-  set intersectionFunctionBuffer(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3664868380516468, this, [value]); }
+  get intersectionFunctionBuffer(): number { return callSDK<number>("Metal_3864e7f38681b875", 4428091050525632, this, []); }
+  set intersectionFunctionBuffer(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3664868380516468, this, [value]); }
   /** var intersectionFunctionBufferSize: UInt64 */
-  get intersectionFunctionBufferSize(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 829403869822525, this, []); }
-  set intersectionFunctionBufferSize(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2066363066215997, this, [value]); }
+  get intersectionFunctionBufferSize(): number { return callSDK<number>("Metal_3864e7f38681b875", 829403869822525, this, []); }
+  set intersectionFunctionBufferSize(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2066363066215997, this, [value]); }
   /** var intersectionFunctionStride: UInt64 */
-  get intersectionFunctionStride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1978966731968883, this, []); }
-  set intersectionFunctionStride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 628520458583072, this, [value]); }
+  get intersectionFunctionStride(): number { return callSDK<number>("Metal_3864e7f38681b875", 1978966731968883, this, []); }
+  set intersectionFunctionStride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 628520458583072, this, [value]); }
   /** init(intersectionFunctionBuffer: UInt64, intersectionFunctionBufferSize: UInt64, intersectionFunctionStride: UInt64) */
-  static initIntersectionFunctionBufferIntersectionFunctionBufferSizeIntersectionFunctionStride(intersectionFunctionBuffer: number, intersectionFunctionBufferSize: number, intersectionFunctionStride: number): MTLIntersectionFunctionBufferArguments { return callSDK<MTLIntersectionFunctionBufferArguments>("Metal_e11dfd5beee01da3", 2470504145212037, undefined, [intersectionFunctionBuffer, intersectionFunctionBufferSize, intersectionFunctionStride]); }
+  static initIntersectionFunctionBufferIntersectionFunctionBufferSizeIntersectionFunctionStride(intersectionFunctionBuffer: number, intersectionFunctionBufferSize: number, intersectionFunctionStride: number): MTLIntersectionFunctionBufferArguments { return callSDK<MTLIntersectionFunctionBufferArguments>("Metal_3864e7f38681b875", 2470504145212037, undefined, [intersectionFunctionBuffer, intersectionFunctionBufferSize, intersectionFunctionStride]); }
   /** init() */
-  static init(): MTLIntersectionFunctionBufferArguments { return callSDK<MTLIntersectionFunctionBufferArguments>("Metal_e11dfd5beee01da3", 3328260759391396, undefined, []); }
+  static init(): MTLIntersectionFunctionBufferArguments { return callSDK<MTLIntersectionFunctionBufferArguments>("Metal_3864e7f38681b875", 3328260759391396, undefined, []); }
   declare readonly $type: { "c:@SA@MTLIntersectionFunctionBufferArguments": true };
 }
 
@@ -5530,7 +5530,7 @@ export class MTLIntersectionFunctionBufferArguments extends SDKHandle {
  */
 export class MTLIntersectionFunctionDescriptor extends (MTLFunctionDescriptor as unknown as Omit<typeof MTLFunctionDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLFunctionDescriptor)) {
   /** init() */
-  static init(): MTLIntersectionFunctionDescriptor { return callSDK<MTLIntersectionFunctionDescriptor>("Metal_e11dfd5beee01da3", 332530797176927, undefined, []); }
+  static init(): MTLIntersectionFunctionDescriptor { return callSDK<MTLIntersectionFunctionDescriptor>("Metal_3864e7f38681b875", 332530797176927, undefined, []); }
   declare readonly $type: { "c:objc(cs)MTLIntersectionFunctionDescriptor": true; "c:objc(cs)MTLFunctionDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "binaryArchives": true; "constantValues": true; "name": true; "options": true; "specializedName": true };
 }
@@ -5546,57 +5546,57 @@ export const MTLIntersectionFunctionSignature = {
    * static var curveData: MTLIntersectionFunctionSignature { get }
    * @availability iOS 17.0+
    */
-  get curveData(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 668197441132946, undefined, []); },
+  get curveData(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 668197441132946, undefined, []); },
   /**
    * static var extendedLimits: MTLIntersectionFunctionSignature { get }
    * @availability iOS 15.0+
    */
-  get extendedLimits(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 3878075841278689, undefined, []); },
+  get extendedLimits(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 3878075841278689, undefined, []); },
   /**
    * static var instanceMotion: MTLIntersectionFunctionSignature { get }
    * @availability iOS 15.0+
    */
-  get instanceMotion(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 1376158079502005, undefined, []); },
+  get instanceMotion(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 1376158079502005, undefined, []); },
   /**
    * static var instancing: MTLIntersectionFunctionSignature { get }
    * @availability iOS 14.0+
    */
-  get instancing(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 3071841450107888, undefined, []); },
+  get instancing(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 3071841450107888, undefined, []); },
   /**
    * static var intersectionFunctionBuffer: MTLIntersectionFunctionSignature { get }
    * @availability iOS 26.0+
    */
-  get intersectionFunctionBuffer(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 1053561864827231, undefined, []); },
+  get intersectionFunctionBuffer(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 1053561864827231, undefined, []); },
   /**
    * static var maxLevels: MTLIntersectionFunctionSignature { get }
    * @availability iOS 17.0+
    */
-  get maxLevels(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 1974129477433032, undefined, []); },
+  get maxLevels(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 1974129477433032, undefined, []); },
   /**
    * static var primitiveMotion: MTLIntersectionFunctionSignature { get }
    * @availability iOS 15.0+
    */
-  get primitiveMotion(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 3571534806430107, undefined, []); },
+  get primitiveMotion(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 3571534806430107, undefined, []); },
   /**
    * static var triangleData: MTLIntersectionFunctionSignature { get }
    * @availability iOS 14.0+
    */
-  get triangleData(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 3924073492974223, undefined, []); },
+  get triangleData(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 3924073492974223, undefined, []); },
   /**
    * static var userData: MTLIntersectionFunctionSignature { get }
    * @availability iOS 26.0+
    */
-  get userData(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 4074170135459962, undefined, []); },
+  get userData(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 4074170135459962, undefined, []); },
   /**
    * static var worldSpaceData: MTLIntersectionFunctionSignature { get }
    * @availability iOS 14.0+
    */
-  get worldSpaceData(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 1839500150173189, undefined, []); },
+  get worldSpaceData(): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 1839500150173189, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_e11dfd5beee01da3", 3904769997701716, undefined, [rawValue]); }
+  init(rawValue: number): MTLIntersectionFunctionSignature { return callSDK<MTLIntersectionFunctionSignature>("Metal_3864e7f38681b875", 3904769997701716, undefined, [rawValue]); }
 };
 
 /**
@@ -5662,13 +5662,13 @@ export interface MTLIntersectionFunctionTable {
  */
 export class MTLIntersectionFunctionTableDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLIntersectionFunctionTableDescriptor { return callSDK<MTLIntersectionFunctionTableDescriptor>("Metal_e11dfd5beee01da3", 4376573875914871, undefined, []); }
+  static init(): MTLIntersectionFunctionTableDescriptor { return callSDK<MTLIntersectionFunctionTableDescriptor>("Metal_3864e7f38681b875", 4376573875914871, undefined, []); }
   /**
    * var functionCount: Int { get set }
    * @availability iOS 14.0+
    */
-  get functionCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 864294551373685, this, []); }
-  set functionCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1617246923177747, this, [value]); }
+  get functionCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 864294551373685, this, []); }
+  set functionCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1617246923177747, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLIntersectionFunctionTableDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "functionCount": true };
 }
@@ -5684,7 +5684,7 @@ export const MTLLanguageVersion = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (MTLLanguageVersion) | null { return callSDK<(MTLLanguageVersion) | null>("Metal_e11dfd5beee01da3", 3382144895850180, undefined, [rawValue]); }
+  init(rawValue: number): (MTLLanguageVersion) | null { return callSDK<(MTLLanguageVersion) | null>("Metal_3864e7f38681b875", 3382144895850180, undefined, [rawValue]); }
 };
 
 /**
@@ -5723,37 +5723,37 @@ export class MTLLibraryError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 8.0+
    */
-  static get errorDomain(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 2519201433507239, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("Metal_3864e7f38681b875", 2519201433507239, undefined, []); }
   /**
    * static var unsupported: MTLLibraryError.Code { get }
    * @availability iOS 8.0+
    */
-  static get unsupported(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_e11dfd5beee01da3", 3302702232166544, undefined, []); }
+  static get unsupported(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_3864e7f38681b875", 3302702232166544, undefined, []); }
   /**
    * static var fileNotFound: MTLLibraryError.Code { get }
    * @availability iOS 10.0+
    */
-  static get fileNotFound(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_e11dfd5beee01da3", 3217762759134167, undefined, []); }
+  static get fileNotFound(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_3864e7f38681b875", 3217762759134167, undefined, []); }
   /**
    * static var compileFailure: MTLLibraryError.Code { get }
    * @availability iOS 8.0+
    */
-  static get compileFailure(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_e11dfd5beee01da3", 4498987505453182, undefined, []); }
+  static get compileFailure(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_3864e7f38681b875", 4498987505453182, undefined, []); }
   /**
    * static var compileWarning: MTLLibraryError.Code { get }
    * @availability iOS 8.0+
    */
-  static get compileWarning(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_e11dfd5beee01da3", 2200194958952586, undefined, []); }
+  static get compileWarning(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_3864e7f38681b875", 2200194958952586, undefined, []); }
   /**
    * static var functionNotFound: MTLLibraryError.Code { get }
    * @availability iOS 10.0+
    */
-  static get functionNotFound(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_e11dfd5beee01da3", 755274645508504, undefined, []); }
+  static get functionNotFound(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_3864e7f38681b875", 755274645508504, undefined, []); }
   /**
    * static var `internal`: MTLLibraryError.Code { get }
    * @availability iOS 8.0+
    */
-  static get internal(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_e11dfd5beee01da3", 2508424125443394, undefined, []); }
+  static get internal(): MTLLibraryError_Code { return callSDK<MTLLibraryError_Code>("Metal_3864e7f38681b875", 2508424125443394, undefined, []); }
   declare readonly $type: { "s:SC15MTLLibraryErrorLeV": true };
 }
 
@@ -5768,7 +5768,7 @@ export const MTLLibraryError_Code = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLLibraryError_Code) | null { return callSDK<(MTLLibraryError_Code) | null>("Metal_e11dfd5beee01da3", 3549399376632789, undefined, [rawValue]); }
+  init(rawValue: number): (MTLLibraryError_Code) | null { return callSDK<(MTLLibraryError_Code) | null>("Metal_3864e7f38681b875", 3549399376632789, undefined, [rawValue]); }
 };
 
 /**
@@ -5782,7 +5782,7 @@ export const MTLLibraryOptimizationLevel = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (MTLLibraryOptimizationLevel) | null { return callSDK<(MTLLibraryOptimizationLevel) | null>("Metal_e11dfd5beee01da3", 1824451218635697, undefined, [rawValue]); }
+  init(rawValue: number): (MTLLibraryOptimizationLevel) | null { return callSDK<(MTLLibraryOptimizationLevel) | null>("Metal_3864e7f38681b875", 1824451218635697, undefined, [rawValue]); }
 };
 
 /**
@@ -5796,7 +5796,7 @@ export const MTLLibraryType = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (MTLLibraryType) | null { return callSDK<(MTLLibraryType) | null>("Metal_e11dfd5beee01da3", 4184571103088886, undefined, [rawValue]); }
+  init(rawValue: number): (MTLLibraryType) | null { return callSDK<(MTLLibraryType) | null>("Metal_3864e7f38681b875", 4184571103088886, undefined, [rawValue]); }
 };
 
 /**
@@ -5805,31 +5805,31 @@ export const MTLLibraryType = {
  */
 export class MTLLinkedFunctions extends SDKHandle {
   /** init() */
-  static init(): MTLLinkedFunctions { return callSDK<MTLLinkedFunctions>("Metal_e11dfd5beee01da3", 2982523704886222, undefined, []); }
+  static init(): MTLLinkedFunctions { return callSDK<MTLLinkedFunctions>("Metal_3864e7f38681b875", 2982523704886222, undefined, []); }
   /**
    * var binaryFunctions: [any MTLFunction]? { get set }
    * @availability iOS 14.0+
    */
-  get binaryFunctions(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 436500484354704, this, []); }
-  set binaryFunctions(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 3753833196895753, this, [value]); }
+  get binaryFunctions(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 436500484354704, this, []); }
+  set binaryFunctions(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 3753833196895753, this, [value]); }
   /**
    * var functions: [any MTLFunction]? { get set }
    * @availability iOS 14.0+
    */
-  get functions(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 4325130711266523, this, []); }
-  set functions(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 2300446196707736, this, [value]); }
+  get functions(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 4325130711266523, this, []); }
+  set functions(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 2300446196707736, this, [value]); }
   /**
    * var groups: [String : [any MTLFunction]]? { get set }
    * @availability iOS 14.0+
    */
-  get groups(): $SDK25 { return callSDK<$SDK25>("Metal_e11dfd5beee01da3", 2007520152656023, this, []); }
-  set groups(value: $SDK25) { callSDK<void>("Metal_e11dfd5beee01da3", 3969267379232089, this, [value]); }
+  get groups(): $SDK25 { return callSDK<$SDK25>("Metal_3864e7f38681b875", 2007520152656023, this, []); }
+  set groups(value: $SDK25) { callSDK<void>("Metal_3864e7f38681b875", 3969267379232089, this, [value]); }
   /**
    * var privateFunctions: [any MTLFunction]? { get set }
    * @availability iOS 15.0+
    */
-  get privateFunctions(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 2513486990138206, this, []); }
-  set privateFunctions(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 4430573513670097, this, [value]); }
+  get privateFunctions(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 2513486990138206, this, []); }
+  set privateFunctions(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 4430573513670097, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLLinkedFunctions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "binaryFunctions": true; "functions": true; "groups": true; "privateFunctions": true };
 }
@@ -5845,7 +5845,7 @@ export const MTLLoadAction = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLLoadAction) | null { return callSDK<(MTLLoadAction) | null>("Metal_e11dfd5beee01da3", 2823659880358869, undefined, [rawValue]); }
+  init(rawValue: number): (MTLLoadAction) | null { return callSDK<(MTLLoadAction) | null>("Metal_3864e7f38681b875", 2823659880358869, undefined, [rawValue]); }
 };
 
 /**
@@ -5857,7 +5857,7 @@ export class MTLLogContainer extends SDKHandle {
    * func makeIterator() -> MTLLogContainer.Iterator
    * @availability iOS 14.0+
    */
-  makeIterator(): MTLLogContainer_Iterator { return callSDK<MTLLogContainer_Iterator>("Metal_e11dfd5beee01da3", 1729438174096470, this, []); }
+  makeIterator(): MTLLogContainer_Iterator { return callSDK<MTLLogContainer_Iterator>("Metal_3864e7f38681b875", 1729438174096470, this, []); }
   declare readonly $type: { "s:5Metal15MTLLogContainerV": true };
 }
 
@@ -5876,7 +5876,7 @@ export class MTLLogContainer_Iterator extends SDKHandle {
    * mutating func next() -> (any MTLFunctionLog)?
    * @availability iOS 14.0+
    */
-  next(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 361877596182388, this, []); }
+  next(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 361877596182388, this, []); }
   declare readonly $type: { "s:5Metal15MTLLogContainerV8IteratorV": true };
 }
 
@@ -5897,7 +5897,7 @@ export const MTLLogLevel = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (MTLLogLevel) | null { return callSDK<(MTLLogLevel) | null>("Metal_e11dfd5beee01da3", 292844636891609, undefined, [rawValue]); }
+  init(rawValue: number): (MTLLogLevel) | null { return callSDK<(MTLLogLevel) | null>("Metal_3864e7f38681b875", 292844636891609, undefined, [rawValue]); }
 };
 
 /**
@@ -5918,19 +5918,19 @@ export interface MTLLogState {
  */
 export class MTLLogStateDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLLogStateDescriptor { return callSDK<MTLLogStateDescriptor>("Metal_e11dfd5beee01da3", 1859258341094791, undefined, []); }
+  static init(): MTLLogStateDescriptor { return callSDK<MTLLogStateDescriptor>("Metal_3864e7f38681b875", 1859258341094791, undefined, []); }
   /**
    * var bufferSize: Int { get set }
    * @availability iOS 18.0+
    */
-  get bufferSize(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 740839458352726, this, []); }
-  set bufferSize(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1163847640569080, this, [value]); }
+  get bufferSize(): number { return callSDK<number>("Metal_3864e7f38681b875", 740839458352726, this, []); }
+  set bufferSize(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1163847640569080, this, [value]); }
   /**
    * var level: MTLLogLevel { get set }
    * @availability iOS 18.0+
    */
-  get level(): MTLLogLevel { return callSDK<MTLLogLevel>("Metal_e11dfd5beee01da3", 4015378646469144, this, []); }
-  set level(value: MTLLogLevel) { callSDK<void>("Metal_e11dfd5beee01da3", 3752908157314815, this, [value]); }
+  get level(): MTLLogLevel { return callSDK<MTLLogLevel>("Metal_3864e7f38681b875", 4015378646469144, this, []); }
+  set level(value: MTLLogLevel) { callSDK<void>("Metal_3864e7f38681b875", 3752908157314815, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLLogStateDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bufferSize": true; "level": true };
 }
@@ -5946,39 +5946,39 @@ export const MTLLogStateError = {
    * init?(rawValue: UInt)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (MTLLogStateError) | null { return callSDK<(MTLLogStateError) | null>("Metal_e11dfd5beee01da3", 1233846777211274, undefined, [rawValue]); }
+  init(rawValue: number): (MTLLogStateError) | null { return callSDK<(MTLLogStateError) | null>("Metal_3864e7f38681b875", 1233846777211274, undefined, [rawValue]); }
 };
 
 /** struct MTLMapIndirectArguments */
 export class MTLMapIndirectArguments extends SDKHandle {
   /** var mipMapLevel: UInt32 */
-  get mipMapLevel(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1143455053650935, this, []); }
-  set mipMapLevel(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1862107146977099, this, [value]); }
+  get mipMapLevel(): number { return callSDK<number>("Metal_3864e7f38681b875", 1143455053650935, this, []); }
+  set mipMapLevel(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1862107146977099, this, [value]); }
   /** var regionOriginX: UInt32 */
-  get regionOriginX(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4220315021293273, this, []); }
-  set regionOriginX(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1447094451953235, this, [value]); }
+  get regionOriginX(): number { return callSDK<number>("Metal_3864e7f38681b875", 4220315021293273, this, []); }
+  set regionOriginX(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1447094451953235, this, [value]); }
   /** var regionOriginY: UInt32 */
-  get regionOriginY(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2016667242670995, this, []); }
-  set regionOriginY(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 587471801375143, this, [value]); }
+  get regionOriginY(): number { return callSDK<number>("Metal_3864e7f38681b875", 2016667242670995, this, []); }
+  set regionOriginY(value: number) { callSDK<void>("Metal_3864e7f38681b875", 587471801375143, this, [value]); }
   /** var regionOriginZ: UInt32 */
-  get regionOriginZ(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2069655475821410, this, []); }
-  set regionOriginZ(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1023486299275539, this, [value]); }
+  get regionOriginZ(): number { return callSDK<number>("Metal_3864e7f38681b875", 2069655475821410, this, []); }
+  set regionOriginZ(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1023486299275539, this, [value]); }
   /** var regionSizeDepth: UInt32 */
-  get regionSizeDepth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2896112826286336, this, []); }
-  set regionSizeDepth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3974395743164198, this, [value]); }
+  get regionSizeDepth(): number { return callSDK<number>("Metal_3864e7f38681b875", 2896112826286336, this, []); }
+  set regionSizeDepth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3974395743164198, this, [value]); }
   /** var regionSizeHeight: UInt32 */
-  get regionSizeHeight(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1566475409794526, this, []); }
-  set regionSizeHeight(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2007040498187499, this, [value]); }
+  get regionSizeHeight(): number { return callSDK<number>("Metal_3864e7f38681b875", 1566475409794526, this, []); }
+  set regionSizeHeight(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2007040498187499, this, [value]); }
   /** var regionSizeWidth: UInt32 */
-  get regionSizeWidth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3028954604300653, this, []); }
-  set regionSizeWidth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1293520456477469, this, [value]); }
+  get regionSizeWidth(): number { return callSDK<number>("Metal_3864e7f38681b875", 3028954604300653, this, []); }
+  set regionSizeWidth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1293520456477469, this, [value]); }
   /** var sliceId: UInt32 */
-  get sliceId(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4156150988102365, this, []); }
-  set sliceId(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3710732746706719, this, [value]); }
+  get sliceId(): number { return callSDK<number>("Metal_3864e7f38681b875", 4156150988102365, this, []); }
+  set sliceId(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3710732746706719, this, [value]); }
   /** init(regionOriginX: UInt32, regionOriginY: UInt32, regionOriginZ: UInt32, regionSizeWidth: UInt32, regionSizeHeight: UInt32, regionSizeDepth: UInt32, mipMapLevel: UInt32, sliceId: UInt32) */
-  static initRegionOriginXRegionOriginYRegionOriginZRegionSizeWidthRegionSizeHeightRegionSizeDepthMipMapLevelSliceId(regionOriginX: number, regionOriginY: number, regionOriginZ: number, regionSizeWidth: number, regionSizeHeight: number, regionSizeDepth: number, mipMapLevel: number, sliceId: number): MTLMapIndirectArguments { return callSDK<MTLMapIndirectArguments>("Metal_e11dfd5beee01da3", 2244393548134192, undefined, [regionOriginX, regionOriginY, regionOriginZ, regionSizeWidth, regionSizeHeight, regionSizeDepth, mipMapLevel, sliceId]); }
+  static initRegionOriginXRegionOriginYRegionOriginZRegionSizeWidthRegionSizeHeightRegionSizeDepthMipMapLevelSliceId(regionOriginX: number, regionOriginY: number, regionOriginZ: number, regionSizeWidth: number, regionSizeHeight: number, regionSizeDepth: number, mipMapLevel: number, sliceId: number): MTLMapIndirectArguments { return callSDK<MTLMapIndirectArguments>("Metal_3864e7f38681b875", 2244393548134192, undefined, [regionOriginX, regionOriginY, regionOriginZ, regionSizeWidth, regionSizeHeight, regionSizeDepth, mipMapLevel, sliceId]); }
   /** init() */
-  static init(): MTLMapIndirectArguments { return callSDK<MTLMapIndirectArguments>("Metal_e11dfd5beee01da3", 1135255493794262, undefined, []); }
+  static init(): MTLMapIndirectArguments { return callSDK<MTLMapIndirectArguments>("Metal_3864e7f38681b875", 1135255493794262, undefined, []); }
   declare readonly $type: { "c:@SA@MTLMapIndirectArguments": true };
 }
 
@@ -5987,7 +5987,7 @@ export type MTLMathFloatingPointFunctions = "fast" | "precise";
 
 export const MTLMathFloatingPointFunctions = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (MTLMathFloatingPointFunctions) | null { return callSDK<(MTLMathFloatingPointFunctions) | null>("Metal_e11dfd5beee01da3", 248024867128953, undefined, [rawValue]); }
+  init(rawValue: number): (MTLMathFloatingPointFunctions) | null { return callSDK<(MTLMathFloatingPointFunctions) | null>("Metal_3864e7f38681b875", 248024867128953, undefined, [rawValue]); }
 };
 
 /** enum MTLMathMode */
@@ -5995,7 +5995,7 @@ export type MTLMathMode = "safe" | "relaxed" | "fast";
 
 export const MTLMathMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (MTLMathMode) | null { return callSDK<(MTLMathMode) | null>("Metal_e11dfd5beee01da3", 4357508027147813, undefined, [rawValue]); }
+  init(rawValue: number): (MTLMathMode) | null { return callSDK<(MTLMathMode) | null>("Metal_3864e7f38681b875", 4357508027147813, undefined, [rawValue]); }
 };
 
 /**
@@ -6009,7 +6009,7 @@ export const MTLMatrixLayout = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (MTLMatrixLayout) | null { return callSDK<(MTLMatrixLayout) | null>("Metal_e11dfd5beee01da3", 1291270356563147, undefined, [rawValue]); }
+  init(rawValue: number): (MTLMatrixLayout) | null { return callSDK<(MTLMatrixLayout) | null>("Metal_3864e7f38681b875", 1291270356563147, undefined, [rawValue]); }
 };
 
 /**
@@ -6018,170 +6018,170 @@ export const MTLMatrixLayout = {
  */
 export class MTLMeshRenderPipelineDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLMeshRenderPipelineDescriptor { return callSDK<MTLMeshRenderPipelineDescriptor>("Metal_e11dfd5beee01da3", 2675605191410349, undefined, []); }
+  static init(): MTLMeshRenderPipelineDescriptor { return callSDK<MTLMeshRenderPipelineDescriptor>("Metal_3864e7f38681b875", 2675605191410349, undefined, []); }
   /**
    * func reset()
    * @availability iOS 16.0+
    */
-  reset(): void { return callSDK<void>("Metal_e11dfd5beee01da3", 2229408103242546, this, []); }
+  reset(): void { return callSDK<void>("Metal_3864e7f38681b875", 2229408103242546, this, []); }
   /**
    * var isAlphaToCoverageEnabled: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isAlphaToCoverageEnabled(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2599465572383152, this, []); }
-  set isAlphaToCoverageEnabled(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1357194038492396, this, [value]); }
+  get isAlphaToCoverageEnabled(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2599465572383152, this, []); }
+  set isAlphaToCoverageEnabled(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1357194038492396, this, [value]); }
   /**
    * var isAlphaToOneEnabled: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isAlphaToOneEnabled(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 863523716040797, this, []); }
-  set isAlphaToOneEnabled(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 4087900835579688, this, [value]); }
+  get isAlphaToOneEnabled(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 863523716040797, this, []); }
+  set isAlphaToOneEnabled(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 4087900835579688, this, [value]); }
   /**
    * var binaryArchives: [any MTLBinaryArchive]? { get set }
    * @availability iOS 18.0+
    */
-  get binaryArchives(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 810628349985073, this, []); }
-  set binaryArchives(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 4463846185228942, this, [value]); }
+  get binaryArchives(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 810628349985073, this, []); }
+  set binaryArchives(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 4463846185228942, this, [value]); }
   /**
    * var colorAttachments: MTLRenderPipelineColorAttachmentDescriptorArray { get }
    * @availability iOS 16.0+
    */
-  get colorAttachments(): MTLRenderPipelineColorAttachmentDescriptorArray { return callSDK<MTLRenderPipelineColorAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 3426525191799363, this, []); }
+  get colorAttachments(): MTLRenderPipelineColorAttachmentDescriptorArray { return callSDK<MTLRenderPipelineColorAttachmentDescriptorArray>("Metal_3864e7f38681b875", 3426525191799363, this, []); }
   /**
    * var depthAttachmentPixelFormat: MTLPixelFormat { get set }
    * @availability iOS 16.0+
    */
-  get depthAttachmentPixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_e11dfd5beee01da3", 3807891398529490, this, []); }
-  set depthAttachmentPixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 1146694939878169, this, [value]); }
+  get depthAttachmentPixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_3864e7f38681b875", 3807891398529490, this, []); }
+  set depthAttachmentPixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_3864e7f38681b875", 1146694939878169, this, [value]); }
   /**
    * var fragmentBuffers: MTLPipelineBufferDescriptorArray { get }
    * @availability iOS 16.0+
    */
-  get fragmentBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_e11dfd5beee01da3", 3546766907020589, this, []); }
+  get fragmentBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_3864e7f38681b875", 3546766907020589, this, []); }
   /**
    * var fragmentFunction: (any MTLFunction)? { get set }
    * @availability iOS 16.0+
    */
-  get fragmentFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 1390105486181012, this, []); }
-  set fragmentFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3907319582412015, this, [value]); }
+  get fragmentFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 1390105486181012, this, []); }
+  set fragmentFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 3907319582412015, this, [value]); }
   /**
    * @NSCopying var fragmentLinkedFunctions: MTLLinkedFunctions! { get set }
    * @availability iOS 17.0+
    */
-  get fragmentLinkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_e11dfd5beee01da3", 4401229893942680, this, []); }
-  set fragmentLinkedFunctions(value: $SDK10) { callSDK<void>("Metal_e11dfd5beee01da3", 1123719664995560, this, [value]); }
+  get fragmentLinkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_3864e7f38681b875", 4401229893942680, this, []); }
+  set fragmentLinkedFunctions(value: $SDK10) { callSDK<void>("Metal_3864e7f38681b875", 1123719664995560, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 16.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 1240183698968752, this, []); }
-  set label(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1771692552273331, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 1240183698968752, this, []); }
+  set label(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 1771692552273331, this, [value]); }
   /**
    * var maxTotalThreadgroupsPerMeshGrid: Int { get set }
    * @availability iOS 16.0+
    */
-  get maxTotalThreadgroupsPerMeshGrid(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3635288392323922, this, []); }
-  set maxTotalThreadgroupsPerMeshGrid(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1767565843960333, this, [value]); }
+  get maxTotalThreadgroupsPerMeshGrid(): number { return callSDK<number>("Metal_3864e7f38681b875", 3635288392323922, this, []); }
+  set maxTotalThreadgroupsPerMeshGrid(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1767565843960333, this, [value]); }
   /**
    * var maxTotalThreadsPerMeshThreadgroup: Int { get set }
    * @availability iOS 16.0+
    */
-  get maxTotalThreadsPerMeshThreadgroup(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4424068528522681, this, []); }
-  set maxTotalThreadsPerMeshThreadgroup(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 232116101318549, this, [value]); }
+  get maxTotalThreadsPerMeshThreadgroup(): number { return callSDK<number>("Metal_3864e7f38681b875", 4424068528522681, this, []); }
+  set maxTotalThreadsPerMeshThreadgroup(value: number) { callSDK<void>("Metal_3864e7f38681b875", 232116101318549, this, [value]); }
   /**
    * var maxTotalThreadsPerObjectThreadgroup: Int { get set }
    * @availability iOS 16.0+
    */
-  get maxTotalThreadsPerObjectThreadgroup(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 572554007952606, this, []); }
-  set maxTotalThreadsPerObjectThreadgroup(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3701753122140362, this, [value]); }
+  get maxTotalThreadsPerObjectThreadgroup(): number { return callSDK<number>("Metal_3864e7f38681b875", 572554007952606, this, []); }
+  set maxTotalThreadsPerObjectThreadgroup(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3701753122140362, this, [value]); }
   /**
    * var maxVertexAmplificationCount: Int { get set }
    * @availability iOS 16.0+
    */
-  get maxVertexAmplificationCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 675585688955714, this, []); }
-  set maxVertexAmplificationCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4020737385840493, this, [value]); }
+  get maxVertexAmplificationCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 675585688955714, this, []); }
+  set maxVertexAmplificationCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4020737385840493, this, [value]); }
   /**
    * var meshBuffers: MTLPipelineBufferDescriptorArray { get }
    * @availability iOS 16.0+
    */
-  get meshBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_e11dfd5beee01da3", 3237156116794739, this, []); }
+  get meshBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_3864e7f38681b875", 3237156116794739, this, []); }
   /**
    * var meshFunction: (any MTLFunction)? { get set }
    * @availability iOS 16.0+
    */
-  get meshFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3267353063396046, this, []); }
-  set meshFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 231216966044631, this, [value]); }
+  get meshFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3267353063396046, this, []); }
+  set meshFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 231216966044631, this, [value]); }
   /**
    * @NSCopying var meshLinkedFunctions: MTLLinkedFunctions! { get set }
    * @availability iOS 17.0+
    */
-  get meshLinkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_e11dfd5beee01da3", 1119627825745587, this, []); }
-  set meshLinkedFunctions(value: $SDK10) { callSDK<void>("Metal_e11dfd5beee01da3", 3853892315597374, this, [value]); }
+  get meshLinkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_3864e7f38681b875", 1119627825745587, this, []); }
+  set meshLinkedFunctions(value: $SDK10) { callSDK<void>("Metal_3864e7f38681b875", 3853892315597374, this, [value]); }
   /**
    * var meshThreadgroupSizeIsMultipleOfThreadExecutionWidth: Bool { get set }
    * @availability iOS 16.0+
    */
-  get meshThreadgroupSizeIsMultipleOfThreadExecutionWidth(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 931708480014095, this, []); }
-  set meshThreadgroupSizeIsMultipleOfThreadExecutionWidth(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 3602239098796445, this, [value]); }
+  get meshThreadgroupSizeIsMultipleOfThreadExecutionWidth(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 931708480014095, this, []); }
+  set meshThreadgroupSizeIsMultipleOfThreadExecutionWidth(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 3602239098796445, this, [value]); }
   /**
    * var objectBuffers: MTLPipelineBufferDescriptorArray { get }
    * @availability iOS 16.0+
    */
-  get objectBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_e11dfd5beee01da3", 3330804248886702, this, []); }
+  get objectBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_3864e7f38681b875", 3330804248886702, this, []); }
   /**
    * var objectFunction: (any MTLFunction)? { get set }
    * @availability iOS 16.0+
    */
-  get objectFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 2518083074595024, this, []); }
-  set objectFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 68907656486405, this, [value]); }
+  get objectFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 2518083074595024, this, []); }
+  set objectFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 68907656486405, this, [value]); }
   /**
    * @NSCopying var objectLinkedFunctions: MTLLinkedFunctions! { get set }
    * @availability iOS 17.0+
    */
-  get objectLinkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_e11dfd5beee01da3", 3190275293293244, this, []); }
-  set objectLinkedFunctions(value: $SDK10) { callSDK<void>("Metal_e11dfd5beee01da3", 2489056569549883, this, [value]); }
+  get objectLinkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_3864e7f38681b875", 3190275293293244, this, []); }
+  set objectLinkedFunctions(value: $SDK10) { callSDK<void>("Metal_3864e7f38681b875", 2489056569549883, this, [value]); }
   /**
    * var objectThreadgroupSizeIsMultipleOfThreadExecutionWidth: Bool { get set }
    * @availability iOS 16.0+
    */
-  get objectThreadgroupSizeIsMultipleOfThreadExecutionWidth(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 1598074834263910, this, []); }
-  set objectThreadgroupSizeIsMultipleOfThreadExecutionWidth(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1519509717204957, this, [value]); }
+  get objectThreadgroupSizeIsMultipleOfThreadExecutionWidth(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 1598074834263910, this, []); }
+  set objectThreadgroupSizeIsMultipleOfThreadExecutionWidth(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1519509717204957, this, [value]); }
   /**
    * var payloadMemoryLength: Int { get set }
    * @availability iOS 16.0+
    */
-  get payloadMemoryLength(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1574101705325804, this, []); }
-  set payloadMemoryLength(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 746236993660894, this, [value]); }
+  get payloadMemoryLength(): number { return callSDK<number>("Metal_3864e7f38681b875", 1574101705325804, this, []); }
+  set payloadMemoryLength(value: number) { callSDK<void>("Metal_3864e7f38681b875", 746236993660894, this, [value]); }
   /**
    * var rasterSampleCount: Int { get set }
    * @availability iOS 16.0+
    */
-  get rasterSampleCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 690080517097218, this, []); }
-  set rasterSampleCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 150930182977834, this, [value]); }
+  get rasterSampleCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 690080517097218, this, []); }
+  set rasterSampleCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 150930182977834, this, [value]); }
   /**
    * var isRasterizationEnabled: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isRasterizationEnabled(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 1657580071676327, this, []); }
-  set isRasterizationEnabled(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 2975023333243717, this, [value]); }
+  get isRasterizationEnabled(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 1657580071676327, this, []); }
+  set isRasterizationEnabled(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 2975023333243717, this, [value]); }
   /**
    * var shaderValidation: MTLShaderValidation { get set }
    * @availability iOS 18.0+
    */
-  get shaderValidation(): MTLShaderValidation { return callSDK<MTLShaderValidation>("Metal_e11dfd5beee01da3", 2317319364808448, this, []); }
-  set shaderValidation(value: MTLShaderValidation) { callSDK<void>("Metal_e11dfd5beee01da3", 3082036801251943, this, [value]); }
+  get shaderValidation(): MTLShaderValidation { return callSDK<MTLShaderValidation>("Metal_3864e7f38681b875", 2317319364808448, this, []); }
+  set shaderValidation(value: MTLShaderValidation) { callSDK<void>("Metal_3864e7f38681b875", 3082036801251943, this, [value]); }
   /**
    * var stencilAttachmentPixelFormat: MTLPixelFormat { get set }
    * @availability iOS 16.0+
    */
-  get stencilAttachmentPixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_e11dfd5beee01da3", 290197883538635, this, []); }
-  set stencilAttachmentPixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 463606626877194, this, [value]); }
+  get stencilAttachmentPixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_3864e7f38681b875", 290197883538635, this, []); }
+  set stencilAttachmentPixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_3864e7f38681b875", 463606626877194, this, [value]); }
   /**
    * var supportIndirectCommandBuffers: Bool { get set }
    * @availability iOS 17.0+
    */
-  get supportIndirectCommandBuffers(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 4305195968881542, this, []); }
-  set supportIndirectCommandBuffers(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 95442009745136, this, [value]); }
+  get supportIndirectCommandBuffers(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 4305195968881542, this, []); }
+  set supportIndirectCommandBuffers(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 95442009745136, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLMeshRenderPipelineDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAlphaToCoverageEnabled": true; "isAlphaToOneEnabled": true; "binaryArchives": true; "colorAttachments": true; "depthAttachmentPixelFormat": true; "fragmentBuffers": true; "fragmentFunction": true; "fragmentLinkedFunctions": true; "label": true; "maxTotalThreadgroupsPerMeshGrid": true; "maxTotalThreadsPerMeshThreadgroup": true; "maxTotalThreadsPerObjectThreadgroup": true; "maxVertexAmplificationCount": true; "meshBuffers": true; "meshFunction": true; "meshLinkedFunctions": true; "meshThreadgroupSizeIsMultipleOfThreadExecutionWidth": true; "objectBuffers": true; "objectFunction": true; "objectLinkedFunctions": true; "objectThreadgroupSizeIsMultipleOfThreadExecutionWidth": true; "payloadMemoryLength": true; "rasterSampleCount": true; "isRasterizationEnabled": true; "shaderValidation": true; "stencilAttachmentPixelFormat": true; "supportIndirectCommandBuffers": true };
 }
@@ -6197,7 +6197,7 @@ export const MTLMotionBorderMode = {
    * init?(rawValue: UInt32)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (MTLMotionBorderMode) | null { return callSDK<(MTLMotionBorderMode) | null>("Metal_e11dfd5beee01da3", 3793190039966589, undefined, [rawValue]); }
+  init(rawValue: number): (MTLMotionBorderMode) | null { return callSDK<(MTLMotionBorderMode) | null>("Metal_3864e7f38681b875", 3793190039966589, undefined, [rawValue]); }
 };
 
 /**
@@ -6206,19 +6206,19 @@ export const MTLMotionBorderMode = {
  */
 export class MTLMotionKeyframeData extends SDKHandle {
   /** init() */
-  static init(): MTLMotionKeyframeData { return callSDK<MTLMotionKeyframeData>("Metal_e11dfd5beee01da3", 2182955431422355, undefined, []); }
+  static init(): MTLMotionKeyframeData { return callSDK<MTLMotionKeyframeData>("Metal_3864e7f38681b875", 2182955431422355, undefined, []); }
   /**
    * var buffer: (any MTLBuffer)? { get set }
    * @availability iOS 15.0+
    */
-  get buffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3264371534442777, this, []); }
-  set buffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 4000111264558616, this, [value]); }
+  get buffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3264371534442777, this, []); }
+  set buffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 4000111264558616, this, [value]); }
   /**
    * var offset: Int { get set }
    * @availability iOS 15.0+
    */
-  get offset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 965481312644393, this, []); }
-  set offset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 44978126422636, this, [value]); }
+  get offset(): number { return callSDK<number>("Metal_3864e7f38681b875", 965481312644393, this, []); }
+  set offset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 44978126422636, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLMotionKeyframeData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "buffer": true; "offset": true };
 }
@@ -6234,7 +6234,7 @@ export const MTLMultisampleDepthResolveFilter = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (MTLMultisampleDepthResolveFilter) | null { return callSDK<(MTLMultisampleDepthResolveFilter) | null>("Metal_e11dfd5beee01da3", 935371197225990, undefined, [rawValue]); }
+  init(rawValue: number): (MTLMultisampleDepthResolveFilter) | null { return callSDK<(MTLMultisampleDepthResolveFilter) | null>("Metal_3864e7f38681b875", 935371197225990, undefined, [rawValue]); }
 };
 
 /**
@@ -6248,7 +6248,7 @@ export const MTLMultisampleStencilResolveFilter = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (MTLMultisampleStencilResolveFilter) | null { return callSDK<(MTLMultisampleStencilResolveFilter) | null>("Metal_e11dfd5beee01da3", 1339462823340476, undefined, [rawValue]); }
+  init(rawValue: number): (MTLMultisampleStencilResolveFilter) | null { return callSDK<(MTLMultisampleStencilResolveFilter) | null>("Metal_3864e7f38681b875", 1339462823340476, undefined, [rawValue]); }
 };
 
 /**
@@ -6262,7 +6262,7 @@ export const MTLMutability = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (MTLMutability) | null { return callSDK<(MTLMutability) | null>("Metal_e11dfd5beee01da3", 4473214763054603, undefined, [rawValue]); }
+  init(rawValue: number): (MTLMutability) | null { return callSDK<(MTLMutability) | null>("Metal_3864e7f38681b875", 4473214763054603, undefined, [rawValue]); }
 };
 
 /** typealias MTLNewComputePipelineStateCompletionHandler = ((any MTLComputePipelineState)?, (any Error)?) -> Void */
@@ -6294,18 +6294,18 @@ export interface MTLObjectPayloadBinding {
 /** struct MTLOrigin */
 export class MTLOrigin extends SDKHandle {
   /** var x: Int */
-  get x(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1561315317162565, this, []); }
-  set x(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3669332065517487, this, [value]); }
+  get x(): number { return callSDK<number>("Metal_3864e7f38681b875", 1561315317162565, this, []); }
+  set x(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3669332065517487, this, [value]); }
   /** var y: Int */
-  get y(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 783855592205402, this, []); }
-  set y(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1473085775175997, this, [value]); }
+  get y(): number { return callSDK<number>("Metal_3864e7f38681b875", 783855592205402, this, []); }
+  set y(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1473085775175997, this, [value]); }
   /** var z: Int */
-  get z(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1846925126271842, this, []); }
-  set z(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 523141119076381, this, [value]); }
+  get z(): number { return callSDK<number>("Metal_3864e7f38681b875", 1846925126271842, this, []); }
+  set z(value: number) { callSDK<void>("Metal_3864e7f38681b875", 523141119076381, this, [value]); }
   /** init(x: Int, y: Int, z: Int) */
-  static initXYZ(x: number, y: number, z: number): MTLOrigin { return callSDK<MTLOrigin>("Metal_e11dfd5beee01da3", 2510428328735747, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): MTLOrigin { return callSDK<MTLOrigin>("Metal_3864e7f38681b875", 2510428328735747, undefined, [x, y, z]); }
   /** init() */
-  static init(): MTLOrigin { return callSDK<MTLOrigin>("Metal_e11dfd5beee01da3", 4395470676474257, undefined, []); }
+  static init(): MTLOrigin { return callSDK<MTLOrigin>("Metal_3864e7f38681b875", 4395470676474257, undefined, []); }
   declare readonly $type: { "c:@SA@MTLOrigin": true };
 }
 
@@ -6328,21 +6328,21 @@ export type MTLPackedFloat4x3 = SDKHandle;
 /** struct MTLPackedFloatQuaternion */
 export class MTLPackedFloatQuaternion extends SDKHandle {
   /** var w: Float */
-  get w(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1096165000560954, this, []); }
-  set w(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2229814714304335, this, [value]); }
+  get w(): number { return callSDK<number>("Metal_3864e7f38681b875", 1096165000560954, this, []); }
+  set w(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2229814714304335, this, [value]); }
   /** var x: Float */
-  get x(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 70806068879896, this, []); }
-  set x(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 459161589270220, this, [value]); }
+  get x(): number { return callSDK<number>("Metal_3864e7f38681b875", 70806068879896, this, []); }
+  set x(value: number) { callSDK<void>("Metal_3864e7f38681b875", 459161589270220, this, [value]); }
   /** var y: Float */
-  get y(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3669783493745776, this, []); }
-  set y(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 36060572066573, this, [value]); }
+  get y(): number { return callSDK<number>("Metal_3864e7f38681b875", 3669783493745776, this, []); }
+  set y(value: number) { callSDK<void>("Metal_3864e7f38681b875", 36060572066573, this, [value]); }
   /** var z: Float */
-  get z(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1107481915095207, this, []); }
-  set z(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3294441183105285, this, [value]); }
+  get z(): number { return callSDK<number>("Metal_3864e7f38681b875", 1107481915095207, this, []); }
+  set z(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3294441183105285, this, [value]); }
   /** init(x: Float, y: Float, z: Float, w: Float) */
-  static initXYZW(x: number, y: number, z: number, w: number): MTLPackedFloatQuaternion { return callSDK<MTLPackedFloatQuaternion>("Metal_e11dfd5beee01da3", 1822725754326268, undefined, [x, y, z, w]); }
+  static initXYZW(x: number, y: number, z: number, w: number): MTLPackedFloatQuaternion { return callSDK<MTLPackedFloatQuaternion>("Metal_3864e7f38681b875", 1822725754326268, undefined, [x, y, z, w]); }
   /** init() */
-  static init(): MTLPackedFloatQuaternion { return callSDK<MTLPackedFloatQuaternion>("Metal_e11dfd5beee01da3", 16269695269715, undefined, []); }
+  static init(): MTLPackedFloatQuaternion { return callSDK<MTLPackedFloatQuaternion>("Metal_3864e7f38681b875", 16269695269715, undefined, []); }
   declare readonly $type: { "c:@S@MTLPackedFloatQuaternion": true };
 }
 
@@ -6427,7 +6427,7 @@ export const MTLPatchType = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MTLPatchType) | null { return callSDK<(MTLPatchType) | null>("Metal_e11dfd5beee01da3", 3470938592791548, undefined, [rawValue]); }
+  init(rawValue: number): (MTLPatchType) | null { return callSDK<(MTLPatchType) | null>("Metal_3864e7f38681b875", 3470938592791548, undefined, [rawValue]); }
 };
 
 /**
@@ -6436,13 +6436,13 @@ export const MTLPatchType = {
  */
 export class MTLPipelineBufferDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLPipelineBufferDescriptor { return callSDK<MTLPipelineBufferDescriptor>("Metal_e11dfd5beee01da3", 40703178685528, undefined, []); }
+  static init(): MTLPipelineBufferDescriptor { return callSDK<MTLPipelineBufferDescriptor>("Metal_3864e7f38681b875", 40703178685528, undefined, []); }
   /**
    * var mutability: MTLMutability { get set }
    * @availability iOS 11.0+
    */
-  get mutability(): MTLMutability { return callSDK<MTLMutability>("Metal_e11dfd5beee01da3", 3226490695889450, this, []); }
-  set mutability(value: MTLMutability) { callSDK<void>("Metal_e11dfd5beee01da3", 1642404515149514, this, [value]); }
+  get mutability(): MTLMutability { return callSDK<MTLMutability>("Metal_3864e7f38681b875", 3226490695889450, this, []); }
+  set mutability(value: MTLMutability) { callSDK<void>("Metal_3864e7f38681b875", 1642404515149514, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLPipelineBufferDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mutability": true };
 }
@@ -6453,12 +6453,12 @@ export class MTLPipelineBufferDescriptor extends SDKHandle {
  */
 export class MTLPipelineBufferDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_e11dfd5beee01da3", 39703171638543, undefined, []); }
+  static init(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_3864e7f38681b875", 39703171638543, undefined, []); }
   /**
    * subscript(bufferIndex: Int) -> MTLPipelineBufferDescriptor! { get set }
    * @availability iOS 11.0+
    */
-  subscript(bufferIndex: number): (MTLPipelineBufferDescriptor) | null { return callSDK<(MTLPipelineBufferDescriptor) | null>("Metal_e11dfd5beee01da3", 1736674975993670, this, [bufferIndex]); }
+  subscript(bufferIndex: number): (MTLPipelineBufferDescriptor) | null { return callSDK<(MTLPipelineBufferDescriptor) | null>("Metal_3864e7f38681b875", 1736674975993670, this, [bufferIndex]); }
   declare readonly $type: { "c:objc(cs)MTLPipelineBufferDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -6474,27 +6474,27 @@ export const MTLPipelineOption = {
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get argumentInfo(): MTLPipelineOption { return callSDK<MTLPipelineOption>("Metal_e11dfd5beee01da3", 2996057248468449, undefined, []); },
+  get argumentInfo(): MTLPipelineOption { return callSDK<MTLPipelineOption>("Metal_3864e7f38681b875", 2996057248468449, undefined, []); },
   /**
    * static var bindingInfo: MTLPipelineOption { get }
    * @availability iOS 8.0+
    */
-  get bindingInfo(): MTLPipelineOption { return callSDK<MTLPipelineOption>("Metal_e11dfd5beee01da3", 3222940092813686, undefined, []); },
+  get bindingInfo(): MTLPipelineOption { return callSDK<MTLPipelineOption>("Metal_3864e7f38681b875", 3222940092813686, undefined, []); },
   /**
    * static var bufferTypeInfo: MTLPipelineOption { get }
    * @availability iOS 8.0+
    */
-  get bufferTypeInfo(): MTLPipelineOption { return callSDK<MTLPipelineOption>("Metal_e11dfd5beee01da3", 912490160514492, undefined, []); },
+  get bufferTypeInfo(): MTLPipelineOption { return callSDK<MTLPipelineOption>("Metal_3864e7f38681b875", 912490160514492, undefined, []); },
   /**
    * static var failOnBinaryArchiveMiss: MTLPipelineOption { get }
    * @availability iOS 14.0+
    */
-  get failOnBinaryArchiveMiss(): MTLPipelineOption { return callSDK<MTLPipelineOption>("Metal_e11dfd5beee01da3", 3118365441225300, undefined, []); },
+  get failOnBinaryArchiveMiss(): MTLPipelineOption { return callSDK<MTLPipelineOption>("Metal_3864e7f38681b875", 3118365441225300, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): MTLPipelineOption { return callSDK<MTLPipelineOption>("Metal_e11dfd5beee01da3", 2893044711876287, undefined, [rawValue]); }
+  init(rawValue: number): MTLPipelineOption { return callSDK<MTLPipelineOption>("Metal_3864e7f38681b875", 2893044711876287, undefined, [rawValue]); }
 };
 
 /**
@@ -6508,7 +6508,7 @@ export const MTLPixelFormat = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLPixelFormat) | null { return callSDK<(MTLPixelFormat) | null>("Metal_e11dfd5beee01da3", 52750815018956, undefined, [rawValue]); }
+  init(rawValue: number): (MTLPixelFormat) | null { return callSDK<(MTLPixelFormat) | null>("Metal_3864e7f38681b875", 52750815018956, undefined, [rawValue]); }
 };
 
 /**
@@ -6520,39 +6520,39 @@ export class MTLPointerType extends (MTLType as unknown as Omit<typeof MTLType, 
    * func elementArrayType() -> MTLArrayType?
    * @availability iOS 11.0+
    */
-  elementArrayType(): (MTLArrayType) | null { return callSDK<(MTLArrayType) | null>("Metal_e11dfd5beee01da3", 1526773772559003, this, []); }
+  elementArrayType(): (MTLArrayType) | null { return callSDK<(MTLArrayType) | null>("Metal_3864e7f38681b875", 1526773772559003, this, []); }
   /**
    * func elementStructType() -> MTLStructType?
    * @availability iOS 11.0+
    */
-  elementStructType(): (MTLStructType) | null { return callSDK<(MTLStructType) | null>("Metal_e11dfd5beee01da3", 556180554785516, this, []); }
+  elementStructType(): (MTLStructType) | null { return callSDK<(MTLStructType) | null>("Metal_3864e7f38681b875", 556180554785516, this, []); }
   /** init() */
-  static init(): MTLPointerType { return callSDK<MTLPointerType>("Metal_e11dfd5beee01da3", 4283483013953879, undefined, []); }
+  static init(): MTLPointerType { return callSDK<MTLPointerType>("Metal_3864e7f38681b875", 4283483013953879, undefined, []); }
   /**
    * var access: MTLBindingAccess { get }
    * @availability iOS 11.0+
    */
-  get access(): MTLBindingAccess { return callSDK<MTLBindingAccess>("Metal_e11dfd5beee01da3", 2362340323636191, this, []); }
+  get access(): MTLBindingAccess { return callSDK<MTLBindingAccess>("Metal_3864e7f38681b875", 2362340323636191, this, []); }
   /**
    * var alignment: Int { get }
    * @availability iOS 11.0+
    */
-  get alignment(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3073237671020198, this, []); }
+  get alignment(): number { return callSDK<number>("Metal_3864e7f38681b875", 3073237671020198, this, []); }
   /**
    * var dataSize: Int { get }
    * @availability iOS 11.0+
    */
-  get dataSize(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 674221684968954, this, []); }
+  get dataSize(): number { return callSDK<number>("Metal_3864e7f38681b875", 674221684968954, this, []); }
   /**
    * var elementIsArgumentBuffer: Bool { get }
    * @availability iOS 11.0+
    */
-  get elementIsArgumentBuffer(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2557167708390931, this, []); }
+  get elementIsArgumentBuffer(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2557167708390931, this, []); }
   /**
    * var elementType: MTLDataType { get }
    * @availability iOS 11.0+
    */
-  get elementType(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 3685603715603240, this, []); }
+  get elementType(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 3685603715603240, this, []); }
   declare readonly $type: { "c:objc(cs)MTLPointerType": true; "c:objc(cs)MTLType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true; "access": true; "alignment": true; "dataSize": true; "elementIsArgumentBuffer": true; "elementType": true };
 }
@@ -6563,43 +6563,43 @@ export class MTLPointerType extends (MTLType as unknown as Omit<typeof MTLType, 
  */
 export class MTLPrimitiveAccelerationStructureDescriptor extends (MTLAccelerationStructureDescriptor as unknown as Omit<typeof MTLAccelerationStructureDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureDescriptor)) {
   /** init() */
-  static init(): MTLPrimitiveAccelerationStructureDescriptor { return callSDK<MTLPrimitiveAccelerationStructureDescriptor>("Metal_e11dfd5beee01da3", 1334479736726319, undefined, []); }
+  static init(): MTLPrimitiveAccelerationStructureDescriptor { return callSDK<MTLPrimitiveAccelerationStructureDescriptor>("Metal_3864e7f38681b875", 1334479736726319, undefined, []); }
   /**
    * var geometryDescriptors: [MTLAccelerationStructureGeometryDescriptor]? { get set }
    * @availability iOS 14.0+
    */
-  get geometryDescriptors(): $SDK31 { return callSDK<$SDK31>("Metal_e11dfd5beee01da3", 3493307659378557, this, []); }
-  set geometryDescriptors(value: $SDK31) { callSDK<void>("Metal_e11dfd5beee01da3", 4019032914779822, this, [value]); }
+  get geometryDescriptors(): $SDK31 { return callSDK<$SDK31>("Metal_3864e7f38681b875", 3493307659378557, this, []); }
+  set geometryDescriptors(value: $SDK31) { callSDK<void>("Metal_3864e7f38681b875", 4019032914779822, this, [value]); }
   /**
    * var motionEndBorderMode: MTLMotionBorderMode { get set }
    * @availability iOS 15.0+
    */
-  get motionEndBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_e11dfd5beee01da3", 4259041506388052, this, []); }
-  set motionEndBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_e11dfd5beee01da3", 259560077594881, this, [value]); }
+  get motionEndBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_3864e7f38681b875", 4259041506388052, this, []); }
+  set motionEndBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_3864e7f38681b875", 259560077594881, this, [value]); }
   /**
    * var motionEndTime: Float { get set }
    * @availability iOS 15.0+
    */
-  get motionEndTime(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2325216038222509, this, []); }
-  set motionEndTime(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1008676857656365, this, [value]); }
+  get motionEndTime(): number { return callSDK<number>("Metal_3864e7f38681b875", 2325216038222509, this, []); }
+  set motionEndTime(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1008676857656365, this, [value]); }
   /**
    * var motionKeyframeCount: Int { get set }
    * @availability iOS 15.0+
    */
-  get motionKeyframeCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 330224684820257, this, []); }
-  set motionKeyframeCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 985585180964340, this, [value]); }
+  get motionKeyframeCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 330224684820257, this, []); }
+  set motionKeyframeCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 985585180964340, this, [value]); }
   /**
    * var motionStartBorderMode: MTLMotionBorderMode { get set }
    * @availability iOS 15.0+
    */
-  get motionStartBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_e11dfd5beee01da3", 3216229084037182, this, []); }
-  set motionStartBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_e11dfd5beee01da3", 4476244158916277, this, [value]); }
+  get motionStartBorderMode(): MTLMotionBorderMode { return callSDK<MTLMotionBorderMode>("Metal_3864e7f38681b875", 3216229084037182, this, []); }
+  set motionStartBorderMode(value: MTLMotionBorderMode) { callSDK<void>("Metal_3864e7f38681b875", 4476244158916277, this, [value]); }
   /**
    * var motionStartTime: Float { get set }
    * @availability iOS 15.0+
    */
-  get motionStartTime(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2734846130620184, this, []); }
-  set motionStartTime(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 797277845893061, this, [value]); }
+  get motionStartTime(): number { return callSDK<number>("Metal_3864e7f38681b875", 2734846130620184, this, []); }
+  set motionStartTime(value: number) { callSDK<void>("Metal_3864e7f38681b875", 797277845893061, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLPrimitiveAccelerationStructureDescriptor": true; "c:objc(cs)MTLAccelerationStructureDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "usage": true; "geometryDescriptors": true; "motionEndBorderMode": true; "motionEndTime": true; "motionKeyframeCount": true; "motionStartBorderMode": true; "motionStartTime": true };
 }
@@ -6615,7 +6615,7 @@ export const MTLPrimitiveTopologyClass = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (MTLPrimitiveTopologyClass) | null { return callSDK<(MTLPrimitiveTopologyClass) | null>("Metal_e11dfd5beee01da3", 1254792530571286, undefined, [rawValue]); }
+  init(rawValue: number): (MTLPrimitiveTopologyClass) | null { return callSDK<(MTLPrimitiveTopologyClass) | null>("Metal_3864e7f38681b875", 1254792530571286, undefined, [rawValue]); }
 };
 
 /**
@@ -6629,7 +6629,7 @@ export const MTLPrimitiveType = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLPrimitiveType) | null { return callSDK<(MTLPrimitiveType) | null>("Metal_e11dfd5beee01da3", 2420898579956483, undefined, [rawValue]); }
+  init(rawValue: number): (MTLPrimitiveType) | null { return callSDK<(MTLPrimitiveType) | null>("Metal_3864e7f38681b875", 2420898579956483, undefined, [rawValue]); }
 };
 
 /**
@@ -6643,21 +6643,21 @@ export const MTLPurgeableState = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLPurgeableState) | null { return callSDK<(MTLPurgeableState) | null>("Metal_e11dfd5beee01da3", 2215778332071565, undefined, [rawValue]); }
+  init(rawValue: number): (MTLPurgeableState) | null { return callSDK<(MTLPurgeableState) | null>("Metal_3864e7f38681b875", 2215778332071565, undefined, [rawValue]); }
 };
 
 /** struct MTLQuadTessellationFactorsHalf */
 export class MTLQuadTessellationFactorsHalf extends SDKHandle {
   /** var edgeTessellationFactor: (UInt16, UInt16, UInt16, UInt16) */
-  get edgeTessellationFactor(): $SDK32 { return callSDK<$SDK32>("Metal_e11dfd5beee01da3", 2949680962116903, this, []); }
-  set edgeTessellationFactor(value: $SDK32) { callSDK<void>("Metal_e11dfd5beee01da3", 691355546176508, this, [value]); }
+  get edgeTessellationFactor(): $SDK32 { return callSDK<$SDK32>("Metal_3864e7f38681b875", 2949680962116903, this, []); }
+  set edgeTessellationFactor(value: $SDK32) { callSDK<void>("Metal_3864e7f38681b875", 691355546176508, this, [value]); }
   /** var insideTessellationFactor: (UInt16, UInt16) */
-  get insideTessellationFactor(): [number, number] { return callSDK<[number, number]>("Metal_e11dfd5beee01da3", 1927132281406569, this, []); }
-  set insideTessellationFactor(value: [number, number]) { callSDK<void>("Metal_e11dfd5beee01da3", 3930603938899742, this, [value]); }
+  get insideTessellationFactor(): [number, number] { return callSDK<[number, number]>("Metal_3864e7f38681b875", 1927132281406569, this, []); }
+  set insideTessellationFactor(value: [number, number]) { callSDK<void>("Metal_3864e7f38681b875", 3930603938899742, this, [value]); }
   /** init(edgeTessellationFactor: (UInt16, UInt16, UInt16, UInt16), insideTessellationFactor: (UInt16, UInt16)) */
-  static initEdgeTessellationFactorInsideTessellationFactor(edgeTessellationFactor: $SDK32, insideTessellationFactor: [number, number]): MTLQuadTessellationFactorsHalf { return callSDK<MTLQuadTessellationFactorsHalf>("Metal_e11dfd5beee01da3", 1820755768931552, undefined, [edgeTessellationFactor, insideTessellationFactor]); }
+  static initEdgeTessellationFactorInsideTessellationFactor(edgeTessellationFactor: $SDK32, insideTessellationFactor: [number, number]): MTLQuadTessellationFactorsHalf { return callSDK<MTLQuadTessellationFactorsHalf>("Metal_3864e7f38681b875", 1820755768931552, undefined, [edgeTessellationFactor, insideTessellationFactor]); }
   /** init() */
-  static init(): MTLQuadTessellationFactorsHalf { return callSDK<MTLQuadTessellationFactorsHalf>("Metal_e11dfd5beee01da3", 1279885359922000, undefined, []); }
+  static init(): MTLQuadTessellationFactorsHalf { return callSDK<MTLQuadTessellationFactorsHalf>("Metal_3864e7f38681b875", 1279885359922000, undefined, []); }
   declare readonly $type: { "c:@SA@MTLQuadTessellationFactorsHalf": true };
 }
 
@@ -6667,12 +6667,12 @@ export class MTLQuadTessellationFactorsHalf extends SDKHandle {
  */
 export class MTLRasterizationRateLayerArray extends SDKHandle {
   /** init() */
-  static init(): MTLRasterizationRateLayerArray { return callSDK<MTLRasterizationRateLayerArray>("Metal_e11dfd5beee01da3", 1173629112516244, undefined, []); }
+  static init(): MTLRasterizationRateLayerArray { return callSDK<MTLRasterizationRateLayerArray>("Metal_3864e7f38681b875", 1173629112516244, undefined, []); }
   /**
    * subscript(layerIndex: Int) -> MTLRasterizationRateLayerDescriptor? { get set }
    * @availability iOS 13.0+
    */
-  subscript(layerIndex: number): $SDK33 { return callSDK<$SDK33>("Metal_e11dfd5beee01da3", 3520092427548230, this, [layerIndex]); }
+  subscript(layerIndex: number): $SDK33 { return callSDK<$SDK33>("Metal_3864e7f38681b875", 3520092427548230, this, [layerIndex]); }
   declare readonly $type: { "c:objc(cs)MTLRasterizationRateLayerArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -6685,33 +6685,33 @@ export class MTLRasterizationRateLayerDescriptor extends SDKHandle {
    * init(sampleCount: MTLSize)
    * @availability iOS 13.0+
    */
-  static initSampleCount(sampleCount: MTLSize): MTLRasterizationRateLayerDescriptor { return callSDK<MTLRasterizationRateLayerDescriptor>("Metal_e11dfd5beee01da3", 2843030646637854, undefined, [sampleCount]); }
+  static initSampleCount(sampleCount: MTLSize): MTLRasterizationRateLayerDescriptor { return callSDK<MTLRasterizationRateLayerDescriptor>("Metal_3864e7f38681b875", 2843030646637854, undefined, [sampleCount]); }
   /**
    * var horizontal: MTLRasterizationRateSampleArray { get }
    * @availability iOS 13.0+
    */
-  get horizontal(): MTLRasterizationRateSampleArray { return callSDK<MTLRasterizationRateSampleArray>("Metal_e11dfd5beee01da3", 3818450416580359, this, []); }
+  get horizontal(): MTLRasterizationRateSampleArray { return callSDK<MTLRasterizationRateSampleArray>("Metal_3864e7f38681b875", 3818450416580359, this, []); }
   /**
    * var maxSampleCount: MTLSize { get }
    * @availability iOS 15.0+
    */
-  get maxSampleCount(): MTLSize { return callSDK<MTLSize>("Metal_e11dfd5beee01da3", 1191204693574200, this, []); }
+  get maxSampleCount(): MTLSize { return callSDK<MTLSize>("Metal_3864e7f38681b875", 1191204693574200, this, []); }
   /**
    * var sampleCount: MTLSize { get set }
    * @availability iOS 13.0+
    */
-  get sampleCount(): MTLSize { return callSDK<MTLSize>("Metal_e11dfd5beee01da3", 525054678299967, this, []); }
-  set sampleCount(value: MTLSize) { callSDK<void>("Metal_e11dfd5beee01da3", 29549966729502, this, [value]); }
+  get sampleCount(): MTLSize { return callSDK<MTLSize>("Metal_3864e7f38681b875", 525054678299967, this, []); }
+  set sampleCount(value: MTLSize) { callSDK<void>("Metal_3864e7f38681b875", 29549966729502, this, [value]); }
   /**
    * var vertical: MTLRasterizationRateSampleArray { get }
    * @availability iOS 13.0+
    */
-  get vertical(): MTLRasterizationRateSampleArray { return callSDK<MTLRasterizationRateSampleArray>("Metal_e11dfd5beee01da3", 2755021483664959, this, []); }
+  get vertical(): MTLRasterizationRateSampleArray { return callSDK<MTLRasterizationRateSampleArray>("Metal_3864e7f38681b875", 2755021483664959, this, []); }
   /**
    * convenience init(horizontal: [Float], vertical: [Float])
    * @availability iOS 13.0+
    */
-  static initHorizontalVertical(horizontal: Array<number>, vertical: Array<number>): MTLRasterizationRateLayerDescriptor { return callSDK<MTLRasterizationRateLayerDescriptor>("Metal_e11dfd5beee01da3", 645505616243178, undefined, [horizontal, vertical]); }
+  static initHorizontalVertical(horizontal: Array<number>, vertical: Array<number>): MTLRasterizationRateLayerDescriptor { return callSDK<MTLRasterizationRateLayerDescriptor>("Metal_3864e7f38681b875", 645505616243178, undefined, [horizontal, vertical]); }
   declare readonly $type: { "c:objc(cs)MTLRasterizationRateLayerDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "horizontal": true; "maxSampleCount": true; "sampleCount": true; "vertical": true };
 }
@@ -6752,49 +6752,49 @@ export class MTLRasterizationRateMapDescriptor extends SDKHandle {
    * func layer(at layerIndex: Int) -> MTLRasterizationRateLayerDescriptor?
    * @availability iOS 13.0+
    */
-  layer(layerIndex: number): $SDK33 { return callSDK<$SDK33>("Metal_e11dfd5beee01da3", 3712961592610573, this, [layerIndex]); }
+  layer(layerIndex: number): $SDK33 { return callSDK<$SDK33>("Metal_3864e7f38681b875", 3712961592610573, this, [layerIndex]); }
   /**
    * func setLayer(_ layer: MTLRasterizationRateLayerDescriptor?, at layerIndex: Int)
    * @availability iOS 13.0+
    */
-  setLayer(layer: $SDK33, layerIndex: number): void { return callSDK<void>("Metal_e11dfd5beee01da3", 3577350079303172, this, [layer, layerIndex]); }
+  setLayer(layer: $SDK33, layerIndex: number): void { return callSDK<void>("Metal_3864e7f38681b875", 3577350079303172, this, [layer, layerIndex]); }
   /**
    * var label: String? { get set }
    * @availability iOS 13.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 231029731626721, this, []); }
-  set label(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 4501191900815143, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 231029731626721, this, []); }
+  set label(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 4501191900815143, this, [value]); }
   /**
    * var layerCount: Int { get }
    * @availability iOS 13.0+
    */
-  get layerCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 329823219384245, this, []); }
+  get layerCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 329823219384245, this, []); }
   /**
    * var layers: MTLRasterizationRateLayerArray { get }
    * @availability iOS 13.0+
    */
-  get layers(): MTLRasterizationRateLayerArray { return callSDK<MTLRasterizationRateLayerArray>("Metal_e11dfd5beee01da3", 2054437273882009, this, []); }
+  get layers(): MTLRasterizationRateLayerArray { return callSDK<MTLRasterizationRateLayerArray>("Metal_3864e7f38681b875", 2054437273882009, this, []); }
   /**
    * var screenSize: MTLSize { get set }
    * @availability iOS 13.0+
    */
-  get screenSize(): MTLSize { return callSDK<MTLSize>("Metal_e11dfd5beee01da3", 4352930579915112, this, []); }
-  set screenSize(value: MTLSize) { callSDK<void>("Metal_e11dfd5beee01da3", 940705529274925, this, [value]); }
+  get screenSize(): MTLSize { return callSDK<MTLSize>("Metal_3864e7f38681b875", 4352930579915112, this, []); }
+  set screenSize(value: MTLSize) { callSDK<void>("Metal_3864e7f38681b875", 940705529274925, this, [value]); }
   /**
    * convenience init(screenSize: MTLSize, label: String? = nil)
    * @availability iOS 13.0+
    */
-  static initScreenSizeLabel(screenSize: MTLSize, label?: (string) | null): MTLRasterizationRateMapDescriptor { return callSDK<MTLRasterizationRateMapDescriptor>("Metal_e11dfd5beee01da3", 1639696499617885, undefined, [screenSize, label]); }
+  static initScreenSizeLabel(screenSize: MTLSize, label?: (string) | null): MTLRasterizationRateMapDescriptor { return callSDK<MTLRasterizationRateMapDescriptor>("Metal_3864e7f38681b875", 1639696499617885, undefined, [screenSize, label]); }
   /**
    * convenience init(screenSize: MTLSize, layer: MTLRasterizationRateLayerDescriptor, label: String? = nil)
    * @availability iOS 13.0+
    */
-  static initScreenSizeLayerLabel(screenSize: MTLSize, layer: MTLRasterizationRateLayerDescriptor, label?: (string) | null): MTLRasterizationRateMapDescriptor { return callSDK<MTLRasterizationRateMapDescriptor>("Metal_e11dfd5beee01da3", 1915909525170441, undefined, [screenSize, layer, label]); }
+  static initScreenSizeLayerLabel(screenSize: MTLSize, layer: MTLRasterizationRateLayerDescriptor, label?: (string) | null): MTLRasterizationRateMapDescriptor { return callSDK<MTLRasterizationRateMapDescriptor>("Metal_3864e7f38681b875", 1915909525170441, undefined, [screenSize, layer, label]); }
   /**
    * convenience init(screenSize: MTLSize, layers: [MTLRasterizationRateLayerDescriptor], label: String? = nil)
    * @availability iOS 13.0+
    */
-  static initScreenSizeLayersLabel(screenSize: MTLSize, layers: Array<MTLRasterizationRateLayerDescriptor>, label?: (string) | null): MTLRasterizationRateMapDescriptor { return callSDK<MTLRasterizationRateMapDescriptor>("Metal_e11dfd5beee01da3", 3949199502907612, undefined, [screenSize, layers, label]); }
+  static initScreenSizeLayersLabel(screenSize: MTLSize, layers: Array<MTLRasterizationRateLayerDescriptor>, label?: (string) | null): MTLRasterizationRateMapDescriptor { return callSDK<MTLRasterizationRateMapDescriptor>("Metal_3864e7f38681b875", 3949199502907612, undefined, [screenSize, layers, label]); }
   declare readonly $type: { "c:objc(cs)MTLRasterizationRateMapDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "label": true; "layerCount": true; "layers": true; "screenSize": true };
 }
@@ -6805,12 +6805,12 @@ export class MTLRasterizationRateMapDescriptor extends SDKHandle {
  */
 export class MTLRasterizationRateSampleArray extends SDKHandle {
   /** init() */
-  static init(): MTLRasterizationRateSampleArray { return callSDK<MTLRasterizationRateSampleArray>("Metal_e11dfd5beee01da3", 853447179415447, undefined, []); }
+  static init(): MTLRasterizationRateSampleArray { return callSDK<MTLRasterizationRateSampleArray>("Metal_3864e7f38681b875", 853447179415447, undefined, []); }
   /**
    * subscript(index: Int) -> Float { get set }
    * @availability iOS 13.0+
    */
-  subscript(index: number): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2188378898343778, this, [index]); }
+  subscript(index: number): number { return callSDK<number>("Metal_3864e7f38681b875", 2188378898343778, this, [index]); }
   declare readonly $type: { "c:objc(cs)MTLRasterizationRateSampleArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -6825,21 +6825,21 @@ export const MTLReadWriteTextureTier = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (MTLReadWriteTextureTier) | null { return callSDK<(MTLReadWriteTextureTier) | null>("Metal_e11dfd5beee01da3", 718017921625368, undefined, [rawValue]); }
+  init(rawValue: number): (MTLReadWriteTextureTier) | null { return callSDK<(MTLReadWriteTextureTier) | null>("Metal_3864e7f38681b875", 718017921625368, undefined, [rawValue]); }
 };
 
 /** struct MTLRegion */
 export class MTLRegion extends SDKHandle {
   /** var origin: MTLOrigin */
-  get origin(): MTLOrigin { return callSDK<MTLOrigin>("Metal_e11dfd5beee01da3", 4174547132676034, this, []); }
-  set origin(value: MTLOrigin) { callSDK<void>("Metal_e11dfd5beee01da3", 1347316652788562, this, [value]); }
+  get origin(): MTLOrigin { return callSDK<MTLOrigin>("Metal_3864e7f38681b875", 4174547132676034, this, []); }
+  set origin(value: MTLOrigin) { callSDK<void>("Metal_3864e7f38681b875", 1347316652788562, this, [value]); }
   /** var size: MTLSize */
-  get size(): MTLSize { return callSDK<MTLSize>("Metal_e11dfd5beee01da3", 2636031638231644, this, []); }
-  set size(value: MTLSize) { callSDK<void>("Metal_e11dfd5beee01da3", 1126434549515960, this, [value]); }
+  get size(): MTLSize { return callSDK<MTLSize>("Metal_3864e7f38681b875", 2636031638231644, this, []); }
+  set size(value: MTLSize) { callSDK<void>("Metal_3864e7f38681b875", 1126434549515960, this, [value]); }
   /** init(origin: MTLOrigin, size: MTLSize) */
-  static initOriginSize(origin: MTLOrigin, size: MTLSize): MTLRegion { return callSDK<MTLRegion>("Metal_e11dfd5beee01da3", 1452052022198625, undefined, [origin, size]); }
+  static initOriginSize(origin: MTLOrigin, size: MTLSize): MTLRegion { return callSDK<MTLRegion>("Metal_3864e7f38681b875", 1452052022198625, undefined, [origin, size]); }
   /** init() */
-  static init(): MTLRegion { return callSDK<MTLRegion>("Metal_e11dfd5beee01da3", 1863165272786976, undefined, []); }
+  static init(): MTLRegion { return callSDK<MTLRegion>("Metal_3864e7f38681b875", 1863165272786976, undefined, []); }
   declare readonly $type: { "c:@SA@MTLRegion": true };
 }
 
@@ -7336,74 +7336,74 @@ export interface MTLRenderCommandEncoder {
  */
 export class MTLRenderPassAttachmentDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLRenderPassAttachmentDescriptor { return callSDK<MTLRenderPassAttachmentDescriptor>("Metal_e11dfd5beee01da3", 907790041462815, undefined, []); }
+  static init(): MTLRenderPassAttachmentDescriptor { return callSDK<MTLRenderPassAttachmentDescriptor>("Metal_3864e7f38681b875", 907790041462815, undefined, []); }
   /**
    * var depthPlane: Int { get set }
    * @availability iOS 8.0+
    */
-  get depthPlane(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 997595961456825, this, []); }
-  set depthPlane(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2196793480554783, this, [value]); }
+  get depthPlane(): number { return callSDK<number>("Metal_3864e7f38681b875", 997595961456825, this, []); }
+  set depthPlane(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2196793480554783, this, [value]); }
   /**
    * var level: Int { get set }
    * @availability iOS 8.0+
    */
-  get level(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2034683660109246, this, []); }
-  set level(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1115983415873803, this, [value]); }
+  get level(): number { return callSDK<number>("Metal_3864e7f38681b875", 2034683660109246, this, []); }
+  set level(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1115983415873803, this, [value]); }
   /**
    * var loadAction: MTLLoadAction { get set }
    * @availability iOS 8.0+
    */
-  get loadAction(): MTLLoadAction { return callSDK<MTLLoadAction>("Metal_e11dfd5beee01da3", 1628342411442580, this, []); }
-  set loadAction(value: MTLLoadAction) { callSDK<void>("Metal_e11dfd5beee01da3", 1048011461476728, this, [value]); }
+  get loadAction(): MTLLoadAction { return callSDK<MTLLoadAction>("Metal_3864e7f38681b875", 1628342411442580, this, []); }
+  set loadAction(value: MTLLoadAction) { callSDK<void>("Metal_3864e7f38681b875", 1048011461476728, this, [value]); }
   /**
    * var resolveDepthPlane: Int { get set }
    * @availability iOS 8.0+
    */
-  get resolveDepthPlane(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3364726764603105, this, []); }
-  set resolveDepthPlane(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4330148508558051, this, [value]); }
+  get resolveDepthPlane(): number { return callSDK<number>("Metal_3864e7f38681b875", 3364726764603105, this, []); }
+  set resolveDepthPlane(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4330148508558051, this, [value]); }
   /**
    * var resolveLevel: Int { get set }
    * @availability iOS 8.0+
    */
-  get resolveLevel(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2156608306738471, this, []); }
-  set resolveLevel(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3618908509036324, this, [value]); }
+  get resolveLevel(): number { return callSDK<number>("Metal_3864e7f38681b875", 2156608306738471, this, []); }
+  set resolveLevel(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3618908509036324, this, [value]); }
   /**
    * var resolveSlice: Int { get set }
    * @availability iOS 8.0+
    */
-  get resolveSlice(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1994400839635852, this, []); }
-  set resolveSlice(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2103450024186734, this, [value]); }
+  get resolveSlice(): number { return callSDK<number>("Metal_3864e7f38681b875", 1994400839635852, this, []); }
+  set resolveSlice(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2103450024186734, this, [value]); }
   /**
    * var resolveTexture: (any MTLTexture)? { get set }
    * @availability iOS 8.0+
    */
-  get resolveTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 1242751536401608, this, []); }
-  set resolveTexture(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2157861850716561, this, [value]); }
+  get resolveTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 1242751536401608, this, []); }
+  set resolveTexture(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 2157861850716561, this, [value]); }
   /**
    * var slice: Int { get set }
    * @availability iOS 8.0+
    */
-  get slice(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 323687420911172, this, []); }
-  set slice(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2948799957695759, this, [value]); }
+  get slice(): number { return callSDK<number>("Metal_3864e7f38681b875", 323687420911172, this, []); }
+  set slice(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2948799957695759, this, [value]); }
   /**
    * var storeAction: MTLStoreAction { get set }
    * @availability iOS 8.0+
    */
-  get storeAction(): MTLStoreAction { return callSDK<MTLStoreAction>("Metal_e11dfd5beee01da3", 1485342870279457, this, []); }
-  set storeAction(value: MTLStoreAction) { callSDK<void>("Metal_e11dfd5beee01da3", 360994313628178, this, [value]); }
+  get storeAction(): MTLStoreAction { return callSDK<MTLStoreAction>("Metal_3864e7f38681b875", 1485342870279457, this, []); }
+  set storeAction(value: MTLStoreAction) { callSDK<void>("Metal_3864e7f38681b875", 360994313628178, this, [value]); }
   /**
    * var storeActionOptions: MTLStoreActionOptions { get set }
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  get storeActionOptions(): MTLStoreActionOptions { return callSDK<MTLStoreActionOptions>("Metal_e11dfd5beee01da3", 1878093013953891, this, []); }
-  set storeActionOptions(value: MTLStoreActionOptions) { callSDK<void>("Metal_e11dfd5beee01da3", 3202678888428521, this, [value]); }
+  get storeActionOptions(): MTLStoreActionOptions { return callSDK<MTLStoreActionOptions>("Metal_3864e7f38681b875", 1878093013953891, this, []); }
+  set storeActionOptions(value: MTLStoreActionOptions) { callSDK<void>("Metal_3864e7f38681b875", 3202678888428521, this, [value]); }
   /**
    * var texture: (any MTLTexture)? { get set }
    * @availability iOS 8.0+
    */
-  get texture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3342534027629391, this, []); }
-  set texture(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2253764078066435, this, [value]); }
+  get texture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3342534027629391, this, []); }
+  set texture(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 2253764078066435, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPassAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "depthPlane": true; "level": true; "loadAction": true; "resolveDepthPlane": true; "resolveLevel": true; "resolveSlice": true; "resolveTexture": true; "slice": true; "storeAction": true; "storeActionOptions": true; "texture": true };
 }
@@ -7414,13 +7414,13 @@ export class MTLRenderPassAttachmentDescriptor extends SDKHandle {
  */
 export class MTLRenderPassColorAttachmentDescriptor extends (MTLRenderPassAttachmentDescriptor as unknown as Omit<typeof MTLRenderPassAttachmentDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLRenderPassAttachmentDescriptor)) {
   /** init() */
-  static init(): MTLRenderPassColorAttachmentDescriptor { return callSDK<MTLRenderPassColorAttachmentDescriptor>("Metal_e11dfd5beee01da3", 856803423400605, undefined, []); }
+  static init(): MTLRenderPassColorAttachmentDescriptor { return callSDK<MTLRenderPassColorAttachmentDescriptor>("Metal_3864e7f38681b875", 856803423400605, undefined, []); }
   /**
    * var clearColor: MTLClearColor { get set }
    * @availability iOS 8.0+
    */
-  get clearColor(): MTLClearColor { return callSDK<MTLClearColor>("Metal_e11dfd5beee01da3", 1289794799729687, this, []); }
-  set clearColor(value: MTLClearColor) { callSDK<void>("Metal_e11dfd5beee01da3", 3287642653687489, this, [value]); }
+  get clearColor(): MTLClearColor { return callSDK<MTLClearColor>("Metal_3864e7f38681b875", 1289794799729687, this, []); }
+  set clearColor(value: MTLClearColor) { callSDK<void>("Metal_3864e7f38681b875", 3287642653687489, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPassColorAttachmentDescriptor": true; "c:objc(cs)MTLRenderPassAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "depthPlane": true; "level": true; "loadAction": true; "resolveDepthPlane": true; "resolveLevel": true; "resolveSlice": true; "resolveTexture": true; "slice": true; "storeAction": true; "storeActionOptions": true; "texture": true; "clearColor": true };
 }
@@ -7431,12 +7431,12 @@ export class MTLRenderPassColorAttachmentDescriptor extends (MTLRenderPassAttach
  */
 export class MTLRenderPassColorAttachmentDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLRenderPassColorAttachmentDescriptorArray { return callSDK<MTLRenderPassColorAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 3784290688038543, undefined, []); }
+  static init(): MTLRenderPassColorAttachmentDescriptorArray { return callSDK<MTLRenderPassColorAttachmentDescriptorArray>("Metal_3864e7f38681b875", 3784290688038543, undefined, []); }
   /**
    * subscript(attachmentIndex: Int) -> MTLRenderPassColorAttachmentDescriptor! { get set }
    * @availability iOS 8.0+
    */
-  subscript(attachmentIndex: number): (MTLRenderPassColorAttachmentDescriptor) | null { return callSDK<(MTLRenderPassColorAttachmentDescriptor) | null>("Metal_e11dfd5beee01da3", 807290834925478, this, [attachmentIndex]); }
+  subscript(attachmentIndex: number): (MTLRenderPassColorAttachmentDescriptor) | null { return callSDK<(MTLRenderPassColorAttachmentDescriptor) | null>("Metal_3864e7f38681b875", 807290834925478, this, [attachmentIndex]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPassColorAttachmentDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -7446,19 +7446,19 @@ export class MTLRenderPassColorAttachmentDescriptorArray extends SDKHandle {
  */
 export class MTLRenderPassDepthAttachmentDescriptor extends (MTLRenderPassAttachmentDescriptor as unknown as Omit<typeof MTLRenderPassAttachmentDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLRenderPassAttachmentDescriptor)) {
   /** init() */
-  static init(): MTLRenderPassDepthAttachmentDescriptor { return callSDK<MTLRenderPassDepthAttachmentDescriptor>("Metal_e11dfd5beee01da3", 2315404626962011, undefined, []); }
+  static init(): MTLRenderPassDepthAttachmentDescriptor { return callSDK<MTLRenderPassDepthAttachmentDescriptor>("Metal_3864e7f38681b875", 2315404626962011, undefined, []); }
   /**
    * var clearDepth: Double { get set }
    * @availability iOS 8.0+
    */
-  get clearDepth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2747008933516197, this, []); }
-  set clearDepth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 310535143789633, this, [value]); }
+  get clearDepth(): number { return callSDK<number>("Metal_3864e7f38681b875", 2747008933516197, this, []); }
+  set clearDepth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 310535143789633, this, [value]); }
   /**
    * var depthResolveFilter: MTLMultisampleDepthResolveFilter { get set }
    * @availability iOS 9.0+
    */
-  get depthResolveFilter(): MTLMultisampleDepthResolveFilter { return callSDK<MTLMultisampleDepthResolveFilter>("Metal_e11dfd5beee01da3", 3583941819114221, this, []); }
-  set depthResolveFilter(value: MTLMultisampleDepthResolveFilter) { callSDK<void>("Metal_e11dfd5beee01da3", 1983342398500652, this, [value]); }
+  get depthResolveFilter(): MTLMultisampleDepthResolveFilter { return callSDK<MTLMultisampleDepthResolveFilter>("Metal_3864e7f38681b875", 3583941819114221, this, []); }
+  set depthResolveFilter(value: MTLMultisampleDepthResolveFilter) { callSDK<void>("Metal_3864e7f38681b875", 1983342398500652, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPassDepthAttachmentDescriptor": true; "c:objc(cs)MTLRenderPassAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "depthPlane": true; "level": true; "loadAction": true; "resolveDepthPlane": true; "resolveLevel": true; "resolveSlice": true; "resolveTexture": true; "slice": true; "storeAction": true; "storeActionOptions": true; "texture": true; "clearDepth": true; "depthResolveFilter": true };
 }
@@ -7469,99 +7469,99 @@ export class MTLRenderPassDepthAttachmentDescriptor extends (MTLRenderPassAttach
  */
 export class MTLRenderPassDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLRenderPassDescriptor { return callSDK<MTLRenderPassDescriptor>("Metal_e11dfd5beee01da3", 3982218740493153, undefined, []); }
+  static init(): MTLRenderPassDescriptor { return callSDK<MTLRenderPassDescriptor>("Metal_3864e7f38681b875", 3982218740493153, undefined, []); }
   /**
    * var colorAttachments: MTLRenderPassColorAttachmentDescriptorArray { get }
    * @availability iOS 8.0+
    */
-  get colorAttachments(): MTLRenderPassColorAttachmentDescriptorArray { return callSDK<MTLRenderPassColorAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 2717840928191647, this, []); }
+  get colorAttachments(): MTLRenderPassColorAttachmentDescriptorArray { return callSDK<MTLRenderPassColorAttachmentDescriptorArray>("Metal_3864e7f38681b875", 2717840928191647, this, []); }
   /**
    * var defaultRasterSampleCount: Int { get set }
    * @availability iOS 11.0+
    */
-  get defaultRasterSampleCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3365736241100613, this, []); }
-  set defaultRasterSampleCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1366284608414990, this, [value]); }
+  get defaultRasterSampleCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 3365736241100613, this, []); }
+  set defaultRasterSampleCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1366284608414990, this, [value]); }
   /**
    * @NSCopying var depthAttachment: MTLRenderPassDepthAttachmentDescriptor! { get set }
    * @availability iOS 8.0+
    */
-  get depthAttachment(): $SDK36 { return callSDK<$SDK36>("Metal_e11dfd5beee01da3", 1796657835981925, this, []); }
-  set depthAttachment(value: $SDK36) { callSDK<void>("Metal_e11dfd5beee01da3", 3401076497268256, this, [value]); }
+  get depthAttachment(): $SDK36 { return callSDK<$SDK36>("Metal_3864e7f38681b875", 1796657835981925, this, []); }
+  set depthAttachment(value: $SDK36) { callSDK<void>("Metal_3864e7f38681b875", 3401076497268256, this, [value]); }
   /**
    * var imageblockSampleLength: Int { get set }
    * @availability iOS 11.0+
    */
-  get imageblockSampleLength(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2129412717627615, this, []); }
-  set imageblockSampleLength(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1944414868621919, this, [value]); }
+  get imageblockSampleLength(): number { return callSDK<number>("Metal_3864e7f38681b875", 2129412717627615, this, []); }
+  set imageblockSampleLength(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1944414868621919, this, [value]); }
   /**
    * var rasterizationRateMap: (any MTLRasterizationRateMap)? { get set }
    * @availability iOS 13.0+
    */
-  get rasterizationRateMap(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3724247975484388, this, []); }
-  set rasterizationRateMap(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2942905825918780, this, [value]); }
+  get rasterizationRateMap(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3724247975484388, this, []); }
+  set rasterizationRateMap(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 2942905825918780, this, [value]); }
   /**
    * var renderTargetArrayLength: Int { get set }
    * @availability iOS 12.0+
    */
-  get renderTargetArrayLength(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1162245271946721, this, []); }
-  set renderTargetArrayLength(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 809853974214228, this, [value]); }
+  get renderTargetArrayLength(): number { return callSDK<number>("Metal_3864e7f38681b875", 1162245271946721, this, []); }
+  set renderTargetArrayLength(value: number) { callSDK<void>("Metal_3864e7f38681b875", 809853974214228, this, [value]); }
   /**
    * var renderTargetHeight: Int { get set }
    * @availability iOS 11.0+
    */
-  get renderTargetHeight(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 34815368542478, this, []); }
-  set renderTargetHeight(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1818004984092802, this, [value]); }
+  get renderTargetHeight(): number { return callSDK<number>("Metal_3864e7f38681b875", 34815368542478, this, []); }
+  set renderTargetHeight(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1818004984092802, this, [value]); }
   /**
    * var renderTargetWidth: Int { get set }
    * @availability iOS 11.0+
    */
-  get renderTargetWidth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3887721164308612, this, []); }
-  set renderTargetWidth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3809985013153325, this, [value]); }
+  get renderTargetWidth(): number { return callSDK<number>("Metal_3864e7f38681b875", 3887721164308612, this, []); }
+  set renderTargetWidth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3809985013153325, this, [value]); }
   /**
    * var sampleBufferAttachments: MTLRenderPassSampleBufferAttachmentDescriptorArray { get }
    * @availability iOS 14.0+
    */
-  get sampleBufferAttachments(): MTLRenderPassSampleBufferAttachmentDescriptorArray { return callSDK<MTLRenderPassSampleBufferAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 4374487500445560, this, []); }
+  get sampleBufferAttachments(): MTLRenderPassSampleBufferAttachmentDescriptorArray { return callSDK<MTLRenderPassSampleBufferAttachmentDescriptorArray>("Metal_3864e7f38681b875", 4374487500445560, this, []); }
   /**
    * @NSCopying var stencilAttachment: MTLRenderPassStencilAttachmentDescriptor! { get set }
    * @availability iOS 8.0+
    */
-  get stencilAttachment(): $SDK37 { return callSDK<$SDK37>("Metal_e11dfd5beee01da3", 3815849601361618, this, []); }
-  set stencilAttachment(value: $SDK37) { callSDK<void>("Metal_e11dfd5beee01da3", 815785627058046, this, [value]); }
+  get stencilAttachment(): $SDK37 { return callSDK<$SDK37>("Metal_3864e7f38681b875", 3815849601361618, this, []); }
+  set stencilAttachment(value: $SDK37) { callSDK<void>("Metal_3864e7f38681b875", 815785627058046, this, [value]); }
   /**
    * var threadgroupMemoryLength: Int { get set }
    * @availability iOS 11.0+
    */
-  get threadgroupMemoryLength(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2341896908374308, this, []); }
-  set threadgroupMemoryLength(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3431685947242534, this, [value]); }
+  get threadgroupMemoryLength(): number { return callSDK<number>("Metal_3864e7f38681b875", 2341896908374308, this, []); }
+  set threadgroupMemoryLength(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3431685947242534, this, [value]); }
   /**
    * var tileHeight: Int { get set }
    * @availability iOS 11.0+
    */
-  get tileHeight(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2264605100260331, this, []); }
-  set tileHeight(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3972431894968033, this, [value]); }
+  get tileHeight(): number { return callSDK<number>("Metal_3864e7f38681b875", 2264605100260331, this, []); }
+  set tileHeight(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3972431894968033, this, [value]); }
   /**
    * var tileWidth: Int { get set }
    * @availability iOS 11.0+
    */
-  get tileWidth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2932043262727447, this, []); }
-  set tileWidth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4466958877982155, this, [value]); }
+  get tileWidth(): number { return callSDK<number>("Metal_3864e7f38681b875", 2932043262727447, this, []); }
+  set tileWidth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4466958877982155, this, [value]); }
   /**
    * var visibilityResultBuffer: (any MTLBuffer)? { get set }
    * @availability iOS 8.0+
    */
-  get visibilityResultBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 1809917858499017, this, []); }
-  set visibilityResultBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1162860620433652, this, [value]); }
+  get visibilityResultBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 1809917858499017, this, []); }
+  set visibilityResultBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 1162860620433652, this, [value]); }
   /**
    * func getSamplePositions() -> [MTLSamplePosition]
    * @availability iOS 11.0+
    */
-  getSamplePositions(): Array<MTLSamplePosition> { return callSDK<Array<MTLSamplePosition>>("Metal_e11dfd5beee01da3", 113417080315516, this, []); }
+  getSamplePositions(): Array<MTLSamplePosition> { return callSDK<Array<MTLSamplePosition>>("Metal_3864e7f38681b875", 113417080315516, this, []); }
   /**
    * func setSamplePositions(_ positions: [MTLSamplePosition])
    * @availability iOS 11.0+
    */
-  setSamplePositions(positions: Array<MTLSamplePosition>): void { return callSDK<void>("Metal_e11dfd5beee01da3", 2372330296682017, this, [positions]); }
+  setSamplePositions(positions: Array<MTLSamplePosition>): void { return callSDK<void>("Metal_3864e7f38681b875", 2372330296682017, this, [positions]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPassDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "colorAttachments": true; "defaultRasterSampleCount": true; "depthAttachment": true; "imageblockSampleLength": true; "rasterizationRateMap": true; "renderTargetArrayLength": true; "renderTargetHeight": true; "renderTargetWidth": true; "sampleBufferAttachments": true; "stencilAttachment": true; "threadgroupMemoryLength": true; "tileHeight": true; "tileWidth": true; "visibilityResultBuffer": true };
 }
@@ -7572,37 +7572,37 @@ export class MTLRenderPassDescriptor extends SDKHandle {
  */
 export class MTLRenderPassSampleBufferAttachmentDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLRenderPassSampleBufferAttachmentDescriptor { return callSDK<MTLRenderPassSampleBufferAttachmentDescriptor>("Metal_e11dfd5beee01da3", 3754927924163956, undefined, []); }
+  static init(): MTLRenderPassSampleBufferAttachmentDescriptor { return callSDK<MTLRenderPassSampleBufferAttachmentDescriptor>("Metal_3864e7f38681b875", 3754927924163956, undefined, []); }
   /**
    * var endOfFragmentSampleIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get endOfFragmentSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2861292134472344, this, []); }
-  set endOfFragmentSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3019577798648410, this, [value]); }
+  get endOfFragmentSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 2861292134472344, this, []); }
+  set endOfFragmentSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3019577798648410, this, [value]); }
   /**
    * var endOfVertexSampleIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get endOfVertexSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4428824331087487, this, []); }
-  set endOfVertexSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3660886777587625, this, [value]); }
+  get endOfVertexSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 4428824331087487, this, []); }
+  set endOfVertexSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3660886777587625, this, [value]); }
   /**
    * var sampleBuffer: (any MTLCounterSampleBuffer)? { get set }
    * @availability iOS 14.0+
    */
-  get sampleBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 1818159916826151, this, []); }
-  set sampleBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 229337010770914, this, [value]); }
+  get sampleBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 1818159916826151, this, []); }
+  set sampleBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 229337010770914, this, [value]); }
   /**
    * var startOfFragmentSampleIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get startOfFragmentSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 821842594610191, this, []); }
-  set startOfFragmentSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3405410629519797, this, [value]); }
+  get startOfFragmentSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 821842594610191, this, []); }
+  set startOfFragmentSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3405410629519797, this, [value]); }
   /**
    * var startOfVertexSampleIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get startOfVertexSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 332036908192224, this, []); }
-  set startOfVertexSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3395054333753464, this, [value]); }
+  get startOfVertexSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 332036908192224, this, []); }
+  set startOfVertexSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3395054333753464, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPassSampleBufferAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endOfFragmentSampleIndex": true; "endOfVertexSampleIndex": true; "sampleBuffer": true; "startOfFragmentSampleIndex": true; "startOfVertexSampleIndex": true };
 }
@@ -7613,12 +7613,12 @@ export class MTLRenderPassSampleBufferAttachmentDescriptor extends SDKHandle {
  */
 export class MTLRenderPassSampleBufferAttachmentDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLRenderPassSampleBufferAttachmentDescriptorArray { return callSDK<MTLRenderPassSampleBufferAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 4101257843848474, undefined, []); }
+  static init(): MTLRenderPassSampleBufferAttachmentDescriptorArray { return callSDK<MTLRenderPassSampleBufferAttachmentDescriptorArray>("Metal_3864e7f38681b875", 4101257843848474, undefined, []); }
   /**
    * subscript(attachmentIndex: Int) -> MTLRenderPassSampleBufferAttachmentDescriptor! { get set }
    * @availability iOS 14.0+
    */
-  subscript(attachmentIndex: number): (MTLRenderPassSampleBufferAttachmentDescriptor) | null { return callSDK<(MTLRenderPassSampleBufferAttachmentDescriptor) | null>("Metal_e11dfd5beee01da3", 1625393788948608, this, [attachmentIndex]); }
+  subscript(attachmentIndex: number): (MTLRenderPassSampleBufferAttachmentDescriptor) | null { return callSDK<(MTLRenderPassSampleBufferAttachmentDescriptor) | null>("Metal_3864e7f38681b875", 1625393788948608, this, [attachmentIndex]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPassSampleBufferAttachmentDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -7628,19 +7628,19 @@ export class MTLRenderPassSampleBufferAttachmentDescriptorArray extends SDKHandl
  */
 export class MTLRenderPassStencilAttachmentDescriptor extends (MTLRenderPassAttachmentDescriptor as unknown as Omit<typeof MTLRenderPassAttachmentDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLRenderPassAttachmentDescriptor)) {
   /** init() */
-  static init(): MTLRenderPassStencilAttachmentDescriptor { return callSDK<MTLRenderPassStencilAttachmentDescriptor>("Metal_e11dfd5beee01da3", 4075163683922136, undefined, []); }
+  static init(): MTLRenderPassStencilAttachmentDescriptor { return callSDK<MTLRenderPassStencilAttachmentDescriptor>("Metal_3864e7f38681b875", 4075163683922136, undefined, []); }
   /**
    * var clearStencil: UInt32 { get set }
    * @availability iOS 8.0+
    */
-  get clearStencil(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2261196357167255, this, []); }
-  set clearStencil(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3563647432857807, this, [value]); }
+  get clearStencil(): number { return callSDK<number>("Metal_3864e7f38681b875", 2261196357167255, this, []); }
+  set clearStencil(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3563647432857807, this, [value]); }
   /**
    * var stencilResolveFilter: MTLMultisampleStencilResolveFilter { get set }
    * @availability iOS 12.0+
    */
-  get stencilResolveFilter(): MTLMultisampleStencilResolveFilter { return callSDK<MTLMultisampleStencilResolveFilter>("Metal_e11dfd5beee01da3", 417347132417975, this, []); }
-  set stencilResolveFilter(value: MTLMultisampleStencilResolveFilter) { callSDK<void>("Metal_e11dfd5beee01da3", 563336526651004, this, [value]); }
+  get stencilResolveFilter(): MTLMultisampleStencilResolveFilter { return callSDK<MTLMultisampleStencilResolveFilter>("Metal_3864e7f38681b875", 417347132417975, this, []); }
+  set stencilResolveFilter(value: MTLMultisampleStencilResolveFilter) { callSDK<void>("Metal_3864e7f38681b875", 563336526651004, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPassStencilAttachmentDescriptor": true; "c:objc(cs)MTLRenderPassAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "depthPlane": true; "level": true; "loadAction": true; "resolveDepthPlane": true; "resolveLevel": true; "resolveSlice": true; "resolveTexture": true; "slice": true; "storeAction": true; "storeActionOptions": true; "texture": true; "clearStencil": true; "stencilResolveFilter": true };
 }
@@ -7651,61 +7651,61 @@ export class MTLRenderPassStencilAttachmentDescriptor extends (MTLRenderPassAtta
  */
 export class MTLRenderPipelineColorAttachmentDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLRenderPipelineColorAttachmentDescriptor { return callSDK<MTLRenderPipelineColorAttachmentDescriptor>("Metal_e11dfd5beee01da3", 1212475072154081, undefined, []); }
+  static init(): MTLRenderPipelineColorAttachmentDescriptor { return callSDK<MTLRenderPipelineColorAttachmentDescriptor>("Metal_3864e7f38681b875", 1212475072154081, undefined, []); }
   /**
    * var alphaBlendOperation: MTLBlendOperation { get set }
    * @availability iOS 8.0+
    */
-  get alphaBlendOperation(): MTLBlendOperation { return callSDK<MTLBlendOperation>("Metal_e11dfd5beee01da3", 407711410644891, this, []); }
-  set alphaBlendOperation(value: MTLBlendOperation) { callSDK<void>("Metal_e11dfd5beee01da3", 2851359972280640, this, [value]); }
+  get alphaBlendOperation(): MTLBlendOperation { return callSDK<MTLBlendOperation>("Metal_3864e7f38681b875", 407711410644891, this, []); }
+  set alphaBlendOperation(value: MTLBlendOperation) { callSDK<void>("Metal_3864e7f38681b875", 2851359972280640, this, [value]); }
   /**
    * var isBlendingEnabled: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isBlendingEnabled(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 124845631466792, this, []); }
-  set isBlendingEnabled(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1207227832127166, this, [value]); }
+  get isBlendingEnabled(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 124845631466792, this, []); }
+  set isBlendingEnabled(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1207227832127166, this, [value]); }
   /**
    * var destinationAlphaBlendFactor: MTLBlendFactor { get set }
    * @availability iOS 8.0+
    */
-  get destinationAlphaBlendFactor(): MTLBlendFactor { return callSDK<MTLBlendFactor>("Metal_e11dfd5beee01da3", 1322028327312712, this, []); }
-  set destinationAlphaBlendFactor(value: MTLBlendFactor) { callSDK<void>("Metal_e11dfd5beee01da3", 2613310989117878, this, [value]); }
+  get destinationAlphaBlendFactor(): MTLBlendFactor { return callSDK<MTLBlendFactor>("Metal_3864e7f38681b875", 1322028327312712, this, []); }
+  set destinationAlphaBlendFactor(value: MTLBlendFactor) { callSDK<void>("Metal_3864e7f38681b875", 2613310989117878, this, [value]); }
   /**
    * var destinationRGBBlendFactor: MTLBlendFactor { get set }
    * @availability iOS 8.0+
    */
-  get destinationRGBBlendFactor(): MTLBlendFactor { return callSDK<MTLBlendFactor>("Metal_e11dfd5beee01da3", 1858250741496260, this, []); }
-  set destinationRGBBlendFactor(value: MTLBlendFactor) { callSDK<void>("Metal_e11dfd5beee01da3", 2781567084253732, this, [value]); }
+  get destinationRGBBlendFactor(): MTLBlendFactor { return callSDK<MTLBlendFactor>("Metal_3864e7f38681b875", 1858250741496260, this, []); }
+  set destinationRGBBlendFactor(value: MTLBlendFactor) { callSDK<void>("Metal_3864e7f38681b875", 2781567084253732, this, [value]); }
   /**
    * var pixelFormat: MTLPixelFormat { get set }
    * @availability iOS 8.0+
    */
-  get pixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_e11dfd5beee01da3", 3440316979636547, this, []); }
-  set pixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 2992383809442456, this, [value]); }
+  get pixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_3864e7f38681b875", 3440316979636547, this, []); }
+  set pixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_3864e7f38681b875", 2992383809442456, this, [value]); }
   /**
    * var rgbBlendOperation: MTLBlendOperation { get set }
    * @availability iOS 8.0+
    */
-  get rgbBlendOperation(): MTLBlendOperation { return callSDK<MTLBlendOperation>("Metal_e11dfd5beee01da3", 1432036484031682, this, []); }
-  set rgbBlendOperation(value: MTLBlendOperation) { callSDK<void>("Metal_e11dfd5beee01da3", 1370468641855239, this, [value]); }
+  get rgbBlendOperation(): MTLBlendOperation { return callSDK<MTLBlendOperation>("Metal_3864e7f38681b875", 1432036484031682, this, []); }
+  set rgbBlendOperation(value: MTLBlendOperation) { callSDK<void>("Metal_3864e7f38681b875", 1370468641855239, this, [value]); }
   /**
    * var sourceAlphaBlendFactor: MTLBlendFactor { get set }
    * @availability iOS 8.0+
    */
-  get sourceAlphaBlendFactor(): MTLBlendFactor { return callSDK<MTLBlendFactor>("Metal_e11dfd5beee01da3", 1973122695296245, this, []); }
-  set sourceAlphaBlendFactor(value: MTLBlendFactor) { callSDK<void>("Metal_e11dfd5beee01da3", 167238226066502, this, [value]); }
+  get sourceAlphaBlendFactor(): MTLBlendFactor { return callSDK<MTLBlendFactor>("Metal_3864e7f38681b875", 1973122695296245, this, []); }
+  set sourceAlphaBlendFactor(value: MTLBlendFactor) { callSDK<void>("Metal_3864e7f38681b875", 167238226066502, this, [value]); }
   /**
    * var sourceRGBBlendFactor: MTLBlendFactor { get set }
    * @availability iOS 8.0+
    */
-  get sourceRGBBlendFactor(): MTLBlendFactor { return callSDK<MTLBlendFactor>("Metal_e11dfd5beee01da3", 1930744095026179, this, []); }
-  set sourceRGBBlendFactor(value: MTLBlendFactor) { callSDK<void>("Metal_e11dfd5beee01da3", 2286697010166267, this, [value]); }
+  get sourceRGBBlendFactor(): MTLBlendFactor { return callSDK<MTLBlendFactor>("Metal_3864e7f38681b875", 1930744095026179, this, []); }
+  set sourceRGBBlendFactor(value: MTLBlendFactor) { callSDK<void>("Metal_3864e7f38681b875", 2286697010166267, this, [value]); }
   /**
    * var writeMask: MTLColorWriteMask { get set }
    * @availability iOS 8.0+
    */
-  get writeMask(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_e11dfd5beee01da3", 1579476476225170, this, []); }
-  set writeMask(value: MTLColorWriteMask) { callSDK<void>("Metal_e11dfd5beee01da3", 194197377479674, this, [value]); }
+  get writeMask(): MTLColorWriteMask { return callSDK<MTLColorWriteMask>("Metal_3864e7f38681b875", 1579476476225170, this, []); }
+  set writeMask(value: MTLColorWriteMask) { callSDK<void>("Metal_3864e7f38681b875", 194197377479674, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPipelineColorAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alphaBlendOperation": true; "isBlendingEnabled": true; "destinationAlphaBlendFactor": true; "destinationRGBBlendFactor": true; "pixelFormat": true; "rgbBlendOperation": true; "sourceAlphaBlendFactor": true; "sourceRGBBlendFactor": true; "writeMask": true };
 }
@@ -7716,12 +7716,12 @@ export class MTLRenderPipelineColorAttachmentDescriptor extends SDKHandle {
  */
 export class MTLRenderPipelineColorAttachmentDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLRenderPipelineColorAttachmentDescriptorArray { return callSDK<MTLRenderPipelineColorAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 466118629906058, undefined, []); }
+  static init(): MTLRenderPipelineColorAttachmentDescriptorArray { return callSDK<MTLRenderPipelineColorAttachmentDescriptorArray>("Metal_3864e7f38681b875", 466118629906058, undefined, []); }
   /**
    * subscript(attachmentIndex: Int) -> MTLRenderPipelineColorAttachmentDescriptor! { get set }
    * @availability iOS 8.0+
    */
-  subscript(attachmentIndex: number): (MTLRenderPipelineColorAttachmentDescriptor) | null { return callSDK<(MTLRenderPipelineColorAttachmentDescriptor) | null>("Metal_e11dfd5beee01da3", 375985598843757, this, [attachmentIndex]); }
+  subscript(attachmentIndex: number): (MTLRenderPipelineColorAttachmentDescriptor) | null { return callSDK<(MTLRenderPipelineColorAttachmentDescriptor) | null>("Metal_3864e7f38681b875", 375985598843757, this, [attachmentIndex]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPipelineColorAttachmentDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -7731,214 +7731,214 @@ export class MTLRenderPipelineColorAttachmentDescriptorArray extends SDKHandle {
  */
 export class MTLRenderPipelineDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLRenderPipelineDescriptor { return callSDK<MTLRenderPipelineDescriptor>("Metal_e11dfd5beee01da3", 1831126991878273, undefined, []); }
+  static init(): MTLRenderPipelineDescriptor { return callSDK<MTLRenderPipelineDescriptor>("Metal_3864e7f38681b875", 1831126991878273, undefined, []); }
   /**
    * func reset()
    * @availability iOS 8.0+
    */
-  reset(): void { return callSDK<void>("Metal_e11dfd5beee01da3", 592965351136742, this, []); }
+  reset(): void { return callSDK<void>("Metal_3864e7f38681b875", 592965351136742, this, []); }
   /**
    * var isAlphaToCoverageEnabled: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isAlphaToCoverageEnabled(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 496819925210675, this, []); }
-  set isAlphaToCoverageEnabled(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1218317535949012, this, [value]); }
+  get isAlphaToCoverageEnabled(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 496819925210675, this, []); }
+  set isAlphaToCoverageEnabled(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1218317535949012, this, [value]); }
   /**
    * var isAlphaToOneEnabled: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isAlphaToOneEnabled(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2293315025077516, this, []); }
-  set isAlphaToOneEnabled(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 3270955697051892, this, [value]); }
+  get isAlphaToOneEnabled(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2293315025077516, this, []); }
+  set isAlphaToOneEnabled(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 3270955697051892, this, [value]); }
   /**
    * var binaryArchives: [any MTLBinaryArchive]? { get set }
    * @availability iOS 14.0+
    */
-  get binaryArchives(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 1838576593583132, this, []); }
-  set binaryArchives(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 3612337836229029, this, [value]); }
+  get binaryArchives(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 1838576593583132, this, []); }
+  set binaryArchives(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 3612337836229029, this, [value]); }
   /**
    * var colorAttachments: MTLRenderPipelineColorAttachmentDescriptorArray { get }
    * @availability iOS 8.0+
    */
-  get colorAttachments(): MTLRenderPipelineColorAttachmentDescriptorArray { return callSDK<MTLRenderPipelineColorAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 240960498857573, this, []); }
+  get colorAttachments(): MTLRenderPipelineColorAttachmentDescriptorArray { return callSDK<MTLRenderPipelineColorAttachmentDescriptorArray>("Metal_3864e7f38681b875", 240960498857573, this, []); }
   /**
    * var depthAttachmentPixelFormat: MTLPixelFormat { get set }
    * @availability iOS 8.0+
    */
-  get depthAttachmentPixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_e11dfd5beee01da3", 238699987140453, this, []); }
-  set depthAttachmentPixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 4095507366642028, this, [value]); }
+  get depthAttachmentPixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_3864e7f38681b875", 238699987140453, this, []); }
+  set depthAttachmentPixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_3864e7f38681b875", 4095507366642028, this, [value]); }
   /**
    * var fragmentBuffers: MTLPipelineBufferDescriptorArray { get }
    * @availability iOS 11.0+
    */
-  get fragmentBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_e11dfd5beee01da3", 4065147522271826, this, []); }
+  get fragmentBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_3864e7f38681b875", 4065147522271826, this, []); }
   /**
    * var fragmentFunction: (any MTLFunction)? { get set }
    * @availability iOS 8.0+
    */
-  get fragmentFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 2658252413949655, this, []); }
-  set fragmentFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 742484540459797, this, [value]); }
+  get fragmentFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 2658252413949655, this, []); }
+  set fragmentFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 742484540459797, this, [value]); }
   /**
    * @NSCopying var fragmentLinkedFunctions: MTLLinkedFunctions! { get set }
    * @availability iOS 15.0+
    */
-  get fragmentLinkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_e11dfd5beee01da3", 603470820935475, this, []); }
-  set fragmentLinkedFunctions(value: $SDK10) { callSDK<void>("Metal_e11dfd5beee01da3", 3192825216616000, this, [value]); }
+  get fragmentLinkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_3864e7f38681b875", 603470820935475, this, []); }
+  set fragmentLinkedFunctions(value: $SDK10) { callSDK<void>("Metal_3864e7f38681b875", 3192825216616000, this, [value]); }
   /**
    * var fragmentPreloadedLibraries: [any MTLDynamicLibrary] { get set }
    * @availability iOS 15.0+
    */
-  get fragmentPreloadedLibraries(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 573635756789680, this, []); }
-  set fragmentPreloadedLibraries(value: Array<SDKHandle>) { callSDK<void>("Metal_e11dfd5beee01da3", 2985779398822557, this, [value]); }
+  get fragmentPreloadedLibraries(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 573635756789680, this, []); }
+  set fragmentPreloadedLibraries(value: Array<SDKHandle>) { callSDK<void>("Metal_3864e7f38681b875", 2985779398822557, this, [value]); }
   /**
    * var inputPrimitiveTopology: MTLPrimitiveTopologyClass { get set }
    * @availability iOS 12.0+
    */
-  get inputPrimitiveTopology(): MTLPrimitiveTopologyClass { return callSDK<MTLPrimitiveTopologyClass>("Metal_e11dfd5beee01da3", 3687396379087853, this, []); }
-  set inputPrimitiveTopology(value: MTLPrimitiveTopologyClass) { callSDK<void>("Metal_e11dfd5beee01da3", 3716388547540038, this, [value]); }
+  get inputPrimitiveTopology(): MTLPrimitiveTopologyClass { return callSDK<MTLPrimitiveTopologyClass>("Metal_3864e7f38681b875", 3687396379087853, this, []); }
+  set inputPrimitiveTopology(value: MTLPrimitiveTopologyClass) { callSDK<void>("Metal_3864e7f38681b875", 3716388547540038, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 8.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 409855862284930, this, []); }
-  set label(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1378105505151080, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 409855862284930, this, []); }
+  set label(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 1378105505151080, this, [value]); }
   /**
    * var maxFragmentCallStackDepth: Int { get set }
    * @availability iOS 15.0+
    */
-  get maxFragmentCallStackDepth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 220420989887943, this, []); }
-  set maxFragmentCallStackDepth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3039758007698566, this, [value]); }
+  get maxFragmentCallStackDepth(): number { return callSDK<number>("Metal_3864e7f38681b875", 220420989887943, this, []); }
+  set maxFragmentCallStackDepth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3039758007698566, this, [value]); }
   /**
    * var maxTessellationFactor: Int { get set }
    * @availability iOS 10.0+
    */
-  get maxTessellationFactor(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1171552803011278, this, []); }
-  set maxTessellationFactor(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3449290242620575, this, [value]); }
+  get maxTessellationFactor(): number { return callSDK<number>("Metal_3864e7f38681b875", 1171552803011278, this, []); }
+  set maxTessellationFactor(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3449290242620575, this, [value]); }
   /**
    * var maxVertexAmplificationCount: Int { get set }
    * @availability iOS 13.0+
    */
-  get maxVertexAmplificationCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1390698024979033, this, []); }
-  set maxVertexAmplificationCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2019917530537850, this, [value]); }
+  get maxVertexAmplificationCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 1390698024979033, this, []); }
+  set maxVertexAmplificationCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2019917530537850, this, [value]); }
   /**
    * var maxVertexCallStackDepth: Int { get set }
    * @availability iOS 15.0+
    */
-  get maxVertexCallStackDepth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1853822823082845, this, []); }
-  set maxVertexCallStackDepth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1595475886826636, this, [value]); }
+  get maxVertexCallStackDepth(): number { return callSDK<number>("Metal_3864e7f38681b875", 1853822823082845, this, []); }
+  set maxVertexCallStackDepth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1595475886826636, this, [value]); }
   /**
    * var rasterSampleCount: Int { get set }
    * @availability iOS 8.0+
    */
-  get rasterSampleCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2446693014483590, this, []); }
-  set rasterSampleCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4039994326853842, this, [value]); }
+  get rasterSampleCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 2446693014483590, this, []); }
+  set rasterSampleCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4039994326853842, this, [value]); }
   /**
    * var isRasterizationEnabled: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isRasterizationEnabled(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 502454914667008, this, []); }
-  set isRasterizationEnabled(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 3706289444766354, this, [value]); }
+  get isRasterizationEnabled(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 502454914667008, this, []); }
+  set isRasterizationEnabled(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 3706289444766354, this, [value]); }
   /**
    * var sampleCount: Int { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get sampleCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 960094294244025, this, []); }
-  set sampleCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4200379296540327, this, [value]); }
+  get sampleCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 960094294244025, this, []); }
+  set sampleCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4200379296540327, this, [value]); }
   /**
    * var shaderValidation: MTLShaderValidation { get set }
    * @availability iOS 18.0+
    */
-  get shaderValidation(): MTLShaderValidation { return callSDK<MTLShaderValidation>("Metal_e11dfd5beee01da3", 3443269426242201, this, []); }
-  set shaderValidation(value: MTLShaderValidation) { callSDK<void>("Metal_e11dfd5beee01da3", 232275543264015, this, [value]); }
+  get shaderValidation(): MTLShaderValidation { return callSDK<MTLShaderValidation>("Metal_3864e7f38681b875", 3443269426242201, this, []); }
+  set shaderValidation(value: MTLShaderValidation) { callSDK<void>("Metal_3864e7f38681b875", 232275543264015, this, [value]); }
   /**
    * var stencilAttachmentPixelFormat: MTLPixelFormat { get set }
    * @availability iOS 8.0+
    */
-  get stencilAttachmentPixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_e11dfd5beee01da3", 3226261754890830, this, []); }
-  set stencilAttachmentPixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 2225678434214431, this, [value]); }
+  get stencilAttachmentPixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_3864e7f38681b875", 3226261754890830, this, []); }
+  set stencilAttachmentPixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_3864e7f38681b875", 2225678434214431, this, [value]); }
   /**
    * var supportAddingFragmentBinaryFunctions: Bool { get set }
    * @availability iOS 15.0+
    */
-  get supportAddingFragmentBinaryFunctions(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 3354009546332216, this, []); }
-  set supportAddingFragmentBinaryFunctions(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1974439382618892, this, [value]); }
+  get supportAddingFragmentBinaryFunctions(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 3354009546332216, this, []); }
+  set supportAddingFragmentBinaryFunctions(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1974439382618892, this, [value]); }
   /**
    * var supportAddingVertexBinaryFunctions: Bool { get set }
    * @availability iOS 15.0+
    */
-  get supportAddingVertexBinaryFunctions(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 87415182780272, this, []); }
-  set supportAddingVertexBinaryFunctions(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 4302646037933414, this, [value]); }
+  get supportAddingVertexBinaryFunctions(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 87415182780272, this, []); }
+  set supportAddingVertexBinaryFunctions(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 4302646037933414, this, [value]); }
   /**
    * var supportIndirectCommandBuffers: Bool { get set }
    * @availability iOS 12.0+
    */
-  get supportIndirectCommandBuffers(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 407336284070999, this, []); }
-  set supportIndirectCommandBuffers(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 546633875262566, this, [value]); }
+  get supportIndirectCommandBuffers(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 407336284070999, this, []); }
+  set supportIndirectCommandBuffers(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 546633875262566, this, [value]); }
   /**
    * var tessellationControlPointIndexType: MTLTessellationControlPointIndexType { get set }
    * @availability iOS 10.0+
    */
-  get tessellationControlPointIndexType(): MTLTessellationControlPointIndexType { return callSDK<MTLTessellationControlPointIndexType>("Metal_e11dfd5beee01da3", 2937277503193209, this, []); }
-  set tessellationControlPointIndexType(value: MTLTessellationControlPointIndexType) { callSDK<void>("Metal_e11dfd5beee01da3", 2404553869081527, this, [value]); }
+  get tessellationControlPointIndexType(): MTLTessellationControlPointIndexType { return callSDK<MTLTessellationControlPointIndexType>("Metal_3864e7f38681b875", 2937277503193209, this, []); }
+  set tessellationControlPointIndexType(value: MTLTessellationControlPointIndexType) { callSDK<void>("Metal_3864e7f38681b875", 2404553869081527, this, [value]); }
   /**
    * var tessellationFactorFormat: MTLTessellationFactorFormat { get set }
    * @availability iOS 10.0+
    */
-  get tessellationFactorFormat(): MTLTessellationFactorFormat { return callSDK<MTLTessellationFactorFormat>("Metal_e11dfd5beee01da3", 4191604781258593, this, []); }
-  set tessellationFactorFormat(value: MTLTessellationFactorFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 3205480775760246, this, [value]); }
+  get tessellationFactorFormat(): MTLTessellationFactorFormat { return callSDK<MTLTessellationFactorFormat>("Metal_3864e7f38681b875", 4191604781258593, this, []); }
+  set tessellationFactorFormat(value: MTLTessellationFactorFormat) { callSDK<void>("Metal_3864e7f38681b875", 3205480775760246, this, [value]); }
   /**
    * var isTessellationFactorScaleEnabled: Bool { get set }
    * @availability iOS 10.0+
    */
-  get isTessellationFactorScaleEnabled(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2490415235523981, this, []); }
-  set isTessellationFactorScaleEnabled(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 2315289755747005, this, [value]); }
+  get isTessellationFactorScaleEnabled(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2490415235523981, this, []); }
+  set isTessellationFactorScaleEnabled(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 2315289755747005, this, [value]); }
   /**
    * var tessellationFactorStepFunction: MTLTessellationFactorStepFunction { get set }
    * @availability iOS 10.0+
    */
-  get tessellationFactorStepFunction(): MTLTessellationFactorStepFunction { return callSDK<MTLTessellationFactorStepFunction>("Metal_e11dfd5beee01da3", 4390231819266867, this, []); }
-  set tessellationFactorStepFunction(value: MTLTessellationFactorStepFunction) { callSDK<void>("Metal_e11dfd5beee01da3", 913964276217882, this, [value]); }
+  get tessellationFactorStepFunction(): MTLTessellationFactorStepFunction { return callSDK<MTLTessellationFactorStepFunction>("Metal_3864e7f38681b875", 4390231819266867, this, []); }
+  set tessellationFactorStepFunction(value: MTLTessellationFactorStepFunction) { callSDK<void>("Metal_3864e7f38681b875", 913964276217882, this, [value]); }
   /**
    * var tessellationOutputWindingOrder: MTLWinding { get set }
    * @availability iOS 10.0+
    */
-  get tessellationOutputWindingOrder(): MTLWinding { return callSDK<MTLWinding>("Metal_e11dfd5beee01da3", 838779778731025, this, []); }
-  set tessellationOutputWindingOrder(value: MTLWinding) { callSDK<void>("Metal_e11dfd5beee01da3", 604731602913271, this, [value]); }
+  get tessellationOutputWindingOrder(): MTLWinding { return callSDK<MTLWinding>("Metal_3864e7f38681b875", 838779778731025, this, []); }
+  set tessellationOutputWindingOrder(value: MTLWinding) { callSDK<void>("Metal_3864e7f38681b875", 604731602913271, this, [value]); }
   /**
    * var tessellationPartitionMode: MTLTessellationPartitionMode { get set }
    * @availability iOS 10.0+
    */
-  get tessellationPartitionMode(): MTLTessellationPartitionMode { return callSDK<MTLTessellationPartitionMode>("Metal_e11dfd5beee01da3", 3628764831968968, this, []); }
-  set tessellationPartitionMode(value: MTLTessellationPartitionMode) { callSDK<void>("Metal_e11dfd5beee01da3", 1458405320337116, this, [value]); }
+  get tessellationPartitionMode(): MTLTessellationPartitionMode { return callSDK<MTLTessellationPartitionMode>("Metal_3864e7f38681b875", 3628764831968968, this, []); }
+  set tessellationPartitionMode(value: MTLTessellationPartitionMode) { callSDK<void>("Metal_3864e7f38681b875", 1458405320337116, this, [value]); }
   /**
    * var vertexBuffers: MTLPipelineBufferDescriptorArray { get }
    * @availability iOS 11.0+
    */
-  get vertexBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_e11dfd5beee01da3", 2500974080771468, this, []); }
+  get vertexBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_3864e7f38681b875", 2500974080771468, this, []); }
   /**
    * @NSCopying var vertexDescriptor: MTLVertexDescriptor? { get set }
    * @availability iOS 8.0+
    */
-  get vertexDescriptor(): (MTLVertexDescriptor) | null { return callSDK<(MTLVertexDescriptor) | null>("Metal_e11dfd5beee01da3", 4274734794360002, this, []); }
-  set vertexDescriptor(value: (MTLVertexDescriptor) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 3074189275362374, this, [value]); }
+  get vertexDescriptor(): (MTLVertexDescriptor) | null { return callSDK<(MTLVertexDescriptor) | null>("Metal_3864e7f38681b875", 4274734794360002, this, []); }
+  set vertexDescriptor(value: (MTLVertexDescriptor) | null) { callSDK<void>("Metal_3864e7f38681b875", 3074189275362374, this, [value]); }
   /**
    * var vertexFunction: (any MTLFunction)? { get set }
    * @availability iOS 8.0+
    */
-  get vertexFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 2318798128786092, this, []); }
-  set vertexFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 2953327056642513, this, [value]); }
+  get vertexFunction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 2318798128786092, this, []); }
+  set vertexFunction(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 2953327056642513, this, [value]); }
   /**
    * @NSCopying var vertexLinkedFunctions: MTLLinkedFunctions! { get set }
    * @availability iOS 15.0+
    */
-  get vertexLinkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_e11dfd5beee01da3", 3504297736218050, this, []); }
-  set vertexLinkedFunctions(value: $SDK10) { callSDK<void>("Metal_e11dfd5beee01da3", 599928999836714, this, [value]); }
+  get vertexLinkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_3864e7f38681b875", 3504297736218050, this, []); }
+  set vertexLinkedFunctions(value: $SDK10) { callSDK<void>("Metal_3864e7f38681b875", 599928999836714, this, [value]); }
   /**
    * var vertexPreloadedLibraries: [any MTLDynamicLibrary] { get set }
    * @availability iOS 15.0+
    */
-  get vertexPreloadedLibraries(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 3052916645791448, this, []); }
-  set vertexPreloadedLibraries(value: Array<SDKHandle>) { callSDK<void>("Metal_e11dfd5beee01da3", 2825550604363217, this, [value]); }
+  get vertexPreloadedLibraries(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 3052916645791448, this, []); }
+  set vertexPreloadedLibraries(value: Array<SDKHandle>) { callSDK<void>("Metal_3864e7f38681b875", 2825550604363217, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPipelineDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAlphaToCoverageEnabled": true; "isAlphaToOneEnabled": true; "binaryArchives": true; "colorAttachments": true; "depthAttachmentPixelFormat": true; "fragmentBuffers": true; "fragmentFunction": true; "fragmentLinkedFunctions": true; "fragmentPreloadedLibraries": true; "inputPrimitiveTopology": true; "label": true; "maxFragmentCallStackDepth": true; "maxTessellationFactor": true; "maxVertexAmplificationCount": true; "maxVertexCallStackDepth": true; "rasterSampleCount": true; "isRasterizationEnabled": true; "sampleCount": true; "shaderValidation": true; "stencilAttachmentPixelFormat": true; "supportAddingFragmentBinaryFunctions": true; "supportAddingVertexBinaryFunctions": true; "supportIndirectCommandBuffers": true; "tessellationControlPointIndexType": true; "tessellationFactorFormat": true; "isTessellationFactorScaleEnabled": true; "tessellationFactorStepFunction": true; "tessellationOutputWindingOrder": true; "tessellationPartitionMode": true; "vertexBuffers": true; "vertexDescriptor": true; "vertexFunction": true; "vertexLinkedFunctions": true; "vertexPreloadedLibraries": true };
 }
@@ -7949,25 +7949,25 @@ export class MTLRenderPipelineDescriptor extends SDKHandle {
  */
 export class MTLRenderPipelineFunctionsDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLRenderPipelineFunctionsDescriptor { return callSDK<MTLRenderPipelineFunctionsDescriptor>("Metal_e11dfd5beee01da3", 4076084613147016, undefined, []); }
+  static init(): MTLRenderPipelineFunctionsDescriptor { return callSDK<MTLRenderPipelineFunctionsDescriptor>("Metal_3864e7f38681b875", 4076084613147016, undefined, []); }
   /**
    * var fragmentAdditionalBinaryFunctions: [any MTLFunction]? { get set }
    * @availability iOS 15.0+
    */
-  get fragmentAdditionalBinaryFunctions(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 1005332466273406, this, []); }
-  set fragmentAdditionalBinaryFunctions(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 2257373442059227, this, [value]); }
+  get fragmentAdditionalBinaryFunctions(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 1005332466273406, this, []); }
+  set fragmentAdditionalBinaryFunctions(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 2257373442059227, this, [value]); }
   /**
    * var tileAdditionalBinaryFunctions: [any MTLFunction]? { get set }
    * @availability iOS 15.0+
    */
-  get tileAdditionalBinaryFunctions(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 3463099083844469, this, []); }
-  set tileAdditionalBinaryFunctions(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 1918409752593089, this, [value]); }
+  get tileAdditionalBinaryFunctions(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 3463099083844469, this, []); }
+  set tileAdditionalBinaryFunctions(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 1918409752593089, this, [value]); }
   /**
    * var vertexAdditionalBinaryFunctions: [any MTLFunction]? { get set }
    * @availability iOS 15.0+
    */
-  get vertexAdditionalBinaryFunctions(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 725888987361653, this, []); }
-  set vertexAdditionalBinaryFunctions(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 2586239565699008, this, [value]); }
+  get vertexAdditionalBinaryFunctions(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 725888987361653, this, []); }
+  set vertexAdditionalBinaryFunctions(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 2586239565699008, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLRenderPipelineFunctionsDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fragmentAdditionalBinaryFunctions": true; "tileAdditionalBinaryFunctions": true; "vertexAdditionalBinaryFunctions": true };
 }
@@ -7978,50 +7978,50 @@ export class MTLRenderPipelineFunctionsDescriptor extends SDKHandle {
  */
 export class MTLRenderPipelineReflection extends SDKHandle {
   /** init() */
-  static init(): MTLRenderPipelineReflection { return callSDK<MTLRenderPipelineReflection>("Metal_e11dfd5beee01da3", 1363146974828550, undefined, []); }
+  static init(): MTLRenderPipelineReflection { return callSDK<MTLRenderPipelineReflection>("Metal_3864e7f38681b875", 1363146974828550, undefined, []); }
   /**
    * var fragmentArguments: [MTLArgument]? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get fragmentArguments(): $SDK42 { return callSDK<$SDK42>("Metal_e11dfd5beee01da3", 702945513732117, this, []); }
+  get fragmentArguments(): $SDK42 { return callSDK<$SDK42>("Metal_3864e7f38681b875", 702945513732117, this, []); }
   /**
    * var fragmentBindings: [any MTLBinding] { get }
    * @availability iOS 16.0+
    */
-  get fragmentBindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 1961150909476702, this, []); }
+  get fragmentBindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 1961150909476702, this, []); }
   /**
    * var meshBindings: [any MTLBinding] { get }
    * @availability iOS 16.0+
    */
-  get meshBindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 307681816365000, this, []); }
+  get meshBindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 307681816365000, this, []); }
   /**
    * var objectBindings: [any MTLBinding] { get }
    * @availability iOS 16.0+
    */
-  get objectBindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 1028338959259819, this, []); }
+  get objectBindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 1028338959259819, this, []); }
   /**
    * var tileArguments: [MTLArgument]? { get }
    * @availability iOS 11.0+
    * @deprecated iOS 16.0
    */
-  get tileArguments(): $SDK42 { return callSDK<$SDK42>("Metal_e11dfd5beee01da3", 3567802699155231, this, []); }
+  get tileArguments(): $SDK42 { return callSDK<$SDK42>("Metal_3864e7f38681b875", 3567802699155231, this, []); }
   /**
    * var tileBindings: [any MTLBinding] { get }
    * @availability iOS 16.0+
    */
-  get tileBindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 868256436395092, this, []); }
+  get tileBindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 868256436395092, this, []); }
   /**
    * var vertexArguments: [MTLArgument]? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get vertexArguments(): $SDK42 { return callSDK<$SDK42>("Metal_e11dfd5beee01da3", 3854552505876657, this, []); }
+  get vertexArguments(): $SDK42 { return callSDK<$SDK42>("Metal_3864e7f38681b875", 3854552505876657, this, []); }
   /**
    * var vertexBindings: [any MTLBinding] { get }
    * @availability iOS 16.0+
    */
-  get vertexBindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 235019521281832, this, []); }
+  get vertexBindings(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 235019521281832, this, []); }
   declare readonly $type: { "c:objc(cs)MTLRenderPipelineReflection": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fragmentArguments": true; "fragmentBindings": true; "meshBindings": true; "objectBindings": true; "tileArguments": true; "tileBindings": true; "vertexArguments": true; "vertexBindings": true };
 }
@@ -8074,32 +8074,32 @@ export const MTLRenderStages = {
    * static var fragment: MTLRenderStages { get }
    * @availability iOS 10.0+
    */
-  get fragment(): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_e11dfd5beee01da3", 227842316347990, undefined, []); },
+  get fragment(): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_3864e7f38681b875", 227842316347990, undefined, []); },
   /**
    * static var mesh: MTLRenderStages { get }
    * @availability iOS 16.0+
    */
-  get mesh(): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_e11dfd5beee01da3", 1235801677776267, undefined, []); },
+  get mesh(): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_3864e7f38681b875", 1235801677776267, undefined, []); },
   /**
    * static var object: MTLRenderStages { get }
    * @availability iOS 16.0+
    */
-  get object(): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_e11dfd5beee01da3", 2569241490034555, undefined, []); },
+  get object(): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_3864e7f38681b875", 2569241490034555, undefined, []); },
   /**
    * static var tile: MTLRenderStages { get }
    * @availability iOS 15.0+
    */
-  get tile(): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_e11dfd5beee01da3", 1541352053090704, undefined, []); },
+  get tile(): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_3864e7f38681b875", 1541352053090704, undefined, []); },
   /**
    * static var vertex: MTLRenderStages { get }
    * @availability iOS 10.0+
    */
-  get vertex(): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_e11dfd5beee01da3", 2183634985378172, undefined, []); },
+  get vertex(): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_3864e7f38681b875", 2183634985378172, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_e11dfd5beee01da3", 145426979586578, undefined, [rawValue]); }
+  init(rawValue: number): MTLRenderStages { return callSDK<MTLRenderStages>("Metal_3864e7f38681b875", 145426979586578, undefined, [rawValue]); }
 };
 
 /**
@@ -8150,19 +8150,19 @@ export interface MTLResidencySet {
  */
 export class MTLResidencySetDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLResidencySetDescriptor { return callSDK<MTLResidencySetDescriptor>("Metal_e11dfd5beee01da3", 3310801827655988, undefined, []); }
+  static init(): MTLResidencySetDescriptor { return callSDK<MTLResidencySetDescriptor>("Metal_3864e7f38681b875", 3310801827655988, undefined, []); }
   /**
    * var initialCapacity: Int { get set }
    * @availability iOS 18.0+
    */
-  get initialCapacity(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 715165413308724, this, []); }
-  set initialCapacity(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3123961137807835, this, [value]); }
+  get initialCapacity(): number { return callSDK<number>("Metal_3864e7f38681b875", 715165413308724, this, []); }
+  set initialCapacity(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3123961137807835, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 18.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 865519291956667, this, []); }
-  set label(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1591758901342238, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 865519291956667, this, []); }
+  set label(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 1591758901342238, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLResidencySetDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "initialCapacity": true; "label": true };
 }
@@ -8198,7 +8198,7 @@ export class MTLResourceID extends SDKHandle {
    * init()
    * @availability iOS 16.0+
    */
-  static init(): MTLResourceID { return callSDK<MTLResourceID>("Metal_e11dfd5beee01da3", 677148627786362, undefined, []); }
+  static init(): MTLResourceID { return callSDK<MTLResourceID>("Metal_3864e7f38681b875", 677148627786362, undefined, []); }
   declare readonly $type: { "c:@S@MTLResourceID": true };
 }
 
@@ -8213,43 +8213,43 @@ export const MTLResourceOptions = {
    * static var cpuCacheModeWriteCombined: MTLResourceOptions { get }
    * @availability iOS 8.0+
    */
-  get cpuCacheModeWriteCombined(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_e11dfd5beee01da3", 4160810350409214, undefined, []); },
+  get cpuCacheModeWriteCombined(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_3864e7f38681b875", 4160810350409214, undefined, []); },
   /**
    * static var hazardTrackingModeTracked: MTLResourceOptions { get }
    * @availability iOS 13.0+
    */
-  get hazardTrackingModeTracked(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_e11dfd5beee01da3", 3911670562859076, undefined, []); },
+  get hazardTrackingModeTracked(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_3864e7f38681b875", 3911670562859076, undefined, []); },
   /**
    * static var hazardTrackingModeUntracked: MTLResourceOptions { get }
    * @availability iOS 10.0+
    */
-  get hazardTrackingModeUntracked(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_e11dfd5beee01da3", 1612352034162293, undefined, []); },
+  get hazardTrackingModeUntracked(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_3864e7f38681b875", 1612352034162293, undefined, []); },
   /**
    * static var optionCPUCacheModeWriteCombined: MTLResourceOptions { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  get optionCPUCacheModeWriteCombined(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_e11dfd5beee01da3", 2404265453977638, undefined, []); },
+  get optionCPUCacheModeWriteCombined(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_3864e7f38681b875", 2404265453977638, undefined, []); },
   /**
    * static var storageModeMemoryless: MTLResourceOptions { get }
    * @availability iOS 10.0+
    */
-  get storageModeMemoryless(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_e11dfd5beee01da3", 2667769277360888, undefined, []); },
+  get storageModeMemoryless(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_3864e7f38681b875", 2667769277360888, undefined, []); },
   /**
    * static var storageModePrivate: MTLResourceOptions { get }
    * @availability iOS 9.0+
    */
-  get storageModePrivate(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_e11dfd5beee01da3", 1918802232483022, undefined, []); },
+  get storageModePrivate(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_3864e7f38681b875", 1918802232483022, undefined, []); },
   /**
    * static var storageModeShared: MTLResourceOptions { get }
    * @availability iOS 9.0+
    */
-  get storageModeShared(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_e11dfd5beee01da3", 2045132859597735, undefined, []); },
+  get storageModeShared(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_3864e7f38681b875", 2045132859597735, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_e11dfd5beee01da3", 2760344454931497, undefined, [rawValue]); }
+  init(rawValue: number): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_3864e7f38681b875", 2760344454931497, undefined, [rawValue]); }
 };
 
 /**
@@ -8320,12 +8320,12 @@ export interface MTLResourceStateCommandEncoder {
  */
 export class MTLResourceStatePassDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLResourceStatePassDescriptor { return callSDK<MTLResourceStatePassDescriptor>("Metal_e11dfd5beee01da3", 2046925330297334, undefined, []); }
+  static init(): MTLResourceStatePassDescriptor { return callSDK<MTLResourceStatePassDescriptor>("Metal_3864e7f38681b875", 2046925330297334, undefined, []); }
   /**
    * var sampleBufferAttachments: MTLResourceStatePassSampleBufferAttachmentDescriptorArray { get }
    * @availability iOS 14.0+
    */
-  get sampleBufferAttachments(): MTLResourceStatePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLResourceStatePassSampleBufferAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 1980898023677445, this, []); }
+  get sampleBufferAttachments(): MTLResourceStatePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLResourceStatePassSampleBufferAttachmentDescriptorArray>("Metal_3864e7f38681b875", 1980898023677445, this, []); }
   declare readonly $type: { "c:objc(cs)MTLResourceStatePassDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "sampleBufferAttachments": true };
 }
@@ -8336,25 +8336,25 @@ export class MTLResourceStatePassDescriptor extends SDKHandle {
  */
 export class MTLResourceStatePassSampleBufferAttachmentDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLResourceStatePassSampleBufferAttachmentDescriptor { return callSDK<MTLResourceStatePassSampleBufferAttachmentDescriptor>("Metal_e11dfd5beee01da3", 3297622315263354, undefined, []); }
+  static init(): MTLResourceStatePassSampleBufferAttachmentDescriptor { return callSDK<MTLResourceStatePassSampleBufferAttachmentDescriptor>("Metal_3864e7f38681b875", 3297622315263354, undefined, []); }
   /**
    * var endOfEncoderSampleIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get endOfEncoderSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2913308518479877, this, []); }
-  set endOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1941705236547368, this, [value]); }
+  get endOfEncoderSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 2913308518479877, this, []); }
+  set endOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1941705236547368, this, [value]); }
   /**
    * var sampleBuffer: (any MTLCounterSampleBuffer)? { get set }
    * @availability iOS 14.0+
    */
-  get sampleBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3539465604875908, this, []); }
-  set sampleBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 1416775224233923, this, [value]); }
+  get sampleBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3539465604875908, this, []); }
+  set sampleBuffer(value: (SDKHandle) | null) { callSDK<void>("Metal_3864e7f38681b875", 1416775224233923, this, [value]); }
   /**
    * var startOfEncoderSampleIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get startOfEncoderSampleIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1873738086054645, this, []); }
-  set startOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2279943013011166, this, [value]); }
+  get startOfEncoderSampleIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 1873738086054645, this, []); }
+  set startOfEncoderSampleIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2279943013011166, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLResourceStatePassSampleBufferAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endOfEncoderSampleIndex": true; "sampleBuffer": true; "startOfEncoderSampleIndex": true };
 }
@@ -8365,12 +8365,12 @@ export class MTLResourceStatePassSampleBufferAttachmentDescriptor extends SDKHan
  */
 export class MTLResourceStatePassSampleBufferAttachmentDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLResourceStatePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLResourceStatePassSampleBufferAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 4278006464251740, undefined, []); }
+  static init(): MTLResourceStatePassSampleBufferAttachmentDescriptorArray { return callSDK<MTLResourceStatePassSampleBufferAttachmentDescriptorArray>("Metal_3864e7f38681b875", 4278006464251740, undefined, []); }
   /**
    * subscript(attachmentIndex: Int) -> MTLResourceStatePassSampleBufferAttachmentDescriptor! { get set }
    * @availability iOS 14.0+
    */
-  subscript(attachmentIndex: number): (MTLResourceStatePassSampleBufferAttachmentDescriptor) | null { return callSDK<(MTLResourceStatePassSampleBufferAttachmentDescriptor) | null>("Metal_e11dfd5beee01da3", 1848398657932398, this, [attachmentIndex]); }
+  subscript(attachmentIndex: number): (MTLResourceStatePassSampleBufferAttachmentDescriptor) | null { return callSDK<(MTLResourceStatePassSampleBufferAttachmentDescriptor) | null>("Metal_3864e7f38681b875", 1848398657932398, this, [attachmentIndex]); }
   declare readonly $type: { "c:objc(cs)MTLResourceStatePassSampleBufferAttachmentDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -8385,37 +8385,37 @@ export const MTLResourceUsage = {
    * static var read: MTLResourceUsage { get }
    * @availability iOS 11.0+
    */
-  get read(): MTLResourceUsage { return callSDK<MTLResourceUsage>("Metal_e11dfd5beee01da3", 2008702712135874, undefined, []); },
+  get read(): MTLResourceUsage { return callSDK<MTLResourceUsage>("Metal_3864e7f38681b875", 2008702712135874, undefined, []); },
   /**
    * static var sample: MTLResourceUsage { get }
    * @availability iOS 11.0+
    * @deprecated iOS 16.0
    */
-  get sample(): MTLResourceUsage { return callSDK<MTLResourceUsage>("Metal_e11dfd5beee01da3", 543969317666530, undefined, []); },
+  get sample(): MTLResourceUsage { return callSDK<MTLResourceUsage>("Metal_3864e7f38681b875", 543969317666530, undefined, []); },
   /**
    * static var write: MTLResourceUsage { get }
    * @availability iOS 11.0+
    */
-  get write(): MTLResourceUsage { return callSDK<MTLResourceUsage>("Metal_e11dfd5beee01da3", 3337017843409255, undefined, []); },
+  get write(): MTLResourceUsage { return callSDK<MTLResourceUsage>("Metal_3864e7f38681b875", 3337017843409255, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): MTLResourceUsage { return callSDK<MTLResourceUsage>("Metal_e11dfd5beee01da3", 3474396348781532, undefined, [rawValue]); }
+  init(rawValue: number): MTLResourceUsage { return callSDK<MTLResourceUsage>("Metal_3864e7f38681b875", 3474396348781532, undefined, [rawValue]); }
 };
 
 /** struct MTLSamplePosition */
 export class MTLSamplePosition extends SDKHandle {
   /** var x: Float */
-  get x(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1493557980423651, this, []); }
-  set x(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3900821539668379, this, [value]); }
+  get x(): number { return callSDK<number>("Metal_3864e7f38681b875", 1493557980423651, this, []); }
+  set x(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3900821539668379, this, [value]); }
   /** var y: Float */
-  get y(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4397694110522359, this, []); }
-  set y(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 326132554051896, this, [value]); }
+  get y(): number { return callSDK<number>("Metal_3864e7f38681b875", 4397694110522359, this, []); }
+  set y(value: number) { callSDK<void>("Metal_3864e7f38681b875", 326132554051896, this, [value]); }
   /** init(x: Float, y: Float) */
-  static initXY(x: number, y: number): MTLSamplePosition { return callSDK<MTLSamplePosition>("Metal_e11dfd5beee01da3", 2091334055835754, undefined, [x, y]); }
+  static initXY(x: number, y: number): MTLSamplePosition { return callSDK<MTLSamplePosition>("Metal_3864e7f38681b875", 2091334055835754, undefined, [x, y]); }
   /** init() */
-  static init(): MTLSamplePosition { return callSDK<MTLSamplePosition>("Metal_e11dfd5beee01da3", 243066234615284, undefined, []); }
+  static init(): MTLSamplePosition { return callSDK<MTLSamplePosition>("Metal_3864e7f38681b875", 243066234615284, undefined, []); }
   declare readonly $type: { "c:@SA@MTLSamplePosition": true };
 }
 
@@ -8430,7 +8430,7 @@ export const MTLSamplerAddressMode = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLSamplerAddressMode) | null { return callSDK<(MTLSamplerAddressMode) | null>("Metal_e11dfd5beee01da3", 4086497644555272, undefined, [rawValue]); }
+  init(rawValue: number): (MTLSamplerAddressMode) | null { return callSDK<(MTLSamplerAddressMode) | null>("Metal_3864e7f38681b875", 4086497644555272, undefined, [rawValue]); }
 };
 
 /**
@@ -8444,7 +8444,7 @@ export const MTLSamplerBorderColor = {
    * init?(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (MTLSamplerBorderColor) | null { return callSDK<(MTLSamplerBorderColor) | null>("Metal_e11dfd5beee01da3", 2694074676644334, undefined, [rawValue]); }
+  init(rawValue: number): (MTLSamplerBorderColor) | null { return callSDK<(MTLSamplerBorderColor) | null>("Metal_3864e7f38681b875", 2694074676644334, undefined, [rawValue]); }
 };
 
 /**
@@ -8453,109 +8453,109 @@ export const MTLSamplerBorderColor = {
  */
 export class MTLSamplerDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLSamplerDescriptor { return callSDK<MTLSamplerDescriptor>("Metal_e11dfd5beee01da3", 3897096818486705, undefined, []); }
+  static init(): MTLSamplerDescriptor { return callSDK<MTLSamplerDescriptor>("Metal_3864e7f38681b875", 3897096818486705, undefined, []); }
   /**
    * var borderColor: MTLSamplerBorderColor { get set }
    * @availability iOS 14.0+
    */
-  get borderColor(): MTLSamplerBorderColor { return callSDK<MTLSamplerBorderColor>("Metal_e11dfd5beee01da3", 1736586677906568, this, []); }
-  set borderColor(value: MTLSamplerBorderColor) { callSDK<void>("Metal_e11dfd5beee01da3", 2977478893795840, this, [value]); }
+  get borderColor(): MTLSamplerBorderColor { return callSDK<MTLSamplerBorderColor>("Metal_3864e7f38681b875", 1736586677906568, this, []); }
+  set borderColor(value: MTLSamplerBorderColor) { callSDK<void>("Metal_3864e7f38681b875", 2977478893795840, this, [value]); }
   /**
    * var compareFunction: MTLCompareFunction { get set }
    * @availability iOS 9.0+
    */
-  get compareFunction(): MTLCompareFunction { return callSDK<MTLCompareFunction>("Metal_e11dfd5beee01da3", 4306047967702507, this, []); }
-  set compareFunction(value: MTLCompareFunction) { callSDK<void>("Metal_e11dfd5beee01da3", 1168953688352127, this, [value]); }
+  get compareFunction(): MTLCompareFunction { return callSDK<MTLCompareFunction>("Metal_3864e7f38681b875", 4306047967702507, this, []); }
+  set compareFunction(value: MTLCompareFunction) { callSDK<void>("Metal_3864e7f38681b875", 1168953688352127, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 8.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 3361692918788189, this, []); }
-  set label(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 363392735300500, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 3361692918788189, this, []); }
+  set label(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 363392735300500, this, [value]); }
   /**
    * var lodAverage: Bool { get set }
    * @availability iOS 9.0+
    */
-  get lodAverage(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 4115536252221750, this, []); }
-  set lodAverage(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 78054972877180, this, [value]); }
+  get lodAverage(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 4115536252221750, this, []); }
+  set lodAverage(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 78054972877180, this, [value]); }
   /**
    * var lodBias: Float { get set }
    * @availability iOS 26.0+
    */
-  get lodBias(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 896460230482990, this, []); }
-  set lodBias(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3209089176376039, this, [value]); }
+  get lodBias(): number { return callSDK<number>("Metal_3864e7f38681b875", 896460230482990, this, []); }
+  set lodBias(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3209089176376039, this, [value]); }
   /**
    * var lodMaxClamp: Float { get set }
    * @availability iOS 8.0+
    */
-  get lodMaxClamp(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3753103402906372, this, []); }
-  set lodMaxClamp(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3180750571126172, this, [value]); }
+  get lodMaxClamp(): number { return callSDK<number>("Metal_3864e7f38681b875", 3753103402906372, this, []); }
+  set lodMaxClamp(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3180750571126172, this, [value]); }
   /**
    * var lodMinClamp: Float { get set }
    * @availability iOS 8.0+
    */
-  get lodMinClamp(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2683710510069334, this, []); }
-  set lodMinClamp(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2942607090270987, this, [value]); }
+  get lodMinClamp(): number { return callSDK<number>("Metal_3864e7f38681b875", 2683710510069334, this, []); }
+  set lodMinClamp(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2942607090270987, this, [value]); }
   /**
    * var magFilter: MTLSamplerMinMagFilter { get set }
    * @availability iOS 8.0+
    */
-  get magFilter(): MTLSamplerMinMagFilter { return callSDK<MTLSamplerMinMagFilter>("Metal_e11dfd5beee01da3", 113151865252554, this, []); }
-  set magFilter(value: MTLSamplerMinMagFilter) { callSDK<void>("Metal_e11dfd5beee01da3", 1914641841152084, this, [value]); }
+  get magFilter(): MTLSamplerMinMagFilter { return callSDK<MTLSamplerMinMagFilter>("Metal_3864e7f38681b875", 113151865252554, this, []); }
+  set magFilter(value: MTLSamplerMinMagFilter) { callSDK<void>("Metal_3864e7f38681b875", 1914641841152084, this, [value]); }
   /**
    * var maxAnisotropy: Int { get set }
    * @availability iOS 8.0+
    */
-  get maxAnisotropy(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3686275543902295, this, []); }
-  set maxAnisotropy(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2966054320773558, this, [value]); }
+  get maxAnisotropy(): number { return callSDK<number>("Metal_3864e7f38681b875", 3686275543902295, this, []); }
+  set maxAnisotropy(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2966054320773558, this, [value]); }
   /**
    * var minFilter: MTLSamplerMinMagFilter { get set }
    * @availability iOS 8.0+
    */
-  get minFilter(): MTLSamplerMinMagFilter { return callSDK<MTLSamplerMinMagFilter>("Metal_e11dfd5beee01da3", 4355848262926058, this, []); }
-  set minFilter(value: MTLSamplerMinMagFilter) { callSDK<void>("Metal_e11dfd5beee01da3", 3003630644834906, this, [value]); }
+  get minFilter(): MTLSamplerMinMagFilter { return callSDK<MTLSamplerMinMagFilter>("Metal_3864e7f38681b875", 4355848262926058, this, []); }
+  set minFilter(value: MTLSamplerMinMagFilter) { callSDK<void>("Metal_3864e7f38681b875", 3003630644834906, this, [value]); }
   /**
    * var mipFilter: MTLSamplerMipFilter { get set }
    * @availability iOS 8.0+
    */
-  get mipFilter(): MTLSamplerMipFilter { return callSDK<MTLSamplerMipFilter>("Metal_e11dfd5beee01da3", 1441559682200320, this, []); }
-  set mipFilter(value: MTLSamplerMipFilter) { callSDK<void>("Metal_e11dfd5beee01da3", 1614588208035194, this, [value]); }
+  get mipFilter(): MTLSamplerMipFilter { return callSDK<MTLSamplerMipFilter>("Metal_3864e7f38681b875", 1441559682200320, this, []); }
+  set mipFilter(value: MTLSamplerMipFilter) { callSDK<void>("Metal_3864e7f38681b875", 1614588208035194, this, [value]); }
   /**
    * var normalizedCoordinates: Bool { get set }
    * @availability iOS 8.0+
    */
-  get normalizedCoordinates(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 1167087771137991, this, []); }
-  set normalizedCoordinates(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 3932794239398130, this, [value]); }
+  get normalizedCoordinates(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 1167087771137991, this, []); }
+  set normalizedCoordinates(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 3932794239398130, this, [value]); }
   /**
    * var rAddressMode: MTLSamplerAddressMode { get set }
    * @availability iOS 8.0+
    */
-  get rAddressMode(): MTLSamplerAddressMode { return callSDK<MTLSamplerAddressMode>("Metal_e11dfd5beee01da3", 2732055191990440, this, []); }
-  set rAddressMode(value: MTLSamplerAddressMode) { callSDK<void>("Metal_e11dfd5beee01da3", 4006289883299577, this, [value]); }
+  get rAddressMode(): MTLSamplerAddressMode { return callSDK<MTLSamplerAddressMode>("Metal_3864e7f38681b875", 2732055191990440, this, []); }
+  set rAddressMode(value: MTLSamplerAddressMode) { callSDK<void>("Metal_3864e7f38681b875", 4006289883299577, this, [value]); }
   /**
    * var reductionMode: MTLSamplerReductionMode { get set }
    * @availability iOS 26.0+
    */
-  get reductionMode(): MTLSamplerReductionMode { return callSDK<MTLSamplerReductionMode>("Metal_e11dfd5beee01da3", 2910608522958521, this, []); }
-  set reductionMode(value: MTLSamplerReductionMode) { callSDK<void>("Metal_e11dfd5beee01da3", 2970053356087219, this, [value]); }
+  get reductionMode(): MTLSamplerReductionMode { return callSDK<MTLSamplerReductionMode>("Metal_3864e7f38681b875", 2910608522958521, this, []); }
+  set reductionMode(value: MTLSamplerReductionMode) { callSDK<void>("Metal_3864e7f38681b875", 2970053356087219, this, [value]); }
   /**
    * var sAddressMode: MTLSamplerAddressMode { get set }
    * @availability iOS 8.0+
    */
-  get sAddressMode(): MTLSamplerAddressMode { return callSDK<MTLSamplerAddressMode>("Metal_e11dfd5beee01da3", 3024031724537547, this, []); }
-  set sAddressMode(value: MTLSamplerAddressMode) { callSDK<void>("Metal_e11dfd5beee01da3", 4183542416890690, this, [value]); }
+  get sAddressMode(): MTLSamplerAddressMode { return callSDK<MTLSamplerAddressMode>("Metal_3864e7f38681b875", 3024031724537547, this, []); }
+  set sAddressMode(value: MTLSamplerAddressMode) { callSDK<void>("Metal_3864e7f38681b875", 4183542416890690, this, [value]); }
   /**
    * var supportArgumentBuffers: Bool { get set }
    * @availability iOS 11.0+
    */
-  get supportArgumentBuffers(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 1225595043067869, this, []); }
-  set supportArgumentBuffers(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 3625281998135477, this, [value]); }
+  get supportArgumentBuffers(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 1225595043067869, this, []); }
+  set supportArgumentBuffers(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 3625281998135477, this, [value]); }
   /**
    * var tAddressMode: MTLSamplerAddressMode { get set }
    * @availability iOS 8.0+
    */
-  get tAddressMode(): MTLSamplerAddressMode { return callSDK<MTLSamplerAddressMode>("Metal_e11dfd5beee01da3", 2544883539784958, this, []); }
-  set tAddressMode(value: MTLSamplerAddressMode) { callSDK<void>("Metal_e11dfd5beee01da3", 1243694879045685, this, [value]); }
+  get tAddressMode(): MTLSamplerAddressMode { return callSDK<MTLSamplerAddressMode>("Metal_3864e7f38681b875", 2544883539784958, this, []); }
+  set tAddressMode(value: MTLSamplerAddressMode) { callSDK<void>("Metal_3864e7f38681b875", 1243694879045685, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLSamplerDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "borderColor": true; "compareFunction": true; "label": true; "lodAverage": true; "lodBias": true; "lodMaxClamp": true; "lodMinClamp": true; "magFilter": true; "maxAnisotropy": true; "minFilter": true; "mipFilter": true; "normalizedCoordinates": true; "rAddressMode": true; "reductionMode": true; "sAddressMode": true; "supportArgumentBuffers": true; "tAddressMode": true };
 }
@@ -8571,7 +8571,7 @@ export const MTLSamplerMinMagFilter = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLSamplerMinMagFilter) | null { return callSDK<(MTLSamplerMinMagFilter) | null>("Metal_e11dfd5beee01da3", 3506673176943427, undefined, [rawValue]); }
+  init(rawValue: number): (MTLSamplerMinMagFilter) | null { return callSDK<(MTLSamplerMinMagFilter) | null>("Metal_3864e7f38681b875", 3506673176943427, undefined, [rawValue]); }
 };
 
 /**
@@ -8585,7 +8585,7 @@ export const MTLSamplerMipFilter = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLSamplerMipFilter) | null { return callSDK<(MTLSamplerMipFilter) | null>("Metal_e11dfd5beee01da3", 2864179012236008, undefined, [rawValue]); }
+  init(rawValue: number): (MTLSamplerMipFilter) | null { return callSDK<(MTLSamplerMipFilter) | null>("Metal_3864e7f38681b875", 2864179012236008, undefined, [rawValue]); }
 };
 
 /**
@@ -8599,7 +8599,7 @@ export const MTLSamplerReductionMode = {
    * init?(rawValue: UInt)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (MTLSamplerReductionMode) | null { return callSDK<(MTLSamplerReductionMode) | null>("Metal_e11dfd5beee01da3", 1711709986017698, undefined, [rawValue]); }
+  init(rawValue: number): (MTLSamplerReductionMode) | null { return callSDK<(MTLSamplerReductionMode) | null>("Metal_3864e7f38681b875", 1711709986017698, undefined, [rawValue]); }
 };
 
 /**
@@ -8613,21 +8613,21 @@ export interface MTLSamplerState {
 /** struct MTLScissorRect */
 export class MTLScissorRect extends SDKHandle {
   /** var height: Int */
-  get height(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 816551012320993, this, []); }
-  set height(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3962781211579455, this, [value]); }
+  get height(): number { return callSDK<number>("Metal_3864e7f38681b875", 816551012320993, this, []); }
+  set height(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3962781211579455, this, [value]); }
   /** var width: Int */
-  get width(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 707919235087897, this, []); }
-  set width(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1725529885916005, this, [value]); }
+  get width(): number { return callSDK<number>("Metal_3864e7f38681b875", 707919235087897, this, []); }
+  set width(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1725529885916005, this, [value]); }
   /** var x: Int */
-  get x(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 813870651140787, this, []); }
-  set x(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1997990957877648, this, [value]); }
+  get x(): number { return callSDK<number>("Metal_3864e7f38681b875", 813870651140787, this, []); }
+  set x(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1997990957877648, this, [value]); }
   /** var y: Int */
-  get y(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 73267281697173, this, []); }
-  set y(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1613774410268066, this, [value]); }
+  get y(): number { return callSDK<number>("Metal_3864e7f38681b875", 73267281697173, this, []); }
+  set y(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1613774410268066, this, [value]); }
   /** init(x: Int, y: Int, width: Int, height: Int) */
-  static initXYWidthHeight(x: number, y: number, width: number, height: number): MTLScissorRect { return callSDK<MTLScissorRect>("Metal_e11dfd5beee01da3", 207433030573708, undefined, [x, y, width, height]); }
+  static initXYWidthHeight(x: number, y: number, width: number, height: number): MTLScissorRect { return callSDK<MTLScissorRect>("Metal_3864e7f38681b875", 207433030573708, undefined, [x, y, width, height]); }
   /** init() */
-  static init(): MTLScissorRect { return callSDK<MTLScissorRect>("Metal_e11dfd5beee01da3", 3663759493192015, undefined, []); }
+  static init(): MTLScissorRect { return callSDK<MTLScissorRect>("Metal_3864e7f38681b875", 3663759493192015, undefined, []); }
   declare readonly $type: { "c:@SA@MTLScissorRect": true };
 }
 
@@ -8642,7 +8642,7 @@ export const MTLShaderValidation = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (MTLShaderValidation) | null { return callSDK<(MTLShaderValidation) | null>("Metal_e11dfd5beee01da3", 333136355039220, undefined, [rawValue]); }
+  init(rawValue: number): (MTLShaderValidation) | null { return callSDK<(MTLShaderValidation) | null>("Metal_3864e7f38681b875", 333136355039220, undefined, [rawValue]); }
 };
 
 /**
@@ -8673,12 +8673,12 @@ export interface MTLSharedEvent {
  */
 export class MTLSharedEventHandle extends SDKHandle {
   /** init() */
-  static init(): MTLSharedEventHandle { return callSDK<MTLSharedEventHandle>("Metal_e11dfd5beee01da3", 1819472769532427, undefined, []); }
+  static init(): MTLSharedEventHandle { return callSDK<MTLSharedEventHandle>("Metal_3864e7f38681b875", 1819472769532427, undefined, []); }
   /**
    * var label: String? { get }
    * @availability iOS 12.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 3965263832995426, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 3965263832995426, this, []); }
   declare readonly $type: { "c:objc(cs)MTLSharedEventHandle": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "label": true };
 }
@@ -8692,22 +8692,22 @@ export class MTLSharedEventListener extends SDKHandle {
    * class func shared() -> MTLSharedEventListener
    * @availability iOS 26.0+
    */
-  static shared(): MTLSharedEventListener { return callSDK<MTLSharedEventListener>("Metal_e11dfd5beee01da3", 3346133579228420, undefined, []); }
+  static shared(): MTLSharedEventListener { return callSDK<MTLSharedEventListener>("Metal_3864e7f38681b875", 3346133579228420, undefined, []); }
   /**
    * init()
    * @availability iOS 12.0+
    */
-  static init(): MTLSharedEventListener { return callSDK<MTLSharedEventListener>("Metal_e11dfd5beee01da3", 4184305563246629, undefined, []); }
+  static init(): MTLSharedEventListener { return callSDK<MTLSharedEventListener>("Metal_3864e7f38681b875", 4184305563246629, undefined, []); }
   /**
    * init(dispatchQueue: dispatch_queue_t)
    * @availability iOS 12.0+
    */
-  static initDispatchQueue(dispatchQueue: _Dispatch_DispatchQueue): MTLSharedEventListener { return callSDK<MTLSharedEventListener>("Metal_e11dfd5beee01da3", 1419482876516802, undefined, [dispatchQueue]); }
+  static initDispatchQueue(dispatchQueue: _Dispatch_DispatchQueue): MTLSharedEventListener { return callSDK<MTLSharedEventListener>("Metal_3864e7f38681b875", 1419482876516802, undefined, [dispatchQueue]); }
   /**
    * var dispatchQueue: dispatch_queue_t { get }
    * @availability iOS 12.0+
    */
-  get dispatchQueue(): _Dispatch_DispatchQueue { return callSDK<_Dispatch_DispatchQueue>("Metal_e11dfd5beee01da3", 789637098288589, this, []); }
+  get dispatchQueue(): _Dispatch_DispatchQueue { return callSDK<_Dispatch_DispatchQueue>("Metal_3864e7f38681b875", 789637098288589, this, []); }
   declare readonly $type: { "c:objc(cs)MTLSharedEventListener": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dispatchQueue": true };
 }
@@ -8718,33 +8718,33 @@ export type MTLSharedEventNotificationBlock = $SDK44;
 /** struct MTLSize */
 export class MTLSize extends SDKHandle {
   /** var depth: Int */
-  get depth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1484026164967015, this, []); }
-  set depth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 463771540348547, this, [value]); }
+  get depth(): number { return callSDK<number>("Metal_3864e7f38681b875", 1484026164967015, this, []); }
+  set depth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 463771540348547, this, [value]); }
   /** var height: Int */
-  get height(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3543179434231465, this, []); }
-  set height(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1487188957234123, this, [value]); }
+  get height(): number { return callSDK<number>("Metal_3864e7f38681b875", 3543179434231465, this, []); }
+  set height(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1487188957234123, this, [value]); }
   /** var width: Int */
-  get width(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1887317928344563, this, []); }
-  set width(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 515727398575784, this, [value]); }
+  get width(): number { return callSDK<number>("Metal_3864e7f38681b875", 1887317928344563, this, []); }
+  set width(value: number) { callSDK<void>("Metal_3864e7f38681b875", 515727398575784, this, [value]); }
   /** init(width: Int, height: Int, depth: Int) */
-  static initWidthHeightDepth(width: number, height: number, depth: number): MTLSize { return callSDK<MTLSize>("Metal_e11dfd5beee01da3", 211657288162956, undefined, [width, height, depth]); }
+  static initWidthHeightDepth(width: number, height: number, depth: number): MTLSize { return callSDK<MTLSize>("Metal_3864e7f38681b875", 211657288162956, undefined, [width, height, depth]); }
   /** init() */
-  static init(): MTLSize { return callSDK<MTLSize>("Metal_e11dfd5beee01da3", 3977830120843215, undefined, []); }
+  static init(): MTLSize { return callSDK<MTLSize>("Metal_3864e7f38681b875", 3977830120843215, undefined, []); }
   declare readonly $type: { "c:@SA@MTLSize": true };
 }
 
 /** struct MTLSizeAndAlign */
 export class MTLSizeAndAlign extends SDKHandle {
   /** var align: Int */
-  get align(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2905543434362941, this, []); }
-  set align(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3275846111745056, this, [value]); }
+  get align(): number { return callSDK<number>("Metal_3864e7f38681b875", 2905543434362941, this, []); }
+  set align(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3275846111745056, this, [value]); }
   /** var size: Int */
-  get size(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2703574648204101, this, []); }
-  set size(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1464640939060868, this, [value]); }
+  get size(): number { return callSDK<number>("Metal_3864e7f38681b875", 2703574648204101, this, []); }
+  set size(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1464640939060868, this, [value]); }
   /** init(size: Int, align: Int) */
-  static initSizeAlign(size: number, align: number): MTLSizeAndAlign { return callSDK<MTLSizeAndAlign>("Metal_e11dfd5beee01da3", 2931323329054387, undefined, [size, align]); }
+  static initSizeAlign(size: number, align: number): MTLSizeAndAlign { return callSDK<MTLSizeAndAlign>("Metal_3864e7f38681b875", 2931323329054387, undefined, [size, align]); }
   /** init() */
-  static init(): MTLSizeAndAlign { return callSDK<MTLSizeAndAlign>("Metal_e11dfd5beee01da3", 862354121343388, undefined, []); }
+  static init(): MTLSizeAndAlign { return callSDK<MTLSizeAndAlign>("Metal_3864e7f38681b875", 862354121343388, undefined, []); }
   declare readonly $type: { "c:@SA@MTLSizeAndAlign": true };
 }
 
@@ -8759,7 +8759,7 @@ export const MTLSparsePageSize = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (MTLSparsePageSize) | null { return callSDK<(MTLSparsePageSize) | null>("Metal_e11dfd5beee01da3", 2242869864265452, undefined, [rawValue]); }
+  init(rawValue: number): (MTLSparsePageSize) | null { return callSDK<(MTLSparsePageSize) | null>("Metal_3864e7f38681b875", 2242869864265452, undefined, [rawValue]); }
 };
 
 /**
@@ -8773,7 +8773,7 @@ export const MTLSparseTextureMappingMode = {
    * init?(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (MTLSparseTextureMappingMode) | null { return callSDK<(MTLSparseTextureMappingMode) | null>("Metal_e11dfd5beee01da3", 2788593337784158, undefined, [rawValue]); }
+  init(rawValue: number): (MTLSparseTextureMappingMode) | null { return callSDK<(MTLSparseTextureMappingMode) | null>("Metal_3864e7f38681b875", 2788593337784158, undefined, [rawValue]); }
 };
 
 /**
@@ -8787,7 +8787,7 @@ export const MTLSparseTextureRegionAlignmentMode = {
    * init?(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (MTLSparseTextureRegionAlignmentMode) | null { return callSDK<(MTLSparseTextureRegionAlignmentMode) | null>("Metal_e11dfd5beee01da3", 3643247924336622, undefined, [rawValue]); }
+  init(rawValue: number): (MTLSparseTextureRegionAlignmentMode) | null { return callSDK<(MTLSparseTextureRegionAlignmentMode) | null>("Metal_3864e7f38681b875", 3643247924336622, undefined, [rawValue]); }
 };
 
 /**
@@ -8796,34 +8796,34 @@ export const MTLSparseTextureRegionAlignmentMode = {
  */
 export class MTLStageInputOutputDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLStageInputOutputDescriptor { return callSDK<MTLStageInputOutputDescriptor>("Metal_e11dfd5beee01da3", 301165033772775, undefined, []); }
+  static init(): MTLStageInputOutputDescriptor { return callSDK<MTLStageInputOutputDescriptor>("Metal_3864e7f38681b875", 301165033772775, undefined, []); }
   /**
    * func reset()
    * @availability iOS 10.0+
    */
-  reset(): void { return callSDK<void>("Metal_e11dfd5beee01da3", 1001294789405277, this, []); }
+  reset(): void { return callSDK<void>("Metal_3864e7f38681b875", 1001294789405277, this, []); }
   /**
    * var attributes: MTLAttributeDescriptorArray { get }
    * @availability iOS 10.0+
    */
-  get attributes(): MTLAttributeDescriptorArray { return callSDK<MTLAttributeDescriptorArray>("Metal_e11dfd5beee01da3", 387865004542327, this, []); }
+  get attributes(): MTLAttributeDescriptorArray { return callSDK<MTLAttributeDescriptorArray>("Metal_3864e7f38681b875", 387865004542327, this, []); }
   /**
    * var indexBufferIndex: Int { get set }
    * @availability iOS 10.0+
    */
-  get indexBufferIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2252332149771249, this, []); }
-  set indexBufferIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3648754669216411, this, [value]); }
+  get indexBufferIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 2252332149771249, this, []); }
+  set indexBufferIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3648754669216411, this, [value]); }
   /**
    * var indexType: MTLIndexType { get set }
    * @availability iOS 10.0+
    */
-  get indexType(): MTLIndexType { return callSDK<MTLIndexType>("Metal_e11dfd5beee01da3", 1201555309884054, this, []); }
-  set indexType(value: MTLIndexType) { callSDK<void>("Metal_e11dfd5beee01da3", 3158754539864310, this, [value]); }
+  get indexType(): MTLIndexType { return callSDK<MTLIndexType>("Metal_3864e7f38681b875", 1201555309884054, this, []); }
+  set indexType(value: MTLIndexType) { callSDK<void>("Metal_3864e7f38681b875", 3158754539864310, this, [value]); }
   /**
    * var layouts: MTLBufferLayoutDescriptorArray { get }
    * @availability iOS 10.0+
    */
-  get layouts(): MTLBufferLayoutDescriptorArray { return callSDK<MTLBufferLayoutDescriptorArray>("Metal_e11dfd5beee01da3", 3845594855583125, this, []); }
+  get layouts(): MTLBufferLayoutDescriptorArray { return callSDK<MTLBufferLayoutDescriptorArray>("Metal_3864e7f38681b875", 3845594855583125, this, []); }
   declare readonly $type: { "c:objc(cs)MTLStageInputOutputDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributes": true; "indexBufferIndex": true; "indexType": true; "layouts": true };
 }
@@ -8837,24 +8837,24 @@ export class MTLStageInRegionIndirectArguments extends SDKHandle {
    * var stageInOrigin: (UInt32, UInt32, UInt32)
    * @availability iOS 12.0+
    */
-  get stageInOrigin(): $SDK18 { return callSDK<$SDK18>("Metal_e11dfd5beee01da3", 2682983814286612, this, []); }
-  set stageInOrigin(value: $SDK18) { callSDK<void>("Metal_e11dfd5beee01da3", 3866510035723052, this, [value]); }
+  get stageInOrigin(): $SDK18 { return callSDK<$SDK18>("Metal_3864e7f38681b875", 2682983814286612, this, []); }
+  set stageInOrigin(value: $SDK18) { callSDK<void>("Metal_3864e7f38681b875", 3866510035723052, this, [value]); }
   /**
    * var stageInSize: (UInt32, UInt32, UInt32)
    * @availability iOS 12.0+
    */
-  get stageInSize(): $SDK18 { return callSDK<$SDK18>("Metal_e11dfd5beee01da3", 2950011619638402, this, []); }
-  set stageInSize(value: $SDK18) { callSDK<void>("Metal_e11dfd5beee01da3", 3117457964511175, this, [value]); }
+  get stageInSize(): $SDK18 { return callSDK<$SDK18>("Metal_3864e7f38681b875", 2950011619638402, this, []); }
+  set stageInSize(value: $SDK18) { callSDK<void>("Metal_3864e7f38681b875", 3117457964511175, this, [value]); }
   /**
    * init(stageInOrigin: (UInt32, UInt32, UInt32), stageInSize: (UInt32, UInt32, UInt32))
    * @availability iOS 12.0+
    */
-  static initStageInOriginStageInSize(stageInOrigin: $SDK18, stageInSize: $SDK18): MTLStageInRegionIndirectArguments { return callSDK<MTLStageInRegionIndirectArguments>("Metal_e11dfd5beee01da3", 2455415283140942, undefined, [stageInOrigin, stageInSize]); }
+  static initStageInOriginStageInSize(stageInOrigin: $SDK18, stageInSize: $SDK18): MTLStageInRegionIndirectArguments { return callSDK<MTLStageInRegionIndirectArguments>("Metal_3864e7f38681b875", 2455415283140942, undefined, [stageInOrigin, stageInSize]); }
   /**
    * init()
    * @availability iOS 12.0+
    */
-  static init(): MTLStageInRegionIndirectArguments { return callSDK<MTLStageInRegionIndirectArguments>("Metal_e11dfd5beee01da3", 1923207569382234, undefined, []); }
+  static init(): MTLStageInRegionIndirectArguments { return callSDK<MTLStageInRegionIndirectArguments>("Metal_3864e7f38681b875", 1923207569382234, undefined, []); }
   declare readonly $type: { "c:@SA@MTLStageInRegionIndirectArguments": true };
 }
 
@@ -8869,62 +8869,62 @@ export const MTLStages = {
    * static var accelerationStructure: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get accelerationStructure(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 521875132808674, undefined, []); },
+  get accelerationStructure(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 521875132808674, undefined, []); },
   /**
    * static var all: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get all(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 376718294576801, undefined, []); },
+  get all(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 376718294576801, undefined, []); },
   /**
    * static var blit: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get blit(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 486556273405954, undefined, []); },
+  get blit(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 486556273405954, undefined, []); },
   /**
    * static var dispatch: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get dispatch(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 1863660158584233, undefined, []); },
+  get dispatch(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 1863660158584233, undefined, []); },
   /**
    * static var fragment: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get fragment(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 1056791682590905, undefined, []); },
+  get fragment(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 1056791682590905, undefined, []); },
   /**
    * static var machineLearning: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get machineLearning(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 878078475700012, undefined, []); },
+  get machineLearning(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 878078475700012, undefined, []); },
   /**
    * static var mesh: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get mesh(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 1178721299917609, undefined, []); },
+  get mesh(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 1178721299917609, undefined, []); },
   /**
    * static var object: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get object(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 231095633615064, undefined, []); },
+  get object(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 231095633615064, undefined, []); },
   /**
    * static var resourceState: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get resourceState(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 3151654771568434, undefined, []); },
+  get resourceState(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 3151654771568434, undefined, []); },
   /**
    * static var tile: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get tile(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 237156543988457, undefined, []); },
+  get tile(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 237156543988457, undefined, []); },
   /**
    * static var vertex: MTLStages { get }
    * @availability iOS 26.0+
    */
-  get vertex(): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 770213844065666, undefined, []); },
+  get vertex(): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 770213844065666, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): MTLStages { return callSDK<MTLStages>("Metal_e11dfd5beee01da3", 2494495415591155, undefined, [rawValue]); }
+  init(rawValue: number): MTLStages { return callSDK<MTLStages>("Metal_3864e7f38681b875", 2494495415591155, undefined, [rawValue]); }
 };
 
 /**
@@ -8933,43 +8933,43 @@ export const MTLStages = {
  */
 export class MTLStencilDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLStencilDescriptor { return callSDK<MTLStencilDescriptor>("Metal_e11dfd5beee01da3", 4376113080305585, undefined, []); }
+  static init(): MTLStencilDescriptor { return callSDK<MTLStencilDescriptor>("Metal_3864e7f38681b875", 4376113080305585, undefined, []); }
   /**
    * var depthFailureOperation: MTLStencilOperation { get set }
    * @availability iOS 8.0+
    */
-  get depthFailureOperation(): MTLStencilOperation { return callSDK<MTLStencilOperation>("Metal_e11dfd5beee01da3", 3679091033864317, this, []); }
-  set depthFailureOperation(value: MTLStencilOperation) { callSDK<void>("Metal_e11dfd5beee01da3", 4305098907719074, this, [value]); }
+  get depthFailureOperation(): MTLStencilOperation { return callSDK<MTLStencilOperation>("Metal_3864e7f38681b875", 3679091033864317, this, []); }
+  set depthFailureOperation(value: MTLStencilOperation) { callSDK<void>("Metal_3864e7f38681b875", 4305098907719074, this, [value]); }
   /**
    * var depthStencilPassOperation: MTLStencilOperation { get set }
    * @availability iOS 8.0+
    */
-  get depthStencilPassOperation(): MTLStencilOperation { return callSDK<MTLStencilOperation>("Metal_e11dfd5beee01da3", 2813675251620503, this, []); }
-  set depthStencilPassOperation(value: MTLStencilOperation) { callSDK<void>("Metal_e11dfd5beee01da3", 4441577834723754, this, [value]); }
+  get depthStencilPassOperation(): MTLStencilOperation { return callSDK<MTLStencilOperation>("Metal_3864e7f38681b875", 2813675251620503, this, []); }
+  set depthStencilPassOperation(value: MTLStencilOperation) { callSDK<void>("Metal_3864e7f38681b875", 4441577834723754, this, [value]); }
   /**
    * var readMask: UInt32 { get set }
    * @availability iOS 8.0+
    */
-  get readMask(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 107825435823892, this, []); }
-  set readMask(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3777928340741110, this, [value]); }
+  get readMask(): number { return callSDK<number>("Metal_3864e7f38681b875", 107825435823892, this, []); }
+  set readMask(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3777928340741110, this, [value]); }
   /**
    * var stencilCompareFunction: MTLCompareFunction { get set }
    * @availability iOS 8.0+
    */
-  get stencilCompareFunction(): MTLCompareFunction { return callSDK<MTLCompareFunction>("Metal_e11dfd5beee01da3", 3776090721417228, this, []); }
-  set stencilCompareFunction(value: MTLCompareFunction) { callSDK<void>("Metal_e11dfd5beee01da3", 2810171339092631, this, [value]); }
+  get stencilCompareFunction(): MTLCompareFunction { return callSDK<MTLCompareFunction>("Metal_3864e7f38681b875", 3776090721417228, this, []); }
+  set stencilCompareFunction(value: MTLCompareFunction) { callSDK<void>("Metal_3864e7f38681b875", 2810171339092631, this, [value]); }
   /**
    * var stencilFailureOperation: MTLStencilOperation { get set }
    * @availability iOS 8.0+
    */
-  get stencilFailureOperation(): MTLStencilOperation { return callSDK<MTLStencilOperation>("Metal_e11dfd5beee01da3", 606074270808743, this, []); }
-  set stencilFailureOperation(value: MTLStencilOperation) { callSDK<void>("Metal_e11dfd5beee01da3", 3926163989871278, this, [value]); }
+  get stencilFailureOperation(): MTLStencilOperation { return callSDK<MTLStencilOperation>("Metal_3864e7f38681b875", 606074270808743, this, []); }
+  set stencilFailureOperation(value: MTLStencilOperation) { callSDK<void>("Metal_3864e7f38681b875", 3926163989871278, this, [value]); }
   /**
    * var writeMask: UInt32 { get set }
    * @availability iOS 8.0+
    */
-  get writeMask(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3499632388481967, this, []); }
-  set writeMask(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2185294974190230, this, [value]); }
+  get writeMask(): number { return callSDK<number>("Metal_3864e7f38681b875", 3499632388481967, this, []); }
+  set writeMask(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2185294974190230, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLStencilDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "depthFailureOperation": true; "depthStencilPassOperation": true; "readMask": true; "stencilCompareFunction": true; "stencilFailureOperation": true; "writeMask": true };
 }
@@ -8985,7 +8985,7 @@ export const MTLStencilOperation = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLStencilOperation) | null { return callSDK<(MTLStencilOperation) | null>("Metal_e11dfd5beee01da3", 4126202138520956, undefined, [rawValue]); }
+  init(rawValue: number): (MTLStencilOperation) | null { return callSDK<(MTLStencilOperation) | null>("Metal_3864e7f38681b875", 4126202138520956, undefined, [rawValue]); }
 };
 
 /**
@@ -8999,7 +8999,7 @@ export const MTLStepFunction = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MTLStepFunction) | null { return callSDK<(MTLStepFunction) | null>("Metal_e11dfd5beee01da3", 3206552330085319, undefined, [rawValue]); }
+  init(rawValue: number): (MTLStepFunction) | null { return callSDK<(MTLStepFunction) | null>("Metal_3864e7f38681b875", 3206552330085319, undefined, [rawValue]); }
 };
 
 /**
@@ -9008,31 +9008,31 @@ export const MTLStepFunction = {
  */
 export class MTLStitchedLibraryDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLStitchedLibraryDescriptor { return callSDK<MTLStitchedLibraryDescriptor>("Metal_e11dfd5beee01da3", 359554834962874, undefined, []); }
+  static init(): MTLStitchedLibraryDescriptor { return callSDK<MTLStitchedLibraryDescriptor>("Metal_3864e7f38681b875", 359554834962874, undefined, []); }
   /**
    * var binaryArchives: [any MTLBinaryArchive] { get set }
    * @availability iOS 18.0+
    */
-  get binaryArchives(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 2747841927005431, this, []); }
-  set binaryArchives(value: Array<SDKHandle>) { callSDK<void>("Metal_e11dfd5beee01da3", 1513134587124362, this, [value]); }
+  get binaryArchives(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 2747841927005431, this, []); }
+  set binaryArchives(value: Array<SDKHandle>) { callSDK<void>("Metal_3864e7f38681b875", 1513134587124362, this, [value]); }
   /**
    * var functionGraphs: [MTLFunctionStitchingGraph] { get set }
    * @availability iOS 15.0+
    */
-  get functionGraphs(): $SDK45 { return callSDK<$SDK45>("Metal_e11dfd5beee01da3", 547760131251431, this, []); }
-  set functionGraphs(value: $SDK45) { callSDK<void>("Metal_e11dfd5beee01da3", 2772686173447580, this, [value]); }
+  get functionGraphs(): $SDK45 { return callSDK<$SDK45>("Metal_3864e7f38681b875", 547760131251431, this, []); }
+  set functionGraphs(value: $SDK45) { callSDK<void>("Metal_3864e7f38681b875", 2772686173447580, this, [value]); }
   /**
    * var functions: [any MTLFunction] { get set }
    * @availability iOS 15.0+
    */
-  get functions(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 2084508402707788, this, []); }
-  set functions(value: Array<SDKHandle>) { callSDK<void>("Metal_e11dfd5beee01da3", 1562823626575981, this, [value]); }
+  get functions(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 2084508402707788, this, []); }
+  set functions(value: Array<SDKHandle>) { callSDK<void>("Metal_3864e7f38681b875", 1562823626575981, this, [value]); }
   /**
    * var options: MTLStitchedLibraryOptions { get set }
    * @availability iOS 18.0+
    */
-  get options(): MTLStitchedLibraryOptions { return callSDK<MTLStitchedLibraryOptions>("Metal_e11dfd5beee01da3", 2667193856883646, this, []); }
-  set options(value: MTLStitchedLibraryOptions) { callSDK<void>("Metal_e11dfd5beee01da3", 116455222087409, this, [value]); }
+  get options(): MTLStitchedLibraryOptions { return callSDK<MTLStitchedLibraryOptions>("Metal_3864e7f38681b875", 2667193856883646, this, []); }
+  set options(value: MTLStitchedLibraryOptions) { callSDK<void>("Metal_3864e7f38681b875", 116455222087409, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLStitchedLibraryDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "binaryArchives": true; "functionGraphs": true; "functions": true; "options": true };
 }
@@ -9048,17 +9048,17 @@ export const MTLStitchedLibraryOptions = {
    * static var failOnBinaryArchiveMiss: MTLStitchedLibraryOptions { get }
    * @availability iOS 18.0+
    */
-  get failOnBinaryArchiveMiss(): MTLStitchedLibraryOptions { return callSDK<MTLStitchedLibraryOptions>("Metal_e11dfd5beee01da3", 1824259425089406, undefined, []); },
+  get failOnBinaryArchiveMiss(): MTLStitchedLibraryOptions { return callSDK<MTLStitchedLibraryOptions>("Metal_3864e7f38681b875", 1824259425089406, undefined, []); },
   /**
    * static var storeLibraryInMetalPipelinesScript: MTLStitchedLibraryOptions { get }
    * @availability iOS 18.0+
    */
-  get storeLibraryInMetalPipelinesScript(): MTLStitchedLibraryOptions { return callSDK<MTLStitchedLibraryOptions>("Metal_e11dfd5beee01da3", 3454225704468957, undefined, []); },
+  get storeLibraryInMetalPipelinesScript(): MTLStitchedLibraryOptions { return callSDK<MTLStitchedLibraryOptions>("Metal_3864e7f38681b875", 3454225704468957, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): MTLStitchedLibraryOptions { return callSDK<MTLStitchedLibraryOptions>("Metal_e11dfd5beee01da3", 2047752618196788, undefined, [rawValue]); }
+  init(rawValue: number): MTLStitchedLibraryOptions { return callSDK<MTLStitchedLibraryOptions>("Metal_3864e7f38681b875", 2047752618196788, undefined, [rawValue]); }
 };
 
 /**
@@ -9072,7 +9072,7 @@ export const MTLStorageMode = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (MTLStorageMode) | null { return callSDK<(MTLStorageMode) | null>("Metal_e11dfd5beee01da3", 2459518349532167, undefined, [rawValue]); }
+  init(rawValue: number): (MTLStorageMode) | null { return callSDK<(MTLStorageMode) | null>("Metal_3864e7f38681b875", 2459518349532167, undefined, [rawValue]); }
 };
 
 /**
@@ -9086,7 +9086,7 @@ export const MTLStoreAction = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLStoreAction) | null { return callSDK<(MTLStoreAction) | null>("Metal_e11dfd5beee01da3", 2240959929923573, undefined, [rawValue]); }
+  init(rawValue: number): (MTLStoreAction) | null { return callSDK<(MTLStoreAction) | null>("Metal_3864e7f38681b875", 2240959929923573, undefined, [rawValue]); }
 };
 
 /**
@@ -9102,13 +9102,13 @@ export const MTLStoreActionOptions = {
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  get customSamplePositions(): MTLStoreActionOptions { return callSDK<MTLStoreActionOptions>("Metal_e11dfd5beee01da3", 184188442963457, undefined, []); },
+  get customSamplePositions(): MTLStoreActionOptions { return callSDK<MTLStoreActionOptions>("Metal_3864e7f38681b875", 184188442963457, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): MTLStoreActionOptions { return callSDK<MTLStoreActionOptions>("Metal_e11dfd5beee01da3", 1161280091005232, undefined, [rawValue]); }
+  init(rawValue: number): MTLStoreActionOptions { return callSDK<MTLStoreActionOptions>("Metal_3864e7f38681b875", 1161280091005232, undefined, [rawValue]); }
 };
 
 /**
@@ -9120,44 +9120,44 @@ export class MTLStructMember extends SDKHandle {
    * func arrayType() -> MTLArrayType?
    * @availability iOS 8.0+
    */
-  arrayType(): (MTLArrayType) | null { return callSDK<(MTLArrayType) | null>("Metal_e11dfd5beee01da3", 2408521684653218, this, []); }
+  arrayType(): (MTLArrayType) | null { return callSDK<(MTLArrayType) | null>("Metal_3864e7f38681b875", 2408521684653218, this, []); }
   /** init() */
-  static init(): MTLStructMember { return callSDK<MTLStructMember>("Metal_e11dfd5beee01da3", 1612741165975760, undefined, []); }
+  static init(): MTLStructMember { return callSDK<MTLStructMember>("Metal_3864e7f38681b875", 1612741165975760, undefined, []); }
   /**
    * func pointerType() -> MTLPointerType?
    * @availability iOS 11.0+
    */
-  pointerType(): (MTLPointerType) | null { return callSDK<(MTLPointerType) | null>("Metal_e11dfd5beee01da3", 2910704462832258, this, []); }
+  pointerType(): (MTLPointerType) | null { return callSDK<(MTLPointerType) | null>("Metal_3864e7f38681b875", 2910704462832258, this, []); }
   /**
    * func structType() -> MTLStructType?
    * @availability iOS 8.0+
    */
-  structType(): (MTLStructType) | null { return callSDK<(MTLStructType) | null>("Metal_e11dfd5beee01da3", 3452232929326939, this, []); }
+  structType(): (MTLStructType) | null { return callSDK<(MTLStructType) | null>("Metal_3864e7f38681b875", 3452232929326939, this, []); }
   /**
    * func textureReferenceType() -> MTLTextureReferenceType?
    * @availability iOS 11.0+
    */
-  textureReferenceType(): $SDK2 { return callSDK<$SDK2>("Metal_e11dfd5beee01da3", 281401219971429, this, []); }
+  textureReferenceType(): $SDK2 { return callSDK<$SDK2>("Metal_3864e7f38681b875", 281401219971429, this, []); }
   /**
    * var argumentIndex: Int { get }
    * @availability iOS 11.0+
    */
-  get argumentIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 910651809693871, this, []); }
+  get argumentIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 910651809693871, this, []); }
   /**
    * var dataType: MTLDataType { get }
    * @availability iOS 8.0+
    */
-  get dataType(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 538770832354797, this, []); }
+  get dataType(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 538770832354797, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 2869888776802207, this, []); }
+  get name(): string { return callSDK<string>("Metal_3864e7f38681b875", 2869888776802207, this, []); }
   /**
    * var offset: Int { get }
    * @availability iOS 8.0+
    */
-  get offset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2062105171779888, this, []); }
+  get offset(): number { return callSDK<number>("Metal_3864e7f38681b875", 2062105171779888, this, []); }
   declare readonly $type: { "c:objc(cs)MTLStructMember": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "argumentIndex": true; "dataType": true; "name": true; "offset": true };
 }
@@ -9168,17 +9168,17 @@ export class MTLStructMember extends SDKHandle {
  */
 export class MTLStructType extends (MTLType as unknown as Omit<typeof MTLType, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLType)) {
   /** init() */
-  static init(): MTLStructType { return callSDK<MTLStructType>("Metal_e11dfd5beee01da3", 100813838142936, undefined, []); }
+  static init(): MTLStructType { return callSDK<MTLStructType>("Metal_3864e7f38681b875", 100813838142936, undefined, []); }
   /**
    * func memberByName(_ name: String) -> MTLStructMember?
    * @availability iOS 8.0+
    */
-  memberByName(name: string): (MTLStructMember) | null { return callSDK<(MTLStructMember) | null>("Metal_e11dfd5beee01da3", 2396613825464775, this, [name]); }
+  memberByName(name: string): (MTLStructMember) | null { return callSDK<(MTLStructMember) | null>("Metal_3864e7f38681b875", 2396613825464775, this, [name]); }
   /**
    * var members: [MTLStructMember] { get }
    * @availability iOS 8.0+
    */
-  get members(): Array<MTLStructMember> { return callSDK<Array<MTLStructMember>>("Metal_e11dfd5beee01da3", 2407506571840267, this, []); }
+  get members(): Array<MTLStructMember> { return callSDK<Array<MTLStructMember>>("Metal_3864e7f38681b875", 2407506571840267, this, []); }
   declare readonly $type: { "c:objc(cs)MTLStructType": true; "c:objc(cs)MTLType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true; "members": true };
 }
@@ -9194,7 +9194,7 @@ export const MTLTessellationControlPointIndexType = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MTLTessellationControlPointIndexType) | null { return callSDK<(MTLTessellationControlPointIndexType) | null>("Metal_e11dfd5beee01da3", 4236130460456020, undefined, [rawValue]); }
+  init(rawValue: number): (MTLTessellationControlPointIndexType) | null { return callSDK<(MTLTessellationControlPointIndexType) | null>("Metal_3864e7f38681b875", 4236130460456020, undefined, [rawValue]); }
 };
 
 /**
@@ -9208,7 +9208,7 @@ export const MTLTessellationFactorFormat = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MTLTessellationFactorFormat) | null { return callSDK<(MTLTessellationFactorFormat) | null>("Metal_e11dfd5beee01da3", 1148263387925933, undefined, [rawValue]); }
+  init(rawValue: number): (MTLTessellationFactorFormat) | null { return callSDK<(MTLTessellationFactorFormat) | null>("Metal_3864e7f38681b875", 1148263387925933, undefined, [rawValue]); }
 };
 
 /**
@@ -9222,7 +9222,7 @@ export const MTLTessellationFactorStepFunction = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MTLTessellationFactorStepFunction) | null { return callSDK<(MTLTessellationFactorStepFunction) | null>("Metal_e11dfd5beee01da3", 1758776560122474, undefined, [rawValue]); }
+  init(rawValue: number): (MTLTessellationFactorStepFunction) | null { return callSDK<(MTLTessellationFactorStepFunction) | null>("Metal_3864e7f38681b875", 1758776560122474, undefined, [rawValue]); }
 };
 
 /**
@@ -9236,7 +9236,7 @@ export const MTLTessellationPartitionMode = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MTLTessellationPartitionMode) | null { return callSDK<(MTLTessellationPartitionMode) | null>("Metal_e11dfd5beee01da3", 3666407034106200, undefined, [rawValue]); }
+  init(rawValue: number): (MTLTessellationPartitionMode) | null { return callSDK<(MTLTessellationPartitionMode) | null>("Metal_3864e7f38681b875", 3666407034106200, undefined, [rawValue]); }
 };
 
 /**
@@ -9305,7 +9305,7 @@ export const MTLTextureCompressionType = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (MTLTextureCompressionType) | null { return callSDK<(MTLTextureCompressionType) | null>("Metal_e11dfd5beee01da3", 588039001567063, undefined, [rawValue]); }
+  init(rawValue: number): (MTLTextureCompressionType) | null { return callSDK<(MTLTextureCompressionType) | null>("Metal_3864e7f38681b875", 588039001567063, undefined, [rawValue]); }
 };
 
 /**
@@ -9317,115 +9317,115 @@ export class MTLTextureDescriptor extends SDKHandle {
    * class func texture2DDescriptor(pixelFormat: MTLPixelFormat, width: Int, height: Int, mipmapped: Bool) -> MTLTextureDescriptor
    * @availability iOS 8.0+
    */
-  static texture2DDescriptor(pixelFormat: MTLPixelFormat, width: number, height: number, mipmapped: boolean): MTLTextureDescriptor { return callSDK<MTLTextureDescriptor>("Metal_e11dfd5beee01da3", 846518943838688, undefined, [pixelFormat, width, height, mipmapped]); }
+  static texture2DDescriptor(pixelFormat: MTLPixelFormat, width: number, height: number, mipmapped: boolean): MTLTextureDescriptor { return callSDK<MTLTextureDescriptor>("Metal_3864e7f38681b875", 846518943838688, undefined, [pixelFormat, width, height, mipmapped]); }
   /**
    * class func textureBufferDescriptor(with pixelFormat: MTLPixelFormat, width: Int, resourceOptions: MTLResourceOptions = [], usage: MTLTextureUsage) -> MTLTextureDescriptor
    * @availability iOS 12.0+
    */
-  static textureBufferDescriptor(pixelFormat: MTLPixelFormat, width: number, resourceOptions: MTLResourceOptions, usage: MTLTextureUsage): MTLTextureDescriptor { return callSDK<MTLTextureDescriptor>("Metal_e11dfd5beee01da3", 2909137852631226, undefined, [pixelFormat, width, resourceOptions, usage]); }
+  static textureBufferDescriptor(pixelFormat: MTLPixelFormat, width: number, resourceOptions: MTLResourceOptions, usage: MTLTextureUsage): MTLTextureDescriptor { return callSDK<MTLTextureDescriptor>("Metal_3864e7f38681b875", 2909137852631226, undefined, [pixelFormat, width, resourceOptions, usage]); }
   /**
    * class func textureCubeDescriptor(pixelFormat: MTLPixelFormat, size: Int, mipmapped: Bool) -> MTLTextureDescriptor
    * @availability iOS 8.0+
    */
-  static textureCubeDescriptor(pixelFormat: MTLPixelFormat, size: number, mipmapped: boolean): MTLTextureDescriptor { return callSDK<MTLTextureDescriptor>("Metal_e11dfd5beee01da3", 3713440280610204, undefined, [pixelFormat, size, mipmapped]); }
+  static textureCubeDescriptor(pixelFormat: MTLPixelFormat, size: number, mipmapped: boolean): MTLTextureDescriptor { return callSDK<MTLTextureDescriptor>("Metal_3864e7f38681b875", 3713440280610204, undefined, [pixelFormat, size, mipmapped]); }
   /** init() */
-  static init(): MTLTextureDescriptor { return callSDK<MTLTextureDescriptor>("Metal_e11dfd5beee01da3", 3111634496022400, undefined, []); }
+  static init(): MTLTextureDescriptor { return callSDK<MTLTextureDescriptor>("Metal_3864e7f38681b875", 3111634496022400, undefined, []); }
   /**
    * var allowGPUOptimizedContents: Bool { get set }
    * @availability iOS 12.0+
    */
-  get allowGPUOptimizedContents(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 520041992937408, this, []); }
-  set allowGPUOptimizedContents(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 4433610188361304, this, [value]); }
+  get allowGPUOptimizedContents(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 520041992937408, this, []); }
+  set allowGPUOptimizedContents(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 4433610188361304, this, [value]); }
   /**
    * var arrayLength: Int { get set }
    * @availability iOS 8.0+
    */
-  get arrayLength(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 185304293923531, this, []); }
-  set arrayLength(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2047762420907094, this, [value]); }
+  get arrayLength(): number { return callSDK<number>("Metal_3864e7f38681b875", 185304293923531, this, []); }
+  set arrayLength(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2047762420907094, this, [value]); }
   /**
    * var compressionType: MTLTextureCompressionType { get set }
    * @availability iOS 15.0+
    */
-  get compressionType(): MTLTextureCompressionType { return callSDK<MTLTextureCompressionType>("Metal_e11dfd5beee01da3", 1131984010503118, this, []); }
-  set compressionType(value: MTLTextureCompressionType) { callSDK<void>("Metal_e11dfd5beee01da3", 871906461711455, this, [value]); }
+  get compressionType(): MTLTextureCompressionType { return callSDK<MTLTextureCompressionType>("Metal_3864e7f38681b875", 1131984010503118, this, []); }
+  set compressionType(value: MTLTextureCompressionType) { callSDK<void>("Metal_3864e7f38681b875", 871906461711455, this, [value]); }
   /**
    * var cpuCacheMode: MTLCPUCacheMode { get set }
    * @availability iOS 9.0+
    */
-  get cpuCacheMode(): MTLCPUCacheMode { return callSDK<MTLCPUCacheMode>("Metal_e11dfd5beee01da3", 2346716473443993, this, []); }
-  set cpuCacheMode(value: MTLCPUCacheMode) { callSDK<void>("Metal_e11dfd5beee01da3", 2793808444005779, this, [value]); }
+  get cpuCacheMode(): MTLCPUCacheMode { return callSDK<MTLCPUCacheMode>("Metal_3864e7f38681b875", 2346716473443993, this, []); }
+  set cpuCacheMode(value: MTLCPUCacheMode) { callSDK<void>("Metal_3864e7f38681b875", 2793808444005779, this, [value]); }
   /**
    * var depth: Int { get set }
    * @availability iOS 8.0+
    */
-  get depth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2957535864228603, this, []); }
-  set depth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2666550992464988, this, [value]); }
+  get depth(): number { return callSDK<number>("Metal_3864e7f38681b875", 2957535864228603, this, []); }
+  set depth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2666550992464988, this, [value]); }
   /**
    * var hazardTrackingMode: MTLHazardTrackingMode { get set }
    * @availability iOS 13.0+
    */
-  get hazardTrackingMode(): MTLHazardTrackingMode { return callSDK<MTLHazardTrackingMode>("Metal_e11dfd5beee01da3", 1557276298427710, this, []); }
-  set hazardTrackingMode(value: MTLHazardTrackingMode) { callSDK<void>("Metal_e11dfd5beee01da3", 13243113147953, this, [value]); }
+  get hazardTrackingMode(): MTLHazardTrackingMode { return callSDK<MTLHazardTrackingMode>("Metal_3864e7f38681b875", 1557276298427710, this, []); }
+  set hazardTrackingMode(value: MTLHazardTrackingMode) { callSDK<void>("Metal_3864e7f38681b875", 13243113147953, this, [value]); }
   /**
    * var height: Int { get set }
    * @availability iOS 8.0+
    */
-  get height(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 554235166174695, this, []); }
-  set height(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 957813059582322, this, [value]); }
+  get height(): number { return callSDK<number>("Metal_3864e7f38681b875", 554235166174695, this, []); }
+  set height(value: number) { callSDK<void>("Metal_3864e7f38681b875", 957813059582322, this, [value]); }
   /**
    * var mipmapLevelCount: Int { get set }
    * @availability iOS 8.0+
    */
-  get mipmapLevelCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 4083666717841578, this, []); }
-  set mipmapLevelCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3119593150134215, this, [value]); }
+  get mipmapLevelCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 4083666717841578, this, []); }
+  set mipmapLevelCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3119593150134215, this, [value]); }
   /**
    * var pixelFormat: MTLPixelFormat { get set }
    * @availability iOS 8.0+
    */
-  get pixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_e11dfd5beee01da3", 1874272870347785, this, []); }
-  set pixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 1411263056123817, this, [value]); }
+  get pixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_3864e7f38681b875", 1874272870347785, this, []); }
+  set pixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_3864e7f38681b875", 1411263056123817, this, [value]); }
   /**
    * var resourceOptions: MTLResourceOptions { get set }
    * @availability iOS 8.0+
    */
-  get resourceOptions(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_e11dfd5beee01da3", 2470636116349906, this, []); }
-  set resourceOptions(value: MTLResourceOptions) { callSDK<void>("Metal_e11dfd5beee01da3", 3087561328146291, this, [value]); }
+  get resourceOptions(): MTLResourceOptions { return callSDK<MTLResourceOptions>("Metal_3864e7f38681b875", 2470636116349906, this, []); }
+  set resourceOptions(value: MTLResourceOptions) { callSDK<void>("Metal_3864e7f38681b875", 3087561328146291, this, [value]); }
   /**
    * var sampleCount: Int { get set }
    * @availability iOS 8.0+
    */
-  get sampleCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2013160000209246, this, []); }
-  set sampleCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3920149406875451, this, [value]); }
+  get sampleCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 2013160000209246, this, []); }
+  set sampleCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3920149406875451, this, [value]); }
   /**
    * var storageMode: MTLStorageMode { get set }
    * @availability iOS 9.0+
    */
-  get storageMode(): MTLStorageMode { return callSDK<MTLStorageMode>("Metal_e11dfd5beee01da3", 3843406378959440, this, []); }
-  set storageMode(value: MTLStorageMode) { callSDK<void>("Metal_e11dfd5beee01da3", 2147039345659281, this, [value]); }
+  get storageMode(): MTLStorageMode { return callSDK<MTLStorageMode>("Metal_3864e7f38681b875", 3843406378959440, this, []); }
+  set storageMode(value: MTLStorageMode) { callSDK<void>("Metal_3864e7f38681b875", 2147039345659281, this, [value]); }
   /**
    * var swizzle: MTLTextureSwizzleChannels { get set }
    * @availability iOS 13.0+
    */
-  get swizzle(): MTLTextureSwizzleChannels { return callSDK<MTLTextureSwizzleChannels>("Metal_e11dfd5beee01da3", 1565263054594941, this, []); }
-  set swizzle(value: MTLTextureSwizzleChannels) { callSDK<void>("Metal_e11dfd5beee01da3", 2784840064650545, this, [value]); }
+  get swizzle(): MTLTextureSwizzleChannels { return callSDK<MTLTextureSwizzleChannels>("Metal_3864e7f38681b875", 1565263054594941, this, []); }
+  set swizzle(value: MTLTextureSwizzleChannels) { callSDK<void>("Metal_3864e7f38681b875", 2784840064650545, this, [value]); }
   /**
    * var textureType: MTLTextureType { get set }
    * @availability iOS 8.0+
    */
-  get textureType(): MTLTextureType { return callSDK<MTLTextureType>("Metal_e11dfd5beee01da3", 1957474272194747, this, []); }
-  set textureType(value: MTLTextureType) { callSDK<void>("Metal_e11dfd5beee01da3", 3311986904354625, this, [value]); }
+  get textureType(): MTLTextureType { return callSDK<MTLTextureType>("Metal_3864e7f38681b875", 1957474272194747, this, []); }
+  set textureType(value: MTLTextureType) { callSDK<void>("Metal_3864e7f38681b875", 3311986904354625, this, [value]); }
   /**
    * var usage: MTLTextureUsage { get set }
    * @availability iOS 9.0+
    */
-  get usage(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_e11dfd5beee01da3", 1556933544587225, this, []); }
-  set usage(value: MTLTextureUsage) { callSDK<void>("Metal_e11dfd5beee01da3", 340387093872159, this, [value]); }
+  get usage(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_3864e7f38681b875", 1556933544587225, this, []); }
+  set usage(value: MTLTextureUsage) { callSDK<void>("Metal_3864e7f38681b875", 340387093872159, this, [value]); }
   /**
    * var width: Int { get set }
    * @availability iOS 8.0+
    */
-  get width(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2613201166655880, this, []); }
-  set width(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 790805138060418, this, [value]); }
+  get width(): number { return callSDK<number>("Metal_3864e7f38681b875", 2613201166655880, this, []); }
+  set width(value: number) { callSDK<void>("Metal_3864e7f38681b875", 790805138060418, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLTextureDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowGPUOptimizedContents": true; "arrayLength": true; "compressionType": true; "cpuCacheMode": true; "depth": true; "hazardTrackingMode": true; "height": true; "mipmapLevelCount": true; "pixelFormat": true; "resourceOptions": true; "sampleCount": true; "storageMode": true; "swizzle": true; "textureType": true; "usage": true; "width": true };
 }
@@ -9436,27 +9436,27 @@ export class MTLTextureDescriptor extends SDKHandle {
  */
 export class MTLTextureReferenceType extends (MTLType as unknown as Omit<typeof MTLType, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLType)) {
   /** init() */
-  static init(): MTLTextureReferenceType { return callSDK<MTLTextureReferenceType>("Metal_e11dfd5beee01da3", 1099810328204848, undefined, []); }
+  static init(): MTLTextureReferenceType { return callSDK<MTLTextureReferenceType>("Metal_3864e7f38681b875", 1099810328204848, undefined, []); }
   /**
    * var access: MTLBindingAccess { get }
    * @availability iOS 11.0+
    */
-  get access(): MTLBindingAccess { return callSDK<MTLBindingAccess>("Metal_e11dfd5beee01da3", 4324318537779340, this, []); }
+  get access(): MTLBindingAccess { return callSDK<MTLBindingAccess>("Metal_3864e7f38681b875", 4324318537779340, this, []); }
   /**
    * var isDepthTexture: Bool { get }
    * @availability iOS 11.0+
    */
-  get isDepthTexture(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 1042989356388243, this, []); }
+  get isDepthTexture(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 1042989356388243, this, []); }
   /**
    * var textureDataType: MTLDataType { get }
    * @availability iOS 11.0+
    */
-  get textureDataType(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 2121057914196735, this, []); }
+  get textureDataType(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 2121057914196735, this, []); }
   /**
    * var textureType: MTLTextureType { get }
    * @availability iOS 11.0+
    */
-  get textureType(): MTLTextureType { return callSDK<MTLTextureType>("Metal_e11dfd5beee01da3", 3313066676252209, this, []); }
+  get textureType(): MTLTextureType { return callSDK<MTLTextureType>("Metal_3864e7f38681b875", 3313066676252209, this, []); }
   declare readonly $type: { "c:objc(cs)MTLTextureReferenceType": true; "c:objc(cs)MTLType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true; "access": true; "isDepthTexture": true; "textureDataType": true; "textureType": true };
 }
@@ -9472,7 +9472,7 @@ export const MTLTextureSwizzle = {
    * init?(rawValue: UInt8)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (MTLTextureSwizzle) | null { return callSDK<(MTLTextureSwizzle) | null>("Metal_e11dfd5beee01da3", 3512623738142496, undefined, [rawValue]); }
+  init(rawValue: number): (MTLTextureSwizzle) | null { return callSDK<(MTLTextureSwizzle) | null>("Metal_3864e7f38681b875", 3512623738142496, undefined, [rawValue]); }
 };
 
 /**
@@ -9484,36 +9484,36 @@ export class MTLTextureSwizzleChannels extends SDKHandle {
    * var alpha: MTLTextureSwizzle
    * @availability iOS 13.0+
    */
-  get alpha(): MTLTextureSwizzle { return callSDK<MTLTextureSwizzle>("Metal_e11dfd5beee01da3", 2539448519205212, this, []); }
-  set alpha(value: MTLTextureSwizzle) { callSDK<void>("Metal_e11dfd5beee01da3", 4041686397371628, this, [value]); }
+  get alpha(): MTLTextureSwizzle { return callSDK<MTLTextureSwizzle>("Metal_3864e7f38681b875", 2539448519205212, this, []); }
+  set alpha(value: MTLTextureSwizzle) { callSDK<void>("Metal_3864e7f38681b875", 4041686397371628, this, [value]); }
   /**
    * var blue: MTLTextureSwizzle
    * @availability iOS 13.0+
    */
-  get blue(): MTLTextureSwizzle { return callSDK<MTLTextureSwizzle>("Metal_e11dfd5beee01da3", 2191232569169014, this, []); }
-  set blue(value: MTLTextureSwizzle) { callSDK<void>("Metal_e11dfd5beee01da3", 949884107465644, this, [value]); }
+  get blue(): MTLTextureSwizzle { return callSDK<MTLTextureSwizzle>("Metal_3864e7f38681b875", 2191232569169014, this, []); }
+  set blue(value: MTLTextureSwizzle) { callSDK<void>("Metal_3864e7f38681b875", 949884107465644, this, [value]); }
   /**
    * var green: MTLTextureSwizzle
    * @availability iOS 13.0+
    */
-  get green(): MTLTextureSwizzle { return callSDK<MTLTextureSwizzle>("Metal_e11dfd5beee01da3", 39397208231467, this, []); }
-  set green(value: MTLTextureSwizzle) { callSDK<void>("Metal_e11dfd5beee01da3", 362236769454236, this, [value]); }
+  get green(): MTLTextureSwizzle { return callSDK<MTLTextureSwizzle>("Metal_3864e7f38681b875", 39397208231467, this, []); }
+  set green(value: MTLTextureSwizzle) { callSDK<void>("Metal_3864e7f38681b875", 362236769454236, this, [value]); }
   /**
    * var red: MTLTextureSwizzle
    * @availability iOS 13.0+
    */
-  get red(): MTLTextureSwizzle { return callSDK<MTLTextureSwizzle>("Metal_e11dfd5beee01da3", 3032699096210909, this, []); }
-  set red(value: MTLTextureSwizzle) { callSDK<void>("Metal_e11dfd5beee01da3", 249145840216840, this, [value]); }
+  get red(): MTLTextureSwizzle { return callSDK<MTLTextureSwizzle>("Metal_3864e7f38681b875", 3032699096210909, this, []); }
+  set red(value: MTLTextureSwizzle) { callSDK<void>("Metal_3864e7f38681b875", 249145840216840, this, [value]); }
   /**
    * init(red: MTLTextureSwizzle, green: MTLTextureSwizzle, blue: MTLTextureSwizzle, alpha: MTLTextureSwizzle)
    * @availability iOS 13.0+
    */
-  static initRedGreenBlueAlpha(red: MTLTextureSwizzle, green: MTLTextureSwizzle, blue: MTLTextureSwizzle, alpha: MTLTextureSwizzle): MTLTextureSwizzleChannels { return callSDK<MTLTextureSwizzleChannels>("Metal_e11dfd5beee01da3", 4036207164884675, undefined, [red, green, blue, alpha]); }
+  static initRedGreenBlueAlpha(red: MTLTextureSwizzle, green: MTLTextureSwizzle, blue: MTLTextureSwizzle, alpha: MTLTextureSwizzle): MTLTextureSwizzleChannels { return callSDK<MTLTextureSwizzleChannels>("Metal_3864e7f38681b875", 4036207164884675, undefined, [red, green, blue, alpha]); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): MTLTextureSwizzleChannels { return callSDK<MTLTextureSwizzleChannels>("Metal_e11dfd5beee01da3", 2876993533363772, undefined, []); }
+  static init(): MTLTextureSwizzleChannels { return callSDK<MTLTextureSwizzleChannels>("Metal_3864e7f38681b875", 2876993533363772, undefined, []); }
   declare readonly $type: { "c:@SA@MTLTextureSwizzleChannels": true };
 }
 
@@ -9528,7 +9528,7 @@ export const MTLTextureType = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLTextureType) | null { return callSDK<(MTLTextureType) | null>("Metal_e11dfd5beee01da3", 1431905843700992, undefined, [rawValue]); }
+  init(rawValue: number): (MTLTextureType) | null { return callSDK<(MTLTextureType) | null>("Metal_3864e7f38681b875", 1431905843700992, undefined, [rawValue]); }
 };
 
 /**
@@ -9542,37 +9542,37 @@ export const MTLTextureUsage = {
    * static var pixelFormatView: MTLTextureUsage { get }
    * @availability iOS 9.0+
    */
-  get pixelFormatView(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_e11dfd5beee01da3", 3842169550444726, undefined, []); },
+  get pixelFormatView(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_3864e7f38681b875", 3842169550444726, undefined, []); },
   /**
    * static var renderTarget: MTLTextureUsage { get }
    * @availability iOS 9.0+
    */
-  get renderTarget(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_e11dfd5beee01da3", 2511927117918868, undefined, []); },
+  get renderTarget(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_3864e7f38681b875", 2511927117918868, undefined, []); },
   /**
    * static var shaderAtomic: MTLTextureUsage { get }
    * @availability iOS 17.0+
    */
-  get shaderAtomic(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_e11dfd5beee01da3", 622569813516862, undefined, []); },
+  get shaderAtomic(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_3864e7f38681b875", 622569813516862, undefined, []); },
   /**
    * static var shaderRead: MTLTextureUsage { get }
    * @availability iOS 9.0+
    */
-  get shaderRead(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_e11dfd5beee01da3", 3607355741827440, undefined, []); },
+  get shaderRead(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_3864e7f38681b875", 3607355741827440, undefined, []); },
   /**
    * static var shaderWrite: MTLTextureUsage { get }
    * @availability iOS 9.0+
    */
-  get shaderWrite(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_e11dfd5beee01da3", 607697694711966, undefined, []); },
+  get shaderWrite(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_3864e7f38681b875", 607697694711966, undefined, []); },
   /**
    * static var unknown: MTLTextureUsage { get }
    * @availability iOS 9.0+
    */
-  get unknown(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_e11dfd5beee01da3", 1971207789453281, undefined, []); },
+  get unknown(): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_3864e7f38681b875", 1971207789453281, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_e11dfd5beee01da3", 2390430544165419, undefined, [rawValue]); }
+  init(rawValue: number): MTLTextureUsage { return callSDK<MTLTextureUsage>("Metal_3864e7f38681b875", 2390430544165419, undefined, [rawValue]); }
 };
 
 /**
@@ -9589,13 +9589,13 @@ export interface MTLThreadgroupBinding {
  */
 export class MTLTileRenderPipelineColorAttachmentDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLTileRenderPipelineColorAttachmentDescriptor { return callSDK<MTLTileRenderPipelineColorAttachmentDescriptor>("Metal_e11dfd5beee01da3", 1960471822221286, undefined, []); }
+  static init(): MTLTileRenderPipelineColorAttachmentDescriptor { return callSDK<MTLTileRenderPipelineColorAttachmentDescriptor>("Metal_3864e7f38681b875", 1960471822221286, undefined, []); }
   /**
    * var pixelFormat: MTLPixelFormat { get set }
    * @availability iOS 11.0+
    */
-  get pixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_e11dfd5beee01da3", 2934478021060256, this, []); }
-  set pixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 1094907416892759, this, [value]); }
+  get pixelFormat(): MTLPixelFormat { return callSDK<MTLPixelFormat>("Metal_3864e7f38681b875", 2934478021060256, this, []); }
+  set pixelFormat(value: MTLPixelFormat) { callSDK<void>("Metal_3864e7f38681b875", 1094907416892759, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLTileRenderPipelineColorAttachmentDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pixelFormat": true };
 }
@@ -9606,12 +9606,12 @@ export class MTLTileRenderPipelineColorAttachmentDescriptor extends SDKHandle {
  */
 export class MTLTileRenderPipelineColorAttachmentDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLTileRenderPipelineColorAttachmentDescriptorArray { return callSDK<MTLTileRenderPipelineColorAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 3635919554943746, undefined, []); }
+  static init(): MTLTileRenderPipelineColorAttachmentDescriptorArray { return callSDK<MTLTileRenderPipelineColorAttachmentDescriptorArray>("Metal_3864e7f38681b875", 3635919554943746, undefined, []); }
   /**
    * subscript(attachmentIndex: Int) -> MTLTileRenderPipelineColorAttachmentDescriptor { get set }
    * @availability iOS 11.0+
    */
-  subscript(attachmentIndex: number): MTLTileRenderPipelineColorAttachmentDescriptor { return callSDK<MTLTileRenderPipelineColorAttachmentDescriptor>("Metal_e11dfd5beee01da3", 3479126295249573, this, [attachmentIndex]); }
+  subscript(attachmentIndex: number): MTLTileRenderPipelineColorAttachmentDescriptor { return callSDK<MTLTileRenderPipelineColorAttachmentDescriptor>("Metal_3864e7f38681b875", 3479126295249573, this, [attachmentIndex]); }
   declare readonly $type: { "c:objc(cs)MTLTileRenderPipelineColorAttachmentDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -9621,88 +9621,88 @@ export class MTLTileRenderPipelineColorAttachmentDescriptorArray extends SDKHand
  */
 export class MTLTileRenderPipelineDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLTileRenderPipelineDescriptor { return callSDK<MTLTileRenderPipelineDescriptor>("Metal_e11dfd5beee01da3", 1110478992685347, undefined, []); }
+  static init(): MTLTileRenderPipelineDescriptor { return callSDK<MTLTileRenderPipelineDescriptor>("Metal_3864e7f38681b875", 1110478992685347, undefined, []); }
   /**
    * func reset()
    * @availability iOS 11.0+
    */
-  reset(): void { return callSDK<void>("Metal_e11dfd5beee01da3", 1359912124026977, this, []); }
+  reset(): void { return callSDK<void>("Metal_3864e7f38681b875", 1359912124026977, this, []); }
   /**
    * var binaryArchives: [any MTLBinaryArchive]? { get set }
    * @availability iOS 14.0+
    */
-  get binaryArchives(): $SDK7 { return callSDK<$SDK7>("Metal_e11dfd5beee01da3", 175253098182893, this, []); }
-  set binaryArchives(value: $SDK7) { callSDK<void>("Metal_e11dfd5beee01da3", 1604838940054790, this, [value]); }
+  get binaryArchives(): $SDK7 { return callSDK<$SDK7>("Metal_3864e7f38681b875", 175253098182893, this, []); }
+  set binaryArchives(value: $SDK7) { callSDK<void>("Metal_3864e7f38681b875", 1604838940054790, this, [value]); }
   /**
    * var colorAttachments: MTLTileRenderPipelineColorAttachmentDescriptorArray { get }
    * @availability iOS 11.0+
    */
-  get colorAttachments(): MTLTileRenderPipelineColorAttachmentDescriptorArray { return callSDK<MTLTileRenderPipelineColorAttachmentDescriptorArray>("Metal_e11dfd5beee01da3", 857302854559583, this, []); }
+  get colorAttachments(): MTLTileRenderPipelineColorAttachmentDescriptorArray { return callSDK<MTLTileRenderPipelineColorAttachmentDescriptorArray>("Metal_3864e7f38681b875", 857302854559583, this, []); }
   /**
    * var label: String? { get set }
    * @availability iOS 11.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Metal_e11dfd5beee01da3", 3053105004270809, this, []); }
-  set label(value: (string) | null) { callSDK<void>("Metal_e11dfd5beee01da3", 15064512528967, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("Metal_3864e7f38681b875", 3053105004270809, this, []); }
+  set label(value: (string) | null) { callSDK<void>("Metal_3864e7f38681b875", 15064512528967, this, [value]); }
   /**
    * @NSCopying var linkedFunctions: MTLLinkedFunctions! { get set }
    * @availability iOS 15.0+
    */
-  get linkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_e11dfd5beee01da3", 1131389406325563, this, []); }
-  set linkedFunctions(value: $SDK10) { callSDK<void>("Metal_e11dfd5beee01da3", 353841366759361, this, [value]); }
+  get linkedFunctions(): $SDK10 { return callSDK<$SDK10>("Metal_3864e7f38681b875", 1131389406325563, this, []); }
+  set linkedFunctions(value: $SDK10) { callSDK<void>("Metal_3864e7f38681b875", 353841366759361, this, [value]); }
   /**
    * var maxCallStackDepth: Int { get set }
    * @availability iOS 15.0+
    */
-  get maxCallStackDepth(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1165806679800076, this, []); }
-  set maxCallStackDepth(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 418124179688482, this, [value]); }
+  get maxCallStackDepth(): number { return callSDK<number>("Metal_3864e7f38681b875", 1165806679800076, this, []); }
+  set maxCallStackDepth(value: number) { callSDK<void>("Metal_3864e7f38681b875", 418124179688482, this, [value]); }
   /**
    * var maxTotalThreadsPerThreadgroup: Int { get set }
    * @availability iOS 12.0+
    */
-  get maxTotalThreadsPerThreadgroup(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2801471206672123, this, []); }
-  set maxTotalThreadsPerThreadgroup(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3786202194651053, this, [value]); }
+  get maxTotalThreadsPerThreadgroup(): number { return callSDK<number>("Metal_3864e7f38681b875", 2801471206672123, this, []); }
+  set maxTotalThreadsPerThreadgroup(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3786202194651053, this, [value]); }
   /**
    * var preloadedLibraries: [any MTLDynamicLibrary] { get set }
    * @availability iOS 15.0+
    */
-  get preloadedLibraries(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 884429622487809, this, []); }
-  set preloadedLibraries(value: Array<SDKHandle>) { callSDK<void>("Metal_e11dfd5beee01da3", 2390615814832063, this, [value]); }
+  get preloadedLibraries(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 884429622487809, this, []); }
+  set preloadedLibraries(value: Array<SDKHandle>) { callSDK<void>("Metal_3864e7f38681b875", 2390615814832063, this, [value]); }
   /**
    * var rasterSampleCount: Int { get set }
    * @availability iOS 11.0+
    */
-  get rasterSampleCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2486241678656924, this, []); }
-  set rasterSampleCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 212545719044458, this, [value]); }
+  get rasterSampleCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 2486241678656924, this, []); }
+  set rasterSampleCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 212545719044458, this, [value]); }
   /**
    * var shaderValidation: MTLShaderValidation { get set }
    * @availability iOS 18.0+
    */
-  get shaderValidation(): MTLShaderValidation { return callSDK<MTLShaderValidation>("Metal_e11dfd5beee01da3", 4071918753771390, this, []); }
-  set shaderValidation(value: MTLShaderValidation) { callSDK<void>("Metal_e11dfd5beee01da3", 87828088528292, this, [value]); }
+  get shaderValidation(): MTLShaderValidation { return callSDK<MTLShaderValidation>("Metal_3864e7f38681b875", 4071918753771390, this, []); }
+  set shaderValidation(value: MTLShaderValidation) { callSDK<void>("Metal_3864e7f38681b875", 87828088528292, this, [value]); }
   /**
    * var supportAddingBinaryFunctions: Bool { get set }
    * @availability iOS 15.0+
    */
-  get supportAddingBinaryFunctions(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2075636389347843, this, []); }
-  set supportAddingBinaryFunctions(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 2416001794859800, this, [value]); }
+  get supportAddingBinaryFunctions(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2075636389347843, this, []); }
+  set supportAddingBinaryFunctions(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 2416001794859800, this, [value]); }
   /**
    * var threadgroupSizeMatchesTileSize: Bool { get set }
    * @availability iOS 11.0+
    */
-  get threadgroupSizeMatchesTileSize(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 2066306929174177, this, []); }
-  set threadgroupSizeMatchesTileSize(value: boolean) { callSDK<void>("Metal_e11dfd5beee01da3", 1686412246885432, this, [value]); }
+  get threadgroupSizeMatchesTileSize(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 2066306929174177, this, []); }
+  set threadgroupSizeMatchesTileSize(value: boolean) { callSDK<void>("Metal_3864e7f38681b875", 1686412246885432, this, [value]); }
   /**
    * var tileBuffers: MTLPipelineBufferDescriptorArray { get }
    * @availability iOS 11.0+
    */
-  get tileBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_e11dfd5beee01da3", 633939592427321, this, []); }
+  get tileBuffers(): MTLPipelineBufferDescriptorArray { return callSDK<MTLPipelineBufferDescriptorArray>("Metal_3864e7f38681b875", 633939592427321, this, []); }
   /**
    * var tileFunction: any MTLFunction { get set }
    * @availability iOS 11.0+
    */
-  get tileFunction(): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 577516324186072, this, []); }
-  set tileFunction(value: SDKHandle) { callSDK<void>("Metal_e11dfd5beee01da3", 2969116648847098, this, [value]); }
+  get tileFunction(): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 577516324186072, this, []); }
+  set tileFunction(value: SDKHandle) { callSDK<void>("Metal_3864e7f38681b875", 2969116648847098, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLTileRenderPipelineDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "binaryArchives": true; "colorAttachments": true; "label": true; "linkedFunctions": true; "maxCallStackDepth": true; "maxTotalThreadsPerThreadgroup": true; "preloadedLibraries": true; "rasterSampleCount": true; "shaderValidation": true; "supportAddingBinaryFunctions": true; "threadgroupSizeMatchesTileSize": true; "tileBuffers": true; "tileFunction": true };
 }
@@ -9721,7 +9721,7 @@ export const MTLTransformType = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (MTLTransformType) | null { return callSDK<(MTLTransformType) | null>("Metal_e11dfd5beee01da3", 1428586676911763, undefined, [rawValue]); }
+  init(rawValue: number): (MTLTransformType) | null { return callSDK<(MTLTransformType) | null>("Metal_3864e7f38681b875", 1428586676911763, undefined, [rawValue]); }
 };
 
 /**
@@ -9735,21 +9735,21 @@ export const MTLTriangleFillMode = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLTriangleFillMode) | null { return callSDK<(MTLTriangleFillMode) | null>("Metal_e11dfd5beee01da3", 3318218220031879, undefined, [rawValue]); }
+  init(rawValue: number): (MTLTriangleFillMode) | null { return callSDK<(MTLTriangleFillMode) | null>("Metal_3864e7f38681b875", 3318218220031879, undefined, [rawValue]); }
 };
 
 /** struct MTLTriangleTessellationFactorsHalf */
 export class MTLTriangleTessellationFactorsHalf extends SDKHandle {
   /** var edgeTessellationFactor: (UInt16, UInt16, UInt16) */
-  get edgeTessellationFactor(): $SDK18 { return callSDK<$SDK18>("Metal_e11dfd5beee01da3", 1762426662737721, this, []); }
-  set edgeTessellationFactor(value: $SDK18) { callSDK<void>("Metal_e11dfd5beee01da3", 2238335612999727, this, [value]); }
+  get edgeTessellationFactor(): $SDK18 { return callSDK<$SDK18>("Metal_3864e7f38681b875", 1762426662737721, this, []); }
+  set edgeTessellationFactor(value: $SDK18) { callSDK<void>("Metal_3864e7f38681b875", 2238335612999727, this, [value]); }
   /** var insideTessellationFactor: UInt16 */
-  get insideTessellationFactor(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 144823200687107, this, []); }
-  set insideTessellationFactor(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2131594864311652, this, [value]); }
+  get insideTessellationFactor(): number { return callSDK<number>("Metal_3864e7f38681b875", 144823200687107, this, []); }
+  set insideTessellationFactor(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2131594864311652, this, [value]); }
   /** init(edgeTessellationFactor: (UInt16, UInt16, UInt16), insideTessellationFactor: UInt16) */
-  static initEdgeTessellationFactorInsideTessellationFactor(edgeTessellationFactor: $SDK18, insideTessellationFactor: number): MTLTriangleTessellationFactorsHalf { return callSDK<MTLTriangleTessellationFactorsHalf>("Metal_e11dfd5beee01da3", 1881059854528697, undefined, [edgeTessellationFactor, insideTessellationFactor]); }
+  static initEdgeTessellationFactorInsideTessellationFactor(edgeTessellationFactor: $SDK18, insideTessellationFactor: number): MTLTriangleTessellationFactorsHalf { return callSDK<MTLTriangleTessellationFactorsHalf>("Metal_3864e7f38681b875", 1881059854528697, undefined, [edgeTessellationFactor, insideTessellationFactor]); }
   /** init() */
-  static init(): MTLTriangleTessellationFactorsHalf { return callSDK<MTLTriangleTessellationFactorsHalf>("Metal_e11dfd5beee01da3", 688893940634928, undefined, []); }
+  static init(): MTLTriangleTessellationFactorsHalf { return callSDK<MTLTriangleTessellationFactorsHalf>("Metal_3864e7f38681b875", 688893940634928, undefined, []); }
   declare readonly $type: { "c:@SA@MTLTriangleTessellationFactorsHalf": true };
 }
 
@@ -9762,24 +9762,24 @@ export class MTLVertexAmplificationViewMapping extends SDKHandle {
    * var renderTargetArrayIndexOffset: UInt32
    * @availability iOS 13.0+
    */
-  get renderTargetArrayIndexOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1436531437830354, this, []); }
-  set renderTargetArrayIndexOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1496558618845271, this, [value]); }
+  get renderTargetArrayIndexOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 1436531437830354, this, []); }
+  set renderTargetArrayIndexOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1496558618845271, this, [value]); }
   /**
    * var viewportArrayIndexOffset: UInt32
    * @availability iOS 13.0+
    */
-  get viewportArrayIndexOffset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2171727232273153, this, []); }
-  set viewportArrayIndexOffset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1898165680168700, this, [value]); }
+  get viewportArrayIndexOffset(): number { return callSDK<number>("Metal_3864e7f38681b875", 2171727232273153, this, []); }
+  set viewportArrayIndexOffset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1898165680168700, this, [value]); }
   /**
    * init(viewportArrayIndexOffset: UInt32, renderTargetArrayIndexOffset: UInt32)
    * @availability iOS 13.0+
    */
-  static initViewportArrayIndexOffsetRenderTargetArrayIndexOffset(viewportArrayIndexOffset: number, renderTargetArrayIndexOffset: number): MTLVertexAmplificationViewMapping { return callSDK<MTLVertexAmplificationViewMapping>("Metal_e11dfd5beee01da3", 724200169003931, undefined, [viewportArrayIndexOffset, renderTargetArrayIndexOffset]); }
+  static initViewportArrayIndexOffsetRenderTargetArrayIndexOffset(viewportArrayIndexOffset: number, renderTargetArrayIndexOffset: number): MTLVertexAmplificationViewMapping { return callSDK<MTLVertexAmplificationViewMapping>("Metal_3864e7f38681b875", 724200169003931, undefined, [viewportArrayIndexOffset, renderTargetArrayIndexOffset]); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): MTLVertexAmplificationViewMapping { return callSDK<MTLVertexAmplificationViewMapping>("Metal_e11dfd5beee01da3", 401235986993880, undefined, []); }
+  static init(): MTLVertexAmplificationViewMapping { return callSDK<MTLVertexAmplificationViewMapping>("Metal_3864e7f38681b875", 401235986993880, undefined, []); }
   declare readonly $type: { "c:@SA@MTLVertexAmplificationViewMapping": true };
 }
 
@@ -9789,37 +9789,37 @@ export class MTLVertexAmplificationViewMapping extends SDKHandle {
  */
 export class MTLVertexAttribute extends SDKHandle {
   /** init() */
-  static init(): MTLVertexAttribute { return callSDK<MTLVertexAttribute>("Metal_e11dfd5beee01da3", 3545957852391275, undefined, []); }
+  static init(): MTLVertexAttribute { return callSDK<MTLVertexAttribute>("Metal_3864e7f38681b875", 3545957852391275, undefined, []); }
   /**
    * var isActive: Bool { get }
    * @availability iOS 8.0+
    */
-  get isActive(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 4318950963647724, this, []); }
+  get isActive(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 4318950963647724, this, []); }
   /**
    * var attributeIndex: Int { get }
    * @availability iOS 8.0+
    */
-  get attributeIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3579698374290051, this, []); }
+  get attributeIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 3579698374290051, this, []); }
   /**
    * var attributeType: MTLDataType { get }
    * @availability iOS 8.3+
    */
-  get attributeType(): MTLDataType { return callSDK<MTLDataType>("Metal_e11dfd5beee01da3", 3840305837889206, this, []); }
+  get attributeType(): MTLDataType { return callSDK<MTLDataType>("Metal_3864e7f38681b875", 3840305837889206, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("Metal_e11dfd5beee01da3", 1478650334257445, this, []); }
+  get name(): string { return callSDK<string>("Metal_3864e7f38681b875", 1478650334257445, this, []); }
   /**
    * var isPatchControlPointData: Bool { get }
    * @availability iOS 10.0+
    */
-  get isPatchControlPointData(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 1170407970619183, this, []); }
+  get isPatchControlPointData(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 1170407970619183, this, []); }
   /**
    * var isPatchData: Bool { get }
    * @availability iOS 10.0+
    */
-  get isPatchData(): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 118799616870408, this, []); }
+  get isPatchData(): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 118799616870408, this, []); }
   declare readonly $type: { "c:objc(cs)MTLVertexAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isActive": true; "attributeIndex": true; "attributeType": true; "name": true; "isPatchControlPointData": true; "isPatchData": true };
 }
@@ -9830,25 +9830,25 @@ export class MTLVertexAttribute extends SDKHandle {
  */
 export class MTLVertexAttributeDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLVertexAttributeDescriptor { return callSDK<MTLVertexAttributeDescriptor>("Metal_e11dfd5beee01da3", 2002187930289438, undefined, []); }
+  static init(): MTLVertexAttributeDescriptor { return callSDK<MTLVertexAttributeDescriptor>("Metal_3864e7f38681b875", 2002187930289438, undefined, []); }
   /**
    * var bufferIndex: Int { get set }
    * @availability iOS 8.0+
    */
-  get bufferIndex(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3378662173393638, this, []); }
-  set bufferIndex(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3976283689065825, this, [value]); }
+  get bufferIndex(): number { return callSDK<number>("Metal_3864e7f38681b875", 3378662173393638, this, []); }
+  set bufferIndex(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3976283689065825, this, [value]); }
   /**
    * var format: MTLVertexFormat { get set }
    * @availability iOS 8.0+
    */
-  get format(): MTLVertexFormat { return callSDK<MTLVertexFormat>("Metal_e11dfd5beee01da3", 1526294270405356, this, []); }
-  set format(value: MTLVertexFormat) { callSDK<void>("Metal_e11dfd5beee01da3", 15090810648647, this, [value]); }
+  get format(): MTLVertexFormat { return callSDK<MTLVertexFormat>("Metal_3864e7f38681b875", 1526294270405356, this, []); }
+  set format(value: MTLVertexFormat) { callSDK<void>("Metal_3864e7f38681b875", 15090810648647, this, [value]); }
   /**
    * var offset: Int { get set }
    * @availability iOS 8.0+
    */
-  get offset(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1238432729561967, this, []); }
-  set offset(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3191766467973404, this, [value]); }
+  get offset(): number { return callSDK<number>("Metal_3864e7f38681b875", 1238432729561967, this, []); }
+  set offset(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3191766467973404, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLVertexAttributeDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bufferIndex": true; "format": true; "offset": true };
 }
@@ -9859,12 +9859,12 @@ export class MTLVertexAttributeDescriptor extends SDKHandle {
  */
 export class MTLVertexAttributeDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLVertexAttributeDescriptorArray { return callSDK<MTLVertexAttributeDescriptorArray>("Metal_e11dfd5beee01da3", 1521080413297635, undefined, []); }
+  static init(): MTLVertexAttributeDescriptorArray { return callSDK<MTLVertexAttributeDescriptorArray>("Metal_3864e7f38681b875", 1521080413297635, undefined, []); }
   /**
    * subscript(index: Int) -> MTLVertexAttributeDescriptor! { get set }
    * @availability iOS 8.0+
    */
-  subscript(index: number): (MTLVertexAttributeDescriptor) | null { return callSDK<(MTLVertexAttributeDescriptor) | null>("Metal_e11dfd5beee01da3", 2306367711892035, this, [index]); }
+  subscript(index: number): (MTLVertexAttributeDescriptor) | null { return callSDK<(MTLVertexAttributeDescriptor) | null>("Metal_3864e7f38681b875", 2306367711892035, this, [index]); }
   declare readonly $type: { "c:objc(cs)MTLVertexAttributeDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -9874,25 +9874,25 @@ export class MTLVertexAttributeDescriptorArray extends SDKHandle {
  */
 export class MTLVertexBufferLayoutDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLVertexBufferLayoutDescriptor { return callSDK<MTLVertexBufferLayoutDescriptor>("Metal_e11dfd5beee01da3", 4171446701330585, undefined, []); }
+  static init(): MTLVertexBufferLayoutDescriptor { return callSDK<MTLVertexBufferLayoutDescriptor>("Metal_3864e7f38681b875", 4171446701330585, undefined, []); }
   /**
    * var stepFunction: MTLVertexStepFunction { get set }
    * @availability iOS 8.0+
    */
-  get stepFunction(): MTLVertexStepFunction { return callSDK<MTLVertexStepFunction>("Metal_e11dfd5beee01da3", 1984265561233820, this, []); }
-  set stepFunction(value: MTLVertexStepFunction) { callSDK<void>("Metal_e11dfd5beee01da3", 382136090992874, this, [value]); }
+  get stepFunction(): MTLVertexStepFunction { return callSDK<MTLVertexStepFunction>("Metal_3864e7f38681b875", 1984265561233820, this, []); }
+  set stepFunction(value: MTLVertexStepFunction) { callSDK<void>("Metal_3864e7f38681b875", 382136090992874, this, [value]); }
   /**
    * var stepRate: Int { get set }
    * @availability iOS 8.0+
    */
-  get stepRate(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 570403213042747, this, []); }
-  set stepRate(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3299984115589270, this, [value]); }
+  get stepRate(): number { return callSDK<number>("Metal_3864e7f38681b875", 570403213042747, this, []); }
+  set stepRate(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3299984115589270, this, [value]); }
   /**
    * var stride: Int { get set }
    * @availability iOS 8.0+
    */
-  get stride(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2061633896450319, this, []); }
-  set stride(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 329109418440954, this, [value]); }
+  get stride(): number { return callSDK<number>("Metal_3864e7f38681b875", 2061633896450319, this, []); }
+  set stride(value: number) { callSDK<void>("Metal_3864e7f38681b875", 329109418440954, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLVertexBufferLayoutDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "stepFunction": true; "stepRate": true; "stride": true };
 }
@@ -9903,12 +9903,12 @@ export class MTLVertexBufferLayoutDescriptor extends SDKHandle {
  */
 export class MTLVertexBufferLayoutDescriptorArray extends SDKHandle {
   /** init() */
-  static init(): MTLVertexBufferLayoutDescriptorArray { return callSDK<MTLVertexBufferLayoutDescriptorArray>("Metal_e11dfd5beee01da3", 281426336909319, undefined, []); }
+  static init(): MTLVertexBufferLayoutDescriptorArray { return callSDK<MTLVertexBufferLayoutDescriptorArray>("Metal_3864e7f38681b875", 281426336909319, undefined, []); }
   /**
    * subscript(index: Int) -> MTLVertexBufferLayoutDescriptor! { get set }
    * @availability iOS 8.0+
    */
-  subscript(index: number): (MTLVertexBufferLayoutDescriptor) | null { return callSDK<(MTLVertexBufferLayoutDescriptor) | null>("Metal_e11dfd5beee01da3", 3042262986392717, this, [index]); }
+  subscript(index: number): (MTLVertexBufferLayoutDescriptor) | null { return callSDK<(MTLVertexBufferLayoutDescriptor) | null>("Metal_3864e7f38681b875", 3042262986392717, this, [index]); }
   declare readonly $type: { "c:objc(cs)MTLVertexBufferLayoutDescriptorArray": true; "c:objc(cs)NSObject": true };
 }
 
@@ -9918,22 +9918,22 @@ export class MTLVertexBufferLayoutDescriptorArray extends SDKHandle {
  */
 export class MTLVertexDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLVertexDescriptor { return callSDK<MTLVertexDescriptor>("Metal_e11dfd5beee01da3", 2925259541567572, undefined, []); }
+  static init(): MTLVertexDescriptor { return callSDK<MTLVertexDescriptor>("Metal_3864e7f38681b875", 2925259541567572, undefined, []); }
   /**
    * func reset()
    * @availability iOS 8.0+
    */
-  reset(): void { return callSDK<void>("Metal_e11dfd5beee01da3", 1107397463186759, this, []); }
+  reset(): void { return callSDK<void>("Metal_3864e7f38681b875", 1107397463186759, this, []); }
   /**
    * var attributes: MTLVertexAttributeDescriptorArray { get }
    * @availability iOS 8.0+
    */
-  get attributes(): MTLVertexAttributeDescriptorArray { return callSDK<MTLVertexAttributeDescriptorArray>("Metal_e11dfd5beee01da3", 1405967679331380, this, []); }
+  get attributes(): MTLVertexAttributeDescriptorArray { return callSDK<MTLVertexAttributeDescriptorArray>("Metal_3864e7f38681b875", 1405967679331380, this, []); }
   /**
    * var layouts: MTLVertexBufferLayoutDescriptorArray { get }
    * @availability iOS 8.0+
    */
-  get layouts(): MTLVertexBufferLayoutDescriptorArray { return callSDK<MTLVertexBufferLayoutDescriptorArray>("Metal_e11dfd5beee01da3", 2591608313953, this, []); }
+  get layouts(): MTLVertexBufferLayoutDescriptorArray { return callSDK<MTLVertexBufferLayoutDescriptorArray>("Metal_3864e7f38681b875", 2591608313953, this, []); }
   declare readonly $type: { "c:objc(cs)MTLVertexDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributes": true; "layouts": true };
 }
@@ -9949,7 +9949,7 @@ export const MTLVertexFormat = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLVertexFormat) | null { return callSDK<(MTLVertexFormat) | null>("Metal_e11dfd5beee01da3", 4172106991843810, undefined, [rawValue]); }
+  init(rawValue: number): (MTLVertexFormat) | null { return callSDK<(MTLVertexFormat) | null>("Metal_3864e7f38681b875", 4172106991843810, undefined, [rawValue]); }
 };
 
 /**
@@ -9963,33 +9963,33 @@ export const MTLVertexStepFunction = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLVertexStepFunction) | null { return callSDK<(MTLVertexStepFunction) | null>("Metal_e11dfd5beee01da3", 3185506751088213, undefined, [rawValue]); }
+  init(rawValue: number): (MTLVertexStepFunction) | null { return callSDK<(MTLVertexStepFunction) | null>("Metal_3864e7f38681b875", 3185506751088213, undefined, [rawValue]); }
 };
 
 /** struct MTLViewport */
 export class MTLViewport extends SDKHandle {
   /** var height: Double */
-  get height(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 1695791664858335, this, []); }
-  set height(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1423443931032202, this, [value]); }
+  get height(): number { return callSDK<number>("Metal_3864e7f38681b875", 1695791664858335, this, []); }
+  set height(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1423443931032202, this, [value]); }
   /** var originX: Double */
-  get originX(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2011359541163479, this, []); }
-  set originX(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 3138376153940731, this, [value]); }
+  get originX(): number { return callSDK<number>("Metal_3864e7f38681b875", 2011359541163479, this, []); }
+  set originX(value: number) { callSDK<void>("Metal_3864e7f38681b875", 3138376153940731, this, [value]); }
   /** var originY: Double */
-  get originY(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 807564685158106, this, []); }
-  set originY(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 568001780934891, this, [value]); }
+  get originY(): number { return callSDK<number>("Metal_3864e7f38681b875", 807564685158106, this, []); }
+  set originY(value: number) { callSDK<void>("Metal_3864e7f38681b875", 568001780934891, this, [value]); }
   /** var width: Double */
-  get width(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 3560651927057565, this, []); }
-  set width(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 4226896177871814, this, [value]); }
+  get width(): number { return callSDK<number>("Metal_3864e7f38681b875", 3560651927057565, this, []); }
+  set width(value: number) { callSDK<void>("Metal_3864e7f38681b875", 4226896177871814, this, [value]); }
   /** var zfar: Double */
-  get zfar(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2328479417135625, this, []); }
-  set zfar(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 2346462082261111, this, [value]); }
+  get zfar(): number { return callSDK<number>("Metal_3864e7f38681b875", 2328479417135625, this, []); }
+  set zfar(value: number) { callSDK<void>("Metal_3864e7f38681b875", 2346462082261111, this, [value]); }
   /** var znear: Double */
-  get znear(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2988241933805876, this, []); }
-  set znear(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 1502227753722107, this, [value]); }
+  get znear(): number { return callSDK<number>("Metal_3864e7f38681b875", 2988241933805876, this, []); }
+  set znear(value: number) { callSDK<void>("Metal_3864e7f38681b875", 1502227753722107, this, [value]); }
   /** init(originX: Double, originY: Double, width: Double, height: Double, znear: Double, zfar: Double) */
-  static initOriginXOriginYWidthHeightZnearZfar(originX: number, originY: number, width: number, height: number, znear: number, zfar: number): MTLViewport { return callSDK<MTLViewport>("Metal_e11dfd5beee01da3", 2860517640384188, undefined, [originX, originY, width, height, znear, zfar]); }
+  static initOriginXOriginYWidthHeightZnearZfar(originX: number, originY: number, width: number, height: number, znear: number, zfar: number): MTLViewport { return callSDK<MTLViewport>("Metal_3864e7f38681b875", 2860517640384188, undefined, [originX, originY, width, height, znear, zfar]); }
   /** init() */
-  static init(): MTLViewport { return callSDK<MTLViewport>("Metal_e11dfd5beee01da3", 1577137168938474, undefined, []); }
+  static init(): MTLViewport { return callSDK<MTLViewport>("Metal_3864e7f38681b875", 1577137168938474, undefined, []); }
   declare readonly $type: { "c:@SA@MTLViewport": true };
 }
 
@@ -10004,7 +10004,7 @@ export const MTLVisibilityResultMode = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLVisibilityResultMode) | null { return callSDK<(MTLVisibilityResultMode) | null>("Metal_e11dfd5beee01da3", 213169196172592, undefined, [rawValue]); }
+  init(rawValue: number): (MTLVisibilityResultMode) | null { return callSDK<(MTLVisibilityResultMode) | null>("Metal_3864e7f38681b875", 213169196172592, undefined, [rawValue]); }
 };
 
 /**
@@ -10040,13 +10040,13 @@ export interface MTLVisibleFunctionTable {
  */
 export class MTLVisibleFunctionTableDescriptor extends SDKHandle {
   /** init() */
-  static init(): MTLVisibleFunctionTableDescriptor { return callSDK<MTLVisibleFunctionTableDescriptor>("Metal_e11dfd5beee01da3", 2956385955639372, undefined, []); }
+  static init(): MTLVisibleFunctionTableDescriptor { return callSDK<MTLVisibleFunctionTableDescriptor>("Metal_3864e7f38681b875", 2956385955639372, undefined, []); }
   /**
    * var functionCount: Int { get set }
    * @availability iOS 14.0+
    */
-  get functionCount(): number { return callSDK<number>("Metal_e11dfd5beee01da3", 2003036242642912, this, []); }
-  set functionCount(value: number) { callSDK<void>("Metal_e11dfd5beee01da3", 197197866672949, this, [value]); }
+  get functionCount(): number { return callSDK<number>("Metal_3864e7f38681b875", 2003036242642912, this, []); }
+  set functionCount(value: number) { callSDK<void>("Metal_3864e7f38681b875", 197197866672949, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTLVisibleFunctionTableDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "functionCount": true };
 }
@@ -10062,7 +10062,7 @@ export const MTLWinding = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (MTLWinding) | null { return callSDK<(MTLWinding) | null>("Metal_e11dfd5beee01da3", 3895166279584643, undefined, [rawValue]); }
+  init(rawValue: number): (MTLWinding) | null { return callSDK<(MTLWinding) | null>("Metal_3864e7f38681b875", 3895166279584643, undefined, [rawValue]); }
 };
 
 /**
@@ -10076,12 +10076,12 @@ export const NSDeviceCertification = {
    * static let iPhonePerformanceGaming: NSDeviceCertification
    * @availability iOS 18.0+
    */
-  get iPhonePerformanceGaming(): NSDeviceCertification { return callSDK<NSDeviceCertification>("Metal_e11dfd5beee01da3", 2459574119035573, undefined, []); },
+  get iPhonePerformanceGaming(): NSDeviceCertification { return callSDK<NSDeviceCertification>("Metal_3864e7f38681b875", 2459574119035573, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): NSDeviceCertification { return callSDK<NSDeviceCertification>("Metal_e11dfd5beee01da3", 1513041948106638, undefined, [rawValue]); }
+  init(rawValue: number): NSDeviceCertification { return callSDK<NSDeviceCertification>("Metal_3864e7f38681b875", 1513041948106638, undefined, [rawValue]); }
 };
 
 export type NSNotification_Name = "AVAudioEngineConfigurationChange" | "AVAudioUnitComponentTagsDidChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderDomainDidChange" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMusicPlayerControllerQueueDidChange" | "MPMediaLibraryDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
@@ -10091,7 +10091,7 @@ export const NSNotification_Name = {
    * static let NSProcessInfoPerformanceProfileDidChange: NSNotification.Name
    * @availability iOS 18.0+
    */
-  get NSProcessInfoPerformanceProfileDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Metal_e11dfd5beee01da3", 1267425732498369, undefined, []); }
+  get NSProcessInfoPerformanceProfileDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Metal_3864e7f38681b875", 1267425732498369, undefined, []); }
 };
 
 /**
@@ -10105,17 +10105,17 @@ export const NSProcessPerformanceProfile = {
    * static let `default`: NSProcessPerformanceProfile
    * @availability iOS 18.0+
    */
-  get default(): NSProcessPerformanceProfile { return callSDK<NSProcessPerformanceProfile>("Metal_e11dfd5beee01da3", 1959941702948482, undefined, []); },
+  get default(): NSProcessPerformanceProfile { return callSDK<NSProcessPerformanceProfile>("Metal_3864e7f38681b875", 1959941702948482, undefined, []); },
   /**
    * static let sustained: NSProcessPerformanceProfile
    * @availability iOS 18.0+
    */
-  get sustained(): NSProcessPerformanceProfile { return callSDK<NSProcessPerformanceProfile>("Metal_e11dfd5beee01da3", 2448003442302946, undefined, []); },
+  get sustained(): NSProcessPerformanceProfile { return callSDK<NSProcessPerformanceProfile>("Metal_3864e7f38681b875", 2448003442302946, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): NSProcessPerformanceProfile { return callSDK<NSProcessPerformanceProfile>("Metal_e11dfd5beee01da3", 4092718274964226, undefined, [rawValue]); }
+  init(rawValue: number): NSProcessPerformanceProfile { return callSDK<NSProcessPerformanceProfile>("Metal_3864e7f38681b875", 4092718274964226, undefined, [rawValue]); }
 };
 
 export class ProcessInfo extends SDKHandle {
@@ -10123,337 +10123,337 @@ export class ProcessInfo extends SDKHandle {
    * func hasPerformanceProfile(_ performanceProfile: NSProcessPerformanceProfile) -> Bool
    * @availability iOS 18.0+
    */
-  hasPerformanceProfile(performanceProfile: NSProcessPerformanceProfile): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 1404723899691438, this, [performanceProfile]); }
+  hasPerformanceProfile(performanceProfile: NSProcessPerformanceProfile): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 1404723899691438, this, [performanceProfile]); }
   /**
    * func isDeviceCertified(for performanceTier: NSDeviceCertification) -> Bool
    * @availability iOS 18.0+
    */
-  isDeviceCertified(performanceTier: NSDeviceCertification): boolean { return callSDK<boolean>("Metal_e11dfd5beee01da3", 76315346212658, this, [performanceTier]); }
+  isDeviceCertified(performanceTier: NSDeviceCertification): boolean { return callSDK<boolean>("Metal_3864e7f38681b875", 76315346212658, this, [performanceTier]); }
   declare readonly $type: { "c:objc(cs)NSProcessInfo": true; "c:objc(cs)NSObject": true };
 }
 
 /** func MTL4BufferRangeMake(_ bufferAddress: MTLGPUAddress, _ length: UInt64) -> MTL4BufferRange */
-export function MTL4BufferRangeMake(bufferAddress: number, length: number): MTL4BufferRange { return callSDK<MTL4BufferRange>("Metal_e11dfd5beee01da3", 4247900973146587, undefined, [bufferAddress, length]); }
+export function MTL4BufferRangeMake(bufferAddress: number, length: number): MTL4BufferRange { return callSDK<MTL4BufferRange>("Metal_3864e7f38681b875", 4247900973146587, undefined, [bufferAddress, length]); }
 
 /** func MTLClearColorMake(_ red: Double, _ green: Double, _ blue: Double, _ alpha: Double) -> MTLClearColor */
-export function MTLClearColorMake(red: number, green: number, blue: number, alpha: number): MTLClearColor { return callSDK<MTLClearColor>("Metal_e11dfd5beee01da3", 885545551574033, undefined, [red, green, blue, alpha]); }
+export function MTLClearColorMake(red: number, green: number, blue: number, alpha: number): MTLClearColor { return callSDK<MTLClearColor>("Metal_3864e7f38681b875", 885545551574033, undefined, [red, green, blue, alpha]); }
 
 /** func MTLCoordinate2DMake(_ x: Float, _ y: Float) -> MTLCoordinate2D */
-export function MTLCoordinate2DMake(x: number, y: number): MTLSamplePosition { return callSDK<MTLSamplePosition>("Metal_e11dfd5beee01da3", 3810952370446818, undefined, [x, y]); }
+export function MTLCoordinate2DMake(x: number, y: number): MTLSamplePosition { return callSDK<MTLSamplePosition>("Metal_3864e7f38681b875", 3810952370446818, undefined, [x, y]); }
 
 /**
  * func MTLCopyAllDevices() -> [any MTLDevice]
  * @availability iOS 18.0+
  */
-export function MTLCopyAllDevices(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_e11dfd5beee01da3", 1098835839432554, undefined, []); }
+export function MTLCopyAllDevices(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Metal_3864e7f38681b875", 1098835839432554, undefined, []); }
 
 /**
  * func MTLCreateSystemDefaultDevice() -> (any MTLDevice)?
  * @availability iOS 8.0+
  */
-export function MTLCreateSystemDefaultDevice(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_e11dfd5beee01da3", 3566852584283632, undefined, []); }
+export function MTLCreateSystemDefaultDevice(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Metal_3864e7f38681b875", 3566852584283632, undefined, []); }
 
 /**
  * func MTLIndirectCommandBufferExecutionRangeMake(_ location: UInt32, _ length: UInt32) -> MTLIndirectCommandBufferExecutionRange
  * @availability iOS 13.0+
  */
-export function MTLIndirectCommandBufferExecutionRangeMake(location: number, length: number): MTLIndirectCommandBufferExecutionRange { return callSDK<MTLIndirectCommandBufferExecutionRange>("Metal_e11dfd5beee01da3", 2830952586220338, undefined, [location, length]); }
+export function MTLIndirectCommandBufferExecutionRangeMake(location: number, length: number): MTLIndirectCommandBufferExecutionRange { return callSDK<MTLIndirectCommandBufferExecutionRange>("Metal_3864e7f38681b875", 2830952586220338, undefined, [location, length]); }
 
 /** func MTLOriginMake(_ x: Int, _ y: Int, _ z: Int) -> MTLOrigin */
-export function MTLOriginMake(x: number, y: number, z: number): MTLOrigin { return callSDK<MTLOrigin>("Metal_e11dfd5beee01da3", 473058114165239, undefined, [x, y, z]); }
+export function MTLOriginMake(x: number, y: number, z: number): MTLOrigin { return callSDK<MTLOrigin>("Metal_3864e7f38681b875", 473058114165239, undefined, [x, y, z]); }
 
 /** func MTLPackedFloat3Make(_ x: Float, _ y: Float, _ z: Float) -> MTLPackedFloat3 */
-export function MTLPackedFloat3Make(x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("Metal_e11dfd5beee01da3", 112910225037666, undefined, [x, y, z]); }
+export function MTLPackedFloat3Make(x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("Metal_3864e7f38681b875", 112910225037666, undefined, [x, y, z]); }
 
 /** func MTLRegionMake1D(_ x: Int, _ width: Int) -> MTLRegion */
-export function MTLRegionMake1D(x: number, width: number): MTLRegion { return callSDK<MTLRegion>("Metal_e11dfd5beee01da3", 1030936080768310, undefined, [x, width]); }
+export function MTLRegionMake1D(x: number, width: number): MTLRegion { return callSDK<MTLRegion>("Metal_3864e7f38681b875", 1030936080768310, undefined, [x, width]); }
 
 /** func MTLRegionMake2D(_ x: Int, _ y: Int, _ width: Int, _ height: Int) -> MTLRegion */
-export function MTLRegionMake2D(x: number, y: number, width: number, height: number): MTLRegion { return callSDK<MTLRegion>("Metal_e11dfd5beee01da3", 556917997641344, undefined, [x, y, width, height]); }
+export function MTLRegionMake2D(x: number, y: number, width: number, height: number): MTLRegion { return callSDK<MTLRegion>("Metal_3864e7f38681b875", 556917997641344, undefined, [x, y, width, height]); }
 
 /** func MTLRegionMake3D(_ x: Int, _ y: Int, _ z: Int, _ width: Int, _ height: Int, _ depth: Int) -> MTLRegion */
-export function MTLRegionMake3D(x: number, y: number, z: number, width: number, height: number, depth: number): MTLRegion { return callSDK<MTLRegion>("Metal_e11dfd5beee01da3", 2944255169292818, undefined, [x, y, z, width, height, depth]); }
+export function MTLRegionMake3D(x: number, y: number, z: number, width: number, height: number, depth: number): MTLRegion { return callSDK<MTLRegion>("Metal_3864e7f38681b875", 2944255169292818, undefined, [x, y, z, width, height, depth]); }
 
 /**
  * func MTLSamplePositionMake(_ x: Float, _ y: Float) -> MTLSamplePosition
  * @availability iOS 11.0+
  */
-export function MTLSamplePositionMake(x: number, y: number): MTLSamplePosition { return callSDK<MTLSamplePosition>("Metal_e11dfd5beee01da3", 4226868251803181, undefined, [x, y]); }
+export function MTLSamplePositionMake(x: number, y: number): MTLSamplePosition { return callSDK<MTLSamplePosition>("Metal_3864e7f38681b875", 4226868251803181, undefined, [x, y]); }
 
 /** func MTLSizeMake(_ width: Int, _ height: Int, _ depth: Int) -> MTLSize */
-export function MTLSizeMake(width: number, height: number, depth: number): MTLSize { return callSDK<MTLSize>("Metal_e11dfd5beee01da3", 2057146794703379, undefined, [width, height, depth]); }
+export function MTLSizeMake(width: number, height: number, depth: number): MTLSize { return callSDK<MTLSize>("Metal_3864e7f38681b875", 2057146794703379, undefined, [width, height, depth]); }
 
 /**
  * let MTLBinaryArchiveDomain: String
  * @availability iOS 14.0+
  */
-export const MTLBinaryArchiveDomain: string = callSDK<string>("Metal_e11dfd5beee01da3", 4141746936792256, undefined, []);
+export const MTLBinaryArchiveDomain: string = callSDK<string>("Metal_3864e7f38681b875", 4141746936792256, undefined, []);
 
 /**
  * let MTLCaptureErrorDomain: String
  * @availability iOS 13.0+
  */
-export const MTLCaptureErrorDomain: string = callSDK<string>("Metal_e11dfd5beee01da3", 295693961733557, undefined, []);
+export const MTLCaptureErrorDomain: string = callSDK<string>("Metal_3864e7f38681b875", 295693961733557, undefined, []);
 
 /**
  * let MTLCommandBufferEncoderInfoErrorKey: String
  * @availability iOS 14.0+
  */
-export const MTLCommandBufferEncoderInfoErrorKey: string = callSDK<string>("Metal_e11dfd5beee01da3", 958302738671552, undefined, []);
+export const MTLCommandBufferEncoderInfoErrorKey: string = callSDK<string>("Metal_3864e7f38681b875", 958302738671552, undefined, []);
 
 /**
  * let MTLCommandBufferErrorDomain: String
  * @availability iOS 8.0+
  */
-export const MTLCommandBufferErrorDomain: string = callSDK<string>("Metal_e11dfd5beee01da3", 3410950598235689, undefined, []);
+export const MTLCommandBufferErrorDomain: string = callSDK<string>("Metal_3864e7f38681b875", 3410950598235689, undefined, []);
 
 /**
  * let MTLCounterErrorDomain: String
  * @availability iOS 14.0+
  */
-export const MTLCounterErrorDomain: string = callSDK<string>("Metal_e11dfd5beee01da3", 2300711196368973, undefined, []);
+export const MTLCounterErrorDomain: string = callSDK<string>("Metal_3864e7f38681b875", 2300711196368973, undefined, []);
 
 /**
  * let MTLDeviceErrorDomain: String
  * @availability iOS 26.4+
  */
-export const MTLDeviceErrorDomain: string = callSDK<string>("Metal_e11dfd5beee01da3", 3463909319163525, undefined, []);
+export const MTLDeviceErrorDomain: string = callSDK<string>("Metal_3864e7f38681b875", 3463909319163525, undefined, []);
 
 /**
  * let MTLDynamicLibraryDomain: String
  * @availability iOS 14.0+
  */
-export const MTLDynamicLibraryDomain: string = callSDK<string>("Metal_e11dfd5beee01da3", 4332658968567243, undefined, []);
+export const MTLDynamicLibraryDomain: string = callSDK<string>("Metal_3864e7f38681b875", 4332658968567243, undefined, []);
 
 /**
  * let MTLLibraryErrorDomain: String
  * @availability iOS 8.0+
  */
-export const MTLLibraryErrorDomain: string = callSDK<string>("Metal_e11dfd5beee01da3", 4164939411309587, undefined, []);
+export const MTLLibraryErrorDomain: string = callSDK<string>("Metal_3864e7f38681b875", 4164939411309587, undefined, []);
 
 /**
  * let MTLLogStateErrorDomain: String
  * @availability iOS 18.0+
  */
-export const MTLLogStateErrorDomain: string = callSDK<string>("Metal_e11dfd5beee01da3", 3876953028951696, undefined, []);
+export const MTLLogStateErrorDomain: string = callSDK<string>("Metal_3864e7f38681b875", 3876953028951696, undefined, []);
 
 /** var MTLCounterDontSample: Int { get } */
-export const MTLCounterDontSample: number = callSDK<number>("Metal_e11dfd5beee01da3", 3054125046238888, undefined, []);
+export const MTLCounterDontSample: number = callSDK<number>("Metal_3864e7f38681b875", 3054125046238888, undefined, []);
 
 /** var MTLCounterErrorValue: UInt64 { get } */
-export const MTLCounterErrorValue: number = callSDK<number>("Metal_e11dfd5beee01da3", 17749515656115, undefined, []);
+export const MTLCounterErrorValue: number = callSDK<number>("Metal_3864e7f38681b875", 17749515656115, undefined, []);
 
 /** var MTLResourceCPUCacheModeMask: UInt { get } */
-export const MTLResourceCPUCacheModeMask: number = callSDK<number>("Metal_e11dfd5beee01da3", 3795556990815963, undefined, []);
+export const MTLResourceCPUCacheModeMask: number = callSDK<number>("Metal_3864e7f38681b875", 3795556990815963, undefined, []);
 
 /** var MTLResourceCPUCacheModeShift: Int32 { get } */
-export const MTLResourceCPUCacheModeShift: number = callSDK<number>("Metal_e11dfd5beee01da3", 1592230230397949, undefined, []);
+export const MTLResourceCPUCacheModeShift: number = callSDK<number>("Metal_3864e7f38681b875", 1592230230397949, undefined, []);
 
 /** var MTLResourceHazardTrackingModeMask: UInt { get } */
-export const MTLResourceHazardTrackingModeMask: number = callSDK<number>("Metal_e11dfd5beee01da3", 3989019890064070, undefined, []);
+export const MTLResourceHazardTrackingModeMask: number = callSDK<number>("Metal_3864e7f38681b875", 3989019890064070, undefined, []);
 
 /** var MTLResourceHazardTrackingModeShift: Int32 { get } */
-export const MTLResourceHazardTrackingModeShift: number = callSDK<number>("Metal_e11dfd5beee01da3", 1427295895239396, undefined, []);
+export const MTLResourceHazardTrackingModeShift: number = callSDK<number>("Metal_3864e7f38681b875", 1427295895239396, undefined, []);
 
 /** var MTLResourceStorageModeMask: UInt { get } */
-export const MTLResourceStorageModeMask: number = callSDK<number>("Metal_e11dfd5beee01da3", 858174317168753, undefined, []);
+export const MTLResourceStorageModeMask: number = callSDK<number>("Metal_3864e7f38681b875", 858174317168753, undefined, []);
 
 /** var MTLResourceStorageModeShift: Int32 { get } */
-export const MTLResourceStorageModeShift: number = callSDK<number>("Metal_e11dfd5beee01da3", 2407314868620996, undefined, []);
+export const MTLResourceStorageModeShift: number = callSDK<number>("Metal_3864e7f38681b875", 2407314868620996, undefined, []);
 
-registerSDKClass("Metal.MTL4BufferRange", MTL4BufferRange, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Metal.MTL4BufferRange", MTL4BufferRange, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLAccelerationStructure", {"setPurgeableState":"setPurgeableState(_:)","makeAliasable":"makeAliasable()","isAliasable":"isAliasable()"});
-registerSDKClass("MTLAccelerationStructureGeometryDescriptor", MTLAccelerationStructureGeometryDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"allowDuplicateIntersectionFunctionInvocation":260432746829601,"intersectionFunctionTableOffset":1812160549105435,"label":2841137625794200,"opaque":2053979587863862,"primitiveDataBuffer":3134671318768785,"primitiveDataBufferOffset":4338796648359176,"primitiveDataElementSize":279574880094954,"primitiveDataStride":126385167009726} });
-registerSDKClass("MTLAccelerationStructureBoundingBoxGeometryDescriptor", MTLAccelerationStructureBoundingBoxGeometryDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"boundingBoxBuffer":2310032445569315,"boundingBoxBufferOffset":3467911026379964,"boundingBoxCount":2469018803468359,"boundingBoxStride":3115950907085599} });
+registerSDKClass("MTLAccelerationStructureGeometryDescriptor", MTLAccelerationStructureGeometryDescriptor, { module: "Metal_3864e7f38681b875", properties: {"allowDuplicateIntersectionFunctionInvocation":260432746829601,"intersectionFunctionTableOffset":1812160549105435,"label":2841137625794200,"opaque":2053979587863862,"primitiveDataBuffer":3134671318768785,"primitiveDataBufferOffset":4338796648359176,"primitiveDataElementSize":279574880094954,"primitiveDataStride":126385167009726} });
+registerSDKClass("MTLAccelerationStructureBoundingBoxGeometryDescriptor", MTLAccelerationStructureBoundingBoxGeometryDescriptor, { module: "Metal_3864e7f38681b875", properties: {"boundingBoxBuffer":2310032445569315,"boundingBoxBufferOffset":3467911026379964,"boundingBoxCount":2469018803468359,"boundingBoxStride":3115950907085599} });
 registerSDKProtocol("c:objc(pl)MTLAccelerationStructureCommandEncoder", {"endEncoding":"endEncoding()","barrierAfterQueueStagesBeforeStages":"barrier(afterQueueStages:beforeStages:)","insertDebugSignpost":"insertDebugSignpost(_:)","pushDebugGroup":"pushDebugGroup(_:)","popDebugGroup":"popDebugGroup()","buildAccelerationStructureDescriptorScratchBufferScratchBufferOffset":"build(accelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:)","refitSourceAccelerationStructureDescriptorDestinationAccelerationStructureScratchBufferScratchBufferOffset":"refit(sourceAccelerationStructure:descriptor:destinationAccelerationStructure:scratchBuffer:scratchBufferOffset:)","refitSourceAccelerationStructureDescriptorDestinationAccelerationStructureScratchBufferScratchBufferOffsetOptions":"refit(sourceAccelerationStructure:descriptor:destinationAccelerationStructure:scratchBuffer:scratchBufferOffset:options:)","copySourceAccelerationStructureDestinationAccelerationStructure":"copy(sourceAccelerationStructure:destinationAccelerationStructure:)","writeCompactedSizeAccelerationStructureBufferOffset":"writeCompactedSize(accelerationStructure:buffer:offset:)","writeCompactedSizeAccelerationStructureBufferOffsetSizeDataType":"writeCompactedSize(accelerationStructure:buffer:offset:sizeDataType:)","copyAndCompactSourceAccelerationStructureDestinationAccelerationStructure":"copyAndCompact(sourceAccelerationStructure:destinationAccelerationStructure:)","updateFence":"updateFence(_:)","waitForFence":"waitForFence(_:)","useResourceUsage":"useResource(_:usage:)","useHeap":"useHeap(_:)","sampleCountersSampleBufferSampleIndexBarrier":"sampleCounters(sampleBuffer:sampleIndex:barrier:)"});
-registerSDKClass("MTLAccelerationStructureCurveGeometryDescriptor", MTLAccelerationStructureCurveGeometryDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"controlPointBuffer":1110884274898299,"controlPointBufferOffset":4232461039215895,"controlPointCount":352601656486638,"controlPointFormat":1678442321640627,"controlPointStride":1529603510931226,"curveBasis":2945687687400385,"curveEndCaps":4076858196414476,"curveType":4501946472767444,"indexBuffer":3316372077246528,"indexBufferOffset":3570059979919735,"indexType":890977364739115,"radiusBuffer":1767812774385201,"radiusBufferOffset":960792732388192,"radiusFormat":4348788052132903,"radiusStride":4459205386682921,"segmentControlPointCount":1537983111749534,"segmentCount":57360801518972} });
-registerSDKClass("MTLAccelerationStructureDescriptor", MTLAccelerationStructureDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"usage":209402337148444} });
-registerSDKClass("Metal.MTLAccelerationStructureInstanceDescriptor", MTLAccelerationStructureInstanceDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor", MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"boundingBoxBuffers":1141688194329643,"boundingBoxCount":1599559468120841,"boundingBoxStride":15308440916853} });
-registerSDKClass("MTLAccelerationStructureMotionCurveGeometryDescriptor", MTLAccelerationStructureMotionCurveGeometryDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"controlPointBuffers":4339829333010115,"controlPointCount":1200190342071980,"controlPointFormat":2116484580900615,"controlPointStride":499263359265392,"curveBasis":3862056024464983,"curveEndCaps":1738917437718678,"curveType":1198162236821030,"indexBuffer":3581094620597966,"indexBufferOffset":3448297599637253,"indexType":3501076186315150,"radiusBuffers":3502887926883377,"radiusFormat":237344082262150,"radiusStride":4038560699644554,"segmentControlPointCount":1095986004944526,"segmentCount":1387307576498826} });
-registerSDKClass("Metal.MTLAccelerationStructureMotionInstanceDescriptor", MTLAccelerationStructureMotionInstanceDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLAccelerationStructureMotionTriangleGeometryDescriptor", MTLAccelerationStructureMotionTriangleGeometryDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"indexBuffer":3425757579876069,"indexBufferOffset":286309014819816,"indexType":3675356727169139,"transformationMatrixBuffer":283635242710323,"transformationMatrixBufferOffset":1889707634103856,"transformationMatrixLayout":1303108401955868,"triangleCount":3963516588708997,"vertexBuffers":825940679455432,"vertexFormat":3051089478364508,"vertexStride":2938252736172247} });
-registerSDKClass("MTLAccelerationStructurePassDescriptor", MTLAccelerationStructurePassDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"sampleBufferAttachments":902875324597688} });
-registerSDKClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptor", MTLAccelerationStructurePassSampleBufferAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"endOfEncoderSampleIndex":295382591747408,"sampleBuffer":803813827980396,"startOfEncoderSampleIndex":4184871397943073} });
-registerSDKClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray", MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":2102793762425249}} });
-registerSDKClass("Metal.MTLAccelerationStructureSizes", MTLAccelerationStructureSizes, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLAccelerationStructureTriangleGeometryDescriptor", MTLAccelerationStructureTriangleGeometryDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"indexBuffer":1795612470943896,"indexBufferOffset":3572111626083449,"indexType":417322261761410,"transformationMatrixBuffer":4192017712354902,"transformationMatrixBufferOffset":811830879517514,"transformationMatrixLayout":3678019430992386,"triangleCount":344310440711004,"vertexBuffer":3085283782154536,"vertexBufferOffset":3645334252586894,"vertexFormat":3691077341696689,"vertexStride":3937313014707711} });
-registerSDKClass("Metal.MTLAccelerationStructureUserIDInstanceDescriptor", MTLAccelerationStructureUserIDInstanceDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("MTLAccelerationStructureCurveGeometryDescriptor", MTLAccelerationStructureCurveGeometryDescriptor, { module: "Metal_3864e7f38681b875", properties: {"controlPointBuffer":1110884274898299,"controlPointBufferOffset":4232461039215895,"controlPointCount":352601656486638,"controlPointFormat":1678442321640627,"controlPointStride":1529603510931226,"curveBasis":2945687687400385,"curveEndCaps":4076858196414476,"curveType":4501946472767444,"indexBuffer":3316372077246528,"indexBufferOffset":3570059979919735,"indexType":890977364739115,"radiusBuffer":1767812774385201,"radiusBufferOffset":960792732388192,"radiusFormat":4348788052132903,"radiusStride":4459205386682921,"segmentControlPointCount":1537983111749534,"segmentCount":57360801518972} });
+registerSDKClass("MTLAccelerationStructureDescriptor", MTLAccelerationStructureDescriptor, { module: "Metal_3864e7f38681b875", properties: {"usage":209402337148444} });
+registerSDKClass("Metal.MTLAccelerationStructureInstanceDescriptor", MTLAccelerationStructureInstanceDescriptor, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor", MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor, { module: "Metal_3864e7f38681b875", properties: {"boundingBoxBuffers":1141688194329643,"boundingBoxCount":1599559468120841,"boundingBoxStride":15308440916853} });
+registerSDKClass("MTLAccelerationStructureMotionCurveGeometryDescriptor", MTLAccelerationStructureMotionCurveGeometryDescriptor, { module: "Metal_3864e7f38681b875", properties: {"controlPointBuffers":4339829333010115,"controlPointCount":1200190342071980,"controlPointFormat":2116484580900615,"controlPointStride":499263359265392,"curveBasis":3862056024464983,"curveEndCaps":1738917437718678,"curveType":1198162236821030,"indexBuffer":3581094620597966,"indexBufferOffset":3448297599637253,"indexType":3501076186315150,"radiusBuffers":3502887926883377,"radiusFormat":237344082262150,"radiusStride":4038560699644554,"segmentControlPointCount":1095986004944526,"segmentCount":1387307576498826} });
+registerSDKClass("Metal.MTLAccelerationStructureMotionInstanceDescriptor", MTLAccelerationStructureMotionInstanceDescriptor, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLAccelerationStructureMotionTriangleGeometryDescriptor", MTLAccelerationStructureMotionTriangleGeometryDescriptor, { module: "Metal_3864e7f38681b875", properties: {"indexBuffer":3425757579876069,"indexBufferOffset":286309014819816,"indexType":3675356727169139,"transformationMatrixBuffer":283635242710323,"transformationMatrixBufferOffset":1889707634103856,"transformationMatrixLayout":1303108401955868,"triangleCount":3963516588708997,"vertexBuffers":825940679455432,"vertexFormat":3051089478364508,"vertexStride":2938252736172247} });
+registerSDKClass("MTLAccelerationStructurePassDescriptor", MTLAccelerationStructurePassDescriptor, { module: "Metal_3864e7f38681b875", properties: {"sampleBufferAttachments":902875324597688} });
+registerSDKClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptor", MTLAccelerationStructurePassSampleBufferAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"endOfEncoderSampleIndex":295382591747408,"sampleBuffer":803813827980396,"startOfEncoderSampleIndex":4184871397943073} });
+registerSDKClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray", MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":2102793762425249}} });
+registerSDKClass("Metal.MTLAccelerationStructureSizes", MTLAccelerationStructureSizes, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLAccelerationStructureTriangleGeometryDescriptor", MTLAccelerationStructureTriangleGeometryDescriptor, { module: "Metal_3864e7f38681b875", properties: {"indexBuffer":1795612470943896,"indexBufferOffset":3572111626083449,"indexType":417322261761410,"transformationMatrixBuffer":4192017712354902,"transformationMatrixBufferOffset":811830879517514,"transformationMatrixLayout":3678019430992386,"triangleCount":344310440711004,"vertexBuffer":3085283782154536,"vertexBufferOffset":3645334252586894,"vertexFormat":3691077341696689,"vertexStride":3937313014707711} });
+registerSDKClass("Metal.MTLAccelerationStructureUserIDInstanceDescriptor", MTLAccelerationStructureUserIDInstanceDescriptor, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLAllocation", {});
-registerSDKClass("MTLArchitecture", MTLArchitecture, { module: "Metal_e11dfd5beee01da3", properties: {"name":1520335703980706} });
-registerSDKClass("MTLArgument", MTLArgument, { module: "Metal_e11dfd5beee01da3", properties: {"access":4228290196513714,"isActive":556874902082286,"arrayLength":834132209509098,"bufferAlignment":2538966148139917,"bufferDataSize":2037378178287143,"bufferDataType":164498880396931,"bufferPointerType":2894422025249077,"bufferStructType":2275585561161170,"index":1502008713759238,"isDepthTexture":2108237675497099,"name":2969431005594719,"textureDataType":88729904862661,"textureType":3299647494409288,"threadgroupMemoryAlignment":259429919992000,"threadgroupMemoryDataSize":2713094882033978,"type":1570603195885825} });
-registerSDKClass("MTLArgumentDescriptor", MTLArgumentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"access":2537907887963300,"arrayLength":3073283573560794,"constantBlockAlignment":1878167149166379,"dataType":584253819789331,"index":130288196470784,"textureType":1862194671405337} });
+registerSDKClass("MTLArchitecture", MTLArchitecture, { module: "Metal_3864e7f38681b875", properties: {"name":1520335703980706} });
+registerSDKClass("MTLArgument", MTLArgument, { module: "Metal_3864e7f38681b875", properties: {"access":4228290196513714,"isActive":556874902082286,"arrayLength":834132209509098,"bufferAlignment":2538966148139917,"bufferDataSize":2037378178287143,"bufferDataType":164498880396931,"bufferPointerType":2894422025249077,"bufferStructType":2275585561161170,"index":1502008713759238,"isDepthTexture":2108237675497099,"name":2969431005594719,"textureDataType":88729904862661,"textureType":3299647494409288,"threadgroupMemoryAlignment":259429919992000,"threadgroupMemoryDataSize":2713094882033978,"type":1570603195885825} });
+registerSDKClass("MTLArgumentDescriptor", MTLArgumentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"access":2537907887963300,"arrayLength":3073283573560794,"constantBlockAlignment":1878167149166379,"dataType":584253819789331,"index":130288196470784,"textureType":1862194671405337} });
 registerSDKProtocol("c:objc(pl)MTLArgumentEncoder", {"setArgumentBufferOffset":"setArgumentBuffer(_:offset:)","setArgumentBufferStartOffsetArrayElement":"setArgumentBuffer(_:startOffset:arrayElement:)","setBufferOffsetIndex":"setBuffer(_:offset:index:)","setTextureIndex":"setTexture(_:index:)","setSamplerStateIndex":"setSamplerState(_:index:)","constantDataAt":"constantData(at:)","setRenderPipelineStateIndex":"setRenderPipelineState(_:index:)","setComputePipelineStateIndex":"setComputePipelineState(_:index:)","setIndirectCommandBufferIndex":"setIndirectCommandBuffer(_:index:)","setAccelerationStructureIndex":"setAccelerationStructure(_:index:)","makeArgumentEncoderForBufferAtIndex":"makeArgumentEncoderForBuffer(atIndex:)","setVisibleFunctionTableIndex":"setVisibleFunctionTable(_:index:)","setIntersectionFunctionTableIndex":"setIntersectionFunctionTable(_:index:)"});
-registerSDKClass("MTLType", MTLType, { module: "Metal_e11dfd5beee01da3", properties: {"dataType":1818320327359680} });
-registerSDKClass("MTLArrayType", MTLArrayType, { module: "Metal_e11dfd5beee01da3", properties: {"argumentIndexStride":1406426702085079,"arrayLength":1902350028094453,"elementType":3072042434440535,"stride":2014673892530569}, methods: {"element":{"id":3926964346609855},"elementPointerType":{"id":1321965641578284},"elementStructType":{"id":2227158050148303},"elementTextureReferenceType":{"id":220562475413788}} });
-registerSDKClass("MTLAttribute", MTLAttribute, { module: "Metal_e11dfd5beee01da3", properties: {"isActive":24975234649604,"attributeIndex":2027170355921381,"attributeType":2826244782742369,"name":2842846303462071,"isPatchControlPointData":3691510721777584,"isPatchData":4200964036763844} });
-registerSDKClass("MTLAttributeDescriptor", MTLAttributeDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"bufferIndex":4405685825788867,"format":1566928818812681,"offset":613662740992558} });
-registerSDKClass("MTLAttributeDescriptorArray", MTLAttributeDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":1683432342531732}} });
+registerSDKClass("MTLType", MTLType, { module: "Metal_3864e7f38681b875", properties: {"dataType":1818320327359680} });
+registerSDKClass("MTLArrayType", MTLArrayType, { module: "Metal_3864e7f38681b875", properties: {"argumentIndexStride":1406426702085079,"arrayLength":1902350028094453,"elementType":3072042434440535,"stride":2014673892530569}, methods: {"element":{"id":3926964346609855},"elementPointerType":{"id":1321965641578284},"elementStructType":{"id":2227158050148303},"elementTextureReferenceType":{"id":220562475413788}} });
+registerSDKClass("MTLAttribute", MTLAttribute, { module: "Metal_3864e7f38681b875", properties: {"isActive":24975234649604,"attributeIndex":2027170355921381,"attributeType":2826244782742369,"name":2842846303462071,"isPatchControlPointData":3691510721777584,"isPatchData":4200964036763844} });
+registerSDKClass("MTLAttributeDescriptor", MTLAttributeDescriptor, { module: "Metal_3864e7f38681b875", properties: {"bufferIndex":4405685825788867,"format":1566928818812681,"offset":613662740992558} });
+registerSDKClass("MTLAttributeDescriptorArray", MTLAttributeDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":1683432342531732}} });
 registerSDKProtocol("c:objc(pl)MTLBinaryArchive", {"addComputePipelineFunctionsDescriptor":"addComputePipelineFunctions(descriptor:)","addRenderPipelineFunctionsDescriptor":"addRenderPipelineFunctions(descriptor:)","addTileRenderPipelineFunctionsDescriptor":"addTileRenderPipelineFunctions(descriptor:)","addMeshRenderPipelineFunctionsDescriptor":"addMeshRenderPipelineFunctions(descriptor:)","addLibraryDescriptor":"addLibrary(descriptor:)","serializeTo":"serialize(to:)","addFunctionDescriptorLibrary":"addFunction(descriptor:library:)"});
-registerSDKClass("MTLBinaryArchiveDescriptor", MTLBinaryArchiveDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"url":3860237457565817} });
-registerSDKClass("Metal.MTLBinaryArchiveError", MTLBinaryArchiveError, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("MTLBinaryArchiveDescriptor", MTLBinaryArchiveDescriptor, { module: "Metal_3864e7f38681b875", properties: {"url":3860237457565817} });
+registerSDKClass("Metal.MTLBinaryArchiveError", MTLBinaryArchiveError, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLBinding", {});
 registerSDKProtocol("c:objc(pl)MTLBlitCommandEncoder", {"endEncoding":"endEncoding()","barrierAfterQueueStagesBeforeStages":"barrier(afterQueueStages:beforeStages:)","insertDebugSignpost":"insertDebugSignpost(_:)","pushDebugGroup":"pushDebugGroup(_:)","popDebugGroup":"popDebugGroup()","copyFromSourceSliceSourceLevelSourceOriginSourceSizeToDestinationSliceDestinationLevelDestinationOrigin":"copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)","copyFromSourceOffsetSourceBytesPerRowSourceBytesPerImageSourceSizeToDestinationSliceDestinationLevelDestinationOrigin":"copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)","copyFromSourceOffsetSourceBytesPerRowSourceBytesPerImageSourceSizeToDestinationSliceDestinationLevelDestinationOriginOptions":"copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:options:)","copyFromSourceSliceSourceLevelSourceOriginSourceSizeToDestinationOffsetDestinationBytesPerRowDestinationBytesPerImage":"copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)","copyFromSourceSliceSourceLevelSourceOriginSourceSizeToDestinationOffsetDestinationBytesPerRowDestinationBytesPerImageOptions":"copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)","generateMipmapsFor":"generateMipmaps(for:)","copyFromSourceSliceSourceLevelToDestinationSliceDestinationLevelSliceCountLevelCount":"copy(from:sourceSlice:sourceLevel:to:destinationSlice:destinationLevel:sliceCount:levelCount:)","copyFromTo":"copy(from:to:)","copyFromSourceOffsetToDestinationOffsetSize":"copy(from:sourceOffset:to:destinationOffset:size:)","updateFence":"updateFence(_:)","waitForFence":"waitForFence(_:)","getTextureAccessCountersRegionMipLevelSliceResetCountersCountersBufferCountersBufferOffset":"getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)","resetTextureAccessCountersRegionMipLevelSlice":"resetTextureAccessCounters(_:region:mipLevel:slice:)","optimizeContentsForGPUAccessTexture":"optimizeContentsForGPUAccess(texture:)","optimizeContentsForGPUAccessTextureSliceLevel":"optimizeContentsForGPUAccess(texture:slice:level:)","optimizeContentsForCPUAccessTexture":"optimizeContentsForCPUAccess(texture:)","optimizeContentsForCPUAccessTextureSliceLevel":"optimizeContentsForCPUAccess(texture:slice:level:)","sampleCountersSampleBufferSampleIndexBarrier":"sampleCounters(sampleBuffer:sampleIndex:barrier:)"});
-registerSDKClass("MTLBlitPassDescriptor", MTLBlitPassDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"sampleBufferAttachments":2437769392873324} });
-registerSDKClass("MTLBlitPassSampleBufferAttachmentDescriptor", MTLBlitPassSampleBufferAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"endOfEncoderSampleIndex":930804096808436,"sampleBuffer":1104877398082205,"startOfEncoderSampleIndex":2672273225252200} });
-registerSDKClass("MTLBlitPassSampleBufferAttachmentDescriptorArray", MTLBlitPassSampleBufferAttachmentDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":3903315962363230}} });
+registerSDKClass("MTLBlitPassDescriptor", MTLBlitPassDescriptor, { module: "Metal_3864e7f38681b875", properties: {"sampleBufferAttachments":2437769392873324} });
+registerSDKClass("MTLBlitPassSampleBufferAttachmentDescriptor", MTLBlitPassSampleBufferAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"endOfEncoderSampleIndex":930804096808436,"sampleBuffer":1104877398082205,"startOfEncoderSampleIndex":2672273225252200} });
+registerSDKClass("MTLBlitPassSampleBufferAttachmentDescriptorArray", MTLBlitPassSampleBufferAttachmentDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":3903315962363230}} });
 registerSDKProtocol("c:objc(pl)MTLBuffer", {"setPurgeableState":"setPurgeableState(_:)","makeAliasable":"makeAliasable()","isAliasable":"isAliasable()","contents":"contents()","makeTextureDescriptorOffsetBytesPerRow":"makeTexture(descriptor:offset:bytesPerRow:)","removeAllDebugMarkers":"removeAllDebugMarkers()"});
 registerSDKProtocol("c:objc(pl)MTLBufferBinding", {});
-registerSDKClass("MTLBufferLayoutDescriptor", MTLBufferLayoutDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"stepFunction":1142906040523542,"stepRate":127888639333079,"stride":3499536176224294} });
-registerSDKClass("MTLBufferLayoutDescriptorArray", MTLBufferLayoutDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":2728768819736427}} });
-registerSDKClass("MTLCaptureDescriptor", MTLCaptureDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"captureObject":2935158344365846,"destination":3934047454535142,"outputURL":291934766952142} });
-registerSDKClass("MTLCaptureManager", MTLCaptureManager, { module: "Metal_e11dfd5beee01da3", properties: {"defaultCaptureScope":3805860376272189,"isCapturing":3015732570667955}, methods: {"makeCaptureScopeCommandQueue":{"id":4419655996529114},"makeCaptureScopeDevice":{"id":2326129577185691},"startCaptureCommandQueue":{"id":787579423681409},"startCaptureWith":{"id":1119694891830936},"startCaptureDevice":{"id":4313900551171368},"startCaptureScope":{"id":2555451984245352},"stopCapture":{"id":2744702978000528},"supportsDestination":{"id":2852247299942968}} });
+registerSDKClass("MTLBufferLayoutDescriptor", MTLBufferLayoutDescriptor, { module: "Metal_3864e7f38681b875", properties: {"stepFunction":1142906040523542,"stepRate":127888639333079,"stride":3499536176224294} });
+registerSDKClass("MTLBufferLayoutDescriptorArray", MTLBufferLayoutDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":2728768819736427}} });
+registerSDKClass("MTLCaptureDescriptor", MTLCaptureDescriptor, { module: "Metal_3864e7f38681b875", properties: {"captureObject":2935158344365846,"destination":3934047454535142,"outputURL":291934766952142} });
+registerSDKClass("MTLCaptureManager", MTLCaptureManager, { module: "Metal_3864e7f38681b875", properties: {"defaultCaptureScope":3805860376272189,"isCapturing":3015732570667955}, methods: {"makeCaptureScopeCommandQueue":{"id":4419655996529114},"makeCaptureScopeDevice":{"id":2326129577185691},"startCaptureCommandQueue":{"id":787579423681409},"startCaptureWith":{"id":1119694891830936},"startCaptureDevice":{"id":4313900551171368},"startCaptureScope":{"id":2555451984245352},"stopCapture":{"id":2744702978000528},"supportsDestination":{"id":2852247299942968}} });
 registerSDKProtocol("c:objc(pl)MTLCaptureScope", {"begin":"begin()","end":"end()"});
-registerSDKClass("Metal.MTLClearColor", MTLClearColor, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Metal.MTLClearColor", MTLClearColor, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLCommandBuffer", {"enqueue":"enqueue()","commit":"commit()","addScheduledHandler":"addScheduledHandler(_:)","present":"present(_:)","presentAtTime":"present(_:atTime:)","waitUntilScheduled":"waitUntilScheduled()","addCompletedHandler":"addCompletedHandler(_:)","waitUntilCompleted":"waitUntilCompleted()","makeBlitCommandEncoder":"makeBlitCommandEncoder()","makeRenderCommandEncoderDescriptor":"makeRenderCommandEncoder(descriptor:)","makeComputeCommandEncoderDescriptor":"makeComputeCommandEncoder(descriptor:)","makeBlitCommandEncoderDescriptor":"makeBlitCommandEncoder(descriptor:)","makeComputeCommandEncoder":"makeComputeCommandEncoder()","makeComputeCommandEncoderDispatchType":"makeComputeCommandEncoder(dispatchType:)","encodeWaitForEventValue":"encodeWaitForEvent(_:value:)","encodeSignalEventValue":"encodeSignalEvent(_:value:)","makeParallelRenderCommandEncoderDescriptor":"makeParallelRenderCommandEncoder(descriptor:)","makeResourceStateCommandEncoder":"makeResourceStateCommandEncoder()","resourceStateCommandEncoderWith":"resourceStateCommandEncoder(with:)","makeAccelerationStructureCommandEncoder":"makeAccelerationStructureCommandEncoder()","makeAccelerationStructureCommandEncoderDescriptor":"makeAccelerationStructureCommandEncoder(descriptor:)","pushDebugGroup":"pushDebugGroup(_:)","popDebugGroup":"popDebugGroup()","useResidencySet":"useResidencySet(_:)"});
-registerSDKClass("MTLCommandBufferDescriptor", MTLCommandBufferDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"errorOptions":458901821597491,"logState":1982359566826420,"retainedReferences":1677550193168950} });
+registerSDKClass("MTLCommandBufferDescriptor", MTLCommandBufferDescriptor, { module: "Metal_3864e7f38681b875", properties: {"errorOptions":458901821597491,"logState":1982359566826420,"retainedReferences":1677550193168950} });
 registerSDKProtocol("c:objc(pl)MTLCommandBufferEncoderInfo", {});
-registerSDKClass("Metal.MTLCommandBufferError", MTLCommandBufferError, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Metal.MTLCommandBufferError", MTLCommandBufferError, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLCommandEncoder", {"endEncoding":"endEncoding()","barrierAfterQueueStagesBeforeStages":"barrier(afterQueueStages:beforeStages:)","insertDebugSignpost":"insertDebugSignpost(_:)","pushDebugGroup":"pushDebugGroup(_:)","popDebugGroup":"popDebugGroup()"});
 registerSDKProtocol("c:objc(pl)MTLCommandQueue", {"makeCommandBuffer":"makeCommandBuffer()","makeCommandBufferDescriptor":"makeCommandBuffer(descriptor:)","makeCommandBufferWithUnretainedReferences":"makeCommandBufferWithUnretainedReferences()","insertDebugCaptureBoundary":"insertDebugCaptureBoundary()","addResidencySet":"addResidencySet(_:)","removeResidencySet":"removeResidencySet(_:)"});
-registerSDKClass("MTLCommandQueueDescriptor", MTLCommandQueueDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"logState":4081892844624778,"maxCommandBufferCount":1851575699378425} });
-registerSDKClass("MTLCompileOptions", MTLCompileOptions, { module: "Metal_e11dfd5beee01da3", properties: {"allowReferencingUndefinedSymbols":3751012157838658,"compileSymbolVisibility":1290262132200547,"enableLogging":3256337692703842,"fastMathEnabled":1599953203522796,"floatingPointConversionRoundingMode":843823234507811,"installName":986977920515551,"languageVersion":3387036748107051,"libraries":319769727831069,"libraryType":1916849865619628,"mathFloatingPointFunctions":2702005894351567,"mathMode":2434791089943780,"maxTotalThreadsPerThreadgroup":2383091758436042,"optimizationLevel":1067616610901106,"preprocessorMacros":284921829522965,"preserveInvariance":1378813075832052} });
-registerSDKClass("Metal.MTLComponentTransform", MTLComponentTransform, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("MTLCommandQueueDescriptor", MTLCommandQueueDescriptor, { module: "Metal_3864e7f38681b875", properties: {"logState":4081892844624778,"maxCommandBufferCount":1851575699378425} });
+registerSDKClass("MTLCompileOptions", MTLCompileOptions, { module: "Metal_3864e7f38681b875", properties: {"allowReferencingUndefinedSymbols":3751012157838658,"compileSymbolVisibility":1290262132200547,"enableLogging":3256337692703842,"fastMathEnabled":1599953203522796,"floatingPointConversionRoundingMode":843823234507811,"installName":986977920515551,"languageVersion":3387036748107051,"libraries":319769727831069,"libraryType":1916849865619628,"mathFloatingPointFunctions":2702005894351567,"mathMode":2434791089943780,"maxTotalThreadsPerThreadgroup":2383091758436042,"optimizationLevel":1067616610901106,"preprocessorMacros":284921829522965,"preserveInvariance":1378813075832052} });
+registerSDKClass("Metal.MTLComponentTransform", MTLComponentTransform, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLComputeCommandEncoder", {"endEncoding":"endEncoding()","barrierAfterQueueStagesBeforeStages":"barrier(afterQueueStages:beforeStages:)","insertDebugSignpost":"insertDebugSignpost(_:)","pushDebugGroup":"pushDebugGroup(_:)","popDebugGroup":"popDebugGroup()","setComputePipelineState":"setComputePipelineState(_:)","setBytesLengthIndex":"setBytes(_:length:index:)","setBufferOffsetIndex":"setBuffer(_:offset:index:)","setBufferOffsetIndex8":"setBufferOffset(_:index:)","setBufferOffsetAttributeStrideIndex":"setBuffer(_:offset:attributeStride:index:)","setBufferOffsetOffsetAttributeStrideIndex":"setBufferOffset(offset:attributeStride:index:)","setBytesLengthAttributeStrideIndex":"setBytes(_:length:attributeStride:index:)","setVisibleFunctionTableBufferIndex":"setVisibleFunctionTable(_:bufferIndex:)","setIntersectionFunctionTableBufferIndex":"setIntersectionFunctionTable(_:bufferIndex:)","setAccelerationStructureBufferIndex":"setAccelerationStructure(_:bufferIndex:)","setTextureIndex":"setTexture(_:index:)","setSamplerStateIndex":"setSamplerState(_:index:)","setSamplerStateLodMinClampLodMaxClampIndex":"setSamplerState(_:lodMinClamp:lodMaxClamp:index:)","setThreadgroupMemoryLengthIndex":"setThreadgroupMemoryLength(_:index:)","setImageblockWidthHeight":"setImageblockWidth(_:height:)","setStageInRegion":"setStageInRegion(_:)","setStageInRegionWithIndirectBufferIndirectBufferOffset":"setStageInRegionWithIndirectBuffer(_:indirectBufferOffset:)","dispatchThreadgroupsThreadsPerThreadgroup":"dispatchThreadgroups(_:threadsPerThreadgroup:)","dispatchThreadgroupsIndirectBufferIndirectBufferOffsetThreadsPerThreadgroup":"dispatchThreadgroups(indirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)","dispatchThreadsThreadsPerThreadgroup":"dispatchThreads(_:threadsPerThreadgroup:)","updateFence":"updateFence(_:)","waitForFence":"waitForFence(_:)","useResourceUsage":"useResource(_:usage:)","useHeap":"useHeap(_:)","memoryBarrierScope":"memoryBarrier(scope:)","sampleCountersSampleBufferSampleIndexBarrier":"sampleCounters(sampleBuffer:sampleIndex:barrier:)"});
-registerSDKClass("MTLComputePassDescriptor", MTLComputePassDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"dispatchType":2218066873051037,"sampleBufferAttachments":4357305005433988} });
-registerSDKClass("MTLComputePassSampleBufferAttachmentDescriptor", MTLComputePassSampleBufferAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"endOfEncoderSampleIndex":1346925760046606,"sampleBuffer":1341261311321474,"startOfEncoderSampleIndex":1797955604657898} });
-registerSDKClass("MTLComputePassSampleBufferAttachmentDescriptorArray", MTLComputePassSampleBufferAttachmentDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":1923894406388181}} });
-registerSDKClass("MTLComputePipelineDescriptor", MTLComputePipelineDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"binaryArchives":3889989897411876,"buffers":1605356264803191,"computeFunction":4241145353424329,"contentionRelief":1570560387625904,"forwardProgressUsage":110457115219560,"insertLibraries":2569360213415583,"label":2261920589515738,"linkedFunctions":1811030403969964,"maxCallStackDepth":2564516783569396,"maxTotalThreadsPerThreadgroup":61329258748053,"optimizeForPersistentKernel":4496858936602025,"preloadedLibraries":702912432432089,"shaderValidation":4275729711451359,"stageInputDescriptor":1068794653034960,"supportAddingBinaryFunctions":722704157252444,"supportIndirectCommandBuffers":3442438286963602,"threadGroupSizeIsMultipleOfThreadExecutionWidth":871202065151838}, methods: {"reset":{"id":1596727713418511}} });
-registerSDKClass("MTLComputePipelineReflection", MTLComputePipelineReflection, { module: "Metal_e11dfd5beee01da3", properties: {"arguments":2557908565390893,"bindings":3120674890900433} });
+registerSDKClass("MTLComputePassDescriptor", MTLComputePassDescriptor, { module: "Metal_3864e7f38681b875", properties: {"dispatchType":2218066873051037,"sampleBufferAttachments":4357305005433988} });
+registerSDKClass("MTLComputePassSampleBufferAttachmentDescriptor", MTLComputePassSampleBufferAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"endOfEncoderSampleIndex":1346925760046606,"sampleBuffer":1341261311321474,"startOfEncoderSampleIndex":1797955604657898} });
+registerSDKClass("MTLComputePassSampleBufferAttachmentDescriptorArray", MTLComputePassSampleBufferAttachmentDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":1923894406388181}} });
+registerSDKClass("MTLComputePipelineDescriptor", MTLComputePipelineDescriptor, { module: "Metal_3864e7f38681b875", properties: {"binaryArchives":3889989897411876,"buffers":1605356264803191,"computeFunction":4241145353424329,"contentionRelief":1570560387625904,"forwardProgressUsage":110457115219560,"insertLibraries":2569360213415583,"label":2261920589515738,"linkedFunctions":1811030403969964,"maxCallStackDepth":2564516783569396,"maxTotalThreadsPerThreadgroup":61329258748053,"optimizeForPersistentKernel":4496858936602025,"preloadedLibraries":702912432432089,"shaderValidation":4275729711451359,"stageInputDescriptor":1068794653034960,"supportAddingBinaryFunctions":722704157252444,"supportIndirectCommandBuffers":3442438286963602,"threadGroupSizeIsMultipleOfThreadExecutionWidth":871202065151838}, methods: {"reset":{"id":1596727713418511}} });
+registerSDKClass("MTLComputePipelineReflection", MTLComputePipelineReflection, { module: "Metal_3864e7f38681b875", properties: {"arguments":2557908565390893,"bindings":3120674890900433} });
 registerSDKProtocol("c:objc(pl)MTLComputePipelineState", {"functionHandleWithName":"functionHandle(withName:)","imageblockMemoryLengthForDimensions":"imageblockMemoryLength(forDimensions:)","functionHandleFunction":"functionHandle(function:)","makeComputePipelineStateWithAdditionalBinaryFunctionsFunctions":"makeComputePipelineStateWithAdditionalBinaryFunctions(functions:)","makeVisibleFunctionTableDescriptor":"makeVisibleFunctionTable(descriptor:)","makeIntersectionFunctionTableDescriptor":"makeIntersectionFunctionTable(descriptor:)","recommendedPersistentThreadgroupsPerGridForThreadsPerThreadgroup":"recommendedPersistentThreadgroupsPerGrid(forThreadsPerThreadgroup:)"});
 registerSDKProtocol("c:objc(pl)MTLCounter", {});
-registerSDKClass("Metal.MTLCounterResultStageUtilization", MTLCounterResultStageUtilization, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLCounterResultStatistic", MTLCounterResultStatistic, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLCounterResultTimestamp", MTLCounterResultTimestamp, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Metal.MTLCounterResultStageUtilization", MTLCounterResultStageUtilization, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLCounterResultStatistic", MTLCounterResultStatistic, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLCounterResultTimestamp", MTLCounterResultTimestamp, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLCounterSampleBuffer", {});
-registerSDKClass("MTLCounterSampleBufferDescriptor", MTLCounterSampleBufferDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"counterSet":3425337366307307,"label":1800531054684097,"sampleCount":2293027839575562,"storageMode":3555549802861016} });
-registerSDKClass("Metal.MTLCounterSampleBufferError", MTLCounterSampleBufferError, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("MTLCounterSampleBufferDescriptor", MTLCounterSampleBufferDescriptor, { module: "Metal_3864e7f38681b875", properties: {"counterSet":3425337366307307,"label":1800531054684097,"sampleCount":2293027839575562,"storageMode":3555549802861016} });
+registerSDKClass("Metal.MTLCounterSampleBufferError", MTLCounterSampleBufferError, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLCounterSet", {});
-registerSDKClass("MTLDepthStencilDescriptor", MTLDepthStencilDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"backFaceStencil":2855013542621230,"depthCompareFunction":1568375561205674,"isDepthWriteEnabled":3581622878588624,"frontFaceStencil":1418622732782780,"label":1016150622163737} });
+registerSDKClass("MTLDepthStencilDescriptor", MTLDepthStencilDescriptor, { module: "Metal_3864e7f38681b875", properties: {"backFaceStencil":2855013542621230,"depthCompareFunction":1568375561205674,"isDepthWriteEnabled":3581622878588624,"frontFaceStencil":1418622732782780,"label":1016150622163737} });
 registerSDKProtocol("c:objc(pl)MTLDepthStencilState", {});
 registerSDKProtocol("c:objc(pl)MTLDevice", {"makeLogStateDescriptor":"makeLogState(descriptor:)","makeCommandQueue":"makeCommandQueue()","makeCommandQueueMaxCommandBufferCount":"makeCommandQueue(maxCommandBufferCount:)","makeCommandQueueDescriptor":"makeCommandQueue(descriptor:)","heapTextureSizeAndAlignDescriptor":"heapTextureSizeAndAlign(descriptor:)","heapBufferSizeAndAlignLengthOptions":"heapBufferSizeAndAlign(length:options:)","makeHeapDescriptor":"makeHeap(descriptor:)","makeBufferLengthOptions":"makeBuffer(length:options:)","makeBufferBytesLengthOptions":"makeBuffer(bytes:length:options:)","makeBufferBytesNoCopyLengthOptionsDeallocator":"makeBuffer(bytesNoCopy:length:options:deallocator:)","makeDepthStencilStateDescriptor":"makeDepthStencilState(descriptor:)","makeTextureDescriptor":"makeTexture(descriptor:)","makeTextureDescriptorIosurfacePlane":"makeTexture(descriptor:iosurface:plane:)","makeSamplerStateDescriptor":"makeSamplerState(descriptor:)","makeDefaultLibrary":"makeDefaultLibrary()","makeDefaultLibraryBundle":"makeDefaultLibrary(bundle:)","makeLibraryFilepath":"makeLibrary(filepath:)","makeLibraryURL":"makeLibrary(URL:)","makeLibraryData":"makeLibrary(data:)","makeLibrarySourceOptions":"makeLibrary(source:options:)","makeLibraryStitchedDescriptor":"makeLibrary(stitchedDescriptor:)","makeRenderPipelineStateDescriptor":"makeRenderPipelineState(descriptor:)","makeRenderPipelineStateDescriptorOptionsReflection":"makeRenderPipelineState(descriptor:options:reflection:)","makeRenderPipelineStateDescriptorOptions":"makeRenderPipelineState(descriptor:options:)","makeComputePipelineStateFunction":"makeComputePipelineState(function:)","makeComputePipelineStateFunctionOptionsReflection":"makeComputePipelineState(function:options:reflection:)","makeComputePipelineStateFunctionOptions":"makeComputePipelineState(function:options:)","makeComputePipelineStateDescriptorOptionsReflection":"makeComputePipelineState(descriptor:options:reflection:)","makeComputePipelineStateDescriptorOptions":"makeComputePipelineState(descriptor:options:)","makeFence":"makeFence()","supportsFeatureSet":"supportsFeatureSet(_:)","supportsFamily":"supportsFamily(_:)","supportsTextureSampleCount":"supportsTextureSampleCount(_:)","minimumLinearTextureAlignmentFor":"minimumLinearTextureAlignment(for:)","minimumTextureBufferAlignmentFor":"minimumTextureBufferAlignment(for:)","makeRenderPipelineStateTileDescriptorOptionsReflection":"makeRenderPipelineState(tileDescriptor:options:reflection:)","makeRenderPipelineStateTileDescriptorOptions":"makeRenderPipelineState(tileDescriptor:options:)","makeArgumentEncoderArguments":"makeArgumentEncoder(arguments:)","supportsRasterizationRateMapLayerCount":"supportsRasterizationRateMap(layerCount:)","makeRasterizationRateMapDescriptor":"makeRasterizationRateMap(descriptor:)","makeIndirectCommandBufferDescriptorMaxCommandCountOptions":"makeIndirectCommandBuffer(descriptor:maxCommandCount:options:)","makeEvent":"makeEvent()","makeSharedEvent":"makeSharedEvent()","makeSharedEventHandle":"makeSharedEvent(handle:)","sparseTileSizeWithPixelFormatSampleCount":"sparseTileSize(with:pixelFormat:sampleCount:)","convertSparsePixelRegionsToTileRegionsWithTileSizeAlignmentModeNumRegions":"convertSparsePixelRegions(_:toTileRegions:withTileSize:alignmentMode:numRegions:)","convertSparseTileRegionsToPixelRegionsWithTileSizeNumRegions":"convertSparseTileRegions(_:toPixelRegions:withTileSize:numRegions:)","sparseTileSizeInBytesSparsePageSize":"sparseTileSizeInBytes(sparsePageSize:)","sparseTileSizeTextureTypePixelFormatSampleCountSparsePageSize":"sparseTileSize(textureType:pixelFormat:sampleCount:sparsePageSize:)","makeCounterSampleBufferDescriptor":"makeCounterSampleBuffer(descriptor:)","makeArgumentEncoderBufferBinding":"makeArgumentEncoder(bufferBinding:)","supportsCounterSampling":"supportsCounterSampling(_:)","supportsVertexAmplificationCount":"supportsVertexAmplificationCount(_:)","makeDynamicLibraryLibrary":"makeDynamicLibrary(library:)","makeDynamicLibraryUrl":"makeDynamicLibrary(url:)","makeBinaryArchiveDescriptor":"makeBinaryArchive(descriptor:)","accelerationStructureSizesDescriptor":"accelerationStructureSizes(descriptor:)","makeAccelerationStructureSize":"makeAccelerationStructure(size:)","makeAccelerationStructureDescriptor":"makeAccelerationStructure(descriptor:)","heapAccelerationStructureSizeAndAlignSize":"heapAccelerationStructureSizeAndAlign(size:)","heapAccelerationStructureSizeAndAlignDescriptor":"heapAccelerationStructureSizeAndAlign(descriptor:)","makeResidencySetDescriptor":"makeResidencySet(descriptor:)","functionHandleFunction":"functionHandle(function:)"});
-registerSDKClass("Metal.MTLDeviceError", MTLDeviceError, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLDispatchThreadgroupsIndirectArguments", MTLDispatchThreadgroupsIndirectArguments, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLDispatchThreadsIndirectArguments", MTLDispatchThreadsIndirectArguments, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Metal.MTLDeviceError", MTLDeviceError, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLDispatchThreadgroupsIndirectArguments", MTLDispatchThreadgroupsIndirectArguments, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLDispatchThreadsIndirectArguments", MTLDispatchThreadsIndirectArguments, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLDrawable", {"present":"present()","presentAt":"present(at:)"});
-registerSDKClass("Metal.MTLDrawIndexedPrimitivesIndirectArguments", MTLDrawIndexedPrimitivesIndirectArguments, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLDrawPatchIndirectArguments", MTLDrawPatchIndirectArguments, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLDrawPrimitivesIndirectArguments", MTLDrawPrimitivesIndirectArguments, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Metal.MTLDrawIndexedPrimitivesIndirectArguments", MTLDrawIndexedPrimitivesIndirectArguments, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLDrawPatchIndirectArguments", MTLDrawPatchIndirectArguments, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLDrawPrimitivesIndirectArguments", MTLDrawPrimitivesIndirectArguments, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLDynamicLibrary", {"serializeTo":"serialize(to:)"});
-registerSDKClass("Metal.MTLDynamicLibraryError", MTLDynamicLibraryError, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Metal.MTLDynamicLibraryError", MTLDynamicLibraryError, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLEvent", {});
 registerSDKProtocol("c:objc(pl)MTLFence", {});
 registerSDKProtocol("c:objc(pl)MTLFunction", {"makeArgumentEncoderBufferIndex":"makeArgumentEncoder(bufferIndex:)","makeArgumentEncoderBufferIndexReflection":"makeArgumentEncoder(bufferIndex:reflection:)"});
-registerSDKClass("MTLFunctionConstant", MTLFunctionConstant, { module: "Metal_e11dfd5beee01da3", properties: {"index":3869010279880133,"name":2936784491954621,"required":3431316243639182,"type":3642342676583682} });
-registerSDKClass("MTLFunctionConstantValues", MTLFunctionConstantValues, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"reset":{"id":182387353541005},"setConstantValueTypeIndex":{"id":3843836667658561},"setConstantValueTypeWithName":{"id":1838625730683526},"setConstantValues":{"id":1722840793882186}} });
-registerSDKClass("MTLFunctionDescriptor", MTLFunctionDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"binaryArchives":4274737829798032,"constantValues":2744059228841976,"name":48600330322089,"options":239908779760773,"specializedName":3469145700441274} });
+registerSDKClass("MTLFunctionConstant", MTLFunctionConstant, { module: "Metal_3864e7f38681b875", properties: {"index":3869010279880133,"name":2936784491954621,"required":3431316243639182,"type":3642342676583682} });
+registerSDKClass("MTLFunctionConstantValues", MTLFunctionConstantValues, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"reset":{"id":182387353541005},"setConstantValueTypeIndex":{"id":3843836667658561},"setConstantValueTypeWithName":{"id":1838625730683526},"setConstantValues":{"id":1722840793882186}} });
+registerSDKClass("MTLFunctionDescriptor", MTLFunctionDescriptor, { module: "Metal_3864e7f38681b875", properties: {"binaryArchives":4274737829798032,"constantValues":2744059228841976,"name":48600330322089,"options":239908779760773,"specializedName":3469145700441274} });
 registerSDKProtocol("c:objc(pl)MTLFunctionHandle", {});
 registerSDKProtocol("c:objc(pl)MTLFunctionLog", {});
 registerSDKProtocol("c:objc(pl)MTLFunctionLogDebugLocation", {});
 registerSDKProtocol("c:objc(pl)MTLFunctionStitchingAttribute", {});
-registerSDKClass("MTLFunctionStitchingAttributeAlwaysInline", MTLFunctionStitchingAttributeAlwaysInline, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLFunctionStitchingFunctionNode", MTLFunctionStitchingFunctionNode, { module: "Metal_e11dfd5beee01da3", properties: {"arguments":487757022804038,"controlDependencies":3031392420634173,"name":1169876077752573} });
-registerSDKClass("MTLFunctionStitchingGraph", MTLFunctionStitchingGraph, { module: "Metal_e11dfd5beee01da3", properties: {"attributes":325446424344288,"functionName":1917059879058983,"nodes":4233370752002374,"outputNode":2983601059060443} });
-registerSDKClass("MTLFunctionStitchingInputNode", MTLFunctionStitchingInputNode, { module: "Metal_e11dfd5beee01da3", properties: {"argumentIndex":454305211338196} });
+registerSDKClass("MTLFunctionStitchingAttributeAlwaysInline", MTLFunctionStitchingAttributeAlwaysInline, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLFunctionStitchingFunctionNode", MTLFunctionStitchingFunctionNode, { module: "Metal_3864e7f38681b875", properties: {"arguments":487757022804038,"controlDependencies":3031392420634173,"name":1169876077752573} });
+registerSDKClass("MTLFunctionStitchingGraph", MTLFunctionStitchingGraph, { module: "Metal_3864e7f38681b875", properties: {"attributes":325446424344288,"functionName":1917059879058983,"nodes":4233370752002374,"outputNode":2983601059060443} });
+registerSDKClass("MTLFunctionStitchingInputNode", MTLFunctionStitchingInputNode, { module: "Metal_3864e7f38681b875", properties: {"argumentIndex":454305211338196} });
 registerSDKProtocol("c:objc(pl)MTLFunctionStitchingNode", {"copyWith":"copy(with:)"});
 registerSDKProtocol("c:objc(pl)MTLHeap", {"maxAvailableSizeAlignment":"maxAvailableSize(alignment:)","makeBufferLengthOptions":"makeBuffer(length:options:)","makeTextureDescriptor":"makeTexture(descriptor:)","setPurgeableState":"setPurgeableState(_:)","makeBufferLengthOptionsOffset":"makeBuffer(length:options:offset:)","makeTextureDescriptorOffset":"makeTexture(descriptor:offset:)","makeAccelerationStructureSize":"makeAccelerationStructure(size:)","makeAccelerationStructureDescriptor":"makeAccelerationStructure(descriptor:)","makeAccelerationStructureSizeOffset":"makeAccelerationStructure(size:offset:)","makeAccelerationStructureDescriptorOffset":"makeAccelerationStructure(descriptor:offset:)"});
-registerSDKClass("MTLHeapDescriptor", MTLHeapDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"cpuCacheMode":31205111929670,"hazardTrackingMode":1361305619886420,"resourceOptions":852767721829914,"size":1938615301060449,"sparsePageSize":1463960735793526,"storageMode":4112315058966146,"type":2449630861858554} });
-registerSDKClass("Metal.MTLIndirectAccelerationStructureInstanceDescriptor", MTLIndirectAccelerationStructureInstanceDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLIndirectAccelerationStructureMotionInstanceDescriptor", MTLIndirectAccelerationStructureMotionInstanceDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("MTLHeapDescriptor", MTLHeapDescriptor, { module: "Metal_3864e7f38681b875", properties: {"cpuCacheMode":31205111929670,"hazardTrackingMode":1361305619886420,"resourceOptions":852767721829914,"size":1938615301060449,"sparsePageSize":1463960735793526,"storageMode":4112315058966146,"type":2449630861858554} });
+registerSDKClass("Metal.MTLIndirectAccelerationStructureInstanceDescriptor", MTLIndirectAccelerationStructureInstanceDescriptor, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLIndirectAccelerationStructureMotionInstanceDescriptor", MTLIndirectAccelerationStructureMotionInstanceDescriptor, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLIndirectCommandBuffer", {"setPurgeableState":"setPurgeableState(_:)","makeAliasable":"makeAliasable()","isAliasable":"isAliasable()","indirectRenderCommandAt":"indirectRenderCommandAt(_:)","indirectComputeCommandAt":"indirectComputeCommandAt(_:)"});
-registerSDKClass("MTLIndirectCommandBufferDescriptor", MTLIndirectCommandBufferDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"commandTypes":2359863482656771,"inheritBuffers":3348354937101311,"inheritPipelineState":2873144675141612,"maxFragmentBufferBindCount":1122789093225092,"maxKernelBufferBindCount":730823363525815,"maxKernelThreadgroupMemoryBindCount":1229875488229745,"maxMeshBufferBindCount":2736379046470446,"maxObjectBufferBindCount":1795552937161631,"maxObjectThreadgroupMemoryBindCount":3426289992533677,"maxVertexBufferBindCount":2593477605744488,"supportDynamicAttributeStride":2226645864186803,"supportRayTracing":3799363391500028} });
-registerSDKClass("Metal.MTLIndirectCommandBufferExecutionRange", MTLIndirectCommandBufferExecutionRange, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("MTLIndirectCommandBufferDescriptor", MTLIndirectCommandBufferDescriptor, { module: "Metal_3864e7f38681b875", properties: {"commandTypes":2359863482656771,"inheritBuffers":3348354937101311,"inheritPipelineState":2873144675141612,"maxFragmentBufferBindCount":1122789093225092,"maxKernelBufferBindCount":730823363525815,"maxKernelThreadgroupMemoryBindCount":1229875488229745,"maxMeshBufferBindCount":2736379046470446,"maxObjectBufferBindCount":1795552937161631,"maxObjectThreadgroupMemoryBindCount":3426289992533677,"maxVertexBufferBindCount":2593477605744488,"supportDynamicAttributeStride":2226645864186803,"supportRayTracing":3799363391500028} });
+registerSDKClass("Metal.MTLIndirectCommandBufferExecutionRange", MTLIndirectCommandBufferExecutionRange, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLIndirectComputeCommand", {"setComputePipelineState":"setComputePipelineState(_:)","setKernelBufferOffsetAt":"setKernelBuffer(_:offset:at:)","setKernelBufferOffsetAttributeStrideAt":"setKernelBuffer(_:offset:attributeStride:at:)","concurrentDispatchThreadgroupsThreadsPerThreadgroup":"concurrentDispatchThreadgroups(_:threadsPerThreadgroup:)","concurrentDispatchThreadsThreadsPerThreadgroup":"concurrentDispatchThreads(_:threadsPerThreadgroup:)","setBarrier":"setBarrier()","clearBarrier":"clearBarrier()","setImageblockWidthHeight":"setImageblockWidth(_:height:)","reset":"reset()","setThreadgroupMemoryLengthIndex":"setThreadgroupMemoryLength(_:index:)","setStageInRegion":"setStageInRegion(_:)"});
-registerSDKClass("MTLIndirectInstanceAccelerationStructureDescriptor", MTLIndirectInstanceAccelerationStructureDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"instanceCountBuffer":2269262206877363,"instanceCountBufferOffset":957209252544804,"instanceDescriptorBuffer":837923836299621,"instanceDescriptorBufferOffset":726345289928587,"instanceDescriptorStride":4454472754011601,"instanceDescriptorType":2165627376571221,"instanceTransformationMatrixLayout":538500620024290,"maxInstanceCount":251412428107141,"maxMotionTransformCount":3310803863140697,"motionTransformBuffer":815937562041271,"motionTransformBufferOffset":4208023594370591,"motionTransformCountBuffer":3695608703888489,"motionTransformCountBufferOffset":986770178793210,"motionTransformStride":2258567642838599,"motionTransformType":3467492755805914} });
+registerSDKClass("MTLIndirectInstanceAccelerationStructureDescriptor", MTLIndirectInstanceAccelerationStructureDescriptor, { module: "Metal_3864e7f38681b875", properties: {"instanceCountBuffer":2269262206877363,"instanceCountBufferOffset":957209252544804,"instanceDescriptorBuffer":837923836299621,"instanceDescriptorBufferOffset":726345289928587,"instanceDescriptorStride":4454472754011601,"instanceDescriptorType":2165627376571221,"instanceTransformationMatrixLayout":538500620024290,"maxInstanceCount":251412428107141,"maxMotionTransformCount":3310803863140697,"motionTransformBuffer":815937562041271,"motionTransformBufferOffset":4208023594370591,"motionTransformCountBuffer":3695608703888489,"motionTransformCountBufferOffset":986770178793210,"motionTransformStride":2258567642838599,"motionTransformType":3467492755805914} });
 registerSDKProtocol("c:objc(pl)MTLIndirectRenderCommand", {"setRenderPipelineState":"setRenderPipelineState(_:)","setVertexBufferOffsetAt":"setVertexBuffer(_:offset:at:)","setFragmentBufferOffsetAt":"setFragmentBuffer(_:offset:at:)","setVertexBufferOffsetAttributeStrideAt":"setVertexBuffer(_:offset:attributeStride:at:)","drawPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride":"drawPatches(_:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)","drawIndexedPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetControlPointIndexBufferControlPointIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride":"drawIndexedPatches(_:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:)","drawPrimitivesVertexStartVertexCountInstanceCountBaseInstance":"drawPrimitives(_:vertexStart:vertexCount:instanceCount:baseInstance:)","drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffsetInstanceCountBaseVertexBaseInstance":"drawIndexedPrimitives(_:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)","setObjectThreadgroupMemoryLengthIndex":"setObjectThreadgroupMemoryLength(_:index:)","setObjectBufferOffsetAt":"setObjectBuffer(_:offset:at:)","setMeshBufferOffsetAt":"setMeshBuffer(_:offset:at:)","drawMeshThreadgroupsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup":"drawMeshThreadgroups(_:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)","drawMeshThreadsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup":"drawMeshThreads(_:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)","setBarrier":"setBarrier()","clearBarrier":"clearBarrier()","reset":"reset()"});
-registerSDKClass("MTLInstanceAccelerationStructureDescriptor", MTLInstanceAccelerationStructureDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"instanceCount":2339192757920603,"instanceDescriptorBuffer":4394672460627216,"instanceDescriptorBufferOffset":3966428084799787,"instanceDescriptorStride":682642891100790,"instanceDescriptorType":3319245263791066,"instanceTransformationMatrixLayout":4184195028888458,"instancedAccelerationStructures":1437203157910892,"motionTransformBuffer":2776945970260020,"motionTransformBufferOffset":917686245669357,"motionTransformCount":1625007272160241,"motionTransformStride":4489965718569769,"motionTransformType":3612870486596654} });
-registerSDKClass("Metal.MTLIntersectionFunctionBufferArguments", MTLIntersectionFunctionBufferArguments, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLIntersectionFunctionDescriptor", MTLIntersectionFunctionDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("MTLInstanceAccelerationStructureDescriptor", MTLInstanceAccelerationStructureDescriptor, { module: "Metal_3864e7f38681b875", properties: {"instanceCount":2339192757920603,"instanceDescriptorBuffer":4394672460627216,"instanceDescriptorBufferOffset":3966428084799787,"instanceDescriptorStride":682642891100790,"instanceDescriptorType":3319245263791066,"instanceTransformationMatrixLayout":4184195028888458,"instancedAccelerationStructures":1437203157910892,"motionTransformBuffer":2776945970260020,"motionTransformBufferOffset":917686245669357,"motionTransformCount":1625007272160241,"motionTransformStride":4489965718569769,"motionTransformType":3612870486596654} });
+registerSDKClass("Metal.MTLIntersectionFunctionBufferArguments", MTLIntersectionFunctionBufferArguments, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLIntersectionFunctionDescriptor", MTLIntersectionFunctionDescriptor, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLIntersectionFunctionTable", {"setPurgeableState":"setPurgeableState(_:)","makeAliasable":"makeAliasable()","isAliasable":"isAliasable()","setBufferOffsetIndex":"setBuffer(_:offset:index:)","setFunctionIndex":"setFunction(_:index:)","setOpaqueTriangleIntersectionFunctionSignatureIndex":"setOpaqueTriangleIntersectionFunction(signature:index:)","setOpaqueTriangleIntersectionFunctionSignatureRange":"setOpaqueTriangleIntersectionFunction(signature:range:)","setOpaqueCurveIntersectionFunctionSignatureIndex":"setOpaqueCurveIntersectionFunction(signature:index:)","setOpaqueCurveIntersectionFunctionSignatureRange":"setOpaqueCurveIntersectionFunction(signature:range:)","setVisibleFunctionTableBufferIndex":"setVisibleFunctionTable(_:bufferIndex:)"});
-registerSDKClass("MTLIntersectionFunctionTableDescriptor", MTLIntersectionFunctionTableDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"functionCount":864294551373685} });
+registerSDKClass("MTLIntersectionFunctionTableDescriptor", MTLIntersectionFunctionTableDescriptor, { module: "Metal_3864e7f38681b875", properties: {"functionCount":864294551373685} });
 registerSDKProtocol("c:objc(pl)MTLLibrary", {"makeFunctionName":"makeFunction(name:)","makeFunctionNameConstantValues":"makeFunction(name:constantValues:)","makeFunctionDescriptor":"makeFunction(descriptor:)","makeIntersectionFunctionDescriptor":"makeIntersectionFunction(descriptor:)"});
-registerSDKClass("Metal.MTLLibraryError", MTLLibraryError, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLLinkedFunctions", MTLLinkedFunctions, { module: "Metal_e11dfd5beee01da3", properties: {"binaryFunctions":436500484354704,"functions":4325130711266523,"groups":2007520152656023,"privateFunctions":2513486990138206} });
-registerSDKClass("Metal.MTLLogContainer", MTLLogContainer, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"makeIterator":{"id":1729438174096470}} });
-registerSDKClass("Metal.MTLLogContainer.Iterator", MTLLogContainer_Iterator, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":361877596182388}} });
+registerSDKClass("Metal.MTLLibraryError", MTLLibraryError, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLLinkedFunctions", MTLLinkedFunctions, { module: "Metal_3864e7f38681b875", properties: {"binaryFunctions":436500484354704,"functions":4325130711266523,"groups":2007520152656023,"privateFunctions":2513486990138206} });
+registerSDKClass("Metal.MTLLogContainer", MTLLogContainer, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"makeIterator":{"id":1729438174096470}} });
+registerSDKClass("Metal.MTLLogContainer.Iterator", MTLLogContainer_Iterator, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"next":{"id":361877596182388}} });
 registerSDKProtocol("c:objc(pl)MTLLogState", {"addLogHandler":"addLogHandler(_:)"});
-registerSDKClass("MTLLogStateDescriptor", MTLLogStateDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"bufferSize":740839458352726,"level":4015378646469144} });
-registerSDKClass("Metal.MTLMapIndirectArguments", MTLMapIndirectArguments, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLMeshRenderPipelineDescriptor", MTLMeshRenderPipelineDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"isAlphaToCoverageEnabled":2599465572383152,"isAlphaToOneEnabled":863523716040797,"binaryArchives":810628349985073,"colorAttachments":3426525191799363,"depthAttachmentPixelFormat":3807891398529490,"fragmentBuffers":3546766907020589,"fragmentFunction":1390105486181012,"fragmentLinkedFunctions":4401229893942680,"label":1240183698968752,"maxTotalThreadgroupsPerMeshGrid":3635288392323922,"maxTotalThreadsPerMeshThreadgroup":4424068528522681,"maxTotalThreadsPerObjectThreadgroup":572554007952606,"maxVertexAmplificationCount":675585688955714,"meshBuffers":3237156116794739,"meshFunction":3267353063396046,"meshLinkedFunctions":1119627825745587,"meshThreadgroupSizeIsMultipleOfThreadExecutionWidth":931708480014095,"objectBuffers":3330804248886702,"objectFunction":2518083074595024,"objectLinkedFunctions":3190275293293244,"objectThreadgroupSizeIsMultipleOfThreadExecutionWidth":1598074834263910,"payloadMemoryLength":1574101705325804,"rasterSampleCount":690080517097218,"isRasterizationEnabled":1657580071676327,"shaderValidation":2317319364808448,"stencilAttachmentPixelFormat":290197883538635,"supportIndirectCommandBuffers":4305195968881542}, methods: {"reset":{"id":2229408103242546}} });
-registerSDKClass("MTLMotionKeyframeData", MTLMotionKeyframeData, { module: "Metal_e11dfd5beee01da3", properties: {"buffer":3264371534442777,"offset":965481312644393} });
+registerSDKClass("MTLLogStateDescriptor", MTLLogStateDescriptor, { module: "Metal_3864e7f38681b875", properties: {"bufferSize":740839458352726,"level":4015378646469144} });
+registerSDKClass("Metal.MTLMapIndirectArguments", MTLMapIndirectArguments, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLMeshRenderPipelineDescriptor", MTLMeshRenderPipelineDescriptor, { module: "Metal_3864e7f38681b875", properties: {"isAlphaToCoverageEnabled":2599465572383152,"isAlphaToOneEnabled":863523716040797,"binaryArchives":810628349985073,"colorAttachments":3426525191799363,"depthAttachmentPixelFormat":3807891398529490,"fragmentBuffers":3546766907020589,"fragmentFunction":1390105486181012,"fragmentLinkedFunctions":4401229893942680,"label":1240183698968752,"maxTotalThreadgroupsPerMeshGrid":3635288392323922,"maxTotalThreadsPerMeshThreadgroup":4424068528522681,"maxTotalThreadsPerObjectThreadgroup":572554007952606,"maxVertexAmplificationCount":675585688955714,"meshBuffers":3237156116794739,"meshFunction":3267353063396046,"meshLinkedFunctions":1119627825745587,"meshThreadgroupSizeIsMultipleOfThreadExecutionWidth":931708480014095,"objectBuffers":3330804248886702,"objectFunction":2518083074595024,"objectLinkedFunctions":3190275293293244,"objectThreadgroupSizeIsMultipleOfThreadExecutionWidth":1598074834263910,"payloadMemoryLength":1574101705325804,"rasterSampleCount":690080517097218,"isRasterizationEnabled":1657580071676327,"shaderValidation":2317319364808448,"stencilAttachmentPixelFormat":290197883538635,"supportIndirectCommandBuffers":4305195968881542}, methods: {"reset":{"id":2229408103242546}} });
+registerSDKClass("MTLMotionKeyframeData", MTLMotionKeyframeData, { module: "Metal_3864e7f38681b875", properties: {"buffer":3264371534442777,"offset":965481312644393} });
 registerSDKProtocol("c:objc(pl)MTLObjectPayloadBinding", {});
-registerSDKClass("Metal.MTLOrigin", MTLOrigin, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLPackedFloat3.__Unnamed_struct___Anonymous_field0", MTLPackedFloat3___Unnamed_struct___Anonymous_field0, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLPackedFloat3.__Unnamed_union___Anonymous_field0", MTLPackedFloat3___Unnamed_union___Anonymous_field0, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLPackedFloatQuaternion", MTLPackedFloatQuaternion, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Metal.MTLOrigin", MTLOrigin, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLPackedFloat3.__Unnamed_struct___Anonymous_field0", MTLPackedFloat3___Unnamed_struct___Anonymous_field0, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLPackedFloat3.__Unnamed_union___Anonymous_field0", MTLPackedFloat3___Unnamed_union___Anonymous_field0, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLPackedFloatQuaternion", MTLPackedFloatQuaternion, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLParallelRenderCommandEncoder", {"endEncoding":"endEncoding()","barrierAfterQueueStagesBeforeStages":"barrier(afterQueueStages:beforeStages:)","insertDebugSignpost":"insertDebugSignpost(_:)","pushDebugGroup":"pushDebugGroup(_:)","popDebugGroup":"popDebugGroup()","makeRenderCommandEncoder":"makeRenderCommandEncoder()","setColorStoreActionIndex":"setColorStoreAction(_:index:)","setDepthStoreAction":"setDepthStoreAction(_:)","setStencilStoreAction":"setStencilStoreAction(_:)","setColorStoreActionOptionsIndex":"setColorStoreActionOptions(_:index:)","setDepthStoreActionOptions":"setDepthStoreActionOptions(_:)","setStencilStoreActionOptions":"setStencilStoreActionOptions(_:)"});
-registerSDKClass("MTLPipelineBufferDescriptor", MTLPipelineBufferDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"mutability":3226490695889450} });
-registerSDKClass("MTLPipelineBufferDescriptorArray", MTLPipelineBufferDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":1736674975993670}} });
-registerSDKClass("MTLPointerType", MTLPointerType, { module: "Metal_e11dfd5beee01da3", properties: {"access":2362340323636191,"alignment":3073237671020198,"dataSize":674221684968954,"elementIsArgumentBuffer":2557167708390931,"elementType":3685603715603240}, methods: {"elementArrayType":{"id":1526773772559003},"elementStructType":{"id":556180554785516}} });
-registerSDKClass("MTLPrimitiveAccelerationStructureDescriptor", MTLPrimitiveAccelerationStructureDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"geometryDescriptors":3493307659378557,"motionEndBorderMode":4259041506388052,"motionEndTime":2325216038222509,"motionKeyframeCount":330224684820257,"motionStartBorderMode":3216229084037182,"motionStartTime":2734846130620184} });
-registerSDKClass("Metal.MTLQuadTessellationFactorsHalf", MTLQuadTessellationFactorsHalf, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLRasterizationRateLayerArray", MTLRasterizationRateLayerArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":3520092427548230}} });
-registerSDKClass("MTLRasterizationRateLayerDescriptor", MTLRasterizationRateLayerDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"horizontal":3818450416580359,"maxSampleCount":1191204693574200,"sampleCount":525054678299967,"vertical":2755021483664959} });
+registerSDKClass("MTLPipelineBufferDescriptor", MTLPipelineBufferDescriptor, { module: "Metal_3864e7f38681b875", properties: {"mutability":3226490695889450} });
+registerSDKClass("MTLPipelineBufferDescriptorArray", MTLPipelineBufferDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":1736674975993670}} });
+registerSDKClass("MTLPointerType", MTLPointerType, { module: "Metal_3864e7f38681b875", properties: {"access":2362340323636191,"alignment":3073237671020198,"dataSize":674221684968954,"elementIsArgumentBuffer":2557167708390931,"elementType":3685603715603240}, methods: {"elementArrayType":{"id":1526773772559003},"elementStructType":{"id":556180554785516}} });
+registerSDKClass("MTLPrimitiveAccelerationStructureDescriptor", MTLPrimitiveAccelerationStructureDescriptor, { module: "Metal_3864e7f38681b875", properties: {"geometryDescriptors":3493307659378557,"motionEndBorderMode":4259041506388052,"motionEndTime":2325216038222509,"motionKeyframeCount":330224684820257,"motionStartBorderMode":3216229084037182,"motionStartTime":2734846130620184} });
+registerSDKClass("Metal.MTLQuadTessellationFactorsHalf", MTLQuadTessellationFactorsHalf, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLRasterizationRateLayerArray", MTLRasterizationRateLayerArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":3520092427548230}} });
+registerSDKClass("MTLRasterizationRateLayerDescriptor", MTLRasterizationRateLayerDescriptor, { module: "Metal_3864e7f38681b875", properties: {"horizontal":3818450416580359,"maxSampleCount":1191204693574200,"sampleCount":525054678299967,"vertical":2755021483664959} });
 registerSDKProtocol("c:objc(pl)MTLRasterizationRateMap", {"copyParameterDataBufferOffset":"copyParameterData(buffer:offset:)","physicalSizeLayer":"physicalSize(layer:)","physicalCoordinatesScreenCoordinatesLayer":"physicalCoordinates(screenCoordinates:layer:)","screenCoordinatesPhysicalCoordinatesLayer":"screenCoordinates(physicalCoordinates:layer:)"});
-registerSDKClass("MTLRasterizationRateMapDescriptor", MTLRasterizationRateMapDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"label":231029731626721,"layerCount":329823219384245,"layers":2054437273882009,"screenSize":4352930579915112}, methods: {"layer":{"id":3712961592610573},"setLayer":{"id":3577350079303172}} });
-registerSDKClass("MTLRasterizationRateSampleArray", MTLRasterizationRateSampleArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":2188378898343778}} });
-registerSDKClass("Metal.MTLRegion", MTLRegion, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("MTLRasterizationRateMapDescriptor", MTLRasterizationRateMapDescriptor, { module: "Metal_3864e7f38681b875", properties: {"label":231029731626721,"layerCount":329823219384245,"layers":2054437273882009,"screenSize":4352930579915112}, methods: {"layer":{"id":3712961592610573},"setLayer":{"id":3577350079303172}} });
+registerSDKClass("MTLRasterizationRateSampleArray", MTLRasterizationRateSampleArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":2188378898343778}} });
+registerSDKClass("Metal.MTLRegion", MTLRegion, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLRenderCommandEncoder", {"endEncoding":"endEncoding()","barrierAfterQueueStagesBeforeStages":"barrier(afterQueueStages:beforeStages:)","insertDebugSignpost":"insertDebugSignpost(_:)","pushDebugGroup":"pushDebugGroup(_:)","popDebugGroup":"popDebugGroup()","setRenderPipelineState":"setRenderPipelineState(_:)","setVertexBytesLengthIndex":"setVertexBytes(_:length:index:)","setVertexBufferOffsetIndex":"setVertexBuffer(_:offset:index:)","setVertexBufferOffsetIndex8":"setVertexBufferOffset(_:index:)","setVertexBufferOffsetAttributeStrideIndex":"setVertexBuffer(_:offset:attributeStride:index:)","setVertexBufferOffsetOffsetAttributeStrideIndex":"setVertexBufferOffset(offset:attributeStride:index:)","setVertexBytesLengthAttributeStrideIndex":"setVertexBytes(_:length:attributeStride:index:)","setVertexTextureIndex":"setVertexTexture(_:index:)","setVertexSamplerStateIndex":"setVertexSamplerState(_:index:)","setVertexSamplerStateLodMinClampLodMaxClampIndex":"setVertexSamplerState(_:lodMinClamp:lodMaxClamp:index:)","setVertexVisibleFunctionTableBufferIndex":"setVertexVisibleFunctionTable(_:bufferIndex:)","setVertexIntersectionFunctionTableBufferIndex":"setVertexIntersectionFunctionTable(_:bufferIndex:)","setVertexAccelerationStructureBufferIndex":"setVertexAccelerationStructure(_:bufferIndex:)","setViewport":"setViewport(_:)","setFrontFacing":"setFrontFacing(_:)","setVertexAmplificationCountViewMappings":"setVertexAmplificationCount(_:viewMappings:)","setCullMode":"setCullMode(_:)","setDepthClipMode":"setDepthClipMode(_:)","setDepthBiasSlopeScaleClamp":"setDepthBias(_:slopeScale:clamp:)","setScissorRect":"setScissorRect(_:)","setTriangleFillMode":"setTriangleFillMode(_:)","setFragmentBytesLengthIndex":"setFragmentBytes(_:length:index:)","setFragmentBufferOffsetIndex":"setFragmentBuffer(_:offset:index:)","setFragmentBufferOffsetIndex28":"setFragmentBufferOffset(_:index:)","setFragmentTextureIndex":"setFragmentTexture(_:index:)","setFragmentSamplerStateIndex":"setFragmentSamplerState(_:index:)","setFragmentSamplerStateLodMinClampLodMaxClampIndex":"setFragmentSamplerState(_:lodMinClamp:lodMaxClamp:index:)","setFragmentVisibleFunctionTableBufferIndex":"setFragmentVisibleFunctionTable(_:bufferIndex:)","setFragmentIntersectionFunctionTableBufferIndex":"setFragmentIntersectionFunctionTable(_:bufferIndex:)","setFragmentAccelerationStructureBufferIndex":"setFragmentAccelerationStructure(_:bufferIndex:)","setBlendColorRedGreenBlueAlpha":"setBlendColor(red:green:blue:alpha:)","setDepthStencilState":"setDepthStencilState(_:)","setStencilReferenceValue":"setStencilReferenceValue(_:)","setStencilReferenceValuesFrontBack":"setStencilReferenceValues(front:back:)","setVisibilityResultModeOffset":"setVisibilityResultMode(_:offset:)","setColorStoreActionIndex":"setColorStoreAction(_:index:)","setDepthStoreAction":"setDepthStoreAction(_:)","setStencilStoreAction":"setStencilStoreAction(_:)","setColorStoreActionOptionsIndex":"setColorStoreActionOptions(_:index:)","setDepthStoreActionOptions":"setDepthStoreActionOptions(_:)","setStencilStoreActionOptions":"setStencilStoreActionOptions(_:)","setObjectBytesLengthIndex":"setObjectBytes(_:length:index:)","setObjectBufferOffsetIndex":"setObjectBuffer(_:offset:index:)","setObjectBufferOffsetIndex48":"setObjectBufferOffset(_:index:)","setObjectTextureIndex":"setObjectTexture(_:index:)","setObjectSamplerStateIndex":"setObjectSamplerState(_:index:)","setObjectSamplerStateLodMinClampLodMaxClampIndex":"setObjectSamplerState(_:lodMinClamp:lodMaxClamp:index:)","setObjectThreadgroupMemoryLengthIndex":"setObjectThreadgroupMemoryLength(_:index:)","setMeshBytesLengthIndex":"setMeshBytes(_:length:index:)","setMeshBufferOffsetIndex":"setMeshBuffer(_:offset:index:)","setMeshBufferOffsetIndex55":"setMeshBufferOffset(_:index:)","setMeshTextureIndex":"setMeshTexture(_:index:)","setMeshSamplerStateIndex":"setMeshSamplerState(_:index:)","setMeshSamplerStateLodMinClampLodMaxClampIndex":"setMeshSamplerState(_:lodMinClamp:lodMaxClamp:index:)","drawMeshThreadgroupsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup":"drawMeshThreadgroups(_:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)","drawMeshThreadsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup":"drawMeshThreads(_:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)","drawMeshThreadgroupsIndirectBufferIndirectBufferOffsetThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup":"drawMeshThreadgroups(indirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)","drawPrimitivesTypeVertexStartVertexCountInstanceCount":"drawPrimitives(type:vertexStart:vertexCount:instanceCount:)","drawPrimitivesTypeVertexStartVertexCount":"drawPrimitives(type:vertexStart:vertexCount:)","drawIndexedPrimitivesTypeIndexCountIndexTypeIndexBufferIndexBufferOffsetInstanceCount":"drawIndexedPrimitives(type:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:)","drawIndexedPrimitivesTypeIndexCountIndexTypeIndexBufferIndexBufferOffset":"drawIndexedPrimitives(type:indexCount:indexType:indexBuffer:indexBufferOffset:)","drawPrimitivesTypeVertexStartVertexCountInstanceCountBaseInstance":"drawPrimitives(type:vertexStart:vertexCount:instanceCount:baseInstance:)","drawIndexedPrimitivesTypeIndexCountIndexTypeIndexBufferIndexBufferOffsetInstanceCountBaseVertexBaseInstance":"drawIndexedPrimitives(type:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)","drawPrimitivesTypeIndirectBufferIndirectBufferOffset":"drawPrimitives(type:indirectBuffer:indirectBufferOffset:)","drawIndexedPrimitivesTypeIndexTypeIndexBufferIndexBufferOffsetIndirectBufferIndirectBufferOffset":"drawIndexedPrimitives(type:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:)","updateFenceAfter":"updateFence(_:after:)","waitForFenceBefore":"waitForFence(_:before:)","setTessellationFactorBufferOffsetInstanceStride":"setTessellationFactorBuffer(_:offset:instanceStride:)","setTessellationFactorScale":"setTessellationFactorScale(_:)","drawPatchesNumberOfPatchControlPointsPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetInstanceCountBaseInstance":"drawPatches(numberOfPatchControlPoints:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:)","drawPatchesNumberOfPatchControlPointsPatchIndexBufferPatchIndexBufferOffsetIndirectBufferIndirectBufferOffset":"drawPatches(numberOfPatchControlPoints:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:)","drawIndexedPatchesNumberOfPatchControlPointsPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetControlPointIndexBufferControlPointIndexBufferOffsetInstanceCountBaseInstance":"drawIndexedPatches(numberOfPatchControlPoints:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:)","drawIndexedPatchesNumberOfPatchControlPointsPatchIndexBufferPatchIndexBufferOffsetControlPointIndexBufferControlPointIndexBufferOffsetIndirectBufferIndirectBufferOffset":"drawIndexedPatches(numberOfPatchControlPoints:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:)","setTileBytesLengthIndex":"setTileBytes(_:length:index:)","setTileBufferOffsetIndex":"setTileBuffer(_:offset:index:)","setTileBufferOffsetIndex80":"setTileBufferOffset(_:index:)","setTileTextureIndex":"setTileTexture(_:index:)","setTileSamplerStateIndex":"setTileSamplerState(_:index:)","setTileSamplerStateLodMinClampLodMaxClampIndex":"setTileSamplerState(_:lodMinClamp:lodMaxClamp:index:)","setTileVisibleFunctionTableBufferIndex":"setTileVisibleFunctionTable(_:bufferIndex:)","setTileIntersectionFunctionTableBufferIndex":"setTileIntersectionFunctionTable(_:bufferIndex:)","setTileAccelerationStructureBufferIndex":"setTileAccelerationStructure(_:bufferIndex:)","dispatchThreadsPerTile":"dispatchThreadsPerTile(_:)","setThreadgroupMemoryLengthOffsetIndex":"setThreadgroupMemoryLength(_:offset:index:)","useResourceUsage":"useResource(_:usage:)","useResourceUsageStages":"useResource(_:usage:stages:)","useHeap":"useHeap(_:)","useHeapStages":"useHeap(_:stages:)","memoryBarrierScopeAfterBefore":"memoryBarrier(scope:after:before:)","sampleCountersSampleBufferSampleIndexBarrier":"sampleCounters(sampleBuffer:sampleIndex:barrier:)"});
-registerSDKClass("MTLRenderPassAttachmentDescriptor", MTLRenderPassAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"depthPlane":997595961456825,"level":2034683660109246,"loadAction":1628342411442580,"resolveDepthPlane":3364726764603105,"resolveLevel":2156608306738471,"resolveSlice":1994400839635852,"resolveTexture":1242751536401608,"slice":323687420911172,"storeAction":1485342870279457,"storeActionOptions":1878093013953891,"texture":3342534027629391} });
-registerSDKClass("MTLRenderPassColorAttachmentDescriptor", MTLRenderPassColorAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"clearColor":1289794799729687} });
-registerSDKClass("MTLRenderPassColorAttachmentDescriptorArray", MTLRenderPassColorAttachmentDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":807290834925478}} });
-registerSDKClass("MTLRenderPassDepthAttachmentDescriptor", MTLRenderPassDepthAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"clearDepth":2747008933516197,"depthResolveFilter":3583941819114221} });
-registerSDKClass("MTLRenderPassDescriptor", MTLRenderPassDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"colorAttachments":2717840928191647,"defaultRasterSampleCount":3365736241100613,"depthAttachment":1796657835981925,"imageblockSampleLength":2129412717627615,"rasterizationRateMap":3724247975484388,"renderTargetArrayLength":1162245271946721,"renderTargetHeight":34815368542478,"renderTargetWidth":3887721164308612,"sampleBufferAttachments":4374487500445560,"stencilAttachment":3815849601361618,"threadgroupMemoryLength":2341896908374308,"tileHeight":2264605100260331,"tileWidth":2932043262727447,"visibilityResultBuffer":1809917858499017}, methods: {"getSamplePositions":{"id":113417080315516},"setSamplePositions":{"id":2372330296682017}} });
-registerSDKClass("MTLRenderPassSampleBufferAttachmentDescriptor", MTLRenderPassSampleBufferAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"endOfFragmentSampleIndex":2861292134472344,"endOfVertexSampleIndex":4428824331087487,"sampleBuffer":1818159916826151,"startOfFragmentSampleIndex":821842594610191,"startOfVertexSampleIndex":332036908192224} });
-registerSDKClass("MTLRenderPassSampleBufferAttachmentDescriptorArray", MTLRenderPassSampleBufferAttachmentDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":1625393788948608}} });
-registerSDKClass("MTLRenderPassStencilAttachmentDescriptor", MTLRenderPassStencilAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"clearStencil":2261196357167255,"stencilResolveFilter":417347132417975} });
-registerSDKClass("MTLRenderPipelineColorAttachmentDescriptor", MTLRenderPipelineColorAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"alphaBlendOperation":407711410644891,"isBlendingEnabled":124845631466792,"destinationAlphaBlendFactor":1322028327312712,"destinationRGBBlendFactor":1858250741496260,"pixelFormat":3440316979636547,"rgbBlendOperation":1432036484031682,"sourceAlphaBlendFactor":1973122695296245,"sourceRGBBlendFactor":1930744095026179,"writeMask":1579476476225170} });
-registerSDKClass("MTLRenderPipelineColorAttachmentDescriptorArray", MTLRenderPipelineColorAttachmentDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":375985598843757}} });
-registerSDKClass("MTLRenderPipelineDescriptor", MTLRenderPipelineDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"isAlphaToCoverageEnabled":496819925210675,"isAlphaToOneEnabled":2293315025077516,"binaryArchives":1838576593583132,"colorAttachments":240960498857573,"depthAttachmentPixelFormat":238699987140453,"fragmentBuffers":4065147522271826,"fragmentFunction":2658252413949655,"fragmentLinkedFunctions":603470820935475,"fragmentPreloadedLibraries":573635756789680,"inputPrimitiveTopology":3687396379087853,"label":409855862284930,"maxFragmentCallStackDepth":220420989887943,"maxTessellationFactor":1171552803011278,"maxVertexAmplificationCount":1390698024979033,"maxVertexCallStackDepth":1853822823082845,"rasterSampleCount":2446693014483590,"isRasterizationEnabled":502454914667008,"sampleCount":960094294244025,"shaderValidation":3443269426242201,"stencilAttachmentPixelFormat":3226261754890830,"supportAddingFragmentBinaryFunctions":3354009546332216,"supportAddingVertexBinaryFunctions":87415182780272,"supportIndirectCommandBuffers":407336284070999,"tessellationControlPointIndexType":2937277503193209,"tessellationFactorFormat":4191604781258593,"isTessellationFactorScaleEnabled":2490415235523981,"tessellationFactorStepFunction":4390231819266867,"tessellationOutputWindingOrder":838779778731025,"tessellationPartitionMode":3628764831968968,"vertexBuffers":2500974080771468,"vertexDescriptor":4274734794360002,"vertexFunction":2318798128786092,"vertexLinkedFunctions":3504297736218050,"vertexPreloadedLibraries":3052916645791448}, methods: {"reset":{"id":592965351136742}} });
-registerSDKClass("MTLRenderPipelineFunctionsDescriptor", MTLRenderPipelineFunctionsDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"fragmentAdditionalBinaryFunctions":1005332466273406,"tileAdditionalBinaryFunctions":3463099083844469,"vertexAdditionalBinaryFunctions":725888987361653} });
-registerSDKClass("MTLRenderPipelineReflection", MTLRenderPipelineReflection, { module: "Metal_e11dfd5beee01da3", properties: {"fragmentArguments":702945513732117,"fragmentBindings":1961150909476702,"meshBindings":307681816365000,"objectBindings":1028338959259819,"tileArguments":3567802699155231,"tileBindings":868256436395092,"vertexArguments":3854552505876657,"vertexBindings":235019521281832} });
+registerSDKClass("MTLRenderPassAttachmentDescriptor", MTLRenderPassAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"depthPlane":997595961456825,"level":2034683660109246,"loadAction":1628342411442580,"resolveDepthPlane":3364726764603105,"resolveLevel":2156608306738471,"resolveSlice":1994400839635852,"resolveTexture":1242751536401608,"slice":323687420911172,"storeAction":1485342870279457,"storeActionOptions":1878093013953891,"texture":3342534027629391} });
+registerSDKClass("MTLRenderPassColorAttachmentDescriptor", MTLRenderPassColorAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"clearColor":1289794799729687} });
+registerSDKClass("MTLRenderPassColorAttachmentDescriptorArray", MTLRenderPassColorAttachmentDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":807290834925478}} });
+registerSDKClass("MTLRenderPassDepthAttachmentDescriptor", MTLRenderPassDepthAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"clearDepth":2747008933516197,"depthResolveFilter":3583941819114221} });
+registerSDKClass("MTLRenderPassDescriptor", MTLRenderPassDescriptor, { module: "Metal_3864e7f38681b875", properties: {"colorAttachments":2717840928191647,"defaultRasterSampleCount":3365736241100613,"depthAttachment":1796657835981925,"imageblockSampleLength":2129412717627615,"rasterizationRateMap":3724247975484388,"renderTargetArrayLength":1162245271946721,"renderTargetHeight":34815368542478,"renderTargetWidth":3887721164308612,"sampleBufferAttachments":4374487500445560,"stencilAttachment":3815849601361618,"threadgroupMemoryLength":2341896908374308,"tileHeight":2264605100260331,"tileWidth":2932043262727447,"visibilityResultBuffer":1809917858499017}, methods: {"getSamplePositions":{"id":113417080315516},"setSamplePositions":{"id":2372330296682017}} });
+registerSDKClass("MTLRenderPassSampleBufferAttachmentDescriptor", MTLRenderPassSampleBufferAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"endOfFragmentSampleIndex":2861292134472344,"endOfVertexSampleIndex":4428824331087487,"sampleBuffer":1818159916826151,"startOfFragmentSampleIndex":821842594610191,"startOfVertexSampleIndex":332036908192224} });
+registerSDKClass("MTLRenderPassSampleBufferAttachmentDescriptorArray", MTLRenderPassSampleBufferAttachmentDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":1625393788948608}} });
+registerSDKClass("MTLRenderPassStencilAttachmentDescriptor", MTLRenderPassStencilAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"clearStencil":2261196357167255,"stencilResolveFilter":417347132417975} });
+registerSDKClass("MTLRenderPipelineColorAttachmentDescriptor", MTLRenderPipelineColorAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"alphaBlendOperation":407711410644891,"isBlendingEnabled":124845631466792,"destinationAlphaBlendFactor":1322028327312712,"destinationRGBBlendFactor":1858250741496260,"pixelFormat":3440316979636547,"rgbBlendOperation":1432036484031682,"sourceAlphaBlendFactor":1973122695296245,"sourceRGBBlendFactor":1930744095026179,"writeMask":1579476476225170} });
+registerSDKClass("MTLRenderPipelineColorAttachmentDescriptorArray", MTLRenderPipelineColorAttachmentDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":375985598843757}} });
+registerSDKClass("MTLRenderPipelineDescriptor", MTLRenderPipelineDescriptor, { module: "Metal_3864e7f38681b875", properties: {"isAlphaToCoverageEnabled":496819925210675,"isAlphaToOneEnabled":2293315025077516,"binaryArchives":1838576593583132,"colorAttachments":240960498857573,"depthAttachmentPixelFormat":238699987140453,"fragmentBuffers":4065147522271826,"fragmentFunction":2658252413949655,"fragmentLinkedFunctions":603470820935475,"fragmentPreloadedLibraries":573635756789680,"inputPrimitiveTopology":3687396379087853,"label":409855862284930,"maxFragmentCallStackDepth":220420989887943,"maxTessellationFactor":1171552803011278,"maxVertexAmplificationCount":1390698024979033,"maxVertexCallStackDepth":1853822823082845,"rasterSampleCount":2446693014483590,"isRasterizationEnabled":502454914667008,"sampleCount":960094294244025,"shaderValidation":3443269426242201,"stencilAttachmentPixelFormat":3226261754890830,"supportAddingFragmentBinaryFunctions":3354009546332216,"supportAddingVertexBinaryFunctions":87415182780272,"supportIndirectCommandBuffers":407336284070999,"tessellationControlPointIndexType":2937277503193209,"tessellationFactorFormat":4191604781258593,"isTessellationFactorScaleEnabled":2490415235523981,"tessellationFactorStepFunction":4390231819266867,"tessellationOutputWindingOrder":838779778731025,"tessellationPartitionMode":3628764831968968,"vertexBuffers":2500974080771468,"vertexDescriptor":4274734794360002,"vertexFunction":2318798128786092,"vertexLinkedFunctions":3504297736218050,"vertexPreloadedLibraries":3052916645791448}, methods: {"reset":{"id":592965351136742}} });
+registerSDKClass("MTLRenderPipelineFunctionsDescriptor", MTLRenderPipelineFunctionsDescriptor, { module: "Metal_3864e7f38681b875", properties: {"fragmentAdditionalBinaryFunctions":1005332466273406,"tileAdditionalBinaryFunctions":3463099083844469,"vertexAdditionalBinaryFunctions":725888987361653} });
+registerSDKClass("MTLRenderPipelineReflection", MTLRenderPipelineReflection, { module: "Metal_3864e7f38681b875", properties: {"fragmentArguments":702945513732117,"fragmentBindings":1961150909476702,"meshBindings":307681816365000,"objectBindings":1028338959259819,"tileArguments":3567802699155231,"tileBindings":868256436395092,"vertexArguments":3854552505876657,"vertexBindings":235019521281832} });
 registerSDKProtocol("c:objc(pl)MTLRenderPipelineState", {"functionHandleWithNameStage":"functionHandle(withName:stage:)","imageblockMemoryLengthForDimensions":"imageblockMemoryLength(forDimensions:)","functionHandleFunctionStage":"functionHandle(function:stage:)","makeVisibleFunctionTableDescriptorStage":"makeVisibleFunctionTable(descriptor:stage:)","makeIntersectionFunctionTableDescriptorStage":"makeIntersectionFunctionTable(descriptor:stage:)","makeRenderPipelineStateAdditionalBinaryFunctions":"makeRenderPipelineState(additionalBinaryFunctions:)"});
 registerSDKProtocol("c:objc(pl)MTLResidencySet", {"requestResidency":"requestResidency()","endResidency":"endResidency()","addAllocation":"addAllocation(_:)","removeAllocation":"removeAllocation(_:)","removeAllAllocations":"removeAllAllocations()","containsAllocation":"containsAllocation(_:)","commit":"commit()"});
-registerSDKClass("MTLResidencySetDescriptor", MTLResidencySetDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"initialCapacity":715165413308724,"label":865519291956667} });
+registerSDKClass("MTLResidencySetDescriptor", MTLResidencySetDescriptor, { module: "Metal_3864e7f38681b875", properties: {"initialCapacity":715165413308724,"label":865519291956667} });
 registerSDKProtocol("c:objc(pl)MTLResource", {"setPurgeableState":"setPurgeableState(_:)","makeAliasable":"makeAliasable()","isAliasable":"isAliasable()"});
-registerSDKClass("Metal.MTLResourceID", MTLResourceID, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Metal.MTLResourceID", MTLResourceID, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLResourceStateCommandEncoder", {"endEncoding":"endEncoding()","barrierAfterQueueStagesBeforeStages":"barrier(afterQueueStages:beforeStages:)","insertDebugSignpost":"insertDebugSignpost(_:)","pushDebugGroup":"pushDebugGroup(_:)","popDebugGroup":"popDebugGroup()","updateTextureMappingsModeRegionsMipLevelsSlicesNumRegions":"updateTextureMappings(_:mode:regions:mipLevels:slices:numRegions:)","updateTextureMappingModeRegionMipLevelSlice":"updateTextureMapping(_:mode:region:mipLevel:slice:)","updateTextureMappingModeIndirectBufferIndirectBufferOffset":"updateTextureMapping(_:mode:indirectBuffer:indirectBufferOffset:)","update":"update(_:)","waitFor":"wait(for:)","moveTextureMappingsFromSourceSliceSourceLevelSourceOriginSourceSizeToDestinationSliceDestinationLevelDestinationOrigin":"moveTextureMappings(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)"});
-registerSDKClass("MTLResourceStatePassDescriptor", MTLResourceStatePassDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"sampleBufferAttachments":1980898023677445} });
-registerSDKClass("MTLResourceStatePassSampleBufferAttachmentDescriptor", MTLResourceStatePassSampleBufferAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"endOfEncoderSampleIndex":2913308518479877,"sampleBuffer":3539465604875908,"startOfEncoderSampleIndex":1873738086054645} });
-registerSDKClass("MTLResourceStatePassSampleBufferAttachmentDescriptorArray", MTLResourceStatePassSampleBufferAttachmentDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":1848398657932398}} });
-registerSDKClass("Metal.MTLSamplePosition", MTLSamplePosition, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLSamplerDescriptor", MTLSamplerDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"borderColor":1736586677906568,"compareFunction":4306047967702507,"label":3361692918788189,"lodAverage":4115536252221750,"lodBias":896460230482990,"lodMaxClamp":3753103402906372,"lodMinClamp":2683710510069334,"magFilter":113151865252554,"maxAnisotropy":3686275543902295,"minFilter":4355848262926058,"mipFilter":1441559682200320,"normalizedCoordinates":1167087771137991,"rAddressMode":2732055191990440,"reductionMode":2910608522958521,"sAddressMode":3024031724537547,"supportArgumentBuffers":1225595043067869,"tAddressMode":2544883539784958} });
+registerSDKClass("MTLResourceStatePassDescriptor", MTLResourceStatePassDescriptor, { module: "Metal_3864e7f38681b875", properties: {"sampleBufferAttachments":1980898023677445} });
+registerSDKClass("MTLResourceStatePassSampleBufferAttachmentDescriptor", MTLResourceStatePassSampleBufferAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"endOfEncoderSampleIndex":2913308518479877,"sampleBuffer":3539465604875908,"startOfEncoderSampleIndex":1873738086054645} });
+registerSDKClass("MTLResourceStatePassSampleBufferAttachmentDescriptorArray", MTLResourceStatePassSampleBufferAttachmentDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":1848398657932398}} });
+registerSDKClass("Metal.MTLSamplePosition", MTLSamplePosition, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLSamplerDescriptor", MTLSamplerDescriptor, { module: "Metal_3864e7f38681b875", properties: {"borderColor":1736586677906568,"compareFunction":4306047967702507,"label":3361692918788189,"lodAverage":4115536252221750,"lodBias":896460230482990,"lodMaxClamp":3753103402906372,"lodMinClamp":2683710510069334,"magFilter":113151865252554,"maxAnisotropy":3686275543902295,"minFilter":4355848262926058,"mipFilter":1441559682200320,"normalizedCoordinates":1167087771137991,"rAddressMode":2732055191990440,"reductionMode":2910608522958521,"sAddressMode":3024031724537547,"supportArgumentBuffers":1225595043067869,"tAddressMode":2544883539784958} });
 registerSDKProtocol("c:objc(pl)MTLSamplerState", {});
-registerSDKClass("Metal.MTLScissorRect", MTLScissorRect, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Metal.MTLScissorRect", MTLScissorRect, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLSharedEvent", {"notifyAtValueBlock":"notify(_:atValue:block:)","makeSharedEventHandle":"makeSharedEventHandle()","waitUntilSignaledValueTimeoutMS":"wait(untilSignaledValue:timeoutMS:)"});
-registerSDKClass("MTLSharedEventHandle", MTLSharedEventHandle, { module: "Metal_e11dfd5beee01da3", properties: {"label":3965263832995426} });
-registerSDKClass("MTLSharedEventListener", MTLSharedEventListener, { module: "Metal_e11dfd5beee01da3", properties: {"dispatchQueue":789637098288589} });
-registerSDKClass("Metal.MTLSize", MTLSize, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLSizeAndAlign", MTLSizeAndAlign, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLStageInputOutputDescriptor", MTLStageInputOutputDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"attributes":387865004542327,"indexBufferIndex":2252332149771249,"indexType":1201555309884054,"layouts":3845594855583125}, methods: {"reset":{"id":1001294789405277}} });
-registerSDKClass("Metal.MTLStageInRegionIndirectArguments", MTLStageInRegionIndirectArguments, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLStencilDescriptor", MTLStencilDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"depthFailureOperation":3679091033864317,"depthStencilPassOperation":2813675251620503,"readMask":107825435823892,"stencilCompareFunction":3776090721417228,"stencilFailureOperation":606074270808743,"writeMask":3499632388481967} });
-registerSDKClass("MTLStitchedLibraryDescriptor", MTLStitchedLibraryDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"binaryArchives":2747841927005431,"functionGraphs":547760131251431,"functions":2084508402707788,"options":2667193856883646} });
-registerSDKClass("MTLStructMember", MTLStructMember, { module: "Metal_e11dfd5beee01da3", properties: {"argumentIndex":910651809693871,"dataType":538770832354797,"name":2869888776802207,"offset":2062105171779888}, methods: {"arrayType":{"id":2408521684653218},"pointerType":{"id":2910704462832258},"structType":{"id":3452232929326939},"textureReferenceType":{"id":281401219971429}} });
-registerSDKClass("MTLStructType", MTLStructType, { module: "Metal_e11dfd5beee01da3", properties: {"members":2407506571840267}, methods: {"memberByName":{"id":2396613825464775}} });
+registerSDKClass("MTLSharedEventHandle", MTLSharedEventHandle, { module: "Metal_3864e7f38681b875", properties: {"label":3965263832995426} });
+registerSDKClass("MTLSharedEventListener", MTLSharedEventListener, { module: "Metal_3864e7f38681b875", properties: {"dispatchQueue":789637098288589} });
+registerSDKClass("Metal.MTLSize", MTLSize, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLSizeAndAlign", MTLSizeAndAlign, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLStageInputOutputDescriptor", MTLStageInputOutputDescriptor, { module: "Metal_3864e7f38681b875", properties: {"attributes":387865004542327,"indexBufferIndex":2252332149771249,"indexType":1201555309884054,"layouts":3845594855583125}, methods: {"reset":{"id":1001294789405277}} });
+registerSDKClass("Metal.MTLStageInRegionIndirectArguments", MTLStageInRegionIndirectArguments, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLStencilDescriptor", MTLStencilDescriptor, { module: "Metal_3864e7f38681b875", properties: {"depthFailureOperation":3679091033864317,"depthStencilPassOperation":2813675251620503,"readMask":107825435823892,"stencilCompareFunction":3776090721417228,"stencilFailureOperation":606074270808743,"writeMask":3499632388481967} });
+registerSDKClass("MTLStitchedLibraryDescriptor", MTLStitchedLibraryDescriptor, { module: "Metal_3864e7f38681b875", properties: {"binaryArchives":2747841927005431,"functionGraphs":547760131251431,"functions":2084508402707788,"options":2667193856883646} });
+registerSDKClass("MTLStructMember", MTLStructMember, { module: "Metal_3864e7f38681b875", properties: {"argumentIndex":910651809693871,"dataType":538770832354797,"name":2869888776802207,"offset":2062105171779888}, methods: {"arrayType":{"id":2408521684653218},"pointerType":{"id":2910704462832258},"structType":{"id":3452232929326939},"textureReferenceType":{"id":281401219971429}} });
+registerSDKClass("MTLStructType", MTLStructType, { module: "Metal_3864e7f38681b875", properties: {"members":2407506571840267}, methods: {"memberByName":{"id":2396613825464775}} });
 registerSDKProtocol("c:objc(pl)MTLTexture", {"setPurgeableState":"setPurgeableState(_:)","makeAliasable":"makeAliasable()","isAliasable":"isAliasable()","getBytesBytesPerRowBytesPerImageFromMipmapLevelSlice":"getBytes(_:bytesPerRow:bytesPerImage:from:mipmapLevel:slice:)","replaceRegionMipmapLevelSliceWithBytesBytesPerRowBytesPerImage":"replace(region:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:)","getBytesBytesPerRowFromMipmapLevel":"getBytes(_:bytesPerRow:from:mipmapLevel:)","replaceRegionMipmapLevelWithBytesBytesPerRow":"replace(region:mipmapLevel:withBytes:bytesPerRow:)","makeTextureViewPixelFormat":"makeTextureView(pixelFormat:)"});
 registerSDKProtocol("c:objc(pl)MTLTextureBinding", {});
-registerSDKClass("MTLTextureDescriptor", MTLTextureDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"allowGPUOptimizedContents":520041992937408,"arrayLength":185304293923531,"compressionType":1131984010503118,"cpuCacheMode":2346716473443993,"depth":2957535864228603,"hazardTrackingMode":1557276298427710,"height":554235166174695,"mipmapLevelCount":4083666717841578,"pixelFormat":1874272870347785,"resourceOptions":2470636116349906,"sampleCount":2013160000209246,"storageMode":3843406378959440,"swizzle":1565263054594941,"textureType":1957474272194747,"usage":1556933544587225,"width":2613201166655880} });
-registerSDKClass("MTLTextureReferenceType", MTLTextureReferenceType, { module: "Metal_e11dfd5beee01da3", properties: {"access":4324318537779340,"isDepthTexture":1042989356388243,"textureDataType":2121057914196735,"textureType":3313066676252209} });
-registerSDKClass("Metal.MTLTextureSwizzleChannels", MTLTextureSwizzleChannels, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("MTLTextureDescriptor", MTLTextureDescriptor, { module: "Metal_3864e7f38681b875", properties: {"allowGPUOptimizedContents":520041992937408,"arrayLength":185304293923531,"compressionType":1131984010503118,"cpuCacheMode":2346716473443993,"depth":2957535864228603,"hazardTrackingMode":1557276298427710,"height":554235166174695,"mipmapLevelCount":4083666717841578,"pixelFormat":1874272870347785,"resourceOptions":2470636116349906,"sampleCount":2013160000209246,"storageMode":3843406378959440,"swizzle":1565263054594941,"textureType":1957474272194747,"usage":1556933544587225,"width":2613201166655880} });
+registerSDKClass("MTLTextureReferenceType", MTLTextureReferenceType, { module: "Metal_3864e7f38681b875", properties: {"access":4324318537779340,"isDepthTexture":1042989356388243,"textureDataType":2121057914196735,"textureType":3313066676252209} });
+registerSDKClass("Metal.MTLTextureSwizzleChannels", MTLTextureSwizzleChannels, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLThreadgroupBinding", {});
-registerSDKClass("MTLTileRenderPipelineColorAttachmentDescriptor", MTLTileRenderPipelineColorAttachmentDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"pixelFormat":2934478021060256} });
-registerSDKClass("MTLTileRenderPipelineColorAttachmentDescriptorArray", MTLTileRenderPipelineColorAttachmentDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":3479126295249573}} });
-registerSDKClass("MTLTileRenderPipelineDescriptor", MTLTileRenderPipelineDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"binaryArchives":175253098182893,"colorAttachments":857302854559583,"label":3053105004270809,"linkedFunctions":1131389406325563,"maxCallStackDepth":1165806679800076,"maxTotalThreadsPerThreadgroup":2801471206672123,"preloadedLibraries":884429622487809,"rasterSampleCount":2486241678656924,"shaderValidation":4071918753771390,"supportAddingBinaryFunctions":2075636389347843,"threadgroupSizeMatchesTileSize":2066306929174177,"tileBuffers":633939592427321,"tileFunction":577516324186072}, methods: {"reset":{"id":1359912124026977}} });
-registerSDKClass("Metal.MTLTriangleTessellationFactorsHalf", MTLTriangleTessellationFactorsHalf, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Metal.MTLVertexAmplificationViewMapping", MTLVertexAmplificationViewMapping, { module: "Metal_e11dfd5beee01da3", properties: {} });
-registerSDKClass("MTLVertexAttribute", MTLVertexAttribute, { module: "Metal_e11dfd5beee01da3", properties: {"isActive":4318950963647724,"attributeIndex":3579698374290051,"attributeType":3840305837889206,"name":1478650334257445,"isPatchControlPointData":1170407970619183,"isPatchData":118799616870408} });
-registerSDKClass("MTLVertexAttributeDescriptor", MTLVertexAttributeDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"bufferIndex":3378662173393638,"format":1526294270405356,"offset":1238432729561967} });
-registerSDKClass("MTLVertexAttributeDescriptorArray", MTLVertexAttributeDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":2306367711892035}} });
-registerSDKClass("MTLVertexBufferLayoutDescriptor", MTLVertexBufferLayoutDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"stepFunction":1984265561233820,"stepRate":570403213042747,"stride":2061633896450319} });
-registerSDKClass("MTLVertexBufferLayoutDescriptorArray", MTLVertexBufferLayoutDescriptorArray, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"subscript":{"id":3042262986392717}} });
-registerSDKClass("MTLVertexDescriptor", MTLVertexDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"attributes":1405967679331380,"layouts":2591608313953}, methods: {"reset":{"id":1107397463186759}} });
-registerSDKClass("Metal.MTLViewport", MTLViewport, { module: "Metal_e11dfd5beee01da3", properties: {} });
+registerSDKClass("MTLTileRenderPipelineColorAttachmentDescriptor", MTLTileRenderPipelineColorAttachmentDescriptor, { module: "Metal_3864e7f38681b875", properties: {"pixelFormat":2934478021060256} });
+registerSDKClass("MTLTileRenderPipelineColorAttachmentDescriptorArray", MTLTileRenderPipelineColorAttachmentDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":3479126295249573}} });
+registerSDKClass("MTLTileRenderPipelineDescriptor", MTLTileRenderPipelineDescriptor, { module: "Metal_3864e7f38681b875", properties: {"binaryArchives":175253098182893,"colorAttachments":857302854559583,"label":3053105004270809,"linkedFunctions":1131389406325563,"maxCallStackDepth":1165806679800076,"maxTotalThreadsPerThreadgroup":2801471206672123,"preloadedLibraries":884429622487809,"rasterSampleCount":2486241678656924,"shaderValidation":4071918753771390,"supportAddingBinaryFunctions":2075636389347843,"threadgroupSizeMatchesTileSize":2066306929174177,"tileBuffers":633939592427321,"tileFunction":577516324186072}, methods: {"reset":{"id":1359912124026977}} });
+registerSDKClass("Metal.MTLTriangleTessellationFactorsHalf", MTLTriangleTessellationFactorsHalf, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("Metal.MTLVertexAmplificationViewMapping", MTLVertexAmplificationViewMapping, { module: "Metal_3864e7f38681b875", properties: {} });
+registerSDKClass("MTLVertexAttribute", MTLVertexAttribute, { module: "Metal_3864e7f38681b875", properties: {"isActive":4318950963647724,"attributeIndex":3579698374290051,"attributeType":3840305837889206,"name":1478650334257445,"isPatchControlPointData":1170407970619183,"isPatchData":118799616870408} });
+registerSDKClass("MTLVertexAttributeDescriptor", MTLVertexAttributeDescriptor, { module: "Metal_3864e7f38681b875", properties: {"bufferIndex":3378662173393638,"format":1526294270405356,"offset":1238432729561967} });
+registerSDKClass("MTLVertexAttributeDescriptorArray", MTLVertexAttributeDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":2306367711892035}} });
+registerSDKClass("MTLVertexBufferLayoutDescriptor", MTLVertexBufferLayoutDescriptor, { module: "Metal_3864e7f38681b875", properties: {"stepFunction":1984265561233820,"stepRate":570403213042747,"stride":2061633896450319} });
+registerSDKClass("MTLVertexBufferLayoutDescriptorArray", MTLVertexBufferLayoutDescriptorArray, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"subscript":{"id":3042262986392717}} });
+registerSDKClass("MTLVertexDescriptor", MTLVertexDescriptor, { module: "Metal_3864e7f38681b875", properties: {"attributes":1405967679331380,"layouts":2591608313953}, methods: {"reset":{"id":1107397463186759}} });
+registerSDKClass("Metal.MTLViewport", MTLViewport, { module: "Metal_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)MTLVisibleFunctionTable", {"setPurgeableState":"setPurgeableState(_:)","makeAliasable":"makeAliasable()","isAliasable":"isAliasable()","setFunctionIndex":"setFunction(_:index:)"});
-registerSDKClass("MTLVisibleFunctionTableDescriptor", MTLVisibleFunctionTableDescriptor, { module: "Metal_e11dfd5beee01da3", properties: {"functionCount":2003036242642912} });
-registerSDKClass("NSProcessInfo", ProcessInfo, { module: "Metal_e11dfd5beee01da3", properties: {}, methods: {"hasPerformanceProfile":{"id":1404723899691438},"isDeviceCertified":{"id":76315346212658}} }, true);
+registerSDKClass("MTLVisibleFunctionTableDescriptor", MTLVisibleFunctionTableDescriptor, { module: "Metal_3864e7f38681b875", properties: {"functionCount":2003036242642912} });
+registerSDKClass("NSProcessInfo", ProcessInfo, { module: "Metal_3864e7f38681b875", properties: {}, methods: {"hasPerformanceProfile":{"id":1404723899691438},"isDeviceCertified":{"id":76315346212658}} }, true);

@@ -19,52 +19,52 @@ export class Anchor extends SDKHandle {
    * static var startOfLine: Anchor { get }
    * @availability iOS 16.0+
    */
-  static get startOfLine(): Anchor { return callSDK<Anchor>("RegexBuilder_e11dfd5beee01da3", 3228693239179909, undefined, []); }
+  static get startOfLine(): Anchor { return callSDK<Anchor>("RegexBuilder_3864e7f38681b875", 3228693239179909, undefined, []); }
   /**
    * static var endOfSubject: Anchor { get }
    * @availability iOS 16.0+
    */
-  static get endOfSubject(): Anchor { return callSDK<Anchor>("RegexBuilder_e11dfd5beee01da3", 1891949203488800, undefined, []); }
+  static get endOfSubject(): Anchor { return callSDK<Anchor>("RegexBuilder_3864e7f38681b875", 1891949203488800, undefined, []); }
   /**
    * static var wordBoundary: Anchor { get }
    * @availability iOS 16.0+
    */
-  static get wordBoundary(): Anchor { return callSDK<Anchor>("RegexBuilder_e11dfd5beee01da3", 2510689875487463, undefined, []); }
+  static get wordBoundary(): Anchor { return callSDK<Anchor>("RegexBuilder_3864e7f38681b875", 2510689875487463, undefined, []); }
   /**
    * static var startOfSubject: Anchor { get }
    * @availability iOS 16.0+
    */
-  static get startOfSubject(): Anchor { return callSDK<Anchor>("RegexBuilder_e11dfd5beee01da3", 445248511078394, undefined, []); }
+  static get startOfSubject(): Anchor { return callSDK<Anchor>("RegexBuilder_3864e7f38681b875", 445248511078394, undefined, []); }
   /**
    * static var textSegmentBoundary: Anchor { get }
    * @availability iOS 16.0+
    */
-  static get textSegmentBoundary(): Anchor { return callSDK<Anchor>("RegexBuilder_e11dfd5beee01da3", 813522520109615, undefined, []); }
+  static get textSegmentBoundary(): Anchor { return callSDK<Anchor>("RegexBuilder_3864e7f38681b875", 813522520109615, undefined, []); }
   /**
    * static var endOfSubjectBeforeNewline: Anchor { get }
    * @availability iOS 16.0+
    */
-  static get endOfSubjectBeforeNewline(): Anchor { return callSDK<Anchor>("RegexBuilder_e11dfd5beee01da3", 3511213133128096, undefined, []); }
+  static get endOfSubjectBeforeNewline(): Anchor { return callSDK<Anchor>("RegexBuilder_3864e7f38681b875", 3511213133128096, undefined, []); }
   /**
    * static var firstMatchingPositionInSubject: Anchor { get }
    * @availability iOS 16.0+
    */
-  static get firstMatchingPositionInSubject(): Anchor { return callSDK<Anchor>("RegexBuilder_e11dfd5beee01da3", 3187677741255803, undefined, []); }
+  static get firstMatchingPositionInSubject(): Anchor { return callSDK<Anchor>("RegexBuilder_3864e7f38681b875", 3187677741255803, undefined, []); }
   /**
    * var regex: Regex<Substring> { get }
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 4432449621545898, this, []); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 4432449621545898, this, []); }
   /**
    * var inverted: Anchor { get }
    * @availability iOS 16.0+
    */
-  get inverted(): Anchor { return callSDK<Anchor>("RegexBuilder_e11dfd5beee01da3", 3109440370878232, this, []); }
+  get inverted(): Anchor { return callSDK<Anchor>("RegexBuilder_3864e7f38681b875", 3109440370878232, this, []); }
   /**
    * static var endOfLine: Anchor { get }
    * @availability iOS 16.0+
    */
-  static get endOfLine(): Anchor { return callSDK<Anchor>("RegexBuilder_e11dfd5beee01da3", 466044783055230, undefined, []); }
+  static get endOfLine(): Anchor { return callSDK<Anchor>("RegexBuilder_3864e7f38681b875", 466044783055230, undefined, []); }
   declare readonly $type: { "s:12RegexBuilder6AnchorV": true };
 }
 
@@ -83,8 +83,8 @@ export class Capture<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 1190942062066939, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 472677359497264, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 1190942062066939, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 472677359497264, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder7CaptureV": true };
 }
 
@@ -115,37 +115,37 @@ export class CharacterClass extends SDKHandle {
    * func subtracting(_ other: CharacterClass) -> CharacterClass
    * @availability iOS 16.0+
    */
-  subtracting(other: CharacterClass): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_e11dfd5beee01da3", 1507625248397091, this, [other]); }
+  subtracting(other: CharacterClass): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_3864e7f38681b875", 1507625248397091, this, [other]); }
   /**
    * func intersection(_ other: CharacterClass) -> CharacterClass
    * @availability iOS 16.0+
    */
-  intersection(other: CharacterClass): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_e11dfd5beee01da3", 2092413376699746, this, [other]); }
+  intersection(other: CharacterClass): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_3864e7f38681b875", 2092413376699746, this, [other]); }
   /**
    * static func generalCategory(_ category: Unicode.GeneralCategory) -> CharacterClass
    * @availability iOS 16.0+
    */
-  static generalCategory(category: SDKHandle): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_e11dfd5beee01da3", 4397806561207550, undefined, [category]); }
+  static generalCategory(category: SDKHandle): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_3864e7f38681b875", 4397806561207550, undefined, [category]); }
   /**
    * func symmetricDifference(_ other: CharacterClass) -> CharacterClass
    * @availability iOS 16.0+
    */
-  symmetricDifference(other: CharacterClass): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_e11dfd5beee01da3", 171269963246718, this, [other]); }
+  symmetricDifference(other: CharacterClass): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_3864e7f38681b875", 171269963246718, this, [other]); }
   /**
    * var regex: Regex<Substring> { get }
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 120173284533488, this, []); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 120173284533488, this, []); }
   /**
    * func union(_ other: CharacterClass) -> CharacterClass
    * @availability iOS 16.0+
    */
-  union(other: CharacterClass): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_e11dfd5beee01da3", 2697580186520668, this, [other]); }
+  union(other: CharacterClass): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_3864e7f38681b875", 2697580186520668, this, [other]); }
   /**
    * var inverted: CharacterClass { get }
    * @availability iOS 16.0+
    */
-  get inverted(): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_e11dfd5beee01da3", 1973279488550827, this, []); }
+  get inverted(): CharacterClass { return callSDK<CharacterClass>("RegexBuilder_3864e7f38681b875", 1973279488550827, this, []); }
   declare readonly $type: { "s:12RegexBuilder14CharacterClassV": true };
 }
 
@@ -164,8 +164,8 @@ export class ChoiceOf<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 1368404967548301, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 969304475094401, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 1368404967548301, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 969304475094401, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder8ChoiceOfV": true };
 }
 
@@ -184,8 +184,8 @@ export class Local<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 3167552250393076, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 3657710324700097, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 3167552250393076, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 3657710324700097, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder5LocalV": true };
 }
 
@@ -204,8 +204,8 @@ export class Lookahead<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 1058025132349198, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 2974186413578886, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 1058025132349198, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 2974186413578886, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder9LookaheadV": true };
 }
 
@@ -224,8 +224,8 @@ export class NegativeLookahead<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 4463671418211091, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 670251172616171, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 4463671418211091, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 670251172616171, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder17NegativeLookaheadV": true };
 }
 
@@ -244,8 +244,8 @@ export class One<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 1884579403375864, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 1685670690082689, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 1884579403375864, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 1685670690082689, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder3OneV": true };
 }
 
@@ -264,8 +264,8 @@ export class OneOrMore<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 3312038795484426, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 1547699980887552, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 3312038795484426, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 1547699980887552, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder9OneOrMoreV": true };
 }
 
@@ -284,8 +284,8 @@ export class Optionally<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 4298572258424482, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 1922212778215684, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 4298572258424482, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 1922212778215684, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder10OptionallyV": true };
 }
 
@@ -304,12 +304,12 @@ export class Reference<Capture = unknown> extends SDKHandle {
    * var regex: Regex<Capture> { get }
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 1155942739655558, this, []); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 1155942739655558, this, []); }
   /**
    * init(_ captureType: Capture.Type = Capture.self)
    * @availability iOS 16.0+
    */
-  static init(): Reference<unknown> { return callSDK<Reference<unknown>>("RegexBuilder_e11dfd5beee01da3", 1636088069285132, undefined, []); }
+  static init(): Reference<unknown> { return callSDK<Reference<unknown>>("RegexBuilder_3864e7f38681b875", 1636088069285132, undefined, []); }
   declare readonly $type: { "s:12RegexBuilder9ReferenceV": true };
 }
 
@@ -328,7 +328,7 @@ export class RegexComponentBuilder extends SDKHandle {
    * static func buildBlock() -> Regex<Substring>
    * @availability iOS 16.0+
    */
-  static buildBlock(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 1479818531363212, undefined, []); }
+  static buildBlock(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 1479818531363212, undefined, []); }
   declare readonly $type: { "s:12RegexBuilder0a9ComponentB0O": true };
 }
 
@@ -341,8 +341,8 @@ export class Repeat<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 3936944704331157, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 1797623778050756, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 3936944704331157, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 1797623778050756, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder6RepeatV": true };
 }
 
@@ -385,8 +385,8 @@ export class TryCapture<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 4168560894581379, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 1183934230724371, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 4168560894581379, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 1183934230724371, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder10TryCaptureV": true };
 }
 
@@ -417,8 +417,8 @@ export class ZeroOrMore<Output = unknown> extends SDKHandle {
    * var regex: Regex<Output>
    * @availability iOS 16.0+
    */
-  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_e11dfd5beee01da3", 4122520039190929, this, []); }
-  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_e11dfd5beee01da3", 879617834744432, this, [value]); }
+  get regex(): SDKHandle { return callSDK<SDKHandle>("RegexBuilder_3864e7f38681b875", 4122520039190929, this, []); }
+  set regex(value: SDKHandle) { callSDK<void>("RegexBuilder_3864e7f38681b875", 879617834744432, this, [value]); }
   declare readonly $type: { "s:12RegexBuilder10ZeroOrMoreV": true };
 }
 
@@ -428,19 +428,19 @@ export class ZeroOrMore<Output = unknown> extends SDKHandle {
  */
 export type ZeroOrMore_RegexOutput<Output = unknown> = unknown;
 
-registerSDKClass("RegexBuilder.AlternationBuilder", AlternationBuilder, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.Anchor", Anchor, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.Capture", Capture, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.CharacterClass", CharacterClass, { module: "RegexBuilder_e11dfd5beee01da3", properties: {}, methods: {"subtracting":{"id":1507625248397091},"intersection":{"id":2092413376699746},"symmetricDifference":{"id":171269963246718},"union":{"id":2697580186520668}} });
-registerSDKClass("RegexBuilder.ChoiceOf", ChoiceOf, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.Local", Local, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.Lookahead", Lookahead, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.NegativeLookahead", NegativeLookahead, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.One", One, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.OneOrMore", OneOrMore, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.Optionally", Optionally, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.Reference", Reference, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.RegexComponentBuilder", RegexComponentBuilder, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.Repeat", Repeat, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.TryCapture", TryCapture, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RegexBuilder.ZeroOrMore", ZeroOrMore, { module: "RegexBuilder_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RegexBuilder.AlternationBuilder", AlternationBuilder, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.Anchor", Anchor, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.Capture", Capture, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.CharacterClass", CharacterClass, { module: "RegexBuilder_3864e7f38681b875", properties: {}, methods: {"subtracting":{"id":1507625248397091},"intersection":{"id":2092413376699746},"symmetricDifference":{"id":171269963246718},"union":{"id":2697580186520668}} });
+registerSDKClass("RegexBuilder.ChoiceOf", ChoiceOf, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.Local", Local, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.Lookahead", Lookahead, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.NegativeLookahead", NegativeLookahead, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.One", One, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.OneOrMore", OneOrMore, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.Optionally", Optionally, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.Reference", Reference, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.RegexComponentBuilder", RegexComponentBuilder, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.Repeat", Repeat, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.TryCapture", TryCapture, { module: "RegexBuilder_3864e7f38681b875", properties: {} });
+registerSDKClass("RegexBuilder.ZeroOrMore", ZeroOrMore, { module: "RegexBuilder_3864e7f38681b875", properties: {} });

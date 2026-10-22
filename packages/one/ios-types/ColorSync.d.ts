@@ -861,11 +861,6 @@ export declare const kColorSyncPQDerivative: {
     get value(): (SDKHandle) | null;
     set value(value: (SDKHandle) | null);
 };
-/** var kColorSyncPreferredCMM: Unmanaged<CFString>! */
-export declare const kColorSyncPreferredCMM: {
-    get value(): (SDKHandle) | null;
-    set value(value: (SDKHandle) | null);
-};
 /** var kColorSyncProfile: Unmanaged<CFString>! */
 export declare const kColorSyncProfile: {
     get value(): (SDKHandle) | null;

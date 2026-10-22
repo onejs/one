@@ -36,7 +36,7 @@ export const CNAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (CNAuthorizationStatus) | null { return callSDK<(CNAuthorizationStatus) | null>("Contacts_e11dfd5beee01da3", 2164885207783276, undefined, [rawValue]); }
+  init(rawValue: number): (CNAuthorizationStatus) | null { return callSDK<(CNAuthorizationStatus) | null>("Contacts_3864e7f38681b875", 2164885207783276, undefined, [rawValue]); }
 };
 
 /**
@@ -48,9 +48,9 @@ export class CNChangeHistoryEvent extends SDKHandle {
    * func accept(_ visitor: any CNChangeHistoryEventVisitor)
    * @availability iOS 13.0+
    */
-  accept(visitor: Implements<CNChangeHistoryEventVisitor> | SDKHandle): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 204011264143394, this, [visitor], [{"protocol":"c:objc(pl)CNChangeHistoryEventVisitor"}]); }
+  accept(visitor: Implements<CNChangeHistoryEventVisitor> | SDKHandle): void { return callSDK<void>("Contacts_3864e7f38681b875", 204011264143394, this, [visitor], [{"protocol":"c:objc(pl)CNChangeHistoryEventVisitor"}]); }
   /** init() */
-  static init(): CNChangeHistoryEvent { return callSDK<CNChangeHistoryEvent>("Contacts_e11dfd5beee01da3", 4167134945299956, undefined, []); }
+  static init(): CNChangeHistoryEvent { return callSDK<CNChangeHistoryEvent>("Contacts_3864e7f38681b875", 4167134945299956, undefined, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
 }
 
@@ -60,17 +60,17 @@ export class CNChangeHistoryEvent extends SDKHandle {
  */
 export class CNChangeHistoryAddContactEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryAddContactEvent { return callSDK<CNChangeHistoryAddContactEvent>("Contacts_e11dfd5beee01da3", 2389304528204519, undefined, []); }
+  static init(): CNChangeHistoryAddContactEvent { return callSDK<CNChangeHistoryAddContactEvent>("Contacts_3864e7f38681b875", 2389304528204519, undefined, []); }
   /**
    * var contact: CNContact { get }
    * @availability iOS 13.0+
    */
-  get contact(): CNContact { return callSDK<CNContact>("Contacts_e11dfd5beee01da3", 3552127624179672, this, []); }
+  get contact(): CNContact { return callSDK<CNContact>("Contacts_3864e7f38681b875", 3552127624179672, this, []); }
   /**
    * var containerIdentifier: String? { get }
    * @availability iOS 13.0+
    */
-  get containerIdentifier(): (string) | null { return callSDK<(string) | null>("Contacts_e11dfd5beee01da3", 2533556567563229, this, []); }
+  get containerIdentifier(): (string) | null { return callSDK<(string) | null>("Contacts_3864e7f38681b875", 2533556567563229, this, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryAddContactEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contact": true; "containerIdentifier": true };
 }
@@ -81,17 +81,17 @@ export class CNChangeHistoryAddContactEvent extends (CNChangeHistoryEvent as unk
  */
 export class CNChangeHistoryAddGroupEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryAddGroupEvent { return callSDK<CNChangeHistoryAddGroupEvent>("Contacts_e11dfd5beee01da3", 2175077545638610, undefined, []); }
+  static init(): CNChangeHistoryAddGroupEvent { return callSDK<CNChangeHistoryAddGroupEvent>("Contacts_3864e7f38681b875", 2175077545638610, undefined, []); }
   /**
    * var containerIdentifier: String { get }
    * @availability iOS 13.0+
    */
-  get containerIdentifier(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 4307186711343747, this, []); }
+  get containerIdentifier(): string { return callSDK<string>("Contacts_3864e7f38681b875", 4307186711343747, this, []); }
   /**
    * var group: CNGroup { get }
    * @availability iOS 13.0+
    */
-  get group(): CNGroup { return callSDK<CNGroup>("Contacts_e11dfd5beee01da3", 1150512128503512, this, []); }
+  get group(): CNGroup { return callSDK<CNGroup>("Contacts_3864e7f38681b875", 1150512128503512, this, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryAddGroupEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "containerIdentifier": true; "group": true };
 }
@@ -102,17 +102,17 @@ export class CNChangeHistoryAddGroupEvent extends (CNChangeHistoryEvent as unkno
  */
 export class CNChangeHistoryAddMemberToGroupEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryAddMemberToGroupEvent { return callSDK<CNChangeHistoryAddMemberToGroupEvent>("Contacts_e11dfd5beee01da3", 1635043845104224, undefined, []); }
+  static init(): CNChangeHistoryAddMemberToGroupEvent { return callSDK<CNChangeHistoryAddMemberToGroupEvent>("Contacts_3864e7f38681b875", 1635043845104224, undefined, []); }
   /**
    * var group: CNGroup { get }
    * @availability iOS 13.0+
    */
-  get group(): CNGroup { return callSDK<CNGroup>("Contacts_e11dfd5beee01da3", 222169490631155, this, []); }
+  get group(): CNGroup { return callSDK<CNGroup>("Contacts_3864e7f38681b875", 222169490631155, this, []); }
   /**
    * var member: CNContact { get }
    * @availability iOS 13.0+
    */
-  get member(): CNContact { return callSDK<CNContact>("Contacts_e11dfd5beee01da3", 1773106876384887, this, []); }
+  get member(): CNContact { return callSDK<CNContact>("Contacts_3864e7f38681b875", 1773106876384887, this, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryAddMemberToGroupEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "group": true; "member": true };
 }
@@ -123,17 +123,17 @@ export class CNChangeHistoryAddMemberToGroupEvent extends (CNChangeHistoryEvent 
  */
 export class CNChangeHistoryAddSubgroupToGroupEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryAddSubgroupToGroupEvent { return callSDK<CNChangeHistoryAddSubgroupToGroupEvent>("Contacts_e11dfd5beee01da3", 474832273235157, undefined, []); }
+  static init(): CNChangeHistoryAddSubgroupToGroupEvent { return callSDK<CNChangeHistoryAddSubgroupToGroupEvent>("Contacts_3864e7f38681b875", 474832273235157, undefined, []); }
   /**
    * var group: CNGroup { get }
    * @availability iOS 13.0+
    */
-  get group(): CNGroup { return callSDK<CNGroup>("Contacts_e11dfd5beee01da3", 4020035122403481, this, []); }
+  get group(): CNGroup { return callSDK<CNGroup>("Contacts_3864e7f38681b875", 4020035122403481, this, []); }
   /**
    * var subgroup: CNGroup { get }
    * @availability iOS 13.0+
    */
-  get subgroup(): CNGroup { return callSDK<CNGroup>("Contacts_e11dfd5beee01da3", 2106300244733403, this, []); }
+  get subgroup(): CNGroup { return callSDK<CNGroup>("Contacts_3864e7f38681b875", 2106300244733403, this, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryAddSubgroupToGroupEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "group": true; "subgroup": true };
 }
@@ -144,12 +144,12 @@ export class CNChangeHistoryAddSubgroupToGroupEvent extends (CNChangeHistoryEven
  */
 export class CNChangeHistoryDeleteContactEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryDeleteContactEvent { return callSDK<CNChangeHistoryDeleteContactEvent>("Contacts_e11dfd5beee01da3", 799938082283183, undefined, []); }
+  static init(): CNChangeHistoryDeleteContactEvent { return callSDK<CNChangeHistoryDeleteContactEvent>("Contacts_3864e7f38681b875", 799938082283183, undefined, []); }
   /**
    * var contactIdentifier: String { get }
    * @availability iOS 13.0+
    */
-  get contactIdentifier(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2002749800081224, this, []); }
+  get contactIdentifier(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2002749800081224, this, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryDeleteContactEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contactIdentifier": true };
 }
@@ -160,12 +160,12 @@ export class CNChangeHistoryDeleteContactEvent extends (CNChangeHistoryEvent as 
  */
 export class CNChangeHistoryDeleteGroupEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryDeleteGroupEvent { return callSDK<CNChangeHistoryDeleteGroupEvent>("Contacts_e11dfd5beee01da3", 608379383470299, undefined, []); }
+  static init(): CNChangeHistoryDeleteGroupEvent { return callSDK<CNChangeHistoryDeleteGroupEvent>("Contacts_3864e7f38681b875", 608379383470299, undefined, []); }
   /**
    * var groupIdentifier: String { get }
    * @availability iOS 13.0+
    */
-  get groupIdentifier(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3112296386203562, this, []); }
+  get groupIdentifier(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3112296386203562, this, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryDeleteGroupEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "groupIdentifier": true };
 }
@@ -176,7 +176,7 @@ export class CNChangeHistoryDeleteGroupEvent extends (CNChangeHistoryEvent as un
  */
 export class CNChangeHistoryDropEverythingEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryDropEverythingEvent { return callSDK<CNChangeHistoryDropEverythingEvent>("Contacts_e11dfd5beee01da3", 2863208110042304, undefined, []); }
+  static init(): CNChangeHistoryDropEverythingEvent { return callSDK<CNChangeHistoryDropEverythingEvent>("Contacts_3864e7f38681b875", 2863208110042304, undefined, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryDropEverythingEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
 }
 
@@ -218,7 +218,7 @@ export interface CNChangeHistoryEventVisitor {
  */
 export class CNFetchRequest extends SDKHandle {
   /** init() */
-  static init(): CNFetchRequest { return callSDK<CNFetchRequest>("Contacts_e11dfd5beee01da3", 1877733587929442, undefined, []); }
+  static init(): CNFetchRequest { return callSDK<CNFetchRequest>("Contacts_3864e7f38681b875", 1877733587929442, undefined, []); }
   declare readonly $type: { "c:objc(cs)CNFetchRequest": true; "c:objc(cs)NSObject": true };
 }
 
@@ -228,43 +228,43 @@ export class CNFetchRequest extends SDKHandle {
  */
 export class CNChangeHistoryFetchRequest extends (CNFetchRequest as unknown as Omit<typeof CNFetchRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNFetchRequest)) {
   /** init() */
-  static init(): CNChangeHistoryFetchRequest { return callSDK<CNChangeHistoryFetchRequest>("Contacts_e11dfd5beee01da3", 3368572613559171, undefined, []); }
+  static init(): CNChangeHistoryFetchRequest { return callSDK<CNChangeHistoryFetchRequest>("Contacts_3864e7f38681b875", 3368572613559171, undefined, []); }
   /**
    * var additionalContactKeyDescriptors: [any CNKeyDescriptor]? { get set }
    * @availability iOS 13.0+
    */
-  get additionalContactKeyDescriptors(): (Array<SDKHandle>) | null { return callSDK<(Array<SDKHandle>) | null>("Contacts_e11dfd5beee01da3", 1825197996614259, this, []); }
-  set additionalContactKeyDescriptors(value: (Array<SDKHandle>) | null) { callSDK<void>("Contacts_e11dfd5beee01da3", 4114497059044958, this, [value]); }
+  get additionalContactKeyDescriptors(): (Array<SDKHandle>) | null { return callSDK<(Array<SDKHandle>) | null>("Contacts_3864e7f38681b875", 1825197996614259, this, []); }
+  set additionalContactKeyDescriptors(value: (Array<SDKHandle>) | null) { callSDK<void>("Contacts_3864e7f38681b875", 4114497059044958, this, [value]); }
   /**
    * var excludedTransactionAuthors: [String]? { get set }
    * @availability iOS 13.0+
    */
-  get excludedTransactionAuthors(): (Array<string>) | null { return callSDK<(Array<string>) | null>("Contacts_e11dfd5beee01da3", 1355244741221767, this, []); }
-  set excludedTransactionAuthors(value: (Array<string>) | null) { callSDK<void>("Contacts_e11dfd5beee01da3", 3841612328324723, this, [value]); }
+  get excludedTransactionAuthors(): (Array<string>) | null { return callSDK<(Array<string>) | null>("Contacts_3864e7f38681b875", 1355244741221767, this, []); }
+  set excludedTransactionAuthors(value: (Array<string>) | null) { callSDK<void>("Contacts_3864e7f38681b875", 3841612328324723, this, [value]); }
   /**
    * var includeGroupChanges: Bool { get set }
    * @availability iOS 13.0+
    */
-  get includeGroupChanges(): boolean { return callSDK<boolean>("Contacts_e11dfd5beee01da3", 2429084184056326, this, []); }
-  set includeGroupChanges(value: boolean) { callSDK<void>("Contacts_e11dfd5beee01da3", 3527499446191646, this, [value]); }
+  get includeGroupChanges(): boolean { return callSDK<boolean>("Contacts_3864e7f38681b875", 2429084184056326, this, []); }
+  set includeGroupChanges(value: boolean) { callSDK<void>("Contacts_3864e7f38681b875", 3527499446191646, this, [value]); }
   /**
    * var mutableObjects: Bool { get set }
    * @availability iOS 13.0+
    */
-  get mutableObjects(): boolean { return callSDK<boolean>("Contacts_e11dfd5beee01da3", 679174383033074, this, []); }
-  set mutableObjects(value: boolean) { callSDK<void>("Contacts_e11dfd5beee01da3", 2454400620207862, this, [value]); }
+  get mutableObjects(): boolean { return callSDK<boolean>("Contacts_3864e7f38681b875", 679174383033074, this, []); }
+  set mutableObjects(value: boolean) { callSDK<void>("Contacts_3864e7f38681b875", 2454400620207862, this, [value]); }
   /**
    * var shouldUnifyResults: Bool { get set }
    * @availability iOS 13.0+
    */
-  get shouldUnifyResults(): boolean { return callSDK<boolean>("Contacts_e11dfd5beee01da3", 3227914185028549, this, []); }
-  set shouldUnifyResults(value: boolean) { callSDK<void>("Contacts_e11dfd5beee01da3", 3387658555626643, this, [value]); }
+  get shouldUnifyResults(): boolean { return callSDK<boolean>("Contacts_3864e7f38681b875", 3227914185028549, this, []); }
+  set shouldUnifyResults(value: boolean) { callSDK<void>("Contacts_3864e7f38681b875", 3387658555626643, this, [value]); }
   /**
    * var startingToken: Data? { get set }
    * @availability iOS 13.0+
    */
-  get startingToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Contacts_e11dfd5beee01da3", 3697220175712745, this, []); }
-  set startingToken(value: (ArrayBuffer) | null) { callSDK<void>("Contacts_e11dfd5beee01da3", 1324582643250269, this, [value]); }
+  get startingToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Contacts_3864e7f38681b875", 3697220175712745, this, []); }
+  set startingToken(value: (ArrayBuffer) | null) { callSDK<void>("Contacts_3864e7f38681b875", 1324582643250269, this, [value]); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryFetchRequest": true; "c:objc(cs)CNFetchRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "additionalContactKeyDescriptors": true; "excludedTransactionAuthors": true; "includeGroupChanges": true; "mutableObjects": true; "shouldUnifyResults": true; "startingToken": true };
 }
@@ -275,17 +275,17 @@ export class CNChangeHistoryFetchRequest extends (CNFetchRequest as unknown as O
  */
 export class CNChangeHistoryRemoveMemberFromGroupEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryRemoveMemberFromGroupEvent { return callSDK<CNChangeHistoryRemoveMemberFromGroupEvent>("Contacts_e11dfd5beee01da3", 1519680714133136, undefined, []); }
+  static init(): CNChangeHistoryRemoveMemberFromGroupEvent { return callSDK<CNChangeHistoryRemoveMemberFromGroupEvent>("Contacts_3864e7f38681b875", 1519680714133136, undefined, []); }
   /**
    * var group: CNGroup { get }
    * @availability iOS 13.0+
    */
-  get group(): CNGroup { return callSDK<CNGroup>("Contacts_e11dfd5beee01da3", 690265168453581, this, []); }
+  get group(): CNGroup { return callSDK<CNGroup>("Contacts_3864e7f38681b875", 690265168453581, this, []); }
   /**
    * var member: CNContact { get }
    * @availability iOS 13.0+
    */
-  get member(): CNContact { return callSDK<CNContact>("Contacts_e11dfd5beee01da3", 3861077889566880, this, []); }
+  get member(): CNContact { return callSDK<CNContact>("Contacts_3864e7f38681b875", 3861077889566880, this, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryRemoveMemberFromGroupEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "group": true; "member": true };
 }
@@ -296,17 +296,17 @@ export class CNChangeHistoryRemoveMemberFromGroupEvent extends (CNChangeHistoryE
  */
 export class CNChangeHistoryRemoveSubgroupFromGroupEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryRemoveSubgroupFromGroupEvent { return callSDK<CNChangeHistoryRemoveSubgroupFromGroupEvent>("Contacts_e11dfd5beee01da3", 421639260850018, undefined, []); }
+  static init(): CNChangeHistoryRemoveSubgroupFromGroupEvent { return callSDK<CNChangeHistoryRemoveSubgroupFromGroupEvent>("Contacts_3864e7f38681b875", 421639260850018, undefined, []); }
   /**
    * var group: CNGroup { get }
    * @availability iOS 13.0+
    */
-  get group(): CNGroup { return callSDK<CNGroup>("Contacts_e11dfd5beee01da3", 4131689313405410, this, []); }
+  get group(): CNGroup { return callSDK<CNGroup>("Contacts_3864e7f38681b875", 4131689313405410, this, []); }
   /**
    * var subgroup: CNGroup { get }
    * @availability iOS 13.0+
    */
-  get subgroup(): CNGroup { return callSDK<CNGroup>("Contacts_e11dfd5beee01da3", 1413895198669693, this, []); }
+  get subgroup(): CNGroup { return callSDK<CNGroup>("Contacts_3864e7f38681b875", 1413895198669693, this, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryRemoveSubgroupFromGroupEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "group": true; "subgroup": true };
 }
@@ -317,12 +317,12 @@ export class CNChangeHistoryRemoveSubgroupFromGroupEvent extends (CNChangeHistor
  */
 export class CNChangeHistoryUpdateContactEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryUpdateContactEvent { return callSDK<CNChangeHistoryUpdateContactEvent>("Contacts_e11dfd5beee01da3", 2331134506969868, undefined, []); }
+  static init(): CNChangeHistoryUpdateContactEvent { return callSDK<CNChangeHistoryUpdateContactEvent>("Contacts_3864e7f38681b875", 2331134506969868, undefined, []); }
   /**
    * var contact: CNContact { get }
    * @availability iOS 13.0+
    */
-  get contact(): CNContact { return callSDK<CNContact>("Contacts_e11dfd5beee01da3", 1030354131464005, this, []); }
+  get contact(): CNContact { return callSDK<CNContact>("Contacts_3864e7f38681b875", 1030354131464005, this, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryUpdateContactEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contact": true };
 }
@@ -333,12 +333,12 @@ export class CNChangeHistoryUpdateContactEvent extends (CNChangeHistoryEvent as 
  */
 export class CNChangeHistoryUpdateGroupEvent extends (CNChangeHistoryEvent as unknown as Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent)) {
   /** init() */
-  static init(): CNChangeHistoryUpdateGroupEvent { return callSDK<CNChangeHistoryUpdateGroupEvent>("Contacts_e11dfd5beee01da3", 3372726132501311, undefined, []); }
+  static init(): CNChangeHistoryUpdateGroupEvent { return callSDK<CNChangeHistoryUpdateGroupEvent>("Contacts_3864e7f38681b875", 3372726132501311, undefined, []); }
   /**
    * var group: CNGroup { get }
    * @availability iOS 13.0+
    */
-  get group(): CNGroup { return callSDK<CNGroup>("Contacts_e11dfd5beee01da3", 2609004734252128, this, []); }
+  get group(): CNGroup { return callSDK<CNGroup>("Contacts_3864e7f38681b875", 2609004734252128, this, []); }
   declare readonly $type: { "c:objc(cs)CNChangeHistoryUpdateGroupEvent": true; "c:objc(cs)CNChangeHistoryEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "group": true };
 }
@@ -352,222 +352,222 @@ export class CNContact extends SDKHandle {
    * override dynamic var debugDescription: String { get }
    * @availability iOS 9.0+
    */
-  get debugDescription(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3327716172063896, this, []); }
+  get debugDescription(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3327716172063896, this, []); }
   /**
    * override dynamic var description: String { get }
    * @availability iOS 9.0+
    */
-  get description(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3008939975849175, this, []); }
+  get description(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3008939975849175, this, []); }
   /**
    * @objc dynamic var id: UUID { get }
    * @availability iOS 17.0+
    */
-  get id(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1562972244074062, this, []); }
+  get id(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1562972244074062, this, []); }
   /**
    * @objc dynamic var shortDebugDescription: String { get }
    * @availability iOS 9.0+
    */
-  get shortDebugDescription(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3500852359573905, this, []); }
+  get shortDebugDescription(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3500852359573905, this, []); }
   /**
    * class func comparator(forNameSortOrder sortOrder: CNContactSortOrder) -> Comparator
    * @availability iOS 9.0+
    */
-  static comparator(sortOrder: CNContactSortOrder): ((arg0: unknown, arg1: unknown) => Promise<_Foundation_ComparisonResult>) { return callSDK<((arg0: unknown, arg1: unknown) => Promise<_Foundation_ComparisonResult>)>("Contacts_e11dfd5beee01da3", 3620804850908044, undefined, [sortOrder]); }
+  static comparator(sortOrder: CNContactSortOrder): ((arg0: unknown, arg1: unknown) => Promise<_Foundation_ComparisonResult>) { return callSDK<((arg0: unknown, arg1: unknown) => Promise<_Foundation_ComparisonResult>)>("Contacts_3864e7f38681b875", 3620804850908044, undefined, [sortOrder]); }
   /**
    * class func descriptorForAllComparatorKeys() -> any CNKeyDescriptor
    * @availability iOS 9.0+
    */
-  static descriptorForAllComparatorKeys(): SDKHandle { return callSDK<SDKHandle>("Contacts_e11dfd5beee01da3", 2485045927795281, undefined, []); }
+  static descriptorForAllComparatorKeys(): SDKHandle { return callSDK<SDKHandle>("Contacts_3864e7f38681b875", 2485045927795281, undefined, []); }
   /**
    * class func localizedString(forKey key: String) -> String
    * @availability iOS 9.0+
    */
-  static localizedString(key: string): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 915064851741747, undefined, [key]); }
+  static localizedString(key: string): string { return callSDK<string>("Contacts_3864e7f38681b875", 915064851741747, undefined, [key]); }
   /** class func predicateForContactsInContainer(withIdentifier containerIdentifier: String) -> NSPredicate */
-  static predicateForContactsInContainer(containerIdentifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 3251572417242167, undefined, [containerIdentifier]); }
+  static predicateForContactsInContainer(containerIdentifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 3251572417242167, undefined, [containerIdentifier]); }
   /** class func predicateForContactsInGroup(withIdentifier groupIdentifier: String) -> NSPredicate */
-  static predicateForContactsInGroup(groupIdentifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 1905722423903068, undefined, [groupIdentifier]); }
+  static predicateForContactsInGroup(groupIdentifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 1905722423903068, undefined, [groupIdentifier]); }
   /**
    * class func predicateForContacts(matchingEmailAddress emailAddress: String) -> NSPredicate
    * @availability iOS 11.0+
    */
-  static predicateForContactsMatchingEmailAddress(emailAddress: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 472111459664232, undefined, [emailAddress]); }
+  static predicateForContactsMatchingEmailAddress(emailAddress: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 472111459664232, undefined, [emailAddress]); }
   /** class func predicateForContacts(matchingName name: String) -> NSPredicate */
-  static predicateForContactsMatchingName(name: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 1206072972286993, undefined, [name]); }
+  static predicateForContactsMatchingName(name: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 1206072972286993, undefined, [name]); }
   /**
    * class func predicateForContacts(matching phoneNumber: CNPhoneNumber) -> NSPredicate
    * @availability iOS 11.0+
    */
-  static predicateForContactsMatching(phoneNumber: CNPhoneNumber): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 2785488167817016, undefined, [phoneNumber]); }
+  static predicateForContactsMatching(phoneNumber: CNPhoneNumber): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 2785488167817016, undefined, [phoneNumber]); }
   /** class func predicateForContacts(withIdentifiers identifiers: [String]) -> NSPredicate */
-  static predicateForContactsWithIdentifiers(identifiers: Array<string>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 198075909109882, undefined, [identifiers]); }
+  static predicateForContactsWithIdentifiers(identifiers: Array<string>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 198075909109882, undefined, [identifiers]); }
   /**
    * func areKeysAvailable(_ keyDescriptors: [any CNKeyDescriptor]) -> Bool
    * @availability iOS 9.0+
    */
-  areKeysAvailable(keyDescriptors: Array<SDKHandle>): boolean { return callSDK<boolean>("Contacts_e11dfd5beee01da3", 3309825530309910, this, [keyDescriptors]); }
+  areKeysAvailable(keyDescriptors: Array<SDKHandle>): boolean { return callSDK<boolean>("Contacts_3864e7f38681b875", 3309825530309910, this, [keyDescriptors]); }
   /** init() */
-  static init(): CNContact { return callSDK<CNContact>("Contacts_e11dfd5beee01da3", 2944344384531203, undefined, []); }
+  static init(): CNContact { return callSDK<CNContact>("Contacts_3864e7f38681b875", 2944344384531203, undefined, []); }
   /**
    * func isKeyAvailable(_ key: String) -> Bool
    * @availability iOS 9.0+
    */
-  isKeyAvailable(key: string): boolean { return callSDK<boolean>("Contacts_e11dfd5beee01da3", 509131531309161, this, [key]); }
+  isKeyAvailable(key: string): boolean { return callSDK<boolean>("Contacts_3864e7f38681b875", 509131531309161, this, [key]); }
   /**
    * func isUnifiedWithContact(withIdentifier contactIdentifier: String) -> Bool
    * @availability iOS 9.0+
    */
-  isUnifiedWithContact(contactIdentifier: string): boolean { return callSDK<boolean>("Contacts_e11dfd5beee01da3", 1546360912720947, this, [contactIdentifier]); }
+  isUnifiedWithContact(contactIdentifier: string): boolean { return callSDK<boolean>("Contacts_3864e7f38681b875", 1546360912720947, this, [contactIdentifier]); }
   /**
    * var birthday: DateComponents? { get }
    * @availability iOS 9.0+
    */
-  get birthday(): $SDK3 { return callSDK<$SDK3>("Contacts_e11dfd5beee01da3", 1324194616861315, this, []); }
+  get birthday(): $SDK3 { return callSDK<$SDK3>("Contacts_3864e7f38681b875", 1324194616861315, this, []); }
   /**
    * var contactRelations: [CNLabeledValue<CNContactRelation>] { get }
    * @availability iOS 9.0+
    */
-  get contactRelations(): $SDK4 { return callSDK<$SDK4>("Contacts_e11dfd5beee01da3", 3814239086252345, this, []); }
+  get contactRelations(): $SDK4 { return callSDK<$SDK4>("Contacts_3864e7f38681b875", 3814239086252345, this, []); }
   /**
    * var contactType: CNContactType { get }
    * @availability iOS 9.0+
    */
-  get contactType(): CNContactType { return callSDK<CNContactType>("Contacts_e11dfd5beee01da3", 3166658699677558, this, []); }
+  get contactType(): CNContactType { return callSDK<CNContactType>("Contacts_3864e7f38681b875", 3166658699677558, this, []); }
   /**
    * var dates: [CNLabeledValue<NSDateComponents>] { get }
    * @availability iOS 9.0+
    */
-  get dates(): $SDK5 { return callSDK<$SDK5>("Contacts_e11dfd5beee01da3", 971746960835658, this, []); }
+  get dates(): $SDK5 { return callSDK<$SDK5>("Contacts_3864e7f38681b875", 971746960835658, this, []); }
   /**
    * var departmentName: String { get }
    * @availability iOS 9.0+
    */
-  get departmentName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2744576122420651, this, []); }
+  get departmentName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2744576122420651, this, []); }
   /**
    * var emailAddresses: [CNLabeledValue<NSString>] { get }
    * @availability iOS 9.0+
    */
-  get emailAddresses(): $SDK6 { return callSDK<$SDK6>("Contacts_e11dfd5beee01da3", 4402584909068484, this, []); }
+  get emailAddresses(): $SDK6 { return callSDK<$SDK6>("Contacts_3864e7f38681b875", 4402584909068484, this, []); }
   /**
    * var familyName: String { get }
    * @availability iOS 9.0+
    */
-  get familyName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 325586758612126, this, []); }
+  get familyName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 325586758612126, this, []); }
   /**
    * var givenName: String { get }
    * @availability iOS 9.0+
    */
-  get givenName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2417480128542116, this, []); }
+  get givenName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2417480128542116, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 9.0+
    */
-  get identifier(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1411826054057277, this, []); }
+  get identifier(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1411826054057277, this, []); }
   /**
    * var imageData: Data? { get }
    * @availability iOS 9.0+
    */
-  get imageData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Contacts_e11dfd5beee01da3", 3537659414692552, this, []); }
+  get imageData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Contacts_3864e7f38681b875", 3537659414692552, this, []); }
   /**
    * var imageDataAvailable: Bool { get }
    * @availability iOS 9.0+
    */
-  get imageDataAvailable(): boolean { return callSDK<boolean>("Contacts_e11dfd5beee01da3", 215448940948182, this, []); }
+  get imageDataAvailable(): boolean { return callSDK<boolean>("Contacts_3864e7f38681b875", 215448940948182, this, []); }
   /**
    * var instantMessageAddresses: [CNLabeledValue<CNInstantMessageAddress>] { get }
    * @availability iOS 9.0+
    */
-  get instantMessageAddresses(): $SDK7 { return callSDK<$SDK7>("Contacts_e11dfd5beee01da3", 2355647902862475, this, []); }
+  get instantMessageAddresses(): $SDK7 { return callSDK<$SDK7>("Contacts_3864e7f38681b875", 2355647902862475, this, []); }
   /**
    * var jobTitle: String { get }
    * @availability iOS 9.0+
    */
-  get jobTitle(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1031336478907684, this, []); }
+  get jobTitle(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1031336478907684, this, []); }
   /**
    * var middleName: String { get }
    * @availability iOS 9.0+
    */
-  get middleName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1261419157008788, this, []); }
+  get middleName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1261419157008788, this, []); }
   /**
    * var namePrefix: String { get }
    * @availability iOS 9.0+
    */
-  get namePrefix(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 4266877490670265, this, []); }
+  get namePrefix(): string { return callSDK<string>("Contacts_3864e7f38681b875", 4266877490670265, this, []); }
   /**
    * var nameSuffix: String { get }
    * @availability iOS 9.0+
    */
-  get nameSuffix(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3828700592753827, this, []); }
+  get nameSuffix(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3828700592753827, this, []); }
   /**
    * var nickname: String { get }
    * @availability iOS 9.0+
    */
-  get nickname(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 4464186560982098, this, []); }
+  get nickname(): string { return callSDK<string>("Contacts_3864e7f38681b875", 4464186560982098, this, []); }
   /**
    * var nonGregorianBirthday: DateComponents? { get }
    * @availability iOS 9.0+
    */
-  get nonGregorianBirthday(): $SDK3 { return callSDK<$SDK3>("Contacts_e11dfd5beee01da3", 1129697905757303, this, []); }
+  get nonGregorianBirthday(): $SDK3 { return callSDK<$SDK3>("Contacts_3864e7f38681b875", 1129697905757303, this, []); }
   /**
    * var note: String { get }
    * @availability iOS 9.0+
    */
-  get note(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 4078932934223501, this, []); }
+  get note(): string { return callSDK<string>("Contacts_3864e7f38681b875", 4078932934223501, this, []); }
   /**
    * var organizationName: String { get }
    * @availability iOS 9.0+
    */
-  get organizationName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1228954101714992, this, []); }
+  get organizationName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1228954101714992, this, []); }
   /**
    * var phoneNumbers: [CNLabeledValue<CNPhoneNumber>] { get }
    * @availability iOS 9.0+
    */
-  get phoneNumbers(): $SDK8 { return callSDK<$SDK8>("Contacts_e11dfd5beee01da3", 744110672708868, this, []); }
+  get phoneNumbers(): $SDK8 { return callSDK<$SDK8>("Contacts_3864e7f38681b875", 744110672708868, this, []); }
   /**
    * var phoneticFamilyName: String { get }
    * @availability iOS 9.0+
    */
-  get phoneticFamilyName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1900332882654974, this, []); }
+  get phoneticFamilyName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1900332882654974, this, []); }
   /**
    * var phoneticGivenName: String { get }
    * @availability iOS 9.0+
    */
-  get phoneticGivenName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2260298643506812, this, []); }
+  get phoneticGivenName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2260298643506812, this, []); }
   /**
    * var phoneticMiddleName: String { get }
    * @availability iOS 9.0+
    */
-  get phoneticMiddleName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1461048040663118, this, []); }
+  get phoneticMiddleName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1461048040663118, this, []); }
   /**
    * var phoneticOrganizationName: String { get }
    * @availability iOS 10.0+
    */
-  get phoneticOrganizationName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 4429296482986889, this, []); }
+  get phoneticOrganizationName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 4429296482986889, this, []); }
   /**
    * var postalAddresses: [CNLabeledValue<CNPostalAddress>] { get }
    * @availability iOS 9.0+
    */
-  get postalAddresses(): $SDK9 { return callSDK<$SDK9>("Contacts_e11dfd5beee01da3", 696446463426971, this, []); }
+  get postalAddresses(): $SDK9 { return callSDK<$SDK9>("Contacts_3864e7f38681b875", 696446463426971, this, []); }
   /**
    * var previousFamilyName: String { get }
    * @availability iOS 9.0+
    */
-  get previousFamilyName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 373024668238304, this, []); }
+  get previousFamilyName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 373024668238304, this, []); }
   /**
    * var socialProfiles: [CNLabeledValue<CNSocialProfile>] { get }
    * @availability iOS 9.0+
    */
-  get socialProfiles(): $SDK10 { return callSDK<$SDK10>("Contacts_e11dfd5beee01da3", 3899421846647891, this, []); }
+  get socialProfiles(): $SDK10 { return callSDK<$SDK10>("Contacts_3864e7f38681b875", 3899421846647891, this, []); }
   /**
    * var thumbnailImageData: Data? { get }
    * @availability iOS 9.0+
    */
-  get thumbnailImageData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Contacts_e11dfd5beee01da3", 3749648034237960, this, []); }
+  get thumbnailImageData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Contacts_3864e7f38681b875", 3749648034237960, this, []); }
   /**
    * var urlAddresses: [CNLabeledValue<NSString>] { get }
    * @availability iOS 9.0+
    */
-  get urlAddresses(): $SDK6 { return callSDK<$SDK6>("Contacts_e11dfd5beee01da3", 680501039466579, this, []); }
+  get urlAddresses(): $SDK6 { return callSDK<$SDK6>("Contacts_3864e7f38681b875", 680501039466579, this, []); }
   declare readonly $type: { "c:objc(cs)CNContact": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "birthday": true; "contactRelations": true; "contactType": true; "dates": true; "departmentName": true; "emailAddresses": true; "familyName": true; "givenName": true; "identifier": true; "imageData": true; "imageDataAvailable": true; "instantMessageAddresses": true; "jobTitle": true; "middleName": true; "namePrefix": true; "nameSuffix": true; "nickname": true; "nonGregorianBirthday": true; "note": true; "organizationName": true; "phoneNumbers": true; "phoneticFamilyName": true; "phoneticGivenName": true; "phoneticMiddleName": true; "phoneticOrganizationName": true; "postalAddresses": true; "previousFamilyName": true; "socialProfiles": true; "thumbnailImageData": true; "urlAddresses": true };
 }
@@ -589,7 +589,7 @@ export const CNContactDisplayNameOrder = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (CNContactDisplayNameOrder) | null { return callSDK<(CNContactDisplayNameOrder) | null>("Contacts_e11dfd5beee01da3", 160343307610712, undefined, [rawValue]); }
+  init(rawValue: number): (CNContactDisplayNameOrder) | null { return callSDK<(CNContactDisplayNameOrder) | null>("Contacts_3864e7f38681b875", 160343307610712, undefined, [rawValue]); }
 };
 
 /**
@@ -601,37 +601,37 @@ export class CNContactFetchRequest extends (CNFetchRequest as unknown as Omit<ty
    * init(keysToFetch: [any CNKeyDescriptor])
    * @availability iOS 9.0+
    */
-  static init(keysToFetch: Array<SDKHandle>): CNContactFetchRequest { return callSDK<CNContactFetchRequest>("Contacts_e11dfd5beee01da3", 2481587418445752, undefined, [keysToFetch]); }
+  static init(keysToFetch: Array<SDKHandle>): CNContactFetchRequest { return callSDK<CNContactFetchRequest>("Contacts_3864e7f38681b875", 2481587418445752, undefined, [keysToFetch]); }
   /**
    * var keysToFetch: [any CNKeyDescriptor] { get set }
    * @availability iOS 9.0+
    */
-  get keysToFetch(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Contacts_e11dfd5beee01da3", 1792105849808218, this, []); }
-  set keysToFetch(value: Array<SDKHandle>) { callSDK<void>("Contacts_e11dfd5beee01da3", 718083516301473, this, [value]); }
+  get keysToFetch(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Contacts_3864e7f38681b875", 1792105849808218, this, []); }
+  set keysToFetch(value: Array<SDKHandle>) { callSDK<void>("Contacts_3864e7f38681b875", 718083516301473, this, [value]); }
   /**
    * var mutableObjects: Bool { get set }
    * @availability iOS 10.0+
    */
-  get mutableObjects(): boolean { return callSDK<boolean>("Contacts_e11dfd5beee01da3", 2016494696152010, this, []); }
-  set mutableObjects(value: boolean) { callSDK<void>("Contacts_e11dfd5beee01da3", 2358598487003454, this, [value]); }
+  get mutableObjects(): boolean { return callSDK<boolean>("Contacts_3864e7f38681b875", 2016494696152010, this, []); }
+  set mutableObjects(value: boolean) { callSDK<void>("Contacts_3864e7f38681b875", 2358598487003454, this, [value]); }
   /**
    * @NSCopying var predicate: NSPredicate? { get set }
    * @availability iOS 9.0+
    */
-  get predicate(): $SDK11 { return callSDK<$SDK11>("Contacts_e11dfd5beee01da3", 2261116720780916, this, []); }
-  set predicate(value: $SDK11) { callSDK<void>("Contacts_e11dfd5beee01da3", 814836395263996, this, [value]); }
+  get predicate(): $SDK11 { return callSDK<$SDK11>("Contacts_3864e7f38681b875", 2261116720780916, this, []); }
+  set predicate(value: $SDK11) { callSDK<void>("Contacts_3864e7f38681b875", 814836395263996, this, [value]); }
   /**
    * var sortOrder: CNContactSortOrder { get set }
    * @availability iOS 9.0+
    */
-  get sortOrder(): CNContactSortOrder { return callSDK<CNContactSortOrder>("Contacts_e11dfd5beee01da3", 2606840043289385, this, []); }
-  set sortOrder(value: CNContactSortOrder) { callSDK<void>("Contacts_e11dfd5beee01da3", 2626851030258805, this, [value]); }
+  get sortOrder(): CNContactSortOrder { return callSDK<CNContactSortOrder>("Contacts_3864e7f38681b875", 2606840043289385, this, []); }
+  set sortOrder(value: CNContactSortOrder) { callSDK<void>("Contacts_3864e7f38681b875", 2626851030258805, this, [value]); }
   /**
    * var unifyResults: Bool { get set }
    * @availability iOS 9.0+
    */
-  get unifyResults(): boolean { return callSDK<boolean>("Contacts_e11dfd5beee01da3", 234077420593719, this, []); }
-  set unifyResults(value: boolean) { callSDK<void>("Contacts_e11dfd5beee01da3", 4340426131546887, this, [value]); }
+  get unifyResults(): boolean { return callSDK<boolean>("Contacts_3864e7f38681b875", 234077420593719, this, []); }
+  set unifyResults(value: boolean) { callSDK<void>("Contacts_3864e7f38681b875", 4340426131546887, this, [value]); }
   declare readonly $type: { "c:objc(cs)CNContactFetchRequest": true; "c:objc(cs)CNFetchRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "keysToFetch": true; "mutableObjects": true; "predicate": true; "sortOrder": true; "unifyResults": true };
 }
@@ -645,55 +645,55 @@ export class CNContactFormatter extends SDKHandle {
    * class func attributedString(from contact: CNContact, style: CNContactFormatterStyle, defaultAttributes attributes: [AnyHashable : Any]? = nil) -> NSAttributedString?
    * @availability iOS 9.0+
    */
-  static attributedStringFromStyleDefaultAttributes(contact: CNContact, style: CNContactFormatterStyle, attributes?: $SDK13): $SDK12 { return callSDK<$SDK12>("Contacts_e11dfd5beee01da3", 1370452512624828, undefined, [contact, style, attributes]); }
+  static attributedStringFromStyleDefaultAttributes(contact: CNContact, style: CNContactFormatterStyle, attributes?: $SDK13): $SDK12 { return callSDK<$SDK12>("Contacts_3864e7f38681b875", 1370452512624828, undefined, [contact, style, attributes]); }
   /**
    * class func delimiter(for contact: CNContact) -> String
    * @availability iOS 9.0+
    */
-  static delimiter(contact: CNContact): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1879276717007909, undefined, [contact]); }
+  static delimiter(contact: CNContact): string { return callSDK<string>("Contacts_3864e7f38681b875", 1879276717007909, undefined, [contact]); }
   /**
    * class func descriptorForRequiredKeys(for style: CNContactFormatterStyle) -> any CNKeyDescriptor
    * @availability iOS 9.0+
    */
-  static descriptorForRequiredKeys(style: CNContactFormatterStyle): SDKHandle { return callSDK<SDKHandle>("Contacts_e11dfd5beee01da3", 574304583935220, undefined, [style]); }
+  static descriptorForRequiredKeys(style: CNContactFormatterStyle): SDKHandle { return callSDK<SDKHandle>("Contacts_3864e7f38681b875", 574304583935220, undefined, [style]); }
   /**
    * class func nameOrder(for contact: CNContact) -> CNContactDisplayNameOrder
    * @availability iOS 9.0+
    */
-  static nameOrder(contact: CNContact): CNContactDisplayNameOrder { return callSDK<CNContactDisplayNameOrder>("Contacts_e11dfd5beee01da3", 398871464658691, undefined, [contact]); }
+  static nameOrder(contact: CNContact): CNContactDisplayNameOrder { return callSDK<CNContactDisplayNameOrder>("Contacts_3864e7f38681b875", 398871464658691, undefined, [contact]); }
   /**
    * class func string(from contact: CNContact, style: CNContactFormatterStyle) -> String?
    * @availability iOS 9.0+
    */
-  static stringFromStyle(contact: CNContact, style: CNContactFormatterStyle): (string) | null { return callSDK<(string) | null>("Contacts_e11dfd5beee01da3", 3156726660202465, undefined, [contact, style]); }
+  static stringFromStyle(contact: CNContact, style: CNContactFormatterStyle): (string) | null { return callSDK<(string) | null>("Contacts_3864e7f38681b875", 3156726660202465, undefined, [contact, style]); }
   /**
    * class var descriptorForRequiredKeysForDelimiter: any CNKeyDescriptor { get }
    * @availability iOS 9.0+
    */
-  static get descriptorForRequiredKeysForDelimiter(): SDKHandle { return callSDK<SDKHandle>("Contacts_e11dfd5beee01da3", 1638077074755304, undefined, []); }
+  static get descriptorForRequiredKeysForDelimiter(): SDKHandle { return callSDK<SDKHandle>("Contacts_3864e7f38681b875", 1638077074755304, undefined, []); }
   /**
    * class var descriptorForRequiredKeysForNameOrder: any CNKeyDescriptor { get }
    * @availability iOS 9.0+
    */
-  static get descriptorForRequiredKeysForNameOrder(): SDKHandle { return callSDK<SDKHandle>("Contacts_e11dfd5beee01da3", 1544000594195180, undefined, []); }
+  static get descriptorForRequiredKeysForNameOrder(): SDKHandle { return callSDK<SDKHandle>("Contacts_3864e7f38681b875", 1544000594195180, undefined, []); }
   /**
    * func attributedString(from contact: CNContact, defaultAttributes attributes: [AnyHashable : Any]? = nil) -> NSAttributedString?
    * @availability iOS 9.0+
    */
-  attributedStringFromDefaultAttributes(contact: CNContact, attributes?: $SDK13): $SDK12 { return callSDK<$SDK12>("Contacts_e11dfd5beee01da3", 3917366692892994, this, [contact, attributes]); }
+  attributedStringFromDefaultAttributes(contact: CNContact, attributes?: $SDK13): $SDK12 { return callSDK<$SDK12>("Contacts_3864e7f38681b875", 3917366692892994, this, [contact, attributes]); }
   /** init() */
-  static init(): CNContactFormatter { return callSDK<CNContactFormatter>("Contacts_e11dfd5beee01da3", 1551912654302637, undefined, []); }
+  static init(): CNContactFormatter { return callSDK<CNContactFormatter>("Contacts_3864e7f38681b875", 1551912654302637, undefined, []); }
   /**
    * func string(from contact: CNContact) -> String?
    * @availability iOS 9.0+
    */
-  stringFrom(contact: CNContact): (string) | null { return callSDK<(string) | null>("Contacts_e11dfd5beee01da3", 3216597781541893, this, [contact]); }
+  stringFrom(contact: CNContact): (string) | null { return callSDK<(string) | null>("Contacts_3864e7f38681b875", 3216597781541893, this, [contact]); }
   /**
    * var style: CNContactFormatterStyle { get set }
    * @availability iOS 9.0+
    */
-  get style(): CNContactFormatterStyle { return callSDK<CNContactFormatterStyle>("Contacts_e11dfd5beee01da3", 1932669293567350, this, []); }
-  set style(value: CNContactFormatterStyle) { callSDK<void>("Contacts_e11dfd5beee01da3", 3563953256157812, this, [value]); }
+  get style(): CNContactFormatterStyle { return callSDK<CNContactFormatterStyle>("Contacts_3864e7f38681b875", 1932669293567350, this, []); }
+  set style(value: CNContactFormatterStyle) { callSDK<void>("Contacts_3864e7f38681b875", 3563953256157812, this, [value]); }
   declare readonly $type: { "c:objc(cs)CNContactFormatter": true; "c:objc(cs)NSFormatter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "style": true };
 }
@@ -709,7 +709,7 @@ export const CNContactFormatterStyle = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (CNContactFormatterStyle) | null { return callSDK<(CNContactFormatterStyle) | null>("Contacts_e11dfd5beee01da3", 1953583827692079, undefined, [rawValue]); }
+  init(rawValue: number): (CNContactFormatterStyle) | null { return callSDK<(CNContactFormatterStyle) | null>("Contacts_3864e7f38681b875", 1953583827692079, undefined, [rawValue]); }
 };
 
 /**
@@ -718,32 +718,32 @@ export const CNContactFormatterStyle = {
  */
 export class CNContactProperty extends SDKHandle {
   /** init() */
-  static init(): CNContactProperty { return callSDK<CNContactProperty>("Contacts_e11dfd5beee01da3", 4296160287297265, undefined, []); }
+  static init(): CNContactProperty { return callSDK<CNContactProperty>("Contacts_3864e7f38681b875", 4296160287297265, undefined, []); }
   /**
    * @NSCopying var contact: CNContact { get }
    * @availability iOS 9.0+
    */
-  get contact(): CNContact { return callSDK<CNContact>("Contacts_e11dfd5beee01da3", 4428916496171967, this, []); }
+  get contact(): CNContact { return callSDK<CNContact>("Contacts_3864e7f38681b875", 4428916496171967, this, []); }
   /**
    * var identifier: String? { get }
    * @availability iOS 9.0+
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("Contacts_e11dfd5beee01da3", 295859284531978, this, []); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("Contacts_3864e7f38681b875", 295859284531978, this, []); }
   /**
    * var key: String { get }
    * @availability iOS 9.0+
    */
-  get key(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 422903754886591, this, []); }
+  get key(): string { return callSDK<string>("Contacts_3864e7f38681b875", 422903754886591, this, []); }
   /**
    * var label: String? { get }
    * @availability iOS 9.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Contacts_e11dfd5beee01da3", 1720640042961701, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("Contacts_3864e7f38681b875", 1720640042961701, this, []); }
   /**
    * var value: Any? { get }
    * @availability iOS 9.0+
    */
-  get value(): (unknown) | null { return callSDK<(unknown) | null>("Contacts_e11dfd5beee01da3", 1031527424880627, this, []); }
+  get value(): (unknown) | null { return callSDK<(unknown) | null>("Contacts_3864e7f38681b875", 1031527424880627, this, []); }
   declare readonly $type: { "c:objc(cs)CNContactProperty": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contact": true; "identifier": true; "key": true; "label": true; "value": true };
 }
@@ -757,12 +757,12 @@ export class CNContactRelation extends SDKHandle {
    * init(name: String)
    * @availability iOS 9.0+
    */
-  static init(name: string): CNContactRelation { return callSDK<CNContactRelation>("Contacts_e11dfd5beee01da3", 2730167486327358, undefined, [name]); }
+  static init(name: string): CNContactRelation { return callSDK<CNContactRelation>("Contacts_3864e7f38681b875", 2730167486327358, undefined, [name]); }
   /**
    * var name: String { get }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 693343321139163, this, []); }
+  get name(): string { return callSDK<string>("Contacts_3864e7f38681b875", 693343321139163, this, []); }
   declare readonly $type: { "c:objc(cs)CNContactRelation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true };
 }
@@ -778,7 +778,7 @@ export const CNContactSortOrder = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (CNContactSortOrder) | null { return callSDK<(CNContactSortOrder) | null>("Contacts_e11dfd5beee01da3", 3246031839073147, undefined, [rawValue]); }
+  init(rawValue: number): (CNContactSortOrder) | null { return callSDK<(CNContactSortOrder) | null>("Contacts_3864e7f38681b875", 3246031839073147, undefined, [rawValue]); }
 };
 
 /**
@@ -790,54 +790,54 @@ export class CNContactStore extends SDKHandle {
    * class func authorizationStatus(for entityType: CNEntityType) -> CNAuthorizationStatus
    * @availability iOS 9.0+
    */
-  static authorizationStatus(entityType: CNEntityType): CNAuthorizationStatus { return callSDK<CNAuthorizationStatus>("Contacts_e11dfd5beee01da3", 3089989381750816, undefined, [entityType]); }
+  static authorizationStatus(entityType: CNEntityType): CNAuthorizationStatus { return callSDK<CNAuthorizationStatus>("Contacts_3864e7f38681b875", 3089989381750816, undefined, [entityType]); }
   /**
    * func containers(matching predicate: NSPredicate?) throws -> [CNContainer]
    * @availability iOS 9.0+
    */
-  containers(predicate?: $SDK11): Array<CNContainer> { return callSDK<Array<CNContainer>>("Contacts_e11dfd5beee01da3", 54867759334623, this, [predicate]); }
+  containers(predicate?: $SDK11): Array<CNContainer> { return callSDK<Array<CNContainer>>("Contacts_3864e7f38681b875", 54867759334623, this, [predicate]); }
   /**
    * func defaultContainerIdentifier() -> String
    * @availability iOS 9.0+
    */
-  defaultContainerIdentifier(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3570181346720704, this, []); }
+  defaultContainerIdentifier(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3570181346720704, this, []); }
   /**
    * func enumerateContacts(with fetchRequest: CNContactFetchRequest, usingBlock block: (CNContact, UnsafeMutablePointer<ObjCBool>) -> Void) throws
    * @availability iOS 9.0+
    */
-  enumerateContacts(fetchRequest: CNContactFetchRequest, block: ((arg0: CNContact, arg1: NativeOut<boolean>) => void)): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 4069006077892298, this, [fetchRequest, block], [null,{"callback":{"out":[1]}}], true); }
+  enumerateContacts(fetchRequest: CNContactFetchRequest, block: ((arg0: CNContact, arg1: NativeOut<boolean>) => void)): void { return callSDK<void>("Contacts_3864e7f38681b875", 4069006077892298, this, [fetchRequest, block], [null,{"callback":{"out":[1]}}], true); }
   /**
    * func execute(_ saveRequest: CNSaveRequest) throws
    * @availability iOS 9.0+
    */
-  execute(saveRequest: CNSaveRequest): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 2339088793166318, this, [saveRequest]); }
+  execute(saveRequest: CNSaveRequest): void { return callSDK<void>("Contacts_3864e7f38681b875", 2339088793166318, this, [saveRequest]); }
   /**
    * func groups(matching predicate: NSPredicate?) throws -> [CNGroup]
    * @availability iOS 9.0+
    */
-  groups(predicate?: $SDK11): Array<CNGroup> { return callSDK<Array<CNGroup>>("Contacts_e11dfd5beee01da3", 3074050726254174, this, [predicate]); }
+  groups(predicate?: $SDK11): Array<CNGroup> { return callSDK<Array<CNGroup>>("Contacts_3864e7f38681b875", 3074050726254174, this, [predicate]); }
   /** init() */
-  static init(): CNContactStore { return callSDK<CNContactStore>("Contacts_e11dfd5beee01da3", 3459270042693383, undefined, []); }
+  static init(): CNContactStore { return callSDK<CNContactStore>("Contacts_3864e7f38681b875", 3459270042693383, undefined, []); }
   /**
    * func requestAccess(for entityType: CNEntityType) async throws -> Bool
    * @availability iOS 9.0+
    */
-  requestAccess(entityType: CNEntityType, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 2836788002991980, this, [entityType, completionHandler], [null,{"callback":{"out":[]}}]); }
+  requestAccess(entityType: CNEntityType, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("Contacts_3864e7f38681b875", 2836788002991980, this, [entityType, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func unifiedContact(withIdentifier identifier: String, keysToFetch keys: [any CNKeyDescriptor]) throws -> CNContact
    * @availability iOS 9.0+
    */
-  unifiedContact(identifier: string, keys: Array<SDKHandle>): CNContact { return callSDK<CNContact>("Contacts_e11dfd5beee01da3", 994879380554255, this, [identifier, keys]); }
+  unifiedContact(identifier: string, keys: Array<SDKHandle>): CNContact { return callSDK<CNContact>("Contacts_3864e7f38681b875", 994879380554255, this, [identifier, keys]); }
   /**
    * func unifiedContacts(matching predicate: NSPredicate, keysToFetch keys: [any CNKeyDescriptor]) throws -> [CNContact]
    * @availability iOS 9.0+
    */
-  unifiedContacts(predicate: _Foundation_NSPredicate, keys: Array<SDKHandle>): Array<CNContact> { return callSDK<Array<CNContact>>("Contacts_e11dfd5beee01da3", 668048170855266, this, [predicate, keys]); }
+  unifiedContacts(predicate: _Foundation_NSPredicate, keys: Array<SDKHandle>): Array<CNContact> { return callSDK<Array<CNContact>>("Contacts_3864e7f38681b875", 668048170855266, this, [predicate, keys]); }
   /**
    * var currentHistoryToken: Data? { get }
    * @availability iOS 13.0+
    */
-  get currentHistoryToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Contacts_e11dfd5beee01da3", 2069017146616108, this, []); }
+  get currentHistoryToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Contacts_3864e7f38681b875", 2069017146616108, this, []); }
   declare readonly $type: { "c:objc(cs)CNContactStore": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentHistoryToken": true };
 }
@@ -851,19 +851,19 @@ export class CNContactsUserDefaults extends SDKHandle {
    * class func shared() -> Self
    * @availability iOS 9.0+
    */
-  static shared(): CNContactsUserDefaults { return callSDK<CNContactsUserDefaults>("Contacts_e11dfd5beee01da3", 3931532668038472, undefined, []); }
+  static shared(): CNContactsUserDefaults { return callSDK<CNContactsUserDefaults>("Contacts_3864e7f38681b875", 3931532668038472, undefined, []); }
   /** init() */
-  static init(): CNContactsUserDefaults { return callSDK<CNContactsUserDefaults>("Contacts_e11dfd5beee01da3", 2644393900905214, undefined, []); }
+  static init(): CNContactsUserDefaults { return callSDK<CNContactsUserDefaults>("Contacts_3864e7f38681b875", 2644393900905214, undefined, []); }
   /**
    * var countryCode: String { get }
    * @availability iOS 9.0+
    */
-  get countryCode(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2051675259238623, this, []); }
+  get countryCode(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2051675259238623, this, []); }
   /**
    * var sortOrder: CNContactSortOrder { get }
    * @availability iOS 9.0+
    */
-  get sortOrder(): CNContactSortOrder { return callSDK<CNContactSortOrder>("Contacts_e11dfd5beee01da3", 814794200893923, this, []); }
+  get sortOrder(): CNContactSortOrder { return callSDK<CNContactSortOrder>("Contacts_3864e7f38681b875", 814794200893923, this, []); }
   declare readonly $type: { "c:objc(cs)CNContactsUserDefaults": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "countryCode": true; "sortOrder": true };
 }
@@ -879,7 +879,7 @@ export const CNContactType = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (CNContactType) | null { return callSDK<(CNContactType) | null>("Contacts_e11dfd5beee01da3", 530065258897395, undefined, [rawValue]); }
+  init(rawValue: number): (CNContactType) | null { return callSDK<(CNContactType) | null>("Contacts_3864e7f38681b875", 530065258897395, undefined, [rawValue]); }
 };
 
 /**
@@ -891,19 +891,19 @@ export class CNContactVCardSerialization extends SDKHandle {
    * class func contacts(with data: Data) throws -> [CNContact]
    * @availability iOS 9.0+
    */
-  static contacts(data: ArrayBuffer): Array<CNContact> { return callSDK<Array<CNContact>>("Contacts_e11dfd5beee01da3", 2594703578158041, undefined, [data]); }
+  static contacts(data: ArrayBuffer): Array<CNContact> { return callSDK<Array<CNContact>>("Contacts_3864e7f38681b875", 2594703578158041, undefined, [data]); }
   /**
    * class func data(with contacts: [CNContact]) throws -> Data
    * @availability iOS 9.0+
    */
-  static data(contacts: Array<CNContact>): ArrayBuffer { return callSDK<ArrayBuffer>("Contacts_e11dfd5beee01da3", 2128132753861001, undefined, [contacts]); }
+  static data(contacts: Array<CNContact>): ArrayBuffer { return callSDK<ArrayBuffer>("Contacts_3864e7f38681b875", 2128132753861001, undefined, [contacts]); }
   /**
    * class func descriptorForRequiredKeys() -> any CNKeyDescriptor
    * @availability iOS 9.0+
    */
-  static descriptorForRequiredKeys(): SDKHandle { return callSDK<SDKHandle>("Contacts_e11dfd5beee01da3", 382404863673359, undefined, []); }
+  static descriptorForRequiredKeys(): SDKHandle { return callSDK<SDKHandle>("Contacts_3864e7f38681b875", 382404863673359, undefined, []); }
   /** init() */
-  static init(): CNContactVCardSerialization { return callSDK<CNContactVCardSerialization>("Contacts_e11dfd5beee01da3", 3943889669596291, undefined, []); }
+  static init(): CNContactVCardSerialization { return callSDK<CNContactVCardSerialization>("Contacts_3864e7f38681b875", 3943889669596291, undefined, []); }
   declare readonly $type: { "c:objc(cs)CNContactVCardSerialization": true; "c:objc(cs)NSObject": true };
 }
 
@@ -913,28 +913,28 @@ export class CNContactVCardSerialization extends SDKHandle {
  */
 export class CNContainer extends SDKHandle {
   /** class func predicateForContainerOfContact(withIdentifier contactIdentifier: String) -> NSPredicate */
-  static predicateForContainerOfContact(contactIdentifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 891888081599376, undefined, [contactIdentifier]); }
+  static predicateForContainerOfContact(contactIdentifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 891888081599376, undefined, [contactIdentifier]); }
   /** class func predicateForContainerOfGroup(withIdentifier groupIdentifier: String) -> NSPredicate */
-  static predicateForContainerOfGroup(groupIdentifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 2730699890012804, undefined, [groupIdentifier]); }
+  static predicateForContainerOfGroup(groupIdentifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 2730699890012804, undefined, [groupIdentifier]); }
   /** class func predicateForContainers(withIdentifiers identifiers: [String]) -> NSPredicate */
-  static predicateForContainers(identifiers: Array<string>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 1532671831328204, undefined, [identifiers]); }
+  static predicateForContainers(identifiers: Array<string>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 1532671831328204, undefined, [identifiers]); }
   /** init() */
-  static init(): CNContainer { return callSDK<CNContainer>("Contacts_e11dfd5beee01da3", 2157313691904272, undefined, []); }
+  static init(): CNContainer { return callSDK<CNContainer>("Contacts_3864e7f38681b875", 2157313691904272, undefined, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 9.0+
    */
-  get identifier(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1363295111196858, this, []); }
+  get identifier(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1363295111196858, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 947282627412486, this, []); }
+  get name(): string { return callSDK<string>("Contacts_3864e7f38681b875", 947282627412486, this, []); }
   /**
    * var type: CNContainerType { get }
    * @availability iOS 9.0+
    */
-  get type(): CNContainerType { return callSDK<CNContainerType>("Contacts_e11dfd5beee01da3", 2093995356820444, this, []); }
+  get type(): CNContainerType { return callSDK<CNContainerType>("Contacts_3864e7f38681b875", 2093995356820444, this, []); }
   declare readonly $type: { "c:objc(cs)CNContainer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "type": true };
 }
@@ -950,7 +950,7 @@ export const CNContainerType = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (CNContainerType) | null { return callSDK<(CNContainerType) | null>("Contacts_e11dfd5beee01da3", 566636413387615, undefined, [rawValue]); }
+  init(rawValue: number): (CNContainerType) | null { return callSDK<(CNContainerType) | null>("Contacts_3864e7f38681b875", 566636413387615, undefined, [rawValue]); }
 };
 
 /**
@@ -964,7 +964,7 @@ export const CNEntityType = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (CNEntityType) | null { return callSDK<(CNEntityType) | null>("Contacts_e11dfd5beee01da3", 1267054424501958, undefined, [rawValue]); }
+  init(rawValue: number): (CNEntityType) | null { return callSDK<(CNEntityType) | null>("Contacts_3864e7f38681b875", 1267054424501958, undefined, [rawValue]); }
 };
 
 /**
@@ -976,162 +976,162 @@ export class CNError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 9.0+
    */
-  static get errorDomain(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1958837898632224, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1958837898632224, undefined, []); }
   /**
    * static var vCardMalformed: CNError.Code { get }
    * @availability iOS 11.0+
    */
-  static get vCardMalformed(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 3428103401486161, undefined, []); }
+  static get vCardMalformed(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 3428103401486161, undefined, []); }
   /**
    * static var dataAccessError: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get dataAccessError(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 3187882847291269, undefined, []); }
+  static get dataAccessError(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 3187882847291269, undefined, []); }
   /**
    * static var policyViolation: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get policyViolation(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 3697700878949188, undefined, []); }
+  static get policyViolation(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 3697700878949188, undefined, []); }
   /**
    * static var containmentCycle: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get containmentCycle(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 1638607191370275, undefined, []); }
+  static get containmentCycle(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 1638607191370275, undefined, []); }
   /**
    * static var containmentScope: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get containmentScope(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 4131878908437083, undefined, []); }
+  static get containmentScope(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 4131878908437083, undefined, []); }
   /**
    * static var predicateInvalid: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get predicateInvalid(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 1665809111618531, undefined, []); }
+  static get predicateInvalid(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 1665809111618531, undefined, []); }
   /**
    * static var unauthorizedKeys: CNError.Code { get }
    * @availability iOS 13.0+
    */
-  static get unauthorizedKeys(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 3940460322665208, undefined, []); }
+  static get unauthorizedKeys(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 3940460322665208, undefined, []); }
   /**
    * static var recordNotWritable: CNError.Code { get }
    * @availability iOS 13.0+
    */
-  static get recordNotWritable(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 2626772561793315, undefined, []); }
+  static get recordNotWritable(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 2626772561793315, undefined, []); }
   /**
    * static var communicationError: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get communicationError(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 2998148582169168, undefined, []); }
+  static get communicationError(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 2998148582169168, undefined, []); }
   /**
    * static var recordDoesNotExist: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get recordDoesNotExist(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 405260937474946, undefined, []); }
+  static get recordDoesNotExist(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 405260937474946, undefined, []); }
   /**
    * static var authorizationDenied: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get authorizationDenied(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 806200715629876, undefined, []); }
+  static get authorizationDenied(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 806200715629876, undefined, []); }
   /**
    * static var featureNotAvailable: CNError.Code { get }
    * @availability iOS 17.0+
    */
-  static get featureNotAvailable(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 2647151505695010, undefined, []); }
+  static get featureNotAvailable(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 2647151505695010, undefined, []); }
   /**
    * static var changeHistoryExpired: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get changeHistoryExpired(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 534277755853233, undefined, []); }
+  static get changeHistoryExpired(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 534277755853233, undefined, []); }
   /**
    * static var featureDisabledByUser: CNError.Code { get }
    * @availability iOS 13.0+
    */
-  static get featureDisabledByUser(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 2676501891397853, undefined, []); }
+  static get featureDisabledByUser(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 2676501891397853, undefined, []); }
   /**
    * static var validationTypeMismatch: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get validationTypeMismatch(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 2027729963938373, undefined, []); }
+  static get validationTypeMismatch(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 2027729963938373, undefined, []); }
   /**
    * static var clientIdentifierInvalid: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get clientIdentifierInvalid(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 1017844089401444, undefined, []); }
+  static get clientIdentifierInvalid(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 1017844089401444, undefined, []); }
   /**
    * static var recordIdentifierInvalid: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get recordIdentifierInvalid(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 1403393981810931, undefined, []); }
+  static get recordIdentifierInvalid(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 1403393981810931, undefined, []); }
   /**
    * static var vCardSummarizationError: CNError.Code { get }
    * @availability iOS 12.0+
    */
-  static get vCardSummarizationError(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 1403393255477506, undefined, []); }
+  static get vCardSummarizationError(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 1403393255477506, undefined, []); }
   /**
    * static var parentRecordDoesNotExist: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get parentRecordDoesNotExist(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 1470285006673055, undefined, []); }
+  static get parentRecordDoesNotExist(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 1470285006673055, undefined, []); }
   /**
    * static var validationMultipleErrors: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get validationMultipleErrors(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 2353719703272644, undefined, []); }
+  static get validationMultipleErrors(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 2353719703272644, undefined, []); }
   /**
    * static var clientIdentifierCollision: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get clientIdentifierCollision(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 3544023923146433, undefined, []); }
+  static get clientIdentifierCollision(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 3544023923146433, undefined, []); }
   /**
    * static var changeHistoryInvalidAnchor: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get changeHistoryInvalidAnchor(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 1907001836065325, undefined, []); }
+  static get changeHistoryInvalidAnchor(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 1907001836065325, undefined, []); }
   /**
    * static var parentContainerNotWritable: CNError.Code { get }
    * @availability iOS 13.0+
    */
-  static get parentContainerNotWritable(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 1734529925469005, undefined, []); }
+  static get parentContainerNotWritable(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 1734529925469005, undefined, []); }
   /**
    * static var insertedRecordAlreadyExists: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get insertedRecordAlreadyExists(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 4409936056624435, undefined, []); }
+  static get insertedRecordAlreadyExists(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 4409936056624435, undefined, []); }
   /**
    * static var clientIdentifierDoesNotExist: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get clientIdentifierDoesNotExist(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 2255836959188472, undefined, []); }
+  static get clientIdentifierDoesNotExist(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 2255836959188472, undefined, []); }
   /**
    * static var validationConfigurationError: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get validationConfigurationError(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 907018796315141, undefined, []); }
+  static get validationConfigurationError(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 907018796315141, undefined, []); }
   /**
    * static var noAccessableWritableContainers: CNError.Code { get }
    * @availability iOS 11.3+
    */
-  static get noAccessableWritableContainers(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 2242528102883989, undefined, []); }
+  static get noAccessableWritableContainers(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 2242528102883989, undefined, []); }
   /**
    * static var changeHistoryInvalidFetchRequest: CNError.Code { get }
    * @availability iOS 9.0+
    */
-  static get changeHistoryInvalidFetchRequest(): CNError_Code { return callSDK<CNError_Code>("Contacts_e11dfd5beee01da3", 469705773109671, undefined, []); }
+  static get changeHistoryInvalidFetchRequest(): CNError_Code { return callSDK<CNError_Code>("Contacts_3864e7f38681b875", 469705773109671, undefined, []); }
   /**
    * var affectedRecords: [AnyObject]? { get }
    * @availability iOS 9.0+
    */
-  get affectedRecords(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("Contacts_e11dfd5beee01da3", 1323415317336758, this, []); }
+  get affectedRecords(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("Contacts_3864e7f38681b875", 1323415317336758, this, []); }
   /**
    * var affectedRecordIdentifiers: [String]? { get }
    * @availability iOS 9.0+
    */
-  get affectedRecordIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("Contacts_e11dfd5beee01da3", 2188600568139148, this, []); }
+  get affectedRecordIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("Contacts_3864e7f38681b875", 2188600568139148, this, []); }
   /**
    * var keyPaths: [String]? { get }
    * @availability iOS 9.0+
    */
-  get keyPaths(): (Array<string>) | null { return callSDK<(Array<string>) | null>("Contacts_e11dfd5beee01da3", 3290561853362925, this, []); }
+  get keyPaths(): (Array<string>) | null { return callSDK<(Array<string>) | null>("Contacts_3864e7f38681b875", 3290561853362925, this, []); }
   declare readonly $type: { "s:SC11CNErrorCodeLeV": true };
 }
 
@@ -1146,7 +1146,7 @@ export const CNError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (CNError_Code) | null { return callSDK<(CNError_Code) | null>("Contacts_e11dfd5beee01da3", 816852964933545, undefined, [rawValue]); }
+  init(rawValue: number): (CNError_Code) | null { return callSDK<(CNError_Code) | null>("Contacts_3864e7f38681b875", 816852964933545, undefined, [rawValue]); }
 };
 
 /**
@@ -1158,12 +1158,12 @@ export class CNFetchResult<ValueType = unknown> extends SDKHandle {
    * var currentHistoryToken: Data { get }
    * @availability iOS 13.0+
    */
-  get currentHistoryToken(): ArrayBuffer { return callSDK<ArrayBuffer>("Contacts_e11dfd5beee01da3", 822676638088810, this, []); }
+  get currentHistoryToken(): ArrayBuffer { return callSDK<ArrayBuffer>("Contacts_3864e7f38681b875", 822676638088810, this, []); }
   /**
    * var value: ValueType { get }
    * @availability iOS 13.0+
    */
-  get value(): SDKHandle { return callSDK<SDKHandle>("Contacts_e11dfd5beee01da3", 83128493620264, this, []); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("Contacts_3864e7f38681b875", 83128493620264, this, []); }
   declare readonly $type: { "c:objc(cs)CNFetchResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentHistoryToken": true; "value": true };
 }
@@ -1174,21 +1174,21 @@ export class CNFetchResult<ValueType = unknown> extends SDKHandle {
  */
 export class CNGroup extends SDKHandle {
   /** class func predicateForGroupsInContainer(withIdentifier containerIdentifier: String) -> NSPredicate */
-  static predicateForGroupsInContainer(containerIdentifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 363716563225884, undefined, [containerIdentifier]); }
+  static predicateForGroupsInContainer(containerIdentifier: string): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 363716563225884, undefined, [containerIdentifier]); }
   /** class func predicateForGroups(withIdentifiers identifiers: [String]) -> NSPredicate */
-  static predicateForGroups(identifiers: Array<string>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_e11dfd5beee01da3", 4315753909963153, undefined, [identifiers]); }
+  static predicateForGroups(identifiers: Array<string>): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("Contacts_3864e7f38681b875", 4315753909963153, undefined, [identifiers]); }
   /** init() */
-  static init(): CNGroup { return callSDK<CNGroup>("Contacts_e11dfd5beee01da3", 450703965273631, undefined, []); }
+  static init(): CNGroup { return callSDK<CNGroup>("Contacts_3864e7f38681b875", 450703965273631, undefined, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 9.0+
    */
-  get identifier(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1735257046034897, this, []); }
+  get identifier(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1735257046034897, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3636784181154855, this, []); }
+  get name(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3636784181154855, this, []); }
   declare readonly $type: { "c:objc(cs)CNGroup": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true };
 }
@@ -1202,27 +1202,27 @@ export class CNInstantMessageAddress extends SDKHandle {
    * class func localizedString(forKey key: String) -> String
    * @availability iOS 9.0+
    */
-  static localizedStringForKey(key: string): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2799595733716969, undefined, [key]); }
+  static localizedStringForKey(key: string): string { return callSDK<string>("Contacts_3864e7f38681b875", 2799595733716969, undefined, [key]); }
   /**
    * class func localizedString(forService service: String) -> String
    * @availability iOS 9.0+
    */
-  static localizedStringForService(service: string): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2327362278668255, undefined, [service]); }
+  static localizedStringForService(service: string): string { return callSDK<string>("Contacts_3864e7f38681b875", 2327362278668255, undefined, [service]); }
   /**
    * init(username: String, service: String)
    * @availability iOS 9.0+
    */
-  static init(username: string, service: string): CNInstantMessageAddress { return callSDK<CNInstantMessageAddress>("Contacts_e11dfd5beee01da3", 4444188876541806, undefined, [username, service]); }
+  static init(username: string, service: string): CNInstantMessageAddress { return callSDK<CNInstantMessageAddress>("Contacts_3864e7f38681b875", 4444188876541806, undefined, [username, service]); }
   /**
    * var service: String { get }
    * @availability iOS 9.0+
    */
-  get service(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3764316451550735, this, []); }
+  get service(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3764316451550735, this, []); }
   /**
    * var username: String { get }
    * @availability iOS 9.0+
    */
-  get username(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3885891570117319, this, []); }
+  get username(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3885891570117319, this, []); }
   declare readonly $type: { "c:objc(cs)CNInstantMessageAddress": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "service": true; "username": true };
 }
@@ -1243,32 +1243,32 @@ export class CNLabeledValue<ValueType = unknown> extends SDKHandle {
    * class func localizedString(forLabel label: String) -> String
    * @availability iOS 9.0+
    */
-  static localizedString(label: string): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 688940643911740, undefined, [label]); }
+  static localizedString(label: string): string { return callSDK<string>("Contacts_3864e7f38681b875", 688940643911740, undefined, [label]); }
   /**
    * init(label: String?, value: ValueType)
    * @availability iOS 9.0+
    */
-  static init<T extends CNContactRelation | CNInstantMessageAddress | CNPhoneNumber | CNPostalAddress | CNSocialProfile | _Foundation_NSDateComponents | _Foundation_NSString>(label: (string) | null, value: T): CNLabeledValue<T extends CNContactRelation ? CNContactRelation : T extends CNInstantMessageAddress ? CNInstantMessageAddress : T extends CNPhoneNumber ? CNPhoneNumber : T extends CNPostalAddress ? CNPostalAddress : T extends CNSocialProfile ? CNSocialProfile : T extends _Foundation_NSDateComponents ? _Foundation_NSDateComponents : T extends _Foundation_NSString ? _Foundation_NSString : never> { return callSDK<CNLabeledValue<T extends CNContactRelation ? CNContactRelation : T extends CNInstantMessageAddress ? CNInstantMessageAddress : T extends CNPhoneNumber ? CNPhoneNumber : T extends CNPostalAddress ? CNPostalAddress : T extends CNSocialProfile ? CNSocialProfile : T extends _Foundation_NSDateComponents ? _Foundation_NSDateComponents : T extends _Foundation_NSString ? _Foundation_NSString : never>>("Contacts_e11dfd5beee01da3", 1777942685012409, undefined, [label, value]); }
+  static init<T extends CNContactRelation | CNInstantMessageAddress | CNPhoneNumber | CNPostalAddress | CNSocialProfile | _Foundation_NSDateComponents | _Foundation_NSString>(label: (string) | null, value: T): CNLabeledValue<T extends CNContactRelation ? CNContactRelation : T extends CNInstantMessageAddress ? CNInstantMessageAddress : T extends CNPhoneNumber ? CNPhoneNumber : T extends CNPostalAddress ? CNPostalAddress : T extends CNSocialProfile ? CNSocialProfile : T extends _Foundation_NSDateComponents ? _Foundation_NSDateComponents : T extends _Foundation_NSString ? _Foundation_NSString : never> { return callSDK<CNLabeledValue<T extends CNContactRelation ? CNContactRelation : T extends CNInstantMessageAddress ? CNInstantMessageAddress : T extends CNPhoneNumber ? CNPhoneNumber : T extends CNPostalAddress ? CNPostalAddress : T extends CNSocialProfile ? CNSocialProfile : T extends _Foundation_NSDateComponents ? _Foundation_NSDateComponents : T extends _Foundation_NSString ? _Foundation_NSString : never>>("Contacts_3864e7f38681b875", 1777942685012409, undefined, [label, value]); }
   /**
    * func settingLabel(_ label: String?) -> Self
    * @availability iOS 9.0+
    */
-  settingLabel(label?: (string) | null): CNLabeledValue<SDKHandle> { return callSDK<CNLabeledValue<SDKHandle>>("Contacts_e11dfd5beee01da3", 2180484569535150, this, [label]); }
+  settingLabel(label?: (string) | null): CNLabeledValue<SDKHandle> { return callSDK<CNLabeledValue<SDKHandle>>("Contacts_3864e7f38681b875", 2180484569535150, this, [label]); }
   /**
    * var identifier: String { get }
    * @availability iOS 9.0+
    */
-  get identifier(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2447010256166488, this, []); }
+  get identifier(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2447010256166488, this, []); }
   /**
    * var label: String? { get }
    * @availability iOS 9.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Contacts_e11dfd5beee01da3", 267346688847930, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("Contacts_3864e7f38681b875", 267346688847930, this, []); }
   /**
    * @NSCopying var value: ValueType { get }
    * @availability iOS 9.0+
    */
-  get value(): ValueType { return callSDK<ValueType>("Contacts_e11dfd5beee01da3", 1820401211512348, this, []); }
+  get value(): ValueType { return callSDK<ValueType>("Contacts_3864e7f38681b875", 1820401211512348, this, []); }
   declare readonly $type: { "c:objc(cs)CNLabeledValue": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1278,169 +1278,169 @@ export class CNLabeledValue<ValueType = unknown> extends SDKHandle {
  */
 export class CNMutableContact extends (CNContact as unknown as Omit<typeof CNContact, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CNContact, "birthday" | "contactRelations" | "contactType" | "dates" | "departmentName" | "emailAddresses" | "familyName" | "givenName" | "imageData" | "instantMessageAddresses" | "jobTitle" | "middleName" | "namePrefix" | "nameSuffix" | "nickname" | "nonGregorianBirthday" | "note" | "organizationName" | "phoneNumbers" | "phoneticFamilyName" | "phoneticGivenName" | "phoneticMiddleName" | "phoneticOrganizationName" | "postalAddresses" | "previousFamilyName" | "socialProfiles" | "urlAddresses">)) {
   /** init() */
-  static init(): CNMutableContact { return callSDK<CNMutableContact>("Contacts_e11dfd5beee01da3", 3651867692055413, undefined, []); }
+  static init(): CNMutableContact { return callSDK<CNMutableContact>("Contacts_3864e7f38681b875", 3651867692055413, undefined, []); }
   /**
    * var birthday: DateComponents? { get set }
    * @availability iOS 9.0+
    */
-  get birthday(): $SDK3 { return callSDK<$SDK3>("Contacts_e11dfd5beee01da3", 2488218503870303, this, []); }
-  set birthday(value: $SDK3) { callSDK<void>("Contacts_e11dfd5beee01da3", 1343934054931817, this, [value]); }
+  get birthday(): $SDK3 { return callSDK<$SDK3>("Contacts_3864e7f38681b875", 2488218503870303, this, []); }
+  set birthday(value: $SDK3) { callSDK<void>("Contacts_3864e7f38681b875", 1343934054931817, this, [value]); }
   /**
    * var contactRelations: [CNLabeledValue<CNContactRelation>] { get set }
    * @availability iOS 9.0+
    */
-  get contactRelations(): $SDK4 { return callSDK<$SDK4>("Contacts_e11dfd5beee01da3", 225322836349963, this, []); }
-  set contactRelations(value: $SDK4) { callSDK<void>("Contacts_e11dfd5beee01da3", 3462752473676335, this, [value]); }
+  get contactRelations(): $SDK4 { return callSDK<$SDK4>("Contacts_3864e7f38681b875", 225322836349963, this, []); }
+  set contactRelations(value: $SDK4) { callSDK<void>("Contacts_3864e7f38681b875", 3462752473676335, this, [value]); }
   /**
    * var contactType: CNContactType { get set }
    * @availability iOS 9.0+
    */
-  get contactType(): CNContactType { return callSDK<CNContactType>("Contacts_e11dfd5beee01da3", 1817766438259529, this, []); }
-  set contactType(value: CNContactType) { callSDK<void>("Contacts_e11dfd5beee01da3", 1031102328353443, this, [value]); }
+  get contactType(): CNContactType { return callSDK<CNContactType>("Contacts_3864e7f38681b875", 1817766438259529, this, []); }
+  set contactType(value: CNContactType) { callSDK<void>("Contacts_3864e7f38681b875", 1031102328353443, this, [value]); }
   /**
    * var dates: [CNLabeledValue<NSDateComponents>] { get set }
    * @availability iOS 9.0+
    */
-  get dates(): $SDK5 { return callSDK<$SDK5>("Contacts_e11dfd5beee01da3", 1085811569957952, this, []); }
-  set dates(value: $SDK5) { callSDK<void>("Contacts_e11dfd5beee01da3", 1042435743583584, this, [value]); }
+  get dates(): $SDK5 { return callSDK<$SDK5>("Contacts_3864e7f38681b875", 1085811569957952, this, []); }
+  set dates(value: $SDK5) { callSDK<void>("Contacts_3864e7f38681b875", 1042435743583584, this, [value]); }
   /**
    * var departmentName: String { get set }
    * @availability iOS 9.0+
    */
-  get departmentName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2056358081416627, this, []); }
-  set departmentName(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 912784324492508, this, [value]); }
+  get departmentName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2056358081416627, this, []); }
+  set departmentName(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 912784324492508, this, [value]); }
   /**
    * var emailAddresses: [CNLabeledValue<NSString>] { get set }
    * @availability iOS 9.0+
    */
-  get emailAddresses(): $SDK6 { return callSDK<$SDK6>("Contacts_e11dfd5beee01da3", 3339727175264515, this, []); }
-  set emailAddresses(value: $SDK6) { callSDK<void>("Contacts_e11dfd5beee01da3", 3742415357994629, this, [value]); }
+  get emailAddresses(): $SDK6 { return callSDK<$SDK6>("Contacts_3864e7f38681b875", 3339727175264515, this, []); }
+  set emailAddresses(value: $SDK6) { callSDK<void>("Contacts_3864e7f38681b875", 3742415357994629, this, [value]); }
   /**
    * var familyName: String { get set }
    * @availability iOS 9.0+
    */
-  get familyName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2577255186676411, this, []); }
-  set familyName(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 1187244206006151, this, [value]); }
+  get familyName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2577255186676411, this, []); }
+  set familyName(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 1187244206006151, this, [value]); }
   /**
    * var givenName: String { get set }
    * @availability iOS 9.0+
    */
-  get givenName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2215600371769607, this, []); }
-  set givenName(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 838415731019161, this, [value]); }
+  get givenName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2215600371769607, this, []); }
+  set givenName(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 838415731019161, this, [value]); }
   /**
    * var imageData: Data? { get set }
    * @availability iOS 9.0+
    */
-  get imageData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Contacts_e11dfd5beee01da3", 3277448861944214, this, []); }
-  set imageData(value: (ArrayBuffer) | null) { callSDK<void>("Contacts_e11dfd5beee01da3", 2525201089147196, this, [value]); }
+  get imageData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Contacts_3864e7f38681b875", 3277448861944214, this, []); }
+  set imageData(value: (ArrayBuffer) | null) { callSDK<void>("Contacts_3864e7f38681b875", 2525201089147196, this, [value]); }
   /**
    * var instantMessageAddresses: [CNLabeledValue<CNInstantMessageAddress>] { get set }
    * @availability iOS 9.0+
    */
-  get instantMessageAddresses(): $SDK7 { return callSDK<$SDK7>("Contacts_e11dfd5beee01da3", 3030561219046556, this, []); }
-  set instantMessageAddresses(value: $SDK7) { callSDK<void>("Contacts_e11dfd5beee01da3", 3309200162568895, this, [value]); }
+  get instantMessageAddresses(): $SDK7 { return callSDK<$SDK7>("Contacts_3864e7f38681b875", 3030561219046556, this, []); }
+  set instantMessageAddresses(value: $SDK7) { callSDK<void>("Contacts_3864e7f38681b875", 3309200162568895, this, [value]); }
   /**
    * var jobTitle: String { get set }
    * @availability iOS 9.0+
    */
-  get jobTitle(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1219740521891195, this, []); }
-  set jobTitle(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 701750849444676, this, [value]); }
+  get jobTitle(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1219740521891195, this, []); }
+  set jobTitle(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 701750849444676, this, [value]); }
   /**
    * var middleName: String { get set }
    * @availability iOS 9.0+
    */
-  get middleName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1439816359351157, this, []); }
-  set middleName(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 4460199122260281, this, [value]); }
+  get middleName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1439816359351157, this, []); }
+  set middleName(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 4460199122260281, this, [value]); }
   /**
    * var namePrefix: String { get set }
    * @availability iOS 9.0+
    */
-  get namePrefix(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 217775469224147, this, []); }
-  set namePrefix(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 152180661518000, this, [value]); }
+  get namePrefix(): string { return callSDK<string>("Contacts_3864e7f38681b875", 217775469224147, this, []); }
+  set namePrefix(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 152180661518000, this, [value]); }
   /**
    * var nameSuffix: String { get set }
    * @availability iOS 9.0+
    */
-  get nameSuffix(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3138145088382980, this, []); }
-  set nameSuffix(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 3878453247531090, this, [value]); }
+  get nameSuffix(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3138145088382980, this, []); }
+  set nameSuffix(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 3878453247531090, this, [value]); }
   /**
    * var nickname: String { get set }
    * @availability iOS 9.0+
    */
-  get nickname(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1718079618725256, this, []); }
-  set nickname(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 1009384477575708, this, [value]); }
+  get nickname(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1718079618725256, this, []); }
+  set nickname(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 1009384477575708, this, [value]); }
   /**
    * var nonGregorianBirthday: DateComponents? { get set }
    * @availability iOS 9.0+
    */
-  get nonGregorianBirthday(): $SDK3 { return callSDK<$SDK3>("Contacts_e11dfd5beee01da3", 3122697758961190, this, []); }
-  set nonGregorianBirthday(value: $SDK3) { callSDK<void>("Contacts_e11dfd5beee01da3", 3085821939843240, this, [value]); }
+  get nonGregorianBirthday(): $SDK3 { return callSDK<$SDK3>("Contacts_3864e7f38681b875", 3122697758961190, this, []); }
+  set nonGregorianBirthday(value: $SDK3) { callSDK<void>("Contacts_3864e7f38681b875", 3085821939843240, this, [value]); }
   /**
    * var note: String { get set }
    * @availability iOS 9.0+
    */
-  get note(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 393533346226847, this, []); }
-  set note(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 3208414686747595, this, [value]); }
+  get note(): string { return callSDK<string>("Contacts_3864e7f38681b875", 393533346226847, this, []); }
+  set note(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 3208414686747595, this, [value]); }
   /**
    * var organizationName: String { get set }
    * @availability iOS 9.0+
    */
-  get organizationName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3630900006816980, this, []); }
-  set organizationName(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 2763095440565737, this, [value]); }
+  get organizationName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3630900006816980, this, []); }
+  set organizationName(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 2763095440565737, this, [value]); }
   /**
    * var phoneNumbers: [CNLabeledValue<CNPhoneNumber>] { get set }
    * @availability iOS 9.0+
    */
-  get phoneNumbers(): $SDK8 { return callSDK<$SDK8>("Contacts_e11dfd5beee01da3", 1726813630269130, this, []); }
-  set phoneNumbers(value: $SDK8) { callSDK<void>("Contacts_e11dfd5beee01da3", 1312885825922715, this, [value]); }
+  get phoneNumbers(): $SDK8 { return callSDK<$SDK8>("Contacts_3864e7f38681b875", 1726813630269130, this, []); }
+  set phoneNumbers(value: $SDK8) { callSDK<void>("Contacts_3864e7f38681b875", 1312885825922715, this, [value]); }
   /**
    * var phoneticFamilyName: String { get set }
    * @availability iOS 9.0+
    */
-  get phoneticFamilyName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 148723822257193, this, []); }
-  set phoneticFamilyName(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 270596203738971, this, [value]); }
+  get phoneticFamilyName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 148723822257193, this, []); }
+  set phoneticFamilyName(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 270596203738971, this, [value]); }
   /**
    * var phoneticGivenName: String { get set }
    * @availability iOS 9.0+
    */
-  get phoneticGivenName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2174485682490659, this, []); }
-  set phoneticGivenName(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 3178361782292400, this, [value]); }
+  get phoneticGivenName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2174485682490659, this, []); }
+  set phoneticGivenName(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 3178361782292400, this, [value]); }
   /**
    * var phoneticMiddleName: String { get set }
    * @availability iOS 9.0+
    */
-  get phoneticMiddleName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 852280697544496, this, []); }
-  set phoneticMiddleName(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 1489093122178796, this, [value]); }
+  get phoneticMiddleName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 852280697544496, this, []); }
+  set phoneticMiddleName(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 1489093122178796, this, [value]); }
   /**
    * var phoneticOrganizationName: String { get set }
    * @availability iOS 9.0+
    */
-  get phoneticOrganizationName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2580694360585456, this, []); }
-  set phoneticOrganizationName(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 2447520844769716, this, [value]); }
+  get phoneticOrganizationName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2580694360585456, this, []); }
+  set phoneticOrganizationName(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 2447520844769716, this, [value]); }
   /**
    * var postalAddresses: [CNLabeledValue<CNPostalAddress>] { get set }
    * @availability iOS 9.0+
    */
-  get postalAddresses(): $SDK9 { return callSDK<$SDK9>("Contacts_e11dfd5beee01da3", 620371758236675, this, []); }
-  set postalAddresses(value: $SDK9) { callSDK<void>("Contacts_e11dfd5beee01da3", 693405537092954, this, [value]); }
+  get postalAddresses(): $SDK9 { return callSDK<$SDK9>("Contacts_3864e7f38681b875", 620371758236675, this, []); }
+  set postalAddresses(value: $SDK9) { callSDK<void>("Contacts_3864e7f38681b875", 693405537092954, this, [value]); }
   /**
    * var previousFamilyName: String { get set }
    * @availability iOS 9.0+
    */
-  get previousFamilyName(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1168179741928253, this, []); }
-  set previousFamilyName(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 218822790282340, this, [value]); }
+  get previousFamilyName(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1168179741928253, this, []); }
+  set previousFamilyName(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 218822790282340, this, [value]); }
   /**
    * var socialProfiles: [CNLabeledValue<CNSocialProfile>] { get set }
    * @availability iOS 9.0+
    */
-  get socialProfiles(): $SDK10 { return callSDK<$SDK10>("Contacts_e11dfd5beee01da3", 4300815735025070, this, []); }
-  set socialProfiles(value: $SDK10) { callSDK<void>("Contacts_e11dfd5beee01da3", 3562281905986362, this, [value]); }
+  get socialProfiles(): $SDK10 { return callSDK<$SDK10>("Contacts_3864e7f38681b875", 4300815735025070, this, []); }
+  set socialProfiles(value: $SDK10) { callSDK<void>("Contacts_3864e7f38681b875", 3562281905986362, this, [value]); }
   /**
    * var urlAddresses: [CNLabeledValue<NSString>] { get set }
    * @availability iOS 9.0+
    */
-  get urlAddresses(): $SDK6 { return callSDK<$SDK6>("Contacts_e11dfd5beee01da3", 3058855411858292, this, []); }
-  set urlAddresses(value: $SDK6) { callSDK<void>("Contacts_e11dfd5beee01da3", 3910956607743522, this, [value]); }
+  get urlAddresses(): $SDK6 { return callSDK<$SDK6>("Contacts_3864e7f38681b875", 3058855411858292, this, []); }
+  set urlAddresses(value: $SDK6) { callSDK<void>("Contacts_3864e7f38681b875", 3910956607743522, this, [value]); }
   declare readonly $type: { "c:objc(cs)CNMutableContact": true; "c:objc(cs)CNContact": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "birthday": true; "contactRelations": true; "contactType": true; "dates": true; "departmentName": true; "emailAddresses": true; "familyName": true; "givenName": true; "identifier": true; "imageData": true; "imageDataAvailable": true; "instantMessageAddresses": true; "jobTitle": true; "middleName": true; "namePrefix": true; "nameSuffix": true; "nickname": true; "nonGregorianBirthday": true; "note": true; "organizationName": true; "phoneNumbers": true; "phoneticFamilyName": true; "phoneticGivenName": true; "phoneticMiddleName": true; "phoneticOrganizationName": true; "postalAddresses": true; "previousFamilyName": true; "socialProfiles": true; "thumbnailImageData": true; "urlAddresses": true };
 }
@@ -1451,13 +1451,13 @@ export class CNMutableContact extends (CNContact as unknown as Omit<typeof CNCon
  */
 export class CNMutableGroup extends (CNGroup as unknown as Omit<typeof CNGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CNGroup, "name">)) {
   /** init() */
-  static init(): CNMutableGroup { return callSDK<CNMutableGroup>("Contacts_e11dfd5beee01da3", 2252746600879313, undefined, []); }
+  static init(): CNMutableGroup { return callSDK<CNMutableGroup>("Contacts_3864e7f38681b875", 2252746600879313, undefined, []); }
   /**
    * var name: String { get set }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 679393852428328, this, []); }
-  set name(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 1478932766619732, this, [value]); }
+  get name(): string { return callSDK<string>("Contacts_3864e7f38681b875", 679393852428328, this, []); }
+  set name(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 1478932766619732, this, [value]); }
   declare readonly $type: { "c:objc(cs)CNMutableGroup": true; "c:objc(cs)CNGroup": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true };
 }
@@ -1471,49 +1471,49 @@ export class CNPostalAddress extends SDKHandle {
    * class func localizedString(forKey key: String) -> String
    * @availability iOS 9.0+
    */
-  static localizedString(key: string): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 337986754181863, undefined, [key]); }
+  static localizedString(key: string): string { return callSDK<string>("Contacts_3864e7f38681b875", 337986754181863, undefined, [key]); }
   /** init() */
-  static init(): CNPostalAddress { return callSDK<CNPostalAddress>("Contacts_e11dfd5beee01da3", 2763923879892453, undefined, []); }
+  static init(): CNPostalAddress { return callSDK<CNPostalAddress>("Contacts_3864e7f38681b875", 2763923879892453, undefined, []); }
   /**
    * var isoCountryCode: String { get }
    * @availability iOS 9.0+
    */
-  get isoCountryCode(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2502347823295408, this, []); }
+  get isoCountryCode(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2502347823295408, this, []); }
   /**
    * var city: String { get }
    * @availability iOS 9.0+
    */
-  get city(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2871035816650859, this, []); }
+  get city(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2871035816650859, this, []); }
   /**
    * var country: String { get }
    * @availability iOS 9.0+
    */
-  get country(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1915594864146238, this, []); }
+  get country(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1915594864146238, this, []); }
   /**
    * var postalCode: String { get }
    * @availability iOS 9.0+
    */
-  get postalCode(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3586690379254986, this, []); }
+  get postalCode(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3586690379254986, this, []); }
   /**
    * var state: String { get }
    * @availability iOS 9.0+
    */
-  get state(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1379778334021550, this, []); }
+  get state(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1379778334021550, this, []); }
   /**
    * var street: String { get }
    * @availability iOS 9.0+
    */
-  get street(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3777167794117450, this, []); }
+  get street(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3777167794117450, this, []); }
   /**
    * var subAdministrativeArea: String { get }
    * @availability iOS 10.3+
    */
-  get subAdministrativeArea(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1027446364933901, this, []); }
+  get subAdministrativeArea(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1027446364933901, this, []); }
   /**
    * var subLocality: String { get }
    * @availability iOS 10.3+
    */
-  get subLocality(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2075681620050856, this, []); }
+  get subLocality(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2075681620050856, this, []); }
   declare readonly $type: { "c:objc(cs)CNPostalAddress": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isoCountryCode": true; "city": true; "country": true; "postalCode": true; "state": true; "street": true; "subAdministrativeArea": true; "subLocality": true };
 }
@@ -1524,55 +1524,55 @@ export class CNPostalAddress extends SDKHandle {
  */
 export class CNMutablePostalAddress extends (CNPostalAddress as unknown as Omit<typeof CNPostalAddress, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CNPostalAddress, "isoCountryCode" | "city" | "country" | "postalCode" | "state" | "street" | "subAdministrativeArea" | "subLocality">)) {
   /** init() */
-  static init(): CNMutablePostalAddress { return callSDK<CNMutablePostalAddress>("Contacts_e11dfd5beee01da3", 2014827545489649, undefined, []); }
+  static init(): CNMutablePostalAddress { return callSDK<CNMutablePostalAddress>("Contacts_3864e7f38681b875", 2014827545489649, undefined, []); }
   /**
    * var isoCountryCode: String { get set }
    * @availability iOS 9.0+
    */
-  get isoCountryCode(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 4226906761425792, this, []); }
-  set isoCountryCode(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 2177281838736249, this, [value]); }
+  get isoCountryCode(): string { return callSDK<string>("Contacts_3864e7f38681b875", 4226906761425792, this, []); }
+  set isoCountryCode(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 2177281838736249, this, [value]); }
   /**
    * var city: String { get set }
    * @availability iOS 9.0+
    */
-  get city(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2078453019835575, this, []); }
-  set city(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 4245700732005720, this, [value]); }
+  get city(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2078453019835575, this, []); }
+  set city(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 4245700732005720, this, [value]); }
   /**
    * var country: String { get set }
    * @availability iOS 9.0+
    */
-  get country(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3015722149297154, this, []); }
-  set country(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 2509644907259494, this, [value]); }
+  get country(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3015722149297154, this, []); }
+  set country(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 2509644907259494, this, [value]); }
   /**
    * var postalCode: String { get set }
    * @availability iOS 9.0+
    */
-  get postalCode(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2049632790981309, this, []); }
-  set postalCode(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 3957618618797011, this, [value]); }
+  get postalCode(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2049632790981309, this, []); }
+  set postalCode(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 3957618618797011, this, [value]); }
   /**
    * var state: String { get set }
    * @availability iOS 9.0+
    */
-  get state(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3926182731802567, this, []); }
-  set state(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 679546885410211, this, [value]); }
+  get state(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3926182731802567, this, []); }
+  set state(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 679546885410211, this, [value]); }
   /**
    * var street: String { get set }
    * @availability iOS 9.0+
    */
-  get street(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3480393600557581, this, []); }
-  set street(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 1329698979189332, this, [value]); }
+  get street(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3480393600557581, this, []); }
+  set street(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 1329698979189332, this, [value]); }
   /**
    * var subAdministrativeArea: String { get set }
    * @availability iOS 10.3+
    */
-  get subAdministrativeArea(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 388731391114208, this, []); }
-  set subAdministrativeArea(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 145036722816690, this, [value]); }
+  get subAdministrativeArea(): string { return callSDK<string>("Contacts_3864e7f38681b875", 388731391114208, this, []); }
+  set subAdministrativeArea(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 145036722816690, this, [value]); }
   /**
    * var subLocality: String { get set }
    * @availability iOS 10.3+
    */
-  get subLocality(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2993404399218049, this, []); }
-  set subLocality(value: string) { callSDK<void>("Contacts_e11dfd5beee01da3", 1336253852433457, this, [value]); }
+  get subLocality(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2993404399218049, this, []); }
+  set subLocality(value: string) { callSDK<void>("Contacts_3864e7f38681b875", 1336253852433457, this, [value]); }
   declare readonly $type: { "c:objc(cs)CNMutablePostalAddress": true; "c:objc(cs)CNPostalAddress": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isoCountryCode": true; "city": true; "country": true; "postalCode": true; "state": true; "street": true; "subAdministrativeArea": true; "subLocality": true };
 }
@@ -1587,23 +1587,23 @@ export class CNPhoneNumber extends SDKHandle {
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  static new(): (CNPhoneNumber) | null { return callSDK<(CNPhoneNumber) | null>("Contacts_e11dfd5beee01da3", 3227137127374149, undefined, []); }
+  static new(): (CNPhoneNumber) | null { return callSDK<(CNPhoneNumber) | null>("Contacts_3864e7f38681b875", 3227137127374149, undefined, []); }
   /**
    * init!()
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  static init(): CNPhoneNumber { return callSDK<CNPhoneNumber>("Contacts_e11dfd5beee01da3", 2377764437089698, undefined, []); }
+  static init(): CNPhoneNumber { return callSDK<CNPhoneNumber>("Contacts_3864e7f38681b875", 2377764437089698, undefined, []); }
   /**
    * init(stringValue string: String)
    * @availability iOS 9.0+
    */
-  static initStringValue(string: string): CNPhoneNumber { return callSDK<CNPhoneNumber>("Contacts_e11dfd5beee01da3", 4437984266091126, undefined, [string]); }
+  static initStringValue(string: string): CNPhoneNumber { return callSDK<CNPhoneNumber>("Contacts_3864e7f38681b875", 4437984266091126, undefined, [string]); }
   /**
    * var stringValue: String { get }
    * @availability iOS 9.0+
    */
-  get stringValue(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3239328544706889, this, []); }
+  get stringValue(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3239328544706889, this, []); }
   declare readonly $type: { "c:objc(cs)CNPhoneNumber": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "stringValue": true };
 }
@@ -1617,30 +1617,30 @@ export class CNPostalAddressFormatter extends SDKHandle {
    * class func attributedString(from postalAddress: CNPostalAddress, style: CNPostalAddressFormatterStyle, withDefaultAttributes attributes: [AnyHashable : Any] = [:]) -> NSAttributedString
    * @availability iOS 9.0+
    */
-  static attributedStringFromStyleWithDefaultAttributes(postalAddress: CNPostalAddress, style: CNPostalAddressFormatterStyle, attributes?: NativeMap<unknown, unknown>): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("Contacts_e11dfd5beee01da3", 1615306010002609, undefined, [postalAddress, style, attributes]); }
+  static attributedStringFromStyleWithDefaultAttributes(postalAddress: CNPostalAddress, style: CNPostalAddressFormatterStyle, attributes?: NativeMap<unknown, unknown>): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("Contacts_3864e7f38681b875", 1615306010002609, undefined, [postalAddress, style, attributes]); }
   /**
    * class func string(from postalAddress: CNPostalAddress, style: CNPostalAddressFormatterStyle) -> String
    * @availability iOS 9.0+
    */
-  static stringFromStyle(postalAddress: CNPostalAddress, style: CNPostalAddressFormatterStyle): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1777629467000633, undefined, [postalAddress, style]); }
+  static stringFromStyle(postalAddress: CNPostalAddress, style: CNPostalAddressFormatterStyle): string { return callSDK<string>("Contacts_3864e7f38681b875", 1777629467000633, undefined, [postalAddress, style]); }
   /**
    * func attributedString(from postalAddress: CNPostalAddress, withDefaultAttributes attributes: [AnyHashable : Any] = [:]) -> NSAttributedString
    * @availability iOS 9.0+
    */
-  attributedStringFromWithDefaultAttributes(postalAddress: CNPostalAddress, attributes?: NativeMap<unknown, unknown>): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("Contacts_e11dfd5beee01da3", 4426579348175817, this, [postalAddress, attributes]); }
+  attributedStringFromWithDefaultAttributes(postalAddress: CNPostalAddress, attributes?: NativeMap<unknown, unknown>): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("Contacts_3864e7f38681b875", 4426579348175817, this, [postalAddress, attributes]); }
   /** init() */
-  static init(): CNPostalAddressFormatter { return callSDK<CNPostalAddressFormatter>("Contacts_e11dfd5beee01da3", 1377388650195373, undefined, []); }
+  static init(): CNPostalAddressFormatter { return callSDK<CNPostalAddressFormatter>("Contacts_3864e7f38681b875", 1377388650195373, undefined, []); }
   /**
    * func string(from postalAddress: CNPostalAddress) -> String
    * @availability iOS 9.0+
    */
-  stringFrom(postalAddress: CNPostalAddress): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 4196219583371179, this, [postalAddress]); }
+  stringFrom(postalAddress: CNPostalAddress): string { return callSDK<string>("Contacts_3864e7f38681b875", 4196219583371179, this, [postalAddress]); }
   /**
    * var style: CNPostalAddressFormatterStyle { get set }
    * @availability iOS 9.0+
    */
-  get style(): CNPostalAddressFormatterStyle { return callSDK<CNPostalAddressFormatterStyle>("Contacts_e11dfd5beee01da3", 1330805396794243, this, []); }
-  set style(value: CNPostalAddressFormatterStyle) { callSDK<void>("Contacts_e11dfd5beee01da3", 1105199642001669, this, [value]); }
+  get style(): CNPostalAddressFormatterStyle { return callSDK<CNPostalAddressFormatterStyle>("Contacts_3864e7f38681b875", 1330805396794243, this, []); }
+  set style(value: CNPostalAddressFormatterStyle) { callSDK<void>("Contacts_3864e7f38681b875", 1105199642001669, this, [value]); }
   declare readonly $type: { "c:objc(cs)CNPostalAddressFormatter": true; "c:objc(cs)NSFormatter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "style": true };
 }
@@ -1656,7 +1656,7 @@ export const CNPostalAddressFormatterStyle = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (CNPostalAddressFormatterStyle) | null { return callSDK<(CNPostalAddressFormatterStyle) | null>("Contacts_e11dfd5beee01da3", 1231453099697113, undefined, [rawValue]); }
+  init(rawValue: number): (CNPostalAddressFormatterStyle) | null { return callSDK<(CNPostalAddressFormatterStyle) | null>("Contacts_3864e7f38681b875", 1231453099697113, undefined, [rawValue]); }
 };
 
 /**
@@ -1668,56 +1668,56 @@ export class CNSaveRequest extends SDKHandle {
    * func add(_ contact: CNMutableContact, toContainerWithIdentifier identifier: String?)
    * @availability iOS 9.0+
    */
-  addToContainerWithIdentifier(contact: CNMutableContact, identifier?: (string) | null): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 3488224008520254, this, [contact, identifier]); }
+  addToContainerWithIdentifier(contact: CNMutableContact, identifier?: (string) | null): void { return callSDK<void>("Contacts_3864e7f38681b875", 3488224008520254, this, [contact, identifier]); }
   /**
    * func add(_ group: CNMutableGroup, toContainerWithIdentifier identifier: String?)
    * @availability iOS 9.0+
    */
-  addToContainerWithIdentifier62692(group: CNMutableGroup, identifier?: (string) | null): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 2603940094121291, this, [group, identifier]); }
+  addToContainerWithIdentifier62692(group: CNMutableGroup, identifier?: (string) | null): void { return callSDK<void>("Contacts_3864e7f38681b875", 2603940094121291, this, [group, identifier]); }
   /**
    * func addMember(_ contact: CNContact, to group: CNGroup)
    * @availability iOS 9.0+
    */
-  addMember(contact: CNContact, group: CNGroup): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 2012426140620484, this, [contact, group]); }
+  addMember(contact: CNContact, group: CNGroup): void { return callSDK<void>("Contacts_3864e7f38681b875", 2012426140620484, this, [contact, group]); }
   /**
    * func delete(_ contact: CNMutableContact)
    * @availability iOS 9.0+
    */
-  delete(contact: CNMutableContact): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 4289582494692082, this, [contact]); }
+  delete(contact: CNMutableContact): void { return callSDK<void>("Contacts_3864e7f38681b875", 4289582494692082, this, [contact]); }
   /**
    * func delete(_ group: CNMutableGroup)
    * @availability iOS 9.0+
    */
-  delete55357(group: CNMutableGroup): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 3991774692031116, this, [group]); }
+  delete55357(group: CNMutableGroup): void { return callSDK<void>("Contacts_3864e7f38681b875", 3991774692031116, this, [group]); }
   /** init() */
-  static init(): CNSaveRequest { return callSDK<CNSaveRequest>("Contacts_e11dfd5beee01da3", 1606903437182224, undefined, []); }
+  static init(): CNSaveRequest { return callSDK<CNSaveRequest>("Contacts_3864e7f38681b875", 1606903437182224, undefined, []); }
   /**
    * func removeMember(_ contact: CNContact, from group: CNGroup)
    * @availability iOS 9.0+
    */
-  removeMember(contact: CNContact, group: CNGroup): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 2776069132487190, this, [contact, group]); }
+  removeMember(contact: CNContact, group: CNGroup): void { return callSDK<void>("Contacts_3864e7f38681b875", 2776069132487190, this, [contact, group]); }
   /**
    * func update(_ contact: CNMutableContact)
    * @availability iOS 9.0+
    */
-  update(contact: CNMutableContact): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 2889775962726882, this, [contact]); }
+  update(contact: CNMutableContact): void { return callSDK<void>("Contacts_3864e7f38681b875", 2889775962726882, this, [contact]); }
   /**
    * func update(_ group: CNMutableGroup)
    * @availability iOS 9.0+
    */
-  update36751(group: CNMutableGroup): void { return callSDK<void>("Contacts_e11dfd5beee01da3", 3117030261943374, this, [group]); }
+  update36751(group: CNMutableGroup): void { return callSDK<void>("Contacts_3864e7f38681b875", 3117030261943374, this, [group]); }
   /**
    * var shouldRefetchContacts: Bool { get set }
    * @availability iOS 15.4+
    */
-  get shouldRefetchContacts(): boolean { return callSDK<boolean>("Contacts_e11dfd5beee01da3", 3140732268594376, this, []); }
-  set shouldRefetchContacts(value: boolean) { callSDK<void>("Contacts_e11dfd5beee01da3", 1704509989006987, this, [value]); }
+  get shouldRefetchContacts(): boolean { return callSDK<boolean>("Contacts_3864e7f38681b875", 3140732268594376, this, []); }
+  set shouldRefetchContacts(value: boolean) { callSDK<void>("Contacts_3864e7f38681b875", 1704509989006987, this, [value]); }
   /**
    * var transactionAuthor: String? { get set }
    * @availability iOS 15.0+
    */
-  get transactionAuthor(): (string) | null { return callSDK<(string) | null>("Contacts_e11dfd5beee01da3", 2852946827473511, this, []); }
-  set transactionAuthor(value: (string) | null) { callSDK<void>("Contacts_e11dfd5beee01da3", 4457356662016378, this, [value]); }
+  get transactionAuthor(): (string) | null { return callSDK<(string) | null>("Contacts_3864e7f38681b875", 2852946827473511, this, []); }
+  set transactionAuthor(value: (string) | null) { callSDK<void>("Contacts_3864e7f38681b875", 4457356662016378, this, [value]); }
   declare readonly $type: { "c:objc(cs)CNSaveRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "shouldRefetchContacts": true; "transactionAuthor": true };
 }
@@ -1731,37 +1731,37 @@ export class CNSocialProfile extends SDKHandle {
    * class func localizedString(forKey key: String) -> String
    * @availability iOS 9.0+
    */
-  static localizedStringForKey(key: string): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2900586966930626, undefined, [key]); }
+  static localizedStringForKey(key: string): string { return callSDK<string>("Contacts_3864e7f38681b875", 2900586966930626, undefined, [key]); }
   /**
    * class func localizedString(forService service: String) -> String
    * @availability iOS 9.0+
    */
-  static localizedStringForService(service: string): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 570934310287403, undefined, [service]); }
+  static localizedStringForService(service: string): string { return callSDK<string>("Contacts_3864e7f38681b875", 570934310287403, undefined, [service]); }
   /**
    * init(urlString: String?, username: String?, userIdentifier: String?, service: String?)
    * @availability iOS 9.0+
    */
-  static init(urlString?: (string) | null, username?: (string) | null, userIdentifier?: (string) | null, service?: (string) | null): CNSocialProfile { return callSDK<CNSocialProfile>("Contacts_e11dfd5beee01da3", 2650715060034130, undefined, [urlString, username, userIdentifier, service]); }
+  static init(urlString?: (string) | null, username?: (string) | null, userIdentifier?: (string) | null, service?: (string) | null): CNSocialProfile { return callSDK<CNSocialProfile>("Contacts_3864e7f38681b875", 2650715060034130, undefined, [urlString, username, userIdentifier, service]); }
   /**
    * var service: String { get }
    * @availability iOS 9.0+
    */
-  get service(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 2515196256939502, this, []); }
+  get service(): string { return callSDK<string>("Contacts_3864e7f38681b875", 2515196256939502, this, []); }
   /**
    * var urlString: String { get }
    * @availability iOS 9.0+
    */
-  get urlString(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 1384299802217996, this, []); }
+  get urlString(): string { return callSDK<string>("Contacts_3864e7f38681b875", 1384299802217996, this, []); }
   /**
    * var userIdentifier: String { get }
    * @availability iOS 9.0+
    */
-  get userIdentifier(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 3370888389274352, this, []); }
+  get userIdentifier(): string { return callSDK<string>("Contacts_3864e7f38681b875", 3370888389274352, this, []); }
   /**
    * var username: String { get }
    * @availability iOS 9.0+
    */
-  get username(): string { return callSDK<string>("Contacts_e11dfd5beee01da3", 4130556480460181, this, []); }
+  get username(): string { return callSDK<string>("Contacts_3864e7f38681b875", 4130556480460181, this, []); }
   declare readonly $type: { "c:objc(cs)CNSocialProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "service": true; "urlString": true; "userIdentifier": true; "username": true };
 }
@@ -1773,1880 +1773,1880 @@ export const NSNotification_Name = {
    * static let CNContactStoreDidChange: NSNotification.Name
    * @availability iOS 9.0+
    */
-  get CNContactStoreDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Contacts_e11dfd5beee01da3", 270300986813326, undefined, []); }
+  get CNContactStoreDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Contacts_3864e7f38681b875", 270300986813326, undefined, []); }
 };
 
 /**
  * let CNContactBirthdayKey: String
  * @availability iOS 9.0+
  */
-export const CNContactBirthdayKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2349428828360334, undefined, []);
+export const CNContactBirthdayKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2349428828360334, undefined, []);
 
 /**
  * let CNContactDatesKey: String
  * @availability iOS 9.0+
  */
-export const CNContactDatesKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4050416249440585, undefined, []);
+export const CNContactDatesKey: string = callSDK<string>("Contacts_3864e7f38681b875", 4050416249440585, undefined, []);
 
 /**
  * let CNContactDepartmentNameKey: String
  * @availability iOS 9.0+
  */
-export const CNContactDepartmentNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1308878689925406, undefined, []);
+export const CNContactDepartmentNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1308878689925406, undefined, []);
 
 /**
  * let CNContactEmailAddressesKey: String
  * @availability iOS 9.0+
  */
-export const CNContactEmailAddressesKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 629190270416421, undefined, []);
+export const CNContactEmailAddressesKey: string = callSDK<string>("Contacts_3864e7f38681b875", 629190270416421, undefined, []);
 
 /**
  * let CNContactFamilyNameKey: String
  * @availability iOS 9.0+
  */
-export const CNContactFamilyNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1583686328176147, undefined, []);
+export const CNContactFamilyNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1583686328176147, undefined, []);
 
 /**
  * let CNContactGivenNameKey: String
  * @availability iOS 9.0+
  */
-export const CNContactGivenNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3207842380153142, undefined, []);
+export const CNContactGivenNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 3207842380153142, undefined, []);
 
 /**
  * let CNContactIdentifierKey: String
  * @availability iOS 9.0+
  */
-export const CNContactIdentifierKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2452097051596112, undefined, []);
+export const CNContactIdentifierKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2452097051596112, undefined, []);
 
 /**
  * let CNContactImageDataAvailableKey: String
  * @availability iOS 9.0+
  */
-export const CNContactImageDataAvailableKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2588205464712301, undefined, []);
+export const CNContactImageDataAvailableKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2588205464712301, undefined, []);
 
 /**
  * let CNContactImageDataKey: String
  * @availability iOS 9.0+
  */
-export const CNContactImageDataKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4304622058394043, undefined, []);
+export const CNContactImageDataKey: string = callSDK<string>("Contacts_3864e7f38681b875", 4304622058394043, undefined, []);
 
 /**
  * let CNContactInstantMessageAddressesKey: String
  * @availability iOS 9.0+
  */
-export const CNContactInstantMessageAddressesKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1380912462368020, undefined, []);
+export const CNContactInstantMessageAddressesKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1380912462368020, undefined, []);
 
 /**
  * let CNContactJobTitleKey: String
  * @availability iOS 9.0+
  */
-export const CNContactJobTitleKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 965939386070429, undefined, []);
+export const CNContactJobTitleKey: string = callSDK<string>("Contacts_3864e7f38681b875", 965939386070429, undefined, []);
 
 /**
  * let CNContactMiddleNameKey: String
  * @availability iOS 9.0+
  */
-export const CNContactMiddleNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1377735200426075, undefined, []);
+export const CNContactMiddleNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1377735200426075, undefined, []);
 
 /**
  * let CNContactNamePrefixKey: String
  * @availability iOS 9.0+
  */
-export const CNContactNamePrefixKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1860252778430387, undefined, []);
+export const CNContactNamePrefixKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1860252778430387, undefined, []);
 
 /**
  * let CNContactNameSuffixKey: String
  * @availability iOS 9.0+
  */
-export const CNContactNameSuffixKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1353902041181285, undefined, []);
+export const CNContactNameSuffixKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1353902041181285, undefined, []);
 
 /**
  * let CNContactNicknameKey: String
  * @availability iOS 9.0+
  */
-export const CNContactNicknameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 378762836445734, undefined, []);
+export const CNContactNicknameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 378762836445734, undefined, []);
 
 /**
  * let CNContactNonGregorianBirthdayKey: String
  * @availability iOS 9.0+
  */
-export const CNContactNonGregorianBirthdayKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3041421222532315, undefined, []);
+export const CNContactNonGregorianBirthdayKey: string = callSDK<string>("Contacts_3864e7f38681b875", 3041421222532315, undefined, []);
 
 /**
  * let CNContactNoteKey: String
  * @availability iOS 9.0+
  */
-export const CNContactNoteKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3108635362875322, undefined, []);
+export const CNContactNoteKey: string = callSDK<string>("Contacts_3864e7f38681b875", 3108635362875322, undefined, []);
 
 /**
  * let CNContactOrganizationNameKey: String
  * @availability iOS 9.0+
  */
-export const CNContactOrganizationNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2102839255755967, undefined, []);
+export const CNContactOrganizationNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2102839255755967, undefined, []);
 
 /**
  * let CNContactPhoneNumbersKey: String
  * @availability iOS 9.0+
  */
-export const CNContactPhoneNumbersKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1617483200033856, undefined, []);
+export const CNContactPhoneNumbersKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1617483200033856, undefined, []);
 
 /**
  * let CNContactPhoneticFamilyNameKey: String
  * @availability iOS 9.0+
  */
-export const CNContactPhoneticFamilyNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3747388059278529, undefined, []);
+export const CNContactPhoneticFamilyNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 3747388059278529, undefined, []);
 
 /**
  * let CNContactPhoneticGivenNameKey: String
  * @availability iOS 9.0+
  */
-export const CNContactPhoneticGivenNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 847407738737992, undefined, []);
+export const CNContactPhoneticGivenNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 847407738737992, undefined, []);
 
 /**
  * let CNContactPhoneticMiddleNameKey: String
  * @availability iOS 9.0+
  */
-export const CNContactPhoneticMiddleNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2583692879946814, undefined, []);
+export const CNContactPhoneticMiddleNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2583692879946814, undefined, []);
 
 /**
  * let CNContactPhoneticOrganizationNameKey: String
  * @availability iOS 10.0+
  */
-export const CNContactPhoneticOrganizationNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3884830934724945, undefined, []);
+export const CNContactPhoneticOrganizationNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 3884830934724945, undefined, []);
 
 /**
  * let CNContactPostalAddressesKey: String
  * @availability iOS 9.0+
  */
-export const CNContactPostalAddressesKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1343047759676656, undefined, []);
+export const CNContactPostalAddressesKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1343047759676656, undefined, []);
 
 /**
  * let CNContactPreviousFamilyNameKey: String
  * @availability iOS 9.0+
  */
-export const CNContactPreviousFamilyNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2011749954673260, undefined, []);
+export const CNContactPreviousFamilyNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2011749954673260, undefined, []);
 
 /** let CNContactPropertyAttribute: String */
-export const CNContactPropertyAttribute: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3191322756446722, undefined, []);
+export const CNContactPropertyAttribute: string = callSDK<string>("Contacts_3864e7f38681b875", 3191322756446722, undefined, []);
 
 /** let CNContactPropertyNotFetchedExceptionName: String */
-export const CNContactPropertyNotFetchedExceptionName: string = callSDK<string>("Contacts_e11dfd5beee01da3", 989920246620336, undefined, []);
+export const CNContactPropertyNotFetchedExceptionName: string = callSDK<string>("Contacts_3864e7f38681b875", 989920246620336, undefined, []);
 
 /**
  * let CNContactRelationsKey: String
  * @availability iOS 9.0+
  */
-export const CNContactRelationsKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 271613974914834, undefined, []);
+export const CNContactRelationsKey: string = callSDK<string>("Contacts_3864e7f38681b875", 271613974914834, undefined, []);
 
 /**
  * let CNContactSocialProfilesKey: String
  * @availability iOS 9.0+
  */
-export const CNContactSocialProfilesKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2025439164968681, undefined, []);
+export const CNContactSocialProfilesKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2025439164968681, undefined, []);
 
 /**
  * let CNContactThumbnailImageDataKey: String
  * @availability iOS 9.0+
  */
-export const CNContactThumbnailImageDataKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 137555286901197, undefined, []);
+export const CNContactThumbnailImageDataKey: string = callSDK<string>("Contacts_3864e7f38681b875", 137555286901197, undefined, []);
 
 /**
  * let CNContactTypeKey: String
  * @availability iOS 9.0+
  */
-export const CNContactTypeKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4140961168529291, undefined, []);
+export const CNContactTypeKey: string = callSDK<string>("Contacts_3864e7f38681b875", 4140961168529291, undefined, []);
 
 /**
  * let CNContactUrlAddressesKey: String
  * @availability iOS 9.0+
  */
-export const CNContactUrlAddressesKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1835833550309858, undefined, []);
+export const CNContactUrlAddressesKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1835833550309858, undefined, []);
 
 /**
  * let CNContainerIdentifierKey: String
  * @availability iOS 9.0+
  */
-export const CNContainerIdentifierKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3054521548603758, undefined, []);
+export const CNContainerIdentifierKey: string = callSDK<string>("Contacts_3864e7f38681b875", 3054521548603758, undefined, []);
 
 /**
  * let CNContainerNameKey: String
  * @availability iOS 9.0+
  */
-export const CNContainerNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2358632790444269, undefined, []);
+export const CNContainerNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2358632790444269, undefined, []);
 
 /**
  * let CNContainerTypeKey: String
  * @availability iOS 9.0+
  */
-export const CNContainerTypeKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4139789305325493, undefined, []);
+export const CNContainerTypeKey: string = callSDK<string>("Contacts_3864e7f38681b875", 4139789305325493, undefined, []);
 
 /**
  * let CNErrorDomain: String
  * @availability iOS 9.0+
  */
-export const CNErrorDomain: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3275771103241400, undefined, []);
+export const CNErrorDomain: string = callSDK<string>("Contacts_3864e7f38681b875", 3275771103241400, undefined, []);
 
 /**
  * let CNErrorUserInfoAffectedRecordIdentifiersKey: String
  * @availability iOS 9.0+
  */
-export const CNErrorUserInfoAffectedRecordIdentifiersKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3316768403119322, undefined, []);
+export const CNErrorUserInfoAffectedRecordIdentifiersKey: string = callSDK<string>("Contacts_3864e7f38681b875", 3316768403119322, undefined, []);
 
 /**
  * let CNErrorUserInfoAffectedRecordsKey: String
  * @availability iOS 9.0+
  */
-export const CNErrorUserInfoAffectedRecordsKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4052278052957988, undefined, []);
+export const CNErrorUserInfoAffectedRecordsKey: string = callSDK<string>("Contacts_3864e7f38681b875", 4052278052957988, undefined, []);
 
 /**
  * let CNErrorUserInfoKeyPathsKey: String
  * @availability iOS 9.0+
  */
-export const CNErrorUserInfoKeyPathsKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4077113281950571, undefined, []);
+export const CNErrorUserInfoKeyPathsKey: string = callSDK<string>("Contacts_3864e7f38681b875", 4077113281950571, undefined, []);
 
 /**
  * let CNErrorUserInfoValidationErrorsKey: String
  * @availability iOS 9.0+
  */
-export const CNErrorUserInfoValidationErrorsKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3745260741482377, undefined, []);
+export const CNErrorUserInfoValidationErrorsKey: string = callSDK<string>("Contacts_3864e7f38681b875", 3745260741482377, undefined, []);
 
 /**
  * let CNGroupIdentifierKey: String
  * @availability iOS 9.0+
  */
-export const CNGroupIdentifierKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2084063178818225, undefined, []);
+export const CNGroupIdentifierKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2084063178818225, undefined, []);
 
 /**
  * let CNGroupNameKey: String
  * @availability iOS 9.0+
  */
-export const CNGroupNameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 16557280413086, undefined, []);
+export const CNGroupNameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 16557280413086, undefined, []);
 
 /**
  * let CNInstantMessageAddressServiceKey: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageAddressServiceKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1193953149045728, undefined, []);
+export const CNInstantMessageAddressServiceKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1193953149045728, undefined, []);
 
 /**
  * let CNInstantMessageAddressUsernameKey: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageAddressUsernameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3948483251573492, undefined, []);
+export const CNInstantMessageAddressUsernameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 3948483251573492, undefined, []);
 
 /**
  * let CNInstantMessageServiceAIM: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageServiceAIM: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2149390108529919, undefined, []);
+export const CNInstantMessageServiceAIM: string = callSDK<string>("Contacts_3864e7f38681b875", 2149390108529919, undefined, []);
 
 /**
  * let CNInstantMessageServiceFacebook: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageServiceFacebook: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3894319337781724, undefined, []);
+export const CNInstantMessageServiceFacebook: string = callSDK<string>("Contacts_3864e7f38681b875", 3894319337781724, undefined, []);
 
 /**
  * let CNInstantMessageServiceGaduGadu: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageServiceGaduGadu: string = callSDK<string>("Contacts_e11dfd5beee01da3", 836342997487414, undefined, []);
+export const CNInstantMessageServiceGaduGadu: string = callSDK<string>("Contacts_3864e7f38681b875", 836342997487414, undefined, []);
 
 /**
  * let CNInstantMessageServiceGoogleTalk: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageServiceGoogleTalk: string = callSDK<string>("Contacts_e11dfd5beee01da3", 724491727436900, undefined, []);
+export const CNInstantMessageServiceGoogleTalk: string = callSDK<string>("Contacts_3864e7f38681b875", 724491727436900, undefined, []);
 
 /**
  * let CNInstantMessageServiceICQ: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageServiceICQ: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1596310307128905, undefined, []);
+export const CNInstantMessageServiceICQ: string = callSDK<string>("Contacts_3864e7f38681b875", 1596310307128905, undefined, []);
 
 /**
  * let CNInstantMessageServiceJabber: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageServiceJabber: string = callSDK<string>("Contacts_e11dfd5beee01da3", 283918312696252, undefined, []);
+export const CNInstantMessageServiceJabber: string = callSDK<string>("Contacts_3864e7f38681b875", 283918312696252, undefined, []);
 
 /**
  * let CNInstantMessageServiceMSN: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageServiceMSN: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4021727691313779, undefined, []);
+export const CNInstantMessageServiceMSN: string = callSDK<string>("Contacts_3864e7f38681b875", 4021727691313779, undefined, []);
 
 /**
  * let CNInstantMessageServiceQQ: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageServiceQQ: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4200021265338646, undefined, []);
+export const CNInstantMessageServiceQQ: string = callSDK<string>("Contacts_3864e7f38681b875", 4200021265338646, undefined, []);
 
 /**
  * let CNInstantMessageServiceSkype: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageServiceSkype: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4316839534692424, undefined, []);
+export const CNInstantMessageServiceSkype: string = callSDK<string>("Contacts_3864e7f38681b875", 4316839534692424, undefined, []);
 
 /**
  * let CNInstantMessageServiceYahoo: String
  * @availability iOS 9.0+
  */
-export const CNInstantMessageServiceYahoo: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4175497428676934, undefined, []);
+export const CNInstantMessageServiceYahoo: string = callSDK<string>("Contacts_3864e7f38681b875", 4175497428676934, undefined, []);
 
 /**
  * let CNLabelContactRelationAssistant: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationAssistant: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1778048594927388, undefined, []);
+export const CNLabelContactRelationAssistant: string = callSDK<string>("Contacts_3864e7f38681b875", 1778048594927388, undefined, []);
 
 /**
  * let CNLabelContactRelationAunt: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAunt: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3551011280282793, undefined, []);
+export const CNLabelContactRelationAunt: string = callSDK<string>("Contacts_3864e7f38681b875", 3551011280282793, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntFathersBrothersWife: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntFathersBrothersWife: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4493177156864068, undefined, []);
+export const CNLabelContactRelationAuntFathersBrothersWife: string = callSDK<string>("Contacts_3864e7f38681b875", 4493177156864068, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntFathersElderBrothersWife: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntFathersElderBrothersWife: string = callSDK<string>("Contacts_e11dfd5beee01da3", 523198982240586, undefined, []);
+export const CNLabelContactRelationAuntFathersElderBrothersWife: string = callSDK<string>("Contacts_3864e7f38681b875", 523198982240586, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntFathersElderSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntFathersElderSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2277964496999414, undefined, []);
+export const CNLabelContactRelationAuntFathersElderSister: string = callSDK<string>("Contacts_3864e7f38681b875", 2277964496999414, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntFathersSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntFathersSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4250564182935730, undefined, []);
+export const CNLabelContactRelationAuntFathersSister: string = callSDK<string>("Contacts_3864e7f38681b875", 4250564182935730, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntFathersYoungerBrothersWife: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntFathersYoungerBrothersWife: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2936302233233416, undefined, []);
+export const CNLabelContactRelationAuntFathersYoungerBrothersWife: string = callSDK<string>("Contacts_3864e7f38681b875", 2936302233233416, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntFathersYoungerSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntFathersYoungerSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 592802263493506, undefined, []);
+export const CNLabelContactRelationAuntFathersYoungerSister: string = callSDK<string>("Contacts_3864e7f38681b875", 592802263493506, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntMothersBrothersWife: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntMothersBrothersWife: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4393819789742272, undefined, []);
+export const CNLabelContactRelationAuntMothersBrothersWife: string = callSDK<string>("Contacts_3864e7f38681b875", 4393819789742272, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntMothersElderSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntMothersElderSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1298358828158440, undefined, []);
+export const CNLabelContactRelationAuntMothersElderSister: string = callSDK<string>("Contacts_3864e7f38681b875", 1298358828158440, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntMothersSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntMothersSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3623726947257501, undefined, []);
+export const CNLabelContactRelationAuntMothersSister: string = callSDK<string>("Contacts_3864e7f38681b875", 3623726947257501, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntMothersYoungerSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntMothersYoungerSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2818491287232650, undefined, []);
+export const CNLabelContactRelationAuntMothersYoungerSister: string = callSDK<string>("Contacts_3864e7f38681b875", 2818491287232650, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntParentsElderSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntParentsElderSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2631673941219883, undefined, []);
+export const CNLabelContactRelationAuntParentsElderSister: string = callSDK<string>("Contacts_3864e7f38681b875", 2631673941219883, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntParentsSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntParentsSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3279172626697383, undefined, []);
+export const CNLabelContactRelationAuntParentsSister: string = callSDK<string>("Contacts_3864e7f38681b875", 3279172626697383, undefined, []);
 
 /**
  * let CNLabelContactRelationAuntParentsYoungerSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationAuntParentsYoungerSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 561941177122876, undefined, []);
+export const CNLabelContactRelationAuntParentsYoungerSister: string = callSDK<string>("Contacts_3864e7f38681b875", 561941177122876, undefined, []);
 
 /**
  * let CNLabelContactRelationBoyfriend: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationBoyfriend: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2998413538792305, undefined, []);
+export const CNLabelContactRelationBoyfriend: string = callSDK<string>("Contacts_3864e7f38681b875", 2998413538792305, undefined, []);
 
 /**
  * let CNLabelContactRelationBrother: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1483045758544976, undefined, []);
+export const CNLabelContactRelationBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 1483045758544976, undefined, []);
 
 /**
  * let CNLabelContactRelationBrotherInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationBrotherInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3509235830946303, undefined, []);
+export const CNLabelContactRelationBrotherInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 3509235830946303, undefined, []);
 
 /**
  * let CNLabelContactRelationBrotherInLawElderSistersHusband: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationBrotherInLawElderSistersHusband: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4089681486019059, undefined, []);
+export const CNLabelContactRelationBrotherInLawElderSistersHusband: string = callSDK<string>("Contacts_3864e7f38681b875", 4089681486019059, undefined, []);
 
 /**
  * let CNLabelContactRelationBrotherInLawHusbandsBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationBrotherInLawHusbandsBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2279640092004212, undefined, []);
+export const CNLabelContactRelationBrotherInLawHusbandsBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 2279640092004212, undefined, []);
 
 /**
  * let CNLabelContactRelationBrotherInLawHusbandsSistersHusband: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationBrotherInLawHusbandsSistersHusband: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1396098165834993, undefined, []);
+export const CNLabelContactRelationBrotherInLawHusbandsSistersHusband: string = callSDK<string>("Contacts_3864e7f38681b875", 1396098165834993, undefined, []);
 
 /**
  * let CNLabelContactRelationBrotherInLawSistersHusband: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationBrotherInLawSistersHusband: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3329782994005204, undefined, []);
+export const CNLabelContactRelationBrotherInLawSistersHusband: string = callSDK<string>("Contacts_3864e7f38681b875", 3329782994005204, undefined, []);
 
 /**
  * let CNLabelContactRelationBrotherInLawSpousesBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationBrotherInLawSpousesBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 518645732702705, undefined, []);
+export const CNLabelContactRelationBrotherInLawSpousesBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 518645732702705, undefined, []);
 
 /**
  * let CNLabelContactRelationBrotherInLawWifesBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationBrotherInLawWifesBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 384368556952192, undefined, []);
+export const CNLabelContactRelationBrotherInLawWifesBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 384368556952192, undefined, []);
 
 /**
  * let CNLabelContactRelationBrotherInLawWifesSistersHusband: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationBrotherInLawWifesSistersHusband: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2351990275604216, undefined, []);
+export const CNLabelContactRelationBrotherInLawWifesSistersHusband: string = callSDK<string>("Contacts_3864e7f38681b875", 2351990275604216, undefined, []);
 
 /**
  * let CNLabelContactRelationBrotherInLawYoungerSistersHusband: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationBrotherInLawYoungerSistersHusband: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1677444924621062, undefined, []);
+export const CNLabelContactRelationBrotherInLawYoungerSistersHusband: string = callSDK<string>("Contacts_3864e7f38681b875", 1677444924621062, undefined, []);
 
 /**
  * let CNLabelContactRelationChild: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationChild: string = callSDK<string>("Contacts_e11dfd5beee01da3", 798521975488919, undefined, []);
+export const CNLabelContactRelationChild: string = callSDK<string>("Contacts_3864e7f38681b875", 798521975488919, undefined, []);
 
 /**
  * let CNLabelContactRelationChildInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationChildInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2458494230928182, undefined, []);
+export const CNLabelContactRelationChildInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 2458494230928182, undefined, []);
 
 /**
  * let CNLabelContactRelationCoBrotherInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCoBrotherInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 780808618098154, undefined, []);
+export const CNLabelContactRelationCoBrotherInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 780808618098154, undefined, []);
 
 /**
  * let CNLabelContactRelationCoFatherInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCoFatherInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3152189693519478, undefined, []);
+export const CNLabelContactRelationCoFatherInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 3152189693519478, undefined, []);
 
 /**
  * let CNLabelContactRelationCoMotherInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCoMotherInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1217554934352702, undefined, []);
+export const CNLabelContactRelationCoMotherInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 1217554934352702, undefined, []);
 
 /**
  * let CNLabelContactRelationCoParentInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCoParentInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1134004924249159, undefined, []);
+export const CNLabelContactRelationCoParentInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 1134004924249159, undefined, []);
 
 /**
  * let CNLabelContactRelationCoSiblingInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCoSiblingInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 136697555329848, undefined, []);
+export const CNLabelContactRelationCoSiblingInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 136697555329848, undefined, []);
 
 /**
  * let CNLabelContactRelationCoSisterInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCoSisterInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4075984828824821, undefined, []);
+export const CNLabelContactRelationCoSisterInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 4075984828824821, undefined, []);
 
 /**
  * let CNLabelContactRelationColleague: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationColleague: string = callSDK<string>("Contacts_e11dfd5beee01da3", 239719803972623, undefined, []);
+export const CNLabelContactRelationColleague: string = callSDK<string>("Contacts_3864e7f38681b875", 239719803972623, undefined, []);
 
 /**
  * let CNLabelContactRelationCousin: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousin: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1307832384169089, undefined, []);
+export const CNLabelContactRelationCousin: string = callSDK<string>("Contacts_3864e7f38681b875", 1307832384169089, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinFathersBrothersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinFathersBrothersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2318680816199298, undefined, []);
+export const CNLabelContactRelationCousinFathersBrothersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 2318680816199298, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinFathersBrothersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinFathersBrothersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2181979915047250, undefined, []);
+export const CNLabelContactRelationCousinFathersBrothersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 2181979915047250, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinFathersSistersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinFathersSistersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4061515566068061, undefined, []);
+export const CNLabelContactRelationCousinFathersSistersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 4061515566068061, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinFathersSistersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinFathersSistersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3441395146729515, undefined, []);
+export const CNLabelContactRelationCousinFathersSistersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 3441395146729515, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinGrandparentsSiblingsChild: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinGrandparentsSiblingsChild: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4324431372547294, undefined, []);
+export const CNLabelContactRelationCousinGrandparentsSiblingsChild: string = callSDK<string>("Contacts_3864e7f38681b875", 4324431372547294, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinGrandparentsSiblingsDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinGrandparentsSiblingsDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1212469320711107, undefined, []);
+export const CNLabelContactRelationCousinGrandparentsSiblingsDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 1212469320711107, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinGrandparentsSiblingsSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinGrandparentsSiblingsSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3433160314216280, undefined, []);
+export const CNLabelContactRelationCousinGrandparentsSiblingsSon: string = callSDK<string>("Contacts_3864e7f38681b875", 3433160314216280, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinMothersBrothersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinMothersBrothersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2805266509647460, undefined, []);
+export const CNLabelContactRelationCousinMothersBrothersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 2805266509647460, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinMothersBrothersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinMothersBrothersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4111224114949512, undefined, []);
+export const CNLabelContactRelationCousinMothersBrothersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 4111224114949512, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinMothersSistersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinMothersSistersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 392110995977199, undefined, []);
+export const CNLabelContactRelationCousinMothersSistersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 392110995977199, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinMothersSistersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinMothersSistersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1301843432832768, undefined, []);
+export const CNLabelContactRelationCousinMothersSistersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 1301843432832768, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinOrSiblingsChild: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinOrSiblingsChild: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3824063276909840, undefined, []);
+export const CNLabelContactRelationCousinOrSiblingsChild: string = callSDK<string>("Contacts_3864e7f38681b875", 3824063276909840, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinParentsSiblingsChild: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinParentsSiblingsChild: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2540209689430379, undefined, []);
+export const CNLabelContactRelationCousinParentsSiblingsChild: string = callSDK<string>("Contacts_3864e7f38681b875", 2540209689430379, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinParentsSiblingsDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinParentsSiblingsDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2330440707065093, undefined, []);
+export const CNLabelContactRelationCousinParentsSiblingsDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 2330440707065093, undefined, []);
 
 /**
  * let CNLabelContactRelationCousinParentsSiblingsSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationCousinParentsSiblingsSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1391128615475203, undefined, []);
+export const CNLabelContactRelationCousinParentsSiblingsSon: string = callSDK<string>("Contacts_3864e7f38681b875", 1391128615475203, undefined, []);
 
 /**
  * let CNLabelContactRelationDaughter: String
  * @availability iOS 11.0+
  */
-export const CNLabelContactRelationDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2390316541419446, undefined, []);
+export const CNLabelContactRelationDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 2390316541419446, undefined, []);
 
 /**
  * let CNLabelContactRelationDaughterInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationDaughterInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2642368790753390, undefined, []);
+export const CNLabelContactRelationDaughterInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 2642368790753390, undefined, []);
 
 /**
  * let CNLabelContactRelationDaughterInLawOrSisterInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationDaughterInLawOrSisterInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4339648752895683, undefined, []);
+export const CNLabelContactRelationDaughterInLawOrSisterInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 4339648752895683, undefined, []);
 
 /**
  * let CNLabelContactRelationDaughterInLawOrStepdaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationDaughterInLawOrStepdaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 417635333665287, undefined, []);
+export const CNLabelContactRelationDaughterInLawOrStepdaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 417635333665287, undefined, []);
 
 /**
  * let CNLabelContactRelationElderBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4023019571891330, undefined, []);
+export const CNLabelContactRelationElderBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 4023019571891330, undefined, []);
 
 /**
  * let CNLabelContactRelationElderBrotherInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderBrotherInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3490030456862484, undefined, []);
+export const CNLabelContactRelationElderBrotherInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 3490030456862484, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousin: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousin: string = callSDK<string>("Contacts_e11dfd5beee01da3", 453238054963570, undefined, []);
+export const CNLabelContactRelationElderCousin: string = callSDK<string>("Contacts_3864e7f38681b875", 453238054963570, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinFathersBrothersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinFathersBrothersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4221742378858660, undefined, []);
+export const CNLabelContactRelationElderCousinFathersBrothersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 4221742378858660, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinFathersBrothersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinFathersBrothersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1855093406883967, undefined, []);
+export const CNLabelContactRelationElderCousinFathersBrothersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 1855093406883967, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinFathersSistersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinFathersSistersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 265978164581427, undefined, []);
+export const CNLabelContactRelationElderCousinFathersSistersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 265978164581427, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinFathersSistersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinFathersSistersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1591024104439933, undefined, []);
+export const CNLabelContactRelationElderCousinFathersSistersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 1591024104439933, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinMothersBrothersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinMothersBrothersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 183908045800664, undefined, []);
+export const CNLabelContactRelationElderCousinMothersBrothersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 183908045800664, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinMothersBrothersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinMothersBrothersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 193954678113925, undefined, []);
+export const CNLabelContactRelationElderCousinMothersBrothersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 193954678113925, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinMothersSiblingsDaughterOrFathersSistersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinMothersSiblingsDaughterOrFathersSistersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1411343163477948, undefined, []);
+export const CNLabelContactRelationElderCousinMothersSiblingsDaughterOrFathersSistersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 1411343163477948, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinMothersSiblingsSonOrFathersSistersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinMothersSiblingsSonOrFathersSistersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3862648477898049, undefined, []);
+export const CNLabelContactRelationElderCousinMothersSiblingsSonOrFathersSistersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 3862648477898049, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinMothersSistersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinMothersSistersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2607388850752049, undefined, []);
+export const CNLabelContactRelationElderCousinMothersSistersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 2607388850752049, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinMothersSistersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinMothersSistersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3627653202773626, undefined, []);
+export const CNLabelContactRelationElderCousinMothersSistersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 3627653202773626, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinParentsSiblingsDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinParentsSiblingsDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1529766593572173, undefined, []);
+export const CNLabelContactRelationElderCousinParentsSiblingsDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 1529766593572173, undefined, []);
 
 /**
  * let CNLabelContactRelationElderCousinParentsSiblingsSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderCousinParentsSiblingsSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 823023596375948, undefined, []);
+export const CNLabelContactRelationElderCousinParentsSiblingsSon: string = callSDK<string>("Contacts_3864e7f38681b875", 823023596375948, undefined, []);
 
 /**
  * let CNLabelContactRelationElderSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2185889535634859, undefined, []);
+export const CNLabelContactRelationElderSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 2185889535634859, undefined, []);
 
 /**
  * let CNLabelContactRelationElderSiblingInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderSiblingInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4123843130742628, undefined, []);
+export const CNLabelContactRelationElderSiblingInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 4123843130742628, undefined, []);
 
 /**
  * let CNLabelContactRelationElderSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1505184120827910, undefined, []);
+export const CNLabelContactRelationElderSister: string = callSDK<string>("Contacts_3864e7f38681b875", 1505184120827910, undefined, []);
 
 /**
  * let CNLabelContactRelationElderSisterInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationElderSisterInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 684572444962145, undefined, []);
+export const CNLabelContactRelationElderSisterInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 684572444962145, undefined, []);
 
 /**
  * let CNLabelContactRelationEldestBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationEldestBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2989208973085690, undefined, []);
+export const CNLabelContactRelationEldestBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 2989208973085690, undefined, []);
 
 /**
  * let CNLabelContactRelationEldestSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationEldestSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2069119140591566, undefined, []);
+export const CNLabelContactRelationEldestSister: string = callSDK<string>("Contacts_3864e7f38681b875", 2069119140591566, undefined, []);
 
 /**
  * let CNLabelContactRelationFather: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationFather: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4417360613042781, undefined, []);
+export const CNLabelContactRelationFather: string = callSDK<string>("Contacts_3864e7f38681b875", 4417360613042781, undefined, []);
 
 /**
  * let CNLabelContactRelationFatherInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationFatherInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4277323735526109, undefined, []);
+export const CNLabelContactRelationFatherInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 4277323735526109, undefined, []);
 
 /**
  * let CNLabelContactRelationFatherInLawHusbandsFather: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationFatherInLawHusbandsFather: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2483974422206812, undefined, []);
+export const CNLabelContactRelationFatherInLawHusbandsFather: string = callSDK<string>("Contacts_3864e7f38681b875", 2483974422206812, undefined, []);
 
 /**
  * let CNLabelContactRelationFatherInLawOrStepfather: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationFatherInLawOrStepfather: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4342677347705050, undefined, []);
+export const CNLabelContactRelationFatherInLawOrStepfather: string = callSDK<string>("Contacts_3864e7f38681b875", 4342677347705050, undefined, []);
 
 /**
  * let CNLabelContactRelationFatherInLawWifesFather: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationFatherInLawWifesFather: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3862434212706119, undefined, []);
+export const CNLabelContactRelationFatherInLawWifesFather: string = callSDK<string>("Contacts_3864e7f38681b875", 3862434212706119, undefined, []);
 
 /**
  * let CNLabelContactRelationFemaleCousin: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationFemaleCousin: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3876844491101763, undefined, []);
+export const CNLabelContactRelationFemaleCousin: string = callSDK<string>("Contacts_3864e7f38681b875", 3876844491101763, undefined, []);
 
 /**
  * let CNLabelContactRelationFemaleFriend: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationFemaleFriend: string = callSDK<string>("Contacts_e11dfd5beee01da3", 916355668514746, undefined, []);
+export const CNLabelContactRelationFemaleFriend: string = callSDK<string>("Contacts_3864e7f38681b875", 916355668514746, undefined, []);
 
 /**
  * let CNLabelContactRelationFemalePartner: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationFemalePartner: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2586538591107706, undefined, []);
+export const CNLabelContactRelationFemalePartner: string = callSDK<string>("Contacts_3864e7f38681b875", 2586538591107706, undefined, []);
 
 /**
  * let CNLabelContactRelationFriend: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationFriend: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3976789622043143, undefined, []);
+export const CNLabelContactRelationFriend: string = callSDK<string>("Contacts_3864e7f38681b875", 3976789622043143, undefined, []);
 
 /**
  * let CNLabelContactRelationGirlfriend: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGirlfriend: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1154853950432133, undefined, []);
+export const CNLabelContactRelationGirlfriend: string = callSDK<string>("Contacts_3864e7f38681b875", 1154853950432133, undefined, []);
 
 /**
  * let CNLabelContactRelationGirlfriendOrBoyfriend: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGirlfriendOrBoyfriend: string = callSDK<string>("Contacts_e11dfd5beee01da3", 169509158215428, undefined, []);
+export const CNLabelContactRelationGirlfriendOrBoyfriend: string = callSDK<string>("Contacts_3864e7f38681b875", 169509158215428, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandaunt: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandaunt: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1435353799105276, undefined, []);
+export const CNLabelContactRelationGrandaunt: string = callSDK<string>("Contacts_3864e7f38681b875", 1435353799105276, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandchild: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandchild: string = callSDK<string>("Contacts_e11dfd5beee01da3", 328520418864043, undefined, []);
+export const CNLabelContactRelationGrandchild: string = callSDK<string>("Contacts_3864e7f38681b875", 328520418864043, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandchildOrSiblingsChild: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandchildOrSiblingsChild: string = callSDK<string>("Contacts_e11dfd5beee01da3", 267826284668127, undefined, []);
+export const CNLabelContactRelationGrandchildOrSiblingsChild: string = callSDK<string>("Contacts_3864e7f38681b875", 267826284668127, undefined, []);
 
 /**
  * let CNLabelContactRelationGranddaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGranddaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 258834243886452, undefined, []);
+export const CNLabelContactRelationGranddaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 258834243886452, undefined, []);
 
 /**
  * let CNLabelContactRelationGranddaughterDaughtersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGranddaughterDaughtersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1274143209038727, undefined, []);
+export const CNLabelContactRelationGranddaughterDaughtersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 1274143209038727, undefined, []);
 
 /**
  * let CNLabelContactRelationGranddaughterOrNiece: String
  * @availability iOS 14.0+
  */
-export const CNLabelContactRelationGranddaughterOrNiece: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4294406410436816, undefined, []);
+export const CNLabelContactRelationGranddaughterOrNiece: string = callSDK<string>("Contacts_3864e7f38681b875", 4294406410436816, undefined, []);
 
 /**
  * let CNLabelContactRelationGranddaughterSonsDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGranddaughterSonsDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2663497568310564, undefined, []);
+export const CNLabelContactRelationGranddaughterSonsDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 2663497568310564, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandfather: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandfather: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2872438176868851, undefined, []);
+export const CNLabelContactRelationGrandfather: string = callSDK<string>("Contacts_3864e7f38681b875", 2872438176868851, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandfatherFathersFather: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandfatherFathersFather: string = callSDK<string>("Contacts_e11dfd5beee01da3", 159641423969439, undefined, []);
+export const CNLabelContactRelationGrandfatherFathersFather: string = callSDK<string>("Contacts_3864e7f38681b875", 159641423969439, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandfatherMothersFather: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandfatherMothersFather: string = callSDK<string>("Contacts_e11dfd5beee01da3", 203735646000611, undefined, []);
+export const CNLabelContactRelationGrandfatherMothersFather: string = callSDK<string>("Contacts_3864e7f38681b875", 203735646000611, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandmother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandmother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2960821701596965, undefined, []);
+export const CNLabelContactRelationGrandmother: string = callSDK<string>("Contacts_3864e7f38681b875", 2960821701596965, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandmotherFathersMother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandmotherFathersMother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3074552258856478, undefined, []);
+export const CNLabelContactRelationGrandmotherFathersMother: string = callSDK<string>("Contacts_3864e7f38681b875", 3074552258856478, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandmotherMothersMother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandmotherMothersMother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4029757115171743, undefined, []);
+export const CNLabelContactRelationGrandmotherMothersMother: string = callSDK<string>("Contacts_3864e7f38681b875", 4029757115171743, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandnephew: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandnephew: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1876276596294622, undefined, []);
+export const CNLabelContactRelationGrandnephew: string = callSDK<string>("Contacts_3864e7f38681b875", 1876276596294622, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandnephewBrothersGrandson: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandnephewBrothersGrandson: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4046217267986514, undefined, []);
+export const CNLabelContactRelationGrandnephewBrothersGrandson: string = callSDK<string>("Contacts_3864e7f38681b875", 4046217267986514, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandnephewSistersGrandson: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandnephewSistersGrandson: string = callSDK<string>("Contacts_e11dfd5beee01da3", 613454970729489, undefined, []);
+export const CNLabelContactRelationGrandnephewSistersGrandson: string = callSDK<string>("Contacts_3864e7f38681b875", 613454970729489, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandniece: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandniece: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2757590537924370, undefined, []);
+export const CNLabelContactRelationGrandniece: string = callSDK<string>("Contacts_3864e7f38681b875", 2757590537924370, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandnieceBrothersGranddaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandnieceBrothersGranddaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 861557016358003, undefined, []);
+export const CNLabelContactRelationGrandnieceBrothersGranddaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 861557016358003, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandnieceSistersGranddaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandnieceSistersGranddaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2698156876653629, undefined, []);
+export const CNLabelContactRelationGrandnieceSistersGranddaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 2698156876653629, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandparent: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandparent: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2093912134542108, undefined, []);
+export const CNLabelContactRelationGrandparent: string = callSDK<string>("Contacts_3864e7f38681b875", 2093912134542108, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandson: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandson: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1876860297371692, undefined, []);
+export const CNLabelContactRelationGrandson: string = callSDK<string>("Contacts_3864e7f38681b875", 1876860297371692, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandsonDaughtersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandsonDaughtersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1899893934650730, undefined, []);
+export const CNLabelContactRelationGrandsonDaughtersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 1899893934650730, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandsonOrNephew: String
  * @availability iOS 14.0+
  */
-export const CNLabelContactRelationGrandsonOrNephew: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1342540273103091, undefined, []);
+export const CNLabelContactRelationGrandsonOrNephew: string = callSDK<string>("Contacts_3864e7f38681b875", 1342540273103091, undefined, []);
 
 /**
  * let CNLabelContactRelationGrandsonSonsSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGrandsonSonsSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 466557597350537, undefined, []);
+export const CNLabelContactRelationGrandsonSonsSon: string = callSDK<string>("Contacts_3864e7f38681b875", 466557597350537, undefined, []);
 
 /**
  * let CNLabelContactRelationGranduncle: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGranduncle: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1426284784605477, undefined, []);
+export const CNLabelContactRelationGranduncle: string = callSDK<string>("Contacts_3864e7f38681b875", 1426284784605477, undefined, []);
 
 /**
  * let CNLabelContactRelationGreatGrandchild: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGreatGrandchild: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1227961265034859, undefined, []);
+export const CNLabelContactRelationGreatGrandchild: string = callSDK<string>("Contacts_3864e7f38681b875", 1227961265034859, undefined, []);
 
 /**
  * let CNLabelContactRelationGreatGrandchildOrSiblingsGrandchild: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGreatGrandchildOrSiblingsGrandchild: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1792816125657939, undefined, []);
+export const CNLabelContactRelationGreatGrandchildOrSiblingsGrandchild: string = callSDK<string>("Contacts_3864e7f38681b875", 1792816125657939, undefined, []);
 
 /**
  * let CNLabelContactRelationGreatGranddaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGreatGranddaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2609647676151648, undefined, []);
+export const CNLabelContactRelationGreatGranddaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 2609647676151648, undefined, []);
 
 /**
  * let CNLabelContactRelationGreatGrandfather: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGreatGrandfather: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3540901865748184, undefined, []);
+export const CNLabelContactRelationGreatGrandfather: string = callSDK<string>("Contacts_3864e7f38681b875", 3540901865748184, undefined, []);
 
 /**
  * let CNLabelContactRelationGreatGrandmother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGreatGrandmother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1958552122595372, undefined, []);
+export const CNLabelContactRelationGreatGrandmother: string = callSDK<string>("Contacts_3864e7f38681b875", 1958552122595372, undefined, []);
 
 /**
  * let CNLabelContactRelationGreatGrandparent: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGreatGrandparent: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4199365655597608, undefined, []);
+export const CNLabelContactRelationGreatGrandparent: string = callSDK<string>("Contacts_3864e7f38681b875", 4199365655597608, undefined, []);
 
 /**
  * let CNLabelContactRelationGreatGrandson: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationGreatGrandson: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1476228616300099, undefined, []);
+export const CNLabelContactRelationGreatGrandson: string = callSDK<string>("Contacts_3864e7f38681b875", 1476228616300099, undefined, []);
 
 /**
  * let CNLabelContactRelationHusband: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationHusband: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1318100908570573, undefined, []);
+export const CNLabelContactRelationHusband: string = callSDK<string>("Contacts_3864e7f38681b875", 1318100908570573, undefined, []);
 
 /**
  * let CNLabelContactRelationMaleCousin: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationMaleCousin: string = callSDK<string>("Contacts_e11dfd5beee01da3", 173061961340899, undefined, []);
+export const CNLabelContactRelationMaleCousin: string = callSDK<string>("Contacts_3864e7f38681b875", 173061961340899, undefined, []);
 
 /**
  * let CNLabelContactRelationMaleFriend: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationMaleFriend: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2592633904459135, undefined, []);
+export const CNLabelContactRelationMaleFriend: string = callSDK<string>("Contacts_3864e7f38681b875", 2592633904459135, undefined, []);
 
 /**
  * let CNLabelContactRelationMalePartner: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationMalePartner: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3210655406971292, undefined, []);
+export const CNLabelContactRelationMalePartner: string = callSDK<string>("Contacts_3864e7f38681b875", 3210655406971292, undefined, []);
 
 /**
  * let CNLabelContactRelationManager: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationManager: string = callSDK<string>("Contacts_e11dfd5beee01da3", 652558918369084, undefined, []);
+export const CNLabelContactRelationManager: string = callSDK<string>("Contacts_3864e7f38681b875", 652558918369084, undefined, []);
 
 /**
  * let CNLabelContactRelationMother: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationMother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2915180277758704, undefined, []);
+export const CNLabelContactRelationMother: string = callSDK<string>("Contacts_3864e7f38681b875", 2915180277758704, undefined, []);
 
 /**
  * let CNLabelContactRelationMotherInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationMotherInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 217804363783261, undefined, []);
+export const CNLabelContactRelationMotherInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 217804363783261, undefined, []);
 
 /**
  * let CNLabelContactRelationMotherInLawHusbandsMother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationMotherInLawHusbandsMother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4437189522424122, undefined, []);
+export const CNLabelContactRelationMotherInLawHusbandsMother: string = callSDK<string>("Contacts_3864e7f38681b875", 4437189522424122, undefined, []);
 
 /**
  * let CNLabelContactRelationMotherInLawOrStepmother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationMotherInLawOrStepmother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2808815634389092, undefined, []);
+export const CNLabelContactRelationMotherInLawOrStepmother: string = callSDK<string>("Contacts_3864e7f38681b875", 2808815634389092, undefined, []);
 
 /**
  * let CNLabelContactRelationMotherInLawWifesMother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationMotherInLawWifesMother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4234105944524672, undefined, []);
+export const CNLabelContactRelationMotherInLawWifesMother: string = callSDK<string>("Contacts_3864e7f38681b875", 4234105944524672, undefined, []);
 
 /**
  * let CNLabelContactRelationNephew: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNephew: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2259553652248358, undefined, []);
+export const CNLabelContactRelationNephew: string = callSDK<string>("Contacts_3864e7f38681b875", 2259553652248358, undefined, []);
 
 /**
  * let CNLabelContactRelationNephewBrothersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNephewBrothersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1558658663636578, undefined, []);
+export const CNLabelContactRelationNephewBrothersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 1558658663636578, undefined, []);
 
 /**
  * let CNLabelContactRelationNephewBrothersSonOrHusbandsSiblingsSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNephewBrothersSonOrHusbandsSiblingsSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2417749163641367, undefined, []);
+export const CNLabelContactRelationNephewBrothersSonOrHusbandsSiblingsSon: string = callSDK<string>("Contacts_3864e7f38681b875", 2417749163641367, undefined, []);
 
 /**
  * let CNLabelContactRelationNephewOrCousin: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNephewOrCousin: string = callSDK<string>("Contacts_e11dfd5beee01da3", 795791595672615, undefined, []);
+export const CNLabelContactRelationNephewOrCousin: string = callSDK<string>("Contacts_3864e7f38681b875", 795791595672615, undefined, []);
 
 /**
  * let CNLabelContactRelationNephewSistersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNephewSistersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2251634919538007, undefined, []);
+export const CNLabelContactRelationNephewSistersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 2251634919538007, undefined, []);
 
 /**
  * let CNLabelContactRelationNephewSistersSonOrWifesSiblingsSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNephewSistersSonOrWifesSiblingsSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1766149676840954, undefined, []);
+export const CNLabelContactRelationNephewSistersSonOrWifesSiblingsSon: string = callSDK<string>("Contacts_3864e7f38681b875", 1766149676840954, undefined, []);
 
 /**
  * let CNLabelContactRelationNiece: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNiece: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1555196910054748, undefined, []);
+export const CNLabelContactRelationNiece: string = callSDK<string>("Contacts_3864e7f38681b875", 1555196910054748, undefined, []);
 
 /**
  * let CNLabelContactRelationNieceBrothersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNieceBrothersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3266971866613624, undefined, []);
+export const CNLabelContactRelationNieceBrothersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 3266971866613624, undefined, []);
 
 /**
  * let CNLabelContactRelationNieceBrothersDaughterOrHusbandsSiblingsDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNieceBrothersDaughterOrHusbandsSiblingsDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1823136786539243, undefined, []);
+export const CNLabelContactRelationNieceBrothersDaughterOrHusbandsSiblingsDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 1823136786539243, undefined, []);
 
 /**
  * let CNLabelContactRelationNieceOrCousin: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNieceOrCousin: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1205192577079155, undefined, []);
+export const CNLabelContactRelationNieceOrCousin: string = callSDK<string>("Contacts_3864e7f38681b875", 1205192577079155, undefined, []);
 
 /**
  * let CNLabelContactRelationNieceSistersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNieceSistersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3578700728536480, undefined, []);
+export const CNLabelContactRelationNieceSistersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 3578700728536480, undefined, []);
 
 /**
  * let CNLabelContactRelationNieceSistersDaughterOrWifesSiblingsDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationNieceSistersDaughterOrWifesSiblingsDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1994457021994603, undefined, []);
+export const CNLabelContactRelationNieceSistersDaughterOrWifesSiblingsDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 1994457021994603, undefined, []);
 
 /**
  * let CNLabelContactRelationParent: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationParent: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3363048733045490, undefined, []);
+export const CNLabelContactRelationParent: string = callSDK<string>("Contacts_3864e7f38681b875", 3363048733045490, undefined, []);
 
 /**
  * let CNLabelContactRelationParentInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationParentInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2912790148413647, undefined, []);
+export const CNLabelContactRelationParentInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 2912790148413647, undefined, []);
 
 /**
  * let CNLabelContactRelationParentsElderSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationParentsElderSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4412213134373213, undefined, []);
+export const CNLabelContactRelationParentsElderSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 4412213134373213, undefined, []);
 
 /**
  * let CNLabelContactRelationParentsSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationParentsSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2684711301545987, undefined, []);
+export const CNLabelContactRelationParentsSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 2684711301545987, undefined, []);
 
 /**
  * let CNLabelContactRelationParentsSiblingFathersElderSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationParentsSiblingFathersElderSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2484936019214005, undefined, []);
+export const CNLabelContactRelationParentsSiblingFathersElderSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 2484936019214005, undefined, []);
 
 /**
  * let CNLabelContactRelationParentsSiblingFathersSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationParentsSiblingFathersSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 164094271580890, undefined, []);
+export const CNLabelContactRelationParentsSiblingFathersSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 164094271580890, undefined, []);
 
 /**
  * let CNLabelContactRelationParentsSiblingFathersYoungerSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationParentsSiblingFathersYoungerSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1853483433482035, undefined, []);
+export const CNLabelContactRelationParentsSiblingFathersYoungerSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 1853483433482035, undefined, []);
 
 /**
  * let CNLabelContactRelationParentsSiblingMothersElderSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationParentsSiblingMothersElderSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 976863267003177, undefined, []);
+export const CNLabelContactRelationParentsSiblingMothersElderSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 976863267003177, undefined, []);
 
 /**
  * let CNLabelContactRelationParentsSiblingMothersSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationParentsSiblingMothersSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3298052590766083, undefined, []);
+export const CNLabelContactRelationParentsSiblingMothersSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 3298052590766083, undefined, []);
 
 /**
  * let CNLabelContactRelationParentsSiblingMothersYoungerSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationParentsSiblingMothersYoungerSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3447390202808279, undefined, []);
+export const CNLabelContactRelationParentsSiblingMothersYoungerSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 3447390202808279, undefined, []);
 
 /**
  * let CNLabelContactRelationParentsYoungerSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationParentsYoungerSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3892489105207854, undefined, []);
+export const CNLabelContactRelationParentsYoungerSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 3892489105207854, undefined, []);
 
 /**
  * let CNLabelContactRelationPartner: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationPartner: string = callSDK<string>("Contacts_e11dfd5beee01da3", 110317970445571, undefined, []);
+export const CNLabelContactRelationPartner: string = callSDK<string>("Contacts_3864e7f38681b875", 110317970445571, undefined, []);
 
 /**
  * let CNLabelContactRelationSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4356624579561487, undefined, []);
+export const CNLabelContactRelationSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 4356624579561487, undefined, []);
 
 /**
  * let CNLabelContactRelationSiblingInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSiblingInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 959616091966756, undefined, []);
+export const CNLabelContactRelationSiblingInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 959616091966756, undefined, []);
 
 /**
  * let CNLabelContactRelationSiblingsChild: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSiblingsChild: string = callSDK<string>("Contacts_e11dfd5beee01da3", 56337379576859, undefined, []);
+export const CNLabelContactRelationSiblingsChild: string = callSDK<string>("Contacts_3864e7f38681b875", 56337379576859, undefined, []);
 
 /**
  * let CNLabelContactRelationSister: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1621034145744789, undefined, []);
+export const CNLabelContactRelationSister: string = callSDK<string>("Contacts_3864e7f38681b875", 1621034145744789, undefined, []);
 
 /**
  * let CNLabelContactRelationSisterInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSisterInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1607616164421081, undefined, []);
+export const CNLabelContactRelationSisterInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 1607616164421081, undefined, []);
 
 /**
  * let CNLabelContactRelationSisterInLawBrothersWife: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSisterInLawBrothersWife: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3041431123794167, undefined, []);
+export const CNLabelContactRelationSisterInLawBrothersWife: string = callSDK<string>("Contacts_3864e7f38681b875", 3041431123794167, undefined, []);
 
 /**
  * let CNLabelContactRelationSisterInLawElderBrothersWife: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSisterInLawElderBrothersWife: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3894910466031696, undefined, []);
+export const CNLabelContactRelationSisterInLawElderBrothersWife: string = callSDK<string>("Contacts_3864e7f38681b875", 3894910466031696, undefined, []);
 
 /**
  * let CNLabelContactRelationSisterInLawHusbandsBrothersWife: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSisterInLawHusbandsBrothersWife: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3581255440970586, undefined, []);
+export const CNLabelContactRelationSisterInLawHusbandsBrothersWife: string = callSDK<string>("Contacts_3864e7f38681b875", 3581255440970586, undefined, []);
 
 /**
  * let CNLabelContactRelationSisterInLawHusbandsSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSisterInLawHusbandsSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4298026423355446, undefined, []);
+export const CNLabelContactRelationSisterInLawHusbandsSister: string = callSDK<string>("Contacts_3864e7f38681b875", 4298026423355446, undefined, []);
 
 /**
  * let CNLabelContactRelationSisterInLawSpousesSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSisterInLawSpousesSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1402397814797706, undefined, []);
+export const CNLabelContactRelationSisterInLawSpousesSister: string = callSDK<string>("Contacts_3864e7f38681b875", 1402397814797706, undefined, []);
 
 /**
  * let CNLabelContactRelationSisterInLawWifesBrothersWife: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSisterInLawWifesBrothersWife: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3477124141142663, undefined, []);
+export const CNLabelContactRelationSisterInLawWifesBrothersWife: string = callSDK<string>("Contacts_3864e7f38681b875", 3477124141142663, undefined, []);
 
 /**
  * let CNLabelContactRelationSisterInLawWifesSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSisterInLawWifesSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 461731917312131, undefined, []);
+export const CNLabelContactRelationSisterInLawWifesSister: string = callSDK<string>("Contacts_3864e7f38681b875", 461731917312131, undefined, []);
 
 /**
  * let CNLabelContactRelationSisterInLawYoungerBrothersWife: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSisterInLawYoungerBrothersWife: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3497985331347223, undefined, []);
+export const CNLabelContactRelationSisterInLawYoungerBrothersWife: string = callSDK<string>("Contacts_3864e7f38681b875", 3497985331347223, undefined, []);
 
 /**
  * let CNLabelContactRelationSon: String
  * @availability iOS 11.0+
  */
-export const CNLabelContactRelationSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1434637319428156, undefined, []);
+export const CNLabelContactRelationSon: string = callSDK<string>("Contacts_3864e7f38681b875", 1434637319428156, undefined, []);
 
 /**
  * let CNLabelContactRelationSonInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSonInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2668773566380692, undefined, []);
+export const CNLabelContactRelationSonInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 2668773566380692, undefined, []);
 
 /**
  * let CNLabelContactRelationSonInLawOrBrotherInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSonInLawOrBrotherInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 216705840986507, undefined, []);
+export const CNLabelContactRelationSonInLawOrBrotherInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 216705840986507, undefined, []);
 
 /**
  * let CNLabelContactRelationSonInLawOrStepson: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationSonInLawOrStepson: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4240602043619386, undefined, []);
+export const CNLabelContactRelationSonInLawOrStepson: string = callSDK<string>("Contacts_3864e7f38681b875", 4240602043619386, undefined, []);
 
 /**
  * let CNLabelContactRelationSpouse: String
  * @availability iOS 9.0+
  */
-export const CNLabelContactRelationSpouse: string = callSDK<string>("Contacts_e11dfd5beee01da3", 602284422078755, undefined, []);
+export const CNLabelContactRelationSpouse: string = callSDK<string>("Contacts_3864e7f38681b875", 602284422078755, undefined, []);
 
 /**
  * let CNLabelContactRelationStepbrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationStepbrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2572757616745878, undefined, []);
+export const CNLabelContactRelationStepbrother: string = callSDK<string>("Contacts_3864e7f38681b875", 2572757616745878, undefined, []);
 
 /**
  * let CNLabelContactRelationStepchild: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationStepchild: string = callSDK<string>("Contacts_e11dfd5beee01da3", 578806285084358, undefined, []);
+export const CNLabelContactRelationStepchild: string = callSDK<string>("Contacts_3864e7f38681b875", 578806285084358, undefined, []);
 
 /**
  * let CNLabelContactRelationStepdaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationStepdaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3241253809923885, undefined, []);
+export const CNLabelContactRelationStepdaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 3241253809923885, undefined, []);
 
 /**
  * let CNLabelContactRelationStepfather: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationStepfather: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2145995604425990, undefined, []);
+export const CNLabelContactRelationStepfather: string = callSDK<string>("Contacts_3864e7f38681b875", 2145995604425990, undefined, []);
 
 /**
  * let CNLabelContactRelationStepmother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationStepmother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4014246849671548, undefined, []);
+export const CNLabelContactRelationStepmother: string = callSDK<string>("Contacts_3864e7f38681b875", 4014246849671548, undefined, []);
 
 /**
  * let CNLabelContactRelationStepparent: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationStepparent: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2054846910829617, undefined, []);
+export const CNLabelContactRelationStepparent: string = callSDK<string>("Contacts_3864e7f38681b875", 2054846910829617, undefined, []);
 
 /**
  * let CNLabelContactRelationStepsister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationStepsister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 712181445917351, undefined, []);
+export const CNLabelContactRelationStepsister: string = callSDK<string>("Contacts_3864e7f38681b875", 712181445917351, undefined, []);
 
 /**
  * let CNLabelContactRelationStepson: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationStepson: string = callSDK<string>("Contacts_e11dfd5beee01da3", 795054786007762, undefined, []);
+export const CNLabelContactRelationStepson: string = callSDK<string>("Contacts_3864e7f38681b875", 795054786007762, undefined, []);
 
 /**
  * let CNLabelContactRelationTeacher: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationTeacher: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1789306459073928, undefined, []);
+export const CNLabelContactRelationTeacher: string = callSDK<string>("Contacts_3864e7f38681b875", 1789306459073928, undefined, []);
 
 /**
  * let CNLabelContactRelationUncle: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncle: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3720125522523005, undefined, []);
+export const CNLabelContactRelationUncle: string = callSDK<string>("Contacts_3864e7f38681b875", 3720125522523005, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleFathersBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleFathersBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2377517128887651, undefined, []);
+export const CNLabelContactRelationUncleFathersBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 2377517128887651, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleFathersElderBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleFathersElderBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2127582903327388, undefined, []);
+export const CNLabelContactRelationUncleFathersElderBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 2127582903327388, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleFathersElderSistersHusband: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleFathersElderSistersHusband: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3173593844497080, undefined, []);
+export const CNLabelContactRelationUncleFathersElderSistersHusband: string = callSDK<string>("Contacts_3864e7f38681b875", 3173593844497080, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleFathersSistersHusband: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleFathersSistersHusband: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2250955220690097, undefined, []);
+export const CNLabelContactRelationUncleFathersSistersHusband: string = callSDK<string>("Contacts_3864e7f38681b875", 2250955220690097, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleFathersYoungerBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleFathersYoungerBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2103920761091338, undefined, []);
+export const CNLabelContactRelationUncleFathersYoungerBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 2103920761091338, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleFathersYoungerSistersHusband: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleFathersYoungerSistersHusband: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1271469936695586, undefined, []);
+export const CNLabelContactRelationUncleFathersYoungerSistersHusband: string = callSDK<string>("Contacts_3864e7f38681b875", 1271469936695586, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleMothersBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleMothersBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1652335939057638, undefined, []);
+export const CNLabelContactRelationUncleMothersBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 1652335939057638, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleMothersElderBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleMothersElderBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3173390255094112, undefined, []);
+export const CNLabelContactRelationUncleMothersElderBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 3173390255094112, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleMothersSistersHusband: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleMothersSistersHusband: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3864127660797433, undefined, []);
+export const CNLabelContactRelationUncleMothersSistersHusband: string = callSDK<string>("Contacts_3864e7f38681b875", 3864127660797433, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleMothersYoungerBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleMothersYoungerBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1136868956559661, undefined, []);
+export const CNLabelContactRelationUncleMothersYoungerBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 1136868956559661, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleParentsBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleParentsBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4186038101705305, undefined, []);
+export const CNLabelContactRelationUncleParentsBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 4186038101705305, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleParentsElderBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleParentsElderBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2982347934200757, undefined, []);
+export const CNLabelContactRelationUncleParentsElderBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 2982347934200757, undefined, []);
 
 /**
  * let CNLabelContactRelationUncleParentsYoungerBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationUncleParentsYoungerBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1870853908306789, undefined, []);
+export const CNLabelContactRelationUncleParentsYoungerBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 1870853908306789, undefined, []);
 
 /**
  * let CNLabelContactRelationWife: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationWife: string = callSDK<string>("Contacts_e11dfd5beee01da3", 507769572762859, undefined, []);
+export const CNLabelContactRelationWife: string = callSDK<string>("Contacts_3864e7f38681b875", 507769572762859, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2749216542021665, undefined, []);
+export const CNLabelContactRelationYoungerBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 2749216542021665, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerBrotherInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerBrotherInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1264649498437756, undefined, []);
+export const CNLabelContactRelationYoungerBrotherInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 1264649498437756, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousin: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousin: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4090119758442757, undefined, []);
+export const CNLabelContactRelationYoungerCousin: string = callSDK<string>("Contacts_3864e7f38681b875", 4090119758442757, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinFathersBrothersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinFathersBrothersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 570003328639226, undefined, []);
+export const CNLabelContactRelationYoungerCousinFathersBrothersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 570003328639226, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinFathersBrothersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinFathersBrothersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2245415075822516, undefined, []);
+export const CNLabelContactRelationYoungerCousinFathersBrothersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 2245415075822516, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinFathersSistersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinFathersSistersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1193140181669245, undefined, []);
+export const CNLabelContactRelationYoungerCousinFathersSistersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 1193140181669245, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinFathersSistersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinFathersSistersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2297589394146273, undefined, []);
+export const CNLabelContactRelationYoungerCousinFathersSistersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 2297589394146273, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinMothersBrothersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinMothersBrothersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2570940299478218, undefined, []);
+export const CNLabelContactRelationYoungerCousinMothersBrothersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 2570940299478218, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinMothersBrothersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinMothersBrothersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3224552299948621, undefined, []);
+export const CNLabelContactRelationYoungerCousinMothersBrothersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 3224552299948621, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4364294670995936, undefined, []);
+export const CNLabelContactRelationYoungerCousinMothersSiblingsDaughterOrFathersSistersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 4364294670995936, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinMothersSiblingsSonOrFathersSistersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinMothersSiblingsSonOrFathersSistersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2566580749511457, undefined, []);
+export const CNLabelContactRelationYoungerCousinMothersSiblingsSonOrFathersSistersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 2566580749511457, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinMothersSistersDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinMothersSistersDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4482743832270209, undefined, []);
+export const CNLabelContactRelationYoungerCousinMothersSistersDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 4482743832270209, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinMothersSistersSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinMothersSistersSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 624197039468721, undefined, []);
+export const CNLabelContactRelationYoungerCousinMothersSistersSon: string = callSDK<string>("Contacts_3864e7f38681b875", 624197039468721, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinParentsSiblingsDaughter: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinParentsSiblingsDaughter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 423594401320539, undefined, []);
+export const CNLabelContactRelationYoungerCousinParentsSiblingsDaughter: string = callSDK<string>("Contacts_3864e7f38681b875", 423594401320539, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerCousinParentsSiblingsSon: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerCousinParentsSiblingsSon: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3438928202915725, undefined, []);
+export const CNLabelContactRelationYoungerCousinParentsSiblingsSon: string = callSDK<string>("Contacts_3864e7f38681b875", 3438928202915725, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerSibling: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerSibling: string = callSDK<string>("Contacts_e11dfd5beee01da3", 705329581960932, undefined, []);
+export const CNLabelContactRelationYoungerSibling: string = callSDK<string>("Contacts_3864e7f38681b875", 705329581960932, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerSiblingInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerSiblingInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 303206756926341, undefined, []);
+export const CNLabelContactRelationYoungerSiblingInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 303206756926341, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2907286639971942, undefined, []);
+export const CNLabelContactRelationYoungerSister: string = callSDK<string>("Contacts_3864e7f38681b875", 2907286639971942, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungerSisterInLaw: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungerSisterInLaw: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4117199989282262, undefined, []);
+export const CNLabelContactRelationYoungerSisterInLaw: string = callSDK<string>("Contacts_3864e7f38681b875", 4117199989282262, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungestBrother: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungestBrother: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1936252226181830, undefined, []);
+export const CNLabelContactRelationYoungestBrother: string = callSDK<string>("Contacts_3864e7f38681b875", 1936252226181830, undefined, []);
 
 /**
  * let CNLabelContactRelationYoungestSister: String
  * @availability iOS 13.0+
  */
-export const CNLabelContactRelationYoungestSister: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1108379396591399, undefined, []);
+export const CNLabelContactRelationYoungestSister: string = callSDK<string>("Contacts_3864e7f38681b875", 1108379396591399, undefined, []);
 
 /**
  * let CNLabelDateAnniversary: String
  * @availability iOS 9.0+
  */
-export const CNLabelDateAnniversary: string = callSDK<string>("Contacts_e11dfd5beee01da3", 362766537282077, undefined, []);
+export const CNLabelDateAnniversary: string = callSDK<string>("Contacts_3864e7f38681b875", 362766537282077, undefined, []);
 
 /**
  * let CNLabelEmailiCloud: String
  * @availability iOS 9.0+
  */
-export const CNLabelEmailiCloud: string = callSDK<string>("Contacts_e11dfd5beee01da3", 629781815604374, undefined, []);
+export const CNLabelEmailiCloud: string = callSDK<string>("Contacts_3864e7f38681b875", 629781815604374, undefined, []);
 
 /**
  * let CNLabelHome: String
  * @availability iOS 9.0+
  */
-export const CNLabelHome: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1159779616919854, undefined, []);
+export const CNLabelHome: string = callSDK<string>("Contacts_3864e7f38681b875", 1159779616919854, undefined, []);
 
 /**
  * let CNLabelOther: String
  * @availability iOS 9.0+
  */
-export const CNLabelOther: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2755599006466288, undefined, []);
+export const CNLabelOther: string = callSDK<string>("Contacts_3864e7f38681b875", 2755599006466288, undefined, []);
 
 /**
  * let CNLabelPhoneNumberAppleWatch: String
  * @availability iOS 14.3+
  */
-export const CNLabelPhoneNumberAppleWatch: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4141704323272527, undefined, []);
+export const CNLabelPhoneNumberAppleWatch: string = callSDK<string>("Contacts_3864e7f38681b875", 4141704323272527, undefined, []);
 
 /**
  * let CNLabelPhoneNumberHomeFax: String
  * @availability iOS 9.0+
  */
-export const CNLabelPhoneNumberHomeFax: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4472730503826002, undefined, []);
+export const CNLabelPhoneNumberHomeFax: string = callSDK<string>("Contacts_3864e7f38681b875", 4472730503826002, undefined, []);
 
 /**
  * let CNLabelPhoneNumberMain: String
  * @availability iOS 9.0+
  */
-export const CNLabelPhoneNumberMain: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2078907718685227, undefined, []);
+export const CNLabelPhoneNumberMain: string = callSDK<string>("Contacts_3864e7f38681b875", 2078907718685227, undefined, []);
 
 /**
  * let CNLabelPhoneNumberMobile: String
  * @availability iOS 9.0+
  */
-export const CNLabelPhoneNumberMobile: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1534647583171721, undefined, []);
+export const CNLabelPhoneNumberMobile: string = callSDK<string>("Contacts_3864e7f38681b875", 1534647583171721, undefined, []);
 
 /**
  * let CNLabelPhoneNumberOtherFax: String
  * @availability iOS 9.0+
  */
-export const CNLabelPhoneNumberOtherFax: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2027104575570371, undefined, []);
+export const CNLabelPhoneNumberOtherFax: string = callSDK<string>("Contacts_3864e7f38681b875", 2027104575570371, undefined, []);
 
 /**
  * let CNLabelPhoneNumberPager: String
  * @availability iOS 9.0+
  */
-export const CNLabelPhoneNumberPager: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2678152234896731, undefined, []);
+export const CNLabelPhoneNumberPager: string = callSDK<string>("Contacts_3864e7f38681b875", 2678152234896731, undefined, []);
 
 /**
  * let CNLabelPhoneNumberWorkFax: String
  * @availability iOS 9.0+
  */
-export const CNLabelPhoneNumberWorkFax: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3002685000829688, undefined, []);
+export const CNLabelPhoneNumberWorkFax: string = callSDK<string>("Contacts_3864e7f38681b875", 3002685000829688, undefined, []);
 
 /**
  * let CNLabelPhoneNumberiPhone: String
  * @availability iOS 9.0+
  */
-export const CNLabelPhoneNumberiPhone: string = callSDK<string>("Contacts_e11dfd5beee01da3", 968924957227896, undefined, []);
+export const CNLabelPhoneNumberiPhone: string = callSDK<string>("Contacts_3864e7f38681b875", 968924957227896, undefined, []);
 
 /**
  * let CNLabelSchool: String
  * @availability iOS 13.0+
  */
-export const CNLabelSchool: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1620028025710615, undefined, []);
+export const CNLabelSchool: string = callSDK<string>("Contacts_3864e7f38681b875", 1620028025710615, undefined, []);
 
 /**
  * let CNLabelURLAddressHomePage: String
  * @availability iOS 9.0+
  */
-export const CNLabelURLAddressHomePage: string = callSDK<string>("Contacts_e11dfd5beee01da3", 696871034261566, undefined, []);
+export const CNLabelURLAddressHomePage: string = callSDK<string>("Contacts_3864e7f38681b875", 696871034261566, undefined, []);
 
 /**
  * let CNLabelWork: String
  * @availability iOS 9.0+
  */
-export const CNLabelWork: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1046576532612503, undefined, []);
+export const CNLabelWork: string = callSDK<string>("Contacts_3864e7f38681b875", 1046576532612503, undefined, []);
 
 /**
  * let CNPostalAddressCityKey: String
  * @availability iOS 9.0+
  */
-export const CNPostalAddressCityKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2738633375478632, undefined, []);
+export const CNPostalAddressCityKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2738633375478632, undefined, []);
 
 /**
  * let CNPostalAddressCountryKey: String
  * @availability iOS 9.0+
  */
-export const CNPostalAddressCountryKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4309114895365015, undefined, []);
+export const CNPostalAddressCountryKey: string = callSDK<string>("Contacts_3864e7f38681b875", 4309114895365015, undefined, []);
 
 /**
  * let CNPostalAddressISOCountryCodeKey: String
  * @availability iOS 9.0+
  */
-export const CNPostalAddressISOCountryCodeKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1748294271535277, undefined, []);
+export const CNPostalAddressISOCountryCodeKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1748294271535277, undefined, []);
 
 /** let CNPostalAddressLocalizedPropertyNameAttribute: String */
-export const CNPostalAddressLocalizedPropertyNameAttribute: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3731210498315081, undefined, []);
+export const CNPostalAddressLocalizedPropertyNameAttribute: string = callSDK<string>("Contacts_3864e7f38681b875", 3731210498315081, undefined, []);
 
 /**
  * let CNPostalAddressPostalCodeKey: String
  * @availability iOS 9.0+
  */
-export const CNPostalAddressPostalCodeKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 54248577651077, undefined, []);
+export const CNPostalAddressPostalCodeKey: string = callSDK<string>("Contacts_3864e7f38681b875", 54248577651077, undefined, []);
 
 /** let CNPostalAddressPropertyAttribute: String */
-export const CNPostalAddressPropertyAttribute: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1441713624273517, undefined, []);
+export const CNPostalAddressPropertyAttribute: string = callSDK<string>("Contacts_3864e7f38681b875", 1441713624273517, undefined, []);
 
 /**
  * let CNPostalAddressStateKey: String
  * @availability iOS 9.0+
  */
-export const CNPostalAddressStateKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2198406739756242, undefined, []);
+export const CNPostalAddressStateKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2198406739756242, undefined, []);
 
 /**
  * let CNPostalAddressStreetKey: String
  * @availability iOS 9.0+
  */
-export const CNPostalAddressStreetKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1212681476466450, undefined, []);
+export const CNPostalAddressStreetKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1212681476466450, undefined, []);
 
 /**
  * let CNPostalAddressSubAdministrativeAreaKey: String
  * @availability iOS 10.3+
  */
-export const CNPostalAddressSubAdministrativeAreaKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2358992098350640, undefined, []);
+export const CNPostalAddressSubAdministrativeAreaKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2358992098350640, undefined, []);
 
 /**
  * let CNPostalAddressSubLocalityKey: String
  * @availability iOS 10.3+
  */
-export const CNPostalAddressSubLocalityKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1285070765401048, undefined, []);
+export const CNPostalAddressSubLocalityKey: string = callSDK<string>("Contacts_3864e7f38681b875", 1285070765401048, undefined, []);
 
 /**
  * let CNSocialProfileServiceFacebook: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileServiceFacebook: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2023825849016645, undefined, []);
+export const CNSocialProfileServiceFacebook: string = callSDK<string>("Contacts_3864e7f38681b875", 2023825849016645, undefined, []);
 
 /**
  * let CNSocialProfileServiceFlickr: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileServiceFlickr: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2241735210651333, undefined, []);
+export const CNSocialProfileServiceFlickr: string = callSDK<string>("Contacts_3864e7f38681b875", 2241735210651333, undefined, []);
 
 /**
  * let CNSocialProfileServiceGameCenter: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileServiceGameCenter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 1862531754745169, undefined, []);
+export const CNSocialProfileServiceGameCenter: string = callSDK<string>("Contacts_3864e7f38681b875", 1862531754745169, undefined, []);
 
 /**
  * let CNSocialProfileServiceKey: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileServiceKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2081398221500097, undefined, []);
+export const CNSocialProfileServiceKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2081398221500097, undefined, []);
 
 /**
  * let CNSocialProfileServiceLinkedIn: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileServiceLinkedIn: string = callSDK<string>("Contacts_e11dfd5beee01da3", 3223818229870775, undefined, []);
+export const CNSocialProfileServiceLinkedIn: string = callSDK<string>("Contacts_3864e7f38681b875", 3223818229870775, undefined, []);
 
 /**
  * let CNSocialProfileServiceMySpace: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileServiceMySpace: string = callSDK<string>("Contacts_e11dfd5beee01da3", 473463192289588, undefined, []);
+export const CNSocialProfileServiceMySpace: string = callSDK<string>("Contacts_3864e7f38681b875", 473463192289588, undefined, []);
 
 /**
  * let CNSocialProfileServiceSinaWeibo: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileServiceSinaWeibo: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4080899353883854, undefined, []);
+export const CNSocialProfileServiceSinaWeibo: string = callSDK<string>("Contacts_3864e7f38681b875", 4080899353883854, undefined, []);
 
 /**
  * let CNSocialProfileServiceTencentWeibo: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileServiceTencentWeibo: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2509726557721222, undefined, []);
+export const CNSocialProfileServiceTencentWeibo: string = callSDK<string>("Contacts_3864e7f38681b875", 2509726557721222, undefined, []);
 
 /**
  * let CNSocialProfileServiceTwitter: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileServiceTwitter: string = callSDK<string>("Contacts_e11dfd5beee01da3", 829242578918974, undefined, []);
+export const CNSocialProfileServiceTwitter: string = callSDK<string>("Contacts_3864e7f38681b875", 829242578918974, undefined, []);
 
 /**
  * let CNSocialProfileServiceYelp: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileServiceYelp: string = callSDK<string>("Contacts_e11dfd5beee01da3", 199489077104380, undefined, []);
+export const CNSocialProfileServiceYelp: string = callSDK<string>("Contacts_3864e7f38681b875", 199489077104380, undefined, []);
 
 /**
  * let CNSocialProfileURLStringKey: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileURLStringKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2062900927346696, undefined, []);
+export const CNSocialProfileURLStringKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2062900927346696, undefined, []);
 
 /**
  * let CNSocialProfileUserIdentifierKey: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileUserIdentifierKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 2331965147197270, undefined, []);
+export const CNSocialProfileUserIdentifierKey: string = callSDK<string>("Contacts_3864e7f38681b875", 2331965147197270, undefined, []);
 
 /**
  * let CNSocialProfileUsernameKey: String
  * @availability iOS 9.0+
  */
-export const CNSocialProfileUsernameKey: string = callSDK<string>("Contacts_e11dfd5beee01da3", 4365315973845351, undefined, []);
+export const CNSocialProfileUsernameKey: string = callSDK<string>("Contacts_3864e7f38681b875", 4365315973845351, undefined, []);
 
-registerSDKClass("CNChangeHistoryEvent", CNChangeHistoryEvent, { module: "Contacts_e11dfd5beee01da3", properties: {}, methods: {"accept":{"id":204011264143394,"hints":[{"protocol":"c:objc(pl)CNChangeHistoryEventVisitor"}]}} });
-registerSDKClass("CNChangeHistoryAddContactEvent", CNChangeHistoryAddContactEvent, { module: "Contacts_e11dfd5beee01da3", properties: {"contact":3552127624179672,"containerIdentifier":2533556567563229} });
-registerSDKClass("CNChangeHistoryAddGroupEvent", CNChangeHistoryAddGroupEvent, { module: "Contacts_e11dfd5beee01da3", properties: {"containerIdentifier":4307186711343747,"group":1150512128503512} });
-registerSDKClass("CNChangeHistoryAddMemberToGroupEvent", CNChangeHistoryAddMemberToGroupEvent, { module: "Contacts_e11dfd5beee01da3", properties: {"group":222169490631155,"member":1773106876384887} });
-registerSDKClass("CNChangeHistoryAddSubgroupToGroupEvent", CNChangeHistoryAddSubgroupToGroupEvent, { module: "Contacts_e11dfd5beee01da3", properties: {"group":4020035122403481,"subgroup":2106300244733403} });
-registerSDKClass("CNChangeHistoryDeleteContactEvent", CNChangeHistoryDeleteContactEvent, { module: "Contacts_e11dfd5beee01da3", properties: {"contactIdentifier":2002749800081224} });
-registerSDKClass("CNChangeHistoryDeleteGroupEvent", CNChangeHistoryDeleteGroupEvent, { module: "Contacts_e11dfd5beee01da3", properties: {"groupIdentifier":3112296386203562} });
-registerSDKClass("CNChangeHistoryDropEverythingEvent", CNChangeHistoryDropEverythingEvent, { module: "Contacts_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CNChangeHistoryEvent", CNChangeHistoryEvent, { module: "Contacts_3864e7f38681b875", properties: {}, methods: {"accept":{"id":204011264143394,"hints":[{"protocol":"c:objc(pl)CNChangeHistoryEventVisitor"}]}} });
+registerSDKClass("CNChangeHistoryAddContactEvent", CNChangeHistoryAddContactEvent, { module: "Contacts_3864e7f38681b875", properties: {"contact":3552127624179672,"containerIdentifier":2533556567563229} });
+registerSDKClass("CNChangeHistoryAddGroupEvent", CNChangeHistoryAddGroupEvent, { module: "Contacts_3864e7f38681b875", properties: {"containerIdentifier":4307186711343747,"group":1150512128503512} });
+registerSDKClass("CNChangeHistoryAddMemberToGroupEvent", CNChangeHistoryAddMemberToGroupEvent, { module: "Contacts_3864e7f38681b875", properties: {"group":222169490631155,"member":1773106876384887} });
+registerSDKClass("CNChangeHistoryAddSubgroupToGroupEvent", CNChangeHistoryAddSubgroupToGroupEvent, { module: "Contacts_3864e7f38681b875", properties: {"group":4020035122403481,"subgroup":2106300244733403} });
+registerSDKClass("CNChangeHistoryDeleteContactEvent", CNChangeHistoryDeleteContactEvent, { module: "Contacts_3864e7f38681b875", properties: {"contactIdentifier":2002749800081224} });
+registerSDKClass("CNChangeHistoryDeleteGroupEvent", CNChangeHistoryDeleteGroupEvent, { module: "Contacts_3864e7f38681b875", properties: {"groupIdentifier":3112296386203562} });
+registerSDKClass("CNChangeHistoryDropEverythingEvent", CNChangeHistoryDropEverythingEvent, { module: "Contacts_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)CNChangeHistoryEventVisitor", {"visit":"visit(_:)","visitAddMember":"visitAddMember(_:)","visitRemoveMember":"visitRemoveMember(_:)","visitAddSubgroup":"visitAddSubgroup(_:)","visitRemoveSubgroup":"visitRemoveSubgroup(_:)"});
-registerSDKClass("CNFetchRequest", CNFetchRequest, { module: "Contacts_e11dfd5beee01da3", properties: {} });
-registerSDKClass("CNChangeHistoryFetchRequest", CNChangeHistoryFetchRequest, { module: "Contacts_e11dfd5beee01da3", properties: {"additionalContactKeyDescriptors":1825197996614259,"excludedTransactionAuthors":1355244741221767,"includeGroupChanges":2429084184056326,"mutableObjects":679174383033074,"shouldUnifyResults":3227914185028549,"startingToken":3697220175712745} });
-registerSDKClass("CNChangeHistoryRemoveMemberFromGroupEvent", CNChangeHistoryRemoveMemberFromGroupEvent, { module: "Contacts_e11dfd5beee01da3", properties: {"group":690265168453581,"member":3861077889566880} });
-registerSDKClass("CNChangeHistoryRemoveSubgroupFromGroupEvent", CNChangeHistoryRemoveSubgroupFromGroupEvent, { module: "Contacts_e11dfd5beee01da3", properties: {"group":4131689313405410,"subgroup":1413895198669693} });
-registerSDKClass("CNChangeHistoryUpdateContactEvent", CNChangeHistoryUpdateContactEvent, { module: "Contacts_e11dfd5beee01da3", properties: {"contact":1030354131464005} });
-registerSDKClass("CNChangeHistoryUpdateGroupEvent", CNChangeHistoryUpdateGroupEvent, { module: "Contacts_e11dfd5beee01da3", properties: {"group":2609004734252128} });
-registerSDKClass("CNContact", CNContact, { module: "Contacts_e11dfd5beee01da3", properties: {"birthday":1324194616861315,"contactRelations":3814239086252345,"contactType":3166658699677558,"dates":971746960835658,"departmentName":2744576122420651,"emailAddresses":4402584909068484,"familyName":325586758612126,"givenName":2417480128542116,"identifier":1411826054057277,"imageData":3537659414692552,"imageDataAvailable":215448940948182,"instantMessageAddresses":2355647902862475,"jobTitle":1031336478907684,"middleName":1261419157008788,"namePrefix":4266877490670265,"nameSuffix":3828700592753827,"nickname":4464186560982098,"nonGregorianBirthday":1129697905757303,"note":4078932934223501,"organizationName":1228954101714992,"phoneNumbers":744110672708868,"phoneticFamilyName":1900332882654974,"phoneticGivenName":2260298643506812,"phoneticMiddleName":1461048040663118,"phoneticOrganizationName":4429296482986889,"postalAddresses":696446463426971,"previousFamilyName":373024668238304,"socialProfiles":3899421846647891,"thumbnailImageData":3749648034237960,"urlAddresses":680501039466579}, methods: {"areKeysAvailable":{"id":3309825530309910},"isKeyAvailable":{"id":509131531309161},"isUnifiedWithContact":{"id":1546360912720947}} });
-registerSDKClass("CNContactFetchRequest", CNContactFetchRequest, { module: "Contacts_e11dfd5beee01da3", properties: {"keysToFetch":1792105849808218,"mutableObjects":2016494696152010,"predicate":2261116720780916,"sortOrder":2606840043289385,"unifyResults":234077420593719} });
-registerSDKClass("CNContactFormatter", CNContactFormatter, { module: "Contacts_e11dfd5beee01da3", properties: {"style":1932669293567350}, methods: {"attributedStringFromDefaultAttributes":{"id":3917366692892994},"stringFrom":{"id":3216597781541893}} });
-registerSDKClass("CNContactProperty", CNContactProperty, { module: "Contacts_e11dfd5beee01da3", properties: {"contact":4428916496171967,"identifier":295859284531978,"key":422903754886591,"label":1720640042961701,"value":1031527424880627} });
-registerSDKClass("CNContactRelation", CNContactRelation, { module: "Contacts_e11dfd5beee01da3", properties: {"name":693343321139163} });
-registerSDKClass("CNContactStore", CNContactStore, { module: "Contacts_e11dfd5beee01da3", properties: {"currentHistoryToken":2069017146616108}, methods: {"containers":{"id":54867759334623},"defaultContainerIdentifier":{"id":3570181346720704},"execute":{"id":2339088793166318},"groups":{"id":3074050726254174},"requestAccess":{"id":2836788002991980,"hints":[null,{"callback":{"out":[]}}]},"unifiedContact":{"id":994879380554255},"unifiedContacts":{"id":668048170855266}} });
-registerSDKClass("CNContactsUserDefaults", CNContactsUserDefaults, { module: "Contacts_e11dfd5beee01da3", properties: {"countryCode":2051675259238623,"sortOrder":814794200893923} });
-registerSDKClass("CNContactVCardSerialization", CNContactVCardSerialization, { module: "Contacts_e11dfd5beee01da3", properties: {} });
-registerSDKClass("CNContainer", CNContainer, { module: "Contacts_e11dfd5beee01da3", properties: {"identifier":1363295111196858,"name":947282627412486,"type":2093995356820444} });
-registerSDKClass("Contacts.CNError", CNError, { module: "Contacts_e11dfd5beee01da3", properties: {} });
-registerSDKClass("CNFetchResult", CNFetchResult, { module: "Contacts_e11dfd5beee01da3", properties: {"currentHistoryToken":822676638088810,"value":83128493620264} });
-registerSDKClass("CNGroup", CNGroup, { module: "Contacts_e11dfd5beee01da3", properties: {"identifier":1735257046034897,"name":3636784181154855} });
-registerSDKClass("CNInstantMessageAddress", CNInstantMessageAddress, { module: "Contacts_e11dfd5beee01da3", properties: {"service":3764316451550735,"username":3885891570117319} });
+registerSDKClass("CNFetchRequest", CNFetchRequest, { module: "Contacts_3864e7f38681b875", properties: {} });
+registerSDKClass("CNChangeHistoryFetchRequest", CNChangeHistoryFetchRequest, { module: "Contacts_3864e7f38681b875", properties: {"additionalContactKeyDescriptors":1825197996614259,"excludedTransactionAuthors":1355244741221767,"includeGroupChanges":2429084184056326,"mutableObjects":679174383033074,"shouldUnifyResults":3227914185028549,"startingToken":3697220175712745} });
+registerSDKClass("CNChangeHistoryRemoveMemberFromGroupEvent", CNChangeHistoryRemoveMemberFromGroupEvent, { module: "Contacts_3864e7f38681b875", properties: {"group":690265168453581,"member":3861077889566880} });
+registerSDKClass("CNChangeHistoryRemoveSubgroupFromGroupEvent", CNChangeHistoryRemoveSubgroupFromGroupEvent, { module: "Contacts_3864e7f38681b875", properties: {"group":4131689313405410,"subgroup":1413895198669693} });
+registerSDKClass("CNChangeHistoryUpdateContactEvent", CNChangeHistoryUpdateContactEvent, { module: "Contacts_3864e7f38681b875", properties: {"contact":1030354131464005} });
+registerSDKClass("CNChangeHistoryUpdateGroupEvent", CNChangeHistoryUpdateGroupEvent, { module: "Contacts_3864e7f38681b875", properties: {"group":2609004734252128} });
+registerSDKClass("CNContact", CNContact, { module: "Contacts_3864e7f38681b875", properties: {"birthday":1324194616861315,"contactRelations":3814239086252345,"contactType":3166658699677558,"dates":971746960835658,"departmentName":2744576122420651,"emailAddresses":4402584909068484,"familyName":325586758612126,"givenName":2417480128542116,"identifier":1411826054057277,"imageData":3537659414692552,"imageDataAvailable":215448940948182,"instantMessageAddresses":2355647902862475,"jobTitle":1031336478907684,"middleName":1261419157008788,"namePrefix":4266877490670265,"nameSuffix":3828700592753827,"nickname":4464186560982098,"nonGregorianBirthday":1129697905757303,"note":4078932934223501,"organizationName":1228954101714992,"phoneNumbers":744110672708868,"phoneticFamilyName":1900332882654974,"phoneticGivenName":2260298643506812,"phoneticMiddleName":1461048040663118,"phoneticOrganizationName":4429296482986889,"postalAddresses":696446463426971,"previousFamilyName":373024668238304,"socialProfiles":3899421846647891,"thumbnailImageData":3749648034237960,"urlAddresses":680501039466579}, methods: {"areKeysAvailable":{"id":3309825530309910},"isKeyAvailable":{"id":509131531309161},"isUnifiedWithContact":{"id":1546360912720947}} });
+registerSDKClass("CNContactFetchRequest", CNContactFetchRequest, { module: "Contacts_3864e7f38681b875", properties: {"keysToFetch":1792105849808218,"mutableObjects":2016494696152010,"predicate":2261116720780916,"sortOrder":2606840043289385,"unifyResults":234077420593719} });
+registerSDKClass("CNContactFormatter", CNContactFormatter, { module: "Contacts_3864e7f38681b875", properties: {"style":1932669293567350}, methods: {"attributedStringFromDefaultAttributes":{"id":3917366692892994},"stringFrom":{"id":3216597781541893}} });
+registerSDKClass("CNContactProperty", CNContactProperty, { module: "Contacts_3864e7f38681b875", properties: {"contact":4428916496171967,"identifier":295859284531978,"key":422903754886591,"label":1720640042961701,"value":1031527424880627} });
+registerSDKClass("CNContactRelation", CNContactRelation, { module: "Contacts_3864e7f38681b875", properties: {"name":693343321139163} });
+registerSDKClass("CNContactStore", CNContactStore, { module: "Contacts_3864e7f38681b875", properties: {"currentHistoryToken":2069017146616108}, methods: {"containers":{"id":54867759334623},"defaultContainerIdentifier":{"id":3570181346720704},"execute":{"id":2339088793166318},"groups":{"id":3074050726254174},"requestAccess":{"id":2836788002991980,"hints":[null,{"callback":{"out":[]}}]},"unifiedContact":{"id":994879380554255},"unifiedContacts":{"id":668048170855266}} });
+registerSDKClass("CNContactsUserDefaults", CNContactsUserDefaults, { module: "Contacts_3864e7f38681b875", properties: {"countryCode":2051675259238623,"sortOrder":814794200893923} });
+registerSDKClass("CNContactVCardSerialization", CNContactVCardSerialization, { module: "Contacts_3864e7f38681b875", properties: {} });
+registerSDKClass("CNContainer", CNContainer, { module: "Contacts_3864e7f38681b875", properties: {"identifier":1363295111196858,"name":947282627412486,"type":2093995356820444} });
+registerSDKClass("Contacts.CNError", CNError, { module: "Contacts_3864e7f38681b875", properties: {} });
+registerSDKClass("CNFetchResult", CNFetchResult, { module: "Contacts_3864e7f38681b875", properties: {"currentHistoryToken":822676638088810,"value":83128493620264} });
+registerSDKClass("CNGroup", CNGroup, { module: "Contacts_3864e7f38681b875", properties: {"identifier":1735257046034897,"name":3636784181154855} });
+registerSDKClass("CNInstantMessageAddress", CNInstantMessageAddress, { module: "Contacts_3864e7f38681b875", properties: {"service":3764316451550735,"username":3885891570117319} });
 registerSDKProtocol("c:objc(pl)CNKeyDescriptor", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)"});
-registerSDKClass("CNLabeledValue", CNLabeledValue, { module: "Contacts_e11dfd5beee01da3", properties: {}, methods: {"settingLabel":{"id":2180484569535150}} });
-registerSDKClass("CNMutableContact", CNMutableContact, { module: "Contacts_e11dfd5beee01da3", properties: {"birthday":2488218503870303,"contactRelations":225322836349963,"contactType":1817766438259529,"dates":1085811569957952,"departmentName":2056358081416627,"emailAddresses":3339727175264515,"familyName":2577255186676411,"givenName":2215600371769607,"imageData":3277448861944214,"instantMessageAddresses":3030561219046556,"jobTitle":1219740521891195,"middleName":1439816359351157,"namePrefix":217775469224147,"nameSuffix":3138145088382980,"nickname":1718079618725256,"nonGregorianBirthday":3122697758961190,"note":393533346226847,"organizationName":3630900006816980,"phoneNumbers":1726813630269130,"phoneticFamilyName":148723822257193,"phoneticGivenName":2174485682490659,"phoneticMiddleName":852280697544496,"phoneticOrganizationName":2580694360585456,"postalAddresses":620371758236675,"previousFamilyName":1168179741928253,"socialProfiles":4300815735025070,"urlAddresses":3058855411858292} });
-registerSDKClass("CNMutableGroup", CNMutableGroup, { module: "Contacts_e11dfd5beee01da3", properties: {"name":679393852428328} });
-registerSDKClass("CNPostalAddress", CNPostalAddress, { module: "Contacts_e11dfd5beee01da3", properties: {"isoCountryCode":2502347823295408,"city":2871035816650859,"country":1915594864146238,"postalCode":3586690379254986,"state":1379778334021550,"street":3777167794117450,"subAdministrativeArea":1027446364933901,"subLocality":2075681620050856} });
-registerSDKClass("CNMutablePostalAddress", CNMutablePostalAddress, { module: "Contacts_e11dfd5beee01da3", properties: {"isoCountryCode":4226906761425792,"city":2078453019835575,"country":3015722149297154,"postalCode":2049632790981309,"state":3926182731802567,"street":3480393600557581,"subAdministrativeArea":388731391114208,"subLocality":2993404399218049} });
-registerSDKClass("CNPhoneNumber", CNPhoneNumber, { module: "Contacts_e11dfd5beee01da3", properties: {"stringValue":3239328544706889} });
-registerSDKClass("CNPostalAddressFormatter", CNPostalAddressFormatter, { module: "Contacts_e11dfd5beee01da3", properties: {"style":1330805396794243}, methods: {"attributedStringFromWithDefaultAttributes":{"id":4426579348175817},"stringFrom":{"id":4196219583371179}} });
-registerSDKClass("CNSaveRequest", CNSaveRequest, { module: "Contacts_e11dfd5beee01da3", properties: {"shouldRefetchContacts":3140732268594376,"transactionAuthor":2852946827473511}, methods: {"addToContainerWithIdentifier":{"id":3488224008520254},"addToContainerWithIdentifier62692":{"id":2603940094121291},"addMember":{"id":2012426140620484},"delete":{"id":4289582494692082},"delete55357":{"id":3991774692031116},"removeMember":{"id":2776069132487190},"update":{"id":2889775962726882},"update36751":{"id":3117030261943374}} });
-registerSDKClass("CNSocialProfile", CNSocialProfile, { module: "Contacts_e11dfd5beee01da3", properties: {"service":2515196256939502,"urlString":1384299802217996,"userIdentifier":3370888389274352,"username":4130556480460181} });
+registerSDKClass("CNLabeledValue", CNLabeledValue, { module: "Contacts_3864e7f38681b875", properties: {}, methods: {"settingLabel":{"id":2180484569535150}} });
+registerSDKClass("CNMutableContact", CNMutableContact, { module: "Contacts_3864e7f38681b875", properties: {"birthday":2488218503870303,"contactRelations":225322836349963,"contactType":1817766438259529,"dates":1085811569957952,"departmentName":2056358081416627,"emailAddresses":3339727175264515,"familyName":2577255186676411,"givenName":2215600371769607,"imageData":3277448861944214,"instantMessageAddresses":3030561219046556,"jobTitle":1219740521891195,"middleName":1439816359351157,"namePrefix":217775469224147,"nameSuffix":3138145088382980,"nickname":1718079618725256,"nonGregorianBirthday":3122697758961190,"note":393533346226847,"organizationName":3630900006816980,"phoneNumbers":1726813630269130,"phoneticFamilyName":148723822257193,"phoneticGivenName":2174485682490659,"phoneticMiddleName":852280697544496,"phoneticOrganizationName":2580694360585456,"postalAddresses":620371758236675,"previousFamilyName":1168179741928253,"socialProfiles":4300815735025070,"urlAddresses":3058855411858292} });
+registerSDKClass("CNMutableGroup", CNMutableGroup, { module: "Contacts_3864e7f38681b875", properties: {"name":679393852428328} });
+registerSDKClass("CNPostalAddress", CNPostalAddress, { module: "Contacts_3864e7f38681b875", properties: {"isoCountryCode":2502347823295408,"city":2871035816650859,"country":1915594864146238,"postalCode":3586690379254986,"state":1379778334021550,"street":3777167794117450,"subAdministrativeArea":1027446364933901,"subLocality":2075681620050856} });
+registerSDKClass("CNMutablePostalAddress", CNMutablePostalAddress, { module: "Contacts_3864e7f38681b875", properties: {"isoCountryCode":4226906761425792,"city":2078453019835575,"country":3015722149297154,"postalCode":2049632790981309,"state":3926182731802567,"street":3480393600557581,"subAdministrativeArea":388731391114208,"subLocality":2993404399218049} });
+registerSDKClass("CNPhoneNumber", CNPhoneNumber, { module: "Contacts_3864e7f38681b875", properties: {"stringValue":3239328544706889} });
+registerSDKClass("CNPostalAddressFormatter", CNPostalAddressFormatter, { module: "Contacts_3864e7f38681b875", properties: {"style":1330805396794243}, methods: {"attributedStringFromWithDefaultAttributes":{"id":4426579348175817},"stringFrom":{"id":4196219583371179}} });
+registerSDKClass("CNSaveRequest", CNSaveRequest, { module: "Contacts_3864e7f38681b875", properties: {"shouldRefetchContacts":3140732268594376,"transactionAuthor":2852946827473511}, methods: {"addToContainerWithIdentifier":{"id":3488224008520254},"addToContainerWithIdentifier62692":{"id":2603940094121291},"addMember":{"id":2012426140620484},"delete":{"id":4289582494692082},"delete55357":{"id":3991774692031116},"removeMember":{"id":2776069132487190},"update":{"id":2889775962726882},"update36751":{"id":3117030261943374}} });
+registerSDKClass("CNSocialProfile", CNSocialProfile, { module: "Contacts_3864e7f38681b875", properties: {"service":2515196256939502,"urlString":1384299802217996,"userIdentifier":3370888389274352,"username":4130556480460181} });

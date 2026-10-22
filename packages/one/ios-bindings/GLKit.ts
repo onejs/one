@@ -27,117 +27,117 @@ type $SDK7 = { x: number; y: number; width: number; height: number };
  */
 export class GLKBaseEffect extends SDKHandle {
   /** init() */
-  static init(): GLKBaseEffect { return callSDK<GLKBaseEffect>("GLKit_e11dfd5beee01da3", 3012768609025851, undefined, []); }
+  static init(): GLKBaseEffect { return callSDK<GLKBaseEffect>("GLKit_3864e7f38681b875", 3012768609025851, undefined, []); }
   /**
    * func prepareToDraw()
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  prepareToDraw(): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1614590418552822, this, []); }
+  prepareToDraw(): void { return callSDK<void>("GLKit_3864e7f38681b875", 1614590418552822, this, []); }
   /**
    * var colorMaterialEnabled: GLboolean { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get colorMaterialEnabled(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 1325222092174378, this, []); }
-  set colorMaterialEnabled(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 3598060435369277, this, [value]); }
+  get colorMaterialEnabled(): number { return callSDK<number>("GLKit_3864e7f38681b875", 1325222092174378, this, []); }
+  set colorMaterialEnabled(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 3598060435369277, this, [value]); }
   /**
    * var constantColor: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get constantColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2577626063171156, this, []); }
-  set constantColor(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 3365996481138579, this, [value]); }
+  get constantColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2577626063171156, this, []); }
+  set constantColor(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 3365996481138579, this, [value]); }
   /**
    * var fog: GLKEffectPropertyFog { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get fog(): GLKEffectPropertyFog { return callSDK<GLKEffectPropertyFog>("GLKit_e11dfd5beee01da3", 1302820737123952, this, []); }
+  get fog(): GLKEffectPropertyFog { return callSDK<GLKEffectPropertyFog>("GLKit_3864e7f38681b875", 1302820737123952, this, []); }
   /**
    * var label: String? { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get label(): (string) | null { return callSDK<(string) | null>("GLKit_e11dfd5beee01da3", 536258590783873, this, []); }
-  set label(value: (string) | null) { callSDK<void>("GLKit_e11dfd5beee01da3", 1875053005310192, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("GLKit_3864e7f38681b875", 536258590783873, this, []); }
+  set label(value: (string) | null) { callSDK<void>("GLKit_3864e7f38681b875", 1875053005310192, this, [value]); }
   /**
    * var light0: GLKEffectPropertyLight { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get light0(): GLKEffectPropertyLight { return callSDK<GLKEffectPropertyLight>("GLKit_e11dfd5beee01da3", 3122118773558843, this, []); }
+  get light0(): GLKEffectPropertyLight { return callSDK<GLKEffectPropertyLight>("GLKit_3864e7f38681b875", 3122118773558843, this, []); }
   /**
    * var light1: GLKEffectPropertyLight { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get light1(): GLKEffectPropertyLight { return callSDK<GLKEffectPropertyLight>("GLKit_e11dfd5beee01da3", 229257680497203, this, []); }
+  get light1(): GLKEffectPropertyLight { return callSDK<GLKEffectPropertyLight>("GLKit_3864e7f38681b875", 229257680497203, this, []); }
   /**
    * var light2: GLKEffectPropertyLight { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get light2(): GLKEffectPropertyLight { return callSDK<GLKEffectPropertyLight>("GLKit_e11dfd5beee01da3", 1823554483967437, this, []); }
+  get light2(): GLKEffectPropertyLight { return callSDK<GLKEffectPropertyLight>("GLKit_3864e7f38681b875", 1823554483967437, this, []); }
   /**
    * var lightModelAmbientColor: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get lightModelAmbientColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2591664778646542, this, []); }
-  set lightModelAmbientColor(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 2121444114152201, this, [value]); }
+  get lightModelAmbientColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2591664778646542, this, []); }
+  set lightModelAmbientColor(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 2121444114152201, this, [value]); }
   /**
    * var lightModelTwoSided: GLboolean { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get lightModelTwoSided(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 792731588111903, this, []); }
-  set lightModelTwoSided(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 2175702624351786, this, [value]); }
+  get lightModelTwoSided(): number { return callSDK<number>("GLKit_3864e7f38681b875", 792731588111903, this, []); }
+  set lightModelTwoSided(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 2175702624351786, this, [value]); }
   /**
    * var lightingType: GLKLightingType { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get lightingType(): GLKLightingType { return callSDK<GLKLightingType>("GLKit_e11dfd5beee01da3", 2352284752846114, this, []); }
-  set lightingType(value: GLKLightingType) { callSDK<void>("GLKit_e11dfd5beee01da3", 4242604776306773, this, [value]); }
+  get lightingType(): GLKLightingType { return callSDK<GLKLightingType>("GLKit_3864e7f38681b875", 2352284752846114, this, []); }
+  set lightingType(value: GLKLightingType) { callSDK<void>("GLKit_3864e7f38681b875", 4242604776306773, this, [value]); }
   /**
    * var material: GLKEffectPropertyMaterial { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get material(): GLKEffectPropertyMaterial { return callSDK<GLKEffectPropertyMaterial>("GLKit_e11dfd5beee01da3", 4381742840457280, this, []); }
+  get material(): GLKEffectPropertyMaterial { return callSDK<GLKEffectPropertyMaterial>("GLKit_3864e7f38681b875", 4381742840457280, this, []); }
   /**
    * var texture2d0: GLKEffectPropertyTexture { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get texture2d0(): GLKEffectPropertyTexture { return callSDK<GLKEffectPropertyTexture>("GLKit_e11dfd5beee01da3", 737216580019414, this, []); }
+  get texture2d0(): GLKEffectPropertyTexture { return callSDK<GLKEffectPropertyTexture>("GLKit_3864e7f38681b875", 737216580019414, this, []); }
   /**
    * var texture2d1: GLKEffectPropertyTexture { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get texture2d1(): GLKEffectPropertyTexture { return callSDK<GLKEffectPropertyTexture>("GLKit_e11dfd5beee01da3", 4225197378689718, this, []); }
+  get texture2d1(): GLKEffectPropertyTexture { return callSDK<GLKEffectPropertyTexture>("GLKit_3864e7f38681b875", 4225197378689718, this, []); }
   /**
    * var textureOrder: [GLKEffectPropertyTexture]? { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get textureOrder(): $SDK0 { return callSDK<$SDK0>("GLKit_e11dfd5beee01da3", 1344358567934058, this, []); }
-  set textureOrder(value: $SDK0) { callSDK<void>("GLKit_e11dfd5beee01da3", 3405204799532025, this, [value]); }
+  get textureOrder(): $SDK0 { return callSDK<$SDK0>("GLKit_3864e7f38681b875", 1344358567934058, this, []); }
+  set textureOrder(value: $SDK0) { callSDK<void>("GLKit_3864e7f38681b875", 3405204799532025, this, [value]); }
   /**
    * var transform: GLKEffectPropertyTransform { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get transform(): GLKEffectPropertyTransform { return callSDK<GLKEffectPropertyTransform>("GLKit_e11dfd5beee01da3", 336500632416236, this, []); }
+  get transform(): GLKEffectPropertyTransform { return callSDK<GLKEffectPropertyTransform>("GLKit_3864e7f38681b875", 336500632416236, this, []); }
   /**
    * var useConstantColor: GLboolean { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get useConstantColor(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2702399877975851, this, []); }
-  set useConstantColor(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 121759879859067, this, [value]); }
+  get useConstantColor(): number { return callSDK<number>("GLKit_3864e7f38681b875", 2702399877975851, this, []); }
+  set useConstantColor(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 121759879859067, this, [value]); }
   declare readonly $type: { "c:objc(cs)GLKBaseEffect": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "colorMaterialEnabled": true; "constantColor": true; "fog": true; "label": true; "light0": true; "light1": true; "light2": true; "lightModelAmbientColor": true; "lightModelTwoSided": true; "lightingType": true; "material": true; "texture2d0": true; "texture2d1": true; "textureOrder": true; "transform": true; "useConstantColor": true };
 }
@@ -149,7 +149,7 @@ export class GLKBaseEffect extends SDKHandle {
  */
 export class GLKEffectProperty extends SDKHandle {
   /** init() */
-  static init(): GLKEffectProperty { return callSDK<GLKEffectProperty>("GLKit_e11dfd5beee01da3", 1898937576452594, undefined, []); }
+  static init(): GLKEffectProperty { return callSDK<GLKEffectProperty>("GLKit_3864e7f38681b875", 1898937576452594, undefined, []); }
   declare readonly $type: { "c:objc(cs)GLKEffectProperty": true; "c:objc(cs)NSObject": true };
 }
 
@@ -160,49 +160,49 @@ export class GLKEffectProperty extends SDKHandle {
  */
 export class GLKEffectPropertyFog extends (GLKEffectProperty as unknown as Omit<typeof GLKEffectProperty, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GLKEffectProperty)) {
   /** init() */
-  static init(): GLKEffectPropertyFog { return callSDK<GLKEffectPropertyFog>("GLKit_e11dfd5beee01da3", 1562321415643685, undefined, []); }
+  static init(): GLKEffectPropertyFog { return callSDK<GLKEffectPropertyFog>("GLKit_3864e7f38681b875", 1562321415643685, undefined, []); }
   /**
    * var color: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get color(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3133358126735633, this, []); }
-  set color(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 2481998035716697, this, [value]); }
+  get color(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3133358126735633, this, []); }
+  set color(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 2481998035716697, this, [value]); }
   /**
    * var density: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get density(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 3749399334554919, this, []); }
-  set density(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 372448801574257, this, [value]); }
+  get density(): number { return callSDK<number>("GLKit_3864e7f38681b875", 3749399334554919, this, []); }
+  set density(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 372448801574257, this, [value]); }
   /**
    * var enabled: GLboolean { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get enabled(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 3055622833240237, this, []); }
-  set enabled(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 3678775061150630, this, [value]); }
+  get enabled(): number { return callSDK<number>("GLKit_3864e7f38681b875", 3055622833240237, this, []); }
+  set enabled(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 3678775061150630, this, [value]); }
   /**
    * var end: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get end(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 112816859226263, this, []); }
-  set end(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 2811588848794118, this, [value]); }
+  get end(): number { return callSDK<number>("GLKit_3864e7f38681b875", 112816859226263, this, []); }
+  set end(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 2811588848794118, this, [value]); }
   /**
    * var mode: GLint { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get mode(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 3724177492066486, this, []); }
-  set mode(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 4404500761926535, this, [value]); }
+  get mode(): number { return callSDK<number>("GLKit_3864e7f38681b875", 3724177492066486, this, []); }
+  set mode(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 4404500761926535, this, [value]); }
   /**
    * var start: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get start(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 1734184695883430, this, []); }
-  set start(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 254440120034872, this, [value]); }
+  get start(): number { return callSDK<number>("GLKit_3864e7f38681b875", 1734184695883430, this, []); }
+  set start(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 254440120034872, this, [value]); }
   declare readonly $type: { "c:objc(cs)GLKEffectPropertyFog": true; "c:objc(cs)GLKEffectProperty": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "color": true; "density": true; "enabled": true; "end": true; "mode": true; "start": true };
 }
@@ -214,91 +214,91 @@ export class GLKEffectPropertyFog extends (GLKEffectProperty as unknown as Omit<
  */
 export class GLKEffectPropertyLight extends (GLKEffectProperty as unknown as Omit<typeof GLKEffectProperty, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GLKEffectProperty)) {
   /** init() */
-  static init(): GLKEffectPropertyLight { return callSDK<GLKEffectPropertyLight>("GLKit_e11dfd5beee01da3", 588967577564642, undefined, []); }
+  static init(): GLKEffectPropertyLight { return callSDK<GLKEffectPropertyLight>("GLKit_3864e7f38681b875", 588967577564642, undefined, []); }
   /**
    * var ambientColor: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get ambientColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1769433982007279, this, []); }
-  set ambientColor(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 4306976470415722, this, [value]); }
+  get ambientColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1769433982007279, this, []); }
+  set ambientColor(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 4306976470415722, this, [value]); }
   /**
    * var constantAttenuation: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get constantAttenuation(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4439752045436722, this, []); }
-  set constantAttenuation(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 770974146010946, this, [value]); }
+  get constantAttenuation(): number { return callSDK<number>("GLKit_3864e7f38681b875", 4439752045436722, this, []); }
+  set constantAttenuation(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 770974146010946, this, [value]); }
   /**
    * var diffuseColor: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get diffuseColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3386090394373424, this, []); }
-  set diffuseColor(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 2970095948293191, this, [value]); }
+  get diffuseColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3386090394373424, this, []); }
+  set diffuseColor(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 2970095948293191, this, [value]); }
   /**
    * var enabled: GLboolean { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get enabled(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 1743954788648104, this, []); }
-  set enabled(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 3646181869607380, this, [value]); }
+  get enabled(): number { return callSDK<number>("GLKit_3864e7f38681b875", 1743954788648104, this, []); }
+  set enabled(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 3646181869607380, this, [value]); }
   /**
    * var linearAttenuation: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get linearAttenuation(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 997280263255714, this, []); }
-  set linearAttenuation(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 3408585922059778, this, [value]); }
+  get linearAttenuation(): number { return callSDK<number>("GLKit_3864e7f38681b875", 997280263255714, this, []); }
+  set linearAttenuation(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 3408585922059778, this, [value]); }
   /**
    * var position: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get position(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3833115766234613, this, []); }
-  set position(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 1357140566481954, this, [value]); }
+  get position(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3833115766234613, this, []); }
+  set position(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 1357140566481954, this, [value]); }
   /**
    * var quadraticAttenuation: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get quadraticAttenuation(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2475786837728067, this, []); }
-  set quadraticAttenuation(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 15770554475120, this, [value]); }
+  get quadraticAttenuation(): number { return callSDK<number>("GLKit_3864e7f38681b875", 2475786837728067, this, []); }
+  set quadraticAttenuation(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 15770554475120, this, [value]); }
   /**
    * var specularColor: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get specularColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2848600464351313, this, []); }
-  set specularColor(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 429084963766647, this, [value]); }
+  get specularColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2848600464351313, this, []); }
+  set specularColor(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 429084963766647, this, [value]); }
   /**
    * var spotCutoff: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get spotCutoff(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 1160563584886320, this, []); }
-  set spotCutoff(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 2932842412088850, this, [value]); }
+  get spotCutoff(): number { return callSDK<number>("GLKit_3864e7f38681b875", 1160563584886320, this, []); }
+  set spotCutoff(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 2932842412088850, this, [value]); }
   /**
    * var spotDirection: GLKVector3 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get spotDirection(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2596310347556135, this, []); }
-  set spotDirection(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 879905415977480, this, [value]); }
+  get spotDirection(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2596310347556135, this, []); }
+  set spotDirection(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 879905415977480, this, [value]); }
   /**
    * var spotExponent: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get spotExponent(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 1024902541768704, this, []); }
-  set spotExponent(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 1411626604790664, this, [value]); }
+  get spotExponent(): number { return callSDK<number>("GLKit_3864e7f38681b875", 1024902541768704, this, []); }
+  set spotExponent(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 1411626604790664, this, [value]); }
   /**
    * var transform: GLKEffectPropertyTransform { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get transform(): GLKEffectPropertyTransform { return callSDK<GLKEffectPropertyTransform>("GLKit_e11dfd5beee01da3", 2373635273464493, this, []); }
-  set transform(value: GLKEffectPropertyTransform) { callSDK<void>("GLKit_e11dfd5beee01da3", 2828924336005650, this, [value]); }
+  get transform(): GLKEffectPropertyTransform { return callSDK<GLKEffectPropertyTransform>("GLKit_3864e7f38681b875", 2373635273464493, this, []); }
+  set transform(value: GLKEffectPropertyTransform) { callSDK<void>("GLKit_3864e7f38681b875", 2828924336005650, this, [value]); }
   declare readonly $type: { "c:objc(cs)GLKEffectPropertyLight": true; "c:objc(cs)GLKEffectProperty": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ambientColor": true; "constantAttenuation": true; "diffuseColor": true; "enabled": true; "linearAttenuation": true; "position": true; "quadraticAttenuation": true; "specularColor": true; "spotCutoff": true; "spotDirection": true; "spotExponent": true; "transform": true };
 }
@@ -310,42 +310,42 @@ export class GLKEffectPropertyLight extends (GLKEffectProperty as unknown as Omi
  */
 export class GLKEffectPropertyMaterial extends (GLKEffectProperty as unknown as Omit<typeof GLKEffectProperty, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GLKEffectProperty)) {
   /** init() */
-  static init(): GLKEffectPropertyMaterial { return callSDK<GLKEffectPropertyMaterial>("GLKit_e11dfd5beee01da3", 1503142392750532, undefined, []); }
+  static init(): GLKEffectPropertyMaterial { return callSDK<GLKEffectPropertyMaterial>("GLKit_3864e7f38681b875", 1503142392750532, undefined, []); }
   /**
    * var ambientColor: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get ambientColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 451622884541165, this, []); }
-  set ambientColor(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 3803483003985576, this, [value]); }
+  get ambientColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 451622884541165, this, []); }
+  set ambientColor(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 3803483003985576, this, [value]); }
   /**
    * var diffuseColor: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get diffuseColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 346636513299144, this, []); }
-  set diffuseColor(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 2041223583004638, this, [value]); }
+  get diffuseColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 346636513299144, this, []); }
+  set diffuseColor(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 2041223583004638, this, [value]); }
   /**
    * var emissiveColor: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get emissiveColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3079841167247395, this, []); }
-  set emissiveColor(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 3744147412286925, this, [value]); }
+  get emissiveColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3079841167247395, this, []); }
+  set emissiveColor(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 3744147412286925, this, [value]); }
   /**
    * var shininess: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get shininess(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2850939069181453, this, []); }
-  set shininess(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 1948782424011071, this, [value]); }
+  get shininess(): number { return callSDK<number>("GLKit_3864e7f38681b875", 2850939069181453, this, []); }
+  set shininess(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 1948782424011071, this, [value]); }
   /**
    * var specularColor: GLKVector4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get specularColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3446519649644646, this, []); }
-  set specularColor(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 1287474362888834, this, [value]); }
+  get specularColor(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3446519649644646, this, []); }
+  set specularColor(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 1287474362888834, this, [value]); }
   declare readonly $type: { "c:objc(cs)GLKEffectPropertyMaterial": true; "c:objc(cs)GLKEffectProperty": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ambientColor": true; "diffuseColor": true; "emissiveColor": true; "shininess": true; "specularColor": true };
 }
@@ -360,35 +360,35 @@ export type GLKEffectPropertyPrvPtr = SDKHandle;
  */
 export class GLKEffectPropertyTexture extends (GLKEffectProperty as unknown as Omit<typeof GLKEffectProperty, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GLKEffectProperty)) {
   /** init() */
-  static init(): GLKEffectPropertyTexture { return callSDK<GLKEffectPropertyTexture>("GLKit_e11dfd5beee01da3", 3179535621336515, undefined, []); }
+  static init(): GLKEffectPropertyTexture { return callSDK<GLKEffectPropertyTexture>("GLKit_3864e7f38681b875", 3179535621336515, undefined, []); }
   /**
    * var enabled: GLboolean { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get enabled(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4204034277674926, this, []); }
-  set enabled(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 3855685653365431, this, [value]); }
+  get enabled(): number { return callSDK<number>("GLKit_3864e7f38681b875", 4204034277674926, this, []); }
+  set enabled(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 3855685653365431, this, [value]); }
   /**
    * var envMode: GLKTextureEnvMode { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get envMode(): GLKTextureEnvMode { return callSDK<GLKTextureEnvMode>("GLKit_e11dfd5beee01da3", 4032987719308035, this, []); }
-  set envMode(value: GLKTextureEnvMode) { callSDK<void>("GLKit_e11dfd5beee01da3", 1371483700917819, this, [value]); }
+  get envMode(): GLKTextureEnvMode { return callSDK<GLKTextureEnvMode>("GLKit_3864e7f38681b875", 4032987719308035, this, []); }
+  set envMode(value: GLKTextureEnvMode) { callSDK<void>("GLKit_3864e7f38681b875", 1371483700917819, this, [value]); }
   /**
    * var name: GLuint { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get name(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 303888980561526, this, []); }
-  set name(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 4323173062337712, this, [value]); }
+  get name(): number { return callSDK<number>("GLKit_3864e7f38681b875", 303888980561526, this, []); }
+  set name(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 4323173062337712, this, [value]); }
   /**
    * var target: GLKTextureTarget { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get target(): GLKTextureTarget { return callSDK<GLKTextureTarget>("GLKit_e11dfd5beee01da3", 3951400959068958, this, []); }
-  set target(value: GLKTextureTarget) { callSDK<void>("GLKit_e11dfd5beee01da3", 2403802981300956, this, [value]); }
+  get target(): GLKTextureTarget { return callSDK<GLKTextureTarget>("GLKit_3864e7f38681b875", 3951400959068958, this, []); }
+  set target(value: GLKTextureTarget) { callSDK<void>("GLKit_3864e7f38681b875", 2403802981300956, this, [value]); }
   declare readonly $type: { "c:objc(cs)GLKEffectPropertyTexture": true; "c:objc(cs)GLKEffectProperty": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "enabled": true; "envMode": true; "name": true; "target": true };
 }
@@ -400,27 +400,27 @@ export class GLKEffectPropertyTexture extends (GLKEffectProperty as unknown as O
  */
 export class GLKEffectPropertyTransform extends (GLKEffectProperty as unknown as Omit<typeof GLKEffectProperty, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GLKEffectProperty)) {
   /** init() */
-  static init(): GLKEffectPropertyTransform { return callSDK<GLKEffectPropertyTransform>("GLKit_e11dfd5beee01da3", 523315153979522, undefined, []); }
+  static init(): GLKEffectPropertyTransform { return callSDK<GLKEffectPropertyTransform>("GLKit_3864e7f38681b875", 523315153979522, undefined, []); }
   /**
    * var modelviewMatrix: GLKMatrix4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get modelviewMatrix(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3034959589181176, this, []); }
-  set modelviewMatrix(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 4481077806458530, this, [value]); }
+  get modelviewMatrix(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3034959589181176, this, []); }
+  set modelviewMatrix(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 4481077806458530, this, [value]); }
   /**
    * var normalMatrix: GLKMatrix3 { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get normalMatrix(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 805352285531141, this, []); }
+  get normalMatrix(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 805352285531141, this, []); }
   /**
    * var projectionMatrix: GLKMatrix4 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get projectionMatrix(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1531518990530218, this, []); }
-  set projectionMatrix(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 241315149746937, this, [value]); }
+  get projectionMatrix(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1531518990530218, this, []); }
+  set projectionMatrix(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 241315149746937, this, [value]); }
   declare readonly $type: { "c:objc(cs)GLKEffectPropertyTransform": true; "c:objc(cs)GLKEffectProperty": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "modelviewMatrix": true; "normalMatrix": true; "projectionMatrix": true };
 }
@@ -436,7 +436,7 @@ export const GLKFogMode = {
    * init?(rawValue: GLint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKFogMode) | null { return callSDK<(GLKFogMode) | null>("GLKit_e11dfd5beee01da3", 3529680879120543, undefined, [rawValue]); }
+  init(rawValue: number): (GLKFogMode) | null { return callSDK<(GLKFogMode) | null>("GLKit_3864e7f38681b875", 3529680879120543, undefined, [rawValue]); }
 };
 
 /**
@@ -450,7 +450,7 @@ export const GLKLightingType = {
    * init?(rawValue: GLint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKLightingType) | null { return callSDK<(GLKLightingType) | null>("GLKit_e11dfd5beee01da3", 3857547533175493, undefined, [rawValue]); }
+  init(rawValue: number): (GLKLightingType) | null { return callSDK<(GLKLightingType) | null>("GLKit_3864e7f38681b875", 3857547533175493, undefined, [rawValue]); }
 };
 
 /** typealias GLKMatrix2 = _GLKMatrix2 */
@@ -478,43 +478,43 @@ export class GLKMesh extends SDKHandle {
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  static newMeshes(asset: _ModelIO_MDLAsset): { $ret: Array<GLKMesh>; $out: { "sourceMeshes": (_Foundation_NSArray) | null } } { return callSDK<{ $ret: Array<GLKMesh>; $out: { "sourceMeshes": (_Foundation_NSArray) | null } }>("GLKit_e11dfd5beee01da3", 1350954532487304, undefined, [asset, null]); }
+  static newMeshes(asset: _ModelIO_MDLAsset): { $ret: Array<GLKMesh>; $out: { "sourceMeshes": (_Foundation_NSArray) | null } } { return callSDK<{ $ret: Array<GLKMesh>; $out: { "sourceMeshes": (_Foundation_NSArray) | null } }>("GLKit_3864e7f38681b875", 1350954532487304, undefined, [asset, null]); }
   /**
    * init(mesh: MDLMesh) throws
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  static init(mesh: _ModelIO_MDLMesh): GLKMesh { return callSDK<GLKMesh>("GLKit_e11dfd5beee01da3", 2577768099286013, undefined, [mesh]); }
+  static init(mesh: _ModelIO_MDLMesh): GLKMesh { return callSDK<GLKMesh>("GLKit_3864e7f38681b875", 2577768099286013, undefined, [mesh]); }
   /**
    * var name: String { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get name(): string { return callSDK<string>("GLKit_e11dfd5beee01da3", 1541911885894084, this, []); }
+  get name(): string { return callSDK<string>("GLKit_3864e7f38681b875", 1541911885894084, this, []); }
   /**
    * var submeshes: [GLKSubmesh] { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get submeshes(): Array<GLKSubmesh> { return callSDK<Array<GLKSubmesh>>("GLKit_e11dfd5beee01da3", 3331788921610357, this, []); }
+  get submeshes(): Array<GLKSubmesh> { return callSDK<Array<GLKSubmesh>>("GLKit_3864e7f38681b875", 3331788921610357, this, []); }
   /**
    * var vertexBuffers: [GLKMeshBuffer] { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get vertexBuffers(): Array<GLKMeshBuffer> { return callSDK<Array<GLKMeshBuffer>>("GLKit_e11dfd5beee01da3", 2851459730339639, this, []); }
+  get vertexBuffers(): Array<GLKMeshBuffer> { return callSDK<Array<GLKMeshBuffer>>("GLKit_3864e7f38681b875", 2851459730339639, this, []); }
   /**
    * var vertexCount: Int { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get vertexCount(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 1204800379014704, this, []); }
+  get vertexCount(): number { return callSDK<number>("GLKit_3864e7f38681b875", 1204800379014704, this, []); }
   /**
    * var vertexDescriptor: MDLVertexDescriptor { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get vertexDescriptor(): _ModelIO_MDLVertexDescriptor { return callSDK<_ModelIO_MDLVertexDescriptor>("GLKit_e11dfd5beee01da3", 4102692725418910, this, []); }
+  get vertexDescriptor(): _ModelIO_MDLVertexDescriptor { return callSDK<_ModelIO_MDLVertexDescriptor>("GLKit_3864e7f38681b875", 4102692725418910, this, []); }
   declare readonly $type: { "c:objc(cs)GLKMesh": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "submeshes": true; "vertexBuffers": true; "vertexCount": true; "vertexDescriptor": true };
 }
@@ -526,43 +526,43 @@ export class GLKMesh extends SDKHandle {
  */
 export class GLKMeshBuffer extends SDKHandle {
   /** init() */
-  static init(): GLKMeshBuffer { return callSDK<GLKMeshBuffer>("GLKit_e11dfd5beee01da3", 458418784996338, undefined, []); }
+  static init(): GLKMeshBuffer { return callSDK<GLKMeshBuffer>("GLKit_3864e7f38681b875", 458418784996338, undefined, []); }
   /**
    * func zone() -> (any MDLMeshBufferZone)?
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  zone(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GLKit_e11dfd5beee01da3", 3827697205764775, this, []); }
+  zone(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GLKit_3864e7f38681b875", 3827697205764775, this, []); }
   /**
    * var allocator: GLKMeshBufferAllocator { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get allocator(): GLKMeshBufferAllocator { return callSDK<GLKMeshBufferAllocator>("GLKit_e11dfd5beee01da3", 996269888632774, this, []); }
+  get allocator(): GLKMeshBufferAllocator { return callSDK<GLKMeshBufferAllocator>("GLKit_3864e7f38681b875", 996269888632774, this, []); }
   /**
    * var glBufferName: GLuint { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get glBufferName(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2112345117242730, this, []); }
+  get glBufferName(): number { return callSDK<number>("GLKit_3864e7f38681b875", 2112345117242730, this, []); }
   /**
    * var length: Int { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get length(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 290546624685715, this, []); }
+  get length(): number { return callSDK<number>("GLKit_3864e7f38681b875", 290546624685715, this, []); }
   /**
    * var offset: Int { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get offset(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4008734159405946, this, []); }
+  get offset(): number { return callSDK<number>("GLKit_3864e7f38681b875", 4008734159405946, this, []); }
   /**
    * var type: MDLMeshBufferType { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get type(): _ModelIO_MDLMeshBufferType { return callSDK<_ModelIO_MDLMeshBufferType>("GLKit_e11dfd5beee01da3", 1482692978220074, this, []); }
+  get type(): _ModelIO_MDLMeshBufferType { return callSDK<_ModelIO_MDLMeshBufferType>("GLKit_3864e7f38681b875", 1482692978220074, this, []); }
   declare readonly $type: { "c:objc(cs)GLKMeshBuffer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allocator": true; "glBufferName": true; "length": true; "offset": true; "type": true };
 }
@@ -574,7 +574,7 @@ export class GLKMeshBuffer extends SDKHandle {
  */
 export class GLKMeshBufferAllocator extends SDKHandle {
   /** init() */
-  static init(): GLKMeshBufferAllocator { return callSDK<GLKMeshBufferAllocator>("GLKit_e11dfd5beee01da3", 562066050934189, undefined, []); }
+  static init(): GLKMeshBufferAllocator { return callSDK<GLKMeshBufferAllocator>("GLKit_3864e7f38681b875", 562066050934189, undefined, []); }
   declare readonly $type: { "c:objc(cs)GLKMeshBufferAllocator": true; "c:objc(cs)NSObject": true };
 }
 
@@ -594,26 +594,26 @@ export type GLKQuaternion = SDKHandle;
  */
 export class GLKReflectionMapEffect extends (GLKBaseEffect as unknown as Omit<typeof GLKBaseEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<GLKBaseEffect, "prepareToDraw">)) {
   /** init() */
-  static init(): GLKReflectionMapEffect { return callSDK<GLKReflectionMapEffect>("GLKit_e11dfd5beee01da3", 1141823687666014, undefined, []); }
+  static init(): GLKReflectionMapEffect { return callSDK<GLKReflectionMapEffect>("GLKit_3864e7f38681b875", 1141823687666014, undefined, []); }
   /**
    * func prepareToDraw()
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  prepareToDraw(): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1660984714845123, this, []); }
+  prepareToDraw(): void { return callSDK<void>("GLKit_3864e7f38681b875", 1660984714845123, this, []); }
   /**
    * var matrix: GLKMatrix3 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2571891046083267, this, []); }
-  set matrix(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 2062767607479077, this, [value]); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2571891046083267, this, []); }
+  set matrix(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 2062767607479077, this, [value]); }
   /**
    * var textureCubeMap: GLKEffectPropertyTexture { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get textureCubeMap(): GLKEffectPropertyTexture { return callSDK<GLKEffectPropertyTexture>("GLKit_e11dfd5beee01da3", 773892887185214, this, []); }
+  get textureCubeMap(): GLKEffectPropertyTexture { return callSDK<GLKEffectPropertyTexture>("GLKit_3864e7f38681b875", 773892887185214, this, []); }
   declare readonly $type: { "c:objc(cs)GLKReflectionMapEffect": true; "c:objc(cs)GLKBaseEffect": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "colorMaterialEnabled": true; "constantColor": true; "fog": true; "label": true; "light0": true; "light1": true; "light2": true; "lightModelAmbientColor": true; "lightModelTwoSided": true; "lightingType": true; "material": true; "texture2d0": true; "texture2d1": true; "textureOrder": true; "transform": true; "useConstantColor": true; "matrix": true; "textureCubeMap": true };
 }
@@ -629,62 +629,62 @@ export class GLKSkyboxEffect extends SDKHandle {
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  draw(): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 158411493958223, this, []); }
+  draw(): void { return callSDK<void>("GLKit_3864e7f38681b875", 158411493958223, this, []); }
   /** init() */
-  static init(): GLKSkyboxEffect { return callSDK<GLKSkyboxEffect>("GLKit_e11dfd5beee01da3", 4390094715145551, undefined, []); }
+  static init(): GLKSkyboxEffect { return callSDK<GLKSkyboxEffect>("GLKit_3864e7f38681b875", 4390094715145551, undefined, []); }
   /**
    * func prepareToDraw()
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  prepareToDraw(): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1488435519614743, this, []); }
+  prepareToDraw(): void { return callSDK<void>("GLKit_3864e7f38681b875", 1488435519614743, this, []); }
   /**
    * var center: GLKVector3 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get center(): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1862609047843716, this, []); }
-  set center(value: SDKHandle) { callSDK<void>("GLKit_e11dfd5beee01da3", 2860307774212640, this, [value]); }
+  get center(): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1862609047843716, this, []); }
+  set center(value: SDKHandle) { callSDK<void>("GLKit_3864e7f38681b875", 2860307774212640, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get label(): (string) | null { return callSDK<(string) | null>("GLKit_e11dfd5beee01da3", 311656081309020, this, []); }
-  set label(value: (string) | null) { callSDK<void>("GLKit_e11dfd5beee01da3", 1678212114874958, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("GLKit_3864e7f38681b875", 311656081309020, this, []); }
+  set label(value: (string) | null) { callSDK<void>("GLKit_3864e7f38681b875", 1678212114874958, this, [value]); }
   /**
    * var textureCubeMap: GLKEffectPropertyTexture { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get textureCubeMap(): GLKEffectPropertyTexture { return callSDK<GLKEffectPropertyTexture>("GLKit_e11dfd5beee01da3", 4324384719327416, this, []); }
+  get textureCubeMap(): GLKEffectPropertyTexture { return callSDK<GLKEffectPropertyTexture>("GLKit_3864e7f38681b875", 4324384719327416, this, []); }
   /**
    * var transform: GLKEffectPropertyTransform { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get transform(): GLKEffectPropertyTransform { return callSDK<GLKEffectPropertyTransform>("GLKit_e11dfd5beee01da3", 1126834190069755, this, []); }
+  get transform(): GLKEffectPropertyTransform { return callSDK<GLKEffectPropertyTransform>("GLKit_3864e7f38681b875", 1126834190069755, this, []); }
   /**
    * var xSize: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get xSize(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4080757489928032, this, []); }
-  set xSize(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 117232262425050, this, [value]); }
+  get xSize(): number { return callSDK<number>("GLKit_3864e7f38681b875", 4080757489928032, this, []); }
+  set xSize(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 117232262425050, this, [value]); }
   /**
    * var ySize: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get ySize(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 3921314246216805, this, []); }
-  set ySize(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 3735350036117058, this, [value]); }
+  get ySize(): number { return callSDK<number>("GLKit_3864e7f38681b875", 3921314246216805, this, []); }
+  set ySize(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 3735350036117058, this, [value]); }
   /**
    * var zSize: GLfloat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get zSize(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 3339609535237639, this, []); }
-  set zSize(value: number) { callSDK<void>("GLKit_e11dfd5beee01da3", 1049840215962648, this, [value]); }
+  get zSize(): number { return callSDK<number>("GLKit_3864e7f38681b875", 3339609535237639, this, []); }
+  set zSize(value: number) { callSDK<void>("GLKit_3864e7f38681b875", 1049840215962648, this, [value]); }
   declare readonly $type: { "c:objc(cs)GLKSkyboxEffect": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "center": true; "label": true; "textureCubeMap": true; "transform": true; "xSize": true; "ySize": true; "zSize": true };
 }
@@ -700,37 +700,37 @@ export class GLKSubmesh extends SDKHandle {
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get elementBuffer(): GLKMeshBuffer { return callSDK<GLKMeshBuffer>("GLKit_e11dfd5beee01da3", 3460757221374830, this, []); }
+  get elementBuffer(): GLKMeshBuffer { return callSDK<GLKMeshBuffer>("GLKit_3864e7f38681b875", 3460757221374830, this, []); }
   /**
    * var elementCount: GLsizei { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get elementCount(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4398032705508232, this, []); }
+  get elementCount(): number { return callSDK<number>("GLKit_3864e7f38681b875", 4398032705508232, this, []); }
   /**
    * weak var mesh: GLKMesh? { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get mesh(): (GLKMesh) | null { return callSDK<(GLKMesh) | null>("GLKit_e11dfd5beee01da3", 2163409983591738, this, []); }
+  get mesh(): (GLKMesh) | null { return callSDK<(GLKMesh) | null>("GLKit_3864e7f38681b875", 2163409983591738, this, []); }
   /**
    * var mode: GLenum { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get mode(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2187319295895508, this, []); }
+  get mode(): number { return callSDK<number>("GLKit_3864e7f38681b875", 2187319295895508, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get name(): string { return callSDK<string>("GLKit_e11dfd5beee01da3", 717881525001089, this, []); }
+  get name(): string { return callSDK<string>("GLKit_3864e7f38681b875", 717881525001089, this, []); }
   /**
    * var type: GLenum { get }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get type(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 102132613124685, this, []); }
+  get type(): number { return callSDK<number>("GLKit_3864e7f38681b875", 102132613124685, this, []); }
   declare readonly $type: { "c:objc(cs)GLKSubmesh": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "elementBuffer": true; "elementCount": true; "mesh": true; "mode": true; "name": true; "type": true };
 }
@@ -746,7 +746,7 @@ export const GLKTextureEnvMode = {
    * init?(rawValue: GLint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKTextureEnvMode) | null { return callSDK<(GLKTextureEnvMode) | null>("GLKit_e11dfd5beee01da3", 2642314661881557, undefined, [rawValue]); }
+  init(rawValue: number): (GLKTextureEnvMode) | null { return callSDK<(GLKTextureEnvMode) | null>("GLKit_3864e7f38681b875", 2642314661881557, undefined, [rawValue]); }
 };
 
 /**
@@ -756,67 +756,67 @@ export const GLKTextureEnvMode = {
  */
 export class GLKTextureInfo extends SDKHandle {
   /** init() */
-  static init(): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_e11dfd5beee01da3", 1584204883607685, undefined, []); }
+  static init(): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_3864e7f38681b875", 1584204883607685, undefined, []); }
   /**
    * var alphaState: GLKTextureInfoAlphaState { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get alphaState(): GLKTextureInfoAlphaState { return callSDK<GLKTextureInfoAlphaState>("GLKit_e11dfd5beee01da3", 651944681310059, this, []); }
+  get alphaState(): GLKTextureInfoAlphaState { return callSDK<GLKTextureInfoAlphaState>("GLKit_3864e7f38681b875", 651944681310059, this, []); }
   /**
    * var arrayLength: GLuint { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get arrayLength(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2642688578227849, this, []); }
+  get arrayLength(): number { return callSDK<number>("GLKit_3864e7f38681b875", 2642688578227849, this, []); }
   /**
    * var containsMipmaps: Bool { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get containsMipmaps(): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 4474548640895736, this, []); }
+  get containsMipmaps(): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 4474548640895736, this, []); }
   /**
    * var depth: GLuint { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get depth(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2662115395718383, this, []); }
+  get depth(): number { return callSDK<number>("GLKit_3864e7f38681b875", 2662115395718383, this, []); }
   /**
    * var height: GLuint { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get height(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 1754186062575381, this, []); }
+  get height(): number { return callSDK<number>("GLKit_3864e7f38681b875", 1754186062575381, this, []); }
   /**
    * var mimapLevelCount: GLuint { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get mimapLevelCount(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 1140156034199717, this, []); }
+  get mimapLevelCount(): number { return callSDK<number>("GLKit_3864e7f38681b875", 1140156034199717, this, []); }
   /**
    * var name: GLuint { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get name(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4172442508578134, this, []); }
+  get name(): number { return callSDK<number>("GLKit_3864e7f38681b875", 4172442508578134, this, []); }
   /**
    * var target: GLenum { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get target(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2492751982989802, this, []); }
+  get target(): number { return callSDK<number>("GLKit_3864e7f38681b875", 2492751982989802, this, []); }
   /**
    * var textureOrigin: GLKTextureInfoOrigin { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get textureOrigin(): GLKTextureInfoOrigin { return callSDK<GLKTextureInfoOrigin>("GLKit_e11dfd5beee01da3", 4041882140089917, this, []); }
+  get textureOrigin(): GLKTextureInfoOrigin { return callSDK<GLKTextureInfoOrigin>("GLKit_3864e7f38681b875", 4041882140089917, this, []); }
   /**
    * var width: GLuint { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get width(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4242987577065634, this, []); }
+  get width(): number { return callSDK<number>("GLKit_3864e7f38681b875", 4242987577065634, this, []); }
   declare readonly $type: { "c:objc(cs)GLKTextureInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alphaState": true; "arrayLength": true; "containsMipmaps": true; "depth": true; "height": true; "mimapLevelCount": true; "name": true; "target": true; "textureOrigin": true; "width": true };
 }
@@ -832,7 +832,7 @@ export const GLKTextureInfoAlphaState = {
    * init?(rawValue: GLint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKTextureInfoAlphaState) | null { return callSDK<(GLKTextureInfoAlphaState) | null>("GLKit_e11dfd5beee01da3", 3769117732621209, undefined, [rawValue]); }
+  init(rawValue: number): (GLKTextureInfoAlphaState) | null { return callSDK<(GLKTextureInfoAlphaState) | null>("GLKit_3864e7f38681b875", 3769117732621209, undefined, [rawValue]); }
 };
 
 /**
@@ -846,7 +846,7 @@ export const GLKTextureInfoOrigin = {
    * init?(rawValue: GLint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKTextureInfoOrigin) | null { return callSDK<(GLKTextureInfoOrigin) | null>("GLKit_e11dfd5beee01da3", 2977338071818204, undefined, [rawValue]); }
+  init(rawValue: number): (GLKTextureInfoOrigin) | null { return callSDK<(GLKTextureInfoOrigin) | null>("GLKit_3864e7f38681b875", 2977338071818204, undefined, [rawValue]); }
 };
 
 /**
@@ -860,103 +860,103 @@ export class GLKTextureLoader extends SDKHandle {
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static cubeMapWithContentsOfFileOptions(path: string, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_e11dfd5beee01da3", 3975624902812388, undefined, [path, options]); }
+  static cubeMapWithContentsOfFileOptions(path: string, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_3864e7f38681b875", 3975624902812388, undefined, [path, options]); }
   /**
    * class func cubeMap(withContentsOfFiles paths: [Any], options: [String : NSNumber]? = nil) throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static cubeMapWithContentsOfFilesOptions(paths: Array<unknown>, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_e11dfd5beee01da3", 3904333730821480, undefined, [paths, options]); }
+  static cubeMapWithContentsOfFilesOptions(paths: Array<unknown>, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_3864e7f38681b875", 3904333730821480, undefined, [paths, options]); }
   /**
    * class func cubeMap(withContentsOf url: URL, options: [String : NSNumber]? = nil) throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static cubeMapWithContentsOfOptions(url: string, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_e11dfd5beee01da3", 948493577871443, undefined, [url, options]); }
+  static cubeMapWithContentsOfOptions(url: string, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_3864e7f38681b875", 948493577871443, undefined, [url, options]); }
   /**
    * class func texture(with cgImage: CGImage, options: [String : NSNumber]? = nil) throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static textureWithOptions(cgImage: _CoreGraphics_CGImage, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_e11dfd5beee01da3", 2113130170767931, undefined, [cgImage, options]); }
+  static textureWithOptions(cgImage: _CoreGraphics_CGImage, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_3864e7f38681b875", 2113130170767931, undefined, [cgImage, options]); }
   /**
    * class func texture(withContentsOf data: Data, options: [String : NSNumber]? = nil) throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static textureWithContentsOfOptions(data: ArrayBuffer, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_e11dfd5beee01da3", 2311659869018706, undefined, [data, options]); }
+  static textureWithContentsOfOptions(data: ArrayBuffer, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_3864e7f38681b875", 2311659869018706, undefined, [data, options]); }
   /**
    * class func texture(withContentsOfFile path: String, options: [String : NSNumber]? = nil) throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static textureWithContentsOfFileOptions(path: string, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_e11dfd5beee01da3", 2442068764932703, undefined, [path, options]); }
+  static textureWithContentsOfFileOptions(path: string, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_3864e7f38681b875", 2442068764932703, undefined, [path, options]); }
   /**
    * class func texture(withContentsOf url: URL, options: [String : NSNumber]? = nil) throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static textureWithContentsOfOptions57937(url: string, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_e11dfd5beee01da3", 4238463525187117, undefined, [url, options]); }
+  static textureWithContentsOfOptions57937(url: string, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_3864e7f38681b875", 4238463525187117, undefined, [url, options]); }
   /**
    * class func texture(withName name: String, scaleFactor: CGFloat, bundle: Bundle?, options: [String : NSNumber]? = nil) throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static textureWithNameScaleFactorBundleOptions(name: string, scaleFactor: number, bundle?: $SDK3, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_e11dfd5beee01da3", 1411722869158960, undefined, [name, scaleFactor, bundle, options]); }
+  static textureWithNameScaleFactorBundleOptions(name: string, scaleFactor: number, bundle?: $SDK3, options?: $SDK2): GLKTextureInfo { return callSDK<GLKTextureInfo>("GLKit_3864e7f38681b875", 1411722869158960, undefined, [name, scaleFactor, bundle, options]); }
   /**
    * func cubeMap(withContentsOfFile path: String, options: [String : NSNumber]? = nil, queue: dispatch_queue_t?) async throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  cubeMapWithContentsOfFileOptionsQueueCompletionHandler(path: string, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1518604067760072, this, [path, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
+  cubeMapWithContentsOfFileOptionsQueueCompletionHandler(path: string, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_3864e7f38681b875", 1518604067760072, this, [path, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func cubeMap(withContentsOfFiles paths: [Any], options: [String : NSNumber]? = nil, queue: dispatch_queue_t?) async throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  cubeMapWithContentsOfFilesOptionsQueueCompletionHandler(paths: Array<unknown>, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 4216648286417193, this, [paths, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
+  cubeMapWithContentsOfFilesOptionsQueueCompletionHandler(paths: Array<unknown>, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_3864e7f38681b875", 4216648286417193, this, [paths, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func cubeMap(withContentsOf url: URL, options: [String : NSNumber]? = nil, queue: dispatch_queue_t?) async throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  cubeMapWithContentsOfOptionsQueueCompletionHandler(url: string, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 2399302333515674, this, [url, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
+  cubeMapWithContentsOfOptionsQueueCompletionHandler(url: string, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_3864e7f38681b875", 2399302333515674, this, [url, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(sharegroup: EAGLSharegroup)
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static init(sharegroup: _OpenGLES_EAGLSharegroup): GLKTextureLoader { return callSDK<GLKTextureLoader>("GLKit_e11dfd5beee01da3", 2405770544082706, undefined, [sharegroup]); }
+  static init(sharegroup: _OpenGLES_EAGLSharegroup): GLKTextureLoader { return callSDK<GLKTextureLoader>("GLKit_3864e7f38681b875", 2405770544082706, undefined, [sharegroup]); }
   /**
    * func texture(with cgImage: CGImage, options: [String : NSNumber]? = nil, queue: dispatch_queue_t?) async throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  textureWithOptionsQueueCompletionHandler(cgImage: _CoreGraphics_CGImage, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 4330230471384064, this, [cgImage, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
+  textureWithOptionsQueueCompletionHandler(cgImage: _CoreGraphics_CGImage, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_3864e7f38681b875", 4330230471384064, this, [cgImage, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func texture(withContentsOf data: Data, options: [String : NSNumber]? = nil, queue: dispatch_queue_t?) async throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  textureWithContentsOfOptionsQueueCompletionHandler(data: ArrayBuffer, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 4079389652863880, this, [data, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
+  textureWithContentsOfOptionsQueueCompletionHandler(data: ArrayBuffer, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_3864e7f38681b875", 4079389652863880, this, [data, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func texture(withContentsOfFile path: String, options: [String : NSNumber]? = nil, queue: dispatch_queue_t?) async throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  textureWithContentsOfFileOptionsQueueCompletionHandler(path: string, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 2899860344029975, this, [path, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
+  textureWithContentsOfFileOptionsQueueCompletionHandler(path: string, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_3864e7f38681b875", 2899860344029975, this, [path, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func texture(withContentsOf url: URL, options: [String : NSNumber]? = nil, queue: dispatch_queue_t?) async throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  textureWithContentsOfOptionsQueueCompletionHandler85308(url: string, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 2683576548066279, this, [url, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
+  textureWithContentsOfOptionsQueueCompletionHandler85308(url: string, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_3864e7f38681b875", 2683576548066279, this, [url, options, queue, block], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func texture(withName name: String, scaleFactor: CGFloat, bundle: Bundle?, options: [String : NSNumber]? = nil, queue: dispatch_queue_t?) async throws -> GLKTextureInfo
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  textureWithNameScaleFactorBundleOptionsQueueCompletionHandler(name: string, scaleFactor: number, bundle: $SDK3, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 104051899152640, this, [name, scaleFactor, bundle, options, queue, block], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  textureWithNameScaleFactorBundleOptionsQueueCompletionHandler(name: string, scaleFactor: number, bundle: $SDK3, options: $SDK2, queue: $SDK4, block: $SDK5): void { return callSDK<void>("GLKit_3864e7f38681b875", 104051899152640, this, [name, scaleFactor, bundle, options, queue, block], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)GLKTextureLoader": true; "c:objc(cs)NSObject": true };
 }
 
@@ -972,107 +972,107 @@ export class GLKTextureLoaderError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 5.0+
    */
-  static get errorDomain(): string { return callSDK<string>("GLKit_e11dfd5beee01da3", 279879780759985, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("GLKit_3864e7f38681b875", 279879780759985, undefined, []); }
   /**
    * static var invalidNSData: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get invalidNSData(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 2605162187452151, undefined, []); }
+  static get invalidNSData(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 2605162187452151, undefined, []); }
   /**
    * static var invalidCGImage: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get invalidCGImage(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 1372741931426963, undefined, []); }
+  static get invalidCGImage(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 1372741931426963, undefined, []); }
   /**
    * static var unknownFileType: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get unknownFileType(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 1985058672968713, undefined, []); }
+  static get unknownFileType(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 1985058672968713, undefined, []); }
   /**
    * static var unknownPathType: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get unknownPathType(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 2970782912601848, undefined, []); }
+  static get unknownPathType(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 2970782912601848, undefined, []); }
   /**
    * static var fileOrURLNotFound: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get fileOrURLNotFound(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 894009503791853, undefined, []); }
+  static get fileOrURLNotFound(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 894009503791853, undefined, []); }
   /**
    * static var mipmapUnsupported: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get mipmapUnsupported(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 4482910601701804, undefined, []); }
+  static get mipmapUnsupported(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 4482910601701804, undefined, []); }
   /**
    * static var invalidEAGLContext: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get invalidEAGLContext(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 4317276329007568, undefined, []); }
+  static get invalidEAGLContext(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 4317276329007568, undefined, []); }
   /**
    * static var pvrAtlasUnsupported: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get pvrAtlasUnsupported(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 1728246960921397, undefined, []); }
+  static get pvrAtlasUnsupported(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 1728246960921397, undefined, []); }
   /**
    * static var unsupportedBitDepth: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get unsupportedBitDepth(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 1337192336056155, undefined, []); }
+  static get unsupportedBitDepth(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 1337192336056155, undefined, []); }
   /**
    * static var reorientationFailure: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get reorientationFailure(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 1646141372347894, undefined, []); }
+  static get reorientationFailure(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 1646141372347894, undefined, []); }
   /**
    * static var unsupportedPVRFormat: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get unsupportedPVRFormat(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 4235004433678595, undefined, []); }
+  static get unsupportedPVRFormat(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 4235004433678595, undefined, []); }
   /**
    * static var cubeMapInvalidNumFiles: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get cubeMapInvalidNumFiles(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 3518306210785174, undefined, []); }
+  static get cubeMapInvalidNumFiles(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 3518306210785174, undefined, []); }
   /**
    * static var incompatibleFormatSRGB: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get incompatibleFormatSRGB(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 2889805633088607, undefined, []); }
+  static get incompatibleFormatSRGB(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 2889805633088607, undefined, []); }
   /**
    * static var unsupportedOrientation: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get unsupportedOrientation(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 4366275911700641, undefined, []); }
+  static get unsupportedOrientation(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 4366275911700641, undefined, []); }
   /**
    * static var compressedTextureUpload: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get compressedTextureUpload(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 513786864741337, undefined, []); }
+  static get compressedTextureUpload(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 513786864741337, undefined, []); }
   /**
    * static var dataPreprocessingFailure: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get dataPreprocessingFailure(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 260409035857090, undefined, []); }
+  static get dataPreprocessingFailure(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 260409035857090, undefined, []); }
   /**
    * static var unsupportedTextureTarget: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get unsupportedTextureTarget(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 1899906543711172, undefined, []); }
+  static get unsupportedTextureTarget(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 1899906543711172, undefined, []); }
   /**
    * static var uncompressedTextureUpload: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get uncompressedTextureUpload(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 1935613881442297, undefined, []); }
+  static get uncompressedTextureUpload(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 1935613881442297, undefined, []); }
   /**
    * static var unsupportedCubeMapDimensions: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get unsupportedCubeMapDimensions(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 1331051120348310, undefined, []); }
+  static get unsupportedCubeMapDimensions(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 1331051120348310, undefined, []); }
   /**
    * static var alphaPremultiplicationFailure: GLKTextureLoaderError.Code { get }
    * @availability iOS 5.0+
    */
-  static get alphaPremultiplicationFailure(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_e11dfd5beee01da3", 961398667540834, undefined, []); }
+  static get alphaPremultiplicationFailure(): GLKTextureLoaderError_Code { return callSDK<GLKTextureLoaderError_Code>("GLKit_3864e7f38681b875", 961398667540834, undefined, []); }
   declare readonly $type: { "s:SC21GLKTextureLoaderErrorLeV": true };
 }
 
@@ -1087,7 +1087,7 @@ export const GLKTextureLoaderError_Code = {
    * init?(rawValue: GLuint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKTextureLoaderError_Code) | null { return callSDK<(GLKTextureLoaderError_Code) | null>("GLKit_e11dfd5beee01da3", 54195454922071, undefined, [rawValue]); }
+  init(rawValue: number): (GLKTextureLoaderError_Code) | null { return callSDK<(GLKTextureLoaderError_Code) | null>("GLKit_3864e7f38681b875", 54195454922071, undefined, [rawValue]); }
 };
 
 /**
@@ -1101,7 +1101,7 @@ export const GLKTextureTarget = {
    * init?(rawValue: GLenum)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKTextureTarget) | null { return callSDK<(GLKTextureTarget) | null>("GLKit_e11dfd5beee01da3", 138207631302213, undefined, [rawValue]); }
+  init(rawValue: number): (GLKTextureTarget) | null { return callSDK<(GLKTextureTarget) | null>("GLKit_3864e7f38681b875", 138207631302213, undefined, [rawValue]); }
 };
 
 /** typealias GLKVector2 = _GLKVector2 */
@@ -1124,7 +1124,7 @@ export const GLKVertexAttrib = {
    * init?(rawValue: GLint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKVertexAttrib) | null { return callSDK<(GLKVertexAttrib) | null>("GLKit_e11dfd5beee01da3", 342089080475511, undefined, [rawValue]); }
+  init(rawValue: number): (GLKVertexAttrib) | null { return callSDK<(GLKVertexAttrib) | null>("GLKit_3864e7f38681b875", 342089080475511, undefined, [rawValue]); }
 };
 
 /** typealias GLKVertexAttributeParameters = _GLKVertexAttributeParameters */
@@ -1141,92 +1141,92 @@ export class GLKView extends SDKHandle {
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  bindDrawable(): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 8954786449644, this, []); }
+  bindDrawable(): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 8954786449644, this, []); }
   /**
    * func deleteDrawable()
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  deleteDrawable(): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 3365285438595164, this, []); }
+  deleteDrawable(): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 3365285438595164, this, []); }
   /**
    * func display()
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  display(): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 606356147910687, this, []); }
+  display(): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 606356147910687, this, []); }
   /**
    * init(frame: CGRect, context: EAGLContext)
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  static init(frame: $SDK7, context: _OpenGLES_EAGLContext): Promise<GLKView> { return callSDKAsync<GLKView>("GLKit_e11dfd5beee01da3", 2170305507476849, undefined, [frame, context]); }
+  static init(frame: $SDK7, context: _OpenGLES_EAGLContext): Promise<GLKView> { return callSDKAsync<GLKView>("GLKit_3864e7f38681b875", 2170305507476849, undefined, [frame, context]); }
   /**
    * var context: EAGLContext { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get context(): Promise<_OpenGLES_EAGLContext> { return callSDKAsync<_OpenGLES_EAGLContext>("GLKit_e11dfd5beee01da3", 2869014660135483, this, []); }
-  setContext(value: _OpenGLES_EAGLContext): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 949409420682522, this, [value]); }
+  get context(): Promise<_OpenGLES_EAGLContext> { return callSDKAsync<_OpenGLES_EAGLContext>("GLKit_3864e7f38681b875", 2869014660135483, this, []); }
+  setContext(value: _OpenGLES_EAGLContext): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 949409420682522, this, [value]); }
   /**
    * @IBOutlet unowned(unsafe) var delegate: (any GLKViewDelegate)? { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GLKit_e11dfd5beee01da3", 629555349767986, this, []); }
-  setDelegate(value?: (Implements<GLKViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 1713631444480222, this, [value], [{"protocol":"c:objc(pl)GLKViewDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GLKit_3864e7f38681b875", 629555349767986, this, []); }
+  setDelegate(value?: (Implements<GLKViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 1713631444480222, this, [value], [{"protocol":"c:objc(pl)GLKViewDelegate"}]); }
   /**
    * var drawableColorFormat: GLKViewDrawableColorFormat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get drawableColorFormat(): Promise<GLKViewDrawableColorFormat> { return callSDKAsync<GLKViewDrawableColorFormat>("GLKit_e11dfd5beee01da3", 3751025429194361, this, []); }
-  setDrawableColorFormat(value: GLKViewDrawableColorFormat): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 156012681154251, this, [value]); }
+  get drawableColorFormat(): Promise<GLKViewDrawableColorFormat> { return callSDKAsync<GLKViewDrawableColorFormat>("GLKit_3864e7f38681b875", 3751025429194361, this, []); }
+  setDrawableColorFormat(value: GLKViewDrawableColorFormat): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 156012681154251, this, [value]); }
   /**
    * var drawableDepthFormat: GLKViewDrawableDepthFormat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get drawableDepthFormat(): Promise<GLKViewDrawableDepthFormat> { return callSDKAsync<GLKViewDrawableDepthFormat>("GLKit_e11dfd5beee01da3", 1012303435626912, this, []); }
-  setDrawableDepthFormat(value: GLKViewDrawableDepthFormat): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 3673239231849531, this, [value]); }
+  get drawableDepthFormat(): Promise<GLKViewDrawableDepthFormat> { return callSDKAsync<GLKViewDrawableDepthFormat>("GLKit_3864e7f38681b875", 1012303435626912, this, []); }
+  setDrawableDepthFormat(value: GLKViewDrawableDepthFormat): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 3673239231849531, this, [value]); }
   /**
    * var drawableHeight: Int { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get drawableHeight(): Promise<number> { return callSDKAsync<number>("GLKit_e11dfd5beee01da3", 2828349194175693, this, []); }
+  get drawableHeight(): Promise<number> { return callSDKAsync<number>("GLKit_3864e7f38681b875", 2828349194175693, this, []); }
   /**
    * var drawableMultisample: GLKViewDrawableMultisample { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get drawableMultisample(): Promise<GLKViewDrawableMultisample> { return callSDKAsync<GLKViewDrawableMultisample>("GLKit_e11dfd5beee01da3", 1418929765568447, this, []); }
-  setDrawableMultisample(value: GLKViewDrawableMultisample): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 4216510163799006, this, [value]); }
+  get drawableMultisample(): Promise<GLKViewDrawableMultisample> { return callSDKAsync<GLKViewDrawableMultisample>("GLKit_3864e7f38681b875", 1418929765568447, this, []); }
+  setDrawableMultisample(value: GLKViewDrawableMultisample): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 4216510163799006, this, [value]); }
   /**
    * var drawableStencilFormat: GLKViewDrawableStencilFormat { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get drawableStencilFormat(): Promise<GLKViewDrawableStencilFormat> { return callSDKAsync<GLKViewDrawableStencilFormat>("GLKit_e11dfd5beee01da3", 2454043315537322, this, []); }
-  setDrawableStencilFormat(value: GLKViewDrawableStencilFormat): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 2252342737130361, this, [value]); }
+  get drawableStencilFormat(): Promise<GLKViewDrawableStencilFormat> { return callSDKAsync<GLKViewDrawableStencilFormat>("GLKit_3864e7f38681b875", 2454043315537322, this, []); }
+  setDrawableStencilFormat(value: GLKViewDrawableStencilFormat): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 2252342737130361, this, [value]); }
   /**
    * var drawableWidth: Int { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get drawableWidth(): Promise<number> { return callSDKAsync<number>("GLKit_e11dfd5beee01da3", 1781186411923878, this, []); }
+  get drawableWidth(): Promise<number> { return callSDKAsync<number>("GLKit_3864e7f38681b875", 1781186411923878, this, []); }
   /**
    * var enableSetNeedsDisplay: Bool { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get enableSetNeedsDisplay(): Promise<boolean> { return callSDKAsync<boolean>("GLKit_e11dfd5beee01da3", 3567179871954206, this, []); }
-  setEnableSetNeedsDisplay(value: boolean): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 4040658647239780, this, [value]); }
+  get enableSetNeedsDisplay(): Promise<boolean> { return callSDKAsync<boolean>("GLKit_3864e7f38681b875", 3567179871954206, this, []); }
+  setEnableSetNeedsDisplay(value: boolean): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 4040658647239780, this, [value]); }
   /**
    * var snapshot: UIImage { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get snapshot(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("GLKit_e11dfd5beee01da3", 3415568288484430, this, []); }
+  get snapshot(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("GLKit_3864e7f38681b875", 3415568288484430, this, []); }
   declare readonly $type: { "c:objc(cs)GLKView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "context": true; "delegate": true; "drawableColorFormat": true; "drawableDepthFormat": true; "drawableHeight": true; "drawableMultisample": true; "drawableStencilFormat": true; "drawableWidth": true; "enableSetNeedsDisplay": true; "snapshot": true };
 }
@@ -1238,78 +1238,78 @@ export class GLKView extends SDKHandle {
  */
 export class GLKViewController extends SDKHandle {
   /** init() */
-  static init(): Promise<GLKViewController> { return callSDKAsync<GLKViewController>("GLKit_e11dfd5beee01da3", 3802024046785375, undefined, []); }
+  static init(): Promise<GLKViewController> { return callSDKAsync<GLKViewController>("GLKit_3864e7f38681b875", 3802024046785375, undefined, []); }
   /**
    * @IBOutlet unowned(unsafe) var delegate: (any GLKViewControllerDelegate)? { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GLKit_e11dfd5beee01da3", 3827032559612151, this, []); }
-  setDelegate(value?: (Implements<GLKViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 3903407796424174, this, [value], [{"protocol":"c:objc(pl)GLKViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GLKit_3864e7f38681b875", 3827032559612151, this, []); }
+  setDelegate(value?: (Implements<GLKViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 3903407796424174, this, [value], [{"protocol":"c:objc(pl)GLKViewControllerDelegate"}]); }
   /**
    * var framesDisplayed: Int { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get framesDisplayed(): Promise<number> { return callSDKAsync<number>("GLKit_e11dfd5beee01da3", 3933810689864593, this, []); }
+  get framesDisplayed(): Promise<number> { return callSDKAsync<number>("GLKit_3864e7f38681b875", 3933810689864593, this, []); }
   /**
    * var framesPerSecond: Int { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get framesPerSecond(): Promise<number> { return callSDKAsync<number>("GLKit_e11dfd5beee01da3", 36257821358222, this, []); }
+  get framesPerSecond(): Promise<number> { return callSDKAsync<number>("GLKit_3864e7f38681b875", 36257821358222, this, []); }
   /**
    * var pauseOnWillResignActive: Bool { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get pauseOnWillResignActive(): Promise<boolean> { return callSDKAsync<boolean>("GLKit_e11dfd5beee01da3", 2624592687558717, this, []); }
-  setPauseOnWillResignActive(value: boolean): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 2395545476839625, this, [value]); }
+  get pauseOnWillResignActive(): Promise<boolean> { return callSDKAsync<boolean>("GLKit_3864e7f38681b875", 2624592687558717, this, []); }
+  setPauseOnWillResignActive(value: boolean): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 2395545476839625, this, [value]); }
   /**
    * var isPaused: Bool { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get isPaused(): Promise<boolean> { return callSDKAsync<boolean>("GLKit_e11dfd5beee01da3", 4460610021639981, this, []); }
-  setIsPaused(value: boolean): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 315514818945594, this, [value]); }
+  get isPaused(): Promise<boolean> { return callSDKAsync<boolean>("GLKit_3864e7f38681b875", 4460610021639981, this, []); }
+  setIsPaused(value: boolean): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 315514818945594, this, [value]); }
   /**
    * var preferredFramesPerSecond: Int { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get preferredFramesPerSecond(): Promise<number> { return callSDKAsync<number>("GLKit_e11dfd5beee01da3", 1848355941708774, this, []); }
-  setPreferredFramesPerSecond(value: number): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 1870359086264275, this, [value]); }
+  get preferredFramesPerSecond(): Promise<number> { return callSDKAsync<number>("GLKit_3864e7f38681b875", 1848355941708774, this, []); }
+  setPreferredFramesPerSecond(value: number): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 1870359086264275, this, [value]); }
   /**
    * var resumeOnDidBecomeActive: Bool { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get resumeOnDidBecomeActive(): Promise<boolean> { return callSDKAsync<boolean>("GLKit_e11dfd5beee01da3", 340905603998677, this, []); }
-  setResumeOnDidBecomeActive(value: boolean): Promise<void> { return callSDKAsync<void>("GLKit_e11dfd5beee01da3", 717428410742008, this, [value]); }
+  get resumeOnDidBecomeActive(): Promise<boolean> { return callSDKAsync<boolean>("GLKit_3864e7f38681b875", 340905603998677, this, []); }
+  setResumeOnDidBecomeActive(value: boolean): Promise<void> { return callSDKAsync<void>("GLKit_3864e7f38681b875", 717428410742008, this, [value]); }
   /**
    * var timeSinceFirstResume: TimeInterval { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get timeSinceFirstResume(): Promise<number> { return callSDKAsync<number>("GLKit_e11dfd5beee01da3", 4410328330637307, this, []); }
+  get timeSinceFirstResume(): Promise<number> { return callSDKAsync<number>("GLKit_3864e7f38681b875", 4410328330637307, this, []); }
   /**
    * var timeSinceLastDraw: TimeInterval { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get timeSinceLastDraw(): Promise<number> { return callSDKAsync<number>("GLKit_e11dfd5beee01da3", 48995219478117, this, []); }
+  get timeSinceLastDraw(): Promise<number> { return callSDKAsync<number>("GLKit_3864e7f38681b875", 48995219478117, this, []); }
   /**
    * var timeSinceLastResume: TimeInterval { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get timeSinceLastResume(): Promise<number> { return callSDKAsync<number>("GLKit_e11dfd5beee01da3", 3140238633289960, this, []); }
+  get timeSinceLastResume(): Promise<number> { return callSDKAsync<number>("GLKit_3864e7f38681b875", 3140238633289960, this, []); }
   /**
    * var timeSinceLastUpdate: TimeInterval { get }
    * @availability iOS 5.0+
    * @deprecated iOS 12.0
    */
-  get timeSinceLastUpdate(): Promise<number> { return callSDKAsync<number>("GLKit_e11dfd5beee01da3", 2120577609268445, this, []); }
+  get timeSinceLastUpdate(): Promise<number> { return callSDKAsync<number>("GLKit_3864e7f38681b875", 2120577609268445, this, []); }
   declare readonly $type: { "c:objc(cs)GLKViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "framesDisplayed": true; "framesPerSecond": true; "pauseOnWillResignActive": true; "isPaused": true; "preferredFramesPerSecond": true; "resumeOnDidBecomeActive": true; "timeSinceFirstResume": true; "timeSinceLastDraw": true; "timeSinceLastResume": true; "timeSinceLastUpdate": true };
 }
@@ -1348,7 +1348,7 @@ export const GLKViewDrawableColorFormat = {
    * init?(rawValue: GLint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKViewDrawableColorFormat) | null { return callSDK<(GLKViewDrawableColorFormat) | null>("GLKit_e11dfd5beee01da3", 3059102928590203, undefined, [rawValue]); }
+  init(rawValue: number): (GLKViewDrawableColorFormat) | null { return callSDK<(GLKViewDrawableColorFormat) | null>("GLKit_3864e7f38681b875", 3059102928590203, undefined, [rawValue]); }
 };
 
 /**
@@ -1362,7 +1362,7 @@ export const GLKViewDrawableDepthFormat = {
    * init?(rawValue: GLint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKViewDrawableDepthFormat) | null { return callSDK<(GLKViewDrawableDepthFormat) | null>("GLKit_e11dfd5beee01da3", 2559129975510930, undefined, [rawValue]); }
+  init(rawValue: number): (GLKViewDrawableDepthFormat) | null { return callSDK<(GLKViewDrawableDepthFormat) | null>("GLKit_3864e7f38681b875", 2559129975510930, undefined, [rawValue]); }
 };
 
 /**
@@ -1376,7 +1376,7 @@ export const GLKViewDrawableMultisample = {
    * init?(rawValue: GLint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKViewDrawableMultisample) | null { return callSDK<(GLKViewDrawableMultisample) | null>("GLKit_e11dfd5beee01da3", 874721144889884, undefined, [rawValue]); }
+  init(rawValue: number): (GLKViewDrawableMultisample) | null { return callSDK<(GLKViewDrawableMultisample) | null>("GLKit_3864e7f38681b875", 874721144889884, undefined, [rawValue]); }
 };
 
 /**
@@ -1390,763 +1390,763 @@ export const GLKViewDrawableStencilFormat = {
    * init?(rawValue: GLint)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GLKViewDrawableStencilFormat) | null { return callSDK<(GLKViewDrawableStencilFormat) | null>("GLKit_e11dfd5beee01da3", 4485683533283188, undefined, [rawValue]); }
+  init(rawValue: number): (GLKViewDrawableStencilFormat) | null { return callSDK<(GLKViewDrawableStencilFormat) | null>("GLKit_3864e7f38681b875", 4485683533283188, undefined, [rawValue]); }
 };
 
 /** func GLKMathDegreesToRadians(_ degrees: Float) -> Float */
-export function GLKMathDegreesToRadians(degrees: number): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 1780341289382959, undefined, [degrees]); }
+export function GLKMathDegreesToRadians(degrees: number): number { return callSDK<number>("GLKit_3864e7f38681b875", 1780341289382959, undefined, [degrees]); }
 
 /** func GLKMathProject(_ object: GLKVector3, _ model: GLKMatrix4, _ projection: GLKMatrix4, _ viewport: UnsafeMutablePointer<Int32>) -> GLKVector3 */
-export function GLKMathProject(object: SDKHandle, model: SDKHandle, projection: SDKHandle, viewport: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3943911642744167, undefined, [object, model, projection, viewport]); }
+export function GLKMathProject(object: SDKHandle, model: SDKHandle, projection: SDKHandle, viewport: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3943911642744167, undefined, [object, model, projection, viewport]); }
 
 /** func GLKMathRadiansToDegrees(_ radians: Float) -> Float */
-export function GLKMathRadiansToDegrees(radians: number): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4441809802703888, undefined, [radians]); }
+export function GLKMathRadiansToDegrees(radians: number): number { return callSDK<number>("GLKit_3864e7f38681b875", 4441809802703888, undefined, [radians]); }
 
 /** func GLKMathUnproject(_ window: GLKVector3, _ model: GLKMatrix4, _ projection: GLKMatrix4, _ viewport: UnsafeMutablePointer<Int32>, _ success: UnsafeMutablePointer<Bool>?) -> GLKVector3 */
-export function GLKMathUnproject(window: SDKHandle, model: SDKHandle, projection: SDKHandle, viewport: SDKHandle, success?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1832629423897590, undefined, [window, model, projection, viewport, success]); }
+export function GLKMathUnproject(window: SDKHandle, model: SDKHandle, projection: SDKHandle, viewport: SDKHandle, success?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1832629423897590, undefined, [window, model, projection, viewport, success]); }
 
 /** func GLKMatrix3Add(_ matrixLeft: GLKMatrix3, _ matrixRight: GLKMatrix3) -> GLKMatrix3 */
-export function GLKMatrix3Add(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2297435094309112, undefined, [matrixLeft, matrixRight]); }
+export function GLKMatrix3Add(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2297435094309112, undefined, [matrixLeft, matrixRight]); }
 
 /** func GLKMatrix3GetColumn(_ matrix: GLKMatrix3, _ column: Int32) -> GLKVector3 */
-export function GLKMatrix3GetColumn(matrix: SDKHandle, column: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 191965258137137, undefined, [matrix, column]); }
+export function GLKMatrix3GetColumn(matrix: SDKHandle, column: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 191965258137137, undefined, [matrix, column]); }
 
 /** func GLKMatrix3GetMatrix2(_ matrix: GLKMatrix3) -> GLKMatrix2 */
-export function GLKMatrix3GetMatrix2(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4106404227228606, undefined, [matrix]); }
+export function GLKMatrix3GetMatrix2(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4106404227228606, undefined, [matrix]); }
 
 /** func GLKMatrix3GetRow(_ matrix: GLKMatrix3, _ row: Int32) -> GLKVector3 */
-export function GLKMatrix3GetRow(matrix: SDKHandle, row: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 775475482787047, undefined, [matrix, row]); }
+export function GLKMatrix3GetRow(matrix: SDKHandle, row: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 775475482787047, undefined, [matrix, row]); }
 
 /** func GLKMatrix3Invert(_ matrix: GLKMatrix3, _ isInvertible: UnsafeMutablePointer<Bool>!) -> GLKMatrix3 */
-export function GLKMatrix3Invert(matrix: SDKHandle, isInvertible?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1845151494808990, undefined, [matrix, isInvertible]); }
+export function GLKMatrix3Invert(matrix: SDKHandle, isInvertible?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1845151494808990, undefined, [matrix, isInvertible]); }
 
 /** func GLKMatrix3InvertAndTranspose(_ matrix: GLKMatrix3, _ isInvertible: UnsafeMutablePointer<Bool>!) -> GLKMatrix3 */
-export function GLKMatrix3InvertAndTranspose(matrix: SDKHandle, isInvertible?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2537392547470264, undefined, [matrix, isInvertible]); }
+export function GLKMatrix3InvertAndTranspose(matrix: SDKHandle, isInvertible?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2537392547470264, undefined, [matrix, isInvertible]); }
 
 /** func GLKMatrix3Make(_ m00: Float, _ m01: Float, _ m02: Float, _ m10: Float, _ m11: Float, _ m12: Float, _ m20: Float, _ m21: Float, _ m22: Float) -> GLKMatrix3 */
-export function GLKMatrix3Make(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 872707832427656, undefined, [m00, m01, m02, m10, m11, m12, m20, m21, m22]); }
+export function GLKMatrix3Make(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 872707832427656, undefined, [m00, m01, m02, m10, m11, m12, m20, m21, m22]); }
 
 /** func GLKMatrix3MakeAndTranspose(_ m00: Float, _ m01: Float, _ m02: Float, _ m10: Float, _ m11: Float, _ m12: Float, _ m20: Float, _ m21: Float, _ m22: Float) -> GLKMatrix3 */
-export function GLKMatrix3MakeAndTranspose(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3041713540119589, undefined, [m00, m01, m02, m10, m11, m12, m20, m21, m22]); }
+export function GLKMatrix3MakeAndTranspose(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3041713540119589, undefined, [m00, m01, m02, m10, m11, m12, m20, m21, m22]); }
 
 /** func GLKMatrix3MakeRotation(_ radians: Float, _ x: Float, _ y: Float, _ z: Float) -> GLKMatrix3 */
-export function GLKMatrix3MakeRotation(radians: number, x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1290540374554340, undefined, [radians, x, y, z]); }
+export function GLKMatrix3MakeRotation(radians: number, x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1290540374554340, undefined, [radians, x, y, z]); }
 
 /** func GLKMatrix3MakeScale(_ sx: Float, _ sy: Float, _ sz: Float) -> GLKMatrix3 */
-export function GLKMatrix3MakeScale(sx: number, sy: number, sz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2122386111714721, undefined, [sx, sy, sz]); }
+export function GLKMatrix3MakeScale(sx: number, sy: number, sz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2122386111714721, undefined, [sx, sy, sz]); }
 
 /** func GLKMatrix3MakeWithArray(_ values: UnsafeMutablePointer<Float>!) -> GLKMatrix3 */
-export function GLKMatrix3MakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4393298013328419, undefined, [values]); }
+export function GLKMatrix3MakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4393298013328419, undefined, [values]); }
 
 /** func GLKMatrix3MakeWithArrayAndTranspose(_ values: UnsafeMutablePointer<Float>!) -> GLKMatrix3 */
-export function GLKMatrix3MakeWithArrayAndTranspose(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1910378413396244, undefined, [values]); }
+export function GLKMatrix3MakeWithArrayAndTranspose(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1910378413396244, undefined, [values]); }
 
 /** func GLKMatrix3MakeWithColumns(_ column0: GLKVector3, _ column1: GLKVector3, _ column2: GLKVector3) -> GLKMatrix3 */
-export function GLKMatrix3MakeWithColumns(column0: SDKHandle, column1: SDKHandle, column2: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1118630559265939, undefined, [column0, column1, column2]); }
+export function GLKMatrix3MakeWithColumns(column0: SDKHandle, column1: SDKHandle, column2: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1118630559265939, undefined, [column0, column1, column2]); }
 
 /** func GLKMatrix3MakeWithQuaternion(_ quaternion: GLKQuaternion) -> GLKMatrix3 */
-export function GLKMatrix3MakeWithQuaternion(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3902743349683159, undefined, [quaternion]); }
+export function GLKMatrix3MakeWithQuaternion(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3902743349683159, undefined, [quaternion]); }
 
 /** func GLKMatrix3MakeWithRows(_ row0: GLKVector3, _ row1: GLKVector3, _ row2: GLKVector3) -> GLKMatrix3 */
-export function GLKMatrix3MakeWithRows(row0: SDKHandle, row1: SDKHandle, row2: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4265289701889752, undefined, [row0, row1, row2]); }
+export function GLKMatrix3MakeWithRows(row0: SDKHandle, row1: SDKHandle, row2: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4265289701889752, undefined, [row0, row1, row2]); }
 
 /** func GLKMatrix3MakeXRotation(_ radians: Float) -> GLKMatrix3 */
-export function GLKMatrix3MakeXRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 574949633283843, undefined, [radians]); }
+export function GLKMatrix3MakeXRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 574949633283843, undefined, [radians]); }
 
 /** func GLKMatrix3MakeYRotation(_ radians: Float) -> GLKMatrix3 */
-export function GLKMatrix3MakeYRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4214680639933891, undefined, [radians]); }
+export function GLKMatrix3MakeYRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4214680639933891, undefined, [radians]); }
 
 /** func GLKMatrix3MakeZRotation(_ radians: Float) -> GLKMatrix3 */
-export function GLKMatrix3MakeZRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1147272734298550, undefined, [radians]); }
+export function GLKMatrix3MakeZRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1147272734298550, undefined, [radians]); }
 
 /** func GLKMatrix3Multiply(_ matrixLeft: GLKMatrix3, _ matrixRight: GLKMatrix3) -> GLKMatrix3 */
-export function GLKMatrix3Multiply(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2455709412631882, undefined, [matrixLeft, matrixRight]); }
+export function GLKMatrix3Multiply(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2455709412631882, undefined, [matrixLeft, matrixRight]); }
 
 /** func GLKMatrix3MultiplyVector3(_ matrixLeft: GLKMatrix3, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKMatrix3MultiplyVector3(matrixLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 118935716405261, undefined, [matrixLeft, vectorRight]); }
+export function GLKMatrix3MultiplyVector3(matrixLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 118935716405261, undefined, [matrixLeft, vectorRight]); }
 
 /** func GLKMatrix3MultiplyVector3Array(_ matrix: GLKMatrix3, _ vectors: UnsafeMutablePointer<GLKVector3>, _ vectorCount: Int) */
-export function GLKMatrix3MultiplyVector3Array(matrix: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 3774924911026143, undefined, [matrix, vectors, vectorCount]); }
+export function GLKMatrix3MultiplyVector3Array(matrix: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 3774924911026143, undefined, [matrix, vectors, vectorCount]); }
 
 /** func GLKMatrix3Rotate(_ matrix: GLKMatrix3, _ radians: Float, _ x: Float, _ y: Float, _ z: Float) -> GLKMatrix3 */
-export function GLKMatrix3Rotate(matrix: SDKHandle, radians: number, x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1684335602455302, undefined, [matrix, radians, x, y, z]); }
+export function GLKMatrix3Rotate(matrix: SDKHandle, radians: number, x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1684335602455302, undefined, [matrix, radians, x, y, z]); }
 
 /** func GLKMatrix3RotateWithVector3(_ matrix: GLKMatrix3, _ radians: Float, _ axisVector: GLKVector3) -> GLKMatrix3 */
-export function GLKMatrix3RotateWithVector3(matrix: SDKHandle, radians: number, axisVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2912613462282609, undefined, [matrix, radians, axisVector]); }
+export function GLKMatrix3RotateWithVector3(matrix: SDKHandle, radians: number, axisVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2912613462282609, undefined, [matrix, radians, axisVector]); }
 
 /** func GLKMatrix3RotateWithVector4(_ matrix: GLKMatrix3, _ radians: Float, _ axisVector: GLKVector4) -> GLKMatrix3 */
-export function GLKMatrix3RotateWithVector4(matrix: SDKHandle, radians: number, axisVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1446335459621895, undefined, [matrix, radians, axisVector]); }
+export function GLKMatrix3RotateWithVector4(matrix: SDKHandle, radians: number, axisVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1446335459621895, undefined, [matrix, radians, axisVector]); }
 
 /** func GLKMatrix3RotateX(_ matrix: GLKMatrix3, _ radians: Float) -> GLKMatrix3 */
-export function GLKMatrix3RotateX(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3922937541175343, undefined, [matrix, radians]); }
+export function GLKMatrix3RotateX(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3922937541175343, undefined, [matrix, radians]); }
 
 /** func GLKMatrix3RotateY(_ matrix: GLKMatrix3, _ radians: Float) -> GLKMatrix3 */
-export function GLKMatrix3RotateY(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1452641558823186, undefined, [matrix, radians]); }
+export function GLKMatrix3RotateY(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1452641558823186, undefined, [matrix, radians]); }
 
 /** func GLKMatrix3RotateZ(_ matrix: GLKMatrix3, _ radians: Float) -> GLKMatrix3 */
-export function GLKMatrix3RotateZ(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2149429888175578, undefined, [matrix, radians]); }
+export function GLKMatrix3RotateZ(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2149429888175578, undefined, [matrix, radians]); }
 
 /** func GLKMatrix3Scale(_ matrix: GLKMatrix3, _ sx: Float, _ sy: Float, _ sz: Float) -> GLKMatrix3 */
-export function GLKMatrix3Scale(matrix: SDKHandle, sx: number, sy: number, sz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4133207228819247, undefined, [matrix, sx, sy, sz]); }
+export function GLKMatrix3Scale(matrix: SDKHandle, sx: number, sy: number, sz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4133207228819247, undefined, [matrix, sx, sy, sz]); }
 
 /** func GLKMatrix3ScaleWithVector3(_ matrix: GLKMatrix3, _ scaleVector: GLKVector3) -> GLKMatrix3 */
-export function GLKMatrix3ScaleWithVector3(matrix: SDKHandle, scaleVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1109601289296406, undefined, [matrix, scaleVector]); }
+export function GLKMatrix3ScaleWithVector3(matrix: SDKHandle, scaleVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1109601289296406, undefined, [matrix, scaleVector]); }
 
 /** func GLKMatrix3ScaleWithVector4(_ matrix: GLKMatrix3, _ scaleVector: GLKVector4) -> GLKMatrix3 */
-export function GLKMatrix3ScaleWithVector4(matrix: SDKHandle, scaleVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2275131428164312, undefined, [matrix, scaleVector]); }
+export function GLKMatrix3ScaleWithVector4(matrix: SDKHandle, scaleVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2275131428164312, undefined, [matrix, scaleVector]); }
 
 /** func GLKMatrix3SetColumn(_ matrix: GLKMatrix3, _ column: Int32, _ vector: GLKVector3) -> GLKMatrix3 */
-export function GLKMatrix3SetColumn(matrix: SDKHandle, column: number, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3623531058991486, undefined, [matrix, column, vector]); }
+export function GLKMatrix3SetColumn(matrix: SDKHandle, column: number, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3623531058991486, undefined, [matrix, column, vector]); }
 
 /** func GLKMatrix3SetRow(_ matrix: GLKMatrix3, _ row: Int32, _ vector: GLKVector3) -> GLKMatrix3 */
-export function GLKMatrix3SetRow(matrix: SDKHandle, row: number, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 191388304594949, undefined, [matrix, row, vector]); }
+export function GLKMatrix3SetRow(matrix: SDKHandle, row: number, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 191388304594949, undefined, [matrix, row, vector]); }
 
 /** func GLKMatrix3Subtract(_ matrixLeft: GLKMatrix3, _ matrixRight: GLKMatrix3) -> GLKMatrix3 */
-export function GLKMatrix3Subtract(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3819219259810583, undefined, [matrixLeft, matrixRight]); }
+export function GLKMatrix3Subtract(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3819219259810583, undefined, [matrixLeft, matrixRight]); }
 
 /** func GLKMatrix3Transpose(_ matrix: GLKMatrix3) -> GLKMatrix3 */
-export function GLKMatrix3Transpose(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3636633615717395, undefined, [matrix]); }
+export function GLKMatrix3Transpose(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3636633615717395, undefined, [matrix]); }
 
 /** func GLKMatrix4Add(_ matrixLeft: GLKMatrix4, _ matrixRight: GLKMatrix4) -> GLKMatrix4 */
-export function GLKMatrix4Add(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 774168910008543, undefined, [matrixLeft, matrixRight]); }
+export function GLKMatrix4Add(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 774168910008543, undefined, [matrixLeft, matrixRight]); }
 
 /** func GLKMatrix4GetColumn(_ matrix: GLKMatrix4, _ column: Int32) -> GLKVector4 */
-export function GLKMatrix4GetColumn(matrix: SDKHandle, column: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2403731489534949, undefined, [matrix, column]); }
+export function GLKMatrix4GetColumn(matrix: SDKHandle, column: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2403731489534949, undefined, [matrix, column]); }
 
 /** func GLKMatrix4GetMatrix2(_ matrix: GLKMatrix4) -> GLKMatrix2 */
-export function GLKMatrix4GetMatrix2(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 813711573146813, undefined, [matrix]); }
+export function GLKMatrix4GetMatrix2(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 813711573146813, undefined, [matrix]); }
 
 /** func GLKMatrix4GetMatrix3(_ matrix: GLKMatrix4) -> GLKMatrix3 */
-export function GLKMatrix4GetMatrix3(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2334946669083795, undefined, [matrix]); }
+export function GLKMatrix4GetMatrix3(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2334946669083795, undefined, [matrix]); }
 
 /** func GLKMatrix4GetRow(_ matrix: GLKMatrix4, _ row: Int32) -> GLKVector4 */
-export function GLKMatrix4GetRow(matrix: SDKHandle, row: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1748157833711724, undefined, [matrix, row]); }
+export function GLKMatrix4GetRow(matrix: SDKHandle, row: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1748157833711724, undefined, [matrix, row]); }
 
 /** func GLKMatrix4Invert(_ matrix: GLKMatrix4, _ isInvertible: UnsafeMutablePointer<Bool>?) -> GLKMatrix4 */
-export function GLKMatrix4Invert(matrix: SDKHandle, isInvertible?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2131531767008232, undefined, [matrix, isInvertible]); }
+export function GLKMatrix4Invert(matrix: SDKHandle, isInvertible?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2131531767008232, undefined, [matrix, isInvertible]); }
 
 /** func GLKMatrix4InvertAndTranspose(_ matrix: GLKMatrix4, _ isInvertible: UnsafeMutablePointer<Bool>?) -> GLKMatrix4 */
-export function GLKMatrix4InvertAndTranspose(matrix: SDKHandle, isInvertible?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4049733854424163, undefined, [matrix, isInvertible]); }
+export function GLKMatrix4InvertAndTranspose(matrix: SDKHandle, isInvertible?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4049733854424163, undefined, [matrix, isInvertible]); }
 
 /** func GLKMatrix4Make(_ m00: Float, _ m01: Float, _ m02: Float, _ m03: Float, _ m10: Float, _ m11: Float, _ m12: Float, _ m13: Float, _ m20: Float, _ m21: Float, _ m22: Float, _ m23: Float, _ m30: Float, _ m31: Float, _ m32: Float, _ m33: Float) -> GLKMatrix4 */
-export function GLKMatrix4Make(m00: number, m01: number, m02: number, m03: number, m10: number, m11: number, m12: number, m13: number, m20: number, m21: number, m22: number, m23: number, m30: number, m31: number, m32: number, m33: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2076024700524251, undefined, [m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33]); }
+export function GLKMatrix4Make(m00: number, m01: number, m02: number, m03: number, m10: number, m11: number, m12: number, m13: number, m20: number, m21: number, m22: number, m23: number, m30: number, m31: number, m32: number, m33: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2076024700524251, undefined, [m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33]); }
 
 /** func GLKMatrix4MakeAndTranspose(_ m00: Float, _ m01: Float, _ m02: Float, _ m03: Float, _ m10: Float, _ m11: Float, _ m12: Float, _ m13: Float, _ m20: Float, _ m21: Float, _ m22: Float, _ m23: Float, _ m30: Float, _ m31: Float, _ m32: Float, _ m33: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakeAndTranspose(m00: number, m01: number, m02: number, m03: number, m10: number, m11: number, m12: number, m13: number, m20: number, m21: number, m22: number, m23: number, m30: number, m31: number, m32: number, m33: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2379390361941175, undefined, [m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33]); }
+export function GLKMatrix4MakeAndTranspose(m00: number, m01: number, m02: number, m03: number, m10: number, m11: number, m12: number, m13: number, m20: number, m21: number, m22: number, m23: number, m30: number, m31: number, m32: number, m33: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2379390361941175, undefined, [m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33]); }
 
 /** func GLKMatrix4MakeFrustum(_ left: Float, _ right: Float, _ bottom: Float, _ top: Float, _ nearZ: Float, _ farZ: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakeFrustum(left: number, right: number, bottom: number, top: number, nearZ: number, farZ: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2125961478309172, undefined, [left, right, bottom, top, nearZ, farZ]); }
+export function GLKMatrix4MakeFrustum(left: number, right: number, bottom: number, top: number, nearZ: number, farZ: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2125961478309172, undefined, [left, right, bottom, top, nearZ, farZ]); }
 
 /** func GLKMatrix4MakeLookAt(_ eyeX: Float, _ eyeY: Float, _ eyeZ: Float, _ centerX: Float, _ centerY: Float, _ centerZ: Float, _ upX: Float, _ upY: Float, _ upZ: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakeLookAt(eyeX: number, eyeY: number, eyeZ: number, centerX: number, centerY: number, centerZ: number, upX: number, upY: number, upZ: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4083003696207104, undefined, [eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ]); }
+export function GLKMatrix4MakeLookAt(eyeX: number, eyeY: number, eyeZ: number, centerX: number, centerY: number, centerZ: number, upX: number, upY: number, upZ: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4083003696207104, undefined, [eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ]); }
 
 /** func GLKMatrix4MakeOrtho(_ left: Float, _ right: Float, _ bottom: Float, _ top: Float, _ nearZ: Float, _ farZ: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakeOrtho(left: number, right: number, bottom: number, top: number, nearZ: number, farZ: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2459797359395785, undefined, [left, right, bottom, top, nearZ, farZ]); }
+export function GLKMatrix4MakeOrtho(left: number, right: number, bottom: number, top: number, nearZ: number, farZ: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2459797359395785, undefined, [left, right, bottom, top, nearZ, farZ]); }
 
 /** func GLKMatrix4MakePerspective(_ fovyRadians: Float, _ aspect: Float, _ nearZ: Float, _ farZ: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakePerspective(fovyRadians: number, aspect: number, nearZ: number, farZ: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1583870179864688, undefined, [fovyRadians, aspect, nearZ, farZ]); }
+export function GLKMatrix4MakePerspective(fovyRadians: number, aspect: number, nearZ: number, farZ: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1583870179864688, undefined, [fovyRadians, aspect, nearZ, farZ]); }
 
 /** func GLKMatrix4MakeRotation(_ radians: Float, _ x: Float, _ y: Float, _ z: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakeRotation(radians: number, x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4414963775782320, undefined, [radians, x, y, z]); }
+export function GLKMatrix4MakeRotation(radians: number, x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4414963775782320, undefined, [radians, x, y, z]); }
 
 /** func GLKMatrix4MakeScale(_ sx: Float, _ sy: Float, _ sz: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakeScale(sx: number, sy: number, sz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2725463555111428, undefined, [sx, sy, sz]); }
+export function GLKMatrix4MakeScale(sx: number, sy: number, sz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2725463555111428, undefined, [sx, sy, sz]); }
 
 /** func GLKMatrix4MakeTranslation(_ tx: Float, _ ty: Float, _ tz: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakeTranslation(tx: number, ty: number, tz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 543913568695460, undefined, [tx, ty, tz]); }
+export function GLKMatrix4MakeTranslation(tx: number, ty: number, tz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 543913568695460, undefined, [tx, ty, tz]); }
 
 /** func GLKMatrix4MakeWithArray(_ values: UnsafeMutablePointer<Float>!) -> GLKMatrix4 */
-export function GLKMatrix4MakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2796914031676988, undefined, [values]); }
+export function GLKMatrix4MakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2796914031676988, undefined, [values]); }
 
 /** func GLKMatrix4MakeWithArrayAndTranspose(_ values: UnsafeMutablePointer<Float>!) -> GLKMatrix4 */
-export function GLKMatrix4MakeWithArrayAndTranspose(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1474927438204057, undefined, [values]); }
+export function GLKMatrix4MakeWithArrayAndTranspose(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1474927438204057, undefined, [values]); }
 
 /** func GLKMatrix4MakeWithColumns(_ column0: GLKVector4, _ column1: GLKVector4, _ column2: GLKVector4, _ column3: GLKVector4) -> GLKMatrix4 */
-export function GLKMatrix4MakeWithColumns(column0: SDKHandle, column1: SDKHandle, column2: SDKHandle, column3: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2799968623356546, undefined, [column0, column1, column2, column3]); }
+export function GLKMatrix4MakeWithColumns(column0: SDKHandle, column1: SDKHandle, column2: SDKHandle, column3: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2799968623356546, undefined, [column0, column1, column2, column3]); }
 
 /** func GLKMatrix4MakeWithQuaternion(_ quaternion: GLKQuaternion) -> GLKMatrix4 */
-export function GLKMatrix4MakeWithQuaternion(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2368085002451058, undefined, [quaternion]); }
+export function GLKMatrix4MakeWithQuaternion(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2368085002451058, undefined, [quaternion]); }
 
 /** func GLKMatrix4MakeWithRows(_ row0: GLKVector4, _ row1: GLKVector4, _ row2: GLKVector4, _ row3: GLKVector4) -> GLKMatrix4 */
-export function GLKMatrix4MakeWithRows(row0: SDKHandle, row1: SDKHandle, row2: SDKHandle, row3: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 866935302222034, undefined, [row0, row1, row2, row3]); }
+export function GLKMatrix4MakeWithRows(row0: SDKHandle, row1: SDKHandle, row2: SDKHandle, row3: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 866935302222034, undefined, [row0, row1, row2, row3]); }
 
 /** func GLKMatrix4MakeXRotation(_ radians: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakeXRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4051982945953011, undefined, [radians]); }
+export function GLKMatrix4MakeXRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4051982945953011, undefined, [radians]); }
 
 /** func GLKMatrix4MakeYRotation(_ radians: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakeYRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1603181502003396, undefined, [radians]); }
+export function GLKMatrix4MakeYRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1603181502003396, undefined, [radians]); }
 
 /** func GLKMatrix4MakeZRotation(_ radians: Float) -> GLKMatrix4 */
-export function GLKMatrix4MakeZRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2152195176970240, undefined, [radians]); }
+export function GLKMatrix4MakeZRotation(radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2152195176970240, undefined, [radians]); }
 
 /** func GLKMatrix4Multiply(_ matrixLeft: GLKMatrix4, _ matrixRight: GLKMatrix4) -> GLKMatrix4 */
-export function GLKMatrix4Multiply(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2378075353556304, undefined, [matrixLeft, matrixRight]); }
+export function GLKMatrix4Multiply(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2378075353556304, undefined, [matrixLeft, matrixRight]); }
 
 /** func GLKMatrix4MultiplyAndProjectVector3(_ matrixLeft: GLKMatrix4, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKMatrix4MultiplyAndProjectVector3(matrixLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1866247762262685, undefined, [matrixLeft, vectorRight]); }
+export function GLKMatrix4MultiplyAndProjectVector3(matrixLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1866247762262685, undefined, [matrixLeft, vectorRight]); }
 
 /** func GLKMatrix4MultiplyAndProjectVector3Array(_ matrix: GLKMatrix4, _ vectors: UnsafeMutablePointer<GLKVector3>, _ vectorCount: Int) */
-export function GLKMatrix4MultiplyAndProjectVector3Array(matrix: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 2512599142684954, undefined, [matrix, vectors, vectorCount]); }
+export function GLKMatrix4MultiplyAndProjectVector3Array(matrix: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 2512599142684954, undefined, [matrix, vectors, vectorCount]); }
 
 /** func GLKMatrix4MultiplyVector3(_ matrixLeft: GLKMatrix4, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKMatrix4MultiplyVector3(matrixLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4336859180181859, undefined, [matrixLeft, vectorRight]); }
+export function GLKMatrix4MultiplyVector3(matrixLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4336859180181859, undefined, [matrixLeft, vectorRight]); }
 
 /** func GLKMatrix4MultiplyVector3Array(_ matrix: GLKMatrix4, _ vectors: UnsafeMutablePointer<GLKVector3>, _ vectorCount: Int) */
-export function GLKMatrix4MultiplyVector3Array(matrix: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 4313197260764176, undefined, [matrix, vectors, vectorCount]); }
+export function GLKMatrix4MultiplyVector3Array(matrix: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 4313197260764176, undefined, [matrix, vectors, vectorCount]); }
 
 /** func GLKMatrix4MultiplyVector3ArrayWithTranslation(_ matrix: GLKMatrix4, _ vectors: UnsafeMutablePointer<GLKVector3>, _ vectorCount: Int) */
-export function GLKMatrix4MultiplyVector3ArrayWithTranslation(matrix: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 554277177839245, undefined, [matrix, vectors, vectorCount]); }
+export function GLKMatrix4MultiplyVector3ArrayWithTranslation(matrix: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 554277177839245, undefined, [matrix, vectors, vectorCount]); }
 
 /** func GLKMatrix4MultiplyVector3WithTranslation(_ matrixLeft: GLKMatrix4, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKMatrix4MultiplyVector3WithTranslation(matrixLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2679426827046854, undefined, [matrixLeft, vectorRight]); }
+export function GLKMatrix4MultiplyVector3WithTranslation(matrixLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2679426827046854, undefined, [matrixLeft, vectorRight]); }
 
 /** func GLKMatrix4MultiplyVector4(_ matrixLeft: GLKMatrix4, _ vectorRight: GLKVector4) -> GLKVector4 */
-export function GLKMatrix4MultiplyVector4(matrixLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2425063235077282, undefined, [matrixLeft, vectorRight]); }
+export function GLKMatrix4MultiplyVector4(matrixLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2425063235077282, undefined, [matrixLeft, vectorRight]); }
 
 /** func GLKMatrix4MultiplyVector4Array(_ matrix: GLKMatrix4, _ vectors: UnsafeMutablePointer<GLKVector4>, _ vectorCount: Int) */
-export function GLKMatrix4MultiplyVector4Array(matrix: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1439678686002804, undefined, [matrix, vectors, vectorCount]); }
+export function GLKMatrix4MultiplyVector4Array(matrix: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 1439678686002804, undefined, [matrix, vectors, vectorCount]); }
 
 /** func GLKMatrix4Rotate(_ matrix: GLKMatrix4, _ radians: Float, _ x: Float, _ y: Float, _ z: Float) -> GLKMatrix4 */
-export function GLKMatrix4Rotate(matrix: SDKHandle, radians: number, x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4412992753965554, undefined, [matrix, radians, x, y, z]); }
+export function GLKMatrix4Rotate(matrix: SDKHandle, radians: number, x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4412992753965554, undefined, [matrix, radians, x, y, z]); }
 
 /** func GLKMatrix4RotateWithVector3(_ matrix: GLKMatrix4, _ radians: Float, _ axisVector: GLKVector3) -> GLKMatrix4 */
-export function GLKMatrix4RotateWithVector3(matrix: SDKHandle, radians: number, axisVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4331697936046833, undefined, [matrix, radians, axisVector]); }
+export function GLKMatrix4RotateWithVector3(matrix: SDKHandle, radians: number, axisVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4331697936046833, undefined, [matrix, radians, axisVector]); }
 
 /** func GLKMatrix4RotateWithVector4(_ matrix: GLKMatrix4, _ radians: Float, _ axisVector: GLKVector4) -> GLKMatrix4 */
-export function GLKMatrix4RotateWithVector4(matrix: SDKHandle, radians: number, axisVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4474693638617745, undefined, [matrix, radians, axisVector]); }
+export function GLKMatrix4RotateWithVector4(matrix: SDKHandle, radians: number, axisVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4474693638617745, undefined, [matrix, radians, axisVector]); }
 
 /** func GLKMatrix4RotateX(_ matrix: GLKMatrix4, _ radians: Float) -> GLKMatrix4 */
-export function GLKMatrix4RotateX(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1948052154197068, undefined, [matrix, radians]); }
+export function GLKMatrix4RotateX(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1948052154197068, undefined, [matrix, radians]); }
 
 /** func GLKMatrix4RotateY(_ matrix: GLKMatrix4, _ radians: Float) -> GLKMatrix4 */
-export function GLKMatrix4RotateY(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2662353880655627, undefined, [matrix, radians]); }
+export function GLKMatrix4RotateY(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2662353880655627, undefined, [matrix, radians]); }
 
 /** func GLKMatrix4RotateZ(_ matrix: GLKMatrix4, _ radians: Float) -> GLKMatrix4 */
-export function GLKMatrix4RotateZ(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1252348478301471, undefined, [matrix, radians]); }
+export function GLKMatrix4RotateZ(matrix: SDKHandle, radians: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1252348478301471, undefined, [matrix, radians]); }
 
 /** func GLKMatrix4Scale(_ matrix: GLKMatrix4, _ sx: Float, _ sy: Float, _ sz: Float) -> GLKMatrix4 */
-export function GLKMatrix4Scale(matrix: SDKHandle, sx: number, sy: number, sz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1732866745391912, undefined, [matrix, sx, sy, sz]); }
+export function GLKMatrix4Scale(matrix: SDKHandle, sx: number, sy: number, sz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1732866745391912, undefined, [matrix, sx, sy, sz]); }
 
 /** func GLKMatrix4ScaleWithVector3(_ matrix: GLKMatrix4, _ scaleVector: GLKVector3) -> GLKMatrix4 */
-export function GLKMatrix4ScaleWithVector3(matrix: SDKHandle, scaleVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4493075886835817, undefined, [matrix, scaleVector]); }
+export function GLKMatrix4ScaleWithVector3(matrix: SDKHandle, scaleVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4493075886835817, undefined, [matrix, scaleVector]); }
 
 /** func GLKMatrix4ScaleWithVector4(_ matrix: GLKMatrix4, _ scaleVector: GLKVector4) -> GLKMatrix4 */
-export function GLKMatrix4ScaleWithVector4(matrix: SDKHandle, scaleVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3597418138099410, undefined, [matrix, scaleVector]); }
+export function GLKMatrix4ScaleWithVector4(matrix: SDKHandle, scaleVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3597418138099410, undefined, [matrix, scaleVector]); }
 
 /** func GLKMatrix4SetColumn(_ matrix: GLKMatrix4, _ column: Int32, _ vector: GLKVector4) -> GLKMatrix4 */
-export function GLKMatrix4SetColumn(matrix: SDKHandle, column: number, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2564249653776462, undefined, [matrix, column, vector]); }
+export function GLKMatrix4SetColumn(matrix: SDKHandle, column: number, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2564249653776462, undefined, [matrix, column, vector]); }
 
 /** func GLKMatrix4SetRow(_ matrix: GLKMatrix4, _ row: Int32, _ vector: GLKVector4) -> GLKMatrix4 */
-export function GLKMatrix4SetRow(matrix: SDKHandle, row: number, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2143991251248238, undefined, [matrix, row, vector]); }
+export function GLKMatrix4SetRow(matrix: SDKHandle, row: number, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2143991251248238, undefined, [matrix, row, vector]); }
 
 /** func GLKMatrix4Subtract(_ matrixLeft: GLKMatrix4, _ matrixRight: GLKMatrix4) -> GLKMatrix4 */
-export function GLKMatrix4Subtract(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4182096374419391, undefined, [matrixLeft, matrixRight]); }
+export function GLKMatrix4Subtract(matrixLeft: SDKHandle, matrixRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4182096374419391, undefined, [matrixLeft, matrixRight]); }
 
 /** func GLKMatrix4Translate(_ matrix: GLKMatrix4, _ tx: Float, _ ty: Float, _ tz: Float) -> GLKMatrix4 */
-export function GLKMatrix4Translate(matrix: SDKHandle, tx: number, ty: number, tz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4150396395051258, undefined, [matrix, tx, ty, tz]); }
+export function GLKMatrix4Translate(matrix: SDKHandle, tx: number, ty: number, tz: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4150396395051258, undefined, [matrix, tx, ty, tz]); }
 
 /** func GLKMatrix4TranslateWithVector3(_ matrix: GLKMatrix4, _ translationVector: GLKVector3) -> GLKMatrix4 */
-export function GLKMatrix4TranslateWithVector3(matrix: SDKHandle, translationVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 384507226258607, undefined, [matrix, translationVector]); }
+export function GLKMatrix4TranslateWithVector3(matrix: SDKHandle, translationVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 384507226258607, undefined, [matrix, translationVector]); }
 
 /** func GLKMatrix4TranslateWithVector4(_ matrix: GLKMatrix4, _ translationVector: GLKVector4) -> GLKMatrix4 */
-export function GLKMatrix4TranslateWithVector4(matrix: SDKHandle, translationVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2609592083059340, undefined, [matrix, translationVector]); }
+export function GLKMatrix4TranslateWithVector4(matrix: SDKHandle, translationVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2609592083059340, undefined, [matrix, translationVector]); }
 
 /** func GLKMatrix4Transpose(_ matrix: GLKMatrix4) -> GLKMatrix4 */
-export function GLKMatrix4Transpose(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1407494223845512, undefined, [matrix]); }
+export function GLKMatrix4Transpose(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1407494223845512, undefined, [matrix]); }
 
 /** func GLKMatrixStackCreate(_ alloc: CFAllocator?) -> Unmanaged<GLKMatrixStack>? */
-export function GLKMatrixStackCreate(alloc?: (_CoreFoundation_CFAllocator) | null): (GLKMatrixStack) | null { return callSDK<(GLKMatrixStack) | null>("GLKit_e11dfd5beee01da3", 4256815539905447, undefined, [alloc]); }
+export function GLKMatrixStackCreate(alloc?: (_CoreFoundation_CFAllocator) | null): (GLKMatrixStack) | null { return callSDK<(GLKMatrixStack) | null>("GLKit_3864e7f38681b875", 4256815539905447, undefined, [alloc]); }
 
 /** func GLKMatrixStackGetMatrix2(_ stack: GLKMatrixStack) -> GLKMatrix2 */
-export function GLKMatrixStackGetMatrix2(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2337561821871481, undefined, [stack]); }
+export function GLKMatrixStackGetMatrix2(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2337561821871481, undefined, [stack]); }
 
 /** func GLKMatrixStackGetMatrix3(_ stack: GLKMatrixStack) -> GLKMatrix3 */
-export function GLKMatrixStackGetMatrix3(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3128616860342097, undefined, [stack]); }
+export function GLKMatrixStackGetMatrix3(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3128616860342097, undefined, [stack]); }
 
 /** func GLKMatrixStackGetMatrix3Inverse(_ stack: GLKMatrixStack) -> GLKMatrix3 */
-export function GLKMatrixStackGetMatrix3Inverse(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4420537780440632, undefined, [stack]); }
+export function GLKMatrixStackGetMatrix3Inverse(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4420537780440632, undefined, [stack]); }
 
 /** func GLKMatrixStackGetMatrix3InverseTranspose(_ stack: GLKMatrixStack) -> GLKMatrix3 */
-export function GLKMatrixStackGetMatrix3InverseTranspose(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3715954744285353, undefined, [stack]); }
+export function GLKMatrixStackGetMatrix3InverseTranspose(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3715954744285353, undefined, [stack]); }
 
 /** func GLKMatrixStackGetMatrix4(_ stack: GLKMatrixStack) -> GLKMatrix4 */
-export function GLKMatrixStackGetMatrix4(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 38716634831657, undefined, [stack]); }
+export function GLKMatrixStackGetMatrix4(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 38716634831657, undefined, [stack]); }
 
 /** func GLKMatrixStackGetMatrix4Inverse(_ stack: GLKMatrixStack) -> GLKMatrix4 */
-export function GLKMatrixStackGetMatrix4Inverse(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2904455055121690, undefined, [stack]); }
+export function GLKMatrixStackGetMatrix4Inverse(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2904455055121690, undefined, [stack]); }
 
 /** func GLKMatrixStackGetMatrix4InverseTranspose(_ stack: GLKMatrixStack) -> GLKMatrix4 */
-export function GLKMatrixStackGetMatrix4InverseTranspose(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3613498497965373, undefined, [stack]); }
+export function GLKMatrixStackGetMatrix4InverseTranspose(stack: GLKMatrixStack): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3613498497965373, undefined, [stack]); }
 
 /** func GLKMatrixStackGetTypeID() -> CFTypeID */
-export function GLKMatrixStackGetTypeID(): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 807555800187630, undefined, []); }
+export function GLKMatrixStackGetTypeID(): number { return callSDK<number>("GLKit_3864e7f38681b875", 807555800187630, undefined, []); }
 
 /** func GLKMatrixStackLoadMatrix4(_ stack: GLKMatrixStack, _ matrix: GLKMatrix4) */
-export function GLKMatrixStackLoadMatrix4(stack: GLKMatrixStack, matrix: SDKHandle): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 832037090811015, undefined, [stack, matrix]); }
+export function GLKMatrixStackLoadMatrix4(stack: GLKMatrixStack, matrix: SDKHandle): void { return callSDK<void>("GLKit_3864e7f38681b875", 832037090811015, undefined, [stack, matrix]); }
 
 /** func GLKMatrixStackMultiplyMatrix4(_ stack: GLKMatrixStack, _ matrix: GLKMatrix4) */
-export function GLKMatrixStackMultiplyMatrix4(stack: GLKMatrixStack, matrix: SDKHandle): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1295788300579325, undefined, [stack, matrix]); }
+export function GLKMatrixStackMultiplyMatrix4(stack: GLKMatrixStack, matrix: SDKHandle): void { return callSDK<void>("GLKit_3864e7f38681b875", 1295788300579325, undefined, [stack, matrix]); }
 
 /** func GLKMatrixStackMultiplyMatrixStack(_ stackLeft: GLKMatrixStack, _ stackRight: GLKMatrixStack) */
-export function GLKMatrixStackMultiplyMatrixStack(stackLeft: GLKMatrixStack, stackRight: GLKMatrixStack): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1127267194767129, undefined, [stackLeft, stackRight]); }
+export function GLKMatrixStackMultiplyMatrixStack(stackLeft: GLKMatrixStack, stackRight: GLKMatrixStack): void { return callSDK<void>("GLKit_3864e7f38681b875", 1127267194767129, undefined, [stackLeft, stackRight]); }
 
 /** func GLKMatrixStackPop(_ stack: GLKMatrixStack) */
-export function GLKMatrixStackPop(stack: GLKMatrixStack): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1763597676674178, undefined, [stack]); }
+export function GLKMatrixStackPop(stack: GLKMatrixStack): void { return callSDK<void>("GLKit_3864e7f38681b875", 1763597676674178, undefined, [stack]); }
 
 /** func GLKMatrixStackPush(_ stack: GLKMatrixStack) */
-export function GLKMatrixStackPush(stack: GLKMatrixStack): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 3066764897489366, undefined, [stack]); }
+export function GLKMatrixStackPush(stack: GLKMatrixStack): void { return callSDK<void>("GLKit_3864e7f38681b875", 3066764897489366, undefined, [stack]); }
 
 /** func GLKMatrixStackRotate(_ stack: GLKMatrixStack, _ radians: Float, _ x: Float, _ y: Float, _ z: Float) */
-export function GLKMatrixStackRotate(stack: GLKMatrixStack, radians: number, x: number, y: number, z: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1457000598889140, undefined, [stack, radians, x, y, z]); }
+export function GLKMatrixStackRotate(stack: GLKMatrixStack, radians: number, x: number, y: number, z: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 1457000598889140, undefined, [stack, radians, x, y, z]); }
 
 /** func GLKMatrixStackRotateWithVector3(_ stack: GLKMatrixStack, _ radians: Float, _ axisVector: GLKVector3) */
-export function GLKMatrixStackRotateWithVector3(stack: GLKMatrixStack, radians: number, axisVector: SDKHandle): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 2683252622478367, undefined, [stack, radians, axisVector]); }
+export function GLKMatrixStackRotateWithVector3(stack: GLKMatrixStack, radians: number, axisVector: SDKHandle): void { return callSDK<void>("GLKit_3864e7f38681b875", 2683252622478367, undefined, [stack, radians, axisVector]); }
 
 /** func GLKMatrixStackRotateWithVector4(_ stack: GLKMatrixStack, _ radians: Float, _ axisVector: GLKVector4) */
-export function GLKMatrixStackRotateWithVector4(stack: GLKMatrixStack, radians: number, axisVector: SDKHandle): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 633369473509083, undefined, [stack, radians, axisVector]); }
+export function GLKMatrixStackRotateWithVector4(stack: GLKMatrixStack, radians: number, axisVector: SDKHandle): void { return callSDK<void>("GLKit_3864e7f38681b875", 633369473509083, undefined, [stack, radians, axisVector]); }
 
 /** func GLKMatrixStackRotateX(_ stack: GLKMatrixStack, _ radians: Float) */
-export function GLKMatrixStackRotateX(stack: GLKMatrixStack, radians: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1812438980828462, undefined, [stack, radians]); }
+export function GLKMatrixStackRotateX(stack: GLKMatrixStack, radians: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 1812438980828462, undefined, [stack, radians]); }
 
 /** func GLKMatrixStackRotateY(_ stack: GLKMatrixStack, _ radians: Float) */
-export function GLKMatrixStackRotateY(stack: GLKMatrixStack, radians: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 4158313857934054, undefined, [stack, radians]); }
+export function GLKMatrixStackRotateY(stack: GLKMatrixStack, radians: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 4158313857934054, undefined, [stack, radians]); }
 
 /** func GLKMatrixStackRotateZ(_ stack: GLKMatrixStack, _ radians: Float) */
-export function GLKMatrixStackRotateZ(stack: GLKMatrixStack, radians: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 953627646531262, undefined, [stack, radians]); }
+export function GLKMatrixStackRotateZ(stack: GLKMatrixStack, radians: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 953627646531262, undefined, [stack, radians]); }
 
 /** func GLKMatrixStackScale(_ stack: GLKMatrixStack, _ sx: Float, _ sy: Float, _ sz: Float) */
-export function GLKMatrixStackScale(stack: GLKMatrixStack, sx: number, sy: number, sz: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 3515489738549397, undefined, [stack, sx, sy, sz]); }
+export function GLKMatrixStackScale(stack: GLKMatrixStack, sx: number, sy: number, sz: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 3515489738549397, undefined, [stack, sx, sy, sz]); }
 
 /** func GLKMatrixStackScaleWithVector3(_ stack: GLKMatrixStack, _ scaleVector: GLKVector3) */
-export function GLKMatrixStackScaleWithVector3(stack: GLKMatrixStack, scaleVector: SDKHandle): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 2078912535955622, undefined, [stack, scaleVector]); }
+export function GLKMatrixStackScaleWithVector3(stack: GLKMatrixStack, scaleVector: SDKHandle): void { return callSDK<void>("GLKit_3864e7f38681b875", 2078912535955622, undefined, [stack, scaleVector]); }
 
 /** func GLKMatrixStackScaleWithVector4(_ stack: GLKMatrixStack, _ scaleVector: GLKVector4) */
-export function GLKMatrixStackScaleWithVector4(stack: GLKMatrixStack, scaleVector: SDKHandle): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 74123378300946, undefined, [stack, scaleVector]); }
+export function GLKMatrixStackScaleWithVector4(stack: GLKMatrixStack, scaleVector: SDKHandle): void { return callSDK<void>("GLKit_3864e7f38681b875", 74123378300946, undefined, [stack, scaleVector]); }
 
 /** func GLKMatrixStackSize(_ stack: GLKMatrixStack) -> Int32 */
-export function GLKMatrixStackSize(stack: GLKMatrixStack): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 3875655237097427, undefined, [stack]); }
+export function GLKMatrixStackSize(stack: GLKMatrixStack): number { return callSDK<number>("GLKit_3864e7f38681b875", 3875655237097427, undefined, [stack]); }
 
 /** func GLKMatrixStackTranslate(_ stack: GLKMatrixStack, _ tx: Float, _ ty: Float, _ tz: Float) */
-export function GLKMatrixStackTranslate(stack: GLKMatrixStack, tx: number, ty: number, tz: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 1511811432953821, undefined, [stack, tx, ty, tz]); }
+export function GLKMatrixStackTranslate(stack: GLKMatrixStack, tx: number, ty: number, tz: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 1511811432953821, undefined, [stack, tx, ty, tz]); }
 
 /** func GLKMatrixStackTranslateWithVector3(_ stack: GLKMatrixStack, _ translationVector: GLKVector3) */
-export function GLKMatrixStackTranslateWithVector3(stack: GLKMatrixStack, translationVector: SDKHandle): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 965048855291405, undefined, [stack, translationVector]); }
+export function GLKMatrixStackTranslateWithVector3(stack: GLKMatrixStack, translationVector: SDKHandle): void { return callSDK<void>("GLKit_3864e7f38681b875", 965048855291405, undefined, [stack, translationVector]); }
 
 /** func GLKMatrixStackTranslateWithVector4(_ stack: GLKMatrixStack, _ translationVector: GLKVector4) */
-export function GLKMatrixStackTranslateWithVector4(stack: GLKMatrixStack, translationVector: SDKHandle): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 4113373585093090, undefined, [stack, translationVector]); }
+export function GLKMatrixStackTranslateWithVector4(stack: GLKMatrixStack, translationVector: SDKHandle): void { return callSDK<void>("GLKit_3864e7f38681b875", 4113373585093090, undefined, [stack, translationVector]); }
 
 /** func GLKQuaternionAdd(_ quaternionLeft: GLKQuaternion, _ quaternionRight: GLKQuaternion) -> GLKQuaternion */
-export function GLKQuaternionAdd(quaternionLeft: SDKHandle, quaternionRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4017983031299213, undefined, [quaternionLeft, quaternionRight]); }
+export function GLKQuaternionAdd(quaternionLeft: SDKHandle, quaternionRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4017983031299213, undefined, [quaternionLeft, quaternionRight]); }
 
 /** func GLKQuaternionAngle(_ quaternion: GLKQuaternion) -> Float */
-export function GLKQuaternionAngle(quaternion: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 393686857692996, undefined, [quaternion]); }
+export function GLKQuaternionAngle(quaternion: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 393686857692996, undefined, [quaternion]); }
 
 /** func GLKQuaternionAxis(_ quaternion: GLKQuaternion) -> GLKVector3 */
-export function GLKQuaternionAxis(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2619834819494257, undefined, [quaternion]); }
+export function GLKQuaternionAxis(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2619834819494257, undefined, [quaternion]); }
 
 /** func GLKQuaternionConjugate(_ quaternion: GLKQuaternion) -> GLKQuaternion */
-export function GLKQuaternionConjugate(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1954989574448011, undefined, [quaternion]); }
+export function GLKQuaternionConjugate(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1954989574448011, undefined, [quaternion]); }
 
 /** func GLKQuaternionInvert(_ quaternion: GLKQuaternion) -> GLKQuaternion */
-export function GLKQuaternionInvert(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3847892820021582, undefined, [quaternion]); }
+export function GLKQuaternionInvert(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3847892820021582, undefined, [quaternion]); }
 
 /** func GLKQuaternionLength(_ quaternion: GLKQuaternion) -> Float */
-export function GLKQuaternionLength(quaternion: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 158866635766830, undefined, [quaternion]); }
+export function GLKQuaternionLength(quaternion: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 158866635766830, undefined, [quaternion]); }
 
 /** func GLKQuaternionMake(_ x: Float, _ y: Float, _ z: Float, _ w: Float) -> GLKQuaternion */
-export function GLKQuaternionMake(x: number, y: number, z: number, w: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4250561015319927, undefined, [x, y, z, w]); }
+export function GLKQuaternionMake(x: number, y: number, z: number, w: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4250561015319927, undefined, [x, y, z, w]); }
 
 /** func GLKQuaternionMakeWithAngleAndAxis(_ radians: Float, _ x: Float, _ y: Float, _ z: Float) -> GLKQuaternion */
-export function GLKQuaternionMakeWithAngleAndAxis(radians: number, x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3234314427992286, undefined, [radians, x, y, z]); }
+export function GLKQuaternionMakeWithAngleAndAxis(radians: number, x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3234314427992286, undefined, [radians, x, y, z]); }
 
 /** func GLKQuaternionMakeWithAngleAndVector3Axis(_ radians: Float, _ axisVector: GLKVector3) -> GLKQuaternion */
-export function GLKQuaternionMakeWithAngleAndVector3Axis(radians: number, axisVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1983434611080512, undefined, [radians, axisVector]); }
+export function GLKQuaternionMakeWithAngleAndVector3Axis(radians: number, axisVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1983434611080512, undefined, [radians, axisVector]); }
 
 /** func GLKQuaternionMakeWithArray(_ values: UnsafeMutablePointer<Float>!) -> GLKQuaternion */
-export function GLKQuaternionMakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1820168981826642, undefined, [values]); }
+export function GLKQuaternionMakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1820168981826642, undefined, [values]); }
 
 /** func GLKQuaternionMakeWithMatrix3(_ matrix: GLKMatrix3) -> GLKQuaternion */
-export function GLKQuaternionMakeWithMatrix3(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 916872567429453, undefined, [matrix]); }
+export function GLKQuaternionMakeWithMatrix3(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 916872567429453, undefined, [matrix]); }
 
 /** func GLKQuaternionMakeWithMatrix4(_ matrix: GLKMatrix4) -> GLKQuaternion */
-export function GLKQuaternionMakeWithMatrix4(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 826278197895463, undefined, [matrix]); }
+export function GLKQuaternionMakeWithMatrix4(matrix: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 826278197895463, undefined, [matrix]); }
 
 /** func GLKQuaternionMakeWithVector3(_ vector: GLKVector3, _ scalar: Float) -> GLKQuaternion */
-export function GLKQuaternionMakeWithVector3(vector: SDKHandle, scalar: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1300743888762446, undefined, [vector, scalar]); }
+export function GLKQuaternionMakeWithVector3(vector: SDKHandle, scalar: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1300743888762446, undefined, [vector, scalar]); }
 
 /** func GLKQuaternionMultiply(_ quaternionLeft: GLKQuaternion, _ quaternionRight: GLKQuaternion) -> GLKQuaternion */
-export function GLKQuaternionMultiply(quaternionLeft: SDKHandle, quaternionRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1613702072701426, undefined, [quaternionLeft, quaternionRight]); }
+export function GLKQuaternionMultiply(quaternionLeft: SDKHandle, quaternionRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1613702072701426, undefined, [quaternionLeft, quaternionRight]); }
 
 /** func GLKQuaternionNormalize(_ quaternion: GLKQuaternion) -> GLKQuaternion */
-export function GLKQuaternionNormalize(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1456466048447023, undefined, [quaternion]); }
+export function GLKQuaternionNormalize(quaternion: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1456466048447023, undefined, [quaternion]); }
 
 /** func GLKQuaternionRotateVector3(_ quaternion: GLKQuaternion, _ vector: GLKVector3) -> GLKVector3 */
-export function GLKQuaternionRotateVector3(quaternion: SDKHandle, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 456213270877915, undefined, [quaternion, vector]); }
+export function GLKQuaternionRotateVector3(quaternion: SDKHandle, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 456213270877915, undefined, [quaternion, vector]); }
 
 /** func GLKQuaternionRotateVector3Array(_ quaternion: GLKQuaternion, _ vectors: UnsafeMutablePointer<GLKVector3>, _ vectorCount: Int) */
-export function GLKQuaternionRotateVector3Array(quaternion: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 763220359983252, undefined, [quaternion, vectors, vectorCount]); }
+export function GLKQuaternionRotateVector3Array(quaternion: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 763220359983252, undefined, [quaternion, vectors, vectorCount]); }
 
 /** func GLKQuaternionRotateVector4(_ quaternion: GLKQuaternion, _ vector: GLKVector4) -> GLKVector4 */
-export function GLKQuaternionRotateVector4(quaternion: SDKHandle, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1794498383020209, undefined, [quaternion, vector]); }
+export function GLKQuaternionRotateVector4(quaternion: SDKHandle, vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1794498383020209, undefined, [quaternion, vector]); }
 
 /** func GLKQuaternionRotateVector4Array(_ quaternion: GLKQuaternion, _ vectors: UnsafeMutablePointer<GLKVector4>, _ vectorCount: Int) */
-export function GLKQuaternionRotateVector4Array(quaternion: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_e11dfd5beee01da3", 2629868034665293, undefined, [quaternion, vectors, vectorCount]); }
+export function GLKQuaternionRotateVector4Array(quaternion: SDKHandle, vectors: SDKHandle, vectorCount: number): void { return callSDK<void>("GLKit_3864e7f38681b875", 2629868034665293, undefined, [quaternion, vectors, vectorCount]); }
 
 /** func GLKQuaternionSlerp(_ quaternionStart: GLKQuaternion, _ quaternionEnd: GLKQuaternion, _ t: Float) -> GLKQuaternion */
-export function GLKQuaternionSlerp(quaternionStart: SDKHandle, quaternionEnd: SDKHandle, t: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1480965171410869, undefined, [quaternionStart, quaternionEnd, t]); }
+export function GLKQuaternionSlerp(quaternionStart: SDKHandle, quaternionEnd: SDKHandle, t: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1480965171410869, undefined, [quaternionStart, quaternionEnd, t]); }
 
 /** func GLKQuaternionSubtract(_ quaternionLeft: GLKQuaternion, _ quaternionRight: GLKQuaternion) -> GLKQuaternion */
-export function GLKQuaternionSubtract(quaternionLeft: SDKHandle, quaternionRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1016517751635275, undefined, [quaternionLeft, quaternionRight]); }
+export function GLKQuaternionSubtract(quaternionLeft: SDKHandle, quaternionRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1016517751635275, undefined, [quaternionLeft, quaternionRight]); }
 
 /** func GLKVector2Add(_ vectorLeft: GLKVector2, _ vectorRight: GLKVector2) -> GLKVector2 */
-export function GLKVector2Add(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1983357342263026, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector2Add(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1983357342263026, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector2AddScalar(_ vector: GLKVector2, _ value: Float) -> GLKVector2 */
-export function GLKVector2AddScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4032820240062770, undefined, [vector, value]); }
+export function GLKVector2AddScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4032820240062770, undefined, [vector, value]); }
 
 /** func GLKVector2AllEqualToScalar(_ vector: GLKVector2, _ value: Float) -> Bool */
-export function GLKVector2AllEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 1492265934085526, undefined, [vector, value]); }
+export function GLKVector2AllEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 1492265934085526, undefined, [vector, value]); }
 
 /** func GLKVector2AllEqualToVector2(_ vectorLeft: GLKVector2, _ vectorRight: GLKVector2) -> Bool */
-export function GLKVector2AllEqualToVector2(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 2274018588305138, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector2AllEqualToVector2(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 2274018588305138, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector2AllGreaterThanOrEqualToScalar(_ vector: GLKVector2, _ value: Float) -> Bool */
-export function GLKVector2AllGreaterThanOrEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 3117131792535594, undefined, [vector, value]); }
+export function GLKVector2AllGreaterThanOrEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 3117131792535594, undefined, [vector, value]); }
 
 /** func GLKVector2AllGreaterThanOrEqualToVector2(_ vectorLeft: GLKVector2, _ vectorRight: GLKVector2) -> Bool */
-export function GLKVector2AllGreaterThanOrEqualToVector2(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 3161998846514952, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector2AllGreaterThanOrEqualToVector2(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 3161998846514952, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector2AllGreaterThanScalar(_ vector: GLKVector2, _ value: Float) -> Bool */
-export function GLKVector2AllGreaterThanScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 3161177729799020, undefined, [vector, value]); }
+export function GLKVector2AllGreaterThanScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 3161177729799020, undefined, [vector, value]); }
 
 /** func GLKVector2AllGreaterThanVector2(_ vectorLeft: GLKVector2, _ vectorRight: GLKVector2) -> Bool */
-export function GLKVector2AllGreaterThanVector2(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 1197663749186229, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector2AllGreaterThanVector2(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 1197663749186229, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector2Distance(_ vectorStart: GLKVector2, _ vectorEnd: GLKVector2) -> Float */
-export function GLKVector2Distance(vectorStart: SDKHandle, vectorEnd: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4186412386298011, undefined, [vectorStart, vectorEnd]); }
+export function GLKVector2Distance(vectorStart: SDKHandle, vectorEnd: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 4186412386298011, undefined, [vectorStart, vectorEnd]); }
 
 /** func GLKVector2Divide(_ vectorLeft: GLKVector2, _ vectorRight: GLKVector2) -> GLKVector2 */
-export function GLKVector2Divide(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 463315981422027, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector2Divide(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 463315981422027, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector2DivideScalar(_ vector: GLKVector2, _ value: Float) -> GLKVector2 */
-export function GLKVector2DivideScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3511229116591134, undefined, [vector, value]); }
+export function GLKVector2DivideScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3511229116591134, undefined, [vector, value]); }
 
 /** func GLKVector2DotProduct(_ vectorLeft: GLKVector2, _ vectorRight: GLKVector2) -> Float */
-export function GLKVector2DotProduct(vectorLeft: SDKHandle, vectorRight: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4036759635070220, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector2DotProduct(vectorLeft: SDKHandle, vectorRight: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 4036759635070220, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector2Length(_ vector: GLKVector2) -> Float */
-export function GLKVector2Length(vector: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 4383666636962917, undefined, [vector]); }
+export function GLKVector2Length(vector: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 4383666636962917, undefined, [vector]); }
 
 /** func GLKVector2Lerp(_ vectorStart: GLKVector2, _ vectorEnd: GLKVector2, _ t: Float) -> GLKVector2 */
-export function GLKVector2Lerp(vectorStart: SDKHandle, vectorEnd: SDKHandle, t: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3680109248773049, undefined, [vectorStart, vectorEnd, t]); }
+export function GLKVector2Lerp(vectorStart: SDKHandle, vectorEnd: SDKHandle, t: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3680109248773049, undefined, [vectorStart, vectorEnd, t]); }
 
 /** func GLKVector2Make(_ x: Float, _ y: Float) -> GLKVector2 */
-export function GLKVector2Make(x: number, y: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 963580678260910, undefined, [x, y]); }
+export function GLKVector2Make(x: number, y: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 963580678260910, undefined, [x, y]); }
 
 /** func GLKVector2MakeWithArray(_ values: UnsafeMutablePointer<Float>!) -> GLKVector2 */
-export function GLKVector2MakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2721435136977791, undefined, [values]); }
+export function GLKVector2MakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2721435136977791, undefined, [values]); }
 
 /** func GLKVector2Maximum(_ vectorLeft: GLKVector2, _ vectorRight: GLKVector2) -> GLKVector2 */
-export function GLKVector2Maximum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3155733468581145, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector2Maximum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3155733468581145, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector2Minimum(_ vectorLeft: GLKVector2, _ vectorRight: GLKVector2) -> GLKVector2 */
-export function GLKVector2Minimum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4264562756559954, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector2Minimum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4264562756559954, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector2Multiply(_ vectorLeft: GLKVector2, _ vectorRight: GLKVector2) -> GLKVector2 */
-export function GLKVector2Multiply(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2031430439116953, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector2Multiply(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2031430439116953, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector2MultiplyScalar(_ vector: GLKVector2, _ value: Float) -> GLKVector2 */
-export function GLKVector2MultiplyScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3578083334454966, undefined, [vector, value]); }
+export function GLKVector2MultiplyScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3578083334454966, undefined, [vector, value]); }
 
 /** func GLKVector2Negate(_ vector: GLKVector2) -> GLKVector2 */
-export function GLKVector2Negate(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2420702498630266, undefined, [vector]); }
+export function GLKVector2Negate(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2420702498630266, undefined, [vector]); }
 
 /** func GLKVector2Normalize(_ vector: GLKVector2) -> GLKVector2 */
-export function GLKVector2Normalize(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 376298194838298, undefined, [vector]); }
+export function GLKVector2Normalize(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 376298194838298, undefined, [vector]); }
 
 /** func GLKVector2Project(_ vectorToProject: GLKVector2, _ projectionVector: GLKVector2) -> GLKVector2 */
-export function GLKVector2Project(vectorToProject: SDKHandle, projectionVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4465225751373630, undefined, [vectorToProject, projectionVector]); }
+export function GLKVector2Project(vectorToProject: SDKHandle, projectionVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4465225751373630, undefined, [vectorToProject, projectionVector]); }
 
 /** func GLKVector2Subtract(_ vectorLeft: GLKVector2, _ vectorRight: GLKVector2) -> GLKVector2 */
-export function GLKVector2Subtract(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1700897232210751, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector2Subtract(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1700897232210751, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector2SubtractScalar(_ vector: GLKVector2, _ value: Float) -> GLKVector2 */
-export function GLKVector2SubtractScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1400286247265080, undefined, [vector, value]); }
+export function GLKVector2SubtractScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1400286247265080, undefined, [vector, value]); }
 
 /** func GLKVector3Add(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKVector3Add(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3525994875877575, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3Add(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3525994875877575, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3AddScalar(_ vector: GLKVector3, _ value: Float) -> GLKVector3 */
-export function GLKVector3AddScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4377391808901394, undefined, [vector, value]); }
+export function GLKVector3AddScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4377391808901394, undefined, [vector, value]); }
 
 /** func GLKVector3AllEqualToScalar(_ vector: GLKVector3, _ value: Float) -> Bool */
-export function GLKVector3AllEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 3950919906321810, undefined, [vector, value]); }
+export function GLKVector3AllEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 3950919906321810, undefined, [vector, value]); }
 
 /** func GLKVector3AllEqualToVector3(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> Bool */
-export function GLKVector3AllEqualToVector3(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 874820577650775, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3AllEqualToVector3(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 874820577650775, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3AllGreaterThanOrEqualToScalar(_ vector: GLKVector3, _ value: Float) -> Bool */
-export function GLKVector3AllGreaterThanOrEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 3747766432275346, undefined, [vector, value]); }
+export function GLKVector3AllGreaterThanOrEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 3747766432275346, undefined, [vector, value]); }
 
 /** func GLKVector3AllGreaterThanOrEqualToVector3(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> Bool */
-export function GLKVector3AllGreaterThanOrEqualToVector3(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 2060858511258742, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3AllGreaterThanOrEqualToVector3(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 2060858511258742, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3AllGreaterThanScalar(_ vector: GLKVector3, _ value: Float) -> Bool */
-export function GLKVector3AllGreaterThanScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 1902777469092905, undefined, [vector, value]); }
+export function GLKVector3AllGreaterThanScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 1902777469092905, undefined, [vector, value]); }
 
 /** func GLKVector3AllGreaterThanVector3(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> Bool */
-export function GLKVector3AllGreaterThanVector3(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 3160007671701769, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3AllGreaterThanVector3(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 3160007671701769, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3CrossProduct(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKVector3CrossProduct(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1544581120895218, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3CrossProduct(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1544581120895218, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3Distance(_ vectorStart: GLKVector3, _ vectorEnd: GLKVector3) -> Float */
-export function GLKVector3Distance(vectorStart: SDKHandle, vectorEnd: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2792893018113559, undefined, [vectorStart, vectorEnd]); }
+export function GLKVector3Distance(vectorStart: SDKHandle, vectorEnd: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 2792893018113559, undefined, [vectorStart, vectorEnd]); }
 
 /** func GLKVector3Divide(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKVector3Divide(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3741386971019830, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3Divide(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3741386971019830, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3DivideScalar(_ vector: GLKVector3, _ value: Float) -> GLKVector3 */
-export function GLKVector3DivideScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3416802569588539, undefined, [vector, value]); }
+export function GLKVector3DivideScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3416802569588539, undefined, [vector, value]); }
 
 /** func GLKVector3DotProduct(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> Float */
-export function GLKVector3DotProduct(vectorLeft: SDKHandle, vectorRight: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 3635375692427613, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3DotProduct(vectorLeft: SDKHandle, vectorRight: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 3635375692427613, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3Length(_ vector: GLKVector3) -> Float */
-export function GLKVector3Length(vector: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2821801268776109, undefined, [vector]); }
+export function GLKVector3Length(vector: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 2821801268776109, undefined, [vector]); }
 
 /** func GLKVector3Lerp(_ vectorStart: GLKVector3, _ vectorEnd: GLKVector3, _ t: Float) -> GLKVector3 */
-export function GLKVector3Lerp(vectorStart: SDKHandle, vectorEnd: SDKHandle, t: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2689239748159040, undefined, [vectorStart, vectorEnd, t]); }
+export function GLKVector3Lerp(vectorStart: SDKHandle, vectorEnd: SDKHandle, t: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2689239748159040, undefined, [vectorStart, vectorEnd, t]); }
 
 /** func GLKVector3Make(_ x: Float, _ y: Float, _ z: Float) -> GLKVector3 */
-export function GLKVector3Make(x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1838057573655174, undefined, [x, y, z]); }
+export function GLKVector3Make(x: number, y: number, z: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1838057573655174, undefined, [x, y, z]); }
 
 /** func GLKVector3MakeWithArray(_ values: UnsafeMutablePointer<Float>!) -> GLKVector3 */
-export function GLKVector3MakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3119404032988459, undefined, [values]); }
+export function GLKVector3MakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3119404032988459, undefined, [values]); }
 
 /** func GLKVector3Maximum(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKVector3Maximum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2220341213804281, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3Maximum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2220341213804281, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3Minimum(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKVector3Minimum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1576020565339257, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3Minimum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1576020565339257, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3Multiply(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKVector3Multiply(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2144862236201699, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3Multiply(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2144862236201699, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3MultiplyScalar(_ vector: GLKVector3, _ value: Float) -> GLKVector3 */
-export function GLKVector3MultiplyScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1726159284460774, undefined, [vector, value]); }
+export function GLKVector3MultiplyScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1726159284460774, undefined, [vector, value]); }
 
 /** func GLKVector3Negate(_ vector: GLKVector3) -> GLKVector3 */
-export function GLKVector3Negate(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1065832906100837, undefined, [vector]); }
+export function GLKVector3Negate(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1065832906100837, undefined, [vector]); }
 
 /** func GLKVector3Normalize(_ vector: GLKVector3) -> GLKVector3 */
-export function GLKVector3Normalize(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2293030617633853, undefined, [vector]); }
+export function GLKVector3Normalize(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2293030617633853, undefined, [vector]); }
 
 /** func GLKVector3Project(_ vectorToProject: GLKVector3, _ projectionVector: GLKVector3) -> GLKVector3 */
-export function GLKVector3Project(vectorToProject: SDKHandle, projectionVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 520035920891788, undefined, [vectorToProject, projectionVector]); }
+export function GLKVector3Project(vectorToProject: SDKHandle, projectionVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 520035920891788, undefined, [vectorToProject, projectionVector]); }
 
 /** func GLKVector3Subtract(_ vectorLeft: GLKVector3, _ vectorRight: GLKVector3) -> GLKVector3 */
-export function GLKVector3Subtract(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 737345008681986, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector3Subtract(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 737345008681986, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector3SubtractScalar(_ vector: GLKVector3, _ value: Float) -> GLKVector3 */
-export function GLKVector3SubtractScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3975128870221087, undefined, [vector, value]); }
+export function GLKVector3SubtractScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3975128870221087, undefined, [vector, value]); }
 
 /** func GLKVector4Add(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> GLKVector4 */
-export function GLKVector4Add(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1180317068307502, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4Add(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1180317068307502, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4AddScalar(_ vector: GLKVector4, _ value: Float) -> GLKVector4 */
-export function GLKVector4AddScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3059100100272478, undefined, [vector, value]); }
+export function GLKVector4AddScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3059100100272478, undefined, [vector, value]); }
 
 /** func GLKVector4AllEqualToScalar(_ vector: GLKVector4, _ value: Float) -> Bool */
-export function GLKVector4AllEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 2669053215884472, undefined, [vector, value]); }
+export function GLKVector4AllEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 2669053215884472, undefined, [vector, value]); }
 
 /** func GLKVector4AllEqualToVector4(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> Bool */
-export function GLKVector4AllEqualToVector4(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 712042956214317, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4AllEqualToVector4(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 712042956214317, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4AllGreaterThanOrEqualToScalar(_ vector: GLKVector4, _ value: Float) -> Bool */
-export function GLKVector4AllGreaterThanOrEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 2148493772895584, undefined, [vector, value]); }
+export function GLKVector4AllGreaterThanOrEqualToScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 2148493772895584, undefined, [vector, value]); }
 
 /** func GLKVector4AllGreaterThanOrEqualToVector4(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> Bool */
-export function GLKVector4AllGreaterThanOrEqualToVector4(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 1114268386823611, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4AllGreaterThanOrEqualToVector4(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 1114268386823611, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4AllGreaterThanScalar(_ vector: GLKVector4, _ value: Float) -> Bool */
-export function GLKVector4AllGreaterThanScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 874317790857034, undefined, [vector, value]); }
+export function GLKVector4AllGreaterThanScalar(vector: SDKHandle, value: number): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 874317790857034, undefined, [vector, value]); }
 
 /** func GLKVector4AllGreaterThanVector4(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> Bool */
-export function GLKVector4AllGreaterThanVector4(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_e11dfd5beee01da3", 3070525156382970, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4AllGreaterThanVector4(vectorLeft: SDKHandle, vectorRight: SDKHandle): boolean { return callSDK<boolean>("GLKit_3864e7f38681b875", 3070525156382970, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4CrossProduct(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> GLKVector4 */
-export function GLKVector4CrossProduct(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1283528599028845, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4CrossProduct(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1283528599028845, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4Distance(_ vectorStart: GLKVector4, _ vectorEnd: GLKVector4) -> Float */
-export function GLKVector4Distance(vectorStart: SDKHandle, vectorEnd: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 2705871385649961, undefined, [vectorStart, vectorEnd]); }
+export function GLKVector4Distance(vectorStart: SDKHandle, vectorEnd: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 2705871385649961, undefined, [vectorStart, vectorEnd]); }
 
 /** func GLKVector4Divide(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> GLKVector4 */
-export function GLKVector4Divide(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4276302453051762, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4Divide(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4276302453051762, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4DivideScalar(_ vector: GLKVector4, _ value: Float) -> GLKVector4 */
-export function GLKVector4DivideScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 151168386812577, undefined, [vector, value]); }
+export function GLKVector4DivideScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 151168386812577, undefined, [vector, value]); }
 
 /** func GLKVector4DotProduct(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> Float */
-export function GLKVector4DotProduct(vectorLeft: SDKHandle, vectorRight: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 982275833922270, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4DotProduct(vectorLeft: SDKHandle, vectorRight: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 982275833922270, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4Length(_ vector: GLKVector4) -> Float */
-export function GLKVector4Length(vector: SDKHandle): number { return callSDK<number>("GLKit_e11dfd5beee01da3", 759987020758754, undefined, [vector]); }
+export function GLKVector4Length(vector: SDKHandle): number { return callSDK<number>("GLKit_3864e7f38681b875", 759987020758754, undefined, [vector]); }
 
 /** func GLKVector4Lerp(_ vectorStart: GLKVector4, _ vectorEnd: GLKVector4, _ t: Float) -> GLKVector4 */
-export function GLKVector4Lerp(vectorStart: SDKHandle, vectorEnd: SDKHandle, t: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1790353465042668, undefined, [vectorStart, vectorEnd, t]); }
+export function GLKVector4Lerp(vectorStart: SDKHandle, vectorEnd: SDKHandle, t: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1790353465042668, undefined, [vectorStart, vectorEnd, t]); }
 
 /** func GLKVector4Make(_ x: Float, _ y: Float, _ z: Float, _ w: Float) -> GLKVector4 */
-export function GLKVector4Make(x: number, y: number, z: number, w: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4115679780787907, undefined, [x, y, z, w]); }
+export function GLKVector4Make(x: number, y: number, z: number, w: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4115679780787907, undefined, [x, y, z, w]); }
 
 /** func GLKVector4MakeWithArray(_ values: UnsafeMutablePointer<Float>!) -> GLKVector4 */
-export function GLKVector4MakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 2633095137393930, undefined, [values]); }
+export function GLKVector4MakeWithArray(values?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 2633095137393930, undefined, [values]); }
 
 /** func GLKVector4MakeWithVector3(_ vector: GLKVector3, _ w: Float) -> GLKVector4 */
-export function GLKVector4MakeWithVector3(vector: SDKHandle, w: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4020898431739557, undefined, [vector, w]); }
+export function GLKVector4MakeWithVector3(vector: SDKHandle, w: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4020898431739557, undefined, [vector, w]); }
 
 /** func GLKVector4Maximum(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> GLKVector4 */
-export function GLKVector4Maximum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3305729293242556, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4Maximum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3305729293242556, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4Minimum(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> GLKVector4 */
-export function GLKVector4Minimum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1676313991350127, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4Minimum(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1676313991350127, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4Multiply(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> GLKVector4 */
-export function GLKVector4Multiply(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1033906930107886, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4Multiply(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1033906930107886, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4MultiplyScalar(_ vector: GLKVector4, _ value: Float) -> GLKVector4 */
-export function GLKVector4MultiplyScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1410479908726902, undefined, [vector, value]); }
+export function GLKVector4MultiplyScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1410479908726902, undefined, [vector, value]); }
 
 /** func GLKVector4Negate(_ vector: GLKVector4) -> GLKVector4 */
-export function GLKVector4Negate(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4369434017254828, undefined, [vector]); }
+export function GLKVector4Negate(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4369434017254828, undefined, [vector]); }
 
 /** func GLKVector4Normalize(_ vector: GLKVector4) -> GLKVector4 */
-export function GLKVector4Normalize(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4174121569463560, undefined, [vector]); }
+export function GLKVector4Normalize(vector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4174121569463560, undefined, [vector]); }
 
 /** func GLKVector4Project(_ vectorToProject: GLKVector4, _ projectionVector: GLKVector4) -> GLKVector4 */
-export function GLKVector4Project(vectorToProject: SDKHandle, projectionVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1332201007333039, undefined, [vectorToProject, projectionVector]); }
+export function GLKVector4Project(vectorToProject: SDKHandle, projectionVector: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1332201007333039, undefined, [vectorToProject, projectionVector]); }
 
 /** func GLKVector4Subtract(_ vectorLeft: GLKVector4, _ vectorRight: GLKVector4) -> GLKVector4 */
-export function GLKVector4Subtract(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 4080282356177459, undefined, [vectorLeft, vectorRight]); }
+export function GLKVector4Subtract(vectorLeft: SDKHandle, vectorRight: SDKHandle): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 4080282356177459, undefined, [vectorLeft, vectorRight]); }
 
 /** func GLKVector4SubtractScalar(_ vector: GLKVector4, _ value: Float) -> GLKVector4 */
-export function GLKVector4SubtractScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 212110893879421, undefined, [vector, value]); }
+export function GLKVector4SubtractScalar(vector: SDKHandle, value: number): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 212110893879421, undefined, [vector, value]); }
 
 /** func GLKVertexAttributeParametersFromModelIO(_ vertexFormat: MDLVertexFormat) -> GLKVertexAttributeParameters */
-export function GLKVertexAttributeParametersFromModelIO(vertexFormat: _ModelIO_MDLVertexFormat): SDKHandle { return callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 418820711748908, undefined, [vertexFormat]); }
+export function GLKVertexAttributeParametersFromModelIO(vertexFormat: _ModelIO_MDLVertexFormat): SDKHandle { return callSDK<SDKHandle>("GLKit_3864e7f38681b875", 418820711748908, undefined, [vertexFormat]); }
 
 /** func NSStringFromGLKMatrix2(_ matrix: GLKMatrix2) -> String */
-export function NSStringFromGLKMatrix2(matrix: SDKHandle): string { return callSDK<string>("GLKit_e11dfd5beee01da3", 3987192209470689, undefined, [matrix]); }
+export function NSStringFromGLKMatrix2(matrix: SDKHandle): string { return callSDK<string>("GLKit_3864e7f38681b875", 3987192209470689, undefined, [matrix]); }
 
 /** func NSStringFromGLKMatrix3(_ matrix: GLKMatrix3) -> String */
-export function NSStringFromGLKMatrix3(matrix: SDKHandle): string { return callSDK<string>("GLKit_e11dfd5beee01da3", 3978638992317918, undefined, [matrix]); }
+export function NSStringFromGLKMatrix3(matrix: SDKHandle): string { return callSDK<string>("GLKit_3864e7f38681b875", 3978638992317918, undefined, [matrix]); }
 
 /** func NSStringFromGLKMatrix4(_ matrix: GLKMatrix4) -> String */
-export function NSStringFromGLKMatrix4(matrix: SDKHandle): string { return callSDK<string>("GLKit_e11dfd5beee01da3", 498845568400312, undefined, [matrix]); }
+export function NSStringFromGLKMatrix4(matrix: SDKHandle): string { return callSDK<string>("GLKit_3864e7f38681b875", 498845568400312, undefined, [matrix]); }
 
 /** func NSStringFromGLKQuaternion(_ quaternion: GLKQuaternion) -> String */
-export function NSStringFromGLKQuaternion(quaternion: SDKHandle): string { return callSDK<string>("GLKit_e11dfd5beee01da3", 3104272260621547, undefined, [quaternion]); }
+export function NSStringFromGLKQuaternion(quaternion: SDKHandle): string { return callSDK<string>("GLKit_3864e7f38681b875", 3104272260621547, undefined, [quaternion]); }
 
 /** func NSStringFromGLKVector2(_ vector: GLKVector2) -> String */
-export function NSStringFromGLKVector2(vector: SDKHandle): string { return callSDK<string>("GLKit_e11dfd5beee01da3", 3878624666671188, undefined, [vector]); }
+export function NSStringFromGLKVector2(vector: SDKHandle): string { return callSDK<string>("GLKit_3864e7f38681b875", 3878624666671188, undefined, [vector]); }
 
 /** func NSStringFromGLKVector3(_ vector: GLKVector3) -> String */
-export function NSStringFromGLKVector3(vector: SDKHandle): string { return callSDK<string>("GLKit_e11dfd5beee01da3", 190857852017200, undefined, [vector]); }
+export function NSStringFromGLKVector3(vector: SDKHandle): string { return callSDK<string>("GLKit_3864e7f38681b875", 190857852017200, undefined, [vector]); }
 
 /** func NSStringFromGLKVector4(_ vector: GLKVector4) -> String */
-export function NSStringFromGLKVector4(vector: SDKHandle): string { return callSDK<string>("GLKit_e11dfd5beee01da3", 1540688926565390, undefined, [vector]); }
+export function NSStringFromGLKVector4(vector: SDKHandle): string { return callSDK<string>("GLKit_3864e7f38681b875", 1540688926565390, undefined, [vector]); }
 
 /** let GLKMatrix3Identity: GLKMatrix3 */
-export const GLKMatrix3Identity: SDKHandle = callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1951622166006305, undefined, []);
+export const GLKMatrix3Identity: SDKHandle = callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1951622166006305, undefined, []);
 
 /** let GLKMatrix4Identity: GLKMatrix4 */
-export const GLKMatrix4Identity: SDKHandle = callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 1701386513878192, undefined, []);
+export const GLKMatrix4Identity: SDKHandle = callSDK<SDKHandle>("GLKit_3864e7f38681b875", 1701386513878192, undefined, []);
 
 /** let GLKQuaternionIdentity: GLKQuaternion */
-export const GLKQuaternionIdentity: SDKHandle = callSDK<SDKHandle>("GLKit_e11dfd5beee01da3", 3197194044028824, undefined, []);
+export const GLKQuaternionIdentity: SDKHandle = callSDK<SDKHandle>("GLKit_3864e7f38681b875", 3197194044028824, undefined, []);
 
 /**
  * let GLKTextureLoaderApplyPremultiplication: String
  * @availability iOS 5.0+
  */
-export const GLKTextureLoaderApplyPremultiplication: string = callSDK<string>("GLKit_e11dfd5beee01da3", 3614659823570997, undefined, []);
+export const GLKTextureLoaderApplyPremultiplication: string = callSDK<string>("GLKit_3864e7f38681b875", 3614659823570997, undefined, []);
 
 /**
  * let GLKTextureLoaderErrorDomain: String
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export const GLKTextureLoaderErrorDomain: string = callSDK<string>("GLKit_e11dfd5beee01da3", 92297263930939, undefined, []);
+export const GLKTextureLoaderErrorDomain: string = callSDK<string>("GLKit_3864e7f38681b875", 92297263930939, undefined, []);
 
 /**
  * let GLKTextureLoaderErrorKey: String
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export const GLKTextureLoaderErrorKey: string = callSDK<string>("GLKit_e11dfd5beee01da3", 2918012342831336, undefined, []);
+export const GLKTextureLoaderErrorKey: string = callSDK<string>("GLKit_3864e7f38681b875", 2918012342831336, undefined, []);
 
 /**
  * let GLKTextureLoaderGLErrorKey: String
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export const GLKTextureLoaderGLErrorKey: string = callSDK<string>("GLKit_e11dfd5beee01da3", 2857173883540471, undefined, []);
+export const GLKTextureLoaderGLErrorKey: string = callSDK<string>("GLKit_3864e7f38681b875", 2857173883540471, undefined, []);
 
 /**
  * let GLKTextureLoaderGenerateMipmaps: String
  * @availability iOS 5.0+
  */
-export const GLKTextureLoaderGenerateMipmaps: string = callSDK<string>("GLKit_e11dfd5beee01da3", 1357810603663400, undefined, []);
+export const GLKTextureLoaderGenerateMipmaps: string = callSDK<string>("GLKit_3864e7f38681b875", 1357810603663400, undefined, []);
 
 /** let GLKTextureLoaderGrayscaleAsAlpha: String */
-export const GLKTextureLoaderGrayscaleAsAlpha: string = callSDK<string>("GLKit_e11dfd5beee01da3", 2119004833701990, undefined, []);
+export const GLKTextureLoaderGrayscaleAsAlpha: string = callSDK<string>("GLKit_3864e7f38681b875", 2119004833701990, undefined, []);
 
 /**
  * let GLKTextureLoaderOriginBottomLeft: String
  * @availability iOS 5.0+
  */
-export const GLKTextureLoaderOriginBottomLeft: string = callSDK<string>("GLKit_e11dfd5beee01da3", 2413466073849799, undefined, []);
+export const GLKTextureLoaderOriginBottomLeft: string = callSDK<string>("GLKit_3864e7f38681b875", 2413466073849799, undefined, []);
 
 /**
  * let GLKTextureLoaderSRGB: String
  * @availability iOS 7.0+
  * @deprecated iOS 12.0
  */
-export const GLKTextureLoaderSRGB: string = callSDK<string>("GLKit_e11dfd5beee01da3", 314557191729607, undefined, []);
+export const GLKTextureLoaderSRGB: string = callSDK<string>("GLKit_3864e7f38681b875", 314557191729607, undefined, []);
 
 /**
  * let kGLKModelErrorDomain: String
  * @availability iOS 9.0+
  * @deprecated iOS 12.0
  */
-export const kGLKModelErrorDomain: string = callSDK<string>("GLKit_e11dfd5beee01da3", 2760741754285071, undefined, []);
+export const kGLKModelErrorDomain: string = callSDK<string>("GLKit_3864e7f38681b875", 2760741754285071, undefined, []);
 
 /**
  * let kGLKModelErrorKey: String
  * @availability iOS 9.0+
  * @deprecated iOS 12.0
  */
-export const kGLKModelErrorKey: string = callSDK<string>("GLKit_e11dfd5beee01da3", 2442194820044232, undefined, []);
+export const kGLKModelErrorKey: string = callSDK<string>("GLKit_3864e7f38681b875", 2442194820044232, undefined, []);
 
-registerSDKClass("GLKBaseEffect", GLKBaseEffect, { module: "GLKit_e11dfd5beee01da3", properties: {"colorMaterialEnabled":1325222092174378,"constantColor":2577626063171156,"fog":1302820737123952,"label":536258590783873,"light0":3122118773558843,"light1":229257680497203,"light2":1823554483967437,"lightModelAmbientColor":2591664778646542,"lightModelTwoSided":792731588111903,"lightingType":2352284752846114,"material":4381742840457280,"texture2d0":737216580019414,"texture2d1":4225197378689718,"textureOrder":1344358567934058,"transform":336500632416236,"useConstantColor":2702399877975851}, methods: {"prepareToDraw":{"id":1614590418552822}} });
-registerSDKClass("GLKEffectProperty", GLKEffectProperty, { module: "GLKit_e11dfd5beee01da3", properties: {} });
-registerSDKClass("GLKEffectPropertyFog", GLKEffectPropertyFog, { module: "GLKit_e11dfd5beee01da3", properties: {"color":3133358126735633,"density":3749399334554919,"enabled":3055622833240237,"end":112816859226263,"mode":3724177492066486,"start":1734184695883430} });
-registerSDKClass("GLKEffectPropertyLight", GLKEffectPropertyLight, { module: "GLKit_e11dfd5beee01da3", properties: {"ambientColor":1769433982007279,"constantAttenuation":4439752045436722,"diffuseColor":3386090394373424,"enabled":1743954788648104,"linearAttenuation":997280263255714,"position":3833115766234613,"quadraticAttenuation":2475786837728067,"specularColor":2848600464351313,"spotCutoff":1160563584886320,"spotDirection":2596310347556135,"spotExponent":1024902541768704,"transform":2373635273464493} });
-registerSDKClass("GLKEffectPropertyMaterial", GLKEffectPropertyMaterial, { module: "GLKit_e11dfd5beee01da3", properties: {"ambientColor":451622884541165,"diffuseColor":346636513299144,"emissiveColor":3079841167247395,"shininess":2850939069181453,"specularColor":3446519649644646} });
-registerSDKClass("GLKEffectPropertyTexture", GLKEffectPropertyTexture, { module: "GLKit_e11dfd5beee01da3", properties: {"enabled":4204034277674926,"envMode":4032987719308035,"name":303888980561526,"target":3951400959068958} });
-registerSDKClass("GLKEffectPropertyTransform", GLKEffectPropertyTransform, { module: "GLKit_e11dfd5beee01da3", properties: {"modelviewMatrix":3034959589181176,"normalMatrix":805352285531141,"projectionMatrix":1531518990530218} });
-registerSDKClass("GLKit.GLKMatrixStack", GLKMatrixStack, { module: "GLKit_e11dfd5beee01da3", properties: {} });
-registerSDKClass("GLKMesh", GLKMesh, { module: "GLKit_e11dfd5beee01da3", properties: {"name":1541911885894084,"submeshes":3331788921610357,"vertexBuffers":2851459730339639,"vertexCount":1204800379014704,"vertexDescriptor":4102692725418910} });
-registerSDKClass("GLKMeshBuffer", GLKMeshBuffer, { module: "GLKit_e11dfd5beee01da3", properties: {"allocator":996269888632774,"glBufferName":2112345117242730,"length":290546624685715,"offset":4008734159405946,"type":1482692978220074}, methods: {"zone":{"id":3827697205764775}} });
-registerSDKClass("GLKMeshBufferAllocator", GLKMeshBufferAllocator, { module: "GLKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GLKBaseEffect", GLKBaseEffect, { module: "GLKit_3864e7f38681b875", properties: {"colorMaterialEnabled":1325222092174378,"constantColor":2577626063171156,"fog":1302820737123952,"label":536258590783873,"light0":3122118773558843,"light1":229257680497203,"light2":1823554483967437,"lightModelAmbientColor":2591664778646542,"lightModelTwoSided":792731588111903,"lightingType":2352284752846114,"material":4381742840457280,"texture2d0":737216580019414,"texture2d1":4225197378689718,"textureOrder":1344358567934058,"transform":336500632416236,"useConstantColor":2702399877975851}, methods: {"prepareToDraw":{"id":1614590418552822}} });
+registerSDKClass("GLKEffectProperty", GLKEffectProperty, { module: "GLKit_3864e7f38681b875", properties: {} });
+registerSDKClass("GLKEffectPropertyFog", GLKEffectPropertyFog, { module: "GLKit_3864e7f38681b875", properties: {"color":3133358126735633,"density":3749399334554919,"enabled":3055622833240237,"end":112816859226263,"mode":3724177492066486,"start":1734184695883430} });
+registerSDKClass("GLKEffectPropertyLight", GLKEffectPropertyLight, { module: "GLKit_3864e7f38681b875", properties: {"ambientColor":1769433982007279,"constantAttenuation":4439752045436722,"diffuseColor":3386090394373424,"enabled":1743954788648104,"linearAttenuation":997280263255714,"position":3833115766234613,"quadraticAttenuation":2475786837728067,"specularColor":2848600464351313,"spotCutoff":1160563584886320,"spotDirection":2596310347556135,"spotExponent":1024902541768704,"transform":2373635273464493} });
+registerSDKClass("GLKEffectPropertyMaterial", GLKEffectPropertyMaterial, { module: "GLKit_3864e7f38681b875", properties: {"ambientColor":451622884541165,"diffuseColor":346636513299144,"emissiveColor":3079841167247395,"shininess":2850939069181453,"specularColor":3446519649644646} });
+registerSDKClass("GLKEffectPropertyTexture", GLKEffectPropertyTexture, { module: "GLKit_3864e7f38681b875", properties: {"enabled":4204034277674926,"envMode":4032987719308035,"name":303888980561526,"target":3951400959068958} });
+registerSDKClass("GLKEffectPropertyTransform", GLKEffectPropertyTransform, { module: "GLKit_3864e7f38681b875", properties: {"modelviewMatrix":3034959589181176,"normalMatrix":805352285531141,"projectionMatrix":1531518990530218} });
+registerSDKClass("GLKit.GLKMatrixStack", GLKMatrixStack, { module: "GLKit_3864e7f38681b875", properties: {} });
+registerSDKClass("GLKMesh", GLKMesh, { module: "GLKit_3864e7f38681b875", properties: {"name":1541911885894084,"submeshes":3331788921610357,"vertexBuffers":2851459730339639,"vertexCount":1204800379014704,"vertexDescriptor":4102692725418910} });
+registerSDKClass("GLKMeshBuffer", GLKMeshBuffer, { module: "GLKit_3864e7f38681b875", properties: {"allocator":996269888632774,"glBufferName":2112345117242730,"length":290546624685715,"offset":4008734159405946,"type":1482692978220074}, methods: {"zone":{"id":3827697205764775}} });
+registerSDKClass("GLKMeshBufferAllocator", GLKMeshBufferAllocator, { module: "GLKit_3864e7f38681b875", properties: {} });
 registerSDKProtocol("c:objc(pl)GLKNamedEffect", {"prepareToDraw":"prepareToDraw()"});
-registerSDKClass("GLKReflectionMapEffect", GLKReflectionMapEffect, { module: "GLKit_e11dfd5beee01da3", properties: {"matrix":2571891046083267,"textureCubeMap":773892887185214}, methods: {"prepareToDraw":{"id":1660984714845123}} });
-registerSDKClass("GLKSkyboxEffect", GLKSkyboxEffect, { module: "GLKit_e11dfd5beee01da3", properties: {"center":1862609047843716,"label":311656081309020,"textureCubeMap":4324384719327416,"transform":1126834190069755,"xSize":4080757489928032,"ySize":3921314246216805,"zSize":3339609535237639}, methods: {"draw":{"id":158411493958223},"prepareToDraw":{"id":1488435519614743}} });
-registerSDKClass("GLKSubmesh", GLKSubmesh, { module: "GLKit_e11dfd5beee01da3", properties: {"elementBuffer":3460757221374830,"elementCount":4398032705508232,"mesh":2163409983591738,"mode":2187319295895508,"name":717881525001089,"type":102132613124685} });
-registerSDKClass("GLKTextureInfo", GLKTextureInfo, { module: "GLKit_e11dfd5beee01da3", properties: {"alphaState":651944681310059,"arrayLength":2642688578227849,"containsMipmaps":4474548640895736,"depth":2662115395718383,"height":1754186062575381,"mimapLevelCount":1140156034199717,"name":4172442508578134,"target":2492751982989802,"textureOrigin":4041882140089917,"width":4242987577065634} });
-registerSDKClass("GLKTextureLoader", GLKTextureLoader, { module: "GLKit_e11dfd5beee01da3", properties: {}, methods: {"cubeMapWithContentsOfFileOptionsQueueCompletionHandler":{"id":1518604067760072,"hints":[null,null,null,{"callback":{"out":[]}}]},"cubeMapWithContentsOfFilesOptionsQueueCompletionHandler":{"id":4216648286417193,"hints":[null,null,null,{"callback":{"out":[]}}]},"cubeMapWithContentsOfOptionsQueueCompletionHandler":{"id":2399302333515674,"hints":[null,null,null,{"callback":{"out":[]}}]},"textureWithOptionsQueueCompletionHandler":{"id":4330230471384064,"hints":[null,null,null,{"callback":{"out":[]}}]},"textureWithContentsOfOptionsQueueCompletionHandler":{"id":4079389652863880,"hints":[null,null,null,{"callback":{"out":[]}}]},"textureWithContentsOfFileOptionsQueueCompletionHandler":{"id":2899860344029975,"hints":[null,null,null,{"callback":{"out":[]}}]},"textureWithContentsOfOptionsQueueCompletionHandler85308":{"id":2683576548066279,"hints":[null,null,null,{"callback":{"out":[]}}]},"textureWithNameScaleFactorBundleOptionsQueueCompletionHandler":{"id":104051899152640,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("GLKit.GLKTextureLoaderError", GLKTextureLoaderError, { module: "GLKit_e11dfd5beee01da3", properties: {} });
-registerSDKClass("GLKView", GLKView, { module: "GLKit_e11dfd5beee01da3", properties: {"context":2869014660135483,"delegate":629555349767986,"drawableColorFormat":3751025429194361,"drawableDepthFormat":1012303435626912,"drawableHeight":2828349194175693,"drawableMultisample":1418929765568447,"drawableStencilFormat":2454043315537322,"drawableWidth":1781186411923878,"enableSetNeedsDisplay":3567179871954206,"snapshot":3415568288484430}, methods: {"bindDrawable":{"id":8954786449644},"deleteDrawable":{"id":3365285438595164},"display":{"id":606356147910687}} });
-registerSDKClass("GLKViewController", GLKViewController, { module: "GLKit_e11dfd5beee01da3", properties: {"delegate":3827032559612151,"framesDisplayed":3933810689864593,"framesPerSecond":36257821358222,"pauseOnWillResignActive":2624592687558717,"isPaused":4460610021639981,"preferredFramesPerSecond":1848355941708774,"resumeOnDidBecomeActive":340905603998677,"timeSinceFirstResume":4410328330637307,"timeSinceLastDraw":48995219478117,"timeSinceLastResume":3140238633289960,"timeSinceLastUpdate":2120577609268445} });
+registerSDKClass("GLKReflectionMapEffect", GLKReflectionMapEffect, { module: "GLKit_3864e7f38681b875", properties: {"matrix":2571891046083267,"textureCubeMap":773892887185214}, methods: {"prepareToDraw":{"id":1660984714845123}} });
+registerSDKClass("GLKSkyboxEffect", GLKSkyboxEffect, { module: "GLKit_3864e7f38681b875", properties: {"center":1862609047843716,"label":311656081309020,"textureCubeMap":4324384719327416,"transform":1126834190069755,"xSize":4080757489928032,"ySize":3921314246216805,"zSize":3339609535237639}, methods: {"draw":{"id":158411493958223},"prepareToDraw":{"id":1488435519614743}} });
+registerSDKClass("GLKSubmesh", GLKSubmesh, { module: "GLKit_3864e7f38681b875", properties: {"elementBuffer":3460757221374830,"elementCount":4398032705508232,"mesh":2163409983591738,"mode":2187319295895508,"name":717881525001089,"type":102132613124685} });
+registerSDKClass("GLKTextureInfo", GLKTextureInfo, { module: "GLKit_3864e7f38681b875", properties: {"alphaState":651944681310059,"arrayLength":2642688578227849,"containsMipmaps":4474548640895736,"depth":2662115395718383,"height":1754186062575381,"mimapLevelCount":1140156034199717,"name":4172442508578134,"target":2492751982989802,"textureOrigin":4041882140089917,"width":4242987577065634} });
+registerSDKClass("GLKTextureLoader", GLKTextureLoader, { module: "GLKit_3864e7f38681b875", properties: {}, methods: {"cubeMapWithContentsOfFileOptionsQueueCompletionHandler":{"id":1518604067760072,"hints":[null,null,null,{"callback":{"out":[]}}]},"cubeMapWithContentsOfFilesOptionsQueueCompletionHandler":{"id":4216648286417193,"hints":[null,null,null,{"callback":{"out":[]}}]},"cubeMapWithContentsOfOptionsQueueCompletionHandler":{"id":2399302333515674,"hints":[null,null,null,{"callback":{"out":[]}}]},"textureWithOptionsQueueCompletionHandler":{"id":4330230471384064,"hints":[null,null,null,{"callback":{"out":[]}}]},"textureWithContentsOfOptionsQueueCompletionHandler":{"id":4079389652863880,"hints":[null,null,null,{"callback":{"out":[]}}]},"textureWithContentsOfFileOptionsQueueCompletionHandler":{"id":2899860344029975,"hints":[null,null,null,{"callback":{"out":[]}}]},"textureWithContentsOfOptionsQueueCompletionHandler85308":{"id":2683576548066279,"hints":[null,null,null,{"callback":{"out":[]}}]},"textureWithNameScaleFactorBundleOptionsQueueCompletionHandler":{"id":104051899152640,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("GLKit.GLKTextureLoaderError", GLKTextureLoaderError, { module: "GLKit_3864e7f38681b875", properties: {} });
+registerSDKClass("GLKView", GLKView, { module: "GLKit_3864e7f38681b875", properties: {"context":2869014660135483,"delegate":629555349767986,"drawableColorFormat":3751025429194361,"drawableDepthFormat":1012303435626912,"drawableHeight":2828349194175693,"drawableMultisample":1418929765568447,"drawableStencilFormat":2454043315537322,"drawableWidth":1781186411923878,"enableSetNeedsDisplay":3567179871954206,"snapshot":3415568288484430}, methods: {"bindDrawable":{"id":8954786449644},"deleteDrawable":{"id":3365285438595164},"display":{"id":606356147910687}} });
+registerSDKClass("GLKViewController", GLKViewController, { module: "GLKit_3864e7f38681b875", properties: {"delegate":3827032559612151,"framesDisplayed":3933810689864593,"framesPerSecond":36257821358222,"pauseOnWillResignActive":2624592687558717,"isPaused":4460610021639981,"preferredFramesPerSecond":1848355941708774,"resumeOnDidBecomeActive":340905603998677,"timeSinceFirstResume":4410328330637307,"timeSinceLastDraw":48995219478117,"timeSinceLastResume":3140238633289960,"timeSinceLastUpdate":2120577609268445} });
 registerSDKProtocol("c:objc(pl)GLKViewControllerDelegate", {"glkViewControllerUpdate":"glkViewControllerUpdate(_:)","glkViewControllerWillPause":"glkViewController(_:willPause:)"});
 registerSDKProtocol("c:objc(pl)GLKViewDelegate", {"glkViewDrawIn":"glkView(_:drawIn:)"});
