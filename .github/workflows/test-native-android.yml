@@ -1,269 +1,66 @@
-name: Android Native Build
-
-on:
-  push:
-    branches:
-      - main
-      - v2-beta
-    paths:
-      - '.github/actions/install/**'
-      - '.github/actions/android-sdk-package-cache/**'
-      - '.github/workflows/test-native-android.yml'
-      - 'bun.lock'
-      - 'package.json'
-      - 'patches/**'
-      - 'packages/one/**'
-      - 'packages/vxrn/**'
-      - 'packages/vite-plugin-metro/**'
-      - 'tests/native-features/**'
-      - 'examples/one-basic/**'
-  pull_request:
-    paths:
-      - '.github/actions/install/**'
-      - '.github/actions/android-sdk-package-cache/**'
-      - '.github/workflows/test-native-android.yml'
-      - 'bun.lock'
-      - 'package.json'
-      - 'patches/**'
-      - 'packages/one/**'
-      - 'packages/vxrn/**'
-      - 'packages/vite-plugin-metro/**'
-      - 'tests/native-features/**'
-      - 'examples/one-basic/**'
-  workflow_dispatch:
-
+name: Notification shade investigation
+on: workflow_dispatch
 permissions:
   contents: read
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
-
 jobs:
-  build-android-native:
-    name: Compile One Native Android consumer
+  shade:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 15
     env:
-      # the app and One use the root's 27.1 pin; webgpu uses AGP's 28.2 default.
-      ANDROID_SDK_PACKAGES: 'platform-tools platforms;android-37.0 build-tools;37.0.0 ndk;27.1.12297006 ndk;28.2.13676358 cmake;3.22.1'
+      ANDROID_SDK_PACKAGES: 'platform-tools emulator platforms;android-37.0 build-tools;37.0.0 system-images;android-37.0;google_apis;x86_64'
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '17'
-      - uses: ./.github/actions/android-sdk-package-cache
-        with:
-          packages: ${{ env.ANDROID_SDK_PACKAGES }}
-      - uses: android-actions/setup-android@v4
-        with:
-          packages: ${{ env.ANDROID_SDK_PACKAGES }}
-      # pushes write the package cache, pull requests read it.
-      - if: ${{ github.event_name != 'pull_request' }}
-        uses: ./.github/actions/android-sdk-package-cache
-        with:
-          packages: ${{ env.ANDROID_SDK_PACKAGES }}
-          save: 'true'
-      # caches gradle dependencies and the wrapper; pushes write it, pull requests read it.
-      - uses: gradle/actions/setup-gradle@v4
-        with:
-          cache-read-only: ${{ github.event_name == 'pull_request' }}
-      - uses: ./.github/actions/install
-        with:
-          install-playwright: 'false'
-          workspace-focus: one
-      # checks.yml runs the whole One suite; this job runs only the android
-      # contracts, so an unrelated web test cannot red the android build.
-      - name: Verify fixture prebuild and native Android contracts
-        working-directory: packages/one
-        run: >-
-          bun run vitest --run
-          src/nativeFixturePrebuild.test.ts tests/nativeCoverage.test.ts
-          src/cli/prebuild.test.ts src/cli/runAndroid.test.ts
-          src/native/appManifest.test.ts src/platform/AndroidMenu.test.tsx
-          src/platform/nativeBarrel.test.ts tests/compose.test.ts
-          tests/syncCompose.test.tsx tests/nativeDocs.test.ts
-      - name: Generate the Basic starter Android project
-        working-directory: examples/one-basic
-        run: bun run prebuild:native --platform android --no-install
-      # a placeholder maps key compiles One.UI.Map's google maps source set in
-      # (the basic starter covers the no-maps one); unauthorized, the sdk
-      # mounts the map but keeps its own camera and ignores gestures.
-      - name: Generate the native features Android project
-        working-directory: tests/native-features
-        env:
-          GOOGLE_MAPS_API_KEY: ci-placeholder-no-tiles
-        run: bun run prebuild:native --platform android --no-install
-      - name: Compile Kotlin, Compose, Fabric, Nitro, and the consumer APK
-        working-directory: tests/native-features/android
-        run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug -PreactNativeArchitectures=x86_64
-      - name: Upload native consumer APK
-        uses: actions/upload-artifact@v7
-        with:
-          name: one-native-android-debug
-          path: tests/native-features/android/app/build/outputs/apk/debug/app-debug.apk
-          if-no-files-found: error
-
-  android-native-fixtures:
-    name: One Native Android fixtures (${{ matrix.shard }})
-    needs: build-android-native
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    strategy:
-      fail-fast: false
-      # the proof suite alone runs about as long as each other shard.
-      matrix:
-        include:
-          - shard: proof
-            suites: proof
-          - shard: compose-a
-            suites: >-
-              compose compose-badges compose-list-items compose-flow-row compose-icon-buttons
-              compose-loading compose-surface compose-progress compose-segmented compose-pickers
-          - shard: compose-b
-            suites: >-
-              compose-lists compose-image compose-snackbar compose-sheet compose-navigation-bar
-              compose-search-bar compose-dropdown-menu compose-pull-to-refresh compose-tooltip
-              compose-animated-visibility
-          - shard: platform
-            suites: >-
-              ui-image ui-text-input ui-icon ui-effects portal pager open database color menus
-              state network document-picker adaptive-flat
-          - shard: system
-            suites: >-
-              system system-app-icon system-share system-location system-clipboard
-          # the proof server swaps in the setup module that holds the launch screen.
-          - shard: launch-screen
-            suites: launch-screen
-            launch-screen-proof: '1'
-    env:
-      FIXTURE_AVD_IMAGE: 'system-images;android-37.0;google_apis;x86_64'
-      ANDROID_SDK_PACKAGES: 'platform-tools emulator platforms;android-37.0 build-tools;37.0.0 system-images;android-37.0;google_apis;x86_64'
-      FIXTURE_PACKAGE: dev.vxrn.nativefeatures.tests
-      FIXTURE_SERIAL: emulator-5554
-    steps:
-      - uses: actions/checkout@v6
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
-      # the clipboard suite compiles its device-side setter with d8.
-      - uses: actions/setup-java@v6
-        with:
-          distribution: temurin
-          java-version: '17'
       - uses: ./.github/actions/android-sdk-package-cache
         with:
           packages: ${{ env.ANDROID_SDK_PACKAGES }}
       - uses: android-actions/setup-android@v4
         with:
           packages: ${{ env.ANDROID_SDK_PACKAGES }}
-      - if: ${{ github.event_name != 'pull_request' }}
-        uses: ./.github/actions/android-sdk-package-cache
-        with:
-          packages: ${{ env.ANDROID_SDK_PACKAGES }}
-          save: 'true'
-      - uses: ./.github/actions/install
-        with:
-          install-playwright: 'false'
-          workspace-focus: one
-      - name: Download native consumer APK
-        uses: actions/download-artifact@v7
-        with:
-          name: one-native-android-debug
-          path: ${{ runner.temp }}/apk
-      # the fixture runner was calibrated on a pixel 8 api 37 emulator.
-      - name: Boot the API 37 emulator
+      - name: Boot isolated emulator
         run: |
-          echo no | avdmanager create avd -n one-fixtures -k "$FIXTURE_AVD_IMAGE" -d pixel_8
-          nohup "$ANDROID_HOME/emulator/emulator" -avd one-fixtures -no-window -no-audio \
-            -no-boot-anim -no-snapshot -gpu swiftshader_indirect \
-            > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          echo no | avdmanager create avd -n notification-probe -k 'system-images;android-37.0;google_apis;x86_64' -d pixel_8
+          nohup "$ANDROID_HOME/emulator/emulator" -avd notification-probe -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect > "$RUNNER_TEMP/emulator.log" 2>&1 &
           adb wait-for-device
-          until [ "$(adb -s "$FIXTURE_SERIAL" shell getprop sys.boot_completed | tr -d '\r')" = 1 ]; do sleep 2; done
-          adb -s "$FIXTURE_SERIAL" shell getprop ro.build.version.sdk
-          # a failing suite saves its logcat; the default ring drops a suite's start.
-          adb -s "$FIXTURE_SERIAL" logcat -G 16M
-          # a system app that stops responding on the busy emulator raises a
-          # dialog over the fixture app, and the suites read only that window.
-          # android then ends the stalled app without a dialog; the suite loop
-          # fails a suite on the fixture app's own crash or hang.
-          adb -s "$FIXTURE_SERIAL" shell settings put global hide_error_dialogs 1
-          # a fresh image opens chrome on its first-run screen, which covers the
-          # auth tab the browser suite drives; chrome reads these flags from
-          # /data/local/tmp once it is the debug app.
-          adb -s "$FIXTURE_SERIAL" shell am set-debug-app --persistent com.android.chrome
-          adb -s "$FIXTURE_SERIAL" shell 'echo "_ --disable-fre --no-default-browser-check --no-first-run" > /data/local/tmp/chrome-command-line'
-      - name: Install the fixture app
+          until [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = 1 ]; do sleep 2; done
+          adb shell input keyevent 82
+          adb shell wm dismiss-keyguard
+      - name: Capture posted notifications across home transitions
         run: |
-          adb -s "$FIXTURE_SERIAL" install -r "$RUNNER_TEMP/apk/app-debug.apk"
-          adb -s "$FIXTURE_SERIAL" reverse tcp:8081 tcp:8081
-      - name: Run One Native Android fixtures
-        working-directory: tests/native-features
-        env:
-          FIXTURE_SUITES: ${{ matrix.suites }}
-        run: |
-          # the dev server exits when the step that started it ends, so it
-          # shares the step with the suites.
-          ONE_NATIVE_LAUNCH_SCREEN_PROOF='${{ matrix.launch-screen-proof }}' \
-            nohup bun run dev --port 8081 > "$RUNNER_TEMP/dev-server.log" 2>&1 &
-          until curl -s -o /dev/null http://localhost:8081/; do sleep 2; done
-          # match the native dev request's lazy graph; Metro keys eager and lazy graphs separately.
-          curl -sSf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true&lazy=true'
-          failed=()
-          for suite in $FIXTURE_SUITES; do
-            echo "::group::$suite"
-            evidence="$RUNNER_TEMP/fixtures/$suite"
-            mkdir -p "$evidence"
-            status=0
-            adb -s "$FIXTURE_SERIAL" logcat -b all -c > "$evidence/logcat-clear.txt" 2>&1 || status=$?
-            bun scripts/one-native-conformance.android.ts --device-id "$FIXTURE_SERIAL" \
-              --package-id "$FIXTURE_PACKAGE" --suite "$suite" \
-              --artifact-dir "$RUNNER_TEMP/fixtures/$suite" || status=$?
-            # error dialogs are hidden, so the fixture app's own crash or hang,
-            # even one after its last check passed, fails the suite from the event log.
-            observer_status=0
-            adb -s "$FIXTURE_SERIAL" logcat -d -b events -s am_crash am_anr \
-              > "$evidence/events.txt" 2> "$evidence/events-error.txt" || observer_status=$?
-            if [ "$observer_status" != 0 ]; then
-              echo "event log read failed: $observer_status"
-              status=1
-            else
-              match_status=0
-              # event fields begin with user id, pid, and the exact process name.
-              grep -E "\[[0-9]+,[0-9]+,${FIXTURE_PACKAGE//./\\.}(:[^,]+)?," \
-                "$evidence/events.txt" 2> "$evidence/events-match-error.txt" || match_status=$?
-              if [ "$match_status" != 1 ]; then
-                echo "fixture crash/ANR match status: $match_status"
-                status=1
-              fi
-            fi
-            if [ "$status" = 0 ]; then
-              echo "SUITE PASS $suite"
-            else
-              echo "SUITE FAIL $suite"
-              failed+=("$suite")
-              # what the device saw: launched intents, input and focus moves,
-              # touch mode and the input method's target.
-              adb -s "$FIXTURE_SERIAL" logcat -d -v threadtime -b main,system,events,crash > "$evidence/logcat.txt" || true
-              adb -s "$FIXTURE_SERIAL" shell dumpsys window > "$evidence/dumpsys-window.txt" || true
-              adb -s "$FIXTURE_SERIAL" shell dumpsys input_method > "$evidence/dumpsys-input-method.txt" || true
-            fi
-            echo "::endgroup::"
-          done
-          if [ ${#failed[@]} -gt 0 ]; then
-            echo "failed suites: ${failed[*]}"
-            exit 1
-          fi
-      - name: Upload Android fixture evidence
-        if: ${{ always() }}
+          mkdir -p "$RUNNER_TEMP/shade"
+          adb shell cmd notification help > "$RUNNER_TEMP/shade/notification-help.txt"
+          capture() {
+            adb shell uiautomator dump /sdcard/shade.xml
+            adb pull /sdcard/shade.xml "$RUNNER_TEMP/shade/$1.xml"
+            adb exec-out screencap -p > "$RUNNER_TEMP/shade/$1.png"
+            adb shell dumpsys notification --noredact > "$RUNNER_TEMP/shade/$1-notifications.txt"
+            adb shell dumpsys activity service com.android.systemui/.SystemUIService > "$RUNNER_TEMP/shade/$1-systemui.txt"
+            adb shell dumpsys window > "$RUNNER_TEMP/shade/$1-window.txt"
+          }
+          adb shell cmd notification post -t 'N5 cat' n5-cat 'category'
+          adb shell cmd notification post -t 'N3 unobserved' n3-unobserved 'unobserved'
+          adb shell cmd notification post -t 'N3 ping' n3-1 'arrival 1'
+          adb shell am start -W -a android.settings.SETTINGS
+          adb shell input keyevent 3
+          adb shell cmd statusbar expand-notifications
+          capture home-race
+          adb shell cmd statusbar collapse
+          adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.HOME
+          adb shell cmd statusbar expand-notifications
+          capture home-settled
+          adb logcat -d -v threadtime -b all > "$RUNNER_TEMP/shade/logcat.txt"
+      - if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: one-native-android-fixtures-${{ matrix.shard }}
+          name: notification-shade-probe
           path: |
-            ${{ runner.temp }}/fixtures
+            ${{ runner.temp }}/shade/
             ${{ runner.temp }}/emulator.log
-            ${{ runner.temp }}/dev-server.log
-          if-no-files-found: warn
