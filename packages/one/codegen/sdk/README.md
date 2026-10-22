@@ -48,6 +48,28 @@ declarations.
 Bindings typecheck against both the device and the simulator SDK, and drop
 what either rejects: each declares API the other lacks.
 
+CarPlay, GameController, AVFoundation and AuthenticationServices declare some
+C exports without C++ linkage guards in the iOS 27.1 SDK. The generator and
+generated pod import their original headers through `extern_c` modulemaps,
+with the original framework autolinks. C++20 interop stays enabled and the
+framework tables still compile together. No function declarations, signatures
+or callable IDs are replaced.
+
+Tools compiling cached tables outside the pod must import
+`writeSdkNativeSupport` from the installed `dist/sdk/app.mjs` and call it with
+a fresh build support directory. Check its returned `generation` against the
+tables' generation and append its returned `swiftFlags` to the compiler
+arguments. The support directory contains `module.modulemap` and framework
+header imports, uses the compiler's selected SDK and never modifies the cache.
+
+`ColorSyncTransform.h` marks `kColorSyncPreferredCMM` unavailable on iOS.
+`ColorSyncBase.h` erases that annotation when imported by Swift, but neither
+the device nor simulator SDK exports it. The bridge records that native
+availability reason and emits neither accessor nor a facade declaration.
+On SDK 27.1 this removes two ColorSync entries, from 391 to 389, while keeping
+all remaining callable IDs. The source qualification and outstanding delivery
+checks are recorded in `docs/sdk-native-linkage.md` at the repository root.
+
 Same-framework classes extend their generated parent. Only members a class owns
 and inherited members that need a different JavaScript name are emitted. Swift
 permits incompatible overrides, so those names are removed from the parent's

@@ -11,6 +11,7 @@ import { Bridge, buildIndex, collectFacts } from './bridge'
 import { emitModule, MINIMUM_IOS, type ModuleOutput } from './emit'
 import { loadGraph, sdkModules, type Symbol } from './graph'
 import { checkInheritedInits } from './inherited-inits'
+import { writeCLinkageModules } from './c-linkage'
 
 const run = promisify(execFile)
 export const RUNTIME = resolve(import.meta.dirname, '../../ios/SDK/OneSDKRuntime.swift')
@@ -46,7 +47,9 @@ function oneModule(sdk: Sdk) {
   if (!module) {
     module = (async () => {
       const dir = mkdtempSync(join(tmpdir(), 'one-sdk-runtime-'))
+      const moduleMap = writeCLinkageModules(join(dir, 'CLinkage'))
       await run('xcrun', ['swiftc', '-emit-module', '-parse-as-library', '-module-name', 'One', ...target(sdk),
+        '-Xcc', `-fmodule-map-file=${moduleMap}`,
         '-emit-module-path', join(dir, 'One.swiftmodule'), RUNTIME])
       return dir
     })()
@@ -62,7 +65,10 @@ function oneModule(sdk: Sdk) {
 export async function typecheck(files: string[]) {
   const errors = await Promise.all(SDKS.map(async (sdk) => {
     try {
-      await run('xcrun', ['swiftc', '-emit-sil', '-o', '/dev/null', ...target(sdk), '-I', await oneModule(sdk), ...files], { maxBuffer: 256 * 1024 * 1024 })
+      const dir = await oneModule(sdk)
+      await run('xcrun', ['swiftc', '-emit-sil', '-o', '/dev/null', ...target(sdk),
+        '-Xcc', `-fmodule-map-file=${join(dir, 'CLinkage/module.modulemap')}`,
+        '-I', dir, ...files], { maxBuffer: 256 * 1024 * 1024 })
       return []
     } catch (error) {
       const stderr = error instanceof Error && 'stderr' in error ? String(error.stderr) : String(error)
