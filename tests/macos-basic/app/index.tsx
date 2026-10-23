@@ -14,6 +14,7 @@ import {
 } from 'react-native'
 import { One } from 'one'
 import { probe } from '../probe/resolution'
+import { Gradients } from '../probe/Gradients'
 
 const swatch =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAgCAYAAACinX6EAAAASUlEQVR4nO3QMQ0AMAgAMOTsRh1id8/GkEFCetRA42b+SafeqBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQL2BzRVihEezZkGnAAAAABJRU5ErkJggg=='
@@ -192,6 +193,7 @@ export default function Index() {
     <View style={{ flex: 1, padding: 16, backgroundColor: '#f5f5f5' }}>
       <Text testID="macos-label">macOS</Text>
       <Text testID="macos-probe">{probe}</Text>
+      <Gradients />
       <NativeControls />
       <PlatformColors />
       <LineHeights />

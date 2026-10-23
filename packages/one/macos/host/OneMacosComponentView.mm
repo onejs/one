@@ -4,10 +4,124 @@
 #include <react/renderer/components/view/ViewProps.h>
 #include <react/renderer/components/view/accessibilityPropsConversions.h>
 #include <react/renderer/components/view/conversions.h>
+#include <cmath>
 
 #import "OneMacosText.h"
 
 using namespace facebook::react;
+
+namespace {
+
+// css angles are clockwise from up, in appkit's flipped drawing coordinates.
+static void DrawLinearGradient(const LinearGradient &gradient, CGRect bounds)
+{
+  CGFloat width = bounds.size.width;
+  CGFloat height = bounds.size.height;
+  if (width <= 0 || height <= 0 || gradient.colorStops.size() < 2) {
+    return;
+  }
+  CGFloat angle;
+  if (auto degrees = std::get_if<Float>(&gradient.direction)) {
+    angle = *degrees * M_PI / 180;
+  } else {
+    // corner keywords make the adjacent corners share a color (css magic corners).
+    CGFloat x = height;
+    CGFloat y = width;
+    switch (std::get<GradientKeyword>(gradient.direction)) {
+      case GradientKeyword::ToTopRight: y = -y; break;
+      case GradientKeyword::ToBottomRight: break;
+      case GradientKeyword::ToTopLeft: x = -x; y = -y; break;
+      case GradientKeyword::ToBottomLeft: x = -x; break;
+    }
+    angle = std::atan2(x, -y);
+  }
+  if (!std::isfinite(angle)) {
+    return;
+  }
+  CGFloat dx = std::sin(angle);
+  CGFloat dy = -std::cos(angle);
+  CGFloat length = std::abs(width * dx) + std::abs(height * dy);
+  CGPoint center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+  CGPoint start = CGPointMake(center.x - dx * length / 2, center.y - dy * length / 2);
+
+  std::vector<CGFloat> positions;
+  NSMutableArray<NSColor *> *colors = [NSMutableArray new];
+  CGFloat previous = -INFINITY;
+  for (size_t i = 0; i < gradient.colorStops.size(); ++i) {
+    const auto &stop = gradient.colorStops[i];
+    // transition hints have no color; they are not supported by this host yet.
+    if (!stop.color) {
+      return;
+    }
+    [colors addObject:[OneMacosColorFromSharedColor(stop.color) colorUsingColorSpace:NSColorSpace.sRGBColorSpace]];
+    CGFloat position = NAN;
+    if (stop.position) {
+      position = stop.position.unit == UnitType::Point ? stop.position.value / length : stop.position.resolve(1);
+      if (!std::isfinite(position)) {
+        return;
+      }
+    } else if (i == 0) {
+      position = 0;
+    } else if (i == gradient.colorStops.size() - 1) {
+      position = 1;
+    }
+    if (!std::isnan(position)) {
+      position = std::max(previous, position);
+      previous = position;
+    }
+    positions.push_back(position);
+  }
+  // distribute each run of omitted positions between its defined neighbors.
+  size_t last = 0;
+  for (size_t i = 1; i < positions.size(); ++i) {
+    if (!std::isnan(positions[i])) {
+      for (size_t j = last + 1; j < i; ++j) {
+        positions[j] = positions[last] + (positions[i] - positions[last]) * (j - last) / (i - last);
+      }
+      last = i;
+    }
+  }
+  // core graphics accepts only [0,1] locations. Move the line endpoints rather
+  // than clamp stops, which would change gradients with stops outside the box.
+  CGFloat first = positions.front();
+  CGFloat span = positions.back() - first;
+  if (span == 0) {
+    // equal positions form a hard transition, including an all-equal stop list.
+    span = 1;
+  }
+  CGPoint end = CGPointMake(start.x + dx * length * (first + span), start.y + dy * length * (first + span));
+  start.x += dx * length * first;
+  start.y += dy * length * first;
+  NSMutableArray *cgColors = [NSMutableArray new];
+  for (size_t i = 0; i < positions.size(); ++i) {
+    positions[i] = (positions[i] - first) / span;
+    NSColor *color = colors[i];
+    // preserve the hue when fading to transparent black, as RN does on iOS.
+    if (color.alphaComponent == 0 && color.redComponent == 0 && color.greenComponent == 0 && color.blueComponent == 0) {
+      NSColor *neighbor = nil;
+      for (NSInteger j = (NSInteger)i - 1; j >= 0; --j) {
+        if (colors[j].alphaComponent > 0) { neighbor = colors[j]; break; }
+      }
+      if (!neighbor) {
+        for (size_t j = i + 1; j < colors.count; ++j) {
+          if (colors[j].alphaComponent > 0) { neighbor = colors[j]; break; }
+        }
+      }
+      if (neighbor) { color = [neighbor colorWithAlphaComponent:0]; }
+    }
+    [cgColors addObject:(__bridge id)color.CGColor];
+  }
+  CGColorSpaceRef space = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
+  CGGradientRef nativeGradient = CGGradientCreateWithColors(space, (__bridge CFArrayRef)cgColors, positions.data());
+  if (nativeGradient) {
+    CGContextDrawLinearGradient(NSGraphicsContext.currentContext.CGContext, nativeGradient, start, end,
+        kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    CGGradientRelease(nativeGradient);
+  }
+  CGColorSpaceRelease(space);
+}
+
+} // namespace
 
 @implementation OneMacosViewComponentView {
   Props::Shared _props;
@@ -334,6 +448,17 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
   if (viewProps.backgroundColor) {
     [OneMacosColorFromSharedColor(viewProps.backgroundColor) setFill];
     [outline fill];
+  }
+  if (!viewProps.backgroundImage.empty()) {
+    [NSGraphicsContext saveGraphicsState];
+    [outline addClip];
+    // the first background image is nearest the viewer, above the solid fill.
+    for (auto image = viewProps.backgroundImage.rbegin(); image != viewProps.backgroundImage.rend(); ++image) {
+      if (auto gradient = std::get_if<LinearGradient>(&*image)) {
+        DrawLinearGradient(*gradient, bounds);
+      }
+    }
+    [NSGraphicsContext restoreGraphicsState];
   }
   SharedColor borderColor = border.borderColors.top;
   if (borderWidth > 0 && borderColor) {

@@ -16,7 +16,7 @@ namespace facebook::react {
 class Color {
  public:
   Color() = default;
-  Color(int32_t color) : argb_(color) {}
+  Color(int32_t color) : argb_(color), defined_(true) {}
 
   // packed ARGB; a platform color resolves under the current drawing appearance
   int32_t getColor() const;
@@ -32,6 +32,9 @@ class Color {
 
   bool operator==(const Color &other) const
   {
+    if (defined_ != other.defined_) {
+      return false;
+    }
     if (!platformColor_ && !other.platformColor_) {
       return argb_ == other.argb_;
     }
@@ -51,10 +54,12 @@ class Color {
   std::size_t hash() const;
 
  private:
-  explicit Color(std::shared_ptr<void> platformColor) : platformColor_(std::move(platformColor)) {}
+  explicit Color(std::shared_ptr<void> platformColor) : defined_(true), platformColor_(std::move(platformColor)) {}
   bool platformColorEquals(const Color &other) const;
 
   int32_t argb_{0};
+  // explicit transparent black is a color; only the default is undefined.
+  bool defined_{false};
   std::shared_ptr<void> platformColor_;
 };
 
