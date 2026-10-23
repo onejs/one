@@ -1,0 +1,330 @@
+#import "OneMacosComponentView.h"
+
+#include <react/renderer/components/view/BaseViewEventEmitter.h>
+#include <react/renderer/components/view/ViewProps.h>
+#include <react/renderer/components/view/accessibilityPropsConversions.h>
+#include <react/renderer/components/view/conversions.h>
+
+#import "OneMacosText.h"
+
+using namespace facebook::react;
+
+@implementation OneMacosViewComponentView {
+  Props::Shared _props;
+  EventEmitter::Shared _eventEmitter;
+  LayoutMetrics _layoutMetrics;
+  BOOL _clipsToBounds;
+  PointerEventsMode _pointerEvents;
+  BOOL _focusable;
+}
+
+@synthesize reactTag = _reactTag;
+
+- (instancetype)initWithFrame:(NSRect)frame
+{
+  if (self = [super initWithFrame:frame]) {
+    self.wantsLayer = YES;
+    self.layer.masksToBounds = NO;
+    self.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
+  }
+  return self;
+}
+
+// react lays out from the top left
+- (BOOL)isFlipped
+{
+  return YES;
+}
+
+- (BOOL)isOpaque
+{
+  return NO;
+}
+
+- (Props::Shared)props
+{
+  return _props;
+}
+
+- (LayoutMetrics)layoutMetrics
+{
+  return _layoutMetrics;
+}
+
+- (EventEmitter::Shared)eventEmitter
+{
+  return _eventEmitter;
+}
+
+- (void)setNeedsRender
+{
+  self.needsDisplay = YES;
+}
+
+// point is in the superview's coordinates. Children outside the bounds stay
+// hittable unless this view clips, like a native view with overflow visible.
+- (NSView *)hitTest:(NSPoint)point
+{
+  if (self.hidden || self.alphaValue < 0.01 || _pointerEvents == PointerEventsMode::None) {
+    return nil;
+  }
+  NSPoint local = self.superview ? [self convertPoint:point fromView:self.superview] : point;
+  BOOL inside = NSPointInRect(local, self.bounds);
+  if (!inside && _clipsToBounds) {
+    return nil;
+  }
+  if (_pointerEvents != PointerEventsMode::BoxOnly) {
+    for (NSView *subview in [self.subviews reverseObjectEnumerator]) {
+      NSView *hit = [subview hitTest:local];
+      if (hit) {
+        return hit;
+      }
+    }
+  }
+  if (_pointerEvents == PointerEventsMode::BoxNone) {
+    return nil;
+  }
+  return inside ? self : nil;
+}
+
+#pragma mark - Focus and keyboard
+
+// a view takes part in tab order when it handles presses, like a Pressable
+- (BOOL)acceptsFirstResponder
+{
+  return _focusable;
+}
+
+- (BOOL)becomeFirstResponder
+{
+  if (![super becomeFirstResponder]) {
+    return NO;
+  }
+  if (_eventEmitter) {
+    std::static_pointer_cast<const BaseViewEventEmitter>(_eventEmitter)->onFocus();
+  }
+  [self noteFocusRingMaskChanged];
+  return YES;
+}
+
+- (BOOL)resignFirstResponder
+{
+  if (![super resignFirstResponder]) {
+    return NO;
+  }
+  if (_eventEmitter) {
+    std::static_pointer_cast<const BaseViewEventEmitter>(_eventEmitter)->onBlur();
+  }
+  return YES;
+}
+
+- (void)keyDown:(NSEvent *)event
+{
+  NSString *characters = event.charactersIgnoringModifiers;
+  BOOL activates = [characters isEqualToString:@" "] || [characters isEqualToString:@"\r"];
+  if (_focusable && activates && !event.isARepeat) {
+    [self performPress];
+    return;
+  }
+  [super keyDown:event];
+}
+
+- (void)performPress
+{
+  [NSApp sendAction:@selector(oneMacosPressView:) to:nil from:self];
+}
+
+- (NSFocusRingType)focusRingType
+{
+  return NSFocusRingTypeExterior;
+}
+
+- (void)drawFocusRingMask
+{
+  [[NSBezierPath bezierPathWithRoundedRect:self.bounds xRadius:[self cornerRadius] yRadius:[self cornerRadius]] fill];
+}
+
+- (NSRect)focusRingMaskBounds
+{
+  return self.bounds;
+}
+
+- (CGFloat)cornerRadius
+{
+  if (!_props) {
+    return 0;
+  }
+  const auto &viewProps = static_cast<const ViewProps &>(*_props);
+  const auto border = viewProps.resolveBorderMetrics(_layoutMetrics);
+  return MIN((CGFloat)border.borderRadii.topLeft.horizontal, MIN(self.bounds.size.width, self.bounds.size.height) / 2);
+}
+
+#pragma mark - Accessibility
+
+static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
+{
+  static NSDictionary<NSString *, NSAccessibilityRole> *roles = @{
+    @"button" : NSAccessibilityButtonRole,
+    @"imagebutton" : NSAccessibilityButtonRole,
+    @"togglebutton" : NSAccessibilityButtonRole,
+    @"link" : NSAccessibilityLinkRole,
+    @"image" : NSAccessibilityImageRole,
+    @"img" : NSAccessibilityImageRole,
+    @"checkbox" : NSAccessibilityCheckBoxRole,
+    @"switch" : NSAccessibilityCheckBoxRole,
+    @"radio" : NSAccessibilityRadioButtonRole,
+    @"tab" : NSAccessibilityRadioButtonRole,
+    @"text" : NSAccessibilityStaticTextRole,
+    @"adjustable" : NSAccessibilitySliderRole,
+    @"slider" : NSAccessibilitySliderRole,
+    @"progressbar" : NSAccessibilityProgressIndicatorRole,
+    @"menu" : NSAccessibilityMenuRole,
+    @"menuitem" : NSAccessibilityMenuItemRole,
+    @"list" : NSAccessibilityListRole,
+    @"combobox" : NSAccessibilityComboBoxRole,
+    @"search" : NSAccessibilityTextFieldRole,
+  };
+  NSString *name = [NSString stringWithUTF8String:role.c_str()];
+  return roles[name] ?: NSAccessibilityGroupRole;
+}
+
+- (void)applyAccessibilityProps:(const ViewProps &)viewProps
+{
+  [self setAccessibilityElement:viewProps.accessible];
+  NSString *label = [NSString stringWithUTF8String:viewProps.accessibilityLabel.c_str()];
+  [self setAccessibilityLabel:label.length > 0 ? label : nil];
+  NSString *hint = [NSString stringWithUTF8String:viewProps.accessibilityHint.c_str()];
+  [self setAccessibilityHelp:hint.length > 0 ? hint : nil];
+  NSString *identifier = [NSString stringWithUTF8String:viewProps.testId.c_str()];
+  [self setAccessibilityIdentifier:identifier.length > 0 ? identifier : nil];
+
+  std::string role = viewProps.role != Role::None ? toString(viewProps.role) : viewProps.accessibilityRole;
+  [self setAccessibilityRole:AccessibilityRoleFor(role)];
+  if (role == "switch") {
+    [self setAccessibilitySubrole:NSAccessibilitySwitchSubrole];
+  }
+
+  bool disabled = viewProps.accessibilityState && viewProps.accessibilityState->disabled;
+  [self setAccessibilityEnabled:!disabled];
+  if (viewProps.accessibilityState) {
+    const auto &state = *viewProps.accessibilityState;
+    [self setAccessibilitySelected:state.selected];
+    if (state.checked == AccessibilityState::Checked) {
+      [self setAccessibilityValue:@YES];
+    } else if (state.checked == AccessibilityState::Unchecked) {
+      [self setAccessibilityValue:@NO];
+    }
+  }
+}
+
+- (BOOL)accessibilityPerformPress
+{
+  if (!_focusable) {
+    return NO;
+  }
+  [self performPress];
+  return YES;
+}
+
+#pragma mark - OneMacosComponentView
+
+- (NSView *)childContainerView
+{
+  return self;
+}
+
+- (void)mountChildComponentView:(NSView<OneMacosComponentView> *)childView index:(NSInteger)index
+{
+  NSView *container = [self childContainerView];
+  NSArray<NSView *> *subviews = container.subviews;
+  if (index <= 0 && subviews.count > 0) {
+    [container addSubview:childView positioned:NSWindowBelow relativeTo:subviews.firstObject];
+  } else if (index > 0 && index < (NSInteger)subviews.count) {
+    [container addSubview:childView positioned:NSWindowAbove relativeTo:subviews[index - 1]];
+  } else {
+    [container addSubview:childView];
+  }
+}
+
+- (void)unmountChildComponentView:(NSView<OneMacosComponentView> *)childView index:(NSInteger)index
+{
+  [childView removeFromSuperview];
+}
+
+- (void)updateProps:(const Props::Shared &)props oldProps:(const Props::Shared &)oldProps
+{
+  _props = props;
+  const auto &viewProps = static_cast<const ViewProps &>(*props);
+  _pointerEvents = viewProps.pointerEvents;
+  _focusable = viewProps.accessible && viewProps.events[ViewEvents::Offset::StartShouldSetResponder] &&
+      !(viewProps.accessibilityState && viewProps.accessibilityState->disabled);
+  [self applyAccessibilityProps:viewProps];
+  _clipsToBounds = viewProps.getClipsContentToBounds();
+  self.alphaValue = (CGFloat)viewProps.opacity;
+  self.layer.masksToBounds = _clipsToBounds;
+  [self setNeedsRender];
+}
+
+- (void)updateEventEmitter:(const EventEmitter::Shared &)eventEmitter
+{
+  _eventEmitter = eventEmitter;
+}
+
+- (void)updateState:(const State::Shared &)state oldState:(const State::Shared &)oldState
+{
+}
+
+- (void)updateLayoutMetrics:(const LayoutMetrics &)layoutMetrics oldLayoutMetrics:(const LayoutMetrics &)oldLayoutMetrics
+{
+  _layoutMetrics = layoutMetrics;
+  self.hidden = layoutMetrics.displayType == DisplayType::None;
+  self.frame = NSMakeRect(
+      layoutMetrics.frame.origin.x,
+      layoutMetrics.frame.origin.y,
+      layoutMetrics.frame.size.width,
+      layoutMetrics.frame.size.height);
+  [self setNeedsRender];
+}
+
+- (void)finalizeUpdates:(OneMacosUpdateMask)updateMask
+{
+}
+
+#pragma mark - Painting
+
+// colors resolved while drawing follow the appearance, so a change repaints
+- (void)viewDidChangeEffectiveAppearance
+{
+  [super viewDidChangeEffectiveAppearance];
+  [self setNeedsDisplay:YES];
+}
+
+- (void)drawRect:(NSRect)dirtyRect
+{
+  if (!_props) {
+    return;
+  }
+  const auto &viewProps = static_cast<const ViewProps &>(*_props);
+  const auto border = viewProps.resolveBorderMetrics(_layoutMetrics);
+  CGRect bounds = self.bounds;
+  CGFloat radius = MIN((CGFloat)border.borderRadii.topLeft.horizontal, MIN(bounds.size.width, bounds.size.height) / 2);
+  CGFloat borderWidth = (CGFloat)border.borderWidths.top;
+
+  NSBezierPath *outline = [NSBezierPath bezierPathWithRoundedRect:bounds xRadius:radius yRadius:radius];
+  if (viewProps.backgroundColor) {
+    [OneMacosColorFromSharedColor(viewProps.backgroundColor) setFill];
+    [outline fill];
+  }
+  SharedColor borderColor = border.borderColors.top;
+  if (borderWidth > 0 && borderColor) {
+    CGRect inset = CGRectInset(bounds, borderWidth / 2, borderWidth / 2);
+    NSBezierPath *stroke = [NSBezierPath bezierPathWithRoundedRect:inset
+                                                           xRadius:MAX(radius - borderWidth / 2, 0)
+                                                           yRadius:MAX(radius - borderWidth / 2, 0)];
+    stroke.lineWidth = borderWidth;
+    [OneMacosColorFromSharedColor(borderColor) setStroke];
+    [stroke stroke];
+  }
+}
+
+@end

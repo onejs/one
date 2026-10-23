@@ -1,13 +1,15 @@
-export type Platform = 'ios' | 'android' | 'web';
-export type ViteEnvironment = 'client' | 'ssr' | 'ios' | 'android';
+export type NativePlatform = 'ios' | 'android' | 'macos';
+export type Platform = NativePlatform | 'web';
+export type ViteEnvironment = 'client' | 'ssr' | NativePlatform;
 export type PlatformEnv = {
     VITE_ENVIRONMENT: ViteEnvironment;
     VITE_NATIVE: '' | '1';
-    ONE_PLATFORM: 'web' | 'ios' | 'android';
-    EXPO_OS?: 'ios' | 'android';
+    ONE_PLATFORM: Platform;
+    EXPO_OS?: NativePlatform;
     TAMAGUI_TARGET: 'web' | 'native';
     TAMAGUI_ENVIRONMENT: ViteEnvironment;
 };
+export declare function isNativePlatform(platform: string | null | undefined): platform is NativePlatform;
 export declare function getPlatformEnv(environment: ViteEnvironment): PlatformEnv;
 export declare function metroPlatformToViteEnvironment(platform: Platform | string | null | undefined): ViteEnvironment;
 /**

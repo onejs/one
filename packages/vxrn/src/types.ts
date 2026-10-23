@@ -11,7 +11,7 @@ export type BuildArgs = {
   step?: string
   only?: string
   analyze?: boolean
-  platform?: 'ios' | 'web' | 'android'
+  platform?: 'ios' | 'web' | 'android' | 'macos'
 }
 
 export type AfterBuildProps = {
