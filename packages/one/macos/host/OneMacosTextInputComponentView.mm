@@ -16,16 +16,51 @@ using namespace facebook::react;
 - (void)textEditorDidFocus;
 - (void)textEditorDidBlur;
 - (void)textEditorKeyDown:(NSEvent *)event;
+- (NSString *)textEditor:(NSTextView *)editor limitedReplacement:(NSString *)string range:(NSRange)range;
 @end
 
 static char kFieldEditorKey;
 
-// Single line input editor: the field editor AppKit swaps in while a field is
-// being edited, so key presses reach React the way iOS onKeyPress does.
-@interface OneMacosFieldEditor : NSTextView
+// share committed insertion handling without intercepting marked text updates.
+@interface OneMacosCommittedTextView : NSTextView
+@end
+
+@implementation OneMacosCommittedTextView
+- (BOOL)shouldChangeTextInRange:(NSRange)range replacementString:(NSString *)string
+{
+  if (self.hasMarkedText) {
+    return [super shouldChangeTextInRange:range replacementString:string];
+  }
+  // plaintext paste uses this path without calling insertText.
+  NSString *limited = [(id<OneMacosTextOwner>)self.delegate textEditor:self limitedReplacement:string range:range];
+  if (limited == string || [limited isEqualToString:string]) {
+    return [super shouldChangeTextInRange:range replacementString:string];
+  }
+  if (limited.length > 0) {
+    [self insertText:limited replacementRange:range];
+  }
+  return NO;
+}
+
+- (void)insertText:(id)text replacementRange:(NSRange)range
+{
+  NSString *string = [text isKindOfClass:NSAttributedString.class] ? [text string] : text;
+  // insertText commits input; setMarkedText remains free to compose beyond the
+  // limit. appkit also commits unmarkText through this insertion path.
+  NSString *limited = [(id<OneMacosTextOwner>)self.delegate textEditor:self limitedReplacement:string range:range];
+  if (string.length > 0 && limited.length == 0 && !self.hasMarkedText) {
+    return;
+  }
+  [super insertText:[limited isEqualToString:string] ? text : limited replacementRange:range];
+}
+@end
+
+// single line field editor: key presses reach react as onKeyPress events.
+@interface OneMacosFieldEditor : OneMacosCommittedTextView
 @end
 
 @implementation OneMacosFieldEditor
+
 - (void)keyDown:(NSEvent *)event
 {
   if ([self.delegate respondsToSelector:@selector(textEditorKeyDown:)]) {
@@ -49,6 +84,7 @@ static char kFieldEditorKey;
   if (!editor) {
     editor = [[OneMacosFieldEditor alloc] initWithFrame:NSZeroRect];
     editor.fieldEditor = YES;
+    editor.allowsUndo = YES;
     objc_setAssociatedObject(window, &kFieldEditorKey, editor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
   }
   return editor;
@@ -84,6 +120,16 @@ static char kFieldEditorKey;
 {
   [_owner textEditorKeyDown:event];
 }
+
+- (NSString *)textEditor:(NSTextView *)editor limitedReplacement:(NSString *)string range:(NSRange)range
+{
+  return [_owner textEditor:editor limitedReplacement:string range:range];
+}
+@end
+
+// appkit makes the field its editor's delegate; preserve its formatter checks.
+@interface NSTextField (OneMacosEditorDelegate)
+- (BOOL)textView:(NSTextView *)editor shouldChangeTextInRange:(NSRange)range replacementString:(NSString *)string;
 @end
 
 @interface OneMacosSecureTextField : NSSecureTextField
@@ -91,6 +137,22 @@ static char kFieldEditorKey;
 @end
 
 @implementation OneMacosSecureTextField
+- (BOOL)textView:(NSTextView *)editor shouldChangeTextInRange:(NSRange)range replacementString:(NSString *)string
+{
+  if (![super textView:editor shouldChangeTextInRange:range replacementString:string]) {
+    return NO;
+  }
+  // keep AppKit's secure field editor. it does not support marked text.
+  NSString *limited = [_owner textEditor:editor limitedReplacement:string range:range];
+  if (limited == string || [limited isEqualToString:string]) {
+    return YES;
+  }
+  if (limited.length > 0) {
+    [editor insertText:limited replacementRange:range];
+  }
+  return NO;
+}
+
 - (BOOL)becomeFirstResponder
 {
   BOOL result = [super becomeFirstResponder];
@@ -109,7 +171,7 @@ static char kFieldEditorKey;
 
 // Multiline editor: reports focus and key presses to its component view and
 // draws the placeholder, which NSTextView has no notion of.
-@interface OneMacosTextView : NSTextView
+@interface OneMacosTextView : OneMacosCommittedTextView
 @property (nonatomic, weak) id<OneMacosTextOwner> owner;
 @property (nonatomic, copy) NSAttributedString *placeholder;
 @end
@@ -408,16 +470,6 @@ static char kFieldEditorKey;
 // state carries the new text so the shadow node measures what is on screen
 - (void)userDidEdit
 {
-  NSInteger maxLength = [self textInputProps].maxLength;
-  NSString *text = [self currentText];
-  if (maxLength > 0 && (NSInteger)text.length > maxLength) {
-    NSTextView *editor = [self activeEditor];
-    NSRange selection = editor.selectedRange;
-    _comingFromJS = YES;
-    [editor.textStorage replaceCharactersInRange:NSMakeRange(maxLength, text.length - maxLength) withString:@""];
-    editor.selectedRange = NSMakeRange(MIN(selection.location, (NSUInteger)maxLength), 0);
-    _comingFromJS = NO;
-  }
   _mostRecentEventCount++;
   [self updateStateWithCurrentText];
   if (auto emitter = [self textInputEmitter]) {
@@ -444,27 +496,29 @@ static char kFieldEditorKey;
   }
 }
 
-- (BOOL)textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)range replacementString:(NSString *)string
+- (NSString *)textEditor:(NSTextView *)editor limitedReplacement:(NSString *)string range:(NSRange)range
 {
   if (_comingFromJS || !self.props || !string) {
-    return YES;
+    return string;
   }
   NSInteger maxLength = [self textInputProps].maxLength;
-  if (maxLength <= 0) {
-    return YES;
+  if (maxLength < 0) {
+    return string;
   }
-  NSInteger room = maxLength - (NSInteger)(textView.string.length - range.length);
+  if (range.location == NSNotFound) {
+    range = editor.hasMarkedText ? editor.markedRange : editor.selectedRange;
+  }
+  NSInteger room = maxLength - (NSInteger)(editor.string.length - range.length);
   if ((NSInteger)string.length <= room) {
-    return YES;
+    return string;
   }
-  if (room > 0) {
-    // a paste that does not fit is cut to what does
-    NSString *cut = [string substringToIndex:room];
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [textView insertText:cut replacementRange:range];
-    });
+  if (room <= 0) {
+    return @"";
   }
-  return NO;
+  // rn counts utf16 units; round down rather than expanding beyond the budget.
+  NSRange last = [string rangeOfComposedCharacterSequenceAtIndex:(NSUInteger)room - 1];
+  NSUInteger end = NSMaxRange(last) > (NSUInteger)room ? last.location : (NSUInteger)room;
+  return [string substringToIndex:end];
 }
 
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)selector
