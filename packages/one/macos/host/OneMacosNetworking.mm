@@ -29,15 +29,17 @@ static std::string networkString(NSString *value)
 @implementation OneMacosNetworking {
   std::function<void(const std::string &, folly::dynamic)> _emit;
   NSURLSession *_session;
+  OneMacosBlobStore *_blobStore;
   NSMutableDictionary<NSNumber *, OneMacosNetworkRequest *> *_requests;
   NSInteger _nextID;
   BOOL _invalidated;
 }
 
-- (instancetype)initWithEmitter:(std::function<void(const std::string &, folly::dynamic)>)emitter
+- (instancetype)initWithEmitter:(std::function<void(const std::string &, folly::dynamic)>)emitter blobStore:(OneMacosBlobStore *)blobStore
 {
   if ((self = [super init])) {
     _emit = std::move(emitter);
+    _blobStore = blobStore;
     _requests = [NSMutableDictionary new];
     OneMacosNetworkDelegate *delegate = [OneMacosNetworkDelegate new];
     delegate.owner = self;
@@ -84,7 +86,7 @@ static std::string networkString(NSString *value)
       return;
     }
     NSString *type = query[@"responseType"] ?: @"text";
-    if (![@[@"text", @"base64"] containsObject:type]) {
+    if (![@[@"text", @"base64", @"blob"] containsObject:type]) {
       [self complete:requestID error:@"Unsupported networking response type" timeout:NO];
       return;
     }
@@ -104,7 +106,17 @@ static std::string networkString(NSString *value)
         [self complete:requestID error:@"Invalid base64 request body" timeout:NO];
         return;
       }
-    } else if (body[@"uri"] || body[@"blob"] || body[@"formData"]) {
+    } else if (body[@"blob"]) {
+      request.HTTPBody = [_blobStore resolve:body[@"blob"]];
+      if (!request.HTTPBody) {
+        [self complete:requestID error:@"Unable to resolve request blob" timeout:NO];
+        return;
+      }
+      NSString *contentType = body[@"blob"][@"type"];
+      if (contentType.length && ![request valueForHTTPHeaderField:@"Content-Type"]) {
+        [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+      }
+    } else if (body[@"uri"] || body[@"formData"]) {
       [self complete:requestID error:@"Unsupported networking request body" timeout:NO];
       return;
     }
@@ -177,10 +189,16 @@ static std::string networkString(NSString *value)
       // hold incomplete encoded characters until the following packet arrives.
       NSData *pending = [state.data subdataWithRange:NSMakeRange(state.deliveredBytes, state.data.length - state.deliveredBytes)];
       NSString *text = [self text:pending response:task.response];
+      NSUInteger decodedBytes = pending.length;
+      // emit the complete prefix even when every packet ends inside a character.
+      for (NSUInteger carry = 1; !text && carry <= 3 && carry < pending.length; carry++) {
+        decodedBytes = pending.length - carry;
+        text = [self text:[pending subdataWithRange:NSMakeRange(0, decodedBytes)] response:task.response];
+      }
       if (text) {
-        state.deliveredBytes = state.data.length;
+        state.deliveredBytes += decodedBytes;
         _emit("didReceiveNetworkIncrementalData", folly::dynamic::array(
-            (double)state.requestID, networkString(text), (double)state.data.length, (double)task.response.expectedContentLength));
+            (double)state.requestID, networkString(text), (double)state.deliveredBytes, (double)task.response.expectedContentLength));
       }
     } else if (state.incremental) {
       _emit("didReceiveNetworkDataProgress", folly::dynamic::array(
@@ -205,7 +223,13 @@ static std::string networkString(NSString *value)
     OneMacosNetworkRequest *state = _requests[@(task.taskIdentifier)];
     if (!state || !_emit) return;
     NSString *text = nil;
-    if (!(state.incremental && [state.responseType isEqualToString:@"text"])) {
+    if ([state.responseType isEqualToString:@"blob"]) {
+      NSString *identifier = NSUUID.UUID.UUIDString;
+      [_blobStore store:state.data identifier:identifier];
+      auto blob = folly::dynamic::object("blobId", identifier.UTF8String)("offset", 0)("size", (double)state.data.length)(
+          "type", task.response.MIMEType ? task.response.MIMEType.UTF8String : "");
+      _emit("didReceiveNetworkData", folly::dynamic::array((double)state.requestID, std::move(blob)));
+    } else if (!(state.incremental && [state.responseType isEqualToString:@"text"])) {
       text = [state.responseType isEqualToString:@"base64"] ? [state.data base64EncodedStringWithOptions:0] : [self text:state.data response:task.response];
       if (text) _emit("didReceiveNetworkData", folly::dynamic::array((double)state.requestID, networkString(text)));
     }

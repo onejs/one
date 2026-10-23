@@ -1,12 +1,15 @@
 // append to an existing native bundle to exercise RN's real fetch and XHR adapters.
 const base = 'http://127.0.0.1:18989'
+let generation = 0
 const report = (name: string, value: unknown) =>
-  console.log('[networking-proof]', JSON.stringify({ name, value }))
+  console.log('[networking-proof]', JSON.stringify({ generation, name, value }))
 const check = (condition: unknown, message: string) => {
   if (!condition) throw new Error(message)
 }
 
 async function proveNetworking() {
+  generation = await (await fetch(`${base}/generation`)).json()
+  report('runtime-start', true)
   const health = await fetch('http://127.0.0.1:7777/api/zero/health')
   const healthJSON = await health.json()
   check(health.status === 200 && healthJSON.ok === true, 'daemon JSON')
@@ -27,6 +30,35 @@ async function proveNetworking() {
   const binary = await fetch(`${base}/echo`, { method: 'POST', body: new Uint8Array([0, 1, 127, 255]) })
   check((await binary.json()).base64 === 'AAF//w==', 'binary POST')
   report('binary-post', true)
+  const binaryFetch = await fetch(`${base}/binary`)
+  check(Array.from(new Uint8Array(await binaryFetch.arrayBuffer())).join(',') === '0,1,127,255', 'fetch binary decoding')
+  report('fetch-arraybuffer', true)
+  const blob = new Blob(['prefix:', 'macOS 🌊'], { type: 'text/plain' })
+  const sliced = blob.slice(7, blob.size, 'text/plain')
+  const blobEcho = await fetch(`${base}/echo`, { method: 'POST', body: sliced })
+  check((await blobEcho.json()).body === 'macOS 🌊', 'blob parts and slice request')
+  blob.close()
+  sliced.close()
+  report('blob-post', true)
+  const released = new Blob(['released'])
+  const descriptor = (released as any).data
+  released.close()
+  let rejected = false
+  try {
+    await (globalThis as any).nativeModuleProxy.FileReaderModule.readAsText(descriptor, 'UTF-8')
+  } catch { rejected = true }
+  check(rejected, 'released blob must reject FileReader promise')
+  report('released-blob-rejected', true)
+  const controller = new AbortController()
+  const cancelled = fetch(`${base}/slow`, { signal: controller.signal })
+  setTimeout(() => controller.abort(), 50)
+  try {
+    await cancelled
+    throw new Error('aborted fetch unexpectedly loaded')
+  } catch (error) {
+    check((error as Error).name === 'AbortError', 'fetch abort must reject with AbortError')
+    report('fetch-abort', true)
+  }
 
   await new Promise<void>((resolve, reject) => {
     const xhr = new XMLHttpRequest()
@@ -85,10 +117,9 @@ async function proveNetworking() {
   // leave an active request across host reload; the next runtime runs this entry again.
   fetch(`${base}/slow`).then(() => report('old-request-completed', true)).catch(() => {})
   report('reload-pending', true)
-  const generation = await (await fetch(`${base}/generation`)).json()
   if (generation === 1) {
     // reload only the first proof runtime; the server carries this counter across reload.
-    setTimeout(() => (globalThis as any).__turboModuleProxy('DevSettings').reload(), 50)
+    setTimeout(() => (globalThis as any).nativeModuleProxy.DevSettings.reload(), 50)
   }
 }
 proveNetworking().catch((error) => report('FAILED', String(error)))

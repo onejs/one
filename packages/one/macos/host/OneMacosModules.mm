@@ -403,16 +403,47 @@ std::shared_ptr<TurboModule> settingsManager(std::shared_ptr<CallInvoker> jsInvo
   return module;
 }
 
-std::shared_ptr<TurboModule> networking(std::shared_ptr<CallInvoker> jsInvoker, const OneMacosModuleContext &context)
+// the global owns the store for exactly this runtime; module callbacks may also
+// retain it until their in-flight work is cancelled during runtime teardown.
+class OneMacosBlobStoreHolder : public jsi::HostObject {
+ public:
+  OneMacosBlobStore *store = [OneMacosBlobStore new];
+};
+
+class OneMacosBlobCollector : public jsi::HostObject {
+ public:
+  OneMacosBlobCollector(OneMacosBlobStore *store, NSString *identifier) : store_(store), identifier_(identifier) {}
+  ~OneMacosBlobCollector() override { [store_ remove:identifier_]; }
+ private:
+  OneMacosBlobStore *store_;
+  NSString *identifier_;
+};
+
+OneMacosBlobStore *runtimeBlobStore(jsi::Runtime &rt)
+{
+  constexpr const char *key = "__oneMacosBlobStore";
+  auto value = rt.global().getProperty(rt, key);
+  if (!value.isUndefined()) return value.getObject(rt).getHostObject<OneMacosBlobStoreHolder>(rt)->store;
+  auto holder = std::make_shared<OneMacosBlobStoreHolder>();
+  rt.global().setProperty(rt, key, jsi::Object::createFromHostObject(rt, holder));
+  return holder->store;
+}
+
+id nativeJSON(jsi::Runtime &rt, const jsi::Value &value)
+{
+  auto json = folly::toJson(jsi::dynamicFromValue(rt, value));
+  return [NSJSONSerialization JSONObjectWithData:[NSData dataWithBytes:json.data() length:json.size()]
+                                      options:NSJSONReadingFragmentsAllowed error:nil];
+}
+
+std::shared_ptr<TurboModule> networking(jsi::Runtime &runtime, std::shared_ptr<CallInvoker> jsInvoker, const OneMacosModuleContext &context)
 {
   auto module = std::make_shared<OneMacosModule>("Networking", std::move(jsInvoker));
   addEventEmitterStubs(*module);
-  OneMacosNetworking *manager = [[OneMacosNetworking alloc] initWithEmitter:context.emitDeviceEvent];
+  OneMacosNetworking *manager = [[OneMacosNetworking alloc] initWithEmitter:context.emitDeviceEvent blobStore:runtimeBlobStore(runtime)];
   module->method("sendRequest", 2, [manager](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
     if (count < 2) throw jsi::JSError(rt, "Networking.sendRequest requires a query and callback");
-    auto json = folly::toJson(jsi::dynamicFromValue(rt, args[0]));
-    NSData *data = [NSData dataWithBytes:json.data() length:json.size()];
-    NSDictionary *query = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSDictionary *query = nativeJSON(rt, args[0]);
     NSInteger requestID = [manager nextRequestID];
     args[1].getObject(rt).getFunction(rt).call(rt, (double)requestID);
     [manager sendRequest:query requestID:requestID];
@@ -438,16 +469,65 @@ std::shared_ptr<TurboModule> devLoadingView(std::shared_ptr<CallInvoker> jsInvok
   return module;
 }
 
-std::shared_ptr<TurboModule> blobModule(std::shared_ptr<CallInvoker> jsInvoker)
+std::shared_ptr<TurboModule> blobModule(jsi::Runtime &runtime, std::shared_ptr<CallInvoker> jsInvoker)
 {
   auto module = std::make_shared<OneMacosModule>("BlobModule", std::move(jsInvoker));
   module->constants(folly::dynamic::object("BLOB_URI_SCHEME", "blob")("BLOB_URI_HOST", nullptr));
   module->noop("addNetworkingHandler");
   module->noop("addWebSocketHandler");
   module->noop("removeWebSocketHandler");
-  module->noop("sendOverSocket");
-  module->noop("createFromParts");
-  module->noop("release");
+  OneMacosBlobStore *store = runtimeBlobStore(runtime);
+  runtime.global().setProperty(runtime, "__blobCollectorProvider", jsi::Function::createFromHostFunction(
+      runtime, jsi::PropNameID::forAscii(runtime, "__blobCollectorProvider"), 1,
+      [store](jsi::Runtime &rt, const jsi::Value &, const jsi::Value *args, size_t count) -> jsi::Value {
+        NSString *identifier = @(stringArg(rt, args, count, 0).c_str());
+        return jsi::Object::createFromHostObject(rt, std::make_shared<OneMacosBlobCollector>(store, identifier));
+      }));
+  module->method("sendOverSocket", 2, [](jsi::Runtime &rt, const jsi::Value *, size_t) -> jsi::Value {
+    throw jsi::JSError(rt, "Sending blobs over WebSocket is not supported by the macOS host");
+  });
+  module->method("createFromParts", 2, [store](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    if (count < 2 || ![store createFromParts:nativeJSON(rt, args[0]) identifier:@(stringArg(rt, args, count, 1).c_str())]) {
+      throw jsi::JSError(rt, "Unable to resolve blob parts");
+    }
+    return jsi::Value::undefined();
+  });
+  module->method("release", 1, [store](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    [store remove:@(stringArg(rt, args, count, 0).c_str())];
+    return jsi::Value::undefined();
+  });
+  return module;
+}
+
+std::shared_ptr<TurboModule> fileReaderModule(jsi::Runtime &runtime, std::shared_ptr<CallInvoker> jsInvoker)
+{
+  auto module = std::make_shared<OneMacosModule>("FileReaderModule", std::move(jsInvoker));
+  OneMacosBlobStore *store = runtimeBlobStore(runtime);
+  for (const auto &name : {"readAsText", "readAsDataURL"}) {
+    bool asText = std::string(name) == "readAsText";
+    module->method(name, asText ? 2 : 1, [store, asText](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+      NSDictionary *blob = count ? nativeJSON(rt, args[0]) : nil;
+      NSData *bytes = [store resolve:blob];
+      NSString *text = nil;
+      if (bytes && asText) {
+        NSString *charset = @(stringArg(rt, args, count, 1).c_str());
+        CFStringEncoding encoding = charset.length ? CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)charset) : kCFStringEncodingUTF8;
+        if (encoding != kCFStringEncodingInvalidId) {
+          text = [[NSString alloc] initWithData:bytes encoding:CFStringConvertEncodingToNSStringEncoding(encoding)];
+        }
+      } else if (bytes) {
+        NSString *type = [blob[@"type"] isKindOfClass:NSString.class] && [blob[@"type"] length] ? blob[@"type"] : @"application/octet-stream";
+        text = [NSString stringWithFormat:@"data:%@;base64,%@", type, [bytes base64EncodedStringWithOptions:0]];
+      }
+      auto promise = rt.global().getPropertyAsObject(rt, "Promise");
+      if (!text) {
+        auto error = rt.global().getPropertyAsFunction(rt, "Error").callAsConstructor(rt, "Unable to read blob data or encoding");
+        return promise.getPropertyAsFunction(rt, "reject").callWithThis(rt, promise, error);
+      }
+      auto value = jsi::String::createFromUtf8(rt, std::string(text.UTF8String, [text lengthOfBytesUsingEncoding:NSUTF8StringEncoding]));
+      return promise.getPropertyAsFunction(rt, "resolve").callWithThis(rt, promise, value);
+    });
+  }
   return module;
 }
 
@@ -513,13 +593,16 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
     return settingsManager(std::move(jsInvoker));
   }
   if (name == "Networking") {
-    return networking(std::move(jsInvoker), context);
+    return networking(runtime, std::move(jsInvoker), context);
   }
   if (name == "DevLoadingView") {
     return devLoadingView(std::move(jsInvoker));
   }
   if (name == "BlobModule") {
-    return blobModule(std::move(jsInvoker));
+    return blobModule(runtime, std::move(jsInvoker));
+  }
+  if (name == "FileReaderModule") {
+    return fileReaderModule(runtime, std::move(jsInvoker));
   }
   if (name == "ReactDevToolsRuntimeSettingsModule") {
     return devToolsRuntimeSettings(std::move(jsInvoker));
