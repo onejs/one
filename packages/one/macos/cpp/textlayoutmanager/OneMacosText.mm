@@ -102,8 +102,21 @@ static NSAttributedString *AttributedStringValue(const AttributedString &attribu
 
     NSColor *foreground = OneMacosColorFromSharedColor(attributes.foregroundColor);
     dictionary[NSForegroundColorAttributeName] = foreground ?: [NSColor textColor];
-    if (attributes.opacity == attributes.opacity && foreground) {
-      dictionary[NSForegroundColorAttributeName] = [foreground colorWithAlphaComponent:foreground.alphaComponent * attributes.opacity];
+    if (attributes.opacity == attributes.opacity && foreground && attributes.opacity != 1) {
+      CGFloat opacity = attributes.opacity;
+      if ((*attributes.foregroundColor).getPlatformColor()) {
+        // colorWithAlphaComponent resolves a semantic color immediately, so keep
+        // opacity resolution inside the appearance-aware provider.
+        dictionary[NSForegroundColorAttributeName] = [NSColor colorWithName:nil dynamicProvider:^NSColor *(NSAppearance *appearance) {
+          __block NSColor *resolved;
+          [appearance performAsCurrentDrawingAppearance:^{
+            resolved = [foreground colorWithAlphaComponent:foreground.alphaComponent * opacity];
+          }];
+          return resolved;
+        }];
+      } else {
+        dictionary[NSForegroundColorAttributeName] = [foreground colorWithAlphaComponent:foreground.alphaComponent * opacity];
+      }
     }
     if (NSColor *background = OneMacosColorFromSharedColor(attributes.backgroundColor)) {
       dictionary[NSBackgroundColorAttributeName] = background;
