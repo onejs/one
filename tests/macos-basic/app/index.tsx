@@ -134,6 +134,23 @@ function NativeControls() {
   )
 }
 
+// same font at different line heights must share a centered row's baseline
+function LineHeights() {
+  return (
+    <View testID="line-heights" style={{ gap: 4, marginVertical: 4 }}>
+      <View testID="line-height-row" style={{ flexDirection: 'row', alignItems: 'center', gap: 8, height: 28, backgroundColor: '#e8e8e8' }}>
+        <Text style={{ fontSize: 13 }}>Hg natural</Text>
+        <Text style={{ fontSize: 13, lineHeight: 16 }}>Hg 16</Text>
+        <Text style={{ fontSize: 13, lineHeight: 20 }}>Hg 20</Text>
+        <Text style={{ fontSize: 13, lineHeight: 28 }}>Hg 28</Text>
+      </View>
+      <Text testID="line-height-multiline" style={{ fontSize: 13, lineHeight: 20, width: 220, backgroundColor: '#e8e8e8' }}>
+        Hg multiline text at line height twenty wraps onto three lines here
+      </Text>
+    </View>
+  )
+}
+
 // renders once; appearance changes must repaint these colors natively
 let platformColorRenders = 0
 
@@ -177,6 +194,7 @@ export default function Index() {
       <Text testID="macos-probe">{probe}</Text>
       <NativeControls />
       <PlatformColors />
+      <LineHeights />
       <Pressable
         testID="toggle-animation"
         accessibilityRole="button"
