@@ -56,6 +56,7 @@ set(RN_DIRS
   react/utils
   react/nativemodule/core/ReactCommon
   react/nativemodule/dom
+  react/nativemodule/idlecallbacks
   react/performance/cdpmetrics
   react/performance/timeline
   react/renderer/animated

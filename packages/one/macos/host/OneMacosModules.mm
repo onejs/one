@@ -7,6 +7,7 @@
 #include <jsi/JSIDynamic.h>
 #include <react/featureflags/ReactNativeFeatureFlags.h>
 #include <react/nativemodule/dom/NativeDOM.h>
+#include <react/nativemodule/idlecallbacks/NativeIdleCallbacks.h>
 
 #include <CallInvokerDispatcher.hpp>
 #include <InstallNitro.hpp>
@@ -615,6 +616,9 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
   }
   if (name == "NativeDOMCxx") {
     return std::make_shared<NativeDOM>(std::move(jsInvoker));
+  }
+  if (name == "NativeIdleCallbacksCxx") {
+    return std::make_shared<NativeIdleCallbacks>(std::move(jsInvoker));
   }
   if (name == "NitroModules") {
     return nitro(std::move(jsInvoker));
