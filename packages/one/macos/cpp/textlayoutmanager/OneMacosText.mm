@@ -10,6 +10,10 @@ NSColor *OneMacosColorFromSharedColor(SharedColor color)
   if (!color) {
     return nil;
   }
+  // a PlatformColor stays the AppKit color, resolved per appearance when drawn
+  if (NSColor *platformColor = (__bridge NSColor *)(*color).getPlatformColor().get()) {
+    return platformColor;
+  }
   auto c = colorComponentsFromColor(color);
   return [NSColor colorWithSRGBRed:c.red green:c.green blue:c.blue alpha:c.alpha];
 }
@@ -143,11 +147,33 @@ static NSAttributedString *AttributedStringValue(const AttributedString &attribu
   return result;
 }
 
+// AppKit puts all of a fixed line height's extra space above the text. Split
+// it above and below as iOS React Native does, measured against the line
+// height this layout manager gives the font without one.
+static void CenterInLineHeight(NSTextStorage *textStorage, NSLayoutManager *layoutManager)
+{
+  NSRange range = NSMakeRange(0, textStorage.length);
+  __block CGFloat lineHeight = 0;
+  __block CGFloat fontLineHeight = 0;
+  [textStorage enumerateAttributesInRange:range
+                                  options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
+                               usingBlock:^(NSDictionary<NSAttributedStringKey, id> *attributes, NSRange, BOOL *) {
+                                 lineHeight = MAX(lineHeight, [attributes[NSParagraphStyleAttributeName] maximumLineHeight]);
+                                 if (NSFont *font = attributes[NSFontAttributeName]) {
+                                   fontLineHeight = MAX(fontLineHeight, [layoutManager defaultLineHeightForFont:font]);
+                                 }
+                               }];
+  if (lineHeight > fontLineHeight) {
+    [textStorage addAttribute:NSBaselineOffsetAttributeName value:@((lineHeight - fontLineHeight) / 2) range:range];
+  }
+}
+
 NSTextStorage *OneMacosTextStorage(const AttributedString &attributedString, const ParagraphAttributes &paragraphAttributes, CGSize size)
 {
   NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:AttributedStringValue(attributedString)];
   NSLayoutManager *layoutManager = [NSLayoutManager new];
   layoutManager.usesFontLeading = NO;
+  CenterInLineHeight(textStorage, layoutManager);
   NSTextContainer *container = [[NSTextContainer alloc] initWithSize:size];
   container.lineFragmentPadding = 0;
   container.maximumNumberOfLines = paragraphAttributes.maximumNumberOfLines;

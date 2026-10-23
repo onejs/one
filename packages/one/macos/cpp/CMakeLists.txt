@@ -130,6 +130,7 @@ file(GLOB ONE_SOURCES CONFIGURE_DEPENDS
   ${ONE_CPP}/OneMacButton/*.mm
   ${ONE_CPP}/OneMacSegmentedControl/*.cpp
   ${ONE_CPP}/OneMacSegmentedControl/*.mm
+  ${ONE_CPP}/graphics/react/renderer/graphics/*.mm
   ${ONE_CPP}/textlayoutmanager/*.mm
   ${ONE_CPP}/textlayoutmanager/react/renderer/textlayoutmanager/*.mm
   ${ONE_CPP}/textlayoutmanager/*.cpp
@@ -198,6 +199,8 @@ target_include_directories(OneMacosCore PUBLIC
   ${RC}/react/renderer/imagemanager
   ${RC}/jsiexecutor
   ${RC}/react/nativemodule/core
+  # the macOS color backend shadows the cxx one; Float.h still comes from cxx
+  ${ONE_CPP}/graphics
   ${RC}/react/renderer/graphics/platform/cxx
   ${RC}/react/renderer/components/view/platform/cxx
   ${RC}/react/renderer/components/scrollview/platform/cxx

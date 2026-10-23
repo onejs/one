@@ -448,8 +448,24 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     [_host updateLayoutWithSize:self.bounds.size scale:NSScreen.mainScreen.backingScaleFactor];
     [_host start];
     OneMacosInstallDebugHooks(self);
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(systemColorsDidChange:)
+                                               name:NSSystemColorsDidChangeNotification
+                                             object:nil];
   }
   return self;
+}
+
+// an accent or system color change keeps the appearance, so PlatformColor
+// paint needs an explicit redraw
+- (void)systemColorsDidChange:(NSNotification *)notification
+{
+  NSMutableArray<NSView *> *views = [NSMutableArray arrayWithObject:self];
+  while (NSView *view = views.lastObject) {
+    [views removeLastObject];
+    view.needsDisplay = YES;
+    [views addObjectsFromArray:view.subviews];
+  }
 }
 
 - (void)dealloc
