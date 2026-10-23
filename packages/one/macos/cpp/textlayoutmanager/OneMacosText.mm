@@ -10,6 +10,10 @@ NSColor *OneMacosColorFromSharedColor(SharedColor color)
   if (!color) {
     return nil;
   }
+  // a PlatformColor stays the AppKit color, resolved per appearance when drawn
+  if (NSColor *platformColor = (__bridge NSColor *)(*color).getPlatformColor().get()) {
+    return platformColor;
+  }
   auto c = colorComponentsFromColor(color);
   return [NSColor colorWithSRGBRed:c.red green:c.green blue:c.blue alpha:c.alpha];
 }

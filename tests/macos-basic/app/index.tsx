@@ -3,6 +3,7 @@ import {
   Animated,
   DevSettings,
   Image,
+  PlatformColor,
   Pressable,
   ScrollView,
   Text,
@@ -133,6 +134,29 @@ function NativeControls() {
   )
 }
 
+// renders once; appearance changes must repaint these colors natively
+let platformColorRenders = 0
+
+const PlatformColors = memo(function PlatformColors() {
+  platformColorRenders++
+  const swatch = { width: 44, height: 22, borderRadius: 4 }
+  return (
+    <View testID="platform-colors" style={{ gap: 4, padding: 8, marginVertical: 4, backgroundColor: PlatformColor('windowBackgroundColor') }}>
+      <Text testID="platform-label" style={{ color: PlatformColor('labelColor') }}>{`Label renders ${platformColorRenders}`}</Text>
+      <Text style={{ color: PlatformColor('secondaryLabelColor') }}>Secondary label</Text>
+      <Text style={{ color: PlatformColor('controlAccentColor') }}>Accent text</Text>
+      <View style={{ flexDirection: 'row', gap: 6 }}>
+        <View testID="swatch-accent" style={[swatch, { backgroundColor: PlatformColor('controlAccentColor') }]} />
+        <View testID="swatch-fill" style={[swatch, { backgroundColor: PlatformColor('systemFill') }]} />
+        <View testID="swatch-control" style={[swatch, { backgroundColor: PlatformColor('controlBackgroundColor'), borderWidth: 1, borderColor: PlatformColor('separatorColor') }]} />
+        <View testID="swatch-rgb" style={[swatch, { backgroundColor: '#3366cc' }]} />
+        <View testID="swatch-fallback" style={[swatch, { backgroundColor: PlatformColor('notAColor', { fallback: '#ff8800' }) }]} />
+      </View>
+      <Text style={{ color: 'rgb(200, 40, 40)' }}>Ordinary red</Text>
+    </View>
+  )
+})
+
 export default function Index() {
   const [isOn, setIsOn] = useState(false)
   const [showAnimation, setShowAnimation] = useState(true)
@@ -152,6 +176,7 @@ export default function Index() {
       <Text testID="macos-label">macOS</Text>
       <Text testID="macos-probe">{probe}</Text>
       <NativeControls />
+      <PlatformColors />
       <Pressable
         testID="toggle-animation"
         accessibilityRole="button"
