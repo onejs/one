@@ -297,6 +297,30 @@ is staffed.
 
 ## Status
 
+### Current integration, 2026-10-23
+
+The runtime candidate is `ea447e78bd` on `tm/macos-resume`, prepared at 2.10.0
+in PR #1027. Native animation, controls, HTTP/Blob/FileReader, idle callbacks,
+semantic colors, linear backgrounds, typed app commands and input/lifecycle
+repairs have running native proofs and independent review. Explicit text
+opacity now keeps semantic colors appearance-aware; the actual consumer draft
+survives light/dark switches without replacing its value.
+
+The shared Team Machine application runs from its isolated Mac dependency root.
+Actual inactive-window checks cover live session rows, transcript selection,
+visible draft editing and restoration, native filter changes, menu actions and
+reload. Tamagui PR #4378 supplies reviewed native color/config fixes. The Mac
+consumer keeps its presentation and dependency graph separate from mobile and
+GPUI. Its final floating-composer surface refinement is consumer work.
+
+Canary `2.0.0-0.canary.1792761148499` contains this runtime source; exact npm One
+and vxrn manifests and the changed native file were verified. Native probes do
+not establish a fresh mobile/web byte comparison or performance result. The
+feature remains held for owner review before merging or stable publication;
+unsupported APIs are listed in `goals.md` and the Mac README.
+
+### Earlier checkpoints
+
 M0 done: plan, package skeleton, npm and bundle baselines. M1 done
 (2026-10-21): the real `/index.bundle?platform=macos` from `one dev` mounts a One
 route with `View`, `Text` and `One.macOS.Toggle` on Hermes, the toggle round

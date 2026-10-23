@@ -10,11 +10,11 @@ Add the experimental native macOS target as one minor release. The complete feat
 - AppKit buttons and segmented controls, semantic system colors, explicit line-height alignment, linear backgrounds and typed application menus and keyboard commands.
 - Native bundle module scoping and a shared One entry whose imports remain valid under platform suffix resolution.
 
-## Validation and remaining acceptance
+## Validation and release review
 
-Incremental native fixture builds and running probes cover animation without React rerenders, input composition and undo, transport errors and cancellation, native controls, inactive accessibility, menus, appearance, resize and reload. The shared Team Machine app has loaded live rows and transcripts, retained per-session drafts and switched native filters. Its final combined appearance and command acceptance remains in progress, including the related Tamagui native config fixes.
+Incremental native fixture builds and running probes cover animation without React rerenders, input composition and undo, transport errors and cancellation, native controls, inactive accessibility, menus, appearance, resize and reload. The shared Team Machine app has loaded live rows and transcripts, retained per-session drafts and switched native filters. The combined application passes inactive native menu actions, repeated light/dark draft appearance changes, exact draft restoration after switching sessions, native feed filters and corrected sidebar metadata layout. Related Tamagui native theme and config fixes are reviewed in PR #4378.
 
-The first branch canary is `2.0.0-0.canary.1792755511444`, from `e01b3044ba9475a8cc596e55f7e16f92a80be551`. Its exact npm One artifact source revision was checked. It predates the declaration repair, so it is not the final release candidate. A containing canary and final consumer evidence are still required.
+The runtime candidate is `ea447e78bdfb07c4711c1d309a90f9c2394e9345`, published as `2.0.0-0.canary.1792761148499` by release run 39959092975. Exact npm One and vxrn tarballs both identify this source. The native text source hash matches the reviewed appearance repair. Its actual text-storage regression fails four cross-appearance cases before the fix and passes all eight afterward; independent review extends this to 64 checks. The real consumer rebuild confirms visible drafts through repeated appearance changes. The earlier canaries are superseded. Owner review of the prepared feature remains the next release step; stable publication requires explicit approval.
 
 No fresh cross-platform binary size or performance comparison is claimed. Reanimated, radial or repeating gradients, gradient transition hints, DynamicColorIOS, multipart or URI request bodies and Blob WebSocket sends remain unsupported. Split view renders its slot only. High contrast, global accent changes and foreground-only interactions were not exercised.
 
