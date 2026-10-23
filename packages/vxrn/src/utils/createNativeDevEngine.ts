@@ -1338,7 +1338,10 @@ ${routeHmr}
     }
     return files
   }
-  const registrySpecifier = `./node_modules/.vxrn/native-routes-${opts.platform}.mjs`
+  // apps sharing node_modules must not overwrite each other's route imports.
+  // use the real root so opening the same app through a symlink keeps its identity.
+  const appId = createHash('sha256').update(realpathSync(root)).digest('hex')
+  const registrySpecifier = `./node_modules/.vxrn/native-routes-${opts.platform}-${appId}.mjs`
   const registryPath = resolve(root, registrySpecifier)
   const routes: NativeRouteRegistry = {
     routeRoot,
