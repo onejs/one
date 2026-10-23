@@ -333,6 +333,17 @@ export async function transformMixedNativeModule(
   let analysis = analyze(program)
   let mixed = false
   function inspect(node: Node, parent: Node, key: string) {
+    // types do not reference the runtime commonjs wrapper.
+    if (
+      node.declare ||
+      node.importKind === 'type' ||
+      node.exportKind === 'type' ||
+      /^(?:TSTypeAliasDeclaration|TSInterfaceDeclaration)$/.test(node.type) ||
+      /^(?:typeAnnotation|typeArguments|typeParameters|returnType|superTypeArguments|implements)$/.test(
+        key
+      )
+    )
+      return
     if (
       node.type === 'Identifier' &&
       /^(?:module|exports)$/.test(node.name) &&
@@ -378,7 +389,7 @@ export async function transformMixedNativeModule(
     jsc: {
       target: 'esnext',
       parser: { syntax: 'ecmascript', jsx: true },
-      transform: { react: { runtime: 'preserve' } },
+      transform: { react: { runtime: 'classic' } },
     },
     module: { type: 'commonjs', strictMode: false, allowTopLevelThis: true },
   })
