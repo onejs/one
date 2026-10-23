@@ -1,11 +1,9 @@
 diff --git a/lib/parse.js b/lib/parse.js
-index b4ff0f65b9fe9e43b381f46f6451f1c53f93c641..1bad3a8a4d268c1849e91300998bb7c8138547f5 100644
+index b5e7496a28d0664933a14f4fcd89682c8a349d3f..97acf770b40a08b36f602c46e524498f8f906823 100644
 --- a/lib/parse.js
 +++ b/lib/parse.js
-@@ -63,7 +63,8 @@ function isEmptyNode(node) {
-  */
+@@ -65,5 +65,6 @@
  function parse (xml) {
-   // prevent the parser from logging non-fatal errors
 -  var doc = new DOMParser().parseFromString(xml);
 +  xml = xml.replace(/^\uFEFF/, '').trimStart();
 +  var doc = new DOMParser().parseFromString(xml, 'text/xml');
