@@ -90,13 +90,15 @@ jobs:
         working-directory: examples/one-basic
         run: bun run prebuild:native --platform ios --no-install
 
-  build-native-features-ios:
-    name: Build One Native consumer (iOS)
+  prepare-native-features-ios:
+    name: Prepare One Native consumer (iOS)
     needs: generated-swiftui
     runs-on: xcode-27
     timeout-minutes: 60
-    # the compile takes most of an hour. keep source checks and the Basic
-    # prebuild in the prerequisite job so they do not consume its build budget.
+    outputs:
+      artifact-id: ${{ steps.upload-native-preparation.outputs.artifact-id }}
+      run-attempt: ${{ github.run_attempt }}
+    # prebuild and pods need their own budget before the near-hour compile.
     steps:
       - uses: actions/checkout@v6
       - name: Set Xcode version
@@ -112,6 +114,121 @@ jobs:
       - name: Install consumer pods
         working-directory: tests/native-features/ios
         run: USE_FRAMEWORKS=static pod install
+      # archive the whole prepared workspace, including installed dependencies
+      # and generated package outputs. tar preserves pod links and script modes.
+      - name: Archive the prepared native workspace
+        shell: bash
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, pathlib, shutil, subprocess
+
+          workspace = pathlib.Path.cwd().resolve()
+          source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          assert source == os.environ['GITHUB_SHA'], 'preparation source mismatch'
+          # an external dependency would not survive transfer to a fresh runner.
+          for root, directories, files in os.walk(workspace):
+              if pathlib.Path(root) == workspace:
+                  directories.remove('.git')
+              for name in directories + files:
+                  path = pathlib.Path(root) / name
+                  if path.is_symlink():
+                      assert path.resolve().is_relative_to(workspace), f'external prepared symlink: {path}'
+          ios = workspace / 'tests/native-features/ios'
+          assert (ios / 'NativeFeatureTests.xcworkspace/contents.xcworkspacedata').is_file(), 'missing prepared workspace'
+          assert (ios / 'Podfile.lock').read_bytes() == (ios / 'Pods/Manifest.lock').read_bytes(), 'pods lock mismatch'
+          output = pathlib.Path(os.environ['RUNNER_TEMP']) / 'one-native-preparation'
+          output.mkdir()
+          archive = output / 'workspace.tar.gz'
+          subprocess.run(['tar', '--exclude=./.git', '-czf', str(archive), '-C', str(workspace), '.'], check=True)
+          receipt = {
+              'sourceRevision': source,
+              'repository': os.environ['GITHUB_REPOSITORY'],
+              'runID': os.environ['GITHUB_RUN_ID'],
+              'runAttempt': os.environ['GITHUB_RUN_ATTEMPT'],
+              'workspace': str(workspace),
+              'home': str(pathlib.Path.home()),
+              'architecture': os.uname().machine,
+              'node': str(pathlib.Path(shutil.which('node')).resolve()),
+              'nodeVersion': subprocess.check_output(['node', '--version'], text=True).strip(),
+              'bunVersion': subprocess.check_output(['bun', '--version'], text=True).strip(),
+              'xcodeVersion': subprocess.check_output(['xcodebuild', '-version'], text=True).strip(),
+              'archiveSHA256': subprocess.check_output(['shasum', '-a', '256', str(archive)], text=True).split()[0],
+          }
+          (output / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+          PYTHON
+      - name: Upload the prepared native workspace
+        id: upload-native-preparation
+        uses: actions/upload-artifact@v7
+        with:
+          name: one-native-preparation-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          compression-level: 0
+          path: |
+            ${{ runner.temp }}/one-native-preparation/workspace.tar.gz
+            ${{ runner.temp }}/one-native-preparation/receipt.json
+
+  build-native-features-ios:
+    name: Build One Native consumer (iOS)
+    needs: prepare-native-features-ios
+    runs-on: xcode-27
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_27.0.app
+      # match the preparation toolchain without repeating install or prebuild.
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: '.node-version'
+          registry-url: 'https://registry.npmjs.org'
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version-file: 'package.json'
+      - name: Require the prepared native artifact
+        env:
+          PREPARATION_ARTIFACT_ID: ${{ needs.prepare-native-features-ios.outputs.artifact-id }}
+        run: test -n "$PREPARATION_ARTIFACT_ID"
+      - name: Download the prepared native workspace
+        uses: actions/download-artifact@v7
+        with:
+          artifact-ids: ${{ needs.prepare-native-features-ios.outputs.artifact-id }}
+          merge-multiple: true
+          path: ${{ runner.temp }}/one-native-preparation
+      - name: Verify and restore the prepared native workspace
+        shell: bash
+        env:
+          PREPARATION_RUN_ATTEMPT: ${{ needs.prepare-native-features-ios.outputs.run-attempt }}
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, pathlib, shutil, subprocess
+
+          workspace = pathlib.Path.cwd().resolve()
+          output = pathlib.Path(os.environ['RUNNER_TEMP']) / 'one-native-preparation'
+          receipt = json.loads((output / 'receipt.json').read_text())
+          expected = {
+              'sourceRevision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+              'repository': os.environ['GITHUB_REPOSITORY'],
+              'runID': os.environ['GITHUB_RUN_ID'],
+              'runAttempt': os.environ['PREPARATION_RUN_ATTEMPT'],
+              'workspace': str(workspace),
+              'home': str(pathlib.Path.home()),
+              'architecture': os.uname().machine,
+              'node': str(pathlib.Path(shutil.which('node')).resolve()),
+              'nodeVersion': subprocess.check_output(['node', '--version'], text=True).strip(),
+              'bunVersion': subprocess.check_output(['bun', '--version'], text=True).strip(),
+              'xcodeVersion': subprocess.check_output(['xcodebuild', '-version'], text=True).strip(),
+          }
+          assert expected['sourceRevision'] == os.environ['GITHUB_SHA'], 'compile source mismatch'
+          for key, value in expected.items():
+              assert receipt[key] == value, f'prepared workspace {key} mismatch'
+          archive = output / 'workspace.tar.gz'
+          digest = subprocess.check_output(['shasum', '-a', '256', str(archive)], text=True).split()[0]
+          assert receipt['archiveSHA256'] == digest, 'prepared workspace digest mismatch'
+          subprocess.run(['tar', '-xzf', str(archive), '-C', str(workspace)], check=True)
+          ios = workspace / 'tests/native-features/ios'
+          assert (ios / 'NativeFeatureTests.xcworkspace/contents.xcworkspacedata').is_file(), 'missing prepared workspace'
+          assert (ios / 'Podfile.lock').read_bytes() == (ios / 'Pods/Manifest.lock').read_bytes(), 'pods lock mismatch'
+          PYTHON
       # the fixtures run this build on the runner's arm64 simulator; a generic
       # destination also compiles x86_64 and doubles the build past the cap.
       - name: Compile One Native and generated Fabric code
