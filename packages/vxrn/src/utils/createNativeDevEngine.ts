@@ -738,6 +738,15 @@ export function postProcessNativeBundle(code: string): string {
   return code
 }
 
+// the dev prelude ends with this line, which rolldown emits directly before its
+// runtime. the module scope and the runtime transform locate themselves by text
+// vxrn writes because rolldown's module comments change between releases
+// (1.2.15 dropped `//#region`/`//#endregion`).
+export const NATIVE_MODULE_SCOPE_MARKER = '// vxrn: native module scope'
+// the last statement of getHmrRuntimeSource, which closes rolldown's runtime
+export const NATIVE_DEV_RUNTIME_END =
+  'globalThis.__rolldown_runtime__ = new ReactNativeDevRuntime();'
+
 /**
  * wrap dev module declarations in a function scope. script-level declarations
  * create global properties that can block react native's lazy polyfills.
@@ -748,10 +757,12 @@ export function postProcessNativeBundle(code: string): string {
  * inside this closure so it can reach module bindings and runtime helpers.
  */
 export function wrapNativeBundleModuleScope(code: string): string {
-  // the prelude (intro) ends right before the rolldown runtime region
-  const marker = '//#region \\0rolldown/runtime.js'
-  const idx = code.indexOf(marker)
-  if (idx === -1) return code
+  const idx = code.indexOf(NATIVE_MODULE_SCOPE_MARKER)
+  if (idx === -1) {
+    throw new Error(
+      '[vxrn] the dev bundle lost the end of its prelude, so its modules would run at script scope'
+    )
+  }
 
   // the opener shares the marker's line (the rest of that line is a comment) so
   // the wrap costs no lines, and the closer only appends past the last mapped
@@ -760,22 +771,22 @@ export function wrapNativeBundleModuleScope(code: string): string {
 }
 
 /**
- * Downlevel class fields in the rolldown runtime for Hermes compatibility.
+ * Downlevel class fields in the rolldown dev runtime for Hermes compatibility.
  * The runtime (\0rolldown/runtime.js) is injected directly into the output,
  * bypassing hermesCompatSWCPlugin. We extract just that section (~5KB) and
- * transform it rather than re-parsing the entire 6MB bundle.
+ * transform it rather than re-parsing the entire 6MB bundle. Only the dev
+ * runtime has classes; the production runtime is plain helper functions.
  */
 async function downlevelClassFieldsInBundle(code: string): Promise<string> {
-  const startMarker = '//#region \\0rolldown/runtime.js'
-  const endMarker = '//#endregion'
+  const markerIdx = code.indexOf(NATIVE_MODULE_SCOPE_MARKER)
+  const endIdx = markerIdx === -1 ? -1 : code.indexOf(NATIVE_DEV_RUNTIME_END, markerIdx)
+  if (endIdx === -1) {
+    throw new Error('[vxrn] could not locate the rolldown runtime in the dev bundle')
+  }
 
-  const startIdx = code.indexOf(startMarker)
-  if (startIdx === -1) return code
-
-  const endIdx = code.indexOf(endMarker, startIdx)
-  if (endIdx === -1) return code
-
-  const runtimeEnd = endIdx + endMarker.length
+  // the marker line stays outside the transform so the scope wrapper finds it
+  const startIdx = code.indexOf('\n', markerIdx) + 1
+  const runtimeEnd = endIdx + NATIVE_DEV_RUNTIME_END.length
   const runtimeSection = code.slice(startIdx, runtimeEnd)
   const originalNewlines = runtimeSection.match(/\n/g)?.length ?? 0
 
@@ -789,16 +800,11 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
   if (result.errors?.length) {
     throw new Error(result.errors.map((e) => e.message).join('\n'))
   }
-  const transformedCode = result.code.trimEnd()
-  // SWC minification strips comments, but the dev bundle scope wrapper uses
-  // this generated-runtime marker as its structural boundary.
-  const transformed = transformedCode.includes(startMarker)
-    ? transformedCode
-    : `${startMarker}\n${transformedCode}`
+  const transformed = result.code.trimEnd()
   const transformedNewlines = transformed.match(/\n/g)?.length ?? 0
   if (transformedNewlines > originalNewlines) {
     throw new Error(
-      '[vxrn] Hermes runtime transform added lines and would invalidate the production source map'
+      '[vxrn] Hermes runtime transform added lines and would invalidate the dev source map'
     )
   }
   const linePreservingRuntime =
@@ -810,14 +816,13 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
  * Run the native post-processing passes inside the bundle, where rolldown still
  * hands them unminified output.
  *
- * Rolldown minifies a chunk *after* plugin `renderChunk` hooks, and every pass
- * below reads the shape rolldown generates: `normalizeNativeCommonJSInterop`
- * matches `__toESM(require_x(), 1)` by name, and `downlevelClassFieldsInBundle`
- * locates the runtime by its `//#region` comment. Minification mangles the
- * first and strips the second, so running these on the finished chunk would
- * silently stop applying them as soon as `--minify` is on — a production bundle
- * whose CommonJS interop differs from the dev one. This hook is what keeps a
- * minified and an unminified bundle the same bundle.
+ * Rolldown minifies a chunk *after* plugin `renderChunk` hooks, and the passes
+ * read the shape rolldown generates: `normalizeNativeCommonJSInterop` matches
+ * `__toESM(require_x(), 1)` by name. Minification mangles that, so running the
+ * passes on the finished chunk would silently stop applying them as soon as
+ * `--minify` is on — a production bundle whose CommonJS interop differs from
+ * the dev one. This hook is what keeps a minified and an unminified bundle the
+ * same bundle.
  *
  * `map: null` records what the passes guarantee: they replace syntax in place
  * without moving a line, so rolldown's own map still describes the result.
@@ -825,8 +830,8 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
 function nativeBundlePostProcessPlugin(): Plugin {
   return {
     name: 'vxrn:native-post-process',
-    async renderChunk(code) {
-      const processed = await downlevelClassFieldsInBundle(postProcessNativeBundle(code))
+    renderChunk(code) {
+      const processed = postProcessNativeBundle(code)
       assertBundleLinesPreserved(code, processed, 'production')
       return { code: processed, map: null }
     },
@@ -930,7 +935,7 @@ export async function createNativeDevEngine(
     // generated once per full bundle build, not per edit: rebuildStrategy is
     // 'never', so Fast Refresh patches never re-enter this path. a dev bundle
     // is never minified.
-    ...getNativeOutputOptions(prelude, true, false),
+    ...getNativeOutputOptions(`${prelude}\n${NATIVE_MODULE_SCOPE_MARKER}`, true, false),
     // open the HMR socket with RN's WebSocket module (not the global, which is
     // only polyfilled once setup-env has run) and hand it to the runtime,
     // which owns every message it carries. handed over immediately rather than
@@ -1093,6 +1098,12 @@ try {
         // skipped by the per-file SWC plugin) so old Hermes can parse them
         code = await downlevelClassFieldsInBundle(code)
         assertBundleLinesPreserved(chunk.code, code, 'dev')
+
+        // wrap module code in a function scope so top-level `var`s (e.g. RN
+        // fetch.js's `Headers`/`Request`) don't leak as non-configurable
+        // globals and break RN's polyfillGlobal (dev-only redbox). see fn doc.
+        // it only appends past the last mapped line, so it needs no assertion.
+        code = wrapNativeBundleModuleScope(code)
       } catch (error) {
         // a post-processing failure is a build failure: without a bundle to
         // serve, record it and wake the waiting request with its message
@@ -1113,12 +1124,6 @@ try {
         }
         return
       }
-
-      // wrap module code in a function scope so top-level `var`s (e.g. RN
-      // fetch.js's `Headers`/`Request`) don't leak as non-configurable
-      // globals and break RN's polyfillGlobal (dev-only redbox). see fn doc.
-      // it only appends past the last mapped line, so it needs no assertion.
-      code = wrapNativeBundleModuleScope(code)
 
       if (!chunk.map) {
         throw new Error(
@@ -2903,6 +2908,6 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
   }
 }
 
-globalThis.__rolldown_runtime__ = new ReactNativeDevRuntime();
+${NATIVE_DEV_RUNTIME_END}
 `
 }

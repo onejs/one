@@ -32,6 +32,8 @@ import {
   normalizeNativeCommonJSInterop,
   postProcessNativeBundle,
   vxrnCompilerPlugin,
+  NATIVE_DEV_RUNTIME_END,
+  NATIVE_MODULE_SCOPE_MARKER,
   wrapNativeBundleModuleScope,
   type NativePluginContext,
 } from './createNativeDevEngine'
@@ -1708,30 +1710,32 @@ describe('getNativeTransformConfig platform env defines', () => {
 })
 
 describe('wrapNativeBundleModuleScope', () => {
-  // matches the marker rolldown dev() emits at the start of the runtime region
-  const RUNTIME_MARKER = '//#region \\0rolldown/runtime.js'
-
-  it('wraps module code after the prelude so top-level vars do not leak to global', () => {
-    const prelude = 'globalThis.global = globalThis;\nglobalThis.__DEV__ = true;\n'
+  it.each([
+    ['rolldown 1.2.15', '// \\0rolldown/runtime.js'],
+    ['rolldown 1.2.13', '//#region \\0rolldown/runtime.js'],
+  ])('wraps module code after the prelude with %s module comments', (_, header) => {
+    const prelude = `globalThis.global = globalThis;\nglobalThis.__DEV__ = true;\n${NATIVE_MODULE_SCOPE_MARKER}\n`
     // a top-level `var Headers` in a script becomes a non-configurable global,
     // which is the exact leak that breaks RN's polyfillGlobal in dev
-    const body = `${RUNTIME_MARKER}\nvar fetch_hot, fetch$1, Headers, Request, Response$1;\nglobalThis.__rolldown_runtime__ = {};\n`
+    const body = `${header}\nvar fetch_hot, fetch$1, Headers, Request, Response$1;\nglobalThis.__rolldown_runtime__ = {};\n`
+    const input = prelude + body
 
-    const out = wrapNativeBundleModuleScope(prelude + body)
+    const out = wrapNativeBundleModuleScope(input)
 
-    const openIdx = out.indexOf(';(function() {')
-    expect(openIdx).toBeGreaterThan(-1)
-    // prelude (global setup) stays at script scope, before the wrap opens
-    expect(out.indexOf('globalThis.__DEV__')).toBeLessThan(openIdx)
-    // the leaking declaration is now inside the function scope
-    expect(out.indexOf('var fetch_hot')).toBeGreaterThan(openIdx)
-    // and the result must still be syntactically valid (balanced wrap)
-    expect(() => new Function(out)).not.toThrow()
+    const context = createContext({})
+    runInContext(out, context)
+    expect(runInContext('globalThis.__DEV__', context)).toBe(true)
+    expect(
+      runInContext('Object.getOwnPropertyDescriptor(globalThis, "Headers")', context)
+    ).toBeUndefined()
+    // the opener shares the marker line, so every module keeps its mapped line
+    const lineOf = (code: string) =>
+      code.split('\n').indexOf('var fetch_hot, fetch$1, Headers, Request, Response$1;')
+    expect(lineOf(out)).toBe(lineOf(input))
   })
 
-  it('is a no-op when the runtime marker is absent (e.g. prod bundle)', () => {
-    const input = 'var x = 1;\nconsole.log(x);\n'
-    expect(wrapNativeBundleModuleScope(input)).toBe(input)
+  it('fails the build when the prelude marker is missing', () => {
+    expect(() => wrapNativeBundleModuleScope('var x = 1;\n')).toThrow('script scope')
   })
 })
 
@@ -3507,9 +3511,9 @@ describe('native dev bundle post-processing failures', () => {
             // downleveled, which throws inside handleOutput.
             return {
               code: [
-                '//#region \\0rolldown/runtime.js',
+                NATIVE_MODULE_SCOPE_MARKER,
                 'class Poison { x = 1; y = 2; z = 3; }',
-                '//#endregion',
+                NATIVE_DEV_RUNTIME_END,
                 'globalThis.__postprocessProbe = new Poison();',
                 '',
               ].join('\n'),
