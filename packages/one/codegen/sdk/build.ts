@@ -1,9 +1,9 @@
 // bundles the sdk generator app for shipping: app.ts and its relative imports
 // into dist/sdk/app.mjs (node, esm). a build-time plugin bakes the generator
 // fingerprint in as a constant computed from source, so the bundle hashes
-// identically without reading generator sources at runtime. also compiles the
-// committed ios-bindings facades to dist/esm/ios, the javascript native
-// consumers resolve for one/ios/<Framework>.
+// identically without reading generator sources at runtime. the package build
+// (no output argument) also compiles committed ios-bindings facades to
+// dist/esm/ios, the javascript native consumers resolve for one/ios/<Framework>.
 import { mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -66,7 +66,10 @@ export async function buildIosFacades(
 }
 
 if (import.meta.main) {
-  const { path, fingerprint } = await buildSdkApp(process.argv[2])
+  const outdir = process.argv[2]
+  const { path, fingerprint } = await buildSdkApp(outdir)
   console.log(`sdk app: ${path} ${fingerprint.slice(0, 16)}`)
-  console.log(`ios facades: ${await buildIosFacades()} compiled`)
+  if (outdir === undefined) {
+    console.log(`ios facades: ${await buildIosFacades()} compiled`)
+  }
 }

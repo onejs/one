@@ -42,6 +42,10 @@ runtime export. One's integrations still reject framework imports outside iOS
 and resolve the `ios-bindings` source facades for iOS. Native prebuild generates the matching
 framework tables; package resolution does not require an installed Apple SDK.
 
+Running `bun codegen/sdk/build.ts /path/to/output` builds only the standalone
+SDK app bundle in that directory. Omitting the output argument builds the
+shipped bundle and all native facades for the package.
+
 Native reference handles retain actual objects. `kCFAllocatorUseContext` is a
 special C pointer sentinel for `CFAllocatorCreate`, so it is unsupported as an
 SDK handle and omitted from dispatch, facades and declarations. Coverage records
