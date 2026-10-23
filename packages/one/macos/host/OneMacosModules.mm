@@ -14,6 +14,7 @@
 #import "OneMacosModules.h"
 #import "OneMacosOpSqlite.h"
 #import "OneMacosWebSocket.h"
+#import "OneMacosNetworking.h"
 #import "OneMacosWorklets.h"
 
 namespace facebook::react {
@@ -402,13 +403,30 @@ std::shared_ptr<TurboModule> settingsManager(std::shared_ptr<CallInvoker> jsInvo
   return module;
 }
 
-std::shared_ptr<TurboModule> networking(std::shared_ptr<CallInvoker> jsInvoker)
+std::shared_ptr<TurboModule> networking(std::shared_ptr<CallInvoker> jsInvoker, const OneMacosModuleContext &context)
 {
   auto module = std::make_shared<OneMacosModule>("Networking", std::move(jsInvoker));
   addEventEmitterStubs(*module);
-  module->noop("sendRequest");
-  module->noop("abortRequest");
-  module->noop("clearCookies");
+  OneMacosNetworking *manager = [[OneMacosNetworking alloc] initWithEmitter:context.emitDeviceEvent];
+  module->method("sendRequest", 2, [manager](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    if (count < 2) throw jsi::JSError(rt, "Networking.sendRequest requires a query and callback");
+    auto json = folly::toJson(jsi::dynamicFromValue(rt, args[0]));
+    NSData *data = [NSData dataWithBytes:json.data() length:json.size()];
+    NSDictionary *query = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSInteger requestID = [manager nextRequestID];
+    args[1].getObject(rt).getFunction(rt).call(rt, (double)requestID);
+    [manager sendRequest:query requestID:requestID];
+    return jsi::Value::undefined();
+  });
+  module->method("abortRequest", 1, [manager](jsi::Runtime &, const jsi::Value *args, size_t count) {
+    [manager abortRequest:(NSInteger)numberArg(args, count, 0)];
+    return jsi::Value::undefined();
+  });
+  module->method("clearCookies", 1, [manager](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    BOOL cleared = [manager clearCookies];
+    if (count) args[0].getObject(rt).getFunction(rt).call(rt, (bool)cleared);
+    return jsi::Value::undefined();
+  });
   return module;
 }
 
@@ -495,7 +513,7 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
     return settingsManager(std::move(jsInvoker));
   }
   if (name == "Networking") {
-    return networking(std::move(jsInvoker));
+    return networking(std::move(jsInvoker), context);
   }
   if (name == "DevLoadingView") {
     return devLoadingView(std::move(jsInvoker));
