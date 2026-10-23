@@ -1,6 +1,7 @@
 #import <AppKit/AppKit.h>
 
 #include <react/renderer/componentregistry/ComponentDescriptorProviderRegistry.h>
+#include <react/renderer/componentregistry/ComponentDescriptorRegistry.h>
 #include <react/renderer/mounting/MountingCoordinator.h>
 
 #import "OneMacosComponentView.h"
@@ -12,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OneMacosMountingManager : NSObject
 
 - (void)setContextContainer:(std::shared_ptr<const facebook::react::ContextContainer>)contextContainer;
+
+- (void)setComponentDescriptorRegistry:(facebook::react::SharedComponentDescriptorRegistry)registry;
+- (void)synchronouslyUpdateViewOnTag:(facebook::react::Tag)tag props:(const folly::dynamic &)props;
 
 + (std::shared_ptr<facebook::react::ComponentDescriptorProviderRegistry>)componentDescriptorProviderRegistry;
 + (BOOL)hasComponentNamed:(const std::string &)name;

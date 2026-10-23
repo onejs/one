@@ -11,6 +11,8 @@
 #include <react/renderer/mounting/ShadowView.h>
 #include <react/renderer/mounting/ShadowViewMutation.h>
 
+#include <unordered_map>
+
 #include <OneMacToggle/OneMacToggleComponentDescriptor.h>
 
 #import "OneMacosImageComponentView.h"
@@ -54,6 +56,9 @@ std::vector<ComponentEntry> &componentEntries()
 @implementation OneMacosMountingManager {
   NSMutableDictionary<NSNumber *, NSView<OneMacosComponentView> *> *_views;
   std::shared_ptr<const ContextContainer> _contextContainer;
+  SharedComponentDescriptorRegistry _componentDescriptorRegistry;
+  std::unordered_map<Tag, ComponentHandle> _componentHandles;
+  SurfaceId _surfaceId;
   BOOL _transactionInFlight;
   BOOL _followUpTransactionRequired;
 }
@@ -90,6 +95,29 @@ std::vector<ComponentEntry> &componentEntries()
   _contextContainer = contextContainer;
 }
 
+- (void)setComponentDescriptorRegistry:(SharedComponentDescriptorRegistry)registry
+{
+  _componentDescriptorRegistry = std::move(registry);
+}
+
+- (void)synchronouslyUpdateViewOnTag:(Tag)tag props:(const folly::dynamic &)props
+{
+  NSAssert([NSThread isMainThread], @"native props update on the main thread");
+  OneMacosViewComponentView *view = (OneMacosViewComponentView *)_views[@(tag)];
+  auto handle = _componentHandles.find(tag);
+  if (!view || !view.props || handle == _componentHandles.end()) {
+    return; // an animation can finish after its target was removed
+  }
+  auto descriptor = _componentDescriptorRegistry->findComponentDescriptorByHandle_DO_NOT_USE_THIS_IS_BROKEN(handle->second);
+  if (!descriptor) {
+    return;
+  }
+  auto oldProps = view.props;
+  auto newProps = descriptor->cloneProps(PropsParserContext{_surfaceId, *_contextContainer}, oldProps, RawProps(props));
+  [view updateProps:newProps oldProps:oldProps];
+  [view finalizeUpdates:OneMacosUpdateMaskProps];
+}
+
 - (NSView<OneMacosComponentView> *)createViewForHandle:(ComponentHandle)handle tag:(Tag)tag
 {
   Class viewClass = [OneMacosViewComponentView class];
@@ -102,6 +130,7 @@ std::vector<ComponentEntry> &componentEntries()
   NSView<OneMacosComponentView> *view = [[viewClass alloc] initWithFrame:NSZeroRect];
   view.reactTag = tag;
   _views[@(tag)] = view;
+  _componentHandles[tag] = handle;
   return view;
 }
 
@@ -112,6 +141,7 @@ std::vector<ComponentEntry> &componentEntries()
 
 - (void)attachSurface:(SurfaceId)surfaceId toView:(NSView *)view
 {
+  _surfaceId = surfaceId;
   NSView *root = [self createViewForHandle:RootShadowNode::Handle() tag:surfaceId];
   root.autoresizingMask = NSViewNotSizable;
   [view addSubview:root];
@@ -122,6 +152,7 @@ std::vector<ComponentEntry> &componentEntries()
   NSView *root = _views[@(surfaceId)];
   [root removeFromSuperview];
   [_views removeObjectForKey:@(surfaceId)];
+  _componentHandles.erase(surfaceId);
 }
 
 - (void)dispatchCommandOnTag:(Tag)tag name:(const std::string &)name args:(const folly::dynamic &)args
@@ -184,6 +215,7 @@ std::vector<ComponentEntry> &componentEntries()
 
       case ShadowViewMutation::Delete: {
         [_views removeObjectForKey:@(mutation.oldChildShadowView.tag)];
+        _componentHandles.erase(mutation.oldChildShadowView.tag);
         break;
       }
 

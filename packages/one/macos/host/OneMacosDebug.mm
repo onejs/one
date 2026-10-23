@@ -1,6 +1,7 @@
 #import "OneMacosDebug.h"
 
 #include <signal.h>
+#include <folly/json.h>
 
 #include <react/renderer/components/view/AccessibilityProps.h>
 #include <react/renderer/components/view/ViewProps.h>
@@ -13,7 +14,7 @@
 //   SIGUSR2  runs the ops in $DIR/command.json, a list like
 //            [{"op": "click", "testId": "press-me", "wait": 0.3}, {"op": "snapshot", "name": "hover"}]
 // ops: snapshot, click, move, drag, scroll (deltaX/deltaY), key, type, tab, appearance, resize,
-// log. Points are `x`/`y` in the root view's top left space, or `testId` for the
+// inspect, press, command, log. Points are `x`/`y` in the root view's top left space, or `testId` for the
 // center of a view.
 
 using namespace facebook::react;
@@ -132,6 +133,22 @@ static NSString *OneMacosCursorName(void)
   return @"other";
 }
 
+static void OneMacosInspectSubviews(NSView *view, NSMutableArray *values)
+{
+  if ([view isKindOfClass:NSTextField.class]) {
+    [values addObject:@{ @"class": NSStringFromClass(view.class), @"text": ((NSTextField *)view).stringValue }];
+  } else if ([view isKindOfClass:NSTextView.class]) {
+    [values addObject:@{ @"class": NSStringFromClass(view.class), @"text": ((NSTextView *)view).string }];
+  } else if ([view isKindOfClass:NSScrollView.class]) {
+    NSScrollView *scroll = (NSScrollView *)view;
+    [values addObject:@{ @"class": NSStringFromClass(view.class), @"offset": NSStringFromPoint(scroll.contentView.bounds.origin),
+                        @"contentSize": NSStringFromSize(scroll.documentView.frame.size) }];
+  }
+  for (NSView *child in view.subviews) {
+    OneMacosInspectSubviews(child, values);
+  }
+}
+
 static void OneMacosRunOp(NSView *root, NSString *dir, NSDictionary *op)
 {
   NSWindow *window = root.window;
@@ -139,6 +156,41 @@ static void OneMacosRunOp(NSView *root, NSString *dir, NSDictionary *op)
   NSPoint point;
   if ([name isEqualToString:@"snapshot"]) {
     OneMacosWriteSnapshot(root, dir, op[@"name"]);
+  } else if ([name isEqualToString:@"inspect"]) {
+    NSView *view = OneMacosFindTestId(root, op[@"testId"]);
+    if (!view) {
+      NSLog(@"[one-macos] inspect missing %@", op[@"testId"]);
+      return;
+    }
+    CATransform3D transform = view.layer.transform;
+    NSMutableDictionary *state = [@{
+      @"testId": op[@"testId"],
+      @"alpha": @(view.alphaValue),
+      @"translateX": @(transform.m41),
+      @"translateY": @(transform.m42),
+      @"frame": NSStringFromRect(view.frame),
+      @"frontmostPid": @(NSWorkspace.sharedWorkspace.frontmostApplication.processIdentifier),
+    } mutableCopy];
+    if ([view isKindOfClass:OneMacosViewComponentView.class]) {
+      auto props = ((OneMacosViewComponentView *)view).props;
+      if (props) {
+        state[@"propOpacity"] = @(static_cast<const ViewProps &>(*props).opacity);
+      }
+    }
+    NSMutableArray *values = [NSMutableArray new];
+    OneMacosInspectSubviews(view, values);
+    state[@"nativeSubviews"] = values;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:state options:NSJSONWritingPrettyPrinted error:nil];
+    [data writeToFile:[dir stringByAppendingFormat:@"/inspect-%@.json", op[@"name"] ?: op[@"testId"]] atomically:YES];
+  } else if ([name isEqualToString:@"command"]) {
+    id<OneMacosComponentView> view = (id)OneMacosFindTestId(root, op[@"testId"]);
+    if ([view respondsToSelector:@selector(handleCommand:args:)]) {
+      NSData *args = [NSJSONSerialization dataWithJSONObject:op[@"args"] ?: @[] options:0 error:nil];
+      std::string json((const char *)args.bytes, args.length);
+      [view handleCommand:std::string([op[@"name"] UTF8String]) args:folly::parseJson(json)];
+    }
+  } else if ([name isEqualToString:@"press"]) {
+    [(id<OneMacosPressTarget>)root oneMacosPressView:OneMacosFindTestId(root, op[@"testId"])];
   } else if ([name isEqualToString:@"click"]) {
     if (OneMacosPoint(root, op, @"x", @"y", &point)) {
       NSEvent *down = OneMacosMouseEvent(root, NSEventTypeLeftMouseDown, point);
@@ -223,8 +275,6 @@ static void OneMacosRunCommands(NSView *root, NSString *dir)
     NSLog(@"[one-macos] no commands in %@/command.json", dir);
     return;
   }
-  [NSApp activateIgnoringOtherApps:YES];
-  [root.window makeKeyAndOrderFront:nil];
 
   __block NSUInteger index = 0;
   __weak NSView *weakRoot = root;

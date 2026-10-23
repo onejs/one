@@ -51,7 +51,8 @@ class OneMacosSchedulerDelegate final : public SchedulerDelegate {
       const ShadowView &shadowView, const std::string &commandName, const folly::dynamic &args) override;
   void schedulerDidSendAccessibilityEvent(const ShadowView &, const std::string &) override {}
   void schedulerDidSetIsJSResponder(const ShadowView &, bool, bool) override {}
-  void schedulerShouldSynchronouslyUpdateViewOnUIThread(Tag, const folly::dynamic &) override {}
+  void schedulerShouldSynchronouslyUpdateViewOnUIThread(Tag tag, const folly::dynamic &props) override;
+  // uimanager commits these props to the shadow tree itself, as on iOS.
   void schedulerDidUpdateShadowTree(const std::unordered_map<Tag, folly::dynamic> &) override {}
   void schedulerDidCaptureViewSnapshot(Tag, SurfaceId) override {}
   void schedulerDidSetViewSnapshot(Tag, Tag, SurfaceId) override {}
@@ -75,6 +76,7 @@ class OneMacosSchedulerDelegate final : public SchedulerDelegate {
 - (void)mergeReactRevision:(SurfaceId)surfaceId;
 - (void)dispatchCommandOnTag:(Tag)tag name:(const std::string &)name args:(const folly::dynamic &)args;
 - (void)appearanceDidChange:(NSAppearance *)appearance;
+- (void)synchronouslyUpdateViewOnTag:(Tag)tag props:(const folly::dynamic &)props;
 @end
 
 void OneMacosSchedulerDelegate::schedulerDidDispatchCommand(
@@ -87,6 +89,11 @@ void OneMacosSchedulerDelegate::schedulerShouldRenderTransactions(
     const std::shared_ptr<const MountingCoordinator> &coordinator)
 {
   [host_ scheduleTransaction:coordinator];
+}
+
+void OneMacosSchedulerDelegate::schedulerShouldSynchronouslyUpdateViewOnUIThread(Tag tag, const folly::dynamic &props)
+{
+  [host_ synchronouslyUpdateViewOnTag:tag props:props];
 }
 
 void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surfaceId)
@@ -228,14 +235,17 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 - (void)createSchedulerWithContextContainer:(std::shared_ptr<ContextContainer>)contextContainer
 {
   auto registry = _providerRegistry;
+  OneMacosMountingManager *mountingManager = _mountingManager;
   auto runtimeScheduler = _instance->getRuntimeScheduler();
 
   SchedulerToolbox toolbox;
   toolbox.contextContainer = contextContainer;
-  toolbox.componentRegistryFactory = [registry](
+  toolbox.componentRegistryFactory = [registry, mountingManager](
                                          const EventDispatcher::Weak &eventDispatcher,
                                          const std::shared_ptr<const ContextContainer> &container) {
-    return registry->createComponentDescriptorRegistry({.eventDispatcher = eventDispatcher, .contextContainer = container});
+    auto descriptors = registry->createComponentDescriptorRegistry({.eventDispatcher = eventDispatcher, .contextContainer = container});
+    [mountingManager setComponentDescriptorRegistry:descriptors];
+    return descriptors;
   };
   // buffered so surface start waits for the bundle that installs RN$AppRegistry
   toolbox.runtimeExecutor = _instance->getBufferedRuntimeExecutor();
@@ -313,7 +323,6 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     _surface.reset();
   }
   _scheduler.reset();
-  _schedulerDelegate.reset();
 
   auto instance = std::move(_instance);
   auto thread = std::move(_jsThread);
@@ -325,6 +334,9 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     instance.reset();
   });
   thread->quitSynchronous();
+  // queued rendering updates capture the delegate directly; keep it alive until
+  // the old runtime has finished dispatching commands.
+  _schedulerDelegate.reset();
   _mountingManager = nil;
 }
 
@@ -368,6 +380,11 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 - (void)dispatchCommandOnTag:(Tag)tag name:(const std::string &)name args:(const folly::dynamic &)args
 {
   [_mountingManager dispatchCommandOnTag:tag name:name args:args];
+}
+
+- (void)synchronouslyUpdateViewOnTag:(Tag)tag props:(const folly::dynamic &)props
+{
+  [_mountingManager synchronouslyUpdateViewOnTag:tag props:props];
 }
 
 - (void)scheduleTransaction:(std::shared_ptr<const MountingCoordinator>)coordinator

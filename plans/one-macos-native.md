@@ -451,3 +451,44 @@ Proof against the real bundle: the `index.tsx` route mounts View, Text and
 A click on the switch round trips to JS (`on`). Editing the route text through
 `one dev` HMR changes it to `macOS hot reloaded` in the same process with the
 toggle still on and no relaunch.
+
+### Native host continuation (2026-10-23)
+
+The original experiment through `efb7ce9cc9` was merged into fresh main on
+`tm/macos-resume` without conflicts. The native fixture builds against the
+locked RN 0.88 dependencies and the existing cached Hermes/dependencies archives.
+
+The previous NativeAnimated completion callback hid a native rendering defect.
+With React's render counter unchanged during the two-second fixture animation,
+the baseline native view stayed at opacity 0.2 and translateX 0 halfway through;
+opacity changed only when the completion callback rerendered React. The repaired
+scheduler forwards synchronous prop updates to the mounting manager, which clones
+props with the mounted component's Fabric descriptor. The base native view now
+applies resolved transforms on prop and layout updates. Native samples progress
+through opacity 0.2624 and 0.5255 and translateX 9.36 and 48.82, ending at 1 and
+120. The shadow-tree notification stays empty: upstream UIManager performs that
+commit itself, and upstream iOS also leaves the notification empty.
+
+The debug command harness no longer activates the app or makes its window key.
+It can inspect native opacity, translation, text editors and scroll offsets, and
+exercise native commands and presses in an owned background instance. The fixture
+includes animation unmount/remount and host reload controls. Runtime captures and
+native readbacks verify single-line submit, controlled uppercase with maxLength,
+multiline editing, initial scroll offset, scrollTo, wheel scrolling and resized
+window dimensions. Active-animation unmount/remount retains working animation.
+
+Reload exposed a separate lifetime bug: queued JS rendering commands capture the
+scheduler delegate directly, but host teardown destroyed it before draining the
+JS queue. Teardown now retains the delegate until the old JS thread exits.
+A second reload exposed the display link calling the destroyed animation manager:
+RN requests an asynchronous stop from its manager destructor. The host now clears
+the callback synchronously, serialized with frame execution, before scheduling
+AppKit display-link cleanup on the main thread. The final build survives three
+consecutive reloads during active animations; every fresh runtime produces
+intermediate native opacity/translation and the last reaches opacity 1 and
+translateX 120.
+
+These changes are confined to the macOS host and fixture. No fresh iOS/Android/web
+byte comparison was run for this continuation; the earlier comparison is
+historical evidence. Reanimated and a native split-view container remain outside
+this result; the existing macOS split-view adapter renders its slot only.

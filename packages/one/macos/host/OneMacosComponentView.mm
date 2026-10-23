@@ -261,6 +261,7 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
   [self applyAccessibilityProps:viewProps];
   _clipsToBounds = viewProps.getClipsContentToBounds();
   self.alphaValue = (CGFloat)viewProps.opacity;
+  [self applyTransform];
   self.layer.masksToBounds = _clipsToBounds;
   [self setNeedsRender];
 }
@@ -283,7 +284,26 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
       layoutMetrics.frame.origin.y,
       layoutMetrics.frame.size.width,
       layoutMetrics.frame.size.height);
+  [self applyTransform];
   [self setNeedsRender];
+}
+
+- (void)applyTransform
+{
+  if (!_props) {
+    return;
+  }
+  const auto &viewProps = static_cast<const ViewProps &>(*_props);
+  const auto &m = viewProps.resolveTransform(_layoutMetrics).matrix;
+  // appkit places layer anchors at the top left; rn transforms use the center.
+  CGFloat x = self.bounds.size.width / 2;
+  CGFloat y = self.bounds.size.height / 2;
+  CATransform3D transform = CATransform3D{
+      m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7],
+      m[8], m[9], m[10], m[11], m[12], m[13], m[14], m[15]};
+  self.layer.transform = CATransform3DConcat(
+      CATransform3DConcat(CATransform3DMakeTranslation(-x, -y, 0), transform),
+      CATransform3DMakeTranslation(x, y, 0));
 }
 
 - (void)finalizeUpdates:(OneMacosUpdateMask)updateMask
