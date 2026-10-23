@@ -11,13 +11,16 @@ Supported: CSS angles (clockwise from up), corner keywords, percentage and
 point stops, omitted stop distribution, decreasing positions fixed to the
 preceding position, coincident hard stops, out-of-range stops, transparency,
 and multiple linear layers. Numeric and semantic PlatformColor stops use the
-same native color conversion as backgrounds and text. Transparent black
-inherits a neighboring hue to avoid a dark fringe during a wash fade.
+same native color conversion as backgrounds and text. Clear stops inherit
+each adjacent visible hue on its respective side, including a clear stop
+between two different colors. Neighbor lookup takes two linear passes.
 The private Mac Color type distinguishes an undefined value from explicit
 numeric zero and semantic clear. `gradient-colors.mm` is the focused native
 runtime probe for that distinction, packed ARGB and equal-color hash behavior.
 
 Radial gradients and transition hints (a stop with no color) are not painted.
+An image containing an AppKit pattern color that cannot convert to sRGB is
+also left unpainted, preserving the solid fill, other images and border.
 Repeating gradients are not supported by RN's background-image parser or this
 host. This change does not add an expo component or a separate gradient API.
 Per-corner and elliptical border shapes remain outside the host's existing
@@ -117,3 +120,27 @@ Detailed captures, pixel samples and build logs are retained outside the tree
 in the task's evidence directory. Review crops are native-density WebP,
 512 by 174 pixels, without resizing. These results cover the gradient unit
 before the subsequent approved native-command integration.
+
+Independent review then found an unsupported pattern color could throw
+while converting gradient components, and a clear middle stop could tint
+the following blue fade purple. The fixture's fourth row isolates those
+cases: red-clear-blue over white, followed by three green controls whose
+gradient uses linenColor, scrubberTexturedBackgroundColor, or
+transparencyCheckboardPatternColor. Check that the blue side has equal red
+and green channels, the red side has equal green and blue channels, and all
+three unsupported pattern images leave the green fill visible in both
+appearances. This exercises the actual host drawing path rather than only
+repeating the component preparation math in a separate probe.
+
+The corrected combined SDK was rebuilt incrementally after approved controls
+merge `123557977e`. The actual host passed all preceding bitmap checks again,
+including resize, appearance and real reload. Red-clear-blue quarter samples
+were (255, 130, 130) and (124, 124, 255), without purple contamination.
+All three pattern controls remained (34, 204, 102) in light and dark
+appearance without a crash. The unchanged eight color checks above are reused.
+The final review crops are 512 by 206 native pixels. App activation stayed
+false and the cursor stayed fixed. Final loaded artifact SHA-256 values:
+
+- bundle: 75ee828e43f6626acf3e4439588972859bf2fe75dfa12a522a66e31d3b23caca
+- native debug dylib: 9fc6aaa280b484d3fbf5eb0ea6547b6a3631ef96d8ae15a64833fe112af15f0c
+- core archive: d8291ab261f5b646be38f01cbacccba265784345718bb390fd3435183b2068cb

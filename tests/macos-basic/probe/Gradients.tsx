@@ -49,5 +49,15 @@ export function Gradients() {
         ],
       }] }} />
     </View>
+    <View style={{ flexDirection: 'row', gap: 8 }}>
+      <View testID="gradient-clear-middle" style={{ width: 180, height: 28, backgroundColor: '#ffffff', backgroundImage: 'linear-gradient(90deg, red, transparent, blue)' }} />
+      {['linenColor', 'scrubberTexturedBackgroundColor', 'transparencyCheckboardPatternColor'].map(color =>
+        <View key={color} testID={`gradient-pattern-${color}`} style={{ width: 44, height: 28, backgroundColor: '#22cc66', backgroundImage: [{
+          type: 'linear-gradient', direction: '90deg', colorStops: [
+            { color: PlatformColor(color) }, { color: 'red' },
+          ],
+        }] }} />
+      )}
+    </View>
   </View>
 }

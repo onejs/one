@@ -53,7 +53,12 @@ static void DrawLinearGradient(const LinearGradient &gradient, CGRect bounds)
     if (!stop.color) {
       return;
     }
-    [colors addObject:[OneMacosColorFromSharedColor(stop.color) colorUsingColorSpace:NSColorSpace.sRGBColorSpace]];
+    NSColor *color = [OneMacosColorFromSharedColor(stop.color) colorUsingColorSpace:NSColorSpace.sRGBColorSpace];
+    // pattern colors cannot become gradient components. Leave the layer unpainted.
+    if (!color) {
+      return;
+    }
+    [colors addObject:color];
     CGFloat position = NAN;
     if (stop.position) {
       position = stop.position.unit == UnitType::Point ? stop.position.value / length : stop.position.resolve(1);
@@ -93,26 +98,40 @@ static void DrawLinearGradient(const LinearGradient &gradient, CGRect bounds)
   start.x += dx * length * first;
   start.y += dy * length * first;
   NSMutableArray *cgColors = [NSMutableArray new];
+  std::vector<CGFloat> locations;
+  std::vector<size_t> nextVisible(colors.count, colors.count);
+  size_t next = colors.count;
+  for (size_t i = colors.count; i-- > 0;) {
+    nextVisible[i] = next;
+    if (colors[i].alphaComponent > 0) {
+      next = i;
+    }
+  }
+  NSColor *previousColor = nil;
   for (size_t i = 0; i < positions.size(); ++i) {
-    positions[i] = (positions[i] - first) / span;
+    CGFloat location = (positions[i] - first) / span;
     NSColor *color = colors[i];
-    // preserve the hue when fading to transparent black, as RN does on iOS.
-    if (color.alphaComponent == 0 && color.redComponent == 0 && color.greenComponent == 0 && color.blueComponent == 0) {
-      NSColor *neighbor = nil;
-      for (NSInteger j = (NSInteger)i - 1; j >= 0; --j) {
-        if (colors[j].alphaComponent > 0) { neighbor = colors[j]; break; }
+    // core graphics interpolates unpremultiplied components. Split a clear stop
+    // so each adjacent fade keeps its own visible hue, including clear runs.
+    if (color.alphaComponent == 0) {
+      NSColor *nextColor = nextVisible[i] < colors.count ? colors[nextVisible[i]] : nil;
+      if (previousColor || nextColor) {
+        NSColor *left = previousColor ?: nextColor;
+        NSColor *right = nextColor ?: previousColor;
+        [cgColors addObject:(__bridge id)[left colorWithAlphaComponent:0].CGColor];
+        locations.push_back(location);
+        [cgColors addObject:(__bridge id)[right colorWithAlphaComponent:0].CGColor];
+        locations.push_back(location);
+        continue;
       }
-      if (!neighbor) {
-        for (size_t j = i + 1; j < colors.count; ++j) {
-          if (colors[j].alphaComponent > 0) { neighbor = colors[j]; break; }
-        }
-      }
-      if (neighbor) { color = [neighbor colorWithAlphaComponent:0]; }
+    } else {
+      previousColor = color;
     }
     [cgColors addObject:(__bridge id)color.CGColor];
+    locations.push_back(location);
   }
   CGColorSpaceRef space = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
-  CGGradientRef nativeGradient = CGGradientCreateWithColors(space, (__bridge CFArrayRef)cgColors, positions.data());
+  CGGradientRef nativeGradient = CGGradientCreateWithColors(space, (__bridge CFArrayRef)cgColors, locations.data());
   if (nativeGradient) {
     CGContextDrawLinearGradient(NSGraphicsContext.currentContext.CGContext, nativeGradient, start, end,
         kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
