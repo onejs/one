@@ -3,4 +3,5 @@ export declare const webExtensions: string[];
 export declare const ssrExtensions: string[];
 export declare const iosExtensions: string[];
 export declare const androidExtensions: string[];
+export declare const macosExtensions: string[];
 //# sourceMappingURL=constants.d.ts.map
