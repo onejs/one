@@ -1,4 +1,4 @@
-import { One as NativeOne, type OneMacAPI, type OneMacOS } from './one'
+import { One as NativeOne, type OneMacAPI, type OneMacOS } from './one-shared'
 import { AppCommands } from './platform/mac/AppCommands.macos'
 import { Button } from './platform/mac/Button.macos'
 import { SegmentedControl } from './platform/mac/SegmentedControl.macos'
