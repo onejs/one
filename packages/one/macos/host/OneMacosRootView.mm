@@ -25,6 +25,7 @@
 #include <unordered_set>
 
 #import "AppleEventBeat.h"
+#import "OneMacosAppCommands.h"
 #import "OneMacosDebug.h"
 #import "OneMacosModules.h"
 #import "OneMacosMountingManager.h"
@@ -77,6 +78,9 @@ class OneMacosSchedulerDelegate final : public SchedulerDelegate {
 - (void)dispatchCommandOnTag:(Tag)tag name:(const std::string &)name args:(const folly::dynamic &)args;
 - (void)appearanceDidChange:(NSAppearance *)appearance;
 - (void)synchronouslyUpdateViewOnTag:(Tag)tag props:(const folly::dynamic &)props;
+- (OneMacosAppCommandConfig *)appCommandConfig;
+- (BOOL)canPerformAppCommand:(NSString *)commandId;
+- (void)performAppCommand:(NSString *)commandId;
 @end
 
 void OneMacosSchedulerDelegate::schedulerDidDispatchCommand(
@@ -113,13 +117,18 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   std::unique_ptr<Scheduler> _scheduler;
   std::unique_ptr<OneMacosSchedulerDelegate> _schedulerDelegate;
   std::optional<SurfaceHandler> _surface;
-  std::unordered_map<std::string, std::shared_ptr<TurboModule>> _turboModules;
+  // the current runtime's modules. only its js thread touches the map, so a
+  // late call from a stopped runtime can never hand its modules to the next one
+  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<TurboModule>>> _turboModules;
 
   std::mutex _mergeMutex;
   std::unordered_set<SurfaceId> _pendingMerges;
   CGSize _size;
   CGFloat _scale;
   NSInteger _generation;
+  // what the current runtime configured, reset with it
+  OneMacosAppCommandConfig *_appCommandConfig;
+  BOOL _appCommandsListening;
 }
 
 - (instancetype)initWithBundleURL:(NSURL *)bundleURL moduleName:(NSString *)moduleName view:(NSView *)view
@@ -149,7 +158,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   timerRegistryPtr->setTimerManager(timerManager);
 
   auto onJsError = [](jsi::Runtime &, const JsErrorHandler::ProcessedError &error) {
-    os_log(OS_LOG_DEFAULT, "[one-macos] js error: %{public}s", error.message.c_str());
+    os_log(OS_LOG_DEFAULT, "[one-macos] js error: " ONE_MACOS_JS_TEXT, error.message.c_str());
   };
 
   _instance = std::make_shared<ReactInstance>(
@@ -175,6 +184,28 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     auto jsThread = weakJsThread.lock();
     return jsThread && jsThread->isOnThread();
   };
+  moduleContext.configureAppCommands = [weakSelf, generation](const folly::dynamic &config) {
+    std::string error;
+    OneMacosAppCommandConfig *parsed = OneMacosParseAppCommands(config, error);
+    if (parsed) {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        OneMacosHost *strongSelf = weakSelf;
+        if (strongSelf && strongSelf->_generation == generation) {
+          strongSelf->_appCommandConfig = parsed;
+          OneMacosUpdateAppCommands();
+        }
+      });
+    }
+    return error;
+  };
+  moduleContext.setAppCommandsListening = [weakSelf, generation](bool listening) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      OneMacosHost *strongSelf = weakSelf;
+      if (strongSelf && strongSelf->_generation == generation) {
+        strongSelf->_appCommandsListening = listening;
+      }
+    });
+  };
   moduleContext.reload = [weakSelf]() {
     dispatch_async(dispatch_get_main_queue(), ^{
       [weakSelf reload];
@@ -189,26 +220,23 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 
   [self createSchedulerWithContextContainer:contextContainer];
 
+  auto turboModules = std::make_shared<std::unordered_map<std::string, std::shared_ptr<TurboModule>>>();
+  _turboModules = turboModules;
   _instance->initializeRuntime({}, [=](jsi::Runtime &runtime) {
     TurboModuleBinding::install(
         runtime,
-        [weakSelf, jsCallInvoker, moduleContext](
+        [turboModules, jsCallInvoker, moduleContext](
             jsi::Runtime &moduleRuntime, const std::string &name) -> std::shared_ptr<TurboModule> {
-          OneMacosHost *strongSelf = weakSelf;
-          if (!strongSelf) {
-            return nullptr;
-          }
-          auto &modules = strongSelf->_turboModules;
-          auto found = modules.find(name);
-          if (found != modules.end()) {
+          auto found = turboModules->find(name);
+          if (found != turboModules->end()) {
             return found->second;
           }
           auto module = OneMacosCreateTurboModule(moduleRuntime, name, jsCallInvoker, moduleContext);
-          modules[name] = module;
+          (*turboModules)[name] = module;
           return module;
         });
     bindNativeLogger(runtime, [](const std::string &message, unsigned int logLevel) {
-      os_log(OS_LOG_DEFAULT, "[one-macos] js log(%u): %{public}s", logLevel, message.c_str());
+      os_log(OS_LOG_DEFAULT, "[one-macos] js log(%u): " ONE_MACOS_JS_TEXT, logLevel, message.c_str());
     });
     // hermes has no console of its own, so route it through the native logger
     // before the bundle's own empty console stubs can claim the names
@@ -316,6 +344,9 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 {
   NSAssert([NSThread isMainThread], @"stop on the main thread");
   _generation++;
+  _appCommandConfig = nil;
+  _appCommandsListening = NO;
+  OneMacosUpdateAppCommands();
   if (_surface) {
     _surface->stop();
     _scheduler->unregisterSurface(*_surface);
@@ -327,10 +358,9 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   auto instance = std::move(_instance);
   auto thread = std::move(_jsThread);
   auto modules = std::move(_turboModules);
-  _turboModules.clear();
   // the instance and its modules must die on the js thread
   thread->runOnQueueSync([&] {
-    modules.clear();
+    modules->clear();
     instance.reset();
   });
   thread->quitSynchronous();
@@ -374,6 +404,24 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
         "emit",
         folly::dynamic::array(
             "appearanceChanged", folly::dynamic::object("colorScheme", OneMacosColorSchemeName(appearance).UTF8String)));
+  }
+}
+
+- (OneMacosAppCommandConfig *)appCommandConfig
+{
+  return _appCommandConfig;
+}
+
+- (BOOL)canPerformAppCommand:(NSString *)commandId
+{
+  return _instance && _appCommandsListening && [_appCommandConfig.commandIds containsObject:commandId];
+}
+
+- (void)performAppCommand:(NSString *)commandId
+{
+  if ([self canPerformAppCommand:commandId]) {
+    _instance->callFunctionOnModule(
+        "RCTDeviceEventEmitter", "emit", folly::dynamic::array("oneMacAppCommand", commandId.UTF8String));
   }
 }
 
@@ -421,7 +469,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 
 @end
 
-@interface OneMacosRootView () <OneMacosPressTarget>
+@interface OneMacosRootView () <OneMacosPressTarget, OneMacosAppCommandTarget>
 @end
 
 @implementation OneMacosRootView {
@@ -448,6 +496,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     [_host updateLayoutWithSize:self.bounds.size scale:NSScreen.mainScreen.backingScaleFactor];
     [_host start];
     OneMacosInstallDebugHooks(self);
+    OneMacosRegisterAppCommandTarget(self);
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(systemColorsDidChange:)
                                                name:NSSystemColorsDidChangeNotification
@@ -541,6 +590,21 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 - (void)mouseExited:(NSEvent *)event
 {
   [_pointerHandler mouseExited:event];
+}
+
+- (OneMacosAppCommandConfig *)oneMacosAppCommandConfig
+{
+  return [_host appCommandConfig];
+}
+
+- (BOOL)oneMacosCanPerformAppCommand:(NSString *)commandId
+{
+  return [_host canPerformAppCommand:commandId];
+}
+
+- (void)oneMacosPerformAppCommand:(NSString *)commandId
+{
+  [_host performAppCommand:commandId];
 }
 
 - (void)oneMacosPressView:(id)sender

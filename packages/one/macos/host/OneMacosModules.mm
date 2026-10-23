@@ -284,12 +284,12 @@ std::shared_ptr<OneMacosModule> exceptionsManager(std::shared_ptr<CallInvoker> i
   module->method("reportException", 1, [](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
     if (count > 0 && args[0].isObject()) {
       folly::dynamic error = jsi::dynamicFromValue(rt, args[0]);
-      os_log(OS_LOG_DEFAULT, "[one-macos] js exception: %{public}s", folly::toJson(error).c_str());
+      os_log(OS_LOG_DEFAULT, "[one-macos] js exception: " ONE_MACOS_JS_TEXT, folly::toJson(error).c_str());
     }
     return jsi::Value::undefined();
   });
   module->method("reportFatalException", 3, [](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
-    os_log(OS_LOG_DEFAULT, "[one-macos] js fatal: %{public}s", stringArg(rt, args, count, 0).c_str());
+    os_log(OS_LOG_DEFAULT, "[one-macos] js fatal: " ONE_MACOS_JS_TEXT, stringArg(rt, args, count, 0).c_str());
     return jsi::Value::undefined();
   });
   module->noop("dismissRedbox");
@@ -531,6 +531,24 @@ std::shared_ptr<TurboModule> fileReaderModule(jsi::Runtime &runtime, std::shared
   return module;
 }
 
+// native menu and key commands for this runtime, emitted as oneMacAppCommand
+std::shared_ptr<TurboModule> appCommands(std::shared_ptr<CallInvoker> jsInvoker, const OneMacosModuleContext &context)
+{
+  auto module = std::make_shared<OneMacosModule>("OneMacAppCommands", std::move(jsInvoker));
+  module->method("configure", 1, [context](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    auto error = context.configureAppCommands(count > 0 ? jsi::dynamicFromValue(rt, args[0]) : folly::dynamic());
+    if (!error.empty()) {
+      throw jsi::JSError(rt, "AppCommands.configure: " + error);
+    }
+    return jsi::Value::undefined();
+  });
+  module->method("setListening", 1, [context](jsi::Runtime &, const jsi::Value *args, size_t count) {
+    context.setAppCommandsListening(count > 0 && args[0].isBool() && args[0].getBool());
+    return jsi::Value::undefined();
+  });
+  return module;
+}
+
 std::shared_ptr<TurboModule> devToolsRuntimeSettings(std::shared_ptr<CallInvoker> jsInvoker)
 {
   auto module = std::make_shared<OneMacosModule>("ReactDevToolsRuntimeSettingsModule", std::move(jsInvoker));
@@ -603,6 +621,9 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
   }
   if (name == "FileReaderModule") {
     return fileReaderModule(runtime, std::move(jsInvoker));
+  }
+  if (name == "OneMacAppCommands") {
+    return appCommands(std::move(jsInvoker), context);
   }
   if (name == "ReactDevToolsRuntimeSettingsModule") {
     return devToolsRuntimeSettings(std::move(jsInvoker));

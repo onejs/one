@@ -62,3 +62,55 @@ draws nothing.
 Ordinary colors stay packed sRGB values. Reading a system color as numbers,
 for example in an animation, takes the app's current appearance at that time.
 `DynamicColorIOS` is not supported on macOS.
+
+## Logs
+
+The host writes JS console output, errors and exceptions to the unified log
+under `[one-macos]`. Debug builds show the text, for example in
+`log show --predicate 'eventMessage CONTAINS "[one-macos]"'`. Release builds
+mark it private, so a logged token or credentialed URL is redacted unless the
+device has private data logging enabled.
+
+## App commands
+
+`One.macOS.AppCommands` puts commands in the native menu bar and key
+equivalents. Its config is react-native-gpui's `AppCommands` shape, so one
+command table serves both hosts.
+
+```tsx
+One.macOS.AppCommands.configure({
+  bindings: [
+    { id: 'pane.next', key: 'ctrl-tab' },
+    { id: 'pane.focusNext', key: 'tab', context: '!Input' },
+  ],
+  menus: [
+    { label: 'App', items: [{ kind: 'action', id: 'settings.open', label: 'Settings' }] },
+    { label: 'View', items: [{ kind: 'action', id: 'pane.next', label: 'Next Pane' }] },
+  ],
+})
+const remove = One.macOS.AppCommands.addListener((id) => run(id))
+```
+
+- The first menu joins the application menu below About. Other menus join a
+  menu with the same title, such as View, or become a new menu before Window.
+  The standard Edit, Window and Services menus stay in place.
+- Each item shows the first key of its command. Every key also gets a hidden
+  item that AppKit searches first, so a binding wins over a standard item with
+  the same key.
+- A context gates only the key, so a menu click still runs the command. The
+  host sets one identifier, `Input`, while a text input has focus.
+- An unsupported key, context or item throws from `configure` and leaves the
+  previous menus in place.
+- Items are disabled while no listener is registered, and a command reaches
+  each listener once.
+- Each root keeps its own config. The menu bar shows the config of the key
+  window's root, else the main window's, else the frontmost One window's, and
+  each action runs in the root that is current when it fires. An inactive app
+  has no key or main window, so after a window reorder its menus refresh on
+  the next event, such as a menu press.
+- SwiftUI rebuilds the menus it owns, so the host restores its items after
+  each menu edit. Stopping or reloading a root removes its items at once.
+
+AppKit never matches a control-tab key equivalent, so the host runs those
+bindings from a key monitor. Commands do not activate the app or move the
+cursor.

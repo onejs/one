@@ -134,6 +134,74 @@ function NativeControls() {
   )
 }
 
+// each window runs its own runtime; the tag shows whose config the menu bar has
+const rootTag = Math.random().toString(36).slice(2, 6)
+
+const fixtureCommands = {
+  bindings: [
+    { id: 'fixture.ping', key: 'cmd-shift-[' },
+    { id: 'fixture.tab', key: 'ctrl-tab' },
+    { id: 'fixture.tab', key: 'ctrl-shift-tab' },
+    { id: 'fixture.tab', key: 'tab', context: '!Input && !Terminal' },
+    { id: 'fixture.tab', key: 'shift-tab', context: '!Input && !Terminal' },
+    { id: 'fixture.count', key: 'cmd-alt-k' },
+    { id: 'fixture.arrow', key: 'up', context: '!Input && !Terminal' },
+    { id: 'fixture.hidden', key: 'cmd-shift-9' },
+  ],
+  menus: [
+    { label: 'App', items: [{ kind: 'action' as const, id: 'fixture.ping', label: 'Ping' }] },
+    {
+      label: 'Fixture',
+      items: [
+        { kind: 'action' as const, id: 'fixture.count', label: 'Count' },
+        { kind: 'action' as const, id: 'fixture.root', label: `Root ${rootTag}` },
+        { kind: 'separator' as const },
+        { kind: 'submenu' as const, label: 'More', items: [{ kind: 'action' as const, id: 'fixture.arrow', label: 'Arrow' }] },
+      ],
+    },
+    { label: 'View', items: [{ kind: 'action' as const, id: 'fixture.view', label: 'Fixture View' }] },
+  ],
+}
+
+// native menu and key commands reach this runtime's listeners once each
+function AppCommandsProbe() {
+  const [counts, setCounts] = useState<Record<string, number>>({})
+  const [listening, setListening] = useState(true)
+  const [error, setError] = useState('none')
+  useEffect(() => {
+    One.macOS.AppCommands.configure(fixtureCommands)
+  }, [])
+  useEffect(() => {
+    if (!listening) return
+    const remove = One.macOS.AppCommands.addListener((id) => setCounts((current) => ({ ...current, [id]: (current[id] ?? 0) + 1 })))
+    return () => {
+      remove()
+      remove()
+    }
+  }, [listening])
+  const configureInvalid = () => {
+    try {
+      One.macOS.AppCommands.configure({ bindings: [{ id: 'fixture.bad', key: 'cmd-k cmd-s' }], menus: [] })
+      setError('accepted')
+    } catch (caught) {
+      setError(String((caught as Error).message))
+    }
+  }
+  const summary = ['fixture.ping', 'fixture.count', 'fixture.arrow', 'fixture.hidden', 'fixture.view', 'fixture.tab', 'fixture.root']
+    .map((id) => `${id.slice(8)} ${counts[id] ?? 0}`)
+    .join(' ')
+  return (
+    <View testID="app-commands" style={{ gap: 6, marginVertical: 8 }}>
+      <View style={{ flexDirection: 'row', gap: 8 }}>
+        <One.macOS.Button testID="app-commands-listen" title={listening ? 'Remove listener' : 'Add listener'} onPress={() => setListening(!listening)} />
+        <One.macOS.Button testID="app-commands-invalid" title="Configure invalid" onPress={configureInvalid} />
+      </View>
+      <Text testID="app-commands-result">{`root ${rootTag} ${summary} listening ${listening}`}</Text>
+      <Text testID="app-commands-error">{`error ${error}`}</Text>
+    </View>
+  )
+}
+
 // same font at different line heights must share a centered row's baseline
 function LineHeights() {
   return (
@@ -193,6 +261,7 @@ export default function Index() {
       <Text testID="macos-label">macOS</Text>
       <Text testID="macos-probe">{probe}</Text>
       <NativeControls />
+      <AppCommandsProbe />
       <PlatformColors />
       <LineHeights />
       <Pressable

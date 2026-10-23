@@ -1,17 +1,16 @@
 import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, ProtectedStore, KeepAwake, Print, StoreReview, QuickActions, Location, FileSystem, Audio, CameraView, Share, Open, PhotoLibrary, MapServices, AppTracking, AppIcon, ScreenOrientation, ScreenCapture, Purchases, ImageManipulator, Device, Crypto as NativeCrypto, Localization, Motion, BackgroundTasks, AppIntents, DeviceAttestation, Contacts, Calendar, WidgetUI, VNDocumentCameraViewController, DataScannerViewController, CNContactViewController, CNMutableContact, CNContactStore, MFMailComposeViewController, MFMessageComposeViewController, Clipboard as NativeClipboard, Barometer as NativeBarometer, LightSensor as NativeLightSensor, Pedometer as NativePedometer, Battery as NativeBattery, Brightness as NativeBrightness, SpeechSynthesis as NativeSpeechSynthesis, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, LaunchScreen, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Storage, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
 import type { ComponentType } from 'react';
+import type { OneMacAppCommands } from './platform/mac/AppCommands.macos';
+import type { ButtonProps } from './platform/mac/Button.macos';
+import type { SegmentedControlProps } from './platform/mac/SegmentedControl.macos';
+import type { ToggleProps } from './platform/mac/Toggle.macos';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'macos';
 export type OneMacOS = {
-    readonly Toggle: ComponentType<{
-        label: string;
-        isOn: boolean;
-        revision?: number;
-        onIsOnChange?: (event: {
-            isOn: boolean;
-            revision: number;
-        }) => void;
-    }>;
+    readonly Toggle: ComponentType<ToggleProps>;
+    readonly Button: ComponentType<ButtonProps>;
+    readonly SegmentedControl: ComponentType<SegmentedControlProps>;
+    readonly AppCommands: OneMacAppCommands;
 };
 export type OneIOS = typeof Swift & {
     readonly MFMailComposeViewController: typeof MFMailComposeViewController;
@@ -109,6 +108,10 @@ export type OneAPI = {
     readonly Storage: typeof Storage;
     readonly Speech: typeof NativeSpeech;
     readonly Updates: typeof NativeUpdates;
+};
+export type OneMacAPI = OneAPI & {
+    readonly platform: 'macos';
+    readonly macOS: Readonly<OneMacOS>;
 };
 export declare const One: OneAPI;
 //# sourceMappingURL=one.d.ts.map
