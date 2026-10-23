@@ -81,17 +81,19 @@ import {
   type ColorType,
 } from './platform'
 import type { ComponentType } from 'react'
+import type { OneMacAppCommands } from './platform/mac/AppCommands.macos'
+import type { ButtonProps } from './platform/mac/Button.macos'
+import type { SegmentedControlProps } from './platform/mac/SegmentedControl.macos'
+import type { ToggleProps } from './platform/mac/Toggle.macos'
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context'
 
 export type OnePlatform = 'web' | 'ios' | 'android' | 'macos'
 
 export type OneMacOS = {
-  readonly Toggle: ComponentType<{
-    label: string
-    isOn: boolean
-    revision?: number
-    onIsOnChange?: (event: { isOn: boolean; revision: number }) => void
-  }>
+  readonly Toggle: ComponentType<ToggleProps>
+  readonly Button: ComponentType<ButtonProps>
+  readonly SegmentedControl: ComponentType<SegmentedControlProps>
+  readonly AppCommands: OneMacAppCommands
 }
 
 export type OneIOS = typeof Swift & {
@@ -200,6 +202,12 @@ export type OneAPI = {
   readonly Storage: typeof Storage
   readonly Speech: typeof NativeSpeech
   readonly Updates: typeof NativeUpdates
+}
+
+// the One object of the macos entry, which always has its native namespace
+export type OneMacAPI = OneAPI & {
+  readonly platform: 'macos'
+  readonly macOS: Readonly<OneMacOS>
 }
 
 function currentPlatform(): OnePlatform {

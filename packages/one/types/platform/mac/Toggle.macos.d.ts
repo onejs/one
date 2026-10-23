@@ -1,4 +1,4 @@
-export declare function Toggle({ label, isOn, revision, onIsOnChange, }: {
+export type ToggleProps = {
     label: string;
     isOn: boolean;
     revision?: number;
@@ -6,5 +6,6 @@ export declare function Toggle({ label, isOn, revision, onIsOnChange, }: {
         isOn: boolean;
         revision: number;
     }) => void;
-}): import("react").JSX.Element;
+};
+export declare function Toggle({ label, isOn, revision, onIsOnChange }: ToggleProps): import("react").JSX.Element;
 //# sourceMappingURL=Toggle.macos.d.ts.map
