@@ -324,7 +324,9 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
 
 - (void)applyAccessibilityProps:(const ViewProps &)viewProps
 {
-  [self setAccessibilityElement:viewProps.accessible];
+  [self setAccessibilityElement:viewProps.accessible && !viewProps.accessibilityElementsHidden];
+  [self setAccessibilityChildren:viewProps.accessibilityElementsHidden ? @[] : nil];
+  [self setAccessibilityChildrenInNavigationOrder:viewProps.accessibilityElementsHidden ? @[] : nil];
   NSString *label = [NSString stringWithUTF8String:viewProps.accessibilityLabel.c_str()];
   [self setAccessibilityLabel:label.length > 0 ? label : nil];
   NSString *hint = [NSString stringWithUTF8String:viewProps.accessibilityHint.c_str()];
