@@ -13,12 +13,16 @@
 
 #include <unordered_map>
 
+#include <OneMacButton/OneMacButtonComponentDescriptor.h>
+#include <OneMacSegmentedControl/OneMacSegmentedControlComponentDescriptor.h>
 #include <OneMacToggle/OneMacToggleComponentDescriptor.h>
 
 #import "OneMacosImageComponentView.h"
 #import "OneMacosParagraphComponentView.h"
 #import "OneMacosScrollViewComponentView.h"
 #import "OneMacosTextInputComponentView.h"
+#import "OneMacosButtonComponentView.h"
+#import "OneMacosSegmentedControlComponentView.h"
 #import "OneMacosToggleComponentView.h"
 
 using namespace facebook::react;
@@ -45,6 +49,8 @@ std::vector<ComponentEntry> &componentEntries()
        [OneMacosParagraphComponentView class]},
       {concreteComponentDescriptorProvider<TextComponentDescriptor>(), nil},
       {concreteComponentDescriptorProvider<RawTextComponentDescriptor>(), nil},
+      {concreteComponentDescriptorProvider<OneMacButtonComponentDescriptor>(), [OneMacosButtonComponentView class]},
+      {concreteComponentDescriptorProvider<OneMacSegmentedControlComponentDescriptor>(), [OneMacosSegmentedControlComponentView class]},
       {concreteComponentDescriptorProvider<OneMacToggleComponentDescriptor>(),
        [OneMacosToggleComponentView class]},
   };

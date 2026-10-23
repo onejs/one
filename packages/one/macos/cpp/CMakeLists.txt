@@ -125,6 +125,10 @@ file(GLOB ONE_SOURCES CONFIGURE_DEPENDS
   ${ONE_CPP}/*.mm
   ${ONE_CPP}/OneMacToggle/*.cpp
   ${ONE_CPP}/OneMacToggle/*.mm
+  ${ONE_CPP}/OneMacButton/*.cpp
+  ${ONE_CPP}/OneMacButton/*.mm
+  ${ONE_CPP}/OneMacSegmentedControl/*.cpp
+  ${ONE_CPP}/OneMacSegmentedControl/*.mm
   ${ONE_CPP}/textlayoutmanager/*.mm
   ${ONE_CPP}/textlayoutmanager/react/renderer/textlayoutmanager/*.mm
   ${ONE_CPP}/textlayoutmanager/*.cpp
