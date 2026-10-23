@@ -11,8 +11,10 @@ byte lives under this directory so iOS, Android and web gain nothing. See
 
 ## Native controls
 
-`One.macOS.Button` renders a bordered AppKit `NSButton`. Pass `title`, an
-optional SF Symbol name in `systemImage`, `disabled`, and `onPress`. Set an
+`One.macOS.Button` renders an AppKit `NSButton`. Pass `title`, an optional
+SF Symbol name in `systemImage`, `disabled`, and `onPress`. It draws the
+rounded push button bezel by default; `bordered={false}` keeps the same
+`NSButton` without a bezel, for small toolbar and footer icons. Set an
 `accessibilityLabel` for an image-only button. Both controls accept View props
 such as `style`, `testID`, `accessibilityLabel`, and `accessibilityHint`.
 

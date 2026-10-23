@@ -11,5 +11,6 @@ class OneMacButtonProps final : public ViewProps {
   std::string title{};
   std::string systemImage{};
   bool disabled{false};
+  bool bordered{true};
 };
 }

@@ -578,6 +578,14 @@ The reported Button setter issue was withdrawn after tracing the Fabric caller:
 every public React update assigns title followed by systemImage, so Swift's
 image observer already refreshes imagePosition. Controls remain unchanged.
 
+### Borderless AppKit button, 2026-10-23
+
+`One.macOS.Button` takes `bordered`, default true, which sets `NSButton.isBordered`
+on the same native button. Small composer footer icons use it so they read like
+Mac footer icons instead of push buttons. Fabric assigns it on every props update,
+so a recycled or remounted button returns to the bezel when the prop goes back to
+true. The controls fixture moved to `probe/Controls.tsx` with a router-free entry.
+
 ### Combined application integration, 2026-10-23
 
 The host now includes HTTP and runtime-scoped Blob/FileReader backing, native

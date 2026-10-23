@@ -5,5 +5,6 @@ OneMacButtonProps::OneMacButtonProps(const PropsParserContext &context, const On
     : ViewProps(context, sourceProps, rawProps),
       title(convertRawProp(context, rawProps, "title", sourceProps.title, std::string{})),
       systemImage(convertRawProp(context, rawProps, "systemImage", sourceProps.systemImage, std::string{})),
-      disabled(convertRawProp(context, rawProps, "disabled", sourceProps.disabled, false)) {}
+      disabled(convertRawProp(context, rawProps, "disabled", sourceProps.disabled, false)),
+      bordered(convertRawProp(context, rawProps, "bordered", sourceProps.bordered, true)) {}
 }

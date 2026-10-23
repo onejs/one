@@ -33,6 +33,7 @@ using namespace facebook::react;
   _host.title = [NSString stringWithUTF8String:value.title.c_str()];
   _host.systemImage = [NSString stringWithUTF8String:value.systemImage.c_str()];
   _host.disabled = value.disabled;
+  _host.bordered = value.bordered;
   [self setAccessibilityElement:NO];
   NSView *button = _host.subviews.firstObject;
   [button setAccessibilityLabel:value.accessibilityLabel.empty() ? _host.title : [NSString stringWithUTF8String:value.accessibilityLabel.c_str()]];

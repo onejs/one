@@ -16,6 +16,7 @@ import { One } from 'one'
 import { probe } from '../probe/resolution'
 import { SymbolImages } from '../probe/SymbolImages'
 import { Gradients } from '../probe/Gradients'
+import { NativeControls } from '../probe/Controls'
 
 const swatch =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAgCAYAAACinX6EAAAASUlEQVR4nO3QMQ0AMAgAMOTsRh1id8/GkEFCetRA42b+SafeqBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQL2BzRVihEezZkGnAAAAABJRU5ErkJggg=='
@@ -101,40 +102,6 @@ const AnimatedProbe = memo(function AnimatedProbe() {
     </View>
   )
 })
-
-function NativeControls() {
-  const [presses, setPresses] = useState(0)
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [disabled, setDisabled] = useState(false)
-  const [mounted, setMounted] = useState(true)
-  const [reject, setReject] = useState(false)
-  const [changes, setChanges] = useState(0)
-  const [revision, setRevision] = useState(0)
-  return (
-    <View testID="native-controls" style={{ gap: 6, marginVertical: 8 }}>
-      <Text>AppKit controls</Text>
-      <View style={{ flexDirection: 'row', gap: 8 }}>
-        <One.macOS.Button testID="native-disable" title={disabled ? 'Enable controls' : 'Disable controls'} onPress={() => setDisabled(!disabled)} />
-        <One.macOS.Button testID="native-mount" title={mounted ? 'Unmount controls' : 'Mount controls'} onPress={() => setMounted(!mounted)} />
-        <One.macOS.Button testID="native-set" title="Select Flags" onPress={() => { setSelectedIndex(2); setRevision(revision + 1) }} />
-        <One.macOS.Button testID="native-reject" title={reject ? 'Accept selection' : 'Reject selection'} onPress={() => setReject(!reject)} />
-      </View>
-      {mounted && <View style={{ flexDirection: 'row', gap: 8 }}>
-        <One.macOS.Button testID="native-action" title="New pane" systemImage="plus" disabled={disabled} onPress={() => setPresses(presses + 1)} />
-        <One.macOS.SegmentedControl
-          testID="native-filter"
-          accessibilityLabel="Feed filter"
-          labels={['All', 'Shares', 'Flags', 'Asks']}
-          selectedIndex={selectedIndex}
-          revision={revision}
-          disabled={disabled}
-          onChange={(event) => { setChanges(value => value + 1); if (!reject) setSelectedIndex(event.selectedIndex) }}
-        />
-      </View>}
-      <Text testID="native-result">{`presses ${presses} selection ${selectedIndex} changes ${changes} disabled ${disabled} mounted ${mounted} reject ${reject} revision ${revision}`}</Text>
-    </View>
-  )
-}
 
 // each window runs its own runtime; the tag shows whose config the menu bar has
 const rootTag = Math.random().toString(36).slice(2, 6)

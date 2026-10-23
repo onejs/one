@@ -4,6 +4,7 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *systemImage;
 @property (nonatomic, assign) BOOL disabled;
+@property (nonatomic, assign) BOOL bordered;
 @property (nonatomic, copy) void (^onPress)(void);
 - (BOOL)accessibilityPerformPress;
 @end

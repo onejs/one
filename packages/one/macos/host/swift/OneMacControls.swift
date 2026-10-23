@@ -12,6 +12,7 @@ final class OneMacButtonHostView: NSView, OneMacosButtonHosting {
     }
   }
   @objc var disabled = false { didSet { button.isEnabled = !disabled } }
+  @objc var bordered = true { didSet { button.isBordered = bordered } }
 
   override init(frame: NSRect) {
     super.init(frame: frame)
