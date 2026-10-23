@@ -14,7 +14,7 @@
 //   SIGUSR2  runs the ops in $DIR/command.json, a list like
 //            [{"op": "click", "testId": "press-me", "wait": 0.3}, {"op": "snapshot", "name": "hover"}]
 // ops: snapshot, click, move, drag, scroll (deltaX/deltaY), key, type, tab, appearance, resize,
-// inspect, press, command, log. Points are `x`/`y` in the root view's top left space, or `testId` for the
+// inspect, press, accessibilityPress, command, log. Points are `x`/`y` in the root view's top left space, or `testId` for the
 // center of a view.
 
 using namespace facebook::react;
@@ -189,6 +189,13 @@ static void OneMacosRunOp(NSView *root, NSString *dir, NSDictionary *op)
       std::string json((const char *)args.bytes, args.length);
       [view handleCommand:std::string([op[@"name"] UTF8String]) args:folly::parseJson(json)];
     }
+  } else if ([name isEqualToString:@"accessibilityPress"]) {
+    NSView *view = OneMacosFindTestId(root, op[@"testId"]);
+    BOOL accepted = [view accessibilityPerformPress];
+    NSDictionary *result = @{ @"accepted": @(accepted), @"focusable": @(view.acceptsFirstResponder),
+                              @"appActive": @(NSApp.active), @"windowKey": @(window.keyWindow) };
+    NSData *data = [NSJSONSerialization dataWithJSONObject:result options:NSJSONWritingPrettyPrinted error:nil];
+    [data writeToFile:[dir stringByAppendingFormat:@"/axPress-%@.json", op[@"name"] ?: op[@"testId"]] atomically:YES];
   } else if ([name isEqualToString:@"press"]) {
     [(id<OneMacosPressTarget>)root oneMacosPressView:OneMacosFindTestId(root, op[@"testId"])];
   } else if ([name isEqualToString:@"click"]) {

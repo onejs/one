@@ -129,9 +129,10 @@ using namespace facebook::react;
   [super keyDown:event];
 }
 
-- (void)performPress
+- (BOOL)performPress
 {
-  [NSApp sendAction:@selector(oneMacosPressView:) to:nil from:self];
+  // start at this view so accessibility also works in an inactive window.
+  return [self tryToPerform:@selector(oneMacosPressView:) with:self];
 }
 
 - (NSFocusRingType)focusRingType
@@ -222,8 +223,7 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
   if (!_focusable) {
     return NO;
   }
-  [self performPress];
-  return YES;
+  return [self performPress];
 }
 
 #pragma mark - OneMacosComponentView

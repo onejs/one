@@ -492,3 +492,15 @@ These changes are confined to the macOS host and fixture. No fresh iOS/Android/w
 byte comparison was run for this continuation; the earlier comparison is
 historical evidence. Reanimated and a native split-view container remain outside
 this result; the existing macOS split-view adapter renders its slot only.
+
+Native accessibility activation also exposed an inactive-window defect. The
+fixture's focusable Pressable returned success from accessibilityPerformPress
+but never changed state, while a direct host press did. NSApp's untargeted
+sendAction searched the active window rather than the background target's
+responder chain. Presses now start at the target view with tryToPerform and
+return its actual result. Both fixture buttons increment through the native
+accessibility method before reload, and the first increments again after reload.
+A non-button rejects the action. Every sampled action reports appActive false
+and windowKey false. These checks invoke the native accessibility method in the
+owned host; downstream ControlRoom accessibility acceptance remains with the
+consumer. The incremental native build passes.
