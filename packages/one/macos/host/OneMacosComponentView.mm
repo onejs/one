@@ -149,6 +149,7 @@ static void DrawLinearGradient(const LinearGradient &gradient, CGRect bounds)
   BOOL _clipsToBounds;
   PointerEventsMode _pointerEvents;
   BOOL _focusable;
+  BOOL _accessibilityElementsHidden;
 }
 
 @synthesize reactTag = _reactTag;
@@ -222,10 +223,19 @@ static void DrawLinearGradient(const LinearGradient &gradient, CGRect bounds)
 
 #pragma mark - Focus and keyboard
 
-// a view takes part in tab order when it handles presses, like a Pressable
+// a view takes part in tab order when it handles presses, like a Pressable,
+// and only while it and its ancestors are visible
 - (BOOL)acceptsFirstResponder
 {
-  return _focusable;
+  if (!_focusable) {
+    return NO;
+  }
+  for (NSView *view = self; view; view = view.superview) {
+    if (view.hidden || view.alphaValue < 0.01) {
+      return NO;
+    }
+  }
+  return YES;
 }
 
 - (BOOL)becomeFirstResponder
@@ -324,9 +334,12 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
 
 - (void)applyAccessibilityProps:(const ViewProps &)viewProps
 {
-  [self setAccessibilityElement:viewProps.accessible && !viewProps.accessibilityElementsHidden];
-  [self setAccessibilityChildren:viewProps.accessibilityElementsHidden ? @[] : nil];
-  [self setAccessibilityChildrenInNavigationOrder:viewProps.accessibilityElementsHidden ? @[] : nil];
+  BOOL elementsHidden = viewProps.accessibilityElementsHidden;
+  [self setAccessibilityElement:viewProps.accessible && !elementsHidden];
+  if (elementsHidden != _accessibilityElementsHidden) {
+    _accessibilityElementsHidden = elementsHidden;
+    NSAccessibilityPostNotification(self, NSAccessibilityLayoutChangedNotification);
+  }
   NSString *label = [NSString stringWithUTF8String:viewProps.accessibilityLabel.c_str()];
   [self setAccessibilityLabel:label.length > 0 ? label : nil];
   NSString *hint = [NSString stringWithUTF8String:viewProps.accessibilityHint.c_str()];
@@ -351,6 +364,17 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
       [self setAccessibilityValue:@NO];
     }
   }
+}
+
+// accessibilityElementsHidden removes this view's subtree from accessibility
+- (NSArray *)accessibilityChildren
+{
+  return _accessibilityElementsHidden ? @[] : [super accessibilityChildren];
+}
+
+- (NSArray *)accessibilityChildrenInNavigationOrder
+{
+  return _accessibilityElementsHidden ? @[] : [super accessibilityChildrenInNavigationOrder];
 }
 
 - (BOOL)accessibilityPerformPress
@@ -396,6 +420,11 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
   [self applyAccessibilityProps:viewProps];
   _clipsToBounds = viewProps.getClipsContentToBounds();
   self.alphaValue = (CGFloat)viewProps.opacity;
+  // focus cannot stay inside a view that just became invisible
+  NSResponder *responder = self.window.firstResponder;
+  if (self.alphaValue < 0.01 && [responder isKindOfClass:NSView.class] && [(NSView *)responder isDescendantOf:self]) {
+    [self.window makeFirstResponder:nil];
+  }
   [self applyTransform];
   self.layer.masksToBounds = _clipsToBounds;
   [self setNeedsRender];
