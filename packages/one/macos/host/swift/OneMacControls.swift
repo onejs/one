@@ -45,6 +45,18 @@ final class OneMacSegmentedControlHostView: NSView, OneMacosSegmentedControlHost
   private var controlled = OneNativeControlled(-1)
   @objc var onChange: ((Int, Int, Int) -> Void)?
   @objc var disabled = false { didSet { control.isEnabled = !disabled } }
+  @objc var controlRole = "automatic" {
+    didSet {
+      if #available(macOS 27.0, *) {
+        switch controlRole {
+        case "tabs": control.role = .tabs
+        case "valueSelection": control.role = .valueSelection
+        default: control.role = .automatic
+        }
+        control.segmentStyle = controlRole == "tabs" ? .automatic : .rounded
+      }
+    }
+  }
   @objc var labels: [String] = [] {
     didSet {
       control.segmentCount = labels.count

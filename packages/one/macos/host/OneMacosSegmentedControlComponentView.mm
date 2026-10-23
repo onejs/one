@@ -33,6 +33,7 @@ using namespace facebook::react;
   NSMutableArray<NSString *> *labels = [NSMutableArray new];
   for (const auto &label : value.labels) [labels addObject:[NSString stringWithUTF8String:label.c_str()]];
   _host.labels = labels;
+  _host.controlRole = [NSString stringWithUTF8String:value.controlRole.c_str()];
   _host.disabled = value.disabled;
   [_host applyValue:value.selectedIndex acknowledged:value.acknowledgedEvent revision:value.revision];
   [self setAccessibilityElement:NO];

@@ -103,6 +103,10 @@ One.macOS.AppCommands.configure({
     { id: 'pane.next', key: 'ctrl-tab' },
     { id: 'pane.focusNext', key: 'tab', context: '!Input' },
   ],
+  toolbar: [
+    { kind: 'flexibleSpace' },
+    { kind: 'action', id: 'pane.inspector', label: 'Toggle Inspector', systemImage: 'sidebar.right', badge: 2 },
+  ],
   menus: [
     { label: 'App', items: [{ kind: 'action', id: 'settings.open', label: 'Settings' }] },
     { label: 'View', items: [{ kind: 'action', id: 'pane.next', label: 'Next Pane' }] },
@@ -131,6 +135,18 @@ const remove = One.macOS.AppCommands.addListener((id) => run(id))
 - SwiftUI rebuilds the menus it owns, so the host restores its items after
   each menu edit. Stopping or reloading a root removes its items at once.
 
+The optional `toolbar` array owns the window's native `NSToolbar`. Actions use
+a typed SF Symbol name and route through that window's root, even while another
+window is current. A non-negative integer `badge` shows a system count badge on
+macOS 26 and later; zero removes it. Flexible spaces use AppKit's standard spacer.
+Items disable when the root has no command listener. Reconfiguring labels or
+badges preserves item identity; stopping the root or omitting `toolbar` restores
+the shell's previous toolbar. An empty array installs an empty toolbar.
+
 AppKit never matches a control-tab key equivalent, so the host runs those
 bindings from a key monitor. Commands do not activate the app or move the
 cursor.
+
+The segmented control's optional `role` is `automatic` (the default), `tabs`, or
+`valueSelection`. On macOS 27 and later it sets AppKit's matching role. Older
+systems retain the existing rounded appearance and single-selection behavior.

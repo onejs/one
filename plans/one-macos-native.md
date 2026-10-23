@@ -633,3 +633,27 @@ bitmap references for six differently shaped symbols at 16 and 32 points,
 including edge coverage outside the default square, explicit bounds, tint-only
 updates and invalid-name clearing. Package/staticSpecs and incremental native
 builds passed. See the fixture guide for the exact scope and results.
+
+## 2026-10-23: native window toolbar and tab roles
+
+The Team Machine integration is following the owner's latest macOS fidelity
+request recorded in Contrast specs/one-macos-native.md. This bounded unit is
+an agent-selected implementation: AppCommands optionally owns a native
+NSToolbar per root window, and SegmentedControl exposes AppKit's macOS 27
+roles. It does not add a split-view controller or change other targets.
+
+A real AppKit probe found that the standard toggle-inspector toolbar item
+keeps its own toggleInspector: routing and ignores an assigned target/action
+in the current plain-window host. A regular bordered NSToolbarItem with a
+system symbol instead uses the existing window-root command router. Count
+badges use NSItemBadge on macOS 26 and later. Omission restores the shell's
+previous toolbar; replacing labels or counts preserves native item identity.
+
+Validation so far: actual-source AppKit probe passed two-window isolation,
+listener removal/restoration, count replacement/removal, invalid config,
+root stop/replacement and omitted-toolbar restoration while inactive. The
+Swift control source compiled and changed tabs/valueSelection/automatic roles
+without altering controlled selection. The One package build including
+staticSpecs passed. The integration's retained incremental native build and
+populated-window acceptance are still pending; these source probes do not
+establish final application or older-system runtime acceptance.

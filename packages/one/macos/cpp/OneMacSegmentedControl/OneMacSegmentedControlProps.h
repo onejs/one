@@ -11,6 +11,7 @@ class OneMacSegmentedControlProps final : public ViewProps {
   std::vector<std::string> labels{};
   int selectedIndex{-1};
   bool disabled{false};
+  std::string controlRole{"automatic"};
   int revision{0};
   int acknowledgedEvent{0};
 };

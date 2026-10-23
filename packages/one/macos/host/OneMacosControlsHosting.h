@@ -10,6 +10,7 @@
 
 @protocol OneMacosSegmentedControlHosting <NSObject>
 @property (nonatomic, copy) NSArray<NSString *> *labels;
+@property (nonatomic, copy) NSString *controlRole;
 @property (nonatomic, assign) BOOL disabled;
 @property (nonatomic, copy) void (^onChange)(NSInteger selectedIndex, NSInteger eventCount, NSInteger revision);
 - (void)applyValue:(NSInteger)value acknowledged:(NSInteger)acknowledged revision:(NSInteger)revision;

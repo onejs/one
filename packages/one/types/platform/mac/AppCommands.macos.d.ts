@@ -1,3 +1,4 @@
+import type { SFSymbolName } from '../generated/sfSymbolNames';
 export type AppCommandBinding = {
     id: string;
     /** a gpui keystroke such as cmd-shift-[, ctrl-tab or up. */
@@ -24,6 +25,17 @@ export type AppCommandConfig = {
     bindings: AppCommandBinding[];
     /** the first menu joins the application menu; others join a menu with the same title. */
     menus: AppCommandMenu[];
+    /** native window toolbar; omitting it leaves the shell's toolbar in place. */
+    toolbar?: AppCommandToolbarItem[];
+};
+export type AppCommandToolbarItem = {
+    kind: 'flexibleSpace';
+} | {
+    kind: 'action';
+    id: string;
+    label: string;
+    systemImage: SFSymbolName;
+    badge?: number;
 };
 export type AppCommandListener = (id: string) => void;
 export declare const AppCommands: {

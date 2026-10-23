@@ -1,7 +1,9 @@
 #import "OneMacosAppCommands.h"
 
 #import <Carbon/Carbon.h>
+#import <objc/runtime.h>
 
+#include <cmath>
 #include <cstring>
 #include <memory>
 #include <unordered_map>
@@ -240,6 +242,7 @@ bool stringMember(const folly::dynamic &object, const char *name, std::string &o
 @implementation OneMacosAppCommandConfig {
  @public
   folly::dynamic _menus;
+  folly::dynamic _toolbar;
   NSArray<OneMacosAppCommandBinding *> *_bindings;
   NSSet<NSString *> *_commandIds;
 }
@@ -351,8 +354,44 @@ OneMacosAppCommandConfig *OneMacosParseAppCommands(const folly::dynamic &config,
     }
   }
 
+  auto *toolbar = member(config, "toolbar");
+  if (toolbar) {
+    if (!toolbar->isArray()) {
+      error = "toolbar must be an array";
+      return nil;
+    }
+    NSMutableSet<NSString *> *toolbarIds = [NSMutableSet new];
+    for (size_t index = 0; index < toolbar->size(); index++) {
+      const auto &item = (*toolbar)[index];
+      std::string path = "toolbar[" + std::to_string(index) + "]";
+      std::string kind, commandId, label, image;
+      stringMember(item, "kind", kind);
+      if (kind == "flexibleSpace") continue;
+      if (kind != "action" || !stringMember(item, "id", commandId) ||
+          !stringMember(item, "label", label) || !stringMember(item, "systemImage", image)) {
+        error = path + " needs kind action, id, label and systemImage";
+        return nil;
+      }
+      NSString *identifier = @(commandId.c_str());
+      if ([toolbarIds containsObject:identifier]) {
+        error = path + ".id must be unique in the toolbar";
+        return nil;
+      }
+      [toolbarIds addObject:identifier];
+      [ids addObject:identifier];
+      if (auto *badge = member(item, "badge")) {
+        double value = badge->isNumber() ? badge->asDouble() : -1;
+        if (!std::isfinite(value) || value < 0 || std::trunc(value) != value || value > 9007199254740991.0) {
+          error = path + ".badge must be a non-negative safe integer";
+          return nil;
+        }
+      }
+    }
+  }
+
   OneMacosAppCommandConfig *result = [OneMacosAppCommandConfig new];
   result->_menus = *menus;
+  result->_toolbar = toolbar ? *toolbar : folly::dynamic();
   result->_bindings = parsed;
   result->_commandIds = ids;
   return result;
@@ -416,6 +455,143 @@ static NSView<OneMacosAppCommandTarget> *OneMacosAppCommandTargetInWindow(NSWind
     }
   }
   return nil;
+}
+
+@interface OneMacosWindowToolbar : NSObject <NSToolbarDelegate, NSToolbarItemValidation>
+- (instancetype)initWithWindow:(NSWindow *)window;
+- (void)applyConfig:(OneMacosAppCommandConfig *)config;
+- (void)restoreToolbar;
+@end
+
+@implementation OneMacosWindowToolbar {
+  __weak NSWindow *_window;
+  NSToolbar *_toolbar;
+  NSToolbar *_previousToolbar;
+  OneMacosAppCommandConfig *_config;
+  NSArray<NSToolbarItemIdentifier> *_identifiers;
+  NSDictionary<NSString *, NSDictionary *> *_definitions;
+}
+
+- (instancetype)initWithWindow:(NSWindow *)window
+{
+  if (self = [super init]) {
+    _window = window;
+    _previousToolbar = window.toolbar;
+    _toolbar = [[NSToolbar alloc] initWithIdentifier:@"OneMacos.AppCommands"];
+    _toolbar.delegate = self;
+    _toolbar.displayMode = NSToolbarDisplayModeIconOnly;
+    _toolbar.allowsUserCustomization = NO;
+    _toolbar.showsBaselineSeparator = NO;
+  }
+  return self;
+}
+
+- (NSArray<NSToolbarItemIdentifier> *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar { return @[]; }
+- (NSArray<NSToolbarItemIdentifier> *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar { return _identifiers; }
+
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSToolbarItemIdentifier)identifier willBeInsertedIntoToolbar:(BOOL)inserted
+{
+  if ([identifier isEqualToString:NSToolbarFlexibleSpaceItemIdentifier]) return nil;
+  NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:identifier];
+  item.target = self;
+  item.action = @selector(performToolbarCommand:);
+  item.bordered = YES;
+  return item;
+}
+
+- (void)performToolbarCommand:(NSToolbarItem *)item
+{
+  NSView<OneMacosAppCommandTarget> *target = OneMacosAppCommandTargetInWindow(_window);
+  NSString *commandId = _definitions[item.itemIdentifier][@"id"];
+  if (commandId && [target oneMacosCanPerformAppCommand:commandId]) {
+    [target oneMacosPerformAppCommand:commandId];
+  }
+}
+
+- (BOOL)validateToolbarItem:(NSToolbarItem *)item
+{
+  NSString *commandId = _definitions[item.itemIdentifier][@"id"];
+  return commandId && [OneMacosAppCommandTargetInWindow(_window) oneMacosCanPerformAppCommand:commandId];
+}
+
+- (void)applyConfig:(OneMacosAppCommandConfig *)config
+{
+  if (config != _config) {
+    NSMutableArray *identifiers = [NSMutableArray new];
+    NSMutableDictionary *definitions = [NSMutableDictionary new];
+    for (const auto &entry : config->_toolbar) {
+      if (entry["kind"].getString() == "flexibleSpace") {
+        [identifiers addObject:NSToolbarFlexibleSpaceItemIdentifier];
+        continue;
+      }
+      NSString *commandId = @(entry["id"].getString().c_str());
+      NSString *identifier = [@"OneMacos.Command." stringByAppendingString:commandId];
+      NSMutableDictionary *definition = [@{
+        @"id": commandId, @"label": @(entry["label"].getString().c_str()),
+        @"image": @(entry["systemImage"].getString().c_str())
+      } mutableCopy];
+      if (auto *badge = member(entry, "badge")) definition[@"badge"] = @((NSInteger)badge->asDouble());
+      definitions[identifier] = definition;
+      [identifiers addObject:identifier];
+    }
+    NSDictionary *previous = _definitions;
+    _definitions = definitions;
+    _config = config;
+    _identifiers = identifiers;
+    if (_window.toolbar != _toolbar) _window.toolbar = _toolbar;
+    if (![[_toolbar.items valueForKey:@"itemIdentifier"] isEqual:identifiers]) {
+      for (NSInteger index = (NSInteger)_toolbar.items.count - 1; index >= 0; index--) [_toolbar removeItemAtIndex:index];
+      for (NSUInteger index = 0; index < identifiers.count; index++) [_toolbar insertItemWithItemIdentifier:identifiers[index] atIndex:index];
+      previous = nil;
+    }
+    for (NSToolbarItem *item in _toolbar.items) {
+      NSDictionary *definition = definitions[item.itemIdentifier];
+      if (!definition) continue;
+      NSDictionary *old = previous[item.itemIdentifier];
+      if (![definition[@"label"] isEqual:old[@"label"]]) {
+        item.label = definition[@"label"];
+        item.paletteLabel = item.label;
+        item.toolTip = item.label;
+      }
+      if (![definition[@"image"] isEqual:old[@"image"]]) {
+        item.image = [NSImage imageWithSystemSymbolName:definition[@"image"] accessibilityDescription:item.label];
+      }
+      if (@available(macOS 26.0, *)) {
+        if (![definition[@"badge"] isEqual:old[@"badge"]]) {
+          NSInteger count = [definition[@"badge"] integerValue];
+          item.badge = count > 0 ? [NSItemBadge badgeWithCount:count] : nil;
+        }
+      }
+    }
+  }
+  for (NSToolbarItem *item in _toolbar.items) {
+    if (_definitions[item.itemIdentifier]) item.enabled = [self validateToolbarItem:item];
+  }
+}
+
+- (void)restoreToolbar
+{
+  if (_window.toolbar == _toolbar) _window.toolbar = _previousToolbar;
+}
+@end
+
+static void OneMacosUpdateWindowToolbars()
+{
+  static char toolbarKey;
+  for (NSWindow *window in NSApp.windows) {
+    OneMacosAppCommandConfig *config = [OneMacosAppCommandTargetInWindow(window) oneMacosAppCommandConfig];
+    OneMacosWindowToolbar *owner = objc_getAssociatedObject(window, &toolbarKey);
+    if (config && config->_toolbar.isArray()) {
+      if (!owner) {
+        owner = [[OneMacosWindowToolbar alloc] initWithWindow:window];
+        objc_setAssociatedObject(window, &toolbarKey, owner, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+      }
+      [owner applyConfig:config];
+    } else if (owner) {
+      [owner restoreToolbar];
+      objc_setAssociatedObject(window, &toolbarKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+  }
 }
 
 // the key window's runtime, as AppKit routes an untargeted action; an inactive
@@ -645,6 +821,7 @@ static void OneMacosApplyAppCommands(OneMacosAppCommandConfig *_Nullable config)
 void OneMacosUpdateAppCommands(void)
 {
   NSCAssert(NSThread.isMainThread, @"update app commands on the main thread");
+  OneMacosUpdateWindowToolbars();
   static OneMacosAppCommandConfig *shown;
   OneMacosAppCommandConfig *config = [OneMacosCurrentAppCommandTarget() oneMacosAppCommandConfig];
   BOOL attached = YES;
