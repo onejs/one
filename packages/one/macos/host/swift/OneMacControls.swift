@@ -53,7 +53,7 @@ final class OneMacSegmentedControlHostView: NSView, OneMacosSegmentedControlHost
         case "valueSelection": control.role = .valueSelection
         default: control.role = .automatic
         }
-        control.segmentStyle = controlRole == "tabs" ? .automatic : .rounded
+        control.segmentStyle = controlRole == "automatic" ? .rounded : .automatic
       }
     }
   }

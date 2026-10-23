@@ -657,3 +657,10 @@ without altering controlled selection. The One package build including
 staticSpecs passed. The integration's retained incremental native build and
 populated-window acceptance are still pending; these source probes do not
 establish final application or older-system runtime acceptance.
+
+Independent Opus review caught AppKit synchronizing different windows when their
+toolbars shared an identifier. The strengthened actual-source probe failed with
+different per-window layouts before the repair and passed after each owner got
+an independent identifier. The public option is named `controlRole`, leaving
+React Native's existing accessibility `role` intact. Non-default native roles
+use AppKit's automatic style; the existing rounded default stays unchanged.

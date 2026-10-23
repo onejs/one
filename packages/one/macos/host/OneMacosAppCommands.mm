@@ -477,7 +477,7 @@ static NSView<OneMacosAppCommandTarget> *OneMacosAppCommandTargetInWindow(NSWind
   if (self = [super init]) {
     _window = window;
     _previousToolbar = window.toolbar;
-    _toolbar = [[NSToolbar alloc] initWithIdentifier:@"OneMacos.AppCommands"];
+    _toolbar = [[NSToolbar alloc] initWithIdentifier:[@"OneMacos.AppCommands." stringByAppendingString:NSUUID.UUID.UUIDString]];
     _toolbar.delegate = self;
     _toolbar.displayMode = NSToolbarDisplayModeIconOnly;
     _toolbar.allowsUserCustomization = NO;
@@ -554,7 +554,7 @@ static NSView<OneMacosAppCommandTarget> *OneMacosAppCommandTargetInWindow(NSWind
         item.toolTip = item.label;
       }
       if (![definition[@"image"] isEqual:old[@"image"]]) {
-        item.image = [NSImage imageWithSystemSymbolName:definition[@"image"] accessibilityDescription:item.label];
+        item.image = [NSImage imageWithSystemSymbolName:definition[@"image"] accessibilityDescription:nil];
       }
       if (@available(macOS 26.0, *)) {
         if (![definition[@"badge"] isEqual:old[@"badge"]]) {

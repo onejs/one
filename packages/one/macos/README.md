@@ -147,6 +147,6 @@ AppKit never matches a control-tab key equivalent, so the host runs those
 bindings from a key monitor. Commands do not activate the app or move the
 cursor.
 
-The segmented control's optional `role` is `automatic` (the default), `tabs`, or
+The segmented control's optional `controlRole` is `automatic` (the default), `tabs`, or
 `valueSelection`. On macOS 27 and later it sets AppKit's matching role. Older
 systems retain the existing rounded appearance and single-selection behavior.
