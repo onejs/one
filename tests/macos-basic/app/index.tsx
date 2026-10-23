@@ -14,6 +14,7 @@ import {
 } from 'react-native'
 import { One } from 'one'
 import { probe } from '../probe/resolution'
+import { SymbolImages } from '../probe/SymbolImages'
 import { Gradients } from '../probe/Gradients'
 
 const swatch =
@@ -262,6 +263,7 @@ export default function Index() {
       <Text testID="macos-label">macOS</Text>
       <Text testID="macos-probe">{probe}</Text>
       <Gradients />
+      <SymbolImages />
       <NativeControls />
       <AppCommandsProbe />
       <PlatformColors />

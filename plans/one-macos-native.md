@@ -597,3 +597,28 @@ now use a suffix-free module, avoiding self-import under Mac module resolution.
 
 Keep the limitations in `goals.md` explicit. The prepared minor version is not
 a stable publication, and the feature remains held for owner review.
+
+### Native system-symbol image
+
+The Mac namespace now includes `One.macOS.Image` with a required generated
+`SFSymbolName` `systemName`, optional `size` (16 by default), `tintColor`, and
+standard leaf view layout and accessibility props. A dedicated Mac Fabric leaf
+measures the requested size and hosts a noninteractive AppKit `NSImageView`.
+It fits the symbol proportionally within explicit bounds, uses semantic
+`labelColor` by default, and retains native semantic tint rather than baking
+appearance into pixels. Labelled images are accessible; unlabelled images are
+decorative. Invalid or unavailable system names clear the previous image.
+
+This is the narrow SF Symbol drawing capability exposed by the real Mac app's
+missing icons, using the existing image `systemName` naming and symbol union.
+It adds no SVG renderer or remote-image path. See
+`tests/macos-basic/probe/SYMBOL-IMAGES.md` for API and fixture instructions.
+
+Validation for this unit: One package build, existing static view-config checks
+(9 passing), lint, and an incremental MacosBasic native build. Native captures
+and pixel checks covered 12–16 point symbols, semantic light/dark tint,
+transparent tint, explicit bounds, size and symbol updates, an unavailable
+symbol, unmount/remount and a real host reload. Native AX inspection prompted
+removal of inherited press and internal image-cell accessibility. The fixture
+remained inactive with a stationary hardware cursor. Other platform runtimes
+were not exercised in this unit.

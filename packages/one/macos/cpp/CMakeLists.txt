@@ -126,6 +126,7 @@ file(GLOB ONE_SOURCES CONFIGURE_DEPENDS
   ${ONE_CPP}/*.mm
   ${ONE_CPP}/OneMacToggle/*.cpp
   ${ONE_CPP}/OneMacToggle/*.mm
+  ${ONE_CPP}/OneMacImage/*.cpp
   ${ONE_CPP}/OneMacButton/*.cpp
   ${ONE_CPP}/OneMacButton/*.mm
   ${ONE_CPP}/OneMacSegmentedControl/*.cpp

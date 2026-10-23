@@ -14,6 +14,7 @@
 #include <unordered_map>
 
 #include <OneMacButton/OneMacButtonComponentDescriptor.h>
+#include <OneMacImage/OneMacImageComponentDescriptor.h>
 #include <OneMacSegmentedControl/OneMacSegmentedControlComponentDescriptor.h>
 #include <OneMacToggle/OneMacToggleComponentDescriptor.h>
 
@@ -22,6 +23,7 @@
 #import "OneMacosScrollViewComponentView.h"
 #import "OneMacosTextInputComponentView.h"
 #import "OneMacosButtonComponentView.h"
+#import "OneMacosSymbolImageComponentView.h"
 #import "OneMacosSegmentedControlComponentView.h"
 #import "OneMacosToggleComponentView.h"
 
@@ -49,6 +51,7 @@ std::vector<ComponentEntry> &componentEntries()
        [OneMacosParagraphComponentView class]},
       {concreteComponentDescriptorProvider<TextComponentDescriptor>(), nil},
       {concreteComponentDescriptorProvider<RawTextComponentDescriptor>(), nil},
+      {concreteComponentDescriptorProvider<OneMacImageComponentDescriptor>(), [OneMacosSymbolImageComponentView class]},
       {concreteComponentDescriptorProvider<OneMacButtonComponentDescriptor>(), [OneMacosButtonComponentView class]},
       {concreteComponentDescriptorProvider<OneMacSegmentedControlComponentDescriptor>(), [OneMacosSegmentedControlComponentView class]},
       {concreteComponentDescriptorProvider<OneMacToggleComponentDescriptor>(),
