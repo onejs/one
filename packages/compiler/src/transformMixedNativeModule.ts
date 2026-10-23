@@ -378,7 +378,7 @@ export async function transformMixedNativeModule(
     jsc: {
       target: 'esnext',
       parser: { syntax: 'ecmascript', jsx: true },
-      transform: { react: { runtime: 'preserve' } },
+      transform: { react: { runtime: 'classic' } },
     },
     module: { type: 'commonjs', strictMode: false, allowTopLevelThis: true },
   })
