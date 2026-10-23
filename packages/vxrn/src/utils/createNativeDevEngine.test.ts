@@ -729,13 +729,23 @@ describe('native prelude', () => {
   })
 
   it('does not advertise a host event API that cannot remove listeners', () => {
+    // a bound function prints as [native code], like a host function
     const context = {
-      addEventListener() {},
+      addEventListener: function () {}.bind(null),
     }
 
     runInNewContext(getNativePrelude({ dev: false, platform: 'ios' }), context)
 
     expect(Reflect.get(context, 'addEventListener')).toBeUndefined()
+  })
+
+  it('keeps a javascript addEventListener without a removal API', () => {
+    const addEventListener = function addEventListener() {}
+    const context = { addEventListener }
+
+    runInNewContext(getNativePrelude({ dev: false, platform: 'ios' }), context)
+
+    expect(Reflect.get(context, 'addEventListener')).toBe(addEventListener)
   })
 
   it('preserves a complete host event API', () => {
