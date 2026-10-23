@@ -5,6 +5,7 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 interface NativeProps extends ViewProps {
   systemName: string
   size?: Float
+  fitToBounds?: boolean
   tintColor?: ColorValue
 }
 

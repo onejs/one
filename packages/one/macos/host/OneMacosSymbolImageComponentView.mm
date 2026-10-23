@@ -6,15 +6,17 @@ using namespace facebook::react;
 
 @implementation OneMacosSymbolImageComponentView {
   NSImageView *_imageView;
+  BOOL _fitToBounds;
+  NSString *_systemName;
+  Float _symbolSize;
 }
 
 - (instancetype)initWithFrame:(NSRect)frame
 {
   if (self = [super initWithFrame:frame]) {
     _imageView = [[NSImageView alloc] initWithFrame:self.bounds];
-    _imageView.imageScaling = NSImageScaleProportionallyUpOrDown;
+    _imageView.imageScaling = NSImageScaleNone;
     _imageView.imageAlignment = NSImageAlignCenter;
-    _imageView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     [_imageView setAccessibilityElement:NO];
     [_imageView setAccessibilityHidden:YES];
     [self setAccessibilityChildren:@[]];
@@ -27,9 +29,27 @@ using namespace facebook::react;
 {
   [super updateProps:props oldProps:oldProps];
   const auto &value = static_cast<const OneMacImageProps &>(*props);
-  NSImage *image = [NSImage imageWithSystemSymbolName:[NSString stringWithUTF8String:value.systemName.c_str()] accessibilityDescription:nil];
-  _imageView.image = [image imageWithSymbolConfiguration:[NSImageSymbolConfiguration configurationWithPointSize:value.size weight:NSFontWeightRegular]];
+  NSString *systemName = [NSString stringWithUTF8String:value.systemName.c_str()];
+  if (![_systemName isEqualToString:systemName] || _symbolSize != value.size) {
+    _systemName = [systemName copy];
+    _symbolSize = value.size;
+    NSImage *image = [NSImage imageWithSystemSymbolName:systemName accessibilityDescription:nil];
+    _imageView.image = [image imageWithSymbolConfiguration:[NSImageSymbolConfiguration configurationWithPointSize:value.size weight:NSFontWeightRegular]];
+  }
+  _fitToBounds = value.fitToBounds;
+  _imageView.imageScaling = _fitToBounds ? NSImageScaleProportionallyUpOrDown : NSImageScaleNone;
+  [self layoutImage];
   _imageView.contentTintColor = value.tintColor ? OneMacosColorFromSharedColor(value.tintColor) : NSColor.labelColor;
+}
+
+// allow the natural glyph to extend beyond the default square layout.
+- (BOOL)wantsDefaultClipping { return NO; }
+
+- (void)layoutImage
+{
+  NSSize size = _fitToBounds ? self.bounds.size : _imageView.image.size;
+  _imageView.frame = NSMakeRect((self.bounds.size.width - size.width) / 2,
+      (self.bounds.size.height - size.height) / 2, size.width, size.height);
 }
 
 // the base view implements press for interactive react views; images have no action.
@@ -42,6 +62,6 @@ using namespace facebook::react;
 - (void)updateLayoutMetrics:(const LayoutMetrics &)metrics oldLayoutMetrics:(const LayoutMetrics &)oldMetrics
 {
   [super updateLayoutMetrics:metrics oldLayoutMetrics:oldMetrics];
-  _imageView.frame = self.bounds;
+  [self layoutImage];
 }
 @end

@@ -604,7 +604,11 @@ The Mac namespace now includes `One.macOS.Image` with a required generated
 `SFSymbolName` `systemName`, optional `size` (16 by default), `tintColor`, and
 standard leaf view layout and accessibility props. A dedicated Mac Fabric leaf
 measures the requested size and hosts a noninteractive AppKit `NSImageView`.
-It fits the symbol proportionally within explicit bounds, uses semantic
+By default it centers an unscaled natural-size glyph in the square, allowing
+wide or tall glyphs beyond its edges. Explicit style width and height select
+proportional aspect-fit. The native child uses natural dimensions to prevent
+implicit clipping, and identity is cached by system name and point size.
+It uses semantic
 `labelColor` by default, and retains native semantic tint rather than baking
 appearance into pixels. Labelled images are accessible; unlabelled images are
 decorative. Invalid or unavailable system names clear the previous image.
@@ -622,3 +626,10 @@ symbol, unmount/remount and a real host reload. Native AX inspection prompted
 removal of inherited press and internal image-cell accessibility. The fixture
 remained inactive with a stationary hardware cursor. Other platform runtimes
 were not exercised in this unit.
+
+The independent symbol-size review found that square fitting shrank equal-point
+symbols inconsistently. The bounded repair was checked against native AppKit
+bitmap references for six differently shaped symbols at 16 and 32 points,
+including edge coverage outside the default square, explicit bounds, tint-only
+updates and invalid-name clearing. Package/staticSpecs and incremental native
+builds passed. See the fixture guide for the exact scope and results.

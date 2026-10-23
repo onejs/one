@@ -6,5 +6,6 @@ OneMacImageProps::OneMacImageProps(const PropsParserContext &context, const OneM
     : ViewProps(context, sourceProps, rawProps),
       systemName(convertRawProp(context, rawProps, "systemName", sourceProps.systemName, std::string{})),
       size(convertRawProp(context, rawProps, "size", sourceProps.size, Float{16})),
+      fitToBounds(convertRawProp(context, rawProps, "fitToBounds", sourceProps.fitToBounds, false)),
       tintColor(convertRawProp(context, rawProps, "tintColor", sourceProps.tintColor, SharedColor{})) {}
 }

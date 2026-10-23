@@ -3,6 +3,7 @@ import type { Float } from 'react-native/Libraries/Types/CodegenTypes';
 interface NativeProps extends ViewProps {
     systemName: string;
     size?: Float;
+    fitToBounds?: boolean;
     tintColor?: ColorValue;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;

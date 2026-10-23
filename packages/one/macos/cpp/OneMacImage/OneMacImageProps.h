@@ -8,6 +8,7 @@ class OneMacImageProps final : public ViewProps {
   OneMacImageProps(const PropsParserContext &, const OneMacImageProps &, const RawProps &);
   std::string systemName{};
   Float size{16};
+  bool fitToBounds{false};
   SharedColor tintColor{};
 };
 }

@@ -14,8 +14,13 @@ native `Image(systemName)` API. It is available only through the Mac namespace.
 ```
 
 `size` is a positive finite point size and supplies the default square layout,
-with 16 as the default. Standard view styles can set different bounds; the
-symbol fits those bounds proportionally and remains centered. `tintColor`
+with 16 as the default. The glyph keeps its configured point size and natural
+aspect ratio, centered in that square. Wide or tall glyphs can extend beyond
+its edges; leave room between images and use the usual view overflow behavior.
+A natural-size native child prevents the default layout from clipping the glyph.
+Setting both style `width` and `height` explicitly opts into centered aspect-fit
+within those bounds. A single dimension does not opt into fitting. Use `size`
+to request a different glyph point size. `tintColor`
 accepts React Native colors, including numeric processed colors and semantic
 `PlatformColor` values. The default is AppKit `labelColor`. Template tinting
 preserves explicit transparent colors and resolves semantic colors under the
@@ -69,3 +74,27 @@ image now excludes press and hides its AppKit implementation subtree.
 
 These are focused Mac checks. No iOS, Android or web runtime comparison was
 run for this unit, and no cross-platform runtime equivalence is claimed.
+
+## Point-size review repair
+
+The original square aspect-fit drawing reduced different symbols by different
+amounts. The repaired default uses an unscaled natural-size child centered in
+the square, with default AppKit clipping disabled on the container. Explicit
+width and height still select aspect-fit through an internal native prop.
+The shadow measurement remains a pure square calculation with no AppKit calls.
+Native image identity is retained by system name and point size; tint updates
+still run independently, and invalid names still assign an empty image.
+
+The incremental warm native build and actual One package build (including
+staticSpecs) passed, along with the existing nine static configuration checks
+and changed TypeScript lint. Native fixture bitmaps for folder, terminal,
+sidebar.left, paperclip, xmark and chevron.right at both 16 and 32 points matched
+the painted bounds of independent unscaled AppKit references. Full trimmed
+binary glyph masks differed by at most one antialiased edge pixel, so the wide
+and tall glyphs retained their edges beyond the square. Explicit 40x20 and
+64x20 bounds retained the same fitted glyph. Tint-only updates, transparent
+color, unavailable names, replacement, remount and reload also passed.
+The inactive, non-key fixture retained two labelled AX image leaves without
+press actions or an internal image-cell subtree. Captures were taken at the
+host's native backing density without resizing. Prior platform evidence is
+reused only where inputs did not change; no broader platform check is claimed.

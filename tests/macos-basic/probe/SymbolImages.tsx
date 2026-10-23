@@ -5,14 +5,16 @@ import { One, type SFSymbolName } from 'one'
 const Symbols = memo(function Symbols({
   large,
   changed,
+  tinted,
 }: {
   large: boolean
   changed: number
+  tinted: boolean
 }) {
   return (
     <View
       testID="symbol-row"
-      style={{ flexDirection: 'row', alignItems: 'center', gap: 20, height: 60 }}
+      style={{ flexDirection: 'row', alignItems: 'center', gap: 24, height: 60 }}
     >
       <One.macOS.Image
         testID="symbol-folder"
@@ -24,6 +26,7 @@ const Symbols = memo(function Symbols({
               : 'folder'
         }
         size={large ? 32 : 16}
+        tintColor={tinted ? '#cc3300' : undefined}
         accessibilityLabel="Project folder"
       />
       <One.macOS.Image
@@ -45,6 +48,16 @@ const Symbols = memo(function Symbols({
         size={16}
         tintColor={PlatformColor('labelColor')}
       />
+      {(
+        ['terminal', 'sidebar.left', 'paperclip', 'xmark', 'chevron.right'] as const
+      ).map((systemName) => (
+        <One.macOS.Image
+          key={systemName}
+          testID={`symbol-${systemName}`}
+          systemName={systemName}
+          size={large ? 32 : 16}
+        />
+      ))}
       <One.macOS.Image
         testID="symbol-transparent"
         systemName="square.fill"
@@ -64,6 +77,7 @@ const Symbols = memo(function Symbols({
 export function SymbolImages() {
   const [mounted, setMounted] = useState(true)
   const [large, setLarge] = useState(false)
+  const [tinted, setTinted] = useState(false)
   const [changed, setChanged] = useState(0)
   return (
     <View
@@ -92,8 +106,13 @@ export function SymbolImages() {
           title="Change symbol"
           onPress={() => setChanged((changed + 1) % 3)}
         />
+        <One.macOS.Button
+          testID="symbol-tint"
+          title="Change tint"
+          onPress={() => setTinted(!tinted)}
+        />
       </View>
-      {mounted && <Symbols large={large} changed={changed} />}
+      {mounted && <Symbols large={large} changed={changed} tinted={tinted} />}
       <Text
         testID="symbol-state"
         style={{ color: PlatformColor('labelColor') }}
