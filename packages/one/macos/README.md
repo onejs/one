@@ -63,6 +63,26 @@ Ordinary colors stay packed sRGB values. Reading a system color as numbers,
 for example in an animation, takes the app's current appearance at that time.
 `DynamicColorIOS` is not supported on macOS.
 
+## Linear backgrounds
+
+React Native's `backgroundImage` paints linear gradients in the native view.
+It accepts the existing string and structured stop forms, including
+`PlatformColor` stops. Layers follow their declared order, clip to rounded
+bounds and stay below the border. Appearance and size changes repaint them.
+
+```tsx
+<View style={{
+  width: 160,
+  height: 32,
+  borderRadius: 8,
+  backgroundImage: 'linear-gradient(90deg, rgba(0, 100, 240, 0.5), transparent)',
+}} />
+```
+
+Radial and repeating gradients, transition hints and pattern-color stops are
+unsupported. A layer with unsupported stops is left unpainted. Native fixture
+recipes are in `tests/macos-basic/probe/GRADIENTS.md` in the repository.
+
 ## Logs
 
 The host writes JS console output, errors and exceptions to the unified log

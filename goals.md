@@ -1,3 +1,25 @@
+# One 2.10.0 release
+
+Add the experimental native macOS target as one minor release. The complete feature stays on `tm/macos-resume`, in PR #1027, for owner review before merging or stable publication. Package versions are prepared at 2.10.0; this does not publish them. The previous iOS release record below remains intact.
+
+## Included
+
+- An AppKit and Fabric host using the installed React Native core and Hermes, with Mac-specific resolution and build files inside the existing One package.
+- Native text, composition-aware input, scrolling, images, pointer and accessibility events, animation updates and runtime teardown repairs.
+- HTTP, Blob and FileReader, WebSocket, SQLite and native idle callbacks used by a shared application.
+- AppKit buttons and segmented controls, semantic system colors, explicit line-height alignment, linear backgrounds and typed application menus and keyboard commands.
+- Native bundle module scoping and a shared One entry whose imports remain valid under platform suffix resolution.
+
+## Validation and remaining acceptance
+
+Incremental native fixture builds and running probes cover animation without React rerenders, input composition and undo, transport errors and cancellation, native controls, inactive accessibility, menus, appearance, resize and reload. The shared Team Machine app has loaded live rows and transcripts, retained per-session drafts and switched native filters. Its final combined appearance and command acceptance remains in progress, including the related Tamagui native config fixes.
+
+The first branch canary is `2.0.0-0.canary.1792755511444`, from `e01b3044ba9475a8cc596e55f7e16f92a80be551`. Its exact npm One artifact source revision was checked. It predates the declaration repair, so it is not the final release candidate. A containing canary and final consumer evidence are still required.
+
+No fresh cross-platform binary size or performance comparison is claimed. Reanimated, radial or repeating gradients, gradient transition hints, DynamicColorIOS, multipart or URI request bodies and Blob WebSocket sends remain unsupported. Split view renders its slot only. High contrast, global accent changes and foreground-only interactions were not exercised.
+
+---
+
 # One 2.9.0 release
 
 Ship the generated iOS SDK and native interface work as one minor release. PR #961 is merged; stable publication is paused while the SDK coverage followup is completed.

@@ -1,7 +1,8 @@
 # One on native macOS
 
-Experiment lane. Owner: macos driver session s63941. Planner and reviewer: this
-plan's author. Branch: `tm/one-macos`.
+Experiment lane. The original host work is retained on `tm/macos-resume`,
+with the combined native target prepared for One 2.10.0 in PR #1027.
+The integration lead owns final shared-application acceptance and owner review.
 
 ## Direction
 
@@ -552,3 +553,23 @@ The host comment records it; this followup does not change animation behavior.
 The reported Button setter issue was withdrawn after tracing the Fabric caller:
 every public React update assigns title followed by systemImage, so Swift's
 image observer already refreshes imagePosition. Controls remain unchanged.
+
+### Combined application integration, 2026-10-23
+
+The host now includes HTTP and runtime-scoped Blob/FileReader backing, native
+idle callbacks, AppKit buttons and segmented controls, system colors, linear
+backgrounds and application menus and shortcuts. Focused native probes cover
+transport failure and cancellation, composition-aware input limits, inactive
+accessibility actions, appearance, resize and reload. Linear backgrounds also
+reject pattern colors without crashing and preserve the adjacent hue across
+transparent stops.
+
+The shared Team Machine ControlRoom has loaded live sessions and transcripts,
+retained per-session drafts and switched its native feed filter. The combined
+system-color, gradient and menu acceptance remains in progress after related
+Tamagui config-evaluation repairs. The native bundle scope repair removed the
+consumer's polyfill initialization errors. Shared One value and type imports
+now use a suffix-free module, avoiding self-import under Mac module resolution.
+
+Keep the limitations in `goals.md` explicit. The prepared minor version is not
+a stable publication, and the feature remains held for owner review.
