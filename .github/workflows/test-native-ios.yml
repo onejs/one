@@ -193,16 +193,6 @@ jobs:
           appium_version: ${{ env.appium_version }}
           appium_xcuitest_version: ${{ env.appium_xcuitest_version }}
 
-      # the first Shortcuts launch after a simulator boot spends ~30s before its
-      # process exists, longer than the ShortcutsLink fixture waits to see it
-      # foreground. launching it once here moves that cost out of the fixture.
-      - name: Warm the Shortcuts app
-        env:
-          SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
-        run: |
-          xcrun simctl launch "$SIMULATOR_UDID" com.apple.shortcuts
-          xcrun simctl terminate "$SIMULATOR_UDID" com.apple.shortcuts
-
       # the zoom fixture drives the simulator through the axe cli
       # (scripts/one-native-conformance.ts), which runner images do not ship.
       - name: Install axe
@@ -215,6 +205,12 @@ jobs:
           tar -xzf "$RUNNER_TEMP/axe.tgz" -C "$RUNNER_TEMP/axe"
           echo "$RUNNER_TEMP/axe" >> "$GITHUB_PATH"
           "$RUNNER_TEMP/axe/axe" --version
+
+      # simctl launch returns before the app finishes starting.
+      - name: Warm the Shortcuts app
+        env:
+          SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
+        run: python3 tests/native-features/scripts/warm-shortcuts.py
 
       - name: Install native debugger CLI
         run: |
