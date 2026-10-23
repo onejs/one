@@ -224,11 +224,14 @@ static std::string networkString(NSString *value)
     if (!state || !_emit) return;
     NSString *text = nil;
     if ([state.responseType isEqualToString:@"blob"]) {
-      NSString *identifier = NSUUID.UUID.UUIDString;
-      [_blobStore store:state.data identifier:identifier];
-      auto blob = folly::dynamic::object("blobId", identifier.UTF8String)("offset", 0)("size", (double)state.data.length)(
-          "type", task.response.MIMEType ? task.response.MIMEType.UTF8String : "");
-      _emit("didReceiveNetworkData", folly::dynamic::array((double)state.requestID, std::move(blob)));
+      // failed and aborted responses have no js blob collector to release them.
+      if (!error) {
+        NSString *identifier = NSUUID.UUID.UUIDString;
+        [_blobStore store:state.data identifier:identifier];
+        auto blob = folly::dynamic::object("blobId", identifier.UTF8String)("offset", 0)("size", (double)state.data.length)(
+            "type", task.response.MIMEType ? task.response.MIMEType.UTF8String : "");
+        _emit("didReceiveNetworkData", folly::dynamic::array((double)state.requestID, std::move(blob)));
+      }
     } else if (!(state.incremental && [state.responseType isEqualToString:@"text"])) {
       text = [state.responseType isEqualToString:@"base64"] ? [state.data base64EncodedStringWithOptions:0] : [self text:state.data response:task.response];
       if (text) _emit("didReceiveNetworkData", folly::dynamic::array((double)state.requestID, networkString(text)));

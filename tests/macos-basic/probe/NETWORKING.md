@@ -23,3 +23,11 @@ text/data URL reads use bytes owned by the JS runtime. Blob collectors release
 bytes when JS blobs are collected. URI and multipart bodies report an explicit
 request error. Sending blobs over WebSocket is unsupported; existing text and
 base64 WebSocket transport is unchanged.
+
+For blob lifetime validation, use the native manager harness with a counting
+`OneMacosBlobStore`. Deliver partial bytes before cancelling, and separately
+close a response short of its declared Content-Length. Both transport errors
+must complete without a store write or `didReceiveNetworkData` blob descriptor.
+A successful blob response must still store once, resolve its exact bytes, and
+stop resolving after release. An HTTP error status with a complete response body
+remains a successful transport response.
