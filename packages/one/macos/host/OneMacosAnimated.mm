@@ -49,6 +49,10 @@
 {
   // stop can be requested from inside onRender, so keep a local copy while
   // holding a recursive lock through invocation and synchronous invalidation.
+  // invariant: onRender must never synchronously wait for js, whose teardown
+  // can be blocked in setOnRender. NativeAnimatedNodesManager runs ui tasks and
+  // native commits here; its provider's MergedValueDispatcher and AnimatedModule
+  // callbacks enqueue js work with invokeAsync. preserve that asynchronous edge.
   std::lock_guard<std::recursive_mutex> lock(_callbackMutex);
   auto onRender = _onRender;
   if (onRender) {

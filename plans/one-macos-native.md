@@ -532,3 +532,23 @@ capture timed out, so screenshots use the existing app-owned bitmap capture.
 These checks cover the fixture. Consumer wiring and independent review remain
 with the integration lead. No fresh iOS/Android/web byte comparison or stable
 release was performed for this unit.
+
+### Native defect followup, 2026-10-23
+
+The failed-response blob path now completes with its transport error without
+storing or emitting a blob. Partial response bytes have no JS BlobCollector
+owner after cancellation. Complete responses, including HTTP error statuses,
+retain the existing blob lifecycle.
+
+The display-link callback holds a recursive mutex to exclude JS-thread teardown
+while the native manager runs. The callback must never synchronously wait on JS.
+The installed RN manager drains native UI operations and commits props; its
+provider sends merged shadow-tree updates through `invokeAsync`. AnimatedModule
+value/completion callbacks use AsyncCallback, and device events also enqueue
+through the CallInvoker. Direct prop updates remain on the native mounting
+path. A future synchronous JS dependency would invalidate this lock invariant.
+The host comment records it; this followup does not change animation behavior.
+
+The reported Button setter issue was withdrawn after tracing the Fabric caller:
+every public React update assigns title followed by systemImage, so Swift's
+image observer already refreshes imagePosition. Controls remain unchanged.
