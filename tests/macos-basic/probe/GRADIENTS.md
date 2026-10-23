@@ -82,3 +82,38 @@ gradient fails this check. Check the 25% hard boundary and rounded corner
 pixels, and inspect the semantic stops and layer overlap in the same bitmap.
 Retain bitmap dimensions, sampled pixels, loaded bundle/native hashes and
 inspection results outside the source tree.
+
+## Recorded native proof
+
+On 2026-10-23, source `5ebe5b10ea` passed the incremental MacosBasic build,
+the eight native color-probe checks, and app-owned bitmap checks at 840 by 800
+native pixels. The color probe checked default absence, parsed numeric zero,
+unchanged packed ARGB, semantic clear, missing semantic name, explicit clear
+equality, and equal numeric/semantic hashes.
+
+The wash changed from white before the color repair to RGB (137, 183, 248)
+near its blue end and (243, 248, 254) near its clear end. Rounded exterior
+pixels remained the parent fill (245, 245, 245), and the border remained
+(255, 136, 0). The foreground translucent red layer blended over blue in the
+expected order. Decreasing and coincident stops formed the 25% hard boundary;
+point stops and omitted middle stops painted the expected fixed positions.
+
+The non-square angle disproof measured opposing near-corner red values of
+200 and 55 for `45deg`, versus 133 and 122 for `to top right`. Semantic
+endpoint values changed from 39 to 252 and 253 to 33 across light/dark
+appearance, with the visible React render count still one. The wash resized
+from 120 to 240 points with matching normalized colors, then a real host
+reload reset it to 120 points and repainted it. A background accessibility
+press was accepted while appActive and windowKey stayed false; the hardware
+cursor remained at (900, 373).
+
+The loaded fixture bundle SHA-256 was
+`6135129771dcf7b331c47d9d7d14df254a590c4f6be8dc724104f9ed7b6ad258`;
+native debug dylib
+`471a57268ecaf6c96ad635d1e3450ae87634f64809479e0d74ddceb22280a372`;
+core archive
+`de5cd5ae5dd7689e54bfef1a42dc92bf09e2e1e268d14787bec58b4ed7de5af1`.
+Detailed captures, pixel samples and build logs are retained outside the tree
+in the task's evidence directory. Review crops are native-density WebP,
+512 by 174 pixels, without resizing. These results cover the gradient unit
+before the subsequent approved native-command integration.
