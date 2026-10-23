@@ -504,3 +504,31 @@ A non-button rejects the action. Every sampled action reports appActive false
 and windowKey false. These checks invoke the native accessibility method in the
 owned host; downstream ControlRoom accessibility acceptance remains with the
 consumer. The incremental native build passes.
+
+### AppKit controls continuation, 2026-10-22
+
+`One.macOS.Button` and `One.macOS.SegmentedControl` now use real `NSButton`
+and `NSSegmentedControl` children through the existing Fabric registration.
+Button supports title, SF Symbol, disabled state and a press callback. Segmented
+selection uses the same Swift `OneNativeControlled` and JS `useControlled`
+acknowledgement/revision protocol as Toggle. The public API, app-target setup
+and manual fixture recipe live in `packages/one/macos/README.md` and
+`tests/macos-basic/probe/CONTROLS.md`.
+
+The initial fixture exposed a collision between the generic direct `press`
+event and React Native's bubbling event registry. Specific native events
+`buttonPress` and `selectedIndexChange` fix it while preserving public
+`onPress` and `onChange` callbacks. A separate native target builds against the
+merged HTTP/Blob host base. Runtime checks exercise native AX press/select,
+React selection updates, selection rejection, disabled actions, retained state
+across unmount/remount, and fresh callbacks after host reload. Native AX reads
+confirm disabled controls; an attempted disabled segment AXPress returns
+success from AppKit but changes neither the native selection nor React state.
+The app remains inactive, the window non-key, and the hardware cursor unchanged.
+
+Evidence is retained outside source with loaded bundle, app and archive hashes.
+CuaDriver supplies the real interprocess AX actions and state; its window bitmap
+capture timed out, so screenshots use the existing app-owned bitmap capture.
+These checks cover the fixture. Consumer wiring and independent review remain
+with the integration lead. No fresh iOS/Android/web byte comparison or stable
+release was performed for this unit.

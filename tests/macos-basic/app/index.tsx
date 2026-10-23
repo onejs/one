@@ -99,6 +99,40 @@ const AnimatedProbe = memo(function AnimatedProbe() {
   )
 })
 
+function NativeControls() {
+  const [presses, setPresses] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [disabled, setDisabled] = useState(false)
+  const [mounted, setMounted] = useState(true)
+  const [reject, setReject] = useState(false)
+  const [changes, setChanges] = useState(0)
+  const [revision, setRevision] = useState(0)
+  return (
+    <View testID="native-controls" style={{ gap: 6, marginVertical: 8 }}>
+      <Text>AppKit controls</Text>
+      <View style={{ flexDirection: 'row', gap: 8 }}>
+        <One.macOS.Button testID="native-disable" title={disabled ? 'Enable controls' : 'Disable controls'} onPress={() => setDisabled(!disabled)} />
+        <One.macOS.Button testID="native-mount" title={mounted ? 'Unmount controls' : 'Mount controls'} onPress={() => setMounted(!mounted)} />
+        <One.macOS.Button testID="native-set" title="Select Flags" onPress={() => { setSelectedIndex(2); setRevision(revision + 1) }} />
+        <One.macOS.Button testID="native-reject" title={reject ? 'Accept selection' : 'Reject selection'} onPress={() => setReject(!reject)} />
+      </View>
+      {mounted && <View style={{ flexDirection: 'row', gap: 8 }}>
+        <One.macOS.Button testID="native-action" title="New pane" systemImage="plus" disabled={disabled} onPress={() => setPresses(presses + 1)} />
+        <One.macOS.SegmentedControl
+          testID="native-filter"
+          accessibilityLabel="Feed filter"
+          labels={['All', 'Shares', 'Flags', 'Asks']}
+          selectedIndex={selectedIndex}
+          revision={revision}
+          disabled={disabled}
+          onChange={(event) => { setChanges(value => value + 1); if (!reject) setSelectedIndex(event.selectedIndex) }}
+        />
+      </View>}
+      <Text testID="native-result">{`presses ${presses} selection ${selectedIndex} changes ${changes} disabled ${disabled} mounted ${mounted} reject ${reject} revision ${revision}`}</Text>
+    </View>
+  )
+}
+
 export default function Index() {
   const [isOn, setIsOn] = useState(false)
   const [showAnimation, setShowAnimation] = useState(true)
@@ -117,6 +151,7 @@ export default function Index() {
     <View style={{ flex: 1, padding: 16, backgroundColor: '#f5f5f5' }}>
       <Text testID="macos-label">macOS</Text>
       <Text testID="macos-probe">{probe}</Text>
+      <NativeControls />
       <Pressable
         testID="toggle-animation"
         accessibilityRole="button"
