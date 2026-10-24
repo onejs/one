@@ -208,6 +208,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_SPEECH
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneSpeech",
     []() -> std::shared_ptr<HybridObject> {
@@ -215,6 +216,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneFetch",
     []() -> std::shared_ptr<HybridObject> {
@@ -284,6 +286,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_PHOTOS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OnePhotoLibrary",
     []() -> std::shared_ptr<HybridObject> {
@@ -291,6 +294,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneImageManipulator",
     []() -> std::shared_ptr<HybridObject> {
