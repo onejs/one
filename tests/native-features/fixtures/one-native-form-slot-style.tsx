@@ -43,6 +43,7 @@ export default function OneNativeFormSlotStyle({
   initialSheet = false,
   sheetKind = 'form',
   inline = false,
+  cover = false,
   resetAfterMs,
 }: {
   initialCustom?: boolean
@@ -50,6 +51,8 @@ export default function OneNativeFormSlotStyle({
   sheetKind?: SheetKind
   // renders the rows edge to edge on the screen with no sheet, to show a non-sheet host keeps its insets
   inline?: boolean
+  // presents the rows in a full screen cover, a presented modal that is not a sheet
+  cover?: boolean
   // flips the Form and Slot styles back to default after this many milliseconds
   resetAfterMs?: number
 }) {
@@ -131,6 +134,12 @@ export default function OneNativeFormSlotStyle({
           <View style={styles.sheetEdge} />
         </View>
       </One.iOS.Sheet>
+      <One.iOS.FullScreenCover isPresented={cover} onIsPresentedChange={() => {}}>
+        <View style={styles.sheet} testID="one-native-form-slot-style-cover">
+          <RowsReader kind={sheetKind} rows={rows} />
+          <View style={styles.sheetEdge} />
+        </View>
+      </One.iOS.FullScreenCover>
     </View>
   )
 }

@@ -392,14 +392,19 @@ private struct OneNativeHostRoot: View {
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
 
   // the sheet this host is presented in: the nearest controller up the parent chain that
-  // is actually presented, when that presentation is a sheet. a controller configured as a
-  // sheet but never presented has no presenting controller, so it does not count.
+  // its presenter actually presents, when that presentation is a sheet. a controller only
+  // configured as a sheet is not presented, and an unpresented child reports the presenter
+  // it inherits from a presented ancestor, so the presenter must present this very controller.
   @nonobjc private var presentingSheet: UISheetPresentationController? {
     var responder: UIResponder? = next
     while responder != nil && !(responder is UIViewController) { responder = responder?.next }
-    var controller = responder as? UIViewController
+    return Self.presentedSheet(of: responder as? UIViewController)
+  }
+
+  @nonobjc static func presentedSheet(of start: UIViewController?) -> UISheetPresentationController? {
+    var controller = start
     while let current = controller {
-      if current.presentingViewController != nil {
+      if current.presentingViewController?.presentedViewController === current {
         return current.presentationController as? UISheetPresentationController
       }
       controller = current.parent
