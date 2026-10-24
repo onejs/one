@@ -11,12 +11,12 @@ export class AppDistributor extends SDKHandle {
    * static var eligibilityRegion: String? { get async }
    * @availability iOS 26.4+
    */
-  static get eligibilityRegion(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MarketplaceKit_3864e7f38681b875", 4269275289148881, undefined, []); }
+  static get eligibilityRegion(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MarketplaceKit_ff42ce03e691ab23", 4269275289148881, undefined, []); }
   /**
    * static var current: AppDistributor { get async throws }
    * @availability iOS 17.4+
    */
-  static get current(): Promise<AppDistributor> { return callSDKAsync<AppDistributor>("MarketplaceKit_3864e7f38681b875", 4138614269872950, undefined, []); }
+  static get current(): Promise<AppDistributor> { return callSDKAsync<AppDistributor>("MarketplaceKit_ff42ce03e691ab23", 4138614269872950, undefined, []); }
   declare readonly $type: { "s:14MarketplaceKit14AppDistributorO": true };
 }
 
@@ -36,90 +36,90 @@ export class AppLibrary extends SDKHandle {
    * @availability iOS 17.4+
    * @deprecated iOS 18.0
    */
-  requestAppInstallationForAccountInstallVerificationToken(url: string, account: string, installVerificationToken: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 4293382793268481, this, [url, account, installVerificationToken]); }
+  requestAppInstallationForAccountInstallVerificationToken(url: string, account: string, installVerificationToken: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 4293382793268481, this, [url, account, installVerificationToken]); }
   /**
    * nonisolated final func requestAppInstallation(_ request: AppLibrary.InstallationRequest) async throws
    * @availability iOS 18.0+
    */
-  requestAppInstallation(request: AppLibrary_InstallationRequest): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 279109622927988, this, [request]); }
+  requestAppInstallation(request: AppLibrary_InstallationRequest): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 279109622927988, this, [request]); }
   /**
    * nonisolated final func requestAppInstallationFromBrowser(for url: URL, referrer: URL) async throws
    * @availability iOS 17.4+
    */
-  requestAppInstallationFromBrowser(url: string, referrer: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 1117823744989058, this, [url, referrer]); }
+  requestAppInstallationFromBrowser(url: string, referrer: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 1117823744989058, this, [url, referrer]); }
   /**
    * nonisolated final func requestAppUpdate(for url: URL, account: String, installVerificationToken: String) async throws
    * @availability iOS 17.4+
    * @deprecated iOS 18.0
    */
-  requestAppUpdateForAccountInstallVerificationToken(url: string, account: string, installVerificationToken: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 2423400058418409, this, [url, account, installVerificationToken]); }
+  requestAppUpdateForAccountInstallVerificationToken(url: string, account: string, installVerificationToken: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 2423400058418409, this, [url, account, installVerificationToken]); }
   /**
    * nonisolated final func requestAppUpdate(_ request: AppLibrary.InstallationRequest) async throws
    * @availability iOS 18.0+
    */
-  requestAppUpdate(request: AppLibrary_InstallationRequest): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 81239276219298, this, [request]); }
+  requestAppUpdate(request: AppLibrary_InstallationRequest): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 81239276219298, this, [request]); }
   /**
    * nonisolated final var catalogRegion: String? { get async }
    * @availability iOS 26.2+
    */
-  get catalogRegion(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MarketplaceKit_3864e7f38681b875", 2239825700490645, this, []); }
+  get catalogRegion(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MarketplaceKit_ff42ce03e691ab23", 2239825700490645, this, []); }
   /**
    * @MainActor final var installedApps: Set<AppLibrary.App> { get set }
    * @availability iOS 17.4+
    */
-  get installedApps(): Promise<Array<AppLibrary_App>> { return callSDKAsync<Array<AppLibrary_App>>("MarketplaceKit_3864e7f38681b875", 4094732315159283, this, []); }
-  setInstalledApps(value: Array<AppLibrary_App>): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 1531119557586622, this, [value]); }
+  get installedApps(): Promise<Array<AppLibrary_App>> { return callSDKAsync<Array<AppLibrary_App>>("MarketplaceKit_ff42ce03e691ab23", 4094732315159283, this, []); }
+  setInstalledApps(value: Array<AppLibrary_App>): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 1531119557586622, this, [value]); }
   /**
    * @MainActor final var installingApps: Set<AppLibrary.App> { get set }
    * @availability iOS 17.4+
    */
-  get installingApps(): Promise<Array<AppLibrary_App>> { return callSDKAsync<Array<AppLibrary_App>>("MarketplaceKit_3864e7f38681b875", 4191124701073712, this, []); }
-  setInstallingApps(value: Array<AppLibrary_App>): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 1533701514181046, this, [value]); }
+  get installingApps(): Promise<Array<AppLibrary_App>> { return callSDKAsync<Array<AppLibrary_App>>("MarketplaceKit_ff42ce03e691ab23", 4191124701073712, this, []); }
+  setInstallingApps(value: Array<AppLibrary_App>): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 1533701514181046, this, [value]); }
   /**
    * nonisolated final func didAuthenticate(account: String) async
    * @availability iOS 17.5+
    */
-  didAuthenticate(account: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 3375146208871437, this, [account]); }
+  didAuthenticate(account: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 3375146208871437, this, [account]); }
   /**
    * nonisolated final var searchTerritory: String? { get async }
    * @availability iOS 17.4+
    */
-  get searchTerritory(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MarketplaceKit_3864e7f38681b875", 533255641573478, this, []); }
+  get searchTerritory(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MarketplaceKit_ff42ce03e691ab23", 533255641573478, this, []); }
   /**
    * nonisolated final func setSearchTerritory(_ territory: String?) async
    * @availability iOS 17.4+
    */
-  setSearchTerritory(territory?: (string) | null): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 3345264788641415, this, [territory]); }
+  setSearchTerritory(territory?: (string) | null): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 3345264788641415, this, [territory]); }
   /**
    * nonisolated final func requestLicenseRenewal(appleItemIDs: [UInt64]) async throws
    * @availability iOS 17.4+
    */
-  requestLicenseRenewal(appleItemIDs: Array<number>): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 1232747043496431, this, [appleItemIDs]); }
+  requestLicenseRenewal(appleItemIDs: Array<number>): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 1232747043496431, this, [appleItemIDs]); }
   /**
    * @MainActor final var maximumAllowedAgeRating: Int { get }
    * @availability iOS 26.0+
    */
-  get maximumAllowedAgeRating(): Promise<number> { return callSDKAsync<number>("MarketplaceKit_3864e7f38681b875", 1344136563947902, this, []); }
+  get maximumAllowedAgeRating(): Promise<number> { return callSDKAsync<number>("MarketplaceKit_ff42ce03e691ab23", 1344136563947902, this, []); }
   /**
    * nonisolated final func currentAgeExceptionRequests() async throws -> [AppLibrary.ExceptionRequest]
    * @availability iOS 26.1+
    */
-  currentAgeExceptionRequests(): Promise<Array<AppLibrary_ExceptionRequest>> { return callSDKAsync<Array<AppLibrary_ExceptionRequest>>("MarketplaceKit_3864e7f38681b875", 1448845704932905, this, []); }
+  currentAgeExceptionRequests(): Promise<Array<AppLibrary_ExceptionRequest>> { return callSDKAsync<Array<AppLibrary_ExceptionRequest>>("MarketplaceKit_ff42ce03e691ab23", 1448845704932905, this, []); }
   /**
    * @MainActor final func app(forAppleItemID appleItemID: AppleItemID) -> AppLibrary.App
    * @availability iOS 17.4+
    */
-  app(appleItemID: number): Promise<AppLibrary_App> { return callSDKAsync<AppLibrary_App>("MarketplaceKit_3864e7f38681b875", 2575023403994616, this, [appleItemID]); }
+  app(appleItemID: number): Promise<AppLibrary_App> { return callSDKAsync<AppLibrary_App>("MarketplaceKit_ff42ce03e691ab23", 2575023403994616, this, [appleItemID]); }
   /**
    * nonisolated static let current: AppLibrary
    * @availability iOS 17.4+
    */
-  static get current(): Promise<AppLibrary> { return callSDKAsync<AppLibrary>("MarketplaceKit_3864e7f38681b875", 456933117490164, undefined, []); }
+  static get current(): Promise<AppLibrary> { return callSDKAsync<AppLibrary>("MarketplaceKit_ff42ce03e691ab23", 456933117490164, undefined, []); }
   /**
    * @MainActor final var isLoading: Bool { get }
    * @availability iOS 17.4+
    */
-  get isLoading(): Promise<boolean> { return callSDKAsync<boolean>("MarketplaceKit_3864e7f38681b875", 1603866164407200, this, []); }
+  get isLoading(): Promise<boolean> { return callSDKAsync<boolean>("MarketplaceKit_ff42ce03e691ab23", 1603866164407200, this, []); }
   declare readonly $type: { "s:14MarketplaceKit10AppLibraryC": true };
   declare readonly $observable: { "installedApps": true; "installingApps": true; "maximumAllowedAgeRating": true; "isLoading": true };
 }
@@ -133,42 +133,42 @@ export class AppLibrary_App extends SDKHandle {
    * @MainActor final var isUpdating: Bool { get }
    * @availability iOS 17.4+
    */
-  get isUpdating(): Promise<boolean> { return callSDKAsync<boolean>("MarketplaceKit_3864e7f38681b875", 1516655907969876, this, []); }
+  get isUpdating(): Promise<boolean> { return callSDKAsync<boolean>("MarketplaceKit_ff42ce03e691ab23", 1516655907969876, this, []); }
   /**
    * @MainActor final var isInstalled: Bool { get }
    * @availability iOS 17.4+
    */
-  get isInstalled(): Promise<boolean> { return callSDKAsync<boolean>("MarketplaceKit_3864e7f38681b875", 938487718583099, this, []); }
+  get isInstalled(): Promise<boolean> { return callSDKAsync<boolean>("MarketplaceKit_ff42ce03e691ab23", 938487718583099, this, []); }
   /**
    * @MainActor final var installation: AppLibrary.App.Installation? { get }
    * @availability iOS 17.4+
    */
-  get installation(): Promise<(AppLibrary_App_Installation) | null> { return callSDKAsync<(AppLibrary_App_Installation) | null>("MarketplaceKit_3864e7f38681b875", 625628202181599, this, []); }
+  get installation(): Promise<(AppLibrary_App_Installation) | null> { return callSDKAsync<(AppLibrary_App_Installation) | null>("MarketplaceKit_ff42ce03e691ab23", 625628202181599, this, []); }
   /**
    * @MainActor final var isInstalling: Bool { get }
    * @availability iOS 17.4+
    */
-  get isInstalling(): Promise<boolean> { return callSDKAsync<boolean>("MarketplaceKit_3864e7f38681b875", 182745998186891, this, []); }
+  get isInstalling(): Promise<boolean> { return callSDKAsync<boolean>("MarketplaceKit_ff42ce03e691ab23", 182745998186891, this, []); }
   /**
    * @MainActor final var installationError: MarketplaceKitError? { get }
    * @availability iOS 18.0+
    */
-  get installationError(): Promise<(MarketplaceKitError) | null> { return callSDKAsync<(MarketplaceKitError) | null>("MarketplaceKit_3864e7f38681b875", 534471388781877, this, []); }
+  get installationError(): Promise<(MarketplaceKitError) | null> { return callSDKAsync<(MarketplaceKitError) | null>("MarketplaceKit_ff42ce03e691ab23", 534471388781877, this, []); }
   /**
    * @MainActor final var installedMetadata: AppLibrary.App.Metadata? { get }
    * @availability iOS 17.4+
    */
-  get installedMetadata(): Promise<(AppLibrary_App_Metadata) | null> { return callSDKAsync<(AppLibrary_App_Metadata) | null>("MarketplaceKit_3864e7f38681b875", 2428430693399490, this, []); }
+  get installedMetadata(): Promise<(AppLibrary_App_Metadata) | null> { return callSDKAsync<(AppLibrary_App_Metadata) | null>("MarketplaceKit_ff42ce03e691ab23", 2428430693399490, this, []); }
   /**
    * nonisolated final let id: AppleItemID
    * @availability iOS 17.4+
    */
-  get id(): Promise<number> { return callSDKAsync<number>("MarketplaceKit_3864e7f38681b875", 2155107353004629, this, []); }
+  get id(): Promise<number> { return callSDKAsync<number>("MarketplaceKit_ff42ce03e691ab23", 2155107353004629, this, []); }
   /**
    * @MainActor final func presentAgeExceptionApproveInPersonSheet() async throws
    * @availability iOS 26.1+
    */
-  presentAgeExceptionApproveInPersonSheet(): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 4012164691045153, this, []); }
+  presentAgeExceptionApproveInPersonSheet(): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 4012164691045153, this, []); }
   declare readonly $type: { "s:14MarketplaceKit10AppLibraryC0C0C": true };
   declare readonly $observable: { "isUpdating": true; "isInstalled": true; "installation": true; "isInstalling": true; "installationError": true; "installedMetadata": true; "id": true };
 }
@@ -188,7 +188,7 @@ export class AppLibrary_App_Installation extends SDKHandle {
    * var progress: Progress { get }
    * @availability iOS 17.4+
    */
-  get progress(): Promise<_Foundation_Progress> { return callSDKAsync<_Foundation_Progress>("MarketplaceKit_3864e7f38681b875", 636520483453222, this, []); }
+  get progress(): Promise<_Foundation_Progress> { return callSDKAsync<_Foundation_Progress>("MarketplaceKit_ff42ce03e691ab23", 636520483453222, this, []); }
   declare readonly $type: { "s:14MarketplaceKit10AppLibraryC0C0C12InstallationV": true };
 }
 
@@ -201,22 +201,22 @@ export class AppLibrary_App_Metadata extends SDKHandle {
    * let shortVersion: String
    * @availability iOS 17.4+
    */
-  get shortVersion(): Promise<string> { return callSDKAsync<string>("MarketplaceKit_3864e7f38681b875", 367557532440858, this, []); }
+  get shortVersion(): Promise<string> { return callSDKAsync<string>("MarketplaceKit_ff42ce03e691ab23", 367557532440858, this, []); }
   /**
    * let appleVersionID: AppleVersionID
    * @availability iOS 17.4+
    */
-  get appleVersionID(): Promise<number> { return callSDKAsync<number>("MarketplaceKit_3864e7f38681b875", 4025161058386996, this, []); }
+  get appleVersionID(): Promise<number> { return callSDKAsync<number>("MarketplaceKit_ff42ce03e691ab23", 4025161058386996, this, []); }
   /**
    * let account: String?
    * @availability iOS 17.4+
    */
-  get account(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MarketplaceKit_3864e7f38681b875", 1970371315416751, this, []); }
+  get account(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MarketplaceKit_ff42ce03e691ab23", 1970371315416751, this, []); }
   /**
    * let version: String
    * @availability iOS 17.4+
    */
-  get version(): Promise<string> { return callSDKAsync<string>("MarketplaceKit_3864e7f38681b875", 1339152213875101, this, []); }
+  get version(): Promise<string> { return callSDKAsync<string>("MarketplaceKit_ff42ce03e691ab23", 1339152213875101, this, []); }
   declare readonly $type: { "s:14MarketplaceKit10AppLibraryC0C0C8MetadataV": true };
 }
 
@@ -229,12 +229,12 @@ export class AppLibrary_ExceptionRequest extends SDKHandle {
    * let appleItemID: AppleItemID
    * @availability iOS 26.1+
    */
-  get appleItemID(): Promise<number> { return callSDKAsync<number>("MarketplaceKit_3864e7f38681b875", 3715697672006395, this, []); }
+  get appleItemID(): Promise<number> { return callSDKAsync<number>("MarketplaceKit_ff42ce03e691ab23", 3715697672006395, this, []); }
   /**
    * let status: AppLibrary.ExceptionRequest.Status
    * @availability iOS 26.1+
    */
-  get status(): Promise<AppLibrary_ExceptionRequest_Status> { return callSDKAsync<AppLibrary_ExceptionRequest_Status>("MarketplaceKit_3864e7f38681b875", 564364990434772, this, []); }
+  get status(): Promise<AppLibrary_ExceptionRequest_Status> { return callSDKAsync<AppLibrary_ExceptionRequest_Status>("MarketplaceKit_ff42ce03e691ab23", 564364990434772, this, []); }
   declare readonly $type: { "s:14MarketplaceKit10AppLibraryC16ExceptionRequestV": true };
 }
 
@@ -249,12 +249,12 @@ export const AppLibrary_ExceptionRequest_Status = {
    * init?(rawValue: Int)
    * @availability iOS 26.1+
    */
-  init(rawValue: number): Promise<(AppLibrary_ExceptionRequest_Status) | null> { return callSDKAsync<(AppLibrary_ExceptionRequest_Status) | null>("MarketplaceKit_3864e7f38681b875", 437671483307604, undefined, [rawValue]); },
+  init(rawValue: number): Promise<(AppLibrary_ExceptionRequest_Status) | null> { return callSDKAsync<(AppLibrary_ExceptionRequest_Status) | null>("MarketplaceKit_ff42ce03e691ab23", 437671483307604, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 26.1+
    */
-  getRawValue($self: AppLibrary_ExceptionRequest_Status): Promise<number> { return callSDKAsync<number>("MarketplaceKit_3864e7f38681b875", 2655218111599849, $self, []); }
+  getRawValue($self: AppLibrary_ExceptionRequest_Status): Promise<number> { return callSDKAsync<number>("MarketplaceKit_ff42ce03e691ab23", 2655218111599849, $self, []); }
 };
 
 /**
@@ -272,31 +272,31 @@ export class AppLibrary_InstallationRequest extends SDKHandle {
    * var appShareURL: URL?
    * @availability iOS 18.0+
    */
-  get appShareURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MarketplaceKit_3864e7f38681b875", 3199337816002857, this, []); }
-  setAppShareURL(value?: (string) | null): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 4444766977651727, this, [value]); }
+  get appShareURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MarketplaceKit_ff42ce03e691ab23", 3199337816002857, this, []); }
+  setAppShareURL(value?: (string) | null): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 4444766977651727, this, [value]); }
   /**
    * var installVerificationToken: String
    * @availability iOS 18.0+
    */
-  get installVerificationToken(): Promise<string> { return callSDKAsync<string>("MarketplaceKit_3864e7f38681b875", 3425743716997536, this, []); }
-  setInstallVerificationToken(value: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 1109197981466448, this, [value]); }
+  get installVerificationToken(): Promise<string> { return callSDKAsync<string>("MarketplaceKit_ff42ce03e691ab23", 3425743716997536, this, []); }
+  setInstallVerificationToken(value: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 1109197981466448, this, [value]); }
   /**
    * var alternativeDistributionPackageURL: URL
    * @availability iOS 18.0+
    */
-  get alternativeDistributionPackageURL(): Promise<string> { return callSDKAsync<string>("MarketplaceKit_3864e7f38681b875", 2778397556806960, this, []); }
-  setAlternativeDistributionPackageURL(value: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 303501084624604, this, [value]); }
+  get alternativeDistributionPackageURL(): Promise<string> { return callSDKAsync<string>("MarketplaceKit_ff42ce03e691ab23", 2778397556806960, this, []); }
+  setAlternativeDistributionPackageURL(value: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 303501084624604, this, [value]); }
   /**
    * init(alternativeDistributionPackageURL: URL, account: String, installVerificationToken: String)
    * @availability iOS 18.0+
    */
-  static init(alternativeDistributionPackageURL: string, account: string, installVerificationToken: string): Promise<AppLibrary_InstallationRequest> { return callSDKAsync<AppLibrary_InstallationRequest>("MarketplaceKit_3864e7f38681b875", 4310071448652108, undefined, [alternativeDistributionPackageURL, account, installVerificationToken]); }
+  static init(alternativeDistributionPackageURL: string, account: string, installVerificationToken: string): Promise<AppLibrary_InstallationRequest> { return callSDKAsync<AppLibrary_InstallationRequest>("MarketplaceKit_ff42ce03e691ab23", 4310071448652108, undefined, [alternativeDistributionPackageURL, account, installVerificationToken]); }
   /**
    * var account: String
    * @availability iOS 18.0+
    */
-  get account(): Promise<string> { return callSDKAsync<string>("MarketplaceKit_3864e7f38681b875", 101132348840933, this, []); }
-  setAccount(value: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_3864e7f38681b875", 4323873324995952, this, [value]); }
+  get account(): Promise<string> { return callSDKAsync<string>("MarketplaceKit_ff42ce03e691ab23", 101132348840933, this, []); }
+  setAccount(value: string): Promise<void> { return callSDKAsync<void>("MarketplaceKit_ff42ce03e691ab23", 4323873324995952, this, [value]); }
   declare readonly $type: { "s:14MarketplaceKit10AppLibraryC19InstallationRequestV": true };
 }
 
@@ -309,22 +309,22 @@ export class AppVersion extends SDKHandle {
    * let appleVersionID: UInt64
    * @availability iOS 17.4+
    */
-  get appleVersionID(): number { return callSDK<number>("MarketplaceKit_3864e7f38681b875", 4048798420086650, this, []); }
+  get appleVersionID(): number { return callSDK<number>("MarketplaceKit_ff42ce03e691ab23", 4048798420086650, this, []); }
   /**
    * init(appleItemID: AppleItemID, appleVersionID: UInt64)
    * @availability iOS 17.4+
    */
-  static init(appleItemID: number, appleVersionID: number): AppVersion { return callSDK<AppVersion>("MarketplaceKit_3864e7f38681b875", 3439468523201090, undefined, [appleItemID, appleVersionID]); }
+  static init(appleItemID: number, appleVersionID: number): AppVersion { return callSDK<AppVersion>("MarketplaceKit_ff42ce03e691ab23", 3439468523201090, undefined, [appleItemID, appleVersionID]); }
   /**
    * let appleItemID: AppleItemID
    * @availability iOS 17.4+
    */
-  get appleItemID(): number { return callSDK<number>("MarketplaceKit_3864e7f38681b875", 3173705717773248, this, []); }
+  get appleItemID(): number { return callSDK<number>("MarketplaceKit_ff42ce03e691ab23", 3173705717773248, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 17.4+
    */
-  get description(): string { return callSDK<string>("MarketplaceKit_3864e7f38681b875", 2632790156939712, this, []); }
+  get description(): string { return callSDK<string>("MarketplaceKit_ff42ce03e691ab23", 2632790156939712, this, []); }
   declare readonly $type: { "s:14MarketplaceKit10AppVersionV": true };
 }
 
@@ -337,33 +337,33 @@ export class AutomaticUpdate extends SDKHandle {
    * var appShareURL: URL?
    * @availability iOS 18.0+
    */
-  get appShareURL(): (string) | null { return callSDK<(string) | null>("MarketplaceKit_3864e7f38681b875", 449712546697868, this, []); }
-  set appShareURL(value: (string) | null) { callSDK<void>("MarketplaceKit_3864e7f38681b875", 3534845140332986, this, [value]); }
+  get appShareURL(): (string) | null { return callSDK<(string) | null>("MarketplaceKit_ff42ce03e691ab23", 449712546697868, this, []); }
+  set appShareURL(value: (string) | null) { callSDK<void>("MarketplaceKit_ff42ce03e691ab23", 3534845140332986, this, [value]); }
   /**
    * init(appleItemID: AppleItemID, alternativeDistributionPackage: URL, account: String, installVerificationToken: String)
    * @availability iOS 17.4+
    */
-  static init(appleItemID: number, alternativeDistributionPackage: string, account: string, installVerificationToken: string): AutomaticUpdate { return callSDK<AutomaticUpdate>("MarketplaceKit_3864e7f38681b875", 953530355484119, undefined, [appleItemID, alternativeDistributionPackage, account, installVerificationToken]); }
+  static init(appleItemID: number, alternativeDistributionPackage: string, account: string, installVerificationToken: string): AutomaticUpdate { return callSDK<AutomaticUpdate>("MarketplaceKit_ff42ce03e691ab23", 953530355484119, undefined, [appleItemID, alternativeDistributionPackage, account, installVerificationToken]); }
   /**
    * let appleItemID: AppleItemID
    * @availability iOS 17.4+
    */
-  get appleItemID(): number { return callSDK<number>("MarketplaceKit_3864e7f38681b875", 951029532308633, this, []); }
+  get appleItemID(): number { return callSDK<number>("MarketplaceKit_ff42ce03e691ab23", 951029532308633, this, []); }
   /**
    * let installVerificationToken: String
    * @availability iOS 17.4+
    */
-  get installVerificationToken(): string { return callSDK<string>("MarketplaceKit_3864e7f38681b875", 3861483583838582, this, []); }
+  get installVerificationToken(): string { return callSDK<string>("MarketplaceKit_ff42ce03e691ab23", 3861483583838582, this, []); }
   /**
    * let alternativeDistributionPackage: URL
    * @availability iOS 17.4+
    */
-  get alternativeDistributionPackage(): string { return callSDK<string>("MarketplaceKit_3864e7f38681b875", 3130459581941395, this, []); }
+  get alternativeDistributionPackage(): string { return callSDK<string>("MarketplaceKit_ff42ce03e691ab23", 3130459581941395, this, []); }
   /**
    * let account: String
    * @availability iOS 17.4+
    */
-  get account(): string { return callSDK<string>("MarketplaceKit_3864e7f38681b875", 3581648943501341, this, []); }
+  get account(): string { return callSDK<string>("MarketplaceKit_ff42ce03e691ab23", 3581648943501341, this, []); }
   declare readonly $type: { "s:14MarketplaceKit15AutomaticUpdateV": true };
 }
 
@@ -376,36 +376,36 @@ export class InstallRequirements extends SDKHandle {
    * var expectedInstallSize: UInt64?
    * @availability iOS 17.4+
    */
-  get expectedInstallSize(): (number) | null { return callSDK<(number) | null>("MarketplaceKit_3864e7f38681b875", 1462386908736912, this, []); }
-  set expectedInstallSize(value: (number) | null) { callSDK<void>("MarketplaceKit_3864e7f38681b875", 3905775129582449, this, [value]); }
+  get expectedInstallSize(): (number) | null { return callSDK<(number) | null>("MarketplaceKit_ff42ce03e691ab23", 1462386908736912, this, []); }
+  set expectedInstallSize(value: (number) | null) { callSDK<void>("MarketplaceKit_ff42ce03e691ab23", 3905775129582449, this, [value]); }
   /**
    * var ageRatingRank: Int?
    * @availability iOS 17.4+
    */
-  get ageRatingRank(): (number) | null { return callSDK<(number) | null>("MarketplaceKit_3864e7f38681b875", 3246680706087770, this, []); }
-  set ageRatingRank(value: (number) | null) { callSDK<void>("MarketplaceKit_3864e7f38681b875", 4399917758165356, this, [value]); }
+  get ageRatingRank(): (number) | null { return callSDK<(number) | null>("MarketplaceKit_ff42ce03e691ab23", 3246680706087770, this, []); }
+  set ageRatingRank(value: (number) | null) { callSDK<void>("MarketplaceKit_ff42ce03e691ab23", 4399917758165356, this, [value]); }
   /**
    * func satisfiedByDevice() -> Bool
    * @availability iOS 17.4+
    */
-  satisfiedByDevice(): boolean { return callSDK<boolean>("MarketplaceKit_3864e7f38681b875", 595941014130672, this, []); }
+  satisfiedByDevice(): boolean { return callSDK<boolean>("MarketplaceKit_ff42ce03e691ab23", 595941014130672, this, []); }
   /**
    * var minimumSystemVersion: String?
    * @availability iOS 17.4+
    */
-  get minimumSystemVersion(): (string) | null { return callSDK<(string) | null>("MarketplaceKit_3864e7f38681b875", 1814118329374601, this, []); }
-  set minimumSystemVersion(value: (string) | null) { callSDK<void>("MarketplaceKit_3864e7f38681b875", 1136616236149138, this, [value]); }
+  get minimumSystemVersion(): (string) | null { return callSDK<(string) | null>("MarketplaceKit_ff42ce03e691ab23", 1814118329374601, this, []); }
+  set minimumSystemVersion(value: (string) | null) { callSDK<void>("MarketplaceKit_ff42ce03e691ab23", 1136616236149138, this, [value]); }
   /**
    * var requiredDeviceCapabilities: Set<String>?
    * @availability iOS 17.4+
    */
-  get requiredDeviceCapabilities(): (Array<string>) | null { return callSDK<(Array<string>) | null>("MarketplaceKit_3864e7f38681b875", 2935124805652067, this, []); }
-  set requiredDeviceCapabilities(value: (Array<string>) | null) { callSDK<void>("MarketplaceKit_3864e7f38681b875", 2124297856694127, this, [value]); }
+  get requiredDeviceCapabilities(): (Array<string>) | null { return callSDK<(Array<string>) | null>("MarketplaceKit_ff42ce03e691ab23", 2935124805652067, this, []); }
+  set requiredDeviceCapabilities(value: (Array<string>) | null) { callSDK<void>("MarketplaceKit_ff42ce03e691ab23", 2124297856694127, this, [value]); }
   /**
    * init()
    * @availability iOS 17.4+
    */
-  static init(): InstallRequirements { return callSDK<InstallRequirements>("MarketplaceKit_3864e7f38681b875", 1941251081722136, undefined, []); }
+  static init(): InstallRequirements { return callSDK<InstallRequirements>("MarketplaceKit_ff42ce03e691ab23", 1941251081722136, undefined, []); }
   declare readonly $type: { "s:14MarketplaceKit19InstallRequirementsV": true };
 }
 
@@ -488,7 +488,7 @@ export class MarketplaceKitError extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.4+
    */
-  get description(): string { return callSDK<string>("MarketplaceKit_3864e7f38681b875", 1516109130440105, this, []); }
+  get description(): string { return callSDK<string>("MarketplaceKit_ff42ce03e691ab23", 1516109130440105, this, []); }
   declare readonly $type: { "s:14MarketplaceKit0aB5ErrorO": true };
 }
 
@@ -501,7 +501,7 @@ export class TransactionReporting extends SDKHandle {
    * static func token(for tokenType: TransactionReporting.TokenType) async throws -> String
    * @availability iOS 26.0+
    */
-  static token(tokenType: TransactionReporting_TokenType): Promise<string> { return callSDKAsync<string>("MarketplaceKit_3864e7f38681b875", 3239572973028177, undefined, [tokenType]); }
+  static token(tokenType: TransactionReporting_TokenType): Promise<string> { return callSDKAsync<string>("MarketplaceKit_ff42ce03e691ab23", 3239572973028177, undefined, [tokenType]); }
   declare readonly $type: { "s:14MarketplaceKit20TransactionReportingO": true };
 }
 
@@ -516,17 +516,17 @@ export const TransactionReporting_TokenType = {
    * static let coreTechnology: TransactionReporting.TokenType
    * @availability iOS 26.0+
    */
-  get coreTechnology(): TransactionReporting_TokenType { return callSDK<TransactionReporting_TokenType>("MarketplaceKit_3864e7f38681b875", 1803156331275603, undefined, []); },
+  get coreTechnology(): TransactionReporting_TokenType { return callSDK<TransactionReporting_TokenType>("MarketplaceKit_ff42ce03e691ab23", 1803156331275603, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): TransactionReporting_TokenType { return callSDK<TransactionReporting_TokenType>("MarketplaceKit_3864e7f38681b875", 3629018081133173, undefined, [rawValue]); },
+  init(rawValue: string): TransactionReporting_TokenType { return callSDK<TransactionReporting_TokenType>("MarketplaceKit_ff42ce03e691ab23", 3629018081133173, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 26.0+
    */
-  getRawValue($self: TransactionReporting_TokenType): string { return callSDK<string>("MarketplaceKit_3864e7f38681b875", 621975890978005, $self, []); }
+  getRawValue($self: TransactionReporting_TokenType): string { return callSDK<string>("MarketplaceKit_ff42ce03e691ab23", 621975890978005, $self, []); }
 };
 
 /**
@@ -539,20 +539,20 @@ export type TransactionReporting_TokenType_RawValue = string;
  * let MarketplaceKitURIScheme: String
  * @availability iOS 17.4+
  */
-export const MarketplaceKitURIScheme: string = callSDK<string>("MarketplaceKit_3864e7f38681b875", 214127091903777, undefined, []);
+export const MarketplaceKitURIScheme: string = callSDK<string>("MarketplaceKit_ff42ce03e691ab23", 214127091903777, undefined, []);
 
-registerSDKClass("MarketplaceKit.AppDistributor", AppDistributor, { module: "MarketplaceKit_3864e7f38681b875", properties: {} });
-registerSDKClass("MarketplaceKit.AppLibrary", AppLibrary, { module: "MarketplaceKit_3864e7f38681b875", properties: {"installedApps":4094732315159283,"installingApps":4191124701073712,"maximumAllowedAgeRating":1344136563947902,"isLoading":1603866164407200}, methods: {"requestAppInstallationForAccountInstallVerificationToken":{"id":4293382793268481},"requestAppInstallation":{"id":279109622927988},"requestAppInstallationFromBrowser":{"id":1117823744989058},"requestAppUpdateForAccountInstallVerificationToken":{"id":2423400058418409},"requestAppUpdate":{"id":81239276219298},"didAuthenticate":{"id":3375146208871437},"setSearchTerritory":{"id":3345264788641415},"requestLicenseRenewal":{"id":1232747043496431},"currentAgeExceptionRequests":{"id":1448845704932905},"app":{"id":2575023403994616}} });
-registerSDKClass("MarketplaceKit.AppLibrary.App", AppLibrary_App, { module: "MarketplaceKit_3864e7f38681b875", properties: {"isUpdating":1516655907969876,"isInstalled":938487718583099,"installation":625628202181599,"isInstalling":182745998186891,"installationError":534471388781877,"installedMetadata":2428430693399490,"id":2155107353004629}, methods: {"presentAgeExceptionApproveInPersonSheet":{"id":4012164691045153}} });
-registerSDKClass("MarketplaceKit.AppLibrary.App.Installation", AppLibrary_App_Installation, { module: "MarketplaceKit_3864e7f38681b875", properties: {} });
-registerSDKClass("MarketplaceKit.AppLibrary.App.Metadata", AppLibrary_App_Metadata, { module: "MarketplaceKit_3864e7f38681b875", properties: {} });
-registerSDKClass("MarketplaceKit.AppLibrary.ExceptionRequest", AppLibrary_ExceptionRequest, { module: "MarketplaceKit_3864e7f38681b875", properties: {} });
-registerSDKClass("MarketplaceKit.AppLibrary.InstallationRequest", AppLibrary_InstallationRequest, { module: "MarketplaceKit_3864e7f38681b875", properties: {} });
-registerSDKClass("MarketplaceKit.AppVersion", AppVersion, { module: "MarketplaceKit_3864e7f38681b875", properties: {} });
-registerSDKClass("MarketplaceKit.AutomaticUpdate", AutomaticUpdate, { module: "MarketplaceKit_3864e7f38681b875", properties: {} });
-registerSDKClass("MarketplaceKit.InstallRequirements", InstallRequirements, { module: "MarketplaceKit_3864e7f38681b875", properties: {}, methods: {"satisfiedByDevice":{"id":595941014130672}} });
+registerSDKClass("MarketplaceKit.AppDistributor", AppDistributor, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("MarketplaceKit.AppLibrary", AppLibrary, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {"installedApps":4094732315159283,"installingApps":4191124701073712,"maximumAllowedAgeRating":1344136563947902,"isLoading":1603866164407200}, methods: {"requestAppInstallationForAccountInstallVerificationToken":{"id":4293382793268481},"requestAppInstallation":{"id":279109622927988},"requestAppInstallationFromBrowser":{"id":1117823744989058},"requestAppUpdateForAccountInstallVerificationToken":{"id":2423400058418409},"requestAppUpdate":{"id":81239276219298},"didAuthenticate":{"id":3375146208871437},"setSearchTerritory":{"id":3345264788641415},"requestLicenseRenewal":{"id":1232747043496431},"currentAgeExceptionRequests":{"id":1448845704932905},"app":{"id":2575023403994616}} });
+registerSDKClass("MarketplaceKit.AppLibrary.App", AppLibrary_App, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {"isUpdating":1516655907969876,"isInstalled":938487718583099,"installation":625628202181599,"isInstalling":182745998186891,"installationError":534471388781877,"installedMetadata":2428430693399490,"id":2155107353004629}, methods: {"presentAgeExceptionApproveInPersonSheet":{"id":4012164691045153}} });
+registerSDKClass("MarketplaceKit.AppLibrary.App.Installation", AppLibrary_App_Installation, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("MarketplaceKit.AppLibrary.App.Metadata", AppLibrary_App_Metadata, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("MarketplaceKit.AppLibrary.ExceptionRequest", AppLibrary_ExceptionRequest, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("MarketplaceKit.AppLibrary.InstallationRequest", AppLibrary_InstallationRequest, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("MarketplaceKit.AppVersion", AppVersion, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("MarketplaceKit.AutomaticUpdate", AutomaticUpdate, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("MarketplaceKit.InstallRequirements", InstallRequirements, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {}, methods: {"satisfiedByDevice":{"id":595941014130672}} });
 registerSDKProtocol("s:14MarketplaceKit0A12AppExtensionP", {"init":"init()","additionalHeadersForAccount":"additionalHeaders(for:account:)","automaticUpdatesFor":"automaticUpdates(for:)","requestFailedResponse":"requestFailed(response:)","availableAppVersionsForAppleItemIDs":"availableAppVersions(forAppleItemIDs:)"});
 registerSDKProtocol("s:14MarketplaceKit0A9ExtensionP", {"init":"init()","additionalHeadersForAccount":"additionalHeaders(for:account:)","availableAppVersionsForAppleItemIDs":"availableAppVersions(forAppleItemIDs:)","requestFailedWith":"requestFailed(with:)","automaticUpdatesFor":"automaticUpdates(for:)"});
 registerSDKProtocol("s:14MarketplaceKit0A22ExtensionConfigurationP", {"acceptConnection":"accept(connection:)"});
-registerSDKClass("MarketplaceKit.MarketplaceKitError", MarketplaceKitError, { module: "MarketplaceKit_3864e7f38681b875", properties: {} });
-registerSDKClass("MarketplaceKit.TransactionReporting", TransactionReporting, { module: "MarketplaceKit_3864e7f38681b875", properties: {} });
+registerSDKClass("MarketplaceKit.MarketplaceKitError", MarketplaceKitError, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("MarketplaceKit.TransactionReporting", TransactionReporting, { module: "MarketplaceKit_ff42ce03e691ab23", properties: {} });

@@ -40,136 +40,136 @@ export class HMAccessory extends SDKHandle {
    * func identify() async throws
    * @availability iOS 8.0+
    */
-  identify(completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1876679964317231, this, [completion], [{"callback":{"out":[]}}]); }
+  identify(completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1876679964317231, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 8.0+
    * @deprecated iOS 8.0
    */
-  static init(): HMAccessory { return callSDK<HMAccessory>("HomeKit_3864e7f38681b875", 3517509487812368, undefined, []); }
+  static init(): HMAccessory { return callSDK<HMAccessory>("HomeKit_ff42ce03e691ab23", 3517509487812368, undefined, []); }
   /**
    * func updateName(_ name: String) async throws
    * @availability iOS 8.0+
    */
-  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 239918888009459, this, [name, completion], [null,{"callback":{"out":[]}}]); }
+  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 239918888009459, this, [name, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var isBlocked: Bool { get }
    * @availability iOS 8.0+
    */
-  get isBlocked(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 2165743675604118, this, []); }
+  get isBlocked(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 2165743675604118, this, []); }
   /**
    * var isBridged: Bool { get }
    * @availability iOS 8.0+
    */
-  get isBridged(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 1932858588732918, this, []); }
+  get isBridged(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 1932858588732918, this, []); }
   /**
    * var bridgedAccessories: [HMAccessory] { get }
    * @availability iOS 13.0+
    */
-  get bridgedAccessories(): Array<HMAccessory> { return callSDK<Array<HMAccessory>>("HomeKit_3864e7f38681b875", 1860157476214040, this, []); }
+  get bridgedAccessories(): Array<HMAccessory> { return callSDK<Array<HMAccessory>>("HomeKit_ff42ce03e691ab23", 1860157476214040, this, []); }
   /**
    * var cameraProfiles: [HMCameraProfile]? { get }
    * @availability iOS 10.0+
    */
-  get cameraProfiles(): (Array<HMCameraProfile>) | null { return callSDK<(Array<HMCameraProfile>) | null>("HomeKit_3864e7f38681b875", 1019957835743443, this, []); }
+  get cameraProfiles(): (Array<HMCameraProfile>) | null { return callSDK<(Array<HMCameraProfile>) | null>("HomeKit_ff42ce03e691ab23", 1019957835743443, this, []); }
   /**
    * var category: HMAccessoryCategory { get }
    * @availability iOS 9.0+
    */
-  get category(): HMAccessoryCategory { return callSDK<HMAccessoryCategory>("HomeKit_3864e7f38681b875", 1867743051124829, this, []); }
+  get category(): HMAccessoryCategory { return callSDK<HMAccessoryCategory>("HomeKit_ff42ce03e691ab23", 1867743051124829, this, []); }
   /**
    * weak var delegate: (any HMAccessoryDelegate)? { get set }
    * @availability iOS 8.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_3864e7f38681b875", 2118583383916352, this, []); }
-  set delegate(value: (Implements<HMAccessoryDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 2565022684497917, this, [value], [{"protocol":"c:objc(pl)HMAccessoryDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_ff42ce03e691ab23", 2118583383916352, this, []); }
+  set delegate(value: (Implements<HMAccessoryDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 2565022684497917, this, [value], [{"protocol":"c:objc(pl)HMAccessoryDelegate"}]); }
   /**
    * var firmwareVersion: String? { get }
    * @availability iOS 11.0+
    */
-  get firmwareVersion(): (string) | null { return callSDK<(string) | null>("HomeKit_3864e7f38681b875", 3204555070898826, this, []); }
+  get firmwareVersion(): (string) | null { return callSDK<(string) | null>("HomeKit_ff42ce03e691ab23", 3204555070898826, this, []); }
   /**
    * weak var home: HMHome? { get }
    * @availability iOS 10.0+
    */
-  get home(): (HMHome) | null { return callSDK<(HMHome) | null>("HomeKit_3864e7f38681b875", 383736389540485, this, []); }
+  get home(): (HMHome) | null { return callSDK<(HMHome) | null>("HomeKit_ff42ce03e691ab23", 383736389540485, this, []); }
   /**
    * var identifier: UUID { get }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get identifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 530835293807428, this, []); }
+  get identifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 530835293807428, this, []); }
   /**
    * var identifiersForBridgedAccessories: [UUID]? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get identifiersForBridgedAccessories(): (Array<string>) | null { return callSDK<(Array<string>) | null>("HomeKit_3864e7f38681b875", 1493452648703431, this, []); }
+  get identifiersForBridgedAccessories(): (Array<string>) | null { return callSDK<(Array<string>) | null>("HomeKit_ff42ce03e691ab23", 1493452648703431, this, []); }
   /**
    * var manufacturer: String? { get }
    * @availability iOS 11.0+
    */
-  get manufacturer(): (string) | null { return callSDK<(string) | null>("HomeKit_3864e7f38681b875", 2905096932141949, this, []); }
+  get manufacturer(): (string) | null { return callSDK<(string) | null>("HomeKit_ff42ce03e691ab23", 2905096932141949, this, []); }
   /**
    * var model: String? { get }
    * @availability iOS 11.0+
    */
-  get model(): (string) | null { return callSDK<(string) | null>("HomeKit_3864e7f38681b875", 4447547227103708, this, []); }
+  get model(): (string) | null { return callSDK<(string) | null>("HomeKit_ff42ce03e691ab23", 4447547227103708, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 3071772464133987, this, []); }
+  get name(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 3071772464133987, this, []); }
   /**
    * var profiles: [HMAccessoryProfile] { get }
    * @availability iOS 11.0+
    */
-  get profiles(): Array<HMAccessoryProfile> { return callSDK<Array<HMAccessoryProfile>>("HomeKit_3864e7f38681b875", 2141960910474759, this, []); }
+  get profiles(): Array<HMAccessoryProfile> { return callSDK<Array<HMAccessoryProfile>>("HomeKit_ff42ce03e691ab23", 2141960910474759, this, []); }
   /**
    * var isReachable: Bool { get }
    * @availability iOS 8.0+
    */
-  get isReachable(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 1003965521534630, this, []); }
+  get isReachable(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 1003965521534630, this, []); }
   /**
    * weak var room: HMRoom? { get }
    * @availability iOS 8.0+
    */
-  get room(): (HMRoom) | null { return callSDK<(HMRoom) | null>("HomeKit_3864e7f38681b875", 3174004939678708, this, []); }
+  get room(): (HMRoom) | null { return callSDK<(HMRoom) | null>("HomeKit_ff42ce03e691ab23", 3174004939678708, this, []); }
   /**
    * var services: [HMService] { get }
    * @availability iOS 8.0+
    */
-  get services(): Array<HMService> { return callSDK<Array<HMService>>("HomeKit_3864e7f38681b875", 619892484239628, this, []); }
+  get services(): Array<HMService> { return callSDK<Array<HMService>>("HomeKit_ff42ce03e691ab23", 619892484239628, this, []); }
   /**
    * var supportsIdentify: Bool { get }
    * @availability iOS 11.3+
    */
-  get supportsIdentify(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 3266108249688349, this, []); }
+  get supportsIdentify(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 3266108249688349, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 57146579628583, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 57146579628583, this, []); }
   /**
    * var uniqueIdentifiersForBridgedAccessories: [UUID]? { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifiersForBridgedAccessories(): (Array<string>) | null { return callSDK<(Array<string>) | null>("HomeKit_3864e7f38681b875", 683916399497274, this, []); }
+  get uniqueIdentifiersForBridgedAccessories(): (Array<string>) | null { return callSDK<(Array<string>) | null>("HomeKit_ff42ce03e691ab23", 683916399497274, this, []); }
   /**
    * var isVendorAccessory: Bool { get }
    * @availability iOS 26.1+
    */
-  get isVendorAccessory(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 1136234948184990, this, []); }
+  get isVendorAccessory(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 1136234948184990, this, []); }
   /**
    * var matterNodeID: UInt64? { get }
    * @availability iOS 16.1+
    */
-  get matterNodeID(): (number) | null { return callSDK<(number) | null>("HomeKit_3864e7f38681b875", 3217821452278840, this, []); }
+  get matterNodeID(): (number) | null { return callSDK<(number) | null>("HomeKit_ff42ce03e691ab23", 3217821452278840, this, []); }
   /**
    * var hapInstanceID: UInt64? { get }
    * @availability iOS 26.1+
    */
-  get hapInstanceID(): (number) | null { return callSDK<(number) | null>("HomeKit_3864e7f38681b875", 3277754187761942, this, []); }
+  get hapInstanceID(): (number) | null { return callSDK<(number) | null>("HomeKit_ff42ce03e691ab23", 3277754187761942, this, []); }
   declare readonly $type: { "c:objc(cs)HMAccessory": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isBlocked": true; "isBridged": true; "bridgedAccessories": true; "cameraProfiles": true; "category": true; "delegate": true; "firmwareVersion": true; "home": true; "identifier": true; "identifiersForBridgedAccessories": true; "manufacturer": true; "model": true; "name": true; "profiles": true; "isReachable": true; "room": true; "services": true; "supportsIdentify": true; "uniqueIdentifier": true; "uniqueIdentifiersForBridgedAccessories": true; "isVendorAccessory": true };
 }
@@ -183,28 +183,28 @@ export class HMAccessoryBrowser extends SDKHandle {
    * init()
    * @availability iOS 8.0+
    */
-  static init(): HMAccessoryBrowser { return callSDK<HMAccessoryBrowser>("HomeKit_3864e7f38681b875", 1289777046242253, undefined, []); }
+  static init(): HMAccessoryBrowser { return callSDK<HMAccessoryBrowser>("HomeKit_ff42ce03e691ab23", 1289777046242253, undefined, []); }
   /**
    * func startSearchingForNewAccessories()
    * @availability iOS 8.0+
    */
-  startSearchingForNewAccessories(): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1245078672383877, this, []); }
+  startSearchingForNewAccessories(): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1245078672383877, this, []); }
   /**
    * func stopSearchingForNewAccessories()
    * @availability iOS 8.0+
    */
-  stopSearchingForNewAccessories(): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1120811962369197, this, []); }
+  stopSearchingForNewAccessories(): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1120811962369197, this, []); }
   /**
    * weak var delegate: (any HMAccessoryBrowserDelegate)? { get set }
    * @availability iOS 8.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_3864e7f38681b875", 906471778285695, this, []); }
-  set delegate(value: (Implements<HMAccessoryBrowserDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 4284083251153741, this, [value], [{"protocol":"c:objc(pl)HMAccessoryBrowserDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_ff42ce03e691ab23", 906471778285695, this, []); }
+  set delegate(value: (Implements<HMAccessoryBrowserDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 4284083251153741, this, [value], [{"protocol":"c:objc(pl)HMAccessoryBrowserDelegate"}]); }
   /**
    * var discoveredAccessories: [HMAccessory] { get }
    * @availability iOS 8.0+
    */
-  get discoveredAccessories(): Array<HMAccessory> { return callSDK<Array<HMAccessory>>("HomeKit_3864e7f38681b875", 818593035315987, this, []); }
+  get discoveredAccessories(): Array<HMAccessory> { return callSDK<Array<HMAccessory>>("HomeKit_ff42ce03e691ab23", 818593035315987, this, []); }
   declare readonly $type: { "c:objc(cs)HMAccessoryBrowser": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "discoveredAccessories": true };
 }
@@ -235,12 +235,12 @@ export class HMAccessoryCategory extends SDKHandle {
    * var categoryType: String { get }
    * @availability iOS 9.0+
    */
-  get categoryType(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 1315972963850691, this, []); }
+  get categoryType(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 1315972963850691, this, []); }
   /**
    * var localizedDescription: String { get }
    * @availability iOS 9.0+
    */
-  get localizedDescription(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 3654233385331916, this, []); }
+  get localizedDescription(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 3654233385331916, this, []); }
   declare readonly $type: { "c:objc(cs)HMAccessoryCategory": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "categoryType": true; "localizedDescription": true };
 }
@@ -306,7 +306,7 @@ export class HMAccessoryOwnershipToken extends SDKHandle {
    * init?(data: Data)
    * @availability iOS 13.0+
    */
-  static init(data: ArrayBuffer): (HMAccessoryOwnershipToken) | null { return callSDK<(HMAccessoryOwnershipToken) | null>("HomeKit_3864e7f38681b875", 3536116732983782, undefined, [data]); }
+  static init(data: ArrayBuffer): (HMAccessoryOwnershipToken) | null { return callSDK<(HMAccessoryOwnershipToken) | null>("HomeKit_ff42ce03e691ab23", 3536116732983782, undefined, [data]); }
   declare readonly $type: { "c:objc(cs)HMAccessoryOwnershipToken": true; "c:objc(cs)NSObject": true };
 }
 
@@ -319,17 +319,17 @@ export class HMAccessoryProfile extends SDKHandle {
    * weak var accessory: HMAccessory? { get }
    * @availability iOS 10.0+
    */
-  get accessory(): (HMAccessory) | null { return callSDK<(HMAccessory) | null>("HomeKit_3864e7f38681b875", 834812238750744, this, []); }
+  get accessory(): (HMAccessory) | null { return callSDK<(HMAccessory) | null>("HomeKit_ff42ce03e691ab23", 834812238750744, this, []); }
   /**
    * var services: [HMService] { get }
    * @availability iOS 10.0+
    */
-  get services(): Array<HMService> { return callSDK<Array<HMService>>("HomeKit_3864e7f38681b875", 4314755913425412, this, []); }
+  get services(): Array<HMService> { return callSDK<Array<HMService>>("HomeKit_ff42ce03e691ab23", 4314755913425412, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 10.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 1595002511382626, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 1595002511382626, this, []); }
   declare readonly $type: { "c:objc(cs)HMAccessoryProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessory": true; "services": true; "uniqueIdentifier": true };
 }
@@ -343,17 +343,17 @@ export class HMAccessorySetupManager extends SDKHandle {
    * class var isSupported: Bool { get }
    * @availability iOS 27.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 4388682725824605, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 4388682725824605, undefined, []); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): HMAccessorySetupManager { return callSDK<HMAccessorySetupManager>("HomeKit_3864e7f38681b875", 2628459006601517, undefined, []); }
+  static init(): HMAccessorySetupManager { return callSDK<HMAccessorySetupManager>("HomeKit_ff42ce03e691ab23", 2628459006601517, undefined, []); }
   /**
    * func performAccessorySetup(using request: HMAccessorySetupRequest) async throws -> HMAccessorySetupResult
    * @availability iOS 15.4+
    */
-  performAccessorySetup(request: HMAccessorySetupRequest, completion: ((arg0: (HMAccessorySetupResult) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_3864e7f38681b875", 204780439084170, this, [request, completion], [null,{"callback":{"out":[]}}]); }
+  performAccessorySetup(request: HMAccessorySetupRequest, completion: ((arg0: (HMAccessorySetupResult) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 204780439084170, this, [request, completion], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)HMAccessorySetupManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -366,12 +366,12 @@ export class HMAccessorySetupPayload extends SDKHandle {
    * init?(url setupPayloadURL: URL?)
    * @availability iOS 11.3+
    */
-  static initUrl(setupPayloadURL?: (string) | null): (HMAccessorySetupPayload) | null { return callSDK<(HMAccessorySetupPayload) | null>("HomeKit_3864e7f38681b875", 4155490298572134, undefined, [setupPayloadURL]); }
+  static initUrl(setupPayloadURL?: (string) | null): (HMAccessorySetupPayload) | null { return callSDK<(HMAccessorySetupPayload) | null>("HomeKit_ff42ce03e691ab23", 4155490298572134, undefined, [setupPayloadURL]); }
   /**
    * init?(url setupPayloadURL: URL, ownershipToken: HMAccessoryOwnershipToken?)
    * @availability iOS 13.0+
    */
-  static initUrlOwnershipToken(setupPayloadURL: string, ownershipToken?: (HMAccessoryOwnershipToken) | null): (HMAccessorySetupPayload) | null { return callSDK<(HMAccessorySetupPayload) | null>("HomeKit_3864e7f38681b875", 2435828061003403, undefined, [setupPayloadURL, ownershipToken]); }
+  static initUrlOwnershipToken(setupPayloadURL: string, ownershipToken?: (HMAccessoryOwnershipToken) | null): (HMAccessorySetupPayload) | null { return callSDK<(HMAccessorySetupPayload) | null>("HomeKit_ff42ce03e691ab23", 2435828061003403, undefined, [setupPayloadURL, ownershipToken]); }
   declare readonly $type: { "c:objc(cs)HMAccessorySetupPayload": true; "c:objc(cs)NSObject": true };
 }
 
@@ -384,31 +384,31 @@ export class HMAccessorySetupRequest extends SDKHandle {
    * init()
    * @availability iOS 15.4+
    */
-  static init(): HMAccessorySetupRequest { return callSDK<HMAccessorySetupRequest>("HomeKit_3864e7f38681b875", 4126914104556197, undefined, []); }
+  static init(): HMAccessorySetupRequest { return callSDK<HMAccessorySetupRequest>("HomeKit_ff42ce03e691ab23", 4126914104556197, undefined, []); }
   /**
    * var homeUniqueIdentifier: UUID? { get set }
    * @availability iOS 15.4+
    */
-  get homeUniqueIdentifier(): (string) | null { return callSDK<(string) | null>("HomeKit_3864e7f38681b875", 169357101324003, this, []); }
-  set homeUniqueIdentifier(value: (string) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 4244743293369791, this, [value]); }
+  get homeUniqueIdentifier(): (string) | null { return callSDK<(string) | null>("HomeKit_ff42ce03e691ab23", 169357101324003, this, []); }
+  set homeUniqueIdentifier(value: (string) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 4244743293369791, this, [value]); }
   /**
    * @NSCopying var payload: HMAccessorySetupPayload? { get set }
    * @availability iOS 15.4+
    */
-  get payload(): $SDK7 { return callSDK<$SDK7>("HomeKit_3864e7f38681b875", 4260074501025179, this, []); }
-  set payload(value: $SDK7) { callSDK<void>("HomeKit_3864e7f38681b875", 742256080789271, this, [value]); }
+  get payload(): $SDK7 { return callSDK<$SDK7>("HomeKit_ff42ce03e691ab23", 4260074501025179, this, []); }
+  set payload(value: $SDK7) { callSDK<void>("HomeKit_ff42ce03e691ab23", 742256080789271, this, [value]); }
   /**
    * var suggestedAccessoryName: String? { get set }
    * @availability iOS 15.4+
    */
-  get suggestedAccessoryName(): (string) | null { return callSDK<(string) | null>("HomeKit_3864e7f38681b875", 4183112075348093, this, []); }
-  set suggestedAccessoryName(value: (string) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 1526447954073564, this, [value]); }
+  get suggestedAccessoryName(): (string) | null { return callSDK<(string) | null>("HomeKit_ff42ce03e691ab23", 4183112075348093, this, []); }
+  set suggestedAccessoryName(value: (string) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 1526447954073564, this, [value]); }
   /**
    * var suggestedRoomUniqueIdentifier: UUID? { get set }
    * @availability iOS 15.4+
    */
-  get suggestedRoomUniqueIdentifier(): (string) | null { return callSDK<(string) | null>("HomeKit_3864e7f38681b875", 2473513299070053, this, []); }
-  set suggestedRoomUniqueIdentifier(value: (string) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 2931806391633957, this, [value]); }
+  get suggestedRoomUniqueIdentifier(): (string) | null { return callSDK<(string) | null>("HomeKit_ff42ce03e691ab23", 2473513299070053, this, []); }
+  set suggestedRoomUniqueIdentifier(value: (string) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 2931806391633957, this, [value]); }
   declare readonly $type: { "c:objc(cs)HMAccessorySetupRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "homeUniqueIdentifier": true; "payload": true; "suggestedAccessoryName": true; "suggestedRoomUniqueIdentifier": true };
 }
@@ -422,12 +422,12 @@ export class HMAccessorySetupResult extends SDKHandle {
    * var accessoryUniqueIdentifiers: [UUID] { get }
    * @availability iOS 15.4+
    */
-  get accessoryUniqueIdentifiers(): Array<string> { return callSDK<Array<string>>("HomeKit_3864e7f38681b875", 1062259852335508, this, []); }
+  get accessoryUniqueIdentifiers(): Array<string> { return callSDK<Array<string>>("HomeKit_ff42ce03e691ab23", 1062259852335508, this, []); }
   /**
    * var homeUniqueIdentifier: UUID { get }
    * @availability iOS 15.4+
    */
-  get homeUniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 2706147756223563, this, []); }
+  get homeUniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 2706147756223563, this, []); }
   declare readonly $type: { "c:objc(cs)HMAccessorySetupResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessoryUniqueIdentifiers": true; "homeUniqueIdentifier": true };
 }
@@ -442,18 +442,18 @@ export class HMAction extends SDKHandle {
    * @availability iOS 8.0+
    * @deprecated iOS 16.4
    */
-  static new(): HMAction { return callSDK<HMAction>("HomeKit_3864e7f38681b875", 582874559226415, undefined, []); }
+  static new(): HMAction { return callSDK<HMAction>("HomeKit_ff42ce03e691ab23", 582874559226415, undefined, []); }
   /**
    * init()
    * @availability iOS 8.0+
    * @deprecated iOS 16.4
    */
-  static init(): HMAction { return callSDK<HMAction>("HomeKit_3864e7f38681b875", 768131893403844, undefined, []); }
+  static init(): HMAction { return callSDK<HMAction>("HomeKit_ff42ce03e691ab23", 768131893403844, undefined, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 1213824764027604, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 1213824764027604, this, []); }
   declare readonly $type: { "c:objc(cs)HMAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true };
 }
@@ -467,47 +467,47 @@ export class HMActionSet extends SDKHandle {
    * func addAction(_ action: HMAction) async throws
    * @availability iOS 8.0+
    */
-  addAction(action: HMAction, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 2251689835325719, this, [action, completion], [null,{"callback":{"out":[]}}]); }
+  addAction(action: HMAction, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 2251689835325719, this, [action, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func removeAction(_ action: HMAction) async throws
    * @availability iOS 8.0+
    */
-  removeAction(action: HMAction, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3122091068921739, this, [action, completion], [null,{"callback":{"out":[]}}]); }
+  removeAction(action: HMAction, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3122091068921739, this, [action, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateName(_ name: String) async throws
    * @availability iOS 8.0+
    */
-  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4073435391897752, this, [name, completion], [null,{"callback":{"out":[]}}]); }
+  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4073435391897752, this, [name, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var actionSetType: String { get }
    * @availability iOS 9.0+
    */
-  get actionSetType(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 2060630673948203, this, []); }
+  get actionSetType(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 2060630673948203, this, []); }
   /**
    * var actions: Set<HMAction> { get }
    * @availability iOS 8.0+
    */
-  get actions(): Array<HMAction> { return callSDK<Array<HMAction>>("HomeKit_3864e7f38681b875", 1861604150664153, this, []); }
+  get actions(): Array<HMAction> { return callSDK<Array<HMAction>>("HomeKit_ff42ce03e691ab23", 1861604150664153, this, []); }
   /**
    * var isExecuting: Bool { get }
    * @availability iOS 8.0+
    */
-  get isExecuting(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 4444675339433877, this, []); }
+  get isExecuting(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 4444675339433877, this, []); }
   /**
    * var lastExecutionDate: Date? { get }
    * @availability iOS 10.0+
    */
-  get lastExecutionDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("HomeKit_3864e7f38681b875", 3297203710356517, this, []); }
+  get lastExecutionDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("HomeKit_ff42ce03e691ab23", 3297203710356517, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 4338990973067581, this, []); }
+  get name(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 4338990973067581, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 3183069108150061, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 3183069108150061, this, []); }
   declare readonly $type: { "c:objc(cs)HMActionSet": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actionSetType": true; "actions": true; "isExecuting": true; "lastExecutionDate": true; "name": true; "uniqueIdentifier": true };
 }
@@ -519,25 +519,25 @@ export class HMAddAccessoryRequest extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  static init(): HMAddAccessoryRequest { return callSDK<HMAddAccessoryRequest>("HomeKit_3864e7f38681b875", 2619492517753611, undefined, []); }
+  static init(): HMAddAccessoryRequest { return callSDK<HMAddAccessoryRequest>("HomeKit_ff42ce03e691ab23", 2619492517753611, undefined, []); }
   /** func makePayload(ownershipToken: HMAccessoryOwnershipToken) -> HMAccessorySetupPayload? */
-  makePayloadOwnershipToken(ownershipToken: HMAccessoryOwnershipToken): $SDK7 { return callSDK<$SDK7>("HomeKit_3864e7f38681b875", 2372268711740153, this, [ownershipToken]); }
+  makePayloadOwnershipToken(ownershipToken: HMAccessoryOwnershipToken): $SDK7 { return callSDK<$SDK7>("HomeKit_ff42ce03e691ab23", 2372268711740153, this, [ownershipToken]); }
   /** func makePayload(url setupPayloadURL: URL, ownershipToken: HMAccessoryOwnershipToken) -> HMAccessorySetupPayload? */
-  makePayloadUrlOwnershipToken(setupPayloadURL: string, ownershipToken: HMAccessoryOwnershipToken): $SDK7 { return callSDK<$SDK7>("HomeKit_3864e7f38681b875", 3030010488879693, this, [setupPayloadURL, ownershipToken]); }
+  makePayloadUrlOwnershipToken(setupPayloadURL: string, ownershipToken: HMAccessoryOwnershipToken): $SDK7 { return callSDK<$SDK7>("HomeKit_ff42ce03e691ab23", 3030010488879693, this, [setupPayloadURL, ownershipToken]); }
   /** var accessoryCategory: HMAccessoryCategory { get } */
-  get accessoryCategory(): HMAccessoryCategory { return callSDK<HMAccessoryCategory>("HomeKit_3864e7f38681b875", 2856122365250841, this, []); }
+  get accessoryCategory(): HMAccessoryCategory { return callSDK<HMAccessoryCategory>("HomeKit_ff42ce03e691ab23", 2856122365250841, this, []); }
   /** var accessoryName: String { get } */
-  get accessoryName(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 366105883945665, this, []); }
+  get accessoryName(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 366105883945665, this, []); }
   /** var home: HMHome { get } */
-  get home(): HMHome { return callSDK<HMHome>("HomeKit_3864e7f38681b875", 3743758817383991, this, []); }
+  get home(): HMHome { return callSDK<HMHome>("HomeKit_ff42ce03e691ab23", 3743758817383991, this, []); }
   /**
    * var requiresOwnershipToken: Bool { get }
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get requiresOwnershipToken(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 3298222531355988, this, []); }
+  get requiresOwnershipToken(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 3298222531355988, this, []); }
   /** var requiresSetupPayloadURL: Bool { get } */
-  get requiresSetupPayloadURL(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 1228607861065060, this, []); }
+  get requiresSetupPayloadURL(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 1228607861065060, this, []); }
   declare readonly $type: { "c:objc(cs)HMAddAccessoryRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessoryCategory": true; "accessoryName": true; "home": true; "requiresOwnershipToken": true; "requiresSetupPayloadURL": true };
 }
@@ -551,24 +551,24 @@ export class HMEvent extends SDKHandle {
    * class func isSupported(for home: HMHome) -> Bool
    * @availability iOS 11.0+
    */
-  static isSupported(home: HMHome): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 3126431330167844, undefined, [home]); }
+  static isSupported(home: HMHome): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 3126431330167844, undefined, [home]); }
   /**
    * class func new() -> Self
    * @availability iOS 9.0+
    * @deprecated iOS 16.4
    */
-  static new(): HMEvent { return callSDK<HMEvent>("HomeKit_3864e7f38681b875", 573972489507604, undefined, []); }
+  static new(): HMEvent { return callSDK<HMEvent>("HomeKit_ff42ce03e691ab23", 573972489507604, undefined, []); }
   /**
    * init()
    * @availability iOS 9.0+
    * @deprecated iOS 16.4
    */
-  static init(): HMEvent { return callSDK<HMEvent>("HomeKit_3864e7f38681b875", 1764994361689266, undefined, []); }
+  static init(): HMEvent { return callSDK<HMEvent>("HomeKit_ff42ce03e691ab23", 1764994361689266, undefined, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 2834717504057096, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 2834717504057096, this, []); }
   declare readonly $type: { "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true };
 }
@@ -579,7 +579,7 @@ export class HMEvent extends SDKHandle {
  */
 export class HMTimeEvent extends (HMEvent as unknown as Omit<typeof HMEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => HMEvent)) {
   /** init() */
-  static init(): HMTimeEvent { return callSDK<HMTimeEvent>("HomeKit_3864e7f38681b875", 691872179317557, undefined, []); }
+  static init(): HMTimeEvent { return callSDK<HMTimeEvent>("HomeKit_ff42ce03e691ab23", 691872179317557, undefined, []); }
   declare readonly $type: { "c:objc(cs)HMTimeEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true };
 }
@@ -593,12 +593,12 @@ export class HMCalendarEvent extends (HMTimeEvent as unknown as Omit<typeof HMTi
    * init(fire fireDateComponents: DateComponents)
    * @availability iOS 11.0+
    */
-  static init(fireDateComponents: _Foundation_DateComponents): HMCalendarEvent { return callSDK<HMCalendarEvent>("HomeKit_3864e7f38681b875", 3811748846928781, undefined, [fireDateComponents]); }
+  static init(fireDateComponents: _Foundation_DateComponents): HMCalendarEvent { return callSDK<HMCalendarEvent>("HomeKit_ff42ce03e691ab23", 3811748846928781, undefined, [fireDateComponents]); }
   /**
    * var fireDateComponents: DateComponents { get }
    * @availability iOS 11.0+
    */
-  get fireDateComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HomeKit_3864e7f38681b875", 2472781324407269, this, []); }
+  get fireDateComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HomeKit_ff42ce03e691ab23", 2472781324407269, this, []); }
   declare readonly $type: { "c:objc(cs)HMCalendarEvent": true; "c:objc(cs)HMTimeEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "fireDateComponents": true };
 }
@@ -613,7 +613,7 @@ export class HMCameraControl extends SDKHandle {
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  static init(): HMCameraControl { return callSDK<HMCameraControl>("HomeKit_3864e7f38681b875", 3067327772038213, undefined, []); }
+  static init(): HMCameraControl { return callSDK<HMCameraControl>("HomeKit_ff42ce03e691ab23", 3067327772038213, undefined, []); }
   declare readonly $type: { "c:objc(cs)HMCameraControl": true; "c:objc(cs)NSObject": true };
 }
 
@@ -626,12 +626,12 @@ export class HMCameraAudioControl extends HMCameraControl {
    * var mute: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get mute(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 4248542091422667, this, []); }
+  get mute(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 4248542091422667, this, []); }
   /**
    * var volume: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get volume(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 2028532371129219, this, []); }
+  get volume(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 2028532371129219, this, []); }
   declare readonly $type: { "c:objc(cs)HMCameraAudioControl": true; "c:objc(cs)HMCameraControl": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mute": true; "volume": true };
 }
@@ -647,7 +647,7 @@ export const HMCameraAudioStreamSetting = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCameraAudioStreamSetting) | null { return callSDK<(HMCameraAudioStreamSetting) | null>("HomeKit_3864e7f38681b875", 54520028180361, undefined, [rawValue]); }
+  init(rawValue: number): (HMCameraAudioStreamSetting) | null { return callSDK<(HMCameraAudioStreamSetting) | null>("HomeKit_ff42ce03e691ab23", 54520028180361, undefined, [rawValue]); }
 };
 
 /**
@@ -659,27 +659,27 @@ export class HMCameraProfile extends HMAccessoryProfile {
    * var microphoneControl: HMCameraAudioControl? { get }
    * @availability iOS 10.0+
    */
-  get microphoneControl(): (HMCameraAudioControl) | null { return callSDK<(HMCameraAudioControl) | null>("HomeKit_3864e7f38681b875", 4092720376685759, this, []); }
+  get microphoneControl(): (HMCameraAudioControl) | null { return callSDK<(HMCameraAudioControl) | null>("HomeKit_ff42ce03e691ab23", 4092720376685759, this, []); }
   /**
    * var settingsControl: HMCameraSettingsControl? { get }
    * @availability iOS 10.0+
    */
-  get settingsControl(): (HMCameraSettingsControl) | null { return callSDK<(HMCameraSettingsControl) | null>("HomeKit_3864e7f38681b875", 2083143924659045, this, []); }
+  get settingsControl(): (HMCameraSettingsControl) | null { return callSDK<(HMCameraSettingsControl) | null>("HomeKit_ff42ce03e691ab23", 2083143924659045, this, []); }
   /**
    * var snapshotControl: HMCameraSnapshotControl? { get }
    * @availability iOS 10.0+
    */
-  get snapshotControl(): (HMCameraSnapshotControl) | null { return callSDK<(HMCameraSnapshotControl) | null>("HomeKit_3864e7f38681b875", 495991198465856, this, []); }
+  get snapshotControl(): (HMCameraSnapshotControl) | null { return callSDK<(HMCameraSnapshotControl) | null>("HomeKit_ff42ce03e691ab23", 495991198465856, this, []); }
   /**
    * var speakerControl: HMCameraAudioControl? { get }
    * @availability iOS 10.0+
    */
-  get speakerControl(): (HMCameraAudioControl) | null { return callSDK<(HMCameraAudioControl) | null>("HomeKit_3864e7f38681b875", 3755905036192726, this, []); }
+  get speakerControl(): (HMCameraAudioControl) | null { return callSDK<(HMCameraAudioControl) | null>("HomeKit_ff42ce03e691ab23", 3755905036192726, this, []); }
   /**
    * var streamControl: HMCameraStreamControl? { get }
    * @availability iOS 10.0+
    */
-  get streamControl(): (HMCameraStreamControl) | null { return callSDK<(HMCameraStreamControl) | null>("HomeKit_3864e7f38681b875", 2351163521306322, this, []); }
+  get streamControl(): (HMCameraStreamControl) | null { return callSDK<(HMCameraStreamControl) | null>("HomeKit_ff42ce03e691ab23", 2351163521306322, this, []); }
   declare readonly $type: { "c:objc(cs)HMCameraProfile": true; "c:objc(cs)HMAccessoryProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessory": true; "services": true; "uniqueIdentifier": true; "microphoneControl": true; "settingsControl": true; "snapshotControl": true; "speakerControl": true; "streamControl": true };
 }
@@ -693,47 +693,47 @@ export class HMCameraSettingsControl extends HMCameraControl {
    * var currentHorizontalTilt: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get currentHorizontalTilt(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 27137121211730, this, []); }
+  get currentHorizontalTilt(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 27137121211730, this, []); }
   /**
    * var currentVerticalTilt: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get currentVerticalTilt(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 2453405320332636, this, []); }
+  get currentVerticalTilt(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 2453405320332636, this, []); }
   /**
    * var digitalZoom: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get digitalZoom(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 2206952783514529, this, []); }
+  get digitalZoom(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 2206952783514529, this, []); }
   /**
    * var imageMirroring: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get imageMirroring(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 3495407099614341, this, []); }
+  get imageMirroring(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 3495407099614341, this, []); }
   /**
    * var imageRotation: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get imageRotation(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 1371400552419750, this, []); }
+  get imageRotation(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 1371400552419750, this, []); }
   /**
    * var nightVision: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get nightVision(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 1294633366473138, this, []); }
+  get nightVision(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 1294633366473138, this, []); }
   /**
    * var opticalZoom: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get opticalZoom(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 4183227762040892, this, []); }
+  get opticalZoom(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 4183227762040892, this, []); }
   /**
    * var targetHorizontalTilt: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get targetHorizontalTilt(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 2497904109475660, this, []); }
+  get targetHorizontalTilt(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 2497904109475660, this, []); }
   /**
    * var targetVerticalTilt: HMCharacteristic? { get }
    * @availability iOS 10.0+
    */
-  get targetVerticalTilt(): $SDK9 { return callSDK<$SDK9>("HomeKit_3864e7f38681b875", 4186410750174490, this, []); }
+  get targetVerticalTilt(): $SDK9 { return callSDK<$SDK9>("HomeKit_ff42ce03e691ab23", 4186410750174490, this, []); }
   declare readonly $type: { "c:objc(cs)HMCameraSettingsControl": true; "c:objc(cs)HMCameraControl": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentHorizontalTilt": true; "currentVerticalTilt": true; "digitalZoom": true; "imageMirroring": true; "imageRotation": true; "nightVision": true; "opticalZoom": true; "targetHorizontalTilt": true; "targetVerticalTilt": true };
 }
@@ -748,12 +748,12 @@ export class HMCameraSource extends SDKHandle {
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  static init(): HMCameraSource { return callSDK<HMCameraSource>("HomeKit_3864e7f38681b875", 4322250761943759, undefined, []); }
+  static init(): HMCameraSource { return callSDK<HMCameraSource>("HomeKit_ff42ce03e691ab23", 4322250761943759, undefined, []); }
   /**
    * var aspectRatio: Double { get }
    * @availability iOS 14.5+
    */
-  get aspectRatio(): number { return callSDK<number>("HomeKit_3864e7f38681b875", 435451944194403, this, []); }
+  get aspectRatio(): number { return callSDK<number>("HomeKit_ff42ce03e691ab23", 435451944194403, this, []); }
   declare readonly $type: { "c:objc(cs)HMCameraSource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aspectRatio": true };
 }
@@ -768,12 +768,12 @@ export class HMCameraSnapshot extends (HMCameraSource as unknown as Omit<typeof 
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  static init(): HMCameraSnapshot { return callSDK<HMCameraSnapshot>("HomeKit_3864e7f38681b875", 2878380109074924, undefined, []); }
+  static init(): HMCameraSnapshot { return callSDK<HMCameraSnapshot>("HomeKit_ff42ce03e691ab23", 2878380109074924, undefined, []); }
   /**
    * var captureDate: Date { get }
    * @availability iOS 10.0+
    */
-  get captureDate(): globalThis.Date { return callSDK<globalThis.Date>("HomeKit_3864e7f38681b875", 2348107456271920, this, []); }
+  get captureDate(): globalThis.Date { return callSDK<globalThis.Date>("HomeKit_ff42ce03e691ab23", 2348107456271920, this, []); }
   declare readonly $type: { "c:objc(cs)HMCameraSnapshot": true; "c:objc(cs)HMCameraSource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aspectRatio": true; "captureDate": true };
 }
@@ -788,23 +788,23 @@ export class HMCameraSnapshotControl extends (HMCameraControl as unknown as Omit
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  static init(): HMCameraSnapshotControl { return callSDK<HMCameraSnapshotControl>("HomeKit_3864e7f38681b875", 2201144326773505, undefined, []); }
+  static init(): HMCameraSnapshotControl { return callSDK<HMCameraSnapshotControl>("HomeKit_ff42ce03e691ab23", 2201144326773505, undefined, []); }
   /**
    * func takeSnapshot()
    * @availability iOS 10.0+
    */
-  takeSnapshot(): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4325661686698815, this, []); }
+  takeSnapshot(): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4325661686698815, this, []); }
   /**
    * weak var delegate: (any HMCameraSnapshotControlDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_3864e7f38681b875", 73527498410513, this, []); }
-  set delegate(value: (Implements<HMCameraSnapshotControlDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 2746637640230377, this, [value], [{"protocol":"c:objc(pl)HMCameraSnapshotControlDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_ff42ce03e691ab23", 73527498410513, this, []); }
+  set delegate(value: (Implements<HMCameraSnapshotControlDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 2746637640230377, this, [value], [{"protocol":"c:objc(pl)HMCameraSnapshotControlDelegate"}]); }
   /**
    * var mostRecentSnapshot: HMCameraSnapshot? { get }
    * @availability iOS 10.0+
    */
-  get mostRecentSnapshot(): (HMCameraSnapshot) | null { return callSDK<(HMCameraSnapshot) | null>("HomeKit_3864e7f38681b875", 1964028575227855, this, []); }
+  get mostRecentSnapshot(): (HMCameraSnapshot) | null { return callSDK<(HMCameraSnapshot) | null>("HomeKit_ff42ce03e691ab23", 1964028575227855, this, []); }
   declare readonly $type: { "c:objc(cs)HMCameraSnapshotControl": true; "c:objc(cs)HMCameraControl": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "mostRecentSnapshot": true };
 }
@@ -836,23 +836,23 @@ export class HMCameraStream extends (HMCameraSource as unknown as Omit<typeof HM
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  static init(): HMCameraStream { return callSDK<HMCameraStream>("HomeKit_3864e7f38681b875", 3377882749895953, undefined, []); }
+  static init(): HMCameraStream { return callSDK<HMCameraStream>("HomeKit_ff42ce03e691ab23", 3377882749895953, undefined, []); }
   /**
    * func setAudioStreamSetting(_ audioStreamSetting: HMCameraAudioStreamSetting)
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  setAudioStreamSetting(audioStreamSetting: HMCameraAudioStreamSetting): void { return callSDK<void>("HomeKit_3864e7f38681b875", 404476087066130, this, [audioStreamSetting]); }
+  setAudioStreamSetting(audioStreamSetting: HMCameraAudioStreamSetting): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 404476087066130, this, [audioStreamSetting]); }
   /**
    * func updateAudioStreamSetting(_ audioStreamSetting: HMCameraAudioStreamSetting) async throws
    * @availability iOS 10.0+
    */
-  updateAudioStreamSetting(audioStreamSetting: HMCameraAudioStreamSetting, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4224520443903761, this, [audioStreamSetting, completion], [null,{"callback":{"out":[]}}]); }
+  updateAudioStreamSetting(audioStreamSetting: HMCameraAudioStreamSetting, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4224520443903761, this, [audioStreamSetting, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var audioStreamSetting: HMCameraAudioStreamSetting { get }
    * @availability iOS 10.0+
    */
-  get audioStreamSetting(): HMCameraAudioStreamSetting { return callSDK<HMCameraAudioStreamSetting>("HomeKit_3864e7f38681b875", 2114585866329737, this, []); }
+  get audioStreamSetting(): HMCameraAudioStreamSetting { return callSDK<HMCameraAudioStreamSetting>("HomeKit_ff42ce03e691ab23", 2114585866329737, this, []); }
   declare readonly $type: { "c:objc(cs)HMCameraStream": true; "c:objc(cs)HMCameraSource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aspectRatio": true; "audioStreamSetting": true };
 }
@@ -867,33 +867,33 @@ export class HMCameraStreamControl extends (HMCameraControl as unknown as Omit<t
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  static init(): HMCameraStreamControl { return callSDK<HMCameraStreamControl>("HomeKit_3864e7f38681b875", 4101150932692294, undefined, []); }
+  static init(): HMCameraStreamControl { return callSDK<HMCameraStreamControl>("HomeKit_ff42ce03e691ab23", 4101150932692294, undefined, []); }
   /**
    * func startStream()
    * @availability iOS 10.0+
    */
-  startStream(): void { return callSDK<void>("HomeKit_3864e7f38681b875", 385520909160852, this, []); }
+  startStream(): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 385520909160852, this, []); }
   /**
    * func stopStream()
    * @availability iOS 10.0+
    */
-  stopStream(): void { return callSDK<void>("HomeKit_3864e7f38681b875", 357576087420264, this, []); }
+  stopStream(): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 357576087420264, this, []); }
   /**
    * var cameraStream: HMCameraStream? { get }
    * @availability iOS 10.0+
    */
-  get cameraStream(): (HMCameraStream) | null { return callSDK<(HMCameraStream) | null>("HomeKit_3864e7f38681b875", 3894191159672705, this, []); }
+  get cameraStream(): (HMCameraStream) | null { return callSDK<(HMCameraStream) | null>("HomeKit_ff42ce03e691ab23", 3894191159672705, this, []); }
   /**
    * weak var delegate: (any HMCameraStreamControlDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_3864e7f38681b875", 915822999870568, this, []); }
-  set delegate(value: (Implements<HMCameraStreamControlDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 2680628269807881, this, [value], [{"protocol":"c:objc(pl)HMCameraStreamControlDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_ff42ce03e691ab23", 915822999870568, this, []); }
+  set delegate(value: (Implements<HMCameraStreamControlDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 2680628269807881, this, [value], [{"protocol":"c:objc(pl)HMCameraStreamControlDelegate"}]); }
   /**
    * var streamState: HMCameraStreamState { get }
    * @availability iOS 10.0+
    */
-  get streamState(): HMCameraStreamState { return callSDK<HMCameraStreamState>("HomeKit_3864e7f38681b875", 2145193307637001, this, []); }
+  get streamState(): HMCameraStreamState { return callSDK<HMCameraStreamState>("HomeKit_ff42ce03e691ab23", 2145193307637001, this, []); }
   declare readonly $type: { "c:objc(cs)HMCameraStreamControl": true; "c:objc(cs)HMCameraControl": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cameraStream": true; "delegate": true; "streamState": true };
 }
@@ -926,7 +926,7 @@ export const HMCameraStreamState = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCameraStreamState) | null { return callSDK<(HMCameraStreamState) | null>("HomeKit_3864e7f38681b875", 754045227642258, undefined, [rawValue]); }
+  init(rawValue: number): (HMCameraStreamState) | null { return callSDK<(HMCameraStreamState) | null>("HomeKit_ff42ce03e691ab23", 754045227642258, undefined, [rawValue]); }
 };
 
 /**
@@ -938,13 +938,13 @@ export class HMCameraView extends SDKHandle {
    * init()
    * @availability iOS 10.0+
    */
-  static init(): Promise<HMCameraView> { return callSDKAsync<HMCameraView>("HomeKit_3864e7f38681b875", 52308121103084, undefined, []); }
+  static init(): Promise<HMCameraView> { return callSDKAsync<HMCameraView>("HomeKit_ff42ce03e691ab23", 52308121103084, undefined, []); }
   /**
    * var cameraSource: HMCameraSource? { get set }
    * @availability iOS 10.0+
    */
-  get cameraSource(): Promise<(HMCameraSource) | null> { return callSDKAsync<(HMCameraSource) | null>("HomeKit_3864e7f38681b875", 949579045054995, this, []); }
-  setCameraSource(value?: (HMCameraSource) | null): Promise<void> { return callSDKAsync<void>("HomeKit_3864e7f38681b875", 353815819862427, this, [value]); }
+  get cameraSource(): Promise<(HMCameraSource) | null> { return callSDKAsync<(HMCameraSource) | null>("HomeKit_ff42ce03e691ab23", 949579045054995, this, []); }
+  setCameraSource(value?: (HMCameraSource) | null): Promise<void> { return callSDKAsync<void>("HomeKit_ff42ce03e691ab23", 353815819862427, this, [value]); }
   declare readonly $type: { "c:objc(cs)HMCameraView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cameraSource": true };
 }
@@ -958,68 +958,68 @@ export class HMCharacteristic extends SDKHandle {
    * func enableNotification(_ enable: Bool) async throws
    * @availability iOS 8.0+
    */
-  enableNotification(enable: boolean, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 2776191665047408, this, [enable, completion], [null,{"callback":{"out":[]}}]); }
+  enableNotification(enable: boolean, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 2776191665047408, this, [enable, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 8.0+
    * @deprecated iOS 8.0
    */
-  static init(): HMCharacteristic { return callSDK<HMCharacteristic>("HomeKit_3864e7f38681b875", 2390708485509125, undefined, []); }
+  static init(): HMCharacteristic { return callSDK<HMCharacteristic>("HomeKit_ff42ce03e691ab23", 2390708485509125, undefined, []); }
   /**
    * func readValue() async throws
    * @availability iOS 8.0+
    */
-  readValue(completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 2084701589185922, this, [completion], [{"callback":{"out":[]}}]); }
+  readValue(completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 2084701589185922, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func updateAuthorizationData(_ data: Data?) async throws
    * @availability iOS 8.0+
    */
-  updateAuthorizationData(data: (ArrayBuffer) | null, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4100160922082745, this, [data, completion], [null,{"callback":{"out":[]}}]); }
+  updateAuthorizationData(data: (ArrayBuffer) | null, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4100160922082745, this, [data, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func writeValue(_ value: Any?) async throws
    * @availability iOS 8.0+
    */
-  writeValue(value: (unknown) | null, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 2758733601091925, this, [value, completion], [null,{"callback":{"out":[]}}]); }
+  writeValue(value: (unknown) | null, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 2758733601091925, this, [value, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var characteristicType: String { get }
    * @availability iOS 8.0+
    */
-  get characteristicType(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 794850690084880, this, []); }
+  get characteristicType(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 794850690084880, this, []); }
   /**
    * var localizedDescription: String { get }
    * @availability iOS 9.0+
    */
-  get localizedDescription(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 4439993368928437, this, []); }
+  get localizedDescription(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 4439993368928437, this, []); }
   /**
    * var metadata: HMCharacteristicMetadata? { get }
    * @availability iOS 8.0+
    */
-  get metadata(): (HMCharacteristicMetadata) | null { return callSDK<(HMCharacteristicMetadata) | null>("HomeKit_3864e7f38681b875", 2179780329438604, this, []); }
+  get metadata(): (HMCharacteristicMetadata) | null { return callSDK<(HMCharacteristicMetadata) | null>("HomeKit_ff42ce03e691ab23", 2179780329438604, this, []); }
   /**
    * var isNotificationEnabled: Bool { get }
    * @availability iOS 8.0+
    */
-  get isNotificationEnabled(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 1222612650314029, this, []); }
+  get isNotificationEnabled(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 1222612650314029, this, []); }
   /**
    * var properties: [String] { get }
    * @availability iOS 8.0+
    */
-  get properties(): Array<string> { return callSDK<Array<string>>("HomeKit_3864e7f38681b875", 3523602543819843, this, []); }
+  get properties(): Array<string> { return callSDK<Array<string>>("HomeKit_ff42ce03e691ab23", 3523602543819843, this, []); }
   /**
    * weak var service: HMService? { get }
    * @availability iOS 8.0+
    */
-  get service(): (HMService) | null { return callSDK<(HMService) | null>("HomeKit_3864e7f38681b875", 2038636655528427, this, []); }
+  get service(): (HMService) | null { return callSDK<(HMService) | null>("HomeKit_ff42ce03e691ab23", 2038636655528427, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 3678201555717014, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 3678201555717014, this, []); }
   /**
    * var value: Any? { get }
    * @availability iOS 8.0+
    */
-  get value(): (unknown) | null { return callSDK<(unknown) | null>("HomeKit_3864e7f38681b875", 4284054932205548, this, []); }
+  get value(): (unknown) | null { return callSDK<(unknown) | null>("HomeKit_ff42ce03e691ab23", 4284054932205548, this, []); }
   declare readonly $type: { "c:objc(cs)HMCharacteristic": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "characteristicType": true; "localizedDescription": true; "metadata": true; "isNotificationEnabled": true; "properties": true; "service": true; "uniqueIdentifier": true; "value": true };
 }
@@ -1042,47 +1042,47 @@ export class HMCharacteristicMetadata extends SDKHandle {
    * init()
    * @availability iOS 8.0+
    */
-  static init(): HMCharacteristicMetadata { return callSDK<HMCharacteristicMetadata>("HomeKit_3864e7f38681b875", 2459012928473020, undefined, []); }
+  static init(): HMCharacteristicMetadata { return callSDK<HMCharacteristicMetadata>("HomeKit_ff42ce03e691ab23", 2459012928473020, undefined, []); }
   /**
    * var format: String? { get }
    * @availability iOS 8.0+
    */
-  get format(): (string) | null { return callSDK<(string) | null>("HomeKit_3864e7f38681b875", 1403898159825373, this, []); }
+  get format(): (string) | null { return callSDK<(string) | null>("HomeKit_ff42ce03e691ab23", 1403898159825373, this, []); }
   /**
    * var manufacturerDescription: String? { get }
    * @availability iOS 8.0+
    */
-  get manufacturerDescription(): (string) | null { return callSDK<(string) | null>("HomeKit_3864e7f38681b875", 3221270816513036, this, []); }
+  get manufacturerDescription(): (string) | null { return callSDK<(string) | null>("HomeKit_ff42ce03e691ab23", 3221270816513036, this, []); }
   /**
    * var maxLength: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get maxLength(): $SDK18 { return callSDK<$SDK18>("HomeKit_3864e7f38681b875", 3757352771396812, this, []); }
+  get maxLength(): $SDK18 { return callSDK<$SDK18>("HomeKit_ff42ce03e691ab23", 3757352771396812, this, []); }
   /**
    * var maximumValue: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get maximumValue(): $SDK18 { return callSDK<$SDK18>("HomeKit_3864e7f38681b875", 761659519603505, this, []); }
+  get maximumValue(): $SDK18 { return callSDK<$SDK18>("HomeKit_ff42ce03e691ab23", 761659519603505, this, []); }
   /**
    * var minimumValue: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get minimumValue(): $SDK18 { return callSDK<$SDK18>("HomeKit_3864e7f38681b875", 1059950904968996, this, []); }
+  get minimumValue(): $SDK18 { return callSDK<$SDK18>("HomeKit_ff42ce03e691ab23", 1059950904968996, this, []); }
   /**
    * var stepValue: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get stepValue(): $SDK18 { return callSDK<$SDK18>("HomeKit_3864e7f38681b875", 3505273264479515, this, []); }
+  get stepValue(): $SDK18 { return callSDK<$SDK18>("HomeKit_ff42ce03e691ab23", 3505273264479515, this, []); }
   /**
    * var units: String? { get }
    * @availability iOS 8.0+
    */
-  get units(): (string) | null { return callSDK<(string) | null>("HomeKit_3864e7f38681b875", 562365391939448, this, []); }
+  get units(): (string) | null { return callSDK<(string) | null>("HomeKit_ff42ce03e691ab23", 562365391939448, this, []); }
   /**
    * var validValues: [NSNumber]? { get }
    * @availability iOS 10.0+
    */
-  get validValues(): (Array<_Foundation_NSNumber>) | null { return callSDK<(Array<_Foundation_NSNumber>) | null>("HomeKit_3864e7f38681b875", 281263916103544, this, []); }
+  get validValues(): (Array<_Foundation_NSNumber>) | null { return callSDK<(Array<_Foundation_NSNumber>) | null>("HomeKit_ff42ce03e691ab23", 281263916103544, this, []); }
   declare readonly $type: { "c:objc(cs)HMCharacteristicMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "format": true; "manufacturerDescription": true; "maxLength": true; "maximumValue": true; "minimumValue": true; "stepValue": true; "units": true; "validValues": true };
 }
@@ -1096,17 +1096,17 @@ export class HMCharacteristicThresholdRangeEvent extends (HMEvent as unknown as 
    * init(characteristic: HMCharacteristic, thresholdRange: HMNumberRange)
    * @availability iOS 11.0+
    */
-  static init(characteristic: HMCharacteristic, thresholdRange: HMNumberRange): HMCharacteristicThresholdRangeEvent { return callSDK<HMCharacteristicThresholdRangeEvent>("HomeKit_3864e7f38681b875", 3028030525561911, undefined, [characteristic, thresholdRange]); }
+  static init(characteristic: HMCharacteristic, thresholdRange: HMNumberRange): HMCharacteristicThresholdRangeEvent { return callSDK<HMCharacteristicThresholdRangeEvent>("HomeKit_ff42ce03e691ab23", 3028030525561911, undefined, [characteristic, thresholdRange]); }
   /**
    * var characteristic: HMCharacteristic { get }
    * @availability iOS 11.0+
    */
-  get characteristic(): HMCharacteristic { return callSDK<HMCharacteristic>("HomeKit_3864e7f38681b875", 2849849767036977, this, []); }
+  get characteristic(): HMCharacteristic { return callSDK<HMCharacteristic>("HomeKit_ff42ce03e691ab23", 2849849767036977, this, []); }
   /**
    * @NSCopying var thresholdRange: HMNumberRange { get }
    * @availability iOS 11.0+
    */
-  get thresholdRange(): HMNumberRange { return callSDK<HMNumberRange>("HomeKit_3864e7f38681b875", 3719867175535725, this, []); }
+  get thresholdRange(): HMNumberRange { return callSDK<HMNumberRange>("HomeKit_ff42ce03e691ab23", 3719867175535725, this, []); }
   declare readonly $type: { "c:objc(cs)HMCharacteristicThresholdRangeEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "characteristic": true; "thresholdRange": true };
 }
@@ -1122,7 +1122,7 @@ export const HMCharacteristicValueActivationState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueActivationState) | null { return callSDK<(HMCharacteristicValueActivationState) | null>("HomeKit_3864e7f38681b875", 2403430184318741, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueActivationState) | null { return callSDK<(HMCharacteristicValueActivationState) | null>("HomeKit_ff42ce03e691ab23", 2403430184318741, undefined, [rawValue]); }
 };
 
 /**
@@ -1136,7 +1136,7 @@ export const HMCharacteristicValueAirParticulateSize = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (HMCharacteristicValueAirParticulateSize) | null { return callSDK<(HMCharacteristicValueAirParticulateSize) | null>("HomeKit_3864e7f38681b875", 3375776726714992, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueAirParticulateSize) | null { return callSDK<(HMCharacteristicValueAirParticulateSize) | null>("HomeKit_ff42ce03e691ab23", 3375776726714992, undefined, [rawValue]); }
 };
 
 /**
@@ -1150,7 +1150,7 @@ export const HMCharacteristicValueAirQuality = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (HMCharacteristicValueAirQuality) | null { return callSDK<(HMCharacteristicValueAirQuality) | null>("HomeKit_3864e7f38681b875", 1598451213625338, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueAirQuality) | null { return callSDK<(HMCharacteristicValueAirQuality) | null>("HomeKit_ff42ce03e691ab23", 1598451213625338, undefined, [rawValue]); }
 };
 
 /**
@@ -1164,7 +1164,7 @@ export const HMCharacteristicValueBatteryStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueBatteryStatus) | null { return callSDK<(HMCharacteristicValueBatteryStatus) | null>("HomeKit_3864e7f38681b875", 2489350225401198, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueBatteryStatus) | null { return callSDK<(HMCharacteristicValueBatteryStatus) | null>("HomeKit_ff42ce03e691ab23", 2489350225401198, undefined, [rawValue]); }
 };
 
 /**
@@ -1178,7 +1178,7 @@ export const HMCharacteristicValueCarbonDioxideDetectionStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueCarbonDioxideDetectionStatus) | null { return callSDK<(HMCharacteristicValueCarbonDioxideDetectionStatus) | null>("HomeKit_3864e7f38681b875", 1628769008857133, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCarbonDioxideDetectionStatus) | null { return callSDK<(HMCharacteristicValueCarbonDioxideDetectionStatus) | null>("HomeKit_ff42ce03e691ab23", 1628769008857133, undefined, [rawValue]); }
 };
 
 /**
@@ -1192,7 +1192,7 @@ export const HMCharacteristicValueCarbonMonoxideDetectionStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueCarbonMonoxideDetectionStatus) | null { return callSDK<(HMCharacteristicValueCarbonMonoxideDetectionStatus) | null>("HomeKit_3864e7f38681b875", 840080614090943, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCarbonMonoxideDetectionStatus) | null { return callSDK<(HMCharacteristicValueCarbonMonoxideDetectionStatus) | null>("HomeKit_ff42ce03e691ab23", 840080614090943, undefined, [rawValue]); }
 };
 
 /**
@@ -1206,7 +1206,7 @@ export const HMCharacteristicValueChargingState = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueChargingState) | null { return callSDK<(HMCharacteristicValueChargingState) | null>("HomeKit_3864e7f38681b875", 501771518838124, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueChargingState) | null { return callSDK<(HMCharacteristicValueChargingState) | null>("HomeKit_ff42ce03e691ab23", 501771518838124, undefined, [rawValue]); }
 };
 
 /**
@@ -1220,7 +1220,7 @@ export const HMCharacteristicValueClosedCaptions = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueClosedCaptions) | null { return callSDK<(HMCharacteristicValueClosedCaptions) | null>("HomeKit_3864e7f38681b875", 1739329870143335, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueClosedCaptions) | null { return callSDK<(HMCharacteristicValueClosedCaptions) | null>("HomeKit_ff42ce03e691ab23", 1739329870143335, undefined, [rawValue]); }
 };
 
 /**
@@ -1234,7 +1234,7 @@ export const HMCharacteristicValueConfigurationState = {
    * init?(rawValue: Int)
    * @availability iOS 11.2+
    */
-  init(rawValue: number): (HMCharacteristicValueConfigurationState) | null { return callSDK<(HMCharacteristicValueConfigurationState) | null>("HomeKit_3864e7f38681b875", 2486950280250876, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueConfigurationState) | null { return callSDK<(HMCharacteristicValueConfigurationState) | null>("HomeKit_ff42ce03e691ab23", 2486950280250876, undefined, [rawValue]); }
 };
 
 /**
@@ -1248,7 +1248,7 @@ export const HMCharacteristicValueContactState = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueContactState) | null { return callSDK<(HMCharacteristicValueContactState) | null>("HomeKit_3864e7f38681b875", 434128751931032, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueContactState) | null { return callSDK<(HMCharacteristicValueContactState) | null>("HomeKit_ff42ce03e691ab23", 434128751931032, undefined, [rawValue]); }
 };
 
 /**
@@ -1262,7 +1262,7 @@ export const HMCharacteristicValueCurrentAirPurifierState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueCurrentAirPurifierState) | null { return callSDK<(HMCharacteristicValueCurrentAirPurifierState) | null>("HomeKit_3864e7f38681b875", 2575529896851736, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCurrentAirPurifierState) | null { return callSDK<(HMCharacteristicValueCurrentAirPurifierState) | null>("HomeKit_ff42ce03e691ab23", 2575529896851736, undefined, [rawValue]); }
 };
 
 /**
@@ -1276,7 +1276,7 @@ export const HMCharacteristicValueCurrentFanState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueCurrentFanState) | null { return callSDK<(HMCharacteristicValueCurrentFanState) | null>("HomeKit_3864e7f38681b875", 1717662526247661, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCurrentFanState) | null { return callSDK<(HMCharacteristicValueCurrentFanState) | null>("HomeKit_ff42ce03e691ab23", 1717662526247661, undefined, [rawValue]); }
 };
 
 /**
@@ -1290,7 +1290,7 @@ export const HMCharacteristicValueCurrentHeaterCoolerState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueCurrentHeaterCoolerState) | null { return callSDK<(HMCharacteristicValueCurrentHeaterCoolerState) | null>("HomeKit_3864e7f38681b875", 861727458142608, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCurrentHeaterCoolerState) | null { return callSDK<(HMCharacteristicValueCurrentHeaterCoolerState) | null>("HomeKit_ff42ce03e691ab23", 861727458142608, undefined, [rawValue]); }
 };
 
 /**
@@ -1304,7 +1304,7 @@ export const HMCharacteristicValueCurrentHeatingCooling = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HMCharacteristicValueCurrentHeatingCooling) | null { return callSDK<(HMCharacteristicValueCurrentHeatingCooling) | null>("HomeKit_3864e7f38681b875", 2543744567904904, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCurrentHeatingCooling) | null { return callSDK<(HMCharacteristicValueCurrentHeatingCooling) | null>("HomeKit_ff42ce03e691ab23", 2543744567904904, undefined, [rawValue]); }
 };
 
 /**
@@ -1318,7 +1318,7 @@ export const HMCharacteristicValueCurrentHumidifierDehumidifierState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueCurrentHumidifierDehumidifierState) | null { return callSDK<(HMCharacteristicValueCurrentHumidifierDehumidifierState) | null>("HomeKit_3864e7f38681b875", 3888631100619757, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCurrentHumidifierDehumidifierState) | null { return callSDK<(HMCharacteristicValueCurrentHumidifierDehumidifierState) | null>("HomeKit_ff42ce03e691ab23", 3888631100619757, undefined, [rawValue]); }
 };
 
 /**
@@ -1332,7 +1332,7 @@ export const HMCharacteristicValueCurrentMediaState = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueCurrentMediaState) | null { return callSDK<(HMCharacteristicValueCurrentMediaState) | null>("HomeKit_3864e7f38681b875", 4403872101136945, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCurrentMediaState) | null { return callSDK<(HMCharacteristicValueCurrentMediaState) | null>("HomeKit_ff42ce03e691ab23", 4403872101136945, undefined, [rawValue]); }
 };
 
 /**
@@ -1346,7 +1346,7 @@ export const HMCharacteristicValueCurrentSecuritySystemState = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (HMCharacteristicValueCurrentSecuritySystemState) | null { return callSDK<(HMCharacteristicValueCurrentSecuritySystemState) | null>("HomeKit_3864e7f38681b875", 1835822282576866, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCurrentSecuritySystemState) | null { return callSDK<(HMCharacteristicValueCurrentSecuritySystemState) | null>("HomeKit_ff42ce03e691ab23", 1835822282576866, undefined, [rawValue]); }
 };
 
 /**
@@ -1360,7 +1360,7 @@ export const HMCharacteristicValueCurrentSlatState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueCurrentSlatState) | null { return callSDK<(HMCharacteristicValueCurrentSlatState) | null>("HomeKit_3864e7f38681b875", 2868973327683419, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCurrentSlatState) | null { return callSDK<(HMCharacteristicValueCurrentSlatState) | null>("HomeKit_ff42ce03e691ab23", 2868973327683419, undefined, [rawValue]); }
 };
 
 /**
@@ -1374,7 +1374,7 @@ export const HMCharacteristicValueCurrentVisibilityState = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueCurrentVisibilityState) | null { return callSDK<(HMCharacteristicValueCurrentVisibilityState) | null>("HomeKit_3864e7f38681b875", 2871743385775444, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueCurrentVisibilityState) | null { return callSDK<(HMCharacteristicValueCurrentVisibilityState) | null>("HomeKit_ff42ce03e691ab23", 2871743385775444, undefined, [rawValue]); }
 };
 
 /**
@@ -1388,7 +1388,7 @@ export const HMCharacteristicValueDoorState = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HMCharacteristicValueDoorState) | null { return callSDK<(HMCharacteristicValueDoorState) | null>("HomeKit_3864e7f38681b875", 3713283757920181, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueDoorState) | null { return callSDK<(HMCharacteristicValueDoorState) | null>("HomeKit_ff42ce03e691ab23", 3713283757920181, undefined, [rawValue]); }
 };
 
 /**
@@ -1402,7 +1402,7 @@ export const HMCharacteristicValueFilterChange = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueFilterChange) | null { return callSDK<(HMCharacteristicValueFilterChange) | null>("HomeKit_3864e7f38681b875", 2675757363100399, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueFilterChange) | null { return callSDK<(HMCharacteristicValueFilterChange) | null>("HomeKit_ff42ce03e691ab23", 2675757363100399, undefined, [rawValue]); }
 };
 
 /**
@@ -1416,7 +1416,7 @@ export const HMCharacteristicValueHeatingCooling = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HMCharacteristicValueHeatingCooling) | null { return callSDK<(HMCharacteristicValueHeatingCooling) | null>("HomeKit_3864e7f38681b875", 912489624470889, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueHeatingCooling) | null { return callSDK<(HMCharacteristicValueHeatingCooling) | null>("HomeKit_ff42ce03e691ab23", 912489624470889, undefined, [rawValue]); }
 };
 
 /**
@@ -1430,7 +1430,7 @@ export const HMCharacteristicValueInputDeviceType = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueInputDeviceType) | null { return callSDK<(HMCharacteristicValueInputDeviceType) | null>("HomeKit_3864e7f38681b875", 3539410506568742, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueInputDeviceType) | null { return callSDK<(HMCharacteristicValueInputDeviceType) | null>("HomeKit_ff42ce03e691ab23", 3539410506568742, undefined, [rawValue]); }
 };
 
 /**
@@ -1444,7 +1444,7 @@ export const HMCharacteristicValueInputEvent = {
    * init?(rawValue: Int)
    * @availability iOS 10.3+
    */
-  init(rawValue: number): (HMCharacteristicValueInputEvent) | null { return callSDK<(HMCharacteristicValueInputEvent) | null>("HomeKit_3864e7f38681b875", 1640006979680962, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueInputEvent) | null { return callSDK<(HMCharacteristicValueInputEvent) | null>("HomeKit_ff42ce03e691ab23", 1640006979680962, undefined, [rawValue]); }
 };
 
 /**
@@ -1458,7 +1458,7 @@ export const HMCharacteristicValueInputSourceType = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueInputSourceType) | null { return callSDK<(HMCharacteristicValueInputSourceType) | null>("HomeKit_3864e7f38681b875", 960660517877423, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueInputSourceType) | null { return callSDK<(HMCharacteristicValueInputSourceType) | null>("HomeKit_ff42ce03e691ab23", 960660517877423, undefined, [rawValue]); }
 };
 
 /**
@@ -1472,7 +1472,7 @@ export const HMCharacteristicValueJammedStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueJammedStatus) | null { return callSDK<(HMCharacteristicValueJammedStatus) | null>("HomeKit_3864e7f38681b875", 4288948147442906, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueJammedStatus) | null { return callSDK<(HMCharacteristicValueJammedStatus) | null>("HomeKit_ff42ce03e691ab23", 4288948147442906, undefined, [rawValue]); }
 };
 
 /**
@@ -1486,7 +1486,7 @@ export const HMCharacteristicValueLabelNamespace = {
    * init?(rawValue: Int)
    * @availability iOS 10.3+
    */
-  init(rawValue: number): (HMCharacteristicValueLabelNamespace) | null { return callSDK<(HMCharacteristicValueLabelNamespace) | null>("HomeKit_3864e7f38681b875", 4017551619147318, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueLabelNamespace) | null { return callSDK<(HMCharacteristicValueLabelNamespace) | null>("HomeKit_ff42ce03e691ab23", 4017551619147318, undefined, [rawValue]); }
 };
 
 /**
@@ -1500,7 +1500,7 @@ export const HMCharacteristicValueLeakStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueLeakStatus) | null { return callSDK<(HMCharacteristicValueLeakStatus) | null>("HomeKit_3864e7f38681b875", 833688995866902, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueLeakStatus) | null { return callSDK<(HMCharacteristicValueLeakStatus) | null>("HomeKit_ff42ce03e691ab23", 833688995866902, undefined, [rawValue]); }
 };
 
 /**
@@ -1514,7 +1514,7 @@ export const HMCharacteristicValueLockMechanismLastKnownAction = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HMCharacteristicValueLockMechanismLastKnownAction) | null { return callSDK<(HMCharacteristicValueLockMechanismLastKnownAction) | null>("HomeKit_3864e7f38681b875", 2677022677394662, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueLockMechanismLastKnownAction) | null { return callSDK<(HMCharacteristicValueLockMechanismLastKnownAction) | null>("HomeKit_ff42ce03e691ab23", 2677022677394662, undefined, [rawValue]); }
 };
 
 /**
@@ -1528,7 +1528,7 @@ export const HMCharacteristicValueLockMechanismState = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HMCharacteristicValueLockMechanismState) | null { return callSDK<(HMCharacteristicValueLockMechanismState) | null>("HomeKit_3864e7f38681b875", 626582902698533, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueLockMechanismState) | null { return callSDK<(HMCharacteristicValueLockMechanismState) | null>("HomeKit_ff42ce03e691ab23", 626582902698533, undefined, [rawValue]); }
 };
 
 /**
@@ -1542,7 +1542,7 @@ export const HMCharacteristicValueLockPhysicalControlsState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueLockPhysicalControlsState) | null { return callSDK<(HMCharacteristicValueLockPhysicalControlsState) | null>("HomeKit_3864e7f38681b875", 289967471122281, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueLockPhysicalControlsState) | null { return callSDK<(HMCharacteristicValueLockPhysicalControlsState) | null>("HomeKit_ff42ce03e691ab23", 289967471122281, undefined, [rawValue]); }
 };
 
 /**
@@ -1556,7 +1556,7 @@ export const HMCharacteristicValueOccupancyStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueOccupancyStatus) | null { return callSDK<(HMCharacteristicValueOccupancyStatus) | null>("HomeKit_3864e7f38681b875", 3385312390654836, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueOccupancyStatus) | null { return callSDK<(HMCharacteristicValueOccupancyStatus) | null>("HomeKit_ff42ce03e691ab23", 3385312390654836, undefined, [rawValue]); }
 };
 
 /**
@@ -1570,7 +1570,7 @@ export const HMCharacteristicValuePictureMode = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValuePictureMode) | null { return callSDK<(HMCharacteristicValuePictureMode) | null>("HomeKit_3864e7f38681b875", 1580146292681444, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValuePictureMode) | null { return callSDK<(HMCharacteristicValuePictureMode) | null>("HomeKit_ff42ce03e691ab23", 1580146292681444, undefined, [rawValue]); }
 };
 
 /**
@@ -1584,7 +1584,7 @@ export const HMCharacteristicValuePositionState = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (HMCharacteristicValuePositionState) | null { return callSDK<(HMCharacteristicValuePositionState) | null>("HomeKit_3864e7f38681b875", 2535831664240351, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValuePositionState) | null { return callSDK<(HMCharacteristicValuePositionState) | null>("HomeKit_ff42ce03e691ab23", 2535831664240351, undefined, [rawValue]); }
 };
 
 /**
@@ -1598,7 +1598,7 @@ export const HMCharacteristicValuePowerModeSelection = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValuePowerModeSelection) | null { return callSDK<(HMCharacteristicValuePowerModeSelection) | null>("HomeKit_3864e7f38681b875", 3906010135859920, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValuePowerModeSelection) | null { return callSDK<(HMCharacteristicValuePowerModeSelection) | null>("HomeKit_ff42ce03e691ab23", 3906010135859920, undefined, [rawValue]); }
 };
 
 /**
@@ -1612,7 +1612,7 @@ export const HMCharacteristicValueProgramMode = {
    * init?(rawValue: Int)
    * @availability iOS 11.2+
    */
-  init(rawValue: number): (HMCharacteristicValueProgramMode) | null { return callSDK<(HMCharacteristicValueProgramMode) | null>("HomeKit_3864e7f38681b875", 1170448030115084, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueProgramMode) | null { return callSDK<(HMCharacteristicValueProgramMode) | null>("HomeKit_ff42ce03e691ab23", 1170448030115084, undefined, [rawValue]); }
 };
 
 /**
@@ -1626,7 +1626,7 @@ export const HMCharacteristicValueRemoteKey = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueRemoteKey) | null { return callSDK<(HMCharacteristicValueRemoteKey) | null>("HomeKit_3864e7f38681b875", 3264520360759588, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueRemoteKey) | null { return callSDK<(HMCharacteristicValueRemoteKey) | null>("HomeKit_ff42ce03e691ab23", 3264520360759588, undefined, [rawValue]); }
 };
 
 /**
@@ -1640,7 +1640,7 @@ export const HMCharacteristicValueRotationDirection = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HMCharacteristicValueRotationDirection) | null { return callSDK<(HMCharacteristicValueRotationDirection) | null>("HomeKit_3864e7f38681b875", 1339205289763912, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueRotationDirection) | null { return callSDK<(HMCharacteristicValueRotationDirection) | null>("HomeKit_ff42ce03e691ab23", 1339205289763912, undefined, [rawValue]); }
 };
 
 /**
@@ -1654,7 +1654,7 @@ export const HMCharacteristicValueRouterStatus = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueRouterStatus) | null { return callSDK<(HMCharacteristicValueRouterStatus) | null>("HomeKit_3864e7f38681b875", 635133333227003, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueRouterStatus) | null { return callSDK<(HMCharacteristicValueRouterStatus) | null>("HomeKit_ff42ce03e691ab23", 635133333227003, undefined, [rawValue]); }
 };
 
 /**
@@ -1668,7 +1668,7 @@ export const HMCharacteristicValueSecuritySystemAlarmType = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueSecuritySystemAlarmType) | null { return callSDK<(HMCharacteristicValueSecuritySystemAlarmType) | null>("HomeKit_3864e7f38681b875", 1665741041087228, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueSecuritySystemAlarmType) | null { return callSDK<(HMCharacteristicValueSecuritySystemAlarmType) | null>("HomeKit_ff42ce03e691ab23", 1665741041087228, undefined, [rawValue]); }
 };
 
 /**
@@ -1682,7 +1682,7 @@ export const HMCharacteristicValueSlatType = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueSlatType) | null { return callSDK<(HMCharacteristicValueSlatType) | null>("HomeKit_3864e7f38681b875", 589177746937069, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueSlatType) | null { return callSDK<(HMCharacteristicValueSlatType) | null>("HomeKit_ff42ce03e691ab23", 589177746937069, undefined, [rawValue]); }
 };
 
 /**
@@ -1696,7 +1696,7 @@ export const HMCharacteristicValueSmokeDetectionStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueSmokeDetectionStatus) | null { return callSDK<(HMCharacteristicValueSmokeDetectionStatus) | null>("HomeKit_3864e7f38681b875", 3456722930094098, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueSmokeDetectionStatus) | null { return callSDK<(HMCharacteristicValueSmokeDetectionStatus) | null>("HomeKit_ff42ce03e691ab23", 3456722930094098, undefined, [rawValue]); }
 };
 
 /**
@@ -1710,7 +1710,7 @@ export const HMCharacteristicValueStatusFault = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueStatusFault) | null { return callSDK<(HMCharacteristicValueStatusFault) | null>("HomeKit_3864e7f38681b875", 4286579703656969, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueStatusFault) | null { return callSDK<(HMCharacteristicValueStatusFault) | null>("HomeKit_ff42ce03e691ab23", 4286579703656969, undefined, [rawValue]); }
 };
 
 /**
@@ -1724,7 +1724,7 @@ export const HMCharacteristicValueSwingMode = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueSwingMode) | null { return callSDK<(HMCharacteristicValueSwingMode) | null>("HomeKit_3864e7f38681b875", 3113688914353761, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueSwingMode) | null { return callSDK<(HMCharacteristicValueSwingMode) | null>("HomeKit_ff42ce03e691ab23", 3113688914353761, undefined, [rawValue]); }
 };
 
 /**
@@ -1738,7 +1738,7 @@ export const HMCharacteristicValueTamperedStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (HMCharacteristicValueTamperedStatus) | null { return callSDK<(HMCharacteristicValueTamperedStatus) | null>("HomeKit_3864e7f38681b875", 1856925070539417, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTamperedStatus) | null { return callSDK<(HMCharacteristicValueTamperedStatus) | null>("HomeKit_ff42ce03e691ab23", 1856925070539417, undefined, [rawValue]); }
 };
 
 /**
@@ -1752,7 +1752,7 @@ export const HMCharacteristicValueTargetAirPurifierState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueTargetAirPurifierState) | null { return callSDK<(HMCharacteristicValueTargetAirPurifierState) | null>("HomeKit_3864e7f38681b875", 732207500052751, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTargetAirPurifierState) | null { return callSDK<(HMCharacteristicValueTargetAirPurifierState) | null>("HomeKit_ff42ce03e691ab23", 732207500052751, undefined, [rawValue]); }
 };
 
 /**
@@ -1766,7 +1766,7 @@ export const HMCharacteristicValueTargetDoorState = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HMCharacteristicValueTargetDoorState) | null { return callSDK<(HMCharacteristicValueTargetDoorState) | null>("HomeKit_3864e7f38681b875", 3595114735214580, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTargetDoorState) | null { return callSDK<(HMCharacteristicValueTargetDoorState) | null>("HomeKit_ff42ce03e691ab23", 3595114735214580, undefined, [rawValue]); }
 };
 
 /**
@@ -1780,7 +1780,7 @@ export const HMCharacteristicValueTargetFanState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueTargetFanState) | null { return callSDK<(HMCharacteristicValueTargetFanState) | null>("HomeKit_3864e7f38681b875", 578724274689238, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTargetFanState) | null { return callSDK<(HMCharacteristicValueTargetFanState) | null>("HomeKit_ff42ce03e691ab23", 578724274689238, undefined, [rawValue]); }
 };
 
 /**
@@ -1794,7 +1794,7 @@ export const HMCharacteristicValueTargetHeaterCoolerState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueTargetHeaterCoolerState) | null { return callSDK<(HMCharacteristicValueTargetHeaterCoolerState) | null>("HomeKit_3864e7f38681b875", 2163420880982968, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTargetHeaterCoolerState) | null { return callSDK<(HMCharacteristicValueTargetHeaterCoolerState) | null>("HomeKit_ff42ce03e691ab23", 2163420880982968, undefined, [rawValue]); }
 };
 
 /**
@@ -1808,7 +1808,7 @@ export const HMCharacteristicValueTargetHumidifierDehumidifierState = {
    * init?(rawValue: Int)
    * @availability iOS 10.2+
    */
-  init(rawValue: number): (HMCharacteristicValueTargetHumidifierDehumidifierState) | null { return callSDK<(HMCharacteristicValueTargetHumidifierDehumidifierState) | null>("HomeKit_3864e7f38681b875", 3192654452587474, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTargetHumidifierDehumidifierState) | null { return callSDK<(HMCharacteristicValueTargetHumidifierDehumidifierState) | null>("HomeKit_ff42ce03e691ab23", 3192654452587474, undefined, [rawValue]); }
 };
 
 /**
@@ -1822,7 +1822,7 @@ export const HMCharacteristicValueTargetLockMechanismState = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HMCharacteristicValueTargetLockMechanismState) | null { return callSDK<(HMCharacteristicValueTargetLockMechanismState) | null>("HomeKit_3864e7f38681b875", 3200009767007879, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTargetLockMechanismState) | null { return callSDK<(HMCharacteristicValueTargetLockMechanismState) | null>("HomeKit_ff42ce03e691ab23", 3200009767007879, undefined, [rawValue]); }
 };
 
 /**
@@ -1836,7 +1836,7 @@ export const HMCharacteristicValueTargetMediaState = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueTargetMediaState) | null { return callSDK<(HMCharacteristicValueTargetMediaState) | null>("HomeKit_3864e7f38681b875", 3659963733688347, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTargetMediaState) | null { return callSDK<(HMCharacteristicValueTargetMediaState) | null>("HomeKit_ff42ce03e691ab23", 3659963733688347, undefined, [rawValue]); }
 };
 
 /**
@@ -1850,7 +1850,7 @@ export const HMCharacteristicValueTargetSecuritySystemState = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (HMCharacteristicValueTargetSecuritySystemState) | null { return callSDK<(HMCharacteristicValueTargetSecuritySystemState) | null>("HomeKit_3864e7f38681b875", 2782948915859152, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTargetSecuritySystemState) | null { return callSDK<(HMCharacteristicValueTargetSecuritySystemState) | null>("HomeKit_ff42ce03e691ab23", 2782948915859152, undefined, [rawValue]); }
 };
 
 /**
@@ -1864,7 +1864,7 @@ export const HMCharacteristicValueTargetVisibilityState = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueTargetVisibilityState) | null { return callSDK<(HMCharacteristicValueTargetVisibilityState) | null>("HomeKit_3864e7f38681b875", 4147695603900576, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTargetVisibilityState) | null { return callSDK<(HMCharacteristicValueTargetVisibilityState) | null>("HomeKit_ff42ce03e691ab23", 4147695603900576, undefined, [rawValue]); }
 };
 
 /**
@@ -1878,7 +1878,7 @@ export const HMCharacteristicValueTemperatureUnit = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HMCharacteristicValueTemperatureUnit) | null { return callSDK<(HMCharacteristicValueTemperatureUnit) | null>("HomeKit_3864e7f38681b875", 1117128792096922, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueTemperatureUnit) | null { return callSDK<(HMCharacteristicValueTemperatureUnit) | null>("HomeKit_ff42ce03e691ab23", 1117128792096922, undefined, [rawValue]); }
 };
 
 /**
@@ -1892,7 +1892,7 @@ export const HMCharacteristicValueUsageState = {
    * init?(rawValue: Int)
    * @availability iOS 11.2+
    */
-  init(rawValue: number): (HMCharacteristicValueUsageState) | null { return callSDK<(HMCharacteristicValueUsageState) | null>("HomeKit_3864e7f38681b875", 1344825820944169, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueUsageState) | null { return callSDK<(HMCharacteristicValueUsageState) | null>("HomeKit_ff42ce03e691ab23", 1344825820944169, undefined, [rawValue]); }
 };
 
 /**
@@ -1906,7 +1906,7 @@ export const HMCharacteristicValueValveType = {
    * init?(rawValue: Int)
    * @availability iOS 11.2+
    */
-  init(rawValue: number): (HMCharacteristicValueValveType) | null { return callSDK<(HMCharacteristicValueValveType) | null>("HomeKit_3864e7f38681b875", 4007088392785203, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueValveType) | null { return callSDK<(HMCharacteristicValueValveType) | null>("HomeKit_ff42ce03e691ab23", 4007088392785203, undefined, [rawValue]); }
 };
 
 /**
@@ -1920,7 +1920,7 @@ export const HMCharacteristicValueVolumeControlType = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueVolumeControlType) | null { return callSDK<(HMCharacteristicValueVolumeControlType) | null>("HomeKit_3864e7f38681b875", 1370779540943503, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueVolumeControlType) | null { return callSDK<(HMCharacteristicValueVolumeControlType) | null>("HomeKit_ff42ce03e691ab23", 1370779540943503, undefined, [rawValue]); }
 };
 
 /**
@@ -1934,7 +1934,7 @@ export const HMCharacteristicValueVolumeSelector = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueVolumeSelector) | null { return callSDK<(HMCharacteristicValueVolumeSelector) | null>("HomeKit_3864e7f38681b875", 2289533069928076, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueVolumeSelector) | null { return callSDK<(HMCharacteristicValueVolumeSelector) | null>("HomeKit_ff42ce03e691ab23", 2289533069928076, undefined, [rawValue]); }
 };
 
 /**
@@ -1948,7 +1948,7 @@ export const HMCharacteristicValueWiFiSatelliteStatus = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (HMCharacteristicValueWiFiSatelliteStatus) | null { return callSDK<(HMCharacteristicValueWiFiSatelliteStatus) | null>("HomeKit_3864e7f38681b875", 4470527615787605, undefined, [rawValue]); }
+  init(rawValue: number): (HMCharacteristicValueWiFiSatelliteStatus) | null { return callSDK<(HMCharacteristicValueWiFiSatelliteStatus) | null>("HomeKit_ff42ce03e691ab23", 4470527615787605, undefined, [rawValue]); }
 };
 
 /**
@@ -1969,12 +1969,12 @@ export class HMDurationEvent extends (HMTimeEvent as unknown as Omit<typeof HMTi
    * init(duration: TimeInterval)
    * @availability iOS 11.0+
    */
-  static init(duration: number): HMDurationEvent { return callSDK<HMDurationEvent>("HomeKit_3864e7f38681b875", 2868211945058434, undefined, [duration]); }
+  static init(duration: number): HMDurationEvent { return callSDK<HMDurationEvent>("HomeKit_ff42ce03e691ab23", 2868211945058434, undefined, [duration]); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 11.0+
    */
-  get duration(): number { return callSDK<number>("HomeKit_3864e7f38681b875", 1986416259675673, this, []); }
+  get duration(): number { return callSDK<number>("HomeKit_ff42ce03e691ab23", 1986416259675673, this, []); }
   declare readonly $type: { "c:objc(cs)HMDurationEvent": true; "c:objc(cs)HMTimeEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "duration": true };
 }
@@ -1988,538 +1988,538 @@ export class HMError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 8.0+
    */
-  static get errorDomain(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 342239015927042, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 342239015927042, undefined, []); }
   /**
    * static var accessDenied: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessDenied(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3862645135129598, undefined, []); }
+  static get accessDenied(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3862645135129598, undefined, []); }
   /**
    * static var deviceLocked: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get deviceLocked(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2520586225629002, undefined, []); }
+  static get deviceLocked(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2520586225629002, undefined, []); }
   /**
    * static var genericError: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get genericError(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1499988078640115, undefined, []); }
+  static get genericError(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1499988078640115, undefined, []); }
   /**
    * static var invalidClass: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get invalidClass(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4303253477144422, undefined, []); }
+  static get invalidClass(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4303253477144422, undefined, []); }
   /**
    * static var nilParameter: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get nilParameter(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3758832204435320, undefined, []); }
+  static get nilParameter(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3758832204435320, undefined, []); }
   /**
    * static var alreadyExists: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get alreadyExists(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4028984354197119, undefined, []); }
+  static get alreadyExists(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4028984354197119, undefined, []); }
   /**
    * static var fireDateInPast: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get fireDateInPast(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3548434866909849, undefined, []); }
+  static get fireDateInPast(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3548434866909849, undefined, []); }
   /**
    * static var accessoryIsBusy: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessoryIsBusy(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2544167684473047, undefined, []); }
+  static get accessoryIsBusy(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2544167684473047, undefined, []); }
   /**
    * static var securityFailure: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get securityFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2958119181809123, undefined, []); }
+  static get securityFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2958119181809123, undefined, []); }
   /**
    * static var unexpectedError: HMError.Code { get }
    * @availability iOS 11.2+
    */
-  static get unexpectedError(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 233442932576643, undefined, []); }
+  static get unexpectedError(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 233442932576643, undefined, []); }
   /**
    * static var dataResetFailure: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get dataResetFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1727745137525728, undefined, []); }
+  static get dataResetFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1727745137525728, undefined, []); }
   /**
    * static var invalidParameter: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get invalidParameter(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 153860125241623, undefined, []); }
+  static get invalidParameter(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 153860125241623, undefined, []); }
   /**
    * static var invalidValueType: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get invalidValueType(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3679981305091555, undefined, []); }
+  static get invalidValueType(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3679981305091555, undefined, []); }
   /**
    * static var missingParameter: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get missingParameter(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3367621727773974, undefined, []); }
+  static get missingParameter(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3367621727773974, undefined, []); }
   /**
    * static var ownershipFailure: HMError.Code { get }
    * @availability iOS 13.0+
    */
-  static get ownershipFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1474275530625827, undefined, []); }
+  static get ownershipFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1474275530625827, undefined, []); }
   /**
    * static var readWriteFailure: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get readWriteFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2758621501228478, undefined, []); }
+  static get readWriteFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2758621501228478, undefined, []); }
   /**
    * static var operationTimedOut: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get operationTimedOut(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 422499676752390, undefined, []); }
+  static get operationTimedOut(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 422499676752390, undefined, []); }
   /**
    * static var referToUserManual: HMError.Code { get }
    * @availability iOS 9.3+
    */
-  static get referToUserManual(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 321749225727655, undefined, []); }
+  static get referToUserManual(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 321749225727655, undefined, []); }
   /**
    * static var accessoryIsBlocked: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessoryIsBlocked(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 732095442109161, undefined, []); }
+  static get accessoryIsBlocked(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 732095442109161, undefined, []); }
   /**
    * static var addAccessoryFailed: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get addAccessoryFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1192659789743248, undefined, []); }
+  static get addAccessoryFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1192659789743248, undefined, []); }
   /**
    * static var clientRequestError: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get clientRequestError(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4320814800969698, undefined, []); }
+  static get clientRequestError(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4320814800969698, undefined, []); }
   /**
    * static var invalidMessageSize: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get invalidMessageSize(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1888895474668134, undefined, []); }
+  static get invalidMessageSize(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1888895474668134, undefined, []); }
   /**
    * static var missingEntitlement: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get missingEntitlement(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 339353260107988, undefined, []); }
+  static get missingEntitlement(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 339353260107988, undefined, []); }
   /**
    * static var networkUnavailable: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get networkUnavailable(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3525002103153252, undefined, []); }
+  static get networkUnavailable(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3525002103153252, undefined, []); }
   /**
    * static var operationCancelled: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get operationCancelled(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4176123057272108, undefined, []); }
+  static get operationCancelled(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4176123057272108, undefined, []); }
   /**
    * static var recurrenceTooLarge: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get recurrenceTooLarge(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1081418245009672, undefined, []); }
+  static get recurrenceTooLarge(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1081418245009672, undefined, []); }
   /**
    * static var recurrenceTooSmall: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get recurrenceTooSmall(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3094761966502702, undefined, []); }
+  static get recurrenceTooSmall(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3094761966502702, undefined, []); }
   /**
    * static var userDeclinedInvite: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get userDeclinedInvite(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 484661040341230, undefined, []); }
+  static get userDeclinedInvite(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 484661040341230, undefined, []); }
   /**
    * static var accessoryPoweredOff: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessoryPoweredOff(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1542004113323930, undefined, []); }
+  static get accessoryPoweredOff(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1542004113323930, undefined, []); }
   /**
    * static var failedToJoinNetwork: HMError.Code { get }
    * @availability iOS 14.0+
    */
-  static get failedToJoinNetwork(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1968957262765262, undefined, []); }
+  static get failedToJoinNetwork(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1968957262765262, undefined, []); }
   /**
    * static var homeUpgradeRequired: HMError.Code { get }
    * @availability iOS 18.4+
    */
-  static get homeUpgradeRequired(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2185079329037668, undefined, []); }
+  static get homeUpgradeRequired(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2185079329037668, undefined, []); }
   /**
    * static var incompatibleHomeHub: HMError.Code { get }
    * @availability iOS 11.0+
    * @deprecated iOS 11.0
    */
-  static get incompatibleHomeHub(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3685810488710313, undefined, []); }
+  static get incompatibleHomeHub(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3685810488710313, undefined, []); }
   /**
    * static var incompatibleNetwork: HMError.Code { get }
    * @availability iOS 10.2+
    */
-  static get incompatibleNetwork(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2090881178749967, undefined, []); }
+  static get incompatibleNetwork(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2090881178749967, undefined, []); }
   /**
    * static var noCompatibleHomeHub: HMError.Code { get }
    * @availability iOS 11.0+
    */
-  static get noCompatibleHomeHub(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1882128922476319, undefined, []); }
+  static get noCompatibleHomeHub(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1882128922476319, undefined, []); }
   /**
    * static var notSignedIntoiCloud: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get notSignedIntoiCloud(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3489736937415602, undefined, []); }
+  static get notSignedIntoiCloud(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3489736937415602, undefined, []); }
   /**
    * static var operationInProgress: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get operationInProgress(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 238994695300242, undefined, []); }
+  static get operationInProgress(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 238994695300242, undefined, []); }
   /**
    * static var accessoryIsSuspended: HMError.Code { get }
    * @availability iOS 15.0+
    */
-  static get accessoryIsSuspended(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1464325806869052, undefined, []); }
+  static get accessoryIsSuspended(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1464325806869052, undefined, []); }
   /**
    * static var communicationFailure: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get communicationFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2933935674288188, undefined, []); }
+  static get communicationFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2933935674288188, undefined, []); }
   /**
    * static var noActionsInActionSet: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get noActionsInActionSet(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1520079560469271, undefined, []); }
+  static get noActionsInActionSet(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1520079560469271, undefined, []); }
   /**
    * static var userManagementFailed: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get userManagementFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 111500612092553, undefined, []); }
+  static get userManagementFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 111500612092553, undefined, []); }
   /**
    * static var accessoryNotReachable: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessoryNotReachable(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1889697844138931, undefined, []); }
+  static get accessoryNotReachable(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1889697844138931, undefined, []); }
   /**
    * static var incompatibleAccessory: HMError.Code { get }
    * @availability iOS 11.3+
    */
-  static get incompatibleAccessory(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 381607348969374, undefined, []); }
+  static get incompatibleAccessory(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 381607348969374, undefined, []); }
   /**
    * static var operationNotSupported: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get operationNotSupported(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1496524470489086, undefined, []); }
+  static get operationNotSupported(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1496524470489086, undefined, []); }
   /**
    * static var renameWithSimilarName: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get renameWithSimilarName(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1179870645471267, undefined, []); }
+  static get renameWithSimilarName(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1179870645471267, undefined, []); }
   /**
    * static var unconfiguredParameter: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get unconfiguredParameter(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3343139407240934, undefined, []); }
+  static get unconfiguredParameter(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3343139407240934, undefined, []); }
   /**
    * static var userIDNotEmailAddress: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get userIDNotEmailAddress(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 327949041446042, undefined, []); }
+  static get userIDNotEmailAddress(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 327949041446042, undefined, []); }
   /**
    * static var valueLowerThanMinimum: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get valueLowerThanMinimum(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 32431313033024, undefined, []); }
+  static get valueLowerThanMinimum(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 32431313033024, undefined, []); }
   /**
    * static var accessoryPairingFailed: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessoryPairingFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1382849854979495, undefined, []); }
+  static get accessoryPairingFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1382849854979495, undefined, []); }
   /**
    * static var accessoryResponseError: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessoryResponseError(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2574800992411895, undefined, []); }
+  static get accessoryResponseError(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2574800992411895, undefined, []); }
   /**
    * static var insufficientPrivileges: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get insufficientPrivileges(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 216866311556081, undefined, []); }
+  static get insufficientPrivileges(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 216866311556081, undefined, []); }
   /**
    * static var keychainSyncNotEnabled: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get keychainSyncNotEnabled(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3565065618963977, undefined, []); }
+  static get keychainSyncNotEnabled(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3565065618963977, undefined, []); }
   /**
    * static var noRegisteredActionSets: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get noRegisteredActionSets(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 621095979860191, undefined, []); }
+  static get noRegisteredActionSets(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 621095979860191, undefined, []); }
   /**
    * static var readOnlyCharacteristic: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get readOnlyCharacteristic(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2610073678021938, undefined, []); }
+  static get readOnlyCharacteristic(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2610073678021938, undefined, []); }
   /**
    * static var userDeclinedAddingUser: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get userDeclinedAddingUser(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2202147902377379, undefined, []); }
+  static get userDeclinedAddingUser(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2202147902377379, undefined, []); }
   /**
    * static var valueHigherThanMaximum: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get valueHigherThanMaximum(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 514692864016602, undefined, []); }
+  static get valueHigherThanMaximum(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 514692864016602, undefined, []); }
   /**
    * static var accessoryOutOfResources: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessoryOutOfResources(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1806963407900678, undefined, []); }
+  static get accessoryOutOfResources(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1806963407900678, undefined, []); }
   /**
    * static var cloudDataSyncInProgress: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get cloudDataSyncInProgress(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4080309633418988, undefined, []); }
+  static get cloudDataSyncInProgress(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4080309633418988, undefined, []); }
   /**
    * static var homeAccessNotAuthorized: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get homeAccessNotAuthorized(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1654530238533901, undefined, []); }
+  static get homeAccessNotAuthorized(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1654530238533901, undefined, []); }
   /**
    * static var locationForHomeDisabled: HMError.Code { get }
    * @availability iOS 9.0+
    */
-  static get locationForHomeDisabled(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2840088870932249, undefined, []); }
+  static get locationForHomeDisabled(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2840088870932249, undefined, []); }
   /**
    * static var readWritePartialSuccess: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get readWritePartialSuccess(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 443914054683232, undefined, []); }
+  static get readWritePartialSuccess(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 443914054683232, undefined, []); }
   /**
    * static var stringLongerThanMaximum: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get stringLongerThanMaximum(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2726268237009900, undefined, []); }
+  static get stringLongerThanMaximum(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2726268237009900, undefined, []); }
   /**
    * static var writeOnlyCharacteristic: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get writeOnlyCharacteristic(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 998882969969839, undefined, []); }
+  static get writeOnlyCharacteristic(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 998882969969839, undefined, []); }
   /**
    * static var accessoryDiscoveryFailed: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessoryDiscoveryFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1941265580731248, undefined, []); }
+  static get accessoryDiscoveryFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1941265580731248, undefined, []); }
   /**
    * static var accessoryOutOfCompliance: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessoryOutOfCompliance(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1345474774395273, undefined, []); }
+  static get accessoryOutOfCompliance(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1345474774395273, undefined, []); }
   /**
    * static var actionInAnotherActionSet: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get actionInAnotherActionSet(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 768768293789736, undefined, []); }
+  static get actionInAnotherActionSet(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 768768293789736, undefined, []); }
   /**
    * static var actionSetExecutionFailed: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get actionSetExecutionFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4284054413208636, undefined, []); }
+  static get actionSetExecutionFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4284054413208636, undefined, []); }
   /**
    * static var notificationNotSupported: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get notificationNotSupported(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2782707284310464, undefined, []); }
+  static get notificationNotSupported(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2782707284310464, undefined, []); }
   /**
    * static var stringShorterThanMinimum: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get stringShorterThanMinimum(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3651241795016845, undefined, []); }
+  static get stringShorterThanMinimum(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3651241795016845, undefined, []); }
   /**
    * static var userDeclinedRemovingUser: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get userDeclinedRemovingUser(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4354192260930111, undefined, []); }
+  static get userDeclinedRemovingUser(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4354192260930111, undefined, []); }
   /**
    * static var homeWithSimilarNameExists: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get homeWithSimilarNameExists(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1582495722775989, undefined, []); }
+  static get homeWithSimilarNameExists(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1582495722775989, undefined, []); }
   /**
    * static var maximumObjectLimitReached: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get maximumObjectLimitReached(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4150383230551616, undefined, []); }
+  static get maximumObjectLimitReached(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4150383230551616, undefined, []); }
   /**
    * static var roomForHomeCannotBeInZone: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get roomForHomeCannotBeInZone(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2676484760518439, undefined, []); }
+  static get roomForHomeCannotBeInZone(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2676484760518439, undefined, []); }
   /**
    * static var invalidDataFormatSpecified: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get invalidDataFormatSpecified(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2690530419025635, undefined, []); }
+  static get invalidDataFormatSpecified(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2690530419025635, undefined, []); }
   /**
    * static var notificationAlreadyEnabled: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get notificationAlreadyEnabled(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 184105977936979, undefined, []); }
+  static get notificationAlreadyEnabled(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 184105977936979, undefined, []); }
   /**
    * static var roomForHomeCannotBeUpdated: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get roomForHomeCannotBeUpdated(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3185183451844075, undefined, []); }
+  static get roomForHomeCannotBeUpdated(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3185183451844075, undefined, []); }
   /**
    * static var messageAuthenticationFailed: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get messageAuthenticationFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3378853432030171, undefined, []); }
+  static get messageAuthenticationFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3378853432030171, undefined, []); }
   /**
    * static var objectWithSimilarNameExists: HMError.Code { get }
    * @availability iOS 12.0+
    */
-  static get objectWithSimilarNameExists(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1611236265049129, undefined, []); }
+  static get objectWithSimilarNameExists(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1611236265049129, undefined, []); }
   /**
    * static var partialCommunicationFailure: HMError.Code { get }
    * @availability iOS 17.4+
    */
-  static get partialCommunicationFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1727762860289980, undefined, []); }
+  static get partialCommunicationFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1727762860289980, undefined, []); }
   /**
    * static var timedOutWaitingForAccessory: HMError.Code { get }
    * @availability iOS 14.0+
    */
-  static get timedOutWaitingForAccessory(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3574378490484177, undefined, []); }
+  static get timedOutWaitingForAccessory(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3574378490484177, undefined, []); }
   /**
    * static var accessorySentInvalidResponse: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get accessorySentInvalidResponse(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2402236242573364, undefined, []); }
+  static get accessorySentInvalidResponse(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2402236242573364, undefined, []); }
   /**
    * static var actionSetExecutionInProgress: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get actionSetExecutionInProgress(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4216924437634367, undefined, []); }
+  static get actionSetExecutionInProgress(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4216924437634367, undefined, []); }
   /**
    * static var bridgedAccessoryNotReachable: HMError.Code { get }
    * @availability iOS 10.0+
    */
-  static get bridgedAccessoryNotReachable(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4483154448004671, undefined, []); }
+  static get bridgedAccessoryNotReachable(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4483154448004671, undefined, []); }
   /**
    * static var cannotRemoveBuiltinActionSet: HMError.Code { get }
    * @availability iOS 9.0+
    */
-  static get cannotRemoveBuiltinActionSet(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4019103761020494, undefined, []); }
+  static get cannotRemoveBuiltinActionSet(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4019103761020494, undefined, []); }
   /**
    * static var invalidAssociatedServiceType: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get invalidAssociatedServiceType(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 752225773389228, undefined, []); }
+  static get invalidAssociatedServiceType(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 752225773389228, undefined, []); }
   /**
    * static var objectNotAssociatedToAnyHome: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get objectNotAssociatedToAnyHome(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1228715000583336, undefined, []); }
+  static get objectNotAssociatedToAnyHome(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1228715000583336, undefined, []); }
   /**
    * static var accessoryCommunicationFailure: HMError.Code { get }
    * @availability iOS 14.0+
    */
-  static get accessoryCommunicationFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2332971470607544, undefined, []); }
+  static get accessoryCommunicationFailure(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2332971470607544, undefined, []); }
   /**
    * static var enterpriseNetworkNotSupported: HMError.Code { get }
    * @availability iOS 14.0+
    */
-  static get enterpriseNetworkNotSupported(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2411720447084186, undefined, []); }
+  static get enterpriseNetworkNotSupported(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2411720447084186, undefined, []); }
   /**
    * static var objectAlreadyAssociatedToHome: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get objectAlreadyAssociatedToHome(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3615717333823075, undefined, []); }
+  static get objectAlreadyAssociatedToHome(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3615717333823075, undefined, []); }
   /**
    * static var objectAssociatedToAnotherHome: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get objectAssociatedToAnotherHome(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1213103314300088, undefined, []); }
+  static get objectAssociatedToAnotherHome(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1213103314300088, undefined, []); }
   /**
    * static var cannotRemoveNonBridgeAccessory: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get cannotRemoveNonBridgeAccessory(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1151190722996985, undefined, []); }
+  static get cannotRemoveNonBridgeAccessory(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1151190722996985, undefined, []); }
   /**
    * static var maximumAccessoriesOfTypeInHome: HMError.Code { get }
    * @availability iOS 13.0+
    */
-  static get maximumAccessoriesOfTypeInHome(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 286441579779481, undefined, []); }
+  static get maximumAccessoriesOfTypeInHome(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 286441579779481, undefined, []); }
   /**
    * static var wiFiCredentialGenerationFailed: HMError.Code { get }
    * @availability iOS 13.0+
    */
-  static get wiFiCredentialGenerationFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2532752078638503, undefined, []); }
+  static get wiFiCredentialGenerationFailed(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2532752078638503, undefined, []); }
   /**
    * static var cannotUnblockNonBridgeAccessory: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get cannotUnblockNonBridgeAccessory(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 188295811492051, undefined, []); }
+  static get cannotUnblockNonBridgeAccessory(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 188295811492051, undefined, []); }
   /**
    * static var dateMustBeOnSpecifiedBoundaries: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get dateMustBeOnSpecifiedBoundaries(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 917240822078433, undefined, []); }
+  static get dateMustBeOnSpecifiedBoundaries(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 917240822078433, undefined, []); }
   /**
    * static var actionSetExecutionPartialSuccess: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get actionSetExecutionPartialSuccess(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4006151668228160, undefined, []); }
+  static get actionSetExecutionPartialSuccess(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4006151668228160, undefined, []); }
   /**
    * static var nameContainsProhibitedCharacters: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get nameContainsProhibitedCharacters(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4184811798379219, undefined, []); }
+  static get nameContainsProhibitedCharacters(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4184811798379219, undefined, []); }
   /**
    * static var notAuthorizedForLocationServices: HMError.Code { get }
    * @availability iOS 9.0+
    */
-  static get notAuthorizedForLocationServices(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2264305114457447, undefined, []); }
+  static get notAuthorizedForLocationServices(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2264305114457447, undefined, []); }
   /**
    * static var notAuthorizedForMicrophoneAccess: HMError.Code { get }
    * @availability iOS 10.0+
    */
-  static get notAuthorizedForMicrophoneAccess(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1672227703392270, undefined, []); }
+  static get notAuthorizedForMicrophoneAccess(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1672227703392270, undefined, []); }
   /**
    * static var invalidOrMissingAuthorizationData: HMError.Code { get }
    * @availability iOS 10.0+
    */
-  static get invalidOrMissingAuthorizationData(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 4240392826894178, undefined, []); }
+  static get invalidOrMissingAuthorizationData(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 4240392826894178, undefined, []); }
   /**
    * static var nameDoesNotEndWithValidCharacters: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get nameDoesNotEndWithValidCharacters(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3939517164097137, undefined, []); }
+  static get nameDoesNotEndWithValidCharacters(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3939517164097137, undefined, []); }
   /**
    * static var objectWithSimilarNameExistsInHome: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get objectWithSimilarNameExistsInHome(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 2841692955764920, undefined, []); }
+  static get objectWithSimilarNameExistsInHome(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 2841692955764920, undefined, []); }
   /**
    * static var cannotActivateTriggerTooFarInFuture: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get cannotActivateTriggerTooFarInFuture(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1464348045459181, undefined, []); }
+  static get cannotActivateTriggerTooFarInFuture(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1464348045459181, undefined, []); }
   /**
    * static var nameDoesNotStartWithValidCharacters: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get nameDoesNotStartWithValidCharacters(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 741490128512849, undefined, []); }
+  static get nameDoesNotStartWithValidCharacters(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 741490128512849, undefined, []); }
   /**
    * static var recurrenceMustBeOnSpecifiedBoundaries: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get recurrenceMustBeOnSpecifiedBoundaries(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 310847848835803, undefined, []); }
+  static get recurrenceMustBeOnSpecifiedBoundaries(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 310847848835803, undefined, []); }
   /**
    * static var notFound: HMError.Code { get }
    * @availability iOS 8.0+
    */
-  static get notFound(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 1052734966674887, undefined, []); }
+  static get notFound(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 1052734966674887, undefined, []); }
   /**
    * static var noHomeHub: HMError.Code { get }
    * @availability iOS 11.0+
    */
-  static get noHomeHub(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 3072923223565996, undefined, []); }
+  static get noHomeHub(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 3072923223565996, undefined, []); }
   declare readonly $type: { "s:SC11HMErrorCodeLeV": true };
 }
 
@@ -2535,12 +2535,12 @@ export const HMError_Code = {
    * @availability iOS 11.0+
    * @deprecated iOS 11.0
    */
-  get incompatibleHomeHub(): HMError_Code { return callSDK<HMError_Code>("HomeKit_3864e7f38681b875", 632183298355716, undefined, []); },
+  get incompatibleHomeHub(): HMError_Code { return callSDK<HMError_Code>("HomeKit_ff42ce03e691ab23", 632183298355716, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (HMError_Code) | null { return callSDK<(HMError_Code) | null>("HomeKit_3864e7f38681b875", 3753696488289902, undefined, [rawValue]); }
+  init(rawValue: number): (HMError_Code) | null { return callSDK<(HMError_Code) | null>("HomeKit_ff42ce03e691ab23", 3753696488289902, undefined, [rawValue]); }
 };
 
 /**
@@ -2558,48 +2558,48 @@ export class HMTrigger extends SDKHandle {
    * func addActionSet(_ actionSet: HMActionSet) async throws
    * @availability iOS 8.0+
    */
-  addActionSet(actionSet: HMActionSet, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1715559808729150, this, [actionSet, completion], [null,{"callback":{"out":[]}}]); }
+  addActionSet(actionSet: HMActionSet, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1715559808729150, this, [actionSet, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func enable(_ enable: Bool) async throws
    * @availability iOS 8.0+
    */
-  enable(enable: boolean, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1277929350456983, this, [enable, completion], [null,{"callback":{"out":[]}}]); }
+  enable(enable: boolean, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1277929350456983, this, [enable, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func removeActionSet(_ actionSet: HMActionSet) async throws
    * @availability iOS 8.0+
    */
-  removeActionSet(actionSet: HMActionSet, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4270534780764153, this, [actionSet, completion], [null,{"callback":{"out":[]}}]); }
+  removeActionSet(actionSet: HMActionSet, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4270534780764153, this, [actionSet, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateName(_ name: String) async throws
    * @availability iOS 8.0+
    */
-  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3181099600668284, this, [name, completion], [null,{"callback":{"out":[]}}]); }
+  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3181099600668284, this, [name, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var actionSets: [HMActionSet] { get }
    * @availability iOS 8.0+
    */
-  get actionSets(): Array<HMActionSet> { return callSDK<Array<HMActionSet>>("HomeKit_3864e7f38681b875", 3024570678818290, this, []); }
+  get actionSets(): Array<HMActionSet> { return callSDK<Array<HMActionSet>>("HomeKit_ff42ce03e691ab23", 3024570678818290, this, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 8.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 791258614186346, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 791258614186346, this, []); }
   /**
    * var lastFireDate: Date? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get lastFireDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("HomeKit_3864e7f38681b875", 4454774448954688, this, []); }
+  get lastFireDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("HomeKit_ff42ce03e691ab23", 4454774448954688, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 1202459812138360, this, []); }
+  get name(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 1202459812138360, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 3681648320348780, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 3681648320348780, this, []); }
   declare readonly $type: { "c:objc(cs)HMTrigger": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actionSets": true; "isEnabled": true; "lastFireDate": true; "name": true; "uniqueIdentifier": true };
 }
@@ -2610,127 +2610,127 @@ export class HMTrigger extends SDKHandle {
  */
 export class HMEventTrigger extends HMTrigger {
   /** class func predicateForEvaluatingTrigger(occurringAfter dateComponents: DateComponents) -> NSPredicate */
-  static predicateForEvaluatingTriggerOccurringAfter(dateComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 4365742657558363, undefined, [dateComponents]); }
+  static predicateForEvaluatingTriggerOccurringAfter(dateComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 4365742657558363, undefined, [dateComponents]); }
   /**
    * class func predicateForEvaluatingTriggerOccurring(afterSignificantEvent significantEvent: HMSignificantTimeEvent) -> NSPredicate
    * @availability iOS 11.0+
    */
-  static predicateForEvaluatingTriggerOccurringAfterSignificantEvent(significantEvent: HMSignificantTimeEvent): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 287097848177989, undefined, [significantEvent]); }
+  static predicateForEvaluatingTriggerOccurringAfterSignificantEvent(significantEvent: HMSignificantTimeEvent): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 287097848177989, undefined, [significantEvent]); }
   /**
    * class func predicateForEvaluatingTrigger(occurringAfter significantEvent: String, applyingOffset offset: DateComponents?) -> NSPredicate
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  static predicateForEvaluatingTriggerOccurringAfterApplyingOffset(significantEvent: string, offset?: $SDK21): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 3112422803189660, undefined, [significantEvent, offset]); }
+  static predicateForEvaluatingTriggerOccurringAfterApplyingOffset(significantEvent: string, offset?: $SDK21): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 3112422803189660, undefined, [significantEvent, offset]); }
   /** class func predicateForEvaluatingTrigger(occurringBefore dateComponents: DateComponents) -> NSPredicate */
-  static predicateForEvaluatingTriggerOccurringBefore(dateComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 554433147958454, undefined, [dateComponents]); }
+  static predicateForEvaluatingTriggerOccurringBefore(dateComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 554433147958454, undefined, [dateComponents]); }
   /**
    * class func predicateForEvaluatingTriggerOccurring(beforeSignificantEvent significantEvent: HMSignificantTimeEvent) -> NSPredicate
    * @availability iOS 11.0+
    */
-  static predicateForEvaluatingTriggerOccurringBeforeSignificantEvent(significantEvent: HMSignificantTimeEvent): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 1734985797683257, undefined, [significantEvent]); }
+  static predicateForEvaluatingTriggerOccurringBeforeSignificantEvent(significantEvent: HMSignificantTimeEvent): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 1734985797683257, undefined, [significantEvent]); }
   /**
    * class func predicateForEvaluatingTrigger(occurringBefore significantEvent: String, applyingOffset offset: DateComponents?) -> NSPredicate
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  static predicateForEvaluatingTriggerOccurringBeforeApplyingOffset(significantEvent: string, offset?: $SDK21): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 2378187515088635, undefined, [significantEvent, offset]); }
+  static predicateForEvaluatingTriggerOccurringBeforeApplyingOffset(significantEvent: string, offset?: $SDK21): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 2378187515088635, undefined, [significantEvent, offset]); }
   /**
    * class func predicateForEvaluatingTriggerOccurringBetweenDate(with firstDateComponents: DateComponents, secondDateWith secondDateWithComponents: DateComponents) -> NSPredicate
    * @availability iOS 11.0+
    */
-  static predicateForEvaluatingTriggerOccurringBetweenDate(firstDateComponents: _Foundation_DateComponents, secondDateWithComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 833095463965385, undefined, [firstDateComponents, secondDateWithComponents]); }
+  static predicateForEvaluatingTriggerOccurringBetweenDate(firstDateComponents: _Foundation_DateComponents, secondDateWithComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 833095463965385, undefined, [firstDateComponents, secondDateWithComponents]); }
   /**
    * class func predicate(forEvaluatingTriggerOccurringBetweenSignificantEvent firstSignificantEvent: HMSignificantTimeEvent, secondSignificantEvent: HMSignificantTimeEvent) -> NSPredicate
    * @availability iOS 11.0+
    */
-  static predicateForEvaluatingTriggerOccurringBetweenSignificantEventSecondSignificantEvent(firstSignificantEvent: HMSignificantTimeEvent, secondSignificantEvent: HMSignificantTimeEvent): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 2439023631804784, undefined, [firstSignificantEvent, secondSignificantEvent]); }
+  static predicateForEvaluatingTriggerOccurringBetweenSignificantEventSecondSignificantEvent(firstSignificantEvent: HMSignificantTimeEvent, secondSignificantEvent: HMSignificantTimeEvent): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 2439023631804784, undefined, [firstSignificantEvent, secondSignificantEvent]); }
   /** class func predicateForEvaluatingTrigger(occurringOn dateComponents: DateComponents) -> NSPredicate */
-  static predicateForEvaluatingTriggerOccurringOn(dateComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 3230151230472156, undefined, [dateComponents]); }
+  static predicateForEvaluatingTriggerOccurringOn(dateComponents: _Foundation_DateComponents): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 3230151230472156, undefined, [dateComponents]); }
   /** class func predicateForEvaluatingTrigger(_ characteristic: HMCharacteristic, relatedBy operatorType: NSComparisonPredicate.Operator, toValue value: Any) -> NSPredicate */
-  static predicateForEvaluatingTriggerRelatedByToValue(characteristic: HMCharacteristic, operatorType: _Foundation_NSComparisonPredicate_Operator, value: unknown): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 1596836637758712, undefined, [characteristic, operatorType, value]); }
+  static predicateForEvaluatingTriggerRelatedByToValue(characteristic: HMCharacteristic, operatorType: _Foundation_NSComparisonPredicate_Operator, value: unknown): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 1596836637758712, undefined, [characteristic, operatorType, value]); }
   /**
    * class func predicateForEvaluatingTrigger(withPresence presenceEvent: HMPresenceEvent) -> NSPredicate
    * @availability iOS 11.0+
    */
-  static predicateForEvaluatingTriggerWithPresence(presenceEvent: HMPresenceEvent): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_3864e7f38681b875", 1656266520330663, undefined, [presenceEvent]); }
+  static predicateForEvaluatingTriggerWithPresence(presenceEvent: HMPresenceEvent): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("HomeKit_ff42ce03e691ab23", 1656266520330663, undefined, [presenceEvent]); }
   /**
    * func addEvent(_ event: HMEvent, completionHandler completion: @escaping @Sendable ((any Error)?) -> Void)
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  addEvent(event: HMEvent, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4317622931269241, this, [event, completion], [null,{"callback":{"out":[]}}]); }
+  addEvent(event: HMEvent, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4317622931269241, this, [event, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * init(name: String, events: [HMEvent], end endEvents: [HMEvent]?, recurrences: [DateComponents]?, predicate: NSPredicate?)
    * @availability iOS 11.0+
    */
-  static initNameEventsEndRecurrencesPredicate(name: string, events: Array<HMEvent>, endEvents?: (Array<HMEvent>) | null, recurrences?: $SDK22, predicate?: $SDK23): HMEventTrigger { return callSDK<HMEventTrigger>("HomeKit_3864e7f38681b875", 2137687962961811, undefined, [name, events, endEvents, recurrences, predicate]); }
+  static initNameEventsEndRecurrencesPredicate(name: string, events: Array<HMEvent>, endEvents?: (Array<HMEvent>) | null, recurrences?: $SDK22, predicate?: $SDK23): HMEventTrigger { return callSDK<HMEventTrigger>("HomeKit_ff42ce03e691ab23", 2137687962961811, undefined, [name, events, endEvents, recurrences, predicate]); }
   /**
    * init(name: String, events: [HMEvent], predicate: NSPredicate?)
    * @availability iOS 9.0+
    */
-  static initNameEventsPredicate(name: string, events: Array<HMEvent>, predicate?: $SDK23): HMEventTrigger { return callSDK<HMEventTrigger>("HomeKit_3864e7f38681b875", 4114023327446126, undefined, [name, events, predicate]); }
+  static initNameEventsPredicate(name: string, events: Array<HMEvent>, predicate?: $SDK23): HMEventTrigger { return callSDK<HMEventTrigger>("HomeKit_ff42ce03e691ab23", 4114023327446126, undefined, [name, events, predicate]); }
   /**
    * func removeEvent(_ event: HMEvent, completionHandler completion: @escaping @Sendable ((any Error)?) -> Void)
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  removeEvent(event: HMEvent, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1862992162325979, this, [event, completion], [null,{"callback":{"out":[]}}]); }
+  removeEvent(event: HMEvent, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1862992162325979, this, [event, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateEndEvents(_ endEvents: [HMEvent]) async throws
    * @availability iOS 11.0+
    */
-  updateEndEvents(endEvents: Array<HMEvent>, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1318923010150284, this, [endEvents, completion], [null,{"callback":{"out":[]}}]); }
+  updateEndEvents(endEvents: Array<HMEvent>, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1318923010150284, this, [endEvents, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateEvents(_ events: [HMEvent]) async throws
    * @availability iOS 11.0+
    */
-  updateEvents(events: Array<HMEvent>, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 2630511064470131, this, [events, completion], [null,{"callback":{"out":[]}}]); }
+  updateEvents(events: Array<HMEvent>, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 2630511064470131, this, [events, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateExecuteOnce(_ executeOnce: Bool) async throws
    * @availability iOS 11.0+
    */
-  updateExecuteOnce(executeOnce: boolean, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1463405166654877, this, [executeOnce, completion], [null,{"callback":{"out":[]}}]); }
+  updateExecuteOnce(executeOnce: boolean, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1463405166654877, this, [executeOnce, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updatePredicate(_ predicate: NSPredicate?) async throws
    * @availability iOS 9.0+
    */
-  updatePredicate(predicate: $SDK23, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 864304931298343, this, [predicate, completion], [null,{"callback":{"out":[]}}]); }
+  updatePredicate(predicate: $SDK23, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 864304931298343, this, [predicate, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateRecurrences(_ recurrences: [DateComponents]?) async throws
    * @availability iOS 11.0+
    */
-  updateRecurrences(recurrences: $SDK22, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3963811896949648, this, [recurrences, completion], [null,{"callback":{"out":[]}}]); }
+  updateRecurrences(recurrences: $SDK22, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3963811896949648, this, [recurrences, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var endEvents: [HMEvent] { get }
    * @availability iOS 11.0+
    */
-  get endEvents(): Array<HMEvent> { return callSDK<Array<HMEvent>>("HomeKit_3864e7f38681b875", 2505895919169813, this, []); }
+  get endEvents(): Array<HMEvent> { return callSDK<Array<HMEvent>>("HomeKit_ff42ce03e691ab23", 2505895919169813, this, []); }
   /**
    * var events: [HMEvent] { get }
    * @availability iOS 9.0+
    */
-  get events(): Array<HMEvent> { return callSDK<Array<HMEvent>>("HomeKit_3864e7f38681b875", 472636739847018, this, []); }
+  get events(): Array<HMEvent> { return callSDK<Array<HMEvent>>("HomeKit_ff42ce03e691ab23", 472636739847018, this, []); }
   /**
    * var executeOnce: Bool { get }
    * @availability iOS 11.0+
    */
-  get executeOnce(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 3009793534908115, this, []); }
+  get executeOnce(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 3009793534908115, this, []); }
   /**
    * @NSCopying var predicate: NSPredicate? { get }
    * @availability iOS 9.0+
    */
-  get predicate(): $SDK23 { return callSDK<$SDK23>("HomeKit_3864e7f38681b875", 1165670615419356, this, []); }
+  get predicate(): $SDK23 { return callSDK<$SDK23>("HomeKit_ff42ce03e691ab23", 1165670615419356, this, []); }
   /**
    * var recurrences: [DateComponents]? { get }
    * @availability iOS 11.0+
    */
-  get recurrences(): $SDK22 { return callSDK<$SDK22>("HomeKit_3864e7f38681b875", 2803373359627682, this, []); }
+  get recurrences(): $SDK22 { return callSDK<$SDK22>("HomeKit_ff42ce03e691ab23", 2803373359627682, this, []); }
   /**
    * var triggerActivationState: HMEventTriggerActivationState { get }
    * @availability iOS 11.0+
    */
-  get triggerActivationState(): HMEventTriggerActivationState { return callSDK<HMEventTriggerActivationState>("HomeKit_3864e7f38681b875", 3728528306775818, this, []); }
+  get triggerActivationState(): HMEventTriggerActivationState { return callSDK<HMEventTriggerActivationState>("HomeKit_ff42ce03e691ab23", 3728528306775818, this, []); }
   declare readonly $type: { "c:objc(cs)HMEventTrigger": true; "c:objc(cs)HMTrigger": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actionSets": true; "isEnabled": true; "lastFireDate": true; "name": true; "uniqueIdentifier": true; "endEvents": true; "events": true; "executeOnce": true; "predicate": true; "recurrences": true; "triggerActivationState": true };
 }
@@ -2746,7 +2746,7 @@ export const HMEventTriggerActivationState = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (HMEventTriggerActivationState) | null { return callSDK<(HMEventTriggerActivationState) | null>("HomeKit_3864e7f38681b875", 1011135397346376, undefined, [rawValue]); }
+  init(rawValue: number): (HMEventTriggerActivationState) | null { return callSDK<(HMEventTriggerActivationState) | null>("HomeKit_ff42ce03e691ab23", 1011135397346376, undefined, [rawValue]); }
 };
 
 /**
@@ -2755,152 +2755,152 @@ export const HMEventTriggerActivationState = {
  */
 export class HMHome extends SDKHandle {
   /** func addAccessory(_ accessory: HMAccessory) async throws */
-  addAccessory(accessory: HMAccessory, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4204643978212025, this, [accessory, completion], [null,{"callback":{"out":[]}}]); }
+  addAccessory(accessory: HMAccessory, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4204643978212025, this, [accessory, completion], [null,{"callback":{"out":[]}}]); }
   /** func addActionSet(named actionSetName: String) async throws -> HMActionSet */
-  addActionSet(actionSetName: string, completion: ((arg0: (HMActionSet) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1388022734864863, this, [actionSetName, completion], [null,{"callback":{"out":[]}}]); }
+  addActionSet(actionSetName: string, completion: ((arg0: (HMActionSet) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1388022734864863, this, [actionSetName, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func addAndSetUpAccessories() async throws
    * @availability iOS 10.0+
    * @deprecated iOS 15.4
    */
-  addAndSetupAccessoriesCompletionHandler(completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 779508373605091, this, [completion], [{"callback":{"out":[]}}]); }
+  addAndSetupAccessoriesCompletionHandler(completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 779508373605091, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func addAndSetUpAccessories(payload: HMAccessorySetupPayload) async throws -> [HMAccessory]
    * @availability iOS 11.3+
    * @deprecated iOS 15.0
    */
-  addAndSetupAccessoriesWithCompletionHandler(payload: HMAccessorySetupPayload, completion: ((arg0: (Array<HMAccessory>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3341763731444870, this, [payload, completion], [null,{"callback":{"out":[]}}]); }
+  addAndSetupAccessoriesWithCompletionHandler(payload: HMAccessorySetupPayload, completion: ((arg0: (Array<HMAccessory>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3341763731444870, this, [payload, completion], [null,{"callback":{"out":[]}}]); }
   /** func addRoom(named roomName: String) async throws -> HMRoom */
-  addRoom(roomName: string, completion: ((arg0: (HMRoom) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4481713386133090, this, [roomName, completion], [null,{"callback":{"out":[]}}]); }
+  addRoom(roomName: string, completion: ((arg0: (HMRoom) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4481713386133090, this, [roomName, completion], [null,{"callback":{"out":[]}}]); }
   /** func addServiceGroup(named serviceGroupName: String) async throws -> HMServiceGroup */
-  addServiceGroup(serviceGroupName: string, completion: ((arg0: (HMServiceGroup) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4205362043568170, this, [serviceGroupName, completion], [null,{"callback":{"out":[]}}]); }
+  addServiceGroup(serviceGroupName: string, completion: ((arg0: (HMServiceGroup) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4205362043568170, this, [serviceGroupName, completion], [null,{"callback":{"out":[]}}]); }
   /** func addTrigger(_ trigger: HMTrigger) async throws */
-  addTrigger(trigger: HMTrigger, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 2170180150774729, this, [trigger, completion], [null,{"callback":{"out":[]}}]); }
+  addTrigger(trigger: HMTrigger, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 2170180150774729, this, [trigger, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func addUser(completionHandler completion: @escaping @Sendable (HMUser?, (any Error)?) -> Void)
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  addUser(completion: ((arg0: (HMUser) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1930350328895622, this, [completion], [{"callback":{"out":[]}}]); }
+  addUser(completion: ((arg0: (HMUser) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1930350328895622, this, [completion], [{"callback":{"out":[]}}]); }
   /** func addZone(named zoneName: String) async throws -> HMZone */
-  addZone(zoneName: string, completion: ((arg0: (HMZone) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3702169087133399, this, [zoneName, completion], [null,{"callback":{"out":[]}}]); }
+  addZone(zoneName: string, completion: ((arg0: (HMZone) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3702169087133399, this, [zoneName, completion], [null,{"callback":{"out":[]}}]); }
   /** func assignAccessory(_ accessory: HMAccessory, to room: HMRoom) async throws */
-  assignAccessory(accessory: HMAccessory, room: HMRoom, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 156932470433898, this, [accessory, room, completion], [null,null,{"callback":{"out":[]}}]); }
+  assignAccessory(accessory: HMAccessory, room: HMRoom, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 156932470433898, this, [accessory, room, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func builtinActionSet(ofType actionSetType: String) -> HMActionSet?
    * @availability iOS 9.0+
    */
-  builtinActionSet(actionSetType: string): (HMActionSet) | null { return callSDK<(HMActionSet) | null>("HomeKit_3864e7f38681b875", 269755218371761, this, [actionSetType]); }
+  builtinActionSet(actionSetType: string): (HMActionSet) | null { return callSDK<(HMActionSet) | null>("HomeKit_ff42ce03e691ab23", 269755218371761, this, [actionSetType]); }
   /** func executeActionSet(_ actionSet: HMActionSet) async throws */
-  executeActionSet(actionSet: HMActionSet, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 2673929709487266, this, [actionSet, completion], [null,{"callback":{"out":[]}}]); }
+  executeActionSet(actionSet: HMActionSet, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 2673929709487266, this, [actionSet, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func homeAccessControl(for user: HMUser) -> HMHomeAccessControl
    * @availability iOS 9.0+
    */
-  homeAccessControl(user: HMUser): HMHomeAccessControl { return callSDK<HMHomeAccessControl>("HomeKit_3864e7f38681b875", 4379031333204895, this, [user]); }
+  homeAccessControl(user: HMUser): HMHomeAccessControl { return callSDK<HMHomeAccessControl>("HomeKit_ff42ce03e691ab23", 4379031333204895, this, [user]); }
   /**
    * func manageUsers() async throws
    * @availability iOS 9.0+
    */
-  manageUsers(completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 2776751013588044, this, [completion], [{"callback":{"out":[]}}]); }
+  manageUsers(completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 2776751013588044, this, [completion], [{"callback":{"out":[]}}]); }
   /** func removeAccessory(_ accessory: HMAccessory) async throws */
-  removeAccessory(accessory: HMAccessory, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 666338179580889, this, [accessory, completion], [null,{"callback":{"out":[]}}]); }
+  removeAccessory(accessory: HMAccessory, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 666338179580889, this, [accessory, completion], [null,{"callback":{"out":[]}}]); }
   /** func removeActionSet(_ actionSet: HMActionSet) async throws */
-  removeActionSet(actionSet: HMActionSet, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 68475187193260, this, [actionSet, completion], [null,{"callback":{"out":[]}}]); }
+  removeActionSet(actionSet: HMActionSet, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 68475187193260, this, [actionSet, completion], [null,{"callback":{"out":[]}}]); }
   /** func removeRoom(_ room: HMRoom) async throws */
-  removeRoom(room: HMRoom, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3782254073050427, this, [room, completion], [null,{"callback":{"out":[]}}]); }
+  removeRoom(room: HMRoom, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3782254073050427, this, [room, completion], [null,{"callback":{"out":[]}}]); }
   /** func removeServiceGroup(_ group: HMServiceGroup) async throws */
-  removeServiceGroup(group: HMServiceGroup, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3470958417849134, this, [group, completion], [null,{"callback":{"out":[]}}]); }
+  removeServiceGroup(group: HMServiceGroup, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3470958417849134, this, [group, completion], [null,{"callback":{"out":[]}}]); }
   /** func removeTrigger(_ trigger: HMTrigger) async throws */
-  removeTrigger(trigger: HMTrigger, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 2543616901910519, this, [trigger, completion], [null,{"callback":{"out":[]}}]); }
+  removeTrigger(trigger: HMTrigger, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 2543616901910519, this, [trigger, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func removeUser(_ user: HMUser, completionHandler completion: @escaping @Sendable ((any Error)?) -> Void)
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  removeUser(user: HMUser, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 551726869792281, this, [user, completion], [null,{"callback":{"out":[]}}]); }
+  removeUser(user: HMUser, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 551726869792281, this, [user, completion], [null,{"callback":{"out":[]}}]); }
   /** func removeZone(_ zone: HMZone) async throws */
-  removeZone(zone: HMZone, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1051731186027176, this, [zone, completion], [null,{"callback":{"out":[]}}]); }
+  removeZone(zone: HMZone, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1051731186027176, this, [zone, completion], [null,{"callback":{"out":[]}}]); }
   /** func roomForEntireHome() -> HMRoom */
-  roomForEntireHome(): HMRoom { return callSDK<HMRoom>("HomeKit_3864e7f38681b875", 2827403606477009, this, []); }
+  roomForEntireHome(): HMRoom { return callSDK<HMRoom>("HomeKit_ff42ce03e691ab23", 2827403606477009, this, []); }
   /** func servicesWithTypes(_ serviceTypes: [String]) -> [HMService]? */
-  servicesWithTypes(serviceTypes: Array<string>): (Array<HMService>) | null { return callSDK<(Array<HMService>) | null>("HomeKit_3864e7f38681b875", 2347918216712502, this, [serviceTypes]); }
+  servicesWithTypes(serviceTypes: Array<string>): (Array<HMService>) | null { return callSDK<(Array<HMService>) | null>("HomeKit_ff42ce03e691ab23", 2347918216712502, this, [serviceTypes]); }
   /** func unblockAccessory(_ accessory: HMAccessory) async throws */
-  unblockAccessory(accessory: HMAccessory, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3306140274911834, this, [accessory, completion], [null,{"callback":{"out":[]}}]); }
+  unblockAccessory(accessory: HMAccessory, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3306140274911834, this, [accessory, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateName(_ name: String) async throws
    * @availability iOS 8.0+
    */
-  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3257166618617546, this, [name, completion], [null,{"callback":{"out":[]}}]); }
+  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3257166618617546, this, [name, completion], [null,{"callback":{"out":[]}}]); }
   /** var accessories: [HMAccessory] { get } */
-  get accessories(): Array<HMAccessory> { return callSDK<Array<HMAccessory>>("HomeKit_3864e7f38681b875", 2089497593267245, this, []); }
+  get accessories(): Array<HMAccessory> { return callSDK<Array<HMAccessory>>("HomeKit_ff42ce03e691ab23", 2089497593267245, this, []); }
   /** var actionSets: [HMActionSet] { get } */
-  get actionSets(): Array<HMActionSet> { return callSDK<Array<HMActionSet>>("HomeKit_3864e7f38681b875", 2378914820344013, this, []); }
+  get actionSets(): Array<HMActionSet> { return callSDK<Array<HMActionSet>>("HomeKit_ff42ce03e691ab23", 2378914820344013, this, []); }
   /**
    * var currentUser: HMUser { get }
    * @availability iOS 9.0+
    */
-  get currentUser(): HMUser { return callSDK<HMUser>("HomeKit_3864e7f38681b875", 942111672694336, this, []); }
+  get currentUser(): HMUser { return callSDK<HMUser>("HomeKit_ff42ce03e691ab23", 942111672694336, this, []); }
   /**
    * weak var delegate: (any HMHomeDelegate)? { get set }
    * @availability iOS 8.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_3864e7f38681b875", 3895806526405827, this, []); }
-  set delegate(value: (Implements<HMHomeDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 4430368620764033, this, [value], [{"protocol":"c:objc(pl)HMHomeDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_ff42ce03e691ab23", 3895806526405827, this, []); }
+  set delegate(value: (Implements<HMHomeDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 4430368620764033, this, [value], [{"protocol":"c:objc(pl)HMHomeDelegate"}]); }
   /**
    * var homeHubState: HMHomeHubState { get }
    * @availability iOS 11.0+
    */
-  get homeHubState(): HMHomeHubState { return callSDK<HMHomeHubState>("HomeKit_3864e7f38681b875", 235552433752908, this, []); }
+  get homeHubState(): HMHomeHubState { return callSDK<HMHomeHubState>("HomeKit_ff42ce03e691ab23", 235552433752908, this, []); }
   /**
    * var matterControllerID: String { get }
    * @availability iOS 16.1+
    */
-  get matterControllerID(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 4105789598869632, this, []); }
+  get matterControllerID(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 4105789598869632, this, []); }
   /**
    * var matterControllerXPCConnectBlock: () -> NSXPCConnection { get }
    * @availability iOS 16.1+
    */
-  get matterControllerXPCConnectBlock(): $SDK32 { return callSDK<$SDK32>("HomeKit_3864e7f38681b875", 1461091669314209, this, []); }
+  get matterControllerXPCConnectBlock(): $SDK32 { return callSDK<$SDK32>("HomeKit_ff42ce03e691ab23", 1461091669314209, this, []); }
   /**
    * var matterStartupParametersXPCConnectBlock: () -> NSXPCConnection { get }
    * @availability iOS 18.2+
    */
-  get matterStartupParametersXPCConnectBlock(): $SDK32 { return callSDK<$SDK32>("HomeKit_3864e7f38681b875", 971695432119260, this, []); }
+  get matterStartupParametersXPCConnectBlock(): $SDK32 { return callSDK<$SDK32>("HomeKit_ff42ce03e691ab23", 971695432119260, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 1989125917473945, this, []); }
+  get name(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 1989125917473945, this, []); }
   /**
    * var isPrimary: Bool { get }
    * @availability iOS 8.0+
    */
-  get isPrimary(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 4037809404044886, this, []); }
+  get isPrimary(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 4037809404044886, this, []); }
   /** var rooms: [HMRoom] { get } */
-  get rooms(): Array<HMRoom> { return callSDK<Array<HMRoom>>("HomeKit_3864e7f38681b875", 3896454860089788, this, []); }
+  get rooms(): Array<HMRoom> { return callSDK<Array<HMRoom>>("HomeKit_ff42ce03e691ab23", 3896454860089788, this, []); }
   /** var serviceGroups: [HMServiceGroup] { get } */
-  get serviceGroups(): Array<HMServiceGroup> { return callSDK<Array<HMServiceGroup>>("HomeKit_3864e7f38681b875", 3788466405771385, this, []); }
+  get serviceGroups(): Array<HMServiceGroup> { return callSDK<Array<HMServiceGroup>>("HomeKit_ff42ce03e691ab23", 3788466405771385, this, []); }
   /**
    * var supportsAddingNetworkRouter: Bool { get }
    * @availability iOS 13.2+
    */
-  get supportsAddingNetworkRouter(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 2938657330966144, this, []); }
+  get supportsAddingNetworkRouter(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 2938657330966144, this, []); }
   /** var triggers: [HMTrigger] { get } */
-  get triggers(): Array<HMTrigger> { return callSDK<Array<HMTrigger>>("HomeKit_3864e7f38681b875", 3183950285658078, this, []); }
+  get triggers(): Array<HMTrigger> { return callSDK<Array<HMTrigger>>("HomeKit_ff42ce03e691ab23", 3183950285658078, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 1530788806963912, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 1530788806963912, this, []); }
   /**
    * var users: [HMUser] { get }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get users(): Array<HMUser> { return callSDK<Array<HMUser>>("HomeKit_3864e7f38681b875", 1930537175567568, this, []); }
+  get users(): Array<HMUser> { return callSDK<Array<HMUser>>("HomeKit_ff42ce03e691ab23", 1930537175567568, this, []); }
   /** var zones: [HMZone] { get } */
-  get zones(): Array<HMZone> { return callSDK<Array<HMZone>>("HomeKit_3864e7f38681b875", 1155476043150778, this, []); }
+  get zones(): Array<HMZone> { return callSDK<Array<HMZone>>("HomeKit_ff42ce03e691ab23", 1155476043150778, this, []); }
   declare readonly $type: { "c:objc(cs)HMHome": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessories": true; "actionSets": true; "currentUser": true; "delegate": true; "homeHubState": true; "matterControllerID": true; "name": true; "isPrimary": true; "rooms": true; "serviceGroups": true; "supportsAddingNetworkRouter": true; "triggers": true; "uniqueIdentifier": true; "users": true; "zones": true };
 }
@@ -2914,7 +2914,7 @@ export class HMHomeAccessControl extends HMAccessControl {
    * var isAdministrator: Bool { get }
    * @availability iOS 9.0+
    */
-  get isAdministrator(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 4158043948691974, this, []); }
+  get isAdministrator(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 4158043948691974, this, []); }
   declare readonly $type: { "c:objc(cs)HMHomeAccessControl": true; "c:objc(cs)HMAccessControl": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAdministrator": true };
 }
@@ -3002,7 +3002,7 @@ export const HMHomeHubState = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (HMHomeHubState) | null { return callSDK<(HMHomeHubState) | null>("HomeKit_3864e7f38681b875", 2073725348667570, undefined, [rawValue]); }
+  init(rawValue: number): (HMHomeHubState) | null { return callSDK<(HMHomeHubState) | null>("HomeKit_ff42ce03e691ab23", 2073725348667570, undefined, [rawValue]); }
 };
 
 /**
@@ -3014,50 +3014,50 @@ export class HMHomeManager extends SDKHandle {
    * func addHome(named homeName: String) async throws -> HMHome
    * @availability iOS 8.0+
    */
-  addHome(homeName: string, completion: ((arg0: (HMHome) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_3864e7f38681b875", 2196193980032506, this, [homeName, completion], [null,{"callback":{"out":[]}}]); }
+  addHome(homeName: string, completion: ((arg0: (HMHome) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 2196193980032506, this, [homeName, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func findVendorAccessory(hapPublicKey: Data) async throws -> HMAccessory?
    * @availability iOS 26.1+
    */
-  findVendorAccessory(hapPublicKey: ArrayBuffer, completion: ((arg0: (HMAccessory) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4126609559889395, this, [hapPublicKey, completion], [null,{"callback":{"out":[]}}]); }
+  findVendorAccessory(hapPublicKey: ArrayBuffer, completion: ((arg0: (HMAccessory) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4126609559889395, this, [hapPublicKey, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): HMHomeManager { return callSDK<HMHomeManager>("HomeKit_3864e7f38681b875", 3719386732690290, undefined, []); }
+  static init(): HMHomeManager { return callSDK<HMHomeManager>("HomeKit_ff42ce03e691ab23", 3719386732690290, undefined, []); }
   /**
    * func removeHome(_ home: HMHome) async throws
    * @availability iOS 8.0+
    */
-  removeHome(home: HMHome, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1918565957225244, this, [home, completion], [null,{"callback":{"out":[]}}]); }
+  removeHome(home: HMHome, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1918565957225244, this, [home, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updatePrimaryHome(_ home: HMHome) async throws
    * @availability iOS 8.0+
    * @deprecated iOS 16.1
    */
-  updatePrimaryHome(home: HMHome, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4028413016755595, this, [home, completion], [null,{"callback":{"out":[]}}]); }
+  updatePrimaryHome(home: HMHome, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4028413016755595, this, [home, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var authorizationStatus: HMHomeManagerAuthorizationStatus { get }
    * @availability iOS 13.0+
    */
-  get authorizationStatus(): HMHomeManagerAuthorizationStatus { return callSDK<HMHomeManagerAuthorizationStatus>("HomeKit_3864e7f38681b875", 887657529863415, this, []); }
+  get authorizationStatus(): HMHomeManagerAuthorizationStatus { return callSDK<HMHomeManagerAuthorizationStatus>("HomeKit_ff42ce03e691ab23", 887657529863415, this, []); }
   /**
    * weak var delegate: (any HMHomeManagerDelegate)? { get set }
    * @availability iOS 8.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_3864e7f38681b875", 124115878063215, this, []); }
-  set delegate(value: (Implements<HMHomeManagerDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 4113508028943493, this, [value], [{"protocol":"c:objc(pl)HMHomeManagerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_ff42ce03e691ab23", 124115878063215, this, []); }
+  set delegate(value: (Implements<HMHomeManagerDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 4113508028943493, this, [value], [{"protocol":"c:objc(pl)HMHomeManagerDelegate"}]); }
   /**
    * var homes: [HMHome] { get }
    * @availability iOS 8.0+
    */
-  get homes(): Array<HMHome> { return callSDK<Array<HMHome>>("HomeKit_3864e7f38681b875", 3050465864866793, this, []); }
+  get homes(): Array<HMHome> { return callSDK<Array<HMHome>>("HomeKit_ff42ce03e691ab23", 3050465864866793, this, []); }
   /**
    * var primaryHome: HMHome? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.1
    */
-  get primaryHome(): (HMHome) | null { return callSDK<(HMHome) | null>("HomeKit_3864e7f38681b875", 4167850619654531, this, []); }
+  get primaryHome(): (HMHome) | null { return callSDK<(HMHome) | null>("HomeKit_ff42ce03e691ab23", 4167850619654531, this, []); }
   declare readonly $type: { "c:objc(cs)HMHomeManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorizationStatus": true; "delegate": true; "homes": true; "primaryHome": true };
 }
@@ -3073,22 +3073,22 @@ export const HMHomeManagerAuthorizationStatus = {
    * static var authorized: HMHomeManagerAuthorizationStatus { get }
    * @availability iOS 13.0+
    */
-  get authorized(): HMHomeManagerAuthorizationStatus { return callSDK<HMHomeManagerAuthorizationStatus>("HomeKit_3864e7f38681b875", 421754659490100, undefined, []); },
+  get authorized(): HMHomeManagerAuthorizationStatus { return callSDK<HMHomeManagerAuthorizationStatus>("HomeKit_ff42ce03e691ab23", 421754659490100, undefined, []); },
   /**
    * static var determined: HMHomeManagerAuthorizationStatus { get }
    * @availability iOS 13.0+
    */
-  get determined(): HMHomeManagerAuthorizationStatus { return callSDK<HMHomeManagerAuthorizationStatus>("HomeKit_3864e7f38681b875", 2818121979342089, undefined, []); },
+  get determined(): HMHomeManagerAuthorizationStatus { return callSDK<HMHomeManagerAuthorizationStatus>("HomeKit_ff42ce03e691ab23", 2818121979342089, undefined, []); },
   /**
    * static var restricted: HMHomeManagerAuthorizationStatus { get }
    * @availability iOS 13.0+
    */
-  get restricted(): HMHomeManagerAuthorizationStatus { return callSDK<HMHomeManagerAuthorizationStatus>("HomeKit_3864e7f38681b875", 2176771099142914, undefined, []); },
+  get restricted(): HMHomeManagerAuthorizationStatus { return callSDK<HMHomeManagerAuthorizationStatus>("HomeKit_ff42ce03e691ab23", 2176771099142914, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): HMHomeManagerAuthorizationStatus { return callSDK<HMHomeManagerAuthorizationStatus>("HomeKit_3864e7f38681b875", 1913985121401592, undefined, [rawValue]); }
+  init(rawValue: number): HMHomeManagerAuthorizationStatus { return callSDK<HMHomeManagerAuthorizationStatus>("HomeKit_ff42ce03e691ab23", 1913985121401592, undefined, [rawValue]); }
 };
 
 /**
@@ -3137,18 +3137,18 @@ export class HMLocationEvent extends (HMEvent as unknown as Omit<typeof HMEvent,
    * init(region: CLRegion)
    * @availability iOS 9.0+
    */
-  static init(region: _CoreLocation_CLRegion): HMLocationEvent { return callSDK<HMLocationEvent>("HomeKit_3864e7f38681b875", 1421069227413629, undefined, [region]); }
+  static init(region: _CoreLocation_CLRegion): HMLocationEvent { return callSDK<HMLocationEvent>("HomeKit_ff42ce03e691ab23", 1421069227413629, undefined, [region]); }
   /**
    * func updateRegion(_ region: CLRegion, completionHandler completion: @escaping @Sendable ((any Error)?) -> Void)
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  updateRegion(region: _CoreLocation_CLRegion, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3171539420334544, this, [region, completion], [null,{"callback":{"out":[]}}]); }
+  updateRegion(region: _CoreLocation_CLRegion, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3171539420334544, this, [region, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var region: CLRegion? { get }
    * @availability iOS 9.0+
    */
-  get region(): $SDK36 { return callSDK<$SDK36>("HomeKit_3864e7f38681b875", 4175311280652436, this, []); }
+  get region(): $SDK36 { return callSDK<$SDK36>("HomeKit_ff42ce03e691ab23", 4175311280652436, this, []); }
   declare readonly $type: { "c:objc(cs)HMLocationEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "region": true };
 }
@@ -3162,23 +3162,23 @@ export class HMMediaSourceDisplayOrderProfile extends HMAccessoryProfile {
    * func writeOrder(_ order: [Int]) async throws
    * @availability iOS 18.0+
    */
-  writeOrder(order: Array<number>): Promise<void> { return callSDKAsync<void>("HomeKit_3864e7f38681b875", 3856546400475581, this, [order]); }
+  writeOrder(order: Array<number>): Promise<void> { return callSDKAsync<void>("HomeKit_ff42ce03e691ab23", 3856546400475581, this, [order]); }
   /**
    * final let canModifyOrder: Bool
    * @availability iOS 18.0+
    */
-  get canModifyOrder(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 3700163298066432, this, []); }
+  get canModifyOrder(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 3700163298066432, this, []); }
   /**
    * var order: [Int] { get }
    * @availability iOS 18.0+
    */
-  get order(): Array<number> { return callSDK<Array<number>>("HomeKit_3864e7f38681b875", 3214379721457554, this, []); }
+  get order(): Array<number> { return callSDK<Array<number>>("HomeKit_ff42ce03e691ab23", 3214379721457554, this, []); }
   /**
    * weak var delegate: (any HMMediaSourceDisplayOrderProfile.Delegate)?
    * @availability iOS 18.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_3864e7f38681b875", 4360006285605711, this, []); }
-  set delegate(value: (Implements<HMMediaSourceDisplayOrderProfile_Delegate> | SDKHandle) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 738149523369962, this, [value], [{"protocol":"s:7HomeKit32HMMediaSourceDisplayOrderProfileC8DelegateP"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_ff42ce03e691ab23", 4360006285605711, this, []); }
+  set delegate(value: (Implements<HMMediaSourceDisplayOrderProfile_Delegate> | SDKHandle) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 738149523369962, this, [value], [{"protocol":"s:7HomeKit32HMMediaSourceDisplayOrderProfileC8DelegateP"}]); }
   declare readonly $type: { "c:@M@HomeKit@objc(cs)HMMediaSourceDisplayOrderProfile": true; "c:objc(cs)HMAccessoryProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessory": true; "services": true; "uniqueIdentifier": true };
 }
@@ -3204,8 +3204,8 @@ export class HMMutableCalendarEvent extends (HMCalendarEvent as unknown as Omit<
    * var fireDateComponents: DateComponents { get set }
    * @availability iOS 11.0+
    */
-  get fireDateComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HomeKit_3864e7f38681b875", 2751408217898674, this, []); }
-  set fireDateComponents(value: _Foundation_DateComponents) { callSDK<void>("HomeKit_3864e7f38681b875", 2389973786783592, this, [value]); }
+  get fireDateComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HomeKit_ff42ce03e691ab23", 2751408217898674, this, []); }
+  set fireDateComponents(value: _Foundation_DateComponents) { callSDK<void>("HomeKit_ff42ce03e691ab23", 2389973786783592, this, [value]); }
   declare readonly $type: { "c:objc(cs)HMMutableCalendarEvent": true; "c:objc(cs)HMCalendarEvent": true; "c:objc(cs)HMTimeEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "fireDateComponents": true };
 }
@@ -3228,14 +3228,14 @@ export class HMMutableCharacteristicThresholdRangeEvent extends (HMCharacteristi
    * var characteristic: HMCharacteristic { get set }
    * @availability iOS 11.0+
    */
-  get characteristic(): HMCharacteristic { return callSDK<HMCharacteristic>("HomeKit_3864e7f38681b875", 1598928051393888, this, []); }
-  set characteristic(value: HMCharacteristic) { callSDK<void>("HomeKit_3864e7f38681b875", 3668136285564927, this, [value]); }
+  get characteristic(): HMCharacteristic { return callSDK<HMCharacteristic>("HomeKit_ff42ce03e691ab23", 1598928051393888, this, []); }
+  set characteristic(value: HMCharacteristic) { callSDK<void>("HomeKit_ff42ce03e691ab23", 3668136285564927, this, [value]); }
   /**
    * @NSCopying var thresholdRange: HMNumberRange { get set }
    * @availability iOS 11.0+
    */
-  get thresholdRange(): HMNumberRange { return callSDK<HMNumberRange>("HomeKit_3864e7f38681b875", 101446572544871, this, []); }
-  set thresholdRange(value: HMNumberRange) { callSDK<void>("HomeKit_3864e7f38681b875", 3940255262556007, this, [value]); }
+  get thresholdRange(): HMNumberRange { return callSDK<HMNumberRange>("HomeKit_ff42ce03e691ab23", 101446572544871, this, []); }
+  set thresholdRange(value: HMNumberRange) { callSDK<void>("HomeKit_ff42ce03e691ab23", 3940255262556007, this, [value]); }
   declare readonly $type: { "c:objc(cs)HMMutableCharacteristicThresholdRangeEvent": true; "c:objc(cs)HMCharacteristicThresholdRangeEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "characteristic": true; "thresholdRange": true };
 }
@@ -3249,8 +3249,8 @@ export class HMMutableDurationEvent extends (HMDurationEvent as unknown as Omit<
    * var duration: TimeInterval { get set }
    * @availability iOS 11.0+
    */
-  get duration(): number { return callSDK<number>("HomeKit_3864e7f38681b875", 1397823979780630, this, []); }
-  set duration(value: number) { callSDK<void>("HomeKit_3864e7f38681b875", 962846552120768, this, [value]); }
+  get duration(): number { return callSDK<number>("HomeKit_ff42ce03e691ab23", 1397823979780630, this, []); }
+  set duration(value: number) { callSDK<void>("HomeKit_ff42ce03e691ab23", 962846552120768, this, [value]); }
   declare readonly $type: { "c:objc(cs)HMMutableDurationEvent": true; "c:objc(cs)HMDurationEvent": true; "c:objc(cs)HMTimeEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "duration": true };
 }
@@ -3264,8 +3264,8 @@ export class HMMutableLocationEvent extends (HMLocationEvent as unknown as Omit<
    * var region: CLRegion? { get set }
    * @availability iOS 11.0+
    */
-  get region(): $SDK36 { return callSDK<$SDK36>("HomeKit_3864e7f38681b875", 4154611784803741, this, []); }
-  set region(value: $SDK36) { callSDK<void>("HomeKit_3864e7f38681b875", 3386566731341596, this, [value]); }
+  get region(): $SDK36 { return callSDK<$SDK36>("HomeKit_ff42ce03e691ab23", 4154611784803741, this, []); }
+  set region(value: $SDK36) { callSDK<void>("HomeKit_ff42ce03e691ab23", 3386566731341596, this, [value]); }
   declare readonly $type: { "c:objc(cs)HMMutableLocationEvent": true; "c:objc(cs)HMLocationEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "region": true };
 }
@@ -3279,17 +3279,17 @@ export class HMPresenceEvent extends (HMEvent as unknown as Omit<typeof HMEvent,
    * init(presenceEventType: HMPresenceEventType, presenceUserType: HMPresenceEventUserType)
    * @availability iOS 11.0+
    */
-  static init(presenceEventType: HMPresenceEventType, presenceUserType: HMPresenceEventUserType): HMPresenceEvent { return callSDK<HMPresenceEvent>("HomeKit_3864e7f38681b875", 3519467880636567, undefined, [presenceEventType, presenceUserType]); }
+  static init(presenceEventType: HMPresenceEventType, presenceUserType: HMPresenceEventUserType): HMPresenceEvent { return callSDK<HMPresenceEvent>("HomeKit_ff42ce03e691ab23", 3519467880636567, undefined, [presenceEventType, presenceUserType]); }
   /**
    * var presenceEventType: HMPresenceEventType { get }
    * @availability iOS 11.0+
    */
-  get presenceEventType(): HMPresenceEventType { return callSDK<HMPresenceEventType>("HomeKit_3864e7f38681b875", 612644398328935, this, []); }
+  get presenceEventType(): HMPresenceEventType { return callSDK<HMPresenceEventType>("HomeKit_ff42ce03e691ab23", 612644398328935, this, []); }
   /**
    * var presenceUserType: HMPresenceEventUserType { get }
    * @availability iOS 11.0+
    */
-  get presenceUserType(): HMPresenceEventUserType { return callSDK<HMPresenceEventUserType>("HomeKit_3864e7f38681b875", 4440784591327664, this, []); }
+  get presenceUserType(): HMPresenceEventUserType { return callSDK<HMPresenceEventUserType>("HomeKit_ff42ce03e691ab23", 4440784591327664, this, []); }
   declare readonly $type: { "c:objc(cs)HMPresenceEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "presenceEventType": true; "presenceUserType": true };
 }
@@ -3303,14 +3303,14 @@ export class HMMutablePresenceEvent extends (HMPresenceEvent as unknown as Omit<
    * var presenceEventType: HMPresenceEventType { get set }
    * @availability iOS 11.0+
    */
-  get presenceEventType(): HMPresenceEventType { return callSDK<HMPresenceEventType>("HomeKit_3864e7f38681b875", 886664406678395, this, []); }
-  set presenceEventType(value: HMPresenceEventType) { callSDK<void>("HomeKit_3864e7f38681b875", 315375298945908, this, [value]); }
+  get presenceEventType(): HMPresenceEventType { return callSDK<HMPresenceEventType>("HomeKit_ff42ce03e691ab23", 886664406678395, this, []); }
+  set presenceEventType(value: HMPresenceEventType) { callSDK<void>("HomeKit_ff42ce03e691ab23", 315375298945908, this, [value]); }
   /**
    * var presenceUserType: HMPresenceEventUserType { get set }
    * @availability iOS 11.0+
    */
-  get presenceUserType(): HMPresenceEventUserType { return callSDK<HMPresenceEventUserType>("HomeKit_3864e7f38681b875", 1486967694144271, this, []); }
-  set presenceUserType(value: HMPresenceEventUserType) { callSDK<void>("HomeKit_3864e7f38681b875", 2367434739404031, this, [value]); }
+  get presenceUserType(): HMPresenceEventUserType { return callSDK<HMPresenceEventUserType>("HomeKit_ff42ce03e691ab23", 1486967694144271, this, []); }
+  set presenceUserType(value: HMPresenceEventUserType) { callSDK<void>("HomeKit_ff42ce03e691ab23", 2367434739404031, this, [value]); }
   declare readonly $type: { "c:objc(cs)HMMutablePresenceEvent": true; "c:objc(cs)HMPresenceEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "presenceEventType": true; "presenceUserType": true };
 }
@@ -3324,17 +3324,17 @@ export class HMSignificantTimeEvent extends (HMTimeEvent as unknown as Omit<type
    * init(significantEvent: HMSignificantEvent, offset: DateComponents?)
    * @availability iOS 11.0+
    */
-  static init(significantEvent: HMSignificantEvent, offset?: $SDK21): HMSignificantTimeEvent { return callSDK<HMSignificantTimeEvent>("HomeKit_3864e7f38681b875", 3519930720691750, undefined, [significantEvent, offset]); }
+  static init(significantEvent: HMSignificantEvent, offset?: $SDK21): HMSignificantTimeEvent { return callSDK<HMSignificantTimeEvent>("HomeKit_ff42ce03e691ab23", 3519930720691750, undefined, [significantEvent, offset]); }
   /**
    * var offset: DateComponents? { get }
    * @availability iOS 11.0+
    */
-  get offset(): $SDK21 { return callSDK<$SDK21>("HomeKit_3864e7f38681b875", 3234297718686880, this, []); }
+  get offset(): $SDK21 { return callSDK<$SDK21>("HomeKit_ff42ce03e691ab23", 3234297718686880, this, []); }
   /**
    * var significantEvent: HMSignificantEvent { get }
    * @availability iOS 11.0+
    */
-  get significantEvent(): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_3864e7f38681b875", 1279335472582068, this, []); }
+  get significantEvent(): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_ff42ce03e691ab23", 1279335472582068, this, []); }
   declare readonly $type: { "c:objc(cs)HMSignificantTimeEvent": true; "c:objc(cs)HMTimeEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "offset": true; "significantEvent": true };
 }
@@ -3348,14 +3348,14 @@ export class HMMutableSignificantTimeEvent extends (HMSignificantTimeEvent as un
    * var offset: DateComponents { get set }
    * @availability iOS 11.0+
    */
-  get offset(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HomeKit_3864e7f38681b875", 131012668211048, this, []); }
-  set offset(value: _Foundation_DateComponents) { callSDK<void>("HomeKit_3864e7f38681b875", 1340851618746326, this, [value]); }
+  get offset(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("HomeKit_ff42ce03e691ab23", 131012668211048, this, []); }
+  set offset(value: _Foundation_DateComponents) { callSDK<void>("HomeKit_ff42ce03e691ab23", 1340851618746326, this, [value]); }
   /**
    * var significantEvent: HMSignificantEvent { get set }
    * @availability iOS 11.0+
    */
-  get significantEvent(): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_3864e7f38681b875", 2189957127232533, this, []); }
-  set significantEvent(value: HMSignificantEvent) { callSDK<void>("HomeKit_3864e7f38681b875", 389087286487233, this, [value]); }
+  get significantEvent(): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_ff42ce03e691ab23", 2189957127232533, this, []); }
+  set significantEvent(value: HMSignificantEvent) { callSDK<void>("HomeKit_ff42ce03e691ab23", 389087286487233, this, [value]); }
   declare readonly $type: { "c:objc(cs)HMMutableSignificantTimeEvent": true; "c:objc(cs)HMSignificantTimeEvent": true; "c:objc(cs)HMTimeEvent": true; "c:objc(cs)HMEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uniqueIdentifier": true; "offset": true; "significantEvent": true };
 }
@@ -3369,13 +3369,13 @@ export class HMNetworkConfigurationProfile extends HMAccessoryProfile {
    * weak var delegate: (any HMNetworkConfigurationProfileDelegate)? { get set }
    * @availability iOS 13.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_3864e7f38681b875", 1201625690139281, this, []); }
-  set delegate(value: (Implements<HMNetworkConfigurationProfileDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_3864e7f38681b875", 4131999780291354, this, [value], [{"protocol":"c:objc(pl)HMNetworkConfigurationProfileDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("HomeKit_ff42ce03e691ab23", 1201625690139281, this, []); }
+  set delegate(value: (Implements<HMNetworkConfigurationProfileDelegate> | SDKHandle) | null) { callSDK<void>("HomeKit_ff42ce03e691ab23", 4131999780291354, this, [value], [{"protocol":"c:objc(pl)HMNetworkConfigurationProfileDelegate"}]); }
   /**
    * var isNetworkAccessRestricted: Bool { get }
    * @availability iOS 13.0+
    */
-  get isNetworkAccessRestricted(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 2027725742469671, this, []); }
+  get isNetworkAccessRestricted(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 2027725742469671, this, []); }
   declare readonly $type: { "c:objc(cs)HMNetworkConfigurationProfile": true; "c:objc(cs)HMAccessoryProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessory": true; "services": true; "uniqueIdentifier": true; "delegate": true; "isNetworkAccessRestricted": true };
 }
@@ -3401,27 +3401,27 @@ export class HMNumberRange extends SDKHandle {
    * convenience init(maxValue: NSNumber)
    * @availability iOS 11.0+
    */
-  static initMaxValue(maxValue: _Foundation_NSNumber): HMNumberRange { return callSDK<HMNumberRange>("HomeKit_3864e7f38681b875", 2410204744363716, undefined, [maxValue]); }
+  static initMaxValue(maxValue: _Foundation_NSNumber): HMNumberRange { return callSDK<HMNumberRange>("HomeKit_ff42ce03e691ab23", 2410204744363716, undefined, [maxValue]); }
   /**
    * convenience init(minValue: NSNumber)
    * @availability iOS 11.0+
    */
-  static initMinValue(minValue: _Foundation_NSNumber): HMNumberRange { return callSDK<HMNumberRange>("HomeKit_3864e7f38681b875", 1527432405750793, undefined, [minValue]); }
+  static initMinValue(minValue: _Foundation_NSNumber): HMNumberRange { return callSDK<HMNumberRange>("HomeKit_ff42ce03e691ab23", 1527432405750793, undefined, [minValue]); }
   /**
    * convenience init(minValue: NSNumber, maxValue: NSNumber)
    * @availability iOS 11.0+
    */
-  static initMinValueMaxValue(minValue: _Foundation_NSNumber, maxValue: _Foundation_NSNumber): HMNumberRange { return callSDK<HMNumberRange>("HomeKit_3864e7f38681b875", 2199039237568375, undefined, [minValue, maxValue]); }
+  static initMinValueMaxValue(minValue: _Foundation_NSNumber, maxValue: _Foundation_NSNumber): HMNumberRange { return callSDK<HMNumberRange>("HomeKit_ff42ce03e691ab23", 2199039237568375, undefined, [minValue, maxValue]); }
   /**
    * var maxValue: NSNumber? { get }
    * @availability iOS 11.0+
    */
-  get maxValue(): $SDK18 { return callSDK<$SDK18>("HomeKit_3864e7f38681b875", 2038580951770159, this, []); }
+  get maxValue(): $SDK18 { return callSDK<$SDK18>("HomeKit_ff42ce03e691ab23", 2038580951770159, this, []); }
   /**
    * var minValue: NSNumber? { get }
    * @availability iOS 11.0+
    */
-  get minValue(): $SDK18 { return callSDK<$SDK18>("HomeKit_3864e7f38681b875", 950444264682517, this, []); }
+  get minValue(): $SDK18 { return callSDK<$SDK18>("HomeKit_ff42ce03e691ab23", 950444264682517, this, []); }
   declare readonly $type: { "c:objc(cs)HMNumberRange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "maxValue": true; "minValue": true };
 }
@@ -3437,17 +3437,17 @@ export const HMPresenceEventType = {
    * static var atHome: HMPresenceEventType { get }
    * @availability iOS 11.0+
    */
-  get atHome(): HMPresenceEventType { return callSDK<HMPresenceEventType>("HomeKit_3864e7f38681b875", 4473751277262132, undefined, []); },
+  get atHome(): HMPresenceEventType { return callSDK<HMPresenceEventType>("HomeKit_ff42ce03e691ab23", 4473751277262132, undefined, []); },
   /**
    * static var notAtHome: HMPresenceEventType { get }
    * @availability iOS 11.0+
    */
-  get notAtHome(): HMPresenceEventType { return callSDK<HMPresenceEventType>("HomeKit_3864e7f38681b875", 2246868308449807, undefined, []); },
+  get notAtHome(): HMPresenceEventType { return callSDK<HMPresenceEventType>("HomeKit_ff42ce03e691ab23", 2246868308449807, undefined, []); },
   /**
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (HMPresenceEventType) | null { return callSDK<(HMPresenceEventType) | null>("HomeKit_3864e7f38681b875", 3980277159280668, undefined, [rawValue]); }
+  init(rawValue: number): (HMPresenceEventType) | null { return callSDK<(HMPresenceEventType) | null>("HomeKit_ff42ce03e691ab23", 3980277159280668, undefined, [rawValue]); }
 };
 
 /**
@@ -3461,7 +3461,7 @@ export const HMPresenceEventUserType = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (HMPresenceEventUserType) | null { return callSDK<(HMPresenceEventUserType) | null>("HomeKit_3864e7f38681b875", 2849676053658096, undefined, [rawValue]); }
+  init(rawValue: number): (HMPresenceEventUserType) | null { return callSDK<(HMPresenceEventUserType) | null>("HomeKit_ff42ce03e691ab23", 2849676053658096, undefined, [rawValue]); }
 };
 
 /**
@@ -3473,22 +3473,22 @@ export class HMRoom extends SDKHandle {
    * func updateName(_ name: String) async throws
    * @availability iOS 8.0+
    */
-  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 630432321394558, this, [name, completion], [null,{"callback":{"out":[]}}]); }
+  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 630432321394558, this, [name, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var accessories: [HMAccessory] { get }
    * @availability iOS 8.0+
    */
-  get accessories(): Array<HMAccessory> { return callSDK<Array<HMAccessory>>("HomeKit_3864e7f38681b875", 807563189580953, this, []); }
+  get accessories(): Array<HMAccessory> { return callSDK<Array<HMAccessory>>("HomeKit_ff42ce03e691ab23", 807563189580953, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 3890976312792493, this, []); }
+  get name(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 3890976312792493, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 375355144590723, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 375355144590723, this, []); }
   declare readonly $type: { "c:objc(cs)HMRoom": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessories": true; "name": true; "uniqueIdentifier": true };
 }
@@ -3503,72 +3503,72 @@ export class HMService extends SDKHandle {
    * @availability iOS 8.0+
    * @deprecated iOS 8.0
    */
-  static init(): HMService { return callSDK<HMService>("HomeKit_3864e7f38681b875", 3643013710165026, undefined, []); }
+  static init(): HMService { return callSDK<HMService>("HomeKit_ff42ce03e691ab23", 3643013710165026, undefined, []); }
   /**
    * func updateAssociatedServiceType(_ serviceType: String?) async throws
    * @availability iOS 8.0+
    */
-  updateAssociatedServiceType(serviceType: (string) | null, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 4126797712149200, this, [serviceType, completion], [null,{"callback":{"out":[]}}]); }
+  updateAssociatedServiceType(serviceType: (string) | null, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 4126797712149200, this, [serviceType, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateName(_ name: String) async throws
    * @availability iOS 8.0+
    */
-  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3353330439924163, this, [name, completion], [null,{"callback":{"out":[]}}]); }
+  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3353330439924163, this, [name, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * weak var accessory: HMAccessory? { get }
    * @availability iOS 8.0+
    */
-  get accessory(): (HMAccessory) | null { return callSDK<(HMAccessory) | null>("HomeKit_3864e7f38681b875", 4120083209302884, this, []); }
+  get accessory(): (HMAccessory) | null { return callSDK<(HMAccessory) | null>("HomeKit_ff42ce03e691ab23", 4120083209302884, this, []); }
   /**
    * var associatedServiceType: String? { get }
    * @availability iOS 8.0+
    */
-  get associatedServiceType(): (string) | null { return callSDK<(string) | null>("HomeKit_3864e7f38681b875", 1741851399446543, this, []); }
+  get associatedServiceType(): (string) | null { return callSDK<(string) | null>("HomeKit_ff42ce03e691ab23", 1741851399446543, this, []); }
   /**
    * var characteristics: [HMCharacteristic] { get }
    * @availability iOS 8.0+
    */
-  get characteristics(): Array<HMCharacteristic> { return callSDK<Array<HMCharacteristic>>("HomeKit_3864e7f38681b875", 1522439838296958, this, []); }
+  get characteristics(): Array<HMCharacteristic> { return callSDK<Array<HMCharacteristic>>("HomeKit_ff42ce03e691ab23", 1522439838296958, this, []); }
   /**
    * var linkedServices: [HMService]? { get }
    * @availability iOS 10.0+
    */
-  get linkedServices(): (Array<HMService>) | null { return callSDK<(Array<HMService>) | null>("HomeKit_3864e7f38681b875", 1543529055307788, this, []); }
+  get linkedServices(): (Array<HMService>) | null { return callSDK<(Array<HMService>) | null>("HomeKit_ff42ce03e691ab23", 1543529055307788, this, []); }
   /**
    * var localizedDescription: String { get }
    * @availability iOS 9.0+
    */
-  get localizedDescription(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 2473134777040279, this, []); }
+  get localizedDescription(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 2473134777040279, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 2208599565317849, this, []); }
+  get name(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 2208599565317849, this, []); }
   /**
    * var isPrimaryService: Bool { get }
    * @availability iOS 10.0+
    */
-  get isPrimaryService(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 4056882625430963, this, []); }
+  get isPrimaryService(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 4056882625430963, this, []); }
   /**
    * var serviceType: String { get }
    * @availability iOS 8.0+
    */
-  get serviceType(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 1593057403698417, this, []); }
+  get serviceType(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 1593057403698417, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 376216470273302, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 376216470273302, this, []); }
   /**
    * var isUserInteractive: Bool { get }
    * @availability iOS 9.0+
    */
-  get isUserInteractive(): boolean { return callSDK<boolean>("HomeKit_3864e7f38681b875", 348986433496927, this, []); }
+  get isUserInteractive(): boolean { return callSDK<boolean>("HomeKit_ff42ce03e691ab23", 348986433496927, this, []); }
   /**
    * var matterEndpointID: UInt16? { get }
    * @availability iOS 18.0+
    */
-  get matterEndpointID(): (number) | null { return callSDK<(number) | null>("HomeKit_3864e7f38681b875", 2670924326030002, this, []); }
+  get matterEndpointID(): (number) | null { return callSDK<(number) | null>("HomeKit_ff42ce03e691ab23", 2670924326030002, this, []); }
   declare readonly $type: { "c:objc(cs)HMService": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessory": true; "associatedServiceType": true; "characteristics": true; "linkedServices": true; "localizedDescription": true; "name": true; "isPrimaryService": true; "serviceType": true; "uniqueIdentifier": true; "isUserInteractive": true };
 }
@@ -3582,32 +3582,32 @@ export class HMServiceGroup extends SDKHandle {
    * func addService(_ service: HMService) async throws
    * @availability iOS 8.0+
    */
-  addService(service: HMService, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1773332278123869, this, [service, completion], [null,{"callback":{"out":[]}}]); }
+  addService(service: HMService, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1773332278123869, this, [service, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func removeService(_ service: HMService) async throws
    * @availability iOS 8.0+
    */
-  removeService(service: HMService, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1907702947397231, this, [service, completion], [null,{"callback":{"out":[]}}]); }
+  removeService(service: HMService, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1907702947397231, this, [service, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateName(_ name: String) async throws
    * @availability iOS 8.0+
    */
-  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 3108779558244912, this, [name, completion], [null,{"callback":{"out":[]}}]); }
+  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 3108779558244912, this, [name, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 771504165724891, this, []); }
+  get name(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 771504165724891, this, []); }
   /**
    * var services: [HMService] { get }
    * @availability iOS 8.0+
    */
-  get services(): Array<HMService> { return callSDK<Array<HMService>>("HomeKit_3864e7f38681b875", 4289897168905041, this, []); }
+  get services(): Array<HMService> { return callSDK<Array<HMService>>("HomeKit_ff42ce03e691ab23", 4289897168905041, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 1679749725231381, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 1679749725231381, this, []); }
   declare readonly $type: { "c:objc(cs)HMServiceGroup": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "services": true; "uniqueIdentifier": true };
 }
@@ -3620,16 +3620,16 @@ export const HMSignificantEvent = {
    * static let sunrise: HMSignificantEvent
    * @availability iOS 9.0+
    */
-  get sunrise(): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_3864e7f38681b875", 1725021308719384, undefined, []); },
+  get sunrise(): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_ff42ce03e691ab23", 1725021308719384, undefined, []); },
   /**
    * static let sunset: HMSignificantEvent
    * @availability iOS 9.0+
    */
-  get sunset(): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_3864e7f38681b875", 4152333357790983, undefined, []); },
+  get sunset(): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_ff42ce03e691ab23", 4152333357790983, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_3864e7f38681b875", 1391284101786517, undefined, [rawValue]); },
+  initRawValue(rawValue: string): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_ff42ce03e691ab23", 1391284101786517, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_3864e7f38681b875", 2307604242122984, undefined, [rawValue]); }
+  init(rawValue: string): HMSignificantEvent { return callSDK<HMSignificantEvent>("HomeKit_ff42ce03e691ab23", 2307604242122984, undefined, [rawValue]); }
 };
 
 /**
@@ -3641,51 +3641,51 @@ export class HMTimerTrigger extends HMTrigger {
    * init(name: String, fireDate: Date, recurrence: DateComponents?)
    * @availability iOS 16.4+
    */
-  static initNameFireDateRecurrence(name: string, fireDate: globalThis.Date, recurrence?: $SDK21): HMTimerTrigger { return callSDK<HMTimerTrigger>("HomeKit_3864e7f38681b875", 2285415464599651, undefined, [name, fireDate, recurrence]); }
+  static initNameFireDateRecurrence(name: string, fireDate: globalThis.Date, recurrence?: $SDK21): HMTimerTrigger { return callSDK<HMTimerTrigger>("HomeKit_ff42ce03e691ab23", 2285415464599651, undefined, [name, fireDate, recurrence]); }
   /**
    * init(name: String, fireDate: Date, timeZone: TimeZone?, recurrence: DateComponents?, recurrenceCalendar: Calendar?)
    * @availability iOS 8.0+
    * @deprecated iOS 16.4
    */
-  static initNameFireDateTimeZoneRecurrenceRecurrenceCalendar(name: string, fireDate: globalThis.Date, timeZone?: $SDK39, recurrence?: $SDK21, recurrenceCalendar?: (_Foundation_Calendar) | null): HMTimerTrigger { return callSDK<HMTimerTrigger>("HomeKit_3864e7f38681b875", 1623984183330531, undefined, [name, fireDate, timeZone, recurrence, recurrenceCalendar]); }
+  static initNameFireDateTimeZoneRecurrenceRecurrenceCalendar(name: string, fireDate: globalThis.Date, timeZone?: $SDK39, recurrence?: $SDK21, recurrenceCalendar?: (_Foundation_Calendar) | null): HMTimerTrigger { return callSDK<HMTimerTrigger>("HomeKit_ff42ce03e691ab23", 1623984183330531, undefined, [name, fireDate, timeZone, recurrence, recurrenceCalendar]); }
   /**
    * func updateFireDate(_ fireDate: Date) async throws
    * @availability iOS 8.0+
    */
-  updateFireDate(fireDate: globalThis.Date, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1767113921322874, this, [fireDate, completion], [null,{"callback":{"out":[]}}]); }
+  updateFireDate(fireDate: globalThis.Date, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1767113921322874, this, [fireDate, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateRecurrence(_ recurrence: DateComponents?) async throws
    * @availability iOS 8.0+
    */
-  updateRecurrence(recurrence: $SDK21, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 224154649548965, this, [recurrence, completion], [null,{"callback":{"out":[]}}]); }
+  updateRecurrence(recurrence: $SDK21, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 224154649548965, this, [recurrence, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateTimeZone(_ timeZone: TimeZone?) async throws
    * @availability iOS 8.0+
    * @deprecated iOS 16.4
    */
-  updateTimeZone(timeZone: $SDK39, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1145219053470816, this, [timeZone, completion], [null,{"callback":{"out":[]}}]); }
+  updateTimeZone(timeZone: $SDK39, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1145219053470816, this, [timeZone, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var fireDate: Date { get }
    * @availability iOS 8.0+
    */
-  get fireDate(): globalThis.Date { return callSDK<globalThis.Date>("HomeKit_3864e7f38681b875", 3339468828930128, this, []); }
+  get fireDate(): globalThis.Date { return callSDK<globalThis.Date>("HomeKit_ff42ce03e691ab23", 3339468828930128, this, []); }
   /**
    * var recurrence: DateComponents? { get }
    * @availability iOS 8.0+
    */
-  get recurrence(): $SDK21 { return callSDK<$SDK21>("HomeKit_3864e7f38681b875", 2690728408885542, this, []); }
+  get recurrence(): $SDK21 { return callSDK<$SDK21>("HomeKit_ff42ce03e691ab23", 2690728408885542, this, []); }
   /**
    * var recurrenceCalendar: Calendar? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.4
    */
-  get recurrenceCalendar(): (_Foundation_Calendar) | null { return callSDK<(_Foundation_Calendar) | null>("HomeKit_3864e7f38681b875", 1265960992367965, this, []); }
+  get recurrenceCalendar(): (_Foundation_Calendar) | null { return callSDK<(_Foundation_Calendar) | null>("HomeKit_ff42ce03e691ab23", 1265960992367965, this, []); }
   /**
    * var timeZone: TimeZone? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 16.4
    */
-  get timeZone(): $SDK39 { return callSDK<$SDK39>("HomeKit_3864e7f38681b875", 471977982520482, this, []); }
+  get timeZone(): $SDK39 { return callSDK<$SDK39>("HomeKit_ff42ce03e691ab23", 471977982520482, this, []); }
   declare readonly $type: { "c:objc(cs)HMTimerTrigger": true; "c:objc(cs)HMTrigger": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actionSets": true; "isEnabled": true; "lastFireDate": true; "name": true; "uniqueIdentifier": true; "fireDate": true; "recurrence": true; "recurrenceCalendar": true; "timeZone": true };
 }
@@ -3699,12 +3699,12 @@ export class HMUser extends SDKHandle {
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 4441196149325456, this, []); }
+  get name(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 4441196149325456, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 2863357604139185, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 2863357604139185, this, []); }
   declare readonly $type: { "c:objc(cs)HMUser": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "uniqueIdentifier": true };
 }
@@ -3718,1631 +3718,1631 @@ export class HMZone extends SDKHandle {
    * func addRoom(_ room: HMRoom) async throws
    * @availability iOS 8.0+
    */
-  addRoom(room: HMRoom, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 986731886303899, this, [room, completion], [null,{"callback":{"out":[]}}]); }
+  addRoom(room: HMRoom, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 986731886303899, this, [room, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func removeRoom(_ room: HMRoom) async throws
    * @availability iOS 8.0+
    */
-  removeRoom(room: HMRoom, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 586218928555598, this, [room, completion], [null,{"callback":{"out":[]}}]); }
+  removeRoom(room: HMRoom, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 586218928555598, this, [room, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func updateName(_ name: String) async throws
    * @availability iOS 8.0+
    */
-  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_3864e7f38681b875", 1688244490747171, this, [name, completion], [null,{"callback":{"out":[]}}]); }
+  updateName(name: string, completion: $SDK0): void { return callSDK<void>("HomeKit_ff42ce03e691ab23", 1688244490747171, this, [name, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 3039710167972323, this, []); }
+  get name(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 3039710167972323, this, []); }
   /**
    * var rooms: [HMRoom] { get }
    * @availability iOS 8.0+
    */
-  get rooms(): Array<HMRoom> { return callSDK<Array<HMRoom>>("HomeKit_3864e7f38681b875", 2899043407912475, this, []); }
+  get rooms(): Array<HMRoom> { return callSDK<Array<HMRoom>>("HomeKit_ff42ce03e691ab23", 2899043407912475, this, []); }
   /**
    * var uniqueIdentifier: UUID { get }
    * @availability iOS 9.0+
    */
-  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_3864e7f38681b875", 730418146308650, this, []); }
+  get uniqueIdentifier(): string { return callSDK<string>("HomeKit_ff42ce03e691ab23", 730418146308650, this, []); }
   declare readonly $type: { "c:objc(cs)HMZone": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "rooms": true; "uniqueIdentifier": true };
 }
 
-export type NSNotification_Name = "AVAudioEngineConfigurationChange" | "AVAudioUnitComponentTagsDidChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderDomainDidChange" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMusicPlayerControllerQueueDidChange" | "MPMediaLibraryDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioEngineConfigurationChange" | "AVAudioUnitComponentTagsDidChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMediaLibraryDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 
 export const NSNotification_Name = {
   /**
    * static let HMCharacteristicPropertySupportsEvent: NSNotification.Name
    * @availability iOS 8.0+
    */
-  get HMCharacteristicPropertySupportsEvent(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("HomeKit_3864e7f38681b875", 4404875363898511, undefined, []); }
+  get HMCharacteristicPropertySupportsEvent(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("HomeKit_ff42ce03e691ab23", 4404875363898511, undefined, []); }
 };
 
 /**
  * let HMAccessoryCategoryTypeAirConditioner: String
  * @availability iOS 10.2+
  */
-export const HMAccessoryCategoryTypeAirConditioner: string = callSDK<string>("HomeKit_3864e7f38681b875", 3421134185094870, undefined, []);
+export const HMAccessoryCategoryTypeAirConditioner: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3421134185094870, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeAirDehumidifier: String
  * @availability iOS 10.2+
  */
-export const HMAccessoryCategoryTypeAirDehumidifier: string = callSDK<string>("HomeKit_3864e7f38681b875", 3653174695191441, undefined, []);
+export const HMAccessoryCategoryTypeAirDehumidifier: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3653174695191441, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeAirHeater: String
  * @availability iOS 10.2+
  */
-export const HMAccessoryCategoryTypeAirHeater: string = callSDK<string>("HomeKit_3864e7f38681b875", 2795947815589895, undefined, []);
+export const HMAccessoryCategoryTypeAirHeater: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2795947815589895, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeAirHumidifier: String
  * @availability iOS 10.2+
  */
-export const HMAccessoryCategoryTypeAirHumidifier: string = callSDK<string>("HomeKit_3864e7f38681b875", 2791988689647964, undefined, []);
+export const HMAccessoryCategoryTypeAirHumidifier: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2791988689647964, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeAirPort: String
  * @availability iOS 18.0+
  */
-export const HMAccessoryCategoryTypeAirPort: string = callSDK<string>("HomeKit_3864e7f38681b875", 3580415411422074, undefined, []);
+export const HMAccessoryCategoryTypeAirPort: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3580415411422074, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeAirPurifier: String
  * @availability iOS 10.2+
  */
-export const HMAccessoryCategoryTypeAirPurifier: string = callSDK<string>("HomeKit_3864e7f38681b875", 720395316224616, undefined, []);
+export const HMAccessoryCategoryTypeAirPurifier: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 720395316224616, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeAudioReceiver: String
  * @availability iOS 18.0+
  */
-export const HMAccessoryCategoryTypeAudioReceiver: string = callSDK<string>("HomeKit_3864e7f38681b875", 1577794400599244, undefined, []);
+export const HMAccessoryCategoryTypeAudioReceiver: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1577794400599244, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeBridge: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeBridge: string = callSDK<string>("HomeKit_3864e7f38681b875", 3320758214026388, undefined, []);
+export const HMAccessoryCategoryTypeBridge: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3320758214026388, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeDoor: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeDoor: string = callSDK<string>("HomeKit_3864e7f38681b875", 577400065959, undefined, []);
+export const HMAccessoryCategoryTypeDoor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 577400065959, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeDoorLock: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeDoorLock: string = callSDK<string>("HomeKit_3864e7f38681b875", 236597114516516, undefined, []);
+export const HMAccessoryCategoryTypeDoorLock: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 236597114516516, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeFan: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeFan: string = callSDK<string>("HomeKit_3864e7f38681b875", 252735987796982, undefined, []);
+export const HMAccessoryCategoryTypeFan: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 252735987796982, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeFaucet: String
  * @availability iOS 11.2+
  */
-export const HMAccessoryCategoryTypeFaucet: string = callSDK<string>("HomeKit_3864e7f38681b875", 2995739436873559, undefined, []);
+export const HMAccessoryCategoryTypeFaucet: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2995739436873559, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeGarageDoorOpener: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeGarageDoorOpener: string = callSDK<string>("HomeKit_3864e7f38681b875", 2571237037541793, undefined, []);
+export const HMAccessoryCategoryTypeGarageDoorOpener: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2571237037541793, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeIPCamera: String
  * @availability iOS 10.0+
  */
-export const HMAccessoryCategoryTypeIPCamera: string = callSDK<string>("HomeKit_3864e7f38681b875", 2032914745545977, undefined, []);
+export const HMAccessoryCategoryTypeIPCamera: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2032914745545977, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeLightbulb: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeLightbulb: string = callSDK<string>("HomeKit_3864e7f38681b875", 1072913453406674, undefined, []);
+export const HMAccessoryCategoryTypeLightbulb: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1072913453406674, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeOther: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeOther: string = callSDK<string>("HomeKit_3864e7f38681b875", 3187443913953517, undefined, []);
+export const HMAccessoryCategoryTypeOther: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3187443913953517, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeOutlet: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeOutlet: string = callSDK<string>("HomeKit_3864e7f38681b875", 1471184143894910, undefined, []);
+export const HMAccessoryCategoryTypeOutlet: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1471184143894910, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeProgrammableSwitch: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeProgrammableSwitch: string = callSDK<string>("HomeKit_3864e7f38681b875", 1360523302272989, undefined, []);
+export const HMAccessoryCategoryTypeProgrammableSwitch: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1360523302272989, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeRangeExtender: String
  * @availability iOS 9.3+
  */
-export const HMAccessoryCategoryTypeRangeExtender: string = callSDK<string>("HomeKit_3864e7f38681b875", 2101537980445088, undefined, []);
+export const HMAccessoryCategoryTypeRangeExtender: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2101537980445088, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeSecuritySystem: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeSecuritySystem: string = callSDK<string>("HomeKit_3864e7f38681b875", 1553271257670691, undefined, []);
+export const HMAccessoryCategoryTypeSecuritySystem: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1553271257670691, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeSensor: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeSensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 370495834918024, undefined, []);
+export const HMAccessoryCategoryTypeSensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 370495834918024, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeShowerHead: String
  * @availability iOS 11.2+
  */
-export const HMAccessoryCategoryTypeShowerHead: string = callSDK<string>("HomeKit_3864e7f38681b875", 2629449876237413, undefined, []);
+export const HMAccessoryCategoryTypeShowerHead: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2629449876237413, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeSpeaker: String
  * @availability iOS 18.0+
  */
-export const HMAccessoryCategoryTypeSpeaker: string = callSDK<string>("HomeKit_3864e7f38681b875", 522054181999691, undefined, []);
+export const HMAccessoryCategoryTypeSpeaker: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 522054181999691, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeSprinkler: String
  * @availability iOS 11.2+
  */
-export const HMAccessoryCategoryTypeSprinkler: string = callSDK<string>("HomeKit_3864e7f38681b875", 1916938470998257, undefined, []);
+export const HMAccessoryCategoryTypeSprinkler: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1916938470998257, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeSwitch: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeSwitch: string = callSDK<string>("HomeKit_3864e7f38681b875", 2689792171116783, undefined, []);
+export const HMAccessoryCategoryTypeSwitch: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2689792171116783, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeTelevision: String
  * @availability iOS 18.0+
  */
-export const HMAccessoryCategoryTypeTelevision: string = callSDK<string>("HomeKit_3864e7f38681b875", 2636233662848492, undefined, []);
+export const HMAccessoryCategoryTypeTelevision: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2636233662848492, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeTelevisionSetTopBox: String
  * @availability iOS 18.0+
  */
-export const HMAccessoryCategoryTypeTelevisionSetTopBox: string = callSDK<string>("HomeKit_3864e7f38681b875", 3225043080918421, undefined, []);
+export const HMAccessoryCategoryTypeTelevisionSetTopBox: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3225043080918421, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeTelevisionStreamingStick: String
  * @availability iOS 18.0+
  */
-export const HMAccessoryCategoryTypeTelevisionStreamingStick: string = callSDK<string>("HomeKit_3864e7f38681b875", 2350129561592176, undefined, []);
+export const HMAccessoryCategoryTypeTelevisionStreamingStick: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2350129561592176, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeThermostat: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeThermostat: string = callSDK<string>("HomeKit_3864e7f38681b875", 3690953609574111, undefined, []);
+export const HMAccessoryCategoryTypeThermostat: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3690953609574111, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeVideoDoorbell: String
  * @availability iOS 10.0+
  */
-export const HMAccessoryCategoryTypeVideoDoorbell: string = callSDK<string>("HomeKit_3864e7f38681b875", 816928503166464, undefined, []);
+export const HMAccessoryCategoryTypeVideoDoorbell: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 816928503166464, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeWiFiRouter: String
  * @availability iOS 18.0+
  */
-export const HMAccessoryCategoryTypeWiFiRouter: string = callSDK<string>("HomeKit_3864e7f38681b875", 3929171797818665, undefined, []);
+export const HMAccessoryCategoryTypeWiFiRouter: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3929171797818665, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeWindow: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeWindow: string = callSDK<string>("HomeKit_3864e7f38681b875", 3931968172180867, undefined, []);
+export const HMAccessoryCategoryTypeWindow: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3931968172180867, undefined, []);
 
 /**
  * let HMAccessoryCategoryTypeWindowCovering: String
  * @availability iOS 9.0+
  */
-export const HMAccessoryCategoryTypeWindowCovering: string = callSDK<string>("HomeKit_3864e7f38681b875", 2409685249520814, undefined, []);
+export const HMAccessoryCategoryTypeWindowCovering: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2409685249520814, undefined, []);
 
 /**
  * let HMActionSetTypeHomeArrival: String
  * @availability iOS 9.0+
  */
-export const HMActionSetTypeHomeArrival: string = callSDK<string>("HomeKit_3864e7f38681b875", 2302841470682422, undefined, []);
+export const HMActionSetTypeHomeArrival: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2302841470682422, undefined, []);
 
 /**
  * let HMActionSetTypeHomeDeparture: String
  * @availability iOS 9.0+
  */
-export const HMActionSetTypeHomeDeparture: string = callSDK<string>("HomeKit_3864e7f38681b875", 2298281904791519, undefined, []);
+export const HMActionSetTypeHomeDeparture: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2298281904791519, undefined, []);
 
 /**
  * let HMActionSetTypeSleep: String
  * @availability iOS 9.0+
  */
-export const HMActionSetTypeSleep: string = callSDK<string>("HomeKit_3864e7f38681b875", 729129671685582, undefined, []);
+export const HMActionSetTypeSleep: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 729129671685582, undefined, []);
 
 /**
  * let HMActionSetTypeTriggerOwned: String
  * @availability iOS 10.0+
  */
-export const HMActionSetTypeTriggerOwned: string = callSDK<string>("HomeKit_3864e7f38681b875", 369908525248130, undefined, []);
+export const HMActionSetTypeTriggerOwned: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 369908525248130, undefined, []);
 
 /**
  * let HMActionSetTypeUserDefined: String
  * @availability iOS 9.0+
  */
-export const HMActionSetTypeUserDefined: string = callSDK<string>("HomeKit_3864e7f38681b875", 2534272971012261, undefined, []);
+export const HMActionSetTypeUserDefined: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2534272971012261, undefined, []);
 
 /**
  * let HMActionSetTypeWakeUp: String
  * @availability iOS 9.0+
  */
-export const HMActionSetTypeWakeUp: string = callSDK<string>("HomeKit_3864e7f38681b875", 4287255779307371, undefined, []);
+export const HMActionSetTypeWakeUp: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4287255779307371, undefined, []);
 
 /**
  * let HMCharacteristicKeyPath: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicKeyPath: string = callSDK<string>("HomeKit_3864e7f38681b875", 4316413192117851, undefined, []);
+export const HMCharacteristicKeyPath: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4316413192117851, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatArray: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatArray: string = callSDK<string>("HomeKit_3864e7f38681b875", 2048119378478500, undefined, []);
+export const HMCharacteristicMetadataFormatArray: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2048119378478500, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatBool: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatBool: string = callSDK<string>("HomeKit_3864e7f38681b875", 3278995488358204, undefined, []);
+export const HMCharacteristicMetadataFormatBool: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3278995488358204, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatData: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatData: string = callSDK<string>("HomeKit_3864e7f38681b875", 3307977345461616, undefined, []);
+export const HMCharacteristicMetadataFormatData: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3307977345461616, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatDictionary: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatDictionary: string = callSDK<string>("HomeKit_3864e7f38681b875", 4424106510571396, undefined, []);
+export const HMCharacteristicMetadataFormatDictionary: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4424106510571396, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatFloat: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatFloat: string = callSDK<string>("HomeKit_3864e7f38681b875", 3449557906880458, undefined, []);
+export const HMCharacteristicMetadataFormatFloat: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3449557906880458, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatInt: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatInt: string = callSDK<string>("HomeKit_3864e7f38681b875", 789689055288220, undefined, []);
+export const HMCharacteristicMetadataFormatInt: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 789689055288220, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatString: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatString: string = callSDK<string>("HomeKit_3864e7f38681b875", 2820956160859494, undefined, []);
+export const HMCharacteristicMetadataFormatString: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2820956160859494, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatTLV8: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatTLV8: string = callSDK<string>("HomeKit_3864e7f38681b875", 3112865618952364, undefined, []);
+export const HMCharacteristicMetadataFormatTLV8: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3112865618952364, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatUInt16: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatUInt16: string = callSDK<string>("HomeKit_3864e7f38681b875", 1312607060119379, undefined, []);
+export const HMCharacteristicMetadataFormatUInt16: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1312607060119379, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatUInt32: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatUInt32: string = callSDK<string>("HomeKit_3864e7f38681b875", 3598718999121573, undefined, []);
+export const HMCharacteristicMetadataFormatUInt32: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3598718999121573, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatUInt64: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatUInt64: string = callSDK<string>("HomeKit_3864e7f38681b875", 4412414840413908, undefined, []);
+export const HMCharacteristicMetadataFormatUInt64: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4412414840413908, undefined, []);
 
 /**
  * let HMCharacteristicMetadataFormatUInt8: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataFormatUInt8: string = callSDK<string>("HomeKit_3864e7f38681b875", 974325570469008, undefined, []);
+export const HMCharacteristicMetadataFormatUInt8: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 974325570469008, undefined, []);
 
 /**
  * let HMCharacteristicMetadataUnitsArcDegree: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataUnitsArcDegree: string = callSDK<string>("HomeKit_3864e7f38681b875", 746901306537457, undefined, []);
+export const HMCharacteristicMetadataUnitsArcDegree: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 746901306537457, undefined, []);
 
 /**
  * let HMCharacteristicMetadataUnitsCelsius: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataUnitsCelsius: string = callSDK<string>("HomeKit_3864e7f38681b875", 2803244758629046, undefined, []);
+export const HMCharacteristicMetadataUnitsCelsius: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2803244758629046, undefined, []);
 
 /**
  * let HMCharacteristicMetadataUnitsFahrenheit: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataUnitsFahrenheit: string = callSDK<string>("HomeKit_3864e7f38681b875", 4089878074730273, undefined, []);
+export const HMCharacteristicMetadataUnitsFahrenheit: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4089878074730273, undefined, []);
 
 /**
  * let HMCharacteristicMetadataUnitsLux: String
  * @availability iOS 9.3+
  */
-export const HMCharacteristicMetadataUnitsLux: string = callSDK<string>("HomeKit_3864e7f38681b875", 4205575569366119, undefined, []);
+export const HMCharacteristicMetadataUnitsLux: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4205575569366119, undefined, []);
 
 /**
  * let HMCharacteristicMetadataUnitsMicrogramsPerCubicMeter: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicMetadataUnitsMicrogramsPerCubicMeter: string = callSDK<string>("HomeKit_3864e7f38681b875", 2320131198403408, undefined, []);
+export const HMCharacteristicMetadataUnitsMicrogramsPerCubicMeter: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2320131198403408, undefined, []);
 
 /**
  * let HMCharacteristicMetadataUnitsPartsPerMillion: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicMetadataUnitsPartsPerMillion: string = callSDK<string>("HomeKit_3864e7f38681b875", 4431710802336098, undefined, []);
+export const HMCharacteristicMetadataUnitsPartsPerMillion: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4431710802336098, undefined, []);
 
 /**
  * let HMCharacteristicMetadataUnitsPercentage: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicMetadataUnitsPercentage: string = callSDK<string>("HomeKit_3864e7f38681b875", 3167870838134265, undefined, []);
+export const HMCharacteristicMetadataUnitsPercentage: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3167870838134265, undefined, []);
 
 /**
  * let HMCharacteristicMetadataUnitsSeconds: String
  * @availability iOS 8.3+
  */
-export const HMCharacteristicMetadataUnitsSeconds: string = callSDK<string>("HomeKit_3864e7f38681b875", 1291658750190078, undefined, []);
+export const HMCharacteristicMetadataUnitsSeconds: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1291658750190078, undefined, []);
 
 /**
  * let HMCharacteristicPropertyHidden: String
  * @availability iOS 9.3+
  */
-export const HMCharacteristicPropertyHidden: string = callSDK<string>("HomeKit_3864e7f38681b875", 1181326848793990, undefined, []);
+export const HMCharacteristicPropertyHidden: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1181326848793990, undefined, []);
 
 /**
  * let HMCharacteristicPropertyReadable: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicPropertyReadable: string = callSDK<string>("HomeKit_3864e7f38681b875", 4328352109531206, undefined, []);
+export const HMCharacteristicPropertyReadable: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4328352109531206, undefined, []);
 
 /**
  * let HMCharacteristicPropertyRequiresAuthorizationData: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicPropertyRequiresAuthorizationData: string = callSDK<string>("HomeKit_3864e7f38681b875", 2023400385150571, undefined, []);
+export const HMCharacteristicPropertyRequiresAuthorizationData: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2023400385150571, undefined, []);
 
 /**
  * let HMCharacteristicPropertyWritable: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicPropertyWritable: string = callSDK<string>("HomeKit_3864e7f38681b875", 2365524258772127, undefined, []);
+export const HMCharacteristicPropertyWritable: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2365524258772127, undefined, []);
 
 /**
  * let HMCharacteristicTypeActive: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeActive: string = callSDK<string>("HomeKit_3864e7f38681b875", 2310444383222139, undefined, []);
+export const HMCharacteristicTypeActive: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2310444383222139, undefined, []);
 
 /**
  * let HMCharacteristicTypeActiveIdentifier: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeActiveIdentifier: string = callSDK<string>("HomeKit_3864e7f38681b875", 2112252138374555, undefined, []);
+export const HMCharacteristicTypeActiveIdentifier: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2112252138374555, undefined, []);
 
 /**
  * let HMCharacteristicTypeAdminOnlyAccess: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeAdminOnlyAccess: string = callSDK<string>("HomeKit_3864e7f38681b875", 175543015148776, undefined, []);
+export const HMCharacteristicTypeAdminOnlyAccess: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 175543015148776, undefined, []);
 
 /**
  * let HMCharacteristicTypeAirParticulateDensity: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeAirParticulateDensity: string = callSDK<string>("HomeKit_3864e7f38681b875", 548555184906683, undefined, []);
+export const HMCharacteristicTypeAirParticulateDensity: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 548555184906683, undefined, []);
 
 /**
  * let HMCharacteristicTypeAirParticulateSize: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeAirParticulateSize: string = callSDK<string>("HomeKit_3864e7f38681b875", 1158914306736624, undefined, []);
+export const HMCharacteristicTypeAirParticulateSize: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1158914306736624, undefined, []);
 
 /**
  * let HMCharacteristicTypeAirQuality: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeAirQuality: string = callSDK<string>("HomeKit_3864e7f38681b875", 1169818836132359, undefined, []);
+export const HMCharacteristicTypeAirQuality: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1169818836132359, undefined, []);
 
 /**
  * let HMCharacteristicTypeAudioFeedback: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeAudioFeedback: string = callSDK<string>("HomeKit_3864e7f38681b875", 722399248913626, undefined, []);
+export const HMCharacteristicTypeAudioFeedback: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 722399248913626, undefined, []);
 
 /**
  * let HMCharacteristicTypeBatteryLevel: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeBatteryLevel: string = callSDK<string>("HomeKit_3864e7f38681b875", 3849636333322260, undefined, []);
+export const HMCharacteristicTypeBatteryLevel: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3849636333322260, undefined, []);
 
 /**
  * let HMCharacteristicTypeBrightness: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeBrightness: string = callSDK<string>("HomeKit_3864e7f38681b875", 1494856827094893, undefined, []);
+export const HMCharacteristicTypeBrightness: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1494856827094893, undefined, []);
 
 /**
  * let HMCharacteristicTypeCarbonDioxideDetected: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCarbonDioxideDetected: string = callSDK<string>("HomeKit_3864e7f38681b875", 1714074434121617, undefined, []);
+export const HMCharacteristicTypeCarbonDioxideDetected: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1714074434121617, undefined, []);
 
 /**
  * let HMCharacteristicTypeCarbonDioxideLevel: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCarbonDioxideLevel: string = callSDK<string>("HomeKit_3864e7f38681b875", 1502067768326305, undefined, []);
+export const HMCharacteristicTypeCarbonDioxideLevel: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1502067768326305, undefined, []);
 
 /**
  * let HMCharacteristicTypeCarbonDioxidePeakLevel: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCarbonDioxidePeakLevel: string = callSDK<string>("HomeKit_3864e7f38681b875", 452990395789082, undefined, []);
+export const HMCharacteristicTypeCarbonDioxidePeakLevel: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 452990395789082, undefined, []);
 
 /**
  * let HMCharacteristicTypeCarbonMonoxideDetected: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCarbonMonoxideDetected: string = callSDK<string>("HomeKit_3864e7f38681b875", 3621849160436959, undefined, []);
+export const HMCharacteristicTypeCarbonMonoxideDetected: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3621849160436959, undefined, []);
 
 /**
  * let HMCharacteristicTypeCarbonMonoxideLevel: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCarbonMonoxideLevel: string = callSDK<string>("HomeKit_3864e7f38681b875", 1922000717048136, undefined, []);
+export const HMCharacteristicTypeCarbonMonoxideLevel: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1922000717048136, undefined, []);
 
 /**
  * let HMCharacteristicTypeCarbonMonoxidePeakLevel: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCarbonMonoxidePeakLevel: string = callSDK<string>("HomeKit_3864e7f38681b875", 613093968366905, undefined, []);
+export const HMCharacteristicTypeCarbonMonoxidePeakLevel: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 613093968366905, undefined, []);
 
 /**
  * let HMCharacteristicTypeChargingState: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeChargingState: string = callSDK<string>("HomeKit_3864e7f38681b875", 3786423188867607, undefined, []);
+export const HMCharacteristicTypeChargingState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3786423188867607, undefined, []);
 
 /**
  * let HMCharacteristicTypeClosedCaptions: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeClosedCaptions: string = callSDK<string>("HomeKit_3864e7f38681b875", 3941520766199299, undefined, []);
+export const HMCharacteristicTypeClosedCaptions: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3941520766199299, undefined, []);
 
 /**
  * let HMCharacteristicTypeColorTemperature: String
  * @availability iOS 11.0+
  */
-export const HMCharacteristicTypeColorTemperature: string = callSDK<string>("HomeKit_3864e7f38681b875", 1312124949105810, undefined, []);
+export const HMCharacteristicTypeColorTemperature: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1312124949105810, undefined, []);
 
 /**
  * let HMCharacteristicTypeConfiguredName: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeConfiguredName: string = callSDK<string>("HomeKit_3864e7f38681b875", 4373349063917155, undefined, []);
+export const HMCharacteristicTypeConfiguredName: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4373349063917155, undefined, []);
 
 /**
  * let HMCharacteristicTypeContactState: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeContactState: string = callSDK<string>("HomeKit_3864e7f38681b875", 2593563684218822, undefined, []);
+export const HMCharacteristicTypeContactState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2593563684218822, undefined, []);
 
 /**
  * let HMCharacteristicTypeCoolingThreshold: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeCoolingThreshold: string = callSDK<string>("HomeKit_3864e7f38681b875", 3420809820094928, undefined, []);
+export const HMCharacteristicTypeCoolingThreshold: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3420809820094928, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentAirPurifierState: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeCurrentAirPurifierState: string = callSDK<string>("HomeKit_3864e7f38681b875", 1832700439521611, undefined, []);
+export const HMCharacteristicTypeCurrentAirPurifierState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1832700439521611, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentDoorState: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeCurrentDoorState: string = callSDK<string>("HomeKit_3864e7f38681b875", 1190234262421974, undefined, []);
+export const HMCharacteristicTypeCurrentDoorState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1190234262421974, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentFanState: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeCurrentFanState: string = callSDK<string>("HomeKit_3864e7f38681b875", 467981054372630, undefined, []);
+export const HMCharacteristicTypeCurrentFanState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 467981054372630, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentHeaterCoolerState: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeCurrentHeaterCoolerState: string = callSDK<string>("HomeKit_3864e7f38681b875", 2710773813945583, undefined, []);
+export const HMCharacteristicTypeCurrentHeaterCoolerState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2710773813945583, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentHeatingCooling: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeCurrentHeatingCooling: string = callSDK<string>("HomeKit_3864e7f38681b875", 4481064991862962, undefined, []);
+export const HMCharacteristicTypeCurrentHeatingCooling: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4481064991862962, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentHorizontalTilt: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCurrentHorizontalTilt: string = callSDK<string>("HomeKit_3864e7f38681b875", 4175931748322622, undefined, []);
+export const HMCharacteristicTypeCurrentHorizontalTilt: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4175931748322622, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentHumidifierDehumidifierState: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeCurrentHumidifierDehumidifierState: string = callSDK<string>("HomeKit_3864e7f38681b875", 2468274673261286, undefined, []);
+export const HMCharacteristicTypeCurrentHumidifierDehumidifierState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2468274673261286, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentLightLevel: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCurrentLightLevel: string = callSDK<string>("HomeKit_3864e7f38681b875", 1710150610228667, undefined, []);
+export const HMCharacteristicTypeCurrentLightLevel: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1710150610228667, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentLockMechanismState: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeCurrentLockMechanismState: string = callSDK<string>("HomeKit_3864e7f38681b875", 582134436045746, undefined, []);
+export const HMCharacteristicTypeCurrentLockMechanismState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 582134436045746, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentMediaState: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeCurrentMediaState: string = callSDK<string>("HomeKit_3864e7f38681b875", 3854401856612472, undefined, []);
+export const HMCharacteristicTypeCurrentMediaState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3854401856612472, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentPosition: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCurrentPosition: string = callSDK<string>("HomeKit_3864e7f38681b875", 30957321429625, undefined, []);
+export const HMCharacteristicTypeCurrentPosition: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 30957321429625, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentRelativeHumidity: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeCurrentRelativeHumidity: string = callSDK<string>("HomeKit_3864e7f38681b875", 1478219052343752, undefined, []);
+export const HMCharacteristicTypeCurrentRelativeHumidity: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1478219052343752, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentSecuritySystemState: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCurrentSecuritySystemState: string = callSDK<string>("HomeKit_3864e7f38681b875", 1849205991558253, undefined, []);
+export const HMCharacteristicTypeCurrentSecuritySystemState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1849205991558253, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentSlatState: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeCurrentSlatState: string = callSDK<string>("HomeKit_3864e7f38681b875", 4243952406408823, undefined, []);
+export const HMCharacteristicTypeCurrentSlatState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4243952406408823, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentTemperature: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeCurrentTemperature: string = callSDK<string>("HomeKit_3864e7f38681b875", 1283632711851625, undefined, []);
+export const HMCharacteristicTypeCurrentTemperature: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1283632711851625, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentTilt: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeCurrentTilt: string = callSDK<string>("HomeKit_3864e7f38681b875", 3854152695399849, undefined, []);
+export const HMCharacteristicTypeCurrentTilt: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3854152695399849, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentVerticalTilt: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeCurrentVerticalTilt: string = callSDK<string>("HomeKit_3864e7f38681b875", 555344983820164, undefined, []);
+export const HMCharacteristicTypeCurrentVerticalTilt: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 555344983820164, undefined, []);
 
 /**
  * let HMCharacteristicTypeCurrentVisibilityState: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeCurrentVisibilityState: string = callSDK<string>("HomeKit_3864e7f38681b875", 371155933952093, undefined, []);
+export const HMCharacteristicTypeCurrentVisibilityState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 371155933952093, undefined, []);
 
 /**
  * let HMCharacteristicTypeDehumidifierThreshold: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeDehumidifierThreshold: string = callSDK<string>("HomeKit_3864e7f38681b875", 1049344787945478, undefined, []);
+export const HMCharacteristicTypeDehumidifierThreshold: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1049344787945478, undefined, []);
 
 /**
  * let HMCharacteristicTypeDigitalZoom: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeDigitalZoom: string = callSDK<string>("HomeKit_3864e7f38681b875", 4343158322429428, undefined, []);
+export const HMCharacteristicTypeDigitalZoom: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4343158322429428, undefined, []);
 
 /**
  * let HMCharacteristicTypeFilterChangeIndication: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeFilterChangeIndication: string = callSDK<string>("HomeKit_3864e7f38681b875", 175924023820204, undefined, []);
+export const HMCharacteristicTypeFilterChangeIndication: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 175924023820204, undefined, []);
 
 /**
  * let HMCharacteristicTypeFilterLifeLevel: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeFilterLifeLevel: string = callSDK<string>("HomeKit_3864e7f38681b875", 668257621835083, undefined, []);
+export const HMCharacteristicTypeFilterLifeLevel: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 668257621835083, undefined, []);
 
 /**
  * let HMCharacteristicTypeFilterResetChangeIndication: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeFilterResetChangeIndication: string = callSDK<string>("HomeKit_3864e7f38681b875", 4248023103509547, undefined, []);
+export const HMCharacteristicTypeFilterResetChangeIndication: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4248023103509547, undefined, []);
 
 /**
  * let HMCharacteristicTypeFirmwareVersion: String
  * @availability iOS 8.0+
  * @deprecated iOS 11.0
  */
-export const HMCharacteristicTypeFirmwareVersion: string = callSDK<string>("HomeKit_3864e7f38681b875", 3874120308647911, undefined, []);
+export const HMCharacteristicTypeFirmwareVersion: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3874120308647911, undefined, []);
 
 /**
  * let HMCharacteristicTypeHardwareVersion: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeHardwareVersion: string = callSDK<string>("HomeKit_3864e7f38681b875", 2080811953062316, undefined, []);
+export const HMCharacteristicTypeHardwareVersion: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2080811953062316, undefined, []);
 
 /**
  * let HMCharacteristicTypeHeatingThreshold: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeHeatingThreshold: string = callSDK<string>("HomeKit_3864e7f38681b875", 2610789824647062, undefined, []);
+export const HMCharacteristicTypeHeatingThreshold: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2610789824647062, undefined, []);
 
 /**
  * let HMCharacteristicTypeHoldPosition: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeHoldPosition: string = callSDK<string>("HomeKit_3864e7f38681b875", 1566481392862220, undefined, []);
+export const HMCharacteristicTypeHoldPosition: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1566481392862220, undefined, []);
 
 /**
  * let HMCharacteristicTypeHue: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeHue: string = callSDK<string>("HomeKit_3864e7f38681b875", 995339030168185, undefined, []);
+export const HMCharacteristicTypeHue: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 995339030168185, undefined, []);
 
 /**
  * let HMCharacteristicTypeHumidifierThreshold: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeHumidifierThreshold: string = callSDK<string>("HomeKit_3864e7f38681b875", 3328335227063658, undefined, []);
+export const HMCharacteristicTypeHumidifierThreshold: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3328335227063658, undefined, []);
 
 /**
  * let HMCharacteristicTypeIdentifier: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeIdentifier: string = callSDK<string>("HomeKit_3864e7f38681b875", 2784957158152397, undefined, []);
+export const HMCharacteristicTypeIdentifier: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2784957158152397, undefined, []);
 
 /**
  * let HMCharacteristicTypeIdentify: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeIdentify: string = callSDK<string>("HomeKit_3864e7f38681b875", 2438054896517377, undefined, []);
+export const HMCharacteristicTypeIdentify: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2438054896517377, undefined, []);
 
 /**
  * let HMCharacteristicTypeImageMirroring: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeImageMirroring: string = callSDK<string>("HomeKit_3864e7f38681b875", 4353042327627858, undefined, []);
+export const HMCharacteristicTypeImageMirroring: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4353042327627858, undefined, []);
 
 /**
  * let HMCharacteristicTypeImageRotation: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeImageRotation: string = callSDK<string>("HomeKit_3864e7f38681b875", 1925574019457913, undefined, []);
+export const HMCharacteristicTypeImageRotation: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1925574019457913, undefined, []);
 
 /**
  * let HMCharacteristicTypeInUse: String
  * @availability iOS 11.2+
  */
-export const HMCharacteristicTypeInUse: string = callSDK<string>("HomeKit_3864e7f38681b875", 3329920607668454, undefined, []);
+export const HMCharacteristicTypeInUse: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3329920607668454, undefined, []);
 
 /**
  * let HMCharacteristicTypeInputDeviceType: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeInputDeviceType: string = callSDK<string>("HomeKit_3864e7f38681b875", 2419321386668516, undefined, []);
+export const HMCharacteristicTypeInputDeviceType: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2419321386668516, undefined, []);
 
 /**
  * let HMCharacteristicTypeInputEvent: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeInputEvent: string = callSDK<string>("HomeKit_3864e7f38681b875", 3603153417048239, undefined, []);
+export const HMCharacteristicTypeInputEvent: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3603153417048239, undefined, []);
 
 /**
  * let HMCharacteristicTypeInputSourceType: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeInputSourceType: string = callSDK<string>("HomeKit_3864e7f38681b875", 4391042556343031, undefined, []);
+export const HMCharacteristicTypeInputSourceType: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4391042556343031, undefined, []);
 
 /**
  * let HMCharacteristicTypeIsConfigured: String
  * @availability iOS 11.2+
  */
-export const HMCharacteristicTypeIsConfigured: string = callSDK<string>("HomeKit_3864e7f38681b875", 3973001884045819, undefined, []);
+export const HMCharacteristicTypeIsConfigured: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3973001884045819, undefined, []);
 
 /**
  * let HMCharacteristicTypeLabelIndex: String
  * @availability iOS 10.3+
  */
-export const HMCharacteristicTypeLabelIndex: string = callSDK<string>("HomeKit_3864e7f38681b875", 2571640134378701, undefined, []);
+export const HMCharacteristicTypeLabelIndex: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2571640134378701, undefined, []);
 
 /**
  * let HMCharacteristicTypeLabelNamespace: String
  * @availability iOS 10.3+
  */
-export const HMCharacteristicTypeLabelNamespace: string = callSDK<string>("HomeKit_3864e7f38681b875", 2971882354143808, undefined, []);
+export const HMCharacteristicTypeLabelNamespace: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2971882354143808, undefined, []);
 
 /**
  * let HMCharacteristicTypeLeakDetected: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeLeakDetected: string = callSDK<string>("HomeKit_3864e7f38681b875", 3496060949626427, undefined, []);
+export const HMCharacteristicTypeLeakDetected: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3496060949626427, undefined, []);
 
 /**
  * let HMCharacteristicTypeLockManagementAutoSecureTimeout: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeLockManagementAutoSecureTimeout: string = callSDK<string>("HomeKit_3864e7f38681b875", 2249335635434554, undefined, []);
+export const HMCharacteristicTypeLockManagementAutoSecureTimeout: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2249335635434554, undefined, []);
 
 /**
  * let HMCharacteristicTypeLockManagementControlPoint: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeLockManagementControlPoint: string = callSDK<string>("HomeKit_3864e7f38681b875", 2511022751268371, undefined, []);
+export const HMCharacteristicTypeLockManagementControlPoint: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2511022751268371, undefined, []);
 
 /**
  * let HMCharacteristicTypeLockMechanismLastKnownAction: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeLockMechanismLastKnownAction: string = callSDK<string>("HomeKit_3864e7f38681b875", 1242417690099282, undefined, []);
+export const HMCharacteristicTypeLockMechanismLastKnownAction: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1242417690099282, undefined, []);
 
 /**
  * let HMCharacteristicTypeLockPhysicalControls: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeLockPhysicalControls: string = callSDK<string>("HomeKit_3864e7f38681b875", 2439556750117226, undefined, []);
+export const HMCharacteristicTypeLockPhysicalControls: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2439556750117226, undefined, []);
 
 /**
  * let HMCharacteristicTypeLogs: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeLogs: string = callSDK<string>("HomeKit_3864e7f38681b875", 1539755728683534, undefined, []);
+export const HMCharacteristicTypeLogs: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1539755728683534, undefined, []);
 
 /**
  * let HMCharacteristicTypeManufacturer: String
  * @availability iOS 8.0+
  * @deprecated iOS 11.0
  */
-export const HMCharacteristicTypeManufacturer: string = callSDK<string>("HomeKit_3864e7f38681b875", 2521035881081016, undefined, []);
+export const HMCharacteristicTypeManufacturer: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2521035881081016, undefined, []);
 
 /**
  * let HMCharacteristicTypeModel: String
  * @availability iOS 8.0+
  * @deprecated iOS 11.0
  */
-export const HMCharacteristicTypeModel: string = callSDK<string>("HomeKit_3864e7f38681b875", 2454186537676745, undefined, []);
+export const HMCharacteristicTypeModel: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2454186537676745, undefined, []);
 
 /**
  * let HMCharacteristicTypeMotionDetected: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeMotionDetected: string = callSDK<string>("HomeKit_3864e7f38681b875", 2604449165571370, undefined, []);
+export const HMCharacteristicTypeMotionDetected: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2604449165571370, undefined, []);
 
 /**
  * let HMCharacteristicTypeMute: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeMute: string = callSDK<string>("HomeKit_3864e7f38681b875", 1333650291556872, undefined, []);
+export const HMCharacteristicTypeMute: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1333650291556872, undefined, []);
 
 /**
  * let HMCharacteristicTypeName: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeName: string = callSDK<string>("HomeKit_3864e7f38681b875", 563960280657534, undefined, []);
+export const HMCharacteristicTypeName: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 563960280657534, undefined, []);
 
 /**
  * let HMCharacteristicTypeNightVision: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeNightVision: string = callSDK<string>("HomeKit_3864e7f38681b875", 2779590136625478, undefined, []);
+export const HMCharacteristicTypeNightVision: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2779590136625478, undefined, []);
 
 /**
  * let HMCharacteristicTypeNitrogenDioxideDensity: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeNitrogenDioxideDensity: string = callSDK<string>("HomeKit_3864e7f38681b875", 1549286891547019, undefined, []);
+export const HMCharacteristicTypeNitrogenDioxideDensity: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1549286891547019, undefined, []);
 
 /**
  * let HMCharacteristicTypeObstructionDetected: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeObstructionDetected: string = callSDK<string>("HomeKit_3864e7f38681b875", 3948425100799552, undefined, []);
+export const HMCharacteristicTypeObstructionDetected: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3948425100799552, undefined, []);
 
 /**
  * let HMCharacteristicTypeOccupancyDetected: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeOccupancyDetected: string = callSDK<string>("HomeKit_3864e7f38681b875", 1113415036539772, undefined, []);
+export const HMCharacteristicTypeOccupancyDetected: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1113415036539772, undefined, []);
 
 /**
  * let HMCharacteristicTypeOpticalZoom: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeOpticalZoom: string = callSDK<string>("HomeKit_3864e7f38681b875", 3862923570018717, undefined, []);
+export const HMCharacteristicTypeOpticalZoom: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3862923570018717, undefined, []);
 
 /**
  * let HMCharacteristicTypeOutletInUse: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeOutletInUse: string = callSDK<string>("HomeKit_3864e7f38681b875", 469970620865809, undefined, []);
+export const HMCharacteristicTypeOutletInUse: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 469970620865809, undefined, []);
 
 /**
  * let HMCharacteristicTypeOutputState: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeOutputState: string = callSDK<string>("HomeKit_3864e7f38681b875", 2776212843242530, undefined, []);
+export const HMCharacteristicTypeOutputState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2776212843242530, undefined, []);
 
 /**
  * let HMCharacteristicTypeOzoneDensity: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeOzoneDensity: string = callSDK<string>("HomeKit_3864e7f38681b875", 1051396223726695, undefined, []);
+export const HMCharacteristicTypeOzoneDensity: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1051396223726695, undefined, []);
 
 /**
  * let HMCharacteristicTypePM10Density: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypePM10Density: string = callSDK<string>("HomeKit_3864e7f38681b875", 935418167786590, undefined, []);
+export const HMCharacteristicTypePM10Density: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 935418167786590, undefined, []);
 
 /**
  * let HMCharacteristicTypePM2_5Density: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypePM2_5Density: string = callSDK<string>("HomeKit_3864e7f38681b875", 2271855589430008, undefined, []);
+export const HMCharacteristicTypePM2_5Density: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2271855589430008, undefined, []);
 
 /**
  * let HMCharacteristicTypePictureMode: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypePictureMode: string = callSDK<string>("HomeKit_3864e7f38681b875", 576667533925544, undefined, []);
+export const HMCharacteristicTypePictureMode: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 576667533925544, undefined, []);
 
 /**
  * let HMCharacteristicTypePositionState: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypePositionState: string = callSDK<string>("HomeKit_3864e7f38681b875", 3545201278859362, undefined, []);
+export const HMCharacteristicTypePositionState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3545201278859362, undefined, []);
 
 /**
  * let HMCharacteristicTypePowerModeSelection: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypePowerModeSelection: string = callSDK<string>("HomeKit_3864e7f38681b875", 1350496990844424, undefined, []);
+export const HMCharacteristicTypePowerModeSelection: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1350496990844424, undefined, []);
 
 /**
  * let HMCharacteristicTypePowerState: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypePowerState: string = callSDK<string>("HomeKit_3864e7f38681b875", 157020368013251, undefined, []);
+export const HMCharacteristicTypePowerState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 157020368013251, undefined, []);
 
 /**
  * let HMCharacteristicTypeProgramMode: String
  * @availability iOS 11.2+
  */
-export const HMCharacteristicTypeProgramMode: string = callSDK<string>("HomeKit_3864e7f38681b875", 1729759524907867, undefined, []);
+export const HMCharacteristicTypeProgramMode: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1729759524907867, undefined, []);
 
 /**
  * let HMCharacteristicTypeRemainingDuration: String
  * @availability iOS 11.2+
  */
-export const HMCharacteristicTypeRemainingDuration: string = callSDK<string>("HomeKit_3864e7f38681b875", 1166009719226037, undefined, []);
+export const HMCharacteristicTypeRemainingDuration: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1166009719226037, undefined, []);
 
 /**
  * let HMCharacteristicTypeRemoteKey: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeRemoteKey: string = callSDK<string>("HomeKit_3864e7f38681b875", 2175170761716951, undefined, []);
+export const HMCharacteristicTypeRemoteKey: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2175170761716951, undefined, []);
 
 /**
  * let HMCharacteristicTypeRotationDirection: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeRotationDirection: string = callSDK<string>("HomeKit_3864e7f38681b875", 2079461495694792, undefined, []);
+export const HMCharacteristicTypeRotationDirection: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2079461495694792, undefined, []);
 
 /**
  * let HMCharacteristicTypeRotationSpeed: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeRotationSpeed: string = callSDK<string>("HomeKit_3864e7f38681b875", 3862629437028340, undefined, []);
+export const HMCharacteristicTypeRotationSpeed: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3862629437028340, undefined, []);
 
 /**
  * let HMCharacteristicTypeRouterStatus: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeRouterStatus: string = callSDK<string>("HomeKit_3864e7f38681b875", 472239625912284, undefined, []);
+export const HMCharacteristicTypeRouterStatus: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 472239625912284, undefined, []);
 
 /**
  * let HMCharacteristicTypeSaturation: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeSaturation: string = callSDK<string>("HomeKit_3864e7f38681b875", 4315623977049429, undefined, []);
+export const HMCharacteristicTypeSaturation: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4315623977049429, undefined, []);
 
 /**
  * let HMCharacteristicTypeSecuritySystemAlarmType: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeSecuritySystemAlarmType: string = callSDK<string>("HomeKit_3864e7f38681b875", 1537976858805659, undefined, []);
+export const HMCharacteristicTypeSecuritySystemAlarmType: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1537976858805659, undefined, []);
 
 /**
  * let HMCharacteristicTypeSelectedStreamConfiguration: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeSelectedStreamConfiguration: string = callSDK<string>("HomeKit_3864e7f38681b875", 516558113190946, undefined, []);
+export const HMCharacteristicTypeSelectedStreamConfiguration: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 516558113190946, undefined, []);
 
 /**
  * let HMCharacteristicTypeSerialNumber: String
  * @availability iOS 8.0+
  * @deprecated iOS 11.0
  */
-export const HMCharacteristicTypeSerialNumber: string = callSDK<string>("HomeKit_3864e7f38681b875", 3939068907500036, undefined, []);
+export const HMCharacteristicTypeSerialNumber: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3939068907500036, undefined, []);
 
 /**
  * let HMCharacteristicTypeSetDuration: String
  * @availability iOS 11.2+
  */
-export const HMCharacteristicTypeSetDuration: string = callSDK<string>("HomeKit_3864e7f38681b875", 703196664012314, undefined, []);
+export const HMCharacteristicTypeSetDuration: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 703196664012314, undefined, []);
 
 /**
  * let HMCharacteristicTypeSetupStreamEndpoint: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeSetupStreamEndpoint: string = callSDK<string>("HomeKit_3864e7f38681b875", 276286208633394, undefined, []);
+export const HMCharacteristicTypeSetupStreamEndpoint: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 276286208633394, undefined, []);
 
 /**
  * let HMCharacteristicTypeSlatType: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeSlatType: string = callSDK<string>("HomeKit_3864e7f38681b875", 2770261454070670, undefined, []);
+export const HMCharacteristicTypeSlatType: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2770261454070670, undefined, []);
 
 /**
  * let HMCharacteristicTypeSmokeDetected: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeSmokeDetected: string = callSDK<string>("HomeKit_3864e7f38681b875", 4033007064125064, undefined, []);
+export const HMCharacteristicTypeSmokeDetected: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4033007064125064, undefined, []);
 
 /**
  * let HMCharacteristicTypeSoftwareVersion: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeSoftwareVersion: string = callSDK<string>("HomeKit_3864e7f38681b875", 3452586587280692, undefined, []);
+export const HMCharacteristicTypeSoftwareVersion: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3452586587280692, undefined, []);
 
 /**
  * let HMCharacteristicTypeStatusActive: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeStatusActive: string = callSDK<string>("HomeKit_3864e7f38681b875", 2850461695511726, undefined, []);
+export const HMCharacteristicTypeStatusActive: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2850461695511726, undefined, []);
 
 /**
  * let HMCharacteristicTypeStatusFault: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeStatusFault: string = callSDK<string>("HomeKit_3864e7f38681b875", 1937998600116041, undefined, []);
+export const HMCharacteristicTypeStatusFault: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1937998600116041, undefined, []);
 
 /**
  * let HMCharacteristicTypeStatusJammed: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeStatusJammed: string = callSDK<string>("HomeKit_3864e7f38681b875", 2506231046349023, undefined, []);
+export const HMCharacteristicTypeStatusJammed: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2506231046349023, undefined, []);
 
 /**
  * let HMCharacteristicTypeStatusLowBattery: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeStatusLowBattery: string = callSDK<string>("HomeKit_3864e7f38681b875", 1465310597508973, undefined, []);
+export const HMCharacteristicTypeStatusLowBattery: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1465310597508973, undefined, []);
 
 /**
  * let HMCharacteristicTypeStatusTampered: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeStatusTampered: string = callSDK<string>("HomeKit_3864e7f38681b875", 1477781916721612, undefined, []);
+export const HMCharacteristicTypeStatusTampered: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1477781916721612, undefined, []);
 
 /**
  * let HMCharacteristicTypeStreamingStatus: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeStreamingStatus: string = callSDK<string>("HomeKit_3864e7f38681b875", 3253708167268483, undefined, []);
+export const HMCharacteristicTypeStreamingStatus: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3253708167268483, undefined, []);
 
 /**
  * let HMCharacteristicTypeSulphurDioxideDensity: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeSulphurDioxideDensity: string = callSDK<string>("HomeKit_3864e7f38681b875", 3393978709741390, undefined, []);
+export const HMCharacteristicTypeSulphurDioxideDensity: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3393978709741390, undefined, []);
 
 /**
  * let HMCharacteristicTypeSupportedAudioStreamConfiguration: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeSupportedAudioStreamConfiguration: string = callSDK<string>("HomeKit_3864e7f38681b875", 769493657842950, undefined, []);
+export const HMCharacteristicTypeSupportedAudioStreamConfiguration: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 769493657842950, undefined, []);
 
 /**
  * let HMCharacteristicTypeSupportedRTPConfiguration: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeSupportedRTPConfiguration: string = callSDK<string>("HomeKit_3864e7f38681b875", 774266890638389, undefined, []);
+export const HMCharacteristicTypeSupportedRTPConfiguration: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 774266890638389, undefined, []);
 
 /**
  * let HMCharacteristicTypeSupportedVideoStreamConfiguration: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeSupportedVideoStreamConfiguration: string = callSDK<string>("HomeKit_3864e7f38681b875", 2471524694088247, undefined, []);
+export const HMCharacteristicTypeSupportedVideoStreamConfiguration: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2471524694088247, undefined, []);
 
 /**
  * let HMCharacteristicTypeSwingMode: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeSwingMode: string = callSDK<string>("HomeKit_3864e7f38681b875", 2175376054603249, undefined, []);
+export const HMCharacteristicTypeSwingMode: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2175376054603249, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetAirPurifierState: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeTargetAirPurifierState: string = callSDK<string>("HomeKit_3864e7f38681b875", 3898876580931528, undefined, []);
+export const HMCharacteristicTypeTargetAirPurifierState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3898876580931528, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetDoorState: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeTargetDoorState: string = callSDK<string>("HomeKit_3864e7f38681b875", 693309944901528, undefined, []);
+export const HMCharacteristicTypeTargetDoorState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 693309944901528, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetFanState: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeTargetFanState: string = callSDK<string>("HomeKit_3864e7f38681b875", 4255613829825661, undefined, []);
+export const HMCharacteristicTypeTargetFanState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4255613829825661, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetHeaterCoolerState: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeTargetHeaterCoolerState: string = callSDK<string>("HomeKit_3864e7f38681b875", 3842895201326231, undefined, []);
+export const HMCharacteristicTypeTargetHeaterCoolerState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3842895201326231, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetHeatingCooling: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeTargetHeatingCooling: string = callSDK<string>("HomeKit_3864e7f38681b875", 674551047918730, undefined, []);
+export const HMCharacteristicTypeTargetHeatingCooling: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 674551047918730, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetHorizontalTilt: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeTargetHorizontalTilt: string = callSDK<string>("HomeKit_3864e7f38681b875", 3821954558905291, undefined, []);
+export const HMCharacteristicTypeTargetHorizontalTilt: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3821954558905291, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetHumidifierDehumidifierState: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeTargetHumidifierDehumidifierState: string = callSDK<string>("HomeKit_3864e7f38681b875", 517617230301398, undefined, []);
+export const HMCharacteristicTypeTargetHumidifierDehumidifierState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 517617230301398, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetLockMechanismState: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeTargetLockMechanismState: string = callSDK<string>("HomeKit_3864e7f38681b875", 1734100139332324, undefined, []);
+export const HMCharacteristicTypeTargetLockMechanismState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1734100139332324, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetMediaState: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeTargetMediaState: string = callSDK<string>("HomeKit_3864e7f38681b875", 1554723834750462, undefined, []);
+export const HMCharacteristicTypeTargetMediaState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1554723834750462, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetPosition: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeTargetPosition: string = callSDK<string>("HomeKit_3864e7f38681b875", 697487246758670, undefined, []);
+export const HMCharacteristicTypeTargetPosition: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 697487246758670, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetRelativeHumidity: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeTargetRelativeHumidity: string = callSDK<string>("HomeKit_3864e7f38681b875", 400717143497406, undefined, []);
+export const HMCharacteristicTypeTargetRelativeHumidity: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 400717143497406, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetSecuritySystemState: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeTargetSecuritySystemState: string = callSDK<string>("HomeKit_3864e7f38681b875", 2968767421168442, undefined, []);
+export const HMCharacteristicTypeTargetSecuritySystemState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2968767421168442, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetTemperature: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeTargetTemperature: string = callSDK<string>("HomeKit_3864e7f38681b875", 861014933881821, undefined, []);
+export const HMCharacteristicTypeTargetTemperature: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 861014933881821, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetTilt: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeTargetTilt: string = callSDK<string>("HomeKit_3864e7f38681b875", 1051966656075705, undefined, []);
+export const HMCharacteristicTypeTargetTilt: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1051966656075705, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetVerticalTilt: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicTypeTargetVerticalTilt: string = callSDK<string>("HomeKit_3864e7f38681b875", 3748881132159300, undefined, []);
+export const HMCharacteristicTypeTargetVerticalTilt: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3748881132159300, undefined, []);
 
 /**
  * let HMCharacteristicTypeTargetVisibilityState: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeTargetVisibilityState: string = callSDK<string>("HomeKit_3864e7f38681b875", 898257704641210, undefined, []);
+export const HMCharacteristicTypeTargetVisibilityState: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 898257704641210, undefined, []);
 
 /**
  * let HMCharacteristicTypeTemperatureUnits: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeTemperatureUnits: string = callSDK<string>("HomeKit_3864e7f38681b875", 1049092438642154, undefined, []);
+export const HMCharacteristicTypeTemperatureUnits: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1049092438642154, undefined, []);
 
 /**
  * let HMCharacteristicTypeValveType: String
  * @availability iOS 11.2+
  */
-export const HMCharacteristicTypeValveType: string = callSDK<string>("HomeKit_3864e7f38681b875", 2022380866617922, undefined, []);
+export const HMCharacteristicTypeValveType: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2022380866617922, undefined, []);
 
 /**
  * let HMCharacteristicTypeVersion: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicTypeVersion: string = callSDK<string>("HomeKit_3864e7f38681b875", 2511022405514889, undefined, []);
+export const HMCharacteristicTypeVersion: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2511022405514889, undefined, []);
 
 /**
  * let HMCharacteristicTypeVolatileOrganicCompoundDensity: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeVolatileOrganicCompoundDensity: string = callSDK<string>("HomeKit_3864e7f38681b875", 3799039135680823, undefined, []);
+export const HMCharacteristicTypeVolatileOrganicCompoundDensity: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3799039135680823, undefined, []);
 
 /**
  * let HMCharacteristicTypeVolume: String
  * @availability iOS 10.0+
  */
-export const HMCharacteristicTypeVolume: string = callSDK<string>("HomeKit_3864e7f38681b875", 3419231760558660, undefined, []);
+export const HMCharacteristicTypeVolume: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3419231760558660, undefined, []);
 
 /**
  * let HMCharacteristicTypeVolumeControlType: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeVolumeControlType: string = callSDK<string>("HomeKit_3864e7f38681b875", 1076303553207521, undefined, []);
+export const HMCharacteristicTypeVolumeControlType: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1076303553207521, undefined, []);
 
 /**
  * let HMCharacteristicTypeVolumeSelector: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeVolumeSelector: string = callSDK<string>("HomeKit_3864e7f38681b875", 522905261587347, undefined, []);
+export const HMCharacteristicTypeVolumeSelector: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 522905261587347, undefined, []);
 
 /**
  * let HMCharacteristicTypeWANStatusList: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeWANStatusList: string = callSDK<string>("HomeKit_3864e7f38681b875", 2564812918569207, undefined, []);
+export const HMCharacteristicTypeWANStatusList: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2564812918569207, undefined, []);
 
 /**
  * let HMCharacteristicTypeWaterLevel: String
  * @availability iOS 10.2+
  */
-export const HMCharacteristicTypeWaterLevel: string = callSDK<string>("HomeKit_3864e7f38681b875", 2928606982219375, undefined, []);
+export const HMCharacteristicTypeWaterLevel: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2928606982219375, undefined, []);
 
 /**
  * let HMCharacteristicTypeWiFiSatelliteStatus: String
  * @availability iOS 18.0+
  */
-export const HMCharacteristicTypeWiFiSatelliteStatus: string = callSDK<string>("HomeKit_3864e7f38681b875", 2032393319428844, undefined, []);
+export const HMCharacteristicTypeWiFiSatelliteStatus: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2032393319428844, undefined, []);
 
 /**
  * let HMCharacteristicValueKeyPath: String
  * @availability iOS 9.0+
  */
-export const HMCharacteristicValueKeyPath: string = callSDK<string>("HomeKit_3864e7f38681b875", 747263165400535, undefined, []);
+export const HMCharacteristicValueKeyPath: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 747263165400535, undefined, []);
 
 /**
  * let HMErrorDomain: String
  * @availability iOS 8.0+
  */
-export const HMErrorDomain: string = callSDK<string>("HomeKit_3864e7f38681b875", 179060720161233, undefined, []);
+export const HMErrorDomain: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 179060720161233, undefined, []);
 
 /**
  * let HMPresenceKeyPath: String
  * @availability iOS 11.0+
  */
-export const HMPresenceKeyPath: string = callSDK<string>("HomeKit_3864e7f38681b875", 1025804849560655, undefined, []);
+export const HMPresenceKeyPath: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1025804849560655, undefined, []);
 
 /**
  * let HMServiceTypeAccessoryInformation: String
  * @availability iOS 8.0+
  */
-export const HMServiceTypeAccessoryInformation: string = callSDK<string>("HomeKit_3864e7f38681b875", 1237917957839332, undefined, []);
+export const HMServiceTypeAccessoryInformation: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1237917957839332, undefined, []);
 
 /**
  * let HMServiceTypeAirPurifier: String
  * @availability iOS 10.2+
  */
-export const HMServiceTypeAirPurifier: string = callSDK<string>("HomeKit_3864e7f38681b875", 1578133194269614, undefined, []);
+export const HMServiceTypeAirPurifier: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1578133194269614, undefined, []);
 
 /**
  * let HMServiceTypeAirQualitySensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeAirQualitySensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 3138965194923330, undefined, []);
+export const HMServiceTypeAirQualitySensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3138965194923330, undefined, []);
 
 /**
  * let HMServiceTypeBattery: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeBattery: string = callSDK<string>("HomeKit_3864e7f38681b875", 2668900858489056, undefined, []);
+export const HMServiceTypeBattery: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2668900858489056, undefined, []);
 
 /**
  * let HMServiceTypeCameraControl: String
  * @availability iOS 10.0+
  */
-export const HMServiceTypeCameraControl: string = callSDK<string>("HomeKit_3864e7f38681b875", 1793377814418231, undefined, []);
+export const HMServiceTypeCameraControl: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1793377814418231, undefined, []);
 
 /**
  * let HMServiceTypeCameraRTPStreamManagement: String
  * @availability iOS 10.0+
  */
-export const HMServiceTypeCameraRTPStreamManagement: string = callSDK<string>("HomeKit_3864e7f38681b875", 2908288637959313, undefined, []);
+export const HMServiceTypeCameraRTPStreamManagement: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2908288637959313, undefined, []);
 
 /**
  * let HMServiceTypeCarbonDioxideSensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeCarbonDioxideSensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 1240087695256564, undefined, []);
+export const HMServiceTypeCarbonDioxideSensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1240087695256564, undefined, []);
 
 /**
  * let HMServiceTypeCarbonMonoxideSensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeCarbonMonoxideSensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 2850508457080188, undefined, []);
+export const HMServiceTypeCarbonMonoxideSensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2850508457080188, undefined, []);
 
 /**
  * let HMServiceTypeContactSensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeContactSensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 1792504753353245, undefined, []);
+export const HMServiceTypeContactSensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1792504753353245, undefined, []);
 
 /**
  * let HMServiceTypeDoor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeDoor: string = callSDK<string>("HomeKit_3864e7f38681b875", 1155035299479235, undefined, []);
+export const HMServiceTypeDoor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1155035299479235, undefined, []);
 
 /**
  * let HMServiceTypeDoorbell: String
  * @availability iOS 10.0+
  */
-export const HMServiceTypeDoorbell: string = callSDK<string>("HomeKit_3864e7f38681b875", 28476285412634, undefined, []);
+export const HMServiceTypeDoorbell: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 28476285412634, undefined, []);
 
 /**
  * let HMServiceTypeFan: String
  * @availability iOS 8.0+
  */
-export const HMServiceTypeFan: string = callSDK<string>("HomeKit_3864e7f38681b875", 2167400720085118, undefined, []);
+export const HMServiceTypeFan: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2167400720085118, undefined, []);
 
 /**
  * let HMServiceTypeFaucet: String
  * @availability iOS 11.2+
  */
-export const HMServiceTypeFaucet: string = callSDK<string>("HomeKit_3864e7f38681b875", 2616824730423375, undefined, []);
+export const HMServiceTypeFaucet: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2616824730423375, undefined, []);
 
 /**
  * let HMServiceTypeFilterMaintenance: String
  * @availability iOS 10.2+
  */
-export const HMServiceTypeFilterMaintenance: string = callSDK<string>("HomeKit_3864e7f38681b875", 3651709179180240, undefined, []);
+export const HMServiceTypeFilterMaintenance: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3651709179180240, undefined, []);
 
 /**
  * let HMServiceTypeGarageDoorOpener: String
  * @availability iOS 8.0+
  */
-export const HMServiceTypeGarageDoorOpener: string = callSDK<string>("HomeKit_3864e7f38681b875", 2945088372241107, undefined, []);
+export const HMServiceTypeGarageDoorOpener: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2945088372241107, undefined, []);
 
 /**
  * let HMServiceTypeHeaterCooler: String
  * @availability iOS 10.2+
  */
-export const HMServiceTypeHeaterCooler: string = callSDK<string>("HomeKit_3864e7f38681b875", 1872700990170417, undefined, []);
+export const HMServiceTypeHeaterCooler: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1872700990170417, undefined, []);
 
 /**
  * let HMServiceTypeHumidifierDehumidifier: String
  * @availability iOS 10.2+
  */
-export const HMServiceTypeHumidifierDehumidifier: string = callSDK<string>("HomeKit_3864e7f38681b875", 3414830399526872, undefined, []);
+export const HMServiceTypeHumidifierDehumidifier: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3414830399526872, undefined, []);
 
 /**
  * let HMServiceTypeHumiditySensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeHumiditySensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 3068583390305897, undefined, []);
+export const HMServiceTypeHumiditySensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3068583390305897, undefined, []);
 
 /**
  * let HMServiceTypeInputSource: String
  * @availability iOS 18.0+
  */
-export const HMServiceTypeInputSource: string = callSDK<string>("HomeKit_3864e7f38681b875", 2866635597484281, undefined, []);
+export const HMServiceTypeInputSource: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2866635597484281, undefined, []);
 
 /**
  * let HMServiceTypeIrrigationSystem: String
  * @availability iOS 11.2+
  */
-export const HMServiceTypeIrrigationSystem: string = callSDK<string>("HomeKit_3864e7f38681b875", 164968383338195, undefined, []);
+export const HMServiceTypeIrrigationSystem: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 164968383338195, undefined, []);
 
 /**
  * let HMServiceTypeLabel: String
  * @availability iOS 10.3+
  */
-export const HMServiceTypeLabel: string = callSDK<string>("HomeKit_3864e7f38681b875", 3668746360805804, undefined, []);
+export const HMServiceTypeLabel: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3668746360805804, undefined, []);
 
 /**
  * let HMServiceTypeLeakSensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeLeakSensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 3938829944962683, undefined, []);
+export const HMServiceTypeLeakSensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3938829944962683, undefined, []);
 
 /**
  * let HMServiceTypeLightSensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeLightSensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 2975217543572897, undefined, []);
+export const HMServiceTypeLightSensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2975217543572897, undefined, []);
 
 /**
  * let HMServiceTypeLightbulb: String
  * @availability iOS 8.0+
  */
-export const HMServiceTypeLightbulb: string = callSDK<string>("HomeKit_3864e7f38681b875", 886317950694852, undefined, []);
+export const HMServiceTypeLightbulb: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 886317950694852, undefined, []);
 
 /**
  * let HMServiceTypeLockManagement: String
  * @availability iOS 8.0+
  */
-export const HMServiceTypeLockManagement: string = callSDK<string>("HomeKit_3864e7f38681b875", 3507051939767175, undefined, []);
+export const HMServiceTypeLockManagement: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3507051939767175, undefined, []);
 
 /**
  * let HMServiceTypeLockMechanism: String
  * @availability iOS 8.0+
  */
-export const HMServiceTypeLockMechanism: string = callSDK<string>("HomeKit_3864e7f38681b875", 1163077830988615, undefined, []);
+export const HMServiceTypeLockMechanism: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1163077830988615, undefined, []);
 
 /**
  * let HMServiceTypeMicrophone: String
  * @availability iOS 10.0+
  */
-export const HMServiceTypeMicrophone: string = callSDK<string>("HomeKit_3864e7f38681b875", 3731546154914905, undefined, []);
+export const HMServiceTypeMicrophone: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3731546154914905, undefined, []);
 
 /**
  * let HMServiceTypeMotionSensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeMotionSensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 2509353401609946, undefined, []);
+export const HMServiceTypeMotionSensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2509353401609946, undefined, []);
 
 /**
  * let HMServiceTypeOccupancySensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeOccupancySensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 3001339370978222, undefined, []);
+export const HMServiceTypeOccupancySensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3001339370978222, undefined, []);
 
 /**
  * let HMServiceTypeOutlet: String
  * @availability iOS 8.0+
  */
-export const HMServiceTypeOutlet: string = callSDK<string>("HomeKit_3864e7f38681b875", 4318211211622070, undefined, []);
+export const HMServiceTypeOutlet: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4318211211622070, undefined, []);
 
 /**
  * let HMServiceTypeSecuritySystem: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeSecuritySystem: string = callSDK<string>("HomeKit_3864e7f38681b875", 406061517920831, undefined, []);
+export const HMServiceTypeSecuritySystem: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 406061517920831, undefined, []);
 
 /**
  * let HMServiceTypeSlats: String
  * @availability iOS 10.2+
  */
-export const HMServiceTypeSlats: string = callSDK<string>("HomeKit_3864e7f38681b875", 1992265339673256, undefined, []);
+export const HMServiceTypeSlats: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1992265339673256, undefined, []);
 
 /**
  * let HMServiceTypeSmokeSensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeSmokeSensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 2862976109142254, undefined, []);
+export const HMServiceTypeSmokeSensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2862976109142254, undefined, []);
 
 /**
  * let HMServiceTypeSpeaker: String
  * @availability iOS 10.0+
  */
-export const HMServiceTypeSpeaker: string = callSDK<string>("HomeKit_3864e7f38681b875", 1062246853101610, undefined, []);
+export const HMServiceTypeSpeaker: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1062246853101610, undefined, []);
 
 /**
  * let HMServiceTypeStatefulProgrammableSwitch: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeStatefulProgrammableSwitch: string = callSDK<string>("HomeKit_3864e7f38681b875", 84110568685095, undefined, []);
+export const HMServiceTypeStatefulProgrammableSwitch: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 84110568685095, undefined, []);
 
 /**
  * let HMServiceTypeStatelessProgrammableSwitch: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeStatelessProgrammableSwitch: string = callSDK<string>("HomeKit_3864e7f38681b875", 1225986799328438, undefined, []);
+export const HMServiceTypeStatelessProgrammableSwitch: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1225986799328438, undefined, []);
 
 /**
  * let HMServiceTypeSwitch: String
  * @availability iOS 8.0+
  */
-export const HMServiceTypeSwitch: string = callSDK<string>("HomeKit_3864e7f38681b875", 688460260472801, undefined, []);
+export const HMServiceTypeSwitch: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 688460260472801, undefined, []);
 
 /**
  * let HMServiceTypeTelevision: String
  * @availability iOS 18.0+
  */
-export const HMServiceTypeTelevision: string = callSDK<string>("HomeKit_3864e7f38681b875", 3772591864444355, undefined, []);
+export const HMServiceTypeTelevision: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3772591864444355, undefined, []);
 
 /**
  * let HMServiceTypeTemperatureSensor: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeTemperatureSensor: string = callSDK<string>("HomeKit_3864e7f38681b875", 1009823328345212, undefined, []);
+export const HMServiceTypeTemperatureSensor: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 1009823328345212, undefined, []);
 
 /**
  * let HMServiceTypeThermostat: String
  * @availability iOS 8.0+
  */
-export const HMServiceTypeThermostat: string = callSDK<string>("HomeKit_3864e7f38681b875", 4209809716441790, undefined, []);
+export const HMServiceTypeThermostat: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4209809716441790, undefined, []);
 
 /**
  * let HMServiceTypeValve: String
  * @availability iOS 11.2+
  */
-export const HMServiceTypeValve: string = callSDK<string>("HomeKit_3864e7f38681b875", 728029541795010, undefined, []);
+export const HMServiceTypeValve: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 728029541795010, undefined, []);
 
 /**
  * let HMServiceTypeVentilationFan: String
  * @availability iOS 10.2+
  */
-export const HMServiceTypeVentilationFan: string = callSDK<string>("HomeKit_3864e7f38681b875", 686493175183547, undefined, []);
+export const HMServiceTypeVentilationFan: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 686493175183547, undefined, []);
 
 /**
  * let HMServiceTypeWiFiRouter: String
  * @availability iOS 18.0+
  */
-export const HMServiceTypeWiFiRouter: string = callSDK<string>("HomeKit_3864e7f38681b875", 308325546685991, undefined, []);
+export const HMServiceTypeWiFiRouter: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 308325546685991, undefined, []);
 
 /**
  * let HMServiceTypeWiFiSatellite: String
  * @availability iOS 18.0+
  */
-export const HMServiceTypeWiFiSatellite: string = callSDK<string>("HomeKit_3864e7f38681b875", 2345393513903298, undefined, []);
+export const HMServiceTypeWiFiSatellite: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2345393513903298, undefined, []);
 
 /**
  * let HMServiceTypeWindow: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeWindow: string = callSDK<string>("HomeKit_3864e7f38681b875", 2931583652921182, undefined, []);
+export const HMServiceTypeWindow: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2931583652921182, undefined, []);
 
 /**
  * let HMServiceTypeWindowCovering: String
  * @availability iOS 9.0+
  */
-export const HMServiceTypeWindowCovering: string = callSDK<string>("HomeKit_3864e7f38681b875", 4257472631935641, undefined, []);
+export const HMServiceTypeWindowCovering: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 4257472631935641, undefined, []);
 
 /**
  * let HMUserFailedAccessoriesKey: String
  * @availability iOS 8.0+
  * @deprecated iOS 27.0
  */
-export const HMUserFailedAccessoriesKey: string = callSDK<string>("HomeKit_3864e7f38681b875", 3385910657514330, undefined, []);
+export const HMUserFailedAccessoriesKey: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 3385910657514330, undefined, []);
 
 /**
  * let HMCharacteristicPropertySupportsEventNotification: String
  * @availability iOS 8.0+
  */
-export const HMCharacteristicPropertySupportsEventNotification: string = callSDK<string>("HomeKit_3864e7f38681b875", 2320102030325567, undefined, []);
+export const HMCharacteristicPropertySupportsEventNotification: string = callSDK<string>("HomeKit_ff42ce03e691ab23", 2320102030325567, undefined, []);
 
-registerSDKClass("HMAccessControl", HMAccessControl, { module: "HomeKit_3864e7f38681b875", properties: {} });
-registerSDKClass("HMAccessory", HMAccessory, { module: "HomeKit_3864e7f38681b875", properties: {"isBlocked":2165743675604118,"isBridged":1932858588732918,"bridgedAccessories":1860157476214040,"cameraProfiles":1019957835743443,"category":1867743051124829,"delegate":2118583383916352,"firmwareVersion":3204555070898826,"home":383736389540485,"identifier":530835293807428,"identifiersForBridgedAccessories":1493452648703431,"manufacturer":2905096932141949,"model":4447547227103708,"name":3071772464133987,"profiles":2141960910474759,"isReachable":1003965521534630,"room":3174004939678708,"services":619892484239628,"supportsIdentify":3266108249688349,"uniqueIdentifier":57146579628583,"uniqueIdentifiersForBridgedAccessories":683916399497274,"isVendorAccessory":1136234948184990}, methods: {"identify":{"id":1876679964317231,"hints":[{"callback":{"out":[]}}]},"updateName":{"id":239918888009459,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMAccessoryBrowser", HMAccessoryBrowser, { module: "HomeKit_3864e7f38681b875", properties: {"delegate":906471778285695,"discoveredAccessories":818593035315987}, methods: {"startSearchingForNewAccessories":{"id":1245078672383877},"stopSearchingForNewAccessories":{"id":1120811962369197}} });
+registerSDKClass("HMAccessControl", HMAccessControl, { module: "HomeKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("HMAccessory", HMAccessory, { module: "HomeKit_ff42ce03e691ab23", properties: {"isBlocked":2165743675604118,"isBridged":1932858588732918,"bridgedAccessories":1860157476214040,"cameraProfiles":1019957835743443,"category":1867743051124829,"delegate":2118583383916352,"firmwareVersion":3204555070898826,"home":383736389540485,"identifier":530835293807428,"identifiersForBridgedAccessories":1493452648703431,"manufacturer":2905096932141949,"model":4447547227103708,"name":3071772464133987,"profiles":2141960910474759,"isReachable":1003965521534630,"room":3174004939678708,"services":619892484239628,"supportsIdentify":3266108249688349,"uniqueIdentifier":57146579628583,"uniqueIdentifiersForBridgedAccessories":683916399497274,"isVendorAccessory":1136234948184990}, methods: {"identify":{"id":1876679964317231,"hints":[{"callback":{"out":[]}}]},"updateName":{"id":239918888009459,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMAccessoryBrowser", HMAccessoryBrowser, { module: "HomeKit_ff42ce03e691ab23", properties: {"delegate":906471778285695,"discoveredAccessories":818593035315987}, methods: {"startSearchingForNewAccessories":{"id":1245078672383877},"stopSearchingForNewAccessories":{"id":1120811962369197}} });
 registerSDKProtocol("c:objc(pl)HMAccessoryBrowserDelegate", {"accessoryBrowserDidFindNewAccessory":"accessoryBrowser(_:didFindNewAccessory:)","accessoryBrowserDidRemoveNewAccessory":"accessoryBrowser(_:didRemoveNewAccessory:)"});
-registerSDKClass("HMAccessoryCategory", HMAccessoryCategory, { module: "HomeKit_3864e7f38681b875", properties: {"categoryType":1315972963850691,"localizedDescription":3654233385331916} });
+registerSDKClass("HMAccessoryCategory", HMAccessoryCategory, { module: "HomeKit_ff42ce03e691ab23", properties: {"categoryType":1315972963850691,"localizedDescription":3654233385331916} });
 registerSDKProtocol("c:objc(pl)HMAccessoryDelegate", {"accessoryDidUpdateName":"accessoryDidUpdateName(_:)","accessoryDidUpdateNameFor":"accessory(_:didUpdateNameFor:)","accessoryDidUpdateAssociatedServiceTypeFor":"accessory(_:didUpdateAssociatedServiceTypeFor:)","accessoryDidUpdateServices":"accessoryDidUpdateServices(_:)","accessoryDidAdd":"accessory(_:didAdd:)","accessoryDidRemove":"accessory(_:didRemove:)","accessoryDidUpdateReachability":"accessoryDidUpdateReachability(_:)","accessoryServiceDidUpdateValueFor":"accessory(_:service:didUpdateValueFor:)","accessoryDidUpdateFirmwareVersion":"accessory(_:didUpdateFirmwareVersion:)"});
-registerSDKClass("HMAccessoryOwnershipToken", HMAccessoryOwnershipToken, { module: "HomeKit_3864e7f38681b875", properties: {} });
-registerSDKClass("HMAccessoryProfile", HMAccessoryProfile, { module: "HomeKit_3864e7f38681b875", properties: {"accessory":834812238750744,"services":4314755913425412,"uniqueIdentifier":1595002511382626} });
-registerSDKClass("HMAccessorySetupManager", HMAccessorySetupManager, { module: "HomeKit_3864e7f38681b875", properties: {}, methods: {"performAccessorySetup":{"id":204780439084170,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMAccessorySetupPayload", HMAccessorySetupPayload, { module: "HomeKit_3864e7f38681b875", properties: {} });
-registerSDKClass("HMAccessorySetupRequest", HMAccessorySetupRequest, { module: "HomeKit_3864e7f38681b875", properties: {"homeUniqueIdentifier":169357101324003,"payload":4260074501025179,"suggestedAccessoryName":4183112075348093,"suggestedRoomUniqueIdentifier":2473513299070053} });
-registerSDKClass("HMAccessorySetupResult", HMAccessorySetupResult, { module: "HomeKit_3864e7f38681b875", properties: {"accessoryUniqueIdentifiers":1062259852335508,"homeUniqueIdentifier":2706147756223563} });
-registerSDKClass("HMAction", HMAction, { module: "HomeKit_3864e7f38681b875", properties: {"uniqueIdentifier":1213824764027604} });
-registerSDKClass("HMActionSet", HMActionSet, { module: "HomeKit_3864e7f38681b875", properties: {"actionSetType":2060630673948203,"actions":1861604150664153,"isExecuting":4444675339433877,"lastExecutionDate":3297203710356517,"name":4338990973067581,"uniqueIdentifier":3183069108150061}, methods: {"addAction":{"id":2251689835325719,"hints":[null,{"callback":{"out":[]}}]},"removeAction":{"id":3122091068921739,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":4073435391897752,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMAddAccessoryRequest", HMAddAccessoryRequest, { module: "HomeKit_3864e7f38681b875", properties: {"accessoryCategory":2856122365250841,"accessoryName":366105883945665,"home":3743758817383991,"requiresOwnershipToken":3298222531355988,"requiresSetupPayloadURL":1228607861065060}, methods: {"makePayloadOwnershipToken":{"id":2372268711740153},"makePayloadUrlOwnershipToken":{"id":3030010488879693}} });
-registerSDKClass("HMEvent", HMEvent, { module: "HomeKit_3864e7f38681b875", properties: {"uniqueIdentifier":2834717504057096} });
-registerSDKClass("HMTimeEvent", HMTimeEvent, { module: "HomeKit_3864e7f38681b875", properties: {} });
-registerSDKClass("HMCalendarEvent", HMCalendarEvent, { module: "HomeKit_3864e7f38681b875", properties: {"fireDateComponents":2472781324407269} });
-registerSDKClass("HMCameraControl", HMCameraControl, { module: "HomeKit_3864e7f38681b875", properties: {} });
-registerSDKClass("HMCameraAudioControl", HMCameraAudioControl, { module: "HomeKit_3864e7f38681b875", properties: {"mute":4248542091422667,"volume":2028532371129219} });
-registerSDKClass("HMCameraProfile", HMCameraProfile, { module: "HomeKit_3864e7f38681b875", properties: {"microphoneControl":4092720376685759,"settingsControl":2083143924659045,"snapshotControl":495991198465856,"speakerControl":3755905036192726,"streamControl":2351163521306322} });
-registerSDKClass("HMCameraSettingsControl", HMCameraSettingsControl, { module: "HomeKit_3864e7f38681b875", properties: {"currentHorizontalTilt":27137121211730,"currentVerticalTilt":2453405320332636,"digitalZoom":2206952783514529,"imageMirroring":3495407099614341,"imageRotation":1371400552419750,"nightVision":1294633366473138,"opticalZoom":4183227762040892,"targetHorizontalTilt":2497904109475660,"targetVerticalTilt":4186410750174490} });
-registerSDKClass("HMCameraSource", HMCameraSource, { module: "HomeKit_3864e7f38681b875", properties: {"aspectRatio":435451944194403} });
-registerSDKClass("HMCameraSnapshot", HMCameraSnapshot, { module: "HomeKit_3864e7f38681b875", properties: {"captureDate":2348107456271920} });
-registerSDKClass("HMCameraSnapshotControl", HMCameraSnapshotControl, { module: "HomeKit_3864e7f38681b875", properties: {"delegate":73527498410513,"mostRecentSnapshot":1964028575227855}, methods: {"takeSnapshot":{"id":4325661686698815}} });
+registerSDKClass("HMAccessoryOwnershipToken", HMAccessoryOwnershipToken, { module: "HomeKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("HMAccessoryProfile", HMAccessoryProfile, { module: "HomeKit_ff42ce03e691ab23", properties: {"accessory":834812238750744,"services":4314755913425412,"uniqueIdentifier":1595002511382626} });
+registerSDKClass("HMAccessorySetupManager", HMAccessorySetupManager, { module: "HomeKit_ff42ce03e691ab23", properties: {}, methods: {"performAccessorySetup":{"id":204780439084170,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMAccessorySetupPayload", HMAccessorySetupPayload, { module: "HomeKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("HMAccessorySetupRequest", HMAccessorySetupRequest, { module: "HomeKit_ff42ce03e691ab23", properties: {"homeUniqueIdentifier":169357101324003,"payload":4260074501025179,"suggestedAccessoryName":4183112075348093,"suggestedRoomUniqueIdentifier":2473513299070053} });
+registerSDKClass("HMAccessorySetupResult", HMAccessorySetupResult, { module: "HomeKit_ff42ce03e691ab23", properties: {"accessoryUniqueIdentifiers":1062259852335508,"homeUniqueIdentifier":2706147756223563} });
+registerSDKClass("HMAction", HMAction, { module: "HomeKit_ff42ce03e691ab23", properties: {"uniqueIdentifier":1213824764027604} });
+registerSDKClass("HMActionSet", HMActionSet, { module: "HomeKit_ff42ce03e691ab23", properties: {"actionSetType":2060630673948203,"actions":1861604150664153,"isExecuting":4444675339433877,"lastExecutionDate":3297203710356517,"name":4338990973067581,"uniqueIdentifier":3183069108150061}, methods: {"addAction":{"id":2251689835325719,"hints":[null,{"callback":{"out":[]}}]},"removeAction":{"id":3122091068921739,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":4073435391897752,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMAddAccessoryRequest", HMAddAccessoryRequest, { module: "HomeKit_ff42ce03e691ab23", properties: {"accessoryCategory":2856122365250841,"accessoryName":366105883945665,"home":3743758817383991,"requiresOwnershipToken":3298222531355988,"requiresSetupPayloadURL":1228607861065060}, methods: {"makePayloadOwnershipToken":{"id":2372268711740153},"makePayloadUrlOwnershipToken":{"id":3030010488879693}} });
+registerSDKClass("HMEvent", HMEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"uniqueIdentifier":2834717504057096} });
+registerSDKClass("HMTimeEvent", HMTimeEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("HMCalendarEvent", HMCalendarEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"fireDateComponents":2472781324407269} });
+registerSDKClass("HMCameraControl", HMCameraControl, { module: "HomeKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("HMCameraAudioControl", HMCameraAudioControl, { module: "HomeKit_ff42ce03e691ab23", properties: {"mute":4248542091422667,"volume":2028532371129219} });
+registerSDKClass("HMCameraProfile", HMCameraProfile, { module: "HomeKit_ff42ce03e691ab23", properties: {"microphoneControl":4092720376685759,"settingsControl":2083143924659045,"snapshotControl":495991198465856,"speakerControl":3755905036192726,"streamControl":2351163521306322} });
+registerSDKClass("HMCameraSettingsControl", HMCameraSettingsControl, { module: "HomeKit_ff42ce03e691ab23", properties: {"currentHorizontalTilt":27137121211730,"currentVerticalTilt":2453405320332636,"digitalZoom":2206952783514529,"imageMirroring":3495407099614341,"imageRotation":1371400552419750,"nightVision":1294633366473138,"opticalZoom":4183227762040892,"targetHorizontalTilt":2497904109475660,"targetVerticalTilt":4186410750174490} });
+registerSDKClass("HMCameraSource", HMCameraSource, { module: "HomeKit_ff42ce03e691ab23", properties: {"aspectRatio":435451944194403} });
+registerSDKClass("HMCameraSnapshot", HMCameraSnapshot, { module: "HomeKit_ff42ce03e691ab23", properties: {"captureDate":2348107456271920} });
+registerSDKClass("HMCameraSnapshotControl", HMCameraSnapshotControl, { module: "HomeKit_ff42ce03e691ab23", properties: {"delegate":73527498410513,"mostRecentSnapshot":1964028575227855}, methods: {"takeSnapshot":{"id":4325661686698815}} });
 registerSDKProtocol("c:objc(pl)HMCameraSnapshotControlDelegate", {"cameraSnapshotControlDidTakeError":"cameraSnapshotControl(_:didTake:error:)","cameraSnapshotControlDidUpdateMostRecentSnapshot":"cameraSnapshotControlDidUpdateMostRecentSnapshot(_:)"});
-registerSDKClass("HMCameraStream", HMCameraStream, { module: "HomeKit_3864e7f38681b875", properties: {"audioStreamSetting":2114585866329737}, methods: {"setAudioStreamSetting":{"id":404476087066130},"updateAudioStreamSetting":{"id":4224520443903761,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMCameraStreamControl", HMCameraStreamControl, { module: "HomeKit_3864e7f38681b875", properties: {"cameraStream":3894191159672705,"delegate":915822999870568,"streamState":2145193307637001}, methods: {"startStream":{"id":385520909160852},"stopStream":{"id":357576087420264}} });
+registerSDKClass("HMCameraStream", HMCameraStream, { module: "HomeKit_ff42ce03e691ab23", properties: {"audioStreamSetting":2114585866329737}, methods: {"setAudioStreamSetting":{"id":404476087066130},"updateAudioStreamSetting":{"id":4224520443903761,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMCameraStreamControl", HMCameraStreamControl, { module: "HomeKit_ff42ce03e691ab23", properties: {"cameraStream":3894191159672705,"delegate":915822999870568,"streamState":2145193307637001}, methods: {"startStream":{"id":385520909160852},"stopStream":{"id":357576087420264}} });
 registerSDKProtocol("c:objc(pl)HMCameraStreamControlDelegate", {"cameraStreamControlDidStartStream":"cameraStreamControlDidStartStream(_:)","cameraStreamControlDidStopStreamWithError":"cameraStreamControl(_:didStopStreamWithError:)"});
-registerSDKClass("HMCameraView", HMCameraView, { module: "HomeKit_3864e7f38681b875", properties: {"cameraSource":949579045054995} });
-registerSDKClass("HMCharacteristic", HMCharacteristic, { module: "HomeKit_3864e7f38681b875", properties: {"characteristicType":794850690084880,"localizedDescription":4439993368928437,"metadata":2179780329438604,"isNotificationEnabled":1222612650314029,"properties":3523602543819843,"service":2038636655528427,"uniqueIdentifier":3678201555717014,"value":4284054932205548}, methods: {"enableNotification":{"id":2776191665047408,"hints":[null,{"callback":{"out":[]}}]},"readValue":{"id":2084701589185922,"hints":[{"callback":{"out":[]}}]},"updateAuthorizationData":{"id":4100160922082745,"hints":[null,{"callback":{"out":[]}}]},"writeValue":{"id":2758733601091925,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMCharacteristicEvent", HMCharacteristicEvent, { module: "HomeKit_3864e7f38681b875", properties: {} });
-registerSDKClass("HMCharacteristicMetadata", HMCharacteristicMetadata, { module: "HomeKit_3864e7f38681b875", properties: {"format":1403898159825373,"manufacturerDescription":3221270816513036,"maxLength":3757352771396812,"maximumValue":761659519603505,"minimumValue":1059950904968996,"stepValue":3505273264479515,"units":562365391939448,"validValues":281263916103544} });
-registerSDKClass("HMCharacteristicThresholdRangeEvent", HMCharacteristicThresholdRangeEvent, { module: "HomeKit_3864e7f38681b875", properties: {"characteristic":2849849767036977,"thresholdRange":3719867175535725} });
-registerSDKClass("HMCharacteristicWriteAction", HMCharacteristicWriteAction, { module: "HomeKit_3864e7f38681b875", properties: {} });
-registerSDKClass("HMDurationEvent", HMDurationEvent, { module: "HomeKit_3864e7f38681b875", properties: {"duration":1986416259675673} });
-registerSDKClass("HomeKit.HMError", HMError, { module: "HomeKit_3864e7f38681b875", properties: {} });
-registerSDKClass("HMTrigger", HMTrigger, { module: "HomeKit_3864e7f38681b875", properties: {"actionSets":3024570678818290,"isEnabled":791258614186346,"lastFireDate":4454774448954688,"name":1202459812138360,"uniqueIdentifier":3681648320348780}, methods: {"addActionSet":{"id":1715559808729150,"hints":[null,{"callback":{"out":[]}}]},"enable":{"id":1277929350456983,"hints":[null,{"callback":{"out":[]}}]},"removeActionSet":{"id":4270534780764153,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":3181099600668284,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMEventTrigger", HMEventTrigger, { module: "HomeKit_3864e7f38681b875", properties: {"endEvents":2505895919169813,"events":472636739847018,"executeOnce":3009793534908115,"predicate":1165670615419356,"recurrences":2803373359627682,"triggerActivationState":3728528306775818}, methods: {"addEvent":{"id":4317622931269241,"hints":[null,{"callback":{"out":[]}}]},"removeEvent":{"id":1862992162325979,"hints":[null,{"callback":{"out":[]}}]},"updateEndEvents":{"id":1318923010150284,"hints":[null,{"callback":{"out":[]}}]},"updateEvents":{"id":2630511064470131,"hints":[null,{"callback":{"out":[]}}]},"updateExecuteOnce":{"id":1463405166654877,"hints":[null,{"callback":{"out":[]}}]},"updatePredicate":{"id":864304931298343,"hints":[null,{"callback":{"out":[]}}]},"updateRecurrences":{"id":3963811896949648,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMHome", HMHome, { module: "HomeKit_3864e7f38681b875", properties: {"accessories":2089497593267245,"actionSets":2378914820344013,"currentUser":942111672694336,"delegate":3895806526405827,"homeHubState":235552433752908,"matterControllerID":4105789598869632,"name":1989125917473945,"isPrimary":4037809404044886,"rooms":3896454860089788,"serviceGroups":3788466405771385,"supportsAddingNetworkRouter":2938657330966144,"triggers":3183950285658078,"uniqueIdentifier":1530788806963912,"users":1930537175567568,"zones":1155476043150778}, methods: {"addAccessory":{"id":4204643978212025,"hints":[null,{"callback":{"out":[]}}]},"addActionSet":{"id":1388022734864863,"hints":[null,{"callback":{"out":[]}}]},"addAndSetupAccessoriesCompletionHandler":{"id":779508373605091,"hints":[{"callback":{"out":[]}}]},"addAndSetupAccessoriesWithCompletionHandler":{"id":3341763731444870,"hints":[null,{"callback":{"out":[]}}]},"addRoom":{"id":4481713386133090,"hints":[null,{"callback":{"out":[]}}]},"addServiceGroup":{"id":4205362043568170,"hints":[null,{"callback":{"out":[]}}]},"addTrigger":{"id":2170180150774729,"hints":[null,{"callback":{"out":[]}}]},"addUser":{"id":1930350328895622,"hints":[{"callback":{"out":[]}}]},"addZone":{"id":3702169087133399,"hints":[null,{"callback":{"out":[]}}]},"assignAccessory":{"id":156932470433898,"hints":[null,null,{"callback":{"out":[]}}]},"builtinActionSet":{"id":269755218371761},"executeActionSet":{"id":2673929709487266,"hints":[null,{"callback":{"out":[]}}]},"homeAccessControl":{"id":4379031333204895},"manageUsers":{"id":2776751013588044,"hints":[{"callback":{"out":[]}}]},"removeAccessory":{"id":666338179580889,"hints":[null,{"callback":{"out":[]}}]},"removeActionSet":{"id":68475187193260,"hints":[null,{"callback":{"out":[]}}]},"removeRoom":{"id":3782254073050427,"hints":[null,{"callback":{"out":[]}}]},"removeServiceGroup":{"id":3470958417849134,"hints":[null,{"callback":{"out":[]}}]},"removeTrigger":{"id":2543616901910519,"hints":[null,{"callback":{"out":[]}}]},"removeUser":{"id":551726869792281,"hints":[null,{"callback":{"out":[]}}]},"removeZone":{"id":1051731186027176,"hints":[null,{"callback":{"out":[]}}]},"roomForEntireHome":{"id":2827403606477009},"servicesWithTypes":{"id":2347918216712502},"unblockAccessory":{"id":3306140274911834,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":3257166618617546,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMHomeAccessControl", HMHomeAccessControl, { module: "HomeKit_3864e7f38681b875", properties: {"isAdministrator":4158043948691974} });
+registerSDKClass("HMCameraView", HMCameraView, { module: "HomeKit_ff42ce03e691ab23", properties: {"cameraSource":949579045054995} });
+registerSDKClass("HMCharacteristic", HMCharacteristic, { module: "HomeKit_ff42ce03e691ab23", properties: {"characteristicType":794850690084880,"localizedDescription":4439993368928437,"metadata":2179780329438604,"isNotificationEnabled":1222612650314029,"properties":3523602543819843,"service":2038636655528427,"uniqueIdentifier":3678201555717014,"value":4284054932205548}, methods: {"enableNotification":{"id":2776191665047408,"hints":[null,{"callback":{"out":[]}}]},"readValue":{"id":2084701589185922,"hints":[{"callback":{"out":[]}}]},"updateAuthorizationData":{"id":4100160922082745,"hints":[null,{"callback":{"out":[]}}]},"writeValue":{"id":2758733601091925,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMCharacteristicEvent", HMCharacteristicEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("HMCharacteristicMetadata", HMCharacteristicMetadata, { module: "HomeKit_ff42ce03e691ab23", properties: {"format":1403898159825373,"manufacturerDescription":3221270816513036,"maxLength":3757352771396812,"maximumValue":761659519603505,"minimumValue":1059950904968996,"stepValue":3505273264479515,"units":562365391939448,"validValues":281263916103544} });
+registerSDKClass("HMCharacteristicThresholdRangeEvent", HMCharacteristicThresholdRangeEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"characteristic":2849849767036977,"thresholdRange":3719867175535725} });
+registerSDKClass("HMCharacteristicWriteAction", HMCharacteristicWriteAction, { module: "HomeKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("HMDurationEvent", HMDurationEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"duration":1986416259675673} });
+registerSDKClass("HomeKit.HMError", HMError, { module: "HomeKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("HMTrigger", HMTrigger, { module: "HomeKit_ff42ce03e691ab23", properties: {"actionSets":3024570678818290,"isEnabled":791258614186346,"lastFireDate":4454774448954688,"name":1202459812138360,"uniqueIdentifier":3681648320348780}, methods: {"addActionSet":{"id":1715559808729150,"hints":[null,{"callback":{"out":[]}}]},"enable":{"id":1277929350456983,"hints":[null,{"callback":{"out":[]}}]},"removeActionSet":{"id":4270534780764153,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":3181099600668284,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMEventTrigger", HMEventTrigger, { module: "HomeKit_ff42ce03e691ab23", properties: {"endEvents":2505895919169813,"events":472636739847018,"executeOnce":3009793534908115,"predicate":1165670615419356,"recurrences":2803373359627682,"triggerActivationState":3728528306775818}, methods: {"addEvent":{"id":4317622931269241,"hints":[null,{"callback":{"out":[]}}]},"removeEvent":{"id":1862992162325979,"hints":[null,{"callback":{"out":[]}}]},"updateEndEvents":{"id":1318923010150284,"hints":[null,{"callback":{"out":[]}}]},"updateEvents":{"id":2630511064470131,"hints":[null,{"callback":{"out":[]}}]},"updateExecuteOnce":{"id":1463405166654877,"hints":[null,{"callback":{"out":[]}}]},"updatePredicate":{"id":864304931298343,"hints":[null,{"callback":{"out":[]}}]},"updateRecurrences":{"id":3963811896949648,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMHome", HMHome, { module: "HomeKit_ff42ce03e691ab23", properties: {"accessories":2089497593267245,"actionSets":2378914820344013,"currentUser":942111672694336,"delegate":3895806526405827,"homeHubState":235552433752908,"matterControllerID":4105789598869632,"name":1989125917473945,"isPrimary":4037809404044886,"rooms":3896454860089788,"serviceGroups":3788466405771385,"supportsAddingNetworkRouter":2938657330966144,"triggers":3183950285658078,"uniqueIdentifier":1530788806963912,"users":1930537175567568,"zones":1155476043150778}, methods: {"addAccessory":{"id":4204643978212025,"hints":[null,{"callback":{"out":[]}}]},"addActionSet":{"id":1388022734864863,"hints":[null,{"callback":{"out":[]}}]},"addAndSetupAccessoriesCompletionHandler":{"id":779508373605091,"hints":[{"callback":{"out":[]}}]},"addAndSetupAccessoriesWithCompletionHandler":{"id":3341763731444870,"hints":[null,{"callback":{"out":[]}}]},"addRoom":{"id":4481713386133090,"hints":[null,{"callback":{"out":[]}}]},"addServiceGroup":{"id":4205362043568170,"hints":[null,{"callback":{"out":[]}}]},"addTrigger":{"id":2170180150774729,"hints":[null,{"callback":{"out":[]}}]},"addUser":{"id":1930350328895622,"hints":[{"callback":{"out":[]}}]},"addZone":{"id":3702169087133399,"hints":[null,{"callback":{"out":[]}}]},"assignAccessory":{"id":156932470433898,"hints":[null,null,{"callback":{"out":[]}}]},"builtinActionSet":{"id":269755218371761},"executeActionSet":{"id":2673929709487266,"hints":[null,{"callback":{"out":[]}}]},"homeAccessControl":{"id":4379031333204895},"manageUsers":{"id":2776751013588044,"hints":[{"callback":{"out":[]}}]},"removeAccessory":{"id":666338179580889,"hints":[null,{"callback":{"out":[]}}]},"removeActionSet":{"id":68475187193260,"hints":[null,{"callback":{"out":[]}}]},"removeRoom":{"id":3782254073050427,"hints":[null,{"callback":{"out":[]}}]},"removeServiceGroup":{"id":3470958417849134,"hints":[null,{"callback":{"out":[]}}]},"removeTrigger":{"id":2543616901910519,"hints":[null,{"callback":{"out":[]}}]},"removeUser":{"id":551726869792281,"hints":[null,{"callback":{"out":[]}}]},"removeZone":{"id":1051731186027176,"hints":[null,{"callback":{"out":[]}}]},"roomForEntireHome":{"id":2827403606477009},"servicesWithTypes":{"id":2347918216712502},"unblockAccessory":{"id":3306140274911834,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":3257166618617546,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMHomeAccessControl", HMHomeAccessControl, { module: "HomeKit_ff42ce03e691ab23", properties: {"isAdministrator":4158043948691974} });
 registerSDKProtocol("c:objc(pl)HMHomeDelegate", {"homeDidUpdateName":"homeDidUpdateName(_:)","homeDidUpdateAccessControlForCurrentUser":"homeDidUpdateAccessControl(forCurrentUser:)","homeDidAdd":"home(_:didAdd:)","homeDidRemove":"home(_:didRemove:)","homeDidUpdateFor":"home(_:didUpdate:for:)","homeDidUpdateNameFor":"home(_:didUpdateNameFor:)","homeDidAddTo":"home(_:didAdd:to:)","homeDidRemoveFrom":"home(_:didRemove:from:)","homeDidUpdateActionsFor":"home(_:didUpdateActionsFor:)","homeDidUpdate":"home(_:didUpdate:)","homeDidUnblockAccessory":"home(_:didUnblockAccessory:)","homeDidEncounterErrorFor":"home(_:didEncounterError:for:)","homeDidUpdateSupportedFeatures":"homeDidUpdateSupportedFeatures(_:)"});
-registerSDKClass("HMHomeManager", HMHomeManager, { module: "HomeKit_3864e7f38681b875", properties: {"authorizationStatus":887657529863415,"delegate":124115878063215,"homes":3050465864866793,"primaryHome":4167850619654531}, methods: {"addHome":{"id":2196193980032506,"hints":[null,{"callback":{"out":[]}}]},"findVendorAccessory":{"id":4126609559889395,"hints":[null,{"callback":{"out":[]}}]},"removeHome":{"id":1918565957225244,"hints":[null,{"callback":{"out":[]}}]},"updatePrimaryHome":{"id":4028413016755595,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMHomeManager", HMHomeManager, { module: "HomeKit_ff42ce03e691ab23", properties: {"authorizationStatus":887657529863415,"delegate":124115878063215,"homes":3050465864866793,"primaryHome":4167850619654531}, methods: {"addHome":{"id":2196193980032506,"hints":[null,{"callback":{"out":[]}}]},"findVendorAccessory":{"id":4126609559889395,"hints":[null,{"callback":{"out":[]}}]},"removeHome":{"id":1918565957225244,"hints":[null,{"callback":{"out":[]}}]},"updatePrimaryHome":{"id":4028413016755595,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)HMHomeManagerDelegate", {"homeManagerDidUpdate":"homeManager(_:didUpdate:)","homeManagerDidUpdateHomes":"homeManagerDidUpdateHomes(_:)","homeManagerDidUpdatePrimaryHome":"homeManagerDidUpdatePrimaryHome(_:)","homeManagerDidAdd":"homeManager(_:didAdd:)","homeManagerDidRemove":"homeManager(_:didRemove:)","homeManagerDidReceiveAddAccessoryRequest":"homeManager(_:didReceiveAddAccessoryRequest:)"});
-registerSDKClass("HMLocationEvent", HMLocationEvent, { module: "HomeKit_3864e7f38681b875", properties: {"region":4175311280652436}, methods: {"updateRegion":{"id":3171539420334544,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HomeKit.HMMediaSourceDisplayOrderProfile", HMMediaSourceDisplayOrderProfile, { module: "HomeKit_3864e7f38681b875", properties: {}, methods: {"writeOrder":{"id":3856546400475581}} });
+registerSDKClass("HMLocationEvent", HMLocationEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"region":4175311280652436}, methods: {"updateRegion":{"id":3171539420334544,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HomeKit.HMMediaSourceDisplayOrderProfile", HMMediaSourceDisplayOrderProfile, { module: "HomeKit_ff42ce03e691ab23", properties: {}, methods: {"writeOrder":{"id":3856546400475581}} });
 registerSDKProtocol("s:7HomeKit32HMMediaSourceDisplayOrderProfileC8DelegateP", {"mediaSourceDisplayOrderProfileDidUpdateOrder":"mediaSourceDisplayOrderProfileDidUpdateOrder(_:)"});
-registerSDKClass("HMMutableCalendarEvent", HMMutableCalendarEvent, { module: "HomeKit_3864e7f38681b875", properties: {"fireDateComponents":2751408217898674} });
-registerSDKClass("HMMutableCharacteristicEvent", HMMutableCharacteristicEvent, { module: "HomeKit_3864e7f38681b875", properties: {} });
-registerSDKClass("HMMutableCharacteristicThresholdRangeEvent", HMMutableCharacteristicThresholdRangeEvent, { module: "HomeKit_3864e7f38681b875", properties: {"characteristic":1598928051393888,"thresholdRange":101446572544871} });
-registerSDKClass("HMMutableDurationEvent", HMMutableDurationEvent, { module: "HomeKit_3864e7f38681b875", properties: {"duration":1397823979780630} });
-registerSDKClass("HMMutableLocationEvent", HMMutableLocationEvent, { module: "HomeKit_3864e7f38681b875", properties: {"region":4154611784803741} });
-registerSDKClass("HMPresenceEvent", HMPresenceEvent, { module: "HomeKit_3864e7f38681b875", properties: {"presenceEventType":612644398328935,"presenceUserType":4440784591327664} });
-registerSDKClass("HMMutablePresenceEvent", HMMutablePresenceEvent, { module: "HomeKit_3864e7f38681b875", properties: {"presenceEventType":886664406678395,"presenceUserType":1486967694144271} });
-registerSDKClass("HMSignificantTimeEvent", HMSignificantTimeEvent, { module: "HomeKit_3864e7f38681b875", properties: {"offset":3234297718686880,"significantEvent":1279335472582068} });
-registerSDKClass("HMMutableSignificantTimeEvent", HMMutableSignificantTimeEvent, { module: "HomeKit_3864e7f38681b875", properties: {"offset":131012668211048,"significantEvent":2189957127232533} });
-registerSDKClass("HMNetworkConfigurationProfile", HMNetworkConfigurationProfile, { module: "HomeKit_3864e7f38681b875", properties: {"delegate":1201625690139281,"isNetworkAccessRestricted":2027725742469671} });
+registerSDKClass("HMMutableCalendarEvent", HMMutableCalendarEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"fireDateComponents":2751408217898674} });
+registerSDKClass("HMMutableCharacteristicEvent", HMMutableCharacteristicEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("HMMutableCharacteristicThresholdRangeEvent", HMMutableCharacteristicThresholdRangeEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"characteristic":1598928051393888,"thresholdRange":101446572544871} });
+registerSDKClass("HMMutableDurationEvent", HMMutableDurationEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"duration":1397823979780630} });
+registerSDKClass("HMMutableLocationEvent", HMMutableLocationEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"region":4154611784803741} });
+registerSDKClass("HMPresenceEvent", HMPresenceEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"presenceEventType":612644398328935,"presenceUserType":4440784591327664} });
+registerSDKClass("HMMutablePresenceEvent", HMMutablePresenceEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"presenceEventType":886664406678395,"presenceUserType":1486967694144271} });
+registerSDKClass("HMSignificantTimeEvent", HMSignificantTimeEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"offset":3234297718686880,"significantEvent":1279335472582068} });
+registerSDKClass("HMMutableSignificantTimeEvent", HMMutableSignificantTimeEvent, { module: "HomeKit_ff42ce03e691ab23", properties: {"offset":131012668211048,"significantEvent":2189957127232533} });
+registerSDKClass("HMNetworkConfigurationProfile", HMNetworkConfigurationProfile, { module: "HomeKit_ff42ce03e691ab23", properties: {"delegate":1201625690139281,"isNetworkAccessRestricted":2027725742469671} });
 registerSDKProtocol("c:objc(pl)HMNetworkConfigurationProfileDelegate", {"profileDidUpdateNetworkAccessMode":"profileDidUpdateNetworkAccessMode(_:)"});
-registerSDKClass("HMNumberRange", HMNumberRange, { module: "HomeKit_3864e7f38681b875", properties: {"maxValue":2038580951770159,"minValue":950444264682517} });
-registerSDKClass("HMRoom", HMRoom, { module: "HomeKit_3864e7f38681b875", properties: {"accessories":807563189580953,"name":3890976312792493,"uniqueIdentifier":375355144590723}, methods: {"updateName":{"id":630432321394558,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMService", HMService, { module: "HomeKit_3864e7f38681b875", properties: {"accessory":4120083209302884,"associatedServiceType":1741851399446543,"characteristics":1522439838296958,"linkedServices":1543529055307788,"localizedDescription":2473134777040279,"name":2208599565317849,"isPrimaryService":4056882625430963,"serviceType":1593057403698417,"uniqueIdentifier":376216470273302,"isUserInteractive":348986433496927}, methods: {"updateAssociatedServiceType":{"id":4126797712149200,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":3353330439924163,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMServiceGroup", HMServiceGroup, { module: "HomeKit_3864e7f38681b875", properties: {"name":771504165724891,"services":4289897168905041,"uniqueIdentifier":1679749725231381}, methods: {"addService":{"id":1773332278123869,"hints":[null,{"callback":{"out":[]}}]},"removeService":{"id":1907702947397231,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":3108779558244912,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMTimerTrigger", HMTimerTrigger, { module: "HomeKit_3864e7f38681b875", properties: {"fireDate":3339468828930128,"recurrence":2690728408885542,"recurrenceCalendar":1265960992367965,"timeZone":471977982520482}, methods: {"updateFireDate":{"id":1767113921322874,"hints":[null,{"callback":{"out":[]}}]},"updateRecurrence":{"id":224154649548965,"hints":[null,{"callback":{"out":[]}}]},"updateTimeZone":{"id":1145219053470816,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("HMUser", HMUser, { module: "HomeKit_3864e7f38681b875", properties: {"name":4441196149325456,"uniqueIdentifier":2863357604139185} });
-registerSDKClass("HMZone", HMZone, { module: "HomeKit_3864e7f38681b875", properties: {"name":3039710167972323,"rooms":2899043407912475,"uniqueIdentifier":730418146308650}, methods: {"addRoom":{"id":986731886303899,"hints":[null,{"callback":{"out":[]}}]},"removeRoom":{"id":586218928555598,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":1688244490747171,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMNumberRange", HMNumberRange, { module: "HomeKit_ff42ce03e691ab23", properties: {"maxValue":2038580951770159,"minValue":950444264682517} });
+registerSDKClass("HMRoom", HMRoom, { module: "HomeKit_ff42ce03e691ab23", properties: {"accessories":807563189580953,"name":3890976312792493,"uniqueIdentifier":375355144590723}, methods: {"updateName":{"id":630432321394558,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMService", HMService, { module: "HomeKit_ff42ce03e691ab23", properties: {"accessory":4120083209302884,"associatedServiceType":1741851399446543,"characteristics":1522439838296958,"linkedServices":1543529055307788,"localizedDescription":2473134777040279,"name":2208599565317849,"isPrimaryService":4056882625430963,"serviceType":1593057403698417,"uniqueIdentifier":376216470273302,"isUserInteractive":348986433496927}, methods: {"updateAssociatedServiceType":{"id":4126797712149200,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":3353330439924163,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMServiceGroup", HMServiceGroup, { module: "HomeKit_ff42ce03e691ab23", properties: {"name":771504165724891,"services":4289897168905041,"uniqueIdentifier":1679749725231381}, methods: {"addService":{"id":1773332278123869,"hints":[null,{"callback":{"out":[]}}]},"removeService":{"id":1907702947397231,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":3108779558244912,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMTimerTrigger", HMTimerTrigger, { module: "HomeKit_ff42ce03e691ab23", properties: {"fireDate":3339468828930128,"recurrence":2690728408885542,"recurrenceCalendar":1265960992367965,"timeZone":471977982520482}, methods: {"updateFireDate":{"id":1767113921322874,"hints":[null,{"callback":{"out":[]}}]},"updateRecurrence":{"id":224154649548965,"hints":[null,{"callback":{"out":[]}}]},"updateTimeZone":{"id":1145219053470816,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("HMUser", HMUser, { module: "HomeKit_ff42ce03e691ab23", properties: {"name":4441196149325456,"uniqueIdentifier":2863357604139185} });
+registerSDKClass("HMZone", HMZone, { module: "HomeKit_ff42ce03e691ab23", properties: {"name":3039710167972323,"rooms":2899043407912475,"uniqueIdentifier":730418146308650}, methods: {"addRoom":{"id":986731886303899,"hints":[null,{"callback":{"out":[]}}]},"removeRoom":{"id":586218928555598,"hints":[null,{"callback":{"out":[]}}]},"updateName":{"id":1688244490747171,"hints":[null,{"callback":{"out":[]}}]}} });

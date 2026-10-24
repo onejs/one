@@ -14,12 +14,12 @@ export class SuggestedActionsMessage extends SDKHandle {
    * static var previousMessagesLimit: Int { get }
    * @availability iOS 27.0+
    */
-  static get previousMessagesLimit(): number { return callSDK<number>("SuggestedActions_3864e7f38681b875", 1767198228642719, undefined, []); }
+  static get previousMessagesLimit(): number { return callSDK<number>("SuggestedActions_ff42ce03e691ab23", 1767198228642719, undefined, []); }
   /**
    * init(id: some Hashable, date: Date, subject: AttributedString?, body: AttributedString, sender: SuggestedActionsMessage.Participant, recipients: [SuggestedActionsMessage.Participant])
    * @availability iOS 27.0+
    */
-  static init(id: SDKHandle, date: globalThis.Date, subject: (_Foundation_AttributedString) | null, body: _Foundation_AttributedString, sender: SuggestedActionsMessage_Participant, recipients: Array<SuggestedActionsMessage_Participant>): SuggestedActionsMessage { return callSDK<SuggestedActionsMessage>("SuggestedActions_3864e7f38681b875", 614472865056627, undefined, [id, date, subject, body, sender, recipients]); }
+  static init(id: SDKHandle, date: globalThis.Date, subject: (_Foundation_AttributedString) | null, body: _Foundation_AttributedString, sender: SuggestedActionsMessage_Participant, recipients: Array<SuggestedActionsMessage_Participant>): SuggestedActionsMessage { return callSDK<SuggestedActionsMessage>("SuggestedActions_ff42ce03e691ab23", 614472865056627, undefined, [id, date, subject, body, sender, recipients]); }
   declare readonly $type: { "s:16SuggestedActions0aB7MessageV": true };
 }
 
@@ -32,7 +32,7 @@ export class SuggestedActionsMessage_Participant extends SDKHandle {
    * init(name: String, handle: String, isUser: Bool)
    * @availability iOS 27.0+
    */
-  static init(name: string, handle: string, isUser: boolean): SuggestedActionsMessage_Participant { return callSDK<SuggestedActionsMessage_Participant>("SuggestedActions_3864e7f38681b875", 1094516442076638, undefined, [name, handle, isUser]); }
+  static init(name: string, handle: string, isUser: boolean): SuggestedActionsMessage_Participant { return callSDK<SuggestedActionsMessage_Participant>("SuggestedActions_ff42ce03e691ab23", 1094516442076638, undefined, [name, handle, isUser]); }
   declare readonly $type: { "s:16SuggestedActions0aB7MessageV11ParticipantV": true };
 }
 
@@ -45,12 +45,12 @@ export class SuggestedActionsView extends SDKHandle {
    * @MainActor init(message: SuggestedActionsMessage, previousMessages: [SuggestedActionsMessage] = [])
    * @availability iOS 27.0+
    */
-  static init(message: SuggestedActionsMessage, previousMessages?: $SDK2): Promise<SuggestedActionsView> { return callSDKAsync<SuggestedActionsView>("SuggestedActions_3864e7f38681b875", 279565743965189, undefined, [message, previousMessages]); }
+  static init(message: SuggestedActionsMessage, previousMessages?: $SDK2): Promise<SuggestedActionsView> { return callSDKAsync<SuggestedActionsView>("SuggestedActions_ff42ce03e691ab23", 279565743965189, undefined, [message, previousMessages]); }
   /**
    * nonisolated static func generate(message: SuggestedActionsMessage, previousMessages: [SuggestedActionsMessage] = []) async
    * @availability iOS 27.0+
    */
-  static generate(message: SuggestedActionsMessage, previousMessages?: $SDK2): Promise<void> { return callSDKAsync<void>("SuggestedActions_3864e7f38681b875", 2086769753107846, undefined, [message, previousMessages]); }
+  static generate(message: SuggestedActionsMessage, previousMessages?: $SDK2): Promise<void> { return callSDKAsync<void>("SuggestedActions_ff42ce03e691ab23", 2086769753107846, undefined, [message, previousMessages]); }
   declare readonly $type: { "s:16SuggestedActions0aB4ViewV": true };
 }
 
@@ -60,6 +60,6 @@ export class SuggestedActionsView extends SDKHandle {
  */
 export type SuggestedActionsView_Body = SDKHandle;
 
-registerSDKClass("SuggestedActions.SuggestedActionsMessage", SuggestedActionsMessage, { module: "SuggestedActions_3864e7f38681b875", properties: {} });
-registerSDKClass("SuggestedActions.SuggestedActionsMessage.Participant", SuggestedActionsMessage_Participant, { module: "SuggestedActions_3864e7f38681b875", properties: {} });
-registerSDKClass("SuggestedActions.SuggestedActionsView", SuggestedActionsView, { module: "SuggestedActions_3864e7f38681b875", properties: {} });
+registerSDKClass("SuggestedActions.SuggestedActionsMessage", SuggestedActionsMessage, { module: "SuggestedActions_ff42ce03e691ab23", properties: {} });
+registerSDKClass("SuggestedActions.SuggestedActionsMessage.Participant", SuggestedActionsMessage_Participant, { module: "SuggestedActions_ff42ce03e691ab23", properties: {} });
+registerSDKClass("SuggestedActions.SuggestedActionsView", SuggestedActionsView, { module: "SuggestedActions_ff42ce03e691ab23", properties: {} });

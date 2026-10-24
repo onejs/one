@@ -9,28 +9,28 @@ export class NSExtensionContext extends SDKHandle {
    * func dismissNotificationContentExtension()
    * @availability iOS 12.0+
    */
-  dismissNotificationContentExtension(): void { return callSDK<void>("UserNotificationsUI_3864e7f38681b875", 459891230654318, this, []); }
+  dismissNotificationContentExtension(): void { return callSDK<void>("UserNotificationsUI_ff42ce03e691ab23", 459891230654318, this, []); }
   /**
    * func mediaPlayingPaused()
    * @availability iOS 10.0+
    */
-  mediaPlayingPaused(): void { return callSDK<void>("UserNotificationsUI_3864e7f38681b875", 796538233144230, this, []); }
+  mediaPlayingPaused(): void { return callSDK<void>("UserNotificationsUI_ff42ce03e691ab23", 796538233144230, this, []); }
   /**
    * func mediaPlayingStarted()
    * @availability iOS 10.0+
    */
-  mediaPlayingStarted(): void { return callSDK<void>("UserNotificationsUI_3864e7f38681b875", 4144719176495968, this, []); }
+  mediaPlayingStarted(): void { return callSDK<void>("UserNotificationsUI_ff42ce03e691ab23", 4144719176495968, this, []); }
   /**
    * func performNotificationDefaultAction()
    * @availability iOS 12.0+
    */
-  performNotificationDefaultAction(): void { return callSDK<void>("UserNotificationsUI_3864e7f38681b875", 1340093807776130, this, []); }
+  performNotificationDefaultAction(): void { return callSDK<void>("UserNotificationsUI_ff42ce03e691ab23", 1340093807776130, this, []); }
   /**
    * var notificationActions: [UNNotificationAction] { get set }
    * @availability iOS 12.0+
    */
-  get notificationActions(): $SDK0 { return callSDK<$SDK0>("UserNotificationsUI_3864e7f38681b875", 2444614614452562, this, []); }
-  set notificationActions(value: $SDK0) { callSDK<void>("UserNotificationsUI_3864e7f38681b875", 3870950966106853, this, [value]); }
+  get notificationActions(): $SDK0 { return callSDK<$SDK0>("UserNotificationsUI_ff42ce03e691ab23", 2444614614452562, this, []); }
+  set notificationActions(value: $SDK0) { callSDK<void>("UserNotificationsUI_ff42ce03e691ab23", 3870950966106853, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSExtensionContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "notificationActions": true };
 }
@@ -68,7 +68,7 @@ export const UNNotificationContentExtensionMediaPlayPauseButtonType = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (UNNotificationContentExtensionMediaPlayPauseButtonType) | null { return callSDK<(UNNotificationContentExtensionMediaPlayPauseButtonType) | null>("UserNotificationsUI_3864e7f38681b875", 396532570990184, undefined, [rawValue]); }
+  init(rawValue: number): (UNNotificationContentExtensionMediaPlayPauseButtonType) | null { return callSDK<(UNNotificationContentExtensionMediaPlayPauseButtonType) | null>("UserNotificationsUI_ff42ce03e691ab23", 396532570990184, undefined, [rawValue]); }
 };
 
 /**
@@ -82,8 +82,8 @@ export const UNNotificationContentExtensionResponseOption = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (UNNotificationContentExtensionResponseOption) | null { return callSDK<(UNNotificationContentExtensionResponseOption) | null>("UserNotificationsUI_3864e7f38681b875", 2529934827428921, undefined, [rawValue]); }
+  init(rawValue: number): (UNNotificationContentExtensionResponseOption) | null { return callSDK<(UNNotificationContentExtensionResponseOption) | null>("UserNotificationsUI_ff42ce03e691ab23", 2529934827428921, undefined, [rawValue]); }
 };
 
-registerSDKClass("NSExtensionContext", NSExtensionContext, { module: "UserNotificationsUI_3864e7f38681b875", properties: {"notificationActions":2444614614452562}, methods: {"dismissNotificationContentExtension":{"id":459891230654318},"mediaPlayingPaused":{"id":796538233144230},"mediaPlayingStarted":{"id":4144719176495968},"performNotificationDefaultAction":{"id":1340093807776130}} }, true);
+registerSDKClass("NSExtensionContext", NSExtensionContext, { module: "UserNotificationsUI_ff42ce03e691ab23", properties: {"notificationActions":2444614614452562}, methods: {"dismissNotificationContentExtension":{"id":459891230654318},"mediaPlayingPaused":{"id":796538233144230},"mediaPlayingStarted":{"id":4144719176495968},"performNotificationDefaultAction":{"id":1340093807776130}} }, true);
 registerSDKProtocol("c:objc(pl)UNNotificationContentExtension", {"didReceive":"didReceive(_:)","mediaPlay":"mediaPlay()","mediaPause":"mediaPause()"});

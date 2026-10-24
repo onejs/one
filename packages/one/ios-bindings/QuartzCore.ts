@@ -52,38 +52,38 @@ export class CAAnimation extends SDKHandle {
    * class func defaultValue(forKey key: String) -> Any?
    * @availability iOS 2.0+
    */
-  static defaultValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 1677812481735617, undefined, [key]); }
+  static defaultValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 1677812481735617, undefined, [key]); }
   /** init() */
-  static init(): CAAnimation { return callSDK<CAAnimation>("QuartzCore_3864e7f38681b875", 361174339885507, undefined, []); }
+  static init(): CAAnimation { return callSDK<CAAnimation>("QuartzCore_ff42ce03e691ab23", 361174339885507, undefined, []); }
   /**
    * func shouldArchiveValue(forKey key: String) -> Bool
    * @availability iOS 2.0+
    */
-  shouldArchiveValue(key: string): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 3647345332382528, this, [key]); }
+  shouldArchiveValue(key: string): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 3647345332382528, this, [key]); }
   /**
    * var delegate: (any CAAnimationDelegate)? { get set }
    * @availability iOS 2.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_3864e7f38681b875", 3706511155447437, this, []); }
-  set delegate(value: (Implements<CAAnimationDelegate> | SDKHandle) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 2703925823451113, this, [value], [{"protocol":"c:objc(pl)CAAnimationDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_ff42ce03e691ab23", 3706511155447437, this, []); }
+  set delegate(value: (Implements<CAAnimationDelegate> | SDKHandle) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2703925823451113, this, [value], [{"protocol":"c:objc(pl)CAAnimationDelegate"}]); }
   /**
    * var preferredFrameRateRange: CAFrameRateRange { get set }
    * @availability iOS 15.0+
    */
-  get preferredFrameRateRange(): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_3864e7f38681b875", 3711459916279525, this, []); }
-  set preferredFrameRateRange(value: CAFrameRateRange) { callSDK<void>("QuartzCore_3864e7f38681b875", 846602211256525, this, [value]); }
+  get preferredFrameRateRange(): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_ff42ce03e691ab23", 3711459916279525, this, []); }
+  set preferredFrameRateRange(value: CAFrameRateRange) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 846602211256525, this, [value]); }
   /**
    * var isRemovedOnCompletion: Bool { get set }
    * @availability iOS 2.0+
    */
-  get isRemovedOnCompletion(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 3084459027014153, this, []); }
-  set isRemovedOnCompletion(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 2197783559399271, this, [value]); }
+  get isRemovedOnCompletion(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 3084459027014153, this, []); }
+  set isRemovedOnCompletion(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2197783559399271, this, [value]); }
   /**
    * var timingFunction: CAMediaTimingFunction? { get set }
    * @availability iOS 2.0+
    */
-  get timingFunction(): $SDK2 { return callSDK<$SDK2>("QuartzCore_3864e7f38681b875", 1263391440240759, this, []); }
-  set timingFunction(value: $SDK2) { callSDK<void>("QuartzCore_3864e7f38681b875", 3337503022145835, this, [value]); }
+  get timingFunction(): $SDK2 { return callSDK<$SDK2>("QuartzCore_ff42ce03e691ab23", 1263391440240759, this, []); }
+  set timingFunction(value: $SDK2) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3337503022145835, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAAnimation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "preferredFrameRateRange": true; "isRemovedOnCompletion": true; "timingFunction": true };
 }
@@ -99,32 +99,32 @@ export const CAAnimationCalculationMode = {
    * static let cubic: CAAnimationCalculationMode
    * @availability iOS 4.0+
    */
-  get cubic(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_3864e7f38681b875", 2872342949293163, undefined, []); },
+  get cubic(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_ff42ce03e691ab23", 2872342949293163, undefined, []); },
   /**
    * static let cubicPaced: CAAnimationCalculationMode
    * @availability iOS 4.0+
    */
-  get cubicPaced(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_3864e7f38681b875", 3921129570107903, undefined, []); },
+  get cubicPaced(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_ff42ce03e691ab23", 3921129570107903, undefined, []); },
   /**
    * static let discrete: CAAnimationCalculationMode
    * @availability iOS 2.0+
    */
-  get discrete(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_3864e7f38681b875", 3482231473196308, undefined, []); },
+  get discrete(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_ff42ce03e691ab23", 3482231473196308, undefined, []); },
   /**
    * static let linear: CAAnimationCalculationMode
    * @availability iOS 2.0+
    */
-  get linear(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_3864e7f38681b875", 3104324941249992, undefined, []); },
+  get linear(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_ff42ce03e691ab23", 3104324941249992, undefined, []); },
   /**
    * static let paced: CAAnimationCalculationMode
    * @availability iOS 2.0+
    */
-  get paced(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_3864e7f38681b875", 3688566997602882, undefined, []); },
+  get paced(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_ff42ce03e691ab23", 3688566997602882, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 2.0+
    */
-  init(rawValue: string): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_3864e7f38681b875", 1862461649032507, undefined, [rawValue]); }
+  init(rawValue: string): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_ff42ce03e691ab23", 1862461649032507, undefined, [rawValue]); }
 };
 
 /**
@@ -150,13 +150,13 @@ export interface CAAnimationDelegate {
  */
 export class CAAnimationGroup extends (CAAnimation as unknown as Omit<typeof CAAnimation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CAAnimation)) {
   /** init() */
-  static init(): CAAnimationGroup { return callSDK<CAAnimationGroup>("QuartzCore_3864e7f38681b875", 817386543163577, undefined, []); }
+  static init(): CAAnimationGroup { return callSDK<CAAnimationGroup>("QuartzCore_ff42ce03e691ab23", 817386543163577, undefined, []); }
   /**
    * var animations: [CAAnimation]? { get set }
    * @availability iOS 2.0+
    */
-  get animations(): $SDK3 { return callSDK<$SDK3>("QuartzCore_3864e7f38681b875", 2292391461393771, this, []); }
-  set animations(value: $SDK3) { callSDK<void>("QuartzCore_3864e7f38681b875", 132481283872094, this, [value]); }
+  get animations(): $SDK3 { return callSDK<$SDK3>("QuartzCore_ff42ce03e691ab23", 2292391461393771, this, []); }
+  set animations(value: $SDK3) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 132481283872094, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAAnimationGroup": true; "c:objc(cs)CAAnimation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "preferredFrameRateRange": true; "isRemovedOnCompletion": true; "timingFunction": true; "animations": true };
 }
@@ -172,17 +172,17 @@ export const CAAnimationRotationMode = {
    * static let rotateAuto: CAAnimationRotationMode
    * @availability iOS 2.0+
    */
-  get rotateAuto(): CAAnimationRotationMode { return callSDK<CAAnimationRotationMode>("QuartzCore_3864e7f38681b875", 1999408081248110, undefined, []); },
+  get rotateAuto(): CAAnimationRotationMode { return callSDK<CAAnimationRotationMode>("QuartzCore_ff42ce03e691ab23", 1999408081248110, undefined, []); },
   /**
    * static let rotateAutoReverse: CAAnimationRotationMode
    * @availability iOS 2.0+
    */
-  get rotateAutoReverse(): CAAnimationRotationMode { return callSDK<CAAnimationRotationMode>("QuartzCore_3864e7f38681b875", 3049156282786652, undefined, []); },
+  get rotateAutoReverse(): CAAnimationRotationMode { return callSDK<CAAnimationRotationMode>("QuartzCore_ff42ce03e691ab23", 3049156282786652, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 2.0+
    */
-  init(rawValue: string): CAAnimationRotationMode { return callSDK<CAAnimationRotationMode>("QuartzCore_3864e7f38681b875", 3036849734241671, undefined, [rawValue]); }
+  init(rawValue: string): CAAnimationRotationMode { return callSDK<CAAnimationRotationMode>("QuartzCore_ff42ce03e691ab23", 3036849734241671, undefined, [rawValue]); }
 };
 
 /**
@@ -194,31 +194,31 @@ export class CAPropertyAnimation extends (CAAnimation as unknown as Omit<typeof 
    * convenience init(keyPath path: String?)
    * @availability iOS 2.0+
    */
-  static init(path?: (string) | null): CAPropertyAnimation { return callSDK<CAPropertyAnimation>("QuartzCore_3864e7f38681b875", 355014374820501, undefined, [path]); }
+  static init(path?: (string) | null): CAPropertyAnimation { return callSDK<CAPropertyAnimation>("QuartzCore_ff42ce03e691ab23", 355014374820501, undefined, [path]); }
   /**
    * var isAdditive: Bool { get set }
    * @availability iOS 2.0+
    */
-  get isAdditive(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 2174018962901343, this, []); }
-  set isAdditive(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 147141339977392, this, [value]); }
+  get isAdditive(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 2174018962901343, this, []); }
+  set isAdditive(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 147141339977392, this, [value]); }
   /**
    * var isCumulative: Bool { get set }
    * @availability iOS 2.0+
    */
-  get isCumulative(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 4052334518979090, this, []); }
-  set isCumulative(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 1593422010689491, this, [value]); }
+  get isCumulative(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 4052334518979090, this, []); }
+  set isCumulative(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1593422010689491, this, [value]); }
   /**
    * var keyPath: String? { get set }
    * @availability iOS 2.0+
    */
-  get keyPath(): (string) | null { return callSDK<(string) | null>("QuartzCore_3864e7f38681b875", 410965983850188, this, []); }
-  set keyPath(value: (string) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 1488291198794023, this, [value]); }
+  get keyPath(): (string) | null { return callSDK<(string) | null>("QuartzCore_ff42ce03e691ab23", 410965983850188, this, []); }
+  set keyPath(value: (string) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1488291198794023, this, [value]); }
   /**
    * var valueFunction: CAValueFunction? { get set }
    * @availability iOS 2.0+
    */
-  get valueFunction(): (CAValueFunction) | null { return callSDK<(CAValueFunction) | null>("QuartzCore_3864e7f38681b875", 2586121371852633, this, []); }
-  set valueFunction(value: (CAValueFunction) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 585925612643288, this, [value]); }
+  get valueFunction(): (CAValueFunction) | null { return callSDK<(CAValueFunction) | null>("QuartzCore_ff42ce03e691ab23", 2586121371852633, this, []); }
+  set valueFunction(value: (CAValueFunction) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 585925612643288, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAPropertyAnimation": true; "c:objc(cs)CAAnimation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "preferredFrameRateRange": true; "isRemovedOnCompletion": true; "timingFunction": true; "isAdditive": true; "isCumulative": true; "keyPath": true; "valueFunction": true };
 }
@@ -229,25 +229,25 @@ export class CAPropertyAnimation extends (CAAnimation as unknown as Omit<typeof 
  */
 export class CABasicAnimation extends (CAPropertyAnimation as unknown as Omit<typeof CAPropertyAnimation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CAPropertyAnimation)) {
   /** init() */
-  static init(): CABasicAnimation { return callSDK<CABasicAnimation>("QuartzCore_3864e7f38681b875", 4019395092738032, undefined, []); }
+  static init(): CABasicAnimation { return callSDK<CABasicAnimation>("QuartzCore_ff42ce03e691ab23", 4019395092738032, undefined, []); }
   /**
    * var byValue: Any? { get set }
    * @availability iOS 2.0+
    */
-  get byValue(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 3233800031513312, this, []); }
-  set byValue(value: (unknown) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 612982185560616, this, [value]); }
+  get byValue(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 3233800031513312, this, []); }
+  set byValue(value: (unknown) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 612982185560616, this, [value]); }
   /**
    * var fromValue: Any? { get set }
    * @availability iOS 2.0+
    */
-  get fromValue(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 1455927374737599, this, []); }
-  set fromValue(value: (unknown) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 3087900476944357, this, [value]); }
+  get fromValue(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 1455927374737599, this, []); }
+  set fromValue(value: (unknown) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3087900476944357, this, [value]); }
   /**
    * var toValue: Any? { get set }
    * @availability iOS 2.0+
    */
-  get toValue(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 1252269552798116, this, []); }
-  set toValue(value: (unknown) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 3034980127461644, this, [value]); }
+  get toValue(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 1252269552798116, this, []); }
+  set toValue(value: (unknown) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3034980127461644, this, [value]); }
   declare readonly $type: { "c:objc(cs)CABasicAnimation": true; "c:objc(cs)CAPropertyAnimation": true; "c:objc(cs)CAAnimation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "preferredFrameRateRange": true; "isRemovedOnCompletion": true; "timingFunction": true; "isAdditive": true; "isCumulative": true; "keyPath": true; "valueFunction": true; "byValue": true; "fromValue": true; "toValue": true };
 }
@@ -263,27 +263,27 @@ export const CACornerMask = {
    * static var layerMaxXMaxYCorner: CACornerMask { get }
    * @availability iOS 11.0+
    */
-  get layerMaxXMaxYCorner(): CACornerMask { return callSDK<CACornerMask>("QuartzCore_3864e7f38681b875", 4238316397411082, undefined, []); },
+  get layerMaxXMaxYCorner(): CACornerMask { return callSDK<CACornerMask>("QuartzCore_ff42ce03e691ab23", 4238316397411082, undefined, []); },
   /**
    * static var layerMaxXMinYCorner: CACornerMask { get }
    * @availability iOS 11.0+
    */
-  get layerMaxXMinYCorner(): CACornerMask { return callSDK<CACornerMask>("QuartzCore_3864e7f38681b875", 334520179440730, undefined, []); },
+  get layerMaxXMinYCorner(): CACornerMask { return callSDK<CACornerMask>("QuartzCore_ff42ce03e691ab23", 334520179440730, undefined, []); },
   /**
    * static var layerMinXMaxYCorner: CACornerMask { get }
    * @availability iOS 11.0+
    */
-  get layerMinXMaxYCorner(): CACornerMask { return callSDK<CACornerMask>("QuartzCore_3864e7f38681b875", 888380279728708, undefined, []); },
+  get layerMinXMaxYCorner(): CACornerMask { return callSDK<CACornerMask>("QuartzCore_ff42ce03e691ab23", 888380279728708, undefined, []); },
   /**
    * static var layerMinXMinYCorner: CACornerMask { get }
    * @availability iOS 11.0+
    */
-  get layerMinXMinYCorner(): CACornerMask { return callSDK<CACornerMask>("QuartzCore_3864e7f38681b875", 2124030006788576, undefined, []); },
+  get layerMinXMinYCorner(): CACornerMask { return callSDK<CACornerMask>("QuartzCore_ff42ce03e691ab23", 2124030006788576, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): CACornerMask { return callSDK<CACornerMask>("QuartzCore_3864e7f38681b875", 1177933516160878, undefined, [rawValue]); }
+  init(rawValue: number): CACornerMask { return callSDK<CACornerMask>("QuartzCore_ff42ce03e691ab23", 1177933516160878, undefined, [rawValue]); }
 };
 
 /**
@@ -295,58 +295,58 @@ export class CADisplayLink extends SDKHandle {
    * func add(to runloop: RunLoop, forMode mode: RunLoop.Mode)
    * @availability iOS 3.1+
    */
-  add(runloop: _Foundation_RunLoop, mode: _Foundation_RunLoop_Mode): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 1191408783734744, this, [runloop, mode]); }
+  add(runloop: _Foundation_RunLoop, mode: _Foundation_RunLoop_Mode): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 1191408783734744, this, [runloop, mode]); }
   /**
    * func invalidate()
    * @availability iOS 3.1+
    */
-  invalidate(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 520772451667460, this, []); }
+  invalidate(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 520772451667460, this, []); }
   /**
    * func remove(from runloop: RunLoop, forMode mode: RunLoop.Mode)
    * @availability iOS 3.1+
    */
-  remove(runloop: _Foundation_RunLoop, mode: _Foundation_RunLoop_Mode): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 1470990098083016, this, [runloop, mode]); }
+  remove(runloop: _Foundation_RunLoop, mode: _Foundation_RunLoop_Mode): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 1470990098083016, this, [runloop, mode]); }
   /**
    * var duration: CFTimeInterval { get }
    * @availability iOS 3.1+
    */
-  get duration(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 299179036864203, this, []); }
+  get duration(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 299179036864203, this, []); }
   /**
    * var frameInterval: Int { get set }
    * @availability iOS 3.1+
    * @deprecated iOS 10.0
    */
-  get frameInterval(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2957316428365054, this, []); }
-  set frameInterval(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 4237068262047561, this, [value]); }
+  get frameInterval(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2957316428365054, this, []); }
+  set frameInterval(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4237068262047561, this, [value]); }
   /**
    * var isPaused: Bool { get set }
    * @availability iOS 3.1+
    */
-  get isPaused(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 4077469450065444, this, []); }
-  set isPaused(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 1800677962452769, this, [value]); }
+  get isPaused(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 4077469450065444, this, []); }
+  set isPaused(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1800677962452769, this, [value]); }
   /**
    * var preferredFrameRateRange: CAFrameRateRange { get set }
    * @availability iOS 15.0+
    */
-  get preferredFrameRateRange(): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_3864e7f38681b875", 3810691754996984, this, []); }
-  set preferredFrameRateRange(value: CAFrameRateRange) { callSDK<void>("QuartzCore_3864e7f38681b875", 2946248265707009, this, [value]); }
+  get preferredFrameRateRange(): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_ff42ce03e691ab23", 3810691754996984, this, []); }
+  set preferredFrameRateRange(value: CAFrameRateRange) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2946248265707009, this, [value]); }
   /**
    * var preferredFramesPerSecond: Int { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 100000.0
    */
-  get preferredFramesPerSecond(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 323764566900570, this, []); }
-  set preferredFramesPerSecond(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1206995283621176, this, [value]); }
+  get preferredFramesPerSecond(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 323764566900570, this, []); }
+  set preferredFramesPerSecond(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1206995283621176, this, [value]); }
   /**
    * var targetTimestamp: CFTimeInterval { get }
    * @availability iOS 10.0+
    */
-  get targetTimestamp(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1070702566887706, this, []); }
+  get targetTimestamp(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1070702566887706, this, []); }
   /**
    * var timestamp: CFTimeInterval { get }
    * @availability iOS 3.1+
    */
-  get timestamp(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 742279694029701, this, []); }
+  get timestamp(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 742279694029701, this, []); }
   declare readonly $type: { "c:objc(cs)CADisplayLink": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "frameInterval": true; "isPaused": true; "preferredFrameRateRange": true; "preferredFramesPerSecond": true; "targetTimestamp": true; "timestamp": true };
 }
@@ -360,560 +360,560 @@ export class CALayer extends SDKHandle {
    * class func cornerCurveExpansionFactor(_ curve: CALayerCornerCurve) -> CGFloat
    * @availability iOS 13.0+
    */
-  static cornerCurveExpansionFactor(curve: CALayerCornerCurve): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 38243295820196, undefined, [curve]); }
+  static cornerCurveExpansionFactor(curve: CALayerCornerCurve): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 38243295820196, undefined, [curve]); }
   /**
    * class func defaultAction(forKey event: String) -> (any CAAction)?
    * @availability iOS 2.0+
    */
-  static defaultAction(event: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_3864e7f38681b875", 431238571101672, undefined, [event]); }
+  static defaultAction(event: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_ff42ce03e691ab23", 431238571101672, undefined, [event]); }
   /**
    * class func defaultValue(forKey key: String) -> Any?
    * @availability iOS 2.0+
    */
-  static defaultValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 3554902568523890, undefined, [key]); }
+  static defaultValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 3554902568523890, undefined, [key]); }
   /** init(remoteClientId client_id: UInt32) */
-  static initRemoteClientId(client_id: number): CALayer { return callSDK<CALayer>("QuartzCore_3864e7f38681b875", 3494230237845687, undefined, [client_id]); }
+  static initRemoteClientId(client_id: number): CALayer { return callSDK<CALayer>("QuartzCore_ff42ce03e691ab23", 3494230237845687, undefined, [client_id]); }
   /**
    * class func needsDisplay(forKey key: String) -> Bool
    * @availability iOS 2.0+
    */
-  static needsDisplayForKey(key: string): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 1331604861800378, undefined, [key]); }
+  static needsDisplayForKey(key: string): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 1331604861800378, undefined, [key]); }
   /**
    * func action(forKey event: String) -> (any CAAction)?
    * @availability iOS 2.0+
    */
-  action(event: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_3864e7f38681b875", 605989066831560, this, [event]); }
+  action(event: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_ff42ce03e691ab23", 605989066831560, this, [event]); }
   /**
    * func add(_ anim: CAAnimation, forKey key: String?)
    * @availability iOS 2.0+
    */
-  add(anim: CAAnimation, key?: (string) | null): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 324719760129151, this, [anim, key]); }
+  add(anim: CAAnimation, key?: (string) | null): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 324719760129151, this, [anim, key]); }
   /**
    * func addSublayer(_ layer: CALayer)
    * @availability iOS 2.0+
    */
-  addSublayer(layer: CALayer): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 4147690802857919, this, [layer]); }
+  addSublayer(layer: CALayer): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 4147690802857919, this, [layer]); }
   /**
    * func affineTransform() -> CGAffineTransform
    * @availability iOS 2.0+
    */
-  affineTransform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("QuartzCore_3864e7f38681b875", 1332654016871582, this, []); }
+  affineTransform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("QuartzCore_ff42ce03e691ab23", 1332654016871582, this, []); }
   /**
    * func animation(forKey key: String) -> CAAnimation?
    * @availability iOS 2.0+
    */
-  animation(key: string): (CAAnimation) | null { return callSDK<(CAAnimation) | null>("QuartzCore_3864e7f38681b875", 1540787567709062, this, [key]); }
+  animation(key: string): (CAAnimation) | null { return callSDK<(CAAnimation) | null>("QuartzCore_ff42ce03e691ab23", 1540787567709062, this, [key]); }
   /**
    * func animationKeys() -> [String]?
    * @availability iOS 2.0+
    */
-  animationKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("QuartzCore_3864e7f38681b875", 2807880259421434, this, []); }
+  animationKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("QuartzCore_ff42ce03e691ab23", 2807880259421434, this, []); }
   /**
    * func contains(_ p: CGPoint) -> Bool
    * @availability iOS 2.0+
    */
-  contains(p: $SDK5): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 1354159396192935, this, [p]); }
+  contains(p: $SDK5): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 1354159396192935, this, [p]); }
   /**
    * func contentsAreFlipped() -> Bool
    * @availability iOS 2.0+
    */
-  contentsAreFlipped(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 305496416748741, this, []); }
+  contentsAreFlipped(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 305496416748741, this, []); }
   /**
    * func convert(_ p: CGPoint, from l: CALayer?) -> CGPoint
    * @availability iOS 2.0+
    */
-  convertFrom(p: $SDK5, l?: (CALayer) | null): $SDK5 { return callSDK<$SDK5>("QuartzCore_3864e7f38681b875", 770746730762532, this, [p, l]); }
+  convertFrom(p: $SDK5, l?: (CALayer) | null): $SDK5 { return callSDK<$SDK5>("QuartzCore_ff42ce03e691ab23", 770746730762532, this, [p, l]); }
   /**
    * func convert(_ p: CGPoint, to l: CALayer?) -> CGPoint
    * @availability iOS 2.0+
    */
-  convertTo(p: $SDK5, l?: (CALayer) | null): $SDK5 { return callSDK<$SDK5>("QuartzCore_3864e7f38681b875", 3308604416106030, this, [p, l]); }
+  convertTo(p: $SDK5, l?: (CALayer) | null): $SDK5 { return callSDK<$SDK5>("QuartzCore_ff42ce03e691ab23", 3308604416106030, this, [p, l]); }
   /**
    * func convert(_ r: CGRect, from l: CALayer?) -> CGRect
    * @availability iOS 2.0+
    */
-  convertFrom59317(r: $SDK6, l?: (CALayer) | null): $SDK6 { return callSDK<$SDK6>("QuartzCore_3864e7f38681b875", 1269266664689378, this, [r, l]); }
+  convertFrom59317(r: $SDK6, l?: (CALayer) | null): $SDK6 { return callSDK<$SDK6>("QuartzCore_ff42ce03e691ab23", 1269266664689378, this, [r, l]); }
   /**
    * func convert(_ r: CGRect, to l: CALayer?) -> CGRect
    * @availability iOS 2.0+
    */
-  convertTo90208(r: $SDK6, l?: (CALayer) | null): $SDK6 { return callSDK<$SDK6>("QuartzCore_3864e7f38681b875", 303678267251658, this, [r, l]); }
+  convertTo90208(r: $SDK6, l?: (CALayer) | null): $SDK6 { return callSDK<$SDK6>("QuartzCore_ff42ce03e691ab23", 303678267251658, this, [r, l]); }
   /**
    * func convertTime(_ t: CFTimeInterval, from l: CALayer?) -> CFTimeInterval
    * @availability iOS 2.0+
    */
-  convertTimeFrom(t: number, l?: (CALayer) | null): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3542179463902338, this, [t, l]); }
+  convertTimeFrom(t: number, l?: (CALayer) | null): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3542179463902338, this, [t, l]); }
   /**
    * func convertTime(_ t: CFTimeInterval, to l: CALayer?) -> CFTimeInterval
    * @availability iOS 2.0+
    */
-  convertTimeTo(t: number, l?: (CALayer) | null): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1163910757129129, this, [t, l]); }
+  convertTimeTo(t: number, l?: (CALayer) | null): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1163910757129129, this, [t, l]); }
   /**
    * func display()
    * @availability iOS 2.0+
    */
-  display(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 2623290268285273, this, []); }
+  display(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 2623290268285273, this, []); }
   /**
    * func displayIfNeeded()
    * @availability iOS 2.0+
    */
-  displayIfNeeded(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 2732154412564902, this, []); }
+  displayIfNeeded(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 2732154412564902, this, []); }
   /**
    * func draw(in ctx: CGContext)
    * @availability iOS 2.0+
    */
-  draw(ctx: _CoreGraphics_CGContext): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3799342152230415, this, [ctx]); }
+  draw(ctx: _CoreGraphics_CGContext): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3799342152230415, this, [ctx]); }
   /**
    * func hitTest(_ p: CGPoint) -> CALayer?
    * @availability iOS 2.0+
    */
-  hitTest(p: $SDK5): (CALayer) | null { return callSDK<(CALayer) | null>("QuartzCore_3864e7f38681b875", 3536578327432742, this, [p]); }
+  hitTest(p: $SDK5): (CALayer) | null { return callSDK<(CALayer) | null>("QuartzCore_ff42ce03e691ab23", 3536578327432742, this, [p]); }
   /**
    * init()
    * @availability iOS 2.0+
    */
-  static init(): CALayer { return callSDK<CALayer>("QuartzCore_3864e7f38681b875", 4053460949135286, undefined, []); }
+  static init(): CALayer { return callSDK<CALayer>("QuartzCore_ff42ce03e691ab23", 4053460949135286, undefined, []); }
   /**
    * init(layer: Any)
    * @availability iOS 2.0+
    */
-  static initLayer(layer: unknown): CALayer { return callSDK<CALayer>("QuartzCore_3864e7f38681b875", 1696416774796239, undefined, [layer]); }
+  static initLayer(layer: unknown): CALayer { return callSDK<CALayer>("QuartzCore_ff42ce03e691ab23", 1696416774796239, undefined, [layer]); }
   /**
    * func insertSublayer(_ layer: CALayer, above sibling: CALayer?)
    * @availability iOS 2.0+
    */
-  insertSublayerAbove(layer: CALayer, sibling?: (CALayer) | null): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3111931348800356, this, [layer, sibling]); }
+  insertSublayerAbove(layer: CALayer, sibling?: (CALayer) | null): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3111931348800356, this, [layer, sibling]); }
   /**
    * func insertSublayer(_ layer: CALayer, at idx: UInt32)
    * @availability iOS 2.0+
    */
-  insertSublayerAt(layer: CALayer, idx: number): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 2585041649518871, this, [layer, idx]); }
+  insertSublayerAt(layer: CALayer, idx: number): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 2585041649518871, this, [layer, idx]); }
   /**
    * func insertSublayer(_ layer: CALayer, below sibling: CALayer?)
    * @availability iOS 2.0+
    */
-  insertSublayerBelow(layer: CALayer, sibling?: (CALayer) | null): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 4134428095709494, this, [layer, sibling]); }
+  insertSublayerBelow(layer: CALayer, sibling?: (CALayer) | null): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 4134428095709494, this, [layer, sibling]); }
   /**
    * func layoutIfNeeded()
    * @availability iOS 2.0+
    */
-  layoutIfNeeded(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 1289343860770807, this, []); }
+  layoutIfNeeded(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 1289343860770807, this, []); }
   /**
    * func layoutSublayers()
    * @availability iOS 2.0+
    */
-  layoutSublayers(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 2276829705092534, this, []); }
+  layoutSublayers(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 2276829705092534, this, []); }
   /**
    * func model() -> Self
    * @availability iOS 2.0+
    */
-  model(): CALayer { return callSDK<CALayer>("QuartzCore_3864e7f38681b875", 3968769276486182, this, []); }
+  model(): CALayer { return callSDK<CALayer>("QuartzCore_ff42ce03e691ab23", 3968769276486182, this, []); }
   /**
    * func needsDisplay() -> Bool
    * @availability iOS 2.0+
    */
-  needsDisplay(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 4248225188446316, this, []); }
+  needsDisplay(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 4248225188446316, this, []); }
   /**
    * func needsLayout() -> Bool
    * @availability iOS 2.0+
    */
-  needsLayout(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 720020246855843, this, []); }
+  needsLayout(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 720020246855843, this, []); }
   /**
    * func preferredFrameSize() -> CGSize
    * @availability iOS 2.0+
    */
-  preferredFrameSize(): $SDK7 { return callSDK<$SDK7>("QuartzCore_3864e7f38681b875", 2262797182009591, this, []); }
+  preferredFrameSize(): $SDK7 { return callSDK<$SDK7>("QuartzCore_ff42ce03e691ab23", 2262797182009591, this, []); }
   /**
    * func presentation() -> Self?
    * @availability iOS 2.0+
    */
-  presentation(): (CALayer) | null { return callSDK<(CALayer) | null>("QuartzCore_3864e7f38681b875", 2624571335083595, this, []); }
+  presentation(): (CALayer) | null { return callSDK<(CALayer) | null>("QuartzCore_ff42ce03e691ab23", 2624571335083595, this, []); }
   /**
    * func removeAllAnimations()
    * @availability iOS 2.0+
    */
-  removeAllAnimations(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 4026467232359586, this, []); }
+  removeAllAnimations(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 4026467232359586, this, []); }
   /**
    * func removeAnimation(forKey key: String)
    * @availability iOS 2.0+
    */
-  removeAnimation(key: string): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 825166837950794, this, [key]); }
+  removeAnimation(key: string): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 825166837950794, this, [key]); }
   /**
    * func removeFromSuperlayer()
    * @availability iOS 2.0+
    */
-  removeFromSuperlayer(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 1900219176098273, this, []); }
+  removeFromSuperlayer(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 1900219176098273, this, []); }
   /**
    * func render(in ctx: CGContext)
    * @availability iOS 2.0+
    */
-  render(ctx: _CoreGraphics_CGContext): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3442428576450828, this, [ctx]); }
+  render(ctx: _CoreGraphics_CGContext): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3442428576450828, this, [ctx]); }
   /**
    * func replaceSublayer(_ oldLayer: CALayer, with newLayer: CALayer)
    * @availability iOS 2.0+
    */
-  replaceSublayer(oldLayer: CALayer, newLayer: CALayer): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 618094705558145, this, [oldLayer, newLayer]); }
+  replaceSublayer(oldLayer: CALayer, newLayer: CALayer): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 618094705558145, this, [oldLayer, newLayer]); }
   /** func scroll(_ p: CGPoint) */
-  scroll(p: $SDK5): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3105239878830180, this, [p]); }
+  scroll(p: $SDK5): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3105239878830180, this, [p]); }
   /** func scrollRectToVisible(_ r: CGRect) */
-  scrollRectToVisible(r: $SDK6): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3322492593158201, this, [r]); }
+  scrollRectToVisible(r: $SDK6): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3322492593158201, this, [r]); }
   /**
    * func setAffineTransform(_ m: CGAffineTransform)
    * @availability iOS 2.0+
    */
-  setAffineTransform(m: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3519243342756702, this, [m]); }
+  setAffineTransform(m: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3519243342756702, this, [m]); }
   /**
    * func setNeedsDisplay()
    * @availability iOS 2.0+
    */
-  setNeedsDisplay(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 1347355657450502, this, []); }
+  setNeedsDisplay(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 1347355657450502, this, []); }
   /**
    * func setNeedsDisplay(_ r: CGRect)
    * @availability iOS 2.0+
    */
-  setNeedsDisplay81283(r: $SDK6): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 2899684820049111, this, [r]); }
+  setNeedsDisplay81283(r: $SDK6): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 2899684820049111, this, [r]); }
   /**
    * func setNeedsLayout()
    * @availability iOS 2.0+
    */
-  setNeedsLayout(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 4144525985119260, this, []); }
+  setNeedsLayout(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 4144525985119260, this, []); }
   /**
    * func shouldArchiveValue(forKey key: String) -> Bool
    * @availability iOS 2.0+
    */
-  shouldArchiveValue(key: string): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 2120483968846110, this, [key]); }
+  shouldArchiveValue(key: string): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 2120483968846110, this, [key]); }
   /**
    * var actions: [String : any CAAction]? { get set }
    * @availability iOS 2.0+
    */
-  get actions(): (Record<string, SDKHandle>) | null { return callSDK<(Record<string, SDKHandle>) | null>("QuartzCore_3864e7f38681b875", 2575447048430762, this, []); }
-  set actions(value: (Record<string, Implements<CAAction> | SDKHandle>) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 2459471595490708, this, [value], [{"dictionary":{"protocol":"c:objc(pl)CAAction"}}]); }
+  get actions(): (Record<string, SDKHandle>) | null { return callSDK<(Record<string, SDKHandle>) | null>("QuartzCore_ff42ce03e691ab23", 2575447048430762, this, []); }
+  set actions(value: (Record<string, Implements<CAAction> | SDKHandle>) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2459471595490708, this, [value], [{"dictionary":{"protocol":"c:objc(pl)CAAction"}}]); }
   /**
    * var allowsEdgeAntialiasing: Bool { get set }
    * @availability iOS 2.0+
    */
-  get allowsEdgeAntialiasing(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 792758415113788, this, []); }
-  set allowsEdgeAntialiasing(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 2206095119363541, this, [value]); }
+  get allowsEdgeAntialiasing(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 792758415113788, this, []); }
+  set allowsEdgeAntialiasing(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2206095119363541, this, [value]); }
   /**
    * var allowsGroupOpacity: Bool { get set }
    * @availability iOS 2.0+
    */
-  get allowsGroupOpacity(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 4125148229645127, this, []); }
-  set allowsGroupOpacity(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 3928182302520732, this, [value]); }
+  get allowsGroupOpacity(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 4125148229645127, this, []); }
+  set allowsGroupOpacity(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3928182302520732, this, [value]); }
   /**
    * var anchorPoint: CGPoint { get set }
    * @availability iOS 2.0+
    */
-  get anchorPoint(): $SDK5 { return callSDK<$SDK5>("QuartzCore_3864e7f38681b875", 3046873949299828, this, []); }
-  set anchorPoint(value: $SDK5) { callSDK<void>("QuartzCore_3864e7f38681b875", 17283564306840, this, [value]); }
+  get anchorPoint(): $SDK5 { return callSDK<$SDK5>("QuartzCore_ff42ce03e691ab23", 3046873949299828, this, []); }
+  set anchorPoint(value: $SDK5) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 17283564306840, this, [value]); }
   /**
    * var anchorPointZ: CGFloat { get set }
    * @availability iOS 2.0+
    */
-  get anchorPointZ(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 337016008276883, this, []); }
-  set anchorPointZ(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 70386921794122, this, [value]); }
+  get anchorPointZ(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 337016008276883, this, []); }
+  set anchorPointZ(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 70386921794122, this, [value]); }
   /**
    * var backgroundColor: CGColor? { get set }
    * @availability iOS 2.0+
    */
-  get backgroundColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_3864e7f38681b875", 4228737889172329, this, []); }
-  set backgroundColor(value: $SDK10) { callSDK<void>("QuartzCore_3864e7f38681b875", 106921832830860, this, [value]); }
+  get backgroundColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_ff42ce03e691ab23", 4228737889172329, this, []); }
+  set backgroundColor(value: $SDK10) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 106921832830860, this, [value]); }
   /**
    * var backgroundFilters: [Any]? { get set }
    * @availability iOS 2.0+
    */
-  get backgroundFilters(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("QuartzCore_3864e7f38681b875", 1234105360260664, this, []); }
-  set backgroundFilters(value: (Array<unknown>) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 362527240250600, this, [value]); }
+  get backgroundFilters(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("QuartzCore_ff42ce03e691ab23", 1234105360260664, this, []); }
+  set backgroundFilters(value: (Array<unknown>) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 362527240250600, this, [value]); }
   /**
    * var borderColor: CGColor? { get set }
    * @availability iOS 2.0+
    */
-  get borderColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_3864e7f38681b875", 1278697113054225, this, []); }
-  set borderColor(value: $SDK10) { callSDK<void>("QuartzCore_3864e7f38681b875", 1555186846173054, this, [value]); }
+  get borderColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_ff42ce03e691ab23", 1278697113054225, this, []); }
+  set borderColor(value: $SDK10) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1555186846173054, this, [value]); }
   /**
    * var borderWidth: CGFloat { get set }
    * @availability iOS 2.0+
    */
-  get borderWidth(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1098817126437076, this, []); }
-  set borderWidth(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2788504149712245, this, [value]); }
+  get borderWidth(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1098817126437076, this, []); }
+  set borderWidth(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2788504149712245, this, [value]); }
   /**
    * var bounds: CGRect { get set }
    * @availability iOS 2.0+
    */
-  get bounds(): $SDK6 { return callSDK<$SDK6>("QuartzCore_3864e7f38681b875", 948624453087022, this, []); }
-  set bounds(value: $SDK6) { callSDK<void>("QuartzCore_3864e7f38681b875", 1701720441179609, this, [value]); }
+  get bounds(): $SDK6 { return callSDK<$SDK6>("QuartzCore_ff42ce03e691ab23", 948624453087022, this, []); }
+  set bounds(value: $SDK6) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1701720441179609, this, [value]); }
   /**
    * var compositingFilter: Any? { get set }
    * @availability iOS 2.0+
    */
-  get compositingFilter(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 2813623273760009, this, []); }
-  set compositingFilter(value: (unknown) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 3845957862234049, this, [value]); }
+  get compositingFilter(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 2813623273760009, this, []); }
+  set compositingFilter(value: (unknown) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3845957862234049, this, [value]); }
   /**
    * var contents: Any? { get set }
    * @availability iOS 2.0+
    */
-  get contents(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 622665223830054, this, []); }
-  set contents(value: (unknown) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 874694053090920, this, [value]); }
+  get contents(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 622665223830054, this, []); }
+  set contents(value: (unknown) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 874694053090920, this, [value]); }
   /**
    * var contentsCenter: CGRect { get set }
    * @availability iOS 2.0+
    */
-  get contentsCenter(): $SDK6 { return callSDK<$SDK6>("QuartzCore_3864e7f38681b875", 474013686268467, this, []); }
-  set contentsCenter(value: $SDK6) { callSDK<void>("QuartzCore_3864e7f38681b875", 1723585964976737, this, [value]); }
+  get contentsCenter(): $SDK6 { return callSDK<$SDK6>("QuartzCore_ff42ce03e691ab23", 474013686268467, this, []); }
+  set contentsCenter(value: $SDK6) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1723585964976737, this, [value]); }
   /**
    * var contentsFormat: CALayerContentsFormat { get set }
    * @availability iOS 10.0+
    */
-  get contentsFormat(): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_3864e7f38681b875", 3009750279338497, this, []); }
-  set contentsFormat(value: CALayerContentsFormat) { callSDK<void>("QuartzCore_3864e7f38681b875", 4172183169368378, this, [value]); }
+  get contentsFormat(): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_ff42ce03e691ab23", 3009750279338497, this, []); }
+  set contentsFormat(value: CALayerContentsFormat) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4172183169368378, this, [value]); }
   /**
    * var contentsGravity: CALayerContentsGravity { get set }
    * @availability iOS 2.0+
    */
-  get contentsGravity(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 1255837548957066, this, []); }
-  set contentsGravity(value: CALayerContentsGravity) { callSDK<void>("QuartzCore_3864e7f38681b875", 2581628181891507, this, [value]); }
+  get contentsGravity(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 1255837548957066, this, []); }
+  set contentsGravity(value: CALayerContentsGravity) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2581628181891507, this, [value]); }
   /**
    * var contentsHeadroom: CGFloat { get set }
    * @availability iOS 26.0+
    */
-  get contentsHeadroom(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 708239159722117, this, []); }
-  set contentsHeadroom(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 691929078456447, this, [value]); }
+  get contentsHeadroom(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 708239159722117, this, []); }
+  set contentsHeadroom(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 691929078456447, this, [value]); }
   /**
    * var contentsRect: CGRect { get set }
    * @availability iOS 2.0+
    */
-  get contentsRect(): $SDK6 { return callSDK<$SDK6>("QuartzCore_3864e7f38681b875", 1303466661241012, this, []); }
-  set contentsRect(value: $SDK6) { callSDK<void>("QuartzCore_3864e7f38681b875", 2130842633468436, this, [value]); }
+  get contentsRect(): $SDK6 { return callSDK<$SDK6>("QuartzCore_ff42ce03e691ab23", 1303466661241012, this, []); }
+  set contentsRect(value: $SDK6) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2130842633468436, this, [value]); }
   /**
    * var contentsScale: CGFloat { get set }
    * @availability iOS 4.0+
    */
-  get contentsScale(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1419341111120151, this, []); }
-  set contentsScale(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2688761100766788, this, [value]); }
+  get contentsScale(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1419341111120151, this, []); }
+  set contentsScale(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2688761100766788, this, [value]); }
   /**
    * var cornerCurve: CALayerCornerCurve { get set }
    * @availability iOS 13.0+
    */
-  get cornerCurve(): CALayerCornerCurve { return callSDK<CALayerCornerCurve>("QuartzCore_3864e7f38681b875", 2172018423054519, this, []); }
-  set cornerCurve(value: CALayerCornerCurve) { callSDK<void>("QuartzCore_3864e7f38681b875", 3168380032017192, this, [value]); }
+  get cornerCurve(): CALayerCornerCurve { return callSDK<CALayerCornerCurve>("QuartzCore_ff42ce03e691ab23", 2172018423054519, this, []); }
+  set cornerCurve(value: CALayerCornerCurve) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3168380032017192, this, [value]); }
   /**
    * var cornerRadius: CGFloat { get set }
    * @availability iOS 2.0+
    */
-  get cornerRadius(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 678435111607685, this, []); }
-  set cornerRadius(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2247843594563857, this, [value]); }
+  get cornerRadius(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 678435111607685, this, []); }
+  set cornerRadius(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2247843594563857, this, [value]); }
   /**
    * weak var delegate: (any CALayerDelegate)? { get set }
    * @availability iOS 2.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_3864e7f38681b875", 2145475747775951, this, []); }
-  set delegate(value: (Implements<CALayerDelegate> | SDKHandle) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 1840547585422133, this, [value], [{"protocol":"c:objc(pl)CALayerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_ff42ce03e691ab23", 2145475747775951, this, []); }
+  set delegate(value: (Implements<CALayerDelegate> | SDKHandle) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1840547585422133, this, [value], [{"protocol":"c:objc(pl)CALayerDelegate"}]); }
   /**
    * var isDoubleSided: Bool { get set }
    * @availability iOS 2.0+
    */
-  get isDoubleSided(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 4495641834117337, this, []); }
-  set isDoubleSided(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 3168499342864447, this, [value]); }
+  get isDoubleSided(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 4495641834117337, this, []); }
+  set isDoubleSided(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3168499342864447, this, [value]); }
   /**
    * var drawsAsynchronously: Bool { get set }
    * @availability iOS 6.0+
    */
-  get drawsAsynchronously(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 4313286291349983, this, []); }
-  set drawsAsynchronously(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 2542095659937446, this, [value]); }
+  get drawsAsynchronously(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 4313286291349983, this, []); }
+  set drawsAsynchronously(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2542095659937446, this, [value]); }
   /**
    * var edgeAntialiasingMask: CAEdgeAntialiasingMask { get set }
    * @availability iOS 2.0+
    */
-  get edgeAntialiasingMask(): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_3864e7f38681b875", 256925597820030, this, []); }
-  set edgeAntialiasingMask(value: CAEdgeAntialiasingMask) { callSDK<void>("QuartzCore_3864e7f38681b875", 667286841099571, this, [value]); }
+  get edgeAntialiasingMask(): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_ff42ce03e691ab23", 256925597820030, this, []); }
+  set edgeAntialiasingMask(value: CAEdgeAntialiasingMask) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 667286841099571, this, [value]); }
   /**
    * var filters: [Any]? { get set }
    * @availability iOS 2.0+
    */
-  get filters(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("QuartzCore_3864e7f38681b875", 3266018642162613, this, []); }
-  set filters(value: (Array<unknown>) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 816179503787540, this, [value]); }
+  get filters(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("QuartzCore_ff42ce03e691ab23", 3266018642162613, this, []); }
+  set filters(value: (Array<unknown>) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 816179503787540, this, [value]); }
   /**
    * var frame: CGRect { get set }
    * @availability iOS 2.0+
    */
-  get frame(): $SDK6 { return callSDK<$SDK6>("QuartzCore_3864e7f38681b875", 4384915666323424, this, []); }
-  set frame(value: $SDK6) { callSDK<void>("QuartzCore_3864e7f38681b875", 1105602886417420, this, [value]); }
+  get frame(): $SDK6 { return callSDK<$SDK6>("QuartzCore_ff42ce03e691ab23", 4384915666323424, this, []); }
+  set frame(value: $SDK6) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1105602886417420, this, [value]); }
   /**
    * var isGeometryFlipped: Bool { get set }
    * @availability iOS 2.0+
    */
-  get isGeometryFlipped(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 2236901973603717, this, []); }
-  set isGeometryFlipped(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 708474126122892, this, [value]); }
+  get isGeometryFlipped(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 2236901973603717, this, []); }
+  set isGeometryFlipped(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 708474126122892, this, [value]); }
   /**
    * var isHidden: Bool { get set }
    * @availability iOS 2.0+
    */
-  get isHidden(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 1634027130266021, this, []); }
-  set isHidden(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 3023608055910735, this, [value]); }
+  get isHidden(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 1634027130266021, this, []); }
+  set isHidden(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3023608055910735, this, [value]); }
   /**
    * var magnificationFilter: CALayerContentsFilter { get set }
    * @availability iOS 2.0+
    */
-  get magnificationFilter(): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_3864e7f38681b875", 4412127923095978, this, []); }
-  set magnificationFilter(value: CALayerContentsFilter) { callSDK<void>("QuartzCore_3864e7f38681b875", 964400593619419, this, [value]); }
+  get magnificationFilter(): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_ff42ce03e691ab23", 4412127923095978, this, []); }
+  set magnificationFilter(value: CALayerContentsFilter) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 964400593619419, this, [value]); }
   /**
    * var mask: CALayer? { get set }
    * @availability iOS 2.0+
    */
-  get mask(): (CALayer) | null { return callSDK<(CALayer) | null>("QuartzCore_3864e7f38681b875", 3851254026789646, this, []); }
-  set mask(value: (CALayer) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 3517457815878587, this, [value]); }
+  get mask(): (CALayer) | null { return callSDK<(CALayer) | null>("QuartzCore_ff42ce03e691ab23", 3851254026789646, this, []); }
+  set mask(value: (CALayer) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3517457815878587, this, [value]); }
   /**
    * var maskedCorners: CACornerMask { get set }
    * @availability iOS 11.0+
    */
-  get maskedCorners(): CACornerMask { return callSDK<CACornerMask>("QuartzCore_3864e7f38681b875", 3396512199089480, this, []); }
-  set maskedCorners(value: CACornerMask) { callSDK<void>("QuartzCore_3864e7f38681b875", 1558638644734702, this, [value]); }
+  get maskedCorners(): CACornerMask { return callSDK<CACornerMask>("QuartzCore_ff42ce03e691ab23", 3396512199089480, this, []); }
+  set maskedCorners(value: CACornerMask) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1558638644734702, this, [value]); }
   /**
    * var masksToBounds: Bool { get set }
    * @availability iOS 2.0+
    */
-  get masksToBounds(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 765410260978208, this, []); }
-  set masksToBounds(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 1688511989777965, this, [value]); }
+  get masksToBounds(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 765410260978208, this, []); }
+  set masksToBounds(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1688511989777965, this, [value]); }
   /**
    * var minificationFilter: CALayerContentsFilter { get set }
    * @availability iOS 2.0+
    */
-  get minificationFilter(): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_3864e7f38681b875", 1853655740715371, this, []); }
-  set minificationFilter(value: CALayerContentsFilter) { callSDK<void>("QuartzCore_3864e7f38681b875", 3505295679650309, this, [value]); }
+  get minificationFilter(): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_ff42ce03e691ab23", 1853655740715371, this, []); }
+  set minificationFilter(value: CALayerContentsFilter) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3505295679650309, this, [value]); }
   /**
    * var minificationFilterBias: Float { get set }
    * @availability iOS 2.0+
    */
-  get minificationFilterBias(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2746169971234221, this, []); }
-  set minificationFilterBias(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 292509035023113, this, [value]); }
+  get minificationFilterBias(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2746169971234221, this, []); }
+  set minificationFilterBias(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 292509035023113, this, [value]); }
   /**
    * var name: String? { get set }
    * @availability iOS 2.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("QuartzCore_3864e7f38681b875", 986539044603635, this, []); }
-  set name(value: (string) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 511242300416889, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("QuartzCore_ff42ce03e691ab23", 986539044603635, this, []); }
+  set name(value: (string) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 511242300416889, this, [value]); }
   /**
    * var needsDisplayOnBoundsChange: Bool { get set }
    * @availability iOS 2.0+
    */
-  get needsDisplayOnBoundsChange(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 31848423201935, this, []); }
-  set needsDisplayOnBoundsChange(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 387629312671389, this, [value]); }
+  get needsDisplayOnBoundsChange(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 31848423201935, this, []); }
+  set needsDisplayOnBoundsChange(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 387629312671389, this, [value]); }
   /**
    * var opacity: Float { get set }
    * @availability iOS 2.0+
    */
-  get opacity(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3614948299840076, this, []); }
-  set opacity(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 161081949452565, this, [value]); }
+  get opacity(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3614948299840076, this, []); }
+  set opacity(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 161081949452565, this, [value]); }
   /**
    * var isOpaque: Bool { get set }
    * @availability iOS 2.0+
    */
-  get isOpaque(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 1057702291762398, this, []); }
-  set isOpaque(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 2352051839610036, this, [value]); }
+  get isOpaque(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 1057702291762398, this, []); }
+  set isOpaque(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2352051839610036, this, [value]); }
   /**
    * var position: CGPoint { get set }
    * @availability iOS 2.0+
    */
-  get position(): $SDK5 { return callSDK<$SDK5>("QuartzCore_3864e7f38681b875", 1815525674356863, this, []); }
-  set position(value: $SDK5) { callSDK<void>("QuartzCore_3864e7f38681b875", 2711659047009000, this, [value]); }
+  get position(): $SDK5 { return callSDK<$SDK5>("QuartzCore_ff42ce03e691ab23", 1815525674356863, this, []); }
+  set position(value: $SDK5) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2711659047009000, this, [value]); }
   /**
    * var preferredDynamicRange: CALayer.DynamicRange { get set }
    * @availability iOS 26.0+
    */
-  get preferredDynamicRange(): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_3864e7f38681b875", 628208746234980, this, []); }
-  set preferredDynamicRange(value: CALayer_DynamicRange) { callSDK<void>("QuartzCore_3864e7f38681b875", 3711296382888922, this, [value]); }
+  get preferredDynamicRange(): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_ff42ce03e691ab23", 628208746234980, this, []); }
+  set preferredDynamicRange(value: CALayer_DynamicRange) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3711296382888922, this, [value]); }
   /**
    * var rasterizationScale: CGFloat { get set }
    * @availability iOS 2.0+
    */
-  get rasterizationScale(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1604907690972631, this, []); }
-  set rasterizationScale(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 828908505654383, this, [value]); }
+  get rasterizationScale(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1604907690972631, this, []); }
+  set rasterizationScale(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 828908505654383, this, [value]); }
   /**
    * var shadowColor: CGColor? { get set }
    * @availability iOS 2.0+
    */
-  get shadowColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_3864e7f38681b875", 2956164663989077, this, []); }
-  set shadowColor(value: $SDK10) { callSDK<void>("QuartzCore_3864e7f38681b875", 3607371582988812, this, [value]); }
+  get shadowColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_ff42ce03e691ab23", 2956164663989077, this, []); }
+  set shadowColor(value: $SDK10) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3607371582988812, this, [value]); }
   /**
    * var shadowOffset: CGSize { get set }
    * @availability iOS 2.0+
    */
-  get shadowOffset(): $SDK7 { return callSDK<$SDK7>("QuartzCore_3864e7f38681b875", 1679138798725672, this, []); }
-  set shadowOffset(value: $SDK7) { callSDK<void>("QuartzCore_3864e7f38681b875", 964015282256148, this, [value]); }
+  get shadowOffset(): $SDK7 { return callSDK<$SDK7>("QuartzCore_ff42ce03e691ab23", 1679138798725672, this, []); }
+  set shadowOffset(value: $SDK7) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 964015282256148, this, [value]); }
   /**
    * var shadowOpacity: Float { get set }
    * @availability iOS 2.0+
    */
-  get shadowOpacity(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1061895091989712, this, []); }
-  set shadowOpacity(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3685256657850899, this, [value]); }
+  get shadowOpacity(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1061895091989712, this, []); }
+  set shadowOpacity(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3685256657850899, this, [value]); }
   /**
    * var shadowPath: CGPath? { get set }
    * @availability iOS 2.0+
    */
-  get shadowPath(): $SDK12 { return callSDK<$SDK12>("QuartzCore_3864e7f38681b875", 2858128354414355, this, []); }
-  set shadowPath(value: $SDK12) { callSDK<void>("QuartzCore_3864e7f38681b875", 1514696197171014, this, [value]); }
+  get shadowPath(): $SDK12 { return callSDK<$SDK12>("QuartzCore_ff42ce03e691ab23", 2858128354414355, this, []); }
+  set shadowPath(value: $SDK12) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1514696197171014, this, [value]); }
   /**
    * var shadowRadius: CGFloat { get set }
    * @availability iOS 2.0+
    */
-  get shadowRadius(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2168879693957746, this, []); }
-  set shadowRadius(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 880318715186119, this, [value]); }
+  get shadowRadius(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2168879693957746, this, []); }
+  set shadowRadius(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 880318715186119, this, [value]); }
   /**
    * var shouldRasterize: Bool { get set }
    * @availability iOS 2.0+
    */
-  get shouldRasterize(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 1165810415304746, this, []); }
-  set shouldRasterize(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 1518346435649889, this, [value]); }
+  get shouldRasterize(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 1165810415304746, this, []); }
+  set shouldRasterize(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1518346435649889, this, [value]); }
   /**
    * var style: [AnyHashable : Any]? { get set }
    * @availability iOS 2.0+
    */
-  get style(): $SDK0 { return callSDK<$SDK0>("QuartzCore_3864e7f38681b875", 4272855391841665, this, []); }
-  set style(value: $SDK0) { callSDK<void>("QuartzCore_3864e7f38681b875", 3185258980726946, this, [value]); }
+  get style(): $SDK0 { return callSDK<$SDK0>("QuartzCore_ff42ce03e691ab23", 4272855391841665, this, []); }
+  set style(value: $SDK0) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3185258980726946, this, [value]); }
   /**
    * var sublayerTransform: CATransform3D { get set }
    * @availability iOS 2.0+
    */
-  get sublayerTransform(): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 904492044759189, this, []); }
-  set sublayerTransform(value: CATransform3D) { callSDK<void>("QuartzCore_3864e7f38681b875", 2907490969853813, this, [value]); }
+  get sublayerTransform(): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 904492044759189, this, []); }
+  set sublayerTransform(value: CATransform3D) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2907490969853813, this, [value]); }
   /**
    * var sublayers: [CALayer]? { get set }
    * @availability iOS 2.0+
    */
-  get sublayers(): (Array<CALayer>) | null { return callSDK<(Array<CALayer>) | null>("QuartzCore_3864e7f38681b875", 3454607058293522, this, []); }
-  set sublayers(value: (Array<CALayer>) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 677902066901355, this, [value]); }
+  get sublayers(): (Array<CALayer>) | null { return callSDK<(Array<CALayer>) | null>("QuartzCore_ff42ce03e691ab23", 3454607058293522, this, []); }
+  set sublayers(value: (Array<CALayer>) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 677902066901355, this, [value]); }
   /**
    * var superlayer: CALayer? { get }
    * @availability iOS 2.0+
    */
-  get superlayer(): (CALayer) | null { return callSDK<(CALayer) | null>("QuartzCore_3864e7f38681b875", 4123418366913843, this, []); }
+  get superlayer(): (CALayer) | null { return callSDK<(CALayer) | null>("QuartzCore_ff42ce03e691ab23", 4123418366913843, this, []); }
   /**
    * var toneMapMode: CALayer.ToneMapMode { get set }
    * @availability iOS 18.0+
    */
-  get toneMapMode(): CALayer_ToneMapMode { return callSDK<CALayer_ToneMapMode>("QuartzCore_3864e7f38681b875", 3527630030006068, this, []); }
-  set toneMapMode(value: CALayer_ToneMapMode) { callSDK<void>("QuartzCore_3864e7f38681b875", 4206410101449008, this, [value]); }
+  get toneMapMode(): CALayer_ToneMapMode { return callSDK<CALayer_ToneMapMode>("QuartzCore_ff42ce03e691ab23", 3527630030006068, this, []); }
+  set toneMapMode(value: CALayer_ToneMapMode) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4206410101449008, this, [value]); }
   /**
    * var transform: CATransform3D { get set }
    * @availability iOS 2.0+
    */
-  get transform(): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 2590909450585666, this, []); }
-  set transform(value: CATransform3D) { callSDK<void>("QuartzCore_3864e7f38681b875", 2802058992701802, this, [value]); }
+  get transform(): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 2590909450585666, this, []); }
+  set transform(value: CATransform3D) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2802058992701802, this, [value]); }
   /** var visibleRect: CGRect { get } */
-  get visibleRect(): $SDK6 { return callSDK<$SDK6>("QuartzCore_3864e7f38681b875", 2832922555607492, this, []); }
+  get visibleRect(): $SDK6 { return callSDK<$SDK6>("QuartzCore_ff42ce03e691ab23", 2832922555607492, this, []); }
   /**
    * var wantsExtendedDynamicRangeContent: Bool { get set }
    * @availability iOS 17.0+
    * @deprecated iOS 26.0
    */
-  get wantsExtendedDynamicRangeContent(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 459668738563248, this, []); }
-  set wantsExtendedDynamicRangeContent(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 1477842062605696, this, [value]); }
+  get wantsExtendedDynamicRangeContent(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 459668738563248, this, []); }
+  set wantsExtendedDynamicRangeContent(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1477842062605696, this, [value]); }
   /**
    * var zPosition: CGFloat { get set }
    * @availability iOS 2.0+
    */
-  get zPosition(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1033884146282885, this, []); }
-  set zPosition(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3098375540688982, this, [value]); }
+  get zPosition(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1033884146282885, this, []); }
+  set zPosition(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3098375540688982, this, [value]); }
   declare readonly $type: { "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true };
 }
@@ -925,14 +925,14 @@ export class CALayer extends SDKHandle {
  */
 export class CAEAGLLayer extends (CALayer as unknown as Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer)) {
   /** init() */
-  static init(): CAEAGLLayer { return callSDK<CAEAGLLayer>("QuartzCore_3864e7f38681b875", 3610197161383039, undefined, []); }
+  static init(): CAEAGLLayer { return callSDK<CAEAGLLayer>("QuartzCore_ff42ce03e691ab23", 3610197161383039, undefined, []); }
   /**
    * var presentsWithTransaction: Bool { get set }
    * @availability iOS 9.0+
    * @deprecated iOS 12.0
    */
-  get presentsWithTransaction(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 2030423943401299, this, []); }
-  set presentsWithTransaction(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 2118275315617917, this, [value]); }
+  get presentsWithTransaction(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 2030423943401299, this, []); }
+  set presentsWithTransaction(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2118275315617917, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAEAGLLayer": true; "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true; "presentsWithTransaction": true };
 }
@@ -948,27 +948,27 @@ export const CAEdgeAntialiasingMask = {
    * static var layerBottomEdge: CAEdgeAntialiasingMask { get }
    * @availability iOS 8.0+
    */
-  get layerBottomEdge(): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_3864e7f38681b875", 1009507094283351, undefined, []); },
+  get layerBottomEdge(): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_ff42ce03e691ab23", 1009507094283351, undefined, []); },
   /**
    * static var layerLeftEdge: CAEdgeAntialiasingMask { get }
    * @availability iOS 8.0+
    */
-  get layerLeftEdge(): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_3864e7f38681b875", 2245855697701345, undefined, []); },
+  get layerLeftEdge(): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_ff42ce03e691ab23", 2245855697701345, undefined, []); },
   /**
    * static var layerRightEdge: CAEdgeAntialiasingMask { get }
    * @availability iOS 8.0+
    */
-  get layerRightEdge(): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_3864e7f38681b875", 2423592141611727, undefined, []); },
+  get layerRightEdge(): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_ff42ce03e691ab23", 2423592141611727, undefined, []); },
   /**
    * static var layerTopEdge: CAEdgeAntialiasingMask { get }
    * @availability iOS 8.0+
    */
-  get layerTopEdge(): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_3864e7f38681b875", 1442661245919167, undefined, []); },
+  get layerTopEdge(): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_ff42ce03e691ab23", 1442661245919167, undefined, []); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_3864e7f38681b875", 1227932026506021, undefined, [rawValue]); }
+  init(rawValue: number): CAEdgeAntialiasingMask { return callSDK<CAEdgeAntialiasingMask>("QuartzCore_ff42ce03e691ab23", 1227932026506021, undefined, [rawValue]); }
 };
 
 /**
@@ -980,27 +980,27 @@ export class CAEDRMetadata extends SDKHandle {
    * class func hdr10(displayInfo displayData: Data?, contentInfo contentData: Data?, opticalOutputScale scale: Float) -> CAEDRMetadata
    * @availability iOS 16.0+
    */
-  static hdr10DisplayInfoContentInfoOpticalOutputScale(displayData: (ArrayBuffer) | null, contentData: (ArrayBuffer) | null, scale: number): CAEDRMetadata { return callSDK<CAEDRMetadata>("QuartzCore_3864e7f38681b875", 3146233238618813, undefined, [displayData, contentData, scale]); }
+  static hdr10DisplayInfoContentInfoOpticalOutputScale(displayData: (ArrayBuffer) | null, contentData: (ArrayBuffer) | null, scale: number): CAEDRMetadata { return callSDK<CAEDRMetadata>("QuartzCore_ff42ce03e691ab23", 3146233238618813, undefined, [displayData, contentData, scale]); }
   /**
    * class func hdr10(minLuminance minNits: Float, maxLuminance maxNits: Float, opticalOutputScale scale: Float) -> CAEDRMetadata
    * @availability iOS 16.0+
    */
-  static hdr10MinLuminanceMaxLuminanceOpticalOutputScale(minNits: number, maxNits: number, scale: number): CAEDRMetadata { return callSDK<CAEDRMetadata>("QuartzCore_3864e7f38681b875", 625095502730768, undefined, [minNits, maxNits, scale]); }
+  static hdr10MinLuminanceMaxLuminanceOpticalOutputScale(minNits: number, maxNits: number, scale: number): CAEDRMetadata { return callSDK<CAEDRMetadata>("QuartzCore_ff42ce03e691ab23", 625095502730768, undefined, [minNits, maxNits, scale]); }
   /**
    * class func hlg(ambientViewingEnvironment data: Data) -> CAEDRMetadata
    * @availability iOS 17.0+
    */
-  static hlgAmbientViewingEnvironment(data: ArrayBuffer): CAEDRMetadata { return callSDK<CAEDRMetadata>("QuartzCore_3864e7f38681b875", 2372201795310335, undefined, [data]); }
+  static hlgAmbientViewingEnvironment(data: ArrayBuffer): CAEDRMetadata { return callSDK<CAEDRMetadata>("QuartzCore_ff42ce03e691ab23", 2372201795310335, undefined, [data]); }
   /**
    * class var hlg: CAEDRMetadata { get }
    * @availability iOS 16.0+
    */
-  static get hlg(): CAEDRMetadata { return callSDK<CAEDRMetadata>("QuartzCore_3864e7f38681b875", 972867080399629, undefined, []); }
+  static get hlg(): CAEDRMetadata { return callSDK<CAEDRMetadata>("QuartzCore_ff42ce03e691ab23", 972867080399629, undefined, []); }
   /**
    * class var isAvailable: Bool { get }
    * @availability iOS 16.0+
    */
-  static get isAvailable(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 2638472286106406, undefined, []); }
+  static get isAvailable(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 2638472286106406, undefined, []); }
   declare readonly $type: { "c:objc(cs)CAEDRMetadata": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1013,224 +1013,224 @@ export class CAEmitterCell extends SDKHandle {
    * class func defaultValue(forKey key: String) -> Any?
    * @availability iOS 5.0+
    */
-  static defaultValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 2612626684708188, undefined, [key]); }
+  static defaultValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 2612626684708188, undefined, [key]); }
   /** init() */
-  static init(): CAEmitterCell { return callSDK<CAEmitterCell>("QuartzCore_3864e7f38681b875", 1425322882904939, undefined, []); }
+  static init(): CAEmitterCell { return callSDK<CAEmitterCell>("QuartzCore_ff42ce03e691ab23", 1425322882904939, undefined, []); }
   /**
    * func shouldArchiveValue(forKey key: String) -> Bool
    * @availability iOS 5.0+
    */
-  shouldArchiveValue(key: string): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 4072520222378823, this, [key]); }
+  shouldArchiveValue(key: string): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 4072520222378823, this, [key]); }
   /**
    * var alphaRange: Float { get set }
    * @availability iOS 5.0+
    */
-  get alphaRange(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3690729784887349, this, []); }
-  set alphaRange(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 4296556646345169, this, [value]); }
+  get alphaRange(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3690729784887349, this, []); }
+  set alphaRange(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4296556646345169, this, [value]); }
   /**
    * var alphaSpeed: Float { get set }
    * @availability iOS 5.0+
    */
-  get alphaSpeed(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1404172158596867, this, []); }
-  set alphaSpeed(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1572076881718799, this, [value]); }
+  get alphaSpeed(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1404172158596867, this, []); }
+  set alphaSpeed(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1572076881718799, this, [value]); }
   /**
    * var birthRate: Float { get set }
    * @availability iOS 5.0+
    */
-  get birthRate(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 4066030702803222, this, []); }
-  set birthRate(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2064941599666017, this, [value]); }
+  get birthRate(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 4066030702803222, this, []); }
+  set birthRate(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2064941599666017, this, [value]); }
   /**
    * var blueRange: Float { get set }
    * @availability iOS 5.0+
    */
-  get blueRange(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 180937518862998, this, []); }
-  set blueRange(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 593609845401755, this, [value]); }
+  get blueRange(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 180937518862998, this, []); }
+  set blueRange(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 593609845401755, this, [value]); }
   /**
    * var blueSpeed: Float { get set }
    * @availability iOS 5.0+
    */
-  get blueSpeed(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2619301225681641, this, []); }
-  set blueSpeed(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 639221065116422, this, [value]); }
+  get blueSpeed(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2619301225681641, this, []); }
+  set blueSpeed(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 639221065116422, this, [value]); }
   /**
    * var color: CGColor? { get set }
    * @availability iOS 5.0+
    */
-  get color(): $SDK10 { return callSDK<$SDK10>("QuartzCore_3864e7f38681b875", 4205602387451696, this, []); }
-  set color(value: $SDK10) { callSDK<void>("QuartzCore_3864e7f38681b875", 3214471440490624, this, [value]); }
+  get color(): $SDK10 { return callSDK<$SDK10>("QuartzCore_ff42ce03e691ab23", 4205602387451696, this, []); }
+  set color(value: $SDK10) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3214471440490624, this, [value]); }
   /**
    * var contents: Any? { get set }
    * @availability iOS 5.0+
    */
-  get contents(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 812210485507633, this, []); }
-  set contents(value: (unknown) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 453227204520999, this, [value]); }
+  get contents(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 812210485507633, this, []); }
+  set contents(value: (unknown) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 453227204520999, this, [value]); }
   /**
    * var contentsRect: CGRect { get set }
    * @availability iOS 5.0+
    */
-  get contentsRect(): $SDK6 { return callSDK<$SDK6>("QuartzCore_3864e7f38681b875", 3146145508553726, this, []); }
-  set contentsRect(value: $SDK6) { callSDK<void>("QuartzCore_3864e7f38681b875", 2781363042621491, this, [value]); }
+  get contentsRect(): $SDK6 { return callSDK<$SDK6>("QuartzCore_ff42ce03e691ab23", 3146145508553726, this, []); }
+  set contentsRect(value: $SDK6) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2781363042621491, this, [value]); }
   /**
    * var contentsScale: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get contentsScale(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2205808233039908, this, []); }
-  set contentsScale(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 896675895208270, this, [value]); }
+  get contentsScale(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2205808233039908, this, []); }
+  set contentsScale(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 896675895208270, this, [value]); }
   /**
    * var emissionLatitude: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get emissionLatitude(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 4462275832414999, this, []); }
-  set emissionLatitude(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 676289844571843, this, [value]); }
+  get emissionLatitude(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 4462275832414999, this, []); }
+  set emissionLatitude(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 676289844571843, this, [value]); }
   /**
    * var emissionLongitude: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get emissionLongitude(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3206978895716031, this, []); }
-  set emissionLongitude(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1137450265743597, this, [value]); }
+  get emissionLongitude(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3206978895716031, this, []); }
+  set emissionLongitude(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1137450265743597, this, [value]); }
   /**
    * var emissionRange: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get emissionRange(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2703685012496728, this, []); }
-  set emissionRange(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3910067520757778, this, [value]); }
+  get emissionRange(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2703685012496728, this, []); }
+  set emissionRange(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3910067520757778, this, [value]); }
   /**
    * var emitterCells: [CAEmitterCell]? { get set }
    * @availability iOS 5.0+
    */
-  get emitterCells(): $SDK13 { return callSDK<$SDK13>("QuartzCore_3864e7f38681b875", 4049807098494519, this, []); }
-  set emitterCells(value: $SDK13) { callSDK<void>("QuartzCore_3864e7f38681b875", 1925420135052431, this, [value]); }
+  get emitterCells(): $SDK13 { return callSDK<$SDK13>("QuartzCore_ff42ce03e691ab23", 4049807098494519, this, []); }
+  set emitterCells(value: $SDK13) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1925420135052431, this, [value]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 5.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 964732331300280, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 3800335851441942, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 964732331300280, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3800335851441942, this, [value]); }
   /**
    * var greenRange: Float { get set }
    * @availability iOS 5.0+
    */
-  get greenRange(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2523844470704980, this, []); }
-  set greenRange(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2121713762305955, this, [value]); }
+  get greenRange(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2523844470704980, this, []); }
+  set greenRange(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2121713762305955, this, [value]); }
   /**
    * var greenSpeed: Float { get set }
    * @availability iOS 5.0+
    */
-  get greenSpeed(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2513735498819418, this, []); }
-  set greenSpeed(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2762596522817642, this, [value]); }
+  get greenSpeed(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2513735498819418, this, []); }
+  set greenSpeed(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2762596522817642, this, [value]); }
   /**
    * var lifetime: Float { get set }
    * @availability iOS 5.0+
    */
-  get lifetime(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 995457734487390, this, []); }
-  set lifetime(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2902924743587662, this, [value]); }
+  get lifetime(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 995457734487390, this, []); }
+  set lifetime(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2902924743587662, this, [value]); }
   /**
    * var lifetimeRange: Float { get set }
    * @availability iOS 5.0+
    */
-  get lifetimeRange(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 864997420540023, this, []); }
-  set lifetimeRange(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 136344318679503, this, [value]); }
+  get lifetimeRange(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 864997420540023, this, []); }
+  set lifetimeRange(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 136344318679503, this, [value]); }
   /**
    * var magnificationFilter: String { get set }
    * @availability iOS 5.0+
    */
-  get magnificationFilter(): string { return callSDK<string>("QuartzCore_3864e7f38681b875", 1741867911816156, this, []); }
-  set magnificationFilter(value: string) { callSDK<void>("QuartzCore_3864e7f38681b875", 3310161417843087, this, [value]); }
+  get magnificationFilter(): string { return callSDK<string>("QuartzCore_ff42ce03e691ab23", 1741867911816156, this, []); }
+  set magnificationFilter(value: string) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3310161417843087, this, [value]); }
   /**
    * var minificationFilter: String { get set }
    * @availability iOS 5.0+
    */
-  get minificationFilter(): string { return callSDK<string>("QuartzCore_3864e7f38681b875", 1834914847135857, this, []); }
-  set minificationFilter(value: string) { callSDK<void>("QuartzCore_3864e7f38681b875", 3596678370217885, this, [value]); }
+  get minificationFilter(): string { return callSDK<string>("QuartzCore_ff42ce03e691ab23", 1834914847135857, this, []); }
+  set minificationFilter(value: string) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3596678370217885, this, [value]); }
   /**
    * var minificationFilterBias: Float { get set }
    * @availability iOS 5.0+
    */
-  get minificationFilterBias(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 581659110241340, this, []); }
-  set minificationFilterBias(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2272805114696978, this, [value]); }
+  get minificationFilterBias(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 581659110241340, this, []); }
+  set minificationFilterBias(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2272805114696978, this, [value]); }
   /**
    * var name: String? { get set }
    * @availability iOS 5.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("QuartzCore_3864e7f38681b875", 3021382717382678, this, []); }
-  set name(value: (string) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 2011594797558125, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("QuartzCore_ff42ce03e691ab23", 3021382717382678, this, []); }
+  set name(value: (string) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2011594797558125, this, [value]); }
   /**
    * var redRange: Float { get set }
    * @availability iOS 5.0+
    */
-  get redRange(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1598274619373387, this, []); }
-  set redRange(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3658579049080450, this, [value]); }
+  get redRange(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1598274619373387, this, []); }
+  set redRange(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3658579049080450, this, [value]); }
   /**
    * var redSpeed: Float { get set }
    * @availability iOS 5.0+
    */
-  get redSpeed(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 909207820554825, this, []); }
-  set redSpeed(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1021203490137987, this, [value]); }
+  get redSpeed(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 909207820554825, this, []); }
+  set redSpeed(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1021203490137987, this, [value]); }
   /**
    * var scale: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get scale(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2295501022615562, this, []); }
-  set scale(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2205403373576580, this, [value]); }
+  get scale(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2295501022615562, this, []); }
+  set scale(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2205403373576580, this, [value]); }
   /**
    * var scaleRange: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get scaleRange(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1343700228731316, this, []); }
-  set scaleRange(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 570846998963271, this, [value]); }
+  get scaleRange(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1343700228731316, this, []); }
+  set scaleRange(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 570846998963271, this, [value]); }
   /**
    * var scaleSpeed: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get scaleSpeed(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 4173732284045885, this, []); }
-  set scaleSpeed(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 285023269520228, this, [value]); }
+  get scaleSpeed(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 4173732284045885, this, []); }
+  set scaleSpeed(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 285023269520228, this, [value]); }
   /**
    * var spin: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get spin(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 4221816784996925, this, []); }
-  set spin(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3594973290944864, this, [value]); }
+  get spin(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 4221816784996925, this, []); }
+  set spin(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3594973290944864, this, [value]); }
   /**
    * var spinRange: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get spinRange(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 237364873933470, this, []); }
-  set spinRange(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2634946612923180, this, [value]); }
+  get spinRange(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 237364873933470, this, []); }
+  set spinRange(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2634946612923180, this, [value]); }
   /**
    * var style: [AnyHashable : Any]? { get set }
    * @availability iOS 5.0+
    */
-  get style(): $SDK0 { return callSDK<$SDK0>("QuartzCore_3864e7f38681b875", 1206217110782981, this, []); }
-  set style(value: $SDK0) { callSDK<void>("QuartzCore_3864e7f38681b875", 1798774801518914, this, [value]); }
+  get style(): $SDK0 { return callSDK<$SDK0>("QuartzCore_ff42ce03e691ab23", 1206217110782981, this, []); }
+  set style(value: $SDK0) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1798774801518914, this, [value]); }
   /**
    * var velocity: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get velocity(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3504434102579813, this, []); }
-  set velocity(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1670340438652695, this, [value]); }
+  get velocity(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3504434102579813, this, []); }
+  set velocity(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1670340438652695, this, [value]); }
   /**
    * var velocityRange: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get velocityRange(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2675222302512552, this, []); }
-  set velocityRange(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1474361701401903, this, [value]); }
+  get velocityRange(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2675222302512552, this, []); }
+  set velocityRange(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1474361701401903, this, [value]); }
   /**
    * var xAcceleration: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get xAcceleration(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3733557739365305, this, []); }
-  set xAcceleration(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1839107598792681, this, [value]); }
+  get xAcceleration(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3733557739365305, this, []); }
+  set xAcceleration(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1839107598792681, this, [value]); }
   /**
    * var yAcceleration: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get yAcceleration(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3273044837888733, this, []); }
-  set yAcceleration(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 4044187176705453, this, [value]); }
+  get yAcceleration(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3273044837888733, this, []); }
+  set yAcceleration(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4044187176705453, this, [value]); }
   /**
    * var zAcceleration: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get zAcceleration(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 4313311238820686, this, []); }
-  set zAcceleration(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2008134979439083, this, [value]); }
+  get zAcceleration(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 4313311238820686, this, []); }
+  set zAcceleration(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2008134979439083, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAEmitterCell": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alphaRange": true; "alphaSpeed": true; "birthRate": true; "blueRange": true; "blueSpeed": true; "color": true; "contents": true; "contentsRect": true; "contentsScale": true; "emissionLatitude": true; "emissionLongitude": true; "emissionRange": true; "emitterCells": true; "isEnabled": true; "greenRange": true; "greenSpeed": true; "lifetime": true; "lifetimeRange": true; "magnificationFilter": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "redRange": true; "redSpeed": true; "scale": true; "scaleRange": true; "scaleSpeed": true; "spin": true; "spinRange": true; "style": true; "velocity": true; "velocityRange": true; "xAcceleration": true; "yAcceleration": true; "zAcceleration": true };
 }
@@ -1241,97 +1241,97 @@ export class CAEmitterCell extends SDKHandle {
  */
 export class CAEmitterLayer extends (CALayer as unknown as Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer)) {
   /** init() */
-  static init(): CAEmitterLayer { return callSDK<CAEmitterLayer>("QuartzCore_3864e7f38681b875", 3007156099193675, undefined, []); }
+  static init(): CAEmitterLayer { return callSDK<CAEmitterLayer>("QuartzCore_ff42ce03e691ab23", 3007156099193675, undefined, []); }
   /**
    * var birthRate: Float { get set }
    * @availability iOS 5.0+
    */
-  get birthRate(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 4011591067445418, this, []); }
-  set birthRate(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 391403118412614, this, [value]); }
+  get birthRate(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 4011591067445418, this, []); }
+  set birthRate(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 391403118412614, this, [value]); }
   /**
    * var emitterCells: [CAEmitterCell]? { get set }
    * @availability iOS 5.0+
    */
-  get emitterCells(): $SDK13 { return callSDK<$SDK13>("QuartzCore_3864e7f38681b875", 3768519784575293, this, []); }
-  set emitterCells(value: $SDK13) { callSDK<void>("QuartzCore_3864e7f38681b875", 2150770169839686, this, [value]); }
+  get emitterCells(): $SDK13 { return callSDK<$SDK13>("QuartzCore_ff42ce03e691ab23", 3768519784575293, this, []); }
+  set emitterCells(value: $SDK13) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2150770169839686, this, [value]); }
   /**
    * var emitterDepth: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get emitterDepth(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1192532994978903, this, []); }
-  set emitterDepth(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2374622290583601, this, [value]); }
+  get emitterDepth(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1192532994978903, this, []); }
+  set emitterDepth(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2374622290583601, this, [value]); }
   /**
    * var emitterMode: CAEmitterLayerEmitterMode { get set }
    * @availability iOS 5.0+
    */
-  get emitterMode(): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_3864e7f38681b875", 316752451761686, this, []); }
-  set emitterMode(value: CAEmitterLayerEmitterMode) { callSDK<void>("QuartzCore_3864e7f38681b875", 850281853276531, this, [value]); }
+  get emitterMode(): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_ff42ce03e691ab23", 316752451761686, this, []); }
+  set emitterMode(value: CAEmitterLayerEmitterMode) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 850281853276531, this, [value]); }
   /**
    * var emitterPosition: CGPoint { get set }
    * @availability iOS 5.0+
    */
-  get emitterPosition(): $SDK5 { return callSDK<$SDK5>("QuartzCore_3864e7f38681b875", 581828007202171, this, []); }
-  set emitterPosition(value: $SDK5) { callSDK<void>("QuartzCore_3864e7f38681b875", 1364953363059261, this, [value]); }
+  get emitterPosition(): $SDK5 { return callSDK<$SDK5>("QuartzCore_ff42ce03e691ab23", 581828007202171, this, []); }
+  set emitterPosition(value: $SDK5) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1364953363059261, this, [value]); }
   /**
    * var emitterShape: CAEmitterLayerEmitterShape { get set }
    * @availability iOS 5.0+
    */
-  get emitterShape(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_3864e7f38681b875", 2123604780051167, this, []); }
-  set emitterShape(value: CAEmitterLayerEmitterShape) { callSDK<void>("QuartzCore_3864e7f38681b875", 53032502861533, this, [value]); }
+  get emitterShape(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_ff42ce03e691ab23", 2123604780051167, this, []); }
+  set emitterShape(value: CAEmitterLayerEmitterShape) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 53032502861533, this, [value]); }
   /**
    * var emitterSize: CGSize { get set }
    * @availability iOS 5.0+
    */
-  get emitterSize(): $SDK7 { return callSDK<$SDK7>("QuartzCore_3864e7f38681b875", 178529854542519, this, []); }
-  set emitterSize(value: $SDK7) { callSDK<void>("QuartzCore_3864e7f38681b875", 1162994815883584, this, [value]); }
+  get emitterSize(): $SDK7 { return callSDK<$SDK7>("QuartzCore_ff42ce03e691ab23", 178529854542519, this, []); }
+  set emitterSize(value: $SDK7) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1162994815883584, this, [value]); }
   /**
    * var emitterZPosition: CGFloat { get set }
    * @availability iOS 5.0+
    */
-  get emitterZPosition(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1494281967704277, this, []); }
-  set emitterZPosition(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3522506889924251, this, [value]); }
+  get emitterZPosition(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1494281967704277, this, []); }
+  set emitterZPosition(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3522506889924251, this, [value]); }
   /**
    * var lifetime: Float { get set }
    * @availability iOS 5.0+
    */
-  get lifetime(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3101088489238783, this, []); }
-  set lifetime(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 4053972967289728, this, [value]); }
+  get lifetime(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3101088489238783, this, []); }
+  set lifetime(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4053972967289728, this, [value]); }
   /**
    * var preservesDepth: Bool { get set }
    * @availability iOS 5.0+
    */
-  get preservesDepth(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 3866648301896602, this, []); }
-  set preservesDepth(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 1137271064207346, this, [value]); }
+  get preservesDepth(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 3866648301896602, this, []); }
+  set preservesDepth(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1137271064207346, this, [value]); }
   /**
    * var renderMode: CAEmitterLayerRenderMode { get set }
    * @availability iOS 5.0+
    */
-  get renderMode(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_3864e7f38681b875", 1027927647190088, this, []); }
-  set renderMode(value: CAEmitterLayerRenderMode) { callSDK<void>("QuartzCore_3864e7f38681b875", 28175395256369, this, [value]); }
+  get renderMode(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_ff42ce03e691ab23", 1027927647190088, this, []); }
+  set renderMode(value: CAEmitterLayerRenderMode) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 28175395256369, this, [value]); }
   /**
    * var scale: Float { get set }
    * @availability iOS 5.0+
    */
-  get scale(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3052243570050443, this, []); }
-  set scale(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 75551105054116, this, [value]); }
+  get scale(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3052243570050443, this, []); }
+  set scale(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 75551105054116, this, [value]); }
   /**
    * var seed: UInt32 { get set }
    * @availability iOS 5.0+
    */
-  get seed(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3673155355353474, this, []); }
-  set seed(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2251939705994419, this, [value]); }
+  get seed(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3673155355353474, this, []); }
+  set seed(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2251939705994419, this, [value]); }
   /**
    * var spin: Float { get set }
    * @availability iOS 5.0+
    */
-  get spin(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1397743537481708, this, []); }
-  set spin(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 614531148440159, this, [value]); }
+  get spin(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1397743537481708, this, []); }
+  set spin(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 614531148440159, this, [value]); }
   /**
    * var velocity: Float { get set }
    * @availability iOS 5.0+
    */
-  get velocity(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1263921044149406, this, []); }
-  set velocity(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 860862737343726, this, [value]); }
+  get velocity(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1263921044149406, this, []); }
+  set velocity(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 860862737343726, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAEmitterLayer": true; "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true; "birthRate": true; "emitterCells": true; "emitterDepth": true; "emitterMode": true; "emitterPosition": true; "emitterShape": true; "emitterSize": true; "emitterZPosition": true; "lifetime": true; "preservesDepth": true; "renderMode": true; "scale": true; "seed": true; "spin": true; "velocity": true };
 }
@@ -1347,27 +1347,27 @@ export const CAEmitterLayerEmitterMode = {
    * static let outline: CAEmitterLayerEmitterMode
    * @availability iOS 5.0+
    */
-  get outline(): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_3864e7f38681b875", 3245445654278269, undefined, []); },
+  get outline(): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_ff42ce03e691ab23", 3245445654278269, undefined, []); },
   /**
    * static let points: CAEmitterLayerEmitterMode
    * @availability iOS 5.0+
    */
-  get points(): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_3864e7f38681b875", 331370846311871, undefined, []); },
+  get points(): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_ff42ce03e691ab23", 331370846311871, undefined, []); },
   /**
    * static let surface: CAEmitterLayerEmitterMode
    * @availability iOS 5.0+
    */
-  get surface(): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_3864e7f38681b875", 753835565234763, undefined, []); },
+  get surface(): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_ff42ce03e691ab23", 753835565234763, undefined, []); },
   /**
    * static let volume: CAEmitterLayerEmitterMode
    * @availability iOS 5.0+
    */
-  get volume(): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_3864e7f38681b875", 4338323696296720, undefined, []); },
+  get volume(): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_ff42ce03e691ab23", 4338323696296720, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 5.0+
    */
-  init(rawValue: string): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_3864e7f38681b875", 1557969752485544, undefined, [rawValue]); }
+  init(rawValue: string): CAEmitterLayerEmitterMode { return callSDK<CAEmitterLayerEmitterMode>("QuartzCore_ff42ce03e691ab23", 1557969752485544, undefined, [rawValue]); }
 };
 
 /**
@@ -1381,37 +1381,37 @@ export const CAEmitterLayerEmitterShape = {
    * static let circle: CAEmitterLayerEmitterShape
    * @availability iOS 5.0+
    */
-  get circle(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_3864e7f38681b875", 2991220206469597, undefined, []); },
+  get circle(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_ff42ce03e691ab23", 2991220206469597, undefined, []); },
   /**
    * static let cuboid: CAEmitterLayerEmitterShape
    * @availability iOS 5.0+
    */
-  get cuboid(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_3864e7f38681b875", 1747609499139764, undefined, []); },
+  get cuboid(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_ff42ce03e691ab23", 1747609499139764, undefined, []); },
   /**
    * static let line: CAEmitterLayerEmitterShape
    * @availability iOS 5.0+
    */
-  get line(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_3864e7f38681b875", 892513666005971, undefined, []); },
+  get line(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_ff42ce03e691ab23", 892513666005971, undefined, []); },
   /**
    * static let point: CAEmitterLayerEmitterShape
    * @availability iOS 5.0+
    */
-  get point(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_3864e7f38681b875", 1439127793159042, undefined, []); },
+  get point(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_ff42ce03e691ab23", 1439127793159042, undefined, []); },
   /**
    * static let rectangle: CAEmitterLayerEmitterShape
    * @availability iOS 5.0+
    */
-  get rectangle(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_3864e7f38681b875", 2939043274963196, undefined, []); },
+  get rectangle(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_ff42ce03e691ab23", 2939043274963196, undefined, []); },
   /**
    * static let sphere: CAEmitterLayerEmitterShape
    * @availability iOS 5.0+
    */
-  get sphere(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_3864e7f38681b875", 462195000434445, undefined, []); },
+  get sphere(): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_ff42ce03e691ab23", 462195000434445, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 5.0+
    */
-  init(rawValue: string): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_3864e7f38681b875", 1321018154168769, undefined, [rawValue]); }
+  init(rawValue: string): CAEmitterLayerEmitterShape { return callSDK<CAEmitterLayerEmitterShape>("QuartzCore_ff42ce03e691ab23", 1321018154168769, undefined, [rawValue]); }
 };
 
 /**
@@ -1425,32 +1425,32 @@ export const CAEmitterLayerRenderMode = {
    * static let additive: CAEmitterLayerRenderMode
    * @availability iOS 5.0+
    */
-  get additive(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_3864e7f38681b875", 323148757432113, undefined, []); },
+  get additive(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_ff42ce03e691ab23", 323148757432113, undefined, []); },
   /**
    * static let backToFront: CAEmitterLayerRenderMode
    * @availability iOS 5.0+
    */
-  get backToFront(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_3864e7f38681b875", 217525800840039, undefined, []); },
+  get backToFront(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_ff42ce03e691ab23", 217525800840039, undefined, []); },
   /**
    * static let oldestFirst: CAEmitterLayerRenderMode
    * @availability iOS 5.0+
    */
-  get oldestFirst(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_3864e7f38681b875", 1264251102168260, undefined, []); },
+  get oldestFirst(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_ff42ce03e691ab23", 1264251102168260, undefined, []); },
   /**
    * static let oldestLast: CAEmitterLayerRenderMode
    * @availability iOS 5.0+
    */
-  get oldestLast(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_3864e7f38681b875", 2760966340607432, undefined, []); },
+  get oldestLast(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_ff42ce03e691ab23", 2760966340607432, undefined, []); },
   /**
    * static let unordered: CAEmitterLayerRenderMode
    * @availability iOS 5.0+
    */
-  get unordered(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_3864e7f38681b875", 1007091079038530, undefined, []); },
+  get unordered(): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_ff42ce03e691ab23", 1007091079038530, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 5.0+
    */
-  init(rawValue: string): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_3864e7f38681b875", 3723580972214215, undefined, [rawValue]); }
+  init(rawValue: string): CAEmitterLayerRenderMode { return callSDK<CAEmitterLayerRenderMode>("QuartzCore_ff42ce03e691ab23", 3723580972214215, undefined, [rawValue]); }
 };
 
 /**
@@ -1462,35 +1462,35 @@ export class CAFrameRateRange extends SDKHandle {
    * static let `default`: CAFrameRateRange
    * @availability iOS 15.0+
    */
-  static get default(): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_3864e7f38681b875", 1240250119297371, undefined, []); }
+  static get default(): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_ff42ce03e691ab23", 1240250119297371, undefined, []); }
   /**
    * var maximum: Float
    * @availability iOS 15.0+
    */
-  get maximum(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 613780254038421, this, []); }
-  set maximum(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 5490344972985, this, [value]); }
+  get maximum(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 613780254038421, this, []); }
+  set maximum(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 5490344972985, this, [value]); }
   /**
    * var minimum: Float
    * @availability iOS 15.0+
    */
-  get minimum(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1989662665381274, this, []); }
-  set minimum(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 180977432894198, this, [value]); }
+  get minimum(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1989662665381274, this, []); }
+  set minimum(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 180977432894198, this, [value]); }
   /**
    * init(minimum: Float, maximum: Float, preferred: Float? = nil)
    * @availability iOS 15.0+
    */
-  static initMinimumMaximumPreferred(minimum: number, maximum: number, preferred?: (number) | null): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_3864e7f38681b875", 4084429337067057, undefined, [minimum, maximum, preferred]); }
+  static initMinimumMaximumPreferred(minimum: number, maximum: number, preferred?: (number) | null): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_ff42ce03e691ab23", 4084429337067057, undefined, [minimum, maximum, preferred]); }
   /**
    * var preferred: Float? { get set }
    * @availability iOS 15.0+
    */
-  get preferred(): (number) | null { return callSDK<(number) | null>("QuartzCore_3864e7f38681b875", 991718431190171, this, []); }
-  set preferred(value: (number) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 2425448692797918, this, [value]); }
+  get preferred(): (number) | null { return callSDK<(number) | null>("QuartzCore_ff42ce03e691ab23", 991718431190171, this, []); }
+  set preferred(value: (number) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2425448692797918, this, [value]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_3864e7f38681b875", 2481303577216300, undefined, []); }
+  static init(): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_ff42ce03e691ab23", 2481303577216300, undefined, []); }
   declare readonly $type: { "c:@S@CAFrameRateRange": true };
 }
 
@@ -1500,37 +1500,37 @@ export class CAFrameRateRange extends SDKHandle {
  */
 export class CAGradientLayer extends (CALayer as unknown as Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer)) {
   /** init() */
-  static init(): CAGradientLayer { return callSDK<CAGradientLayer>("QuartzCore_3864e7f38681b875", 1544841981028009, undefined, []); }
+  static init(): CAGradientLayer { return callSDK<CAGradientLayer>("QuartzCore_ff42ce03e691ab23", 1544841981028009, undefined, []); }
   /**
    * var colors: [Any]? { get set }
    * @availability iOS 3.0+
    */
-  get colors(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("QuartzCore_3864e7f38681b875", 698452583082503, this, []); }
-  set colors(value: (Array<unknown>) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 4325924077260751, this, [value]); }
+  get colors(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("QuartzCore_ff42ce03e691ab23", 698452583082503, this, []); }
+  set colors(value: (Array<unknown>) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4325924077260751, this, [value]); }
   /**
    * var endPoint: CGPoint { get set }
    * @availability iOS 3.0+
    */
-  get endPoint(): $SDK5 { return callSDK<$SDK5>("QuartzCore_3864e7f38681b875", 3837207110156632, this, []); }
-  set endPoint(value: $SDK5) { callSDK<void>("QuartzCore_3864e7f38681b875", 1549934712177823, this, [value]); }
+  get endPoint(): $SDK5 { return callSDK<$SDK5>("QuartzCore_ff42ce03e691ab23", 3837207110156632, this, []); }
+  set endPoint(value: $SDK5) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1549934712177823, this, [value]); }
   /**
    * var locations: [NSNumber]? { get set }
    * @availability iOS 3.0+
    */
-  get locations(): $SDK14 { return callSDK<$SDK14>("QuartzCore_3864e7f38681b875", 1804569676081238, this, []); }
-  set locations(value: $SDK14) { callSDK<void>("QuartzCore_3864e7f38681b875", 3504659579617015, this, [value]); }
+  get locations(): $SDK14 { return callSDK<$SDK14>("QuartzCore_ff42ce03e691ab23", 1804569676081238, this, []); }
+  set locations(value: $SDK14) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3504659579617015, this, [value]); }
   /**
    * var startPoint: CGPoint { get set }
    * @availability iOS 3.0+
    */
-  get startPoint(): $SDK5 { return callSDK<$SDK5>("QuartzCore_3864e7f38681b875", 3321758970305533, this, []); }
-  set startPoint(value: $SDK5) { callSDK<void>("QuartzCore_3864e7f38681b875", 1022424262811438, this, [value]); }
+  get startPoint(): $SDK5 { return callSDK<$SDK5>("QuartzCore_ff42ce03e691ab23", 3321758970305533, this, []); }
+  set startPoint(value: $SDK5) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1022424262811438, this, [value]); }
   /**
    * var type: CAGradientLayerType { get set }
    * @availability iOS 3.0+
    */
-  get type(): CAGradientLayerType { return callSDK<CAGradientLayerType>("QuartzCore_3864e7f38681b875", 891201630848333, this, []); }
-  set type(value: CAGradientLayerType) { callSDK<void>("QuartzCore_3864e7f38681b875", 3057965892781032, this, [value]); }
+  get type(): CAGradientLayerType { return callSDK<CAGradientLayerType>("QuartzCore_ff42ce03e691ab23", 891201630848333, this, []); }
+  set type(value: CAGradientLayerType) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3057965892781032, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAGradientLayer": true; "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true; "colors": true; "endPoint": true; "locations": true; "startPoint": true; "type": true };
 }
@@ -1546,22 +1546,22 @@ export const CAGradientLayerType = {
    * static let axial: CAGradientLayerType
    * @availability iOS 3.0+
    */
-  get axial(): CAGradientLayerType { return callSDK<CAGradientLayerType>("QuartzCore_3864e7f38681b875", 4093927617928549, undefined, []); },
+  get axial(): CAGradientLayerType { return callSDK<CAGradientLayerType>("QuartzCore_ff42ce03e691ab23", 4093927617928549, undefined, []); },
   /**
    * static let conic: CAGradientLayerType
    * @availability iOS 12.0+
    */
-  get conic(): CAGradientLayerType { return callSDK<CAGradientLayerType>("QuartzCore_3864e7f38681b875", 3967451380739024, undefined, []); },
+  get conic(): CAGradientLayerType { return callSDK<CAGradientLayerType>("QuartzCore_ff42ce03e691ab23", 3967451380739024, undefined, []); },
   /**
    * static let radial: CAGradientLayerType
    * @availability iOS 3.2+
    */
-  get radial(): CAGradientLayerType { return callSDK<CAGradientLayerType>("QuartzCore_3864e7f38681b875", 2559080930250456, undefined, []); },
+  get radial(): CAGradientLayerType { return callSDK<CAGradientLayerType>("QuartzCore_ff42ce03e691ab23", 2559080930250456, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 3.0+
    */
-  init(rawValue: string): CAGradientLayerType { return callSDK<CAGradientLayerType>("QuartzCore_3864e7f38681b875", 2393950385218750, undefined, [rawValue]); }
+  init(rawValue: string): CAGradientLayerType { return callSDK<CAGradientLayerType>("QuartzCore_ff42ce03e691ab23", 2393950385218750, undefined, [rawValue]); }
 };
 
 /**
@@ -1570,61 +1570,61 @@ export const CAGradientLayerType = {
  */
 export class CAKeyframeAnimation extends (CAPropertyAnimation as unknown as Omit<typeof CAPropertyAnimation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CAPropertyAnimation)) {
   /** init() */
-  static init(): CAKeyframeAnimation { return callSDK<CAKeyframeAnimation>("QuartzCore_3864e7f38681b875", 962788307811139, undefined, []); }
+  static init(): CAKeyframeAnimation { return callSDK<CAKeyframeAnimation>("QuartzCore_ff42ce03e691ab23", 962788307811139, undefined, []); }
   /**
    * var biasValues: [NSNumber]? { get set }
    * @availability iOS 2.0+
    */
-  get biasValues(): $SDK14 { return callSDK<$SDK14>("QuartzCore_3864e7f38681b875", 1133833013323319, this, []); }
-  set biasValues(value: $SDK14) { callSDK<void>("QuartzCore_3864e7f38681b875", 2104659993426717, this, [value]); }
+  get biasValues(): $SDK14 { return callSDK<$SDK14>("QuartzCore_ff42ce03e691ab23", 1133833013323319, this, []); }
+  set biasValues(value: $SDK14) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2104659993426717, this, [value]); }
   /**
    * var calculationMode: CAAnimationCalculationMode { get set }
    * @availability iOS 2.0+
    */
-  get calculationMode(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_3864e7f38681b875", 2181605278450048, this, []); }
-  set calculationMode(value: CAAnimationCalculationMode) { callSDK<void>("QuartzCore_3864e7f38681b875", 1519951833815849, this, [value]); }
+  get calculationMode(): CAAnimationCalculationMode { return callSDK<CAAnimationCalculationMode>("QuartzCore_ff42ce03e691ab23", 2181605278450048, this, []); }
+  set calculationMode(value: CAAnimationCalculationMode) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1519951833815849, this, [value]); }
   /**
    * var continuityValues: [NSNumber]? { get set }
    * @availability iOS 2.0+
    */
-  get continuityValues(): $SDK14 { return callSDK<$SDK14>("QuartzCore_3864e7f38681b875", 786937647417470, this, []); }
-  set continuityValues(value: $SDK14) { callSDK<void>("QuartzCore_3864e7f38681b875", 2501111939948791, this, [value]); }
+  get continuityValues(): $SDK14 { return callSDK<$SDK14>("QuartzCore_ff42ce03e691ab23", 786937647417470, this, []); }
+  set continuityValues(value: $SDK14) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2501111939948791, this, [value]); }
   /**
    * var keyTimes: [NSNumber]? { get set }
    * @availability iOS 2.0+
    */
-  get keyTimes(): $SDK14 { return callSDK<$SDK14>("QuartzCore_3864e7f38681b875", 3049483036069403, this, []); }
-  set keyTimes(value: $SDK14) { callSDK<void>("QuartzCore_3864e7f38681b875", 3858060809109236, this, [value]); }
+  get keyTimes(): $SDK14 { return callSDK<$SDK14>("QuartzCore_ff42ce03e691ab23", 3049483036069403, this, []); }
+  set keyTimes(value: $SDK14) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3858060809109236, this, [value]); }
   /**
    * var path: CGPath? { get set }
    * @availability iOS 2.0+
    */
-  get path(): $SDK12 { return callSDK<$SDK12>("QuartzCore_3864e7f38681b875", 2970030693039238, this, []); }
-  set path(value: $SDK12) { callSDK<void>("QuartzCore_3864e7f38681b875", 3861475106033686, this, [value]); }
+  get path(): $SDK12 { return callSDK<$SDK12>("QuartzCore_ff42ce03e691ab23", 2970030693039238, this, []); }
+  set path(value: $SDK12) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3861475106033686, this, [value]); }
   /**
    * var rotationMode: CAAnimationRotationMode? { get set }
    * @availability iOS 2.0+
    */
-  get rotationMode(): $SDK15 { return callSDK<$SDK15>("QuartzCore_3864e7f38681b875", 3690514572211257, this, []); }
-  set rotationMode(value: $SDK15) { callSDK<void>("QuartzCore_3864e7f38681b875", 3906158180302705, this, [value]); }
+  get rotationMode(): $SDK15 { return callSDK<$SDK15>("QuartzCore_ff42ce03e691ab23", 3690514572211257, this, []); }
+  set rotationMode(value: $SDK15) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3906158180302705, this, [value]); }
   /**
    * var tensionValues: [NSNumber]? { get set }
    * @availability iOS 2.0+
    */
-  get tensionValues(): $SDK14 { return callSDK<$SDK14>("QuartzCore_3864e7f38681b875", 1575641460076691, this, []); }
-  set tensionValues(value: $SDK14) { callSDK<void>("QuartzCore_3864e7f38681b875", 1718755301528503, this, [value]); }
+  get tensionValues(): $SDK14 { return callSDK<$SDK14>("QuartzCore_ff42ce03e691ab23", 1575641460076691, this, []); }
+  set tensionValues(value: $SDK14) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1718755301528503, this, [value]); }
   /**
    * var timingFunctions: [CAMediaTimingFunction]? { get set }
    * @availability iOS 2.0+
    */
-  get timingFunctions(): $SDK16 { return callSDK<$SDK16>("QuartzCore_3864e7f38681b875", 4289148942186710, this, []); }
-  set timingFunctions(value: $SDK16) { callSDK<void>("QuartzCore_3864e7f38681b875", 735166575980282, this, [value]); }
+  get timingFunctions(): $SDK16 { return callSDK<$SDK16>("QuartzCore_ff42ce03e691ab23", 4289148942186710, this, []); }
+  set timingFunctions(value: $SDK16) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 735166575980282, this, [value]); }
   /**
    * var values: [Any]? { get set }
    * @availability iOS 2.0+
    */
-  get values(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("QuartzCore_3864e7f38681b875", 3813375388925263, this, []); }
-  set values(value: (Array<unknown>) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 1672549807003362, this, [value]); }
+  get values(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("QuartzCore_ff42ce03e691ab23", 3813375388925263, this, []); }
+  set values(value: (Array<unknown>) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1672549807003362, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAKeyframeAnimation": true; "c:objc(cs)CAPropertyAnimation": true; "c:objc(cs)CAAnimation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "preferredFrameRateRange": true; "isRemovedOnCompletion": true; "timingFunction": true; "isAdditive": true; "isCumulative": true; "keyPath": true; "valueFunction": true; "biasValues": true; "calculationMode": true; "continuityValues": true; "keyTimes": true; "path": true; "rotationMode": true; "tensionValues": true; "timingFunctions": true; "values": true };
 }
@@ -1640,27 +1640,27 @@ export const CALayer_DynamicRange = {
    * static let automatic: CALayer.DynamicRange
    * @availability iOS 26.0+
    */
-  get automatic(): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_3864e7f38681b875", 4450098780323945, undefined, []); },
+  get automatic(): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_ff42ce03e691ab23", 4450098780323945, undefined, []); },
   /**
    * static let constrainedHigh: CALayer.DynamicRange
    * @availability iOS 26.0+
    */
-  get constrainedHigh(): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_3864e7f38681b875", 562469001902600, undefined, []); },
+  get constrainedHigh(): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_ff42ce03e691ab23", 562469001902600, undefined, []); },
   /**
    * static let high: CALayer.DynamicRange
    * @availability iOS 26.0+
    */
-  get high(): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_3864e7f38681b875", 4325763146841302, undefined, []); },
+  get high(): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_ff42ce03e691ab23", 4325763146841302, undefined, []); },
   /**
    * static let standard: CALayer.DynamicRange
    * @availability iOS 26.0+
    */
-  get standard(): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_3864e7f38681b875", 2848555006256557, undefined, []); },
+  get standard(): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_ff42ce03e691ab23", 2848555006256557, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_3864e7f38681b875", 4192886287747879, undefined, [rawValue]); }
+  init(rawValue: string): CALayer_DynamicRange { return callSDK<CALayer_DynamicRange>("QuartzCore_ff42ce03e691ab23", 4192886287747879, undefined, [rawValue]); }
 };
 
 /**
@@ -1674,22 +1674,22 @@ export const CALayer_ToneMapMode = {
    * static let automatic: CALayer.ToneMapMode
    * @availability iOS 18.0+
    */
-  get automatic(): CALayer_ToneMapMode { return callSDK<CALayer_ToneMapMode>("QuartzCore_3864e7f38681b875", 2157661340517614, undefined, []); },
+  get automatic(): CALayer_ToneMapMode { return callSDK<CALayer_ToneMapMode>("QuartzCore_ff42ce03e691ab23", 2157661340517614, undefined, []); },
   /**
    * static let ifSupported: CALayer.ToneMapMode
    * @availability iOS 18.0+
    */
-  get ifSupported(): CALayer_ToneMapMode { return callSDK<CALayer_ToneMapMode>("QuartzCore_3864e7f38681b875", 1319458143735509, undefined, []); },
+  get ifSupported(): CALayer_ToneMapMode { return callSDK<CALayer_ToneMapMode>("QuartzCore_ff42ce03e691ab23", 1319458143735509, undefined, []); },
   /**
    * static let never: CALayer.ToneMapMode
    * @availability iOS 18.0+
    */
-  get never(): CALayer_ToneMapMode { return callSDK<CALayer_ToneMapMode>("QuartzCore_3864e7f38681b875", 3038992924584787, undefined, []); },
+  get never(): CALayer_ToneMapMode { return callSDK<CALayer_ToneMapMode>("QuartzCore_ff42ce03e691ab23", 3038992924584787, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): CALayer_ToneMapMode { return callSDK<CALayer_ToneMapMode>("QuartzCore_3864e7f38681b875", 301834644423748, undefined, [rawValue]); }
+  init(rawValue: string): CALayer_ToneMapMode { return callSDK<CALayer_ToneMapMode>("QuartzCore_ff42ce03e691ab23", 301834644423748, undefined, [rawValue]); }
 };
 
 /**
@@ -1703,22 +1703,22 @@ export const CALayerContentsFilter = {
    * static let linear: CALayerContentsFilter
    * @availability iOS 2.0+
    */
-  get linear(): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_3864e7f38681b875", 1498221395459391, undefined, []); },
+  get linear(): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_ff42ce03e691ab23", 1498221395459391, undefined, []); },
   /**
    * static let nearest: CALayerContentsFilter
    * @availability iOS 2.0+
    */
-  get nearest(): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_3864e7f38681b875", 3933776585025935, undefined, []); },
+  get nearest(): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_ff42ce03e691ab23", 3933776585025935, undefined, []); },
   /**
    * static let trilinear: CALayerContentsFilter
    * @availability iOS 3.0+
    */
-  get trilinear(): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_3864e7f38681b875", 2156788065568528, undefined, []); },
+  get trilinear(): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_ff42ce03e691ab23", 2156788065568528, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 2.0+
    */
-  init(rawValue: string): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_3864e7f38681b875", 2134916653362474, undefined, [rawValue]); }
+  init(rawValue: string): CALayerContentsFilter { return callSDK<CALayerContentsFilter>("QuartzCore_ff42ce03e691ab23", 2134916653362474, undefined, [rawValue]); }
 };
 
 /**
@@ -1732,27 +1732,27 @@ export const CALayerContentsFormat = {
    * static let automatic: CALayerContentsFormat
    * @availability iOS 12.0+
    */
-  get automatic(): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_3864e7f38681b875", 4283871736447903, undefined, []); },
+  get automatic(): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_ff42ce03e691ab23", 4283871736447903, undefined, []); },
   /**
    * static let gray8Uint: CALayerContentsFormat
    * @availability iOS 10.0+
    */
-  get gray8Uint(): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_3864e7f38681b875", 4133258025602950, undefined, []); },
+  get gray8Uint(): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_ff42ce03e691ab23", 4133258025602950, undefined, []); },
   /**
    * static let RGBA16Float: CALayerContentsFormat
    * @availability iOS 10.0+
    */
-  get RGBA16Float(): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_3864e7f38681b875", 1641913879816050, undefined, []); },
+  get RGBA16Float(): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_ff42ce03e691ab23", 1641913879816050, undefined, []); },
   /**
    * static let RGBA8Uint: CALayerContentsFormat
    * @availability iOS 10.0+
    */
-  get RGBA8Uint(): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_3864e7f38681b875", 2324486205623714, undefined, []); },
+  get RGBA8Uint(): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_ff42ce03e691ab23", 2324486205623714, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 10.0+
    */
-  init(rawValue: string): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_3864e7f38681b875", 79376146252589, undefined, [rawValue]); }
+  init(rawValue: string): CALayerContentsFormat { return callSDK<CALayerContentsFormat>("QuartzCore_ff42ce03e691ab23", 79376146252589, undefined, [rawValue]); }
 };
 
 /**
@@ -1766,67 +1766,67 @@ export const CALayerContentsGravity = {
    * static let bottom: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get bottom(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 487690013397059, undefined, []); },
+  get bottom(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 487690013397059, undefined, []); },
   /**
    * static let bottomLeft: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get bottomLeft(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 4294910362598081, undefined, []); },
+  get bottomLeft(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 4294910362598081, undefined, []); },
   /**
    * static let bottomRight: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get bottomRight(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 2206144225416064, undefined, []); },
+  get bottomRight(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 2206144225416064, undefined, []); },
   /**
    * static let center: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get center(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 2163211054288607, undefined, []); },
+  get center(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 2163211054288607, undefined, []); },
   /**
    * static let left: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get left(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 855352877584506, undefined, []); },
+  get left(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 855352877584506, undefined, []); },
   /**
    * static let resize: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get resize(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 3779379436222884, undefined, []); },
+  get resize(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 3779379436222884, undefined, []); },
   /**
    * static let resizeAspect: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get resizeAspect(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 1914557068792475, undefined, []); },
+  get resizeAspect(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 1914557068792475, undefined, []); },
   /**
    * static let resizeAspectFill: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get resizeAspectFill(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 1067602513170375, undefined, []); },
+  get resizeAspectFill(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 1067602513170375, undefined, []); },
   /**
    * static let right: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get right(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 3788204380797043, undefined, []); },
+  get right(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 3788204380797043, undefined, []); },
   /**
    * static let top: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get top(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 889661852246034, undefined, []); },
+  get top(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 889661852246034, undefined, []); },
   /**
    * static let topLeft: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get topLeft(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 112033615169535, undefined, []); },
+  get topLeft(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 112033615169535, undefined, []); },
   /**
    * static let topRight: CALayerContentsGravity
    * @availability iOS 2.0+
    */
-  get topRight(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 1583613317716861, undefined, []); },
+  get topRight(): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 1583613317716861, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 2.0+
    */
-  init(rawValue: string): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_3864e7f38681b875", 1386723319415914, undefined, [rawValue]); }
+  init(rawValue: string): CALayerContentsGravity { return callSDK<CALayerContentsGravity>("QuartzCore_ff42ce03e691ab23", 1386723319415914, undefined, [rawValue]); }
 };
 
 /**
@@ -1840,17 +1840,17 @@ export const CALayerCornerCurve = {
    * static let circular: CALayerCornerCurve
    * @availability iOS 13.0+
    */
-  get circular(): CALayerCornerCurve { return callSDK<CALayerCornerCurve>("QuartzCore_3864e7f38681b875", 77488569233532, undefined, []); },
+  get circular(): CALayerCornerCurve { return callSDK<CALayerCornerCurve>("QuartzCore_ff42ce03e691ab23", 77488569233532, undefined, []); },
   /**
    * static let continuous: CALayerCornerCurve
    * @availability iOS 13.0+
    */
-  get continuous(): CALayerCornerCurve { return callSDK<CALayerCornerCurve>("QuartzCore_3864e7f38681b875", 3190308611634164, undefined, []); },
+  get continuous(): CALayerCornerCurve { return callSDK<CALayerCornerCurve>("QuartzCore_ff42ce03e691ab23", 3190308611634164, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): CALayerCornerCurve { return callSDK<CALayerCornerCurve>("QuartzCore_3864e7f38681b875", 1978931882536991, undefined, [rawValue]); }
+  init(rawValue: string): CALayerCornerCurve { return callSDK<CALayerCornerCurve>("QuartzCore_ff42ce03e691ab23", 1978931882536991, undefined, [rawValue]); }
 };
 
 /**
@@ -1899,27 +1899,27 @@ export const CAMediaTimingFillMode = {
    * static let backwards: CAMediaTimingFillMode
    * @availability iOS 2.0+
    */
-  get backwards(): CAMediaTimingFillMode { return callSDK<CAMediaTimingFillMode>("QuartzCore_3864e7f38681b875", 983840838126005, undefined, []); },
+  get backwards(): CAMediaTimingFillMode { return callSDK<CAMediaTimingFillMode>("QuartzCore_ff42ce03e691ab23", 983840838126005, undefined, []); },
   /**
    * static let both: CAMediaTimingFillMode
    * @availability iOS 2.0+
    */
-  get both(): CAMediaTimingFillMode { return callSDK<CAMediaTimingFillMode>("QuartzCore_3864e7f38681b875", 3725503424591976, undefined, []); },
+  get both(): CAMediaTimingFillMode { return callSDK<CAMediaTimingFillMode>("QuartzCore_ff42ce03e691ab23", 3725503424591976, undefined, []); },
   /**
    * static let forwards: CAMediaTimingFillMode
    * @availability iOS 2.0+
    */
-  get forwards(): CAMediaTimingFillMode { return callSDK<CAMediaTimingFillMode>("QuartzCore_3864e7f38681b875", 2620809761536542, undefined, []); },
+  get forwards(): CAMediaTimingFillMode { return callSDK<CAMediaTimingFillMode>("QuartzCore_ff42ce03e691ab23", 2620809761536542, undefined, []); },
   /**
    * static let removed: CAMediaTimingFillMode
    * @availability iOS 2.0+
    */
-  get removed(): CAMediaTimingFillMode { return callSDK<CAMediaTimingFillMode>("QuartzCore_3864e7f38681b875", 1976276815748643, undefined, []); },
+  get removed(): CAMediaTimingFillMode { return callSDK<CAMediaTimingFillMode>("QuartzCore_ff42ce03e691ab23", 1976276815748643, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 2.0+
    */
-  init(rawValue: string): CAMediaTimingFillMode { return callSDK<CAMediaTimingFillMode>("QuartzCore_3864e7f38681b875", 1142747300340021, undefined, [rawValue]); }
+  init(rawValue: string): CAMediaTimingFillMode { return callSDK<CAMediaTimingFillMode>("QuartzCore_ff42ce03e691ab23", 1142747300340021, undefined, [rawValue]); }
 };
 
 /**
@@ -1931,17 +1931,17 @@ export class CAMediaTimingFunction extends SDKHandle {
    * convenience init(name: CAMediaTimingFunctionName)
    * @availability iOS 2.0+
    */
-  static initName(name: CAMediaTimingFunctionName): CAMediaTimingFunction { return callSDK<CAMediaTimingFunction>("QuartzCore_3864e7f38681b875", 784930165873975, undefined, [name]); }
+  static initName(name: CAMediaTimingFunctionName): CAMediaTimingFunction { return callSDK<CAMediaTimingFunction>("QuartzCore_ff42ce03e691ab23", 784930165873975, undefined, [name]); }
   /**
    * func getControlPoint(at idx: Int, values ptr: UnsafeMutablePointer<Float>)
    * @availability iOS 2.0+
    */
-  getControlPoint(idx: number, ptr: SDKHandle): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 1164492223793894, this, [idx, ptr]); }
+  getControlPoint(idx: number, ptr: SDKHandle): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 1164492223793894, this, [idx, ptr]); }
   /**
    * init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
    * @availability iOS 2.0+
    */
-  static initControlPoints(c1x: number, c1y: number, c2x: number, c2y: number): CAMediaTimingFunction { return callSDK<CAMediaTimingFunction>("QuartzCore_3864e7f38681b875", 2807249309908147, undefined, [c1x, c1y, c2x, c2y]); }
+  static initControlPoints(c1x: number, c1y: number, c2x: number, c2y: number): CAMediaTimingFunction { return callSDK<CAMediaTimingFunction>("QuartzCore_ff42ce03e691ab23", 2807249309908147, undefined, [c1x, c1y, c2x, c2y]); }
   declare readonly $type: { "c:objc(cs)CAMediaTimingFunction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1956,32 +1956,32 @@ export const CAMediaTimingFunctionName = {
    * static let `default`: CAMediaTimingFunctionName
    * @availability iOS 3.0+
    */
-  get default(): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_3864e7f38681b875", 1586708355044735, undefined, []); },
+  get default(): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_ff42ce03e691ab23", 1586708355044735, undefined, []); },
   /**
    * static let easeIn: CAMediaTimingFunctionName
    * @availability iOS 2.0+
    */
-  get easeIn(): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_3864e7f38681b875", 901414012306013, undefined, []); },
+  get easeIn(): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_ff42ce03e691ab23", 901414012306013, undefined, []); },
   /**
    * static let easeInEaseOut: CAMediaTimingFunctionName
    * @availability iOS 2.0+
    */
-  get easeInEaseOut(): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_3864e7f38681b875", 3487955178297837, undefined, []); },
+  get easeInEaseOut(): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_ff42ce03e691ab23", 3487955178297837, undefined, []); },
   /**
    * static let easeOut: CAMediaTimingFunctionName
    * @availability iOS 2.0+
    */
-  get easeOut(): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_3864e7f38681b875", 762603215784662, undefined, []); },
+  get easeOut(): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_ff42ce03e691ab23", 762603215784662, undefined, []); },
   /**
    * static let linear: CAMediaTimingFunctionName
    * @availability iOS 2.0+
    */
-  get linear(): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_3864e7f38681b875", 3588123257708681, undefined, []); },
+  get linear(): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_ff42ce03e691ab23", 3588123257708681, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 2.0+
    */
-  init(rawValue: string): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_3864e7f38681b875", 2038536159805303, undefined, [rawValue]); }
+  init(rawValue: string): CAMediaTimingFunctionName { return callSDK<CAMediaTimingFunctionName>("QuartzCore_ff42ce03e691ab23", 2038536159805303, undefined, [rawValue]); }
 };
 
 /**
@@ -1993,46 +1993,46 @@ export class CAMetalDisplayLink extends SDKHandle {
    * func add(to runloop: RunLoop, forMode mode: RunLoop.Mode)
    * @availability iOS 17.0+
    */
-  add(runloop: _Foundation_RunLoop, mode: _Foundation_RunLoop_Mode): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3816931149623090, this, [runloop, mode]); }
+  add(runloop: _Foundation_RunLoop, mode: _Foundation_RunLoop_Mode): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3816931149623090, this, [runloop, mode]); }
   /**
    * init(metalLayer layer: CAMetalLayer)
    * @availability iOS 17.0+
    */
-  static init(layer: CAMetalLayer): CAMetalDisplayLink { return callSDK<CAMetalDisplayLink>("QuartzCore_3864e7f38681b875", 2869312515270148, undefined, [layer]); }
+  static init(layer: CAMetalLayer): CAMetalDisplayLink { return callSDK<CAMetalDisplayLink>("QuartzCore_ff42ce03e691ab23", 2869312515270148, undefined, [layer]); }
   /**
    * func invalidate()
    * @availability iOS 17.0+
    */
-  invalidate(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 990402520848443, this, []); }
+  invalidate(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 990402520848443, this, []); }
   /**
    * func remove(from runloop: RunLoop, forMode mode: RunLoop.Mode)
    * @availability iOS 17.0+
    */
-  remove(runloop: _Foundation_RunLoop, mode: _Foundation_RunLoop_Mode): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 2073766235629531, this, [runloop, mode]); }
+  remove(runloop: _Foundation_RunLoop, mode: _Foundation_RunLoop_Mode): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 2073766235629531, this, [runloop, mode]); }
   /**
    * weak var delegate: (any CAMetalDisplayLinkDelegate)? { get set }
    * @availability iOS 17.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_3864e7f38681b875", 1479455038044649, this, []); }
-  set delegate(value: (Implements<CAMetalDisplayLinkDelegate> | SDKHandle) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 2903362684162051, this, [value], [{"protocol":"c:objc(pl)CAMetalDisplayLinkDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_ff42ce03e691ab23", 1479455038044649, this, []); }
+  set delegate(value: (Implements<CAMetalDisplayLinkDelegate> | SDKHandle) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2903362684162051, this, [value], [{"protocol":"c:objc(pl)CAMetalDisplayLinkDelegate"}]); }
   /**
    * var isPaused: Bool { get set }
    * @availability iOS 17.0+
    */
-  get isPaused(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 795801061971642, this, []); }
-  set isPaused(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 2228008878224171, this, [value]); }
+  get isPaused(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 795801061971642, this, []); }
+  set isPaused(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2228008878224171, this, [value]); }
   /**
    * var preferredFrameLatency: Float { get set }
    * @availability iOS 17.0+
    */
-  get preferredFrameLatency(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 514601738248098, this, []); }
-  set preferredFrameLatency(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 829242212056888, this, [value]); }
+  get preferredFrameLatency(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 514601738248098, this, []); }
+  set preferredFrameLatency(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 829242212056888, this, [value]); }
   /**
    * var preferredFrameRateRange: CAFrameRateRange { get set }
    * @availability iOS 17.0+
    */
-  get preferredFrameRateRange(): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_3864e7f38681b875", 2844930550482901, this, []); }
-  set preferredFrameRateRange(value: CAFrameRateRange) { callSDK<void>("QuartzCore_3864e7f38681b875", 2763031312124091, this, [value]); }
+  get preferredFrameRateRange(): CAFrameRateRange { return callSDK<CAFrameRateRange>("QuartzCore_ff42ce03e691ab23", 2844930550482901, this, []); }
+  set preferredFrameRateRange(value: CAFrameRateRange) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2763031312124091, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAMetalDisplayLink": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "isPaused": true; "preferredFrameLatency": true; "preferredFrameRateRange": true };
 }
@@ -2043,22 +2043,22 @@ export class CAMetalDisplayLink extends SDKHandle {
  */
 export class CAMetalDisplayLink_Update extends SDKHandle {
   /** init() */
-  static init(): CAMetalDisplayLink_Update { return callSDK<CAMetalDisplayLink_Update>("QuartzCore_3864e7f38681b875", 2178112396728816, undefined, []); }
+  static init(): CAMetalDisplayLink_Update { return callSDK<CAMetalDisplayLink_Update>("QuartzCore_ff42ce03e691ab23", 2178112396728816, undefined, []); }
   /**
    * var drawable: any CAMetalDrawable { get }
    * @availability iOS 17.0+
    */
-  get drawable(): SDKHandle { return callSDK<SDKHandle>("QuartzCore_3864e7f38681b875", 2780291759838544, this, []); }
+  get drawable(): SDKHandle { return callSDK<SDKHandle>("QuartzCore_ff42ce03e691ab23", 2780291759838544, this, []); }
   /**
    * var targetPresentationTimestamp: CFTimeInterval { get }
    * @availability iOS 17.0+
    */
-  get targetPresentationTimestamp(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1123872054344060, this, []); }
+  get targetPresentationTimestamp(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1123872054344060, this, []); }
   /**
    * var targetTimestamp: CFTimeInterval { get }
    * @availability iOS 17.0+
    */
-  get targetTimestamp(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3453447014320344, this, []); }
+  get targetTimestamp(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3453447014320344, this, []); }
   declare readonly $type: { "c:objc(cs)CAMetalDisplayLinkUpdate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "drawable": true; "targetPresentationTimestamp": true; "targetTimestamp": true };
 }
@@ -2087,88 +2087,88 @@ export interface CAMetalDrawable {
  */
 export class CAMetalLayer extends (CALayer as unknown as Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CALayer, "wantsExtendedDynamicRangeContent">)) {
   /** init() */
-  static init(): CAMetalLayer { return callSDK<CAMetalLayer>("QuartzCore_3864e7f38681b875", 2361911533916013, undefined, []); }
+  static init(): CAMetalLayer { return callSDK<CAMetalLayer>("QuartzCore_ff42ce03e691ab23", 2361911533916013, undefined, []); }
   /**
    * func nextDrawable() -> (any CAMetalDrawable)?
    * @availability iOS 13.0+
    */
-  nextDrawable(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_3864e7f38681b875", 2572241382568300, this, []); }
+  nextDrawable(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_ff42ce03e691ab23", 2572241382568300, this, []); }
   /**
    * var edrMetadata: CAEDRMetadata? { get set }
    * @availability iOS 16.0+
    */
-  get edrMetadata(): (CAEDRMetadata) | null { return callSDK<(CAEDRMetadata) | null>("QuartzCore_3864e7f38681b875", 3120224129356181, this, []); }
-  set edrMetadata(value: (CAEDRMetadata) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 2005866229750228, this, [value]); }
+  get edrMetadata(): (CAEDRMetadata) | null { return callSDK<(CAEDRMetadata) | null>("QuartzCore_ff42ce03e691ab23", 3120224129356181, this, []); }
+  set edrMetadata(value: (CAEDRMetadata) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2005866229750228, this, [value]); }
   /**
    * var allowsNextDrawableTimeout: Bool { get set }
    * @availability iOS 11.0+
    */
-  get allowsNextDrawableTimeout(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 2542656577230037, this, []); }
-  set allowsNextDrawableTimeout(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 96008670082101, this, [value]); }
+  get allowsNextDrawableTimeout(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 2542656577230037, this, []); }
+  set allowsNextDrawableTimeout(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 96008670082101, this, [value]); }
   /**
    * var colorspace: CGColorSpace? { get set }
    * @availability iOS 13.0+
    */
-  get colorspace(): $SDK18 { return callSDK<$SDK18>("QuartzCore_3864e7f38681b875", 909784757618512, this, []); }
-  set colorspace(value: $SDK18) { callSDK<void>("QuartzCore_3864e7f38681b875", 3112479317048318, this, [value]); }
+  get colorspace(): $SDK18 { return callSDK<$SDK18>("QuartzCore_ff42ce03e691ab23", 909784757618512, this, []); }
+  set colorspace(value: $SDK18) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3112479317048318, this, [value]); }
   /**
    * var developerHUDProperties: [AnyHashable : Any]? { get set }
    * @availability iOS 16.0+
    */
-  get developerHUDProperties(): $SDK0 { return callSDK<$SDK0>("QuartzCore_3864e7f38681b875", 741943097854370, this, []); }
-  set developerHUDProperties(value: $SDK0) { callSDK<void>("QuartzCore_3864e7f38681b875", 3342438863180331, this, [value]); }
+  get developerHUDProperties(): $SDK0 { return callSDK<$SDK0>("QuartzCore_ff42ce03e691ab23", 741943097854370, this, []); }
+  set developerHUDProperties(value: $SDK0) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3342438863180331, this, [value]); }
   /**
    * var device: (any MTLDevice)? { get set }
    * @availability iOS 13.0+
    */
-  get device(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_3864e7f38681b875", 2604974312460191, this, []); }
-  set device(value: (SDKHandle) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 1232759830846347, this, [value]); }
+  get device(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_ff42ce03e691ab23", 2604974312460191, this, []); }
+  set device(value: (SDKHandle) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1232759830846347, this, [value]); }
   /**
    * var drawableSize: CGSize { get set }
    * @availability iOS 13.0+
    */
-  get drawableSize(): $SDK7 { return callSDK<$SDK7>("QuartzCore_3864e7f38681b875", 41584388095890, this, []); }
-  set drawableSize(value: $SDK7) { callSDK<void>("QuartzCore_3864e7f38681b875", 4205857488691826, this, [value]); }
+  get drawableSize(): $SDK7 { return callSDK<$SDK7>("QuartzCore_ff42ce03e691ab23", 41584388095890, this, []); }
+  set drawableSize(value: $SDK7) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4205857488691826, this, [value]); }
   /**
    * var framebufferOnly: Bool { get set }
    * @availability iOS 13.0+
    */
-  get framebufferOnly(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 2954505783549662, this, []); }
-  set framebufferOnly(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 2830090303859919, this, [value]); }
+  get framebufferOnly(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 2954505783549662, this, []); }
+  set framebufferOnly(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2830090303859919, this, [value]); }
   /**
    * var maximumDrawableCount: Int { get set }
    * @availability iOS 11.2+
    */
-  get maximumDrawableCount(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3912163442698833, this, []); }
-  set maximumDrawableCount(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3904422504186204, this, [value]); }
+  get maximumDrawableCount(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3912163442698833, this, []); }
+  set maximumDrawableCount(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3904422504186204, this, [value]); }
   /**
    * var pixelFormat: MTLPixelFormat { get set }
    * @availability iOS 13.0+
    */
-  get pixelFormat(): _Metal_MTLPixelFormat { return callSDK<_Metal_MTLPixelFormat>("QuartzCore_3864e7f38681b875", 1398949979415550, this, []); }
-  set pixelFormat(value: _Metal_MTLPixelFormat) { callSDK<void>("QuartzCore_3864e7f38681b875", 509732993625600, this, [value]); }
+  get pixelFormat(): _Metal_MTLPixelFormat { return callSDK<_Metal_MTLPixelFormat>("QuartzCore_ff42ce03e691ab23", 1398949979415550, this, []); }
+  set pixelFormat(value: _Metal_MTLPixelFormat) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 509732993625600, this, [value]); }
   /**
    * var preferredDevice: (any MTLDevice)? { get }
    * @availability iOS 13.0+
    */
-  get preferredDevice(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_3864e7f38681b875", 342287713931811, this, []); }
+  get preferredDevice(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("QuartzCore_ff42ce03e691ab23", 342287713931811, this, []); }
   /**
    * var presentsWithTransaction: Bool { get set }
    * @availability iOS 13.0+
    */
-  get presentsWithTransaction(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 3955356617466540, this, []); }
-  set presentsWithTransaction(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 3083126252087443, this, [value]); }
+  get presentsWithTransaction(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 3955356617466540, this, []); }
+  set presentsWithTransaction(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3083126252087443, this, [value]); }
   /**
    * var residencySet: any MTLResidencySet { get }
    * @availability iOS 26.0+
    */
-  get residencySet(): SDKHandle { return callSDK<SDKHandle>("QuartzCore_3864e7f38681b875", 2614800688966645, this, []); }
+  get residencySet(): SDKHandle { return callSDK<SDKHandle>("QuartzCore_ff42ce03e691ab23", 2614800688966645, this, []); }
   /**
    * var wantsExtendedDynamicRangeContent: Bool { get set }
    * @availability iOS 16.0+
    */
-  get wantsExtendedDynamicRangeContent(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 1707183280409900, this, []); }
-  set wantsExtendedDynamicRangeContent(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 3351963312423977, this, [value]); }
+  get wantsExtendedDynamicRangeContent(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 1707183280409900, this, []); }
+  set wantsExtendedDynamicRangeContent(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3351963312423977, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAMetalLayer": true; "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true; "edrMetadata": true; "allowsNextDrawableTimeout": true; "colorspace": true; "developerHUDProperties": true; "device": true; "drawableSize": true; "framebufferOnly": true; "maximumDrawableCount": true; "pixelFormat": true; "preferredDevice": true; "presentsWithTransaction": true; "residencySet": true };
 }
@@ -2182,54 +2182,54 @@ export class CARenderer extends SDKHandle {
    * init(mtlTexture tex: any MTLTexture, options dict: [AnyHashable : Any]? = nil)
    * @availability iOS 11.0+
    */
-  static init(tex: SDKHandle, dict?: $SDK0): CARenderer { return callSDK<CARenderer>("QuartzCore_3864e7f38681b875", 4098175446865806, undefined, [tex, dict]); }
+  static init(tex: SDKHandle, dict?: $SDK0): CARenderer { return callSDK<CARenderer>("QuartzCore_ff42ce03e691ab23", 4098175446865806, undefined, [tex, dict]); }
   /**
    * func addUpdate(_ r: CGRect)
    * @availability iOS 2.0+
    */
-  addUpdate(r: $SDK6): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 4396141908397777, this, [r]); }
+  addUpdate(r: $SDK6): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 4396141908397777, this, [r]); }
   /**
    * func beginFrame(atTime t: CFTimeInterval, timeStamp ts: UnsafeMutablePointer<CVTimeStamp>?)
    * @availability iOS 2.0+
    */
-  beginFrame(t: number, ts?: ("flagOptions" | SDKHandle) | null): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 1246922473650419, this, [t, ts]); }
+  beginFrame(t: number, ts?: ("flagOptions" | SDKHandle) | null): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 1246922473650419, this, [t, ts]); }
   /**
    * func endFrame()
    * @availability iOS 2.0+
    */
-  endFrame(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 654186854470670, this, []); }
+  endFrame(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 654186854470670, this, []); }
   /**
    * func nextFrameTime() -> CFTimeInterval
    * @availability iOS 2.0+
    */
-  nextFrameTime(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 548890872837056, this, []); }
+  nextFrameTime(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 548890872837056, this, []); }
   /**
    * func render()
    * @availability iOS 2.0+
    */
-  render(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 32313640041233, this, []); }
+  render(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 32313640041233, this, []); }
   /**
    * func setDestination(_ tex: any MTLTexture)
    * @availability iOS 2.0+
    */
-  setDestination(tex: SDKHandle): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3797533523613087, this, [tex]); }
+  setDestination(tex: SDKHandle): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3797533523613087, this, [tex]); }
   /**
    * func updateBounds() -> CGRect
    * @availability iOS 2.0+
    */
-  updateBounds(): $SDK6 { return callSDK<$SDK6>("QuartzCore_3864e7f38681b875", 3479896820890156, this, []); }
+  updateBounds(): $SDK6 { return callSDK<$SDK6>("QuartzCore_ff42ce03e691ab23", 3479896820890156, this, []); }
   /**
    * var bounds: CGRect { get set }
    * @availability iOS 2.0+
    */
-  get bounds(): $SDK6 { return callSDK<$SDK6>("QuartzCore_3864e7f38681b875", 1002762836296260, this, []); }
-  set bounds(value: $SDK6) { callSDK<void>("QuartzCore_3864e7f38681b875", 1141784467716915, this, [value]); }
+  get bounds(): $SDK6 { return callSDK<$SDK6>("QuartzCore_ff42ce03e691ab23", 1002762836296260, this, []); }
+  set bounds(value: $SDK6) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1141784467716915, this, [value]); }
   /**
    * var layer: CALayer? { get set }
    * @availability iOS 2.0+
    */
-  get layer(): (CALayer) | null { return callSDK<(CALayer) | null>("QuartzCore_3864e7f38681b875", 2101328871733834, this, []); }
-  set layer(value: (CALayer) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 1920079325991769, this, [value]); }
+  get layer(): (CALayer) | null { return callSDK<(CALayer) | null>("QuartzCore_ff42ce03e691ab23", 2101328871733834, this, []); }
+  set layer(value: (CALayer) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1920079325991769, this, [value]); }
   declare readonly $type: { "c:objc(cs)CARenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bounds": true; "layer": true };
 }
@@ -2240,61 +2240,61 @@ export class CARenderer extends SDKHandle {
  */
 export class CAReplicatorLayer extends (CALayer as unknown as Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer)) {
   /** init() */
-  static init(): CAReplicatorLayer { return callSDK<CAReplicatorLayer>("QuartzCore_3864e7f38681b875", 1752001892034860, undefined, []); }
+  static init(): CAReplicatorLayer { return callSDK<CAReplicatorLayer>("QuartzCore_ff42ce03e691ab23", 1752001892034860, undefined, []); }
   /**
    * var instanceAlphaOffset: Float { get set }
    * @availability iOS 3.0+
    */
-  get instanceAlphaOffset(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3052607574230976, this, []); }
-  set instanceAlphaOffset(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1480398613701289, this, [value]); }
+  get instanceAlphaOffset(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3052607574230976, this, []); }
+  set instanceAlphaOffset(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1480398613701289, this, [value]); }
   /**
    * var instanceBlueOffset: Float { get set }
    * @availability iOS 3.0+
    */
-  get instanceBlueOffset(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3846961371109048, this, []); }
-  set instanceBlueOffset(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 429151111168798, this, [value]); }
+  get instanceBlueOffset(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3846961371109048, this, []); }
+  set instanceBlueOffset(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 429151111168798, this, [value]); }
   /**
    * var instanceColor: CGColor? { get set }
    * @availability iOS 3.0+
    */
-  get instanceColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_3864e7f38681b875", 2637100579708860, this, []); }
-  set instanceColor(value: $SDK10) { callSDK<void>("QuartzCore_3864e7f38681b875", 2503323313850397, this, [value]); }
+  get instanceColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_ff42ce03e691ab23", 2637100579708860, this, []); }
+  set instanceColor(value: $SDK10) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2503323313850397, this, [value]); }
   /**
    * var instanceCount: Int { get set }
    * @availability iOS 3.0+
    */
-  get instanceCount(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 97474549791630, this, []); }
-  set instanceCount(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 706961419712397, this, [value]); }
+  get instanceCount(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 97474549791630, this, []); }
+  set instanceCount(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 706961419712397, this, [value]); }
   /**
    * var instanceDelay: CFTimeInterval { get set }
    * @availability iOS 3.0+
    */
-  get instanceDelay(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1558729877135010, this, []); }
-  set instanceDelay(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1922227826081796, this, [value]); }
+  get instanceDelay(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1558729877135010, this, []); }
+  set instanceDelay(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1922227826081796, this, [value]); }
   /**
    * var instanceGreenOffset: Float { get set }
    * @availability iOS 3.0+
    */
-  get instanceGreenOffset(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1503892385822078, this, []); }
-  set instanceGreenOffset(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 164561733126817, this, [value]); }
+  get instanceGreenOffset(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1503892385822078, this, []); }
+  set instanceGreenOffset(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 164561733126817, this, [value]); }
   /**
    * var instanceRedOffset: Float { get set }
    * @availability iOS 3.0+
    */
-  get instanceRedOffset(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3734653814474864, this, []); }
-  set instanceRedOffset(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3195077148217305, this, [value]); }
+  get instanceRedOffset(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3734653814474864, this, []); }
+  set instanceRedOffset(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3195077148217305, this, [value]); }
   /**
    * var instanceTransform: CATransform3D { get set }
    * @availability iOS 3.0+
    */
-  get instanceTransform(): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 3248692951580540, this, []); }
-  set instanceTransform(value: CATransform3D) { callSDK<void>("QuartzCore_3864e7f38681b875", 540524326941840, this, [value]); }
+  get instanceTransform(): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 3248692951580540, this, []); }
+  set instanceTransform(value: CATransform3D) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 540524326941840, this, [value]); }
   /**
    * var preservesDepth: Bool { get set }
    * @availability iOS 3.0+
    */
-  get preservesDepth(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 4365352290027250, this, []); }
-  set preservesDepth(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 4011749600170179, this, [value]); }
+  get preservesDepth(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 4365352290027250, this, []); }
+  set preservesDepth(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4011749600170179, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAReplicatorLayer": true; "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true; "instanceAlphaOffset": true; "instanceBlueOffset": true; "instanceColor": true; "instanceCount": true; "instanceDelay": true; "instanceGreenOffset": true; "instanceRedOffset": true; "instanceTransform": true; "preservesDepth": true };
 }
@@ -2305,23 +2305,23 @@ export class CAReplicatorLayer extends (CALayer as unknown as Omit<typeof CALaye
  */
 export class CAScrollLayer extends (CALayer as unknown as Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer)) {
   /** init() */
-  static init(): CAScrollLayer { return callSDK<CAScrollLayer>("QuartzCore_3864e7f38681b875", 3638898196142780, undefined, []); }
+  static init(): CAScrollLayer { return callSDK<CAScrollLayer>("QuartzCore_ff42ce03e691ab23", 3638898196142780, undefined, []); }
   /**
    * func scroll(to p: CGPoint)
    * @availability iOS 2.0+
    */
-  scrollTo(p: $SDK5): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 385899885397434, this, [p]); }
+  scrollTo(p: $SDK5): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 385899885397434, this, [p]); }
   /**
    * func scroll(to r: CGRect)
    * @availability iOS 2.0+
    */
-  scrollTo90898(r: $SDK6): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 2436369416408405, this, [r]); }
+  scrollTo90898(r: $SDK6): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 2436369416408405, this, [r]); }
   /**
    * var scrollMode: CAScrollLayerScrollMode { get set }
    * @availability iOS 2.0+
    */
-  get scrollMode(): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_3864e7f38681b875", 1691938631369445, this, []); }
-  set scrollMode(value: CAScrollLayerScrollMode) { callSDK<void>("QuartzCore_3864e7f38681b875", 4407838157176130, this, [value]); }
+  get scrollMode(): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_ff42ce03e691ab23", 1691938631369445, this, []); }
+  set scrollMode(value: CAScrollLayerScrollMode) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4407838157176130, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAScrollLayer": true; "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true; "scrollMode": true };
 }
@@ -2337,27 +2337,27 @@ export const CAScrollLayerScrollMode = {
    * static let both: CAScrollLayerScrollMode
    * @availability iOS 2.0+
    */
-  get both(): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_3864e7f38681b875", 2542348667891566, undefined, []); },
+  get both(): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_ff42ce03e691ab23", 2542348667891566, undefined, []); },
   /**
    * static let horizontally: CAScrollLayerScrollMode
    * @availability iOS 2.0+
    */
-  get horizontally(): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_3864e7f38681b875", 3019154597084652, undefined, []); },
+  get horizontally(): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_ff42ce03e691ab23", 3019154597084652, undefined, []); },
   /**
    * static let none: CAScrollLayerScrollMode
    * @availability iOS 2.0+
    */
-  get none(): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_3864e7f38681b875", 2370578930377322, undefined, []); },
+  get none(): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_ff42ce03e691ab23", 2370578930377322, undefined, []); },
   /**
    * static let vertically: CAScrollLayerScrollMode
    * @availability iOS 2.0+
    */
-  get vertically(): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_3864e7f38681b875", 1070529555881844, undefined, []); },
+  get vertically(): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_ff42ce03e691ab23", 1070529555881844, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 2.0+
    */
-  init(rawValue: string): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_3864e7f38681b875", 1767565908013977, undefined, [rawValue]); }
+  init(rawValue: string): CAScrollLayerScrollMode { return callSDK<CAScrollLayerScrollMode>("QuartzCore_ff42ce03e691ab23", 1767565908013977, undefined, [rawValue]); }
 };
 
 /**
@@ -2366,79 +2366,79 @@ export const CAScrollLayerScrollMode = {
  */
 export class CAShapeLayer extends (CALayer as unknown as Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer)) {
   /** init() */
-  static init(): CAShapeLayer { return callSDK<CAShapeLayer>("QuartzCore_3864e7f38681b875", 2034081893338898, undefined, []); }
+  static init(): CAShapeLayer { return callSDK<CAShapeLayer>("QuartzCore_ff42ce03e691ab23", 2034081893338898, undefined, []); }
   /**
    * var fillColor: CGColor? { get set }
    * @availability iOS 3.0+
    */
-  get fillColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_3864e7f38681b875", 751732709784109, this, []); }
-  set fillColor(value: $SDK10) { callSDK<void>("QuartzCore_3864e7f38681b875", 2829443071861202, this, [value]); }
+  get fillColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_ff42ce03e691ab23", 751732709784109, this, []); }
+  set fillColor(value: $SDK10) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2829443071861202, this, [value]); }
   /**
    * var fillRule: CAShapeLayerFillRule { get set }
    * @availability iOS 3.0+
    */
-  get fillRule(): CAShapeLayerFillRule { return callSDK<CAShapeLayerFillRule>("QuartzCore_3864e7f38681b875", 3184168331764217, this, []); }
-  set fillRule(value: CAShapeLayerFillRule) { callSDK<void>("QuartzCore_3864e7f38681b875", 4477114625727280, this, [value]); }
+  get fillRule(): CAShapeLayerFillRule { return callSDK<CAShapeLayerFillRule>("QuartzCore_ff42ce03e691ab23", 3184168331764217, this, []); }
+  set fillRule(value: CAShapeLayerFillRule) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4477114625727280, this, [value]); }
   /**
    * var lineCap: CAShapeLayerLineCap { get set }
    * @availability iOS 3.0+
    */
-  get lineCap(): CAShapeLayerLineCap { return callSDK<CAShapeLayerLineCap>("QuartzCore_3864e7f38681b875", 3967210460050326, this, []); }
-  set lineCap(value: CAShapeLayerLineCap) { callSDK<void>("QuartzCore_3864e7f38681b875", 2721557280954146, this, [value]); }
+  get lineCap(): CAShapeLayerLineCap { return callSDK<CAShapeLayerLineCap>("QuartzCore_ff42ce03e691ab23", 3967210460050326, this, []); }
+  set lineCap(value: CAShapeLayerLineCap) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2721557280954146, this, [value]); }
   /**
    * var lineDashPattern: [NSNumber]? { get set }
    * @availability iOS 3.0+
    */
-  get lineDashPattern(): $SDK14 { return callSDK<$SDK14>("QuartzCore_3864e7f38681b875", 913455735156795, this, []); }
-  set lineDashPattern(value: $SDK14) { callSDK<void>("QuartzCore_3864e7f38681b875", 757044445125272, this, [value]); }
+  get lineDashPattern(): $SDK14 { return callSDK<$SDK14>("QuartzCore_ff42ce03e691ab23", 913455735156795, this, []); }
+  set lineDashPattern(value: $SDK14) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 757044445125272, this, [value]); }
   /**
    * var lineDashPhase: CGFloat { get set }
    * @availability iOS 3.0+
    */
-  get lineDashPhase(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 4253737869943502, this, []); }
-  set lineDashPhase(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1053959754466509, this, [value]); }
+  get lineDashPhase(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 4253737869943502, this, []); }
+  set lineDashPhase(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1053959754466509, this, [value]); }
   /**
    * var lineJoin: CAShapeLayerLineJoin { get set }
    * @availability iOS 3.0+
    */
-  get lineJoin(): CAShapeLayerLineJoin { return callSDK<CAShapeLayerLineJoin>("QuartzCore_3864e7f38681b875", 3559460416074906, this, []); }
-  set lineJoin(value: CAShapeLayerLineJoin) { callSDK<void>("QuartzCore_3864e7f38681b875", 367531827522007, this, [value]); }
+  get lineJoin(): CAShapeLayerLineJoin { return callSDK<CAShapeLayerLineJoin>("QuartzCore_ff42ce03e691ab23", 3559460416074906, this, []); }
+  set lineJoin(value: CAShapeLayerLineJoin) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 367531827522007, this, [value]); }
   /**
    * var lineWidth: CGFloat { get set }
    * @availability iOS 3.0+
    */
-  get lineWidth(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2021296754563095, this, []); }
-  set lineWidth(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1060708316420089, this, [value]); }
+  get lineWidth(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2021296754563095, this, []); }
+  set lineWidth(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1060708316420089, this, [value]); }
   /**
    * var miterLimit: CGFloat { get set }
    * @availability iOS 3.0+
    */
-  get miterLimit(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1173098698730409, this, []); }
-  set miterLimit(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1567299144596277, this, [value]); }
+  get miterLimit(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1173098698730409, this, []); }
+  set miterLimit(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1567299144596277, this, [value]); }
   /**
    * var path: CGPath? { get set }
    * @availability iOS 3.0+
    */
-  get path(): $SDK12 { return callSDK<$SDK12>("QuartzCore_3864e7f38681b875", 3710724732911199, this, []); }
-  set path(value: $SDK12) { callSDK<void>("QuartzCore_3864e7f38681b875", 4468404230605915, this, [value]); }
+  get path(): $SDK12 { return callSDK<$SDK12>("QuartzCore_ff42ce03e691ab23", 3710724732911199, this, []); }
+  set path(value: $SDK12) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4468404230605915, this, [value]); }
   /**
    * var strokeColor: CGColor? { get set }
    * @availability iOS 3.0+
    */
-  get strokeColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_3864e7f38681b875", 2831079072115274, this, []); }
-  set strokeColor(value: $SDK10) { callSDK<void>("QuartzCore_3864e7f38681b875", 3039462440568267, this, [value]); }
+  get strokeColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_ff42ce03e691ab23", 2831079072115274, this, []); }
+  set strokeColor(value: $SDK10) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3039462440568267, this, [value]); }
   /**
    * var strokeEnd: CGFloat { get set }
    * @availability iOS 3.0+
    */
-  get strokeEnd(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1481799704392816, this, []); }
-  set strokeEnd(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3414991205414298, this, [value]); }
+  get strokeEnd(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1481799704392816, this, []); }
+  set strokeEnd(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3414991205414298, this, [value]); }
   /**
    * var strokeStart: CGFloat { get set }
    * @availability iOS 3.0+
    */
-  get strokeStart(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3872064271262610, this, []); }
-  set strokeStart(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1491871999156401, this, [value]); }
+  get strokeStart(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3872064271262610, this, []); }
+  set strokeStart(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1491871999156401, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAShapeLayer": true; "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true; "fillColor": true; "fillRule": true; "lineCap": true; "lineDashPattern": true; "lineDashPhase": true; "lineJoin": true; "lineWidth": true; "miterLimit": true; "path": true; "strokeColor": true; "strokeEnd": true; "strokeStart": true };
 }
@@ -2454,17 +2454,17 @@ export const CAShapeLayerFillRule = {
    * static let evenOdd: CAShapeLayerFillRule
    * @availability iOS 3.0+
    */
-  get evenOdd(): CAShapeLayerFillRule { return callSDK<CAShapeLayerFillRule>("QuartzCore_3864e7f38681b875", 1587689767091227, undefined, []); },
+  get evenOdd(): CAShapeLayerFillRule { return callSDK<CAShapeLayerFillRule>("QuartzCore_ff42ce03e691ab23", 1587689767091227, undefined, []); },
   /**
    * static let nonZero: CAShapeLayerFillRule
    * @availability iOS 3.0+
    */
-  get nonZero(): CAShapeLayerFillRule { return callSDK<CAShapeLayerFillRule>("QuartzCore_3864e7f38681b875", 2529207732379490, undefined, []); },
+  get nonZero(): CAShapeLayerFillRule { return callSDK<CAShapeLayerFillRule>("QuartzCore_ff42ce03e691ab23", 2529207732379490, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 3.0+
    */
-  init(rawValue: string): CAShapeLayerFillRule { return callSDK<CAShapeLayerFillRule>("QuartzCore_3864e7f38681b875", 146727293481663, undefined, [rawValue]); }
+  init(rawValue: string): CAShapeLayerFillRule { return callSDK<CAShapeLayerFillRule>("QuartzCore_ff42ce03e691ab23", 146727293481663, undefined, [rawValue]); }
 };
 
 /**
@@ -2478,22 +2478,22 @@ export const CAShapeLayerLineCap = {
    * static let butt: CAShapeLayerLineCap
    * @availability iOS 3.0+
    */
-  get butt(): CAShapeLayerLineCap { return callSDK<CAShapeLayerLineCap>("QuartzCore_3864e7f38681b875", 4406648517700061, undefined, []); },
+  get butt(): CAShapeLayerLineCap { return callSDK<CAShapeLayerLineCap>("QuartzCore_ff42ce03e691ab23", 4406648517700061, undefined, []); },
   /**
    * static let round: CAShapeLayerLineCap
    * @availability iOS 3.0+
    */
-  get round(): CAShapeLayerLineCap { return callSDK<CAShapeLayerLineCap>("QuartzCore_3864e7f38681b875", 1443943825168968, undefined, []); },
+  get round(): CAShapeLayerLineCap { return callSDK<CAShapeLayerLineCap>("QuartzCore_ff42ce03e691ab23", 1443943825168968, undefined, []); },
   /**
    * static let square: CAShapeLayerLineCap
    * @availability iOS 3.0+
    */
-  get square(): CAShapeLayerLineCap { return callSDK<CAShapeLayerLineCap>("QuartzCore_3864e7f38681b875", 1135399953010409, undefined, []); },
+  get square(): CAShapeLayerLineCap { return callSDK<CAShapeLayerLineCap>("QuartzCore_ff42ce03e691ab23", 1135399953010409, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 3.0+
    */
-  init(rawValue: string): CAShapeLayerLineCap { return callSDK<CAShapeLayerLineCap>("QuartzCore_3864e7f38681b875", 4245489823888216, undefined, [rawValue]); }
+  init(rawValue: string): CAShapeLayerLineCap { return callSDK<CAShapeLayerLineCap>("QuartzCore_ff42ce03e691ab23", 4245489823888216, undefined, [rawValue]); }
 };
 
 /**
@@ -2507,22 +2507,22 @@ export const CAShapeLayerLineJoin = {
    * static let bevel: CAShapeLayerLineJoin
    * @availability iOS 3.0+
    */
-  get bevel(): CAShapeLayerLineJoin { return callSDK<CAShapeLayerLineJoin>("QuartzCore_3864e7f38681b875", 1753543236661653, undefined, []); },
+  get bevel(): CAShapeLayerLineJoin { return callSDK<CAShapeLayerLineJoin>("QuartzCore_ff42ce03e691ab23", 1753543236661653, undefined, []); },
   /**
    * static let miter: CAShapeLayerLineJoin
    * @availability iOS 3.0+
    */
-  get miter(): CAShapeLayerLineJoin { return callSDK<CAShapeLayerLineJoin>("QuartzCore_3864e7f38681b875", 3015460731379785, undefined, []); },
+  get miter(): CAShapeLayerLineJoin { return callSDK<CAShapeLayerLineJoin>("QuartzCore_ff42ce03e691ab23", 3015460731379785, undefined, []); },
   /**
    * static let round: CAShapeLayerLineJoin
    * @availability iOS 3.0+
    */
-  get round(): CAShapeLayerLineJoin { return callSDK<CAShapeLayerLineJoin>("QuartzCore_3864e7f38681b875", 4182887423470098, undefined, []); },
+  get round(): CAShapeLayerLineJoin { return callSDK<CAShapeLayerLineJoin>("QuartzCore_ff42ce03e691ab23", 4182887423470098, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 3.0+
    */
-  init(rawValue: string): CAShapeLayerLineJoin { return callSDK<CAShapeLayerLineJoin>("QuartzCore_3864e7f38681b875", 1181910499251539, undefined, [rawValue]); }
+  init(rawValue: string): CAShapeLayerLineJoin { return callSDK<CAShapeLayerLineJoin>("QuartzCore_ff42ce03e691ab23", 1181910499251539, undefined, [rawValue]); }
 };
 
 /**
@@ -2534,52 +2534,52 @@ export class CASpringAnimation extends (CABasicAnimation as unknown as Omit<type
    * init(perceptualDuration: CFTimeInterval, bounce: CGFloat)
    * @availability iOS 17.0+
    */
-  static init(perceptualDuration: number, bounce: number): CASpringAnimation { return callSDK<CASpringAnimation>("QuartzCore_3864e7f38681b875", 2599793669410827, undefined, [perceptualDuration, bounce]); }
+  static init(perceptualDuration: number, bounce: number): CASpringAnimation { return callSDK<CASpringAnimation>("QuartzCore_ff42ce03e691ab23", 2599793669410827, undefined, [perceptualDuration, bounce]); }
   /**
    * var allowsOverdamping: Bool { get set }
    * @availability iOS 17.0+
    */
-  get allowsOverdamping(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 1778079784897628, this, []); }
-  set allowsOverdamping(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 3577136172811248, this, [value]); }
+  get allowsOverdamping(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 1778079784897628, this, []); }
+  set allowsOverdamping(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3577136172811248, this, [value]); }
   /**
    * var bounce: CGFloat { get }
    * @availability iOS 17.0+
    */
-  get bounce(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2181912363158155, this, []); }
+  get bounce(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2181912363158155, this, []); }
   /**
    * var damping: CGFloat { get set }
    * @availability iOS 9.0+
    */
-  get damping(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 855427358130428, this, []); }
-  set damping(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3773272824581362, this, [value]); }
+  get damping(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 855427358130428, this, []); }
+  set damping(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3773272824581362, this, [value]); }
   /**
    * var initialVelocity: CGFloat { get set }
    * @availability iOS 9.0+
    */
-  get initialVelocity(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 28065425969643, this, []); }
-  set initialVelocity(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2271123244520334, this, [value]); }
+  get initialVelocity(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 28065425969643, this, []); }
+  set initialVelocity(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2271123244520334, this, [value]); }
   /**
    * var mass: CGFloat { get set }
    * @availability iOS 9.0+
    */
-  get mass(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2275249147930093, this, []); }
-  set mass(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 942526252079254, this, [value]); }
+  get mass(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2275249147930093, this, []); }
+  set mass(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 942526252079254, this, [value]); }
   /**
    * var perceptualDuration: CFTimeInterval { get }
    * @availability iOS 17.0+
    */
-  get perceptualDuration(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2548123266122483, this, []); }
+  get perceptualDuration(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2548123266122483, this, []); }
   /**
    * var settlingDuration: CFTimeInterval { get }
    * @availability iOS 9.0+
    */
-  get settlingDuration(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3695759664660531, this, []); }
+  get settlingDuration(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3695759664660531, this, []); }
   /**
    * var stiffness: CGFloat { get set }
    * @availability iOS 9.0+
    */
-  get stiffness(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2095571854686244, this, []); }
-  set stiffness(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3277552902598900, this, [value]); }
+  get stiffness(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2095571854686244, this, []); }
+  set stiffness(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3277552902598900, this, [value]); }
   declare readonly $type: { "c:objc(cs)CASpringAnimation": true; "c:objc(cs)CABasicAnimation": true; "c:objc(cs)CAPropertyAnimation": true; "c:objc(cs)CAAnimation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "preferredFrameRateRange": true; "isRemovedOnCompletion": true; "timingFunction": true; "isAdditive": true; "isCumulative": true; "keyPath": true; "valueFunction": true; "byValue": true; "fromValue": true; "toValue": true; "allowsOverdamping": true; "bounce": true; "damping": true; "initialVelocity": true; "mass": true; "perceptualDuration": true; "settlingDuration": true; "stiffness": true };
 }
@@ -2590,55 +2590,55 @@ export class CASpringAnimation extends (CABasicAnimation as unknown as Omit<type
  */
 export class CATextLayer extends (CALayer as unknown as Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer)) {
   /** init() */
-  static init(): CATextLayer { return callSDK<CATextLayer>("QuartzCore_3864e7f38681b875", 4307851384314377, undefined, []); }
+  static init(): CATextLayer { return callSDK<CATextLayer>("QuartzCore_ff42ce03e691ab23", 4307851384314377, undefined, []); }
   /**
    * var alignmentMode: CATextLayerAlignmentMode { get set }
    * @availability iOS 2.0+
    */
-  get alignmentMode(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_3864e7f38681b875", 1345940139101955, this, []); }
-  set alignmentMode(value: CATextLayerAlignmentMode) { callSDK<void>("QuartzCore_3864e7f38681b875", 2277707085359844, this, [value]); }
+  get alignmentMode(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_ff42ce03e691ab23", 1345940139101955, this, []); }
+  set alignmentMode(value: CATextLayerAlignmentMode) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2277707085359844, this, [value]); }
   /**
    * var allowsFontSubpixelQuantization: Bool { get set }
    * @availability iOS 2.0+
    */
-  get allowsFontSubpixelQuantization(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 3935588276201365, this, []); }
-  set allowsFontSubpixelQuantization(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 3596971476479503, this, [value]); }
+  get allowsFontSubpixelQuantization(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 3935588276201365, this, []); }
+  set allowsFontSubpixelQuantization(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3596971476479503, this, [value]); }
   /**
    * var font: CFTypeRef? { get set }
    * @availability iOS 2.0+
    */
-  get font(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 52355437582829, this, []); }
-  set font(value: (unknown) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 2071701891031346, this, [value]); }
+  get font(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 52355437582829, this, []); }
+  set font(value: (unknown) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2071701891031346, this, [value]); }
   /**
    * var fontSize: CGFloat { get set }
    * @availability iOS 2.0+
    */
-  get fontSize(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 539832725803093, this, []); }
-  set fontSize(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1617929798610557, this, [value]); }
+  get fontSize(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 539832725803093, this, []); }
+  set fontSize(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1617929798610557, this, [value]); }
   /**
    * var foregroundColor: CGColor? { get set }
    * @availability iOS 2.0+
    */
-  get foregroundColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_3864e7f38681b875", 3519410098553768, this, []); }
-  set foregroundColor(value: $SDK10) { callSDK<void>("QuartzCore_3864e7f38681b875", 3114221767779574, this, [value]); }
+  get foregroundColor(): $SDK10 { return callSDK<$SDK10>("QuartzCore_ff42ce03e691ab23", 3519410098553768, this, []); }
+  set foregroundColor(value: $SDK10) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3114221767779574, this, [value]); }
   /**
    * var string: Any? { get set }
    * @availability iOS 2.0+
    */
-  get string(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 2712547203564400, this, []); }
-  set string(value: (unknown) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 3677692145171146, this, [value]); }
+  get string(): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 2712547203564400, this, []); }
+  set string(value: (unknown) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3677692145171146, this, [value]); }
   /**
    * var truncationMode: CATextLayerTruncationMode { get set }
    * @availability iOS 2.0+
    */
-  get truncationMode(): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_3864e7f38681b875", 3893390743503833, this, []); }
-  set truncationMode(value: CATextLayerTruncationMode) { callSDK<void>("QuartzCore_3864e7f38681b875", 2958223810686869, this, [value]); }
+  get truncationMode(): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_ff42ce03e691ab23", 3893390743503833, this, []); }
+  set truncationMode(value: CATextLayerTruncationMode) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2958223810686869, this, [value]); }
   /**
    * var isWrapped: Bool { get set }
    * @availability iOS 2.0+
    */
-  get isWrapped(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 2360559232086378, this, []); }
-  set isWrapped(value: boolean) { callSDK<void>("QuartzCore_3864e7f38681b875", 65287938424418, this, [value]); }
+  get isWrapped(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 2360559232086378, this, []); }
+  set isWrapped(value: boolean) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 65287938424418, this, [value]); }
   declare readonly $type: { "c:objc(cs)CATextLayer": true; "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true; "alignmentMode": true; "allowsFontSubpixelQuantization": true; "font": true; "fontSize": true; "foregroundColor": true; "string": true; "truncationMode": true; "isWrapped": true };
 }
@@ -2654,32 +2654,32 @@ export const CATextLayerAlignmentMode = {
    * static let center: CATextLayerAlignmentMode
    * @availability iOS 3.2+
    */
-  get center(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_3864e7f38681b875", 3830863750056191, undefined, []); },
+  get center(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_ff42ce03e691ab23", 3830863750056191, undefined, []); },
   /**
    * static let justified: CATextLayerAlignmentMode
    * @availability iOS 3.2+
    */
-  get justified(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_3864e7f38681b875", 1361862460297113, undefined, []); },
+  get justified(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_ff42ce03e691ab23", 1361862460297113, undefined, []); },
   /**
    * static let left: CATextLayerAlignmentMode
    * @availability iOS 3.2+
    */
-  get left(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_3864e7f38681b875", 3916920736040442, undefined, []); },
+  get left(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_ff42ce03e691ab23", 3916920736040442, undefined, []); },
   /**
    * static let natural: CATextLayerAlignmentMode
    * @availability iOS 3.2+
    */
-  get natural(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_3864e7f38681b875", 1314361950568363, undefined, []); },
+  get natural(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_ff42ce03e691ab23", 1314361950568363, undefined, []); },
   /**
    * static let right: CATextLayerAlignmentMode
    * @availability iOS 3.2+
    */
-  get right(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_3864e7f38681b875", 931392252767513, undefined, []); },
+  get right(): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_ff42ce03e691ab23", 931392252767513, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 3.2+
    */
-  init(rawValue: string): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_3864e7f38681b875", 1000106244053090, undefined, [rawValue]); }
+  init(rawValue: string): CATextLayerAlignmentMode { return callSDK<CATextLayerAlignmentMode>("QuartzCore_ff42ce03e691ab23", 1000106244053090, undefined, [rawValue]); }
 };
 
 /**
@@ -2693,27 +2693,27 @@ export const CATextLayerTruncationMode = {
    * static let end: CATextLayerTruncationMode
    * @availability iOS 3.2+
    */
-  get end(): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_3864e7f38681b875", 3176410095236650, undefined, []); },
+  get end(): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_ff42ce03e691ab23", 3176410095236650, undefined, []); },
   /**
    * static let middle: CATextLayerTruncationMode
    * @availability iOS 3.2+
    */
-  get middle(): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_3864e7f38681b875", 91271623158003, undefined, []); },
+  get middle(): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_ff42ce03e691ab23", 91271623158003, undefined, []); },
   /**
    * static let none: CATextLayerTruncationMode
    * @availability iOS 3.2+
    */
-  get none(): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_3864e7f38681b875", 2270776138097361, undefined, []); },
+  get none(): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_ff42ce03e691ab23", 2270776138097361, undefined, []); },
   /**
    * static let start: CATextLayerTruncationMode
    * @availability iOS 3.2+
    */
-  get start(): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_3864e7f38681b875", 3941213115593430, undefined, []); },
+  get start(): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_ff42ce03e691ab23", 3941213115593430, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 3.2+
    */
-  init(rawValue: string): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_3864e7f38681b875", 2862714644377738, undefined, [rawValue]); }
+  init(rawValue: string): CATextLayerTruncationMode { return callSDK<CATextLayerTruncationMode>("QuartzCore_ff42ce03e691ab23", 2862714644377738, undefined, [rawValue]); }
 };
 
 /**
@@ -2725,27 +2725,27 @@ export class CATiledLayer extends (CALayer as unknown as Omit<typeof CALayer, "i
    * class func fadeDuration() -> CFTimeInterval
    * @availability iOS 2.0+
    */
-  static fadeDuration(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 421452309333123, undefined, []); }
+  static fadeDuration(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 421452309333123, undefined, []); }
   /** init() */
-  static init(): CATiledLayer { return callSDK<CATiledLayer>("QuartzCore_3864e7f38681b875", 337383410237486, undefined, []); }
+  static init(): CATiledLayer { return callSDK<CATiledLayer>("QuartzCore_ff42ce03e691ab23", 337383410237486, undefined, []); }
   /**
    * var levelsOfDetail: Int { get set }
    * @availability iOS 2.0+
    */
-  get levelsOfDetail(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1037252371486112, this, []); }
-  set levelsOfDetail(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 773640808410654, this, [value]); }
+  get levelsOfDetail(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1037252371486112, this, []); }
+  set levelsOfDetail(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 773640808410654, this, [value]); }
   /**
    * var levelsOfDetailBias: Int { get set }
    * @availability iOS 2.0+
    */
-  get levelsOfDetailBias(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 94378975992495, this, []); }
-  set levelsOfDetailBias(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1203016942636901, this, [value]); }
+  get levelsOfDetailBias(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 94378975992495, this, []); }
+  set levelsOfDetailBias(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1203016942636901, this, [value]); }
   /**
    * var tileSize: CGSize { get set }
    * @availability iOS 2.0+
    */
-  get tileSize(): $SDK7 { return callSDK<$SDK7>("QuartzCore_3864e7f38681b875", 2144075295993872, this, []); }
-  set tileSize(value: $SDK7) { callSDK<void>("QuartzCore_3864e7f38681b875", 1175993247526681, this, [value]); }
+  get tileSize(): $SDK7 { return callSDK<$SDK7>("QuartzCore_ff42ce03e691ab23", 2144075295993872, this, []); }
+  set tileSize(value: $SDK7) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1175993247526681, this, [value]); }
   declare readonly $type: { "c:objc(cs)CATiledLayer": true; "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true; "levelsOfDetail": true; "levelsOfDetailBias": true; "tileSize": true };
 }
@@ -2759,79 +2759,79 @@ export class CATransaction extends SDKHandle {
    * class func animationDuration() -> CFTimeInterval
    * @availability iOS 2.0+
    */
-  static animationDuration(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3621575131737372, undefined, []); }
+  static animationDuration(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3621575131737372, undefined, []); }
   /**
    * class func animationTimingFunction() -> CAMediaTimingFunction?
    * @availability iOS 2.0+
    */
-  static animationTimingFunction(): $SDK2 { return callSDK<$SDK2>("QuartzCore_3864e7f38681b875", 3981040931568465, undefined, []); }
+  static animationTimingFunction(): $SDK2 { return callSDK<$SDK2>("QuartzCore_ff42ce03e691ab23", 3981040931568465, undefined, []); }
   /**
    * class func begin()
    * @availability iOS 2.0+
    */
-  static begin(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3528139248379419, undefined, []); }
+  static begin(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3528139248379419, undefined, []); }
   /**
    * class func commit()
    * @availability iOS 2.0+
    */
-  static commit(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3937388051911533, undefined, []); }
+  static commit(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3937388051911533, undefined, []); }
   /**
    * class func completionBlock() -> (() -> Void)?
    * @availability iOS 2.0+
    */
-  static completionBlock(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("QuartzCore_3864e7f38681b875", 327474734455307, undefined, []); }
+  static completionBlock(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("QuartzCore_ff42ce03e691ab23", 327474734455307, undefined, []); }
   /**
    * class func disableActions() -> Bool
    * @availability iOS 2.0+
    */
-  static disableActions(): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 1784003358761153, undefined, []); }
+  static disableActions(): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 1784003358761153, undefined, []); }
   /**
    * class func flush()
    * @availability iOS 2.0+
    */
-  static flush(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3546890061167146, undefined, []); }
+  static flush(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3546890061167146, undefined, []); }
   /**
    * class func lock()
    * @availability iOS 2.0+
    */
-  static lock(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3629273155411583, undefined, []); }
+  static lock(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3629273155411583, undefined, []); }
   /**
    * class func setAnimationDuration(_ dur: CFTimeInterval)
    * @availability iOS 2.0+
    */
-  static setAnimationDuration(dur: number): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3782663120105314, undefined, [dur]); }
+  static setAnimationDuration(dur: number): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3782663120105314, undefined, [dur]); }
   /**
    * class func setAnimationTimingFunction(_ function: CAMediaTimingFunction?)
    * @availability iOS 2.0+
    */
-  static setAnimationTimingFunction(function_?: $SDK2): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3106978009068899, undefined, [function_]); }
+  static setAnimationTimingFunction(function_?: $SDK2): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3106978009068899, undefined, [function_]); }
   /**
    * class func setCompletionBlock(_ block: (() -> Void)?)
    * @availability iOS 2.0+
    */
-  static setCompletionBlock(block?: ((() => void)) | null): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 1549442290011549, undefined, [block], [{"callback":{"out":[]}}]); }
+  static setCompletionBlock(block?: ((() => void)) | null): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 1549442290011549, undefined, [block], [{"callback":{"out":[]}}]); }
   /**
    * class func setDisableActions(_ flag: Bool)
    * @availability iOS 2.0+
    */
-  static setDisableActions(flag: boolean): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 2864328426925462, undefined, [flag]); }
+  static setDisableActions(flag: boolean): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 2864328426925462, undefined, [flag]); }
   /**
    * class func setValue(_ anObject: Any?, forKey key: String)
    * @availability iOS 2.0+
    */
-  static setValue(anObject: (unknown) | null, key: string): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 4144429669133771, undefined, [anObject, key]); }
+  static setValue(anObject: (unknown) | null, key: string): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 4144429669133771, undefined, [anObject, key]); }
   /**
    * class func unlock()
    * @availability iOS 2.0+
    */
-  static unlock(): void { return callSDK<void>("QuartzCore_3864e7f38681b875", 3297131224366660, undefined, []); }
+  static unlock(): void { return callSDK<void>("QuartzCore_ff42ce03e691ab23", 3297131224366660, undefined, []); }
   /**
    * class func value(forKey key: String) -> Any?
    * @availability iOS 2.0+
    */
-  static value(key: string): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_3864e7f38681b875", 3784849818837680, undefined, [key]); }
+  static value(key: string): (unknown) | null { return callSDK<(unknown) | null>("QuartzCore_ff42ce03e691ab23", 3784849818837680, undefined, [key]); }
   /** init() */
-  static init(): CATransaction { return callSDK<CATransaction>("QuartzCore_3864e7f38681b875", 246511604221714, undefined, []); }
+  static init(): CATransaction { return callSDK<CATransaction>("QuartzCore_ff42ce03e691ab23", 246511604221714, undefined, []); }
   declare readonly $type: { "c:objc(cs)CATransaction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2844,108 +2844,108 @@ export class CATransform3D extends SDKHandle {
    * var m11: CGFloat
    * @availability iOS 2.0+
    */
-  get m11(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1371217339063137, this, []); }
-  set m11(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2284083173730349, this, [value]); }
+  get m11(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1371217339063137, this, []); }
+  set m11(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2284083173730349, this, [value]); }
   /**
    * var m12: CGFloat
    * @availability iOS 2.0+
    */
-  get m12(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1704111518320055, this, []); }
-  set m12(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 4115062308706301, this, [value]); }
+  get m12(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1704111518320055, this, []); }
+  set m12(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4115062308706301, this, [value]); }
   /**
    * var m13: CGFloat
    * @availability iOS 2.0+
    */
-  get m13(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 383705009307696, this, []); }
-  set m13(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2852880834589460, this, [value]); }
+  get m13(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 383705009307696, this, []); }
+  set m13(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2852880834589460, this, [value]); }
   /**
    * var m14: CGFloat
    * @availability iOS 2.0+
    */
-  get m14(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3843511342372836, this, []); }
-  set m14(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1017772322227022, this, [value]); }
+  get m14(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3843511342372836, this, []); }
+  set m14(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1017772322227022, this, [value]); }
   /**
    * var m21: CGFloat
    * @availability iOS 2.0+
    */
-  get m21(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2850715241928208, this, []); }
-  set m21(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1451815278992755, this, [value]); }
+  get m21(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2850715241928208, this, []); }
+  set m21(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1451815278992755, this, [value]); }
   /**
    * var m22: CGFloat
    * @availability iOS 2.0+
    */
-  get m22(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 318125467278669, this, []); }
-  set m22(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1294258492942363, this, [value]); }
+  get m22(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 318125467278669, this, []); }
+  set m22(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1294258492942363, this, [value]); }
   /**
    * var m23: CGFloat
    * @availability iOS 2.0+
    */
-  get m23(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 587464688316598, this, []); }
-  set m23(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 672757988091340, this, [value]); }
+  get m23(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 587464688316598, this, []); }
+  set m23(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 672757988091340, this, [value]); }
   /**
    * var m24: CGFloat
    * @availability iOS 2.0+
    */
-  get m24(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1719611084223538, this, []); }
-  set m24(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2222283455529140, this, [value]); }
+  get m24(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1719611084223538, this, []); }
+  set m24(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2222283455529140, this, [value]); }
   /**
    * var m31: CGFloat
    * @availability iOS 2.0+
    */
-  get m31(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3257521811314642, this, []); }
-  set m31(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2141558243244290, this, [value]); }
+  get m31(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3257521811314642, this, []); }
+  set m31(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2141558243244290, this, [value]); }
   /**
    * var m32: CGFloat
    * @availability iOS 2.0+
    */
-  get m32(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 4139071970581579, this, []); }
-  set m32(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2522305698128266, this, [value]); }
+  get m32(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 4139071970581579, this, []); }
+  set m32(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2522305698128266, this, [value]); }
   /**
    * var m33: CGFloat
    * @availability iOS 2.0+
    */
-  get m33(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3319425557220710, this, []); }
-  set m33(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3141468913231827, this, [value]); }
+  get m33(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3319425557220710, this, []); }
+  set m33(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3141468913231827, this, [value]); }
   /**
    * var m34: CGFloat
    * @availability iOS 2.0+
    */
-  get m34(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2191793311524360, this, []); }
-  set m34(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 4429147314916810, this, [value]); }
+  get m34(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2191793311524360, this, []); }
+  set m34(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 4429147314916810, this, [value]); }
   /**
    * var m41: CGFloat
    * @availability iOS 2.0+
    */
-  get m41(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 6708150591635, this, []); }
-  set m41(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1315316969309003, this, [value]); }
+  get m41(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 6708150591635, this, []); }
+  set m41(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1315316969309003, this, [value]); }
   /**
    * var m42: CGFloat
    * @availability iOS 2.0+
    */
-  get m42(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 2731383655401038, this, []); }
-  set m42(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 268553140923805, this, [value]); }
+  get m42(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 2731383655401038, this, []); }
+  set m42(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 268553140923805, this, [value]); }
   /**
    * var m43: CGFloat
    * @availability iOS 2.0+
    */
-  get m43(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 1947128524644759, this, []); }
-  set m43(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3807591315687198, this, [value]); }
+  get m43(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 1947128524644759, this, []); }
+  set m43(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3807591315687198, this, [value]); }
   /**
    * var m44: CGFloat
    * @availability iOS 2.0+
    */
-  get m44(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3719968366435918, this, []); }
-  set m44(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 3745261444546685, this, [value]); }
+  get m44(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3719968366435918, this, []); }
+  set m44(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3745261444546685, this, [value]); }
   /**
    * init(m11: CGFloat, m12: CGFloat, m13: CGFloat, m14: CGFloat, m21: CGFloat, m22: CGFloat, m23: CGFloat, m24: CGFloat, m31: CGFloat, m32: CGFloat, m33: CGFloat, m34: CGFloat, m41: CGFloat, m42: CGFloat, m43: CGFloat, m44: CGFloat)
    * @availability iOS 2.0+
    */
-  static initM11M12M13M14M21M22M23M24M31M32M33M34M41M42M43M44(m11: number, m12: number, m13: number, m14: number, m21: number, m22: number, m23: number, m24: number, m31: number, m32: number, m33: number, m34: number, m41: number, m42: number, m43: number, m44: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 1921836463543163, undefined, [m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44]); }
+  static initM11M12M13M14M21M22M23M24M31M32M33M34M41M42M43M44(m11: number, m12: number, m13: number, m14: number, m21: number, m22: number, m23: number, m24: number, m31: number, m32: number, m33: number, m34: number, m41: number, m42: number, m43: number, m44: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 1921836463543163, undefined, [m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44]); }
   /**
    * init()
    * @availability iOS 2.0+
    */
-  static init(): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 371591251148251, undefined, []); }
+  static init(): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 371591251148251, undefined, []); }
   declare readonly $type: { "c:@S@CATransform3D": true };
 }
 
@@ -2955,7 +2955,7 @@ export class CATransform3D extends SDKHandle {
  */
 export class CATransformLayer extends (CALayer as unknown as Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer)) {
   /** init() */
-  static init(): CATransformLayer { return callSDK<CATransformLayer>("QuartzCore_3864e7f38681b875", 1576396364135493, undefined, []); }
+  static init(): CATransformLayer { return callSDK<CATransformLayer>("QuartzCore_ff42ce03e691ab23", 1576396364135493, undefined, []); }
   declare readonly $type: { "c:objc(cs)CATransformLayer": true; "c:objc(cs)CALayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "allowsEdgeAntialiasing": true; "allowsGroupOpacity": true; "anchorPoint": true; "anchorPointZ": true; "backgroundColor": true; "backgroundFilters": true; "borderColor": true; "borderWidth": true; "bounds": true; "compositingFilter": true; "contents": true; "contentsCenter": true; "contentsFormat": true; "contentsGravity": true; "contentsHeadroom": true; "contentsRect": true; "contentsScale": true; "cornerCurve": true; "cornerRadius": true; "delegate": true; "isDoubleSided": true; "drawsAsynchronously": true; "edgeAntialiasingMask": true; "filters": true; "frame": true; "isGeometryFlipped": true; "isHidden": true; "magnificationFilter": true; "mask": true; "maskedCorners": true; "masksToBounds": true; "minificationFilter": true; "minificationFilterBias": true; "name": true; "needsDisplayOnBoundsChange": true; "opacity": true; "isOpaque": true; "position": true; "preferredDynamicRange": true; "rasterizationScale": true; "shadowColor": true; "shadowOffset": true; "shadowOpacity": true; "shadowPath": true; "shadowRadius": true; "shouldRasterize": true; "style": true; "sublayerTransform": true; "sublayers": true; "superlayer": true; "toneMapMode": true; "transform": true; "visibleRect": true; "wantsExtendedDynamicRangeContent": true; "zPosition": true };
 }
@@ -2966,31 +2966,31 @@ export class CATransformLayer extends (CALayer as unknown as Omit<typeof CALayer
  */
 export class CATransition extends (CAAnimation as unknown as Omit<typeof CAAnimation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CAAnimation)) {
   /** init() */
-  static init(): CATransition { return callSDK<CATransition>("QuartzCore_3864e7f38681b875", 4228903350978051, undefined, []); }
+  static init(): CATransition { return callSDK<CATransition>("QuartzCore_ff42ce03e691ab23", 4228903350978051, undefined, []); }
   /**
    * var endProgress: Float { get set }
    * @availability iOS 2.0+
    */
-  get endProgress(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3390061294984295, this, []); }
-  set endProgress(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 1254218370743094, this, [value]); }
+  get endProgress(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3390061294984295, this, []); }
+  set endProgress(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1254218370743094, this, [value]); }
   /**
    * var startProgress: Float { get set }
    * @availability iOS 2.0+
    */
-  get startProgress(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 3208773137338703, this, []); }
-  set startProgress(value: number) { callSDK<void>("QuartzCore_3864e7f38681b875", 2097773462519126, this, [value]); }
+  get startProgress(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 3208773137338703, this, []); }
+  set startProgress(value: number) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 2097773462519126, this, [value]); }
   /**
    * var subtype: CATransitionSubtype? { get set }
    * @availability iOS 2.0+
    */
-  get subtype(): (CATransitionSubtype) | null { return callSDK<(CATransitionSubtype) | null>("QuartzCore_3864e7f38681b875", 862378072601954, this, []); }
-  set subtype(value: (CATransitionSubtype) | null) { callSDK<void>("QuartzCore_3864e7f38681b875", 3527629301511233, this, [value]); }
+  get subtype(): (CATransitionSubtype) | null { return callSDK<(CATransitionSubtype) | null>("QuartzCore_ff42ce03e691ab23", 862378072601954, this, []); }
+  set subtype(value: (CATransitionSubtype) | null) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 3527629301511233, this, [value]); }
   /**
    * var type: CATransitionType { get set }
    * @availability iOS 2.0+
    */
-  get type(): CATransitionType { return callSDK<CATransitionType>("QuartzCore_3864e7f38681b875", 3879398954401002, this, []); }
-  set type(value: CATransitionType) { callSDK<void>("QuartzCore_3864e7f38681b875", 1426653360118194, this, [value]); }
+  get type(): CATransitionType { return callSDK<CATransitionType>("QuartzCore_ff42ce03e691ab23", 3879398954401002, this, []); }
+  set type(value: CATransitionType) { callSDK<void>("QuartzCore_ff42ce03e691ab23", 1426653360118194, this, [value]); }
   declare readonly $type: { "c:objc(cs)CATransition": true; "c:objc(cs)CAAnimation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "preferredFrameRateRange": true; "isRemovedOnCompletion": true; "timingFunction": true; "endProgress": true; "startProgress": true; "subtype": true; "type": true };
 }
@@ -3006,27 +3006,27 @@ export const CATransitionSubtype = {
    * static let fromBottom: CATransitionSubtype
    * @availability iOS 2.0+
    */
-  get fromBottom(): CATransitionSubtype { return callSDK<CATransitionSubtype>("QuartzCore_3864e7f38681b875", 1913959160945091, undefined, []); },
+  get fromBottom(): CATransitionSubtype { return callSDK<CATransitionSubtype>("QuartzCore_ff42ce03e691ab23", 1913959160945091, undefined, []); },
   /**
    * static let fromLeft: CATransitionSubtype
    * @availability iOS 2.0+
    */
-  get fromLeft(): CATransitionSubtype { return callSDK<CATransitionSubtype>("QuartzCore_3864e7f38681b875", 1892029390359925, undefined, []); },
+  get fromLeft(): CATransitionSubtype { return callSDK<CATransitionSubtype>("QuartzCore_ff42ce03e691ab23", 1892029390359925, undefined, []); },
   /**
    * static let fromRight: CATransitionSubtype
    * @availability iOS 2.0+
    */
-  get fromRight(): CATransitionSubtype { return callSDK<CATransitionSubtype>("QuartzCore_3864e7f38681b875", 2167560955510816, undefined, []); },
+  get fromRight(): CATransitionSubtype { return callSDK<CATransitionSubtype>("QuartzCore_ff42ce03e691ab23", 2167560955510816, undefined, []); },
   /**
    * static let fromTop: CATransitionSubtype
    * @availability iOS 2.0+
    */
-  get fromTop(): CATransitionSubtype { return callSDK<CATransitionSubtype>("QuartzCore_3864e7f38681b875", 1965493917266950, undefined, []); },
+  get fromTop(): CATransitionSubtype { return callSDK<CATransitionSubtype>("QuartzCore_ff42ce03e691ab23", 1965493917266950, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 2.0+
    */
-  init(rawValue: string): CATransitionSubtype { return callSDK<CATransitionSubtype>("QuartzCore_3864e7f38681b875", 1833313179832859, undefined, [rawValue]); }
+  init(rawValue: string): CATransitionSubtype { return callSDK<CATransitionSubtype>("QuartzCore_ff42ce03e691ab23", 1833313179832859, undefined, [rawValue]); }
 };
 
 /**
@@ -3040,27 +3040,27 @@ export const CATransitionType = {
    * static let fade: CATransitionType
    * @availability iOS 2.0+
    */
-  get fade(): CATransitionType { return callSDK<CATransitionType>("QuartzCore_3864e7f38681b875", 4223198650170628, undefined, []); },
+  get fade(): CATransitionType { return callSDK<CATransitionType>("QuartzCore_ff42ce03e691ab23", 4223198650170628, undefined, []); },
   /**
    * static let moveIn: CATransitionType
    * @availability iOS 2.0+
    */
-  get moveIn(): CATransitionType { return callSDK<CATransitionType>("QuartzCore_3864e7f38681b875", 1961795478648439, undefined, []); },
+  get moveIn(): CATransitionType { return callSDK<CATransitionType>("QuartzCore_ff42ce03e691ab23", 1961795478648439, undefined, []); },
   /**
    * static let push: CATransitionType
    * @availability iOS 2.0+
    */
-  get push(): CATransitionType { return callSDK<CATransitionType>("QuartzCore_3864e7f38681b875", 2385024861524036, undefined, []); },
+  get push(): CATransitionType { return callSDK<CATransitionType>("QuartzCore_ff42ce03e691ab23", 2385024861524036, undefined, []); },
   /**
    * static let reveal: CATransitionType
    * @availability iOS 2.0+
    */
-  get reveal(): CATransitionType { return callSDK<CATransitionType>("QuartzCore_3864e7f38681b875", 3043738621142596, undefined, []); },
+  get reveal(): CATransitionType { return callSDK<CATransitionType>("QuartzCore_ff42ce03e691ab23", 3043738621142596, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 2.0+
    */
-  init(rawValue: string): CATransitionType { return callSDK<CATransitionType>("QuartzCore_3864e7f38681b875", 2042461618483799, undefined, [rawValue]); }
+  init(rawValue: string): CATransitionType { return callSDK<CATransitionType>("QuartzCore_ff42ce03e691ab23", 2042461618483799, undefined, [rawValue]); }
 };
 
 /**
@@ -3072,12 +3072,12 @@ export class CAValueFunction extends SDKHandle {
    * convenience init?(name: CAValueFunctionName)
    * @availability iOS 3.0+
    */
-  static init(name: CAValueFunctionName): (CAValueFunction) | null { return callSDK<(CAValueFunction) | null>("QuartzCore_3864e7f38681b875", 634606985144142, undefined, [name]); }
+  static init(name: CAValueFunctionName): (CAValueFunction) | null { return callSDK<(CAValueFunction) | null>("QuartzCore_ff42ce03e691ab23", 634606985144142, undefined, [name]); }
   /**
    * var name: CAValueFunctionName { get }
    * @availability iOS 3.0+
    */
-  get name(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 2058462788360850, this, []); }
+  get name(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 2058462788360850, this, []); }
   declare readonly $type: { "c:objc(cs)CAValueFunction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true };
 }
@@ -3093,62 +3093,62 @@ export const CAValueFunctionName = {
    * static let rotateX: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get rotateX(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 3989473532109627, undefined, []); },
+  get rotateX(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 3989473532109627, undefined, []); },
   /**
    * static let rotateY: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get rotateY(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 1917110233037556, undefined, []); },
+  get rotateY(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 1917110233037556, undefined, []); },
   /**
    * static let rotateZ: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get rotateZ(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 2135807798348462, undefined, []); },
+  get rotateZ(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 2135807798348462, undefined, []); },
   /**
    * static let scale: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get scale(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 134568947712240, undefined, []); },
+  get scale(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 134568947712240, undefined, []); },
   /**
    * static let scaleX: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get scaleX(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 12140701916619, undefined, []); },
+  get scaleX(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 12140701916619, undefined, []); },
   /**
    * static let scaleY: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get scaleY(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 3842965535795819, undefined, []); },
+  get scaleY(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 3842965535795819, undefined, []); },
   /**
    * static let scaleZ: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get scaleZ(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 585777391211397, undefined, []); },
+  get scaleZ(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 585777391211397, undefined, []); },
   /**
    * static let translate: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get translate(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 3587522267968066, undefined, []); },
+  get translate(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 3587522267968066, undefined, []); },
   /**
    * static let translateX: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get translateX(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 2166561929561153, undefined, []); },
+  get translateX(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 2166561929561153, undefined, []); },
   /**
    * static let translateY: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get translateY(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 2530591495314216, undefined, []); },
+  get translateY(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 2530591495314216, undefined, []); },
   /**
    * static let translateZ: CAValueFunctionName
    * @availability iOS 3.0+
    */
-  get translateZ(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 961204297538911, undefined, []); },
+  get translateZ(): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 961204297538911, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 3.0+
    */
-  init(rawValue: string): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_3864e7f38681b875", 833181164271460, undefined, [rawValue]); }
+  init(rawValue: string): CAValueFunctionName { return callSDK<CAValueFunctionName>("QuartzCore_ff42ce03e691ab23", 833181164271460, undefined, [rawValue]); }
 };
 
 export class NSValue extends SDKHandle {
@@ -3156,12 +3156,12 @@ export class NSValue extends SDKHandle {
    * init(CATransform3D t: CATransform3D)
    * @availability iOS 2.0+
    */
-  static init(t: CATransform3D): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("QuartzCore_3864e7f38681b875", 3506119676988676, undefined, [t]); }
+  static init(t: CATransform3D): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("QuartzCore_ff42ce03e691ab23", 3506119676988676, undefined, [t]); }
   /**
    * var caTransform3DValue: CATransform3D { get }
    * @availability iOS 2.0+
    */
-  get caTransform3DValue(): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 1741622286020715, this, []); }
+  get caTransform3DValue(): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 1741622286020715, this, []); }
   declare readonly $type: { "c:objc(cs)NSValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "caTransform3DValue": true };
 }
@@ -3170,182 +3170,182 @@ export class NSValue extends SDKHandle {
  * func CACurrentMediaTime() -> CFTimeInterval
  * @availability iOS 2.0+
  */
-export function CACurrentMediaTime(): number { return callSDK<number>("QuartzCore_3864e7f38681b875", 4064074624673797, undefined, []); }
+export function CACurrentMediaTime(): number { return callSDK<number>("QuartzCore_ff42ce03e691ab23", 4064074624673797, undefined, []); }
 
 /**
  * func CATransform3DConcat(_ a: CATransform3D, _ b: CATransform3D) -> CATransform3D
  * @availability iOS 2.0+
  */
-export function CATransform3DConcat(a: CATransform3D, b: CATransform3D): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 420549844829802, undefined, [a, b]); }
+export function CATransform3DConcat(a: CATransform3D, b: CATransform3D): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 420549844829802, undefined, [a, b]); }
 
 /**
  * func CATransform3DEqualToTransform(_ a: CATransform3D, _ b: CATransform3D) -> Bool
  * @availability iOS 2.0+
  */
-export function CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 3243396781825498, undefined, [a, b]); }
+export function CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 3243396781825498, undefined, [a, b]); }
 
 /**
  * func CATransform3DGetAffineTransform(_ t: CATransform3D) -> CGAffineTransform
  * @availability iOS 2.0+
  */
-export function CATransform3DGetAffineTransform(t: CATransform3D): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("QuartzCore_3864e7f38681b875", 4422151118570861, undefined, [t]); }
+export function CATransform3DGetAffineTransform(t: CATransform3D): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("QuartzCore_ff42ce03e691ab23", 4422151118570861, undefined, [t]); }
 
 /**
  * func CATransform3DInvert(_ t: CATransform3D) -> CATransform3D
  * @availability iOS 2.0+
  */
-export function CATransform3DInvert(t: CATransform3D): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 3665689241061926, undefined, [t]); }
+export function CATransform3DInvert(t: CATransform3D): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 3665689241061926, undefined, [t]); }
 
 /**
  * func CATransform3DIsAffine(_ t: CATransform3D) -> Bool
  * @availability iOS 2.0+
  */
-export function CATransform3DIsAffine(t: CATransform3D): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 975228524754798, undefined, [t]); }
+export function CATransform3DIsAffine(t: CATransform3D): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 975228524754798, undefined, [t]); }
 
 /**
  * func CATransform3DIsIdentity(_ t: CATransform3D) -> Bool
  * @availability iOS 2.0+
  */
-export function CATransform3DIsIdentity(t: CATransform3D): boolean { return callSDK<boolean>("QuartzCore_3864e7f38681b875", 804636116013275, undefined, [t]); }
+export function CATransform3DIsIdentity(t: CATransform3D): boolean { return callSDK<boolean>("QuartzCore_ff42ce03e691ab23", 804636116013275, undefined, [t]); }
 
 /**
  * func CATransform3DMakeAffineTransform(_ m: CGAffineTransform) -> CATransform3D
  * @availability iOS 2.0+
  */
-export function CATransform3DMakeAffineTransform(m: _CoreFoundation_CGAffineTransform): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 135271682232588, undefined, [m]); }
+export function CATransform3DMakeAffineTransform(m: _CoreFoundation_CGAffineTransform): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 135271682232588, undefined, [m]); }
 
 /**
  * func CATransform3DMakeRotation(_ angle: CGFloat, _ x: CGFloat, _ y: CGFloat, _ z: CGFloat) -> CATransform3D
  * @availability iOS 2.0+
  */
-export function CATransform3DMakeRotation(angle: number, x: number, y: number, z: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 3286499276001668, undefined, [angle, x, y, z]); }
+export function CATransform3DMakeRotation(angle: number, x: number, y: number, z: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 3286499276001668, undefined, [angle, x, y, z]); }
 
 /**
  * func CATransform3DMakeScale(_ sx: CGFloat, _ sy: CGFloat, _ sz: CGFloat) -> CATransform3D
  * @availability iOS 2.0+
  */
-export function CATransform3DMakeScale(sx: number, sy: number, sz: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 1544742166597540, undefined, [sx, sy, sz]); }
+export function CATransform3DMakeScale(sx: number, sy: number, sz: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 1544742166597540, undefined, [sx, sy, sz]); }
 
 /**
  * func CATransform3DMakeTranslation(_ tx: CGFloat, _ ty: CGFloat, _ tz: CGFloat) -> CATransform3D
  * @availability iOS 2.0+
  */
-export function CATransform3DMakeTranslation(tx: number, ty: number, tz: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 2474636058483983, undefined, [tx, ty, tz]); }
+export function CATransform3DMakeTranslation(tx: number, ty: number, tz: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 2474636058483983, undefined, [tx, ty, tz]); }
 
 /**
  * func CATransform3DRotate(_ t: CATransform3D, _ angle: CGFloat, _ x: CGFloat, _ y: CGFloat, _ z: CGFloat) -> CATransform3D
  * @availability iOS 2.0+
  */
-export function CATransform3DRotate(t: CATransform3D, angle: number, x: number, y: number, z: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 2978558131956956, undefined, [t, angle, x, y, z]); }
+export function CATransform3DRotate(t: CATransform3D, angle: number, x: number, y: number, z: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 2978558131956956, undefined, [t, angle, x, y, z]); }
 
 /**
  * func CATransform3DScale(_ t: CATransform3D, _ sx: CGFloat, _ sy: CGFloat, _ sz: CGFloat) -> CATransform3D
  * @availability iOS 2.0+
  */
-export function CATransform3DScale(t: CATransform3D, sx: number, sy: number, sz: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 275705878734259, undefined, [t, sx, sy, sz]); }
+export function CATransform3DScale(t: CATransform3D, sx: number, sy: number, sz: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 275705878734259, undefined, [t, sx, sy, sz]); }
 
 /**
  * func CATransform3DTranslate(_ t: CATransform3D, _ tx: CGFloat, _ ty: CGFloat, _ tz: CGFloat) -> CATransform3D
  * @availability iOS 2.0+
  */
-export function CATransform3DTranslate(t: CATransform3D, tx: number, ty: number, tz: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 4129168480213116, undefined, [t, tx, ty, tz]); }
+export function CATransform3DTranslate(t: CATransform3D, tx: number, ty: number, tz: number): CATransform3D { return callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 4129168480213116, undefined, [t, tx, ty, tz]); }
 
 /**
  * let CATransform3DIdentity: CATransform3D
  * @availability iOS 2.0+
  */
-export const CATransform3DIdentity: CATransform3D = callSDK<CATransform3D>("QuartzCore_3864e7f38681b875", 3231042226092665, undefined, []);
+export const CATransform3DIdentity: CATransform3D = callSDK<CATransform3D>("QuartzCore_ff42ce03e691ab23", 3231042226092665, undefined, []);
 
 /**
  * let kCAOnOrderIn: String
  * @availability iOS 2.0+
  */
-export const kCAOnOrderIn: string = callSDK<string>("QuartzCore_3864e7f38681b875", 3092843276599783, undefined, []);
+export const kCAOnOrderIn: string = callSDK<string>("QuartzCore_ff42ce03e691ab23", 3092843276599783, undefined, []);
 
 /**
  * let kCAOnOrderOut: String
  * @availability iOS 2.0+
  */
-export const kCAOnOrderOut: string = callSDK<string>("QuartzCore_3864e7f38681b875", 1774393252052056, undefined, []);
+export const kCAOnOrderOut: string = callSDK<string>("QuartzCore_ff42ce03e691ab23", 1774393252052056, undefined, []);
 
 /**
  * let kCARendererColorSpace: String
  * @availability iOS 2.0+
  */
-export const kCARendererColorSpace: string = callSDK<string>("QuartzCore_3864e7f38681b875", 1195733633804318, undefined, []);
+export const kCARendererColorSpace: string = callSDK<string>("QuartzCore_ff42ce03e691ab23", 1195733633804318, undefined, []);
 
 /**
  * let kCARendererMetalCommandQueue: String
  * @availability iOS 12.0+
  */
-export const kCARendererMetalCommandQueue: string = callSDK<string>("QuartzCore_3864e7f38681b875", 3419071757443372, undefined, []);
+export const kCARendererMetalCommandQueue: string = callSDK<string>("QuartzCore_ff42ce03e691ab23", 3419071757443372, undefined, []);
 
 /**
  * let kCATransactionAnimationDuration: String
  * @availability iOS 2.0+
  */
-export const kCATransactionAnimationDuration: string = callSDK<string>("QuartzCore_3864e7f38681b875", 1267041743141950, undefined, []);
+export const kCATransactionAnimationDuration: string = callSDK<string>("QuartzCore_ff42ce03e691ab23", 1267041743141950, undefined, []);
 
 /**
  * let kCATransactionAnimationTimingFunction: String
  * @availability iOS 3.0+
  */
-export const kCATransactionAnimationTimingFunction: string = callSDK<string>("QuartzCore_3864e7f38681b875", 2364984839374927, undefined, []);
+export const kCATransactionAnimationTimingFunction: string = callSDK<string>("QuartzCore_ff42ce03e691ab23", 2364984839374927, undefined, []);
 
 /**
  * let kCATransactionCompletionBlock: String
  * @availability iOS 4.0+
  */
-export const kCATransactionCompletionBlock: string = callSDK<string>("QuartzCore_3864e7f38681b875", 4440552532380586, undefined, []);
+export const kCATransactionCompletionBlock: string = callSDK<string>("QuartzCore_ff42ce03e691ab23", 4440552532380586, undefined, []);
 
 /**
  * let kCATransactionDisableActions: String
  * @availability iOS 2.0+
  */
-export const kCATransactionDisableActions: string = callSDK<string>("QuartzCore_3864e7f38681b875", 2723768035887305, undefined, []);
+export const kCATransactionDisableActions: string = callSDK<string>("QuartzCore_ff42ce03e691ab23", 2723768035887305, undefined, []);
 
 /**
  * let kCATransition: String
  * @availability iOS 2.0+
  */
-export const kCATransition: string = callSDK<string>("QuartzCore_3864e7f38681b875", 1058834022297590, undefined, []);
+export const kCATransition: string = callSDK<string>("QuartzCore_ff42ce03e691ab23", 1058834022297590, undefined, []);
 
 /** var CA_WARN_DEPRECATED: Int32 { get } */
-export const CA_WARN_DEPRECATED: number = callSDK<number>("QuartzCore_3864e7f38681b875", 301357096661400, undefined, []);
+export const CA_WARN_DEPRECATED: number = callSDK<number>("QuartzCore_ff42ce03e691ab23", 301357096661400, undefined, []);
 
 registerSDKProtocol("c:objc(pl)CAAction", {"runForKeyObjectArguments":"run(forKey:object:arguments:)"});
-registerSDKClass("CAAnimation", CAAnimation, { module: "QuartzCore_3864e7f38681b875", properties: {"delegate":3706511155447437,"preferredFrameRateRange":3711459916279525,"isRemovedOnCompletion":3084459027014153,"timingFunction":1263391440240759}, methods: {"shouldArchiveValue":{"id":3647345332382528}} });
+registerSDKClass("CAAnimation", CAAnimation, { module: "QuartzCore_ff42ce03e691ab23", properties: {"delegate":3706511155447437,"preferredFrameRateRange":3711459916279525,"isRemovedOnCompletion":3084459027014153,"timingFunction":1263391440240759}, methods: {"shouldArchiveValue":{"id":3647345332382528}} });
 registerSDKProtocol("c:objc(pl)CAAnimationDelegate", {"animationDidStart":"animationDidStart(_:)","animationDidStopFinished":"animationDidStop(_:finished:)"});
-registerSDKClass("CAAnimationGroup", CAAnimationGroup, { module: "QuartzCore_3864e7f38681b875", properties: {"animations":2292391461393771} });
-registerSDKClass("CAPropertyAnimation", CAPropertyAnimation, { module: "QuartzCore_3864e7f38681b875", properties: {"isAdditive":2174018962901343,"isCumulative":4052334518979090,"keyPath":410965983850188,"valueFunction":2586121371852633} });
-registerSDKClass("CABasicAnimation", CABasicAnimation, { module: "QuartzCore_3864e7f38681b875", properties: {"byValue":3233800031513312,"fromValue":1455927374737599,"toValue":1252269552798116} });
-registerSDKClass("CADisplayLink", CADisplayLink, { module: "QuartzCore_3864e7f38681b875", properties: {"duration":299179036864203,"frameInterval":2957316428365054,"isPaused":4077469450065444,"preferredFrameRateRange":3810691754996984,"preferredFramesPerSecond":323764566900570,"targetTimestamp":1070702566887706,"timestamp":742279694029701}, methods: {"add":{"id":1191408783734744},"invalidate":{"id":520772451667460},"remove":{"id":1470990098083016}} });
-registerSDKClass("CALayer", CALayer, { module: "QuartzCore_3864e7f38681b875", properties: {"actions":2575447048430762,"allowsEdgeAntialiasing":792758415113788,"allowsGroupOpacity":4125148229645127,"anchorPoint":3046873949299828,"anchorPointZ":337016008276883,"backgroundColor":4228737889172329,"backgroundFilters":1234105360260664,"borderColor":1278697113054225,"borderWidth":1098817126437076,"bounds":948624453087022,"compositingFilter":2813623273760009,"contents":622665223830054,"contentsCenter":474013686268467,"contentsFormat":3009750279338497,"contentsGravity":1255837548957066,"contentsHeadroom":708239159722117,"contentsRect":1303466661241012,"contentsScale":1419341111120151,"cornerCurve":2172018423054519,"cornerRadius":678435111607685,"delegate":2145475747775951,"isDoubleSided":4495641834117337,"drawsAsynchronously":4313286291349983,"edgeAntialiasingMask":256925597820030,"filters":3266018642162613,"frame":4384915666323424,"isGeometryFlipped":2236901973603717,"isHidden":1634027130266021,"magnificationFilter":4412127923095978,"mask":3851254026789646,"maskedCorners":3396512199089480,"masksToBounds":765410260978208,"minificationFilter":1853655740715371,"minificationFilterBias":2746169971234221,"name":986539044603635,"needsDisplayOnBoundsChange":31848423201935,"opacity":3614948299840076,"isOpaque":1057702291762398,"position":1815525674356863,"preferredDynamicRange":628208746234980,"rasterizationScale":1604907690972631,"shadowColor":2956164663989077,"shadowOffset":1679138798725672,"shadowOpacity":1061895091989712,"shadowPath":2858128354414355,"shadowRadius":2168879693957746,"shouldRasterize":1165810415304746,"style":4272855391841665,"sublayerTransform":904492044759189,"sublayers":3454607058293522,"superlayer":4123418366913843,"toneMapMode":3527630030006068,"transform":2590909450585666,"visibleRect":2832922555607492,"wantsExtendedDynamicRangeContent":459668738563248,"zPosition":1033884146282885}, methods: {"action":{"id":605989066831560},"add":{"id":324719760129151},"addSublayer":{"id":4147690802857919},"affineTransform":{"id":1332654016871582},"animation":{"id":1540787567709062},"animationKeys":{"id":2807880259421434},"contains":{"id":1354159396192935},"contentsAreFlipped":{"id":305496416748741},"convertFrom":{"id":770746730762532},"convertTo":{"id":3308604416106030},"convertFrom59317":{"id":1269266664689378},"convertTo90208":{"id":303678267251658},"convertTimeFrom":{"id":3542179463902338},"convertTimeTo":{"id":1163910757129129},"display":{"id":2623290268285273},"displayIfNeeded":{"id":2732154412564902},"draw":{"id":3799342152230415},"hitTest":{"id":3536578327432742},"insertSublayerAbove":{"id":3111931348800356},"insertSublayerAt":{"id":2585041649518871},"insertSublayerBelow":{"id":4134428095709494},"layoutIfNeeded":{"id":1289343860770807},"layoutSublayers":{"id":2276829705092534},"model":{"id":3968769276486182},"needsDisplay":{"id":4248225188446316},"needsLayout":{"id":720020246855843},"preferredFrameSize":{"id":2262797182009591},"presentation":{"id":2624571335083595},"removeAllAnimations":{"id":4026467232359586},"removeAnimation":{"id":825166837950794},"removeFromSuperlayer":{"id":1900219176098273},"render":{"id":3442428576450828},"replaceSublayer":{"id":618094705558145},"scroll":{"id":3105239878830180},"scrollRectToVisible":{"id":3322492593158201},"setAffineTransform":{"id":3519243342756702},"setNeedsDisplay":{"id":1347355657450502},"setNeedsDisplay81283":{"id":2899684820049111},"setNeedsLayout":{"id":4144525985119260},"shouldArchiveValue":{"id":2120483968846110}} });
-registerSDKClass("CAEAGLLayer", CAEAGLLayer, { module: "QuartzCore_3864e7f38681b875", properties: {"presentsWithTransaction":2030423943401299} });
-registerSDKClass("CAEDRMetadata", CAEDRMetadata, { module: "QuartzCore_3864e7f38681b875", properties: {} });
-registerSDKClass("CAEmitterCell", CAEmitterCell, { module: "QuartzCore_3864e7f38681b875", properties: {"alphaRange":3690729784887349,"alphaSpeed":1404172158596867,"birthRate":4066030702803222,"blueRange":180937518862998,"blueSpeed":2619301225681641,"color":4205602387451696,"contents":812210485507633,"contentsRect":3146145508553726,"contentsScale":2205808233039908,"emissionLatitude":4462275832414999,"emissionLongitude":3206978895716031,"emissionRange":2703685012496728,"emitterCells":4049807098494519,"isEnabled":964732331300280,"greenRange":2523844470704980,"greenSpeed":2513735498819418,"lifetime":995457734487390,"lifetimeRange":864997420540023,"magnificationFilter":1741867911816156,"minificationFilter":1834914847135857,"minificationFilterBias":581659110241340,"name":3021382717382678,"redRange":1598274619373387,"redSpeed":909207820554825,"scale":2295501022615562,"scaleRange":1343700228731316,"scaleSpeed":4173732284045885,"spin":4221816784996925,"spinRange":237364873933470,"style":1206217110782981,"velocity":3504434102579813,"velocityRange":2675222302512552,"xAcceleration":3733557739365305,"yAcceleration":3273044837888733,"zAcceleration":4313311238820686}, methods: {"shouldArchiveValue":{"id":4072520222378823}} });
-registerSDKClass("CAEmitterLayer", CAEmitterLayer, { module: "QuartzCore_3864e7f38681b875", properties: {"birthRate":4011591067445418,"emitterCells":3768519784575293,"emitterDepth":1192532994978903,"emitterMode":316752451761686,"emitterPosition":581828007202171,"emitterShape":2123604780051167,"emitterSize":178529854542519,"emitterZPosition":1494281967704277,"lifetime":3101088489238783,"preservesDepth":3866648301896602,"renderMode":1027927647190088,"scale":3052243570050443,"seed":3673155355353474,"spin":1397743537481708,"velocity":1263921044149406} });
-registerSDKClass("QuartzCore.CAFrameRateRange", CAFrameRateRange, { module: "QuartzCore_3864e7f38681b875", properties: {} });
-registerSDKClass("CAGradientLayer", CAGradientLayer, { module: "QuartzCore_3864e7f38681b875", properties: {"colors":698452583082503,"endPoint":3837207110156632,"locations":1804569676081238,"startPoint":3321758970305533,"type":891201630848333} });
-registerSDKClass("CAKeyframeAnimation", CAKeyframeAnimation, { module: "QuartzCore_3864e7f38681b875", properties: {"biasValues":1133833013323319,"calculationMode":2181605278450048,"continuityValues":786937647417470,"keyTimes":3049483036069403,"path":2970030693039238,"rotationMode":3690514572211257,"tensionValues":1575641460076691,"timingFunctions":4289148942186710,"values":3813375388925263} });
+registerSDKClass("CAAnimationGroup", CAAnimationGroup, { module: "QuartzCore_ff42ce03e691ab23", properties: {"animations":2292391461393771} });
+registerSDKClass("CAPropertyAnimation", CAPropertyAnimation, { module: "QuartzCore_ff42ce03e691ab23", properties: {"isAdditive":2174018962901343,"isCumulative":4052334518979090,"keyPath":410965983850188,"valueFunction":2586121371852633} });
+registerSDKClass("CABasicAnimation", CABasicAnimation, { module: "QuartzCore_ff42ce03e691ab23", properties: {"byValue":3233800031513312,"fromValue":1455927374737599,"toValue":1252269552798116} });
+registerSDKClass("CADisplayLink", CADisplayLink, { module: "QuartzCore_ff42ce03e691ab23", properties: {"duration":299179036864203,"frameInterval":2957316428365054,"isPaused":4077469450065444,"preferredFrameRateRange":3810691754996984,"preferredFramesPerSecond":323764566900570,"targetTimestamp":1070702566887706,"timestamp":742279694029701}, methods: {"add":{"id":1191408783734744},"invalidate":{"id":520772451667460},"remove":{"id":1470990098083016}} });
+registerSDKClass("CALayer", CALayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"actions":2575447048430762,"allowsEdgeAntialiasing":792758415113788,"allowsGroupOpacity":4125148229645127,"anchorPoint":3046873949299828,"anchorPointZ":337016008276883,"backgroundColor":4228737889172329,"backgroundFilters":1234105360260664,"borderColor":1278697113054225,"borderWidth":1098817126437076,"bounds":948624453087022,"compositingFilter":2813623273760009,"contents":622665223830054,"contentsCenter":474013686268467,"contentsFormat":3009750279338497,"contentsGravity":1255837548957066,"contentsHeadroom":708239159722117,"contentsRect":1303466661241012,"contentsScale":1419341111120151,"cornerCurve":2172018423054519,"cornerRadius":678435111607685,"delegate":2145475747775951,"isDoubleSided":4495641834117337,"drawsAsynchronously":4313286291349983,"edgeAntialiasingMask":256925597820030,"filters":3266018642162613,"frame":4384915666323424,"isGeometryFlipped":2236901973603717,"isHidden":1634027130266021,"magnificationFilter":4412127923095978,"mask":3851254026789646,"maskedCorners":3396512199089480,"masksToBounds":765410260978208,"minificationFilter":1853655740715371,"minificationFilterBias":2746169971234221,"name":986539044603635,"needsDisplayOnBoundsChange":31848423201935,"opacity":3614948299840076,"isOpaque":1057702291762398,"position":1815525674356863,"preferredDynamicRange":628208746234980,"rasterizationScale":1604907690972631,"shadowColor":2956164663989077,"shadowOffset":1679138798725672,"shadowOpacity":1061895091989712,"shadowPath":2858128354414355,"shadowRadius":2168879693957746,"shouldRasterize":1165810415304746,"style":4272855391841665,"sublayerTransform":904492044759189,"sublayers":3454607058293522,"superlayer":4123418366913843,"toneMapMode":3527630030006068,"transform":2590909450585666,"visibleRect":2832922555607492,"wantsExtendedDynamicRangeContent":459668738563248,"zPosition":1033884146282885}, methods: {"action":{"id":605989066831560},"add":{"id":324719760129151},"addSublayer":{"id":4147690802857919},"affineTransform":{"id":1332654016871582},"animation":{"id":1540787567709062},"animationKeys":{"id":2807880259421434},"contains":{"id":1354159396192935},"contentsAreFlipped":{"id":305496416748741},"convertFrom":{"id":770746730762532},"convertTo":{"id":3308604416106030},"convertFrom59317":{"id":1269266664689378},"convertTo90208":{"id":303678267251658},"convertTimeFrom":{"id":3542179463902338},"convertTimeTo":{"id":1163910757129129},"display":{"id":2623290268285273},"displayIfNeeded":{"id":2732154412564902},"draw":{"id":3799342152230415},"hitTest":{"id":3536578327432742},"insertSublayerAbove":{"id":3111931348800356},"insertSublayerAt":{"id":2585041649518871},"insertSublayerBelow":{"id":4134428095709494},"layoutIfNeeded":{"id":1289343860770807},"layoutSublayers":{"id":2276829705092534},"model":{"id":3968769276486182},"needsDisplay":{"id":4248225188446316},"needsLayout":{"id":720020246855843},"preferredFrameSize":{"id":2262797182009591},"presentation":{"id":2624571335083595},"removeAllAnimations":{"id":4026467232359586},"removeAnimation":{"id":825166837950794},"removeFromSuperlayer":{"id":1900219176098273},"render":{"id":3442428576450828},"replaceSublayer":{"id":618094705558145},"scroll":{"id":3105239878830180},"scrollRectToVisible":{"id":3322492593158201},"setAffineTransform":{"id":3519243342756702},"setNeedsDisplay":{"id":1347355657450502},"setNeedsDisplay81283":{"id":2899684820049111},"setNeedsLayout":{"id":4144525985119260},"shouldArchiveValue":{"id":2120483968846110}} });
+registerSDKClass("CAEAGLLayer", CAEAGLLayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"presentsWithTransaction":2030423943401299} });
+registerSDKClass("CAEDRMetadata", CAEDRMetadata, { module: "QuartzCore_ff42ce03e691ab23", properties: {} });
+registerSDKClass("CAEmitterCell", CAEmitterCell, { module: "QuartzCore_ff42ce03e691ab23", properties: {"alphaRange":3690729784887349,"alphaSpeed":1404172158596867,"birthRate":4066030702803222,"blueRange":180937518862998,"blueSpeed":2619301225681641,"color":4205602387451696,"contents":812210485507633,"contentsRect":3146145508553726,"contentsScale":2205808233039908,"emissionLatitude":4462275832414999,"emissionLongitude":3206978895716031,"emissionRange":2703685012496728,"emitterCells":4049807098494519,"isEnabled":964732331300280,"greenRange":2523844470704980,"greenSpeed":2513735498819418,"lifetime":995457734487390,"lifetimeRange":864997420540023,"magnificationFilter":1741867911816156,"minificationFilter":1834914847135857,"minificationFilterBias":581659110241340,"name":3021382717382678,"redRange":1598274619373387,"redSpeed":909207820554825,"scale":2295501022615562,"scaleRange":1343700228731316,"scaleSpeed":4173732284045885,"spin":4221816784996925,"spinRange":237364873933470,"style":1206217110782981,"velocity":3504434102579813,"velocityRange":2675222302512552,"xAcceleration":3733557739365305,"yAcceleration":3273044837888733,"zAcceleration":4313311238820686}, methods: {"shouldArchiveValue":{"id":4072520222378823}} });
+registerSDKClass("CAEmitterLayer", CAEmitterLayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"birthRate":4011591067445418,"emitterCells":3768519784575293,"emitterDepth":1192532994978903,"emitterMode":316752451761686,"emitterPosition":581828007202171,"emitterShape":2123604780051167,"emitterSize":178529854542519,"emitterZPosition":1494281967704277,"lifetime":3101088489238783,"preservesDepth":3866648301896602,"renderMode":1027927647190088,"scale":3052243570050443,"seed":3673155355353474,"spin":1397743537481708,"velocity":1263921044149406} });
+registerSDKClass("QuartzCore.CAFrameRateRange", CAFrameRateRange, { module: "QuartzCore_ff42ce03e691ab23", properties: {} });
+registerSDKClass("CAGradientLayer", CAGradientLayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"colors":698452583082503,"endPoint":3837207110156632,"locations":1804569676081238,"startPoint":3321758970305533,"type":891201630848333} });
+registerSDKClass("CAKeyframeAnimation", CAKeyframeAnimation, { module: "QuartzCore_ff42ce03e691ab23", properties: {"biasValues":1133833013323319,"calculationMode":2181605278450048,"continuityValues":786937647417470,"keyTimes":3049483036069403,"path":2970030693039238,"rotationMode":3690514572211257,"tensionValues":1575641460076691,"timingFunctions":4289148942186710,"values":3813375388925263} });
 registerSDKProtocol("c:objc(pl)CALayerDelegate", {"display":"display(_:)","drawIn":"draw(_:in:)","layerWillDraw":"layerWillDraw(_:)","layoutSublayersOf":"layoutSublayers(of:)"});
 registerSDKProtocol("c:objc(pl)CAMediaTiming", {});
-registerSDKClass("CAMediaTimingFunction", CAMediaTimingFunction, { module: "QuartzCore_3864e7f38681b875", properties: {}, methods: {"getControlPoint":{"id":1164492223793894}} });
-registerSDKClass("CAMetalDisplayLink", CAMetalDisplayLink, { module: "QuartzCore_3864e7f38681b875", properties: {"delegate":1479455038044649,"isPaused":795801061971642,"preferredFrameLatency":514601738248098,"preferredFrameRateRange":2844930550482901}, methods: {"add":{"id":3816931149623090},"invalidate":{"id":990402520848443},"remove":{"id":2073766235629531}} });
-registerSDKClass("CAMetalDisplayLinkUpdate", CAMetalDisplayLink_Update, { module: "QuartzCore_3864e7f38681b875", properties: {"drawable":2780291759838544,"targetPresentationTimestamp":1123872054344060,"targetTimestamp":3453447014320344} });
+registerSDKClass("CAMediaTimingFunction", CAMediaTimingFunction, { module: "QuartzCore_ff42ce03e691ab23", properties: {}, methods: {"getControlPoint":{"id":1164492223793894}} });
+registerSDKClass("CAMetalDisplayLink", CAMetalDisplayLink, { module: "QuartzCore_ff42ce03e691ab23", properties: {"delegate":1479455038044649,"isPaused":795801061971642,"preferredFrameLatency":514601738248098,"preferredFrameRateRange":2844930550482901}, methods: {"add":{"id":3816931149623090},"invalidate":{"id":990402520848443},"remove":{"id":2073766235629531}} });
+registerSDKClass("CAMetalDisplayLinkUpdate", CAMetalDisplayLink_Update, { module: "QuartzCore_ff42ce03e691ab23", properties: {"drawable":2780291759838544,"targetPresentationTimestamp":1123872054344060,"targetTimestamp":3453447014320344} });
 registerSDKProtocol("c:objc(pl)CAMetalDisplayLinkDelegate", {"metalDisplayLinkNeedsUpdate":"metalDisplayLink(_:needsUpdate:)"});
 registerSDKProtocol("c:objc(pl)CAMetalDrawable", {"present":"present()","presentAt":"present(at:)"});
-registerSDKClass("CAMetalLayer", CAMetalLayer, { module: "QuartzCore_3864e7f38681b875", properties: {"edrMetadata":3120224129356181,"allowsNextDrawableTimeout":2542656577230037,"colorspace":909784757618512,"developerHUDProperties":741943097854370,"device":2604974312460191,"drawableSize":41584388095890,"framebufferOnly":2954505783549662,"maximumDrawableCount":3912163442698833,"pixelFormat":1398949979415550,"preferredDevice":342287713931811,"presentsWithTransaction":3955356617466540,"residencySet":2614800688966645,"wantsExtendedDynamicRangeContent":1707183280409900}, methods: {"nextDrawable":{"id":2572241382568300}} });
-registerSDKClass("CARenderer", CARenderer, { module: "QuartzCore_3864e7f38681b875", properties: {"bounds":1002762836296260,"layer":2101328871733834}, methods: {"addUpdate":{"id":4396141908397777},"beginFrame":{"id":1246922473650419},"endFrame":{"id":654186854470670},"nextFrameTime":{"id":548890872837056},"render":{"id":32313640041233},"setDestination":{"id":3797533523613087},"updateBounds":{"id":3479896820890156}} });
-registerSDKClass("CAReplicatorLayer", CAReplicatorLayer, { module: "QuartzCore_3864e7f38681b875", properties: {"instanceAlphaOffset":3052607574230976,"instanceBlueOffset":3846961371109048,"instanceColor":2637100579708860,"instanceCount":97474549791630,"instanceDelay":1558729877135010,"instanceGreenOffset":1503892385822078,"instanceRedOffset":3734653814474864,"instanceTransform":3248692951580540,"preservesDepth":4365352290027250} });
-registerSDKClass("CAScrollLayer", CAScrollLayer, { module: "QuartzCore_3864e7f38681b875", properties: {"scrollMode":1691938631369445}, methods: {"scrollTo":{"id":385899885397434},"scrollTo90898":{"id":2436369416408405}} });
-registerSDKClass("CAShapeLayer", CAShapeLayer, { module: "QuartzCore_3864e7f38681b875", properties: {"fillColor":751732709784109,"fillRule":3184168331764217,"lineCap":3967210460050326,"lineDashPattern":913455735156795,"lineDashPhase":4253737869943502,"lineJoin":3559460416074906,"lineWidth":2021296754563095,"miterLimit":1173098698730409,"path":3710724732911199,"strokeColor":2831079072115274,"strokeEnd":1481799704392816,"strokeStart":3872064271262610} });
-registerSDKClass("CASpringAnimation", CASpringAnimation, { module: "QuartzCore_3864e7f38681b875", properties: {"allowsOverdamping":1778079784897628,"bounce":2181912363158155,"damping":855427358130428,"initialVelocity":28065425969643,"mass":2275249147930093,"perceptualDuration":2548123266122483,"settlingDuration":3695759664660531,"stiffness":2095571854686244} });
-registerSDKClass("CATextLayer", CATextLayer, { module: "QuartzCore_3864e7f38681b875", properties: {"alignmentMode":1345940139101955,"allowsFontSubpixelQuantization":3935588276201365,"font":52355437582829,"fontSize":539832725803093,"foregroundColor":3519410098553768,"string":2712547203564400,"truncationMode":3893390743503833,"isWrapped":2360559232086378} });
-registerSDKClass("CATiledLayer", CATiledLayer, { module: "QuartzCore_3864e7f38681b875", properties: {"levelsOfDetail":1037252371486112,"levelsOfDetailBias":94378975992495,"tileSize":2144075295993872} });
-registerSDKClass("CATransaction", CATransaction, { module: "QuartzCore_3864e7f38681b875", properties: {} });
-registerSDKClass("QuartzCore.CATransform3D", CATransform3D, { module: "QuartzCore_3864e7f38681b875", properties: {} });
-registerSDKClass("CATransformLayer", CATransformLayer, { module: "QuartzCore_3864e7f38681b875", properties: {} });
-registerSDKClass("CATransition", CATransition, { module: "QuartzCore_3864e7f38681b875", properties: {"endProgress":3390061294984295,"startProgress":3208773137338703,"subtype":862378072601954,"type":3879398954401002} });
-registerSDKClass("CAValueFunction", CAValueFunction, { module: "QuartzCore_3864e7f38681b875", properties: {"name":2058462788360850} });
-registerSDKClass("NSValue", NSValue, { module: "QuartzCore_3864e7f38681b875", properties: {"caTransform3DValue":1741622286020715} }, true);
+registerSDKClass("CAMetalLayer", CAMetalLayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"edrMetadata":3120224129356181,"allowsNextDrawableTimeout":2542656577230037,"colorspace":909784757618512,"developerHUDProperties":741943097854370,"device":2604974312460191,"drawableSize":41584388095890,"framebufferOnly":2954505783549662,"maximumDrawableCount":3912163442698833,"pixelFormat":1398949979415550,"preferredDevice":342287713931811,"presentsWithTransaction":3955356617466540,"residencySet":2614800688966645,"wantsExtendedDynamicRangeContent":1707183280409900}, methods: {"nextDrawable":{"id":2572241382568300}} });
+registerSDKClass("CARenderer", CARenderer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"bounds":1002762836296260,"layer":2101328871733834}, methods: {"addUpdate":{"id":4396141908397777},"beginFrame":{"id":1246922473650419},"endFrame":{"id":654186854470670},"nextFrameTime":{"id":548890872837056},"render":{"id":32313640041233},"setDestination":{"id":3797533523613087},"updateBounds":{"id":3479896820890156}} });
+registerSDKClass("CAReplicatorLayer", CAReplicatorLayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"instanceAlphaOffset":3052607574230976,"instanceBlueOffset":3846961371109048,"instanceColor":2637100579708860,"instanceCount":97474549791630,"instanceDelay":1558729877135010,"instanceGreenOffset":1503892385822078,"instanceRedOffset":3734653814474864,"instanceTransform":3248692951580540,"preservesDepth":4365352290027250} });
+registerSDKClass("CAScrollLayer", CAScrollLayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"scrollMode":1691938631369445}, methods: {"scrollTo":{"id":385899885397434},"scrollTo90898":{"id":2436369416408405}} });
+registerSDKClass("CAShapeLayer", CAShapeLayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"fillColor":751732709784109,"fillRule":3184168331764217,"lineCap":3967210460050326,"lineDashPattern":913455735156795,"lineDashPhase":4253737869943502,"lineJoin":3559460416074906,"lineWidth":2021296754563095,"miterLimit":1173098698730409,"path":3710724732911199,"strokeColor":2831079072115274,"strokeEnd":1481799704392816,"strokeStart":3872064271262610} });
+registerSDKClass("CASpringAnimation", CASpringAnimation, { module: "QuartzCore_ff42ce03e691ab23", properties: {"allowsOverdamping":1778079784897628,"bounce":2181912363158155,"damping":855427358130428,"initialVelocity":28065425969643,"mass":2275249147930093,"perceptualDuration":2548123266122483,"settlingDuration":3695759664660531,"stiffness":2095571854686244} });
+registerSDKClass("CATextLayer", CATextLayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"alignmentMode":1345940139101955,"allowsFontSubpixelQuantization":3935588276201365,"font":52355437582829,"fontSize":539832725803093,"foregroundColor":3519410098553768,"string":2712547203564400,"truncationMode":3893390743503833,"isWrapped":2360559232086378} });
+registerSDKClass("CATiledLayer", CATiledLayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {"levelsOfDetail":1037252371486112,"levelsOfDetailBias":94378975992495,"tileSize":2144075295993872} });
+registerSDKClass("CATransaction", CATransaction, { module: "QuartzCore_ff42ce03e691ab23", properties: {} });
+registerSDKClass("QuartzCore.CATransform3D", CATransform3D, { module: "QuartzCore_ff42ce03e691ab23", properties: {} });
+registerSDKClass("CATransformLayer", CATransformLayer, { module: "QuartzCore_ff42ce03e691ab23", properties: {} });
+registerSDKClass("CATransition", CATransition, { module: "QuartzCore_ff42ce03e691ab23", properties: {"endProgress":3390061294984295,"startProgress":3208773137338703,"subtype":862378072601954,"type":3879398954401002} });
+registerSDKClass("CAValueFunction", CAValueFunction, { module: "QuartzCore_ff42ce03e691ab23", properties: {"name":2058462788360850} });
+registerSDKClass("NSValue", NSValue, { module: "QuartzCore_ff42ce03e691ab23", properties: {"caTransform3DValue":1741622286020715} }, true);

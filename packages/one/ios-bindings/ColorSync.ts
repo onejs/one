@@ -34,12 +34,12 @@ export type ColorSyncAlphaInfo = (number & {});
 
 export const ColorSyncAlphaInfo = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): ColorSyncAlphaInfo { return callSDK<ColorSyncAlphaInfo>("ColorSync_3864e7f38681b875", 622323504745772, undefined, [rawValue]); },
+  initRawValue(rawValue: number): ColorSyncAlphaInfo { return callSDK<ColorSyncAlphaInfo>("ColorSync_ff42ce03e691ab23", 622323504745772, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: ColorSyncAlphaInfo): number { return callSDK<number>("ColorSync_3864e7f38681b875", 661643288445772, $self, []); },
-  setRawValue($self: ColorSyncAlphaInfo, value: number): void { return callSDK<void>("ColorSync_3864e7f38681b875", 3324295845472538, $self, [value]); },
+  getRawValue($self: ColorSyncAlphaInfo): number { return callSDK<number>("ColorSync_ff42ce03e691ab23", 661643288445772, $self, []); },
+  setRawValue($self: ColorSyncAlphaInfo, value: number): void { return callSDK<void>("ColorSync_ff42ce03e691ab23", 3324295845472538, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): ColorSyncAlphaInfo { return callSDK<ColorSyncAlphaInfo>("ColorSync_3864e7f38681b875", 2940686933499205, undefined, [rawValue]); }
+  init(rawValue: number): ColorSyncAlphaInfo { return callSDK<ColorSyncAlphaInfo>("ColorSync_ff42ce03e691ab23", 2940686933499205, undefined, [rawValue]); }
 };
 
 /** struct ColorSyncDataDepth */
@@ -47,12 +47,12 @@ export type ColorSyncDataDepth = (number & {});
 
 export const ColorSyncDataDepth = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): ColorSyncDataDepth { return callSDK<ColorSyncDataDepth>("ColorSync_3864e7f38681b875", 2487332729452365, undefined, [rawValue]); },
+  initRawValue(rawValue: number): ColorSyncDataDepth { return callSDK<ColorSyncDataDepth>("ColorSync_ff42ce03e691ab23", 2487332729452365, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: ColorSyncDataDepth): number { return callSDK<number>("ColorSync_3864e7f38681b875", 3671993911662167, $self, []); },
-  setRawValue($self: ColorSyncDataDepth, value: number): void { return callSDK<void>("ColorSync_3864e7f38681b875", 1977321373624816, $self, [value]); },
+  getRawValue($self: ColorSyncDataDepth): number { return callSDK<number>("ColorSync_ff42ce03e691ab23", 3671993911662167, $self, []); },
+  setRawValue($self: ColorSyncDataDepth, value: number): void { return callSDK<void>("ColorSync_ff42ce03e691ab23", 1977321373624816, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): ColorSyncDataDepth { return callSDK<ColorSyncDataDepth>("ColorSync_3864e7f38681b875", 1246043381671448, undefined, [rawValue]); }
+  init(rawValue: number): ColorSyncDataDepth { return callSDK<ColorSyncDataDepth>("ColorSync_ff42ce03e691ab23", 1246043381671448, undefined, [rawValue]); }
 };
 
 /** typealias ColorSyncDataLayout = UInt32 */
@@ -61,12 +61,12 @@ export type ColorSyncDataLayout = number;
 /** struct ColorSyncMD5 */
 export class ColorSyncMD5 extends SDKHandle {
   /** var digest: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) */
-  get digest(): $SDK0 { return callSDK<$SDK0>("ColorSync_3864e7f38681b875", 1444795280264181, this, []); }
-  set digest(value: $SDK0) { callSDK<void>("ColorSync_3864e7f38681b875", 2637898802674900, this, [value]); }
+  get digest(): $SDK0 { return callSDK<$SDK0>("ColorSync_ff42ce03e691ab23", 1444795280264181, this, []); }
+  set digest(value: $SDK0) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2637898802674900, this, [value]); }
   /** init(digest: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8)) */
-  static initDigest(digest: $SDK0): ColorSyncMD5 { return callSDK<ColorSyncMD5>("ColorSync_3864e7f38681b875", 4027023089392680, undefined, [digest]); }
+  static initDigest(digest: $SDK0): ColorSyncMD5 { return callSDK<ColorSyncMD5>("ColorSync_ff42ce03e691ab23", 4027023089392680, undefined, [digest]); }
   /** init() */
-  static init(): ColorSyncMD5 { return callSDK<ColorSyncMD5>("ColorSync_3864e7f38681b875", 1342040982025154, undefined, []); }
+  static init(): ColorSyncMD5 { return callSDK<ColorSyncMD5>("ColorSync_ff42ce03e691ab23", 1342040982025154, undefined, []); }
   declare readonly $type: { "c:@SA@ColorSyncMD5": true };
 }
 
@@ -81,22 +81,22 @@ export class ColorSyncProfile extends SDKHandle {
    * var headroomAdaptiveGainCurve: ColorSyncProfile.HeadroomAdaptiveGainCurve? { get }
    * @availability iOS 27.0+
    */
-  get headroomAdaptiveGainCurve(): (ColorSyncProfile_HeadroomAdaptiveGainCurve) | null { return callSDK<(ColorSyncProfile_HeadroomAdaptiveGainCurve) | null>("ColorSync_3864e7f38681b875", 3410507419428052, this, []); }
+  get headroomAdaptiveGainCurve(): (ColorSyncProfile_HeadroomAdaptiveGainCurve) | null { return callSDK<(ColorSyncProfile_HeadroomAdaptiveGainCurve) | null>("ColorSync_ff42ce03e691ab23", 3410507419428052, this, []); }
   /**
    * var headroomAdaptiveGainCurveMetadata: Data? { get }
    * @availability iOS 27.0+
    */
-  get headroomAdaptiveGainCurveMetadata(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ColorSync_3864e7f38681b875", 3732127673060027, this, []); }
+  get headroomAdaptiveGainCurveMetadata(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ColorSync_ff42ce03e691ab23", 3732127673060027, this, []); }
   /**
    * func adding(headroomAdaptiveGainCurve: ColorSyncProfile.HeadroomAdaptiveGainCurve) -> ColorSyncProfile?
    * @availability iOS 27.0+
    */
-  addingHeadroomAdaptiveGainCurve(headroomAdaptiveGainCurve: ColorSyncProfile_HeadroomAdaptiveGainCurve): $SDK2 { return callSDK<$SDK2>("ColorSync_3864e7f38681b875", 294511529249621, this, [headroomAdaptiveGainCurve]); }
+  addingHeadroomAdaptiveGainCurve(headroomAdaptiveGainCurve: ColorSyncProfile_HeadroomAdaptiveGainCurve): $SDK2 { return callSDK<$SDK2>("ColorSync_ff42ce03e691ab23", 294511529249621, this, [headroomAdaptiveGainCurve]); }
   /**
    * func adding(headroomAdaptiveGainCurveMetadata: Data, options: ColorSyncProfile.HeadroomAdaptiveGainCurveOptions = .init()) -> ColorSyncProfile?
    * @availability iOS 27.0+
    */
-  addingHeadroomAdaptiveGainCurveMetadataOptions(headroomAdaptiveGainCurveMetadata: ArrayBuffer, options?: ColorSyncProfile_HeadroomAdaptiveGainCurveOptions): $SDK2 { return callSDK<$SDK2>("ColorSync_3864e7f38681b875", 1079223726143543, this, [headroomAdaptiveGainCurveMetadata, options]); }
+  addingHeadroomAdaptiveGainCurveMetadataOptions(headroomAdaptiveGainCurveMetadata: ArrayBuffer, options?: ColorSyncProfile_HeadroomAdaptiveGainCurveOptions): $SDK2 { return callSDK<$SDK2>("ColorSync_ff42ce03e691ab23", 1079223726143543, this, [headroomAdaptiveGainCurveMetadata, options]); }
   declare readonly $type: { "c:@T@ColorSyncProfileRef": true };
 }
 
@@ -109,19 +109,19 @@ export class ColorSyncProfile_HeadroomAdaptiveGainCurve extends SDKHandle {
    * init(applicationVersion: UInt8 = 0, colorVolumeTransform: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform? = nil) throws
    * @availability iOS 27.0+
    */
-  static init(applicationVersion?: number, colorVolumeTransform?: $SDK3): ColorSyncProfile_HeadroomAdaptiveGainCurve { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve>("ColorSync_3864e7f38681b875", 1374636615492210, undefined, [applicationVersion, colorVolumeTransform]); }
+  static init(applicationVersion?: number, colorVolumeTransform?: $SDK3): ColorSyncProfile_HeadroomAdaptiveGainCurve { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve>("ColorSync_ff42ce03e691ab23", 1374636615492210, undefined, [applicationVersion, colorVolumeTransform]); }
   /**
    * var applicationVersion: UInt8
    * @availability iOS 27.0+
    */
-  get applicationVersion(): number { return callSDK<number>("ColorSync_3864e7f38681b875", 163470499172566, this, []); }
-  set applicationVersion(value: number) { callSDK<void>("ColorSync_3864e7f38681b875", 2706254953388697, this, [value]); }
+  get applicationVersion(): number { return callSDK<number>("ColorSync_ff42ce03e691ab23", 163470499172566, this, []); }
+  set applicationVersion(value: number) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2706254953388697, this, [value]); }
   /**
    * var colorVolumeTransform: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform?
    * @availability iOS 27.0+
    */
-  get colorVolumeTransform(): $SDK3 { return callSDK<$SDK3>("ColorSync_3864e7f38681b875", 3627209596287382, this, []); }
-  set colorVolumeTransform(value: $SDK3) { callSDK<void>("ColorSync_3864e7f38681b875", 2508478222766247, this, [value]); }
+  get colorVolumeTransform(): $SDK3 { return callSDK<$SDK3>("ColorSync_ff42ce03e691ab23", 3627209596287382, this, []); }
+  set colorVolumeTransform(value: $SDK3) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2508478222766247, this, [value]); }
   declare readonly $type: { "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV": true };
 }
 
@@ -134,19 +134,19 @@ export class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform ext
    * var adaptiveToneMapping: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping?
    * @availability iOS 27.0+
    */
-  get adaptiveToneMapping(): $SDK4 { return callSDK<$SDK4>("ColorSync_3864e7f38681b875", 3074653709147296, this, []); }
-  set adaptiveToneMapping(value: $SDK4) { callSDK<void>("ColorSync_3864e7f38681b875", 53989418009133, this, [value]); }
+  get adaptiveToneMapping(): $SDK4 { return callSDK<$SDK4>("ColorSync_ff42ce03e691ab23", 3074653709147296, this, []); }
+  set adaptiveToneMapping(value: $SDK4) { callSDK<void>("ColorSync_ff42ce03e691ab23", 53989418009133, this, [value]); }
   /**
    * init(customHDRReferenceWhite: Float? = nil, adaptiveToneMapping: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping? = nil) throws
    * @availability iOS 27.0+
    */
-  static init(customHDRReferenceWhite?: (number) | null, adaptiveToneMapping?: $SDK4): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform>("ColorSync_3864e7f38681b875", 2105867846361798, undefined, [customHDRReferenceWhite, adaptiveToneMapping]); }
+  static init(customHDRReferenceWhite?: (number) | null, adaptiveToneMapping?: $SDK4): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform>("ColorSync_ff42ce03e691ab23", 2105867846361798, undefined, [customHDRReferenceWhite, adaptiveToneMapping]); }
   /**
    * var customHDRReferenceWhite: Float?
    * @availability iOS 27.0+
    */
-  get customHDRReferenceWhite(): (number) | null { return callSDK<(number) | null>("ColorSync_3864e7f38681b875", 4261505947001837, this, []); }
-  set customHDRReferenceWhite(value: (number) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2574204929511843, this, [value]); }
+  get customHDRReferenceWhite(): (number) | null { return callSDK<(number) | null>("ColorSync_ff42ce03e691ab23", 4261505947001837, this, []); }
+  set customHDRReferenceWhite(value: (number) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2574204929511843, this, [value]); }
   declare readonly $type: { "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV": true };
 }
 
@@ -159,19 +159,19 @@ export class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_Ton
    * init(baselineHeadroomStops: Float, method: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method = .referenceWhiteBased) throws
    * @availability iOS 27.0+
    */
-  static init(baselineHeadroomStops: number, method?: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping>("ColorSync_3864e7f38681b875", 3914138676686392, undefined, [baselineHeadroomStops, method]); }
+  static init(baselineHeadroomStops: number, method?: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping>("ColorSync_ff42ce03e691ab23", 3914138676686392, undefined, [baselineHeadroomStops, method]); }
   /**
    * var baselineHeadroomStops: Float
    * @availability iOS 27.0+
    */
-  get baselineHeadroomStops(): number { return callSDK<number>("ColorSync_3864e7f38681b875", 45415898362652, this, []); }
-  set baselineHeadroomStops(value: number) { callSDK<void>("ColorSync_3864e7f38681b875", 3406521331554262, this, [value]); }
+  get baselineHeadroomStops(): number { return callSDK<number>("ColorSync_ff42ce03e691ab23", 45415898362652, this, []); }
+  set baselineHeadroomStops(value: number) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3406521331554262, this, [value]); }
   /**
    * var method: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method
    * @availability iOS 27.0+
    */
-  get method(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method>("ColorSync_3864e7f38681b875", 1564472967631705, this, []); }
-  set method(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method) { callSDK<void>("ColorSync_3864e7f38681b875", 1100466788341304, this, [value]); }
+  get method(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method>("ColorSync_ff42ce03e691ab23", 1564472967631705, this, []); }
+  set method(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1100466788341304, this, [value]); }
   declare readonly $type: { "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV": true };
 }
 
@@ -192,19 +192,19 @@ export class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_Ton
    * init(chromaticities: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.Chromaticities = .bt709, alternateCurves: [ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve]) throws
    * @availability iOS 27.0+
    */
-  static init(chromaticities: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities, alternateCurves: $SDK5): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AdaptiveGainCurve { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AdaptiveGainCurve>("ColorSync_3864e7f38681b875", 4438591138346712, undefined, [chromaticities, alternateCurves]); }
+  static init(chromaticities: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities, alternateCurves: $SDK5): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AdaptiveGainCurve { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AdaptiveGainCurve>("ColorSync_ff42ce03e691ab23", 4438591138346712, undefined, [chromaticities, alternateCurves]); }
   /**
    * var chromaticities: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.Chromaticities
    * @availability iOS 27.0+
    */
-  get chromaticities(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities>("ColorSync_3864e7f38681b875", 2867792970602152, this, []); }
-  set chromaticities(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities) { callSDK<void>("ColorSync_3864e7f38681b875", 3897548430656484, this, [value]); }
+  get chromaticities(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities>("ColorSync_ff42ce03e691ab23", 2867792970602152, this, []); }
+  set chromaticities(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3897548430656484, this, [value]); }
   /**
    * var alternateCurves: [ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve]
    * @availability iOS 27.0+
    */
-  get alternateCurves(): $SDK5 { return callSDK<$SDK5>("ColorSync_3864e7f38681b875", 2420536971901308, this, []); }
-  set alternateCurves(value: $SDK5) { callSDK<void>("ColorSync_3864e7f38681b875", 1906161927830052, this, [value]); }
+  get alternateCurves(): $SDK5 { return callSDK<$SDK5>("ColorSync_ff42ce03e691ab23", 2420536971901308, this, []); }
+  set alternateCurves(value: $SDK5) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1906161927830052, this, [value]); }
   declare readonly $type: { "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV6MethodO0fgH0V": true };
 }
 
@@ -217,25 +217,25 @@ export class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_Ton
    * var componentMix: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ComponentMix
    * @availability iOS 27.0+
    */
-  get componentMix(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix>("ColorSync_3864e7f38681b875", 852261390570041, this, []); }
-  set componentMix(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix) { callSDK<void>("ColorSync_3864e7f38681b875", 199688518369301, this, [value]); }
+  get componentMix(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix>("ColorSync_ff42ce03e691ab23", 852261390570041, this, []); }
+  set componentMix(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix) { callSDK<void>("ColorSync_ff42ce03e691ab23", 199688518369301, this, [value]); }
   /**
    * var controlPoints: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ControlPoints
    * @availability iOS 27.0+
    */
-  get controlPoints(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints>("ColorSync_3864e7f38681b875", 145359563898561, this, []); }
-  set controlPoints(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints) { callSDK<void>("ColorSync_3864e7f38681b875", 862055072175399, this, [value]); }
+  get controlPoints(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints>("ColorSync_ff42ce03e691ab23", 145359563898561, this, []); }
+  set controlPoints(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints) { callSDK<void>("ColorSync_ff42ce03e691ab23", 862055072175399, this, [value]); }
   /**
    * init(headroomStops: Float = 0.0, componentMix: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ComponentMix, controlPoints: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ControlPoints) throws
    * @availability iOS 27.0+
    */
-  static init(headroomStops: number, componentMix: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix, controlPoints: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve>("ColorSync_3864e7f38681b875", 1521603960457093, undefined, [headroomStops, componentMix, controlPoints]); }
+  static init(headroomStops: number, componentMix: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix, controlPoints: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve>("ColorSync_ff42ce03e691ab23", 1521603960457093, undefined, [headroomStops, componentMix, controlPoints]); }
   /**
    * var headroomStops: Float
    * @availability iOS 27.0+
    */
-  get headroomStops(): number { return callSDK<number>("ColorSync_3864e7f38681b875", 4444930668331910, this, []); }
-  set headroomStops(value: number) { callSDK<void>("ColorSync_3864e7f38681b875", 172042188877003, this, [value]); }
+  get headroomStops(): number { return callSDK<number>("ColorSync_ff42ce03e691ab23", 4444930668331910, this, []); }
+  set headroomStops(value: number) { callSDK<void>("ColorSync_ff42ce03e691ab23", 172042188877003, this, [value]); }
   declare readonly $type: { "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV6MethodO09AlternateH0V": true };
 }
 
@@ -256,25 +256,25 @@ export class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_Ton
    * init(x: [Float], y: [Float], slopes: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ControlPoints.Slopes = .interpolate) throws
    * @availability iOS 27.0+
    */
-  static init(x: Array<number>, y: Array<number>, slopes?: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints>("ColorSync_3864e7f38681b875", 3045944473063342, undefined, [x, y, slopes]); }
+  static init(x: Array<number>, y: Array<number>, slopes?: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints>("ColorSync_ff42ce03e691ab23", 3045944473063342, undefined, [x, y, slopes]); }
   /**
    * var x: [Float]
    * @availability iOS 27.0+
    */
-  get x(): Array<number> { return callSDK<Array<number>>("ColorSync_3864e7f38681b875", 33097402188288, this, []); }
-  set x(value: Array<number>) { callSDK<void>("ColorSync_3864e7f38681b875", 1769904287577702, this, [value]); }
+  get x(): Array<number> { return callSDK<Array<number>>("ColorSync_ff42ce03e691ab23", 33097402188288, this, []); }
+  set x(value: Array<number>) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1769904287577702, this, [value]); }
   /**
    * var y: [Float]
    * @availability iOS 27.0+
    */
-  get y(): Array<number> { return callSDK<Array<number>>("ColorSync_3864e7f38681b875", 131417397695269, this, []); }
-  set y(value: Array<number>) { callSDK<void>("ColorSync_3864e7f38681b875", 2282134190334434, this, [value]); }
+  get y(): Array<number> { return callSDK<Array<number>>("ColorSync_ff42ce03e691ab23", 131417397695269, this, []); }
+  set y(value: Array<number>) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2282134190334434, this, [value]); }
   /**
    * var slopes: ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ControlPoints.Slopes
    * @availability iOS 27.0+
    */
-  get slopes(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes>("ColorSync_3864e7f38681b875", 705187749819684, this, []); }
-  set slopes(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes) { callSDK<void>("ColorSync_3864e7f38681b875", 3467751136704969, this, [value]); }
+  get slopes(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes>("ColorSync_ff42ce03e691ab23", 705187749819684, this, []); }
+  set slopes(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3467751136704969, this, [value]); }
   declare readonly $type: { "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV6MethodO09AlternateH0V13ControlPointsV": true };
 }
 
@@ -311,7 +311,7 @@ export class ColorSyncProfile_HeadroomAdaptiveGainCurveOptions extends SDKHandle
    * init()
    * @availability iOS 27.0+
    */
-  static init(): ColorSyncProfile_HeadroomAdaptiveGainCurveOptions { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurveOptions>("ColorSync_3864e7f38681b875", 2183058061501383, undefined, []); }
+  static init(): ColorSyncProfile_HeadroomAdaptiveGainCurveOptions { return callSDK<ColorSyncProfile_HeadroomAdaptiveGainCurveOptions>("ColorSync_ff42ce03e691ab23", 2183058061501383, undefined, []); }
   declare readonly $type: { "s:So19ColorSyncProfileRefa0aB0E32HeadroomAdaptiveGainCurveOptionsV": true };
 }
 
@@ -324,186 +324,186 @@ export class ColorSyncTransform extends SDKHandle {
 }
 
 /** func ColorSyncAPIVersion() -> UInt32 */
-export function ColorSyncAPIVersion(): number { return callSDK<number>("ColorSync_3864e7f38681b875", 3301436043481011, undefined, []); }
+export function ColorSyncAPIVersion(): number { return callSDK<number>("ColorSync_ff42ce03e691ab23", 3301436043481011, undefined, []); }
 
 /** func ColorSyncCreateCodeFragment(_ profileSequence: CFArray!, _ options: CFDictionary!) -> Unmanaged<CFTypeRef>! */
-export function ColorSyncCreateCodeFragment(profileSequence?: $SDK7, options?: $SDK8): (unknown) | null { return callSDK<(unknown) | null>("ColorSync_3864e7f38681b875", 2862740470275168, undefined, [profileSequence, options]); }
+export function ColorSyncCreateCodeFragment(profileSequence?: $SDK7, options?: $SDK8): (unknown) | null { return callSDK<(unknown) | null>("ColorSync_ff42ce03e691ab23", 2862740470275168, undefined, [profileSequence, options]); }
 
 /**
  * func ColorSyncProfileContainsHeadroomAdaptiveGainCurve(_ profile: ColorSyncProfile) -> Bool
  * @availability iOS 27.0+
  */
-export function ColorSyncProfileContainsHeadroomAdaptiveGainCurve(profile: _CoreGraphics_ColorSyncProfile): boolean { return callSDK<boolean>("ColorSync_3864e7f38681b875", 1801522543691469, undefined, [profile]); }
+export function ColorSyncProfileContainsHeadroomAdaptiveGainCurve(profile: _CoreGraphics_ColorSyncProfile): boolean { return callSDK<boolean>("ColorSync_ff42ce03e691ab23", 1801522543691469, undefined, [profile]); }
 
 /** func ColorSyncProfileContainsTag(_ prof: ColorSyncProfile!, _ signature: CFString!) -> Bool */
-export function ColorSyncProfileContainsTag(prof?: $SDK2, signature?: $SDK9): boolean { return callSDK<boolean>("ColorSync_3864e7f38681b875", 1229471372429414, undefined, [prof, signature]); }
+export function ColorSyncProfileContainsTag(prof?: $SDK2, signature?: $SDK9): boolean { return callSDK<boolean>("ColorSync_ff42ce03e691ab23", 1229471372429414, undefined, [prof, signature]); }
 
 /** func ColorSyncProfileCopyData(_ prof: ColorSyncProfile!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Unmanaged<CFData>! */
-export function ColorSyncProfileCopyData(prof?: $SDK2): { $ret: $SDK10; $out: { "error": $SDK11 } } { return callSDK<{ $ret: $SDK10; $out: { "error": $SDK11 } }>("ColorSync_3864e7f38681b875", 1711392975069955, undefined, [prof, null]); }
+export function ColorSyncProfileCopyData(prof?: $SDK2): { $ret: $SDK10; $out: { "error": $SDK11 } } { return callSDK<{ $ret: $SDK10; $out: { "error": $SDK11 } }>("ColorSync_ff42ce03e691ab23", 1711392975069955, undefined, [prof, null]); }
 
 /** func ColorSyncProfileCopyDescriptionString(_ prof: ColorSyncProfile!) -> Unmanaged<CFString>? */
-export function ColorSyncProfileCopyDescriptionString(prof?: $SDK2): $SDK9 { return callSDK<$SDK9>("ColorSync_3864e7f38681b875", 2345070847511214, undefined, [prof]); }
+export function ColorSyncProfileCopyDescriptionString(prof?: $SDK2): $SDK9 { return callSDK<$SDK9>("ColorSync_ff42ce03e691ab23", 2345070847511214, undefined, [prof]); }
 
 /** func ColorSyncProfileCopyHeader(_ prof: ColorSyncProfile!) -> Unmanaged<CFData>! */
-export function ColorSyncProfileCopyHeader(prof?: $SDK2): $SDK10 { return callSDK<$SDK10>("ColorSync_3864e7f38681b875", 4144104020635935, undefined, [prof]); }
+export function ColorSyncProfileCopyHeader(prof?: $SDK2): $SDK10 { return callSDK<$SDK10>("ColorSync_ff42ce03e691ab23", 4144104020635935, undefined, [prof]); }
 
 /** func ColorSyncProfileCopyTag(_ prof: ColorSyncProfile!, _ signature: CFString!) -> Unmanaged<CFData>? */
-export function ColorSyncProfileCopyTag(prof?: $SDK2, signature?: $SDK9): $SDK10 { return callSDK<$SDK10>("ColorSync_3864e7f38681b875", 2829732356212732, undefined, [prof, signature]); }
+export function ColorSyncProfileCopyTag(prof?: $SDK2, signature?: $SDK9): $SDK10 { return callSDK<$SDK10>("ColorSync_ff42ce03e691ab23", 2829732356212732, undefined, [prof, signature]); }
 
 /** func ColorSyncProfileCopyTagSignatures(_ prof: ColorSyncProfile!) -> Unmanaged<CFArray>? */
-export function ColorSyncProfileCopyTagSignatures(prof?: $SDK2): $SDK7 { return callSDK<$SDK7>("ColorSync_3864e7f38681b875", 4411912305799348, undefined, [prof]); }
+export function ColorSyncProfileCopyTagSignatures(prof?: $SDK2): $SDK7 { return callSDK<$SDK7>("ColorSync_ff42ce03e691ab23", 4411912305799348, undefined, [prof]); }
 
 /** func ColorSyncProfileCreate(_ data: CFData!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Unmanaged<ColorSyncProfile>? */
-export function ColorSyncProfileCreate(data?: $SDK10): { $ret: $SDK2; $out: { "error": $SDK11 } } { return callSDK<{ $ret: $SDK2; $out: { "error": $SDK11 } }>("ColorSync_3864e7f38681b875", 1768003850087353, undefined, [data, null]); }
+export function ColorSyncProfileCreate(data?: $SDK10): { $ret: $SDK2; $out: { "error": $SDK11 } } { return callSDK<{ $ret: $SDK2; $out: { "error": $SDK11 } }>("ColorSync_ff42ce03e691ab23", 1768003850087353, undefined, [data, null]); }
 
 /** func ColorSyncProfileCreateLink(_ profileInfo: CFArray!, _ options: CFDictionary?) -> Unmanaged<ColorSyncProfile>? */
-export function ColorSyncProfileCreateLink(profileInfo?: $SDK7, options?: $SDK8): $SDK2 { return callSDK<$SDK2>("ColorSync_3864e7f38681b875", 1243511719376630, undefined, [profileInfo, options]); }
+export function ColorSyncProfileCreateLink(profileInfo?: $SDK7, options?: $SDK8): $SDK2 { return callSDK<$SDK2>("ColorSync_ff42ce03e691ab23", 1243511719376630, undefined, [profileInfo, options]); }
 
 /** func ColorSyncProfileCreateMutable() -> Unmanaged<ColorSyncMutableProfile>? */
-export function ColorSyncProfileCreateMutable(): $SDK12 { return callSDK<$SDK12>("ColorSync_3864e7f38681b875", 2181872656866569, undefined, []); }
+export function ColorSyncProfileCreateMutable(): $SDK12 { return callSDK<$SDK12>("ColorSync_ff42ce03e691ab23", 2181872656866569, undefined, []); }
 
 /** func ColorSyncProfileCreateMutableCopy(_ prof: ColorSyncProfile!) -> Unmanaged<ColorSyncMutableProfile>? */
-export function ColorSyncProfileCreateMutableCopy(prof?: $SDK2): $SDK12 { return callSDK<$SDK12>("ColorSync_3864e7f38681b875", 2844769422674691, undefined, [prof]); }
+export function ColorSyncProfileCreateMutableCopy(prof?: $SDK2): $SDK12 { return callSDK<$SDK12>("ColorSync_ff42ce03e691ab23", 2844769422674691, undefined, [prof]); }
 
 /** func ColorSyncProfileCreateWithName(_ name: CFString!) -> Unmanaged<ColorSyncProfile>? */
-export function ColorSyncProfileCreateWithName(name?: $SDK9): $SDK2 { return callSDK<$SDK2>("ColorSync_3864e7f38681b875", 75338868525342, undefined, [name]); }
+export function ColorSyncProfileCreateWithName(name?: $SDK9): $SDK2 { return callSDK<$SDK2>("ColorSync_ff42ce03e691ab23", 75338868525342, undefined, [name]); }
 
 /** func ColorSyncProfileCreateWithURL(_ url: CFURL!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Unmanaged<ColorSyncProfile>? */
-export function ColorSyncProfileCreateWithURL(url?: $SDK13): { $ret: $SDK2; $out: { "error": $SDK11 } } { return callSDK<{ $ret: $SDK2; $out: { "error": $SDK11 } }>("ColorSync_3864e7f38681b875", 4044212342300145, undefined, [url, null]); }
+export function ColorSyncProfileCreateWithURL(url?: $SDK13): { $ret: $SDK2; $out: { "error": $SDK11 } } { return callSDK<{ $ret: $SDK2; $out: { "error": $SDK11 } }>("ColorSync_ff42ce03e691ab23", 4044212342300145, undefined, [url, null]); }
 
 /** func ColorSyncProfileCreateWithURLAndOptions(_ url: CFURL!, _ options: CFDictionary?, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Unmanaged<ColorSyncProfile>? */
-export function ColorSyncProfileCreateWithURLAndOptions(url?: $SDK13, options?: $SDK8): { $ret: $SDK2; $out: { "error": $SDK11 } } { return callSDK<{ $ret: $SDK2; $out: { "error": $SDK11 } }>("ColorSync_3864e7f38681b875", 740969795128946, undefined, [url, options, null]); }
+export function ColorSyncProfileCreateWithURLAndOptions(url?: $SDK13, options?: $SDK8): { $ret: $SDK2; $out: { "error": $SDK11 } } { return callSDK<{ $ret: $SDK2; $out: { "error": $SDK11 } }>("ColorSync_ff42ce03e691ab23", 740969795128946, undefined, [url, options, null]); }
 
 /** func ColorSyncProfileEstimateGamma(_ prof: ColorSyncProfile!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Float */
-export function ColorSyncProfileEstimateGamma(prof?: $SDK2): { $ret: number; $out: { "error": $SDK11 } } { return callSDK<{ $ret: number; $out: { "error": $SDK11 } }>("ColorSync_3864e7f38681b875", 3719100680437334, undefined, [prof, null]); }
+export function ColorSyncProfileEstimateGamma(prof?: $SDK2): { $ret: number; $out: { "error": $SDK11 } } { return callSDK<{ $ret: number; $out: { "error": $SDK11 } }>("ColorSync_ff42ce03e691ab23", 3719100680437334, undefined, [prof, null]); }
 
 /** func ColorSyncProfileGetMD5(_ prof: ColorSyncProfile!) -> ColorSyncMD5 */
-export function ColorSyncProfileGetMD5(prof?: $SDK2): ColorSyncMD5 { return callSDK<ColorSyncMD5>("ColorSync_3864e7f38681b875", 1719172696586585, undefined, [prof]); }
+export function ColorSyncProfileGetMD5(prof?: $SDK2): ColorSyncMD5 { return callSDK<ColorSyncMD5>("ColorSync_ff42ce03e691ab23", 1719172696586585, undefined, [prof]); }
 
 /** func ColorSyncProfileGetTypeID() -> CFTypeID */
-export function ColorSyncProfileGetTypeID(): number { return callSDK<number>("ColorSync_3864e7f38681b875", 3024844849328066, undefined, []); }
+export function ColorSyncProfileGetTypeID(): number { return callSDK<number>("ColorSync_ff42ce03e691ab23", 3024844849328066, undefined, []); }
 
 /** func ColorSyncProfileGetURL(_ prof: ColorSyncProfile!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Unmanaged<CFURL>! */
-export function ColorSyncProfileGetURL(prof?: $SDK2): { $ret: $SDK13; $out: { "error": $SDK11 } } { return callSDK<{ $ret: $SDK13; $out: { "error": $SDK11 } }>("ColorSync_3864e7f38681b875", 4105833375596777, undefined, [prof, null]); }
+export function ColorSyncProfileGetURL(prof?: $SDK2): { $ret: $SDK13; $out: { "error": $SDK11 } } { return callSDK<{ $ret: $SDK13; $out: { "error": $SDK11 } }>("ColorSync_ff42ce03e691ab23", 4105833375596777, undefined, [prof, null]); }
 
 /** func ColorSyncProfileIsHLGBased(_: ColorSyncProfile!) -> Bool */
-export function ColorSyncProfileIsHLGBased(arg0?: $SDK2): boolean { return callSDK<boolean>("ColorSync_3864e7f38681b875", 3062332969172379, undefined, [arg0]); }
+export function ColorSyncProfileIsHLGBased(arg0?: $SDK2): boolean { return callSDK<boolean>("ColorSync_ff42ce03e691ab23", 3062332969172379, undefined, [arg0]); }
 
 /** func ColorSyncProfileIsMatrixBased(_: ColorSyncProfile!) -> Bool */
-export function ColorSyncProfileIsMatrixBased(arg0?: $SDK2): boolean { return callSDK<boolean>("ColorSync_3864e7f38681b875", 568730476999187, undefined, [arg0]); }
+export function ColorSyncProfileIsMatrixBased(arg0?: $SDK2): boolean { return callSDK<boolean>("ColorSync_ff42ce03e691ab23", 568730476999187, undefined, [arg0]); }
 
 /** func ColorSyncProfileIsPQBased(_: ColorSyncProfile!) -> Bool */
-export function ColorSyncProfileIsPQBased(arg0?: $SDK2): boolean { return callSDK<boolean>("ColorSync_3864e7f38681b875", 4272495529596109, undefined, [arg0]); }
+export function ColorSyncProfileIsPQBased(arg0?: $SDK2): boolean { return callSDK<boolean>("ColorSync_ff42ce03e691ab23", 4272495529596109, undefined, [arg0]); }
 
 /** func ColorSyncProfileIsWideGamut(_: ColorSyncProfile!) -> Bool */
-export function ColorSyncProfileIsWideGamut(arg0?: $SDK2): boolean { return callSDK<boolean>("ColorSync_3864e7f38681b875", 2250028989874619, undefined, [arg0]); }
+export function ColorSyncProfileIsWideGamut(arg0?: $SDK2): boolean { return callSDK<boolean>("ColorSync_ff42ce03e691ab23", 2250028989874619, undefined, [arg0]); }
 
 /** func ColorSyncProfileRemoveTag(_ prof: ColorSyncMutableProfile!, _ signature: CFString!) */
-export function ColorSyncProfileRemoveTag(prof?: $SDK12, signature?: $SDK9): void { return callSDK<void>("ColorSync_3864e7f38681b875", 1478323105445397, undefined, [prof, signature]); }
+export function ColorSyncProfileRemoveTag(prof?: $SDK12, signature?: $SDK9): void { return callSDK<void>("ColorSync_ff42ce03e691ab23", 1478323105445397, undefined, [prof, signature]); }
 
 /** func ColorSyncProfileSetHeader(_ prof: ColorSyncMutableProfile!, _ header: CFData!) */
-export function ColorSyncProfileSetHeader(prof?: $SDK12, header?: $SDK10): void { return callSDK<void>("ColorSync_3864e7f38681b875", 946640417640762, undefined, [prof, header]); }
+export function ColorSyncProfileSetHeader(prof?: $SDK12, header?: $SDK10): void { return callSDK<void>("ColorSync_ff42ce03e691ab23", 946640417640762, undefined, [prof, header]); }
 
 /** func ColorSyncProfileSetTag(_ prof: ColorSyncMutableProfile!, _ signature: CFString!, _ data: CFData!) */
-export function ColorSyncProfileSetTag(prof?: $SDK12, signature?: $SDK9, data?: $SDK10): void { return callSDK<void>("ColorSync_3864e7f38681b875", 1419260675857635, undefined, [prof, signature, data]); }
+export function ColorSyncProfileSetTag(prof?: $SDK12, signature?: $SDK9, data?: $SDK10): void { return callSDK<void>("ColorSync_ff42ce03e691ab23", 1419260675857635, undefined, [prof, signature, data]); }
 
 /** func ColorSyncProfileVerify(_ prof: ColorSyncProfile!, _ errors: UnsafeMutablePointer<Unmanaged<CFError>?>?, _ warnings: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Bool */
-export function ColorSyncProfileVerify(prof?: $SDK2): { $ret: boolean; $out: { "errors": $SDK11; "warnings": $SDK11 } } { return callSDK<{ $ret: boolean; $out: { "errors": $SDK11; "warnings": $SDK11 } }>("ColorSync_3864e7f38681b875", 2925342236742807, undefined, [prof, null, null]); }
+export function ColorSyncProfileVerify(prof?: $SDK2): { $ret: boolean; $out: { "errors": $SDK11; "warnings": $SDK11 } } { return callSDK<{ $ret: boolean; $out: { "errors": $SDK11; "warnings": $SDK11 } }>("ColorSync_ff42ce03e691ab23", 2925342236742807, undefined, [prof, null, null]); }
 
 /** func ColorSyncTransformConvert(_ transform: ColorSyncTransform!, _ width: Int, _ height: Int, _ dst: UnsafeMutableRawPointer!, _ dstDepth: ColorSyncDataDepth, _ dstLayout: ColorSyncDataLayout, _ dstBytesPerRow: Int, _ src: UnsafeRawPointer!, _ srcDepth: ColorSyncDataDepth, _ srcLayout: ColorSyncDataLayout, _ srcBytesPerRow: Int, _ options: CFDictionary?) -> Bool */
-export function ColorSyncTransformConvert(transform: $SDK14, width: number, height: number, dst: (SDKHandle) | null, dstDepth: ColorSyncDataDepth, dstLayout: number, dstBytesPerRow: number, src: (SDKHandle) | null, srcDepth: ColorSyncDataDepth, srcLayout: number, srcBytesPerRow: number, options?: $SDK8): boolean { return callSDK<boolean>("ColorSync_3864e7f38681b875", 3609324366873894, undefined, [transform, width, height, dst, dstDepth, dstLayout, dstBytesPerRow, src, srcDepth, srcLayout, srcBytesPerRow, options]); }
+export function ColorSyncTransformConvert(transform: $SDK14, width: number, height: number, dst: (SDKHandle) | null, dstDepth: ColorSyncDataDepth, dstLayout: number, dstBytesPerRow: number, src: (SDKHandle) | null, srcDepth: ColorSyncDataDepth, srcLayout: number, srcBytesPerRow: number, options?: $SDK8): boolean { return callSDK<boolean>("ColorSync_ff42ce03e691ab23", 3609324366873894, undefined, [transform, width, height, dst, dstDepth, dstLayout, dstBytesPerRow, src, srcDepth, srcLayout, srcBytesPerRow, options]); }
 
 /** func ColorSyncTransformCopyProperty(_ transform: ColorSyncTransform!, _ key: CFTypeRef!, _ options: CFDictionary?) -> Unmanaged<CFTypeRef>? */
-export function ColorSyncTransformCopyProperty(transform?: $SDK14, key?: (unknown) | null, options?: $SDK8): (unknown) | null { return callSDK<(unknown) | null>("ColorSync_3864e7f38681b875", 328105749805206, undefined, [transform, key, options]); }
+export function ColorSyncTransformCopyProperty(transform?: $SDK14, key?: (unknown) | null, options?: $SDK8): (unknown) | null { return callSDK<(unknown) | null>("ColorSync_ff42ce03e691ab23", 328105749805206, undefined, [transform, key, options]); }
 
 /** func ColorSyncTransformCreate(_ profileSequence: CFArray?, _ options: CFDictionary?) -> Unmanaged<ColorSyncTransform>? */
-export function ColorSyncTransformCreate(profileSequence?: $SDK7, options?: $SDK8): $SDK14 { return callSDK<$SDK14>("ColorSync_3864e7f38681b875", 2735754590496779, undefined, [profileSequence, options]); }
+export function ColorSyncTransformCreate(profileSequence?: $SDK7, options?: $SDK8): $SDK14 { return callSDK<$SDK14>("ColorSync_ff42ce03e691ab23", 2735754590496779, undefined, [profileSequence, options]); }
 
 /** func ColorSyncTransformGetProfileSequence(_ transform: ColorSyncTransform!) -> Unmanaged<CFArray>? */
-export function ColorSyncTransformGetProfileSequence(transform?: $SDK14): $SDK7 { return callSDK<$SDK7>("ColorSync_3864e7f38681b875", 2143306034253342, undefined, [transform]); }
+export function ColorSyncTransformGetProfileSequence(transform?: $SDK14): $SDK7 { return callSDK<$SDK7>("ColorSync_ff42ce03e691ab23", 2143306034253342, undefined, [transform]); }
 
 /** func ColorSyncTransformGetTypeID() -> CFTypeID */
-export function ColorSyncTransformGetTypeID(): number { return callSDK<number>("ColorSync_3864e7f38681b875", 3313942873459279, undefined, []); }
+export function ColorSyncTransformGetTypeID(): number { return callSDK<number>("ColorSync_ff42ce03e691ab23", 3313942873459279, undefined, []); }
 
 /** func ColorSyncTransformSetProperty(_ transform: ColorSyncTransform!, _ key: CFTypeRef!, _ property: CFTypeRef?) */
-export function ColorSyncTransformSetProperty(transform?: $SDK14, key?: (unknown) | null, property?: (unknown) | null): void { return callSDK<void>("ColorSync_3864e7f38681b875", 1076597839334151, undefined, [transform, key, property]); }
+export function ColorSyncTransformSetProperty(transform?: $SDK14, key?: (unknown) | null, property?: (unknown) | null): void { return callSDK<void>("ColorSync_ff42ce03e691ab23", 1076597839334151, undefined, [transform, key, property]); }
 
 /** var kColorSyncAlphaFirst: ColorSyncAlphaInfo { get } */
-export const kColorSyncAlphaFirst: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_3864e7f38681b875", 3273005246081714, undefined, []);
+export const kColorSyncAlphaFirst: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_ff42ce03e691ab23", 3273005246081714, undefined, []);
 
 /** var kColorSyncAlphaLast: ColorSyncAlphaInfo { get } */
-export const kColorSyncAlphaLast: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_3864e7f38681b875", 1692184698622278, undefined, []);
+export const kColorSyncAlphaLast: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_ff42ce03e691ab23", 1692184698622278, undefined, []);
 
 /** var kColorSyncAlphaNone: ColorSyncAlphaInfo { get } */
-export const kColorSyncAlphaNone: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_3864e7f38681b875", 1550738586693468, undefined, []);
+export const kColorSyncAlphaNone: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_ff42ce03e691ab23", 1550738586693468, undefined, []);
 
 /** var kColorSyncAlphaNoneSkipFirst: ColorSyncAlphaInfo { get } */
-export const kColorSyncAlphaNoneSkipFirst: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_3864e7f38681b875", 3890418717284165, undefined, []);
+export const kColorSyncAlphaNoneSkipFirst: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_ff42ce03e691ab23", 3890418717284165, undefined, []);
 
 /** var kColorSyncAlphaNoneSkipLast: ColorSyncAlphaInfo { get } */
-export const kColorSyncAlphaNoneSkipLast: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_3864e7f38681b875", 908908875906831, undefined, []);
+export const kColorSyncAlphaNoneSkipLast: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_ff42ce03e691ab23", 908908875906831, undefined, []);
 
 /** var kColorSyncAlphaPremultipliedFirst: ColorSyncAlphaInfo { get } */
-export const kColorSyncAlphaPremultipliedFirst: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_3864e7f38681b875", 4290063367456030, undefined, []);
+export const kColorSyncAlphaPremultipliedFirst: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_ff42ce03e691ab23", 4290063367456030, undefined, []);
 
 /** var kColorSyncAlphaPremultipliedLast: ColorSyncAlphaInfo { get } */
-export const kColorSyncAlphaPremultipliedLast: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_3864e7f38681b875", 95884567536833, undefined, []);
+export const kColorSyncAlphaPremultipliedLast: ColorSyncAlphaInfo = callSDK<ColorSyncAlphaInfo>("ColorSync_ff42ce03e691ab23", 95884567536833, undefined, []);
 
 /** var kColorSync10BitInteger: ColorSyncDataDepth { get } */
-export const kColorSync10BitInteger: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_3864e7f38681b875", 1848011429691446, undefined, []);
+export const kColorSync10BitInteger: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_ff42ce03e691ab23", 1848011429691446, undefined, []);
 
 /** var kColorSync16BitFloat: ColorSyncDataDepth { get } */
-export const kColorSync16BitFloat: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_3864e7f38681b875", 71174239594603, undefined, []);
+export const kColorSync16BitFloat: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_ff42ce03e691ab23", 71174239594603, undefined, []);
 
 /** var kColorSync16BitInteger: ColorSyncDataDepth { get } */
-export const kColorSync16BitInteger: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_3864e7f38681b875", 72274064090020, undefined, []);
+export const kColorSync16BitInteger: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_ff42ce03e691ab23", 72274064090020, undefined, []);
 
 /** var kColorSync1BitGamut: ColorSyncDataDepth { get } */
-export const kColorSync1BitGamut: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_3864e7f38681b875", 3815260760511941, undefined, []);
+export const kColorSync1BitGamut: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_ff42ce03e691ab23", 3815260760511941, undefined, []);
 
 /** var kColorSync32BitFloat: ColorSyncDataDepth { get } */
-export const kColorSync32BitFloat: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_3864e7f38681b875", 2916584304565904, undefined, []);
+export const kColorSync32BitFloat: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_ff42ce03e691ab23", 2916584304565904, undefined, []);
 
 /** var kColorSync32BitInteger: ColorSyncDataDepth { get } */
-export const kColorSync32BitInteger: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_3864e7f38681b875", 2563237889502623, undefined, []);
+export const kColorSync32BitInteger: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_ff42ce03e691ab23", 2563237889502623, undefined, []);
 
 /** var kColorSync32BitNamedColorIndex: ColorSyncDataDepth { get } */
-export const kColorSync32BitNamedColorIndex: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_3864e7f38681b875", 144089998989958, undefined, []);
+export const kColorSync32BitNamedColorIndex: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_ff42ce03e691ab23", 144089998989958, undefined, []);
 
 /** var kColorSync8BitInteger: ColorSyncDataDepth { get } */
-export const kColorSync8BitInteger: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_3864e7f38681b875", 2302254645088563, undefined, []);
+export const kColorSync8BitInteger: ColorSyncDataDepth = callSDK<ColorSyncDataDepth>("ColorSync_ff42ce03e691ab23", 2302254645088563, undefined, []);
 
 /** var kColorSyncAlphaInfoMask: Int { get } */
-export const kColorSyncAlphaInfoMask: number = callSDK<number>("ColorSync_3864e7f38681b875", 2543412820529639, undefined, []);
+export const kColorSyncAlphaInfoMask: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 2543412820529639, undefined, []);
 
 /** var kColorSyncByteOrder16Big: Int { get } */
-export const kColorSyncByteOrder16Big: number = callSDK<number>("ColorSync_3864e7f38681b875", 2255308364530204, undefined, []);
+export const kColorSyncByteOrder16Big: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 2255308364530204, undefined, []);
 
 /** var kColorSyncByteOrder16Little: Int { get } */
-export const kColorSyncByteOrder16Little: number = callSDK<number>("ColorSync_3864e7f38681b875", 4118706419945818, undefined, []);
+export const kColorSyncByteOrder16Little: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 4118706419945818, undefined, []);
 
 /** var kColorSyncByteOrder32Big: Int { get } */
-export const kColorSyncByteOrder32Big: number = callSDK<number>("ColorSync_3864e7f38681b875", 4053652447502125, undefined, []);
+export const kColorSyncByteOrder32Big: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 4053652447502125, undefined, []);
 
 /** var kColorSyncByteOrder32Little: Int { get } */
-export const kColorSyncByteOrder32Little: number = callSDK<number>("ColorSync_3864e7f38681b875", 3356702812849337, undefined, []);
+export const kColorSyncByteOrder32Little: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 3356702812849337, undefined, []);
 
 /** var kColorSyncByteOrderDefault: Int { get } */
-export const kColorSyncByteOrderDefault: number = callSDK<number>("ColorSync_3864e7f38681b875", 1877111347864671, undefined, []);
+export const kColorSyncByteOrderDefault: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 1877111347864671, undefined, []);
 
 /** var kColorSyncByteOrderMask: Int { get } */
-export const kColorSyncByteOrderMask: number = callSDK<number>("ColorSync_3864e7f38681b875", 342585355852786, undefined, []);
+export const kColorSyncByteOrderMask: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 342585355852786, undefined, []);
 
 /** var kColorSyncACESCGLinearProfile: Unmanaged<CFString>! */
 export const kColorSyncACESCGLinearProfile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3046939618936821, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3982633021270664, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3046939618936821, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3982633021270664, undefined, [value]); }
 };
 
 /** var kColorSyncAdobeRGB1998Profile: Unmanaged<CFString>! */
 export const kColorSyncAdobeRGB1998Profile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1222982377655244, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4164056728238635, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1222982377655244, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4164056728238635, undefined, [value]); }
 };
 
 /**
@@ -511,8 +511,8 @@ export const kColorSyncAdobeRGB1998Profile = {
  * @availability iOS 27.0+
  */
 export const kColorSyncAlternateCurveCount = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 601716896898542, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 792922308613309, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 601716896898542, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 792922308613309, undefined, [value]); }
 };
 
 /**
@@ -520,8 +520,8 @@ export const kColorSyncAlternateCurveCount = {
  * @availability iOS 27.0+
  */
 export const kColorSyncAlternateCurveHeadroomStops = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 542937570888844, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 1255855000609364, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 542937570888844, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1255855000609364, undefined, [value]); }
 };
 
 /**
@@ -529,8 +529,8 @@ export const kColorSyncAlternateCurveHeadroomStops = {
  * @availability iOS 27.0+
  */
 export const kColorSyncAlternateGainCurveInfo = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 1263728952791909, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 1265607915155218, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 1263728952791909, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1265607915155218, undefined, [value]); }
 };
 
 /**
@@ -538,20 +538,20 @@ export const kColorSyncAlternateGainCurveInfo = {
  * @availability iOS 27.0+
  */
 export const kColorSyncBaselineHeadroomStops = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 3978776922998599, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 1760343732568471, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 3978776922998599, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1760343732568471, undefined, [value]); }
 };
 
 /** var kColorSyncBestQuality: Unmanaged<CFString>! */
 export const kColorSyncBestQuality = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3810625650038830, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4082211917740700, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3810625650038830, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4082211917740700, undefined, [value]); }
 };
 
 /** var kColorSyncBlackPointCompensation: Unmanaged<CFString>! */
 export const kColorSyncBlackPointCompensation = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1528172412444893, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1470172388755549, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1528172412444893, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1470172388755549, undefined, [value]); }
 };
 
 /**
@@ -559,8 +559,8 @@ export const kColorSyncBlackPointCompensation = {
  * @availability iOS 27.0+
  */
 export const kColorSyncCoefficientBlue = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 1410170073407629, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 4129189773222319, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 1410170073407629, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4129189773222319, undefined, [value]); }
 };
 
 /**
@@ -568,8 +568,8 @@ export const kColorSyncCoefficientBlue = {
  * @availability iOS 27.0+
  */
 export const kColorSyncCoefficientComponent = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 3091496053982578, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 3337028585554568, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 3091496053982578, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3337028585554568, undefined, [value]); }
 };
 
 /**
@@ -577,8 +577,8 @@ export const kColorSyncCoefficientComponent = {
  * @availability iOS 27.0+
  */
 export const kColorSyncCoefficientGreen = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 66122516180428, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 304156527315176, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 66122516180428, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 304156527315176, undefined, [value]); }
 };
 
 /**
@@ -586,8 +586,8 @@ export const kColorSyncCoefficientGreen = {
  * @availability iOS 27.0+
  */
 export const kColorSyncCoefficientMaxRGB = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 717376511175199, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 1589960305415194, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 717376511175199, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1589960305415194, undefined, [value]); }
 };
 
 /**
@@ -595,8 +595,8 @@ export const kColorSyncCoefficientMaxRGB = {
  * @availability iOS 27.0+
  */
 export const kColorSyncCoefficientMinRGB = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 1329595963165502, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 620797040521714, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 1329595963165502, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 620797040521714, undefined, [value]); }
 };
 
 /**
@@ -604,8 +604,8 @@ export const kColorSyncCoefficientMinRGB = {
  * @availability iOS 27.0+
  */
 export const kColorSyncCoefficientRed = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 533309121563818, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 3072317328866990, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 533309121563818, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3072317328866990, undefined, [value]); }
 };
 
 /**
@@ -613,8 +613,8 @@ export const kColorSyncCoefficientRed = {
  * @availability iOS 27.0+
  */
 export const kColorSyncCommonComponentMixing = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 2806802202228140, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 1337538975404492, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 2806802202228140, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1337538975404492, undefined, [value]); }
 };
 
 /**
@@ -622,8 +622,8 @@ export const kColorSyncCommonComponentMixing = {
  * @availability iOS 27.0+
  */
 export const kColorSyncCommonCurveParameters = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 599397162689057, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 2318676228812548, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 599397162689057, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2318676228812548, undefined, [value]); }
 };
 
 /**
@@ -631,8 +631,8 @@ export const kColorSyncCommonCurveParameters = {
  * @availability iOS 27.0+
  */
 export const kColorSyncComponentCoefficients = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 3327180010684250, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 2532756350798986, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 3327180010684250, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2532756350798986, undefined, [value]); }
 };
 
 /**
@@ -640,8 +640,8 @@ export const kColorSyncComponentCoefficients = {
  * @availability iOS 27.0+
  */
 export const kColorSyncComponentMix = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 1534906980567844, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 4317654240219961, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 1534906980567844, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4317654240219961, undefined, [value]); }
 };
 
 /**
@@ -649,8 +649,8 @@ export const kColorSyncComponentMix = {
  * @availability iOS 27.0+
  */
 export const kColorSyncControlPointSlopes = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 2904056306968621, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 1725570570101591, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 2904056306968621, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1725570570101591, undefined, [value]); }
 };
 
 /**
@@ -658,8 +658,8 @@ export const kColorSyncControlPointSlopes = {
  * @availability iOS 27.0+
  */
 export const kColorSyncControlPointsX = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 568279318256721, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 2942130387381753, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 568279318256721, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2942130387381753, undefined, [value]); }
 };
 
 /**
@@ -667,104 +667,104 @@ export const kColorSyncControlPointsX = {
  * @availability iOS 27.0+
  */
 export const kColorSyncControlPointsY = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 1484100565430227, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 2117852772045226, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 1484100565430227, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2117852772045226, undefined, [value]); }
 };
 
 /** var kColorSyncConversion1DLut: Unmanaged<CFString>! */
 export const kColorSyncConversion1DLut = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 408955267277775, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 744509303541574, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 408955267277775, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 744509303541574, undefined, [value]); }
 };
 
 /** var kColorSyncConversion3DLut: Unmanaged<CFString>! */
 export const kColorSyncConversion3DLut = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1108613882955078, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2226283331060831, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1108613882955078, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2226283331060831, undefined, [value]); }
 };
 
 /** var kColorSyncConversionBPC: Unmanaged<CFString>! */
 export const kColorSyncConversionBPC = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2031201594484509, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2941631072751864, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2031201594484509, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2941631072751864, undefined, [value]); }
 };
 
 /** var kColorSyncConversionChannelID: Unmanaged<CFString>! */
 export const kColorSyncConversionChannelID = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1327798136054833, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1728244931124594, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1327798136054833, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1728244931124594, undefined, [value]); }
 };
 
 /** var kColorSyncConversionGridPoints: Unmanaged<CFString>! */
 export const kColorSyncConversionGridPoints = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1239495555242742, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2354186579882149, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1239495555242742, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2354186579882149, undefined, [value]); }
 };
 
 /** var kColorSyncConversionInpChan: Unmanaged<CFString>! */
 export const kColorSyncConversionInpChan = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3549298694078492, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2485272529027411, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3549298694078492, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2485272529027411, undefined, [value]); }
 };
 
 /** var kColorSyncConversionMatrix: Unmanaged<CFString>! */
 export const kColorSyncConversionMatrix = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3667610138968580, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3928951628776810, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3667610138968580, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3928951628776810, undefined, [value]); }
 };
 
 /** var kColorSyncConversionNDLut: Unmanaged<CFString>! */
 export const kColorSyncConversionNDLut = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2723387651393649, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3838834239917759, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2723387651393649, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3838834239917759, undefined, [value]); }
 };
 
 /** var kColorSyncConversionOutChan: Unmanaged<CFString>! */
 export const kColorSyncConversionOutChan = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3227710484358034, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4168926461005732, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3227710484358034, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4168926461005732, undefined, [value]); }
 };
 
 /** var kColorSyncConversionParamCurve0: Unmanaged<CFString>! */
 export const kColorSyncConversionParamCurve0 = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1753459126570244, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4186643084859031, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1753459126570244, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4186643084859031, undefined, [value]); }
 };
 
 /** var kColorSyncConversionParamCurve1: Unmanaged<CFString>! */
 export const kColorSyncConversionParamCurve1 = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2955451547185778, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4105973674444793, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2955451547185778, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4105973674444793, undefined, [value]); }
 };
 
 /** var kColorSyncConversionParamCurve2: Unmanaged<CFString>! */
 export const kColorSyncConversionParamCurve2 = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3236684479918100, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 523053841650882, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3236684479918100, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 523053841650882, undefined, [value]); }
 };
 
 /** var kColorSyncConversionParamCurve3: Unmanaged<CFString>! */
 export const kColorSyncConversionParamCurve3 = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2685215983982457, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 747885568237236, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2685215983982457, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 747885568237236, undefined, [value]); }
 };
 
 /** var kColorSyncConversionParamCurve4: Unmanaged<CFString>! */
 export const kColorSyncConversionParamCurve4 = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2989077564893242, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2416201863219284, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2989077564893242, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2416201863219284, undefined, [value]); }
 };
 
 /** var kColorSyncConvertQuality: Unmanaged<CFString>! */
 export const kColorSyncConvertQuality = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1936874703495408, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4194479552853389, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1936874703495408, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4194479552853389, undefined, [value]); }
 };
 
 /** var kColorSyncConvertUseExtendedRange: Unmanaged<CFString>! */
 export const kColorSyncConvertUseExtendedRange = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2533907962209994, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3689262988710019, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2533907962209994, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3689262988710019, undefined, [value]); }
 };
 
 /**
@@ -772,44 +772,44 @@ export const kColorSyncConvertUseExtendedRange = {
  * @availability iOS 27.0+
  */
 export const kColorSyncCustomHDRReferenceWhite = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 4294882877746151, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 2140884498642224, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 4294882877746151, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2140884498642224, undefined, [value]); }
 };
 
 /** var kColorSyncDCIP3Profile: Unmanaged<CFString>! */
 export const kColorSyncDCIP3Profile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1099579226185775, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 425575675883903, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1099579226185775, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 425575675883903, undefined, [value]); }
 };
 
 /** var kColorSyncDisplayP3Profile: Unmanaged<CFString>! */
 export const kColorSyncDisplayP3Profile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2622377248973190, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3766077085824870, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2622377248973190, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3766077085824870, undefined, [value]); }
 };
 
 /** var kColorSyncDoNotSubstituteProfiles: Unmanaged<CFString>! */
 export const kColorSyncDoNotSubstituteProfiles = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2371240840563065, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4175382123490081, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2371240840563065, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4175382123490081, undefined, [value]); }
 };
 
 /** var kColorSyncDraftQuality: Unmanaged<CFString>! */
 export const kColorSyncDraftQuality = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 203401730645014, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1207452960223820, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 203401730645014, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1207452960223820, undefined, [value]); }
 };
 
 /** var kColorSyncExtendedRange: Unmanaged<CFString>! */
 export const kColorSyncExtendedRange = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4452320989197856, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3446549957612818, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4452320989197856, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3446549957612818, undefined, [value]); }
 };
 
 /** var kColorSyncFixedPointRange: Unmanaged<CFString>! */
 export const kColorSyncFixedPointRange = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2722948570513312, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3741866840369340, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2722948570513312, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3741866840369340, undefined, [value]); }
 };
 
 /**
@@ -817,56 +817,56 @@ export const kColorSyncFixedPointRange = {
  * @availability iOS 27.0+
  */
 export const kColorSyncGainCurveChromaticities = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 2916451876151657, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 1690233660319468, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 2916451876151657, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1690233660319468, undefined, [value]); }
 };
 
 /** var kColorSyncGenericCMYKProfile: Unmanaged<CFString>! */
 export const kColorSyncGenericCMYKProfile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1023228419529044, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2259150842886842, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1023228419529044, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2259150842886842, undefined, [value]); }
 };
 
 /** var kColorSyncGenericGrayGamma22Profile: Unmanaged<CFString>! */
 export const kColorSyncGenericGrayGamma22Profile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4498735498294347, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 525209788348785, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4498735498294347, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 525209788348785, undefined, [value]); }
 };
 
 /** var kColorSyncGenericGrayProfile: Unmanaged<CFString>! */
 export const kColorSyncGenericGrayProfile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4477441630131936, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1987465068082319, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4477441630131936, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1987465068082319, undefined, [value]); }
 };
 
 /** var kColorSyncGenericLabProfile: Unmanaged<CFString>! */
 export const kColorSyncGenericLabProfile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3626218620540229, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3444222462201573, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3626218620540229, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3444222462201573, undefined, [value]); }
 };
 
 /** var kColorSyncGenericRGBProfile: Unmanaged<CFString>! */
 export const kColorSyncGenericRGBProfile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2960520169095143, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1132404849394931, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2960520169095143, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1132404849394931, undefined, [value]); }
 };
 
 /** var kColorSyncGenericXYZProfile: Unmanaged<CFString>! */
 export const kColorSyncGenericXYZProfile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 867953023621702, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3055361033916536, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 867953023621702, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3055361033916536, undefined, [value]); }
 };
 
 /** var kColorSyncHDRDerivative: Unmanaged<CFString>! */
 export const kColorSyncHDRDerivative = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2936068745236101, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4144994968922955, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2936068745236101, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4144994968922955, undefined, [value]); }
 };
 
 /** var kColorSyncHLGDerivative: Unmanaged<CFString>! */
 export const kColorSyncHLGDerivative = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4465180485271369, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1206406554062850, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4465180485271369, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1206406554062850, undefined, [value]); }
 };
 
 /**
@@ -874,8 +874,8 @@ export const kColorSyncHLGDerivative = {
  * @availability iOS 27.0+
  */
 export const kColorSyncHeadroomAdaptiveGainCurveApplicationVersion = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 966413256724288, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 1952680544763449, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 966413256724288, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1952680544763449, undefined, [value]); }
 };
 
 /**
@@ -883,8 +883,8 @@ export const kColorSyncHeadroomAdaptiveGainCurveApplicationVersion = {
  * @availability iOS 27.0+
  */
 export const kColorSyncHeadroomAdaptiveGainCurveColorVolumeTransform = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 3300177502431207, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 4410887047036265, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 3300177502431207, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4410887047036265, undefined, [value]); }
 };
 
 /**
@@ -892,8 +892,8 @@ export const kColorSyncHeadroomAdaptiveGainCurveColorVolumeTransform = {
  * @availability iOS 27.0+
  */
 export const kColorSyncHeadroomAdaptiveGainCurveInfo = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 595837450874943, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 1526039181611091, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 595837450874943, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1526039181611091, undefined, [value]); }
 };
 
 /**
@@ -901,20 +901,20 @@ export const kColorSyncHeadroomAdaptiveGainCurveInfo = {
  * @availability iOS 27.0+
  */
 export const kColorSyncHeadroomAdaptiveToneMappingInfo = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 499335107976402, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 165484511277628, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 499335107976402, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 165484511277628, undefined, [value]); }
 };
 
 /** var kColorSyncITUR2020Profile: Unmanaged<CFString>! */
 export const kColorSyncITUR2020Profile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1980216491668461, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1405294505200252, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1980216491668461, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1405294505200252, undefined, [value]); }
 };
 
 /** var kColorSyncITUR709Profile: Unmanaged<CFString>! */
 export const kColorSyncITUR709Profile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 760934306305991, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2221441725632659, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 760934306305991, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2221441725632659, undefined, [value]); }
 };
 
 /**
@@ -922,8 +922,8 @@ export const kColorSyncITUR709Profile = {
  * @availability iOS 27.0+
  */
 export const kColorSyncInterpolateSlopes = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 1523264979682015, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 54332635419110, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 1523264979682015, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 54332635419110, undefined, [value]); }
 };
 
 /**
@@ -931,503 +931,503 @@ export const kColorSyncInterpolateSlopes = {
  * @availability iOS 27.0+
  */
 export const kColorSyncMaxControlPointIndex = {
-  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_3864e7f38681b875", 2665610104654479, undefined, []); },
-  set value(value: SDKHandle) { callSDK<void>("ColorSync_3864e7f38681b875", 4117538499144636, undefined, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ColorSync_ff42ce03e691ab23", 2665610104654479, undefined, []); },
+  set value(value: SDKHandle) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4117538499144636, undefined, [value]); }
 };
 
 /** var kColorSyncNormalQuality: Unmanaged<CFString>! */
 export const kColorSyncNormalQuality = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3027766037901477, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3050459688311607, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3027766037901477, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3050459688311607, undefined, [value]); }
 };
 
 /** var kColorSyncPQDerivative: Unmanaged<CFString>! */
 export const kColorSyncPQDerivative = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4345656201251280, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4118801066118855, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4345656201251280, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4118801066118855, undefined, [value]); }
 };
 
 /** var kColorSyncProfile: Unmanaged<CFString>! */
 export const kColorSyncProfile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4041721527624399, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 802335147643497, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4041721527624399, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 802335147643497, undefined, [value]); }
 };
 
 /** var kColorSyncProfileCacheSeed: Unmanaged<CFString>! */
 export const kColorSyncProfileCacheSeed = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2506708442212379, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1487296125408964, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2506708442212379, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1487296125408964, undefined, [value]); }
 };
 
 /** var kColorSyncProfileClass: Unmanaged<CFString>! */
 export const kColorSyncProfileClass = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3522109145103781, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3371715635258851, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3522109145103781, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3371715635258851, undefined, [value]); }
 };
 
 /** var kColorSyncProfileColorSpace: Unmanaged<CFString>! */
 export const kColorSyncProfileColorSpace = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3915816784729287, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 827072003743703, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3915816784729287, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 827072003743703, undefined, [value]); }
 };
 
 /** var kColorSyncProfileDescription: Unmanaged<CFString>! */
 export const kColorSyncProfileDescription = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1741442304955846, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1739842155748740, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1741442304955846, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1739842155748740, undefined, [value]); }
 };
 
 /** var kColorSyncProfileHeader: Unmanaged<CFString>! */
 export const kColorSyncProfileHeader = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 148619644023181, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3183974348412037, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 148619644023181, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3183974348412037, undefined, [value]); }
 };
 
 /** var kColorSyncProfileIsValid: Unmanaged<CFString>! */
 export const kColorSyncProfileIsValid = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2047753714790683, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1236602316755555, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2047753714790683, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1236602316755555, undefined, [value]); }
 };
 
 /** var kColorSyncProfileMD5Digest: Unmanaged<CFString>! */
 export const kColorSyncProfileMD5Digest = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4176369937468487, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2315144179476845, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4176369937468487, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2315144179476845, undefined, [value]); }
 };
 
 /** var kColorSyncProfilePCS: Unmanaged<CFString>! */
 export const kColorSyncProfilePCS = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4187675210237177, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 314393089772805, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4187675210237177, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 314393089772805, undefined, [value]); }
 };
 
 /** var kColorSyncProfileURL: Unmanaged<CFString>! */
 export const kColorSyncProfileURL = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1819645404404024, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1616157395759480, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1819645404404024, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1616157395759480, undefined, [value]); }
 };
 
 /** var kColorSyncROMMRGBProfile: Unmanaged<CFString>! */
 export const kColorSyncROMMRGBProfile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3081518242343917, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2445732544290415, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3081518242343917, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2445732544290415, undefined, [value]); }
 };
 
 /** var kColorSyncRenderingIntent: Unmanaged<CFString>! */
 export const kColorSyncRenderingIntent = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1087972776968750, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3600207997820482, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1087972776968750, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3600207997820482, undefined, [value]); }
 };
 
 /** var kColorSyncRenderingIntentAbsolute: Unmanaged<CFString>! */
 export const kColorSyncRenderingIntentAbsolute = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2403791734694712, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3527091217803958, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2403791734694712, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3527091217803958, undefined, [value]); }
 };
 
 /** var kColorSyncRenderingIntentPerceptual: Unmanaged<CFString>! */
 export const kColorSyncRenderingIntentPerceptual = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 521677882583250, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1400291335343784, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 521677882583250, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1400291335343784, undefined, [value]); }
 };
 
 /** var kColorSyncRenderingIntentRelative: Unmanaged<CFString>! */
 export const kColorSyncRenderingIntentRelative = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3452437461226528, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3787200791301362, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3452437461226528, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3787200791301362, undefined, [value]); }
 };
 
 /** var kColorSyncRenderingIntentSaturation: Unmanaged<CFString>! */
 export const kColorSyncRenderingIntentSaturation = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1698094949203091, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4162302076694258, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1698094949203091, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4162302076694258, undefined, [value]); }
 };
 
 /** var kColorSyncRenderingIntentUseProfileHeader: Unmanaged<CFString>! */
 export const kColorSyncRenderingIntentUseProfileHeader = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2458076644311496, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2129476091311220, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2458076644311496, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2129476091311220, undefined, [value]); }
 };
 
 /** var kColorSyncSRGBProfile: Unmanaged<CFString>! */
 export const kColorSyncSRGBProfile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2009959005949776, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2930217288471215, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2009959005949776, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2930217288471215, undefined, [value]); }
 };
 
 /** var kColorSyncSigAToB0Tag: Unmanaged<CFString>! */
 export const kColorSyncSigAToB0Tag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3134740172470133, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3196492287694656, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3134740172470133, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3196492287694656, undefined, [value]); }
 };
 
 /** var kColorSyncSigAToB1Tag: Unmanaged<CFString>! */
 export const kColorSyncSigAToB1Tag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2574050331355276, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1305076718536634, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2574050331355276, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1305076718536634, undefined, [value]); }
 };
 
 /** var kColorSyncSigAToB2Tag: Unmanaged<CFString>! */
 export const kColorSyncSigAToB2Tag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 41261608508741, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 443198991381877, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 41261608508741, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 443198991381877, undefined, [value]); }
 };
 
 /** var kColorSyncSigAbstractClass: Unmanaged<CFString>! */
 export const kColorSyncSigAbstractClass = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 791344850077057, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4345330118297873, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 791344850077057, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4345330118297873, undefined, [value]); }
 };
 
 /** var kColorSyncSigBToA0Tag: Unmanaged<CFString>! */
 export const kColorSyncSigBToA0Tag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 357317163281041, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 227017197326356, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 357317163281041, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 227017197326356, undefined, [value]); }
 };
 
 /** var kColorSyncSigBToA1Tag: Unmanaged<CFString>! */
 export const kColorSyncSigBToA1Tag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1004783373449562, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 39824366811212, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1004783373449562, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 39824366811212, undefined, [value]); }
 };
 
 /** var kColorSyncSigBToA2Tag: Unmanaged<CFString>! */
 export const kColorSyncSigBToA2Tag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3908508319522650, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2280692844808667, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3908508319522650, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2280692844808667, undefined, [value]); }
 };
 
 /** var kColorSyncSigBlueColorantTag: Unmanaged<CFString>! */
 export const kColorSyncSigBlueColorantTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1574758690522913, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3170007205466787, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1574758690522913, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3170007205466787, undefined, [value]); }
 };
 
 /** var kColorSyncSigBlueTRCTag: Unmanaged<CFString>! */
 export const kColorSyncSigBlueTRCTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1947250484764075, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4501050224008074, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1947250484764075, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4501050224008074, undefined, [value]); }
 };
 
 /** var kColorSyncSigCmykData: Unmanaged<CFString>! */
 export const kColorSyncSigCmykData = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 222335589613408, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3951840471509603, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 222335589613408, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3951840471509603, undefined, [value]); }
 };
 
 /** var kColorSyncSigColorSpaceClass: Unmanaged<CFString>! */
 export const kColorSyncSigColorSpaceClass = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 78532794166682, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3112369303535215, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 78532794166682, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3112369303535215, undefined, [value]); }
 };
 
 /** var kColorSyncSigCopyrightTag: Unmanaged<CFString>! */
 export const kColorSyncSigCopyrightTag = {
-  get value(): $SDK9 { return callSDK<$SDK9>("ColorSync_3864e7f38681b875", 3285182537347103, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4218687524823270, undefined, [value]); }
+  get value(): $SDK9 { return callSDK<$SDK9>("ColorSync_ff42ce03e691ab23", 3285182537347103, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4218687524823270, undefined, [value]); }
 };
 
 /** var kColorSyncSigDeviceMfgDescTag: Unmanaged<CFString>! */
 export const kColorSyncSigDeviceMfgDescTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2457154616449691, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 55019822956426, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2457154616449691, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 55019822956426, undefined, [value]); }
 };
 
 /** var kColorSyncSigDeviceModelDescTag: Unmanaged<CFString>! */
 export const kColorSyncSigDeviceModelDescTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 648034009006948, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1636596397965281, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 648034009006948, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1636596397965281, undefined, [value]); }
 };
 
 /** var kColorSyncSigDisplayClass: Unmanaged<CFString>! */
 export const kColorSyncSigDisplayClass = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 855064777885739, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2271119127919804, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 855064777885739, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2271119127919804, undefined, [value]); }
 };
 
 /** var kColorSyncSigGamutTag: Unmanaged<CFString>! */
 export const kColorSyncSigGamutTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 233487460106924, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4065853398744982, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 233487460106924, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4065853398744982, undefined, [value]); }
 };
 
 /** var kColorSyncSigGrayData: Unmanaged<CFString>! */
 export const kColorSyncSigGrayData = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2609878265144217, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2466671792478194, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2609878265144217, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2466671792478194, undefined, [value]); }
 };
 
 /** var kColorSyncSigGrayTRCTag: Unmanaged<CFString>! */
 export const kColorSyncSigGrayTRCTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1975403056467434, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2975037128509663, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1975403056467434, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2975037128509663, undefined, [value]); }
 };
 
 /** var kColorSyncSigGreenColorantTag: Unmanaged<CFString>! */
 export const kColorSyncSigGreenColorantTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1941261056257200, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2290080405701531, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1941261056257200, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2290080405701531, undefined, [value]); }
 };
 
 /** var kColorSyncSigGreenTRCTag: Unmanaged<CFString>! */
 export const kColorSyncSigGreenTRCTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1167495424293599, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4118282643669560, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1167495424293599, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4118282643669560, undefined, [value]); }
 };
 
 /** var kColorSyncSigInputClass: Unmanaged<CFString>! */
 export const kColorSyncSigInputClass = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1972641010429704, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2346339157293076, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1972641010429704, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2346339157293076, undefined, [value]); }
 };
 
 /** var kColorSyncSigLabData: Unmanaged<CFString>! */
 export const kColorSyncSigLabData = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1021704291134476, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1100683110329495, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1021704291134476, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1100683110329495, undefined, [value]); }
 };
 
 /** var kColorSyncSigLinkClass: Unmanaged<CFString>! */
 export const kColorSyncSigLinkClass = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2846370012660633, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1786560533396634, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2846370012660633, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1786560533396634, undefined, [value]); }
 };
 
 /** var kColorSyncSigMediaBlackPointTag: Unmanaged<CFString>! */
 export const kColorSyncSigMediaBlackPointTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 851027097594966, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2524282965732487, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 851027097594966, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2524282965732487, undefined, [value]); }
 };
 
 /** var kColorSyncSigMediaWhitePointTag: Unmanaged<CFString>! */
 export const kColorSyncSigMediaWhitePointTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3870145785634710, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 292720770616809, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3870145785634710, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 292720770616809, undefined, [value]); }
 };
 
 /** var kColorSyncSigNamedColor2Tag: Unmanaged<CFString>! */
 export const kColorSyncSigNamedColor2Tag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1395404637034214, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3463450654033646, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1395404637034214, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3463450654033646, undefined, [value]); }
 };
 
 /** var kColorSyncSigNamedColorClass: Unmanaged<CFString>! */
 export const kColorSyncSigNamedColorClass = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 97238092036175, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1728810204677897, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 97238092036175, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1728810204677897, undefined, [value]); }
 };
 
 /** var kColorSyncSigOutputClass: Unmanaged<CFString>! */
 export const kColorSyncSigOutputClass = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2916962929885326, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1300333868818679, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2916962929885326, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1300333868818679, undefined, [value]); }
 };
 
 /** var kColorSyncSigPreview0Tag: Unmanaged<CFString>! */
 export const kColorSyncSigPreview0Tag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3768997818826384, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3900956650844791, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3768997818826384, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3900956650844791, undefined, [value]); }
 };
 
 /** var kColorSyncSigPreview1Tag: Unmanaged<CFString>! */
 export const kColorSyncSigPreview1Tag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1316026031787541, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 108523022251248, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1316026031787541, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 108523022251248, undefined, [value]); }
 };
 
 /** var kColorSyncSigPreview2Tag: Unmanaged<CFString>! */
 export const kColorSyncSigPreview2Tag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1926947220301187, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1993929652715937, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1926947220301187, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1993929652715937, undefined, [value]); }
 };
 
 /** var kColorSyncSigProfileDescriptionTag: Unmanaged<CFString>! */
 export const kColorSyncSigProfileDescriptionTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2607763497422686, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 407423476051908, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2607763497422686, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 407423476051908, undefined, [value]); }
 };
 
 /** var kColorSyncSigProfileSequenceDescTag: Unmanaged<CFString>! */
 export const kColorSyncSigProfileSequenceDescTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 899463532694788, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3311385494409149, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 899463532694788, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3311385494409149, undefined, [value]); }
 };
 
 /** var kColorSyncSigRedColorantTag: Unmanaged<CFString>! */
 export const kColorSyncSigRedColorantTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4487846253281642, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3077244452482118, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4487846253281642, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3077244452482118, undefined, [value]); }
 };
 
 /** var kColorSyncSigRedTRCTag: Unmanaged<CFString>! */
 export const kColorSyncSigRedTRCTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1883051765354777, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3252144772244341, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1883051765354777, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3252144772244341, undefined, [value]); }
 };
 
 /** var kColorSyncSigRgbData: Unmanaged<CFString>! */
 export const kColorSyncSigRgbData = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 896180822268567, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 629811802221757, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 896180822268567, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 629811802221757, undefined, [value]); }
 };
 
 /** var kColorSyncSigTechnologyTag: Unmanaged<CFString>! */
 export const kColorSyncSigTechnologyTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4038683626697925, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 9896874734039, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4038683626697925, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 9896874734039, undefined, [value]); }
 };
 
 /** var kColorSyncSigViewingCondDescTag: Unmanaged<CFString>! */
 export const kColorSyncSigViewingCondDescTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1068949876778937, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2839059981726739, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1068949876778937, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2839059981726739, undefined, [value]); }
 };
 
 /** var kColorSyncSigViewingConditionsTag: Unmanaged<CFString>! */
 export const kColorSyncSigViewingConditionsTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4340550694510762, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3415042278422349, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4340550694510762, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3415042278422349, undefined, [value]); }
 };
 
 /** var kColorSyncSigXYZData: Unmanaged<CFString>! */
 export const kColorSyncSigXYZData = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1504993169137324, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2680505303708369, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1504993169137324, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2680505303708369, undefined, [value]); }
 };
 
 /** var kColorSyncTransformCodeFragmentMD5: Unmanaged<CFString>! */
 export const kColorSyncTransformCodeFragmentMD5 = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3244722970578733, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 565734612839802, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3244722970578733, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 565734612839802, undefined, [value]); }
 };
 
 /** var kColorSyncTransformCodeFragmentType: Unmanaged<CFString>! */
 export const kColorSyncTransformCodeFragmentType = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3312013213831917, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3759487378336067, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3312013213831917, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3759487378336067, undefined, [value]); }
 };
 
 /** var kColorSyncTransformCreator: Unmanaged<CFString>! */
 export const kColorSyncTransformCreator = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3586056471313128, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 933489516710986, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3586056471313128, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 933489516710986, undefined, [value]); }
 };
 
 /** var kColorSyncTransformDeviceToDevice: Unmanaged<CFString>! */
 export const kColorSyncTransformDeviceToDevice = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 438572086563502, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 846661798787999, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 438572086563502, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 846661798787999, undefined, [value]); }
 };
 
 /** var kColorSyncTransformDeviceToPCS: Unmanaged<CFString>! */
 export const kColorSyncTransformDeviceToPCS = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2102687506772788, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2464917960181852, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2102687506772788, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2464917960181852, undefined, [value]); }
 };
 
 /** var kColorSyncTransformDstSpace: Unmanaged<CFString>! */
 export const kColorSyncTransformDstSpace = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1018801449793092, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 840429358116479, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1018801449793092, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 840429358116479, undefined, [value]); }
 };
 
 /** var kColorSyncTransformFullConversionData: Unmanaged<CFString>! */
 export const kColorSyncTransformFullConversionData = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3054531019002001, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1685003654708624, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3054531019002001, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1685003654708624, undefined, [value]); }
 };
 
 /** var kColorSyncTransformGamutCheck: Unmanaged<CFString>! */
 export const kColorSyncTransformGamutCheck = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2569915747881537, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 698334967665302, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2569915747881537, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 698334967665302, undefined, [value]); }
 };
 
 /** var kColorSyncTransformInfo: Unmanaged<CFString>! */
 export const kColorSyncTransformInfo = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1826446372310297, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 4051897983216288, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1826446372310297, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 4051897983216288, undefined, [value]); }
 };
 
 /** var kColorSyncTransformPCSToDevice: Unmanaged<CFString>! */
 export const kColorSyncTransformPCSToDevice = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 68904159581873, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3420868935424115, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 68904159581873, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3420868935424115, undefined, [value]); }
 };
 
 /** var kColorSyncTransformPCSToPCS: Unmanaged<CFString>! */
 export const kColorSyncTransformPCSToPCS = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3815856774775810, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1926161572466937, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3815856774775810, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1926161572466937, undefined, [value]); }
 };
 
 /** var kColorSyncTransformParametricConversionData: Unmanaged<CFString>! */
 export const kColorSyncTransformParametricConversionData = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3315396062299578, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1696375648532295, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3315396062299578, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1696375648532295, undefined, [value]); }
 };
 
 /** var kColorSyncTransformProfileSequnce: Unmanaged<CFString>! */
 export const kColorSyncTransformProfileSequnce = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3986185833452447, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1221401913018459, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3986185833452447, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1221401913018459, undefined, [value]); }
 };
 
 /** var kColorSyncTransformSimplifiedConversionData: Unmanaged<CFString>! */
 export const kColorSyncTransformSimplifiedConversionData = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4004929124906551, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 1170303516192554, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4004929124906551, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 1170303516192554, undefined, [value]); }
 };
 
 /** var kColorSyncTransformSrcSpace: Unmanaged<CFString>! */
 export const kColorSyncTransformSrcSpace = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 3589730702350343, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2770922990560750, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 3589730702350343, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2770922990560750, undefined, [value]); }
 };
 
 /** var kColorSyncTransformTag: Unmanaged<CFString>! */
 export const kColorSyncTransformTag = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 4324951550442538, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 403723287221738, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 4324951550442538, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 403723287221738, undefined, [value]); }
 };
 
 /** var kColorSyncTransformUseITU709OETF: Unmanaged<CFString>! */
 export const kColorSyncTransformUseITU709OETF = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 2722329513441046, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 2530322261218645, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 2722329513441046, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 2530322261218645, undefined, [value]); }
 };
 
 /** var kColorSyncWebSafeColorsProfile: Unmanaged<CFString>! */
 export const kColorSyncWebSafeColorsProfile = {
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_3864e7f38681b875", 1130182317146828, undefined, []); },
-  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_3864e7f38681b875", 3292448124023331, undefined, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ColorSync_ff42ce03e691ab23", 1130182317146828, undefined, []); },
+  set value(value: (SDKHandle) | null) { callSDK<void>("ColorSync_ff42ce03e691ab23", 3292448124023331, undefined, [value]); }
 };
 
 /** var COLORSYNC_API_VERSION: Int { get } */
-export const COLORSYNC_API_VERSION: number = callSDK<number>("ColorSync_3864e7f38681b875", 1152885997571424, undefined, []);
+export const COLORSYNC_API_VERSION: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 1152885997571424, undefined, []);
 
 /** var COLORSYNC_MD5_LENGTH: Int32 { get } */
-export const COLORSYNC_MD5_LENGTH: number = callSDK<number>("ColorSync_3864e7f38681b875", 430597033411189, undefined, []);
+export const COLORSYNC_MD5_LENGTH: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 430597033411189, undefined, []);
 
 /** var icVersion4Number: Int { get } */
-export const icVersion4Number: number = callSDK<number>("ColorSync_3864e7f38681b875", 3623815954570830, undefined, []);
+export const icVersion4Number: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 3623815954570830, undefined, []);
 
 /** var icVersion4Point4Number: Int { get } */
-export const icVersion4Point4Number: number = callSDK<number>("ColorSync_3864e7f38681b875", 1311222822866750, undefined, []);
+export const icVersion4Point4Number: number = callSDK<number>("ColorSync_ff42ce03e691ab23", 1311222822866750, undefined, []);
 
-registerSDKClass("ColorSync.ColorSyncMD5", ColorSyncMD5, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncMutableProfile", ColorSyncMutableProfile, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("CoreGraphics.ColorSyncProfile", ColorSyncProfile, { module: "ColorSync_3864e7f38681b875", properties: {}, methods: {"addingHeadroomAdaptiveGainCurve":{"id":294511529249621},"addingHeadroomAdaptiveGainCurveMetadataOptions":{"id":1079223726143543}} }, true);
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve", ColorSyncProfile_HeadroomAdaptiveGainCurve, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AdaptiveGainCurve", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AdaptiveGainCurve, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ComponentMix", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ControlPoints", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ControlPoints.Slopes", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.Chromaticities", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.Error", ColorSyncProfile_HeadroomAdaptiveGainCurve_Error, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurveOptions", ColorSyncProfile_HeadroomAdaptiveGainCurveOptions, { module: "ColorSync_3864e7f38681b875", properties: {} });
-registerSDKClass("ColorSync.ColorSyncTransform", ColorSyncTransform, { module: "ColorSync_3864e7f38681b875", properties: {} });
+registerSDKClass("ColorSync.ColorSyncMD5", ColorSyncMD5, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncMutableProfile", ColorSyncMutableProfile, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("CoreGraphics.ColorSyncProfile", ColorSyncProfile, { module: "ColorSync_ff42ce03e691ab23", properties: {}, methods: {"addingHeadroomAdaptiveGainCurve":{"id":294511529249621},"addingHeadroomAdaptiveGainCurveMetadataOptions":{"id":1079223726143543}} }, true);
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve", ColorSyncProfile_HeadroomAdaptiveGainCurve, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AdaptiveGainCurve", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AdaptiveGainCurve, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ComponentMix", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ControlPoints", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.AlternateCurve.ControlPoints.Slopes", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.ColorVolumeTransform.ToneMapping.Method.Chromaticities", ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurve.Error", ColorSyncProfile_HeadroomAdaptiveGainCurve_Error, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncProfile.HeadroomAdaptiveGainCurveOptions", ColorSyncProfile_HeadroomAdaptiveGainCurveOptions, { module: "ColorSync_ff42ce03e691ab23", properties: {} });
+registerSDKClass("ColorSync.ColorSyncTransform", ColorSyncTransform, { module: "ColorSync_ff42ce03e691ab23", properties: {} });

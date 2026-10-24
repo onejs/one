@@ -25,7 +25,7 @@ export class NSString extends SDKHandle {
    * class func localizedUserNotificationString(forKey key: String, arguments: [Any]?) -> String
    * @availability iOS 10.0+
    */
-  static localizedUserNotificationString(key: string, arguments_?: (Array<unknown>) | null): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 300769150646160, undefined, [key, arguments_]); }
+  static localizedUserNotificationString(key: string, arguments_?: (Array<unknown>) | null): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 300769150646160, undefined, [key, arguments_]); }
   declare readonly $type: { "c:objc(cs)NSString": true; "c:objc(cs)NSObject": true };
 }
 
@@ -40,7 +40,7 @@ export const UNAlertStyle = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (UNAlertStyle) | null { return callSDK<(UNAlertStyle) | null>("UserNotifications_3864e7f38681b875", 1507093597296782, undefined, [rawValue]); }
+  init(rawValue: number): (UNAlertStyle) | null { return callSDK<(UNAlertStyle) | null>("UserNotifications_ff42ce03e691ab23", 1507093597296782, undefined, [rawValue]); }
 };
 
 /**
@@ -54,54 +54,54 @@ export const UNAuthorizationOptions = {
    * static var alert: UNAuthorizationOptions { get }
    * @availability iOS 10.0+
    */
-  get alert(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_3864e7f38681b875", 3146312694110948, undefined, []); },
+  get alert(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_ff42ce03e691ab23", 3146312694110948, undefined, []); },
   /**
    * static var announcement: UNAuthorizationOptions { get }
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  get announcement(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_3864e7f38681b875", 4450244053501575, undefined, []); },
+  get announcement(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_ff42ce03e691ab23", 4450244053501575, undefined, []); },
   /**
    * static var badge: UNAuthorizationOptions { get }
    * @availability iOS 10.0+
    */
-  get badge(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_3864e7f38681b875", 651477274993892, undefined, []); },
+  get badge(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_ff42ce03e691ab23", 651477274993892, undefined, []); },
   /**
    * static var carPlay: UNAuthorizationOptions { get }
    * @availability iOS 10.0+
    */
-  get carPlay(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_3864e7f38681b875", 4230148358673045, undefined, []); },
+  get carPlay(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_ff42ce03e691ab23", 4230148358673045, undefined, []); },
   /**
    * static var criticalAlert: UNAuthorizationOptions { get }
    * @availability iOS 12.0+
    */
-  get criticalAlert(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_3864e7f38681b875", 4440567074373120, undefined, []); },
+  get criticalAlert(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_ff42ce03e691ab23", 4440567074373120, undefined, []); },
   /**
    * static var providesAppNotificationSettings: UNAuthorizationOptions { get }
    * @availability iOS 12.0+
    */
-  get providesAppNotificationSettings(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_3864e7f38681b875", 1594468493602229, undefined, []); },
+  get providesAppNotificationSettings(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_ff42ce03e691ab23", 1594468493602229, undefined, []); },
   /**
    * static var provisional: UNAuthorizationOptions { get }
    * @availability iOS 12.0+
    */
-  get provisional(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_3864e7f38681b875", 3105534335833047, undefined, []); },
+  get provisional(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_ff42ce03e691ab23", 3105534335833047, undefined, []); },
   /**
    * static var sound: UNAuthorizationOptions { get }
    * @availability iOS 10.0+
    */
-  get sound(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_3864e7f38681b875", 6796740393268, undefined, []); },
+  get sound(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_ff42ce03e691ab23", 6796740393268, undefined, []); },
   /**
    * static var timeSensitive: UNAuthorizationOptions { get }
    * @availability iOS 15.0+
    * @deprecated iOS 15.0
    */
-  get timeSensitive(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_3864e7f38681b875", 2791950341404619, undefined, []); },
+  get timeSensitive(): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_ff42ce03e691ab23", 2791950341404619, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_3864e7f38681b875", 3919916215932383, undefined, [rawValue]); }
+  init(rawValue: number): UNAuthorizationOptions { return callSDK<UNAuthorizationOptions>("UserNotifications_ff42ce03e691ab23", 3919916215932383, undefined, [rawValue]); }
 };
 
 /**
@@ -115,7 +115,7 @@ export const UNAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (UNAuthorizationStatus) | null { return callSDK<(UNAuthorizationStatus) | null>("UserNotifications_3864e7f38681b875", 550333962936155, undefined, [rawValue]); }
+  init(rawValue: number): (UNAuthorizationStatus) | null { return callSDK<(UNAuthorizationStatus) | null>("UserNotifications_ff42ce03e691ab23", 550333962936155, undefined, [rawValue]); }
 };
 
 /**
@@ -127,7 +127,7 @@ export class UNNotificationTrigger extends SDKHandle {
    * var repeats: Bool { get }
    * @availability iOS 10.0+
    */
-  get repeats(): boolean { return callSDK<boolean>("UserNotifications_3864e7f38681b875", 1663688930639833, this, []); }
+  get repeats(): boolean { return callSDK<boolean>("UserNotifications_ff42ce03e691ab23", 1663688930639833, this, []); }
   declare readonly $type: { "c:objc(cs)UNNotificationTrigger": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "repeats": true };
 }
@@ -141,17 +141,17 @@ export class UNCalendarNotificationTrigger extends UNNotificationTrigger {
    * convenience init(dateMatching dateComponents: DateComponents, repeats: Bool)
    * @availability iOS 10.0+
    */
-  static init(dateComponents: _Foundation_DateComponents, repeats: boolean): UNCalendarNotificationTrigger { return callSDK<UNCalendarNotificationTrigger>("UserNotifications_3864e7f38681b875", 1023788653409244, undefined, [dateComponents, repeats]); }
+  static init(dateComponents: _Foundation_DateComponents, repeats: boolean): UNCalendarNotificationTrigger { return callSDK<UNCalendarNotificationTrigger>("UserNotifications_ff42ce03e691ab23", 1023788653409244, undefined, [dateComponents, repeats]); }
   /**
    * func nextTriggerDate() -> Date?
    * @availability iOS 10.0+
    */
-  nextTriggerDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("UserNotifications_3864e7f38681b875", 2026176736588425, this, []); }
+  nextTriggerDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("UserNotifications_ff42ce03e691ab23", 2026176736588425, this, []); }
   /**
    * var dateComponents: DateComponents { get }
    * @availability iOS 10.0+
    */
-  get dateComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("UserNotifications_3864e7f38681b875", 1814377351315690, this, []); }
+  get dateComponents(): _Foundation_DateComponents { return callSDK<_Foundation_DateComponents>("UserNotifications_ff42ce03e691ab23", 1814377351315690, this, []); }
   declare readonly $type: { "c:objc(cs)UNCalendarNotificationTrigger": true; "c:objc(cs)UNNotificationTrigger": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "repeats": true; "dateComponents": true };
 }
@@ -165,67 +165,67 @@ export class UNError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 10.0+
    */
-  static get errorDomain(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 1508322061379231, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 1508322061379231, undefined, []); }
   /**
    * static var attachmentCorrupt: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get attachmentCorrupt(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 721075953254167, undefined, []); }
+  static get attachmentCorrupt(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 721075953254167, undefined, []); }
   /**
    * static var badgeInputInvalid: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get badgeInputInvalid(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 620876442667393, undefined, []); }
+  static get badgeInputInvalid(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 620876442667393, undefined, []); }
   /**
    * static var attachmentInvalidURL: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get attachmentInvalidURL(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 349968000380040, undefined, []); }
+  static get attachmentInvalidURL(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 349968000380040, undefined, []); }
   /**
    * static var contentProvidingInvalid: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get contentProvidingInvalid(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 2043788889136012, undefined, []); }
+  static get contentProvidingInvalid(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 2043788889136012, undefined, []); }
   /**
    * static var notificationsNotAllowed: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get notificationsNotAllowed(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 1513318426006793, undefined, []); }
+  static get notificationsNotAllowed(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 1513318426006793, undefined, []); }
   /**
    * static var attachmentNotInDataStore: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get attachmentNotInDataStore(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 3752263131255470, undefined, []); }
+  static get attachmentNotInDataStore(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 3752263131255470, undefined, []); }
   /**
    * static var attachmentInvalidFileSize: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get attachmentInvalidFileSize(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 3525864659581171, undefined, []); }
+  static get attachmentInvalidFileSize(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 3525864659581171, undefined, []); }
   /**
    * static var notificationInvalidNoDate: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get notificationInvalidNoDate(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 737011628336231, undefined, []); }
+  static get notificationInvalidNoDate(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 737011628336231, undefined, []); }
   /**
    * static var attachmentUnrecognizedType: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get attachmentUnrecognizedType(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 4497873898086374, undefined, []); }
+  static get attachmentUnrecognizedType(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 4497873898086374, undefined, []); }
   /**
    * static var notificationInvalidNoContent: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get notificationInvalidNoContent(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 1004567482732228, undefined, []); }
+  static get notificationInvalidNoContent(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 1004567482732228, undefined, []); }
   /**
    * static var contentProvidingObjectNotAllowed: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get contentProvidingObjectNotAllowed(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 2046500948073307, undefined, []); }
+  static get contentProvidingObjectNotAllowed(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 2046500948073307, undefined, []); }
   /**
    * static var attachmentMoveIntoDataStoreFailed: UNError.Code { get }
    * @availability iOS 10.0+
    */
-  static get attachmentMoveIntoDataStoreFailed(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_3864e7f38681b875", 2299125931504994, undefined, []); }
+  static get attachmentMoveIntoDataStoreFailed(): UNError_Code { return callSDK<UNError_Code>("UserNotifications_ff42ce03e691ab23", 2299125931504994, undefined, []); }
   declare readonly $type: { "s:SC11UNErrorCodeLeV": true };
 }
 
@@ -240,7 +240,7 @@ export const UNError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (UNError_Code) | null { return callSDK<(UNError_Code) | null>("UserNotifications_3864e7f38681b875", 4283648932914478, undefined, [rawValue]); }
+  init(rawValue: number): (UNError_Code) | null { return callSDK<(UNError_Code) | null>("UserNotifications_ff42ce03e691ab23", 4283648932914478, undefined, [rawValue]); }
 };
 
 /**
@@ -252,12 +252,12 @@ export class UNLocationNotificationTrigger extends UNNotificationTrigger {
    * convenience init(region: CLRegion, repeats: Bool)
    * @availability iOS 10.0+
    */
-  static init(region: _CoreLocation_CLRegion, repeats: boolean): UNLocationNotificationTrigger { return callSDK<UNLocationNotificationTrigger>("UserNotifications_3864e7f38681b875", 3831103445919048, undefined, [region, repeats]); }
+  static init(region: _CoreLocation_CLRegion, repeats: boolean): UNLocationNotificationTrigger { return callSDK<UNLocationNotificationTrigger>("UserNotifications_ff42ce03e691ab23", 3831103445919048, undefined, [region, repeats]); }
   /**
    * @NSCopying var region: CLRegion { get }
    * @availability iOS 10.0+
    */
-  get region(): _CoreLocation_CLRegion { return callSDK<_CoreLocation_CLRegion>("UserNotifications_3864e7f38681b875", 1907498833146295, this, []); }
+  get region(): _CoreLocation_CLRegion { return callSDK<_CoreLocation_CLRegion>("UserNotifications_ff42ce03e691ab23", 1907498833146295, this, []); }
   declare readonly $type: { "c:objc(cs)UNLocationNotificationTrigger": true; "c:objc(cs)UNNotificationTrigger": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "repeats": true; "region": true };
 }
@@ -271,91 +271,91 @@ export class UNNotificationContent extends SDKHandle {
    * func updating(from provider: any UNNotificationContentProviding) throws -> UNNotificationContent
    * @availability iOS 15.0+
    */
-  updating(provider: Implements<UNNotificationContentProviding> | SDKHandle): UNNotificationContent { return callSDK<UNNotificationContent>("UserNotifications_3864e7f38681b875", 3833285764202725, this, [provider], [{"protocol":"c:objc(pl)UNNotificationContentProviding"}]); }
+  updating(provider: Implements<UNNotificationContentProviding> | SDKHandle): UNNotificationContent { return callSDK<UNNotificationContent>("UserNotifications_ff42ce03e691ab23", 3833285764202725, this, [provider], [{"protocol":"c:objc(pl)UNNotificationContentProviding"}]); }
   /** init() */
-  static init(): UNNotificationContent { return callSDK<UNNotificationContent>("UserNotifications_3864e7f38681b875", 4039720608845357, undefined, []); }
+  static init(): UNNotificationContent { return callSDK<UNNotificationContent>("UserNotifications_ff42ce03e691ab23", 4039720608845357, undefined, []); }
   /**
    * var attachments: [UNNotificationAttachment] { get }
    * @availability iOS 10.0+
    */
-  get attachments(): $SDK2 { return callSDK<$SDK2>("UserNotifications_3864e7f38681b875", 1918809033913093, this, []); }
+  get attachments(): $SDK2 { return callSDK<$SDK2>("UserNotifications_ff42ce03e691ab23", 1918809033913093, this, []); }
   /**
    * @NSCopying var badge: NSNumber? { get }
    * @availability iOS 10.0+
    */
-  get badge(): $SDK3 { return callSDK<$SDK3>("UserNotifications_3864e7f38681b875", 3055220048857426, this, []); }
+  get badge(): $SDK3 { return callSDK<$SDK3>("UserNotifications_ff42ce03e691ab23", 3055220048857426, this, []); }
   /**
    * var body: String { get }
    * @availability iOS 10.0+
    */
-  get body(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 2652831353315753, this, []); }
+  get body(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 2652831353315753, this, []); }
   /**
    * var categoryIdentifier: String { get }
    * @availability iOS 10.0+
    */
-  get categoryIdentifier(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3333234155599138, this, []); }
+  get categoryIdentifier(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3333234155599138, this, []); }
   /**
    * var filterCriteria: String? { get }
    * @availability iOS 16.0+
    */
-  get filterCriteria(): (string) | null { return callSDK<(string) | null>("UserNotifications_3864e7f38681b875", 2702252785830616, this, []); }
+  get filterCriteria(): (string) | null { return callSDK<(string) | null>("UserNotifications_ff42ce03e691ab23", 2702252785830616, this, []); }
   /**
    * var interruptionLevel: UNNotificationInterruptionLevel { get }
    * @availability iOS 15.0+
    */
-  get interruptionLevel(): UNNotificationInterruptionLevel { return callSDK<UNNotificationInterruptionLevel>("UserNotifications_3864e7f38681b875", 1387366399912905, this, []); }
+  get interruptionLevel(): UNNotificationInterruptionLevel { return callSDK<UNNotificationInterruptionLevel>("UserNotifications_ff42ce03e691ab23", 1387366399912905, this, []); }
   /**
    * var launchImageName: String { get }
    * @availability iOS 10.0+
    */
-  get launchImageName(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 1677201702207398, this, []); }
+  get launchImageName(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 1677201702207398, this, []); }
   /**
    * var relevanceScore: Double { get }
    * @availability iOS 15.0+
    */
-  get relevanceScore(): number { return callSDK<number>("UserNotifications_3864e7f38681b875", 1649882007146255, this, []); }
+  get relevanceScore(): number { return callSDK<number>("UserNotifications_ff42ce03e691ab23", 1649882007146255, this, []); }
   /**
    * @NSCopying var sound: UNNotificationSound? { get }
    * @availability iOS 10.0+
    */
-  get sound(): $SDK4 { return callSDK<$SDK4>("UserNotifications_3864e7f38681b875", 1148024092018439, this, []); }
+  get sound(): $SDK4 { return callSDK<$SDK4>("UserNotifications_ff42ce03e691ab23", 1148024092018439, this, []); }
   /**
    * var subtitle: String { get }
    * @availability iOS 10.0+
    */
-  get subtitle(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 2711959555753164, this, []); }
+  get subtitle(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 2711959555753164, this, []); }
   /**
    * var summaryArgument: String { get }
    * @availability iOS 12.0+
    * @deprecated iOS 15.0
    */
-  get summaryArgument(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3488007675837898, this, []); }
+  get summaryArgument(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3488007675837898, this, []); }
   /**
    * var summaryArgumentCount: Int { get }
    * @availability iOS 12.0+
    * @deprecated iOS 15.0
    */
-  get summaryArgumentCount(): number { return callSDK<number>("UserNotifications_3864e7f38681b875", 4493154435627869, this, []); }
+  get summaryArgumentCount(): number { return callSDK<number>("UserNotifications_ff42ce03e691ab23", 4493154435627869, this, []); }
   /**
    * var targetContentIdentifier: String? { get }
    * @availability iOS 13.0+
    */
-  get targetContentIdentifier(): (string) | null { return callSDK<(string) | null>("UserNotifications_3864e7f38681b875", 518038373293410, this, []); }
+  get targetContentIdentifier(): (string) | null { return callSDK<(string) | null>("UserNotifications_ff42ce03e691ab23", 518038373293410, this, []); }
   /**
    * var threadIdentifier: String { get }
    * @availability iOS 10.0+
    */
-  get threadIdentifier(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 2440257805513665, this, []); }
+  get threadIdentifier(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 2440257805513665, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 10.0+
    */
-  get title(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 4348990233090803, this, []); }
+  get title(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 4348990233090803, this, []); }
   /**
    * var userInfo: [AnyHashable : Any] { get }
    * @availability iOS 10.0+
    */
-  get userInfo(): $SDK5 { return callSDK<$SDK5>("UserNotifications_3864e7f38681b875", 2969735146384306, this, []); }
+  get userInfo(): $SDK5 { return callSDK<$SDK5>("UserNotifications_ff42ce03e691ab23", 2969735146384306, this, []); }
   declare readonly $type: { "c:objc(cs)UNNotificationContent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attachments": true; "badge": true; "body": true; "categoryIdentifier": true; "filterCriteria": true; "interruptionLevel": true; "launchImageName": true; "relevanceScore": true; "sound": true; "subtitle": true; "summaryArgument": true; "summaryArgumentCount": true; "targetContentIdentifier": true; "threadIdentifier": true; "title": true; "userInfo": true };
 }
@@ -366,105 +366,105 @@ export class UNNotificationContent extends SDKHandle {
  */
 export class UNMutableNotificationContent extends (UNNotificationContent as unknown as Omit<typeof UNNotificationContent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UNNotificationContent, "attachments" | "badge" | "body" | "categoryIdentifier" | "filterCriteria" | "interruptionLevel" | "launchImageName" | "relevanceScore" | "sound" | "subtitle" | "summaryArgument" | "summaryArgumentCount" | "targetContentIdentifier" | "threadIdentifier" | "title" | "userInfo">)) {
   /** init() */
-  static init(): UNMutableNotificationContent { return callSDK<UNMutableNotificationContent>("UserNotifications_3864e7f38681b875", 1243775892548345, undefined, []); }
+  static init(): UNMutableNotificationContent { return callSDK<UNMutableNotificationContent>("UserNotifications_ff42ce03e691ab23", 1243775892548345, undefined, []); }
   /**
    * var attachments: [UNNotificationAttachment] { get set }
    * @availability iOS 10.0+
    */
-  get attachments(): $SDK2 { return callSDK<$SDK2>("UserNotifications_3864e7f38681b875", 4315389690422162, this, []); }
-  set attachments(value: $SDK2) { callSDK<void>("UserNotifications_3864e7f38681b875", 3743449664483336, this, [value]); }
+  get attachments(): $SDK2 { return callSDK<$SDK2>("UserNotifications_ff42ce03e691ab23", 4315389690422162, this, []); }
+  set attachments(value: $SDK2) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 3743449664483336, this, [value]); }
   /**
    * @NSCopying var badge: NSNumber? { get set }
    * @availability iOS 10.0+
    */
-  get badge(): $SDK3 { return callSDK<$SDK3>("UserNotifications_3864e7f38681b875", 3881633012705393, this, []); }
-  set badge(value: $SDK3) { callSDK<void>("UserNotifications_3864e7f38681b875", 3110210469467156, this, [value]); }
+  get badge(): $SDK3 { return callSDK<$SDK3>("UserNotifications_ff42ce03e691ab23", 3881633012705393, this, []); }
+  set badge(value: $SDK3) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 3110210469467156, this, [value]); }
   /**
    * var body: String { get set }
    * @availability iOS 10.0+
    */
-  get body(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3583341966402659, this, []); }
-  set body(value: string) { callSDK<void>("UserNotifications_3864e7f38681b875", 2284339850941041, this, [value]); }
+  get body(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3583341966402659, this, []); }
+  set body(value: string) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 2284339850941041, this, [value]); }
   /**
    * var categoryIdentifier: String { get set }
    * @availability iOS 10.0+
    */
-  get categoryIdentifier(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 4435724100612644, this, []); }
-  set categoryIdentifier(value: string) { callSDK<void>("UserNotifications_3864e7f38681b875", 2122183316766482, this, [value]); }
+  get categoryIdentifier(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 4435724100612644, this, []); }
+  set categoryIdentifier(value: string) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 2122183316766482, this, [value]); }
   /**
    * var filterCriteria: String? { get set }
    * @availability iOS 16.0+
    */
-  get filterCriteria(): (string) | null { return callSDK<(string) | null>("UserNotifications_3864e7f38681b875", 2316460453133784, this, []); }
-  set filterCriteria(value: (string) | null) { callSDK<void>("UserNotifications_3864e7f38681b875", 719860565087257, this, [value]); }
+  get filterCriteria(): (string) | null { return callSDK<(string) | null>("UserNotifications_ff42ce03e691ab23", 2316460453133784, this, []); }
+  set filterCriteria(value: (string) | null) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 719860565087257, this, [value]); }
   /**
    * var interruptionLevel: UNNotificationInterruptionLevel { get set }
    * @availability iOS 15.0+
    */
-  get interruptionLevel(): UNNotificationInterruptionLevel { return callSDK<UNNotificationInterruptionLevel>("UserNotifications_3864e7f38681b875", 1596889591220887, this, []); }
-  set interruptionLevel(value: UNNotificationInterruptionLevel) { callSDK<void>("UserNotifications_3864e7f38681b875", 3188220872498515, this, [value]); }
+  get interruptionLevel(): UNNotificationInterruptionLevel { return callSDK<UNNotificationInterruptionLevel>("UserNotifications_ff42ce03e691ab23", 1596889591220887, this, []); }
+  set interruptionLevel(value: UNNotificationInterruptionLevel) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 3188220872498515, this, [value]); }
   /**
    * var launchImageName: String { get set }
    * @availability iOS 10.0+
    */
-  get launchImageName(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 2166664988182562, this, []); }
-  set launchImageName(value: string) { callSDK<void>("UserNotifications_3864e7f38681b875", 1943273616086039, this, [value]); }
+  get launchImageName(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 2166664988182562, this, []); }
+  set launchImageName(value: string) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 1943273616086039, this, [value]); }
   /**
    * var relevanceScore: Double { get set }
    * @availability iOS 15.0+
    */
-  get relevanceScore(): number { return callSDK<number>("UserNotifications_3864e7f38681b875", 3722620136406788, this, []); }
-  set relevanceScore(value: number) { callSDK<void>("UserNotifications_3864e7f38681b875", 4378918024044991, this, [value]); }
+  get relevanceScore(): number { return callSDK<number>("UserNotifications_ff42ce03e691ab23", 3722620136406788, this, []); }
+  set relevanceScore(value: number) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 4378918024044991, this, [value]); }
   /**
    * @NSCopying var sound: UNNotificationSound? { get set }
    * @availability iOS 10.0+
    */
-  get sound(): $SDK4 { return callSDK<$SDK4>("UserNotifications_3864e7f38681b875", 2084477414560984, this, []); }
-  set sound(value: $SDK4) { callSDK<void>("UserNotifications_3864e7f38681b875", 3396384842015280, this, [value]); }
+  get sound(): $SDK4 { return callSDK<$SDK4>("UserNotifications_ff42ce03e691ab23", 2084477414560984, this, []); }
+  set sound(value: $SDK4) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 3396384842015280, this, [value]); }
   /**
    * var subtitle: String { get set }
    * @availability iOS 10.0+
    */
-  get subtitle(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3074333823642252, this, []); }
-  set subtitle(value: string) { callSDK<void>("UserNotifications_3864e7f38681b875", 510952836147048, this, [value]); }
+  get subtitle(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3074333823642252, this, []); }
+  set subtitle(value: string) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 510952836147048, this, [value]); }
   /**
    * var summaryArgument: String { get set }
    * @availability iOS 12.0+
    * @deprecated iOS 15.0
    */
-  get summaryArgument(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 1543526978464993, this, []); }
-  set summaryArgument(value: string) { callSDK<void>("UserNotifications_3864e7f38681b875", 3036090904651563, this, [value]); }
+  get summaryArgument(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 1543526978464993, this, []); }
+  set summaryArgument(value: string) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 3036090904651563, this, [value]); }
   /**
    * var summaryArgumentCount: Int { get set }
    * @availability iOS 12.0+
    * @deprecated iOS 15.0
    */
-  get summaryArgumentCount(): number { return callSDK<number>("UserNotifications_3864e7f38681b875", 1276534476265, this, []); }
-  set summaryArgumentCount(value: number) { callSDK<void>("UserNotifications_3864e7f38681b875", 2160918345299887, this, [value]); }
+  get summaryArgumentCount(): number { return callSDK<number>("UserNotifications_ff42ce03e691ab23", 1276534476265, this, []); }
+  set summaryArgumentCount(value: number) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 2160918345299887, this, [value]); }
   /**
    * var targetContentIdentifier: String? { get set }
    * @availability iOS 13.0+
    */
-  get targetContentIdentifier(): (string) | null { return callSDK<(string) | null>("UserNotifications_3864e7f38681b875", 4296358175291694, this, []); }
-  set targetContentIdentifier(value: (string) | null) { callSDK<void>("UserNotifications_3864e7f38681b875", 3762983032551534, this, [value]); }
+  get targetContentIdentifier(): (string) | null { return callSDK<(string) | null>("UserNotifications_ff42ce03e691ab23", 4296358175291694, this, []); }
+  set targetContentIdentifier(value: (string) | null) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 3762983032551534, this, [value]); }
   /**
    * var threadIdentifier: String { get set }
    * @availability iOS 10.0+
    */
-  get threadIdentifier(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 2679513812711147, this, []); }
-  set threadIdentifier(value: string) { callSDK<void>("UserNotifications_3864e7f38681b875", 4190397595273007, this, [value]); }
+  get threadIdentifier(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 2679513812711147, this, []); }
+  set threadIdentifier(value: string) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 4190397595273007, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 10.0+
    */
-  get title(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3354315142368478, this, []); }
-  set title(value: string) { callSDK<void>("UserNotifications_3864e7f38681b875", 3758746069382222, this, [value]); }
+  get title(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3354315142368478, this, []); }
+  set title(value: string) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 3758746069382222, this, [value]); }
   /**
    * var userInfo: [AnyHashable : Any] { get set }
    * @availability iOS 10.0+
    */
-  get userInfo(): $SDK5 { return callSDK<$SDK5>("UserNotifications_3864e7f38681b875", 740782135120046, this, []); }
-  set userInfo(value: $SDK5) { callSDK<void>("UserNotifications_3864e7f38681b875", 1294033698461454, this, [value]); }
+  get userInfo(): $SDK5 { return callSDK<$SDK5>("UserNotifications_ff42ce03e691ab23", 740782135120046, this, []); }
+  set userInfo(value: $SDK5) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 1294033698461454, this, [value]); }
   declare readonly $type: { "c:objc(cs)UNMutableNotificationContent": true; "c:objc(cs)UNNotificationContent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attachments": true; "badge": true; "body": true; "categoryIdentifier": true; "filterCriteria": true; "interruptionLevel": true; "launchImageName": true; "relevanceScore": true; "sound": true; "subtitle": true; "summaryArgument": true; "summaryArgumentCount": true; "targetContentIdentifier": true; "threadIdentifier": true; "title": true; "userInfo": true };
 }
@@ -478,12 +478,12 @@ export class UNNotification extends SDKHandle {
    * var date: Date { get }
    * @availability iOS 10.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("UserNotifications_3864e7f38681b875", 3325193460458004, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("UserNotifications_ff42ce03e691ab23", 3325193460458004, this, []); }
   /**
    * @NSCopying var request: UNNotificationRequest { get }
    * @availability iOS 10.0+
    */
-  get request(): UNNotificationRequest { return callSDK<UNNotificationRequest>("UserNotifications_3864e7f38681b875", 773062239048198, this, []); }
+  get request(): UNNotificationRequest { return callSDK<UNNotificationRequest>("UserNotifications_ff42ce03e691ab23", 773062239048198, this, []); }
   declare readonly $type: { "c:objc(cs)UNNotification": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "date": true; "request": true };
 }
@@ -497,32 +497,32 @@ export class UNNotificationAction extends SDKHandle {
    * convenience init(identifier: String, title: String, options: UNNotificationActionOptions = [])
    * @availability iOS 10.0+
    */
-  static initIdentifierTitleOptions(identifier: string, title: string, options?: UNNotificationActionOptions): UNNotificationAction { return callSDK<UNNotificationAction>("UserNotifications_3864e7f38681b875", 1175366384188162, undefined, [identifier, title, options]); }
+  static initIdentifierTitleOptions(identifier: string, title: string, options?: UNNotificationActionOptions): UNNotificationAction { return callSDK<UNNotificationAction>("UserNotifications_ff42ce03e691ab23", 1175366384188162, undefined, [identifier, title, options]); }
   /**
    * convenience init(identifier: String, title: String, options: UNNotificationActionOptions = [], icon: UNNotificationActionIcon?)
    * @availability iOS 15.0+
    */
-  static initIdentifierTitleOptionsIcon(identifier: string, title: string, options?: UNNotificationActionOptions, icon?: $SDK6): UNNotificationAction { return callSDK<UNNotificationAction>("UserNotifications_3864e7f38681b875", 1617592250777521, undefined, [identifier, title, options, icon]); }
+  static initIdentifierTitleOptionsIcon(identifier: string, title: string, options?: UNNotificationActionOptions, icon?: $SDK6): UNNotificationAction { return callSDK<UNNotificationAction>("UserNotifications_ff42ce03e691ab23", 1617592250777521, undefined, [identifier, title, options, icon]); }
   /**
    * @NSCopying var icon: UNNotificationActionIcon? { get }
    * @availability iOS 15.0+
    */
-  get icon(): $SDK6 { return callSDK<$SDK6>("UserNotifications_3864e7f38681b875", 2726505142446554, this, []); }
+  get icon(): $SDK6 { return callSDK<$SDK6>("UserNotifications_ff42ce03e691ab23", 2726505142446554, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 10.0+
    */
-  get identifier(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3882848114400610, this, []); }
+  get identifier(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3882848114400610, this, []); }
   /**
    * var options: UNNotificationActionOptions { get }
    * @availability iOS 10.0+
    */
-  get options(): UNNotificationActionOptions { return callSDK<UNNotificationActionOptions>("UserNotifications_3864e7f38681b875", 4490298721573692, this, []); }
+  get options(): UNNotificationActionOptions { return callSDK<UNNotificationActionOptions>("UserNotifications_ff42ce03e691ab23", 4490298721573692, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 10.0+
    */
-  get title(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3975743354346353, this, []); }
+  get title(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3975743354346353, this, []); }
   declare readonly $type: { "c:objc(cs)UNNotificationAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "icon": true; "identifier": true; "options": true; "title": true };
 }
@@ -536,12 +536,12 @@ export class UNNotificationActionIcon extends SDKHandle {
    * convenience init(systemImageName: String)
    * @availability iOS 15.0+
    */
-  static initSystemImageName(systemImageName: string): UNNotificationActionIcon { return callSDK<UNNotificationActionIcon>("UserNotifications_3864e7f38681b875", 1255959152929853, undefined, [systemImageName]); }
+  static initSystemImageName(systemImageName: string): UNNotificationActionIcon { return callSDK<UNNotificationActionIcon>("UserNotifications_ff42ce03e691ab23", 1255959152929853, undefined, [systemImageName]); }
   /**
    * convenience init(templateImageName: String)
    * @availability iOS 15.0+
    */
-  static initTemplateImageName(templateImageName: string): UNNotificationActionIcon { return callSDK<UNNotificationActionIcon>("UserNotifications_3864e7f38681b875", 2941495830279592, undefined, [templateImageName]); }
+  static initTemplateImageName(templateImageName: string): UNNotificationActionIcon { return callSDK<UNNotificationActionIcon>("UserNotifications_ff42ce03e691ab23", 2941495830279592, undefined, [templateImageName]); }
   declare readonly $type: { "c:objc(cs)UNNotificationActionIcon": true; "c:objc(cs)NSObject": true };
 }
 
@@ -556,22 +556,22 @@ export const UNNotificationActionOptions = {
    * static var authenticationRequired: UNNotificationActionOptions { get }
    * @availability iOS 10.0+
    */
-  get authenticationRequired(): UNNotificationActionOptions { return callSDK<UNNotificationActionOptions>("UserNotifications_3864e7f38681b875", 3139875389678626, undefined, []); },
+  get authenticationRequired(): UNNotificationActionOptions { return callSDK<UNNotificationActionOptions>("UserNotifications_ff42ce03e691ab23", 3139875389678626, undefined, []); },
   /**
    * static var destructive: UNNotificationActionOptions { get }
    * @availability iOS 10.0+
    */
-  get destructive(): UNNotificationActionOptions { return callSDK<UNNotificationActionOptions>("UserNotifications_3864e7f38681b875", 3129542416082093, undefined, []); },
+  get destructive(): UNNotificationActionOptions { return callSDK<UNNotificationActionOptions>("UserNotifications_ff42ce03e691ab23", 3129542416082093, undefined, []); },
   /**
    * static var foreground: UNNotificationActionOptions { get }
    * @availability iOS 10.0+
    */
-  get foreground(): UNNotificationActionOptions { return callSDK<UNNotificationActionOptions>("UserNotifications_3864e7f38681b875", 533788148516723, undefined, []); },
+  get foreground(): UNNotificationActionOptions { return callSDK<UNNotificationActionOptions>("UserNotifications_ff42ce03e691ab23", 533788148516723, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): UNNotificationActionOptions { return callSDK<UNNotificationActionOptions>("UserNotifications_3864e7f38681b875", 2592624331458596, undefined, [rawValue]); }
+  init(rawValue: number): UNNotificationActionOptions { return callSDK<UNNotificationActionOptions>("UserNotifications_ff42ce03e691ab23", 2592624331458596, undefined, [rawValue]); }
 };
 
 /**
@@ -583,22 +583,22 @@ export class UNNotificationAttachment extends SDKHandle {
    * convenience init(identifier: String, url URL: URL, options: [AnyHashable : Any]? = nil) throws
    * @availability iOS 10.0+
    */
-  static init(identifier: string, URL: string, options?: (NativeMap<unknown, unknown>) | null): UNNotificationAttachment { return callSDK<UNNotificationAttachment>("UserNotifications_3864e7f38681b875", 1847468838989499, undefined, [identifier, URL, options]); }
+  static init(identifier: string, URL: string, options?: (NativeMap<unknown, unknown>) | null): UNNotificationAttachment { return callSDK<UNNotificationAttachment>("UserNotifications_ff42ce03e691ab23", 1847468838989499, undefined, [identifier, URL, options]); }
   /**
    * var url: URL { get }
    * @availability iOS 10.0+
    */
-  get url(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3731381120336632, this, []); }
+  get url(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3731381120336632, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 10.0+
    */
-  get identifier(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3475669819621531, this, []); }
+  get identifier(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3475669819621531, this, []); }
   /**
    * var type: String { get }
    * @availability iOS 10.0+
    */
-  get type(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 2132476194568937, this, []); }
+  get type(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 2132476194568937, this, []); }
   declare readonly $type: { "c:objc(cs)UNNotificationAttachment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "identifier": true; "type": true };
 }
@@ -612,7 +612,7 @@ export class UNNotificationAttributedMessageContext extends SDKHandle {
    * convenience init(sendMessageIntent: INSendMessageIntent, attributedContent: NSAttributedString)
    * @availability iOS 18.0+
    */
-  static init(sendMessageIntent: _Intents_INSendMessageIntent, attributedContent: _Foundation_NSAttributedString): UNNotificationAttributedMessageContext { return callSDK<UNNotificationAttributedMessageContext>("UserNotifications_3864e7f38681b875", 609475988608033, undefined, [sendMessageIntent, attributedContent]); }
+  static init(sendMessageIntent: _Intents_INSendMessageIntent, attributedContent: _Foundation_NSAttributedString): UNNotificationAttributedMessageContext { return callSDK<UNNotificationAttributedMessageContext>("UserNotifications_ff42ce03e691ab23", 609475988608033, undefined, [sendMessageIntent, attributedContent]); }
   declare readonly $type: { "c:objc(cs)UNNotificationAttributedMessageContext": true; "c:objc(cs)NSObject": true };
 }
 
@@ -625,47 +625,47 @@ export class UNNotificationCategory extends SDKHandle {
    * convenience init(identifier: String, actions: [UNNotificationAction], intentIdentifiers: [String], hiddenPreviewsBodyPlaceholder: String?, categorySummaryFormat: String?, options: UNNotificationCategoryOptions = [])
    * @availability iOS 12.0+
    */
-  static initIdentifierActionsIntentIdentifiersHiddenPreviewsBodyPlaceholderCategorySummaryFormatOptions(identifier: string, actions: $SDK8, intentIdentifiers: Array<string>, hiddenPreviewsBodyPlaceholder?: (string) | null, categorySummaryFormat?: (string) | null, options?: UNNotificationCategoryOptions): UNNotificationCategory { return callSDK<UNNotificationCategory>("UserNotifications_3864e7f38681b875", 3133000062307164, undefined, [identifier, actions, intentIdentifiers, hiddenPreviewsBodyPlaceholder, categorySummaryFormat, options]); }
+  static initIdentifierActionsIntentIdentifiersHiddenPreviewsBodyPlaceholderCategorySummaryFormatOptions(identifier: string, actions: $SDK8, intentIdentifiers: Array<string>, hiddenPreviewsBodyPlaceholder?: (string) | null, categorySummaryFormat?: (string) | null, options?: UNNotificationCategoryOptions): UNNotificationCategory { return callSDK<UNNotificationCategory>("UserNotifications_ff42ce03e691ab23", 3133000062307164, undefined, [identifier, actions, intentIdentifiers, hiddenPreviewsBodyPlaceholder, categorySummaryFormat, options]); }
   /**
    * convenience init(identifier: String, actions: [UNNotificationAction], intentIdentifiers: [String], hiddenPreviewsBodyPlaceholder: String, options: UNNotificationCategoryOptions = [])
    * @availability iOS 11.0+
    */
-  static initIdentifierActionsIntentIdentifiersHiddenPreviewsBodyPlaceholderOptions(identifier: string, actions: $SDK8, intentIdentifiers: Array<string>, hiddenPreviewsBodyPlaceholder: string, options?: UNNotificationCategoryOptions): UNNotificationCategory { return callSDK<UNNotificationCategory>("UserNotifications_3864e7f38681b875", 2916534469004309, undefined, [identifier, actions, intentIdentifiers, hiddenPreviewsBodyPlaceholder, options]); }
+  static initIdentifierActionsIntentIdentifiersHiddenPreviewsBodyPlaceholderOptions(identifier: string, actions: $SDK8, intentIdentifiers: Array<string>, hiddenPreviewsBodyPlaceholder: string, options?: UNNotificationCategoryOptions): UNNotificationCategory { return callSDK<UNNotificationCategory>("UserNotifications_ff42ce03e691ab23", 2916534469004309, undefined, [identifier, actions, intentIdentifiers, hiddenPreviewsBodyPlaceholder, options]); }
   /**
    * convenience init(identifier: String, actions: [UNNotificationAction], intentIdentifiers: [String], options: UNNotificationCategoryOptions = [])
    * @availability iOS 10.0+
    */
-  static initIdentifierActionsIntentIdentifiersOptions(identifier: string, actions: $SDK8, intentIdentifiers: Array<string>, options?: UNNotificationCategoryOptions): UNNotificationCategory { return callSDK<UNNotificationCategory>("UserNotifications_3864e7f38681b875", 3058776277422477, undefined, [identifier, actions, intentIdentifiers, options]); }
+  static initIdentifierActionsIntentIdentifiersOptions(identifier: string, actions: $SDK8, intentIdentifiers: Array<string>, options?: UNNotificationCategoryOptions): UNNotificationCategory { return callSDK<UNNotificationCategory>("UserNotifications_ff42ce03e691ab23", 3058776277422477, undefined, [identifier, actions, intentIdentifiers, options]); }
   /**
    * var actions: [UNNotificationAction] { get }
    * @availability iOS 10.0+
    */
-  get actions(): $SDK8 { return callSDK<$SDK8>("UserNotifications_3864e7f38681b875", 4472597207809982, this, []); }
+  get actions(): $SDK8 { return callSDK<$SDK8>("UserNotifications_ff42ce03e691ab23", 4472597207809982, this, []); }
   /**
    * var categorySummaryFormat: String { get }
    * @availability iOS 12.0+
    */
-  get categorySummaryFormat(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 2137581853034619, this, []); }
+  get categorySummaryFormat(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 2137581853034619, this, []); }
   /**
    * var hiddenPreviewsBodyPlaceholder: String { get }
    * @availability iOS 11.0+
    */
-  get hiddenPreviewsBodyPlaceholder(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3890672008822534, this, []); }
+  get hiddenPreviewsBodyPlaceholder(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3890672008822534, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 10.0+
    */
-  get identifier(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 922699203548863, this, []); }
+  get identifier(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 922699203548863, this, []); }
   /**
    * var intentIdentifiers: [String] { get }
    * @availability iOS 10.0+
    */
-  get intentIdentifiers(): Array<string> { return callSDK<Array<string>>("UserNotifications_3864e7f38681b875", 1067122303846927, this, []); }
+  get intentIdentifiers(): Array<string> { return callSDK<Array<string>>("UserNotifications_ff42ce03e691ab23", 1067122303846927, this, []); }
   /**
    * var options: UNNotificationCategoryOptions { get }
    * @availability iOS 10.0+
    */
-  get options(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_3864e7f38681b875", 2922575675790848, this, []); }
+  get options(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_ff42ce03e691ab23", 2922575675790848, this, []); }
   declare readonly $type: { "c:objc(cs)UNNotificationCategory": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "categorySummaryFormat": true; "hiddenPreviewsBodyPlaceholder": true; "identifier": true; "intentIdentifiers": true; "options": true };
 }
@@ -682,32 +682,32 @@ export const UNNotificationCategoryOptions = {
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  get allowAnnouncement(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_3864e7f38681b875", 2387373726753304, undefined, []); },
+  get allowAnnouncement(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_ff42ce03e691ab23", 2387373726753304, undefined, []); },
   /**
    * static var allowInCarPlay: UNNotificationCategoryOptions { get }
    * @availability iOS 10.0+
    */
-  get allowInCarPlay(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_3864e7f38681b875", 1539358848483987, undefined, []); },
+  get allowInCarPlay(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_ff42ce03e691ab23", 1539358848483987, undefined, []); },
   /**
    * static var customDismissAction: UNNotificationCategoryOptions { get }
    * @availability iOS 10.0+
    */
-  get customDismissAction(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_3864e7f38681b875", 452818500857120, undefined, []); },
+  get customDismissAction(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_ff42ce03e691ab23", 452818500857120, undefined, []); },
   /**
    * static var hiddenPreviewsShowSubtitle: UNNotificationCategoryOptions { get }
    * @availability iOS 11.0+
    */
-  get hiddenPreviewsShowSubtitle(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_3864e7f38681b875", 2598624603707107, undefined, []); },
+  get hiddenPreviewsShowSubtitle(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_ff42ce03e691ab23", 2598624603707107, undefined, []); },
   /**
    * static var hiddenPreviewsShowTitle: UNNotificationCategoryOptions { get }
    * @availability iOS 11.0+
    */
-  get hiddenPreviewsShowTitle(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_3864e7f38681b875", 896737535207491, undefined, []); },
+  get hiddenPreviewsShowTitle(): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_ff42ce03e691ab23", 896737535207491, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_3864e7f38681b875", 2098214267738505, undefined, [rawValue]); }
+  init(rawValue: number): UNNotificationCategoryOptions { return callSDK<UNNotificationCategoryOptions>("UserNotifications_ff42ce03e691ab23", 2098214267738505, undefined, [rawValue]); }
 };
 
 /**
@@ -729,7 +729,7 @@ export const UNNotificationInterruptionLevel = {
    * init?(rawValue: UInt)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (UNNotificationInterruptionLevel) | null { return callSDK<(UNNotificationInterruptionLevel) | null>("UserNotifications_3864e7f38681b875", 2695356152035232, undefined, [rawValue]); }
+  init(rawValue: number): (UNNotificationInterruptionLevel) | null { return callSDK<(UNNotificationInterruptionLevel) | null>("UserNotifications_ff42ce03e691ab23", 2695356152035232, undefined, [rawValue]); }
 };
 
 /**
@@ -744,32 +744,32 @@ export const UNNotificationPresentationOptions = {
    * @availability iOS 10.0+
    * @deprecated iOS 14.0
    */
-  get alert(): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_3864e7f38681b875", 89732974948614, undefined, []); },
+  get alert(): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_ff42ce03e691ab23", 89732974948614, undefined, []); },
   /**
    * static var badge: UNNotificationPresentationOptions { get }
    * @availability iOS 10.0+
    */
-  get badge(): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_3864e7f38681b875", 136906245902547, undefined, []); },
+  get badge(): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_ff42ce03e691ab23", 136906245902547, undefined, []); },
   /**
    * static var banner: UNNotificationPresentationOptions { get }
    * @availability iOS 14.0+
    */
-  get banner(): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_3864e7f38681b875", 834880299047679, undefined, []); },
+  get banner(): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_ff42ce03e691ab23", 834880299047679, undefined, []); },
   /**
    * static var list: UNNotificationPresentationOptions { get }
    * @availability iOS 14.0+
    */
-  get list(): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_3864e7f38681b875", 2062098468526187, undefined, []); },
+  get list(): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_ff42ce03e691ab23", 2062098468526187, undefined, []); },
   /**
    * static var sound: UNNotificationPresentationOptions { get }
    * @availability iOS 10.0+
    */
-  get sound(): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_3864e7f38681b875", 1969345846801300, undefined, []); },
+  get sound(): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_ff42ce03e691ab23", 1969345846801300, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_3864e7f38681b875", 1414027290164860, undefined, [rawValue]); }
+  init(rawValue: number): UNNotificationPresentationOptions { return callSDK<UNNotificationPresentationOptions>("UserNotifications_ff42ce03e691ab23", 1414027290164860, undefined, [rawValue]); }
 };
 
 /**
@@ -781,22 +781,22 @@ export class UNNotificationRequest extends SDKHandle {
    * convenience init(identifier: String, content: UNNotificationContent, trigger: UNNotificationTrigger?)
    * @availability iOS 10.0+
    */
-  static init(identifier: string, content: UNNotificationContent, trigger?: $SDK9): UNNotificationRequest { return callSDK<UNNotificationRequest>("UserNotifications_3864e7f38681b875", 2274032242551299, undefined, [identifier, content, trigger]); }
+  static init(identifier: string, content: UNNotificationContent, trigger?: $SDK9): UNNotificationRequest { return callSDK<UNNotificationRequest>("UserNotifications_ff42ce03e691ab23", 2274032242551299, undefined, [identifier, content, trigger]); }
   /**
    * @NSCopying var content: UNNotificationContent { get }
    * @availability iOS 10.0+
    */
-  get content(): UNNotificationContent { return callSDK<UNNotificationContent>("UserNotifications_3864e7f38681b875", 1769279368639363, this, []); }
+  get content(): UNNotificationContent { return callSDK<UNNotificationContent>("UserNotifications_ff42ce03e691ab23", 1769279368639363, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 10.0+
    */
-  get identifier(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3497416782530898, this, []); }
+  get identifier(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3497416782530898, this, []); }
   /**
    * @NSCopying var trigger: UNNotificationTrigger? { get }
    * @availability iOS 10.0+
    */
-  get trigger(): $SDK9 { return callSDK<$SDK9>("UserNotifications_3864e7f38681b875", 556127912696212, this, []); }
+  get trigger(): $SDK9 { return callSDK<$SDK9>("UserNotifications_ff42ce03e691ab23", 556127912696212, this, []); }
   declare readonly $type: { "c:objc(cs)UNNotificationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "content": true; "identifier": true; "trigger": true };
 }
@@ -810,12 +810,12 @@ export class UNNotificationResponse extends SDKHandle {
    * var actionIdentifier: String { get }
    * @availability iOS 10.0+
    */
-  get actionIdentifier(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 3278785148740323, this, []); }
+  get actionIdentifier(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 3278785148740323, this, []); }
   /**
    * @NSCopying var notification: UNNotification { get }
    * @availability iOS 10.0+
    */
-  get notification(): UNNotification { return callSDK<UNNotification>("UserNotifications_3864e7f38681b875", 1791665977752426, this, []); }
+  get notification(): UNNotification { return callSDK<UNNotification>("UserNotifications_ff42ce03e691ab23", 1791665977752426, this, []); }
   declare readonly $type: { "c:objc(cs)UNNotificationResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actionIdentifier": true; "notification": true };
 }
@@ -829,14 +829,14 @@ export class UNNotificationServiceExtension extends SDKHandle {
    * func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void)
    * @availability iOS 10.0+
    */
-  didReceive(request: UNNotificationRequest, contentHandler: ((arg0: UNNotificationContent) => void)): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 981818538906320, this, [request, contentHandler], [null,{"callback":{"out":[]}}]); }
+  didReceive(request: UNNotificationRequest, contentHandler: ((arg0: UNNotificationContent) => void)): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 981818538906320, this, [request, contentHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): UNNotificationServiceExtension { return callSDK<UNNotificationServiceExtension>("UserNotifications_3864e7f38681b875", 3299590441805262, undefined, []); }
+  static init(): UNNotificationServiceExtension { return callSDK<UNNotificationServiceExtension>("UserNotifications_ff42ce03e691ab23", 3299590441805262, undefined, []); }
   /**
    * func serviceExtensionTimeWillExpire()
    * @availability iOS 10.0+
    */
-  serviceExtensionTimeWillExpire(): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 3139092057572483, this, []); }
+  serviceExtensionTimeWillExpire(): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 3139092057572483, this, []); }
   declare readonly $type: { "c:objc(cs)UNNotificationServiceExtension": true; "c:objc(cs)NSObject": true };
 }
 
@@ -851,7 +851,7 @@ export const UNNotificationSetting = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (UNNotificationSetting) | null { return callSDK<(UNNotificationSetting) | null>("UserNotifications_3864e7f38681b875", 4127964134016379, undefined, [rawValue]); }
+  init(rawValue: number): (UNNotificationSetting) | null { return callSDK<(UNNotificationSetting) | null>("UserNotifications_ff42ce03e691ab23", 4127964134016379, undefined, [rawValue]); }
 };
 
 /**
@@ -863,77 +863,77 @@ export class UNNotificationSettings extends SDKHandle {
    * var alertSetting: UNNotificationSetting { get }
    * @availability iOS 10.0+
    */
-  get alertSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 1987589249392130, this, []); }
+  get alertSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 1987589249392130, this, []); }
   /**
    * var alertStyle: UNAlertStyle { get }
    * @availability iOS 10.0+
    */
-  get alertStyle(): UNAlertStyle { return callSDK<UNAlertStyle>("UserNotifications_3864e7f38681b875", 3306130223552846, this, []); }
+  get alertStyle(): UNAlertStyle { return callSDK<UNAlertStyle>("UserNotifications_ff42ce03e691ab23", 3306130223552846, this, []); }
   /**
    * var announcementSetting: UNNotificationSetting { get }
    * @availability iOS 13.0+
    */
-  get announcementSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 3330117495122840, this, []); }
+  get announcementSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 3330117495122840, this, []); }
   /**
    * var authorizationStatus: UNAuthorizationStatus { get }
    * @availability iOS 10.0+
    */
-  get authorizationStatus(): UNAuthorizationStatus { return callSDK<UNAuthorizationStatus>("UserNotifications_3864e7f38681b875", 4219864294736247, this, []); }
+  get authorizationStatus(): UNAuthorizationStatus { return callSDK<UNAuthorizationStatus>("UserNotifications_ff42ce03e691ab23", 4219864294736247, this, []); }
   /**
    * var badgeSetting: UNNotificationSetting { get }
    * @availability iOS 10.0+
    */
-  get badgeSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 895279271248989, this, []); }
+  get badgeSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 895279271248989, this, []); }
   /**
    * var carPlaySetting: UNNotificationSetting { get }
    * @availability iOS 10.0+
    */
-  get carPlaySetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 200635308196692, this, []); }
+  get carPlaySetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 200635308196692, this, []); }
   /**
    * var criticalAlertSetting: UNNotificationSetting { get }
    * @availability iOS 12.0+
    */
-  get criticalAlertSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 244000338245848, this, []); }
+  get criticalAlertSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 244000338245848, this, []); }
   /**
    * var directMessagesSetting: UNNotificationSetting { get }
    * @availability iOS 15.0+
    */
-  get directMessagesSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 897818484569506, this, []); }
+  get directMessagesSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 897818484569506, this, []); }
   /**
    * var lockScreenSetting: UNNotificationSetting { get }
    * @availability iOS 10.0+
    */
-  get lockScreenSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 1317863474058541, this, []); }
+  get lockScreenSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 1317863474058541, this, []); }
   /**
    * var notificationCenterSetting: UNNotificationSetting { get }
    * @availability iOS 10.0+
    */
-  get notificationCenterSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 616343390873019, this, []); }
+  get notificationCenterSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 616343390873019, this, []); }
   /**
    * var providesAppNotificationSettings: Bool { get }
    * @availability iOS 12.0+
    */
-  get providesAppNotificationSettings(): boolean { return callSDK<boolean>("UserNotifications_3864e7f38681b875", 1335465621745575, this, []); }
+  get providesAppNotificationSettings(): boolean { return callSDK<boolean>("UserNotifications_ff42ce03e691ab23", 1335465621745575, this, []); }
   /**
    * var scheduledDeliverySetting: UNNotificationSetting { get }
    * @availability iOS 15.0+
    */
-  get scheduledDeliverySetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 2908450709871460, this, []); }
+  get scheduledDeliverySetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 2908450709871460, this, []); }
   /**
    * var showPreviewsSetting: UNShowPreviewsSetting { get }
    * @availability iOS 11.0+
    */
-  get showPreviewsSetting(): UNShowPreviewsSetting { return callSDK<UNShowPreviewsSetting>("UserNotifications_3864e7f38681b875", 2719247592000239, this, []); }
+  get showPreviewsSetting(): UNShowPreviewsSetting { return callSDK<UNShowPreviewsSetting>("UserNotifications_ff42ce03e691ab23", 2719247592000239, this, []); }
   /**
    * var soundSetting: UNNotificationSetting { get }
    * @availability iOS 10.0+
    */
-  get soundSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 1647081372206182, this, []); }
+  get soundSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 1647081372206182, this, []); }
   /**
    * var timeSensitiveSetting: UNNotificationSetting { get }
    * @availability iOS 15.0+
    */
-  get timeSensitiveSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_3864e7f38681b875", 321741998493545, this, []); }
+  get timeSensitiveSetting(): UNNotificationSetting { return callSDK<UNNotificationSetting>("UserNotifications_ff42ce03e691ab23", 321741998493545, this, []); }
   declare readonly $type: { "c:objc(cs)UNNotificationSettings": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alertSetting": true; "alertStyle": true; "announcementSetting": true; "authorizationStatus": true; "badgeSetting": true; "carPlaySetting": true; "criticalAlertSetting": true; "directMessagesSetting": true; "lockScreenSetting": true; "notificationCenterSetting": true; "providesAppNotificationSettings": true; "scheduledDeliverySetting": true; "showPreviewsSetting": true; "soundSetting": true; "timeSensitiveSetting": true };
 }
@@ -947,42 +947,42 @@ export class UNNotificationSound extends SDKHandle {
    * class func criticalSoundNamed(_ name: UNNotificationSoundName) -> Self
    * @availability iOS 12.0+
    */
-  static criticalSoundNamed(name: UNNotificationSoundName): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_3864e7f38681b875", 3972625456599967, undefined, [name]); }
+  static criticalSoundNamed(name: UNNotificationSoundName): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_ff42ce03e691ab23", 3972625456599967, undefined, [name]); }
   /**
    * class func criticalSoundNamed(_ name: UNNotificationSoundName, withAudioVolume volume: Float) -> Self
    * @availability iOS 12.0+
    */
-  static criticalSoundNamedWithAudioVolume(name: UNNotificationSoundName, volume: number): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_3864e7f38681b875", 724923327716937, undefined, [name, volume]); }
+  static criticalSoundNamedWithAudioVolume(name: UNNotificationSoundName, volume: number): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_ff42ce03e691ab23", 724923327716937, undefined, [name, volume]); }
   /**
    * class func defaultCriticalSound(withAudioVolume volume: Float) -> Self
    * @availability iOS 12.0+
    */
-  static defaultCriticalSound(volume: number): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_3864e7f38681b875", 3288201663791823, undefined, [volume]); }
+  static defaultCriticalSound(volume: number): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_ff42ce03e691ab23", 3288201663791823, undefined, [volume]); }
   /**
    * class func ringtoneSoundNamed(_ name: UNNotificationSoundName) -> Self
    * @availability iOS 15.2+
    */
-  static ringtoneSoundNamed(name: UNNotificationSoundName): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_3864e7f38681b875", 144829197436009, undefined, [name]); }
+  static ringtoneSoundNamed(name: UNNotificationSoundName): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_ff42ce03e691ab23", 144829197436009, undefined, [name]); }
   /**
    * convenience init(named name: UNNotificationSoundName)
    * @availability iOS 10.0+
    */
-  static init(name: UNNotificationSoundName): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_3864e7f38681b875", 3945389558266487, undefined, [name]); }
+  static init(name: UNNotificationSoundName): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_ff42ce03e691ab23", 3945389558266487, undefined, [name]); }
   /**
    * @NSCopying class var defaultCritical: UNNotificationSound { get }
    * @availability iOS 12.0+
    */
-  static get defaultCritical(): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_3864e7f38681b875", 700096513109435, undefined, []); }
+  static get defaultCritical(): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_ff42ce03e691ab23", 700096513109435, undefined, []); }
   /**
    * @NSCopying class var defaultRingtone: UNNotificationSound { get }
    * @availability iOS 15.2+
    */
-  static get defaultRingtone(): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_3864e7f38681b875", 4248216244535590, undefined, []); }
+  static get defaultRingtone(): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_ff42ce03e691ab23", 4248216244535590, undefined, []); }
   /**
    * @NSCopying class var `default`: UNNotificationSound { get }
    * @availability iOS 10.0+
    */
-  static get default(): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_3864e7f38681b875", 2045648898736036, undefined, []); }
+  static get default(): UNNotificationSound { return callSDK<UNNotificationSound>("UserNotifications_ff42ce03e691ab23", 2045648898736036, undefined, []); }
   declare readonly $type: { "c:objc(cs)UNNotificationSound": true; "c:objc(cs)NSObject": true };
 }
 
@@ -991,9 +991,9 @@ export type UNNotificationSoundName = (string & {});
 
 export const UNNotificationSoundName = {
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): UNNotificationSoundName { return callSDK<UNNotificationSoundName>("UserNotifications_3864e7f38681b875", 2477151073082650, undefined, [rawValue]); },
+  initRawValue(rawValue: string): UNNotificationSoundName { return callSDK<UNNotificationSoundName>("UserNotifications_ff42ce03e691ab23", 2477151073082650, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): UNNotificationSoundName { return callSDK<UNNotificationSoundName>("UserNotifications_3864e7f38681b875", 1851054651748028, undefined, [rawValue]); }
+  init(rawValue: string): UNNotificationSoundName { return callSDK<UNNotificationSoundName>("UserNotifications_ff42ce03e691ab23", 1851054651748028, undefined, [rawValue]); }
 };
 
 /**
@@ -1016,7 +1016,7 @@ export const UNShowPreviewsSetting = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (UNShowPreviewsSetting) | null { return callSDK<(UNShowPreviewsSetting) | null>("UserNotifications_3864e7f38681b875", 4238637714603052, undefined, [rawValue]); }
+  init(rawValue: number): (UNShowPreviewsSetting) | null { return callSDK<(UNShowPreviewsSetting) | null>("UserNotifications_ff42ce03e691ab23", 4238637714603052, undefined, [rawValue]); }
 };
 
 /**
@@ -1028,22 +1028,22 @@ export class UNTextInputNotificationAction extends UNNotificationAction {
    * convenience init(identifier: String, title: String, options: UNNotificationActionOptions = [], icon: UNNotificationActionIcon?, textInputButtonTitle: String, textInputPlaceholder: String)
    * @availability iOS 15.0+
    */
-  static initIdentifierTitleOptionsIconTextInputButtonTitleTextInputPlaceholder(identifier: string, title: string, options: UNNotificationActionOptions, icon: $SDK6, textInputButtonTitle: string, textInputPlaceholder: string): UNTextInputNotificationAction { return callSDK<UNTextInputNotificationAction>("UserNotifications_3864e7f38681b875", 3245395952180634, undefined, [identifier, title, options, icon, textInputButtonTitle, textInputPlaceholder]); }
+  static initIdentifierTitleOptionsIconTextInputButtonTitleTextInputPlaceholder(identifier: string, title: string, options: UNNotificationActionOptions, icon: $SDK6, textInputButtonTitle: string, textInputPlaceholder: string): UNTextInputNotificationAction { return callSDK<UNTextInputNotificationAction>("UserNotifications_ff42ce03e691ab23", 3245395952180634, undefined, [identifier, title, options, icon, textInputButtonTitle, textInputPlaceholder]); }
   /**
    * convenience init(identifier: String, title: String, options: UNNotificationActionOptions = [], textInputButtonTitle: String, textInputPlaceholder: String)
    * @availability iOS 10.0+
    */
-  static initIdentifierTitleOptionsTextInputButtonTitleTextInputPlaceholder(identifier: string, title: string, options: UNNotificationActionOptions, textInputButtonTitle: string, textInputPlaceholder: string): UNTextInputNotificationAction { return callSDK<UNTextInputNotificationAction>("UserNotifications_3864e7f38681b875", 3756950551152933, undefined, [identifier, title, options, textInputButtonTitle, textInputPlaceholder]); }
+  static initIdentifierTitleOptionsTextInputButtonTitleTextInputPlaceholder(identifier: string, title: string, options: UNNotificationActionOptions, textInputButtonTitle: string, textInputPlaceholder: string): UNTextInputNotificationAction { return callSDK<UNTextInputNotificationAction>("UserNotifications_ff42ce03e691ab23", 3756950551152933, undefined, [identifier, title, options, textInputButtonTitle, textInputPlaceholder]); }
   /**
    * var textInputButtonTitle: String { get }
    * @availability iOS 10.0+
    */
-  get textInputButtonTitle(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 780909294465029, this, []); }
+  get textInputButtonTitle(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 780909294465029, this, []); }
   /**
    * var textInputPlaceholder: String { get }
    * @availability iOS 10.0+
    */
-  get textInputPlaceholder(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 2174772312743211, this, []); }
+  get textInputPlaceholder(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 2174772312743211, this, []); }
   declare readonly $type: { "c:objc(cs)UNTextInputNotificationAction": true; "c:objc(cs)UNNotificationAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "icon": true; "identifier": true; "options": true; "title": true; "textInputButtonTitle": true; "textInputPlaceholder": true };
 }
@@ -1057,7 +1057,7 @@ export class UNTextInputNotificationResponse extends UNNotificationResponse {
    * var userText: String { get }
    * @availability iOS 10.0+
    */
-  get userText(): string { return callSDK<string>("UserNotifications_3864e7f38681b875", 113615177440096, this, []); }
+  get userText(): string { return callSDK<string>("UserNotifications_ff42ce03e691ab23", 113615177440096, this, []); }
   declare readonly $type: { "c:objc(cs)UNTextInputNotificationResponse": true; "c:objc(cs)UNNotificationResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actionIdentifier": true; "notification": true; "userText": true };
 }
@@ -1071,17 +1071,17 @@ export class UNTimeIntervalNotificationTrigger extends UNNotificationTrigger {
    * convenience init(timeInterval: TimeInterval, repeats: Bool)
    * @availability iOS 10.0+
    */
-  static init(timeInterval: number, repeats: boolean): UNTimeIntervalNotificationTrigger { return callSDK<UNTimeIntervalNotificationTrigger>("UserNotifications_3864e7f38681b875", 685705899098572, undefined, [timeInterval, repeats]); }
+  static init(timeInterval: number, repeats: boolean): UNTimeIntervalNotificationTrigger { return callSDK<UNTimeIntervalNotificationTrigger>("UserNotifications_ff42ce03e691ab23", 685705899098572, undefined, [timeInterval, repeats]); }
   /**
    * func nextTriggerDate() -> Date?
    * @availability iOS 10.0+
    */
-  nextTriggerDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("UserNotifications_3864e7f38681b875", 190883955658089, this, []); }
+  nextTriggerDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("UserNotifications_ff42ce03e691ab23", 190883955658089, this, []); }
   /**
    * var timeInterval: TimeInterval { get }
    * @availability iOS 10.0+
    */
-  get timeInterval(): number { return callSDK<number>("UserNotifications_3864e7f38681b875", 2262373380079883, this, []); }
+  get timeInterval(): number { return callSDK<number>("UserNotifications_ff42ce03e691ab23", 2262373380079883, this, []); }
   declare readonly $type: { "c:objc(cs)UNTimeIntervalNotificationTrigger": true; "c:objc(cs)UNNotificationTrigger": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "repeats": true; "timeInterval": true };
 }
@@ -1095,78 +1095,78 @@ export class UNUserNotificationCenter extends SDKHandle {
    * class func current() -> UNUserNotificationCenter
    * @availability iOS 10.0+
    */
-  static current(): UNUserNotificationCenter { return callSDK<UNUserNotificationCenter>("UserNotifications_3864e7f38681b875", 3323311567825427, undefined, []); }
+  static current(): UNUserNotificationCenter { return callSDK<UNUserNotificationCenter>("UserNotifications_ff42ce03e691ab23", 3323311567825427, undefined, []); }
   /**
    * func add(_ request: UNNotificationRequest) async throws
    * @availability iOS 10.0+
    */
-  add(request: UNNotificationRequest, completionHandler?: $SDK11): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 2679763406149973, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
+  add(request: UNNotificationRequest, completionHandler?: $SDK11): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 2679763406149973, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func deliveredNotifications() async -> [UNNotification]
    * @availability iOS 10.0+
    */
-  getDeliveredNotifications(completionHandler: ((arg0: Array<UNNotification>) => void)): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 349394870620752, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getDeliveredNotifications(completionHandler: ((arg0: Array<UNNotification>) => void)): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 349394870620752, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func notificationCategories() async -> Set<UNNotificationCategory>
    * @availability iOS 10.0+
    */
-  getNotificationCategories(completionHandler: ((arg0: Array<UNNotificationCategory>) => void)): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 3856875271366711, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getNotificationCategories(completionHandler: ((arg0: Array<UNNotificationCategory>) => void)): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 3856875271366711, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func notificationSettings() async -> UNNotificationSettings
    * @availability iOS 10.0+
    */
-  getNotificationSettings(completionHandler: ((arg0: UNNotificationSettings) => void)): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 1662071804147774, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getNotificationSettings(completionHandler: ((arg0: UNNotificationSettings) => void)): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 1662071804147774, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func pendingNotificationRequests() async -> [UNNotificationRequest]
    * @availability iOS 10.0+
    */
-  getPendingNotificationRequests(completionHandler: ((arg0: Array<UNNotificationRequest>) => void)): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 3338447267999442, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getPendingNotificationRequests(completionHandler: ((arg0: Array<UNNotificationRequest>) => void)): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 3338447267999442, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func removeAllDeliveredNotifications()
    * @availability iOS 10.0+
    */
-  removeAllDeliveredNotifications(): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 1843159245114830, this, []); }
+  removeAllDeliveredNotifications(): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 1843159245114830, this, []); }
   /**
    * func removeAllPendingNotificationRequests()
    * @availability iOS 10.0+
    */
-  removeAllPendingNotificationRequests(): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 533259150656787, this, []); }
+  removeAllPendingNotificationRequests(): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 533259150656787, this, []); }
   /**
    * func removeDeliveredNotifications(withIdentifiers identifiers: [String])
    * @availability iOS 10.0+
    */
-  removeDeliveredNotifications(identifiers: Array<string>): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 4202249696036296, this, [identifiers]); }
+  removeDeliveredNotifications(identifiers: Array<string>): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 4202249696036296, this, [identifiers]); }
   /**
    * func removePendingNotificationRequests(withIdentifiers identifiers: [String])
    * @availability iOS 10.0+
    */
-  removePendingNotificationRequests(identifiers: Array<string>): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 2652489895325868, this, [identifiers]); }
+  removePendingNotificationRequests(identifiers: Array<string>): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 2652489895325868, this, [identifiers]); }
   /**
    * func requestAuthorization(options: UNAuthorizationOptions = []) async throws -> Bool
    * @availability iOS 10.0+
    */
-  requestAuthorization(options: UNAuthorizationOptions, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 3339585001660874, this, [options, completionHandler], [null,{"callback":{"out":[]}}]); }
+  requestAuthorization(options: UNAuthorizationOptions, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 3339585001660874, this, [options, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func setBadgeCount(_ newBadgeCount: Int) async throws
    * @availability iOS 16.0+
    */
-  setBadgeCount(newBadgeCount: number, completionHandler?: $SDK11): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 408120669089233, this, [newBadgeCount, completionHandler], [null,{"callback":{"out":[]}}]); }
+  setBadgeCount(newBadgeCount: number, completionHandler?: $SDK11): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 408120669089233, this, [newBadgeCount, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func setNotificationCategories(_ categories: Set<UNNotificationCategory>)
    * @availability iOS 10.0+
    */
-  setNotificationCategories(categories: Array<UNNotificationCategory>): void { return callSDK<void>("UserNotifications_3864e7f38681b875", 3062289938181551, this, [categories]); }
+  setNotificationCategories(categories: Array<UNNotificationCategory>): void { return callSDK<void>("UserNotifications_ff42ce03e691ab23", 3062289938181551, this, [categories]); }
   /**
    * weak var delegate: (any UNUserNotificationCenterDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("UserNotifications_3864e7f38681b875", 1533310836069945, this, []); }
-  set delegate(value: (Implements<UNUserNotificationCenterDelegate> | SDKHandle) | null) { callSDK<void>("UserNotifications_3864e7f38681b875", 278069141887040, this, [value], [{"protocol":"c:objc(pl)UNUserNotificationCenterDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("UserNotifications_ff42ce03e691ab23", 1533310836069945, this, []); }
+  set delegate(value: (Implements<UNUserNotificationCenterDelegate> | SDKHandle) | null) { callSDK<void>("UserNotifications_ff42ce03e691ab23", 278069141887040, this, [value], [{"protocol":"c:objc(pl)UNUserNotificationCenterDelegate"}]); }
   /**
    * var supportsContentExtensions: Bool { get }
    * @availability iOS 10.0+
    */
-  get supportsContentExtensions(): boolean { return callSDK<boolean>("UserNotifications_3864e7f38681b875", 1664485096094165, this, []); }
+  get supportsContentExtensions(): boolean { return callSDK<boolean>("UserNotifications_ff42ce03e691ab23", 1664485096094165, this, []); }
   declare readonly $type: { "c:objc(cs)UNUserNotificationCenter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "supportsContentExtensions": true };
 }
@@ -1187,66 +1187,66 @@ export interface UNUserNotificationCenterDelegate {
  * let UNErrorDomain: String
  * @availability iOS 10.0+
  */
-export const UNErrorDomain: string = callSDK<string>("UserNotifications_3864e7f38681b875", 291795576416530, undefined, []);
+export const UNErrorDomain: string = callSDK<string>("UserNotifications_ff42ce03e691ab23", 291795576416530, undefined, []);
 
 /**
  * let UNNotificationAttachmentOptionsThumbnailClippingRectKey: String
  * @availability iOS 10.0+
  */
-export const UNNotificationAttachmentOptionsThumbnailClippingRectKey: string = callSDK<string>("UserNotifications_3864e7f38681b875", 4397221109706009, undefined, []);
+export const UNNotificationAttachmentOptionsThumbnailClippingRectKey: string = callSDK<string>("UserNotifications_ff42ce03e691ab23", 4397221109706009, undefined, []);
 
 /**
  * let UNNotificationAttachmentOptionsThumbnailHiddenKey: String
  * @availability iOS 10.0+
  */
-export const UNNotificationAttachmentOptionsThumbnailHiddenKey: string = callSDK<string>("UserNotifications_3864e7f38681b875", 2680174857181352, undefined, []);
+export const UNNotificationAttachmentOptionsThumbnailHiddenKey: string = callSDK<string>("UserNotifications_ff42ce03e691ab23", 2680174857181352, undefined, []);
 
 /**
  * let UNNotificationAttachmentOptionsThumbnailTimeKey: String
  * @availability iOS 10.0+
  */
-export const UNNotificationAttachmentOptionsThumbnailTimeKey: string = callSDK<string>("UserNotifications_3864e7f38681b875", 3046049315843921, undefined, []);
+export const UNNotificationAttachmentOptionsThumbnailTimeKey: string = callSDK<string>("UserNotifications_ff42ce03e691ab23", 3046049315843921, undefined, []);
 
 /**
  * let UNNotificationAttachmentOptionsTypeHintKey: String
  * @availability iOS 10.0+
  */
-export const UNNotificationAttachmentOptionsTypeHintKey: string = callSDK<string>("UserNotifications_3864e7f38681b875", 482727665940929, undefined, []);
+export const UNNotificationAttachmentOptionsTypeHintKey: string = callSDK<string>("UserNotifications_ff42ce03e691ab23", 482727665940929, undefined, []);
 
 /**
  * let UNNotificationDefaultActionIdentifier: String
  * @availability iOS 10.0+
  */
-export const UNNotificationDefaultActionIdentifier: string = callSDK<string>("UserNotifications_3864e7f38681b875", 3299353136866350, undefined, []);
+export const UNNotificationDefaultActionIdentifier: string = callSDK<string>("UserNotifications_ff42ce03e691ab23", 3299353136866350, undefined, []);
 
 /**
  * let UNNotificationDismissActionIdentifier: String
  * @availability iOS 10.0+
  */
-export const UNNotificationDismissActionIdentifier: string = callSDK<string>("UserNotifications_3864e7f38681b875", 3475143448461585, undefined, []);
+export const UNNotificationDismissActionIdentifier: string = callSDK<string>("UserNotifications_ff42ce03e691ab23", 3475143448461585, undefined, []);
 
-registerSDKClass("NSString", NSString, { module: "UserNotifications_3864e7f38681b875", properties: {} }, true);
-registerSDKClass("UNNotificationTrigger", UNNotificationTrigger, { module: "UserNotifications_3864e7f38681b875", properties: {"repeats":1663688930639833} });
-registerSDKClass("UNCalendarNotificationTrigger", UNCalendarNotificationTrigger, { module: "UserNotifications_3864e7f38681b875", properties: {"dateComponents":1814377351315690}, methods: {"nextTriggerDate":{"id":2026176736588425}} });
-registerSDKClass("UserNotifications.UNError", UNError, { module: "UserNotifications_3864e7f38681b875", properties: {} });
-registerSDKClass("UNLocationNotificationTrigger", UNLocationNotificationTrigger, { module: "UserNotifications_3864e7f38681b875", properties: {"region":1907498833146295} });
-registerSDKClass("UNNotificationContent", UNNotificationContent, { module: "UserNotifications_3864e7f38681b875", properties: {"attachments":1918809033913093,"badge":3055220048857426,"body":2652831353315753,"categoryIdentifier":3333234155599138,"filterCriteria":2702252785830616,"interruptionLevel":1387366399912905,"launchImageName":1677201702207398,"relevanceScore":1649882007146255,"sound":1148024092018439,"subtitle":2711959555753164,"summaryArgument":3488007675837898,"summaryArgumentCount":4493154435627869,"targetContentIdentifier":518038373293410,"threadIdentifier":2440257805513665,"title":4348990233090803,"userInfo":2969735146384306}, methods: {"updating":{"id":3833285764202725,"hints":[{"protocol":"c:objc(pl)UNNotificationContentProviding"}]}} });
-registerSDKClass("UNMutableNotificationContent", UNMutableNotificationContent, { module: "UserNotifications_3864e7f38681b875", properties: {"attachments":4315389690422162,"badge":3881633012705393,"body":3583341966402659,"categoryIdentifier":4435724100612644,"filterCriteria":2316460453133784,"interruptionLevel":1596889591220887,"launchImageName":2166664988182562,"relevanceScore":3722620136406788,"sound":2084477414560984,"subtitle":3074333823642252,"summaryArgument":1543526978464993,"summaryArgumentCount":1276534476265,"targetContentIdentifier":4296358175291694,"threadIdentifier":2679513812711147,"title":3354315142368478,"userInfo":740782135120046} });
-registerSDKClass("UNNotification", UNNotification, { module: "UserNotifications_3864e7f38681b875", properties: {"date":3325193460458004,"request":773062239048198} });
-registerSDKClass("UNNotificationAction", UNNotificationAction, { module: "UserNotifications_3864e7f38681b875", properties: {"icon":2726505142446554,"identifier":3882848114400610,"options":4490298721573692,"title":3975743354346353} });
-registerSDKClass("UNNotificationActionIcon", UNNotificationActionIcon, { module: "UserNotifications_3864e7f38681b875", properties: {} });
-registerSDKClass("UNNotificationAttachment", UNNotificationAttachment, { module: "UserNotifications_3864e7f38681b875", properties: {"url":3731381120336632,"identifier":3475669819621531,"type":2132476194568937} });
-registerSDKClass("UNNotificationAttributedMessageContext", UNNotificationAttributedMessageContext, { module: "UserNotifications_3864e7f38681b875", properties: {} });
-registerSDKClass("UNNotificationCategory", UNNotificationCategory, { module: "UserNotifications_3864e7f38681b875", properties: {"actions":4472597207809982,"categorySummaryFormat":2137581853034619,"hiddenPreviewsBodyPlaceholder":3890672008822534,"identifier":922699203548863,"intentIdentifiers":1067122303846927,"options":2922575675790848} });
+registerSDKClass("NSString", NSString, { module: "UserNotifications_ff42ce03e691ab23", properties: {} }, true);
+registerSDKClass("UNNotificationTrigger", UNNotificationTrigger, { module: "UserNotifications_ff42ce03e691ab23", properties: {"repeats":1663688930639833} });
+registerSDKClass("UNCalendarNotificationTrigger", UNCalendarNotificationTrigger, { module: "UserNotifications_ff42ce03e691ab23", properties: {"dateComponents":1814377351315690}, methods: {"nextTriggerDate":{"id":2026176736588425}} });
+registerSDKClass("UserNotifications.UNError", UNError, { module: "UserNotifications_ff42ce03e691ab23", properties: {} });
+registerSDKClass("UNLocationNotificationTrigger", UNLocationNotificationTrigger, { module: "UserNotifications_ff42ce03e691ab23", properties: {"region":1907498833146295} });
+registerSDKClass("UNNotificationContent", UNNotificationContent, { module: "UserNotifications_ff42ce03e691ab23", properties: {"attachments":1918809033913093,"badge":3055220048857426,"body":2652831353315753,"categoryIdentifier":3333234155599138,"filterCriteria":2702252785830616,"interruptionLevel":1387366399912905,"launchImageName":1677201702207398,"relevanceScore":1649882007146255,"sound":1148024092018439,"subtitle":2711959555753164,"summaryArgument":3488007675837898,"summaryArgumentCount":4493154435627869,"targetContentIdentifier":518038373293410,"threadIdentifier":2440257805513665,"title":4348990233090803,"userInfo":2969735146384306}, methods: {"updating":{"id":3833285764202725,"hints":[{"protocol":"c:objc(pl)UNNotificationContentProviding"}]}} });
+registerSDKClass("UNMutableNotificationContent", UNMutableNotificationContent, { module: "UserNotifications_ff42ce03e691ab23", properties: {"attachments":4315389690422162,"badge":3881633012705393,"body":3583341966402659,"categoryIdentifier":4435724100612644,"filterCriteria":2316460453133784,"interruptionLevel":1596889591220887,"launchImageName":2166664988182562,"relevanceScore":3722620136406788,"sound":2084477414560984,"subtitle":3074333823642252,"summaryArgument":1543526978464993,"summaryArgumentCount":1276534476265,"targetContentIdentifier":4296358175291694,"threadIdentifier":2679513812711147,"title":3354315142368478,"userInfo":740782135120046} });
+registerSDKClass("UNNotification", UNNotification, { module: "UserNotifications_ff42ce03e691ab23", properties: {"date":3325193460458004,"request":773062239048198} });
+registerSDKClass("UNNotificationAction", UNNotificationAction, { module: "UserNotifications_ff42ce03e691ab23", properties: {"icon":2726505142446554,"identifier":3882848114400610,"options":4490298721573692,"title":3975743354346353} });
+registerSDKClass("UNNotificationActionIcon", UNNotificationActionIcon, { module: "UserNotifications_ff42ce03e691ab23", properties: {} });
+registerSDKClass("UNNotificationAttachment", UNNotificationAttachment, { module: "UserNotifications_ff42ce03e691ab23", properties: {"url":3731381120336632,"identifier":3475669819621531,"type":2132476194568937} });
+registerSDKClass("UNNotificationAttributedMessageContext", UNNotificationAttributedMessageContext, { module: "UserNotifications_ff42ce03e691ab23", properties: {} });
+registerSDKClass("UNNotificationCategory", UNNotificationCategory, { module: "UserNotifications_ff42ce03e691ab23", properties: {"actions":4472597207809982,"categorySummaryFormat":2137581853034619,"hiddenPreviewsBodyPlaceholder":3890672008822534,"identifier":922699203548863,"intentIdentifiers":1067122303846927,"options":2922575675790848} });
 registerSDKProtocol("c:objc(pl)UNNotificationContentProviding", {});
-registerSDKClass("UNNotificationRequest", UNNotificationRequest, { module: "UserNotifications_3864e7f38681b875", properties: {"content":1769279368639363,"identifier":3497416782530898,"trigger":556127912696212} });
-registerSDKClass("UNNotificationResponse", UNNotificationResponse, { module: "UserNotifications_3864e7f38681b875", properties: {"actionIdentifier":3278785148740323,"notification":1791665977752426} });
-registerSDKClass("UNNotificationServiceExtension", UNNotificationServiceExtension, { module: "UserNotifications_3864e7f38681b875", properties: {}, methods: {"didReceive":{"id":981818538906320,"hints":[null,{"callback":{"out":[]}}]},"serviceExtensionTimeWillExpire":{"id":3139092057572483}} });
-registerSDKClass("UNNotificationSettings", UNNotificationSettings, { module: "UserNotifications_3864e7f38681b875", properties: {"alertSetting":1987589249392130,"alertStyle":3306130223552846,"announcementSetting":3330117495122840,"authorizationStatus":4219864294736247,"badgeSetting":895279271248989,"carPlaySetting":200635308196692,"criticalAlertSetting":244000338245848,"directMessagesSetting":897818484569506,"lockScreenSetting":1317863474058541,"notificationCenterSetting":616343390873019,"providesAppNotificationSettings":1335465621745575,"scheduledDeliverySetting":2908450709871460,"showPreviewsSetting":2719247592000239,"soundSetting":1647081372206182,"timeSensitiveSetting":321741998493545} });
-registerSDKClass("UNNotificationSound", UNNotificationSound, { module: "UserNotifications_3864e7f38681b875", properties: {} });
-registerSDKClass("UNPushNotificationTrigger", UNPushNotificationTrigger, { module: "UserNotifications_3864e7f38681b875", properties: {} });
-registerSDKClass("UNTextInputNotificationAction", UNTextInputNotificationAction, { module: "UserNotifications_3864e7f38681b875", properties: {"textInputButtonTitle":780909294465029,"textInputPlaceholder":2174772312743211} });
-registerSDKClass("UNTextInputNotificationResponse", UNTextInputNotificationResponse, { module: "UserNotifications_3864e7f38681b875", properties: {"userText":113615177440096} });
-registerSDKClass("UNTimeIntervalNotificationTrigger", UNTimeIntervalNotificationTrigger, { module: "UserNotifications_3864e7f38681b875", properties: {"timeInterval":2262373380079883}, methods: {"nextTriggerDate":{"id":190883955658089}} });
-registerSDKClass("UNUserNotificationCenter", UNUserNotificationCenter, { module: "UserNotifications_3864e7f38681b875", properties: {"delegate":1533310836069945,"supportsContentExtensions":1664485096094165}, methods: {"add":{"id":2679763406149973,"hints":[null,{"callback":{"out":[]}}]},"getDeliveredNotifications":{"id":349394870620752,"hints":[{"callback":{"out":[]}}]},"getNotificationCategories":{"id":3856875271366711,"hints":[{"callback":{"out":[]}}]},"getNotificationSettings":{"id":1662071804147774,"hints":[{"callback":{"out":[]}}]},"getPendingNotificationRequests":{"id":3338447267999442,"hints":[{"callback":{"out":[]}}]},"removeAllDeliveredNotifications":{"id":1843159245114830},"removeAllPendingNotificationRequests":{"id":533259150656787},"removeDeliveredNotifications":{"id":4202249696036296},"removePendingNotificationRequests":{"id":2652489895325868},"requestAuthorization":{"id":3339585001660874,"hints":[null,{"callback":{"out":[]}}]},"setBadgeCount":{"id":408120669089233,"hints":[null,{"callback":{"out":[]}}]},"setNotificationCategories":{"id":3062289938181551}} });
+registerSDKClass("UNNotificationRequest", UNNotificationRequest, { module: "UserNotifications_ff42ce03e691ab23", properties: {"content":1769279368639363,"identifier":3497416782530898,"trigger":556127912696212} });
+registerSDKClass("UNNotificationResponse", UNNotificationResponse, { module: "UserNotifications_ff42ce03e691ab23", properties: {"actionIdentifier":3278785148740323,"notification":1791665977752426} });
+registerSDKClass("UNNotificationServiceExtension", UNNotificationServiceExtension, { module: "UserNotifications_ff42ce03e691ab23", properties: {}, methods: {"didReceive":{"id":981818538906320,"hints":[null,{"callback":{"out":[]}}]},"serviceExtensionTimeWillExpire":{"id":3139092057572483}} });
+registerSDKClass("UNNotificationSettings", UNNotificationSettings, { module: "UserNotifications_ff42ce03e691ab23", properties: {"alertSetting":1987589249392130,"alertStyle":3306130223552846,"announcementSetting":3330117495122840,"authorizationStatus":4219864294736247,"badgeSetting":895279271248989,"carPlaySetting":200635308196692,"criticalAlertSetting":244000338245848,"directMessagesSetting":897818484569506,"lockScreenSetting":1317863474058541,"notificationCenterSetting":616343390873019,"providesAppNotificationSettings":1335465621745575,"scheduledDeliverySetting":2908450709871460,"showPreviewsSetting":2719247592000239,"soundSetting":1647081372206182,"timeSensitiveSetting":321741998493545} });
+registerSDKClass("UNNotificationSound", UNNotificationSound, { module: "UserNotifications_ff42ce03e691ab23", properties: {} });
+registerSDKClass("UNPushNotificationTrigger", UNPushNotificationTrigger, { module: "UserNotifications_ff42ce03e691ab23", properties: {} });
+registerSDKClass("UNTextInputNotificationAction", UNTextInputNotificationAction, { module: "UserNotifications_ff42ce03e691ab23", properties: {"textInputButtonTitle":780909294465029,"textInputPlaceholder":2174772312743211} });
+registerSDKClass("UNTextInputNotificationResponse", UNTextInputNotificationResponse, { module: "UserNotifications_ff42ce03e691ab23", properties: {"userText":113615177440096} });
+registerSDKClass("UNTimeIntervalNotificationTrigger", UNTimeIntervalNotificationTrigger, { module: "UserNotifications_ff42ce03e691ab23", properties: {"timeInterval":2262373380079883}, methods: {"nextTriggerDate":{"id":190883955658089}} });
+registerSDKClass("UNUserNotificationCenter", UNUserNotificationCenter, { module: "UserNotifications_ff42ce03e691ab23", properties: {"delegate":1533310836069945,"supportsContentExtensions":1664485096094165}, methods: {"add":{"id":2679763406149973,"hints":[null,{"callback":{"out":[]}}]},"getDeliveredNotifications":{"id":349394870620752,"hints":[{"callback":{"out":[]}}]},"getNotificationCategories":{"id":3856875271366711,"hints":[{"callback":{"out":[]}}]},"getNotificationSettings":{"id":1662071804147774,"hints":[{"callback":{"out":[]}}]},"getPendingNotificationRequests":{"id":3338447267999442,"hints":[{"callback":{"out":[]}}]},"removeAllDeliveredNotifications":{"id":1843159245114830},"removeAllPendingNotificationRequests":{"id":533259150656787},"removeDeliveredNotifications":{"id":4202249696036296},"removePendingNotificationRequests":{"id":2652489895325868},"requestAuthorization":{"id":3339585001660874,"hints":[null,{"callback":{"out":[]}}]},"setBadgeCount":{"id":408120669089233,"hints":[null,{"callback":{"out":[]}}]},"setNotificationCategories":{"id":3062289938181551}} });
 registerSDKProtocol("c:objc(pl)UNUserNotificationCenterDelegate", {"userNotificationCenterOpenSettingsFor":"userNotificationCenter(_:openSettingsFor:)"});

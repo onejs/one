@@ -144,52 +144,52 @@ export class AnimalBodyPoseObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 203995476591016, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 203995476591016, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 4289927312777643, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4289927312777643, this, []); }
   /**
    * var availableJointNames: [AnimalBodyPoseObservation.JointName] { get }
    * @availability iOS 18.0+
    */
-  get availableJointNames(): $SDK0 { return callSDK<$SDK0>("Vision_3864e7f38681b875", 2976030668054728, this, []); }
+  get availableJointNames(): $SDK0 { return callSDK<$SDK0>("Vision_ff42ce03e691ab23", 2976030668054728, this, []); }
   /**
    * var availableJointsGroupNames: [AnimalBodyPoseObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get availableJointsGroupNames(): $SDK1 { return callSDK<$SDK1>("Vision_3864e7f38681b875", 3295802996238049, this, []); }
+  get availableJointsGroupNames(): $SDK1 { return callSDK<$SDK1>("Vision_ff42ce03e691ab23", 3295802996238049, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 1464176646062807, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 1464176646062807, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 1096985210154029, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1096985210154029, this, []); }
   /**
    * func joint(for jointName: AnimalBodyPoseObservation.JointName) -> Joint?
    * @availability iOS 18.0+
    */
-  joint(jointName: AnimalBodyPoseObservation_JointName): (Joint) | null { return callSDK<(Joint) | null>("Vision_3864e7f38681b875", 2327280970264245, this, [jointName]); }
+  joint(jointName: AnimalBodyPoseObservation_JointName): (Joint) | null { return callSDK<(Joint) | null>("Vision_ff42ce03e691ab23", 2327280970264245, this, [jointName]); }
   /**
    * func allJoints(in groupName: AnimalBodyPoseObservation.JointsGroupName? = nil) -> [AnimalBodyPoseObservation.JointName : Joint]
    * @availability iOS 18.0+
    */
-  allJoints(groupName?: (AnimalBodyPoseObservation_JointsGroupName) | null): NativeMap<AnimalBodyPoseObservation_JointName, Joint> { return callSDK<NativeMap<AnimalBodyPoseObservation_JointName, Joint>>("Vision_3864e7f38681b875", 75309782630952, this, [groupName]); }
+  allJoints(groupName?: (AnimalBodyPoseObservation_JointsGroupName) | null): NativeMap<AnimalBodyPoseObservation_JointName, Joint> { return callSDK<NativeMap<AnimalBodyPoseObservation_JointName, Joint>>("Vision_ff42ce03e691ab23", 75309782630952, this, [groupName]); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 779661449365606, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 779661449365606, this, []); }
   /**
    * init(_ observation: VNAnimalBodyPoseObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNAnimalBodyPoseObservation): AnimalBodyPoseObservation { return callSDK<AnimalBodyPoseObservation>("Vision_3864e7f38681b875", 552798878743501, undefined, [observation]); }
+  static init(observation: VNAnimalBodyPoseObservation): AnimalBodyPoseObservation { return callSDK<AnimalBodyPoseObservation>("Vision_ff42ce03e691ab23", 552798878743501, undefined, [observation]); }
   declare readonly $type: { "s:6Vision25AnimalBodyPoseObservationV": true };
 }
 
@@ -204,12 +204,12 @@ export const AnimalBodyPoseObservation_JointName = {
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): (AnimalBodyPoseObservation_JointName) | null { return callSDK<(AnimalBodyPoseObservation_JointName) | null>("Vision_3864e7f38681b875", 2880315483632975, undefined, [rawValue]); },
+  init(rawValue: string): (AnimalBodyPoseObservation_JointName) | null { return callSDK<(AnimalBodyPoseObservation_JointName) | null>("Vision_ff42ce03e691ab23", 2880315483632975, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: AnimalBodyPoseObservation_JointName): string { return callSDK<string>("Vision_3864e7f38681b875", 4474439623995424, $self, []); }
+  getRawValue($self: AnimalBodyPoseObservation_JointName): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4474439623995424, $self, []); }
 };
 
 /**
@@ -229,17 +229,17 @@ export const AnimalBodyPoseObservation_JointsGroupName = {
    * nonisolated static var allCases: [AnimalBodyPoseObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): $SDK1 { return callSDK<$SDK1>("Vision_3864e7f38681b875", 3025078950550470, undefined, []); },
+  get allCases(): $SDK1 { return callSDK<$SDK1>("Vision_ff42ce03e691ab23", 3025078950550470, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): (AnimalBodyPoseObservation_JointsGroupName) | null { return callSDK<(AnimalBodyPoseObservation_JointsGroupName) | null>("Vision_3864e7f38681b875", 2423902643293976, undefined, [rawValue]); },
+  init(rawValue: string): (AnimalBodyPoseObservation_JointsGroupName) | null { return callSDK<(AnimalBodyPoseObservation_JointsGroupName) | null>("Vision_ff42ce03e691ab23", 2423902643293976, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: AnimalBodyPoseObservation_JointsGroupName): string { return callSDK<string>("Vision_3864e7f38681b875", 777921835026313, $self, []); }
+  getRawValue($self: AnimalBodyPoseObservation_JointsGroupName): string { return callSDK<string>("Vision_ff42ce03e691ab23", 777921835026313, $self, []); }
 };
 
 /**
@@ -275,97 +275,97 @@ export class BarcodeObservation extends SDKHandle {
    * let bottomLeft: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get bottomLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 1612251931372913, this, []); }
+  get bottomLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 1612251931372913, this, []); }
   /**
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 1286792988899254, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1286792988899254, this, []); }
   /**
    * let bottomRight: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get bottomRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 2449962546154589, this, []); }
+  get bottomRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 2449962546154589, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 1701403957044111, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1701403957044111, this, []); }
   /**
    * let payloadData: Data?
    * @availability iOS 18.0+
    */
-  get payloadData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Vision_3864e7f38681b875", 3046071043369107, this, []); }
+  get payloadData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Vision_ff42ce03e691ab23", 3046071043369107, this, []); }
   /**
    * let payloadString: String?
    * @availability iOS 18.0+
    */
-  get payloadString(): (string) | null { return callSDK<(string) | null>("Vision_3864e7f38681b875", 3821643189534142, this, []); }
+  get payloadString(): (string) | null { return callSDK<(string) | null>("Vision_ff42ce03e691ab23", 3821643189534142, this, []); }
   /**
    * var boundingRegion: NormalizedRegion { get }
    * @availability iOS 26.0+
    */
-  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_3864e7f38681b875", 525720373480639, this, []); }
+  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_ff42ce03e691ab23", 525720373480639, this, []); }
   /**
    * let isColorInverted: Bool
    * @availability iOS 18.0+
    */
-  get isColorInverted(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 1704675202840893, this, []); }
+  get isColorInverted(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 1704675202840893, this, []); }
   /**
    * let isGS1DataCarrier: Bool
    * @availability iOS 18.0+
    */
-  get isGS1DataCarrier(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 691763937193351, this, []); }
+  get isGS1DataCarrier(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 691763937193351, this, []); }
   /**
    * let supplementalPayloadData: Data?
    * @availability iOS 18.0+
    */
-  get supplementalPayloadData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Vision_3864e7f38681b875", 2644440996639394, this, []); }
+  get supplementalPayloadData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Vision_ff42ce03e691ab23", 2644440996639394, this, []); }
   /**
    * let supplementalCompositeType: BarcodeObservation.CompositeType?
    * @availability iOS 18.0+
    */
-  get supplementalCompositeType(): (BarcodeObservation_CompositeType) | null { return callSDK<(BarcodeObservation_CompositeType) | null>("Vision_3864e7f38681b875", 977124665244638, this, []); }
+  get supplementalCompositeType(): (BarcodeObservation_CompositeType) | null { return callSDK<(BarcodeObservation_CompositeType) | null>("Vision_ff42ce03e691ab23", 977124665244638, this, []); }
   /**
    * let supplementalPayloadString: String?
    * @availability iOS 18.0+
    */
-  get supplementalPayloadString(): (string) | null { return callSDK<(string) | null>("Vision_3864e7f38681b875", 1909170492254061, this, []); }
+  get supplementalPayloadString(): (string) | null { return callSDK<(string) | null>("Vision_ff42ce03e691ab23", 1909170492254061, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 2974693395148102, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 2974693395148102, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 779009203342799, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 779009203342799, this, []); }
   /**
    * let topLeft: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get topLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 1873181950181359, this, []); }
+  get topLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 1873181950181359, this, []); }
   /**
    * let topRight: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get topRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 3814126378834437, this, []); }
+  get topRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 3814126378834437, this, []); }
   /**
    * let symbology: BarcodeSymbology
    * @availability iOS 18.0+
    */
-  get symbology(): BarcodeSymbology { return callSDK<BarcodeSymbology>("Vision_3864e7f38681b875", 168873486535639, this, []); }
+  get symbology(): BarcodeSymbology { return callSDK<BarcodeSymbology>("Vision_ff42ce03e691ab23", 168873486535639, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 1535446387692741, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 1535446387692741, this, []); }
   /**
    * init(_ observation: VNBarcodeObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNBarcodeObservation): BarcodeObservation { return callSDK<BarcodeObservation>("Vision_3864e7f38681b875", 611763558241546, undefined, [observation]); }
+  static init(observation: VNBarcodeObservation): BarcodeObservation { return callSDK<BarcodeObservation>("Vision_ff42ce03e691ab23", 611763558241546, undefined, [observation]); }
   declare readonly $type: { "s:6Vision18BarcodeObservationV": true };
 }
 
@@ -386,7 +386,7 @@ export const BarcodeSymbology = {
    * nonisolated static var allCases: [BarcodeSymbology] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): Array<BarcodeSymbology> { return callSDK<Array<BarcodeSymbology>>("Vision_3864e7f38681b875", 3706861921282489, undefined, []); }
+  get allCases(): Array<BarcodeSymbology> { return callSDK<Array<BarcodeSymbology>>("Vision_ff42ce03e691ab23", 3706861921282489, undefined, []); }
 };
 
 /**
@@ -420,44 +420,44 @@ export class CalculateImageAestheticsScoresRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 336910652405809, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 336910652405809, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2927612939251396, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 2547984428885318, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2927612939251396, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 2547984428885318, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 2758699106120043, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2758699106120043, this, [computeDevice, computeStage]); }
   /**
    * var cropAndScaleAction: ImageCropAndScaleAction
    * @availability iOS 18.0+
    */
-  get cropAndScaleAction(): ImageCropAndScaleAction { return callSDK<ImageCropAndScaleAction>("Vision_3864e7f38681b875", 3966563945961971, this, []); }
-  set cropAndScaleAction(value: ImageCropAndScaleAction) { callSDK<void>("Vision_3864e7f38681b875", 85176207519017, this, [value]); }
+  get cropAndScaleAction(): ImageCropAndScaleAction { return callSDK<ImageCropAndScaleAction>("Vision_ff42ce03e691ab23", 3966563945961971, this, []); }
+  set cropAndScaleAction(value: ImageCropAndScaleAction) { callSDK<void>("Vision_ff42ce03e691ab23", 85176207519017, this, [value]); }
   /**
    * static let supportedRevisions: [CalculateImageAestheticsScoresRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<CalculateImageAestheticsScoresRequest_Revision> { return callSDK<Array<CalculateImageAestheticsScoresRequest_Revision>>("Vision_3864e7f38681b875", 546831045606955, undefined, []); }
+  static get supportedRevisions(): Array<CalculateImageAestheticsScoresRequest_Revision> { return callSDK<Array<CalculateImageAestheticsScoresRequest_Revision>>("Vision_ff42ce03e691ab23", 546831045606955, undefined, []); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 1162973519713783, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 1162973519713783, this, []); }
   /**
    * let revision: CalculateImageAestheticsScoresRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): CalculateImageAestheticsScoresRequest_Revision { return callSDK<CalculateImageAestheticsScoresRequest_Revision>("Vision_3864e7f38681b875", 1290371711335335, this, []); }
+  get revision(): CalculateImageAestheticsScoresRequest_Revision { return callSDK<CalculateImageAestheticsScoresRequest_Revision>("Vision_ff42ce03e691ab23", 1290371711335335, this, []); }
   /**
    * init(_ revision: CalculateImageAestheticsScoresRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (CalculateImageAestheticsScoresRequest_Revision) | null): CalculateImageAestheticsScoresRequest { return callSDK<CalculateImageAestheticsScoresRequest>("Vision_3864e7f38681b875", 1397928963169231, undefined, [revision]); }
+  static init(revision?: (CalculateImageAestheticsScoresRequest_Revision) | null): CalculateImageAestheticsScoresRequest { return callSDK<CalculateImageAestheticsScoresRequest>("Vision_ff42ce03e691ab23", 1397928963169231, undefined, [revision]); }
   declare readonly $type: { "s:6Vision37CalculateImageAestheticsScoresRequestV": true };
 }
 
@@ -478,7 +478,7 @@ export class CGPoint extends SDKHandle {
    * var formattedDescription: String { get }
    * @availability iOS 18.0+
    */
-  get formattedDescription(): string { return callSDK<string>("Vision_3864e7f38681b875", 1744330314588545, this, []); }
+  get formattedDescription(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1744330314588545, this, []); }
   declare readonly $type: { "c:@S@CGPoint": true };
 }
 
@@ -487,7 +487,7 @@ export class CGRect extends SDKHandle {
    * var formattedDescription: String { get }
    * @availability iOS 18.0+
    */
-  get formattedDescription(): string { return callSDK<string>("Vision_3864e7f38681b875", 3536007494514532, this, []); }
+  get formattedDescription(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3536007494514532, this, []); }
   declare readonly $type: { "c:@S@CGRect": true };
 }
 
@@ -496,7 +496,7 @@ export class CGSize extends SDKHandle {
    * var formattedDescription: String { get }
    * @availability iOS 18.0+
    */
-  get formattedDescription(): string { return callSDK<string>("Vision_3864e7f38681b875", 3424216383127275, this, []); }
+  get formattedDescription(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3424216383127275, this, []); }
   declare readonly $type: { "c:@S@CGSize": true };
 }
 
@@ -515,52 +515,52 @@ export class ClassificationObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2144441266238296, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2144441266238296, this, []); }
   /**
    * let identifier: String
    * @availability iOS 18.0+
    */
-  get identifier(): string { return callSDK<string>("Vision_3864e7f38681b875", 2258511083739423, this, []); }
+  get identifier(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2258511083739423, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3000164342884452, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3000164342884452, this, []); }
   /**
    * func hasMinimumRecall(_ minimumRecall: Float, forPrecision precision: Float) -> Bool
    * @availability iOS 18.0+
    */
-  hasMinimumRecall(minimumRecall: number, precision: number): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 4094877104977769, this, [minimumRecall, precision]); }
+  hasMinimumRecall(minimumRecall: number, precision: number): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 4094877104977769, this, [minimumRecall, precision]); }
   /**
    * func hasMinimumPrecision(_ minimumPrecision: Float, forRecall recall: Float) -> Bool
    * @availability iOS 18.0+
    */
-  hasMinimumPrecision(minimumPrecision: number, recall: number): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 3464865256062488, this, [minimumPrecision, recall]); }
+  hasMinimumPrecision(minimumPrecision: number, recall: number): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 3464865256062488, this, [minimumPrecision, recall]); }
   /**
    * var hasPrecisionRecallCurve: Bool { get }
    * @availability iOS 18.0+
    */
-  get hasPrecisionRecallCurve(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2441632871032446, this, []); }
+  get hasPrecisionRecallCurve(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2441632871032446, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 1599535789222540, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 1599535789222540, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 2221330096393513, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2221330096393513, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 1384054886527857, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 1384054886527857, this, []); }
   /**
    * init(_ observation: VNClassificationObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNClassificationObservation): ClassificationObservation { return callSDK<ClassificationObservation>("Vision_3864e7f38681b875", 2208295929312885, undefined, [observation]); }
+  static init(observation: VNClassificationObservation): ClassificationObservation { return callSDK<ClassificationObservation>("Vision_ff42ce03e691ab23", 2208295929312885, undefined, [observation]); }
   declare readonly $type: { "s:6Vision25ClassificationObservationV": true };
 }
 
@@ -573,49 +573,49 @@ export class ClassifyImageRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 276986548058414, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 276986548058414, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 4122304796286479, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 826894835986511, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 4122304796286479, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 826894835986511, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 299182680307319, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 299182680307319, this, [computeDevice, computeStage]); }
   /**
    * var cropAndScaleAction: ImageCropAndScaleAction
    * @availability iOS 18.0+
    */
-  get cropAndScaleAction(): ImageCropAndScaleAction { return callSDK<ImageCropAndScaleAction>("Vision_3864e7f38681b875", 4123152123763727, this, []); }
-  set cropAndScaleAction(value: ImageCropAndScaleAction) { callSDK<void>("Vision_3864e7f38681b875", 955541730545232, this, [value]); }
+  get cropAndScaleAction(): ImageCropAndScaleAction { return callSDK<ImageCropAndScaleAction>("Vision_ff42ce03e691ab23", 4123152123763727, this, []); }
+  set cropAndScaleAction(value: ImageCropAndScaleAction) { callSDK<void>("Vision_ff42ce03e691ab23", 955541730545232, this, [value]); }
   /**
    * static let supportedRevisions: [ClassifyImageRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<ClassifyImageRequest_Revision> { return callSDK<Array<ClassifyImageRequest_Revision>>("Vision_3864e7f38681b875", 1770450521288411, undefined, []); }
+  static get supportedRevisions(): Array<ClassifyImageRequest_Revision> { return callSDK<Array<ClassifyImageRequest_Revision>>("Vision_ff42ce03e691ab23", 1770450521288411, undefined, []); }
   /**
    * var supportedIdentifiers: [String] { get }
    * @availability iOS 18.0+
    */
-  get supportedIdentifiers(): Array<string> { return callSDK<Array<string>>("Vision_3864e7f38681b875", 2192215513092617, this, []); }
+  get supportedIdentifiers(): Array<string> { return callSDK<Array<string>>("Vision_ff42ce03e691ab23", 2192215513092617, this, []); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 1788384040121222, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 1788384040121222, this, []); }
   /**
    * let revision: ClassifyImageRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): ClassifyImageRequest_Revision { return callSDK<ClassifyImageRequest_Revision>("Vision_3864e7f38681b875", 2655388713024664, this, []); }
+  get revision(): ClassifyImageRequest_Revision { return callSDK<ClassifyImageRequest_Revision>("Vision_ff42ce03e691ab23", 2655388713024664, this, []); }
   /**
    * init(_ revision: ClassifyImageRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (ClassifyImageRequest_Revision) | null): ClassifyImageRequest { return callSDK<ClassifyImageRequest>("Vision_3864e7f38681b875", 2940822806353753, undefined, [revision]); }
+  static init(revision?: (ClassifyImageRequest_Revision) | null): ClassifyImageRequest { return callSDK<ClassifyImageRequest>("Vision_ff42ce03e691ab23", 2940822806353753, undefined, [revision]); }
   declare readonly $type: { "s:6Vision20ClassifyImageRequestV": true };
 }
 
@@ -646,57 +646,57 @@ export class ContoursObservation extends SDKHandle {
    * var topLevelContours: [ContoursObservation.Contour] { get }
    * @availability iOS 18.0+
    */
-  get topLevelContours(): $SDK14 { return callSDK<$SDK14>("Vision_3864e7f38681b875", 2580044857191867, this, []); }
+  get topLevelContours(): $SDK14 { return callSDK<$SDK14>("Vision_ff42ce03e691ab23", 2580044857191867, this, []); }
   /**
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2346804068449502, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2346804068449502, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3605866690335376, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3605866690335376, this, []); }
   /**
    * var contourCount: Int { get }
    * @availability iOS 18.0+
    */
-  get contourCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 2287402353674315, this, []); }
+  get contourCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2287402353674315, this, []); }
   /**
    * func contourAtIndex(_ index: Int) -> ContoursObservation.Contour?
    * @availability iOS 18.0+
    */
-  contourAtIndex(index: number): $SDK15 { return callSDK<$SDK15>("Vision_3864e7f38681b875", 2078808552878168, this, [index]); }
+  contourAtIndex(index: number): $SDK15 { return callSDK<$SDK15>("Vision_ff42ce03e691ab23", 2078808552878168, this, [index]); }
   /**
    * var normalizedPath: CGPath { get }
    * @availability iOS 18.0+
    */
-  get normalizedPath(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("Vision_3864e7f38681b875", 2767807878132053, this, []); }
+  get normalizedPath(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("Vision_ff42ce03e691ab23", 2767807878132053, this, []); }
   /**
    * func countourAtIndexPath(_ indexPath: IndexPath) -> ContoursObservation.Contour?
    * @availability iOS 18.0+
    */
-  countourAtIndexPath(indexPath: _Foundation_IndexPath): $SDK15 { return callSDK<$SDK15>("Vision_3864e7f38681b875", 2847141084662126, this, [indexPath]); }
+  countourAtIndexPath(indexPath: _Foundation_IndexPath): $SDK15 { return callSDK<$SDK15>("Vision_ff42ce03e691ab23", 2847141084662126, this, [indexPath]); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 801895779769599, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 801895779769599, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 3150067296151781, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3150067296151781, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 2216236666419273, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 2216236666419273, this, []); }
   /**
    * init(_ observation: VNContoursObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNContoursObservation): ContoursObservation { return callSDK<ContoursObservation>("Vision_3864e7f38681b875", 2108252472758146, undefined, [observation]); }
+  static init(observation: VNContoursObservation): ContoursObservation { return callSDK<ContoursObservation>("Vision_ff42ce03e691ab23", 2108252472758146, undefined, [observation]); }
   declare readonly $type: { "s:6Vision19ContoursObservationV": true };
 }
 
@@ -709,72 +709,72 @@ export class ContoursObservation_Contour extends SDKHandle {
    * var childContours: [ContoursObservation.Contour] { get }
    * @availability iOS 18.0+
    */
-  get childContours(): $SDK14 { return callSDK<$SDK14>("Vision_3864e7f38681b875", 2598571067206970, this, []); }
+  get childContours(): $SDK14 { return callSDK<$SDK14>("Vision_ff42ce03e691ab23", 2598571067206970, this, []); }
   /**
    * var pointCount: Int { get }
    * @availability iOS 18.0+
    */
-  get pointCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 995153347621693, this, []); }
+  get pointCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 995153347621693, this, []); }
   /**
    * var aspectRatio: Float { get }
    * @availability iOS 18.0+
    */
-  get aspectRatio(): number { return callSDK<number>("Vision_3864e7f38681b875", 2155831606826289, this, []); }
+  get aspectRatio(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2155831606826289, this, []); }
   /**
    * var boundingBox: NormalizedRect { get }
    * @availability iOS 26.0+
    */
-  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2154593552237084, this, []); }
+  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2154593552237084, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 87181296729268, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 87181296729268, this, []); }
   /**
    * var boundingQuad: RectangleObservation { get }
    * @availability iOS 26.0+
    */
-  get boundingQuad(): RectangleObservation { return callSDK<RectangleObservation>("Vision_3864e7f38681b875", 663149915336744, this, []); }
+  get boundingQuad(): RectangleObservation { return callSDK<RectangleObservation>("Vision_ff42ce03e691ab23", 663149915336744, this, []); }
   /**
    * func calculateArea(useOrientedArea: Bool = false) -> Double
    * @availability iOS 18.0+
    */
-  calculateArea(useOrientedArea?: boolean): number { return callSDK<number>("Vision_3864e7f38681b875", 3675805667711693, this, [useOrientedArea]); }
+  calculateArea(useOrientedArea?: boolean): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3675805667711693, this, [useOrientedArea]); }
   /**
    * func boundingCircle() -> NormalizedCircle
    * @availability iOS 18.0+
    */
-  boundingCircle(): NormalizedCircle { return callSDK<NormalizedCircle>("Vision_3864e7f38681b875", 3338050830563889, this, []); }
+  boundingCircle(): NormalizedCircle { return callSDK<NormalizedCircle>("Vision_ff42ce03e691ab23", 3338050830563889, this, []); }
   /**
    * var normalizedPath: CGPath { get }
    * @availability iOS 18.0+
    */
-  get normalizedPath(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("Vision_3864e7f38681b875", 279777531010064, this, []); }
+  get normalizedPath(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("Vision_ff42ce03e691ab23", 279777531010064, this, []); }
   /**
    * var normalizedPoints: [simd_float2] { get }
    * @availability iOS 18.0+
    */
-  get normalizedPoints(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Vision_3864e7f38681b875", 1305096676462619, this, []); }
+  get normalizedPoints(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Vision_ff42ce03e691ab23", 1305096676462619, this, []); }
   /**
    * func calculatePerimeter() -> Double
    * @availability iOS 18.0+
    */
-  calculatePerimeter(): number { return callSDK<number>("Vision_3864e7f38681b875", 3663907345647782, this, []); }
+  calculatePerimeter(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3663907345647782, this, []); }
   /**
    * func polygonApproximation(epsilon: Float) throws -> ContoursObservation.Contour
    * @availability iOS 18.0+
    */
-  polygonApproximation(epsilon: number): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_3864e7f38681b875", 2501507288803571, this, [epsilon]); }
+  polygonApproximation(epsilon: number): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_ff42ce03e691ab23", 2501507288803571, this, [epsilon]); }
   /**
    * var points: [NormalizedPoint] { get }
    * @availability iOS 26.0+
    */
-  get points(): Array<NormalizedPoint> { return callSDK<Array<NormalizedPoint>>("Vision_3864e7f38681b875", 3856672575701092, this, []); }
+  get points(): Array<NormalizedPoint> { return callSDK<Array<NormalizedPoint>>("Vision_ff42ce03e691ab23", 3856672575701092, this, []); }
   /**
    * var indexPath: IndexPath { get }
    * @availability iOS 18.0+
    */
-  get indexPath(): _Foundation_IndexPath { return callSDK<_Foundation_IndexPath>("Vision_3864e7f38681b875", 4017427265330201, this, []); }
+  get indexPath(): _Foundation_IndexPath { return callSDK<_Foundation_IndexPath>("Vision_ff42ce03e691ab23", 4017427265330201, this, []); }
   declare readonly $type: { "s:6Vision19ContoursObservationV7ContourV": true };
 }
 
@@ -793,42 +793,42 @@ export class CoreMLFeatureValueObservation extends SDKHandle {
    * let featureValue: MLSendableFeatureValue
    * @availability iOS 18.0+
    */
-  get featureValue(): _CoreML_MLSendableFeatureValue { return callSDK<_CoreML_MLSendableFeatureValue>("Vision_3864e7f38681b875", 4424892243418967, this, []); }
+  get featureValue(): _CoreML_MLSendableFeatureValue { return callSDK<_CoreML_MLSendableFeatureValue>("Vision_ff42ce03e691ab23", 4424892243418967, this, []); }
   /**
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 1078627134845221, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1078627134845221, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3492124397601648, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3492124397601648, this, []); }
   /**
    * let featureName: String
    * @availability iOS 18.0+
    */
-  get featureName(): string { return callSDK<string>("Vision_3864e7f38681b875", 223180031649820, this, []); }
+  get featureName(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 223180031649820, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 2385876408767555, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 2385876408767555, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 1669643142401096, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1669643142401096, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 3492642078010484, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 3492642078010484, this, []); }
   /**
    * init?(_ observation: VNCoreMLFeatureValueObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNCoreMLFeatureValueObservation): (CoreMLFeatureValueObservation) | null { return callSDK<(CoreMLFeatureValueObservation) | null>("Vision_3864e7f38681b875", 1278274993552754, undefined, [observation]); }
+  static init(observation: VNCoreMLFeatureValueObservation): (CoreMLFeatureValueObservation) | null { return callSDK<(CoreMLFeatureValueObservation) | null>("Vision_ff42ce03e691ab23", 1278274993552754, undefined, [observation]); }
   declare readonly $type: { "s:6Vision29CoreMLFeatureValueObservationV": true };
 }
 
@@ -841,13 +841,13 @@ export class CoreMLModelContainer extends SDKHandle {
    * var inputImageFeatureName: String
    * @availability iOS 18.0+
    */
-  get inputImageFeatureName(): string { return callSDK<string>("Vision_3864e7f38681b875", 2708884777596250, this, []); }
-  set inputImageFeatureName(value: string) { callSDK<void>("Vision_3864e7f38681b875", 4055478452100466, this, [value]); }
+  get inputImageFeatureName(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2708884777596250, this, []); }
+  set inputImageFeatureName(value: string) { callSDK<void>("Vision_ff42ce03e691ab23", 4055478452100466, this, [value]); }
   /**
    * init(model: MLModel, featureProvider: (any MLFeatureProvider)? = nil) throws
    * @availability iOS 18.0+
    */
-  static init(model: _CoreML_MLModel, featureProvider?: (SDKHandle) | null): CoreMLModelContainer { return callSDK<CoreMLModelContainer>("Vision_3864e7f38681b875", 2061848170715191, undefined, [model, featureProvider]); }
+  static init(model: _CoreML_MLModel, featureProvider?: (SDKHandle) | null): CoreMLModelContainer { return callSDK<CoreMLModelContainer>("Vision_ff42ce03e691ab23", 2061848170715191, undefined, [model, featureProvider]); }
   declare readonly $type: { "s:6Vision20CoreMLModelContainerV": true };
 }
 
@@ -860,54 +860,54 @@ export class CoreMLRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 1118150499695526, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 1118150499695526, this, []); }
   /**
    * let modelContainer: CoreMLModelContainer
    * @availability iOS 18.0+
    */
-  get modelContainer(): CoreMLModelContainer { return callSDK<CoreMLModelContainer>("Vision_3864e7f38681b875", 663374526566050, this, []); }
+  get modelContainer(): CoreMLModelContainer { return callSDK<CoreMLModelContainer>("Vision_ff42ce03e691ab23", 663374526566050, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3481102210765830, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 4154560396947097, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3481102210765830, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 4154560396947097, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 80406765423444, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 80406765423444, this, [computeDevice, computeStage]); }
   /**
    * var cropAndScaleAction: ImageCropAndScaleAction
    * @availability iOS 18.0+
    */
-  get cropAndScaleAction(): ImageCropAndScaleAction { return callSDK<ImageCropAndScaleAction>("Vision_3864e7f38681b875", 3808571084423627, this, []); }
-  set cropAndScaleAction(value: ImageCropAndScaleAction) { callSDK<void>("Vision_3864e7f38681b875", 1670058590915191, this, [value]); }
+  get cropAndScaleAction(): ImageCropAndScaleAction { return callSDK<ImageCropAndScaleAction>("Vision_ff42ce03e691ab23", 3808571084423627, this, []); }
+  set cropAndScaleAction(value: ImageCropAndScaleAction) { callSDK<void>("Vision_ff42ce03e691ab23", 1670058590915191, this, [value]); }
   /**
    * static let supportedRevisions: [CoreMLRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<CoreMLRequest_Revision> { return callSDK<Array<CoreMLRequest_Revision>>("Vision_3864e7f38681b875", 3850170197924675, undefined, []); }
+  static get supportedRevisions(): Array<CoreMLRequest_Revision> { return callSDK<Array<CoreMLRequest_Revision>>("Vision_ff42ce03e691ab23", 3850170197924675, undefined, []); }
   /**
    * var supportedIdentifiers: [String]? { get }
    * @availability iOS 18.0+
    */
-  get supportedIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("Vision_3864e7f38681b875", 429439844925141, this, []); }
+  get supportedIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("Vision_ff42ce03e691ab23", 429439844925141, this, []); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 2875424820847124, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 2875424820847124, this, []); }
   /**
    * init(model: CoreMLModelContainer, _ revision: CoreMLRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(model: CoreMLModelContainer, revision?: (CoreMLRequest_Revision) | null): CoreMLRequest { return callSDK<CoreMLRequest>("Vision_3864e7f38681b875", 3423146432263459, undefined, [model, revision]); }
+  static init(model: CoreMLModelContainer, revision?: (CoreMLRequest_Revision) | null): CoreMLRequest { return callSDK<CoreMLRequest>("Vision_ff42ce03e691ab23", 3423146432263459, undefined, [model, revision]); }
   /**
    * let revision: CoreMLRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): CoreMLRequest_Revision { return callSDK<CoreMLRequest_Revision>("Vision_3864e7f38681b875", 1317972401074118, this, []); }
+  get revision(): CoreMLRequest_Revision { return callSDK<CoreMLRequest_Revision>("Vision_ff42ce03e691ab23", 1317972401074118, this, []); }
   declare readonly $type: { "s:6Vision13CoreMLRequestV": true };
 }
 
@@ -932,43 +932,43 @@ export class DetectAnimalBodyPoseRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 1617419997630672, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 1617419997630672, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2311825519727108, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1606357936015574, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2311825519727108, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1606357936015574, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 3990773753198821, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3990773753198821, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectAnimalBodyPoseRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectAnimalBodyPoseRequest_Revision> { return callSDK<Array<DetectAnimalBodyPoseRequest_Revision>>("Vision_3864e7f38681b875", 1031173100560632, undefined, []); }
+  static get supportedRevisions(): Array<DetectAnimalBodyPoseRequest_Revision> { return callSDK<Array<DetectAnimalBodyPoseRequest_Revision>>("Vision_ff42ce03e691ab23", 1031173100560632, undefined, []); }
   /**
    * var supportedJointNames: [AnimalBodyPoseObservation.JointName] { get }
    * @availability iOS 18.0+
    */
-  get supportedJointNames(): $SDK0 { return callSDK<$SDK0>("Vision_3864e7f38681b875", 4221179071247824, this, []); }
+  get supportedJointNames(): $SDK0 { return callSDK<$SDK0>("Vision_ff42ce03e691ab23", 4221179071247824, this, []); }
   /**
    * var supportedJointsGroupNames: [AnimalBodyPoseObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get supportedJointsGroupNames(): $SDK1 { return callSDK<$SDK1>("Vision_3864e7f38681b875", 4315690582319310, this, []); }
+  get supportedJointsGroupNames(): $SDK1 { return callSDK<$SDK1>("Vision_ff42ce03e691ab23", 4315690582319310, this, []); }
   /**
    * let revision: DetectAnimalBodyPoseRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectAnimalBodyPoseRequest_Revision { return callSDK<DetectAnimalBodyPoseRequest_Revision>("Vision_3864e7f38681b875", 2884874752042756, this, []); }
+  get revision(): DetectAnimalBodyPoseRequest_Revision { return callSDK<DetectAnimalBodyPoseRequest_Revision>("Vision_ff42ce03e691ab23", 2884874752042756, this, []); }
   /**
    * init(_ revision: DetectAnimalBodyPoseRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectAnimalBodyPoseRequest_Revision) | null): DetectAnimalBodyPoseRequest { return callSDK<DetectAnimalBodyPoseRequest>("Vision_3864e7f38681b875", 3721141363465201, undefined, [revision]); }
+  static init(revision?: (DetectAnimalBodyPoseRequest_Revision) | null): DetectAnimalBodyPoseRequest { return callSDK<DetectAnimalBodyPoseRequest>("Vision_ff42ce03e691ab23", 3721141363465201, undefined, [revision]); }
   declare readonly $type: { "s:6Vision27DetectAnimalBodyPoseRequestV": true };
 }
 
@@ -993,50 +993,50 @@ export class DetectBarcodesRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 2838894861378811, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 2838894861378811, this, []); }
   /**
    * var symbologies: [BarcodeSymbology]
    * @availability iOS 18.0+
    */
-  get symbologies(): Array<BarcodeSymbology> { return callSDK<Array<BarcodeSymbology>>("Vision_3864e7f38681b875", 122716101538473, this, []); }
-  set symbologies(value: Array<BarcodeSymbology>) { callSDK<void>("Vision_3864e7f38681b875", 3436909996999116, this, [value]); }
+  get symbologies(): Array<BarcodeSymbology> { return callSDK<Array<BarcodeSymbology>>("Vision_ff42ce03e691ab23", 122716101538473, this, []); }
+  set symbologies(value: Array<BarcodeSymbology>) { callSDK<void>("Vision_ff42ce03e691ab23", 3436909996999116, this, [value]); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 1314578760190597, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 3059422294156, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 1314578760190597, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 3059422294156, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 1189863294170830, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1189863294170830, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectBarcodesRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectBarcodesRequest_Revision> { return callSDK<Array<DetectBarcodesRequest_Revision>>("Vision_3864e7f38681b875", 610073967617325, undefined, []); }
+  static get supportedRevisions(): Array<DetectBarcodesRequest_Revision> { return callSDK<Array<DetectBarcodesRequest_Revision>>("Vision_ff42ce03e691ab23", 610073967617325, undefined, []); }
   /**
    * var supportedSymbologies: [BarcodeSymbology] { get }
    * @availability iOS 18.0+
    */
-  get supportedSymbologies(): Array<BarcodeSymbology> { return callSDK<Array<BarcodeSymbology>>("Vision_3864e7f38681b875", 4179227124771718, this, []); }
+  get supportedSymbologies(): Array<BarcodeSymbology> { return callSDK<Array<BarcodeSymbology>>("Vision_ff42ce03e691ab23", 4179227124771718, this, []); }
   /**
    * var coalescesCompositeSymbologies: Bool
    * @availability iOS 18.0+
    */
-  get coalescesCompositeSymbologies(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2240786127696813, this, []); }
-  set coalescesCompositeSymbologies(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 856429133192372, this, [value]); }
+  get coalescesCompositeSymbologies(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2240786127696813, this, []); }
+  set coalescesCompositeSymbologies(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 856429133192372, this, [value]); }
   /**
    * let revision: DetectBarcodesRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectBarcodesRequest_Revision { return callSDK<DetectBarcodesRequest_Revision>("Vision_3864e7f38681b875", 1747537448251928, this, []); }
+  get revision(): DetectBarcodesRequest_Revision { return callSDK<DetectBarcodesRequest_Revision>("Vision_ff42ce03e691ab23", 1747537448251928, this, []); }
   /**
    * init(_ revision: DetectBarcodesRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectBarcodesRequest_Revision) | null): DetectBarcodesRequest { return callSDK<DetectBarcodesRequest>("Vision_3864e7f38681b875", 951040206193159, undefined, [revision]); }
+  static init(revision?: (DetectBarcodesRequest_Revision) | null): DetectBarcodesRequest { return callSDK<DetectBarcodesRequest>("Vision_ff42ce03e691ab23", 951040206193159, undefined, [revision]); }
   declare readonly $type: { "s:6Vision21DetectBarcodesRequestV": true };
 }
 
@@ -1061,57 +1061,57 @@ export class DetectContoursRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 1983277336041985, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 1983277336041985, this, []); }
   /**
    * var contrastPivot: Float?
    * @availability iOS 18.0+
    */
-  get contrastPivot(): (number) | null { return callSDK<(number) | null>("Vision_3864e7f38681b875", 628972038519181, this, []); }
-  set contrastPivot(value: (number) | null) { callSDK<void>("Vision_3864e7f38681b875", 3137900570523274, this, [value]); }
+  get contrastPivot(): (number) | null { return callSDK<(number) | null>("Vision_ff42ce03e691ab23", 628972038519181, this, []); }
+  set contrastPivot(value: (number) | null) { callSDK<void>("Vision_ff42ce03e691ab23", 3137900570523274, this, [value]); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 849185081357565, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 3726849813816132, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 849185081357565, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 3726849813816132, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 3091493276623529, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3091493276623529, this, [computeDevice, computeStage]); }
   /**
    * var contrastAdjustment: Float
    * @availability iOS 18.0+
    */
-  get contrastAdjustment(): number { return callSDK<number>("Vision_3864e7f38681b875", 1716929657705821, this, []); }
-  set contrastAdjustment(value: number) { callSDK<void>("Vision_3864e7f38681b875", 963207209588898, this, [value]); }
+  get contrastAdjustment(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1716929657705821, this, []); }
+  set contrastAdjustment(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 963207209588898, this, [value]); }
   /**
    * var detectsDarkOnLight: Bool
    * @availability iOS 18.0+
    */
-  get detectsDarkOnLight(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2294771462966455, this, []); }
-  set detectsDarkOnLight(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 4007145647105878, this, [value]); }
+  get detectsDarkOnLight(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2294771462966455, this, []); }
+  set detectsDarkOnLight(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 4007145647105878, this, [value]); }
   /**
    * static let supportedRevisions: [DetectContoursRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectContoursRequest_Revision> { return callSDK<Array<DetectContoursRequest_Revision>>("Vision_3864e7f38681b875", 1727523692321119, undefined, []); }
+  static get supportedRevisions(): Array<DetectContoursRequest_Revision> { return callSDK<Array<DetectContoursRequest_Revision>>("Vision_ff42ce03e691ab23", 1727523692321119, undefined, []); }
   /**
    * var maximumImageDimension: Int
    * @availability iOS 18.0+
    */
-  get maximumImageDimension(): number { return callSDK<number>("Vision_3864e7f38681b875", 2152620161711214, this, []); }
-  set maximumImageDimension(value: number) { callSDK<void>("Vision_3864e7f38681b875", 2236574121510897, this, [value]); }
+  get maximumImageDimension(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2152620161711214, this, []); }
+  set maximumImageDimension(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 2236574121510897, this, [value]); }
   /**
    * let revision: DetectContoursRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectContoursRequest_Revision { return callSDK<DetectContoursRequest_Revision>("Vision_3864e7f38681b875", 3210939183132151, this, []); }
+  get revision(): DetectContoursRequest_Revision { return callSDK<DetectContoursRequest_Revision>("Vision_ff42ce03e691ab23", 3210939183132151, this, []); }
   /**
    * init(_ revision: DetectContoursRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectContoursRequest_Revision) | null): DetectContoursRequest { return callSDK<DetectContoursRequest>("Vision_3864e7f38681b875", 167190315579611, undefined, [revision]); }
+  static init(revision?: (DetectContoursRequest_Revision) | null): DetectContoursRequest { return callSDK<DetectContoursRequest>("Vision_ff42ce03e691ab23", 167190315579611, undefined, [revision]); }
   declare readonly $type: { "s:6Vision21DetectContoursRequestV": true };
 }
 
@@ -1136,33 +1136,33 @@ export class DetectDocumentSegmentationRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 4402379856024159, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 4402379856024159, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2821153565888012, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1887767216769682, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2821153565888012, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1887767216769682, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 4414204278782543, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 4414204278782543, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectDocumentSegmentationRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectDocumentSegmentationRequest_Revision> { return callSDK<Array<DetectDocumentSegmentationRequest_Revision>>("Vision_3864e7f38681b875", 3108531749243338, undefined, []); }
+  static get supportedRevisions(): Array<DetectDocumentSegmentationRequest_Revision> { return callSDK<Array<DetectDocumentSegmentationRequest_Revision>>("Vision_ff42ce03e691ab23", 3108531749243338, undefined, []); }
   /**
    * let revision: DetectDocumentSegmentationRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectDocumentSegmentationRequest_Revision { return callSDK<DetectDocumentSegmentationRequest_Revision>("Vision_3864e7f38681b875", 140181618110500, this, []); }
+  get revision(): DetectDocumentSegmentationRequest_Revision { return callSDK<DetectDocumentSegmentationRequest_Revision>("Vision_ff42ce03e691ab23", 140181618110500, this, []); }
   /**
    * init(_ revision: DetectDocumentSegmentationRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectDocumentSegmentationRequest_Revision) | null): DetectDocumentSegmentationRequest { return callSDK<DetectDocumentSegmentationRequest>("Vision_3864e7f38681b875", 3415327794956917, undefined, [revision]); }
+  static init(revision?: (DetectDocumentSegmentationRequest_Revision) | null): DetectDocumentSegmentationRequest { return callSDK<DetectDocumentSegmentationRequest>("Vision_ff42ce03e691ab23", 3415327794956917, undefined, [revision]); }
   declare readonly $type: { "s:6Vision33DetectDocumentSegmentationRequestV": true };
 }
 
@@ -1187,62 +1187,62 @@ export class DetectedDocumentObservation extends SDKHandle {
    * var bottomLeft: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get bottomLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 4103702721782282, this, []); }
-  set bottomLeft(value: NormalizedPoint) { callSDK<void>("Vision_3864e7f38681b875", 1612422712672645, this, [value]); }
+  get bottomLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 4103702721782282, this, []); }
+  set bottomLeft(value: NormalizedPoint) { callSDK<void>("Vision_ff42ce03e691ab23", 1612422712672645, this, [value]); }
   /**
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 3630775552580236, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3630775552580236, this, []); }
   /**
    * var bottomRight: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get bottomRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 2974556512082462, this, []); }
-  set bottomRight(value: NormalizedPoint) { callSDK<void>("Vision_3864e7f38681b875", 3980032745274109, this, [value]); }
+  get bottomRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 2974556512082462, this, []); }
+  set bottomRight(value: NormalizedPoint) { callSDK<void>("Vision_ff42ce03e691ab23", 3980032745274109, this, [value]); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3495051383072801, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3495051383072801, this, []); }
   /**
    * var globalSegmentationMask: PixelBufferObservation
    * @availability iOS 18.0+
    */
-  get globalSegmentationMask(): PixelBufferObservation { return callSDK<PixelBufferObservation>("Vision_3864e7f38681b875", 1619056796554561, this, []); }
-  set globalSegmentationMask(value: PixelBufferObservation) { callSDK<void>("Vision_3864e7f38681b875", 4378360240748034, this, [value]); }
+  get globalSegmentationMask(): PixelBufferObservation { return callSDK<PixelBufferObservation>("Vision_ff42ce03e691ab23", 1619056796554561, this, []); }
+  set globalSegmentationMask(value: PixelBufferObservation) { callSDK<void>("Vision_ff42ce03e691ab23", 4378360240748034, this, [value]); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 3987448942967123, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 3987448942967123, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 2015766413038889, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2015766413038889, this, []); }
   /**
    * var topLeft: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get topLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 2399905057970725, this, []); }
-  set topLeft(value: NormalizedPoint) { callSDK<void>("Vision_3864e7f38681b875", 2467178273589444, this, [value]); }
+  get topLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 2399905057970725, this, []); }
+  set topLeft(value: NormalizedPoint) { callSDK<void>("Vision_ff42ce03e691ab23", 2467178273589444, this, [value]); }
   /**
    * var topRight: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get topRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 1193360110867967, this, []); }
-  set topRight(value: NormalizedPoint) { callSDK<void>("Vision_3864e7f38681b875", 4209838156773391, this, [value]); }
+  get topRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 1193360110867967, this, []); }
+  set topRight(value: NormalizedPoint) { callSDK<void>("Vision_ff42ce03e691ab23", 4209838156773391, this, [value]); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 1949409462699560, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 1949409462699560, this, []); }
   /**
    * init?(_ observation: VNRectangleObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNRectangleObservation): (DetectedDocumentObservation) | null { return callSDK<(DetectedDocumentObservation) | null>("Vision_3864e7f38681b875", 291457547108172, undefined, [observation]); }
+  static init(observation: VNRectangleObservation): (DetectedDocumentObservation) | null { return callSDK<(DetectedDocumentObservation) | null>("Vision_ff42ce03e691ab23", 291457547108172, undefined, [observation]); }
   declare readonly $type: { "s:6Vision27DetectedDocumentObservationV": true };
 }
 
@@ -1255,43 +1255,43 @@ export class DetectedObjectObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 1782907089662833, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1782907089662833, this, []); }
   /**
    * var boundingBox: NormalizedRect
    * @availability iOS 18.0+
    */
-  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3856302724734313, this, []); }
-  set boundingBox(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1713890556357004, this, [value]); }
+  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3856302724734313, this, []); }
+  set boundingBox(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1713890556357004, this, [value]); }
   /**
    * init(boundingBox: NormalizedRect)
    * @availability iOS 18.0+
    */
-  static initBoundingBox(boundingBox: NormalizedRect): DetectedObjectObservation { return callSDK<DetectedObjectObservation>("Vision_3864e7f38681b875", 162746600366120, undefined, [boundingBox]); }
+  static initBoundingBox(boundingBox: NormalizedRect): DetectedObjectObservation { return callSDK<DetectedObjectObservation>("Vision_ff42ce03e691ab23", 162746600366120, undefined, [boundingBox]); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 148900398031755, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 148900398031755, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 2126289457648306, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 2126289457648306, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 166629376054984, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 166629376054984, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 2220528709219094, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 2220528709219094, this, []); }
   /**
    * init(_ observation: VNDetectedObjectObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNDetectedObjectObservation): DetectedObjectObservation { return callSDK<DetectedObjectObservation>("Vision_3864e7f38681b875", 2155304372960819, undefined, [observation]); }
+  static init(observation: VNDetectedObjectObservation): DetectedObjectObservation { return callSDK<DetectedObjectObservation>("Vision_ff42ce03e691ab23", 2155304372960819, undefined, [observation]); }
   declare readonly $type: { "s:6Vision25DetectedObjectObservationV": true };
 }
 
@@ -1304,39 +1304,39 @@ export class DetectFaceCaptureQualityRequest extends SDKHandle {
    * var inputFaceObservations: [FaceObservation]?
    * @availability iOS 18.0+
    */
-  get inputFaceObservations(): $SDK29 { return callSDK<$SDK29>("Vision_3864e7f38681b875", 4022974285750443, this, []); }
-  set inputFaceObservations(value: $SDK29) { callSDK<void>("Vision_3864e7f38681b875", 1294695731024394, this, [value]); }
+  get inputFaceObservations(): $SDK29 { return callSDK<$SDK29>("Vision_ff42ce03e691ab23", 4022974285750443, this, []); }
+  set inputFaceObservations(value: $SDK29) { callSDK<void>("Vision_ff42ce03e691ab23", 1294695731024394, this, [value]); }
   /**
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 1786856875000761, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 1786856875000761, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3627361677644293, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1954324454525461, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3627361677644293, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1954324454525461, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 3385251629810080, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3385251629810080, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectFaceCaptureQualityRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectFaceCaptureQualityRequest_Revision> { return callSDK<Array<DetectFaceCaptureQualityRequest_Revision>>("Vision_3864e7f38681b875", 670990392281426, undefined, []); }
+  static get supportedRevisions(): Array<DetectFaceCaptureQualityRequest_Revision> { return callSDK<Array<DetectFaceCaptureQualityRequest_Revision>>("Vision_ff42ce03e691ab23", 670990392281426, undefined, []); }
   /**
    * let revision: DetectFaceCaptureQualityRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectFaceCaptureQualityRequest_Revision { return callSDK<DetectFaceCaptureQualityRequest_Revision>("Vision_3864e7f38681b875", 2326893194311617, this, []); }
+  get revision(): DetectFaceCaptureQualityRequest_Revision { return callSDK<DetectFaceCaptureQualityRequest_Revision>("Vision_ff42ce03e691ab23", 2326893194311617, this, []); }
   /**
    * init(_ revision: DetectFaceCaptureQualityRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectFaceCaptureQualityRequest_Revision) | null): DetectFaceCaptureQualityRequest { return callSDK<DetectFaceCaptureQualityRequest>("Vision_3864e7f38681b875", 1317427221674617, undefined, [revision]); }
+  static init(revision?: (DetectFaceCaptureQualityRequest_Revision) | null): DetectFaceCaptureQualityRequest { return callSDK<DetectFaceCaptureQualityRequest>("Vision_ff42ce03e691ab23", 1317427221674617, undefined, [revision]); }
   declare readonly $type: { "s:6Vision31DetectFaceCaptureQualityRequestV": true };
 }
 
@@ -1361,39 +1361,39 @@ export class DetectFaceLandmarksRequest extends SDKHandle {
    * var inputFaceObservations: [FaceObservation]?
    * @availability iOS 18.0+
    */
-  get inputFaceObservations(): $SDK29 { return callSDK<$SDK29>("Vision_3864e7f38681b875", 2620745401612730, this, []); }
-  set inputFaceObservations(value: $SDK29) { callSDK<void>("Vision_3864e7f38681b875", 804843005766415, this, [value]); }
+  get inputFaceObservations(): $SDK29 { return callSDK<$SDK29>("Vision_ff42ce03e691ab23", 2620745401612730, this, []); }
+  set inputFaceObservations(value: $SDK29) { callSDK<void>("Vision_ff42ce03e691ab23", 804843005766415, this, [value]); }
   /**
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 3982172617746379, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 3982172617746379, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 83144989772382, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 4487899807578960, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 83144989772382, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 4487899807578960, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 2347923047069535, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2347923047069535, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectFaceLandmarksRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectFaceLandmarksRequest_Revision> { return callSDK<Array<DetectFaceLandmarksRequest_Revision>>("Vision_3864e7f38681b875", 4176152611508207, undefined, []); }
+  static get supportedRevisions(): Array<DetectFaceLandmarksRequest_Revision> { return callSDK<Array<DetectFaceLandmarksRequest_Revision>>("Vision_ff42ce03e691ab23", 4176152611508207, undefined, []); }
   /**
    * let revision: DetectFaceLandmarksRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectFaceLandmarksRequest_Revision { return callSDK<DetectFaceLandmarksRequest_Revision>("Vision_3864e7f38681b875", 293851562522847, this, []); }
+  get revision(): DetectFaceLandmarksRequest_Revision { return callSDK<DetectFaceLandmarksRequest_Revision>("Vision_ff42ce03e691ab23", 293851562522847, this, []); }
   /**
    * init(_ revision: DetectFaceLandmarksRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectFaceLandmarksRequest_Revision) | null): DetectFaceLandmarksRequest { return callSDK<DetectFaceLandmarksRequest>("Vision_3864e7f38681b875", 3802223635647391, undefined, [revision]); }
+  static init(revision?: (DetectFaceLandmarksRequest_Revision) | null): DetectFaceLandmarksRequest { return callSDK<DetectFaceLandmarksRequest>("Vision_ff42ce03e691ab23", 3802223635647391, undefined, [revision]); }
   declare readonly $type: { "s:6Vision26DetectFaceLandmarksRequestV": true };
 }
 
@@ -1418,38 +1418,38 @@ export class DetectFaceRectanglesRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 4486205797052555, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 4486205797052555, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 196458398461874, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 601106983106976, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 196458398461874, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 601106983106976, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 2298476749947254, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2298476749947254, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectFaceRectanglesRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectFaceRectanglesRequest_Revision> { return callSDK<Array<DetectFaceRectanglesRequest_Revision>>("Vision_3864e7f38681b875", 1362743971474066, undefined, []); }
+  static get supportedRevisions(): Array<DetectFaceRectanglesRequest_Revision> { return callSDK<Array<DetectFaceRectanglesRequest_Revision>>("Vision_ff42ce03e691ab23", 1362743971474066, undefined, []); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 3634469640450776, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 3634469640450776, this, []); }
   /**
    * let revision: DetectFaceRectanglesRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectFaceRectanglesRequest_Revision { return callSDK<DetectFaceRectanglesRequest_Revision>("Vision_3864e7f38681b875", 1024244053330696, this, []); }
+  get revision(): DetectFaceRectanglesRequest_Revision { return callSDK<DetectFaceRectanglesRequest_Revision>("Vision_ff42ce03e691ab23", 1024244053330696, this, []); }
   /**
    * init(_ revision: DetectFaceRectanglesRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: $SDK35): DetectFaceRectanglesRequest { return callSDK<DetectFaceRectanglesRequest>("Vision_3864e7f38681b875", 2104612108632908, undefined, [revision]); }
+  static init(revision?: $SDK35): DetectFaceRectanglesRequest { return callSDK<DetectFaceRectanglesRequest>("Vision_ff42ce03e691ab23", 2104612108632908, undefined, [revision]); }
   declare readonly $type: { "s:6Vision27DetectFaceRectanglesRequestV": true };
 }
 
@@ -1474,33 +1474,33 @@ export class DetectHorizonRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 788126414370161, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 788126414370161, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3064948249915492, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 3171974604366667, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3064948249915492, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 3171974604366667, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 4248084938037581, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 4248084938037581, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectHorizonRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectHorizonRequest_Revision> { return callSDK<Array<DetectHorizonRequest_Revision>>("Vision_3864e7f38681b875", 508407535713013, undefined, []); }
+  static get supportedRevisions(): Array<DetectHorizonRequest_Revision> { return callSDK<Array<DetectHorizonRequest_Revision>>("Vision_ff42ce03e691ab23", 508407535713013, undefined, []); }
   /**
    * let revision: DetectHorizonRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectHorizonRequest_Revision { return callSDK<DetectHorizonRequest_Revision>("Vision_3864e7f38681b875", 1890337594109882, this, []); }
+  get revision(): DetectHorizonRequest_Revision { return callSDK<DetectHorizonRequest_Revision>("Vision_ff42ce03e691ab23", 1890337594109882, this, []); }
   /**
    * init(_ revision: DetectHorizonRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectHorizonRequest_Revision) | null): DetectHorizonRequest { return callSDK<DetectHorizonRequest>("Vision_3864e7f38681b875", 1513454099015264, undefined, [revision]); }
+  static init(revision?: (DetectHorizonRequest_Revision) | null): DetectHorizonRequest { return callSDK<DetectHorizonRequest>("Vision_ff42ce03e691ab23", 1513454099015264, undefined, [revision]); }
   declare readonly $type: { "s:6Vision20DetectHorizonRequestV": true };
 }
 
@@ -1525,53 +1525,53 @@ export class DetectHumanBodyPose3DRequest extends SDKHandle {
    * final var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 4360514442637503, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 4360514442637503, this, []); }
   /**
    * final var regionOfInterest: NormalizedRect { get set }
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 538092951901251, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 77884448927575, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 538092951901251, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 77884448927575, this, [value]); }
   /**
    * final func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 2380616237196990, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2380616237196990, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectHumanBodyPose3DRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectHumanBodyPose3DRequest_Revision> { return callSDK<Array<DetectHumanBodyPose3DRequest_Revision>>("Vision_3864e7f38681b875", 1520335240137907, undefined, []); }
+  static get supportedRevisions(): Array<DetectHumanBodyPose3DRequest_Revision> { return callSDK<Array<DetectHumanBodyPose3DRequest_Revision>>("Vision_ff42ce03e691ab23", 1520335240137907, undefined, []); }
   /**
    * final var supportedJointNames: [HumanBodyPose3DObservation.JointName] { get }
    * @availability iOS 18.0+
    */
-  get supportedJointNames(): $SDK40 { return callSDK<$SDK40>("Vision_3864e7f38681b875", 189744878455926, this, []); }
+  get supportedJointNames(): $SDK40 { return callSDK<$SDK40>("Vision_ff42ce03e691ab23", 189744878455926, this, []); }
   /**
    * final let frameAnalysisSpacing: CMTime
    * @availability iOS 18.0+
    */
-  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 1807346411292360, this, []); }
+  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 1807346411292360, this, []); }
   /**
    * final var minimumLatencyFrameCount: Int { get }
    * @availability iOS 18.0+
    */
-  get minimumLatencyFrameCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 995172411141865, this, []); }
+  get minimumLatencyFrameCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 995172411141865, this, []); }
   /**
    * final var supportedJointsGroupNames: [HumanBodyPose3DObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get supportedJointsGroupNames(): $SDK41 { return callSDK<$SDK41>("Vision_3864e7f38681b875", 4413990521282364, this, []); }
+  get supportedJointsGroupNames(): $SDK41 { return callSDK<$SDK41>("Vision_ff42ce03e691ab23", 4413990521282364, this, []); }
   /**
    * final let revision: DetectHumanBodyPose3DRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectHumanBodyPose3DRequest_Revision { return callSDK<DetectHumanBodyPose3DRequest_Revision>("Vision_3864e7f38681b875", 3208802730627048, this, []); }
+  get revision(): DetectHumanBodyPose3DRequest_Revision { return callSDK<DetectHumanBodyPose3DRequest_Revision>("Vision_ff42ce03e691ab23", 3208802730627048, this, []); }
   /**
    * init(_ revision: DetectHumanBodyPose3DRequest.Revision? = nil, frameAnalysisSpacing: CMTime? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectHumanBodyPose3DRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): DetectHumanBodyPose3DRequest { return callSDK<DetectHumanBodyPose3DRequest>("Vision_3864e7f38681b875", 3557977665606920, undefined, [revision, frameAnalysisSpacing]); }
+  static init(revision?: (DetectHumanBodyPose3DRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): DetectHumanBodyPose3DRequest { return callSDK<DetectHumanBodyPose3DRequest>("Vision_ff42ce03e691ab23", 3557977665606920, undefined, [revision, frameAnalysisSpacing]); }
   declare readonly $type: { "s:6Vision28DetectHumanBodyPose3DRequestC": true };
 }
 
@@ -1596,49 +1596,49 @@ export class DetectHumanBodyPoseRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 272041948095650, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 272041948095650, this, []); }
   /**
    * var detectsHands: Bool
    * @availability iOS 18.0+
    */
-  get detectsHands(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 3661215735799786, this, []); }
-  set detectsHands(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 2555229504819598, this, [value]); }
+  get detectsHands(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 3661215735799786, this, []); }
+  set detectsHands(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 2555229504819598, this, [value]); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2811386030762150, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 2741781086680148, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2811386030762150, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 2741781086680148, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 3296282139225092, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3296282139225092, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectHumanBodyPoseRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectHumanBodyPoseRequest_Revision> { return callSDK<Array<DetectHumanBodyPoseRequest_Revision>>("Vision_3864e7f38681b875", 2202843890702883, undefined, []); }
+  static get supportedRevisions(): Array<DetectHumanBodyPoseRequest_Revision> { return callSDK<Array<DetectHumanBodyPoseRequest_Revision>>("Vision_ff42ce03e691ab23", 2202843890702883, undefined, []); }
   /**
    * var supportedJointNames: [HumanBodyPoseObservation.JointName] { get }
    * @availability iOS 18.0+
    */
-  get supportedJointNames(): $SDK46 { return callSDK<$SDK46>("Vision_3864e7f38681b875", 1897512657293817, this, []); }
+  get supportedJointNames(): $SDK46 { return callSDK<$SDK46>("Vision_ff42ce03e691ab23", 1897512657293817, this, []); }
   /**
    * var supportedJointsGroupNames: [HumanBodyPoseObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get supportedJointsGroupNames(): $SDK47 { return callSDK<$SDK47>("Vision_3864e7f38681b875", 3858858383034045, this, []); }
+  get supportedJointsGroupNames(): $SDK47 { return callSDK<$SDK47>("Vision_ff42ce03e691ab23", 3858858383034045, this, []); }
   /**
    * let revision: DetectHumanBodyPoseRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectHumanBodyPoseRequest_Revision { return callSDK<DetectHumanBodyPoseRequest_Revision>("Vision_3864e7f38681b875", 695017316263088, this, []); }
+  get revision(): DetectHumanBodyPoseRequest_Revision { return callSDK<DetectHumanBodyPoseRequest_Revision>("Vision_ff42ce03e691ab23", 695017316263088, this, []); }
   /**
    * init(_ revision: DetectHumanBodyPoseRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectHumanBodyPoseRequest_Revision) | null): DetectHumanBodyPoseRequest { return callSDK<DetectHumanBodyPoseRequest>("Vision_3864e7f38681b875", 2179235249392581, undefined, [revision]); }
+  static init(revision?: (DetectHumanBodyPoseRequest_Revision) | null): DetectHumanBodyPoseRequest { return callSDK<DetectHumanBodyPoseRequest>("Vision_ff42ce03e691ab23", 2179235249392581, undefined, [revision]); }
   declare readonly $type: { "s:6Vision26DetectHumanBodyPoseRequestV": true };
 }
 
@@ -1663,49 +1663,49 @@ export class DetectHumanHandPoseRequest extends SDKHandle {
    * var maximumHandCount: Int
    * @availability iOS 18.0+
    */
-  get maximumHandCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 2750202308329058, this, []); }
-  set maximumHandCount(value: number) { callSDK<void>("Vision_3864e7f38681b875", 3059259518682460, this, [value]); }
+  get maximumHandCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2750202308329058, this, []); }
+  set maximumHandCount(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 3059259518682460, this, [value]); }
   /**
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 137795374285326, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 137795374285326, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 1404093758035098, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1778917207780119, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 1404093758035098, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1778917207780119, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 3876880682015504, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3876880682015504, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectHumanHandPoseRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectHumanHandPoseRequest_Revision> { return callSDK<Array<DetectHumanHandPoseRequest_Revision>>("Vision_3864e7f38681b875", 1004583359453700, undefined, []); }
+  static get supportedRevisions(): Array<DetectHumanHandPoseRequest_Revision> { return callSDK<Array<DetectHumanHandPoseRequest_Revision>>("Vision_ff42ce03e691ab23", 1004583359453700, undefined, []); }
   /**
    * var supportedJointNames: [HumanHandPoseObservation.JointName] { get }
    * @availability iOS 18.0+
    */
-  get supportedJointNames(): $SDK51 { return callSDK<$SDK51>("Vision_3864e7f38681b875", 3192156897857920, this, []); }
+  get supportedJointNames(): $SDK51 { return callSDK<$SDK51>("Vision_ff42ce03e691ab23", 3192156897857920, this, []); }
   /**
    * var supportedJointsGroupNames: [HumanHandPoseObservation.JointsGroupName] { get throws }
    * @availability iOS 18.0+
    */
-  get supportedJointsGroupNames(): $SDK52 { return callSDK<$SDK52>("Vision_3864e7f38681b875", 4436395347488411, this, []); }
+  get supportedJointsGroupNames(): $SDK52 { return callSDK<$SDK52>("Vision_ff42ce03e691ab23", 4436395347488411, this, []); }
   /**
    * let revision: DetectHumanHandPoseRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectHumanHandPoseRequest_Revision { return callSDK<DetectHumanHandPoseRequest_Revision>("Vision_3864e7f38681b875", 3052585246567584, this, []); }
+  get revision(): DetectHumanHandPoseRequest_Revision { return callSDK<DetectHumanHandPoseRequest_Revision>("Vision_ff42ce03e691ab23", 3052585246567584, this, []); }
   /**
    * init(_ revision: DetectHumanHandPoseRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectHumanHandPoseRequest_Revision) | null): DetectHumanHandPoseRequest { return callSDK<DetectHumanHandPoseRequest>("Vision_3864e7f38681b875", 592920699020075, undefined, [revision]); }
+  static init(revision?: (DetectHumanHandPoseRequest_Revision) | null): DetectHumanHandPoseRequest { return callSDK<DetectHumanHandPoseRequest>("Vision_ff42ce03e691ab23", 592920699020075, undefined, [revision]); }
   declare readonly $type: { "s:6Vision26DetectHumanHandPoseRequestV": true };
 }
 
@@ -1730,44 +1730,44 @@ export class DetectHumanRectanglesRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 4271013468418168, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 4271013468418168, this, []); }
   /**
    * var upperBodyOnly: Bool
    * @availability iOS 18.0+
    */
-  get upperBodyOnly(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 3115473304569538, this, []); }
-  set upperBodyOnly(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 3489337331808219, this, [value]); }
+  get upperBodyOnly(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 3115473304569538, this, []); }
+  set upperBodyOnly(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 3489337331808219, this, [value]); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2206519330706742, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 901863655518125, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2206519330706742, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 901863655518125, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 3141294088353724, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3141294088353724, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectHumanRectanglesRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectHumanRectanglesRequest_Revision> { return callSDK<Array<DetectHumanRectanglesRequest_Revision>>("Vision_3864e7f38681b875", 2350201906333860, undefined, []); }
+  static get supportedRevisions(): Array<DetectHumanRectanglesRequest_Revision> { return callSDK<Array<DetectHumanRectanglesRequest_Revision>>("Vision_ff42ce03e691ab23", 2350201906333860, undefined, []); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 4224894712309902, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 4224894712309902, this, []); }
   /**
    * let revision: DetectHumanRectanglesRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectHumanRectanglesRequest_Revision { return callSDK<DetectHumanRectanglesRequest_Revision>("Vision_3864e7f38681b875", 1939546725033822, this, []); }
+  get revision(): DetectHumanRectanglesRequest_Revision { return callSDK<DetectHumanRectanglesRequest_Revision>("Vision_ff42ce03e691ab23", 1939546725033822, this, []); }
   /**
    * init(_ revision: DetectHumanRectanglesRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: $SDK56): DetectHumanRectanglesRequest { return callSDK<DetectHumanRectanglesRequest>("Vision_3864e7f38681b875", 4374864982049844, undefined, [revision]); }
+  static init(revision?: $SDK56): DetectHumanRectanglesRequest { return callSDK<DetectHumanRectanglesRequest>("Vision_ff42ce03e691ab23", 4374864982049844, undefined, [revision]); }
   declare readonly $type: { "s:6Vision28DetectHumanRectanglesRequestV": true };
 }
 
@@ -1792,39 +1792,39 @@ export class DetectLensSmudgeRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 26.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 533751020819209, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 533751020819209, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 26.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2999430942456855, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 378403630925518, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2999430942456855, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 378403630925518, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 26.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 4308253559743758, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 4308253559743758, this, [computeDevice, computeStage]); }
   /**
    * var cropAndScaleAction: ImageCropAndScaleAction
    * @availability iOS 26.0+
    */
-  get cropAndScaleAction(): ImageCropAndScaleAction { return callSDK<ImageCropAndScaleAction>("Vision_3864e7f38681b875", 4254000038072752, this, []); }
-  set cropAndScaleAction(value: ImageCropAndScaleAction) { callSDK<void>("Vision_3864e7f38681b875", 56798302566552, this, [value]); }
+  get cropAndScaleAction(): ImageCropAndScaleAction { return callSDK<ImageCropAndScaleAction>("Vision_ff42ce03e691ab23", 4254000038072752, this, []); }
+  set cropAndScaleAction(value: ImageCropAndScaleAction) { callSDK<void>("Vision_ff42ce03e691ab23", 56798302566552, this, [value]); }
   /**
    * static var supportedRevisions: [DetectLensSmudgeRequest.Revision] { get }
    * @availability iOS 26.0+
    */
-  static get supportedRevisions(): Array<DetectLensSmudgeRequest_Revision> { return callSDK<Array<DetectLensSmudgeRequest_Revision>>("Vision_3864e7f38681b875", 1302992122971643, undefined, []); }
+  static get supportedRevisions(): Array<DetectLensSmudgeRequest_Revision> { return callSDK<Array<DetectLensSmudgeRequest_Revision>>("Vision_ff42ce03e691ab23", 1302992122971643, undefined, []); }
   /**
    * let revision: DetectLensSmudgeRequest.Revision
    * @availability iOS 26.0+
    */
-  get revision(): DetectLensSmudgeRequest_Revision { return callSDK<DetectLensSmudgeRequest_Revision>("Vision_3864e7f38681b875", 3482990060999702, this, []); }
+  get revision(): DetectLensSmudgeRequest_Revision { return callSDK<DetectLensSmudgeRequest_Revision>("Vision_ff42ce03e691ab23", 3482990060999702, this, []); }
   /**
    * init(_ revision: DetectLensSmudgeRequest.Revision? = nil)
    * @availability iOS 26.0+
    */
-  static init(revision?: (DetectLensSmudgeRequest_Revision) | null): DetectLensSmudgeRequest { return callSDK<DetectLensSmudgeRequest>("Vision_3864e7f38681b875", 4151272316702484, undefined, [revision]); }
+  static init(revision?: (DetectLensSmudgeRequest_Revision) | null): DetectLensSmudgeRequest { return callSDK<DetectLensSmudgeRequest>("Vision_ff42ce03e691ab23", 4151272316702484, undefined, [revision]); }
   declare readonly $type: { "s:6Vision23DetectLensSmudgeRequestV": true };
 }
 
@@ -1849,69 +1849,69 @@ export class DetectRectanglesRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 3394759527076357, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 3394759527076357, this, []); }
   /**
    * var minimumSize: Float
    * @availability iOS 18.0+
    */
-  get minimumSize(): number { return callSDK<number>("Vision_3864e7f38681b875", 4051583690316709, this, []); }
-  set minimumSize(value: number) { callSDK<void>("Vision_3864e7f38681b875", 1491011898123533, this, [value]); }
+  get minimumSize(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4051583690316709, this, []); }
+  set minimumSize(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 1491011898123533, this, [value]); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 380358970230835, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 432465845216106, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 380358970230835, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 432465845216106, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 583713272161859, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 583713272161859, this, [computeDevice, computeStage]); }
   /**
    * var minimumConfidence: Float
    * @availability iOS 18.0+
    */
-  get minimumConfidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 776892421005154, this, []); }
-  set minimumConfidence(value: number) { callSDK<void>("Vision_3864e7f38681b875", 3672482307652995, this, [value]); }
+  get minimumConfidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 776892421005154, this, []); }
+  set minimumConfidence(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 3672482307652995, this, [value]); }
   /**
    * var maximumAspectRatio: Float
    * @availability iOS 18.0+
    */
-  get maximumAspectRatio(): number { return callSDK<number>("Vision_3864e7f38681b875", 2751322824880128, this, []); }
-  set maximumAspectRatio(value: number) { callSDK<void>("Vision_3864e7f38681b875", 556716356749474, this, [value]); }
+  get maximumAspectRatio(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2751322824880128, this, []); }
+  set maximumAspectRatio(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 556716356749474, this, [value]); }
   /**
    * var minimumAspectRatio: Float
    * @availability iOS 18.0+
    */
-  get minimumAspectRatio(): number { return callSDK<number>("Vision_3864e7f38681b875", 3669155871303542, this, []); }
-  set minimumAspectRatio(value: number) { callSDK<void>("Vision_3864e7f38681b875", 3844998403551403, this, [value]); }
+  get minimumAspectRatio(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3669155871303542, this, []); }
+  set minimumAspectRatio(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 3844998403551403, this, [value]); }
   /**
    * static let supportedRevisions: [DetectRectanglesRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectRectanglesRequest_Revision> { return callSDK<Array<DetectRectanglesRequest_Revision>>("Vision_3864e7f38681b875", 3295042334982551, undefined, []); }
+  static get supportedRevisions(): Array<DetectRectanglesRequest_Revision> { return callSDK<Array<DetectRectanglesRequest_Revision>>("Vision_ff42ce03e691ab23", 3295042334982551, undefined, []); }
   /**
    * var maximumObservations: Int
    * @availability iOS 18.0+
    */
-  get maximumObservations(): number { return callSDK<number>("Vision_3864e7f38681b875", 863622310832303, this, []); }
-  set maximumObservations(value: number) { callSDK<void>("Vision_3864e7f38681b875", 1710631065777838, this, [value]); }
+  get maximumObservations(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 863622310832303, this, []); }
+  set maximumObservations(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 1710631065777838, this, [value]); }
   /**
    * var quadratureToleranceDegrees: Float
    * @availability iOS 18.0+
    */
-  get quadratureToleranceDegrees(): number { return callSDK<number>("Vision_3864e7f38681b875", 3353667825453890, this, []); }
-  set quadratureToleranceDegrees(value: number) { callSDK<void>("Vision_3864e7f38681b875", 1773598087877763, this, [value]); }
+  get quadratureToleranceDegrees(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3353667825453890, this, []); }
+  set quadratureToleranceDegrees(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 1773598087877763, this, [value]); }
   /**
    * let revision: DetectRectanglesRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectRectanglesRequest_Revision { return callSDK<DetectRectanglesRequest_Revision>("Vision_3864e7f38681b875", 4399404287037214, this, []); }
+  get revision(): DetectRectanglesRequest_Revision { return callSDK<DetectRectanglesRequest_Revision>("Vision_ff42ce03e691ab23", 4399404287037214, this, []); }
   /**
    * init(_ revision: DetectRectanglesRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectRectanglesRequest_Revision) | null): DetectRectanglesRequest { return callSDK<DetectRectanglesRequest>("Vision_3864e7f38681b875", 1884969971375040, undefined, [revision]); }
+  static init(revision?: (DetectRectanglesRequest_Revision) | null): DetectRectanglesRequest { return callSDK<DetectRectanglesRequest>("Vision_ff42ce03e691ab23", 1884969971375040, undefined, [revision]); }
   declare readonly $type: { "s:6Vision23DetectRectanglesRequestV": true };
 }
 
@@ -1936,44 +1936,44 @@ export class DetectTextRectanglesRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 2899725900578915, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 2899725900578915, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3285522424410713, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 2226056081775758, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3285522424410713, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 2226056081775758, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 4404936174378501, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 4404936174378501, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [DetectTextRectanglesRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectTextRectanglesRequest_Revision> { return callSDK<Array<DetectTextRectanglesRequest_Revision>>("Vision_3864e7f38681b875", 3288358439018150, undefined, []); }
+  static get supportedRevisions(): Array<DetectTextRectanglesRequest_Revision> { return callSDK<Array<DetectTextRectanglesRequest_Revision>>("Vision_ff42ce03e691ab23", 3288358439018150, undefined, []); }
   /**
    * var reportCharacterBoxes: Bool
    * @availability iOS 18.0+
    */
-  get reportCharacterBoxes(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2332922901404840, this, []); }
-  set reportCharacterBoxes(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 467834399418297, this, [value]); }
+  get reportCharacterBoxes(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2332922901404840, this, []); }
+  set reportCharacterBoxes(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 467834399418297, this, [value]); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 617670423321894, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 617670423321894, this, []); }
   /**
    * let revision: DetectTextRectanglesRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectTextRectanglesRequest_Revision { return callSDK<DetectTextRectanglesRequest_Revision>("Vision_3864e7f38681b875", 1872334246491180, this, []); }
+  get revision(): DetectTextRectanglesRequest_Revision { return callSDK<DetectTextRectanglesRequest_Revision>("Vision_ff42ce03e691ab23", 1872334246491180, this, []); }
   /**
    * init(_ revision: DetectTextRectanglesRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (DetectTextRectanglesRequest_Revision) | null): DetectTextRectanglesRequest { return callSDK<DetectTextRectanglesRequest>("Vision_3864e7f38681b875", 1101954105661886, undefined, [revision]); }
+  static init(revision?: (DetectTextRectanglesRequest_Revision) | null): DetectTextRectanglesRequest { return callSDK<DetectTextRectanglesRequest>("Vision_ff42ce03e691ab23", 1101954105661886, undefined, [revision]); }
   declare readonly $type: { "s:6Vision27DetectTextRectanglesRequestV": true };
 }
 
@@ -1998,71 +1998,71 @@ export class DetectTrajectoriesRequest extends SDKHandle {
    * final var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 4057258093583487, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 4057258093583487, this, []); }
   /**
    * final var targetFrameTime: CMTime { get set }
    * @availability iOS 18.0+
    */
-  get targetFrameTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 2076989954697054, this, []); }
-  set targetFrameTime(value: _CoreMedia_CMTime) { callSDK<void>("Vision_3864e7f38681b875", 3178432973768960, this, [value]); }
+  get targetFrameTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 2076989954697054, this, []); }
+  set targetFrameTime(value: _CoreMedia_CMTime) { callSDK<void>("Vision_ff42ce03e691ab23", 3178432973768960, this, [value]); }
   /**
    * final var regionOfInterest: NormalizedRect { get set }
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 1312680036834776, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 526767857139636, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 1312680036834776, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 526767857139636, this, [value]); }
   /**
    * final func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 1359124928107331, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1359124928107331, this, [computeDevice, computeStage]); }
   /**
    * final let trajectoryLength: Int
    * @availability iOS 18.0+
    */
-  get trajectoryLength(): number { return callSDK<number>("Vision_3864e7f38681b875", 1695570652878144, this, []); }
+  get trajectoryLength(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1695570652878144, this, []); }
   /**
    * init(trajectoryLength: Int, _ revision: DetectTrajectoriesRequest.Revision? = nil, frameAnalysisSpacing: CMTime? = nil)
    * @availability iOS 18.0+
    */
-  static init(trajectoryLength: number, revision?: (DetectTrajectoriesRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): DetectTrajectoriesRequest { return callSDK<DetectTrajectoriesRequest>("Vision_3864e7f38681b875", 3267847407877608, undefined, [trajectoryLength, revision, frameAnalysisSpacing]); }
+  static init(trajectoryLength: number, revision?: (DetectTrajectoriesRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): DetectTrajectoriesRequest { return callSDK<DetectTrajectoriesRequest>("Vision_ff42ce03e691ab23", 3267847407877608, undefined, [trajectoryLength, revision, frameAnalysisSpacing]); }
   /**
    * static let supportedRevisions: [DetectTrajectoriesRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<DetectTrajectoriesRequest_Revision> { return callSDK<Array<DetectTrajectoriesRequest_Revision>>("Vision_3864e7f38681b875", 1984206541733946, undefined, []); }
+  static get supportedRevisions(): Array<DetectTrajectoriesRequest_Revision> { return callSDK<Array<DetectTrajectoriesRequest_Revision>>("Vision_ff42ce03e691ab23", 1984206541733946, undefined, []); }
   /**
    * final let frameAnalysisSpacing: CMTime
    * @availability iOS 18.0+
    */
-  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 89239898843672, this, []); }
+  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 89239898843672, this, []); }
   /**
    * final var minimumLatencyFrameCount: Int { get }
    * @availability iOS 18.0+
    */
-  get minimumLatencyFrameCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 2577324261054121, this, []); }
+  get minimumLatencyFrameCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2577324261054121, this, []); }
   /**
    * final var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 2705831247830702, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 2705831247830702, this, []); }
   /**
    * final var objectMaximumNormalizedRadius: Float { get set }
    * @availability iOS 18.0+
    */
-  get objectMaximumNormalizedRadius(): number { return callSDK<number>("Vision_3864e7f38681b875", 3912446675547348, this, []); }
-  set objectMaximumNormalizedRadius(value: number) { callSDK<void>("Vision_3864e7f38681b875", 1095169950523352, this, [value]); }
+  get objectMaximumNormalizedRadius(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3912446675547348, this, []); }
+  set objectMaximumNormalizedRadius(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 1095169950523352, this, [value]); }
   /**
    * final var objectMinimumNormalizedRadius: Float { get set }
    * @availability iOS 18.0+
    */
-  get objectMinimumNormalizedRadius(): number { return callSDK<number>("Vision_3864e7f38681b875", 3846917225990244, this, []); }
-  set objectMinimumNormalizedRadius(value: number) { callSDK<void>("Vision_3864e7f38681b875", 1212470368464149, this, [value]); }
+  get objectMinimumNormalizedRadius(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3846917225990244, this, []); }
+  set objectMinimumNormalizedRadius(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 1212470368464149, this, [value]); }
   /**
    * final let revision: DetectTrajectoriesRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): DetectTrajectoriesRequest_Revision { return callSDK<DetectTrajectoriesRequest_Revision>("Vision_3864e7f38681b875", 2106603652894875, this, []); }
+  get revision(): DetectTrajectoriesRequest_Revision { return callSDK<DetectTrajectoriesRequest_Revision>("Vision_ff42ce03e691ab23", 2106603652894875, this, []); }
   declare readonly $type: { "s:6Vision25DetectTrajectoriesRequestC": true };
 }
 
@@ -2087,32 +2087,32 @@ export class DocumentObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 26.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 636773062967741, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 636773062967741, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 4308128659438822, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4308128659438822, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 26.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 204647374597712, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 204647374597712, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 26.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 642169686469411, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 642169686469411, this, []); }
   /**
    * let document: DocumentObservation.Container
    * @availability iOS 26.0+
    */
-  get document(): DocumentObservation_Container { return callSDK<DocumentObservation_Container>("Vision_3864e7f38681b875", 3278995651529114, this, []); }
+  get document(): DocumentObservation_Container { return callSDK<DocumentObservation_Container>("Vision_ff42ce03e691ab23", 3278995651529114, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 26.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 3664293294294274, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 3664293294294274, this, []); }
   declare readonly $type: { "s:6Vision19DocumentObservationV": true };
 }
 
@@ -2125,37 +2125,37 @@ export class DocumentObservation_Container extends SDKHandle {
    * var paragraphs: [DocumentObservation.Container.Text] { get }
    * @availability iOS 26.0+
    */
-  get paragraphs(): Array<DocumentObservation_Container_Text> { return callSDK<Array<DocumentObservation_Container_Text>>("Vision_3864e7f38681b875", 3494361449786812, this, []); }
+  get paragraphs(): Array<DocumentObservation_Container_Text> { return callSDK<Array<DocumentObservation_Container_Text>>("Vision_ff42ce03e691ab23", 3494361449786812, this, []); }
   /**
    * var boundingRegion: NormalizedRegion { get }
    * @availability iOS 26.0+
    */
-  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_3864e7f38681b875", 3179986049310564, this, []); }
+  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_ff42ce03e691ab23", 3179986049310564, this, []); }
   /**
    * var text: DocumentObservation.Container.Text { get }
    * @availability iOS 26.0+
    */
-  get text(): DocumentObservation_Container_Text { return callSDK<DocumentObservation_Container_Text>("Vision_3864e7f38681b875", 670798703997378, this, []); }
+  get text(): DocumentObservation_Container_Text { return callSDK<DocumentObservation_Container_Text>("Vision_ff42ce03e691ab23", 670798703997378, this, []); }
   /**
    * var lists: [DocumentObservation.Container.List] { get }
    * @availability iOS 26.0+
    */
-  get lists(): Array<DocumentObservation_Container_List> { return callSDK<Array<DocumentObservation_Container_List>>("Vision_3864e7f38681b875", 3560969437790358, this, []); }
+  get lists(): Array<DocumentObservation_Container_List> { return callSDK<Array<DocumentObservation_Container_List>>("Vision_ff42ce03e691ab23", 3560969437790358, this, []); }
   /**
    * var title: DocumentObservation.Container.Text? { get }
    * @availability iOS 26.0+
    */
-  get title(): (DocumentObservation_Container_Text) | null { return callSDK<(DocumentObservation_Container_Text) | null>("Vision_3864e7f38681b875", 191524055936122, this, []); }
+  get title(): (DocumentObservation_Container_Text) | null { return callSDK<(DocumentObservation_Container_Text) | null>("Vision_ff42ce03e691ab23", 191524055936122, this, []); }
   /**
    * var tables: [DocumentObservation.Container.Table] { get }
    * @availability iOS 26.0+
    */
-  get tables(): Array<DocumentObservation_Container_Table> { return callSDK<Array<DocumentObservation_Container_Table>>("Vision_3864e7f38681b875", 862856337491660, this, []); }
+  get tables(): Array<DocumentObservation_Container_Table> { return callSDK<Array<DocumentObservation_Container_Table>>("Vision_ff42ce03e691ab23", 862856337491660, this, []); }
   /**
    * var barcodes: [BarcodeObservation] { get }
    * @availability iOS 26.0+
    */
-  get barcodes(): Array<BarcodeObservation> { return callSDK<Array<BarcodeObservation>>("Vision_3864e7f38681b875", 131424998269161, this, []); }
+  get barcodes(): Array<BarcodeObservation> { return callSDK<Array<BarcodeObservation>>("Vision_ff42ce03e691ab23", 131424998269161, this, []); }
   declare readonly $type: { "s:6Vision19DocumentObservationV9ContainerV": true };
 }
 
@@ -2168,12 +2168,12 @@ export class DocumentObservation_Container_DataDetectorMatch extends SDKHandle {
    * var boundingRegion: NormalizedRegion { get }
    * @availability iOS 26.0+
    */
-  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_3864e7f38681b875", 494907115201688, this, []); }
+  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_ff42ce03e691ab23", 494907115201688, this, []); }
   /**
    * var match: DataDetector.Match { get }
    * @availability iOS 26.0+
    */
-  get match(): _DataDetection_DataDetector_Match { return callSDK<_DataDetection_DataDetector_Match>("Vision_3864e7f38681b875", 4198245467898758, this, []); }
+  get match(): _DataDetection_DataDetector_Match { return callSDK<_DataDetection_DataDetector_Match>("Vision_ff42ce03e691ab23", 4198245467898758, this, []); }
   declare readonly $type: { "s:6Vision19DocumentObservationV9ContainerV17DataDetectorMatchV": true };
 }
 
@@ -2186,12 +2186,12 @@ export class DocumentObservation_Container_List extends SDKHandle {
    * var boundingRegion: NormalizedRegion { get }
    * @availability iOS 26.0+
    */
-  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_3864e7f38681b875", 3307033530134239, this, []); }
+  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_ff42ce03e691ab23", 3307033530134239, this, []); }
   /**
    * var items: [DocumentObservation.Container.List.Item] { get }
    * @availability iOS 26.0+
    */
-  get items(): Array<DocumentObservation_Container_List_Item> { return callSDK<Array<DocumentObservation_Container_List_Item>>("Vision_3864e7f38681b875", 1473454296365427, this, []); }
+  get items(): Array<DocumentObservation_Container_List_Item> { return callSDK<Array<DocumentObservation_Container_List_Item>>("Vision_ff42ce03e691ab23", 1473454296365427, this, []); }
   declare readonly $type: { "s:6Vision19DocumentObservationV9ContainerV4ListV": true };
 }
 
@@ -2204,22 +2204,22 @@ export class DocumentObservation_Container_List_Item extends SDKHandle {
    * var itemString: String { get }
    * @availability iOS 26.0+
    */
-  get itemString(): string { return callSDK<string>("Vision_3864e7f38681b875", 311181007946597, this, []); }
+  get itemString(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 311181007946597, this, []); }
   /**
    * var markerType: DocumentObservation.Container.List.Marker? { get }
    * @availability iOS 26.0+
    */
-  get markerType(): (DocumentObservation_Container_List_Marker) | null { return callSDK<(DocumentObservation_Container_List_Marker) | null>("Vision_3864e7f38681b875", 2503710661336166, this, []); }
+  get markerType(): (DocumentObservation_Container_List_Marker) | null { return callSDK<(DocumentObservation_Container_List_Marker) | null>("Vision_ff42ce03e691ab23", 2503710661336166, this, []); }
   /**
    * var markerString: String { get }
    * @availability iOS 26.0+
    */
-  get markerString(): string { return callSDK<string>("Vision_3864e7f38681b875", 4211159744183714, this, []); }
+  get markerString(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4211159744183714, this, []); }
   /**
    * var content: DocumentObservation.Container { get }
    * @availability iOS 26.0+
    */
-  get content(): DocumentObservation_Container { return callSDK<DocumentObservation_Container>("Vision_3864e7f38681b875", 1255669868496094, this, []); }
+  get content(): DocumentObservation_Container { return callSDK<DocumentObservation_Container>("Vision_ff42ce03e691ab23", 1255669868496094, this, []); }
   declare readonly $type: { "s:6Vision19DocumentObservationV9ContainerV4ListV4ItemV": true };
 }
 
@@ -2238,22 +2238,22 @@ export class DocumentObservation_Container_Table extends SDKHandle {
    * var boundingRegion: NormalizedRegion { get }
    * @availability iOS 26.0+
    */
-  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_3864e7f38681b875", 3938779099291338, this, []); }
+  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_ff42ce03e691ab23", 3938779099291338, this, []); }
   /**
    * func cell(row: Int, col: Int) -> DocumentObservation.Container.Table.Cell?
    * @availability iOS 26.0+
    */
-  cell(row: number, col: number): (DocumentObservation_Container_Table_Cell) | null { return callSDK<(DocumentObservation_Container_Table_Cell) | null>("Vision_3864e7f38681b875", 3773697708410691, this, [row, col]); }
+  cell(row: number, col: number): (DocumentObservation_Container_Table_Cell) | null { return callSDK<(DocumentObservation_Container_Table_Cell) | null>("Vision_ff42ce03e691ab23", 3773697708410691, this, [row, col]); }
   /**
    * var rows: [[DocumentObservation.Container.Table.Cell]] { get }
    * @availability iOS 26.0+
    */
-  get rows(): $SDK74 { return callSDK<$SDK74>("Vision_3864e7f38681b875", 7645291476587, this, []); }
+  get rows(): $SDK74 { return callSDK<$SDK74>("Vision_ff42ce03e691ab23", 7645291476587, this, []); }
   /**
    * var columns: [[DocumentObservation.Container.Table.Cell]] { get }
    * @availability iOS 26.0+
    */
-  get columns(): $SDK74 { return callSDK<$SDK74>("Vision_3864e7f38681b875", 1838967567946815, this, []); }
+  get columns(): $SDK74 { return callSDK<$SDK74>("Vision_ff42ce03e691ab23", 1838967567946815, this, []); }
   declare readonly $type: { "s:6Vision19DocumentObservationV9ContainerV5TableV": true };
 }
 
@@ -2266,17 +2266,17 @@ export class DocumentObservation_Container_Table_Cell extends SDKHandle {
    * var columnRange: ClosedRange<Int> { get }
    * @availability iOS 26.0+
    */
-  get columnRange(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 3242810979470805, this, []); }
+  get columnRange(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 3242810979470805, this, []); }
   /**
    * var content: DocumentObservation.Container { get }
    * @availability iOS 26.0+
    */
-  get content(): DocumentObservation_Container { return callSDK<DocumentObservation_Container>("Vision_3864e7f38681b875", 954069156177451, this, []); }
+  get content(): DocumentObservation_Container { return callSDK<DocumentObservation_Container>("Vision_ff42ce03e691ab23", 954069156177451, this, []); }
   /**
    * var rowRange: ClosedRange<Int> { get }
    * @availability iOS 26.0+
    */
-  get rowRange(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 2823751620791495, this, []); }
+  get rowRange(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 2823751620791495, this, []); }
   declare readonly $type: { "s:6Vision19DocumentObservationV9ContainerV5TableV4CellV": true };
 }
 
@@ -2289,37 +2289,37 @@ export class DocumentObservation_Container_Text extends SDKHandle {
    * var transcript: String { get }
    * @availability iOS 26.0+
    */
-  get transcript(): string { return callSDK<string>("Vision_3864e7f38681b875", 2361868032611753, this, []); }
+  get transcript(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2361868032611753, this, []); }
   /**
    * var detectedData: [DocumentObservation.Container.DataDetectorMatch] { get }
    * @availability iOS 26.0+
    */
-  get detectedData(): Array<DocumentObservation_Container_DataDetectorMatch> { return callSDK<Array<DocumentObservation_Container_DataDetectorMatch>>("Vision_3864e7f38681b875", 2531277037361077, this, []); }
+  get detectedData(): Array<DocumentObservation_Container_DataDetectorMatch> { return callSDK<Array<DocumentObservation_Container_DataDetectorMatch>>("Vision_ff42ce03e691ab23", 2531277037361077, this, []); }
   /**
    * var textAlignment: DocumentObservation.Container.Text.Alignment? { get }
    * @availability iOS 26.0+
    */
-  get textAlignment(): (DocumentObservation_Container_Text_Alignment) | null { return callSDK<(DocumentObservation_Container_Text_Alignment) | null>("Vision_3864e7f38681b875", 2313046652976653, this, []); }
+  get textAlignment(): (DocumentObservation_Container_Text_Alignment) | null { return callSDK<(DocumentObservation_Container_Text_Alignment) | null>("Vision_ff42ce03e691ab23", 2313046652976653, this, []); }
   /**
    * func boundingRegion(for range: Range<String.Index>) -> NormalizedRegion?
    * @availability iOS 26.0+
    */
-  boundingRegionFor(range: SDKHandle): $SDK15 { return callSDK<$SDK15>("Vision_3864e7f38681b875", 1362727197877255, this, [range]); }
+  boundingRegionFor(range: SDKHandle): $SDK15 { return callSDK<$SDK15>("Vision_ff42ce03e691ab23", 1362727197877255, this, [range]); }
   /**
    * var boundingRegion: NormalizedRegion { get }
    * @availability iOS 26.0+
    */
-  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_3864e7f38681b875", 1998075387680901, this, []); }
+  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_ff42ce03e691ab23", 1998075387680901, this, []); }
   /**
    * var lines: [RecognizedTextObservation] { get }
    * @availability iOS 26.0+
    */
-  get lines(): $SDK77 { return callSDK<$SDK77>("Vision_3864e7f38681b875", 3714954525346852, this, []); }
+  get lines(): $SDK77 { return callSDK<$SDK77>("Vision_ff42ce03e691ab23", 3714954525346852, this, []); }
   /**
    * var words: [RecognizedTextObservation]? { get }
    * @availability iOS 26.0+
    */
-  get words(): (Array<RecognizedTextObservation>) | null { return callSDK<(Array<RecognizedTextObservation>) | null>("Vision_3864e7f38681b875", 2154149538563382, this, []); }
+  get words(): (Array<RecognizedTextObservation>) | null { return callSDK<(Array<RecognizedTextObservation>) | null>("Vision_ff42ce03e691ab23", 2154149538563382, this, []); }
   declare readonly $type: { "s:6Vision19DocumentObservationV9ContainerV4TextV": true };
 }
 
@@ -2369,70 +2369,70 @@ export class FaceObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 1520600319669824, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1520600319669824, this, []); }
   /**
    * init(boundingBox: NormalizedRect, revision: DetectFaceRectanglesRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static initBoundingBoxRevision(boundingBox: NormalizedRect, revision?: $SDK35): FaceObservation { return callSDK<FaceObservation>("Vision_3864e7f38681b875", 1499169932823123, undefined, [boundingBox, revision]); }
+  static initBoundingBoxRevision(boundingBox: NormalizedRect, revision?: $SDK35): FaceObservation { return callSDK<FaceObservation>("Vision_ff42ce03e691ab23", 1499169932823123, undefined, [boundingBox, revision]); }
   /**
    * var boundingBox: NormalizedRect
    * @availability iOS 18.0+
    */
-  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3591806129269773, this, []); }
-  set boundingBox(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1106553391934871, this, [value]); }
+  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3591806129269773, this, []); }
+  set boundingBox(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1106553391934871, this, [value]); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 1612830785590547, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1612830785590547, this, []); }
   /**
    * var captureQuality: FaceObservation.CaptureQuality?
    * @availability iOS 18.0+
    */
-  get captureQuality(): $SDK79 { return callSDK<$SDK79>("Vision_3864e7f38681b875", 3974115572299988, this, []); }
-  set captureQuality(value: $SDK79) { callSDK<void>("Vision_3864e7f38681b875", 1381330116162253, this, [value]); }
+  get captureQuality(): $SDK79 { return callSDK<$SDK79>("Vision_ff42ce03e691ab23", 3974115572299988, this, []); }
+  set captureQuality(value: $SDK79) { callSDK<void>("Vision_ff42ce03e691ab23", 1381330116162253, this, [value]); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 272506301430189, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 272506301430189, this, []); }
   /**
    * let yaw: Measurement<UnitAngle>
    * @availability iOS 18.0+
    */
-  get yaw(): $SDK80 { return callSDK<$SDK80>("Vision_3864e7f38681b875", 2513107991010509, this, []); }
+  get yaw(): $SDK80 { return callSDK<$SDK80>("Vision_ff42ce03e691ab23", 2513107991010509, this, []); }
   /**
    * let roll: Measurement<UnitAngle>
    * @availability iOS 18.0+
    */
-  get roll(): $SDK80 { return callSDK<$SDK80>("Vision_3864e7f38681b875", 17796897321261, this, []); }
+  get roll(): $SDK80 { return callSDK<$SDK80>("Vision_ff42ce03e691ab23", 17796897321261, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 3679499108279418, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3679499108279418, this, []); }
   /**
    * let pitch: Measurement<UnitAngle>
    * @availability iOS 18.0+
    */
-  get pitch(): $SDK80 { return callSDK<$SDK80>("Vision_3864e7f38681b875", 4438577286315957, this, []); }
+  get pitch(): $SDK80 { return callSDK<$SDK80>("Vision_ff42ce03e691ab23", 4438577286315957, this, []); }
   /**
    * var landmarks: FaceObservation.Landmarks2D?
    * @availability iOS 18.0+
    */
-  get landmarks(): $SDK81 { return callSDK<$SDK81>("Vision_3864e7f38681b875", 2021476703470332, this, []); }
-  set landmarks(value: $SDK81) { callSDK<void>("Vision_3864e7f38681b875", 3312653180016476, this, [value]); }
+  get landmarks(): $SDK81 { return callSDK<$SDK81>("Vision_ff42ce03e691ab23", 2021476703470332, this, []); }
+  set landmarks(value: $SDK81) { callSDK<void>("Vision_ff42ce03e691ab23", 3312653180016476, this, [value]); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 672922443438174, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 672922443438174, this, []); }
   /**
    * init(_ observation: VNFaceObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNFaceObservation): FaceObservation { return callSDK<FaceObservation>("Vision_3864e7f38681b875", 1864605268943348, undefined, [observation]); }
+  static init(observation: VNFaceObservation): FaceObservation { return callSDK<FaceObservation>("Vision_ff42ce03e691ab23", 1864605268943348, undefined, [observation]); }
   declare readonly $type: { "s:6Vision15FaceObservationV": true };
 }
 
@@ -2445,17 +2445,17 @@ export class FaceObservation_CaptureQuality extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 2416450174735632, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2416450174735632, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 3996149665289274, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 3996149665289274, this, []); }
   /**
    * let score: Float
    * @availability iOS 18.0+
    */
-  get score(): number { return callSDK<number>("Vision_3864e7f38681b875", 1676841030040363, this, []); }
+  get score(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1676841030040363, this, []); }
   declare readonly $type: { "s:6Vision15FaceObservationV14CaptureQualityV": true };
 }
 
@@ -2468,77 +2468,77 @@ export class FaceObservation_Landmarks2D extends SDKHandle {
    * var medianLine: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get medianLine(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 1125179781025811, this, []); }
+  get medianLine(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 1125179781025811, this, []); }
   /**
    * var rightPupil: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get rightPupil(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 3130447761913157, this, []); }
+  get rightPupil(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 3130447761913157, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 2722836236058671, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2722836236058671, this, []); }
   /**
    * var faceContour: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get faceContour(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 1587743058327995, this, []); }
+  get faceContour(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 1587743058327995, this, []); }
   /**
    * var leftEyebrow: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get leftEyebrow(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 2009168103044808, this, []); }
+  get leftEyebrow(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 2009168103044808, this, []); }
   /**
    * var rightEyebrow: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get rightEyebrow(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 398317542828959, this, []); }
+  get rightEyebrow(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 398317542828959, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 1337154742324677, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 1337154742324677, this, []); }
   /**
    * var nose: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get nose(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 1713880968042036, this, []); }
+  get nose(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 1713880968042036, this, []); }
   /**
    * var leftEye: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get leftEye(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 664738856840383, this, []); }
+  get leftEye(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 664738856840383, this, []); }
   /**
    * var rightEye: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get rightEye(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 3156942347303765, this, []); }
+  get rightEye(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 3156942347303765, this, []); }
   /**
    * var allPoints: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get allPoints(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 162302854051915, this, []); }
+  get allPoints(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 162302854051915, this, []); }
   /**
    * var innerLips: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get innerLips(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 3365115428126365, this, []); }
+  get innerLips(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 3365115428126365, this, []); }
   /**
    * var leftPupil: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get leftPupil(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 1723067719612516, this, []); }
+  get leftPupil(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 1723067719612516, this, []); }
   /**
    * var noseCrest: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get noseCrest(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 590500109663516, this, []); }
+  get noseCrest(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 590500109663516, this, []); }
   /**
    * var outerLips: FaceObservation.Landmarks2D.Region { get }
    * @availability iOS 18.0+
    */
-  get outerLips(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_3864e7f38681b875", 780820014019044, this, []); }
+  get outerLips(): FaceObservation_Landmarks2D_Region { return callSDK<FaceObservation_Landmarks2D_Region>("Vision_ff42ce03e691ab23", 780820014019044, this, []); }
   declare readonly $type: { "s:6Vision15FaceObservationV11Landmarks2DV": true };
 }
 
@@ -2551,32 +2551,32 @@ export class FaceObservation_Landmarks2D_Region extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3216325703788954, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3216325703788954, this, []); }
   /**
    * let pointsClassification: FaceObservation.Landmarks2D.Region.PointsClassification
    * @availability iOS 18.0+
    */
-  get pointsClassification(): FaceObservation_Landmarks2D_Region_PointsClassification { return callSDK<FaceObservation_Landmarks2D_Region_PointsClassification>("Vision_3864e7f38681b875", 2101273666026394, this, []); }
+  get pointsClassification(): FaceObservation_Landmarks2D_Region_PointsClassification { return callSDK<FaceObservation_Landmarks2D_Region_PointsClassification>("Vision_ff42ce03e691ab23", 2101273666026394, this, []); }
   /**
    * func pointsInImageCoordinates(_ imageSize: CGSize, origin: CoordinateOrigin = .lowerLeft) -> [CGPoint]
    * @availability iOS 18.0+
    */
-  pointsInImageCoordinates(imageSize: $SDK83, origin?: CoordinateOrigin): $SDK82 { return callSDK<$SDK82>("Vision_3864e7f38681b875", 1407956423151500, this, [imageSize, origin]); }
+  pointsInImageCoordinates(imageSize: $SDK83, origin?: CoordinateOrigin): $SDK82 { return callSDK<$SDK82>("Vision_ff42ce03e691ab23", 1407956423151500, this, [imageSize, origin]); }
   /**
    * let precisionEstimatesPerPoint: [Float]?
    * @availability iOS 18.0+
    */
-  get precisionEstimatesPerPoint(): (Array<number>) | null { return callSDK<(Array<number>) | null>("Vision_3864e7f38681b875", 3693146449673358, this, []); }
+  get precisionEstimatesPerPoint(): (Array<number>) | null { return callSDK<(Array<number>) | null>("Vision_ff42ce03e691ab23", 3693146449673358, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 3527405020817833, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 3527405020817833, this, []); }
   /**
    * let points: [NormalizedPoint]
    * @availability iOS 18.0+
    */
-  get points(): Array<NormalizedPoint> { return callSDK<Array<NormalizedPoint>>("Vision_3864e7f38681b875", 1271605596292083, this, []); }
+  get points(): Array<NormalizedPoint> { return callSDK<Array<NormalizedPoint>>("Vision_ff42ce03e691ab23", 1271605596292083, this, []); }
   declare readonly $type: { "s:6Vision15FaceObservationV11Landmarks2DV6RegionV": true };
 }
 
@@ -2595,52 +2595,52 @@ export class FeaturePrintObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 305450019044599, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 305450019044599, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 1871809633280028, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1871809633280028, this, []); }
   /**
    * let elementType: ElementType
    * @availability iOS 18.0+
    */
-  get elementType(): ElementType { return callSDK<ElementType>("Vision_3864e7f38681b875", 299094643346912, this, []); }
+  get elementType(): ElementType { return callSDK<ElementType>("Vision_ff42ce03e691ab23", 299094643346912, this, []); }
   /**
    * let elementCount: Int
    * @availability iOS 18.0+
    */
-  get elementCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 4453525141565006, this, []); }
+  get elementCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4453525141565006, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 4140478830614870, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 4140478830614870, this, []); }
   /**
    * let data: Data
    * @availability iOS 18.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("Vision_3864e7f38681b875", 722064287044943, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("Vision_ff42ce03e691ab23", 722064287044943, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 1616581224876856, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1616581224876856, this, []); }
   /**
    * func distance(to featurePrint: FeaturePrintObservation) throws -> Double
    * @availability iOS 18.0+
    */
-  distance(featurePrint: FeaturePrintObservation): number { return callSDK<number>("Vision_3864e7f38681b875", 4304272632642590, this, [featurePrint]); }
+  distance(featurePrint: FeaturePrintObservation): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4304272632642590, this, [featurePrint]); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 4479817546798039, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 4479817546798039, this, []); }
   /**
    * init(_ observation: VNFeaturePrintObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNFeaturePrintObservation): FeaturePrintObservation { return callSDK<FeaturePrintObservation>("Vision_3864e7f38681b875", 1233480832860365, undefined, [observation]); }
+  static init(observation: VNFeaturePrintObservation): FeaturePrintObservation { return callSDK<FeaturePrintObservation>("Vision_ff42ce03e691ab23", 1233480832860365, undefined, [observation]); }
   declare readonly $type: { "s:6Vision23FeaturePrintObservationV": true };
 }
 
@@ -2653,33 +2653,33 @@ export class GenerateAttentionBasedSaliencyImageRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 3867387497689432, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 3867387497689432, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 1674942071481288, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1755332087344753, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 1674942071481288, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1755332087344753, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 1450789218494779, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1450789218494779, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [GenerateAttentionBasedSaliencyImageRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<GenerateAttentionBasedSaliencyImageRequest_Revision> { return callSDK<Array<GenerateAttentionBasedSaliencyImageRequest_Revision>>("Vision_3864e7f38681b875", 2650080568603111, undefined, []); }
+  static get supportedRevisions(): Array<GenerateAttentionBasedSaliencyImageRequest_Revision> { return callSDK<Array<GenerateAttentionBasedSaliencyImageRequest_Revision>>("Vision_ff42ce03e691ab23", 2650080568603111, undefined, []); }
   /**
    * let revision: GenerateAttentionBasedSaliencyImageRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): GenerateAttentionBasedSaliencyImageRequest_Revision { return callSDK<GenerateAttentionBasedSaliencyImageRequest_Revision>("Vision_3864e7f38681b875", 1540902308354418, this, []); }
+  get revision(): GenerateAttentionBasedSaliencyImageRequest_Revision { return callSDK<GenerateAttentionBasedSaliencyImageRequest_Revision>("Vision_ff42ce03e691ab23", 1540902308354418, this, []); }
   /**
    * init(_ revision: GenerateAttentionBasedSaliencyImageRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (GenerateAttentionBasedSaliencyImageRequest_Revision) | null): GenerateAttentionBasedSaliencyImageRequest { return callSDK<GenerateAttentionBasedSaliencyImageRequest>("Vision_3864e7f38681b875", 1289847848951896, undefined, [revision]); }
+  static init(revision?: (GenerateAttentionBasedSaliencyImageRequest_Revision) | null): GenerateAttentionBasedSaliencyImageRequest { return callSDK<GenerateAttentionBasedSaliencyImageRequest>("Vision_ff42ce03e691ab23", 1289847848951896, undefined, [revision]); }
   declare readonly $type: { "s:6Vision42GenerateAttentionBasedSaliencyImageRequestV": true };
 }
 
@@ -2704,38 +2704,38 @@ export class GenerateForegroundInstanceMaskRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 1158373253725223, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 1158373253725223, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 952962154489099, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1145802092299226, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 952962154489099, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1145802092299226, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 486411184671973, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 486411184671973, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [GenerateForegroundInstanceMaskRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<GenerateForegroundInstanceMaskRequest_Revision> { return callSDK<Array<GenerateForegroundInstanceMaskRequest_Revision>>("Vision_3864e7f38681b875", 2630656135491215, undefined, []); }
+  static get supportedRevisions(): Array<GenerateForegroundInstanceMaskRequest_Revision> { return callSDK<Array<GenerateForegroundInstanceMaskRequest_Revision>>("Vision_ff42ce03e691ab23", 2630656135491215, undefined, []); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 1710899062769893, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 1710899062769893, this, []); }
   /**
    * let revision: GenerateForegroundInstanceMaskRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): GenerateForegroundInstanceMaskRequest_Revision { return callSDK<GenerateForegroundInstanceMaskRequest_Revision>("Vision_3864e7f38681b875", 1505232998206461, this, []); }
+  get revision(): GenerateForegroundInstanceMaskRequest_Revision { return callSDK<GenerateForegroundInstanceMaskRequest_Revision>("Vision_ff42ce03e691ab23", 1505232998206461, this, []); }
   /**
    * init(_ revision: GenerateForegroundInstanceMaskRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (GenerateForegroundInstanceMaskRequest_Revision) | null): GenerateForegroundInstanceMaskRequest { return callSDK<GenerateForegroundInstanceMaskRequest>("Vision_3864e7f38681b875", 3014767656567869, undefined, [revision]); }
+  static init(revision?: (GenerateForegroundInstanceMaskRequest_Revision) | null): GenerateForegroundInstanceMaskRequest { return callSDK<GenerateForegroundInstanceMaskRequest>("Vision_ff42ce03e691ab23", 3014767656567869, undefined, [revision]); }
   declare readonly $type: { "s:6Vision37GenerateForegroundInstanceMaskRequestV": true };
 }
 
@@ -2760,44 +2760,44 @@ export class GenerateImageFeaturePrintRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 2770678749615003, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 2770678749615003, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2271122155617567, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 2437518768750322, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2271122155617567, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 2437518768750322, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 3657169061637196, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3657169061637196, this, [computeDevice, computeStage]); }
   /**
    * var cropAndScaleAction: ImageCropAndScaleAction
    * @availability iOS 18.0+
    */
-  get cropAndScaleAction(): ImageCropAndScaleAction { return callSDK<ImageCropAndScaleAction>("Vision_3864e7f38681b875", 100517864502016, this, []); }
-  set cropAndScaleAction(value: ImageCropAndScaleAction) { callSDK<void>("Vision_3864e7f38681b875", 430503018977526, this, [value]); }
+  get cropAndScaleAction(): ImageCropAndScaleAction { return callSDK<ImageCropAndScaleAction>("Vision_ff42ce03e691ab23", 100517864502016, this, []); }
+  set cropAndScaleAction(value: ImageCropAndScaleAction) { callSDK<void>("Vision_ff42ce03e691ab23", 430503018977526, this, [value]); }
   /**
    * static let supportedRevisions: [GenerateImageFeaturePrintRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<GenerateImageFeaturePrintRequest_Revision> { return callSDK<Array<GenerateImageFeaturePrintRequest_Revision>>("Vision_3864e7f38681b875", 267999874619763, undefined, []); }
+  static get supportedRevisions(): Array<GenerateImageFeaturePrintRequest_Revision> { return callSDK<Array<GenerateImageFeaturePrintRequest_Revision>>("Vision_ff42ce03e691ab23", 267999874619763, undefined, []); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 3510288184312412, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 3510288184312412, this, []); }
   /**
    * let revision: GenerateImageFeaturePrintRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): GenerateImageFeaturePrintRequest_Revision { return callSDK<GenerateImageFeaturePrintRequest_Revision>("Vision_3864e7f38681b875", 1237567773881637, this, []); }
+  get revision(): GenerateImageFeaturePrintRequest_Revision { return callSDK<GenerateImageFeaturePrintRequest_Revision>("Vision_ff42ce03e691ab23", 1237567773881637, this, []); }
   /**
    * init(_ revision: GenerateImageFeaturePrintRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (GenerateImageFeaturePrintRequest_Revision) | null): GenerateImageFeaturePrintRequest { return callSDK<GenerateImageFeaturePrintRequest>("Vision_3864e7f38681b875", 3759897184188105, undefined, [revision]); }
+  static init(revision?: (GenerateImageFeaturePrintRequest_Revision) | null): GenerateImageFeaturePrintRequest { return callSDK<GenerateImageFeaturePrintRequest>("Vision_ff42ce03e691ab23", 3759897184188105, undefined, [revision]); }
   declare readonly $type: { "s:6Vision32GenerateImageFeaturePrintRequestV": true };
 }
 
@@ -2822,69 +2822,69 @@ export class GenerateIterativeSegmentationRequest extends SDKHandle {
    * final var descriptor: RequestDescriptor { get }
    * @availability iOS 27.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 4255887772303334, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 4255887772303334, this, []); }
   /**
    * final var assetStatus: DownloadableAssetsRequestStatus { get async }
    * @availability iOS 27.0+
    */
-  get assetStatus(): Promise<DownloadableAssetsRequestStatus> { return callSDKAsync<DownloadableAssetsRequestStatus>("Vision_3864e7f38681b875", 3368164691986112, this, []); }
+  get assetStatus(): Promise<DownloadableAssetsRequestStatus> { return callSDKAsync<DownloadableAssetsRequestStatus>("Vision_ff42ce03e691ab23", 3368164691986112, this, []); }
   /**
    * final var qualityLevel: GenerateIterativeSegmentationRequest.QualityLevel { get set }
    * @availability iOS 27.0+
    */
-  get qualityLevel(): GenerateIterativeSegmentationRequest_QualityLevel { return callSDK<GenerateIterativeSegmentationRequest_QualityLevel>("Vision_3864e7f38681b875", 243201663004687, this, []); }
-  set qualityLevel(value: GenerateIterativeSegmentationRequest_QualityLevel) { callSDK<void>("Vision_3864e7f38681b875", 3920030786496600, this, [value]); }
+  get qualityLevel(): GenerateIterativeSegmentationRequest_QualityLevel { return callSDK<GenerateIterativeSegmentationRequest_QualityLevel>("Vision_ff42ce03e691ab23", 243201663004687, this, []); }
+  set qualityLevel(value: GenerateIterativeSegmentationRequest_QualityLevel) { callSDK<void>("Vision_ff42ce03e691ab23", 3920030786496600, this, [value]); }
   /**
    * final func addExcludedPoint(_ point: NormalizedPoint) throws
    * @availability iOS 27.0+
    */
-  addExcludedPoint(point: NormalizedPoint): void { return callSDK<void>("Vision_3864e7f38681b875", 614149559119406, this, [point]); }
+  addExcludedPoint(point: NormalizedPoint): void { return callSDK<void>("Vision_ff42ce03e691ab23", 614149559119406, this, [point]); }
   /**
    * final func addIncludedPoint(_ point: NormalizedPoint) throws
    * @availability iOS 27.0+
    */
-  addIncludedPoint(point: NormalizedPoint): void { return callSDK<void>("Vision_3864e7f38681b875", 911222502257155, this, [point]); }
+  addIncludedPoint(point: NormalizedPoint): void { return callSDK<void>("Vision_ff42ce03e691ab23", 911222502257155, this, [point]); }
   /**
    * final var regionOfInterest: NormalizedRect { get set }
    * @availability iOS 27.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2248899683516746, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 3833560570777886, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2248899683516746, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 3833560570777886, this, [value]); }
   /**
    * final func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 27.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 412779044627493, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 412779044627493, this, [computeDevice, computeStage]); }
   /**
    * init(seedScribbleBuffer: CVReadOnlyPixelBuffer, _ revision: GenerateIterativeSegmentationRequest.Revision? = nil)
    * @availability iOS 27.0+
    */
-  static initSeedScribbleBuffer(seedScribbleBuffer: _CoreVideo_CVReadOnlyPixelBuffer, revision?: $SDK91): GenerateIterativeSegmentationRequest { return callSDK<GenerateIterativeSegmentationRequest>("Vision_3864e7f38681b875", 2166953974469223, undefined, [seedScribbleBuffer, revision]); }
+  static initSeedScribbleBuffer(seedScribbleBuffer: _CoreVideo_CVReadOnlyPixelBuffer, revision?: $SDK91): GenerateIterativeSegmentationRequest { return callSDK<GenerateIterativeSegmentationRequest>("Vision_ff42ce03e691ab23", 2166953974469223, undefined, [seedScribbleBuffer, revision]); }
   /**
    * static let supportedRevisions: [GenerateIterativeSegmentationRequest.Revision]
    * @availability iOS 27.0+
    */
-  static get supportedRevisions(): Array<GenerateIterativeSegmentationRequest_Revision> { return callSDK<Array<GenerateIterativeSegmentationRequest_Revision>>("Vision_3864e7f38681b875", 361303978793708, undefined, []); }
+  static get supportedRevisions(): Array<GenerateIterativeSegmentationRequest_Revision> { return callSDK<Array<GenerateIterativeSegmentationRequest_Revision>>("Vision_ff42ce03e691ab23", 361303978793708, undefined, []); }
   /**
    * final var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 27.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 3459329048572153, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 3459329048572153, this, []); }
   /**
    * init(seedBox: NormalizedRect, _ revision: GenerateIterativeSegmentationRequest.Revision? = nil)
    * @availability iOS 27.0+
    */
-  static initSeedBox(seedBox: NormalizedRect, revision?: $SDK91): GenerateIterativeSegmentationRequest { return callSDK<GenerateIterativeSegmentationRequest>("Vision_3864e7f38681b875", 3108426099989988, undefined, [seedBox, revision]); }
+  static initSeedBox(seedBox: NormalizedRect, revision?: $SDK91): GenerateIterativeSegmentationRequest { return callSDK<GenerateIterativeSegmentationRequest>("Vision_ff42ce03e691ab23", 3108426099989988, undefined, [seedBox, revision]); }
   /**
    * final let revision: GenerateIterativeSegmentationRequest.Revision
    * @availability iOS 27.0+
    */
-  get revision(): GenerateIterativeSegmentationRequest_Revision { return callSDK<GenerateIterativeSegmentationRequest_Revision>("Vision_3864e7f38681b875", 631400151881992, this, []); }
+  get revision(): GenerateIterativeSegmentationRequest_Revision { return callSDK<GenerateIterativeSegmentationRequest_Revision>("Vision_ff42ce03e691ab23", 631400151881992, this, []); }
   /**
    * init(seedPoint: NormalizedPoint, _ revision: GenerateIterativeSegmentationRequest.Revision? = nil)
    * @availability iOS 27.0+
    */
-  static initSeedPoint(seedPoint: NormalizedPoint, revision?: $SDK91): GenerateIterativeSegmentationRequest { return callSDK<GenerateIterativeSegmentationRequest>("Vision_3864e7f38681b875", 1796575567007352, undefined, [seedPoint, revision]); }
+  static initSeedPoint(seedPoint: NormalizedPoint, revision?: $SDK91): GenerateIterativeSegmentationRequest { return callSDK<GenerateIterativeSegmentationRequest>("Vision_ff42ce03e691ab23", 1796575567007352, undefined, [seedPoint, revision]); }
   declare readonly $type: { "s:6Vision36GenerateIterativeSegmentationRequestC": true };
 }
 
@@ -2899,7 +2899,7 @@ export const GenerateIterativeSegmentationRequest_QualityLevel = {
    * nonisolated static var allCases: [GenerateIterativeSegmentationRequest.QualityLevel] { get }
    * @availability iOS 27.0+
    */
-  get allCases(): $SDK93 { return callSDK<$SDK93>("Vision_3864e7f38681b875", 2921150205957870, undefined, []); }
+  get allCases(): $SDK93 { return callSDK<$SDK93>("Vision_ff42ce03e691ab23", 2921150205957870, undefined, []); }
 };
 
 /**
@@ -2929,33 +2929,33 @@ export class GenerateObjectnessBasedSaliencyImageRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 887810508446593, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 887810508446593, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 319113988802967, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 4458367154866743, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 319113988802967, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 4458367154866743, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 2105923692840656, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2105923692840656, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [GenerateObjectnessBasedSaliencyImageRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<GenerateObjectnessBasedSaliencyImageRequest_Revision> { return callSDK<Array<GenerateObjectnessBasedSaliencyImageRequest_Revision>>("Vision_3864e7f38681b875", 220993570238820, undefined, []); }
+  static get supportedRevisions(): Array<GenerateObjectnessBasedSaliencyImageRequest_Revision> { return callSDK<Array<GenerateObjectnessBasedSaliencyImageRequest_Revision>>("Vision_ff42ce03e691ab23", 220993570238820, undefined, []); }
   /**
    * let revision: GenerateObjectnessBasedSaliencyImageRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): GenerateObjectnessBasedSaliencyImageRequest_Revision { return callSDK<GenerateObjectnessBasedSaliencyImageRequest_Revision>("Vision_3864e7f38681b875", 3226806171646670, this, []); }
+  get revision(): GenerateObjectnessBasedSaliencyImageRequest_Revision { return callSDK<GenerateObjectnessBasedSaliencyImageRequest_Revision>("Vision_ff42ce03e691ab23", 3226806171646670, this, []); }
   /**
    * init(_ revision: GenerateObjectnessBasedSaliencyImageRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (GenerateObjectnessBasedSaliencyImageRequest_Revision) | null): GenerateObjectnessBasedSaliencyImageRequest { return callSDK<GenerateObjectnessBasedSaliencyImageRequest>("Vision_3864e7f38681b875", 2897071893682732, undefined, [revision]); }
+  static init(revision?: (GenerateObjectnessBasedSaliencyImageRequest_Revision) | null): GenerateObjectnessBasedSaliencyImageRequest { return callSDK<GenerateObjectnessBasedSaliencyImageRequest>("Vision_ff42ce03e691ab23", 2897071893682732, undefined, [revision]); }
   declare readonly $type: { "s:6Vision43GenerateObjectnessBasedSaliencyImageRequestV": true };
 }
 
@@ -2980,38 +2980,38 @@ export class GeneratePersonInstanceMaskRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 283078777227817, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 283078777227817, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 968842709292827, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 2564700526327742, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 968842709292827, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 2564700526327742, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 2672370628000978, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2672370628000978, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [GeneratePersonInstanceMaskRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<GeneratePersonInstanceMaskRequest_Revision> { return callSDK<Array<GeneratePersonInstanceMaskRequest_Revision>>("Vision_3864e7f38681b875", 187102717186441, undefined, []); }
+  static get supportedRevisions(): Array<GeneratePersonInstanceMaskRequest_Revision> { return callSDK<Array<GeneratePersonInstanceMaskRequest_Revision>>("Vision_ff42ce03e691ab23", 187102717186441, undefined, []); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 1500275091828773, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 1500275091828773, this, []); }
   /**
    * let revision: GeneratePersonInstanceMaskRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): GeneratePersonInstanceMaskRequest_Revision { return callSDK<GeneratePersonInstanceMaskRequest_Revision>("Vision_3864e7f38681b875", 1836039037996109, this, []); }
+  get revision(): GeneratePersonInstanceMaskRequest_Revision { return callSDK<GeneratePersonInstanceMaskRequest_Revision>("Vision_ff42ce03e691ab23", 1836039037996109, this, []); }
   /**
    * init(_ revision: GeneratePersonInstanceMaskRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (GeneratePersonInstanceMaskRequest_Revision) | null): GeneratePersonInstanceMaskRequest { return callSDK<GeneratePersonInstanceMaskRequest>("Vision_3864e7f38681b875", 1278629139371557, undefined, [revision]); }
+  static init(revision?: (GeneratePersonInstanceMaskRequest_Revision) | null): GeneratePersonInstanceMaskRequest { return callSDK<GeneratePersonInstanceMaskRequest>("Vision_ff42ce03e691ab23", 1278629139371557, undefined, [revision]); }
   declare readonly $type: { "s:6Vision33GeneratePersonInstanceMaskRequestV": true };
 }
 
@@ -3036,55 +3036,55 @@ export class GeneratePersonSegmentationRequest extends SDKHandle {
    * final var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 3926267799869159, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 3926267799869159, this, []); }
   /**
    * final var qualityLevel: GeneratePersonSegmentationRequest.QualityLevel { get set }
    * @availability iOS 18.0+
    */
-  get qualityLevel(): GeneratePersonSegmentationRequest_QualityLevel { return callSDK<GeneratePersonSegmentationRequest_QualityLevel>("Vision_3864e7f38681b875", 2324509398350253, this, []); }
-  set qualityLevel(value: GeneratePersonSegmentationRequest_QualityLevel) { callSDK<void>("Vision_3864e7f38681b875", 1914743721610158, this, [value]); }
+  get qualityLevel(): GeneratePersonSegmentationRequest_QualityLevel { return callSDK<GeneratePersonSegmentationRequest_QualityLevel>("Vision_ff42ce03e691ab23", 2324509398350253, this, []); }
+  set qualityLevel(value: GeneratePersonSegmentationRequest_QualityLevel) { callSDK<void>("Vision_ff42ce03e691ab23", 1914743721610158, this, [value]); }
   /**
    * final var regionOfInterest: NormalizedRect { get set }
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3282545184530092, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 3198250007575337, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3282545184530092, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 3198250007575337, this, [value]); }
   /**
    * final func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 3070898665538208, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3070898665538208, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [GeneratePersonSegmentationRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<GeneratePersonSegmentationRequest_Revision> { return callSDK<Array<GeneratePersonSegmentationRequest_Revision>>("Vision_3864e7f38681b875", 568554884702263, undefined, []); }
+  static get supportedRevisions(): Array<GeneratePersonSegmentationRequest_Revision> { return callSDK<Array<GeneratePersonSegmentationRequest_Revision>>("Vision_ff42ce03e691ab23", 568554884702263, undefined, []); }
   /**
    * final let frameAnalysisSpacing: CMTime
    * @availability iOS 18.0+
    */
-  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 1690053959353257, this, []); }
+  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 1690053959353257, this, []); }
   /**
    * final var outputPixelFormatType: OSType { get set }
    * @availability iOS 18.0+
    */
-  get outputPixelFormatType(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 2711147241016797, this, []); }
-  set outputPixelFormatType(value: SDKHandle) { callSDK<void>("Vision_3864e7f38681b875", 1751765512576062, this, [value]); }
+  get outputPixelFormatType(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 2711147241016797, this, []); }
+  set outputPixelFormatType(value: SDKHandle) { callSDK<void>("Vision_ff42ce03e691ab23", 1751765512576062, this, [value]); }
   /**
    * final var supportedOutputPixelFormats: [OSType] { get }
    * @availability iOS 18.0+
    */
-  get supportedOutputPixelFormats(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Vision_3864e7f38681b875", 3141171247798985, this, []); }
+  get supportedOutputPixelFormats(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Vision_ff42ce03e691ab23", 3141171247798985, this, []); }
   /**
    * final let revision: GeneratePersonSegmentationRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): GeneratePersonSegmentationRequest_Revision { return callSDK<GeneratePersonSegmentationRequest_Revision>("Vision_3864e7f38681b875", 525726037878932, this, []); }
+  get revision(): GeneratePersonSegmentationRequest_Revision { return callSDK<GeneratePersonSegmentationRequest_Revision>("Vision_ff42ce03e691ab23", 525726037878932, this, []); }
   /**
    * init(_ revision: GeneratePersonSegmentationRequest.Revision? = nil, frameAnalysisSpacing: CMTime? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (GeneratePersonSegmentationRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): GeneratePersonSegmentationRequest { return callSDK<GeneratePersonSegmentationRequest>("Vision_3864e7f38681b875", 1798746020235238, undefined, [revision, frameAnalysisSpacing]); }
+  static init(revision?: (GeneratePersonSegmentationRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): GeneratePersonSegmentationRequest { return callSDK<GeneratePersonSegmentationRequest>("Vision_ff42ce03e691ab23", 1798746020235238, undefined, [revision, frameAnalysisSpacing]); }
   declare readonly $type: { "s:6Vision33GeneratePersonSegmentationRequestC": true };
 }
 
@@ -3099,7 +3099,7 @@ export const GeneratePersonSegmentationRequest_QualityLevel = {
    * nonisolated static var allCases: [GeneratePersonSegmentationRequest.QualityLevel] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): $SDK101 { return callSDK<$SDK101>("Vision_3864e7f38681b875", 4418419135088830, undefined, []); }
+  get allCases(): $SDK101 { return callSDK<$SDK101>("Vision_ff42ce03e691ab23", 4418419135088830, undefined, []); }
 };
 
 /**
@@ -3129,47 +3129,47 @@ export class HorizonObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 58766027628300, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 58766027628300, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 4095335388621127, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4095335388621127, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 1474680488729586, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 1474680488729586, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 777677147204786, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 777677147204786, this, []); }
   /**
    * let angle: Measurement<UnitAngle>
    * @availability iOS 18.0+
    */
-  get angle(): $SDK80 { return callSDK<$SDK80>("Vision_3864e7f38681b875", 43478285287348, this, []); }
+  get angle(): $SDK80 { return callSDK<$SDK80>("Vision_ff42ce03e691ab23", 43478285287348, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 2838027464281279, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 2838027464281279, this, []); }
   /**
    * func transform(for imageSize: CGSize) -> CGAffineTransform
    * @availability iOS 18.0+
    */
-  transformFor(imageSize: $SDK83): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_3864e7f38681b875", 533226833616074, this, [imageSize]); }
+  transformFor(imageSize: $SDK83): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_ff42ce03e691ab23", 533226833616074, this, [imageSize]); }
   /**
    * let transform: CGAffineTransform
    * @availability iOS 18.0+
    */
-  get transform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_3864e7f38681b875", 1958529897664566, this, []); }
+  get transform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_ff42ce03e691ab23", 1958529897664566, this, []); }
   /**
    * init(_ observation: VNHorizonObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNHorizonObservation): HorizonObservation { return callSDK<HorizonObservation>("Vision_3864e7f38681b875", 2787040639122503, undefined, [observation]); }
+  static init(observation: VNHorizonObservation): HorizonObservation { return callSDK<HorizonObservation>("Vision_ff42ce03e691ab23", 2787040639122503, undefined, [observation]); }
   declare readonly $type: { "s:6Vision18HorizonObservationV": true };
 }
 
@@ -3182,82 +3182,82 @@ export class HumanBodyPose3DObservation extends SDKHandle {
    * let bodyHeight: Measurement<UnitLength>
    * @availability iOS 18.0+
    */
-  get bodyHeight(): _Foundation_Measurement<_Foundation_UnitLength> { return callSDK<_Foundation_Measurement<_Foundation_UnitLength>>("Vision_3864e7f38681b875", 3075196038975912, this, []); }
+  get bodyHeight(): _Foundation_Measurement<_Foundation_UnitLength> { return callSDK<_Foundation_Measurement<_Foundation_UnitLength>>("Vision_ff42ce03e691ab23", 3075196038975912, this, []); }
   /**
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 4329218884787872, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4329218884787872, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3365531462117721, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3365531462117721, this, []); }
   /**
    * func pointInImage(for jointName: HumanBodyPose3DObservation.JointName) -> NormalizedPoint
    * @availability iOS 18.0+
    */
-  pointInImage(jointName: HumanBodyPose3DObservation_JointName): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 2365194988370166, this, [jointName]); }
+  pointInImage(jointName: HumanBodyPose3DObservation_JointName): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 2365194988370166, this, [jointName]); }
   /**
    * func parentJointName(for jointName: HumanBodyPose3DObservation.JointName) -> HumanBodyPose3DObservation.JointName
    * @availability iOS 18.0+
    */
-  parentJointName(jointName: HumanBodyPose3DObservation_JointName): HumanBodyPose3DObservation_JointName { return callSDK<HumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 1217047789159018, this, [jointName]); }
+  parentJointName(jointName: HumanBodyPose3DObservation_JointName): HumanBodyPose3DObservation_JointName { return callSDK<HumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 1217047789159018, this, [jointName]); }
   /**
    * let cameraOriginMatrix: simd_float4x4
    * @availability iOS 18.0+
    */
-  get cameraOriginMatrix(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 3013006154694112, this, []); }
+  get cameraOriginMatrix(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 3013006154694112, this, []); }
   /**
    * var availableJointNames: [HumanBodyPose3DObservation.JointName] { get }
    * @availability iOS 18.0+
    */
-  get availableJointNames(): $SDK40 { return callSDK<$SDK40>("Vision_3864e7f38681b875", 3612239797762945, this, []); }
+  get availableJointNames(): $SDK40 { return callSDK<$SDK40>("Vision_ff42ce03e691ab23", 3612239797762945, this, []); }
   /**
    * func cameraRelativePosition(for jointName: HumanBodyPose3DObservation.JointName) -> simd_float4x4
    * @availability iOS 18.0+
    */
-  cameraRelativePosition(jointName: HumanBodyPose3DObservation_JointName): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 3503000260736039, this, [jointName]); }
+  cameraRelativePosition(jointName: HumanBodyPose3DObservation_JointName): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 3503000260736039, this, [jointName]); }
   /**
    * var availableJointsGroupNames: [HumanBodyPose3DObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get availableJointsGroupNames(): $SDK41 { return callSDK<$SDK41>("Vision_3864e7f38681b875", 4304896976725220, this, []); }
+  get availableJointsGroupNames(): $SDK41 { return callSDK<$SDK41>("Vision_ff42ce03e691ab23", 4304896976725220, this, []); }
   /**
    * let heightEstimationTechnique: HumanBodyPose3DObservation.EstimationTechnique
    * @availability iOS 18.0+
    */
-  get heightEstimationTechnique(): HumanBodyPose3DObservation_EstimationTechnique { return callSDK<HumanBodyPose3DObservation_EstimationTechnique>("Vision_3864e7f38681b875", 1382122839204452, this, []); }
+  get heightEstimationTechnique(): HumanBodyPose3DObservation_EstimationTechnique { return callSDK<HumanBodyPose3DObservation_EstimationTechnique>("Vision_ff42ce03e691ab23", 1382122839204452, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 936566873477200, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 936566873477200, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 3510331328499241, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3510331328499241, this, []); }
   /**
    * func joint(for jointName: HumanBodyPose3DObservation.JointName) -> Joint3D?
    * @availability iOS 18.0+
    */
-  joint(jointName: HumanBodyPose3DObservation_JointName): (Joint3D) | null { return callSDK<(Joint3D) | null>("Vision_3864e7f38681b875", 2696367389146348, this, [jointName]); }
+  joint(jointName: HumanBodyPose3DObservation_JointName): (Joint3D) | null { return callSDK<(Joint3D) | null>("Vision_ff42ce03e691ab23", 2696367389146348, this, [jointName]); }
   /**
    * func allJoints(in groupName: HumanBodyPose3DObservation.JointsGroupName? = nil) -> [HumanBodyPose3DObservation.JointName : Joint3D]
    * @availability iOS 18.0+
    */
-  allJoints(groupName?: (HumanBodyPose3DObservation_JointsGroupName) | null): NativeMap<HumanBodyPose3DObservation_JointName, Joint3D> { return callSDK<NativeMap<HumanBodyPose3DObservation_JointName, Joint3D>>("Vision_3864e7f38681b875", 621810926458278, this, [groupName]); }
+  allJoints(groupName?: (HumanBodyPose3DObservation_JointsGroupName) | null): NativeMap<HumanBodyPose3DObservation_JointName, Joint3D> { return callSDK<NativeMap<HumanBodyPose3DObservation_JointName, Joint3D>>("Vision_ff42ce03e691ab23", 621810926458278, this, [groupName]); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 2175342174854421, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 2175342174854421, this, []); }
   /**
    * init(_ observation: VNHumanBodyPose3DObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNHumanBodyPose3DObservation): HumanBodyPose3DObservation { return callSDK<HumanBodyPose3DObservation>("Vision_3864e7f38681b875", 2562259382696726, undefined, [observation]); }
+  static init(observation: VNHumanBodyPose3DObservation): HumanBodyPose3DObservation { return callSDK<HumanBodyPose3DObservation>("Vision_ff42ce03e691ab23", 2562259382696726, undefined, [observation]); }
   declare readonly $type: { "s:6Vision26HumanBodyPose3DObservationV": true };
 }
 
@@ -3278,12 +3278,12 @@ export const HumanBodyPose3DObservation_JointName = {
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): (HumanBodyPose3DObservation_JointName) | null { return callSDK<(HumanBodyPose3DObservation_JointName) | null>("Vision_3864e7f38681b875", 129769285729526, undefined, [rawValue]); },
+  init(rawValue: string): (HumanBodyPose3DObservation_JointName) | null { return callSDK<(HumanBodyPose3DObservation_JointName) | null>("Vision_ff42ce03e691ab23", 129769285729526, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: HumanBodyPose3DObservation_JointName): string { return callSDK<string>("Vision_3864e7f38681b875", 3084486179636859, $self, []); }
+  getRawValue($self: HumanBodyPose3DObservation_JointName): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3084486179636859, $self, []); }
 };
 
 /**
@@ -3303,17 +3303,17 @@ export const HumanBodyPose3DObservation_JointsGroupName = {
    * nonisolated static var allCases: [HumanBodyPose3DObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): $SDK41 { return callSDK<$SDK41>("Vision_3864e7f38681b875", 2854686717675003, undefined, []); },
+  get allCases(): $SDK41 { return callSDK<$SDK41>("Vision_ff42ce03e691ab23", 2854686717675003, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): (HumanBodyPose3DObservation_JointsGroupName) | null { return callSDK<(HumanBodyPose3DObservation_JointsGroupName) | null>("Vision_3864e7f38681b875", 777112584126614, undefined, [rawValue]); },
+  init(rawValue: string): (HumanBodyPose3DObservation_JointsGroupName) | null { return callSDK<(HumanBodyPose3DObservation_JointsGroupName) | null>("Vision_ff42ce03e691ab23", 777112584126614, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: HumanBodyPose3DObservation_JointsGroupName): string { return callSDK<string>("Vision_3864e7f38681b875", 1711547266018801, $self, []); }
+  getRawValue($self: HumanBodyPose3DObservation_JointsGroupName): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1711547266018801, $self, []); }
 };
 
 /**
@@ -3337,67 +3337,67 @@ export class HumanBodyPoseObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 4006762839809194, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4006762839809194, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3668128792388814, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3668128792388814, this, []); }
   /**
    * var availableJointNames: [HumanBodyPoseObservation.JointName] { get }
    * @availability iOS 18.0+
    */
-  get availableJointNames(): $SDK46 { return callSDK<$SDK46>("Vision_3864e7f38681b875", 3169505650169308, this, []); }
+  get availableJointNames(): $SDK46 { return callSDK<$SDK46>("Vision_ff42ce03e691ab23", 3169505650169308, this, []); }
   /**
    * var availableJointsGroupNames: [HumanBodyPoseObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get availableJointsGroupNames(): $SDK47 { return callSDK<$SDK47>("Vision_3864e7f38681b875", 911645253062606, this, []); }
+  get availableJointsGroupNames(): $SDK47 { return callSDK<$SDK47>("Vision_ff42ce03e691ab23", 911645253062606, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 2564325196501828, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 2564325196501828, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 4051777954208, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4051777954208, this, []); }
   /**
    * func joint(for jointName: HumanBodyPoseObservation.JointName) -> Joint?
    * @availability iOS 18.0+
    */
-  joint(jointName: HumanBodyPoseObservation_JointName): (Joint) | null { return callSDK<(Joint) | null>("Vision_3864e7f38681b875", 2404054305936108, this, [jointName]); }
+  joint(jointName: HumanBodyPoseObservation_JointName): (Joint) | null { return callSDK<(Joint) | null>("Vision_ff42ce03e691ab23", 2404054305936108, this, [jointName]); }
   /**
    * let leftHand: HumanHandPoseObservation?
    * @availability iOS 18.0+
    */
-  get leftHand(): $SDK105 { return callSDK<$SDK105>("Vision_3864e7f38681b875", 2751531438124291, this, []); }
+  get leftHand(): $SDK105 { return callSDK<$SDK105>("Vision_ff42ce03e691ab23", 2751531438124291, this, []); }
   /**
    * func allJoints(in groupName: HumanBodyPoseObservation.JointsGroupName? = nil) -> [HumanBodyPoseObservation.JointName : Joint]
    * @availability iOS 18.0+
    */
-  allJoints(groupName?: (HumanBodyPoseObservation_JointsGroupName) | null): NativeMap<HumanBodyPoseObservation_JointName, Joint> { return callSDK<NativeMap<HumanBodyPoseObservation_JointName, Joint>>("Vision_3864e7f38681b875", 4090273028574439, this, [groupName]); }
+  allJoints(groupName?: (HumanBodyPoseObservation_JointsGroupName) | null): NativeMap<HumanBodyPoseObservation_JointName, Joint> { return callSDK<NativeMap<HumanBodyPoseObservation_JointName, Joint>>("Vision_ff42ce03e691ab23", 4090273028574439, this, [groupName]); }
   /**
    * var keypoints: MLMultiArray { get throws }
    * @availability iOS 18.0+
    */
-  get keypoints(): _CoreML_MLMultiArray { return callSDK<_CoreML_MLMultiArray>("Vision_3864e7f38681b875", 3444737496224822, this, []); }
+  get keypoints(): _CoreML_MLMultiArray { return callSDK<_CoreML_MLMultiArray>("Vision_ff42ce03e691ab23", 3444737496224822, this, []); }
   /**
    * let rightHand: HumanHandPoseObservation?
    * @availability iOS 18.0+
    */
-  get rightHand(): $SDK105 { return callSDK<$SDK105>("Vision_3864e7f38681b875", 2088189075293080, this, []); }
+  get rightHand(): $SDK105 { return callSDK<$SDK105>("Vision_ff42ce03e691ab23", 2088189075293080, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 434448973155130, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 434448973155130, this, []); }
   /**
    * init(_ observation: VNHumanBodyPoseObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNHumanBodyPoseObservation): HumanBodyPoseObservation { return callSDK<HumanBodyPoseObservation>("Vision_3864e7f38681b875", 4350661905376228, undefined, [observation]); }
+  static init(observation: VNHumanBodyPoseObservation): HumanBodyPoseObservation { return callSDK<HumanBodyPoseObservation>("Vision_ff42ce03e691ab23", 4350661905376228, undefined, [observation]); }
   declare readonly $type: { "s:6Vision24HumanBodyPoseObservationV": true };
 }
 
@@ -3412,12 +3412,12 @@ export const HumanBodyPoseObservation_JointName = {
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): (HumanBodyPoseObservation_JointName) | null { return callSDK<(HumanBodyPoseObservation_JointName) | null>("Vision_3864e7f38681b875", 1298244746769383, undefined, [rawValue]); },
+  init(rawValue: string): (HumanBodyPoseObservation_JointName) | null { return callSDK<(HumanBodyPoseObservation_JointName) | null>("Vision_ff42ce03e691ab23", 1298244746769383, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: HumanBodyPoseObservation_JointName): string { return callSDK<string>("Vision_3864e7f38681b875", 868829272931558, $self, []); }
+  getRawValue($self: HumanBodyPoseObservation_JointName): string { return callSDK<string>("Vision_ff42ce03e691ab23", 868829272931558, $self, []); }
 };
 
 /**
@@ -3437,17 +3437,17 @@ export const HumanBodyPoseObservation_JointsGroupName = {
    * nonisolated static var allCases: [HumanBodyPoseObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): $SDK47 { return callSDK<$SDK47>("Vision_3864e7f38681b875", 421404459470308, undefined, []); },
+  get allCases(): $SDK47 { return callSDK<$SDK47>("Vision_ff42ce03e691ab23", 421404459470308, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): (HumanBodyPoseObservation_JointsGroupName) | null { return callSDK<(HumanBodyPoseObservation_JointsGroupName) | null>("Vision_3864e7f38681b875", 986645410932456, undefined, [rawValue]); },
+  init(rawValue: string): (HumanBodyPoseObservation_JointsGroupName) | null { return callSDK<(HumanBodyPoseObservation_JointsGroupName) | null>("Vision_ff42ce03e691ab23", 986645410932456, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: HumanBodyPoseObservation_JointsGroupName): string { return callSDK<string>("Vision_3864e7f38681b875", 2115597577231806, $self, []); }
+  getRawValue($self: HumanBodyPoseObservation_JointsGroupName): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2115597577231806, $self, []); }
 };
 
 /**
@@ -3483,62 +3483,62 @@ export class HumanHandPoseObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2340072525188362, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2340072525188362, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3100454607049981, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3100454607049981, this, []); }
   /**
    * var availableJointNames: [HumanHandPoseObservation.JointName] { get }
    * @availability iOS 18.0+
    */
-  get availableJointNames(): $SDK51 { return callSDK<$SDK51>("Vision_3864e7f38681b875", 3127178292578660, this, []); }
+  get availableJointNames(): $SDK51 { return callSDK<$SDK51>("Vision_ff42ce03e691ab23", 3127178292578660, this, []); }
   /**
    * var availableJointsGroupNames: [HumanHandPoseObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get availableJointsGroupNames(): $SDK52 { return callSDK<$SDK52>("Vision_3864e7f38681b875", 1978808589224888, this, []); }
+  get availableJointsGroupNames(): $SDK52 { return callSDK<$SDK52>("Vision_ff42ce03e691ab23", 1978808589224888, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 2679411253969221, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 2679411253969221, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 1621733605649071, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1621733605649071, this, []); }
   /**
    * func joint(for jointName: HumanHandPoseObservation.JointName) -> Joint?
    * @availability iOS 18.0+
    */
-  joint(jointName: HumanHandPoseObservation_JointName): (Joint) | null { return callSDK<(Joint) | null>("Vision_3864e7f38681b875", 2959484989008852, this, [jointName]); }
+  joint(jointName: HumanHandPoseObservation_JointName): (Joint) | null { return callSDK<(Joint) | null>("Vision_ff42ce03e691ab23", 2959484989008852, this, [jointName]); }
   /**
    * func allJoints(in groupName: HumanHandPoseObservation.JointsGroupName? = nil) -> [HumanHandPoseObservation.PoseJointName : Joint]
    * @availability iOS 18.0+
    */
-  allJoints(groupName?: (HumanHandPoseObservation_JointsGroupName) | null): NativeMap<HumanHandPoseObservation_JointName, Joint> { return callSDK<NativeMap<HumanHandPoseObservation_JointName, Joint>>("Vision_3864e7f38681b875", 4039802817350947, this, [groupName]); }
+  allJoints(groupName?: (HumanHandPoseObservation_JointsGroupName) | null): NativeMap<HumanHandPoseObservation_JointName, Joint> { return callSDK<NativeMap<HumanHandPoseObservation_JointName, Joint>>("Vision_ff42ce03e691ab23", 4039802817350947, this, [groupName]); }
   /**
    * let chirality: HumanHandPoseObservation.Chirality?
    * @availability iOS 18.0+
    */
-  get chirality(): (HumanHandPoseObservation_Chirality) | null { return callSDK<(HumanHandPoseObservation_Chirality) | null>("Vision_3864e7f38681b875", 3494952250529604, this, []); }
+  get chirality(): (HumanHandPoseObservation_Chirality) | null { return callSDK<(HumanHandPoseObservation_Chirality) | null>("Vision_ff42ce03e691ab23", 3494952250529604, this, []); }
   /**
    * var keypoints: MLMultiArray { get throws }
    * @availability iOS 18.0+
    */
-  get keypoints(): _CoreML_MLMultiArray { return callSDK<_CoreML_MLMultiArray>("Vision_3864e7f38681b875", 2791929699104917, this, []); }
+  get keypoints(): _CoreML_MLMultiArray { return callSDK<_CoreML_MLMultiArray>("Vision_ff42ce03e691ab23", 2791929699104917, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 4129947972412948, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 4129947972412948, this, []); }
   /**
    * init(_ observation: VNHumanHandPoseObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNHumanHandPoseObservation): HumanHandPoseObservation { return callSDK<HumanHandPoseObservation>("Vision_3864e7f38681b875", 4288890453586765, undefined, [observation]); }
+  static init(observation: VNHumanHandPoseObservation): HumanHandPoseObservation { return callSDK<HumanHandPoseObservation>("Vision_ff42ce03e691ab23", 4288890453586765, undefined, [observation]); }
   declare readonly $type: { "s:6Vision24HumanHandPoseObservationV": true };
 }
 
@@ -3559,12 +3559,12 @@ export const HumanHandPoseObservation_JointName = {
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): (HumanHandPoseObservation_JointName) | null { return callSDK<(HumanHandPoseObservation_JointName) | null>("Vision_3864e7f38681b875", 3888245434526696, undefined, [rawValue]); },
+  init(rawValue: string): (HumanHandPoseObservation_JointName) | null { return callSDK<(HumanHandPoseObservation_JointName) | null>("Vision_ff42ce03e691ab23", 3888245434526696, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: HumanHandPoseObservation_JointName): string { return callSDK<string>("Vision_3864e7f38681b875", 4135637557817483, $self, []); }
+  getRawValue($self: HumanHandPoseObservation_JointName): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4135637557817483, $self, []); }
 };
 
 /**
@@ -3584,17 +3584,17 @@ export const HumanHandPoseObservation_JointsGroupName = {
    * nonisolated static var allCases: [HumanHandPoseObservation.JointsGroupName] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): $SDK52 { return callSDK<$SDK52>("Vision_3864e7f38681b875", 3030033285525347, undefined, []); },
+  get allCases(): $SDK52 { return callSDK<$SDK52>("Vision_ff42ce03e691ab23", 3030033285525347, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): (HumanHandPoseObservation_JointsGroupName) | null { return callSDK<(HumanHandPoseObservation_JointsGroupName) | null>("Vision_3864e7f38681b875", 954675532214496, undefined, [rawValue]); },
+  init(rawValue: string): (HumanHandPoseObservation_JointsGroupName) | null { return callSDK<(HumanHandPoseObservation_JointsGroupName) | null>("Vision_ff42ce03e691ab23", 954675532214496, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: HumanHandPoseObservation_JointsGroupName): string { return callSDK<string>("Vision_3864e7f38681b875", 1191769565310415, $self, []); }
+  getRawValue($self: HumanHandPoseObservation_JointsGroupName): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1191769565310415, $self, []); }
 };
 
 /**
@@ -3630,47 +3630,47 @@ export class HumanObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 1488069072966541, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1488069072966541, this, []); }
   /**
    * init(boundingBox: NormalizedRect, revision: DetectHumanRectanglesRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static initBoundingBoxRevision(boundingBox: NormalizedRect, revision?: $SDK56): HumanObservation { return callSDK<HumanObservation>("Vision_3864e7f38681b875", 3483904464302925, undefined, [boundingBox, revision]); }
+  static initBoundingBoxRevision(boundingBox: NormalizedRect, revision?: $SDK56): HumanObservation { return callSDK<HumanObservation>("Vision_ff42ce03e691ab23", 3483904464302925, undefined, [boundingBox, revision]); }
   /**
    * let boundingBox: NormalizedRect
    * @availability iOS 18.0+
    */
-  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3490708008406540, this, []); }
+  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3490708008406540, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 977343251633587, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 977343251633587, this, []); }
   /**
    * let isUpperBodyOnly: Bool
    * @availability iOS 18.0+
    */
-  get isUpperBodyOnly(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2795289077852279, this, []); }
+  get isUpperBodyOnly(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2795289077852279, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 622066062458767, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 622066062458767, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 476808193262493, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 476808193262493, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 3956607959805253, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 3956607959805253, this, []); }
   /**
    * init(_ observation: VNHumanObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNHumanObservation): HumanObservation { return callSDK<HumanObservation>("Vision_3864e7f38681b875", 3099376655180361, undefined, [observation]); }
+  static init(observation: VNHumanObservation): HumanObservation { return callSDK<HumanObservation>("Vision_ff42ce03e691ab23", 3099376655180361, undefined, [observation]); }
   declare readonly $type: { "s:6Vision16HumanObservationV": true };
 }
 
@@ -3683,42 +3683,42 @@ export class ImageAestheticsScoresObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 1794578573999006, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1794578573999006, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 4353960702103081, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4353960702103081, this, []); }
   /**
    * let overallScore: Float
    * @availability iOS 18.0+
    */
-  get overallScore(): number { return callSDK<number>("Vision_3864e7f38681b875", 68723464428077, this, []); }
+  get overallScore(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 68723464428077, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 2442124226177607, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 2442124226177607, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 305486586232405, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 305486586232405, this, []); }
   /**
    * let isUtility: Bool
    * @availability iOS 18.0+
    */
-  get isUtility(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 4158681501791865, this, []); }
+  get isUtility(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 4158681501791865, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 2855831423269785, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 2855831423269785, this, []); }
   /**
    * init(_ observation: VNImageAestheticsScoresObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNImageAestheticsScoresObservation): ImageAestheticsScoresObservation { return callSDK<ImageAestheticsScoresObservation>("Vision_3864e7f38681b875", 1434142527613109, undefined, [observation]); }
+  static init(observation: VNImageAestheticsScoresObservation): ImageAestheticsScoresObservation { return callSDK<ImageAestheticsScoresObservation>("Vision_ff42ce03e691ab23", 1434142527613109, undefined, [observation]); }
   declare readonly $type: { "s:6Vision32ImageAestheticsScoresObservationV": true };
 }
 
@@ -3733,7 +3733,7 @@ export const ImageCropAndScaleAction = {
    * nonisolated static var allCases: [ImageCropAndScaleAction] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): Array<ImageCropAndScaleAction> { return callSDK<Array<ImageCropAndScaleAction>>("Vision_3864e7f38681b875", 3622969082186513, undefined, []); }
+  get allCases(): Array<ImageCropAndScaleAction> { return callSDK<Array<ImageCropAndScaleAction>>("Vision_ff42ce03e691ab23", 3622969082186513, undefined, []); }
 };
 
 /**
@@ -3751,42 +3751,42 @@ export class ImageHomographicAlignmentObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 1624584921401323, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1624584921401323, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 1735726045715658, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1735726045715658, this, []); }
   /**
    * let warpTransform: matrix_float3x3
    * @availability iOS 18.0+
    */
-  get warpTransform(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 1147846437804291, this, []); }
+  get warpTransform(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 1147846437804291, this, []); }
   /**
    * func applyTransform(to ciImage: CIImage) -> CIImage
    * @availability iOS 18.0+
    */
-  applyTransform(ciImage: _CoreImage_CIImage): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("Vision_3864e7f38681b875", 3570809475955084, this, [ciImage]); }
+  applyTransform(ciImage: _CoreImage_CIImage): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("Vision_ff42ce03e691ab23", 3570809475955084, this, [ciImage]); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 2629224756986629, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 2629224756986629, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 2641688287584657, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2641688287584657, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 3083696340497383, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 3083696340497383, this, []); }
   /**
    * init(_ observation: VNImageHomographicAlignmentObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNImageHomographicAlignmentObservation): ImageHomographicAlignmentObservation { return callSDK<ImageHomographicAlignmentObservation>("Vision_3864e7f38681b875", 1045473895711198, undefined, [observation]); }
+  static init(observation: VNImageHomographicAlignmentObservation): ImageHomographicAlignmentObservation { return callSDK<ImageHomographicAlignmentObservation>("Vision_ff42ce03e691ab23", 1045473895711198, undefined, [observation]); }
   declare readonly $type: { "s:6Vision36ImageHomographicAlignmentObservationV": true };
 }
 
@@ -3821,32 +3821,32 @@ export class ImageRequestHandler extends SDKHandle {
    * convenience init(_ imageURL: URL, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initOrientation(imageURL: string, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_3864e7f38681b875", 2316812742507848, undefined, [imageURL, orientation]); }
+  static initOrientation(imageURL: string, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_ff42ce03e691ab23", 2316812742507848, undefined, [imageURL, orientation]); }
   /**
    * convenience init(_ data: Data, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initOrientation72505(data: ArrayBuffer, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_3864e7f38681b875", 593895676851298, undefined, [data, orientation]); }
+  static initOrientation72505(data: ArrayBuffer, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_ff42ce03e691ab23", 593895676851298, undefined, [data, orientation]); }
   /**
    * convenience init(_ image: CGImage, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initOrientation74092(image: _CoreGraphics_CGImage, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_3864e7f38681b875", 1741594513739931, undefined, [image, orientation]); }
+  static initOrientation74092(image: _CoreGraphics_CGImage, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_ff42ce03e691ab23", 1741594513739931, undefined, [image, orientation]); }
   /**
    * convenience init(_ image: CIImage, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initOrientation75182(image: _CoreImage_CIImage, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_3864e7f38681b875", 2505684574731678, undefined, [image, orientation]); }
+  static initOrientation75182(image: _CoreImage_CIImage, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_ff42ce03e691ab23", 2505684574731678, undefined, [image, orientation]); }
   /**
    * convenience init(_ pixelBuffer: CVPixelBuffer, depthData: AVDepthData? = nil, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initDepthDataOrientation(pixelBuffer: _CoreVideo_CVBuffer, depthData?: $SDK113, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_3864e7f38681b875", 1697996630752519, undefined, [pixelBuffer, depthData, orientation]); }
+  static initDepthDataOrientation(pixelBuffer: _CoreVideo_CVBuffer, depthData?: $SDK113, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_ff42ce03e691ab23", 1697996630752519, undefined, [pixelBuffer, depthData, orientation]); }
   /**
    * convenience init(_ sampleBuffer: CMSampleBuffer, depthData: AVDepthData? = nil, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initDepthDataOrientation47195(sampleBuffer: _CoreMedia_CMSampleBuffer, depthData?: $SDK113, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_3864e7f38681b875", 3163396348975702, undefined, [sampleBuffer, depthData, orientation]); }
+  static initDepthDataOrientation47195(sampleBuffer: _CoreMedia_CMSampleBuffer, depthData?: $SDK113, orientation?: $SDK112): ImageRequestHandler { return callSDK<ImageRequestHandler>("Vision_ff42ce03e691ab23", 3163396348975702, undefined, [sampleBuffer, depthData, orientation]); }
   declare readonly $type: { "s:6Vision19ImageRequestHandlerC": true };
 }
 
@@ -3859,42 +3859,42 @@ export class ImageTranslationAlignmentObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2207715944596190, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2207715944596190, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 1035307428831833, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1035307428831833, this, []); }
   /**
    * func applyTransform(to ciImage: CIImage) -> CIImage
    * @availability iOS 18.0+
    */
-  applyTransform(ciImage: _CoreImage_CIImage): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("Vision_3864e7f38681b875", 4064637057612252, this, [ciImage]); }
+  applyTransform(ciImage: _CoreImage_CIImage): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("Vision_ff42ce03e691ab23", 4064637057612252, this, [ciImage]); }
   /**
    * let alignmentTransform: CGAffineTransform
    * @availability iOS 18.0+
    */
-  get alignmentTransform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_3864e7f38681b875", 3900988804285406, this, []); }
+  get alignmentTransform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_ff42ce03e691ab23", 3900988804285406, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 2003084484563205, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 2003084484563205, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 3759968490542152, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3759968490542152, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 1048489269588236, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 1048489269588236, this, []); }
   /**
    * init(_ observation: VNImageTranslationAlignmentObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNImageTranslationAlignmentObservation): ImageTranslationAlignmentObservation { return callSDK<ImageTranslationAlignmentObservation>("Vision_3864e7f38681b875", 817422305156839, undefined, [observation]); }
+  static init(observation: VNImageTranslationAlignmentObservation): ImageTranslationAlignmentObservation { return callSDK<ImageTranslationAlignmentObservation>("Vision_ff42ce03e691ab23", 817422305156839, undefined, [observation]); }
   declare readonly $type: { "s:6Vision36ImageTranslationAlignmentObservationV": true };
 }
 
@@ -3907,62 +3907,62 @@ export class InstanceMaskObservation extends SDKHandle {
    * let allInstancesMask: PixelBufferObservation
    * @availability iOS 18.0+
    */
-  get allInstancesMask(): PixelBufferObservation { return callSDK<PixelBufferObservation>("Vision_3864e7f38681b875", 1391653715141997, this, []); }
+  get allInstancesMask(): PixelBufferObservation { return callSDK<PixelBufferObservation>("Vision_ff42ce03e691ab23", 1391653715141997, this, []); }
   /**
    * func generateScaledMask(for instances: IndexSet, scaledToImageFrom requestHandler: ImageRequestHandler) throws -> CVPixelBuffer
    * @availability iOS 18.0+
    */
-  generateScaledMask(instances: _Foundation_IndexSet, requestHandler: ImageRequestHandler): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_3864e7f38681b875", 42689617147304, this, [instances, requestHandler]); }
+  generateScaledMask(instances: _Foundation_IndexSet, requestHandler: ImageRequestHandler): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_ff42ce03e691ab23", 42689617147304, this, [instances, requestHandler]); }
   /**
    * func generateMask(for instances: IndexSet) throws -> CVPixelBuffer
    * @availability iOS 18.0+
    */
-  generateMask(instances: _Foundation_IndexSet): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_3864e7f38681b875", 1463318093868238, this, [instances]); }
+  generateMask(instances: _Foundation_IndexSet): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_ff42ce03e691ab23", 1463318093868238, this, [instances]); }
   /**
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 3137851451007784, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3137851451007784, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 109725934608261, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 109725934608261, this, []); }
   /**
    * let allInstances: IndexSet
    * @availability iOS 18.0+
    */
-  get allInstances(): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("Vision_3864e7f38681b875", 4011183637669402, this, []); }
+  get allInstances(): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("Vision_ff42ce03e691ab23", 4011183637669402, this, []); }
   /**
    * func instanceAtPoint(_ point: NormalizedPoint) -> IndexSet
    * @availability iOS 18.0+
    */
-  instanceAtPoint(point: NormalizedPoint): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("Vision_3864e7f38681b875", 3741625071663691, this, [point]); }
+  instanceAtPoint(point: NormalizedPoint): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("Vision_ff42ce03e691ab23", 3741625071663691, this, [point]); }
   /**
    * func generateMaskedImage(for instances: IndexSet, imageFrom requestHandler: ImageRequestHandler, croppedToInstancesExtent: Bool = false) throws -> CVPixelBuffer
    * @availability iOS 18.0+
    */
-  generateMaskedImage(instances: _Foundation_IndexSet, requestHandler: ImageRequestHandler, croppedToInstancesExtent?: boolean): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_3864e7f38681b875", 1587249115558000, this, [instances, requestHandler, croppedToInstancesExtent]); }
+  generateMaskedImage(instances: _Foundation_IndexSet, requestHandler: ImageRequestHandler, croppedToInstancesExtent?: boolean): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_ff42ce03e691ab23", 1587249115558000, this, [instances, requestHandler, croppedToInstancesExtent]); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 3056432727061495, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 3056432727061495, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 2938883930246782, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2938883930246782, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 4300521816558746, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 4300521816558746, this, []); }
   /**
    * init?(_ observation: VNInstanceMaskObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNInstanceMaskObservation): (InstanceMaskObservation) | null { return callSDK<(InstanceMaskObservation) | null>("Vision_3864e7f38681b875", 3152644255626172, undefined, [observation]); }
+  static init(observation: VNInstanceMaskObservation): (InstanceMaskObservation) | null { return callSDK<(InstanceMaskObservation) | null>("Vision_ff42ce03e691ab23", 3152644255626172, undefined, [observation]); }
   declare readonly $type: { "s:6Vision23InstanceMaskObservationV": true };
 }
 
@@ -3975,27 +3975,27 @@ export class Joint extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 4440981610440436, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4440981610440436, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 646323984134013, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 646323984134013, this, []); }
   /**
    * func distance(to joint: Joint) -> CGFloat
    * @availability iOS 18.0+
    */
-  distance(joint: Joint): number { return callSDK<number>("Vision_3864e7f38681b875", 1617331033051772, this, [joint]); }
+  distance(joint: Joint): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1617331033051772, this, [joint]); }
   /**
    * let location: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get location(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 3738663205455646, this, []); }
+  get location(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 3738663205455646, this, []); }
   /**
    * let jointName: String
    * @availability iOS 18.0+
    */
-  get jointName(): string { return callSDK<string>("Vision_3864e7f38681b875", 694804855063408, this, []); }
+  get jointName(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 694804855063408, this, []); }
   declare readonly $type: { "s:6Vision5JointV": true };
 }
 
@@ -4008,27 +4008,27 @@ export class Joint3D extends SDKHandle {
    * let identifier: String
    * @availability iOS 18.0+
    */
-  get identifier(): string { return callSDK<string>("Vision_3864e7f38681b875", 458353751077695, this, []); }
+  get identifier(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 458353751077695, this, []); }
   /**
    * let parentJoint: String
    * @availability iOS 18.0+
    */
-  get parentJoint(): string { return callSDK<string>("Vision_3864e7f38681b875", 1177737660808609, this, []); }
+  get parentJoint(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1177737660808609, this, []); }
   /**
    * let localPosition: simd_float4x4
    * @availability iOS 18.0+
    */
-  get localPosition(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 4322572154378317, this, []); }
+  get localPosition(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 4322572154378317, this, []); }
   /**
    * init(position: simd_float4x4, localPosition: simd_float4x4, identifer: String, parentJoint: String)
    * @availability iOS 18.0+
    */
-  static init(position: SDKHandle, localPosition: SDKHandle, identifer: string, parentJoint: string): Joint3D { return callSDK<Joint3D>("Vision_3864e7f38681b875", 3611229078122355, undefined, [position, localPosition, identifer, parentJoint]); }
+  static init(position: SDKHandle, localPosition: SDKHandle, identifer: string, parentJoint: string): Joint3D { return callSDK<Joint3D>("Vision_ff42ce03e691ab23", 3611229078122355, undefined, [position, localPosition, identifer, parentJoint]); }
   /**
    * let position: simd_float4x4
    * @availability iOS 18.0+
    */
-  get position(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 1193774766102399, this, []); }
+  get position(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 1193774766102399, this, []); }
   declare readonly $type: { "s:6Vision7Joint3DV": true };
 }
 
@@ -4041,37 +4041,37 @@ export class NormalizedCircle extends SDKHandle {
    * static func boundingCircle(for points: [NormalizedPoint]) -> NormalizedCircle
    * @availability iOS 18.0+
    */
-  static boundingCircle(points: Array<NormalizedPoint>): NormalizedCircle { return callSDK<NormalizedCircle>("Vision_3864e7f38681b875", 51459127626746, undefined, [points]); }
+  static boundingCircle(points: Array<NormalizedPoint>): NormalizedCircle { return callSDK<NormalizedCircle>("Vision_ff42ce03e691ab23", 51459127626746, undefined, [points]); }
   /**
    * static var zero: NormalizedCircle { get }
    * @availability iOS 18.0+
    */
-  static get zero(): NormalizedCircle { return callSDK<NormalizedCircle>("Vision_3864e7f38681b875", 3796109455397583, undefined, []); }
+  static get zero(): NormalizedCircle { return callSDK<NormalizedCircle>("Vision_ff42ce03e691ab23", 3796109455397583, undefined, []); }
   /**
    * init(center: NormalizedPoint, radius: CGFloat)
    * @availability iOS 18.0+
    */
-  static init(center: NormalizedPoint, radius: number): NormalizedCircle { return callSDK<NormalizedCircle>("Vision_3864e7f38681b875", 774723349856343, undefined, [center, radius]); }
+  static init(center: NormalizedPoint, radius: number): NormalizedCircle { return callSDK<NormalizedCircle>("Vision_ff42ce03e691ab23", 774723349856343, undefined, [center, radius]); }
   /**
    * let center: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get center(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 1189341941693831, this, []); }
+  get center(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 1189341941693831, this, []); }
   /**
    * let radius: CGFloat
    * @availability iOS 18.0+
    */
-  get radius(): number { return callSDK<number>("Vision_3864e7f38681b875", 2006266121185028, this, []); }
+  get radius(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2006266121185028, this, []); }
   /**
    * func contains(_ point: NormalizedPoint, inCircumferentialRingOfWidth ringWidth: CGFloat) -> Bool
    * @availability iOS 18.0+
    */
-  containsInCircumferentialRingOfWidth(point: NormalizedPoint, ringWidth: number): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2143871658221656, this, [point, ringWidth]); }
+  containsInCircumferentialRingOfWidth(point: NormalizedPoint, ringWidth: number): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2143871658221656, this, [point, ringWidth]); }
   /**
    * func contains(_ point: NormalizedPoint) -> Bool
    * @availability iOS 18.0+
    */
-  contains(point: NormalizedPoint): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 3453266314529797, this, [point]); }
+  contains(point: NormalizedPoint): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 3453266314529797, this, [point]); }
   declare readonly $type: { "s:6Vision16NormalizedCircleV": true };
 }
 
@@ -4084,62 +4084,62 @@ export class NormalizedPoint extends SDKHandle {
    * init(normalizedPoint: CGPoint)
    * @availability iOS 18.0+
    */
-  static initNormalizedPoint(normalizedPoint: $SDK114): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 3079333936324606, undefined, [normalizedPoint]); }
+  static initNormalizedPoint(normalizedPoint: $SDK114): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 3079333936324606, undefined, [normalizedPoint]); }
   /**
    * let cgPoint: CGPoint
    * @availability iOS 18.0+
    */
-  get cgPoint(): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 1954963302352503, this, []); }
+  get cgPoint(): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 1954963302352503, this, []); }
   /**
    * init(imagePoint: CGPoint, in imageSize: CGSize, normalizedTo regionOfInterest: NormalizedRect)
    * @availability iOS 18.0+
    */
-  static initImagePointInNormalizedTo(imagePoint: $SDK114, imageSize: $SDK83, regionOfInterest: NormalizedRect): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 3926267972215878, undefined, [imagePoint, imageSize, regionOfInterest]); }
+  static initImagePointInNormalizedTo(imagePoint: $SDK114, imageSize: $SDK83, regionOfInterest: NormalizedRect): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 3926267972215878, undefined, [imagePoint, imageSize, regionOfInterest]); }
   /**
    * init(imagePoint: CGPoint, in imageSize: CGSize)
    * @availability iOS 18.0+
    */
-  static initImagePointIn(imagePoint: $SDK114, imageSize: $SDK83): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 3538304237303755, undefined, [imagePoint, imageSize]); }
+  static initImagePointIn(imagePoint: $SDK114, imageSize: $SDK83): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 3538304237303755, undefined, [imagePoint, imageSize]); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 4140449826280730, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4140449826280730, this, []); }
   /**
    * func verticallyFlipped() -> NormalizedPoint
    * @availability iOS 18.0+
    */
-  verticallyFlipped(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 3027591286199190, this, []); }
+  verticallyFlipped(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 3027591286199190, this, []); }
   /**
    * func toImageCoordinates(from regionOfInterest: NormalizedRect, imageSize: CGSize, origin: CoordinateOrigin = .lowerLeft) -> CGPoint
    * @availability iOS 18.0+
    */
-  toImageCoordinatesFromImageSizeOrigin(regionOfInterest: NormalizedRect, imageSize: $SDK83, origin?: CoordinateOrigin): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 2839987993572304, this, [regionOfInterest, imageSize, origin]); }
+  toImageCoordinatesFromImageSizeOrigin(regionOfInterest: NormalizedRect, imageSize: $SDK83, origin?: CoordinateOrigin): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 2839987993572304, this, [regionOfInterest, imageSize, origin]); }
   /**
    * func toImageCoordinates(_ imageSize: CGSize, origin: CoordinateOrigin = .lowerLeft) -> CGPoint
    * @availability iOS 18.0+
    */
-  toImageCoordinatesOrigin(imageSize: $SDK83, origin?: CoordinateOrigin): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 3860254737308674, this, [imageSize, origin]); }
+  toImageCoordinatesOrigin(imageSize: $SDK83, origin?: CoordinateOrigin): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 3860254737308674, this, [imageSize, origin]); }
   /**
    * var x: CGFloat { get }
    * @availability iOS 18.0+
    */
-  get x(): number { return callSDK<number>("Vision_3864e7f38681b875", 2091033274803492, this, []); }
+  get x(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2091033274803492, this, []); }
   /**
    * init(x: CGFloat, y: CGFloat)
    * @availability iOS 18.0+
    */
-  static initXY(x: number, y: number): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 2254486748711320, undefined, [x, y]); }
+  static initXY(x: number, y: number): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 2254486748711320, undefined, [x, y]); }
   /**
    * var y: CGFloat { get }
    * @availability iOS 18.0+
    */
-  get y(): number { return callSDK<number>("Vision_3864e7f38681b875", 3868044503807217, this, []); }
+  get y(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3868044503807217, this, []); }
   /**
    * static var zero: NormalizedPoint { get }
    * @availability iOS 18.0+
    */
-  static get zero(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 2611993940416985, undefined, []); }
+  static get zero(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 2611993940416985, undefined, []); }
   declare readonly $type: { "s:6Vision15NormalizedPointV": true };
 }
 
@@ -4152,67 +4152,67 @@ export class NormalizedRect extends SDKHandle {
    * init(normalizedRect: CGRect)
    * @availability iOS 18.0+
    */
-  static initNormalizedRect(normalizedRect: $SDK115): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2501995485778554, undefined, [normalizedRect]); }
+  static initNormalizedRect(normalizedRect: $SDK115): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2501995485778554, undefined, [normalizedRect]); }
   /**
    * let cgRect: CGRect
    * @availability iOS 18.0+
    */
-  get cgRect(): $SDK115 { return callSDK<$SDK115>("Vision_3864e7f38681b875", 1785238746139659, this, []); }
+  get cgRect(): $SDK115 { return callSDK<$SDK115>("Vision_ff42ce03e691ab23", 1785238746139659, this, []); }
   /**
    * init(imageRect: CGRect, in imageSize: CGSize, normalizedTo regionOfInterest: NormalizedRect)
    * @availability iOS 18.0+
    */
-  static initImageRectInNormalizedTo(imageRect: $SDK115, imageSize: $SDK83, regionOfInterest: NormalizedRect): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3753482578257173, undefined, [imageRect, imageSize, regionOfInterest]); }
+  static initImageRectInNormalizedTo(imageRect: $SDK115, imageSize: $SDK83, regionOfInterest: NormalizedRect): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3753482578257173, undefined, [imageRect, imageSize, regionOfInterest]); }
   /**
    * init(imageRect: CGRect, in imageSize: CGSize)
    * @availability iOS 18.0+
    */
-  static initImageRectIn(imageRect: $SDK115, imageSize: $SDK83): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3579112514123825, undefined, [imageRect, imageSize]); }
+  static initImageRectIn(imageRect: $SDK115, imageSize: $SDK83): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3579112514123825, undefined, [imageRect, imageSize]); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 755629028495509, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 755629028495509, this, []); }
   /**
    * func verticallyFlipped() -> NormalizedRect
    * @availability iOS 18.0+
    */
-  verticallyFlipped(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 483820156810553, this, []); }
+  verticallyFlipped(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 483820156810553, this, []); }
   /**
    * func toImageCoordinates(from regionOfInterest: NormalizedRect, imageSize: CGSize, origin: CoordinateOrigin = .lowerLeft) -> CGRect
    * @availability iOS 18.0+
    */
-  toImageCoordinatesFromImageSizeOrigin(regionOfInterest: NormalizedRect, imageSize: $SDK83, origin?: CoordinateOrigin): $SDK115 { return callSDK<$SDK115>("Vision_3864e7f38681b875", 400773396472833, this, [regionOfInterest, imageSize, origin]); }
+  toImageCoordinatesFromImageSizeOrigin(regionOfInterest: NormalizedRect, imageSize: $SDK83, origin?: CoordinateOrigin): $SDK115 { return callSDK<$SDK115>("Vision_ff42ce03e691ab23", 400773396472833, this, [regionOfInterest, imageSize, origin]); }
   /**
    * func toImageCoordinates(_ imageSize: CGSize, origin: CoordinateOrigin = .lowerLeft) -> CGRect
    * @availability iOS 18.0+
    */
-  toImageCoordinatesOrigin(imageSize: $SDK83, origin?: CoordinateOrigin): $SDK115 { return callSDK<$SDK115>("Vision_3864e7f38681b875", 2734135086669062, this, [imageSize, origin]); }
+  toImageCoordinatesOrigin(imageSize: $SDK83, origin?: CoordinateOrigin): $SDK115 { return callSDK<$SDK115>("Vision_ff42ce03e691ab23", 2734135086669062, this, [imageSize, origin]); }
   /**
    * init(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat)
    * @availability iOS 18.0+
    */
-  static initXYWidthHeight(x: number, y: number, width: number, height: number): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 1353933555218172, undefined, [x, y, width, height]); }
+  static initXYWidthHeight(x: number, y: number, width: number, height: number): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 1353933555218172, undefined, [x, y, width, height]); }
   /**
    * var width: CGFloat { get }
    * @availability iOS 18.0+
    */
-  get width(): number { return callSDK<number>("Vision_3864e7f38681b875", 719938463192569, this, []); }
+  get width(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 719938463192569, this, []); }
   /**
    * var height: CGFloat { get }
    * @availability iOS 18.0+
    */
-  get height(): number { return callSDK<number>("Vision_3864e7f38681b875", 586033750872011, this, []); }
+  get height(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 586033750872011, this, []); }
   /**
    * var origin: CGPoint { get }
    * @availability iOS 18.0+
    */
-  get origin(): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 293896092095918, this, []); }
+  get origin(): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 293896092095918, this, []); }
   /**
    * static var fullImage: NormalizedRect { get }
    * @availability iOS 18.0+
    */
-  static get fullImage(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 4360525468947320, undefined, []); }
+  static get fullImage(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 4360525468947320, undefined, []); }
   declare readonly $type: { "s:6Vision14NormalizedRectV": true };
 }
 
@@ -4231,52 +4231,52 @@ export class OpticalFlowObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 4124152098006713, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4124152098006713, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 1928383723362175, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1928383723362175, this, []); }
   /**
    * var pixelBuffer: CVReadOnlyPixelBuffer { get }
    * @availability iOS 27.0+
    */
-  get pixelBuffer(): _CoreVideo_CVReadOnlyPixelBuffer { return callSDK<_CoreVideo_CVReadOnlyPixelBuffer>("Vision_3864e7f38681b875", 616926512898942, this, []); }
+  get pixelBuffer(): _CoreVideo_CVReadOnlyPixelBuffer { return callSDK<_CoreVideo_CVReadOnlyPixelBuffer>("Vision_ff42ce03e691ab23", 616926512898942, this, []); }
   /**
    * var pixelFormat: OSType { get }
    * @availability iOS 18.0+
    */
-  get pixelFormat(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 4501165222653920, this, []); }
+  get pixelFormat(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 4501165222653920, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 3989157462676682, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 3989157462676682, this, []); }
   /**
    * func flow(at point: NormalizedPoint) -> (Float, Float)
    * @availability iOS 18.0+
    */
-  flow(point: NormalizedPoint): [number, number] { return callSDK<[number, number]>("Vision_3864e7f38681b875", 2155453001843316, this, [point]); }
+  flow(point: NormalizedPoint): [number, number] { return callSDK<[number, number]>("Vision_ff42ce03e691ab23", 2155453001843316, this, [point]); }
   /**
    * var size: CGSize { get }
    * @availability iOS 18.0+
    */
-  get size(): $SDK83 { return callSDK<$SDK83>("Vision_3864e7f38681b875", 445352551626160, this, []); }
+  get size(): $SDK83 { return callSDK<$SDK83>("Vision_ff42ce03e691ab23", 445352551626160, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 2491716227237993, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2491716227237993, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 1198695271808556, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 1198695271808556, this, []); }
   /**
    * init?(_ observation: VNPixelBufferObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNPixelBufferObservation): (OpticalFlowObservation) | null { return callSDK<(OpticalFlowObservation) | null>("Vision_3864e7f38681b875", 2444452155261093, undefined, [observation]); }
+  static init(observation: VNPixelBufferObservation): (OpticalFlowObservation) | null { return callSDK<(OpticalFlowObservation) | null>("Vision_ff42ce03e691ab23", 2444452155261093, undefined, [observation]); }
   declare readonly $type: { "s:6Vision22OpticalFlowObservationV": true };
 }
 
@@ -4289,57 +4289,57 @@ export class PixelBufferObservation extends SDKHandle {
    * var pixelBuffer: CVReadOnlyPixelBuffer { get }
    * @availability iOS 27.0+
    */
-  get pixelBuffer(): _CoreVideo_CVReadOnlyPixelBuffer { return callSDK<_CoreVideo_CVReadOnlyPixelBuffer>("Vision_3864e7f38681b875", 448503578093212, this, []); }
+  get pixelBuffer(): _CoreVideo_CVReadOnlyPixelBuffer { return callSDK<_CoreVideo_CVReadOnlyPixelBuffer>("Vision_ff42ce03e691ab23", 448503578093212, this, []); }
   /**
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2834406016723874, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2834406016723874, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3394873512236088, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3394873512236088, this, []); }
   /**
    * var pixelFormat: OSType { get }
    * @availability iOS 18.0+
    */
-  get pixelFormat(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 2481598662605253, this, []); }
+  get pixelFormat(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 2481598662605253, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 3946705472325362, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 3946705472325362, this, []); }
   /**
    * var size: CGSize { get }
    * @availability iOS 18.0+
    */
-  get size(): $SDK83 { return callSDK<$SDK83>("Vision_3864e7f38681b875", 2721102003925815, this, []); }
+  get size(): $SDK83 { return callSDK<$SDK83>("Vision_ff42ce03e691ab23", 2721102003925815, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 327716525966536, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 327716525966536, this, []); }
   /**
    * func pixel(at point: NormalizedPoint) -> Float
    * @availability iOS 18.0+
    */
-  pixel(point: NormalizedPoint): number { return callSDK<number>("Vision_3864e7f38681b875", 498749761005525, this, [point]); }
+  pixel(point: NormalizedPoint): number { return callSDK<number>("Vision_ff42ce03e691ab23", 498749761005525, this, [point]); }
   /**
    * var cgImage: CGImage { get throws }
    * @availability iOS 18.0+
    */
-  get cgImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("Vision_3864e7f38681b875", 4021320836728189, this, []); }
+  get cgImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("Vision_ff42ce03e691ab23", 4021320836728189, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 2317700558746931, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 2317700558746931, this, []); }
   /**
    * init?(_ observation: VNPixelBufferObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNPixelBufferObservation): (PixelBufferObservation) | null { return callSDK<(PixelBufferObservation) | null>("Vision_3864e7f38681b875", 3353273854167518, undefined, [observation]); }
+  static init(observation: VNPixelBufferObservation): (PixelBufferObservation) | null { return callSDK<(PixelBufferObservation) | null>("Vision_ff42ce03e691ab23", 3353273854167518, undefined, [observation]); }
   declare readonly $type: { "s:6Vision22PixelBufferObservationV": true };
 }
 
@@ -4377,48 +4377,48 @@ export class RecognizeAnimalsRequest extends SDKHandle {
    * var supportedAnimals: [RecognizeAnimalsRequest.Animal] { get }
    * @availability iOS 18.0+
    */
-  get supportedAnimals(): Array<RecognizeAnimalsRequest_Animal> { return callSDK<Array<RecognizeAnimalsRequest_Animal>>("Vision_3864e7f38681b875", 2283534626192990, this, []); }
+  get supportedAnimals(): Array<RecognizeAnimalsRequest_Animal> { return callSDK<Array<RecognizeAnimalsRequest_Animal>>("Vision_ff42ce03e691ab23", 2283534626192990, this, []); }
   /**
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 3963666253068209, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 3963666253068209, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 433970068296809, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 4453223561409426, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 433970068296809, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 4453223561409426, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 3633380259645685, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3633380259645685, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [RecognizeAnimalsRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<RecognizeAnimalsRequest_Revision> { return callSDK<Array<RecognizeAnimalsRequest_Revision>>("Vision_3864e7f38681b875", 188877426183928, undefined, []); }
+  static get supportedRevisions(): Array<RecognizeAnimalsRequest_Revision> { return callSDK<Array<RecognizeAnimalsRequest_Revision>>("Vision_ff42ce03e691ab23", 188877426183928, undefined, []); }
   /**
    * var supportedIdentifiers: [RecognizeAnimalsRequest.Identifier] { get }
    * @availability iOS 27.0+
    */
-  get supportedIdentifiers(): Array<RecognizeAnimalsRequest_Identifier> { return callSDK<Array<RecognizeAnimalsRequest_Identifier>>("Vision_3864e7f38681b875", 3873406452539953, this, []); }
+  get supportedIdentifiers(): Array<RecognizeAnimalsRequest_Identifier> { return callSDK<Array<RecognizeAnimalsRequest_Identifier>>("Vision_ff42ce03e691ab23", 3873406452539953, this, []); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 1387983265698955, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 1387983265698955, this, []); }
   /**
    * let revision: RecognizeAnimalsRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): RecognizeAnimalsRequest_Revision { return callSDK<RecognizeAnimalsRequest_Revision>("Vision_3864e7f38681b875", 4357869973791493, this, []); }
+  get revision(): RecognizeAnimalsRequest_Revision { return callSDK<RecognizeAnimalsRequest_Revision>("Vision_ff42ce03e691ab23", 4357869973791493, this, []); }
   /**
    * init(_ revision: RecognizeAnimalsRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (RecognizeAnimalsRequest_Revision) | null): RecognizeAnimalsRequest { return callSDK<RecognizeAnimalsRequest>("Vision_3864e7f38681b875", 4180489340913253, undefined, [revision]); }
+  static init(revision?: (RecognizeAnimalsRequest_Revision) | null): RecognizeAnimalsRequest { return callSDK<RecognizeAnimalsRequest>("Vision_ff42ce03e691ab23", 4180489340913253, undefined, [revision]); }
   declare readonly $type: { "s:6Vision23RecognizeAnimalsRequestV": true };
 }
 
@@ -4433,12 +4433,12 @@ export const RecognizeAnimalsRequest_Animal = {
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): (RecognizeAnimalsRequest_Animal) | null { return callSDK<(RecognizeAnimalsRequest_Animal) | null>("Vision_3864e7f38681b875", 2952351407601804, undefined, [rawValue]); },
+  init(rawValue: string): (RecognizeAnimalsRequest_Animal) | null { return callSDK<(RecognizeAnimalsRequest_Animal) | null>("Vision_ff42ce03e691ab23", 2952351407601804, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: RecognizeAnimalsRequest_Animal): string { return callSDK<string>("Vision_3864e7f38681b875", 3484146080791665, $self, []); }
+  getRawValue($self: RecognizeAnimalsRequest_Animal): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3484146080791665, $self, []); }
 };
 
 /**
@@ -4458,12 +4458,12 @@ export const RecognizeAnimalsRequest_Identifier = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (RecognizeAnimalsRequest_Identifier) | null { return callSDK<(RecognizeAnimalsRequest_Identifier) | null>("Vision_3864e7f38681b875", 3071412354397954, undefined, [rawValue]); },
+  init(rawValue: string): (RecognizeAnimalsRequest_Identifier) | null { return callSDK<(RecognizeAnimalsRequest_Identifier) | null>("Vision_ff42ce03e691ab23", 3071412354397954, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: RecognizeAnimalsRequest_Identifier): string { return callSDK<string>("Vision_3864e7f38681b875", 2815564570823343, $self, []); }
+  getRawValue($self: RecognizeAnimalsRequest_Identifier): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2815564570823343, $self, []); }
 };
 
 /**
@@ -4493,42 +4493,42 @@ export class RecognizedObjectObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2536227879378346, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2536227879378346, this, []); }
   /**
    * let boundingBox: NormalizedRect
    * @availability iOS 18.0+
    */
-  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3928905353296350, this, []); }
+  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3928905353296350, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 2419572282490709, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2419572282490709, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 456196133600542, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 456196133600542, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 4147677154789790, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4147677154789790, this, []); }
   /**
    * let labels: [ClassificationObservation]
    * @availability iOS 18.0+
    */
-  get labels(): $SDK13 { return callSDK<$SDK13>("Vision_3864e7f38681b875", 1941790942497906, this, []); }
+  get labels(): $SDK13 { return callSDK<$SDK13>("Vision_ff42ce03e691ab23", 1941790942497906, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 689682064686021, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 689682064686021, this, []); }
   /**
    * init(_ observation: VNRecognizedObjectObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNRecognizedObjectObservation): RecognizedObjectObservation { return callSDK<RecognizedObjectObservation>("Vision_3864e7f38681b875", 1556724962114491, undefined, [observation]); }
+  static init(observation: VNRecognizedObjectObservation): RecognizedObjectObservation { return callSDK<RecognizedObjectObservation>("Vision_ff42ce03e691ab23", 1556724962114491, undefined, [observation]); }
   declare readonly $type: { "s:6Vision27RecognizedObjectObservationV": true };
 }
 
@@ -4541,60 +4541,60 @@ export class RecognizeDocumentsRequest extends SDKHandle {
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 26.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 646743679625113, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 646743679625113, this, []); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 26.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2534548573213115, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 3667426641489893, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2534548573213115, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 3667426641489893, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 26.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 3128595783218491, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3128595783218491, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [RecognizeDocumentsRequest.Revision]
    * @availability iOS 26.0+
    */
-  static get supportedRevisions(): Array<RecognizeDocumentsRequest_Revision> { return callSDK<Array<RecognizeDocumentsRequest_Revision>>("Vision_3864e7f38681b875", 190590209365523, undefined, []); }
+  static get supportedRevisions(): Array<RecognizeDocumentsRequest_Revision> { return callSDK<Array<RecognizeDocumentsRequest_Revision>>("Vision_ff42ce03e691ab23", 190590209365523, undefined, []); }
   /**
    * var textRecognitionOptions: RecognizeDocumentsRequest.TextRecognitionOptions
    * @availability iOS 26.0+
    */
-  get textRecognitionOptions(): RecognizeDocumentsRequest_TextRecognitionOptions { return callSDK<RecognizeDocumentsRequest_TextRecognitionOptions>("Vision_3864e7f38681b875", 4422279043358106, this, []); }
-  set textRecognitionOptions(value: RecognizeDocumentsRequest_TextRecognitionOptions) { callSDK<void>("Vision_3864e7f38681b875", 3697500550033476, this, [value]); }
+  get textRecognitionOptions(): RecognizeDocumentsRequest_TextRecognitionOptions { return callSDK<RecognizeDocumentsRequest_TextRecognitionOptions>("Vision_ff42ce03e691ab23", 4422279043358106, this, []); }
+  set textRecognitionOptions(value: RecognizeDocumentsRequest_TextRecognitionOptions) { callSDK<void>("Vision_ff42ce03e691ab23", 3697500550033476, this, [value]); }
   /**
    * var barcodeDetectionOptions: RecognizeDocumentsRequest.BarcodeDetectionOptions
    * @availability iOS 26.0+
    */
-  get barcodeDetectionOptions(): RecognizeDocumentsRequest_BarcodeDetectionOptions { return callSDK<RecognizeDocumentsRequest_BarcodeDetectionOptions>("Vision_3864e7f38681b875", 1962793327302488, this, []); }
-  set barcodeDetectionOptions(value: RecognizeDocumentsRequest_BarcodeDetectionOptions) { callSDK<void>("Vision_3864e7f38681b875", 2941879361422773, this, [value]); }
+  get barcodeDetectionOptions(): RecognizeDocumentsRequest_BarcodeDetectionOptions { return callSDK<RecognizeDocumentsRequest_BarcodeDetectionOptions>("Vision_ff42ce03e691ab23", 1962793327302488, this, []); }
+  set barcodeDetectionOptions(value: RecognizeDocumentsRequest_BarcodeDetectionOptions) { callSDK<void>("Vision_ff42ce03e691ab23", 2941879361422773, this, [value]); }
   /**
    * var supportedBarcodeSymbologies: [BarcodeSymbology] { get }
    * @availability iOS 26.0+
    */
-  get supportedBarcodeSymbologies(): Array<BarcodeSymbology> { return callSDK<Array<BarcodeSymbology>>("Vision_3864e7f38681b875", 3516445367388840, this, []); }
+  get supportedBarcodeSymbologies(): Array<BarcodeSymbology> { return callSDK<Array<BarcodeSymbology>>("Vision_ff42ce03e691ab23", 3516445367388840, this, []); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 26.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 2743629804520799, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 2743629804520799, this, []); }
   /**
    * var supportedRecognitionLanguages: [Locale.Language] { get }
    * @availability iOS 26.0+
    */
-  get supportedRecognitionLanguages(): $SDK123 { return callSDK<$SDK123>("Vision_3864e7f38681b875", 631929572404929, this, []); }
+  get supportedRecognitionLanguages(): $SDK123 { return callSDK<$SDK123>("Vision_ff42ce03e691ab23", 631929572404929, this, []); }
   /**
    * let revision: RecognizeDocumentsRequest.Revision
    * @availability iOS 26.0+
    */
-  get revision(): RecognizeDocumentsRequest_Revision { return callSDK<RecognizeDocumentsRequest_Revision>("Vision_3864e7f38681b875", 3165962175915107, this, []); }
+  get revision(): RecognizeDocumentsRequest_Revision { return callSDK<RecognizeDocumentsRequest_Revision>("Vision_ff42ce03e691ab23", 3165962175915107, this, []); }
   /**
    * init(_ revision: RecognizeDocumentsRequest.Revision? = nil)
    * @availability iOS 26.0+
    */
-  static init(revision?: (RecognizeDocumentsRequest_Revision) | null): RecognizeDocumentsRequest { return callSDK<RecognizeDocumentsRequest>("Vision_3864e7f38681b875", 1703558387017393, undefined, [revision]); }
+  static init(revision?: (RecognizeDocumentsRequest_Revision) | null): RecognizeDocumentsRequest { return callSDK<RecognizeDocumentsRequest>("Vision_ff42ce03e691ab23", 1703558387017393, undefined, [revision]); }
   declare readonly $type: { "s:6Vision25RecognizeDocumentsRequestV": true };
 }
 
@@ -4607,20 +4607,20 @@ export class RecognizeDocumentsRequest_BarcodeDetectionOptions extends SDKHandle
    * var symbologies: [BarcodeSymbology]
    * @availability iOS 26.0+
    */
-  get symbologies(): Array<BarcodeSymbology> { return callSDK<Array<BarcodeSymbology>>("Vision_3864e7f38681b875", 2692588585401994, this, []); }
-  set symbologies(value: Array<BarcodeSymbology>) { callSDK<void>("Vision_3864e7f38681b875", 1109998456869998, this, [value]); }
+  get symbologies(): Array<BarcodeSymbology> { return callSDK<Array<BarcodeSymbology>>("Vision_ff42ce03e691ab23", 2692588585401994, this, []); }
+  set symbologies(value: Array<BarcodeSymbology>) { callSDK<void>("Vision_ff42ce03e691ab23", 1109998456869998, this, [value]); }
   /**
    * var coalesceCompositeSymbologies: Bool
    * @availability iOS 26.0+
    */
-  get coalesceCompositeSymbologies(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2482182330455257, this, []); }
-  set coalesceCompositeSymbologies(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 3574023686353652, this, [value]); }
+  get coalesceCompositeSymbologies(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2482182330455257, this, []); }
+  set coalesceCompositeSymbologies(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 3574023686353652, this, [value]); }
   /**
    * var enabled: Bool
    * @availability iOS 26.0+
    */
-  get enabled(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 112762865440583, this, []); }
-  set enabled(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 2750042321847353, this, [value]); }
+  get enabled(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 112762865440583, this, []); }
+  set enabled(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 2750042321847353, this, [value]); }
   declare readonly $type: { "s:6Vision25RecognizeDocumentsRequestV23BarcodeDetectionOptionsV": true };
 }
 
@@ -4645,38 +4645,38 @@ export class RecognizeDocumentsRequest_TextRecognitionOptions extends SDKHandle 
    * var minimumTextHeightFraction: Float
    * @availability iOS 26.0+
    */
-  get minimumTextHeightFraction(): number { return callSDK<number>("Vision_3864e7f38681b875", 51052008391096, this, []); }
-  set minimumTextHeightFraction(value: number) { callSDK<void>("Vision_3864e7f38681b875", 4128027030974880, this, [value]); }
+  get minimumTextHeightFraction(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 51052008391096, this, []); }
+  set minimumTextHeightFraction(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 4128027030974880, this, [value]); }
   /**
    * var customWords: [String]
    * @availability iOS 26.0+
    */
-  get customWords(): Array<string> { return callSDK<Array<string>>("Vision_3864e7f38681b875", 4246761803061754, this, []); }
-  set customWords(value: Array<string>) { callSDK<void>("Vision_3864e7f38681b875", 2283341674683353, this, [value]); }
+  get customWords(): Array<string> { return callSDK<Array<string>>("Vision_ff42ce03e691ab23", 4246761803061754, this, []); }
+  set customWords(value: Array<string>) { callSDK<void>("Vision_ff42ce03e691ab23", 2283341674683353, this, [value]); }
   /**
    * var recognitionLanguages: [Locale.Language]
    * @availability iOS 26.0+
    */
-  get recognitionLanguages(): $SDK123 { return callSDK<$SDK123>("Vision_3864e7f38681b875", 339955535001428, this, []); }
-  set recognitionLanguages(value: $SDK123) { callSDK<void>("Vision_3864e7f38681b875", 518083694292685, this, [value]); }
+  get recognitionLanguages(): $SDK123 { return callSDK<$SDK123>("Vision_ff42ce03e691ab23", 339955535001428, this, []); }
+  set recognitionLanguages(value: $SDK123) { callSDK<void>("Vision_ff42ce03e691ab23", 518083694292685, this, [value]); }
   /**
    * var maximumCandidateCount: Int
    * @availability iOS 26.0+
    */
-  get maximumCandidateCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 1623528063827910, this, []); }
-  set maximumCandidateCount(value: number) { callSDK<void>("Vision_3864e7f38681b875", 344622396466832, this, [value]); }
+  get maximumCandidateCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1623528063827910, this, []); }
+  set maximumCandidateCount(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 344622396466832, this, [value]); }
   /**
    * var useLanguageCorrection: Bool
    * @availability iOS 26.0+
    */
-  get useLanguageCorrection(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 1252769360888432, this, []); }
-  set useLanguageCorrection(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 3200379626869128, this, [value]); }
+  get useLanguageCorrection(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 1252769360888432, this, []); }
+  set useLanguageCorrection(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 3200379626869128, this, [value]); }
   /**
    * var automaticallyDetectLanguage: Bool
    * @availability iOS 26.0+
    */
-  get automaticallyDetectLanguage(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 1575826572279871, this, []); }
-  set automaticallyDetectLanguage(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 2131263829398191, this, [value]); }
+  get automaticallyDetectLanguage(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 1575826572279871, this, []); }
+  set automaticallyDetectLanguage(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 2131263829398191, this, [value]); }
   declare readonly $type: { "s:6Vision25RecognizeDocumentsRequestV22TextRecognitionOptionsV": true };
 }
 
@@ -4689,22 +4689,22 @@ export class RecognizedText extends SDKHandle {
    * var confidence: Float { get }
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2509347970114110, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2509347970114110, this, []); }
   /**
    * func boundingBox(for range: Range<String.Index>) -> RectangleObservation?
    * @availability iOS 18.0+
    */
-  boundingBox(range: SDKHandle): (RectangleObservation) | null { return callSDK<(RectangleObservation) | null>("Vision_3864e7f38681b875", 2877013442486954, this, [range]); }
+  boundingBox(range: SDKHandle): (RectangleObservation) | null { return callSDK<(RectangleObservation) | null>("Vision_ff42ce03e691ab23", 2877013442486954, this, [range]); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3574179403044343, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3574179403044343, this, []); }
   /**
    * var string: String { get }
    * @availability iOS 18.0+
    */
-  get string(): string { return callSDK<string>("Vision_3864e7f38681b875", 3792596507374620, this, []); }
+  get string(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3792596507374620, this, []); }
   declare readonly $type: { "s:6Vision14RecognizedTextV": true };
 }
 
@@ -4717,87 +4717,87 @@ export class RecognizedTextObservation extends SDKHandle {
    * let bottomLeft: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get bottomLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 1522513678812152, this, []); }
+  get bottomLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 1522513678812152, this, []); }
   /**
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 227022372724605, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 227022372724605, this, []); }
   /**
    * var transcript: String { get }
    * @availability iOS 26.0+
    */
-  get transcript(): string { return callSDK<string>("Vision_3864e7f38681b875", 411666995367048, this, []); }
+  get transcript(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 411666995367048, this, []); }
   /**
    * let bottomRight: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get bottomRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 2519462599407371, this, []); }
+  get bottomRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 2519462599407371, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 2107910631280075, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2107910631280075, this, []); }
   /**
    * let textDirection: RecognizedTextObservation.Direction?
    * @availability iOS 26.0+
    */
-  get textDirection(): (RecognizedTextObservation_Direction) | null { return callSDK<(RecognizedTextObservation_Direction) | null>("Vision_3864e7f38681b875", 2849432188765090, this, []); }
+  get textDirection(): (RecognizedTextObservation_Direction) | null { return callSDK<(RecognizedTextObservation_Direction) | null>("Vision_ff42ce03e691ab23", 2849432188765090, this, []); }
   /**
    * func topCandidates(_ maxCandidateCount: Int) -> [RecognizedText]
    * @availability iOS 18.0+
    */
-  topCandidates(maxCandidateCount: number): Array<RecognizedText> { return callSDK<Array<RecognizedText>>("Vision_3864e7f38681b875", 732278850516376, this, [maxCandidateCount]); }
+  topCandidates(maxCandidateCount: number): Array<RecognizedText> { return callSDK<Array<RecognizedText>>("Vision_ff42ce03e691ab23", 732278850516376, this, [maxCandidateCount]); }
   /**
    * var boundingRegion: NormalizedRegion { get }
    * @availability iOS 26.0+
    */
-  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_3864e7f38681b875", 171990332683655, this, []); }
+  get boundingRegion(): ContoursObservation_Contour { return callSDK<ContoursObservation_Contour>("Vision_ff42ce03e691ab23", 171990332683655, this, []); }
   /**
    * let recognitionLanguages: [Locale.Language]
    * @availability iOS 26.0+
    */
-  get recognitionLanguages(): $SDK123 { return callSDK<$SDK123>("Vision_3864e7f38681b875", 1101378850877686, this, []); }
+  get recognitionLanguages(): $SDK123 { return callSDK<$SDK123>("Vision_ff42ce03e691ab23", 1101378850877686, this, []); }
   /**
    * let shouldWrapToNextLine: Bool?
    * @availability iOS 26.0+
    */
-  get shouldWrapToNextLine(): (boolean) | null { return callSDK<(boolean) | null>("Vision_3864e7f38681b875", 1798241271515, this, []); }
+  get shouldWrapToNextLine(): (boolean) | null { return callSDK<(boolean) | null>("Vision_ff42ce03e691ab23", 1798241271515, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 3477179798368058, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 3477179798368058, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 1406390987290034, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1406390987290034, this, []); }
   /**
    * let isTitle: Bool
    * @availability iOS 26.0+
    */
-  get isTitle(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2089404752318600, this, []); }
+  get isTitle(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2089404752318600, this, []); }
   /**
    * let topLeft: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get topLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 2563968218374343, this, []); }
+  get topLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 2563968218374343, this, []); }
   /**
    * let topRight: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get topRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 1228231399073599, this, []); }
+  get topRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 1228231399073599, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 4119866072923126, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 4119866072923126, this, []); }
   /**
    * init(_ observation: VNRecognizedTextObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNRecognizedTextObservation): RecognizedTextObservation { return callSDK<RecognizedTextObservation>("Vision_3864e7f38681b875", 2819554773737114, undefined, [observation]); }
+  static init(observation: VNRecognizedTextObservation): RecognizedTextObservation { return callSDK<RecognizedTextObservation>("Vision_ff42ce03e691ab23", 2819554773737114, undefined, [observation]); }
   declare readonly $type: { "s:6Vision25RecognizedTextObservationV": true };
 }
 
@@ -4816,79 +4816,79 @@ export class RecognizeTextRequest extends SDKHandle {
    * var minimumTextHeightFraction: Float
    * @availability iOS 18.0+
    */
-  get minimumTextHeightFraction(): number { return callSDK<number>("Vision_3864e7f38681b875", 3565966693165569, this, []); }
-  set minimumTextHeightFraction(value: number) { callSDK<void>("Vision_3864e7f38681b875", 2624948950225205, this, [value]); }
+  get minimumTextHeightFraction(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3565966693165569, this, []); }
+  set minimumTextHeightFraction(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 2624948950225205, this, [value]); }
   /**
    * var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 1020794843460998, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 1020794843460998, this, []); }
   /**
    * var customWords: [String]
    * @availability iOS 18.0+
    */
-  get customWords(): Array<string> { return callSDK<Array<string>>("Vision_3864e7f38681b875", 989176765172553, this, []); }
-  set customWords(value: Array<string>) { callSDK<void>("Vision_3864e7f38681b875", 372492082018901, this, [value]); }
+  get customWords(): Array<string> { return callSDK<Array<string>>("Vision_ff42ce03e691ab23", 989176765172553, this, []); }
+  set customWords(value: Array<string>) { callSDK<void>("Vision_ff42ce03e691ab23", 372492082018901, this, [value]); }
   /**
    * var recognitionLevel: RecognizeTextRequest.RecognitionLevel
    * @availability iOS 18.0+
    */
-  get recognitionLevel(): RecognizeTextRequest_RecognitionLevel { return callSDK<RecognizeTextRequest_RecognitionLevel>("Vision_3864e7f38681b875", 3135198623121231, this, []); }
-  set recognitionLevel(value: RecognizeTextRequest_RecognitionLevel) { callSDK<void>("Vision_3864e7f38681b875", 4229390923215887, this, [value]); }
+  get recognitionLevel(): RecognizeTextRequest_RecognitionLevel { return callSDK<RecognizeTextRequest_RecognitionLevel>("Vision_ff42ce03e691ab23", 3135198623121231, this, []); }
+  set recognitionLevel(value: RecognizeTextRequest_RecognitionLevel) { callSDK<void>("Vision_ff42ce03e691ab23", 4229390923215887, this, [value]); }
   /**
    * var regionOfInterest: NormalizedRect
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 2276018304969506, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 3721073642342694, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 2276018304969506, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 3721073642342694, this, [value]); }
   /**
    * mutating func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 350375244891651, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 350375244891651, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [RecognizeTextRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<RecognizeTextRequest_Revision> { return callSDK<Array<RecognizeTextRequest_Revision>>("Vision_3864e7f38681b875", 4218361637464879, undefined, []); }
+  static get supportedRevisions(): Array<RecognizeTextRequest_Revision> { return callSDK<Array<RecognizeTextRequest_Revision>>("Vision_ff42ce03e691ab23", 4218361637464879, undefined, []); }
   /**
    * var recognitionLanguages: [Locale.Language]
    * @availability iOS 18.0+
    */
-  get recognitionLanguages(): $SDK123 { return callSDK<$SDK123>("Vision_3864e7f38681b875", 3033577436280668, this, []); }
-  set recognitionLanguages(value: $SDK123) { callSDK<void>("Vision_3864e7f38681b875", 4150778670526829, this, [value]); }
+  get recognitionLanguages(): $SDK123 { return callSDK<$SDK123>("Vision_ff42ce03e691ab23", 3033577436280668, this, []); }
+  set recognitionLanguages(value: $SDK123) { callSDK<void>("Vision_ff42ce03e691ab23", 4150778670526829, this, [value]); }
   /**
    * var usesLanguageCorrection: Bool
    * @availability iOS 18.0+
    */
-  get usesLanguageCorrection(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 510296269307200, this, []); }
-  set usesLanguageCorrection(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 3337847078582536, this, [value]); }
+  get usesLanguageCorrection(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 510296269307200, this, []); }
+  set usesLanguageCorrection(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 3337847078582536, this, [value]); }
   /**
    * var automaticallyDetectsLanguage: Bool
    * @availability iOS 18.0+
    */
-  get automaticallyDetectsLanguage(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2157378100980481, this, []); }
-  set automaticallyDetectsLanguage(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 980691614189855, this, [value]); }
+  get automaticallyDetectsLanguage(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2157378100980481, this, []); }
+  set automaticallyDetectsLanguage(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 980691614189855, this, [value]); }
   /**
    * var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 1887584081007851, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 1887584081007851, this, []); }
   /**
    * var supportedRecognitionLanguages: [Locale.Language] { get }
    * @availability iOS 18.0+
    */
-  get supportedRecognitionLanguages(): $SDK123 { return callSDK<$SDK123>("Vision_3864e7f38681b875", 1181159351808276, this, []); }
+  get supportedRecognitionLanguages(): $SDK123 { return callSDK<$SDK123>("Vision_ff42ce03e691ab23", 1181159351808276, this, []); }
   /**
    * let revision: RecognizeTextRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): RecognizeTextRequest_Revision { return callSDK<RecognizeTextRequest_Revision>("Vision_3864e7f38681b875", 2707128849173439, this, []); }
+  get revision(): RecognizeTextRequest_Revision { return callSDK<RecognizeTextRequest_Revision>("Vision_ff42ce03e691ab23", 2707128849173439, this, []); }
   /**
    * init(_ revision: RecognizeTextRequest.Revision? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (RecognizeTextRequest_Revision) | null): RecognizeTextRequest { return callSDK<RecognizeTextRequest>("Vision_3864e7f38681b875", 2521513711795850, undefined, [revision]); }
+  static init(revision?: (RecognizeTextRequest_Revision) | null): RecognizeTextRequest { return callSDK<RecognizeTextRequest>("Vision_ff42ce03e691ab23", 2521513711795850, undefined, [revision]); }
   declare readonly $type: { "s:6Vision20RecognizeTextRequestV": true };
 }
 
@@ -4903,7 +4903,7 @@ export const RecognizeTextRequest_RecognitionLevel = {
    * nonisolated static var allCases: [RecognizeTextRequest.RecognitionLevel] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): $SDK130 { return callSDK<$SDK130>("Vision_3864e7f38681b875", 471679190454610, undefined, []); }
+  get allCases(): $SDK130 { return callSDK<$SDK130>("Vision_ff42ce03e691ab23", 471679190454610, undefined, []); }
 };
 
 /**
@@ -4933,57 +4933,57 @@ export class RectangleObservation extends SDKHandle {
    * let bottomLeft: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get bottomLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 2093416611819570, this, []); }
+  get bottomLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 2093416611819570, this, []); }
   /**
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 1035900299650891, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1035900299650891, this, []); }
   /**
    * let bottomRight: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get bottomRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 1437439798215627, this, []); }
+  get bottomRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 1437439798215627, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 147226427513987, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 147226427513987, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 226176795721543, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 226176795721543, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 3881815064058777, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3881815064058777, this, []); }
   /**
    * init(topLeft: NormalizedPoint, topRight: NormalizedPoint, bottomRight: NormalizedPoint, bottomLeft: NormalizedPoint)
    * @availability iOS 18.0+
    */
-  static initTopLeftTopRightBottomRightBottomLeft(topLeft: NormalizedPoint, topRight: NormalizedPoint, bottomRight: NormalizedPoint, bottomLeft: NormalizedPoint): RectangleObservation { return callSDK<RectangleObservation>("Vision_3864e7f38681b875", 2957630783462994, undefined, [topLeft, topRight, bottomRight, bottomLeft]); }
+  static initTopLeftTopRightBottomRightBottomLeft(topLeft: NormalizedPoint, topRight: NormalizedPoint, bottomRight: NormalizedPoint, bottomLeft: NormalizedPoint): RectangleObservation { return callSDK<RectangleObservation>("Vision_ff42ce03e691ab23", 2957630783462994, undefined, [topLeft, topRight, bottomRight, bottomLeft]); }
   /**
    * let topLeft: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get topLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 4292891300588021, this, []); }
+  get topLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 4292891300588021, this, []); }
   /**
    * let topRight: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get topRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 3725786994312924, this, []); }
+  get topRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 3725786994312924, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 3778527263196274, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 3778527263196274, this, []); }
   /**
    * init(_ observation: VNRectangleObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNRectangleObservation): RectangleObservation { return callSDK<RectangleObservation>("Vision_3864e7f38681b875", 973457370317920, undefined, [observation]); }
+  static init(observation: VNRectangleObservation): RectangleObservation { return callSDK<RectangleObservation>("Vision_ff42ce03e691ab23", 973457370317920, undefined, [observation]); }
   declare readonly $type: { "s:6Vision20RectangleObservationV": true };
 }
 
@@ -4996,7 +4996,7 @@ export class RequestDescriptor extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 2743998562963041, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2743998562963041, this, []); }
   declare readonly $type: { "s:6Vision17RequestDescriptorO": true };
 }
 
@@ -5009,42 +5009,42 @@ export class SaliencyImageObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 121055293422998, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 121055293422998, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 2819083259340040, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2819083259340040, this, []); }
   /**
    * let salientObjects: [RectangleObservation]
    * @availability iOS 18.0+
    */
-  get salientObjects(): Array<RectangleObservation> { return callSDK<Array<RectangleObservation>>("Vision_3864e7f38681b875", 3817542206875024, this, []); }
+  get salientObjects(): Array<RectangleObservation> { return callSDK<Array<RectangleObservation>>("Vision_ff42ce03e691ab23", 3817542206875024, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 4131267072105377, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 4131267072105377, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 4469214008454748, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4469214008454748, this, []); }
   /**
    * let heatMap: PixelBufferObservation
    * @availability iOS 18.0+
    */
-  get heatMap(): PixelBufferObservation { return callSDK<PixelBufferObservation>("Vision_3864e7f38681b875", 3258235833768507, this, []); }
+  get heatMap(): PixelBufferObservation { return callSDK<PixelBufferObservation>("Vision_ff42ce03e691ab23", 3258235833768507, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 2311977468869973, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 2311977468869973, this, []); }
   /**
    * init?(_ observation: VNSaliencyImageObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNSaliencyImageObservation): (SaliencyImageObservation) | null { return callSDK<(SaliencyImageObservation) | null>("Vision_3864e7f38681b875", 3720647593604702, undefined, [observation]); }
+  static init(observation: VNSaliencyImageObservation): (SaliencyImageObservation) | null { return callSDK<(SaliencyImageObservation) | null>("Vision_ff42ce03e691ab23", 3720647593604702, undefined, [observation]); }
   declare readonly $type: { "s:6Vision24SaliencyImageObservationV": true };
 }
 
@@ -5057,27 +5057,27 @@ export class SmudgeObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 26.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 53364987463373, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 53364987463373, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 4408232910819063, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4408232910819063, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 26.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 3965066754452231, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 3965066754452231, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 26.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 3896958555699999, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3896958555699999, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 26.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 3021501237358928, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 3021501237358928, this, []); }
   declare readonly $type: { "s:6Vision17SmudgeObservationV": true };
 }
 
@@ -5107,32 +5107,32 @@ export class TargetedImageRequestHandler extends SDKHandle {
    * convenience init(source: Data, target: Data, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initSourceTargetOrientation(source: ArrayBuffer, target: ArrayBuffer, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_3864e7f38681b875", 3079403943869235, undefined, [source, target, orientation]); }
+  static initSourceTargetOrientation(source: ArrayBuffer, target: ArrayBuffer, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_ff42ce03e691ab23", 3079403943869235, undefined, [source, target, orientation]); }
   /**
    * convenience init(source: CGImage, target: CGImage, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initSourceTargetOrientation27468(source: _CoreGraphics_CGImage, target: _CoreGraphics_CGImage, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_3864e7f38681b875", 3708456813375166, undefined, [source, target, orientation]); }
+  static initSourceTargetOrientation27468(source: _CoreGraphics_CGImage, target: _CoreGraphics_CGImage, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_ff42ce03e691ab23", 3708456813375166, undefined, [source, target, orientation]); }
   /**
    * convenience init(source: CVPixelBuffer, target: CVPixelBuffer, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initSourceTargetOrientation19059(source: _CoreVideo_CVBuffer, target: _CoreVideo_CVBuffer, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_3864e7f38681b875", 3840825754683671, undefined, [source, target, orientation]); }
+  static initSourceTargetOrientation19059(source: _CoreVideo_CVBuffer, target: _CoreVideo_CVBuffer, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_ff42ce03e691ab23", 3840825754683671, undefined, [source, target, orientation]); }
   /**
    * convenience init(source: CMSampleBuffer, target: CMSampleBuffer, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initSourceTargetOrientation27038(source: _CoreMedia_CMSampleBuffer, target: _CoreMedia_CMSampleBuffer, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_3864e7f38681b875", 2667693825514293, undefined, [source, target, orientation]); }
+  static initSourceTargetOrientation27038(source: _CoreMedia_CMSampleBuffer, target: _CoreMedia_CMSampleBuffer, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_ff42ce03e691ab23", 2667693825514293, undefined, [source, target, orientation]); }
   /**
    * convenience init(source: CIImage, target: CIImage, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initSourceTargetOrientation30265(source: _CoreImage_CIImage, target: _CoreImage_CIImage, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_3864e7f38681b875", 2897091540056771, undefined, [source, target, orientation]); }
+  static initSourceTargetOrientation30265(source: _CoreImage_CIImage, target: _CoreImage_CIImage, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_ff42ce03e691ab23", 2897091540056771, undefined, [source, target, orientation]); }
   /**
    * convenience init(sourceURL: URL, targetURL: URL, orientation: CGImagePropertyOrientation? = nil)
    * @availability iOS 18.0+
    */
-  static initSourceURLTargetURLOrientation(sourceURL: string, targetURL: string, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_3864e7f38681b875", 2818509855161163, undefined, [sourceURL, targetURL, orientation]); }
+  static initSourceURLTargetURLOrientation(sourceURL: string, targetURL: string, orientation?: $SDK112): TargetedImageRequestHandler { return callSDK<TargetedImageRequestHandler>("Vision_ff42ce03e691ab23", 2818509855161163, undefined, [sourceURL, targetURL, orientation]); }
   declare readonly $type: { "s:6Vision27TargetedImageRequestHandlerC": true };
 }
 
@@ -5162,62 +5162,62 @@ export class TextObservation extends SDKHandle {
    * let bottomLeft: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get bottomLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 1686610843463044, this, []); }
+  get bottomLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 1686610843463044, this, []); }
   /**
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 413841944711274, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 413841944711274, this, []); }
   /**
    * let bottomRight: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get bottomRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 4451178897335732, this, []); }
+  get bottomRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 4451178897335732, this, []); }
   /**
    * let boundingBox: NormalizedRect
    * @availability iOS 18.0+
    */
-  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 1851312451479979, this, []); }
+  get boundingBox(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 1851312451479979, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 10959886427874, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 10959886427874, this, []); }
   /**
    * let characterBoxes: [RectangleObservation]?
    * @availability iOS 18.0+
    */
-  get characterBoxes(): (Array<RectangleObservation>) | null { return callSDK<(Array<RectangleObservation>) | null>("Vision_3864e7f38681b875", 407907462374567, this, []); }
+  get characterBoxes(): (Array<RectangleObservation>) | null { return callSDK<(Array<RectangleObservation>) | null>("Vision_ff42ce03e691ab23", 407907462374567, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 2661594644217943, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 2661594644217943, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 2240511424060583, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2240511424060583, this, []); }
   /**
    * let topLeft: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get topLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 833684019669773, this, []); }
+  get topLeft(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 833684019669773, this, []); }
   /**
    * let topRight: NormalizedPoint
    * @availability iOS 18.0+
    */
-  get topRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_3864e7f38681b875", 1888028043258716, this, []); }
+  get topRight(): NormalizedPoint { return callSDK<NormalizedPoint>("Vision_ff42ce03e691ab23", 1888028043258716, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 4142112493665264, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 4142112493665264, this, []); }
   /**
    * init(_ observation: VNTextObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNTextObservation): TextObservation { return callSDK<TextObservation>("Vision_3864e7f38681b875", 423980992146746, undefined, [observation]); }
+  static init(observation: VNTextObservation): TextObservation { return callSDK<TextObservation>("Vision_ff42ce03e691ab23", 423980992146746, undefined, [observation]); }
   declare readonly $type: { "s:6Vision15TextObservationV": true };
 }
 
@@ -5230,43 +5230,43 @@ export class TrackHomographicImageRegistrationRequest extends SDKHandle {
    * final var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 161936053618148, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 161936053618148, this, []); }
   /**
    * final var regionOfInterest: NormalizedRect { get set }
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 1930515536534124, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 2612863246750704, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 1930515536534124, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 2612863246750704, this, [value]); }
   /**
    * final func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 4258698316985069, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 4258698316985069, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [TrackHomographicImageRegistrationRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<TrackHomographicImageRegistrationRequest_Revision> { return callSDK<Array<TrackHomographicImageRegistrationRequest_Revision>>("Vision_3864e7f38681b875", 946693510104696, undefined, []); }
+  static get supportedRevisions(): Array<TrackHomographicImageRegistrationRequest_Revision> { return callSDK<Array<TrackHomographicImageRegistrationRequest_Revision>>("Vision_ff42ce03e691ab23", 946693510104696, undefined, []); }
   /**
    * final let frameAnalysisSpacing: CMTime
    * @availability iOS 18.0+
    */
-  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 927747925276770, this, []); }
+  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 927747925276770, this, []); }
   /**
    * final var minimumLatencyFrameCount: Int { get }
    * @availability iOS 18.0+
    */
-  get minimumLatencyFrameCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 3842533983140015, this, []); }
+  get minimumLatencyFrameCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3842533983140015, this, []); }
   /**
    * final let revision: TrackHomographicImageRegistrationRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): TrackHomographicImageRegistrationRequest_Revision { return callSDK<TrackHomographicImageRegistrationRequest_Revision>("Vision_3864e7f38681b875", 3941635822459687, this, []); }
+  get revision(): TrackHomographicImageRegistrationRequest_Revision { return callSDK<TrackHomographicImageRegistrationRequest_Revision>("Vision_ff42ce03e691ab23", 3941635822459687, this, []); }
   /**
    * init(_ revision: TrackHomographicImageRegistrationRequest.Revision? = nil, frameAnalysisSpacing: CMTime? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (TrackHomographicImageRegistrationRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): TrackHomographicImageRegistrationRequest { return callSDK<TrackHomographicImageRegistrationRequest>("Vision_3864e7f38681b875", 2052954148725694, undefined, [revision, frameAnalysisSpacing]); }
+  static init(revision?: (TrackHomographicImageRegistrationRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): TrackHomographicImageRegistrationRequest { return callSDK<TrackHomographicImageRegistrationRequest>("Vision_ff42ce03e691ab23", 2052954148725694, undefined, [revision, frameAnalysisSpacing]); }
   declare readonly $type: { "s:6Vision40TrackHomographicImageRegistrationRequestC": true };
 }
 
@@ -5291,43 +5291,43 @@ export class TrackObjectRequest extends SDKHandle {
    * init(detectedObject: any BoundingBoxProviding & VisionObservation, _ revision: TrackObjectRequest.Revision? = nil, frameAnalysisSpacing: CMTime? = nil)
    * @availability iOS 18.0+
    */
-  static init(detectedObject: $SDK134, revision?: (TrackObjectRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): TrackObjectRequest { return callSDK<TrackObjectRequest>("Vision_3864e7f38681b875", 531507886746676, undefined, [detectedObject, revision, frameAnalysisSpacing]); }
+  static init(detectedObject: $SDK134, revision?: (TrackObjectRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): TrackObjectRequest { return callSDK<TrackObjectRequest>("Vision_ff42ce03e691ab23", 531507886746676, undefined, [detectedObject, revision, frameAnalysisSpacing]); }
   /**
    * final var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 3505329318169318, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 3505329318169318, this, []); }
   /**
    * final let inputObservation: any BoundingBoxProviding & VisionObservation
    * @availability iOS 18.0+
    */
-  get inputObservation(): $SDK134 { return callSDK<$SDK134>("Vision_3864e7f38681b875", 308453762050590, this, []); }
+  get inputObservation(): $SDK134 { return callSDK<$SDK134>("Vision_ff42ce03e691ab23", 308453762050590, this, []); }
   /**
    * final var regionOfInterest: NormalizedRect { get set }
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3005244463938256, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 560926022670176, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3005244463938256, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 560926022670176, this, [value]); }
   /**
    * final func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 1019856679534095, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1019856679534095, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [TrackObjectRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<TrackObjectRequest_Revision> { return callSDK<Array<TrackObjectRequest_Revision>>("Vision_3864e7f38681b875", 3348908569860646, undefined, []); }
+  static get supportedRevisions(): Array<TrackObjectRequest_Revision> { return callSDK<Array<TrackObjectRequest_Revision>>("Vision_ff42ce03e691ab23", 3348908569860646, undefined, []); }
   /**
    * final let frameAnalysisSpacing: CMTime
    * @availability iOS 18.0+
    */
-  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 375266513422677, this, []); }
+  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 375266513422677, this, []); }
   /**
    * final let revision: TrackObjectRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): TrackObjectRequest_Revision { return callSDK<TrackObjectRequest_Revision>("Vision_3864e7f38681b875", 2169059999649253, this, []); }
+  get revision(): TrackObjectRequest_Revision { return callSDK<TrackObjectRequest_Revision>("Vision_ff42ce03e691ab23", 2169059999649253, this, []); }
   declare readonly $type: { "s:6Vision18TrackObjectRequestC": true };
 }
 
@@ -5352,55 +5352,55 @@ export class TrackOpticalFlowRequest extends SDKHandle {
    * final var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 934840046091929, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 934840046091929, this, []); }
   /**
    * final var regionOfInterest: NormalizedRect { get set }
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 1797868126707638, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1775670219270617, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 1797868126707638, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1775670219270617, this, [value]); }
   /**
    * final func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 2031037180921446, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2031037180921446, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [TrackOpticalFlowRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<TrackOpticalFlowRequest_Revision> { return callSDK<Array<TrackOpticalFlowRequest_Revision>>("Vision_3864e7f38681b875", 3017647103985085, undefined, []); }
+  static get supportedRevisions(): Array<TrackOpticalFlowRequest_Revision> { return callSDK<Array<TrackOpticalFlowRequest_Revision>>("Vision_ff42ce03e691ab23", 3017647103985085, undefined, []); }
   /**
    * final var computationAccuracy: TrackOpticalFlowRequest.ComputationAccuracy { get set }
    * @availability iOS 18.0+
    */
-  get computationAccuracy(): TrackOpticalFlowRequest_ComputationAccuracy { return callSDK<TrackOpticalFlowRequest_ComputationAccuracy>("Vision_3864e7f38681b875", 1034266352754568, this, []); }
-  set computationAccuracy(value: TrackOpticalFlowRequest_ComputationAccuracy) { callSDK<void>("Vision_3864e7f38681b875", 2889649058038068, this, [value]); }
+  get computationAccuracy(): TrackOpticalFlowRequest_ComputationAccuracy { return callSDK<TrackOpticalFlowRequest_ComputationAccuracy>("Vision_ff42ce03e691ab23", 1034266352754568, this, []); }
+  set computationAccuracy(value: TrackOpticalFlowRequest_ComputationAccuracy) { callSDK<void>("Vision_ff42ce03e691ab23", 2889649058038068, this, [value]); }
   /**
    * final let frameAnalysisSpacing: CMTime
    * @availability iOS 18.0+
    */
-  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 3019958700601096, this, []); }
+  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 3019958700601096, this, []); }
   /**
    * final var outputPixelFormatType: OSType { get set }
    * @availability iOS 18.0+
    */
-  get outputPixelFormatType(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 4226266105054751, this, []); }
-  set outputPixelFormatType(value: SDKHandle) { callSDK<void>("Vision_3864e7f38681b875", 3750045628531147, this, [value]); }
+  get outputPixelFormatType(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 4226266105054751, this, []); }
+  set outputPixelFormatType(value: SDKHandle) { callSDK<void>("Vision_ff42ce03e691ab23", 3750045628531147, this, [value]); }
   /**
    * final var supportedOutputPixelFormatTypes: [OSType] { get }
    * @availability iOS 18.0+
    */
-  get supportedOutputPixelFormatTypes(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Vision_3864e7f38681b875", 695986381368963, this, []); }
+  get supportedOutputPixelFormatTypes(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Vision_ff42ce03e691ab23", 695986381368963, this, []); }
   /**
    * final let revision: TrackOpticalFlowRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): TrackOpticalFlowRequest_Revision { return callSDK<TrackOpticalFlowRequest_Revision>("Vision_3864e7f38681b875", 87738529278215, this, []); }
+  get revision(): TrackOpticalFlowRequest_Revision { return callSDK<TrackOpticalFlowRequest_Revision>("Vision_ff42ce03e691ab23", 87738529278215, this, []); }
   /**
    * init(_ revision: TrackOpticalFlowRequest.Revision? = nil, frameAnalysisSpacing: CMTime? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (TrackOpticalFlowRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): TrackOpticalFlowRequest { return callSDK<TrackOpticalFlowRequest>("Vision_3864e7f38681b875", 1323473884945438, undefined, [revision, frameAnalysisSpacing]); }
+  static init(revision?: (TrackOpticalFlowRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): TrackOpticalFlowRequest { return callSDK<TrackOpticalFlowRequest>("Vision_ff42ce03e691ab23", 1323473884945438, undefined, [revision, frameAnalysisSpacing]); }
   declare readonly $type: { "s:6Vision23TrackOpticalFlowRequestC": true };
 }
 
@@ -5415,7 +5415,7 @@ export const TrackOpticalFlowRequest_ComputationAccuracy = {
    * nonisolated static var allCases: [TrackOpticalFlowRequest.ComputationAccuracy] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): $SDK140 { return callSDK<$SDK140>("Vision_3864e7f38681b875", 4100547728684326, undefined, []); }
+  get allCases(): $SDK140 { return callSDK<$SDK140>("Vision_ff42ce03e691ab23", 4100547728684326, undefined, []); }
 };
 
 /**
@@ -5445,49 +5445,49 @@ export class TrackRectangleRequest extends SDKHandle {
    * init(detectedRectangle: any QuadrilateralProviding & VisionObservation, _ revision: TrackRectangleRequest.Revision? = nil, frameAnalysisSpacing: CMTime? = nil)
    * @availability iOS 18.0+
    */
-  static init(detectedRectangle: $SDK134, revision?: (TrackRectangleRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): TrackRectangleRequest { return callSDK<TrackRectangleRequest>("Vision_3864e7f38681b875", 1942411494225716, undefined, [detectedRectangle, revision, frameAnalysisSpacing]); }
+  static init(detectedRectangle: $SDK134, revision?: (TrackRectangleRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): TrackRectangleRequest { return callSDK<TrackRectangleRequest>("Vision_ff42ce03e691ab23", 1942411494225716, undefined, [detectedRectangle, revision, frameAnalysisSpacing]); }
   /**
    * final var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 1429467223910465, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 1429467223910465, this, []); }
   /**
    * final var trackingLevel: TrackRectangleRequest.TrackingLevel { get set }
    * @availability iOS 18.0+
    */
-  get trackingLevel(): TrackRectangleRequest_TrackingLevel { return callSDK<TrackRectangleRequest_TrackingLevel>("Vision_3864e7f38681b875", 2103250911031452, this, []); }
-  set trackingLevel(value: TrackRectangleRequest_TrackingLevel) { callSDK<void>("Vision_3864e7f38681b875", 112442012117850, this, [value]); }
+  get trackingLevel(): TrackRectangleRequest_TrackingLevel { return callSDK<TrackRectangleRequest_TrackingLevel>("Vision_ff42ce03e691ab23", 2103250911031452, this, []); }
+  set trackingLevel(value: TrackRectangleRequest_TrackingLevel) { callSDK<void>("Vision_ff42ce03e691ab23", 112442012117850, this, [value]); }
   /**
    * final let inputObservation: any QuadrilateralProviding & VisionObservation
    * @availability iOS 18.0+
    */
-  get inputObservation(): $SDK134 { return callSDK<$SDK134>("Vision_3864e7f38681b875", 2336723535617341, this, []); }
+  get inputObservation(): $SDK134 { return callSDK<$SDK134>("Vision_ff42ce03e691ab23", 2336723535617341, this, []); }
   /**
    * final var regionOfInterest: NormalizedRect { get set }
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3988470331251096, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1792477498261166, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3988470331251096, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1792477498261166, this, [value]); }
   /**
    * final func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 1662008294807853, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1662008294807853, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [TrackRectangleRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<TrackRectangleRequest_Revision> { return callSDK<Array<TrackRectangleRequest_Revision>>("Vision_3864e7f38681b875", 317178355874222, undefined, []); }
+  static get supportedRevisions(): Array<TrackRectangleRequest_Revision> { return callSDK<Array<TrackRectangleRequest_Revision>>("Vision_ff42ce03e691ab23", 317178355874222, undefined, []); }
   /**
    * final let frameAnalysisSpacing: CMTime
    * @availability iOS 18.0+
    */
-  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 676462012677452, this, []); }
+  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 676462012677452, this, []); }
   /**
    * final let revision: TrackRectangleRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): TrackRectangleRequest_Revision { return callSDK<TrackRectangleRequest_Revision>("Vision_3864e7f38681b875", 488658546809830, this, []); }
+  get revision(): TrackRectangleRequest_Revision { return callSDK<TrackRectangleRequest_Revision>("Vision_ff42ce03e691ab23", 488658546809830, this, []); }
   declare readonly $type: { "s:6Vision21TrackRectangleRequestC": true };
 }
 
@@ -5514,7 +5514,7 @@ export const TrackRectangleRequest_TrackingLevel = {
    * nonisolated static var allCases: [TrackRectangleRequest.TrackingLevel] { get }
    * @availability iOS 18.0+
    */
-  get allCases(): $SDK144 { return callSDK<$SDK144>("Vision_3864e7f38681b875", 2615365833356330, undefined, []); }
+  get allCases(): $SDK144 { return callSDK<$SDK144>("Vision_ff42ce03e691ab23", 2615365833356330, undefined, []); }
 };
 
 /**
@@ -5532,48 +5532,48 @@ export class TrackTranslationalImageRegistrationRequest extends SDKHandle {
    * final var descriptor: RequestDescriptor { get }
    * @availability iOS 18.0+
    */
-  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_3864e7f38681b875", 2708347408701645, this, []); }
+  get descriptor(): RequestDescriptor { return callSDK<RequestDescriptor>("Vision_ff42ce03e691ab23", 2708347408701645, this, []); }
   /**
    * final var regionOfInterest: NormalizedRect { get set }
    * @availability iOS 18.0+
    */
-  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_3864e7f38681b875", 3900579305910634, this, []); }
-  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_3864e7f38681b875", 1491937329221068, this, [value]); }
+  get regionOfInterest(): NormalizedRect { return callSDK<NormalizedRect>("Vision_ff42ce03e691ab23", 3900579305910634, this, []); }
+  set regionOfInterest(value: NormalizedRect) { callSDK<void>("Vision_ff42ce03e691ab23", 1491937329221068, this, [value]); }
   /**
    * final func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: ComputeStage)
    * @availability iOS 18.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 2429461285976942, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: ComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2429461285976942, this, [computeDevice, computeStage]); }
   /**
    * static let supportedRevisions: [TrackTranslationalImageRegistrationRequest.Revision]
    * @availability iOS 18.0+
    */
-  static get supportedRevisions(): Array<TrackTranslationalImageRegistrationRequest_Revision> { return callSDK<Array<TrackTranslationalImageRegistrationRequest_Revision>>("Vision_3864e7f38681b875", 4167712807723928, undefined, []); }
+  static get supportedRevisions(): Array<TrackTranslationalImageRegistrationRequest_Revision> { return callSDK<Array<TrackTranslationalImageRegistrationRequest_Revision>>("Vision_ff42ce03e691ab23", 4167712807723928, undefined, []); }
   /**
    * final let frameAnalysisSpacing: CMTime
    * @availability iOS 18.0+
    */
-  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 3703999858910691, this, []); }
+  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 3703999858910691, this, []); }
   /**
    * final var minimumLatencyFrameCount: Int { get }
    * @availability iOS 18.0+
    */
-  get minimumLatencyFrameCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 148384906655842, this, []); }
+  get minimumLatencyFrameCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 148384906655842, this, []); }
   /**
    * final var supportedComputeStageDevices: [ComputeStage : [MLComputeDevice]] { get }
    * @availability iOS 18.0+
    */
-  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_3864e7f38681b875", 2868245339010317, this, []); }
+  get supportedComputeStageDevices(): $SDK9 { return callSDK<$SDK9>("Vision_ff42ce03e691ab23", 2868245339010317, this, []); }
   /**
    * final let revision: TrackTranslationalImageRegistrationRequest.Revision
    * @availability iOS 18.0+
    */
-  get revision(): TrackTranslationalImageRegistrationRequest_Revision { return callSDK<TrackTranslationalImageRegistrationRequest_Revision>("Vision_3864e7f38681b875", 1096960341722684, this, []); }
+  get revision(): TrackTranslationalImageRegistrationRequest_Revision { return callSDK<TrackTranslationalImageRegistrationRequest_Revision>("Vision_ff42ce03e691ab23", 1096960341722684, this, []); }
   /**
    * init(_ revision: TrackTranslationalImageRegistrationRequest.Revision? = nil, frameAnalysisSpacing: CMTime? = nil)
    * @availability iOS 18.0+
    */
-  static init(revision?: (TrackTranslationalImageRegistrationRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): TrackTranslationalImageRegistrationRequest { return callSDK<TrackTranslationalImageRegistrationRequest>("Vision_3864e7f38681b875", 3387633659550113, undefined, [revision, frameAnalysisSpacing]); }
+  static init(revision?: (TrackTranslationalImageRegistrationRequest_Revision) | null, frameAnalysisSpacing?: $SDK43): TrackTranslationalImageRegistrationRequest { return callSDK<TrackTranslationalImageRegistrationRequest>("Vision_ff42ce03e691ab23", 3387633659550113, undefined, [revision, frameAnalysisSpacing]); }
   declare readonly $type: { "s:6Vision42TrackTranslationalImageRegistrationRequestC": true };
 }
 
@@ -5598,52 +5598,52 @@ export class TrajectoryObservation extends SDKHandle {
    * let confidence: Float
    * @availability iOS 18.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2104488663062290, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2104488663062290, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 55560743340872, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 55560743340872, this, []); }
   /**
    * let detectedPoints: [NormalizedPoint]
    * @availability iOS 18.0+
    */
-  get detectedPoints(): Array<NormalizedPoint> { return callSDK<Array<NormalizedPoint>>("Vision_3864e7f38681b875", 2323759164271882, this, []); }
+  get detectedPoints(): Array<NormalizedPoint> { return callSDK<Array<NormalizedPoint>>("Vision_ff42ce03e691ab23", 2323759164271882, this, []); }
   /**
    * let projectedPoints: [NormalizedPoint]
    * @availability iOS 18.0+
    */
-  get projectedPoints(): Array<NormalizedPoint> { return callSDK<Array<NormalizedPoint>>("Vision_3864e7f38681b875", 1109128106101110, this, []); }
+  get projectedPoints(): Array<NormalizedPoint> { return callSDK<Array<NormalizedPoint>>("Vision_ff42ce03e691ab23", 1109128106101110, this, []); }
   /**
    * let movingAverageRadius: CGFloat
    * @availability iOS 18.0+
    */
-  get movingAverageRadius(): number { return callSDK<number>("Vision_3864e7f38681b875", 1482880441564765, this, []); }
+  get movingAverageRadius(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1482880441564765, this, []); }
   /**
    * let equationCoefficients: simd_float3
    * @availability iOS 18.0+
    */
-  get equationCoefficients(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 1897950753389937, this, []); }
+  get equationCoefficients(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 1897950753389937, this, []); }
   /**
    * let originatingRequestDescriptor: RequestDescriptor?
    * @availability iOS 18.0+
    */
-  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_3864e7f38681b875", 1477383588760300, this, []); }
+  get originatingRequestDescriptor(): $SDK2 { return callSDK<$SDK2>("Vision_ff42ce03e691ab23", 1477383588760300, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 18.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 1830535183503343, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1830535183503343, this, []); }
   /**
    * let timeRange: CMTimeRange?
    * @availability iOS 18.0+
    */
-  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_3864e7f38681b875", 3194125559499850, this, []); }
+  get timeRange(): $SDK5 { return callSDK<$SDK5>("Vision_ff42ce03e691ab23", 3194125559499850, this, []); }
   /**
    * init(_ observation: VNTrajectoryObservation)
    * @availability iOS 18.0+
    */
-  static init(observation: VNTrajectoryObservation): TrajectoryObservation { return callSDK<TrajectoryObservation>("Vision_3864e7f38681b875", 221633041587750, undefined, [observation]); }
+  static init(observation: VNTrajectoryObservation): TrajectoryObservation { return callSDK<TrajectoryObservation>("Vision_ff42ce03e691ab23", 221633041587750, undefined, [observation]); }
   declare readonly $type: { "s:6Vision21TrajectoryObservationV": true };
 }
 
@@ -5656,22 +5656,22 @@ export class VideoProcessor extends SDKHandle {
    * final func removeRequest(_ request: any VisionRequest) async -> Bool
    * @availability iOS 18.0+
    */
-  removeRequest(request: SDKHandle): Promise<boolean> { return callSDKAsync<boolean>("Vision_3864e7f38681b875", 133134235899882, this, [request]); }
+  removeRequest(request: SDKHandle): Promise<boolean> { return callSDKAsync<boolean>("Vision_ff42ce03e691ab23", 133134235899882, this, [request]); }
   /**
    * final func startAnalysis(of timeRange: CMTimeRange? = nil)
    * @availability iOS 18.0+
    */
-  startAnalysis(timeRange?: $SDK5): void { return callSDK<void>("Vision_3864e7f38681b875", 3060666622994432, this, [timeRange]); }
+  startAnalysis(timeRange?: $SDK5): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3060666622994432, this, [timeRange]); }
   /**
    * final func cancel() async
    * @availability iOS 18.0+
    */
-  cancel(): Promise<void> { return callSDKAsync<void>("Vision_3864e7f38681b875", 891722821312882, this, []); }
+  cancel(): Promise<void> { return callSDKAsync<void>("Vision_ff42ce03e691ab23", 891722821312882, this, []); }
   /**
    * init(_ videoURL: URL)
    * @availability iOS 18.0+
    */
-  static init(videoURL: string): VideoProcessor { return callSDK<VideoProcessor>("Vision_3864e7f38681b875", 607531067606029, undefined, [videoURL]); }
+  static init(videoURL: string): VideoProcessor { return callSDK<VideoProcessor>("Vision_ff42ce03e691ab23", 607531067606029, undefined, [videoURL]); }
   declare readonly $type: { "s:6Vision14VideoProcessorC": true };
 }
 
@@ -5692,12 +5692,12 @@ export class VisionError extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3936172814109075, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3936172814109075, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 18.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("Vision_3864e7f38681b875", 1232226604336791, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("Vision_ff42ce03e691ab23", 1232226604336791, this, []); }
   declare readonly $type: { "s:6Vision0A5ErrorO": true };
 }
 
@@ -5739,7 +5739,7 @@ export class VisionResult extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Vision_3864e7f38681b875", 3698196776333111, this, []); }
+  get description(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3698196776333111, this, []); }
   declare readonly $type: { "s:6Vision0A6ResultO": true };
 }
 
@@ -5749,22 +5749,22 @@ export class VisionResult extends SDKHandle {
  */
 export class VNObservation extends SDKHandle {
   /** init() */
-  static init(): VNObservation { return callSDK<VNObservation>("Vision_3864e7f38681b875", 2958029119498324, undefined, []); }
+  static init(): VNObservation { return callSDK<VNObservation>("Vision_ff42ce03e691ab23", 2958029119498324, undefined, []); }
   /**
    * var confidence: VNConfidence { get }
    * @availability iOS 11.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2607007627062694, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2607007627062694, this, []); }
   /**
    * var timeRange: CMTimeRange { get }
    * @availability iOS 14.0+
    */
-  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("Vision_3864e7f38681b875", 4340196296363099, this, []); }
+  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("Vision_ff42ce03e691ab23", 4340196296363099, this, []); }
   /**
    * var uuid: UUID { get }
    * @availability iOS 11.0+
    */
-  get uuid(): string { return callSDK<string>("Vision_3864e7f38681b875", 322379984410952, this, []); }
+  get uuid(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 322379984410952, this, []); }
   declare readonly $type: { "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true };
 }
@@ -5778,27 +5778,27 @@ export class VNRecognizedPointsObservation extends VNObservation {
    * func keypointsMultiArray() throws -> MLMultiArray
    * @availability iOS 14.0+
    */
-  keypointsMultiArray(): _CoreML_MLMultiArray { return callSDK<_CoreML_MLMultiArray>("Vision_3864e7f38681b875", 1769264134251118, this, []); }
+  keypointsMultiArray(): _CoreML_MLMultiArray { return callSDK<_CoreML_MLMultiArray>("Vision_ff42ce03e691ab23", 1769264134251118, this, []); }
   /**
    * func recognizedPoint(forKey pointKey: VNRecognizedPointKey) throws -> VNRecognizedPoint
    * @availability iOS 14.0+
    */
-  recognizedPoint(pointKey: VNRecognizedPointKey): VNRecognizedPoint { return callSDK<VNRecognizedPoint>("Vision_3864e7f38681b875", 2039352459655912, this, [pointKey]); }
+  recognizedPoint(pointKey: VNRecognizedPointKey): VNRecognizedPoint { return callSDK<VNRecognizedPoint>("Vision_ff42ce03e691ab23", 2039352459655912, this, [pointKey]); }
   /**
    * func recognizedPoints(forGroupKey groupKey: VNRecognizedPointGroupKey) throws -> [VNRecognizedPointKey : VNRecognizedPoint]
    * @availability iOS 14.0+
    */
-  recognizedPoints(groupKey: VNRecognizedPointGroupKey): NativeMap<VNRecognizedPointKey, VNRecognizedPoint> { return callSDK<NativeMap<VNRecognizedPointKey, VNRecognizedPoint>>("Vision_3864e7f38681b875", 2438378600831275, this, [groupKey]); }
+  recognizedPoints(groupKey: VNRecognizedPointGroupKey): NativeMap<VNRecognizedPointKey, VNRecognizedPoint> { return callSDK<NativeMap<VNRecognizedPointKey, VNRecognizedPoint>>("Vision_ff42ce03e691ab23", 2438378600831275, this, [groupKey]); }
   /**
    * var availableGroupKeys: [VNRecognizedPointGroupKey] { get }
    * @availability iOS 14.0+
    */
-  get availableGroupKeys(): Array<VNRecognizedPointGroupKey> { return callSDK<Array<VNRecognizedPointGroupKey>>("Vision_3864e7f38681b875", 2544495195573469, this, []); }
+  get availableGroupKeys(): Array<VNRecognizedPointGroupKey> { return callSDK<Array<VNRecognizedPointGroupKey>>("Vision_ff42ce03e691ab23", 2544495195573469, this, []); }
   /**
    * var availableKeys: [VNRecognizedPointKey] { get }
    * @availability iOS 14.0+
    */
-  get availableKeys(): Array<VNRecognizedPointKey> { return callSDK<Array<VNRecognizedPointKey>>("Vision_3864e7f38681b875", 3738730692295750, this, []); }
+  get availableKeys(): Array<VNRecognizedPointKey> { return callSDK<Array<VNRecognizedPointKey>>("Vision_ff42ce03e691ab23", 3738730692295750, this, []); }
   declare readonly $type: { "c:objc(cs)VNRecognizedPointsObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "availableGroupKeys": true; "availableKeys": true };
 }
@@ -5812,22 +5812,22 @@ export class VNAnimalBodyPoseObservation extends (VNRecognizedPointsObservation 
    * func recognizedPoint(_ jointName: VNAnimalBodyPoseObservation.JointName) throws -> VNRecognizedPoint
    * @availability iOS 17.0+
    */
-  recognizedPoint(jointName: VNAnimalBodyPoseObservation_JointName): VNRecognizedPoint { return callSDK<VNRecognizedPoint>("Vision_3864e7f38681b875", 2380762281032090, this, [jointName]); }
+  recognizedPoint(jointName: VNAnimalBodyPoseObservation_JointName): VNRecognizedPoint { return callSDK<VNRecognizedPoint>("Vision_ff42ce03e691ab23", 2380762281032090, this, [jointName]); }
   /**
    * func recognizedPoints(_ jointsGroupName: VNAnimalBodyPoseObservation.JointsGroupName) throws -> [VNAnimalBodyPoseObservation.JointName : VNRecognizedPoint]
    * @availability iOS 17.0+
    */
-  recognizedPoints(jointsGroupName: VNAnimalBodyPoseObservation_JointsGroupName): NativeMap<VNAnimalBodyPoseObservation_JointName, VNRecognizedPoint> { return callSDK<NativeMap<VNAnimalBodyPoseObservation_JointName, VNRecognizedPoint>>("Vision_3864e7f38681b875", 2892676047575114, this, [jointsGroupName]); }
+  recognizedPoints(jointsGroupName: VNAnimalBodyPoseObservation_JointsGroupName): NativeMap<VNAnimalBodyPoseObservation_JointName, VNRecognizedPoint> { return callSDK<NativeMap<VNAnimalBodyPoseObservation_JointName, VNRecognizedPoint>>("Vision_ff42ce03e691ab23", 2892676047575114, this, [jointsGroupName]); }
   /**
    * var availableJointGroupNames: [VNAnimalBodyPoseObservation.JointsGroupName] { get }
    * @availability iOS 17.0+
    */
-  get availableJointGroupNames(): $SDK151 { return callSDK<$SDK151>("Vision_3864e7f38681b875", 4262293944949007, this, []); }
+  get availableJointGroupNames(): $SDK151 { return callSDK<$SDK151>("Vision_ff42ce03e691ab23", 4262293944949007, this, []); }
   /**
    * var availableJointNames: [VNAnimalBodyPoseObservation.JointName] { get }
    * @availability iOS 17.0+
    */
-  get availableJointNames(): $SDK152 { return callSDK<$SDK152>("Vision_3864e7f38681b875", 1222292878959158, this, []); }
+  get availableJointNames(): $SDK152 { return callSDK<$SDK152>("Vision_ff42ce03e691ab23", 1222292878959158, this, []); }
   declare readonly $type: { "c:objc(cs)VNAnimalBodyPoseObservation": true; "c:objc(cs)VNRecognizedPointsObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "availableGroupKeys": true; "availableKeys": true; "availableJointGroupNames": true; "availableJointNames": true };
 }
@@ -5843,132 +5843,132 @@ export const VNAnimalBodyPoseObservation_JointName = {
    * static let leftBackElbow: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftBackElbow(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3102602791065554, undefined, []); },
+  get leftBackElbow(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3102602791065554, undefined, []); },
   /**
    * static let leftBackKnee: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftBackKnee(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1197091131167439, undefined, []); },
+  get leftBackKnee(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1197091131167439, undefined, []); },
   /**
    * static let leftBackPaw: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftBackPaw(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1298249100711983, undefined, []); },
+  get leftBackPaw(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1298249100711983, undefined, []); },
   /**
    * static let leftEarBottom: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftEarBottom(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3164116151215959, undefined, []); },
+  get leftEarBottom(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3164116151215959, undefined, []); },
   /**
    * static let leftEarMiddle: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftEarMiddle(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3410786955972689, undefined, []); },
+  get leftEarMiddle(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3410786955972689, undefined, []); },
   /**
    * static let leftEarTop: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftEarTop(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1892430173483712, undefined, []); },
+  get leftEarTop(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1892430173483712, undefined, []); },
   /**
    * static let leftEye: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftEye(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3393861983099959, undefined, []); },
+  get leftEye(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3393861983099959, undefined, []); },
   /**
    * static let leftFrontElbow: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftFrontElbow(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1697784243997316, undefined, []); },
+  get leftFrontElbow(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1697784243997316, undefined, []); },
   /**
    * static let leftFrontKnee: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftFrontKnee(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3100058567019891, undefined, []); },
+  get leftFrontKnee(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3100058567019891, undefined, []); },
   /**
    * static let leftFrontPaw: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftFrontPaw(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1274575265686130, undefined, []); },
+  get leftFrontPaw(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1274575265686130, undefined, []); },
   /**
    * static let neck: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get neck(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 745166328353401, undefined, []); },
+  get neck(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 745166328353401, undefined, []); },
   /**
    * static let nose: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get nose(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1760543014461756, undefined, []); },
+  get nose(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1760543014461756, undefined, []); },
   /**
    * static let rightBackElbow: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightBackElbow(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 2320563379461365, undefined, []); },
+  get rightBackElbow(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2320563379461365, undefined, []); },
   /**
    * static let rightBackKnee: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightBackKnee(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1758153100254575, undefined, []); },
+  get rightBackKnee(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1758153100254575, undefined, []); },
   /**
    * static let rightBackPaw: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightBackPaw(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1634084970700389, undefined, []); },
+  get rightBackPaw(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1634084970700389, undefined, []); },
   /**
    * static let rightEarBottom: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightEarBottom(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 2561082528281702, undefined, []); },
+  get rightEarBottom(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2561082528281702, undefined, []); },
   /**
    * static let rightEarMiddle: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightEarMiddle(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 675265479971644, undefined, []); },
+  get rightEarMiddle(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 675265479971644, undefined, []); },
   /**
    * static let rightEarTop: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightEarTop(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1014478707605436, undefined, []); },
+  get rightEarTop(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1014478707605436, undefined, []); },
   /**
    * static let rightEye: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightEye(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1592023021446473, undefined, []); },
+  get rightEye(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1592023021446473, undefined, []); },
   /**
    * static let rightFrontElbow: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightFrontElbow(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3627028391987986, undefined, []); },
+  get rightFrontElbow(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3627028391987986, undefined, []); },
   /**
    * static let rightFrontKnee: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightFrontKnee(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1696672137862995, undefined, []); },
+  get rightFrontKnee(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1696672137862995, undefined, []); },
   /**
    * static let rightFrontPaw: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightFrontPaw(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 577636188406482, undefined, []); },
+  get rightFrontPaw(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 577636188406482, undefined, []); },
   /**
    * static let tailBottom: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get tailBottom(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3000057861526915, undefined, []); },
+  get tailBottom(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3000057861526915, undefined, []); },
   /**
    * static let tailMiddle: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get tailMiddle(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 587920354181827, undefined, []); },
+  get tailMiddle(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 587920354181827, undefined, []); },
   /**
    * static let tailTop: VNAnimalBodyPoseObservation.JointName
    * @availability iOS 17.0+
    */
-  get tailTop(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 2424423808554045, undefined, []); },
+  get tailTop(): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2424423808554045, undefined, []); },
   /**
    * init(rawValue: VNRecognizedPointKey)
    * @availability iOS 17.0+
    */
-  init(rawValue: VNRecognizedPointKey): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1525516576174983, undefined, [rawValue]); }
+  init(rawValue: VNRecognizedPointKey): VNAnimalBodyPoseObservation_JointName { return callSDK<VNAnimalBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1525516576174983, undefined, [rawValue]); }
 };
 
 /**
@@ -5982,37 +5982,37 @@ export const VNAnimalBodyPoseObservation_JointsGroupName = {
    * static let all: VNAnimalBodyPoseObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get all(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 479492435774047, undefined, []); },
+  get all(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 479492435774047, undefined, []); },
   /**
    * static let forelegs: VNAnimalBodyPoseObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get forelegs(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 132423836056459, undefined, []); },
+  get forelegs(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 132423836056459, undefined, []); },
   /**
    * static let head: VNAnimalBodyPoseObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get head(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 968400135798200, undefined, []); },
+  get head(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 968400135798200, undefined, []); },
   /**
    * static let hindlegs: VNAnimalBodyPoseObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get hindlegs(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 1186217171442017, undefined, []); },
+  get hindlegs(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 1186217171442017, undefined, []); },
   /**
    * static let tail: VNAnimalBodyPoseObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get tail(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 4481332301769527, undefined, []); },
+  get tail(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 4481332301769527, undefined, []); },
   /**
    * static let trunk: VNAnimalBodyPoseObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get trunk(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 2711476857131787, undefined, []); },
+  get trunk(): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 2711476857131787, undefined, []); },
   /**
    * init(rawValue: VNRecognizedPointGroupKey)
    * @availability iOS 17.0+
    */
-  init(rawValue: VNRecognizedPointGroupKey): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 1651332492603597, undefined, [rawValue]); }
+  init(rawValue: VNRecognizedPointGroupKey): VNAnimalBodyPoseObservation_JointsGroupName { return callSDK<VNAnimalBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 1651332492603597, undefined, [rawValue]); }
 };
 
 /** struct VNAnimalIdentifier */
@@ -6023,14 +6023,14 @@ export const VNAnimalIdentifier = {
    * static let cat: VNAnimalIdentifier
    * @availability iOS 13.0+
    */
-  get cat(): VNAnimalIdentifier { return callSDK<VNAnimalIdentifier>("Vision_3864e7f38681b875", 4097202764594728, undefined, []); },
+  get cat(): VNAnimalIdentifier { return callSDK<VNAnimalIdentifier>("Vision_ff42ce03e691ab23", 4097202764594728, undefined, []); },
   /**
    * static let dog: VNAnimalIdentifier
    * @availability iOS 13.0+
    */
-  get dog(): VNAnimalIdentifier { return callSDK<VNAnimalIdentifier>("Vision_3864e7f38681b875", 1951175188928791, undefined, []); },
+  get dog(): VNAnimalIdentifier { return callSDK<VNAnimalIdentifier>("Vision_ff42ce03e691ab23", 1951175188928791, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): VNAnimalIdentifier { return callSDK<VNAnimalIdentifier>("Vision_3864e7f38681b875", 45211546934867, undefined, [rawValue]); }
+  init(rawValue: string): VNAnimalIdentifier { return callSDK<VNAnimalIdentifier>("Vision_ff42ce03e691ab23", 45211546934867, undefined, [rawValue]); }
 };
 
 /** typealias VNAspectRatio = Float */
@@ -6047,7 +6047,7 @@ export const VNBarcodeCompositeType = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (VNBarcodeCompositeType) | null { return callSDK<(VNBarcodeCompositeType) | null>("Vision_3864e7f38681b875", 3594538969058348, undefined, [rawValue]); }
+  init(rawValue: number): (VNBarcodeCompositeType) | null { return callSDK<(VNBarcodeCompositeType) | null>("Vision_ff42ce03e691ab23", 3594538969058348, undefined, [rawValue]); }
 };
 
 /**
@@ -6059,22 +6059,22 @@ export class VNDetectedObjectObservation extends VNObservation {
    * convenience init(boundingBox: CGRect)
    * @availability iOS 11.0+
    */
-  static initBoundingBox(boundingBox: $SDK115): VNDetectedObjectObservation { return callSDK<VNDetectedObjectObservation>("Vision_3864e7f38681b875", 209273952957278, undefined, [boundingBox]); }
+  static initBoundingBox(boundingBox: $SDK115): VNDetectedObjectObservation { return callSDK<VNDetectedObjectObservation>("Vision_ff42ce03e691ab23", 209273952957278, undefined, [boundingBox]); }
   /**
    * convenience init(requestRevision: Int, boundingBox: CGRect)
    * @availability iOS 12.0+
    */
-  static initRequestRevisionBoundingBox(requestRevision: number, boundingBox: $SDK115): VNDetectedObjectObservation { return callSDK<VNDetectedObjectObservation>("Vision_3864e7f38681b875", 1381612167147804, undefined, [requestRevision, boundingBox]); }
+  static initRequestRevisionBoundingBox(requestRevision: number, boundingBox: $SDK115): VNDetectedObjectObservation { return callSDK<VNDetectedObjectObservation>("Vision_ff42ce03e691ab23", 1381612167147804, undefined, [requestRevision, boundingBox]); }
   /**
    * var boundingBox: CGRect { get }
    * @availability iOS 11.0+
    */
-  get boundingBox(): $SDK115 { return callSDK<$SDK115>("Vision_3864e7f38681b875", 4128796921733700, this, []); }
+  get boundingBox(): $SDK115 { return callSDK<$SDK115>("Vision_ff42ce03e691ab23", 4128796921733700, this, []); }
   /**
    * var globalSegmentationMask: VNPixelBufferObservation? { get }
    * @availability iOS 15.0+
    */
-  get globalSegmentationMask(): (VNPixelBufferObservation) | null { return callSDK<(VNPixelBufferObservation) | null>("Vision_3864e7f38681b875", 1272509462571999, this, []); }
+  get globalSegmentationMask(): (VNPixelBufferObservation) | null { return callSDK<(VNPixelBufferObservation) | null>("Vision_ff42ce03e691ab23", 1272509462571999, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectedObjectObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "boundingBox": true; "globalSegmentationMask": true };
 }
@@ -6089,32 +6089,32 @@ export class VNRectangleObservation extends VNDetectedObjectObservation {
    * @availability iOS 13.0+
    * @deprecated iOS 17.0
    */
-  static initRequestRevisionTopLeftBottomLeftBottomRightTopRight(requestRevision: number, topLeft: $SDK114, bottomLeft: $SDK114, bottomRight: $SDK114, topRight: $SDK114): VNRectangleObservation { return callSDK<VNRectangleObservation>("Vision_3864e7f38681b875", 2975226526953459, undefined, [requestRevision, topLeft, bottomLeft, bottomRight, topRight]); }
+  static initRequestRevisionTopLeftBottomLeftBottomRightTopRight(requestRevision: number, topLeft: $SDK114, bottomLeft: $SDK114, bottomRight: $SDK114, topRight: $SDK114): VNRectangleObservation { return callSDK<VNRectangleObservation>("Vision_ff42ce03e691ab23", 2975226526953459, undefined, [requestRevision, topLeft, bottomLeft, bottomRight, topRight]); }
   /**
    * convenience init(requestRevision: Int, topLeft: CGPoint, topRight: CGPoint, bottomRight: CGPoint, bottomLeft: CGPoint)
    * @availability iOS 17.0+
    */
-  static initRequestRevisionTopLeftTopRightBottomRightBottomLeft(requestRevision: number, topLeft: $SDK114, topRight: $SDK114, bottomRight: $SDK114, bottomLeft: $SDK114): VNRectangleObservation { return callSDK<VNRectangleObservation>("Vision_3864e7f38681b875", 2914952722909531, undefined, [requestRevision, topLeft, topRight, bottomRight, bottomLeft]); }
+  static initRequestRevisionTopLeftTopRightBottomRightBottomLeft(requestRevision: number, topLeft: $SDK114, topRight: $SDK114, bottomRight: $SDK114, bottomLeft: $SDK114): VNRectangleObservation { return callSDK<VNRectangleObservation>("Vision_ff42ce03e691ab23", 2914952722909531, undefined, [requestRevision, topLeft, topRight, bottomRight, bottomLeft]); }
   /**
    * var bottomLeft: CGPoint { get }
    * @availability iOS 11.0+
    */
-  get bottomLeft(): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 3747357995832671, this, []); }
+  get bottomLeft(): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 3747357995832671, this, []); }
   /**
    * var bottomRight: CGPoint { get }
    * @availability iOS 11.0+
    */
-  get bottomRight(): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 3954574906211925, this, []); }
+  get bottomRight(): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 3954574906211925, this, []); }
   /**
    * var topLeft: CGPoint { get }
    * @availability iOS 11.0+
    */
-  get topLeft(): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 1060651380188708, this, []); }
+  get topLeft(): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 1060651380188708, this, []); }
   /**
    * var topRight: CGPoint { get }
    * @availability iOS 11.0+
    */
-  get topRight(): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 2345747929140419, this, []); }
+  get topRight(): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 2345747929140419, this, []); }
   declare readonly $type: { "c:objc(cs)VNRectangleObservation": true; "c:objc(cs)VNDetectedObjectObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "boundingBox": true; "globalSegmentationMask": true; "bottomLeft": true; "bottomRight": true; "topLeft": true; "topRight": true };
 }
@@ -6125,52 +6125,52 @@ export class VNRectangleObservation extends VNDetectedObjectObservation {
  */
 export class VNBarcodeObservation extends (VNRectangleObservation as unknown as Omit<typeof VNRectangleObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNRectangleObservation)) {
   /** init() */
-  static init(): VNBarcodeObservation { return callSDK<VNBarcodeObservation>("Vision_3864e7f38681b875", 1350678236250509, undefined, []); }
+  static init(): VNBarcodeObservation { return callSDK<VNBarcodeObservation>("Vision_ff42ce03e691ab23", 1350678236250509, undefined, []); }
   /**
    * var barcodeDescriptor: CIBarcodeDescriptor? { get }
    * @availability iOS 11.0+
    */
-  get barcodeDescriptor(): (_CoreImage_CIBarcodeDescriptor) | null { return callSDK<(_CoreImage_CIBarcodeDescriptor) | null>("Vision_3864e7f38681b875", 1610475203999564, this, []); }
+  get barcodeDescriptor(): (_CoreImage_CIBarcodeDescriptor) | null { return callSDK<(_CoreImage_CIBarcodeDescriptor) | null>("Vision_ff42ce03e691ab23", 1610475203999564, this, []); }
   /**
    * var isColorInverted: Bool { get }
    * @availability iOS 17.0+
    */
-  get isColorInverted(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 4015695504713736, this, []); }
+  get isColorInverted(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 4015695504713736, this, []); }
   /**
    * var isGS1DataCarrier: Bool { get }
    * @availability iOS 17.0+
    */
-  get isGS1DataCarrier(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 3978942451275782, this, []); }
+  get isGS1DataCarrier(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 3978942451275782, this, []); }
   /**
    * var payloadData: Data? { get }
    * @availability iOS 17.0+
    */
-  get payloadData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Vision_3864e7f38681b875", 2358143158088403, this, []); }
+  get payloadData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Vision_ff42ce03e691ab23", 2358143158088403, this, []); }
   /**
    * var payloadStringValue: String? { get }
    * @availability iOS 11.0+
    */
-  get payloadStringValue(): (string) | null { return callSDK<(string) | null>("Vision_3864e7f38681b875", 2793719431428224, this, []); }
+  get payloadStringValue(): (string) | null { return callSDK<(string) | null>("Vision_ff42ce03e691ab23", 2793719431428224, this, []); }
   /**
    * var supplementalCompositeType: VNBarcodeCompositeType { get }
    * @availability iOS 17.0+
    */
-  get supplementalCompositeType(): VNBarcodeCompositeType { return callSDK<VNBarcodeCompositeType>("Vision_3864e7f38681b875", 723662075066855, this, []); }
+  get supplementalCompositeType(): VNBarcodeCompositeType { return callSDK<VNBarcodeCompositeType>("Vision_ff42ce03e691ab23", 723662075066855, this, []); }
   /**
    * var supplementalPayloadData: Data? { get }
    * @availability iOS 17.0+
    */
-  get supplementalPayloadData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Vision_3864e7f38681b875", 1206272803653205, this, []); }
+  get supplementalPayloadData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Vision_ff42ce03e691ab23", 1206272803653205, this, []); }
   /**
    * var supplementalPayloadString: String? { get }
    * @availability iOS 17.0+
    */
-  get supplementalPayloadString(): (string) | null { return callSDK<(string) | null>("Vision_3864e7f38681b875", 1650269774839487, this, []); }
+  get supplementalPayloadString(): (string) | null { return callSDK<(string) | null>("Vision_ff42ce03e691ab23", 1650269774839487, this, []); }
   /**
    * var symbology: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    */
-  get symbology(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 3178550867207774, this, []); }
+  get symbology(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 3178550867207774, this, []); }
   declare readonly $type: { "c:objc(cs)VNBarcodeObservation": true; "c:objc(cs)VNRectangleObservation": true; "c:objc(cs)VNDetectedObjectObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "boundingBox": true; "globalSegmentationMask": true; "bottomLeft": true; "bottomRight": true; "topLeft": true; "topRight": true; "barcodeDescriptor": true; "isColorInverted": true; "isGS1DataCarrier": true; "payloadData": true; "payloadStringValue": true; "supplementalCompositeType": true; "supplementalPayloadData": true; "supplementalPayloadString": true; "symbology": true };
 }
@@ -6183,226 +6183,226 @@ export const VNBarcodeSymbology = {
    * static let aztec: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get aztec(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 868294718107238, undefined, []); },
+  get aztec(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 868294718107238, undefined, []); },
   /**
    * static let codabar: VNBarcodeSymbology
    * @availability iOS 15.0+
    */
-  get codabar(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1523869951163516, undefined, []); },
+  get codabar(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1523869951163516, undefined, []); },
   /**
    * static let code128: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get code128(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1248402377957691, undefined, []); },
+  get code128(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1248402377957691, undefined, []); },
   /**
    * static let code39: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get code39(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2861583746331069, undefined, []); },
+  get code39(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2861583746331069, undefined, []); },
   /**
    * static let code39Checksum: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get code39Checksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 996175103412951, undefined, []); },
+  get code39Checksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 996175103412951, undefined, []); },
   /**
    * static let code39FullASCII: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get code39FullASCII(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 3981264136607081, undefined, []); },
+  get code39FullASCII(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 3981264136607081, undefined, []); },
   /**
    * static let code39FullASCIIChecksum: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get code39FullASCIIChecksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1829566597606578, undefined, []); },
+  get code39FullASCIIChecksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1829566597606578, undefined, []); },
   /**
    * static let code93: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get code93(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2420339551682240, undefined, []); },
+  get code93(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2420339551682240, undefined, []); },
   /**
    * static let code93i: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get code93i(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2188637666694701, undefined, []); },
+  get code93i(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2188637666694701, undefined, []); },
   /**
    * static let dataMatrix: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get dataMatrix(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 608968222855489, undefined, []); },
+  get dataMatrix(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 608968222855489, undefined, []); },
   /**
    * static let ean13: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get ean13(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1621166885471298, undefined, []); },
+  get ean13(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1621166885471298, undefined, []); },
   /**
    * static let ean8: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get ean8(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2812234098093601, undefined, []); },
+  get ean8(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2812234098093601, undefined, []); },
   /**
    * static let gs1DataBar: VNBarcodeSymbology
    * @availability iOS 15.0+
    */
-  get gs1DataBar(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2284604204985406, undefined, []); },
+  get gs1DataBar(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2284604204985406, undefined, []); },
   /**
    * static let gs1DataBarExpanded: VNBarcodeSymbology
    * @availability iOS 15.0+
    */
-  get gs1DataBarExpanded(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2872313359189543, undefined, []); },
+  get gs1DataBarExpanded(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2872313359189543, undefined, []); },
   /**
    * static let gs1DataBarLimited: VNBarcodeSymbology
    * @availability iOS 15.0+
    */
-  get gs1DataBarLimited(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 3480346338556439, undefined, []); },
+  get gs1DataBarLimited(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 3480346338556439, undefined, []); },
   /**
    * static let i2of5: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get i2of5(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2471125435206299, undefined, []); },
+  get i2of5(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2471125435206299, undefined, []); },
   /**
    * static let i2of5Checksum: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get i2of5Checksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2719256485060077, undefined, []); },
+  get i2of5Checksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2719256485060077, undefined, []); },
   /**
    * static let itf14: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get itf14(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 4324720468543937, undefined, []); },
+  get itf14(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 4324720468543937, undefined, []); },
   /**
    * static let msiPlessey: VNBarcodeSymbology
    * @availability iOS 17.0+
    */
-  get msiPlessey(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 4267690899396555, undefined, []); },
+  get msiPlessey(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 4267690899396555, undefined, []); },
   /**
    * static let microPDF417: VNBarcodeSymbology
    * @availability iOS 15.0+
    */
-  get microPDF417(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1291062074963580, undefined, []); },
+  get microPDF417(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1291062074963580, undefined, []); },
   /**
    * static let microQR: VNBarcodeSymbology
    * @availability iOS 15.0+
    */
-  get microQR(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1580043065054259, undefined, []); },
+  get microQR(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1580043065054259, undefined, []); },
   /**
    * static let pdf417: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get pdf417(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2246684161481391, undefined, []); },
+  get pdf417(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2246684161481391, undefined, []); },
   /**
    * static let qr: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get qr(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 3689473564018497, undefined, []); },
+  get qr(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 3689473564018497, undefined, []); },
   /**
    * static let upce: VNBarcodeSymbology
    * @availability iOS 11.0+
    */
-  get upce(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1621104671920802, undefined, []); },
+  get upce(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1621104671920802, undefined, []); },
   /**
    * static var DataMatrix: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get DataMatrix(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1717025205252141, undefined, []); },
+  get DataMatrix(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1717025205252141, undefined, []); },
   /**
    * static var I2of5Checksum: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get I2of5Checksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 811103614359444, undefined, []); },
+  get I2of5Checksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 811103614359444, undefined, []); },
   /**
    * static var Code39Checksum: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get Code39Checksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1054003317921119, undefined, []); },
+  get Code39Checksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1054003317921119, undefined, []); },
   /**
    * static var Code39FullASCII: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get Code39FullASCII(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2095232716767671, undefined, []); },
+  get Code39FullASCII(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2095232716767671, undefined, []); },
   /**
    * static var Code39FullASCIIChecksum: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get Code39FullASCIIChecksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 3385825649070516, undefined, []); },
+  get Code39FullASCIIChecksum(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 3385825649070516, undefined, []); },
   /**
    * static var QR: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get QR(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 681198112266982, undefined, []); },
+  get QR(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 681198112266982, undefined, []); },
   /**
    * static var EAN8: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get EAN8(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2159091603364239, undefined, []); },
+  get EAN8(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2159091603364239, undefined, []); },
   /**
    * static var UPCE: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get UPCE(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 3672336039590597, undefined, []); },
+  get UPCE(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 3672336039590597, undefined, []); },
   /**
    * static var Aztec: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get Aztec(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2591770997797654, undefined, []); },
+  get Aztec(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2591770997797654, undefined, []); },
   /**
    * static var EAN13: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get EAN13(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1718302448631105, undefined, []); },
+  get EAN13(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1718302448631105, undefined, []); },
   /**
    * static var I2of5: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get I2of5(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 682978925184230, undefined, []); },
+  get I2of5(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 682978925184230, undefined, []); },
   /**
    * static var ITF14: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get ITF14(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2927322201764100, undefined, []); },
+  get ITF14(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2927322201764100, undefined, []); },
   /**
    * static var Code39: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get Code39(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 4392233868556846, undefined, []); },
+  get Code39(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 4392233868556846, undefined, []); },
   /**
    * static var Code93: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get Code93(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 2289178538972462, undefined, []); },
+  get Code93(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 2289178538972462, undefined, []); },
   /**
    * static var PDF417: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get PDF417(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 1504889014370786, undefined, []); },
+  get PDF417(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 1504889014370786, undefined, []); },
   /**
    * static var Code128: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get Code128(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 409954204631754, undefined, []); },
+  get Code128(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 409954204631754, undefined, []); },
   /**
    * static var Code93i: VNBarcodeSymbology { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get Code93i(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 4049521058972886, undefined, []); },
+  get Code93i(): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 4049521058972886, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_3864e7f38681b875", 3283012388283705, undefined, [rawValue]); }
+  init(rawValue: string): VNBarcodeSymbology { return callSDK<VNBarcodeSymbology>("Vision_ff42ce03e691ab23", 3283012388283705, undefined, [rawValue]); }
 };
 
 /**
@@ -6414,76 +6414,76 @@ export class VNRequest extends SDKHandle {
    * class var currentRevision: Int { get }
    * @availability iOS 12.0+
    */
-  static get currentRevision(): number { return callSDK<number>("Vision_3864e7f38681b875", 2574888470914485, undefined, []); }
+  static get currentRevision(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2574888470914485, undefined, []); }
   /**
    * class var defaultRevision: Int { get }
    * @availability iOS 12.0+
    */
-  static get defaultRevision(): number { return callSDK<number>("Vision_3864e7f38681b875", 1774826226680163, undefined, []); }
+  static get defaultRevision(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1774826226680163, undefined, []); }
   /**
    * class var supportedRevisions: IndexSet { get }
    * @availability iOS 12.0+
    */
-  static get supportedRevisions(): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("Vision_3864e7f38681b875", 4438354698583435, undefined, []); }
+  static get supportedRevisions(): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("Vision_ff42ce03e691ab23", 4438354698583435, undefined, []); }
   /**
    * func cancel()
    * @availability iOS 13.0+
    */
-  cancel(): void { return callSDK<void>("Vision_3864e7f38681b875", 2563800745229653, this, []); }
+  cancel(): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2563800745229653, this, []); }
   /**
    * convenience init()
    * @availability iOS 11.0+
    */
-  static init(): VNRequest { return callSDK<VNRequest>("Vision_3864e7f38681b875", 3423492617689847, undefined, []); }
+  static init(): VNRequest { return callSDK<VNRequest>("Vision_ff42ce03e691ab23", 3423492617689847, undefined, []); }
   /**
    * init(completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initCompletionHandler(completionHandler?: $SDK155): VNRequest { return callSDK<VNRequest>("Vision_3864e7f38681b875", 3035915947468752, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static initCompletionHandler(completionHandler?: $SDK155): VNRequest { return callSDK<VNRequest>("Vision_ff42ce03e691ab23", 3035915947468752, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var completionHandler: VNRequestCompletionHandler? { get }
    * @availability iOS 11.0+
    */
-  get completionHandler(): (((arg0: VNRequest, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: VNRequest, arg1: (NativeError) | null) => Promise<void>)) | null>("Vision_3864e7f38681b875", 3899439827835741, this, []); }
+  get completionHandler(): (((arg0: VNRequest, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: VNRequest, arg1: (NativeError) | null) => Promise<void>)) | null>("Vision_ff42ce03e691ab23", 3899439827835741, this, []); }
   /**
    * var preferBackgroundProcessing: Bool { get set }
    * @availability iOS 11.0+
    */
-  get preferBackgroundProcessing(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 1962734379813849, this, []); }
-  set preferBackgroundProcessing(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 1689919670483652, this, [value]); }
+  get preferBackgroundProcessing(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 1962734379813849, this, []); }
+  set preferBackgroundProcessing(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 1689919670483652, this, [value]); }
   /**
    * var results: [VNObservation]? { get }
    * @availability iOS 11.0+
    */
-  get results(): (Array<VNObservation>) | null { return callSDK<(Array<VNObservation>) | null>("Vision_3864e7f38681b875", 4129752776811536, this, []); }
+  get results(): (Array<VNObservation>) | null { return callSDK<(Array<VNObservation>) | null>("Vision_ff42ce03e691ab23", 4129752776811536, this, []); }
   /**
    * var revision: Int { get set }
    * @availability iOS 12.0+
    */
-  get revision(): number { return callSDK<number>("Vision_3864e7f38681b875", 3517568284956099, this, []); }
-  set revision(value: number) { callSDK<void>("Vision_3864e7f38681b875", 2133030376109483, this, [value]); }
+  get revision(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3517568284956099, this, []); }
+  set revision(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 2133030376109483, this, [value]); }
   /**
    * var usesCPUOnly: Bool { get set }
    * @availability iOS 11.0+
    * @deprecated iOS 17.0
    */
-  get usesCPUOnly(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 1720942009978306, this, []); }
-  set usesCPUOnly(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 4173935540804222, this, [value]); }
+  get usesCPUOnly(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 1720942009978306, this, []); }
+  set usesCPUOnly(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 4173935540804222, this, [value]); }
   /**
    * @nonobjc func computeDevice(for computeStage: VNComputeStage) -> MLComputeDevice?
    * @availability iOS 17.0+
    */
-  computeDevice(computeStage: VNComputeStage): $SDK7 { return callSDK<$SDK7>("Vision_3864e7f38681b875", 598279450451096, this, [computeStage]); }
+  computeDevice(computeStage: VNComputeStage): $SDK7 { return callSDK<$SDK7>("Vision_ff42ce03e691ab23", 598279450451096, this, [computeStage]); }
   /**
    * @nonobjc func setComputeDevice(_ computeDevice: MLComputeDevice?, for computeStage: VNComputeStage)
    * @availability iOS 17.0+
    */
-  setComputeDevice(computeDevice: $SDK7, computeStage: VNComputeStage): void { return callSDK<void>("Vision_3864e7f38681b875", 36471649926190, this, [computeDevice, computeStage]); }
+  setComputeDevice(computeDevice: $SDK7, computeStage: VNComputeStage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 36471649926190, this, [computeDevice, computeStage]); }
   /**
    * @nonobjc var supportedComputeStageDevices: [VNComputeStage : [MLComputeDevice]] { get throws }
    * @availability iOS 17.0+
    */
-  get supportedComputeStageDevices(): NativeMap<VNComputeStage, Array<_CoreML_MLComputeDevice>> { return callSDK<NativeMap<VNComputeStage, Array<_CoreML_MLComputeDevice>>>("Vision_3864e7f38681b875", 4259295474816473, this, []); }
+  get supportedComputeStageDevices(): NativeMap<VNComputeStage, Array<_CoreML_MLComputeDevice>> { return callSDK<NativeMap<VNComputeStage, Array<_CoreML_MLComputeDevice>>>("Vision_ff42ce03e691ab23", 4259295474816473, this, []); }
   declare readonly $type: { "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true };
 }
@@ -6494,13 +6494,13 @@ export class VNRequest extends SDKHandle {
  */
 export class VNImageBasedRequest extends (VNRequest as unknown as Omit<typeof VNRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNRequest)) {
   /** init() */
-  static init(): VNImageBasedRequest { return callSDK<VNImageBasedRequest>("Vision_3864e7f38681b875", 2863355439631691, undefined, []); }
+  static init(): VNImageBasedRequest { return callSDK<VNImageBasedRequest>("Vision_ff42ce03e691ab23", 2863355439631691, undefined, []); }
   /**
    * var regionOfInterest: CGRect { get set }
    * @availability iOS 11.0+
    */
-  get regionOfInterest(): $SDK115 { return callSDK<$SDK115>("Vision_3864e7f38681b875", 1650242375663662, this, []); }
-  set regionOfInterest(value: $SDK115) { callSDK<void>("Vision_3864e7f38681b875", 2679038761191538, this, [value]); }
+  get regionOfInterest(): $SDK115 { return callSDK<$SDK115>("Vision_ff42ce03e691ab23", 1650242375663662, this, []); }
+  set regionOfInterest(value: $SDK115) { callSDK<void>("Vision_ff42ce03e691ab23", 2679038761191538, this, [value]); }
   declare readonly $type: { "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -6511,12 +6511,12 @@ export class VNImageBasedRequest extends (VNRequest as unknown as Omit<typeof VN
  */
 export class VNCalculateImageAestheticsScoresRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNCalculateImageAestheticsScoresRequest { return callSDK<VNCalculateImageAestheticsScoresRequest>("Vision_3864e7f38681b875", 1025077632593046, undefined, []); }
+  static init(): VNCalculateImageAestheticsScoresRequest { return callSDK<VNCalculateImageAestheticsScoresRequest>("Vision_ff42ce03e691ab23", 1025077632593046, undefined, []); }
   /**
    * var results: [VNImageAestheticsScoresObservation]? { get }
    * @availability iOS 18.0+
    */
-  get results(): (Array<VNImageAestheticsScoresObservation>) | null { return callSDK<(Array<VNImageAestheticsScoresObservation>) | null>("Vision_3864e7f38681b875", 2144170557117346, this, []); }
+  get results(): (Array<VNImageAestheticsScoresObservation>) | null { return callSDK<(Array<VNImageAestheticsScoresObservation>) | null>("Vision_ff42ce03e691ab23", 2144170557117346, this, []); }
   declare readonly $type: { "c:objc(cs)VNCalculateImageAestheticsScoresRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -6532,7 +6532,7 @@ export const VNChirality = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (VNChirality) | null { return callSDK<(VNChirality) | null>("Vision_3864e7f38681b875", 227804489266512, undefined, [rawValue]); }
+  init(rawValue: number): (VNChirality) | null { return callSDK<(VNChirality) | null>("Vision_ff42ce03e691ab23", 227804489266512, undefined, [rawValue]); }
 };
 
 /**
@@ -6544,42 +6544,42 @@ export class VNCircle extends SDKHandle {
    * class var zero: VNCircle { get }
    * @availability iOS 14.0+
    */
-  static get zero(): VNCircle { return callSDK<VNCircle>("Vision_3864e7f38681b875", 2337405629190836, undefined, []); }
+  static get zero(): VNCircle { return callSDK<VNCircle>("Vision_ff42ce03e691ab23", 2337405629190836, undefined, []); }
   /**
    * func contains(_ point: VNPoint) -> Bool
    * @availability iOS 14.0+
    */
-  contains(point: VNPoint): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 123265319350760, this, [point]); }
+  contains(point: VNPoint): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 123265319350760, this, [point]); }
   /**
    * func contains(_ point: VNPoint, inCircumferentialRingOfWidth ringWidth: Double) -> Bool
    * @availability iOS 14.0+
    */
-  containsInCircumferentialRingOfWidth(point: VNPoint, ringWidth: number): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 4304179644948630, this, [point, ringWidth]); }
+  containsInCircumferentialRingOfWidth(point: VNPoint, ringWidth: number): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 4304179644948630, this, [point, ringWidth]); }
   /**
    * convenience init(center: VNPoint, diameter: Double)
    * @availability iOS 14.0+
    */
-  static initCenterDiameter(center: VNPoint, diameter: number): VNCircle { return callSDK<VNCircle>("Vision_3864e7f38681b875", 3539792318196110, undefined, [center, diameter]); }
+  static initCenterDiameter(center: VNPoint, diameter: number): VNCircle { return callSDK<VNCircle>("Vision_ff42ce03e691ab23", 3539792318196110, undefined, [center, diameter]); }
   /**
    * init(center: VNPoint, radius: Double)
    * @availability iOS 14.0+
    */
-  static initCenterRadius(center: VNPoint, radius: number): VNCircle { return callSDK<VNCircle>("Vision_3864e7f38681b875", 1584016052024934, undefined, [center, radius]); }
+  static initCenterRadius(center: VNPoint, radius: number): VNCircle { return callSDK<VNCircle>("Vision_ff42ce03e691ab23", 1584016052024934, undefined, [center, radius]); }
   /**
    * var center: VNPoint { get }
    * @availability iOS 14.0+
    */
-  get center(): VNPoint { return callSDK<VNPoint>("Vision_3864e7f38681b875", 328991293360002, this, []); }
+  get center(): VNPoint { return callSDK<VNPoint>("Vision_ff42ce03e691ab23", 328991293360002, this, []); }
   /**
    * var diameter: Double { get }
    * @availability iOS 14.0+
    */
-  get diameter(): number { return callSDK<number>("Vision_3864e7f38681b875", 2925629885304597, this, []); }
+  get diameter(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2925629885304597, this, []); }
   /**
    * var radius: Double { get }
    * @availability iOS 14.0+
    */
-  get radius(): number { return callSDK<number>("Vision_3864e7f38681b875", 3913768423319599, this, []); }
+  get radius(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3913768423319599, this, []); }
   declare readonly $type: { "c:objc(cs)VNCircle": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "center": true; "diameter": true; "radius": true };
 }
@@ -6593,24 +6593,24 @@ export class VNClassificationObservation extends (VNObservation as unknown as Om
    * func hasMinimumPrecision(_ minimumPrecision: Float, forRecall recall: Float) -> Bool
    * @availability iOS 13.0+
    */
-  hasMinimumPrecision(minimumPrecision: number, recall: number): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2146634482274446, this, [minimumPrecision, recall]); }
+  hasMinimumPrecision(minimumPrecision: number, recall: number): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2146634482274446, this, [minimumPrecision, recall]); }
   /**
    * func hasMinimumRecall(_ minimumRecall: Float, forPrecision precision: Float) -> Bool
    * @availability iOS 13.0+
    */
-  hasMinimumRecall(minimumRecall: number, precision: number): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 1754981364070898, this, [minimumRecall, precision]); }
+  hasMinimumRecall(minimumRecall: number, precision: number): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 1754981364070898, this, [minimumRecall, precision]); }
   /** init() */
-  static init(): VNClassificationObservation { return callSDK<VNClassificationObservation>("Vision_3864e7f38681b875", 4319834556238714, undefined, []); }
+  static init(): VNClassificationObservation { return callSDK<VNClassificationObservation>("Vision_ff42ce03e691ab23", 4319834556238714, undefined, []); }
   /**
    * var hasPrecisionRecallCurve: Bool { get }
    * @availability iOS 13.0+
    */
-  get hasPrecisionRecallCurve(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 3357037971032839, this, []); }
+  get hasPrecisionRecallCurve(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 3357037971032839, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 11.0+
    */
-  get identifier(): string { return callSDK<string>("Vision_3864e7f38681b875", 3778750473727251, this, []); }
+  get identifier(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 3778750473727251, this, []); }
   declare readonly $type: { "c:objc(cs)VNClassificationObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "hasPrecisionRecallCurve": true; "identifier": true };
 }
@@ -6625,19 +6625,19 @@ export class VNClassifyImageRequest extends (VNImageBasedRequest as unknown as O
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  static knownClassifications(requestRevision: number): $SDK160 { return callSDK<$SDK160>("Vision_3864e7f38681b875", 30423498205536, undefined, [requestRevision]); }
+  static knownClassifications(requestRevision: number): $SDK160 { return callSDK<$SDK160>("Vision_ff42ce03e691ab23", 30423498205536, undefined, [requestRevision]); }
   /** init() */
-  static init(): VNClassifyImageRequest { return callSDK<VNClassifyImageRequest>("Vision_3864e7f38681b875", 2236390906323452, undefined, []); }
+  static init(): VNClassifyImageRequest { return callSDK<VNClassifyImageRequest>("Vision_ff42ce03e691ab23", 2236390906323452, undefined, []); }
   /**
    * func supportedIdentifiers() throws -> [String]
    * @availability iOS 15.0+
    */
-  supportedIdentifiers(): Array<string> { return callSDK<Array<string>>("Vision_3864e7f38681b875", 4054173420814113, this, []); }
+  supportedIdentifiers(): Array<string> { return callSDK<Array<string>>("Vision_ff42ce03e691ab23", 4054173420814113, this, []); }
   /**
    * var results: [VNClassificationObservation]? { get }
    * @availability iOS 13.0+
    */
-  get results(): (Array<VNClassificationObservation>) | null { return callSDK<(Array<VNClassificationObservation>) | null>("Vision_3864e7f38681b875", 2813350820515427, this, []); }
+  get results(): (Array<VNClassificationObservation>) | null { return callSDK<(Array<VNClassificationObservation>) | null>("Vision_ff42ce03e691ab23", 2813350820515427, this, []); }
   declare readonly $type: { "c:objc(cs)VNClassifyImageRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -6653,17 +6653,17 @@ export const VNComputeStage = {
    * static let main: VNComputeStage
    * @availability iOS 17.0+
    */
-  get main(): VNComputeStage { return callSDK<VNComputeStage>("Vision_3864e7f38681b875", 1418769921475938, undefined, []); },
+  get main(): VNComputeStage { return callSDK<VNComputeStage>("Vision_ff42ce03e691ab23", 1418769921475938, undefined, []); },
   /**
    * static let postProcessing: VNComputeStage
    * @availability iOS 17.0+
    */
-  get postProcessing(): VNComputeStage { return callSDK<VNComputeStage>("Vision_3864e7f38681b875", 1756646534395080, undefined, []); },
+  get postProcessing(): VNComputeStage { return callSDK<VNComputeStage>("Vision_ff42ce03e691ab23", 1756646534395080, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): VNComputeStage { return callSDK<VNComputeStage>("Vision_3864e7f38681b875", 3128881376096115, undefined, [rawValue]); }
+  init(rawValue: string): VNComputeStage { return callSDK<VNComputeStage>("Vision_ff42ce03e691ab23", 3128881376096115, undefined, [rawValue]); }
 };
 
 /** typealias VNConfidence = Float */
@@ -6678,47 +6678,47 @@ export class VNContour extends SDKHandle {
    * func childContour(at childContourIndex: Int) throws -> VNContour
    * @availability iOS 14.0+
    */
-  childContour(childContourIndex: number): VNContour { return callSDK<VNContour>("Vision_3864e7f38681b875", 3165054368302547, this, [childContourIndex]); }
+  childContour(childContourIndex: number): VNContour { return callSDK<VNContour>("Vision_ff42ce03e691ab23", 3165054368302547, this, [childContourIndex]); }
   /**
    * func polygonApproximation(epsilon: Float) throws -> VNContour
    * @availability iOS 14.0+
    */
-  polygonApproximation(epsilon: number): VNContour { return callSDK<VNContour>("Vision_3864e7f38681b875", 506773705774844, this, [epsilon]); }
+  polygonApproximation(epsilon: number): VNContour { return callSDK<VNContour>("Vision_ff42ce03e691ab23", 506773705774844, this, [epsilon]); }
   /**
    * var aspectRatio: Float { get }
    * @availability iOS 14.0+
    */
-  get aspectRatio(): number { return callSDK<number>("Vision_3864e7f38681b875", 4419883668469531, this, []); }
+  get aspectRatio(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4419883668469531, this, []); }
   /**
    * var childContourCount: Int { get }
    * @availability iOS 14.0+
    */
-  get childContourCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 2537962963082169, this, []); }
+  get childContourCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2537962963082169, this, []); }
   /**
    * var childContours: [VNContour] { get }
    * @availability iOS 14.0+
    */
-  get childContours(): Array<VNContour> { return callSDK<Array<VNContour>>("Vision_3864e7f38681b875", 3559823224797522, this, []); }
+  get childContours(): Array<VNContour> { return callSDK<Array<VNContour>>("Vision_ff42ce03e691ab23", 3559823224797522, this, []); }
   /**
    * var indexPath: IndexPath { get }
    * @availability iOS 14.0+
    */
-  get indexPath(): _Foundation_IndexPath { return callSDK<_Foundation_IndexPath>("Vision_3864e7f38681b875", 3585369440930354, this, []); }
+  get indexPath(): _Foundation_IndexPath { return callSDK<_Foundation_IndexPath>("Vision_ff42ce03e691ab23", 3585369440930354, this, []); }
   /**
    * var normalizedPath: CGPath { get }
    * @availability iOS 14.0+
    */
-  get normalizedPath(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("Vision_3864e7f38681b875", 3580142495638025, this, []); }
+  get normalizedPath(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("Vision_ff42ce03e691ab23", 3580142495638025, this, []); }
   /**
    * var pointCount: Int { get }
    * @availability iOS 14.0+
    */
-  get pointCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 4420833957387257, this, []); }
+  get pointCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4420833957387257, this, []); }
   /**
    * @nonobjc var normalizedPoints: [simd_float2] { get }
    * @availability iOS 14.0+
    */
-  get normalizedPoints(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Vision_3864e7f38681b875", 1040009729810056, this, []); }
+  get normalizedPoints(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Vision_ff42ce03e691ab23", 1040009729810056, this, []); }
   declare readonly $type: { "c:objc(cs)VNContour": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aspectRatio": true; "childContourCount": true; "childContours": true; "indexPath": true; "normalizedPath": true; "pointCount": true };
 }
@@ -6732,34 +6732,34 @@ export class VNContoursObservation extends (VNObservation as unknown as Omit<typ
    * func contour(at contourIndex: Int) throws -> VNContour
    * @availability iOS 14.0+
    */
-  contourAt(contourIndex: number): VNContour { return callSDK<VNContour>("Vision_3864e7f38681b875", 3151291054641353, this, [contourIndex]); }
+  contourAt(contourIndex: number): VNContour { return callSDK<VNContour>("Vision_ff42ce03e691ab23", 3151291054641353, this, [contourIndex]); }
   /**
    * func contour(at indexPath: IndexPath) throws -> VNContour
    * @availability iOS 14.0+
    */
-  contourAt8849(indexPath: _Foundation_IndexPath): VNContour { return callSDK<VNContour>("Vision_3864e7f38681b875", 2043876199836342, this, [indexPath]); }
+  contourAt8849(indexPath: _Foundation_IndexPath): VNContour { return callSDK<VNContour>("Vision_ff42ce03e691ab23", 2043876199836342, this, [indexPath]); }
   /** init() */
-  static init(): VNContoursObservation { return callSDK<VNContoursObservation>("Vision_3864e7f38681b875", 2780867815456210, undefined, []); }
+  static init(): VNContoursObservation { return callSDK<VNContoursObservation>("Vision_ff42ce03e691ab23", 2780867815456210, undefined, []); }
   /**
    * var contourCount: Int { get }
    * @availability iOS 14.0+
    */
-  get contourCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 2248937741641186, this, []); }
+  get contourCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2248937741641186, this, []); }
   /**
    * var normalizedPath: CGPath { get }
    * @availability iOS 14.0+
    */
-  get normalizedPath(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("Vision_3864e7f38681b875", 4313976232663073, this, []); }
+  get normalizedPath(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("Vision_ff42ce03e691ab23", 4313976232663073, this, []); }
   /**
    * var topLevelContourCount: Int { get }
    * @availability iOS 14.0+
    */
-  get topLevelContourCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 1780325952914119, this, []); }
+  get topLevelContourCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1780325952914119, this, []); }
   /**
    * var topLevelContours: [VNContour] { get }
    * @availability iOS 14.0+
    */
-  get topLevelContours(): Array<VNContour> { return callSDK<Array<VNContour>>("Vision_3864e7f38681b875", 966765563006682, this, []); }
+  get topLevelContours(): Array<VNContour> { return callSDK<Array<VNContour>>("Vision_ff42ce03e691ab23", 966765563006682, this, []); }
   declare readonly $type: { "c:objc(cs)VNContoursObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "contourCount": true; "normalizedPath": true; "topLevelContourCount": true; "topLevelContours": true };
 }
@@ -6770,17 +6770,17 @@ export class VNContoursObservation extends (VNObservation as unknown as Omit<typ
  */
 export class VNCoreMLFeatureValueObservation extends (VNObservation as unknown as Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation)) {
   /** init() */
-  static init(): VNCoreMLFeatureValueObservation { return callSDK<VNCoreMLFeatureValueObservation>("Vision_3864e7f38681b875", 2372399043665316, undefined, []); }
+  static init(): VNCoreMLFeatureValueObservation { return callSDK<VNCoreMLFeatureValueObservation>("Vision_ff42ce03e691ab23", 2372399043665316, undefined, []); }
   /**
    * var featureName: String { get }
    * @availability iOS 13.0+
    */
-  get featureName(): string { return callSDK<string>("Vision_3864e7f38681b875", 1892806344282925, this, []); }
+  get featureName(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 1892806344282925, this, []); }
   /**
    * @NSCopying var featureValue: MLFeatureValue { get }
    * @availability iOS 11.0+
    */
-  get featureValue(): _CoreML_MLFeatureValue { return callSDK<_CoreML_MLFeatureValue>("Vision_3864e7f38681b875", 322799936296395, this, []); }
+  get featureValue(): _CoreML_MLFeatureValue { return callSDK<_CoreML_MLFeatureValue>("Vision_ff42ce03e691ab23", 322799936296395, this, []); }
   declare readonly $type: { "c:objc(cs)VNCoreMLFeatureValueObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "featureName": true; "featureValue": true };
 }
@@ -6794,19 +6794,19 @@ export class VNCoreMLModel extends SDKHandle {
    * convenience init(for model: MLModel) throws
    * @availability iOS 11.0+
    */
-  static init(model: _CoreML_MLModel): VNCoreMLModel { return callSDK<VNCoreMLModel>("Vision_3864e7f38681b875", 876737789631986, undefined, [model]); }
+  static init(model: _CoreML_MLModel): VNCoreMLModel { return callSDK<VNCoreMLModel>("Vision_ff42ce03e691ab23", 876737789631986, undefined, [model]); }
   /**
    * var featureProvider: (any MLFeatureProvider)? { get set }
    * @availability iOS 13.0+
    */
-  get featureProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Vision_3864e7f38681b875", 3298118548810925, this, []); }
-  set featureProvider(value: (SDKHandle) | null) { callSDK<void>("Vision_3864e7f38681b875", 3787871444265610, this, [value]); }
+  get featureProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Vision_ff42ce03e691ab23", 3298118548810925, this, []); }
+  set featureProvider(value: (SDKHandle) | null) { callSDK<void>("Vision_ff42ce03e691ab23", 3787871444265610, this, [value]); }
   /**
    * var inputImageFeatureName: String { get set }
    * @availability iOS 13.0+
    */
-  get inputImageFeatureName(): string { return callSDK<string>("Vision_3864e7f38681b875", 4178143211362307, this, []); }
-  set inputImageFeatureName(value: string) { callSDK<void>("Vision_3864e7f38681b875", 2598347176692445, this, [value]); }
+  get inputImageFeatureName(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 4178143211362307, this, []); }
+  set inputImageFeatureName(value: string) { callSDK<void>("Vision_ff42ce03e691ab23", 2598347176692445, this, [value]); }
   declare readonly $type: { "c:objc(cs)VNCoreMLModel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "featureProvider": true; "inputImageFeatureName": true };
 }
@@ -6820,23 +6820,23 @@ export class VNCoreMLRequest extends VNImageBasedRequest {
    * convenience init(model: VNCoreMLModel)
    * @availability iOS 11.0+
    */
-  static initModel(model: VNCoreMLModel): VNCoreMLRequest { return callSDK<VNCoreMLRequest>("Vision_3864e7f38681b875", 3992856864217675, undefined, [model]); }
+  static initModel(model: VNCoreMLModel): VNCoreMLRequest { return callSDK<VNCoreMLRequest>("Vision_ff42ce03e691ab23", 3992856864217675, undefined, [model]); }
   /**
    * init(model: VNCoreMLModel, completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initModelCompletionHandler(model: VNCoreMLModel, completionHandler?: $SDK155): VNCoreMLRequest { return callSDK<VNCoreMLRequest>("Vision_3864e7f38681b875", 530872200365748, undefined, [model, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static initModelCompletionHandler(model: VNCoreMLModel, completionHandler?: $SDK155): VNCoreMLRequest { return callSDK<VNCoreMLRequest>("Vision_ff42ce03e691ab23", 530872200365748, undefined, [model, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var imageCropAndScaleOption: VNImageCropAndScaleOption { get set }
    * @availability iOS 11.0+
    */
-  get imageCropAndScaleOption(): VNImageCropAndScaleOption { return callSDK<VNImageCropAndScaleOption>("Vision_3864e7f38681b875", 3546576821488842, this, []); }
-  set imageCropAndScaleOption(value: VNImageCropAndScaleOption) { callSDK<void>("Vision_3864e7f38681b875", 4400722754655304, this, [value]); }
+  get imageCropAndScaleOption(): VNImageCropAndScaleOption { return callSDK<VNImageCropAndScaleOption>("Vision_ff42ce03e691ab23", 3546576821488842, this, []); }
+  set imageCropAndScaleOption(value: VNImageCropAndScaleOption) { callSDK<void>("Vision_ff42ce03e691ab23", 4400722754655304, this, [value]); }
   /**
    * var model: VNCoreMLModel { get }
    * @availability iOS 11.0+
    */
-  get model(): VNCoreMLModel { return callSDK<VNCoreMLModel>("Vision_3864e7f38681b875", 806255382700631, this, []); }
+  get model(): VNCoreMLModel { return callSDK<VNCoreMLModel>("Vision_ff42ce03e691ab23", 806255382700631, this, []); }
   declare readonly $type: { "c:objc(cs)VNCoreMLRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "imageCropAndScaleOption": true; "model": true };
 }
@@ -6850,22 +6850,22 @@ export type VNDegrees = number;
  */
 export class VNDetectAnimalBodyPoseRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNDetectAnimalBodyPoseRequest { return callSDK<VNDetectAnimalBodyPoseRequest>("Vision_3864e7f38681b875", 1216051655291177, undefined, []); }
+  static init(): VNDetectAnimalBodyPoseRequest { return callSDK<VNDetectAnimalBodyPoseRequest>("Vision_ff42ce03e691ab23", 1216051655291177, undefined, []); }
   /**
    * var results: [VNAnimalBodyPoseObservation]? { get }
    * @availability iOS 17.0+
    */
-  get results(): (Array<VNAnimalBodyPoseObservation>) | null { return callSDK<(Array<VNAnimalBodyPoseObservation>) | null>("Vision_3864e7f38681b875", 442263624601543, this, []); }
+  get results(): (Array<VNAnimalBodyPoseObservation>) | null { return callSDK<(Array<VNAnimalBodyPoseObservation>) | null>("Vision_ff42ce03e691ab23", 442263624601543, this, []); }
   /**
    * @nonobjc var supportedJointNames: [VNAnimalBodyPoseObservation.JointName] { get throws }
    * @availability iOS 17.0+
    */
-  get supportedJointNames(): $SDK152 { return callSDK<$SDK152>("Vision_3864e7f38681b875", 116202530016050, this, []); }
+  get supportedJointNames(): $SDK152 { return callSDK<$SDK152>("Vision_ff42ce03e691ab23", 116202530016050, this, []); }
   /**
    * @nonobjc var supportedJointsGroupNames: [VNAnimalBodyPoseObservation.JointsGroupName] { get throws }
    * @availability iOS 17.0+
    */
-  get supportedJointsGroupNames(): $SDK151 { return callSDK<$SDK151>("Vision_3864e7f38681b875", 2529594280513185, this, []); }
+  get supportedJointsGroupNames(): $SDK151 { return callSDK<$SDK151>("Vision_ff42ce03e691ab23", 2529594280513185, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectAnimalBodyPoseRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -6880,31 +6880,31 @@ export class VNDetectBarcodesRequest extends (VNImageBasedRequest as unknown as 
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  static get supportedSymbologies(): $SDK163 { return callSDK<$SDK163>("Vision_3864e7f38681b875", 2648401441749182, undefined, []); }
+  static get supportedSymbologies(): $SDK163 { return callSDK<$SDK163>("Vision_ff42ce03e691ab23", 2648401441749182, undefined, []); }
   /** init() */
-  static init(): VNDetectBarcodesRequest { return callSDK<VNDetectBarcodesRequest>("Vision_3864e7f38681b875", 4495632481958350, undefined, []); }
+  static init(): VNDetectBarcodesRequest { return callSDK<VNDetectBarcodesRequest>("Vision_ff42ce03e691ab23", 4495632481958350, undefined, []); }
   /**
    * func supportedSymbologies() throws -> [VNBarcodeSymbology]
    * @availability iOS 15.0+
    */
-  supportedSymbologies15691(): $SDK163 { return callSDK<$SDK163>("Vision_3864e7f38681b875", 266082309344904, this, []); }
+  supportedSymbologies15691(): $SDK163 { return callSDK<$SDK163>("Vision_ff42ce03e691ab23", 266082309344904, this, []); }
   /**
    * var coalesceCompositeSymbologies: Bool { get set }
    * @availability iOS 17.0+
    */
-  get coalesceCompositeSymbologies(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 136086642440535, this, []); }
-  set coalesceCompositeSymbologies(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 2207304469946648, this, [value]); }
+  get coalesceCompositeSymbologies(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 136086642440535, this, []); }
+  set coalesceCompositeSymbologies(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 2207304469946648, this, [value]); }
   /**
    * var results: [VNBarcodeObservation]? { get }
    * @availability iOS 11.0+
    */
-  get results(): (Array<VNBarcodeObservation>) | null { return callSDK<(Array<VNBarcodeObservation>) | null>("Vision_3864e7f38681b875", 1258164390985489, this, []); }
+  get results(): (Array<VNBarcodeObservation>) | null { return callSDK<(Array<VNBarcodeObservation>) | null>("Vision_ff42ce03e691ab23", 1258164390985489, this, []); }
   /**
    * var symbologies: [VNBarcodeSymbology] { get set }
    * @availability iOS 11.0+
    */
-  get symbologies(): $SDK163 { return callSDK<$SDK163>("Vision_3864e7f38681b875", 1371757705483387, this, []); }
-  set symbologies(value: $SDK163) { callSDK<void>("Vision_3864e7f38681b875", 3736855535667470, this, [value]); }
+  get symbologies(): $SDK163 { return callSDK<$SDK163>("Vision_ff42ce03e691ab23", 1371757705483387, this, []); }
+  set symbologies(value: $SDK163) { callSDK<void>("Vision_ff42ce03e691ab23", 3736855535667470, this, [value]); }
   declare readonly $type: { "c:objc(cs)VNDetectBarcodesRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "coalesceCompositeSymbologies": true; "symbologies": true };
 }
@@ -6915,43 +6915,43 @@ export class VNDetectBarcodesRequest extends (VNImageBasedRequest as unknown as 
  */
 export class VNDetectContoursRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNDetectContoursRequest { return callSDK<VNDetectContoursRequest>("Vision_3864e7f38681b875", 2158356949128864, undefined, []); }
+  static init(): VNDetectContoursRequest { return callSDK<VNDetectContoursRequest>("Vision_ff42ce03e691ab23", 2158356949128864, undefined, []); }
   /**
    * var contrastAdjustment: Float { get set }
    * @availability iOS 14.0+
    */
-  get contrastAdjustment(): number { return callSDK<number>("Vision_3864e7f38681b875", 1531785977776861, this, []); }
-  set contrastAdjustment(value: number) { callSDK<void>("Vision_3864e7f38681b875", 710749037588344, this, [value]); }
+  get contrastAdjustment(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1531785977776861, this, []); }
+  set contrastAdjustment(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 710749037588344, this, [value]); }
   /**
    * var contrastPivot: NSNumber? { get set }
    * @availability iOS 15.0+
    */
-  get contrastPivot(): $SDK165 { return callSDK<$SDK165>("Vision_3864e7f38681b875", 1837839182074120, this, []); }
-  set contrastPivot(value: $SDK165) { callSDK<void>("Vision_3864e7f38681b875", 3424021153405723, this, [value]); }
+  get contrastPivot(): $SDK165 { return callSDK<$SDK165>("Vision_ff42ce03e691ab23", 1837839182074120, this, []); }
+  set contrastPivot(value: $SDK165) { callSDK<void>("Vision_ff42ce03e691ab23", 3424021153405723, this, [value]); }
   /**
    * var detectDarkOnLight: Bool { get set }
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get detectDarkOnLight(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 205185731893695, this, []); }
-  set detectDarkOnLight(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 1001550148285162, this, [value]); }
+  get detectDarkOnLight(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 205185731893695, this, []); }
+  set detectDarkOnLight(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 1001550148285162, this, [value]); }
   /**
    * var detectsDarkOnLight: Bool { get set }
    * @availability iOS 14.0+
    */
-  get detectsDarkOnLight(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2092306521709371, this, []); }
-  set detectsDarkOnLight(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 4244469181577154, this, [value]); }
+  get detectsDarkOnLight(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2092306521709371, this, []); }
+  set detectsDarkOnLight(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 4244469181577154, this, [value]); }
   /**
    * var maximumImageDimension: Int { get set }
    * @availability iOS 14.0+
    */
-  get maximumImageDimension(): number { return callSDK<number>("Vision_3864e7f38681b875", 1402279412105963, this, []); }
-  set maximumImageDimension(value: number) { callSDK<void>("Vision_3864e7f38681b875", 1208861787412320, this, [value]); }
+  get maximumImageDimension(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1402279412105963, this, []); }
+  set maximumImageDimension(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 1208861787412320, this, [value]); }
   /**
    * var results: [VNContoursObservation]? { get }
    * @availability iOS 14.0+
    */
-  get results(): (Array<VNContoursObservation>) | null { return callSDK<(Array<VNContoursObservation>) | null>("Vision_3864e7f38681b875", 2260216159179648, this, []); }
+  get results(): (Array<VNContoursObservation>) | null { return callSDK<(Array<VNContoursObservation>) | null>("Vision_ff42ce03e691ab23", 2260216159179648, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectContoursRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "contrastAdjustment": true; "contrastPivot": true; "detectDarkOnLight": true; "detectsDarkOnLight": true; "maximumImageDimension": true };
 }
@@ -6962,12 +6962,12 @@ export class VNDetectContoursRequest extends (VNImageBasedRequest as unknown as 
  */
 export class VNDetectDocumentSegmentationRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNDetectDocumentSegmentationRequest { return callSDK<VNDetectDocumentSegmentationRequest>("Vision_3864e7f38681b875", 1661912698013296, undefined, []); }
+  static init(): VNDetectDocumentSegmentationRequest { return callSDK<VNDetectDocumentSegmentationRequest>("Vision_ff42ce03e691ab23", 1661912698013296, undefined, []); }
   /**
    * var results: [VNRectangleObservation]? { get }
    * @availability iOS 15.0+
    */
-  get results(): $SDK167 { return callSDK<$SDK167>("Vision_3864e7f38681b875", 948544427031827, this, []); }
+  get results(): $SDK167 { return callSDK<$SDK167>("Vision_ff42ce03e691ab23", 948544427031827, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectDocumentSegmentationRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -6982,47 +6982,47 @@ export class VNPoint extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  static distance(point1: VNPoint, point2: VNPoint): number { return callSDK<number>("Vision_3864e7f38681b875", 3207123370762121, undefined, [point1, point2]); }
+  static distance(point1: VNPoint, point2: VNPoint): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3207123370762121, undefined, [point1, point2]); }
   /**
    * class func apply(_ vector: VNVector, to point: VNPoint) -> VNPoint
    * @availability iOS 14.0+
    */
-  static apply(vector: VNVector, point: VNPoint): VNPoint { return callSDK<VNPoint>("Vision_3864e7f38681b875", 1937527827278755, undefined, [vector, point]); }
+  static apply(vector: VNVector, point: VNPoint): VNPoint { return callSDK<VNPoint>("Vision_ff42ce03e691ab23", 1937527827278755, undefined, [vector, point]); }
   /**
    * class var zero: VNPoint { get }
    * @availability iOS 14.0+
    */
-  static get zero(): VNPoint { return callSDK<VNPoint>("Vision_3864e7f38681b875", 1847151796072002, undefined, []); }
+  static get zero(): VNPoint { return callSDK<VNPoint>("Vision_ff42ce03e691ab23", 1847151796072002, undefined, []); }
   /**
    * func distance(_ point: VNPoint) -> Double
    * @availability iOS 14.0+
    */
-  distance13672(point: VNPoint): number { return callSDK<number>("Vision_3864e7f38681b875", 1219429068830870, this, [point]); }
+  distance13672(point: VNPoint): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1219429068830870, this, [point]); }
   /**
    * convenience init(location: CGPoint)
    * @availability iOS 14.0+
    */
-  static initLocation(location: $SDK114): VNPoint { return callSDK<VNPoint>("Vision_3864e7f38681b875", 3812688302338133, undefined, [location]); }
+  static initLocation(location: $SDK114): VNPoint { return callSDK<VNPoint>("Vision_ff42ce03e691ab23", 3812688302338133, undefined, [location]); }
   /**
    * init(x: Double, y: Double)
    * @availability iOS 14.0+
    */
-  static initXY(x: number, y: number): VNPoint { return callSDK<VNPoint>("Vision_3864e7f38681b875", 3649622345779227, undefined, [x, y]); }
+  static initXY(x: number, y: number): VNPoint { return callSDK<VNPoint>("Vision_ff42ce03e691ab23", 3649622345779227, undefined, [x, y]); }
   /**
    * var location: CGPoint { get }
    * @availability iOS 14.0+
    */
-  get location(): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 1772418164610934, this, []); }
+  get location(): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 1772418164610934, this, []); }
   /**
    * var x: Double { get }
    * @availability iOS 14.0+
    */
-  get x(): number { return callSDK<number>("Vision_3864e7f38681b875", 2910339399558327, this, []); }
+  get x(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2910339399558327, this, []); }
   /**
    * var y: Double { get }
    * @availability iOS 14.0+
    */
-  get y(): number { return callSDK<number>("Vision_3864e7f38681b875", 953779088236771, this, []); }
+  get y(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 953779088236771, this, []); }
   declare readonly $type: { "c:objc(cs)VNPoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "location": true; "x": true; "y": true };
 }
@@ -7036,7 +7036,7 @@ export class VNDetectedPoint extends VNPoint {
    * var confidence: VNConfidence { get }
    * @availability iOS 14.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2169209159479900, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2169209159479900, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectedPoint": true; "c:objc(cs)VNPoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "location": true; "x": true; "y": true; "confidence": true };
 }
@@ -7047,12 +7047,12 @@ export class VNDetectedPoint extends VNPoint {
  */
 export class VNDetectFaceCaptureQualityRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNDetectFaceCaptureQualityRequest { return callSDK<VNDetectFaceCaptureQualityRequest>("Vision_3864e7f38681b875", 2591501886794551, undefined, []); }
+  static init(): VNDetectFaceCaptureQualityRequest { return callSDK<VNDetectFaceCaptureQualityRequest>("Vision_ff42ce03e691ab23", 2591501886794551, undefined, []); }
   /**
    * var results: [VNFaceObservation]? { get }
    * @availability iOS 13.0+
    */
-  get results(): $SDK168 { return callSDK<$SDK168>("Vision_3864e7f38681b875", 2939497401149020, this, []); }
+  get results(): $SDK168 { return callSDK<$SDK168>("Vision_ff42ce03e691ab23", 2939497401149020, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectFaceCaptureQualityRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -7066,20 +7066,20 @@ export class VNDetectFaceLandmarksRequest extends (VNImageBasedRequest as unknow
    * class func revision(_ requestRevision: Int, supportsConstellation constellation: VNRequestFaceLandmarksConstellation) -> Bool
    * @availability iOS 11.0+
    */
-  static revision(requestRevision: number, constellation: VNRequestFaceLandmarksConstellation): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 4361399509397190, undefined, [requestRevision, constellation]); }
+  static revision(requestRevision: number, constellation: VNRequestFaceLandmarksConstellation): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 4361399509397190, undefined, [requestRevision, constellation]); }
   /** init() */
-  static init(): VNDetectFaceLandmarksRequest { return callSDK<VNDetectFaceLandmarksRequest>("Vision_3864e7f38681b875", 3283259822227852, undefined, []); }
+  static init(): VNDetectFaceLandmarksRequest { return callSDK<VNDetectFaceLandmarksRequest>("Vision_ff42ce03e691ab23", 3283259822227852, undefined, []); }
   /**
    * var constellation: VNRequestFaceLandmarksConstellation { get set }
    * @availability iOS 13.0+
    */
-  get constellation(): VNRequestFaceLandmarksConstellation { return callSDK<VNRequestFaceLandmarksConstellation>("Vision_3864e7f38681b875", 1684897420001182, this, []); }
-  set constellation(value: VNRequestFaceLandmarksConstellation) { callSDK<void>("Vision_3864e7f38681b875", 4497439313907929, this, [value]); }
+  get constellation(): VNRequestFaceLandmarksConstellation { return callSDK<VNRequestFaceLandmarksConstellation>("Vision_ff42ce03e691ab23", 1684897420001182, this, []); }
+  set constellation(value: VNRequestFaceLandmarksConstellation) { callSDK<void>("Vision_ff42ce03e691ab23", 4497439313907929, this, [value]); }
   /**
    * var results: [VNFaceObservation]? { get }
    * @availability iOS 11.0+
    */
-  get results(): $SDK168 { return callSDK<$SDK168>("Vision_3864e7f38681b875", 3026067403213904, this, []); }
+  get results(): $SDK168 { return callSDK<$SDK168>("Vision_ff42ce03e691ab23", 3026067403213904, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectFaceLandmarksRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "constellation": true };
 }
@@ -7090,12 +7090,12 @@ export class VNDetectFaceLandmarksRequest extends (VNImageBasedRequest as unknow
  */
 export class VNDetectFaceRectanglesRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNDetectFaceRectanglesRequest { return callSDK<VNDetectFaceRectanglesRequest>("Vision_3864e7f38681b875", 1144969856664058, undefined, []); }
+  static init(): VNDetectFaceRectanglesRequest { return callSDK<VNDetectFaceRectanglesRequest>("Vision_ff42ce03e691ab23", 1144969856664058, undefined, []); }
   /**
    * var results: [VNFaceObservation]? { get }
    * @availability iOS 11.0+
    */
-  get results(): $SDK168 { return callSDK<$SDK168>("Vision_3864e7f38681b875", 4218713150077539, this, []); }
+  get results(): $SDK168 { return callSDK<$SDK168>("Vision_ff42ce03e691ab23", 4218713150077539, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectFaceRectanglesRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -7106,12 +7106,12 @@ export class VNDetectFaceRectanglesRequest extends (VNImageBasedRequest as unkno
  */
 export class VNDetectHorizonRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNDetectHorizonRequest { return callSDK<VNDetectHorizonRequest>("Vision_3864e7f38681b875", 772291032775931, undefined, []); }
+  static init(): VNDetectHorizonRequest { return callSDK<VNDetectHorizonRequest>("Vision_ff42ce03e691ab23", 772291032775931, undefined, []); }
   /**
    * var results: [VNHorizonObservation]? { get }
    * @availability iOS 11.0+
    */
-  get results(): (Array<VNHorizonObservation>) | null { return callSDK<(Array<VNHorizonObservation>) | null>("Vision_3864e7f38681b875", 1506525343678666, this, []); }
+  get results(): (Array<VNHorizonObservation>) | null { return callSDK<(Array<VNHorizonObservation>) | null>("Vision_ff42ce03e691ab23", 1506525343678666, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectHorizonRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -7125,17 +7125,17 @@ export class VNStatefulRequest extends (VNImageBasedRequest as unknown as Omit<t
    * init(frameAnalysisSpacing: CMTime, completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 14.0+
    */
-  static init(frameAnalysisSpacing: _CoreMedia_CMTime, completionHandler?: $SDK155): VNStatefulRequest { return callSDK<VNStatefulRequest>("Vision_3864e7f38681b875", 1175469201730183, undefined, [frameAnalysisSpacing, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static init(frameAnalysisSpacing: _CoreMedia_CMTime, completionHandler?: $SDK155): VNStatefulRequest { return callSDK<VNStatefulRequest>("Vision_ff42ce03e691ab23", 1175469201730183, undefined, [frameAnalysisSpacing, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var frameAnalysisSpacing: CMTime { get }
    * @availability iOS 14.0+
    */
-  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 1439310031487133, this, []); }
+  get frameAnalysisSpacing(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 1439310031487133, this, []); }
   /**
    * var minimumLatencyFrameCount: Int { get }
    * @availability iOS 14.0+
    */
-  get minimumLatencyFrameCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 2710864702527982, this, []); }
+  get minimumLatencyFrameCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2710864702527982, this, []); }
   declare readonly $type: { "c:objc(cs)VNStatefulRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "frameAnalysisSpacing": true; "minimumLatencyFrameCount": true };
 }
@@ -7149,27 +7149,27 @@ export class VNDetectHumanBodyPose3DRequest extends (VNStatefulRequest as unknow
    * init()
    * @availability iOS 17.0+
    */
-  static init(): VNDetectHumanBodyPose3DRequest { return callSDK<VNDetectHumanBodyPose3DRequest>("Vision_3864e7f38681b875", 1175795690615818, undefined, []); }
+  static init(): VNDetectHumanBodyPose3DRequest { return callSDK<VNDetectHumanBodyPose3DRequest>("Vision_ff42ce03e691ab23", 1175795690615818, undefined, []); }
   /**
    * init(completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 17.0+
    */
-  static initCompletionHandler(completionHandler?: $SDK155): VNDetectHumanBodyPose3DRequest { return callSDK<VNDetectHumanBodyPose3DRequest>("Vision_3864e7f38681b875", 2046813586016432, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static initCompletionHandler(completionHandler?: $SDK155): VNDetectHumanBodyPose3DRequest { return callSDK<VNDetectHumanBodyPose3DRequest>("Vision_ff42ce03e691ab23", 2046813586016432, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var results: [VNHumanBodyPose3DObservation]? { get }
    * @availability iOS 17.0+
    */
-  get results(): (Array<VNHumanBodyPose3DObservation>) | null { return callSDK<(Array<VNHumanBodyPose3DObservation>) | null>("Vision_3864e7f38681b875", 3294905885989892, this, []); }
+  get results(): (Array<VNHumanBodyPose3DObservation>) | null { return callSDK<(Array<VNHumanBodyPose3DObservation>) | null>("Vision_ff42ce03e691ab23", 3294905885989892, this, []); }
   /**
    * @nonobjc var supportedJointNames: [VNHumanBodyPose3DObservation.JointName] { get throws }
    * @availability iOS 17.0+
    */
-  get supportedJointNames(): $SDK171 { return callSDK<$SDK171>("Vision_3864e7f38681b875", 4338822196414250, this, []); }
+  get supportedJointNames(): $SDK171 { return callSDK<$SDK171>("Vision_ff42ce03e691ab23", 4338822196414250, this, []); }
   /**
    * @nonobjc var supportedJointsGroupNames: [VNHumanBodyPose3DObservation.JointsGroupName] { get throws }
    * @availability iOS 17.0+
    */
-  get supportedJointsGroupNames(): $SDK172 { return callSDK<$SDK172>("Vision_3864e7f38681b875", 807262405037428, this, []); }
+  get supportedJointsGroupNames(): $SDK172 { return callSDK<$SDK172>("Vision_ff42ce03e691ab23", 807262405037428, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectHumanBodyPose3DRequest": true; "c:objc(cs)VNStatefulRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "frameAnalysisSpacing": true; "minimumLatencyFrameCount": true };
 }
@@ -7184,30 +7184,30 @@ export class VNDetectHumanBodyPoseRequest extends (VNImageBasedRequest as unknow
    * @availability iOS 14.0+
    * @deprecated iOS 17.0
    */
-  static supportedJointNamesForRevision(revision: number): $SDK173 { return callSDK<$SDK173>("Vision_3864e7f38681b875", 4480601095562856, undefined, [revision]); }
+  static supportedJointNamesForRevision(revision: number): $SDK173 { return callSDK<$SDK173>("Vision_ff42ce03e691ab23", 4480601095562856, undefined, [revision]); }
   /**
    * class func supportedJointsGroupNames(forRevision revision: Int) throws -> [VNHumanBodyPoseObservation.JointsGroupName]
    * @availability iOS 14.0+
    * @deprecated iOS 17.0
    */
-  static supportedJointsGroupNamesForRevision(revision: number): $SDK174 { return callSDK<$SDK174>("Vision_3864e7f38681b875", 1458162584528438, undefined, [revision]); }
+  static supportedJointsGroupNamesForRevision(revision: number): $SDK174 { return callSDK<$SDK174>("Vision_ff42ce03e691ab23", 1458162584528438, undefined, [revision]); }
   /** init() */
-  static init(): VNDetectHumanBodyPoseRequest { return callSDK<VNDetectHumanBodyPoseRequest>("Vision_3864e7f38681b875", 2458473670799727, undefined, []); }
+  static init(): VNDetectHumanBodyPoseRequest { return callSDK<VNDetectHumanBodyPoseRequest>("Vision_ff42ce03e691ab23", 2458473670799727, undefined, []); }
   /**
    * var results: [VNHumanBodyPoseObservation]? { get }
    * @availability iOS 14.0+
    */
-  get results(): (Array<VNHumanBodyPoseObservation>) | null { return callSDK<(Array<VNHumanBodyPoseObservation>) | null>("Vision_3864e7f38681b875", 3586027097939442, this, []); }
+  get results(): (Array<VNHumanBodyPoseObservation>) | null { return callSDK<(Array<VNHumanBodyPoseObservation>) | null>("Vision_ff42ce03e691ab23", 3586027097939442, this, []); }
   /**
    * @nonobjc var supportedJointNames: [VNHumanBodyPoseObservation.JointName] { get throws }
    * @availability iOS 17.0+
    */
-  get supportedJointNames(): $SDK173 { return callSDK<$SDK173>("Vision_3864e7f38681b875", 3637228694810315, this, []); }
+  get supportedJointNames(): $SDK173 { return callSDK<$SDK173>("Vision_ff42ce03e691ab23", 3637228694810315, this, []); }
   /**
    * @nonobjc var supportedJointsGroupNames: [VNHumanBodyPoseObservation.JointsGroupName] { get throws }
    * @availability iOS 17.0+
    */
-  get supportedJointsGroupNames(): $SDK174 { return callSDK<$SDK174>("Vision_3864e7f38681b875", 2751994286506394, this, []); }
+  get supportedJointsGroupNames(): $SDK174 { return callSDK<$SDK174>("Vision_ff42ce03e691ab23", 2751994286506394, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectHumanBodyPoseRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -7222,36 +7222,36 @@ export class VNDetectHumanHandPoseRequest extends (VNImageBasedRequest as unknow
    * @availability iOS 14.0+
    * @deprecated iOS 17.0
    */
-  static supportedJointNamesForRevision(revision: number): $SDK176 { return callSDK<$SDK176>("Vision_3864e7f38681b875", 3805465705875978, undefined, [revision]); }
+  static supportedJointNamesForRevision(revision: number): $SDK176 { return callSDK<$SDK176>("Vision_ff42ce03e691ab23", 3805465705875978, undefined, [revision]); }
   /**
    * class func supportedJointsGroupNames(forRevision revision: Int) throws -> [VNHumanHandPoseObservation.JointsGroupName]
    * @availability iOS 14.0+
    * @deprecated iOS 17.0
    */
-  static supportedJointsGroupNamesForRevision(revision: number): $SDK177 { return callSDK<$SDK177>("Vision_3864e7f38681b875", 2896489947734618, undefined, [revision]); }
+  static supportedJointsGroupNamesForRevision(revision: number): $SDK177 { return callSDK<$SDK177>("Vision_ff42ce03e691ab23", 2896489947734618, undefined, [revision]); }
   /** init() */
-  static init(): VNDetectHumanHandPoseRequest { return callSDK<VNDetectHumanHandPoseRequest>("Vision_3864e7f38681b875", 210555790472120, undefined, []); }
+  static init(): VNDetectHumanHandPoseRequest { return callSDK<VNDetectHumanHandPoseRequest>("Vision_ff42ce03e691ab23", 210555790472120, undefined, []); }
   /**
    * var maximumHandCount: Int { get set }
    * @availability iOS 14.0+
    */
-  get maximumHandCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 2394826008061796, this, []); }
-  set maximumHandCount(value: number) { callSDK<void>("Vision_3864e7f38681b875", 3701190348400118, this, [value]); }
+  get maximumHandCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2394826008061796, this, []); }
+  set maximumHandCount(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 3701190348400118, this, [value]); }
   /**
    * var results: [VNHumanHandPoseObservation]? { get }
    * @availability iOS 14.0+
    */
-  get results(): (Array<VNHumanHandPoseObservation>) | null { return callSDK<(Array<VNHumanHandPoseObservation>) | null>("Vision_3864e7f38681b875", 254178659585008, this, []); }
+  get results(): (Array<VNHumanHandPoseObservation>) | null { return callSDK<(Array<VNHumanHandPoseObservation>) | null>("Vision_ff42ce03e691ab23", 254178659585008, this, []); }
   /**
    * @nonobjc var supportedJointNames: [VNHumanHandPoseObservation.JointName] { get throws }
    * @availability iOS 17.0+
    */
-  get supportedJointNames(): $SDK176 { return callSDK<$SDK176>("Vision_3864e7f38681b875", 4050295555432091, this, []); }
+  get supportedJointNames(): $SDK176 { return callSDK<$SDK176>("Vision_ff42ce03e691ab23", 4050295555432091, this, []); }
   /**
    * @nonobjc var supportedJointsGroupNames: [VNHumanHandPoseObservation.JointsGroupName] { get throws }
    * @availability iOS 17.0+
    */
-  get supportedJointsGroupNames(): $SDK177 { return callSDK<$SDK177>("Vision_3864e7f38681b875", 1489620770005499, this, []); }
+  get supportedJointsGroupNames(): $SDK177 { return callSDK<$SDK177>("Vision_ff42ce03e691ab23", 1489620770005499, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectHumanHandPoseRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "maximumHandCount": true };
 }
@@ -7262,18 +7262,18 @@ export class VNDetectHumanHandPoseRequest extends (VNImageBasedRequest as unknow
  */
 export class VNDetectHumanRectanglesRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNDetectHumanRectanglesRequest { return callSDK<VNDetectHumanRectanglesRequest>("Vision_3864e7f38681b875", 3743428964812721, undefined, []); }
+  static init(): VNDetectHumanRectanglesRequest { return callSDK<VNDetectHumanRectanglesRequest>("Vision_ff42ce03e691ab23", 3743428964812721, undefined, []); }
   /**
    * var results: [VNHumanObservation]? { get }
    * @availability iOS 13.0+
    */
-  get results(): (Array<VNHumanObservation>) | null { return callSDK<(Array<VNHumanObservation>) | null>("Vision_3864e7f38681b875", 1884347997062493, this, []); }
+  get results(): (Array<VNHumanObservation>) | null { return callSDK<(Array<VNHumanObservation>) | null>("Vision_ff42ce03e691ab23", 1884347997062493, this, []); }
   /**
    * var upperBodyOnly: Bool { get set }
    * @availability iOS 15.0+
    */
-  get upperBodyOnly(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 1561639353575959, this, []); }
-  set upperBodyOnly(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 690325789028094, this, [value]); }
+  get upperBodyOnly(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 1561639353575959, this, []); }
+  set upperBodyOnly(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 690325789028094, this, [value]); }
   declare readonly $type: { "c:objc(cs)VNDetectHumanRectanglesRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "upperBodyOnly": true };
 }
@@ -7284,48 +7284,48 @@ export class VNDetectHumanRectanglesRequest extends (VNImageBasedRequest as unkn
  */
 export class VNDetectRectanglesRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNDetectRectanglesRequest { return callSDK<VNDetectRectanglesRequest>("Vision_3864e7f38681b875", 3386847032825505, undefined, []); }
+  static init(): VNDetectRectanglesRequest { return callSDK<VNDetectRectanglesRequest>("Vision_ff42ce03e691ab23", 3386847032825505, undefined, []); }
   /**
    * var maximumAspectRatio: VNAspectRatio { get set }
    * @availability iOS 11.0+
    */
-  get maximumAspectRatio(): number { return callSDK<number>("Vision_3864e7f38681b875", 3616106975729156, this, []); }
-  set maximumAspectRatio(value: number) { callSDK<void>("Vision_3864e7f38681b875", 3063101494868577, this, [value]); }
+  get maximumAspectRatio(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3616106975729156, this, []); }
+  set maximumAspectRatio(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 3063101494868577, this, [value]); }
   /**
    * var maximumObservations: Int { get set }
    * @availability iOS 11.0+
    */
-  get maximumObservations(): number { return callSDK<number>("Vision_3864e7f38681b875", 1355033153929142, this, []); }
-  set maximumObservations(value: number) { callSDK<void>("Vision_3864e7f38681b875", 2973625950790022, this, [value]); }
+  get maximumObservations(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1355033153929142, this, []); }
+  set maximumObservations(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 2973625950790022, this, [value]); }
   /**
    * var minimumAspectRatio: VNAspectRatio { get set }
    * @availability iOS 11.0+
    */
-  get minimumAspectRatio(): number { return callSDK<number>("Vision_3864e7f38681b875", 514328109239891, this, []); }
-  set minimumAspectRatio(value: number) { callSDK<void>("Vision_3864e7f38681b875", 1568378890872773, this, [value]); }
+  get minimumAspectRatio(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 514328109239891, this, []); }
+  set minimumAspectRatio(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 1568378890872773, this, [value]); }
   /**
    * var minimumConfidence: VNConfidence { get set }
    * @availability iOS 11.0+
    */
-  get minimumConfidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 756032272303465, this, []); }
-  set minimumConfidence(value: number) { callSDK<void>("Vision_3864e7f38681b875", 2551135987385737, this, [value]); }
+  get minimumConfidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 756032272303465, this, []); }
+  set minimumConfidence(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 2551135987385737, this, [value]); }
   /**
    * var minimumSize: Float { get set }
    * @availability iOS 11.0+
    */
-  get minimumSize(): number { return callSDK<number>("Vision_3864e7f38681b875", 3232403944331574, this, []); }
-  set minimumSize(value: number) { callSDK<void>("Vision_3864e7f38681b875", 1973828976963944, this, [value]); }
+  get minimumSize(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3232403944331574, this, []); }
+  set minimumSize(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 1973828976963944, this, [value]); }
   /**
    * var quadratureTolerance: VNDegrees { get set }
    * @availability iOS 11.0+
    */
-  get quadratureTolerance(): number { return callSDK<number>("Vision_3864e7f38681b875", 2467848826161061, this, []); }
-  set quadratureTolerance(value: number) { callSDK<void>("Vision_3864e7f38681b875", 173645522068036, this, [value]); }
+  get quadratureTolerance(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2467848826161061, this, []); }
+  set quadratureTolerance(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 173645522068036, this, [value]); }
   /**
    * var results: [VNRectangleObservation]? { get }
    * @availability iOS 11.0+
    */
-  get results(): $SDK167 { return callSDK<$SDK167>("Vision_3864e7f38681b875", 3976181968762975, this, []); }
+  get results(): $SDK167 { return callSDK<$SDK167>("Vision_ff42ce03e691ab23", 3976181968762975, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectRectanglesRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "maximumAspectRatio": true; "maximumObservations": true; "minimumAspectRatio": true; "minimumConfidence": true; "minimumSize": true; "quadratureTolerance": true };
 }
@@ -7336,18 +7336,18 @@ export class VNDetectRectanglesRequest extends (VNImageBasedRequest as unknown a
  */
 export class VNDetectTextRectanglesRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNDetectTextRectanglesRequest { return callSDK<VNDetectTextRectanglesRequest>("Vision_3864e7f38681b875", 3024904885814774, undefined, []); }
+  static init(): VNDetectTextRectanglesRequest { return callSDK<VNDetectTextRectanglesRequest>("Vision_ff42ce03e691ab23", 3024904885814774, undefined, []); }
   /**
    * var reportCharacterBoxes: Bool { get set }
    * @availability iOS 11.0+
    */
-  get reportCharacterBoxes(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 4122913793125996, this, []); }
-  set reportCharacterBoxes(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 413468221219190, this, [value]); }
+  get reportCharacterBoxes(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 4122913793125996, this, []); }
+  set reportCharacterBoxes(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 413468221219190, this, [value]); }
   /**
    * var results: [VNTextObservation]? { get }
    * @availability iOS 11.0+
    */
-  get results(): (Array<VNTextObservation>) | null { return callSDK<(Array<VNTextObservation>) | null>("Vision_3864e7f38681b875", 3971837079548932, this, []); }
+  get results(): (Array<VNTextObservation>) | null { return callSDK<(Array<VNTextObservation>) | null>("Vision_ff42ce03e691ab23", 3971837079548932, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectTextRectanglesRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "reportCharacterBoxes": true };
 }
@@ -7361,49 +7361,49 @@ export class VNDetectTrajectoriesRequest extends (VNStatefulRequest as unknown a
    * init(frameAnalysisSpacing: CMTime, trajectoryLength: Int, completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 14.0+
    */
-  static init(frameAnalysisSpacing: _CoreMedia_CMTime, trajectoryLength: number, completionHandler?: $SDK155): VNDetectTrajectoriesRequest { return callSDK<VNDetectTrajectoriesRequest>("Vision_3864e7f38681b875", 1487070688039958, undefined, [frameAnalysisSpacing, trajectoryLength, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static init(frameAnalysisSpacing: _CoreMedia_CMTime, trajectoryLength: number, completionHandler?: $SDK155): VNDetectTrajectoriesRequest { return callSDK<VNDetectTrajectoriesRequest>("Vision_ff42ce03e691ab23", 1487070688039958, undefined, [frameAnalysisSpacing, trajectoryLength, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var maximumObjectSize: Float { get set }
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get maximumObjectSize(): number { return callSDK<number>("Vision_3864e7f38681b875", 929859763146206, this, []); }
-  set maximumObjectSize(value: number) { callSDK<void>("Vision_3864e7f38681b875", 3822191512082430, this, [value]); }
+  get maximumObjectSize(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 929859763146206, this, []); }
+  set maximumObjectSize(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 3822191512082430, this, [value]); }
   /**
    * var minimumObjectSize: Float { get set }
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get minimumObjectSize(): number { return callSDK<number>("Vision_3864e7f38681b875", 3143692883792114, this, []); }
-  set minimumObjectSize(value: number) { callSDK<void>("Vision_3864e7f38681b875", 531545914572442, this, [value]); }
+  get minimumObjectSize(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3143692883792114, this, []); }
+  set minimumObjectSize(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 531545914572442, this, [value]); }
   /**
    * var objectMaximumNormalizedRadius: Float { get set }
    * @availability iOS 14.0+
    */
-  get objectMaximumNormalizedRadius(): number { return callSDK<number>("Vision_3864e7f38681b875", 1097846608366152, this, []); }
-  set objectMaximumNormalizedRadius(value: number) { callSDK<void>("Vision_3864e7f38681b875", 3590822567167026, this, [value]); }
+  get objectMaximumNormalizedRadius(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1097846608366152, this, []); }
+  set objectMaximumNormalizedRadius(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 3590822567167026, this, [value]); }
   /**
    * var objectMinimumNormalizedRadius: Float { get set }
    * @availability iOS 14.0+
    */
-  get objectMinimumNormalizedRadius(): number { return callSDK<number>("Vision_3864e7f38681b875", 4133034556866265, this, []); }
-  set objectMinimumNormalizedRadius(value: number) { callSDK<void>("Vision_3864e7f38681b875", 390282902245999, this, [value]); }
+  get objectMinimumNormalizedRadius(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4133034556866265, this, []); }
+  set objectMinimumNormalizedRadius(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 390282902245999, this, [value]); }
   /**
    * var results: [VNTrajectoryObservation]? { get }
    * @availability iOS 14.0+
    */
-  get results(): (Array<VNTrajectoryObservation>) | null { return callSDK<(Array<VNTrajectoryObservation>) | null>("Vision_3864e7f38681b875", 613881963219154, this, []); }
+  get results(): (Array<VNTrajectoryObservation>) | null { return callSDK<(Array<VNTrajectoryObservation>) | null>("Vision_ff42ce03e691ab23", 613881963219154, this, []); }
   /**
    * var targetFrameTime: CMTime { get set }
    * @availability iOS 15.0+
    */
-  get targetFrameTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_3864e7f38681b875", 2232668808646275, this, []); }
-  set targetFrameTime(value: _CoreMedia_CMTime) { callSDK<void>("Vision_3864e7f38681b875", 1982615721743230, this, [value]); }
+  get targetFrameTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Vision_ff42ce03e691ab23", 2232668808646275, this, []); }
+  set targetFrameTime(value: _CoreMedia_CMTime) { callSDK<void>("Vision_ff42ce03e691ab23", 1982615721743230, this, [value]); }
   /**
    * var trajectoryLength: Int { get }
    * @availability iOS 14.0+
    */
-  get trajectoryLength(): number { return callSDK<number>("Vision_3864e7f38681b875", 580581486705368, this, []); }
+  get trajectoryLength(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 580581486705368, this, []); }
   declare readonly $type: { "c:objc(cs)VNDetectTrajectoriesRequest": true; "c:objc(cs)VNStatefulRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "frameAnalysisSpacing": true; "minimumLatencyFrameCount": true; "maximumObjectSize": true; "minimumObjectSize": true; "objectMaximumNormalizedRadius": true; "objectMinimumNormalizedRadius": true; "targetFrameTime": true; "trajectoryLength": true };
 }
@@ -7419,7 +7419,7 @@ export const VNElementType = {
    * init?(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (VNElementType) | null { return callSDK<(VNElementType) | null>("Vision_3864e7f38681b875", 1413494714864034, undefined, [rawValue]); }
+  init(rawValue: number): (VNElementType) | null { return callSDK<(VNElementType) | null>("Vision_ff42ce03e691ab23", 1413494714864034, undefined, [rawValue]); }
 };
 
 /** enum VNErrorCode */
@@ -7427,7 +7427,7 @@ export type VNErrorCode = "turiCoreErrorCode" | "OK" | "requestCancelled" | "inv
 
 export const VNErrorCode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (VNErrorCode) | null { return callSDK<(VNErrorCode) | null>("Vision_3864e7f38681b875", 3850144998655069, undefined, [rawValue]); }
+  init(rawValue: number): (VNErrorCode) | null { return callSDK<(VNErrorCode) | null>("Vision_ff42ce03e691ab23", 3850144998655069, undefined, [rawValue]); }
 };
 
 /**
@@ -7439,7 +7439,7 @@ export class VNFaceLandmarkRegion extends SDKHandle {
    * var pointCount: Int { get }
    * @availability iOS 11.0+
    */
-  get pointCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 1883014715720224, this, []); }
+  get pointCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1883014715720224, this, []); }
   declare readonly $type: { "c:objc(cs)VNFaceLandmarkRegion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pointCount": true };
 }
@@ -7453,22 +7453,22 @@ export class VNFaceLandmarkRegion2D extends VNFaceLandmarkRegion {
    * var pointsClassification: VNPointsClassification { get }
    * @availability iOS 16.0+
    */
-  get pointsClassification(): VNPointsClassification { return callSDK<VNPointsClassification>("Vision_3864e7f38681b875", 4229177045282319, this, []); }
+  get pointsClassification(): VNPointsClassification { return callSDK<VNPointsClassification>("Vision_ff42ce03e691ab23", 4229177045282319, this, []); }
   /**
    * @nonobjc func pointsInImage(imageSize: CGSize) -> [CGPoint]
    * @availability iOS 11.0+
    */
-  pointsInImage(imageSize: $SDK83): $SDK82 { return callSDK<$SDK82>("Vision_3864e7f38681b875", 2709414501651283, this, [imageSize]); }
+  pointsInImage(imageSize: $SDK83): $SDK82 { return callSDK<$SDK82>("Vision_ff42ce03e691ab23", 2709414501651283, this, [imageSize]); }
   /**
    * @nonobjc var normalizedPoints: [CGPoint] { get }
    * @availability iOS 11.0+
    */
-  get normalizedPoints(): $SDK82 { return callSDK<$SDK82>("Vision_3864e7f38681b875", 4246792821298149, this, []); }
+  get normalizedPoints(): $SDK82 { return callSDK<$SDK82>("Vision_ff42ce03e691ab23", 4246792821298149, this, []); }
   /**
    * @nonobjc var precisionEstimatesPerPoint: [Float]? { get }
    * @availability iOS 13.0+
    */
-  get precisionEstimatesPerPoint(): (Array<number>) | null { return callSDK<(Array<number>) | null>("Vision_3864e7f38681b875", 2828684212938176, this, []); }
+  get precisionEstimatesPerPoint(): (Array<number>) | null { return callSDK<(Array<number>) | null>("Vision_ff42ce03e691ab23", 2828684212938176, this, []); }
   declare readonly $type: { "c:objc(cs)VNFaceLandmarkRegion2D": true; "c:objc(cs)VNFaceLandmarkRegion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pointCount": true; "pointsClassification": true };
 }
@@ -7482,7 +7482,7 @@ export class VNFaceLandmarks extends SDKHandle {
    * var confidence: VNConfidence { get }
    * @availability iOS 11.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 1780969536040653, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1780969536040653, this, []); }
   declare readonly $type: { "c:objc(cs)VNFaceLandmarks": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true };
 }
@@ -7496,67 +7496,67 @@ export class VNFaceLandmarks2D extends VNFaceLandmarks {
    * var allPoints: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get allPoints(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 481506704699516, this, []); }
+  get allPoints(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 481506704699516, this, []); }
   /**
    * var faceContour: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get faceContour(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 3195145746695395, this, []); }
+  get faceContour(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 3195145746695395, this, []); }
   /**
    * var innerLips: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get innerLips(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 2677960080252132, this, []); }
+  get innerLips(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 2677960080252132, this, []); }
   /**
    * var leftEye: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get leftEye(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 3679745552470623, this, []); }
+  get leftEye(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 3679745552470623, this, []); }
   /**
    * var leftEyebrow: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get leftEyebrow(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 903019086713261, this, []); }
+  get leftEyebrow(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 903019086713261, this, []); }
   /**
    * var leftPupil: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get leftPupil(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 2560542294215396, this, []); }
+  get leftPupil(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 2560542294215396, this, []); }
   /**
    * var medianLine: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get medianLine(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 3374436086751479, this, []); }
+  get medianLine(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 3374436086751479, this, []); }
   /**
    * var nose: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get nose(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 798685800113824, this, []); }
+  get nose(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 798685800113824, this, []); }
   /**
    * var noseCrest: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get noseCrest(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 1112548714179136, this, []); }
+  get noseCrest(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 1112548714179136, this, []); }
   /**
    * var outerLips: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get outerLips(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 2969056870989994, this, []); }
+  get outerLips(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 2969056870989994, this, []); }
   /**
    * var rightEye: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get rightEye(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 4012629303988193, this, []); }
+  get rightEye(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 4012629303988193, this, []); }
   /**
    * var rightEyebrow: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get rightEyebrow(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 2132934511117649, this, []); }
+  get rightEyebrow(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 2132934511117649, this, []); }
   /**
    * var rightPupil: VNFaceLandmarkRegion2D? { get }
    * @availability iOS 11.0+
    */
-  get rightPupil(): $SDK182 { return callSDK<$SDK182>("Vision_3864e7f38681b875", 3664901544838990, this, []); }
+  get rightPupil(): $SDK182 { return callSDK<$SDK182>("Vision_ff42ce03e691ab23", 3664901544838990, this, []); }
   declare readonly $type: { "c:objc(cs)VNFaceLandmarks2D": true; "c:objc(cs)VNFaceLandmarks": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "allPoints": true; "faceContour": true; "innerLips": true; "leftEye": true; "leftEyebrow": true; "leftPupil": true; "medianLine": true; "nose": true; "noseCrest": true; "outerLips": true; "rightEye": true; "rightEyebrow": true; "rightPupil": true };
 }
@@ -7571,37 +7571,37 @@ export class VNFaceObservation extends VNDetectedObjectObservation {
    * @availability iOS 12.0+
    * @deprecated iOS 15.0
    */
-  static initRequestRevisionBoundingBoxRollYaw(requestRevision: number, boundingBox: $SDK115, roll?: $SDK165, yaw?: $SDK165): VNFaceObservation { return callSDK<VNFaceObservation>("Vision_3864e7f38681b875", 3880572769429512, undefined, [requestRevision, boundingBox, roll, yaw]); }
+  static initRequestRevisionBoundingBoxRollYaw(requestRevision: number, boundingBox: $SDK115, roll?: $SDK165, yaw?: $SDK165): VNFaceObservation { return callSDK<VNFaceObservation>("Vision_ff42ce03e691ab23", 3880572769429512, undefined, [requestRevision, boundingBox, roll, yaw]); }
   /**
    * convenience init(requestRevision: Int, boundingBox: CGRect, roll: NSNumber?, yaw: NSNumber?, pitch: NSNumber?)
    * @availability iOS 15.0+
    */
-  static initRequestRevisionBoundingBoxRollYawPitch(requestRevision: number, boundingBox: $SDK115, roll?: $SDK165, yaw?: $SDK165, pitch?: $SDK165): VNFaceObservation { return callSDK<VNFaceObservation>("Vision_3864e7f38681b875", 695883251776295, undefined, [requestRevision, boundingBox, roll, yaw, pitch]); }
+  static initRequestRevisionBoundingBoxRollYawPitch(requestRevision: number, boundingBox: $SDK115, roll?: $SDK165, yaw?: $SDK165, pitch?: $SDK165): VNFaceObservation { return callSDK<VNFaceObservation>("Vision_ff42ce03e691ab23", 695883251776295, undefined, [requestRevision, boundingBox, roll, yaw, pitch]); }
   /**
    * var landmarks: VNFaceLandmarks2D? { get }
    * @availability iOS 11.0+
    */
-  get landmarks(): (VNFaceLandmarks2D) | null { return callSDK<(VNFaceLandmarks2D) | null>("Vision_3864e7f38681b875", 4403933859641095, this, []); }
+  get landmarks(): (VNFaceLandmarks2D) | null { return callSDK<(VNFaceLandmarks2D) | null>("Vision_ff42ce03e691ab23", 4403933859641095, this, []); }
   /**
    * var pitch: NSNumber? { get }
    * @availability iOS 15.0+
    */
-  get pitch(): $SDK165 { return callSDK<$SDK165>("Vision_3864e7f38681b875", 1079255214664156, this, []); }
+  get pitch(): $SDK165 { return callSDK<$SDK165>("Vision_ff42ce03e691ab23", 1079255214664156, this, []); }
   /**
    * var roll: NSNumber? { get }
    * @availability iOS 12.0+
    */
-  get roll(): $SDK165 { return callSDK<$SDK165>("Vision_3864e7f38681b875", 3640796753575156, this, []); }
+  get roll(): $SDK165 { return callSDK<$SDK165>("Vision_ff42ce03e691ab23", 3640796753575156, this, []); }
   /**
    * var yaw: NSNumber? { get }
    * @availability iOS 12.0+
    */
-  get yaw(): $SDK165 { return callSDK<$SDK165>("Vision_3864e7f38681b875", 1947736879132278, this, []); }
+  get yaw(): $SDK165 { return callSDK<$SDK165>("Vision_ff42ce03e691ab23", 1947736879132278, this, []); }
   /**
    * @nonobjc var faceCaptureQuality: Float? { get }
    * @availability iOS 13.0+
    */
-  get faceCaptureQuality(): (number) | null { return callSDK<(number) | null>("Vision_3864e7f38681b875", 2334239535854793, this, []); }
+  get faceCaptureQuality(): (number) | null { return callSDK<(number) | null>("Vision_ff42ce03e691ab23", 2334239535854793, this, []); }
   declare readonly $type: { "c:objc(cs)VNFaceObservation": true; "c:objc(cs)VNDetectedObjectObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "boundingBox": true; "globalSegmentationMask": true; "landmarks": true; "pitch": true; "roll": true; "yaw": true };
 }
@@ -7623,24 +7623,24 @@ export class VNFeaturePrintObservation extends (VNObservation as unknown as Omit
    * func computeDistance(_ outDistance: UnsafeMutablePointer<Float>, to featurePrint: VNFeaturePrintObservation) throws
    * @availability iOS 13.0+
    */
-  computeDistance(outDistance: SDKHandle, featurePrint: VNFeaturePrintObservation): void { return callSDK<void>("Vision_3864e7f38681b875", 3419984045497747, this, [outDistance, featurePrint]); }
+  computeDistance(outDistance: SDKHandle, featurePrint: VNFeaturePrintObservation): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3419984045497747, this, [outDistance, featurePrint]); }
   /** init() */
-  static init(): VNFeaturePrintObservation { return callSDK<VNFeaturePrintObservation>("Vision_3864e7f38681b875", 3292338865127481, undefined, []); }
+  static init(): VNFeaturePrintObservation { return callSDK<VNFeaturePrintObservation>("Vision_ff42ce03e691ab23", 3292338865127481, undefined, []); }
   /**
    * var data: Data { get }
    * @availability iOS 13.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("Vision_3864e7f38681b875", 307182515609312, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("Vision_ff42ce03e691ab23", 307182515609312, this, []); }
   /**
    * var elementCount: Int { get }
    * @availability iOS 13.0+
    */
-  get elementCount(): number { return callSDK<number>("Vision_3864e7f38681b875", 1573139122619839, this, []); }
+  get elementCount(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1573139122619839, this, []); }
   /**
    * var elementType: VNElementType { get }
    * @availability iOS 13.0+
    */
-  get elementType(): VNElementType { return callSDK<VNElementType>("Vision_3864e7f38681b875", 2989212537102603, this, []); }
+  get elementType(): VNElementType { return callSDK<VNElementType>("Vision_ff42ce03e691ab23", 2989212537102603, this, []); }
   declare readonly $type: { "c:objc(cs)VNFeaturePrintObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "data": true; "elementCount": true; "elementType": true };
 }
@@ -7651,12 +7651,12 @@ export class VNFeaturePrintObservation extends (VNObservation as unknown as Omit
  */
 export class VNGenerateAttentionBasedSaliencyImageRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNGenerateAttentionBasedSaliencyImageRequest { return callSDK<VNGenerateAttentionBasedSaliencyImageRequest>("Vision_3864e7f38681b875", 1380170103617722, undefined, []); }
+  static init(): VNGenerateAttentionBasedSaliencyImageRequest { return callSDK<VNGenerateAttentionBasedSaliencyImageRequest>("Vision_ff42ce03e691ab23", 1380170103617722, undefined, []); }
   /**
    * var results: [VNSaliencyImageObservation]? { get }
    * @availability iOS 13.0+
    */
-  get results(): $SDK184 { return callSDK<$SDK184>("Vision_3864e7f38681b875", 2767801899737125, this, []); }
+  get results(): $SDK184 { return callSDK<$SDK184>("Vision_ff42ce03e691ab23", 2767801899737125, this, []); }
   declare readonly $type: { "c:objc(cs)VNGenerateAttentionBasedSaliencyImageRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -7667,12 +7667,12 @@ export class VNGenerateAttentionBasedSaliencyImageRequest extends (VNImageBasedR
  */
 export class VNGenerateForegroundInstanceMaskRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNGenerateForegroundInstanceMaskRequest { return callSDK<VNGenerateForegroundInstanceMaskRequest>("Vision_3864e7f38681b875", 1155763121878211, undefined, []); }
+  static init(): VNGenerateForegroundInstanceMaskRequest { return callSDK<VNGenerateForegroundInstanceMaskRequest>("Vision_ff42ce03e691ab23", 1155763121878211, undefined, []); }
   /**
    * var results: [VNInstanceMaskObservation]? { get }
    * @availability iOS 17.0+
    */
-  get results(): $SDK185 { return callSDK<$SDK185>("Vision_3864e7f38681b875", 3747877343107541, this, []); }
+  get results(): $SDK185 { return callSDK<$SDK185>("Vision_ff42ce03e691ab23", 3747877343107541, this, []); }
   declare readonly $type: { "c:objc(cs)VNGenerateForegroundInstanceMaskRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -7683,18 +7683,18 @@ export class VNGenerateForegroundInstanceMaskRequest extends (VNImageBasedReques
  */
 export class VNGenerateImageFeaturePrintRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNGenerateImageFeaturePrintRequest { return callSDK<VNGenerateImageFeaturePrintRequest>("Vision_3864e7f38681b875", 2732017633309722, undefined, []); }
+  static init(): VNGenerateImageFeaturePrintRequest { return callSDK<VNGenerateImageFeaturePrintRequest>("Vision_ff42ce03e691ab23", 2732017633309722, undefined, []); }
   /**
    * var imageCropAndScaleOption: VNImageCropAndScaleOption { get set }
    * @availability iOS 13.0+
    */
-  get imageCropAndScaleOption(): VNImageCropAndScaleOption { return callSDK<VNImageCropAndScaleOption>("Vision_3864e7f38681b875", 1209037299604466, this, []); }
-  set imageCropAndScaleOption(value: VNImageCropAndScaleOption) { callSDK<void>("Vision_3864e7f38681b875", 3521651997186062, this, [value]); }
+  get imageCropAndScaleOption(): VNImageCropAndScaleOption { return callSDK<VNImageCropAndScaleOption>("Vision_ff42ce03e691ab23", 1209037299604466, this, []); }
+  set imageCropAndScaleOption(value: VNImageCropAndScaleOption) { callSDK<void>("Vision_ff42ce03e691ab23", 3521651997186062, this, [value]); }
   /**
    * var results: [VNFeaturePrintObservation]? { get }
    * @availability iOS 13.0+
    */
-  get results(): (Array<VNFeaturePrintObservation>) | null { return callSDK<(Array<VNFeaturePrintObservation>) | null>("Vision_3864e7f38681b875", 3886843738655947, this, []); }
+  get results(): (Array<VNFeaturePrintObservation>) | null { return callSDK<(Array<VNFeaturePrintObservation>) | null>("Vision_ff42ce03e691ab23", 3886843738655947, this, []); }
   declare readonly $type: { "c:objc(cs)VNGenerateImageFeaturePrintRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "imageCropAndScaleOption": true };
 }
@@ -7705,12 +7705,12 @@ export class VNGenerateImageFeaturePrintRequest extends (VNImageBasedRequest as 
  */
 export class VNGenerateObjectnessBasedSaliencyImageRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNGenerateObjectnessBasedSaliencyImageRequest { return callSDK<VNGenerateObjectnessBasedSaliencyImageRequest>("Vision_3864e7f38681b875", 2147934469443504, undefined, []); }
+  static init(): VNGenerateObjectnessBasedSaliencyImageRequest { return callSDK<VNGenerateObjectnessBasedSaliencyImageRequest>("Vision_ff42ce03e691ab23", 2147934469443504, undefined, []); }
   /**
    * var results: [VNSaliencyImageObservation]? { get }
    * @availability iOS 13.0+
    */
-  get results(): $SDK184 { return callSDK<$SDK184>("Vision_3864e7f38681b875", 4492810615515885, this, []); }
+  get results(): $SDK184 { return callSDK<$SDK184>("Vision_ff42ce03e691ab23", 4492810615515885, this, []); }
   declare readonly $type: { "c:objc(cs)VNGenerateObjectnessBasedSaliencyImageRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -7724,62 +7724,62 @@ export class VNTargetedImageRequest extends VNImageBasedRequest {
    * init(targetedCGImage cgImage: CGImage, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initTargetedCGImageOptionsCompletionHandler(cgImage: _CoreGraphics_CGImage, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 688586950449488, undefined, [cgImage, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initTargetedCGImageOptionsCompletionHandler(cgImage: _CoreGraphics_CGImage, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 688586950449488, undefined, [cgImage, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedCGImage cgImage: CGImage, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initTargetedCGImageOrientationOptionsCompletionHandler(cgImage: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 3071543126569337, undefined, [cgImage, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initTargetedCGImageOrientationOptionsCompletionHandler(cgImage: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 3071543126569337, undefined, [cgImage, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedCIImage ciImage: CIImage, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initTargetedCIImageOptionsCompletionHandler(ciImage: _CoreImage_CIImage, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 106409216138430, undefined, [ciImage, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initTargetedCIImageOptionsCompletionHandler(ciImage: _CoreImage_CIImage, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 106409216138430, undefined, [ciImage, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedCIImage ciImage: CIImage, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initTargetedCIImageOrientationOptionsCompletionHandler(ciImage: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 3204019467626996, undefined, [ciImage, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initTargetedCIImageOrientationOptionsCompletionHandler(ciImage: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 3204019467626996, undefined, [ciImage, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedCMSampleBuffer sampleBuffer: CMSampleBuffer, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 14.0+
    */
-  static initTargetedCMSampleBufferOptionsCompletionHandler(sampleBuffer: _CoreMedia_CMSampleBuffer, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 1551859813852687, undefined, [sampleBuffer, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initTargetedCMSampleBufferOptionsCompletionHandler(sampleBuffer: _CoreMedia_CMSampleBuffer, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 1551859813852687, undefined, [sampleBuffer, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedCMSampleBuffer sampleBuffer: CMSampleBuffer, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 14.0+
    */
-  static initTargetedCMSampleBufferOrientationOptionsCompletionHandler(sampleBuffer: _CoreMedia_CMSampleBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 4065958029156956, undefined, [sampleBuffer, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initTargetedCMSampleBufferOrientationOptionsCompletionHandler(sampleBuffer: _CoreMedia_CMSampleBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 4065958029156956, undefined, [sampleBuffer, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedCVPixelBuffer pixelBuffer: CVPixelBuffer, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initTargetedCVPixelBufferOptionsCompletionHandler(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 2449107020622669, undefined, [pixelBuffer, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initTargetedCVPixelBufferOptionsCompletionHandler(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 2449107020622669, undefined, [pixelBuffer, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedCVPixelBuffer pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initTargetedCVPixelBufferOrientationOptionsCompletionHandler(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 3911909088749632, undefined, [pixelBuffer, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initTargetedCVPixelBufferOrientationOptionsCompletionHandler(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 3911909088749632, undefined, [pixelBuffer, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedImageData imageData: Data, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initTargetedImageDataOptionsCompletionHandler(imageData: ArrayBuffer, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 983665170071667, undefined, [imageData, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initTargetedImageDataOptionsCompletionHandler(imageData: ArrayBuffer, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 983665170071667, undefined, [imageData, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedImageData imageData: Data, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initTargetedImageDataOrientationOptionsCompletionHandler(imageData: ArrayBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 4352693193967076, undefined, [imageData, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initTargetedImageDataOrientationOptionsCompletionHandler(imageData: ArrayBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 4352693193967076, undefined, [imageData, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedImageURL imageURL: URL, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initTargetedImageURLOptionsCompletionHandler(imageURL: string, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 4173055898162857, undefined, [imageURL, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initTargetedImageURLOptionsCompletionHandler(imageURL: string, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 4173055898162857, undefined, [imageURL, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(targetedImageURL imageURL: URL, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:], completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initTargetedImageURLOrientationOptionsCompletionHandler(imageURL: string, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_3864e7f38681b875", 3874431181556443, undefined, [imageURL, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initTargetedImageURLOrientationOptionsCompletionHandler(imageURL: string, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest { return callSDK<VNTargetedImageRequest>("Vision_ff42ce03e691ab23", 3874431181556443, undefined, [imageURL, orientation, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)VNTargetedImageRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -7793,25 +7793,25 @@ export class VNGenerateOpticalFlowRequest extends (VNTargetedImageRequest as unk
    * var computationAccuracy: VNGenerateOpticalFlowRequest.ComputationAccuracy { get set }
    * @availability iOS 14.0+
    */
-  get computationAccuracy(): VNGenerateOpticalFlowRequest_ComputationAccuracy { return callSDK<VNGenerateOpticalFlowRequest_ComputationAccuracy>("Vision_3864e7f38681b875", 1263257443639062, this, []); }
-  set computationAccuracy(value: VNGenerateOpticalFlowRequest_ComputationAccuracy) { callSDK<void>("Vision_3864e7f38681b875", 34171300722451, this, [value]); }
+  get computationAccuracy(): VNGenerateOpticalFlowRequest_ComputationAccuracy { return callSDK<VNGenerateOpticalFlowRequest_ComputationAccuracy>("Vision_ff42ce03e691ab23", 1263257443639062, this, []); }
+  set computationAccuracy(value: VNGenerateOpticalFlowRequest_ComputationAccuracy) { callSDK<void>("Vision_ff42ce03e691ab23", 34171300722451, this, [value]); }
   /**
    * var keepNetworkOutput: Bool { get set }
    * @availability iOS 16.0+
    */
-  get keepNetworkOutput(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 708431747816381, this, []); }
-  set keepNetworkOutput(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 3168260243687204, this, [value]); }
+  get keepNetworkOutput(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 708431747816381, this, []); }
+  set keepNetworkOutput(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 3168260243687204, this, [value]); }
   /**
    * var outputPixelFormat: OSType { get set }
    * @availability iOS 14.0+
    */
-  get outputPixelFormat(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 68271853873656, this, []); }
-  set outputPixelFormat(value: SDKHandle) { callSDK<void>("Vision_3864e7f38681b875", 420063130594498, this, [value]); }
+  get outputPixelFormat(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 68271853873656, this, []); }
+  set outputPixelFormat(value: SDKHandle) { callSDK<void>("Vision_ff42ce03e691ab23", 420063130594498, this, [value]); }
   /**
    * var results: [VNPixelBufferObservation]? { get }
    * @availability iOS 14.0+
    */
-  get results(): $SDK188 { return callSDK<$SDK188>("Vision_3864e7f38681b875", 3165690281524364, this, []); }
+  get results(): $SDK188 { return callSDK<$SDK188>("Vision_ff42ce03e691ab23", 3165690281524364, this, []); }
   declare readonly $type: { "c:objc(cs)VNGenerateOpticalFlowRequest": true; "c:objc(cs)VNTargetedImageRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "computationAccuracy": true; "keepNetworkOutput": true; "outputPixelFormat": true };
 }
@@ -7827,7 +7827,7 @@ export const VNGenerateOpticalFlowRequest_ComputationAccuracy = {
    * init?(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (VNGenerateOpticalFlowRequest_ComputationAccuracy) | null { return callSDK<(VNGenerateOpticalFlowRequest_ComputationAccuracy) | null>("Vision_3864e7f38681b875", 3654326598368893, undefined, [rawValue]); }
+  init(rawValue: number): (VNGenerateOpticalFlowRequest_ComputationAccuracy) | null { return callSDK<(VNGenerateOpticalFlowRequest_ComputationAccuracy) | null>("Vision_ff42ce03e691ab23", 3654326598368893, undefined, [rawValue]); }
 };
 
 /**
@@ -7836,12 +7836,12 @@ export const VNGenerateOpticalFlowRequest_ComputationAccuracy = {
  */
 export class VNGeneratePersonInstanceMaskRequest extends (VNImageBasedRequest as unknown as Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">)) {
   /** init() */
-  static init(): VNGeneratePersonInstanceMaskRequest { return callSDK<VNGeneratePersonInstanceMaskRequest>("Vision_3864e7f38681b875", 2955920791103398, undefined, []); }
+  static init(): VNGeneratePersonInstanceMaskRequest { return callSDK<VNGeneratePersonInstanceMaskRequest>("Vision_ff42ce03e691ab23", 2955920791103398, undefined, []); }
   /**
    * var results: [VNInstanceMaskObservation]? { get }
    * @availability iOS 17.0+
    */
-  get results(): $SDK185 { return callSDK<$SDK185>("Vision_3864e7f38681b875", 2925053614394605, this, []); }
+  get results(): $SDK185 { return callSDK<$SDK185>("Vision_ff42ce03e691ab23", 2925053614394605, this, []); }
   declare readonly $type: { "c:objc(cs)VNGeneratePersonInstanceMaskRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -7855,34 +7855,34 @@ export class VNGeneratePersonSegmentationRequest extends (VNStatefulRequest as u
    * init()
    * @availability iOS 15.0+
    */
-  static init(): VNGeneratePersonSegmentationRequest { return callSDK<VNGeneratePersonSegmentationRequest>("Vision_3864e7f38681b875", 2892231728991909, undefined, []); }
+  static init(): VNGeneratePersonSegmentationRequest { return callSDK<VNGeneratePersonSegmentationRequest>("Vision_ff42ce03e691ab23", 2892231728991909, undefined, []); }
   /**
    * init(completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 15.0+
    */
-  static initCompletionHandler(completionHandler?: $SDK155): VNGeneratePersonSegmentationRequest { return callSDK<VNGeneratePersonSegmentationRequest>("Vision_3864e7f38681b875", 1171183907914615, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static initCompletionHandler(completionHandler?: $SDK155): VNGeneratePersonSegmentationRequest { return callSDK<VNGeneratePersonSegmentationRequest>("Vision_ff42ce03e691ab23", 1171183907914615, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func supportedOutputPixelFormats() throws -> [NSNumber]
    * @availability iOS 18.0+
    */
-  supportedOutputPixelFormats(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("Vision_3864e7f38681b875", 4435684178005038, this, []); }
+  supportedOutputPixelFormats(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("Vision_ff42ce03e691ab23", 4435684178005038, this, []); }
   /**
    * var outputPixelFormat: OSType { get set }
    * @availability iOS 15.0+
    */
-  get outputPixelFormat(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 1905683545759652, this, []); }
-  set outputPixelFormat(value: SDKHandle) { callSDK<void>("Vision_3864e7f38681b875", 2297432520092518, this, [value]); }
+  get outputPixelFormat(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 1905683545759652, this, []); }
+  set outputPixelFormat(value: SDKHandle) { callSDK<void>("Vision_ff42ce03e691ab23", 2297432520092518, this, [value]); }
   /**
    * var qualityLevel: VNGeneratePersonSegmentationRequest.QualityLevel { get set }
    * @availability iOS 15.0+
    */
-  get qualityLevel(): VNGeneratePersonSegmentationRequest_QualityLevel { return callSDK<VNGeneratePersonSegmentationRequest_QualityLevel>("Vision_3864e7f38681b875", 1743042267923849, this, []); }
-  set qualityLevel(value: VNGeneratePersonSegmentationRequest_QualityLevel) { callSDK<void>("Vision_3864e7f38681b875", 3327124554845618, this, [value]); }
+  get qualityLevel(): VNGeneratePersonSegmentationRequest_QualityLevel { return callSDK<VNGeneratePersonSegmentationRequest_QualityLevel>("Vision_ff42ce03e691ab23", 1743042267923849, this, []); }
+  set qualityLevel(value: VNGeneratePersonSegmentationRequest_QualityLevel) { callSDK<void>("Vision_ff42ce03e691ab23", 3327124554845618, this, [value]); }
   /**
    * var results: [VNPixelBufferObservation]? { get }
    * @availability iOS 15.0+
    */
-  get results(): $SDK188 { return callSDK<$SDK188>("Vision_3864e7f38681b875", 3363721546650771, this, []); }
+  get results(): $SDK188 { return callSDK<$SDK188>("Vision_ff42ce03e691ab23", 3363721546650771, this, []); }
   declare readonly $type: { "c:objc(cs)VNGeneratePersonSegmentationRequest": true; "c:objc(cs)VNStatefulRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "frameAnalysisSpacing": true; "minimumLatencyFrameCount": true; "outputPixelFormat": true; "qualityLevel": true };
 }
@@ -7892,7 +7892,7 @@ export type VNGeneratePersonSegmentationRequest_QualityLevel = "accurate" | "bal
 
 export const VNGeneratePersonSegmentationRequest_QualityLevel = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (VNGeneratePersonSegmentationRequest_QualityLevel) | null { return callSDK<(VNGeneratePersonSegmentationRequest_QualityLevel) | null>("Vision_3864e7f38681b875", 1983456290934501, undefined, [rawValue]); }
+  init(rawValue: number): (VNGeneratePersonSegmentationRequest_QualityLevel) | null { return callSDK<(VNGeneratePersonSegmentationRequest_QualityLevel) | null>("Vision_ff42ce03e691ab23", 1983456290934501, undefined, [rawValue]); }
 };
 
 /**
@@ -7904,29 +7904,29 @@ export class VNGeometryUtils extends SDKHandle {
    * class func boundingCircle(for contour: VNContour) throws -> VNCircle
    * @availability iOS 14.0+
    */
-  static boundingCircleFor(contour: VNContour): VNCircle { return callSDK<VNCircle>("Vision_3864e7f38681b875", 3385132781405068, undefined, [contour]); }
+  static boundingCircleFor(contour: VNContour): VNCircle { return callSDK<VNCircle>("Vision_ff42ce03e691ab23", 3385132781405068, undefined, [contour]); }
   /**
    * class func boundingCircle(for points: [VNPoint]) throws -> VNCircle
    * @availability iOS 14.0+
    */
-  static boundingCircleFor24437(points: Array<VNPoint>): VNCircle { return callSDK<VNCircle>("Vision_3864e7f38681b875", 329924293411851, undefined, [points]); }
+  static boundingCircleFor24437(points: Array<VNPoint>): VNCircle { return callSDK<VNCircle>("Vision_ff42ce03e691ab23", 329924293411851, undefined, [points]); }
   /**
    * class func boundingCircle(forSIMDPoints points: UnsafePointer<simd_float2>, pointCount: Int) throws -> VNCircle
    * @availability iOS 14.0+
    */
-  static boundingCircleForSIMDPointsPointCount(points: SDKHandle, pointCount: number): VNCircle { return callSDK<VNCircle>("Vision_3864e7f38681b875", 2828354045105330, undefined, [points, pointCount]); }
+  static boundingCircleForSIMDPointsPointCount(points: SDKHandle, pointCount: number): VNCircle { return callSDK<VNCircle>("Vision_ff42ce03e691ab23", 2828354045105330, undefined, [points, pointCount]); }
   /**
    * class func calculateArea(_ area: UnsafeMutablePointer<Double>, for contour: VNContour, orientedArea: Bool) throws
    * @availability iOS 14.0+
    */
-  static calculateArea(area: SDKHandle, contour: VNContour, orientedArea: boolean): void { return callSDK<void>("Vision_3864e7f38681b875", 3967312078662572, undefined, [area, contour, orientedArea]); }
+  static calculateArea(area: SDKHandle, contour: VNContour, orientedArea: boolean): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3967312078662572, undefined, [area, contour, orientedArea]); }
   /**
    * class func calculatePerimeter(_ perimeter: UnsafeMutablePointer<Double>, for contour: VNContour) throws
    * @availability iOS 14.0+
    */
-  static calculatePerimeter(perimeter: SDKHandle, contour: VNContour): void { return callSDK<void>("Vision_3864e7f38681b875", 3845452523865535, undefined, [perimeter, contour]); }
+  static calculatePerimeter(perimeter: SDKHandle, contour: VNContour): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3845452523865535, undefined, [perimeter, contour]); }
   /** init() */
-  static init(): VNGeometryUtils { return callSDK<VNGeometryUtils>("Vision_3864e7f38681b875", 838877286058430, undefined, []); }
+  static init(): VNGeometryUtils { return callSDK<VNGeometryUtils>("Vision_ff42ce03e691ab23", 838877286058430, undefined, []); }
   declare readonly $type: { "c:objc(cs)VNGeometryUtils": true; "c:objc(cs)NSObject": true };
 }
 
@@ -7948,7 +7948,7 @@ export class VNHomographicImageRegistrationRequest extends (VNImageRegistrationR
    * var results: [VNImageHomographicAlignmentObservation]? { get }
    * @availability iOS 11.0+
    */
-  get results(): $SDK190 { return callSDK<$SDK190>("Vision_3864e7f38681b875", 1997592408650594, this, []); }
+  get results(): $SDK190 { return callSDK<$SDK190>("Vision_ff42ce03e691ab23", 1997592408650594, this, []); }
   declare readonly $type: { "c:objc(cs)VNHomographicImageRegistrationRequest": true; "c:objc(cs)VNImageRegistrationRequest": true; "c:objc(cs)VNTargetedImageRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -7959,22 +7959,22 @@ export class VNHomographicImageRegistrationRequest extends (VNImageRegistrationR
  */
 export class VNHorizonObservation extends (VNObservation as unknown as Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation)) {
   /** init() */
-  static init(): VNHorizonObservation { return callSDK<VNHorizonObservation>("Vision_3864e7f38681b875", 3739994089904716, undefined, []); }
+  static init(): VNHorizonObservation { return callSDK<VNHorizonObservation>("Vision_ff42ce03e691ab23", 3739994089904716, undefined, []); }
   /**
    * func transform(forImageWidth width: Int, height: Int) -> CGAffineTransform
    * @availability iOS 16.0+
    */
-  transformForImageWidthHeight(width: number, height: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_3864e7f38681b875", 4333929322074806, this, [width, height]); }
+  transformForImageWidthHeight(width: number, height: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_ff42ce03e691ab23", 4333929322074806, this, [width, height]); }
   /**
    * var angle: CGFloat { get }
    * @availability iOS 11.0+
    */
-  get angle(): number { return callSDK<number>("Vision_3864e7f38681b875", 1829343136273312, this, []); }
+  get angle(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1829343136273312, this, []); }
   /**
    * var transform: CGAffineTransform { get }
    * @availability iOS 11.0+
    */
-  get transform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_3864e7f38681b875", 947609720343529, this, []); }
+  get transform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_ff42ce03e691ab23", 947609720343529, this, []); }
   declare readonly $type: { "c:objc(cs)VNHorizonObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "angle": true; "transform": true };
 }
@@ -7988,22 +7988,22 @@ export class VNRecognizedPoints3DObservation extends VNObservation {
    * func recognizedPoint(forKey pointKey: VNRecognizedPointKey) throws -> VNRecognizedPoint3D
    * @availability iOS 14.0+
    */
-  recognizedPoint(pointKey: VNRecognizedPointKey): VNRecognizedPoint3D { return callSDK<VNRecognizedPoint3D>("Vision_3864e7f38681b875", 3255754927491988, this, [pointKey]); }
+  recognizedPoint(pointKey: VNRecognizedPointKey): VNRecognizedPoint3D { return callSDK<VNRecognizedPoint3D>("Vision_ff42ce03e691ab23", 3255754927491988, this, [pointKey]); }
   /**
    * func recognizedPoints(forGroupKey groupKey: VNRecognizedPointGroupKey) throws -> [VNRecognizedPointKey : VNRecognizedPoint3D]
    * @availability iOS 14.0+
    */
-  recognizedPoints(groupKey: VNRecognizedPointGroupKey): NativeMap<VNRecognizedPointKey, VNRecognizedPoint3D> { return callSDK<NativeMap<VNRecognizedPointKey, VNRecognizedPoint3D>>("Vision_3864e7f38681b875", 519113501939480, this, [groupKey]); }
+  recognizedPoints(groupKey: VNRecognizedPointGroupKey): NativeMap<VNRecognizedPointKey, VNRecognizedPoint3D> { return callSDK<NativeMap<VNRecognizedPointKey, VNRecognizedPoint3D>>("Vision_ff42ce03e691ab23", 519113501939480, this, [groupKey]); }
   /**
    * var availableGroupKeys: [VNRecognizedPointGroupKey] { get }
    * @availability iOS 14.0+
    */
-  get availableGroupKeys(): Array<VNRecognizedPointGroupKey> { return callSDK<Array<VNRecognizedPointGroupKey>>("Vision_3864e7f38681b875", 973871184962305, this, []); }
+  get availableGroupKeys(): Array<VNRecognizedPointGroupKey> { return callSDK<Array<VNRecognizedPointGroupKey>>("Vision_ff42ce03e691ab23", 973871184962305, this, []); }
   /**
    * var availableKeys: [VNRecognizedPointKey] { get }
    * @availability iOS 14.0+
    */
-  get availableKeys(): Array<VNRecognizedPointKey> { return callSDK<Array<VNRecognizedPointKey>>("Vision_3864e7f38681b875", 481537188685228, this, []); }
+  get availableKeys(): Array<VNRecognizedPointKey> { return callSDK<Array<VNRecognizedPointKey>>("Vision_ff42ce03e691ab23", 481537188685228, this, []); }
   declare readonly $type: { "c:objc(cs)VNRecognizedPoints3DObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "availableGroupKeys": true; "availableKeys": true };
 }
@@ -8017,52 +8017,52 @@ export class VNHumanBodyPose3DObservation extends (VNRecognizedPoints3DObservati
    * func parentJointName(_ jointName: VNHumanBodyPose3DObservation.JointName) -> VNHumanBodyPose3DObservation.JointName?
    * @availability iOS 17.0+
    */
-  parentJointName(jointName: VNHumanBodyPose3DObservation_JointName): (VNHumanBodyPose3DObservation_JointName) | null { return callSDK<(VNHumanBodyPose3DObservation_JointName) | null>("Vision_3864e7f38681b875", 3518703931673069, this, [jointName]); }
+  parentJointName(jointName: VNHumanBodyPose3DObservation_JointName): (VNHumanBodyPose3DObservation_JointName) | null { return callSDK<(VNHumanBodyPose3DObservation_JointName) | null>("Vision_ff42ce03e691ab23", 3518703931673069, this, [jointName]); }
   /**
    * func pointInImage(_ jointName: VNHumanBodyPose3DObservation.JointName) throws -> VNPoint
    * @availability iOS 17.0+
    */
-  pointInImage(jointName: VNHumanBodyPose3DObservation_JointName): VNPoint { return callSDK<VNPoint>("Vision_3864e7f38681b875", 3656147248945720, this, [jointName]); }
+  pointInImage(jointName: VNHumanBodyPose3DObservation_JointName): VNPoint { return callSDK<VNPoint>("Vision_ff42ce03e691ab23", 3656147248945720, this, [jointName]); }
   /**
    * func recognizedPoint(_ jointName: VNHumanBodyPose3DObservation.JointName) throws -> VNHumanBodyRecognizedPoint3D
    * @availability iOS 17.0+
    */
-  recognizedPoint(jointName: VNHumanBodyPose3DObservation_JointName): VNHumanBodyRecognizedPoint3D { return callSDK<VNHumanBodyRecognizedPoint3D>("Vision_3864e7f38681b875", 4215227934782188, this, [jointName]); }
+  recognizedPoint(jointName: VNHumanBodyPose3DObservation_JointName): VNHumanBodyRecognizedPoint3D { return callSDK<VNHumanBodyRecognizedPoint3D>("Vision_ff42ce03e691ab23", 4215227934782188, this, [jointName]); }
   /**
    * func recognizedPoints(_ jointsGroupName: VNHumanBodyPose3DObservation.JointsGroupName) throws -> [VNHumanBodyPose3DObservation.JointName : VNHumanBodyRecognizedPoint3D]
    * @availability iOS 17.0+
    */
-  recognizedPoints(jointsGroupName: VNHumanBodyPose3DObservation_JointsGroupName): NativeMap<VNHumanBodyPose3DObservation_JointName, VNHumanBodyRecognizedPoint3D> { return callSDK<NativeMap<VNHumanBodyPose3DObservation_JointName, VNHumanBodyRecognizedPoint3D>>("Vision_3864e7f38681b875", 1571196081978026, this, [jointsGroupName]); }
+  recognizedPoints(jointsGroupName: VNHumanBodyPose3DObservation_JointsGroupName): NativeMap<VNHumanBodyPose3DObservation_JointName, VNHumanBodyRecognizedPoint3D> { return callSDK<NativeMap<VNHumanBodyPose3DObservation_JointName, VNHumanBodyRecognizedPoint3D>>("Vision_ff42ce03e691ab23", 1571196081978026, this, [jointsGroupName]); }
   /**
    * var availableJointNames: [VNHumanBodyPose3DObservation.JointName] { get }
    * @availability iOS 17.0+
    */
-  get availableJointNames(): $SDK171 { return callSDK<$SDK171>("Vision_3864e7f38681b875", 1586838401744632, this, []); }
+  get availableJointNames(): $SDK171 { return callSDK<$SDK171>("Vision_ff42ce03e691ab23", 1586838401744632, this, []); }
   /**
    * var availableJointsGroupNames: [VNHumanBodyPose3DObservation.JointsGroupName] { get }
    * @availability iOS 17.0+
    */
-  get availableJointsGroupNames(): $SDK172 { return callSDK<$SDK172>("Vision_3864e7f38681b875", 3935063979296151, this, []); }
+  get availableJointsGroupNames(): $SDK172 { return callSDK<$SDK172>("Vision_ff42ce03e691ab23", 3935063979296151, this, []); }
   /**
    * var bodyHeight: Float { get }
    * @availability iOS 17.0+
    */
-  get bodyHeight(): number { return callSDK<number>("Vision_3864e7f38681b875", 693392895701711, this, []); }
+  get bodyHeight(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 693392895701711, this, []); }
   /**
    * var cameraOriginMatrix: simd_float4x4 { get }
    * @availability iOS 17.0+
    */
-  get cameraOriginMatrix(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 1234818154007064, this, []); }
+  get cameraOriginMatrix(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 1234818154007064, this, []); }
   /**
    * var heightEstimation: VNHumanBodyPose3DObservation.HeightEstimation { get }
    * @availability iOS 17.0+
    */
-  get heightEstimation(): VNHumanBodyPose3DObservation_HeightEstimation { return callSDK<VNHumanBodyPose3DObservation_HeightEstimation>("Vision_3864e7f38681b875", 796543339646077, this, []); }
+  get heightEstimation(): VNHumanBodyPose3DObservation_HeightEstimation { return callSDK<VNHumanBodyPose3DObservation_HeightEstimation>("Vision_ff42ce03e691ab23", 796543339646077, this, []); }
   /**
    * @nonobjc func cameraRelativePosition(_ jointName: VNHumanBodyPose3DObservation.JointName) throws -> simd_float4x4
    * @availability iOS 17.0+
    */
-  cameraRelativePosition(jointName: VNHumanBodyPose3DObservation_JointName): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 950292400599358, this, [jointName]); }
+  cameraRelativePosition(jointName: VNHumanBodyPose3DObservation_JointName): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 950292400599358, this, [jointName]); }
   declare readonly $type: { "c:objc(cs)VNHumanBodyPose3DObservation": true; "c:objc(cs)VNRecognizedPoints3DObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "availableGroupKeys": true; "availableKeys": true; "availableJointNames": true; "availableJointsGroupNames": true; "bodyHeight": true; "cameraOriginMatrix": true; "heightEstimation": true };
 }
@@ -8072,7 +8072,7 @@ export type VNHumanBodyPose3DObservation_HeightEstimation = "reference" | "measu
 
 export const VNHumanBodyPose3DObservation_HeightEstimation = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (VNHumanBodyPose3DObservation_HeightEstimation) | null { return callSDK<(VNHumanBodyPose3DObservation_HeightEstimation) | null>("Vision_3864e7f38681b875", 541072683886834, undefined, [rawValue]); }
+  init(rawValue: number): (VNHumanBodyPose3DObservation_HeightEstimation) | null { return callSDK<(VNHumanBodyPose3DObservation_HeightEstimation) | null>("Vision_ff42ce03e691ab23", 541072683886834, undefined, [rawValue]); }
 };
 
 /**
@@ -8086,92 +8086,92 @@ export const VNHumanBodyPose3DObservation_JointName = {
    * static let centerHead: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get centerHead(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 1380432107007535, undefined, []); },
+  get centerHead(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 1380432107007535, undefined, []); },
   /**
    * static let centerShoulder: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get centerShoulder(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 149238212676755, undefined, []); },
+  get centerShoulder(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 149238212676755, undefined, []); },
   /**
    * static let leftAnkle: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftAnkle(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 976881329514532, undefined, []); },
+  get leftAnkle(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 976881329514532, undefined, []); },
   /**
    * static let leftElbow: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftElbow(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 2512876507872156, undefined, []); },
+  get leftElbow(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 2512876507872156, undefined, []); },
   /**
    * static let leftHip: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftHip(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 246015616220276, undefined, []); },
+  get leftHip(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 246015616220276, undefined, []); },
   /**
    * static let leftKnee: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftKnee(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 1723301344269622, undefined, []); },
+  get leftKnee(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 1723301344269622, undefined, []); },
   /**
    * static let leftShoulder: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftShoulder(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 3692457523645715, undefined, []); },
+  get leftShoulder(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 3692457523645715, undefined, []); },
   /**
    * static let leftWrist: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get leftWrist(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 950656523102598, undefined, []); },
+  get leftWrist(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 950656523102598, undefined, []); },
   /**
    * static let rightAnkle: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightAnkle(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 272937957733183, undefined, []); },
+  get rightAnkle(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 272937957733183, undefined, []); },
   /**
    * static let rightElbow: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightElbow(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 2670733795623431, undefined, []); },
+  get rightElbow(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 2670733795623431, undefined, []); },
   /**
    * static let rightHip: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightHip(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 2882401323975965, undefined, []); },
+  get rightHip(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 2882401323975965, undefined, []); },
   /**
    * static let rightKnee: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightKnee(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 327028214962845, undefined, []); },
+  get rightKnee(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 327028214962845, undefined, []); },
   /**
    * static let rightShoulder: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightShoulder(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 790402485359114, undefined, []); },
+  get rightShoulder(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 790402485359114, undefined, []); },
   /**
    * static let rightWrist: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get rightWrist(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 3787498098489691, undefined, []); },
+  get rightWrist(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 3787498098489691, undefined, []); },
   /**
    * static let root: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get root(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 2150578054078067, undefined, []); },
+  get root(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 2150578054078067, undefined, []); },
   /**
    * static let spine: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get spine(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 1691276033595033, undefined, []); },
+  get spine(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 1691276033595033, undefined, []); },
   /**
    * static let topHead: VNHumanBodyPose3DObservation.JointName
    * @availability iOS 17.0+
    */
-  get topHead(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 894214037948824, undefined, []); },
+  get topHead(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 894214037948824, undefined, []); },
   /**
    * init(rawValue: VNRecognizedPointKey)
    * @availability iOS 17.0+
    */
-  init(rawValue: VNRecognizedPointKey): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 820815700179298, undefined, [rawValue]); }
+  init(rawValue: VNRecognizedPointKey): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 820815700179298, undefined, [rawValue]); }
 };
 
 /**
@@ -8185,42 +8185,42 @@ export const VNHumanBodyPose3DObservation_JointsGroupName = {
    * static let all: VNHumanBodyPose3DObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get all(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_3864e7f38681b875", 578006740889237, undefined, []); },
+  get all(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 578006740889237, undefined, []); },
   /**
    * static let head: VNHumanBodyPose3DObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get head(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_3864e7f38681b875", 2845865701674224, undefined, []); },
+  get head(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 2845865701674224, undefined, []); },
   /**
    * static let leftArm: VNHumanBodyPose3DObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get leftArm(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_3864e7f38681b875", 1752914080890268, undefined, []); },
+  get leftArm(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 1752914080890268, undefined, []); },
   /**
    * static let leftLeg: VNHumanBodyPose3DObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get leftLeg(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_3864e7f38681b875", 2701592308844708, undefined, []); },
+  get leftLeg(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 2701592308844708, undefined, []); },
   /**
    * static let rightArm: VNHumanBodyPose3DObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get rightArm(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_3864e7f38681b875", 1164279740834729, undefined, []); },
+  get rightArm(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 1164279740834729, undefined, []); },
   /**
    * static let rightLeg: VNHumanBodyPose3DObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get rightLeg(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_3864e7f38681b875", 4289890578119029, undefined, []); },
+  get rightLeg(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 4289890578119029, undefined, []); },
   /**
    * static let torso: VNHumanBodyPose3DObservation.JointsGroupName
    * @availability iOS 17.0+
    */
-  get torso(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_3864e7f38681b875", 2031760615521845, undefined, []); },
+  get torso(): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 2031760615521845, undefined, []); },
   /**
    * init(rawValue: VNRecognizedPointGroupKey)
    * @availability iOS 17.0+
    */
-  init(rawValue: VNRecognizedPointGroupKey): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_3864e7f38681b875", 304574290367987, undefined, [rawValue]); }
+  init(rawValue: VNRecognizedPointGroupKey): VNHumanBodyPose3DObservation_JointsGroupName { return callSDK<VNHumanBodyPose3DObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 304574290367987, undefined, [rawValue]); }
 };
 
 /**
@@ -8232,22 +8232,22 @@ export class VNHumanBodyPoseObservation extends (VNRecognizedPointsObservation a
    * func recognizedPoint(_ jointName: VNHumanBodyPoseObservation.JointName) throws -> VNRecognizedPoint
    * @availability iOS 14.0+
    */
-  recognizedPoint(jointName: VNHumanBodyPoseObservation_JointName): VNRecognizedPoint { return callSDK<VNRecognizedPoint>("Vision_3864e7f38681b875", 3422001115090332, this, [jointName]); }
+  recognizedPoint(jointName: VNHumanBodyPoseObservation_JointName): VNRecognizedPoint { return callSDK<VNRecognizedPoint>("Vision_ff42ce03e691ab23", 3422001115090332, this, [jointName]); }
   /**
    * func recognizedPoints(_ jointsGroupName: VNHumanBodyPoseObservation.JointsGroupName) throws -> [VNHumanBodyPoseObservation.JointName : VNRecognizedPoint]
    * @availability iOS 14.0+
    */
-  recognizedPoints(jointsGroupName: VNHumanBodyPoseObservation_JointsGroupName): NativeMap<VNHumanBodyPoseObservation_JointName, VNRecognizedPoint> { return callSDK<NativeMap<VNHumanBodyPoseObservation_JointName, VNRecognizedPoint>>("Vision_3864e7f38681b875", 4453235136979173, this, [jointsGroupName]); }
+  recognizedPoints(jointsGroupName: VNHumanBodyPoseObservation_JointsGroupName): NativeMap<VNHumanBodyPoseObservation_JointName, VNRecognizedPoint> { return callSDK<NativeMap<VNHumanBodyPoseObservation_JointName, VNRecognizedPoint>>("Vision_ff42ce03e691ab23", 4453235136979173, this, [jointsGroupName]); }
   /**
    * var availableJointNames: [VNHumanBodyPoseObservation.JointName] { get }
    * @availability iOS 14.0+
    */
-  get availableJointNames(): $SDK173 { return callSDK<$SDK173>("Vision_3864e7f38681b875", 1302832047192203, this, []); }
+  get availableJointNames(): $SDK173 { return callSDK<$SDK173>("Vision_ff42ce03e691ab23", 1302832047192203, this, []); }
   /**
    * var availableJointsGroupNames: [VNHumanBodyPoseObservation.JointsGroupName] { get }
    * @availability iOS 14.0+
    */
-  get availableJointsGroupNames(): $SDK174 { return callSDK<$SDK174>("Vision_3864e7f38681b875", 2213516991911503, this, []); }
+  get availableJointsGroupNames(): $SDK174 { return callSDK<$SDK174>("Vision_ff42ce03e691ab23", 2213516991911503, this, []); }
   declare readonly $type: { "c:objc(cs)VNHumanBodyPoseObservation": true; "c:objc(cs)VNRecognizedPointsObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "availableGroupKeys": true; "availableKeys": true; "availableJointNames": true; "availableJointsGroupNames": true };
 }
@@ -8263,102 +8263,102 @@ export const VNHumanBodyPoseObservation_JointName = {
    * static let leftAnkle: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get leftAnkle(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1743508679837715, undefined, []); },
+  get leftAnkle(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1743508679837715, undefined, []); },
   /**
    * static let leftEar: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get leftEar(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3336886913371252, undefined, []); },
+  get leftEar(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3336886913371252, undefined, []); },
   /**
    * static let leftElbow: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get leftElbow(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1819142239650390, undefined, []); },
+  get leftElbow(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1819142239650390, undefined, []); },
   /**
    * static let leftEye: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get leftEye(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 401911495202940, undefined, []); },
+  get leftEye(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 401911495202940, undefined, []); },
   /**
    * static let leftHip: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get leftHip(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 4440345974040687, undefined, []); },
+  get leftHip(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 4440345974040687, undefined, []); },
   /**
    * static let leftKnee: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get leftKnee(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 2832745331985091, undefined, []); },
+  get leftKnee(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2832745331985091, undefined, []); },
   /**
    * static let leftShoulder: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get leftShoulder(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3881458603634539, undefined, []); },
+  get leftShoulder(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3881458603634539, undefined, []); },
   /**
    * static let leftWrist: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get leftWrist(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3559679028637670, undefined, []); },
+  get leftWrist(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3559679028637670, undefined, []); },
   /**
    * static let neck: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get neck(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3341757538105273, undefined, []); },
+  get neck(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3341757538105273, undefined, []); },
   /**
    * static let nose: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get nose(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1334685111004834, undefined, []); },
+  get nose(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1334685111004834, undefined, []); },
   /**
    * static let rightAnkle: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get rightAnkle(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 2330825081553193, undefined, []); },
+  get rightAnkle(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2330825081553193, undefined, []); },
   /**
    * static let rightEar: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get rightEar(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 2884048833056320, undefined, []); },
+  get rightEar(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2884048833056320, undefined, []); },
   /**
    * static let rightElbow: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get rightElbow(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 300984116226699, undefined, []); },
+  get rightElbow(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 300984116226699, undefined, []); },
   /**
    * static let rightEye: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get rightEye(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 4074701597774440, undefined, []); },
+  get rightEye(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 4074701597774440, undefined, []); },
   /**
    * static let rightHip: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get rightHip(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 1109450911869792, undefined, []); },
+  get rightHip(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1109450911869792, undefined, []); },
   /**
    * static let rightKnee: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get rightKnee(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 2496276117030882, undefined, []); },
+  get rightKnee(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2496276117030882, undefined, []); },
   /**
    * static let rightShoulder: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get rightShoulder(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 3909617748327581, undefined, []); },
+  get rightShoulder(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3909617748327581, undefined, []); },
   /**
    * static let rightWrist: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get rightWrist(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 2457134963137937, undefined, []); },
+  get rightWrist(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2457134963137937, undefined, []); },
   /**
    * static let root: VNHumanBodyPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get root(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 4005713065401261, undefined, []); },
+  get root(): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 4005713065401261, undefined, []); },
   /**
    * init(rawValue: VNRecognizedPointKey)
    * @availability iOS 14.0+
    */
-  init(rawValue: VNRecognizedPointKey): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_3864e7f38681b875", 2270904228677966, undefined, [rawValue]); }
+  init(rawValue: VNRecognizedPointKey): VNHumanBodyPoseObservation_JointName { return callSDK<VNHumanBodyPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2270904228677966, undefined, [rawValue]); }
 };
 
 /**
@@ -8372,42 +8372,42 @@ export const VNHumanBodyPoseObservation_JointsGroupName = {
    * static let all: VNHumanBodyPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get all(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 4325038578058354, undefined, []); },
+  get all(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 4325038578058354, undefined, []); },
   /**
    * static let face: VNHumanBodyPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get face(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 4182898456863044, undefined, []); },
+  get face(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 4182898456863044, undefined, []); },
   /**
    * static let leftArm: VNHumanBodyPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get leftArm(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 2136201994194754, undefined, []); },
+  get leftArm(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 2136201994194754, undefined, []); },
   /**
    * static let leftLeg: VNHumanBodyPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get leftLeg(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 137960121753284, undefined, []); },
+  get leftLeg(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 137960121753284, undefined, []); },
   /**
    * static let rightArm: VNHumanBodyPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get rightArm(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 2031696191051562, undefined, []); },
+  get rightArm(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 2031696191051562, undefined, []); },
   /**
    * static let rightLeg: VNHumanBodyPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get rightLeg(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 314140607467145, undefined, []); },
+  get rightLeg(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 314140607467145, undefined, []); },
   /**
    * static let torso: VNHumanBodyPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get torso(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 3050570308385094, undefined, []); },
+  get torso(): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 3050570308385094, undefined, []); },
   /**
    * init(rawValue: VNRecognizedPointGroupKey)
    * @availability iOS 14.0+
    */
-  init(rawValue: VNRecognizedPointGroupKey): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 1784400679489977, undefined, [rawValue]); }
+  init(rawValue: VNRecognizedPointGroupKey): VNHumanBodyPoseObservation_JointsGroupName { return callSDK<VNHumanBodyPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 1784400679489977, undefined, [rawValue]); }
 };
 
 /**
@@ -8419,12 +8419,12 @@ export class VNPoint3D extends SDKHandle {
    * init?(position: simd_float4x4)
    * @availability iOS 17.0+
    */
-  static init(position: SDKHandle): (VNPoint3D) | null { return callSDK<(VNPoint3D) | null>("Vision_3864e7f38681b875", 3903515362127733, undefined, [position]); }
+  static init(position: SDKHandle): (VNPoint3D) | null { return callSDK<(VNPoint3D) | null>("Vision_ff42ce03e691ab23", 3903515362127733, undefined, [position]); }
   /**
    * var position: simd_float4x4 { get }
    * @availability iOS 17.0+
    */
-  get position(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 2912863763737106, this, []); }
+  get position(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 2912863763737106, this, []); }
   declare readonly $type: { "c:objc(cs)VNPoint3D": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "position": true };
 }
@@ -8438,7 +8438,7 @@ export class VNRecognizedPoint3D extends VNPoint3D {
    * var identifier: VNRecognizedPointKey { get }
    * @availability iOS 17.0+
    */
-  get identifier(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 3470075413290746, this, []); }
+  get identifier(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 3470075413290746, this, []); }
   declare readonly $type: { "c:objc(cs)VNRecognizedPoint3D": true; "c:objc(cs)VNPoint3D": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "position": true; "identifier": true };
 }
@@ -8452,12 +8452,12 @@ export class VNHumanBodyRecognizedPoint3D extends VNRecognizedPoint3D {
    * var localPosition: simd_float4x4 { get }
    * @availability iOS 17.0+
    */
-  get localPosition(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 3505564099810866, this, []); }
+  get localPosition(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 3505564099810866, this, []); }
   /**
    * var parentJoint: VNHumanBodyPose3DObservation.JointName { get }
    * @availability iOS 17.0+
    */
-  get parentJoint(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_3864e7f38681b875", 3704465831822892, this, []); }
+  get parentJoint(): VNHumanBodyPose3DObservation_JointName { return callSDK<VNHumanBodyPose3DObservation_JointName>("Vision_ff42ce03e691ab23", 3704465831822892, this, []); }
   declare readonly $type: { "c:objc(cs)VNHumanBodyRecognizedPoint3D": true; "c:objc(cs)VNRecognizedPoint3D": true; "c:objc(cs)VNPoint3D": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "position": true; "identifier": true; "localPosition": true; "parentJoint": true };
 }
@@ -8471,27 +8471,27 @@ export class VNHumanHandPoseObservation extends (VNRecognizedPointsObservation a
    * func recognizedPoint(_ jointName: VNHumanHandPoseObservation.JointName) throws -> VNRecognizedPoint
    * @availability iOS 14.0+
    */
-  recognizedPoint(jointName: VNHumanHandPoseObservation_JointName): VNRecognizedPoint { return callSDK<VNRecognizedPoint>("Vision_3864e7f38681b875", 161552601829802, this, [jointName]); }
+  recognizedPoint(jointName: VNHumanHandPoseObservation_JointName): VNRecognizedPoint { return callSDK<VNRecognizedPoint>("Vision_ff42ce03e691ab23", 161552601829802, this, [jointName]); }
   /**
    * func recognizedPoints(_ jointsGroupName: VNHumanHandPoseObservation.JointsGroupName) throws -> [VNHumanHandPoseObservation.JointName : VNRecognizedPoint]
    * @availability iOS 14.0+
    */
-  recognizedPoints(jointsGroupName: VNHumanHandPoseObservation_JointsGroupName): NativeMap<VNHumanHandPoseObservation_JointName, VNRecognizedPoint> { return callSDK<NativeMap<VNHumanHandPoseObservation_JointName, VNRecognizedPoint>>("Vision_3864e7f38681b875", 2035857977544570, this, [jointsGroupName]); }
+  recognizedPoints(jointsGroupName: VNHumanHandPoseObservation_JointsGroupName): NativeMap<VNHumanHandPoseObservation_JointName, VNRecognizedPoint> { return callSDK<NativeMap<VNHumanHandPoseObservation_JointName, VNRecognizedPoint>>("Vision_ff42ce03e691ab23", 2035857977544570, this, [jointsGroupName]); }
   /**
    * var availableJointNames: [VNHumanHandPoseObservation.JointName] { get }
    * @availability iOS 14.0+
    */
-  get availableJointNames(): $SDK176 { return callSDK<$SDK176>("Vision_3864e7f38681b875", 3127360750450533, this, []); }
+  get availableJointNames(): $SDK176 { return callSDK<$SDK176>("Vision_ff42ce03e691ab23", 3127360750450533, this, []); }
   /**
    * var availableJointsGroupNames: [VNHumanHandPoseObservation.JointsGroupName] { get }
    * @availability iOS 14.0+
    */
-  get availableJointsGroupNames(): $SDK177 { return callSDK<$SDK177>("Vision_3864e7f38681b875", 2678787722026738, this, []); }
+  get availableJointsGroupNames(): $SDK177 { return callSDK<$SDK177>("Vision_ff42ce03e691ab23", 2678787722026738, this, []); }
   /**
    * var chirality: VNChirality { get }
    * @availability iOS 15.0+
    */
-  get chirality(): VNChirality { return callSDK<VNChirality>("Vision_3864e7f38681b875", 1916557283070623, this, []); }
+  get chirality(): VNChirality { return callSDK<VNChirality>("Vision_ff42ce03e691ab23", 1916557283070623, this, []); }
   declare readonly $type: { "c:objc(cs)VNHumanHandPoseObservation": true; "c:objc(cs)VNRecognizedPointsObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "availableGroupKeys": true; "availableKeys": true; "availableJointNames": true; "availableJointsGroupNames": true; "chirality": true };
 }
@@ -8507,112 +8507,112 @@ export const VNHumanHandPoseObservation_JointName = {
    * static let indexDIP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get indexDIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 3239600987632691, undefined, []); },
+  get indexDIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3239600987632691, undefined, []); },
   /**
    * static let indexMCP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get indexMCP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 3686450150742886, undefined, []); },
+  get indexMCP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3686450150742886, undefined, []); },
   /**
    * static let indexPIP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get indexPIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 4421510713416236, undefined, []); },
+  get indexPIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 4421510713416236, undefined, []); },
   /**
    * static let indexTip: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get indexTip(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 187291063676599, undefined, []); },
+  get indexTip(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 187291063676599, undefined, []); },
   /**
    * static let littleDIP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get littleDIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 1441507667229503, undefined, []); },
+  get littleDIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1441507667229503, undefined, []); },
   /**
    * static let littleMCP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get littleMCP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 2861366330190497, undefined, []); },
+  get littleMCP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2861366330190497, undefined, []); },
   /**
    * static let littlePIP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get littlePIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 4480398013110774, undefined, []); },
+  get littlePIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 4480398013110774, undefined, []); },
   /**
    * static let littleTip: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get littleTip(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 4128052977844557, undefined, []); },
+  get littleTip(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 4128052977844557, undefined, []); },
   /**
    * static let middleDIP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get middleDIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 4211563801534317, undefined, []); },
+  get middleDIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 4211563801534317, undefined, []); },
   /**
    * static let middleMCP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get middleMCP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 2069662651543323, undefined, []); },
+  get middleMCP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2069662651543323, undefined, []); },
   /**
    * static let middlePIP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get middlePIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 3123113328532837, undefined, []); },
+  get middlePIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3123113328532837, undefined, []); },
   /**
    * static let middleTip: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get middleTip(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 300434155041172, undefined, []); },
+  get middleTip(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 300434155041172, undefined, []); },
   /**
    * static let ringDIP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get ringDIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 3792190866222910, undefined, []); },
+  get ringDIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3792190866222910, undefined, []); },
   /**
    * static let ringMCP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get ringMCP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 243938717644500, undefined, []); },
+  get ringMCP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 243938717644500, undefined, []); },
   /**
    * static let ringPIP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get ringPIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 1458426556526396, undefined, []); },
+  get ringPIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1458426556526396, undefined, []); },
   /**
    * static let ringTip: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get ringTip(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 1360582573183662, undefined, []); },
+  get ringTip(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1360582573183662, undefined, []); },
   /**
    * static let thumbCMC: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get thumbCMC(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 4339647563092817, undefined, []); },
+  get thumbCMC(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 4339647563092817, undefined, []); },
   /**
    * static let thumbIP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get thumbIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 1500284960255159, undefined, []); },
+  get thumbIP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1500284960255159, undefined, []); },
   /**
    * static let thumbMP: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get thumbMP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 1660715771538228, undefined, []); },
+  get thumbMP(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 1660715771538228, undefined, []); },
   /**
    * static let thumbTip: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get thumbTip(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 481786417415193, undefined, []); },
+  get thumbTip(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 481786417415193, undefined, []); },
   /**
    * static let wrist: VNHumanHandPoseObservation.JointName
    * @availability iOS 14.0+
    */
-  get wrist(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 2148125549399434, undefined, []); },
+  get wrist(): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 2148125549399434, undefined, []); },
   /**
    * init(rawValue: VNRecognizedPointKey)
    * @availability iOS 14.0+
    */
-  init(rawValue: VNRecognizedPointKey): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_3864e7f38681b875", 3161347641851506, undefined, [rawValue]); }
+  init(rawValue: VNRecognizedPointKey): VNHumanHandPoseObservation_JointName { return callSDK<VNHumanHandPoseObservation_JointName>("Vision_ff42ce03e691ab23", 3161347641851506, undefined, [rawValue]); }
 };
 
 /**
@@ -8626,37 +8626,37 @@ export const VNHumanHandPoseObservation_JointsGroupName = {
    * static let all: VNHumanHandPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get all(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 3353081382249625, undefined, []); },
+  get all(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 3353081382249625, undefined, []); },
   /**
    * static let indexFinger: VNHumanHandPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get indexFinger(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 897981777733060, undefined, []); },
+  get indexFinger(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 897981777733060, undefined, []); },
   /**
    * static let littleFinger: VNHumanHandPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get littleFinger(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 3831242553938999, undefined, []); },
+  get littleFinger(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 3831242553938999, undefined, []); },
   /**
    * static let middleFinger: VNHumanHandPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get middleFinger(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 1500822249154212, undefined, []); },
+  get middleFinger(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 1500822249154212, undefined, []); },
   /**
    * static let ringFinger: VNHumanHandPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get ringFinger(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 3781736409043438, undefined, []); },
+  get ringFinger(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 3781736409043438, undefined, []); },
   /**
    * static let thumb: VNHumanHandPoseObservation.JointsGroupName
    * @availability iOS 14.0+
    */
-  get thumb(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 4052480798069741, undefined, []); },
+  get thumb(): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 4052480798069741, undefined, []); },
   /**
    * init(rawValue: VNRecognizedPointGroupKey)
    * @availability iOS 14.0+
    */
-  init(rawValue: VNRecognizedPointGroupKey): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_3864e7f38681b875", 1860154241171872, undefined, [rawValue]); }
+  init(rawValue: VNRecognizedPointGroupKey): VNHumanHandPoseObservation_JointsGroupName { return callSDK<VNHumanHandPoseObservation_JointsGroupName>("Vision_ff42ce03e691ab23", 1860154241171872, undefined, [rawValue]); }
 };
 
 /**
@@ -8665,12 +8665,12 @@ export const VNHumanHandPoseObservation_JointsGroupName = {
  */
 export class VNHumanObservation extends (VNDetectedObjectObservation as unknown as Omit<typeof VNDetectedObjectObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNDetectedObjectObservation)) {
   /** init() */
-  static init(): VNHumanObservation { return callSDK<VNHumanObservation>("Vision_3864e7f38681b875", 2948295233569592, undefined, []); }
+  static init(): VNHumanObservation { return callSDK<VNHumanObservation>("Vision_ff42ce03e691ab23", 2948295233569592, undefined, []); }
   /**
    * var upperBodyOnly: Bool { get }
    * @availability iOS 15.0+
    */
-  get upperBodyOnly(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2590205453465710, this, []); }
+  get upperBodyOnly(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2590205453465710, this, []); }
   declare readonly $type: { "c:objc(cs)VNHumanObservation": true; "c:objc(cs)VNDetectedObjectObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "boundingBox": true; "globalSegmentationMask": true; "upperBodyOnly": true };
 }
@@ -8684,12 +8684,12 @@ export class VNImageAestheticsScoresObservation extends VNObservation {
    * var isUtility: Bool { get }
    * @availability iOS 18.0+
    */
-  get isUtility(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 1184910607906080, this, []); }
+  get isUtility(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 1184910607906080, this, []); }
   /**
    * var overallScore: Float { get }
    * @availability iOS 18.0+
    */
-  get overallScore(): number { return callSDK<number>("Vision_3864e7f38681b875", 536887027102409, this, []); }
+  get overallScore(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 536887027102409, this, []); }
   declare readonly $type: { "c:objc(cs)VNImageAestheticsScoresObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "isUtility": true; "overallScore": true };
 }
@@ -8700,7 +8700,7 @@ export class VNImageAestheticsScoresObservation extends VNObservation {
  */
 export class VNImageAlignmentObservation extends (VNObservation as unknown as Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation)) {
   /** init() */
-  static init(): VNImageAlignmentObservation { return callSDK<VNImageAlignmentObservation>("Vision_3864e7f38681b875", 1873503776163298, undefined, []); }
+  static init(): VNImageAlignmentObservation { return callSDK<VNImageAlignmentObservation>("Vision_ff42ce03e691ab23", 1873503776163298, undefined, []); }
   declare readonly $type: { "c:objc(cs)VNImageAlignmentObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true };
 }
@@ -8710,7 +8710,7 @@ export type VNImageCropAndScaleOption = "centerCrop" | "scaleFit" | "scaleFill" 
 
 export const VNImageCropAndScaleOption = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (VNImageCropAndScaleOption) | null { return callSDK<(VNImageCropAndScaleOption) | null>("Vision_3864e7f38681b875", 1963267252638379, undefined, [rawValue]); }
+  init(rawValue: number): (VNImageCropAndScaleOption) | null { return callSDK<(VNImageCropAndScaleOption) | null>("Vision_ff42ce03e691ab23", 1963267252638379, undefined, [rawValue]); }
 };
 
 /**
@@ -8719,12 +8719,12 @@ export const VNImageCropAndScaleOption = {
  */
 export class VNImageHomographicAlignmentObservation extends (VNImageAlignmentObservation as unknown as Omit<typeof VNImageAlignmentObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNImageAlignmentObservation)) {
   /** init() */
-  static init(): VNImageHomographicAlignmentObservation { return callSDK<VNImageHomographicAlignmentObservation>("Vision_3864e7f38681b875", 3772600284675136, undefined, []); }
+  static init(): VNImageHomographicAlignmentObservation { return callSDK<VNImageHomographicAlignmentObservation>("Vision_ff42ce03e691ab23", 3772600284675136, undefined, []); }
   /**
    * var warpTransform: matrix_float3x3 { get }
    * @availability iOS 11.0+
    */
-  get warpTransform(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 879189261948343, this, []); }
+  get warpTransform(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 879189261948343, this, []); }
   declare readonly $type: { "c:objc(cs)VNImageHomographicAlignmentObservation": true; "c:objc(cs)VNImageAlignmentObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "warpTransform": true };
 }
@@ -8737,19 +8737,19 @@ export const VNImageOption = {
    * static let ciContext: VNImageOption
    * @availability iOS 11.0+
    */
-  get ciContext(): VNImageOption { return callSDK<VNImageOption>("Vision_3864e7f38681b875", 3650633608187664, undefined, []); },
+  get ciContext(): VNImageOption { return callSDK<VNImageOption>("Vision_ff42ce03e691ab23", 3650633608187664, undefined, []); },
   /**
    * static let cameraIntrinsics: VNImageOption
    * @availability iOS 11.0+
    */
-  get cameraIntrinsics(): VNImageOption { return callSDK<VNImageOption>("Vision_3864e7f38681b875", 3296439685165446, undefined, []); },
+  get cameraIntrinsics(): VNImageOption { return callSDK<VNImageOption>("Vision_ff42ce03e691ab23", 3296439685165446, undefined, []); },
   /**
    * static let properties: VNImageOption
    * @availability iOS 11.0+
    */
-  get properties(): VNImageOption { return callSDK<VNImageOption>("Vision_3864e7f38681b875", 585168027941409, undefined, []); },
+  get properties(): VNImageOption { return callSDK<VNImageOption>("Vision_ff42ce03e691ab23", 585168027941409, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): VNImageOption { return callSDK<VNImageOption>("Vision_3864e7f38681b875", 1282890304141625, undefined, [rawValue]); }
+  init(rawValue: string): VNImageOption { return callSDK<VNImageOption>("Vision_ff42ce03e691ab23", 1282890304141625, undefined, [rawValue]); }
 };
 
 /**
@@ -8761,77 +8761,77 @@ export class VNImageRequestHandler extends SDKHandle {
    * init(cgImage image: CGImage, options: [VNImageOption : Any] = [:])
    * @availability iOS 11.0+
    */
-  static initCgImageOptions(image: _CoreGraphics_CGImage, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 2042562480519221, undefined, [image, options]); }
+  static initCgImageOptions(image: _CoreGraphics_CGImage, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 2042562480519221, undefined, [image, options]); }
   /**
    * init(cgImage image: CGImage, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:])
    * @availability iOS 11.0+
    */
-  static initCgImageOrientationOptions(image: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 502798917190713, undefined, [image, orientation, options]); }
+  static initCgImageOrientationOptions(image: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 502798917190713, undefined, [image, orientation, options]); }
   /**
    * init(ciImage image: CIImage, options: [VNImageOption : Any] = [:])
    * @availability iOS 11.0+
    */
-  static initCiImageOptions(image: _CoreImage_CIImage, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 1435392436681890, undefined, [image, options]); }
+  static initCiImageOptions(image: _CoreImage_CIImage, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 1435392436681890, undefined, [image, options]); }
   /**
    * init(ciImage image: CIImage, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:])
    * @availability iOS 11.0+
    */
-  static initCiImageOrientationOptions(image: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 3858953282978058, undefined, [image, orientation, options]); }
+  static initCiImageOrientationOptions(image: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 3858953282978058, undefined, [image, orientation, options]); }
   /**
    * init(cmSampleBuffer sampleBuffer: CMSampleBuffer, depthData: AVDepthData, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:])
    * @availability iOS 17.0+
    */
-  static initCmSampleBufferDepthDataOrientationOptions(sampleBuffer: _CoreMedia_CMSampleBuffer, depthData: _AVFoundation_AVDepthData, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 3791339020154857, undefined, [sampleBuffer, depthData, orientation, options]); }
+  static initCmSampleBufferDepthDataOrientationOptions(sampleBuffer: _CoreMedia_CMSampleBuffer, depthData: _AVFoundation_AVDepthData, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 3791339020154857, undefined, [sampleBuffer, depthData, orientation, options]); }
   /**
    * init(cmSampleBuffer sampleBuffer: CMSampleBuffer, options: [VNImageOption : Any] = [:])
    * @availability iOS 14.0+
    */
-  static initCmSampleBufferOptions(sampleBuffer: _CoreMedia_CMSampleBuffer, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 2264388641555251, undefined, [sampleBuffer, options]); }
+  static initCmSampleBufferOptions(sampleBuffer: _CoreMedia_CMSampleBuffer, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 2264388641555251, undefined, [sampleBuffer, options]); }
   /**
    * init(cmSampleBuffer sampleBuffer: CMSampleBuffer, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:])
    * @availability iOS 14.0+
    */
-  static initCmSampleBufferOrientationOptions(sampleBuffer: _CoreMedia_CMSampleBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 1660436146268277, undefined, [sampleBuffer, orientation, options]); }
+  static initCmSampleBufferOrientationOptions(sampleBuffer: _CoreMedia_CMSampleBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 1660436146268277, undefined, [sampleBuffer, orientation, options]); }
   /**
    * init(cvPixelBuffer pixelBuffer: CVPixelBuffer, depthData: AVDepthData, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:])
    * @availability iOS 17.0+
    */
-  static initCvPixelBufferDepthDataOrientationOptions(pixelBuffer: _CoreVideo_CVBuffer, depthData: _AVFoundation_AVDepthData, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 1699905896702051, undefined, [pixelBuffer, depthData, orientation, options]); }
+  static initCvPixelBufferDepthDataOrientationOptions(pixelBuffer: _CoreVideo_CVBuffer, depthData: _AVFoundation_AVDepthData, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 1699905896702051, undefined, [pixelBuffer, depthData, orientation, options]); }
   /**
    * init(cvPixelBuffer pixelBuffer: CVPixelBuffer, options: [VNImageOption : Any] = [:])
    * @availability iOS 11.0+
    */
-  static initCvPixelBufferOptions(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 1817332801004855, undefined, [pixelBuffer, options]); }
+  static initCvPixelBufferOptions(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 1817332801004855, undefined, [pixelBuffer, options]); }
   /**
    * init(cvPixelBuffer pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:])
    * @availability iOS 11.0+
    */
-  static initCvPixelBufferOrientationOptions(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 1541445180237098, undefined, [pixelBuffer, orientation, options]); }
+  static initCvPixelBufferOrientationOptions(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 1541445180237098, undefined, [pixelBuffer, orientation, options]); }
   /**
    * init(data imageData: Data, options: [VNImageOption : Any] = [:])
    * @availability iOS 11.0+
    */
-  static initDataOptions(imageData: ArrayBuffer, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 3296758605471344, undefined, [imageData, options]); }
+  static initDataOptions(imageData: ArrayBuffer, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 3296758605471344, undefined, [imageData, options]); }
   /**
    * init(data imageData: Data, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:])
    * @availability iOS 11.0+
    */
-  static initDataOrientationOptions(imageData: ArrayBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 2886021116093678, undefined, [imageData, orientation, options]); }
+  static initDataOrientationOptions(imageData: ArrayBuffer, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 2886021116093678, undefined, [imageData, orientation, options]); }
   /**
    * init(url imageURL: URL, options: [VNImageOption : Any] = [:])
    * @availability iOS 11.0+
    */
-  static initUrlOptions(imageURL: string, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 3098356000776634, undefined, [imageURL, options]); }
+  static initUrlOptions(imageURL: string, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 3098356000776634, undefined, [imageURL, options]); }
   /**
    * init(url imageURL: URL, orientation: CGImagePropertyOrientation, options: [VNImageOption : Any] = [:])
    * @availability iOS 11.0+
    */
-  static initUrlOrientationOptions(imageURL: string, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_3864e7f38681b875", 768807107314707, undefined, [imageURL, orientation, options]); }
+  static initUrlOrientationOptions(imageURL: string, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187): VNImageRequestHandler { return callSDK<VNImageRequestHandler>("Vision_ff42ce03e691ab23", 768807107314707, undefined, [imageURL, orientation, options]); }
   /**
    * func perform(_ requests: [VNRequest]) throws
    * @availability iOS 11.0+
    */
-  perform(requests: Array<VNRequest>): void { return callSDK<void>("Vision_3864e7f38681b875", 297526796669580, this, [requests]); }
+  perform(requests: Array<VNRequest>): void { return callSDK<void>("Vision_ff42ce03e691ab23", 297526796669580, this, [requests]); }
   declare readonly $type: { "c:objc(cs)VNImageRequestHandler": true; "c:objc(cs)NSObject": true };
 }
 
@@ -8841,12 +8841,12 @@ export class VNImageRequestHandler extends SDKHandle {
  */
 export class VNImageTranslationAlignmentObservation extends (VNImageAlignmentObservation as unknown as Omit<typeof VNImageAlignmentObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNImageAlignmentObservation)) {
   /** init() */
-  static init(): VNImageTranslationAlignmentObservation { return callSDK<VNImageTranslationAlignmentObservation>("Vision_3864e7f38681b875", 1176066884203036, undefined, []); }
+  static init(): VNImageTranslationAlignmentObservation { return callSDK<VNImageTranslationAlignmentObservation>("Vision_ff42ce03e691ab23", 1176066884203036, undefined, []); }
   /**
    * var alignmentTransform: CGAffineTransform { get }
    * @availability iOS 11.0+
    */
-  get alignmentTransform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_3864e7f38681b875", 3880322493994007, this, []); }
+  get alignmentTransform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("Vision_ff42ce03e691ab23", 3880322493994007, this, []); }
   declare readonly $type: { "c:objc(cs)VNImageTranslationAlignmentObservation": true; "c:objc(cs)VNImageAlignmentObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "alignmentTransform": true };
 }
@@ -8860,29 +8860,29 @@ export class VNInstanceMaskObservation extends (VNObservation as unknown as Omit
    * func generateMask(forInstances instances: IndexSet) throws -> CVPixelBuffer
    * @availability iOS 17.0+
    */
-  generateMask(instances: _Foundation_IndexSet): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_3864e7f38681b875", 2949374010057059, this, [instances]); }
+  generateMask(instances: _Foundation_IndexSet): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_ff42ce03e691ab23", 2949374010057059, this, [instances]); }
   /**
    * func generateMaskedImage(ofInstances instances: IndexSet, from requestHandler: VNImageRequestHandler, croppedToInstancesExtent cropResult: Bool) throws -> CVPixelBuffer
    * @availability iOS 17.0+
    */
-  generateMaskedImage(instances: _Foundation_IndexSet, requestHandler: VNImageRequestHandler, cropResult: boolean): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_3864e7f38681b875", 871797121945662, this, [instances, requestHandler, cropResult]); }
+  generateMaskedImage(instances: _Foundation_IndexSet, requestHandler: VNImageRequestHandler, cropResult: boolean): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_ff42ce03e691ab23", 871797121945662, this, [instances, requestHandler, cropResult]); }
   /**
    * func generateScaledMaskForImage(forInstances instances: IndexSet, from requestHandler: VNImageRequestHandler) throws -> CVPixelBuffer
    * @availability iOS 17.0+
    */
-  generateScaledMaskForImage(instances: _Foundation_IndexSet, requestHandler: VNImageRequestHandler): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_3864e7f38681b875", 4296448445916349, this, [instances, requestHandler]); }
+  generateScaledMaskForImage(instances: _Foundation_IndexSet, requestHandler: VNImageRequestHandler): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_ff42ce03e691ab23", 4296448445916349, this, [instances, requestHandler]); }
   /** init() */
-  static init(): VNInstanceMaskObservation { return callSDK<VNInstanceMaskObservation>("Vision_3864e7f38681b875", 3300768432523002, undefined, []); }
+  static init(): VNInstanceMaskObservation { return callSDK<VNInstanceMaskObservation>("Vision_ff42ce03e691ab23", 3300768432523002, undefined, []); }
   /**
    * var allInstances: IndexSet { get }
    * @availability iOS 17.0+
    */
-  get allInstances(): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("Vision_3864e7f38681b875", 4226799369297302, this, []); }
+  get allInstances(): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("Vision_ff42ce03e691ab23", 4226799369297302, this, []); }
   /**
    * var instanceMask: CVPixelBuffer { get }
    * @availability iOS 17.0+
    */
-  get instanceMask(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_3864e7f38681b875", 2345469745133991, this, []); }
+  get instanceMask(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_ff42ce03e691ab23", 2345469745133991, this, []); }
   declare readonly $type: { "c:objc(cs)VNInstanceMaskObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "allInstances": true; "instanceMask": true };
 }
@@ -8893,17 +8893,17 @@ export class VNInstanceMaskObservation extends (VNObservation as unknown as Omit
  */
 export class VNPixelBufferObservation extends (VNObservation as unknown as Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation)) {
   /** init() */
-  static init(): VNPixelBufferObservation { return callSDK<VNPixelBufferObservation>("Vision_3864e7f38681b875", 2962753685553013, undefined, []); }
+  static init(): VNPixelBufferObservation { return callSDK<VNPixelBufferObservation>("Vision_ff42ce03e691ab23", 2962753685553013, undefined, []); }
   /**
    * var featureName: String? { get }
    * @availability iOS 13.0+
    */
-  get featureName(): (string) | null { return callSDK<(string) | null>("Vision_3864e7f38681b875", 4020630439467498, this, []); }
+  get featureName(): (string) | null { return callSDK<(string) | null>("Vision_ff42ce03e691ab23", 4020630439467498, this, []); }
   /**
    * var pixelBuffer: CVPixelBuffer { get }
    * @availability iOS 11.0+
    */
-  get pixelBuffer(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_3864e7f38681b875", 1291994531239343, this, []); }
+  get pixelBuffer(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("Vision_ff42ce03e691ab23", 1291994531239343, this, []); }
   declare readonly $type: { "c:objc(cs)VNPixelBufferObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "featureName": true; "pixelBuffer": true };
 }
@@ -8919,7 +8919,7 @@ export const VNPointsClassification = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (VNPointsClassification) | null { return callSDK<(VNPointsClassification) | null>("Vision_3864e7f38681b875", 2628681575909666, undefined, [rawValue]); }
+  init(rawValue: number): (VNPointsClassification) | null { return callSDK<(VNPointsClassification) | null>("Vision_ff42ce03e691ab23", 2628681575909666, undefined, [rawValue]); }
 };
 
 /**
@@ -8932,19 +8932,19 @@ export class VNRecognizeAnimalsRequest extends (VNImageBasedRequest as unknown a
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  static knownAnimalIdentifiers(requestRevision: number): Array<VNAnimalIdentifier> { return callSDK<Array<VNAnimalIdentifier>>("Vision_3864e7f38681b875", 585505704864733, undefined, [requestRevision]); }
+  static knownAnimalIdentifiers(requestRevision: number): Array<VNAnimalIdentifier> { return callSDK<Array<VNAnimalIdentifier>>("Vision_ff42ce03e691ab23", 585505704864733, undefined, [requestRevision]); }
   /** init() */
-  static init(): VNRecognizeAnimalsRequest { return callSDK<VNRecognizeAnimalsRequest>("Vision_3864e7f38681b875", 1191278958879072, undefined, []); }
+  static init(): VNRecognizeAnimalsRequest { return callSDK<VNRecognizeAnimalsRequest>("Vision_ff42ce03e691ab23", 1191278958879072, undefined, []); }
   /**
    * func supportedIdentifiers() throws -> [VNAnimalIdentifier]
    * @availability iOS 15.0+
    */
-  supportedIdentifiers(): Array<VNAnimalIdentifier> { return callSDK<Array<VNAnimalIdentifier>>("Vision_3864e7f38681b875", 2317012079688464, this, []); }
+  supportedIdentifiers(): Array<VNAnimalIdentifier> { return callSDK<Array<VNAnimalIdentifier>>("Vision_ff42ce03e691ab23", 2317012079688464, this, []); }
   /**
    * var results: [VNRecognizedObjectObservation]? { get }
    * @availability iOS 13.0+
    */
-  get results(): (Array<VNRecognizedObjectObservation>) | null { return callSDK<(Array<VNRecognizedObjectObservation>) | null>("Vision_3864e7f38681b875", 4493154099876532, this, []); }
+  get results(): (Array<VNRecognizedObjectObservation>) | null { return callSDK<(Array<VNRecognizedObjectObservation>) | null>("Vision_ff42ce03e691ab23", 4493154099876532, this, []); }
   declare readonly $type: { "c:objc(cs)VNRecognizeAnimalsRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -8955,12 +8955,12 @@ export class VNRecognizeAnimalsRequest extends (VNImageBasedRequest as unknown a
  */
 export class VNRecognizedObjectObservation extends (VNDetectedObjectObservation as unknown as Omit<typeof VNDetectedObjectObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNDetectedObjectObservation)) {
   /** init() */
-  static init(): VNRecognizedObjectObservation { return callSDK<VNRecognizedObjectObservation>("Vision_3864e7f38681b875", 2662684420358180, undefined, []); }
+  static init(): VNRecognizedObjectObservation { return callSDK<VNRecognizedObjectObservation>("Vision_ff42ce03e691ab23", 2662684420358180, undefined, []); }
   /**
    * var labels: [VNClassificationObservation] { get }
    * @availability iOS 12.0+
    */
-  get labels(): $SDK160 { return callSDK<$SDK160>("Vision_3864e7f38681b875", 690312114828637, this, []); }
+  get labels(): $SDK160 { return callSDK<$SDK160>("Vision_ff42ce03e691ab23", 690312114828637, this, []); }
   declare readonly $type: { "c:objc(cs)VNRecognizedObjectObservation": true; "c:objc(cs)VNDetectedObjectObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "boundingBox": true; "globalSegmentationMask": true; "labels": true };
 }
@@ -8974,7 +8974,7 @@ export class VNRecognizedPoint extends VNDetectedPoint {
    * var identifier: VNRecognizedPointKey { get }
    * @availability iOS 14.0+
    */
-  get identifier(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 2625786194746406, this, []); }
+  get identifier(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 2625786194746406, this, []); }
   declare readonly $type: { "c:objc(cs)VNRecognizedPoint": true; "c:objc(cs)VNDetectedPoint": true; "c:objc(cs)VNPoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "location": true; "x": true; "y": true; "confidence": true; "identifier": true };
 }
@@ -8988,49 +8988,49 @@ export const VNRecognizedPointGroupKey = {
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkRegionKeyFace(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_3864e7f38681b875", 2206066165242878, undefined, []); },
+  get bodyLandmarkRegionKeyFace(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_ff42ce03e691ab23", 2206066165242878, undefined, []); },
   /**
    * static let bodyLandmarkRegionKeyLeftArm: VNRecognizedPointGroupKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkRegionKeyLeftArm(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_3864e7f38681b875", 2553290491929064, undefined, []); },
+  get bodyLandmarkRegionKeyLeftArm(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_ff42ce03e691ab23", 2553290491929064, undefined, []); },
   /**
    * static let bodyLandmarkRegionKeyLeftLeg: VNRecognizedPointGroupKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkRegionKeyLeftLeg(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_3864e7f38681b875", 2184001142959281, undefined, []); },
+  get bodyLandmarkRegionKeyLeftLeg(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_ff42ce03e691ab23", 2184001142959281, undefined, []); },
   /**
    * static let bodyLandmarkRegionKeyRightArm: VNRecognizedPointGroupKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkRegionKeyRightArm(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_3864e7f38681b875", 1768144843768823, undefined, []); },
+  get bodyLandmarkRegionKeyRightArm(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_ff42ce03e691ab23", 1768144843768823, undefined, []); },
   /**
    * static let bodyLandmarkRegionKeyRightLeg: VNRecognizedPointGroupKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkRegionKeyRightLeg(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_3864e7f38681b875", 2559285342806459, undefined, []); },
+  get bodyLandmarkRegionKeyRightLeg(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_ff42ce03e691ab23", 2559285342806459, undefined, []); },
   /**
    * static let bodyLandmarkRegionKeyTorso: VNRecognizedPointGroupKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkRegionKeyTorso(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_3864e7f38681b875", 1848244461388248, undefined, []); },
+  get bodyLandmarkRegionKeyTorso(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_ff42ce03e691ab23", 1848244461388248, undefined, []); },
   /**
    * static let point3DGroupKeyAll: VNRecognizedPointGroupKey
    * @availability iOS 14.0+
    */
-  get point3DGroupKeyAll(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_3864e7f38681b875", 2049523292602226, undefined, []); },
+  get point3DGroupKeyAll(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_ff42ce03e691ab23", 2049523292602226, undefined, []); },
   /**
    * static let all: VNRecognizedPointGroupKey
    * @availability iOS 14.0+
    */
-  get all(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_3864e7f38681b875", 2665758964303196, undefined, []); },
+  get all(): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_ff42ce03e691ab23", 2665758964303196, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_3864e7f38681b875", 58370173934888, undefined, [rawValue]); }
+  init(rawValue: string): VNRecognizedPointGroupKey { return callSDK<VNRecognizedPointGroupKey>("Vision_ff42ce03e691ab23", 58370173934888, undefined, [rawValue]); }
 };
 
 /** struct VNRecognizedPointKey */
@@ -9042,117 +9042,117 @@ export const VNRecognizedPointKey = {
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyLeftAnkle(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 4435505927876141, undefined, []); },
+  get bodyLandmarkKeyLeftAnkle(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 4435505927876141, undefined, []); },
   /**
    * static let bodyLandmarkKeyLeftEar: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyLeftEar(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 4303426582652372, undefined, []); },
+  get bodyLandmarkKeyLeftEar(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 4303426582652372, undefined, []); },
   /**
    * static let bodyLandmarkKeyLeftElbow: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyLeftElbow(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 3670241526165916, undefined, []); },
+  get bodyLandmarkKeyLeftElbow(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 3670241526165916, undefined, []); },
   /**
    * static let bodyLandmarkKeyLeftEye: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyLeftEye(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 105740078026871, undefined, []); },
+  get bodyLandmarkKeyLeftEye(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 105740078026871, undefined, []); },
   /**
    * static let bodyLandmarkKeyLeftHip: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyLeftHip(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 4493407984330147, undefined, []); },
+  get bodyLandmarkKeyLeftHip(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 4493407984330147, undefined, []); },
   /**
    * static let bodyLandmarkKeyLeftKnee: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyLeftKnee(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 3081179966749341, undefined, []); },
+  get bodyLandmarkKeyLeftKnee(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 3081179966749341, undefined, []); },
   /**
    * static let bodyLandmarkKeyLeftShoulder: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyLeftShoulder(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 1844671588884123, undefined, []); },
+  get bodyLandmarkKeyLeftShoulder(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 1844671588884123, undefined, []); },
   /**
    * static let bodyLandmarkKeyLeftWrist: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyLeftWrist(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 2519887366019368, undefined, []); },
+  get bodyLandmarkKeyLeftWrist(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 2519887366019368, undefined, []); },
   /**
    * static let bodyLandmarkKeyNeck: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyNeck(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 440894261017345, undefined, []); },
+  get bodyLandmarkKeyNeck(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 440894261017345, undefined, []); },
   /**
    * static let bodyLandmarkKeyNose: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyNose(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 258014704936009, undefined, []); },
+  get bodyLandmarkKeyNose(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 258014704936009, undefined, []); },
   /**
    * static let bodyLandmarkKeyRightAnkle: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyRightAnkle(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 3709350082861270, undefined, []); },
+  get bodyLandmarkKeyRightAnkle(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 3709350082861270, undefined, []); },
   /**
    * static let bodyLandmarkKeyRightEar: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyRightEar(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 4176898034493495, undefined, []); },
+  get bodyLandmarkKeyRightEar(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 4176898034493495, undefined, []); },
   /**
    * static let bodyLandmarkKeyRightElbow: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyRightElbow(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 4021803508847086, undefined, []); },
+  get bodyLandmarkKeyRightElbow(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 4021803508847086, undefined, []); },
   /**
    * static let bodyLandmarkKeyRightEye: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyRightEye(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 4087743243836095, undefined, []); },
+  get bodyLandmarkKeyRightEye(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 4087743243836095, undefined, []); },
   /**
    * static let bodyLandmarkKeyRightHip: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyRightHip(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 3582871907949907, undefined, []); },
+  get bodyLandmarkKeyRightHip(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 3582871907949907, undefined, []); },
   /**
    * static let bodyLandmarkKeyRightKnee: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyRightKnee(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 3227390882637112, undefined, []); },
+  get bodyLandmarkKeyRightKnee(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 3227390882637112, undefined, []); },
   /**
    * static let bodyLandmarkKeyRightShoulder: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyRightShoulder(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 2810695889337257, undefined, []); },
+  get bodyLandmarkKeyRightShoulder(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 2810695889337257, undefined, []); },
   /**
    * static let bodyLandmarkKeyRightWrist: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyRightWrist(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 1232890565298699, undefined, []); },
+  get bodyLandmarkKeyRightWrist(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 1232890565298699, undefined, []); },
   /**
    * static let bodyLandmarkKeyRoot: VNRecognizedPointKey
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get bodyLandmarkKeyRoot(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 785340439249742, undefined, []); },
+  get bodyLandmarkKeyRoot(): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 785340439249742, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_3864e7f38681b875", 1030753322341233, undefined, [rawValue]); }
+  init(rawValue: string): VNRecognizedPointKey { return callSDK<VNRecognizedPointKey>("Vision_ff42ce03e691ab23", 1030753322341233, undefined, [rawValue]); }
 };
 
 /**
@@ -9161,22 +9161,22 @@ export const VNRecognizedPointKey = {
  */
 export class VNRecognizedText extends SDKHandle {
   /** init() */
-  static init(): VNRecognizedText { return callSDK<VNRecognizedText>("Vision_3864e7f38681b875", 3870580066945509, undefined, []); }
+  static init(): VNRecognizedText { return callSDK<VNRecognizedText>("Vision_ff42ce03e691ab23", 3870580066945509, undefined, []); }
   /**
    * var confidence: VNConfidence { get }
    * @availability iOS 13.0+
    */
-  get confidence(): number { return callSDK<number>("Vision_3864e7f38681b875", 2934231909918268, this, []); }
+  get confidence(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2934231909918268, this, []); }
   /**
    * var string: String { get }
    * @availability iOS 13.0+
    */
-  get string(): string { return callSDK<string>("Vision_3864e7f38681b875", 2636059041930509, this, []); }
+  get string(): string { return callSDK<string>("Vision_ff42ce03e691ab23", 2636059041930509, this, []); }
   /**
    * @nonobjc func boundingBox(for range: Range<String.Index>) throws -> VNRectangleObservation?
    * @availability iOS 13.0+
    */
-  boundingBox(range: SDKHandle): (VNRectangleObservation) | null { return callSDK<(VNRectangleObservation) | null>("Vision_3864e7f38681b875", 2710801810833675, this, [range]); }
+  boundingBox(range: SDKHandle): (VNRectangleObservation) | null { return callSDK<(VNRectangleObservation) | null>("Vision_ff42ce03e691ab23", 2710801810833675, this, [range]); }
   declare readonly $type: { "c:objc(cs)VNRecognizedText": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "string": true };
 }
@@ -9187,12 +9187,12 @@ export class VNRecognizedText extends SDKHandle {
  */
 export class VNRecognizedTextObservation extends (VNRectangleObservation as unknown as Omit<typeof VNRectangleObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNRectangleObservation)) {
   /** init() */
-  static init(): VNRecognizedTextObservation { return callSDK<VNRecognizedTextObservation>("Vision_3864e7f38681b875", 3581916589277146, undefined, []); }
+  static init(): VNRecognizedTextObservation { return callSDK<VNRecognizedTextObservation>("Vision_ff42ce03e691ab23", 3581916589277146, undefined, []); }
   /**
    * func topCandidates(_ maxCandidateCount: Int) -> [VNRecognizedText]
    * @availability iOS 13.0+
    */
-  topCandidates(maxCandidateCount: number): Array<VNRecognizedText> { return callSDK<Array<VNRecognizedText>>("Vision_3864e7f38681b875", 2562766646745467, this, [maxCandidateCount]); }
+  topCandidates(maxCandidateCount: number): Array<VNRecognizedText> { return callSDK<Array<VNRecognizedText>>("Vision_ff42ce03e691ab23", 2562766646745467, this, [maxCandidateCount]); }
   declare readonly $type: { "c:objc(cs)VNRecognizedTextObservation": true; "c:objc(cs)VNRectangleObservation": true; "c:objc(cs)VNDetectedObjectObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "boundingBox": true; "globalSegmentationMask": true; "bottomLeft": true; "bottomRight": true; "topLeft": true; "topRight": true };
 }
@@ -9207,55 +9207,55 @@ export class VNRecognizeTextRequest extends (VNImageBasedRequest as unknown as O
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  static supportedRecognitionLanguagesForRevision(recognitionLevel: VNRequestTextRecognitionLevel, requestRevision: number): Array<string> { return callSDK<Array<string>>("Vision_3864e7f38681b875", 857431706852393, undefined, [recognitionLevel, requestRevision]); }
+  static supportedRecognitionLanguagesForRevision(recognitionLevel: VNRequestTextRecognitionLevel, requestRevision: number): Array<string> { return callSDK<Array<string>>("Vision_ff42ce03e691ab23", 857431706852393, undefined, [recognitionLevel, requestRevision]); }
   /** init() */
-  static init(): VNRecognizeTextRequest { return callSDK<VNRecognizeTextRequest>("Vision_3864e7f38681b875", 123358904510916, undefined, []); }
+  static init(): VNRecognizeTextRequest { return callSDK<VNRecognizeTextRequest>("Vision_ff42ce03e691ab23", 123358904510916, undefined, []); }
   /**
    * func supportedRecognitionLanguages() throws -> [String]
    * @availability iOS 15.0+
    */
-  supportedRecognitionLanguages(): Array<string> { return callSDK<Array<string>>("Vision_3864e7f38681b875", 3716581322990121, this, []); }
+  supportedRecognitionLanguages(): Array<string> { return callSDK<Array<string>>("Vision_ff42ce03e691ab23", 3716581322990121, this, []); }
   /**
    * var automaticallyDetectsLanguage: Bool { get set }
    * @availability iOS 16.0+
    */
-  get automaticallyDetectsLanguage(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2165382523700992, this, []); }
-  set automaticallyDetectsLanguage(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 3656162840306173, this, [value]); }
+  get automaticallyDetectsLanguage(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2165382523700992, this, []); }
+  set automaticallyDetectsLanguage(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 3656162840306173, this, [value]); }
   /**
    * var customWords: [String] { get set }
    * @availability iOS 13.0+
    */
-  get customWords(): Array<string> { return callSDK<Array<string>>("Vision_3864e7f38681b875", 2602995273119435, this, []); }
-  set customWords(value: Array<string>) { callSDK<void>("Vision_3864e7f38681b875", 2979071700436360, this, [value]); }
+  get customWords(): Array<string> { return callSDK<Array<string>>("Vision_ff42ce03e691ab23", 2602995273119435, this, []); }
+  set customWords(value: Array<string>) { callSDK<void>("Vision_ff42ce03e691ab23", 2979071700436360, this, [value]); }
   /**
    * var minimumTextHeight: Float { get set }
    * @availability iOS 13.0+
    */
-  get minimumTextHeight(): number { return callSDK<number>("Vision_3864e7f38681b875", 727813368909018, this, []); }
-  set minimumTextHeight(value: number) { callSDK<void>("Vision_3864e7f38681b875", 3300162410426022, this, [value]); }
+  get minimumTextHeight(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 727813368909018, this, []); }
+  set minimumTextHeight(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 3300162410426022, this, [value]); }
   /**
    * var recognitionLanguages: [String] { get set }
    * @availability iOS 13.0+
    */
-  get recognitionLanguages(): Array<string> { return callSDK<Array<string>>("Vision_3864e7f38681b875", 343004537689499, this, []); }
-  set recognitionLanguages(value: Array<string>) { callSDK<void>("Vision_3864e7f38681b875", 1087556049698945, this, [value]); }
+  get recognitionLanguages(): Array<string> { return callSDK<Array<string>>("Vision_ff42ce03e691ab23", 343004537689499, this, []); }
+  set recognitionLanguages(value: Array<string>) { callSDK<void>("Vision_ff42ce03e691ab23", 1087556049698945, this, [value]); }
   /**
    * var recognitionLevel: VNRequestTextRecognitionLevel { get set }
    * @availability iOS 13.0+
    */
-  get recognitionLevel(): VNRequestTextRecognitionLevel { return callSDK<VNRequestTextRecognitionLevel>("Vision_3864e7f38681b875", 255355339594045, this, []); }
-  set recognitionLevel(value: VNRequestTextRecognitionLevel) { callSDK<void>("Vision_3864e7f38681b875", 3905147092800639, this, [value]); }
+  get recognitionLevel(): VNRequestTextRecognitionLevel { return callSDK<VNRequestTextRecognitionLevel>("Vision_ff42ce03e691ab23", 255355339594045, this, []); }
+  set recognitionLevel(value: VNRequestTextRecognitionLevel) { callSDK<void>("Vision_ff42ce03e691ab23", 3905147092800639, this, [value]); }
   /**
    * var results: [VNRecognizedTextObservation]? { get }
    * @availability iOS 13.0+
    */
-  get results(): (Array<VNRecognizedTextObservation>) | null { return callSDK<(Array<VNRecognizedTextObservation>) | null>("Vision_3864e7f38681b875", 4396598058813286, this, []); }
+  get results(): (Array<VNRecognizedTextObservation>) | null { return callSDK<(Array<VNRecognizedTextObservation>) | null>("Vision_ff42ce03e691ab23", 4396598058813286, this, []); }
   /**
    * var usesLanguageCorrection: Bool { get set }
    * @availability iOS 13.0+
    */
-  get usesLanguageCorrection(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2672893540122575, this, []); }
-  set usesLanguageCorrection(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 914803527446014, this, [value]); }
+  get usesLanguageCorrection(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2672893540122575, this, []); }
+  set usesLanguageCorrection(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 914803527446014, this, [value]); }
   declare readonly $type: { "c:objc(cs)VNRecognizeTextRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "automaticallyDetectsLanguage": true; "customWords": true; "minimumTextHeight": true; "recognitionLanguages": true; "recognitionLevel": true; "usesLanguageCorrection": true };
 }
@@ -9268,7 +9268,7 @@ export type VNRequestFaceLandmarksConstellation = "constellationNotDefined" | "c
 
 export const VNRequestFaceLandmarksConstellation = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (VNRequestFaceLandmarksConstellation) | null { return callSDK<(VNRequestFaceLandmarksConstellation) | null>("Vision_3864e7f38681b875", 2489081678387661, undefined, [rawValue]); }
+  init(rawValue: number): (VNRequestFaceLandmarksConstellation) | null { return callSDK<(VNRequestFaceLandmarksConstellation) | null>("Vision_ff42ce03e691ab23", 2489081678387661, undefined, [rawValue]); }
 };
 
 /** typealias VNRequestProgressHandler = (VNRequest, Double, (any Error)?) -> Void */
@@ -9295,7 +9295,7 @@ export type VNRequestTextRecognitionLevel = "accurate" | "fast";
 
 export const VNRequestTextRecognitionLevel = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (VNRequestTextRecognitionLevel) | null { return callSDK<(VNRequestTextRecognitionLevel) | null>("Vision_3864e7f38681b875", 2067719774346352, undefined, [rawValue]); }
+  init(rawValue: number): (VNRequestTextRecognitionLevel) | null { return callSDK<(VNRequestTextRecognitionLevel) | null>("Vision_ff42ce03e691ab23", 2067719774346352, undefined, [rawValue]); }
 };
 
 /** enum VNRequestTrackingLevel */
@@ -9303,7 +9303,7 @@ export type VNRequestTrackingLevel = "accurate" | "fast";
 
 export const VNRequestTrackingLevel = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (VNRequestTrackingLevel) | null { return callSDK<(VNRequestTrackingLevel) | null>("Vision_3864e7f38681b875", 2799204637821539, undefined, [rawValue]); }
+  init(rawValue: number): (VNRequestTrackingLevel) | null { return callSDK<(VNRequestTrackingLevel) | null>("Vision_ff42ce03e691ab23", 2799204637821539, undefined, [rawValue]); }
 };
 
 /**
@@ -9312,12 +9312,12 @@ export const VNRequestTrackingLevel = {
  */
 export class VNSaliencyImageObservation extends (VNPixelBufferObservation as unknown as Omit<typeof VNPixelBufferObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNPixelBufferObservation)) {
   /** init() */
-  static init(): VNSaliencyImageObservation { return callSDK<VNSaliencyImageObservation>("Vision_3864e7f38681b875", 3704257550340522, undefined, []); }
+  static init(): VNSaliencyImageObservation { return callSDK<VNSaliencyImageObservation>("Vision_ff42ce03e691ab23", 3704257550340522, undefined, []); }
   /**
    * var salientObjects: [VNRectangleObservation]? { get }
    * @availability iOS 13.0+
    */
-  get salientObjects(): $SDK167 { return callSDK<$SDK167>("Vision_3864e7f38681b875", 2143657707570196, this, []); }
+  get salientObjects(): $SDK167 { return callSDK<$SDK167>("Vision_ff42ce03e691ab23", 2143657707570196, this, []); }
   declare readonly $type: { "c:objc(cs)VNSaliencyImageObservation": true; "c:objc(cs)VNPixelBufferObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "featureName": true; "pixelBuffer": true; "salientObjects": true };
 }
@@ -9331,67 +9331,67 @@ export class VNSequenceRequestHandler extends SDKHandle {
    * init()
    * @availability iOS 11.0+
    */
-  static init(): VNSequenceRequestHandler { return callSDK<VNSequenceRequestHandler>("Vision_3864e7f38681b875", 4290060314626792, undefined, []); }
+  static init(): VNSequenceRequestHandler { return callSDK<VNSequenceRequestHandler>("Vision_ff42ce03e691ab23", 4290060314626792, undefined, []); }
   /**
    * func perform(_ requests: [VNRequest], on image: CGImage) throws
    * @availability iOS 11.0+
    */
-  performOn(requests: Array<VNRequest>, image: _CoreGraphics_CGImage): void { return callSDK<void>("Vision_3864e7f38681b875", 2119470878980702, this, [requests, image]); }
+  performOn(requests: Array<VNRequest>, image: _CoreGraphics_CGImage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2119470878980702, this, [requests, image]); }
   /**
    * func perform(_ requests: [VNRequest], on image: CGImage, orientation: CGImagePropertyOrientation) throws
    * @availability iOS 11.0+
    */
-  performOnOrientation(requests: Array<VNRequest>, image: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_3864e7f38681b875", 2892559731450202, this, [requests, image, orientation]); }
+  performOnOrientation(requests: Array<VNRequest>, image: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2892559731450202, this, [requests, image, orientation]); }
   /**
    * func perform(_ requests: [VNRequest], on image: CIImage) throws
    * @availability iOS 11.0+
    */
-  performOn59259(requests: Array<VNRequest>, image: _CoreImage_CIImage): void { return callSDK<void>("Vision_3864e7f38681b875", 653031201771512, this, [requests, image]); }
+  performOn59259(requests: Array<VNRequest>, image: _CoreImage_CIImage): void { return callSDK<void>("Vision_ff42ce03e691ab23", 653031201771512, this, [requests, image]); }
   /**
    * func perform(_ requests: [VNRequest], on image: CIImage, orientation: CGImagePropertyOrientation) throws
    * @availability iOS 11.0+
    */
-  performOnOrientation83887(requests: Array<VNRequest>, image: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_3864e7f38681b875", 1013330252939113, this, [requests, image, orientation]); }
+  performOnOrientation83887(requests: Array<VNRequest>, image: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1013330252939113, this, [requests, image, orientation]); }
   /**
    * func perform(_ requests: [VNRequest], on sampleBuffer: CMSampleBuffer) throws
    * @availability iOS 14.0+
    */
-  performOn41956(requests: Array<VNRequest>, sampleBuffer: _CoreMedia_CMSampleBuffer): void { return callSDK<void>("Vision_3864e7f38681b875", 4452172654182231, this, [requests, sampleBuffer]); }
+  performOn41956(requests: Array<VNRequest>, sampleBuffer: _CoreMedia_CMSampleBuffer): void { return callSDK<void>("Vision_ff42ce03e691ab23", 4452172654182231, this, [requests, sampleBuffer]); }
   /**
    * func perform(_ requests: [VNRequest], on sampleBuffer: CMSampleBuffer, orientation: CGImagePropertyOrientation) throws
    * @availability iOS 14.0+
    */
-  performOnOrientation19828(requests: Array<VNRequest>, sampleBuffer: _CoreMedia_CMSampleBuffer, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_3864e7f38681b875", 966992569985417, this, [requests, sampleBuffer, orientation]); }
+  performOnOrientation19828(requests: Array<VNRequest>, sampleBuffer: _CoreMedia_CMSampleBuffer, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_ff42ce03e691ab23", 966992569985417, this, [requests, sampleBuffer, orientation]); }
   /**
    * func perform(_ requests: [VNRequest], on pixelBuffer: CVPixelBuffer) throws
    * @availability iOS 11.0+
    */
-  performOn16019(requests: Array<VNRequest>, pixelBuffer: _CoreVideo_CVBuffer): void { return callSDK<void>("Vision_3864e7f38681b875", 4119756151320362, this, [requests, pixelBuffer]); }
+  performOn16019(requests: Array<VNRequest>, pixelBuffer: _CoreVideo_CVBuffer): void { return callSDK<void>("Vision_ff42ce03e691ab23", 4119756151320362, this, [requests, pixelBuffer]); }
   /**
    * func perform(_ requests: [VNRequest], on pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws
    * @availability iOS 11.0+
    */
-  performOnOrientation71447(requests: Array<VNRequest>, pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_3864e7f38681b875", 2177385242588286, this, [requests, pixelBuffer, orientation]); }
+  performOnOrientation71447(requests: Array<VNRequest>, pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2177385242588286, this, [requests, pixelBuffer, orientation]); }
   /**
    * func perform(_ requests: [VNRequest], onImageData imageData: Data) throws
    * @availability iOS 11.0+
    */
-  performOnImageData(requests: Array<VNRequest>, imageData: ArrayBuffer): void { return callSDK<void>("Vision_3864e7f38681b875", 2057466921109040, this, [requests, imageData]); }
+  performOnImageData(requests: Array<VNRequest>, imageData: ArrayBuffer): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2057466921109040, this, [requests, imageData]); }
   /**
    * func perform(_ requests: [VNRequest], onImageData imageData: Data, orientation: CGImagePropertyOrientation) throws
    * @availability iOS 11.0+
    */
-  performOnImageDataOrientation(requests: Array<VNRequest>, imageData: ArrayBuffer, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_3864e7f38681b875", 1942884302433705, this, [requests, imageData, orientation]); }
+  performOnImageDataOrientation(requests: Array<VNRequest>, imageData: ArrayBuffer, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1942884302433705, this, [requests, imageData, orientation]); }
   /**
    * func perform(_ requests: [VNRequest], onImageURL imageURL: URL) throws
    * @availability iOS 11.0+
    */
-  performOnImageURL(requests: Array<VNRequest>, imageURL: string): void { return callSDK<void>("Vision_3864e7f38681b875", 1133291474947474, this, [requests, imageURL]); }
+  performOnImageURL(requests: Array<VNRequest>, imageURL: string): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1133291474947474, this, [requests, imageURL]); }
   /**
    * func perform(_ requests: [VNRequest], onImageURL imageURL: URL, orientation: CGImagePropertyOrientation) throws
    * @availability iOS 11.0+
    */
-  performOnImageURLOrientation(requests: Array<VNRequest>, imageURL: string, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_3864e7f38681b875", 1753180099395362, this, [requests, imageURL, orientation]); }
+  performOnImageURLOrientation(requests: Array<VNRequest>, imageURL: string, orientation: _ImageIO_CGImagePropertyOrientation): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1753180099395362, this, [requests, imageURL, orientation]); }
   declare readonly $type: { "c:objc(cs)VNSequenceRequestHandler": true; "c:objc(cs)NSObject": true };
 }
 
@@ -9401,12 +9401,12 @@ export class VNSequenceRequestHandler extends SDKHandle {
  */
 export class VNTextObservation extends (VNRectangleObservation as unknown as Omit<typeof VNRectangleObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNRectangleObservation)) {
   /** init() */
-  static init(): VNTextObservation { return callSDK<VNTextObservation>("Vision_3864e7f38681b875", 2423842958720898, undefined, []); }
+  static init(): VNTextObservation { return callSDK<VNTextObservation>("Vision_ff42ce03e691ab23", 2423842958720898, undefined, []); }
   /**
    * var characterBoxes: [VNRectangleObservation]? { get }
    * @availability iOS 11.0+
    */
-  get characterBoxes(): $SDK167 { return callSDK<$SDK167>("Vision_3864e7f38681b875", 1549089035419787, this, []); }
+  get characterBoxes(): $SDK167 { return callSDK<$SDK167>("Vision_ff42ce03e691ab23", 1549089035419787, this, []); }
   declare readonly $type: { "c:objc(cs)VNTextObservation": true; "c:objc(cs)VNRectangleObservation": true; "c:objc(cs)VNDetectedObjectObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "boundingBox": true; "globalSegmentationMask": true; "bottomLeft": true; "bottomRight": true; "topLeft": true; "topRight": true; "characterBoxes": true };
 }
@@ -9420,17 +9420,17 @@ export class VNTrackHomographicImageRegistrationRequest extends (VNStatefulReque
    * init()
    * @availability iOS 17.0+
    */
-  static init(): VNTrackHomographicImageRegistrationRequest { return callSDK<VNTrackHomographicImageRegistrationRequest>("Vision_3864e7f38681b875", 178399378444282, undefined, []); }
+  static init(): VNTrackHomographicImageRegistrationRequest { return callSDK<VNTrackHomographicImageRegistrationRequest>("Vision_ff42ce03e691ab23", 178399378444282, undefined, []); }
   /**
    * init(completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 17.0+
    */
-  static initCompletionHandler(completionHandler?: $SDK155): VNTrackHomographicImageRegistrationRequest { return callSDK<VNTrackHomographicImageRegistrationRequest>("Vision_3864e7f38681b875", 2845236970436932, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static initCompletionHandler(completionHandler?: $SDK155): VNTrackHomographicImageRegistrationRequest { return callSDK<VNTrackHomographicImageRegistrationRequest>("Vision_ff42ce03e691ab23", 2845236970436932, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var results: [VNImageHomographicAlignmentObservation]? { get }
    * @availability iOS 17.0+
    */
-  get results(): $SDK190 { return callSDK<$SDK190>("Vision_3864e7f38681b875", 3086201544599428, this, []); }
+  get results(): $SDK190 { return callSDK<$SDK190>("Vision_ff42ce03e691ab23", 3086201544599428, this, []); }
   declare readonly $type: { "c:objc(cs)VNTrackHomographicImageRegistrationRequest": true; "c:objc(cs)VNStatefulRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "frameAnalysisSpacing": true; "minimumLatencyFrameCount": true };
 }
@@ -9444,25 +9444,25 @@ export class VNTrackingRequest extends VNImageBasedRequest {
    * func supportedNumber(ofTrackersAndReturnError error: NSErrorPointer) -> Int
    * @availability iOS 17.0+
    */
-  supportedNumber(): { $ret: number; $out: { "error": (_Foundation_NSError) | null } } { return callSDK<{ $ret: number; $out: { "error": (_Foundation_NSError) | null } }>("Vision_3864e7f38681b875", 781230375393998, this, [null]); }
+  supportedNumber(): { $ret: number; $out: { "error": (_Foundation_NSError) | null } } { return callSDK<{ $ret: number; $out: { "error": (_Foundation_NSError) | null } }>("Vision_ff42ce03e691ab23", 781230375393998, this, [null]); }
   /**
    * var inputObservation: VNDetectedObjectObservation { get set }
    * @availability iOS 11.0+
    */
-  get inputObservation(): VNDetectedObjectObservation { return callSDK<VNDetectedObjectObservation>("Vision_3864e7f38681b875", 461898646905549, this, []); }
-  set inputObservation(value: VNDetectedObjectObservation) { callSDK<void>("Vision_3864e7f38681b875", 4139994666316999, this, [value]); }
+  get inputObservation(): VNDetectedObjectObservation { return callSDK<VNDetectedObjectObservation>("Vision_ff42ce03e691ab23", 461898646905549, this, []); }
+  set inputObservation(value: VNDetectedObjectObservation) { callSDK<void>("Vision_ff42ce03e691ab23", 4139994666316999, this, [value]); }
   /**
    * var isLastFrame: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isLastFrame(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 2707918741185203, this, []); }
-  set isLastFrame(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 3578537169258667, this, [value]); }
+  get isLastFrame(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 2707918741185203, this, []); }
+  set isLastFrame(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 3578537169258667, this, [value]); }
   /**
    * var trackingLevel: VNRequestTrackingLevel { get set }
    * @availability iOS 11.0+
    */
-  get trackingLevel(): VNRequestTrackingLevel { return callSDK<VNRequestTrackingLevel>("Vision_3864e7f38681b875", 2697482377976899, this, []); }
-  set trackingLevel(value: VNRequestTrackingLevel) { callSDK<void>("Vision_3864e7f38681b875", 2101011870543886, this, [value]); }
+  get trackingLevel(): VNRequestTrackingLevel { return callSDK<VNRequestTrackingLevel>("Vision_ff42ce03e691ab23", 2697482377976899, this, []); }
+  set trackingLevel(value: VNRequestTrackingLevel) { callSDK<void>("Vision_ff42ce03e691ab23", 2101011870543886, this, [value]); }
   declare readonly $type: { "c:objc(cs)VNTrackingRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "inputObservation": true; "isLastFrame": true; "trackingLevel": true };
 }
@@ -9476,12 +9476,12 @@ export class VNTrackObjectRequest extends VNTrackingRequest {
    * init(detectedObjectObservation observation: VNDetectedObjectObservation)
    * @availability iOS 11.0+
    */
-  static initDetectedObjectObservation(observation: VNDetectedObjectObservation): VNTrackObjectRequest { return callSDK<VNTrackObjectRequest>("Vision_3864e7f38681b875", 3061685075875183, undefined, [observation]); }
+  static initDetectedObjectObservation(observation: VNDetectedObjectObservation): VNTrackObjectRequest { return callSDK<VNTrackObjectRequest>("Vision_ff42ce03e691ab23", 3061685075875183, undefined, [observation]); }
   /**
    * init(detectedObjectObservation observation: VNDetectedObjectObservation, completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initDetectedObjectObservationCompletionHandler(observation: VNDetectedObjectObservation, completionHandler?: $SDK155): VNTrackObjectRequest { return callSDK<VNTrackObjectRequest>("Vision_3864e7f38681b875", 2675300722794180, undefined, [observation, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static initDetectedObjectObservationCompletionHandler(observation: VNDetectedObjectObservation, completionHandler?: $SDK155): VNTrackObjectRequest { return callSDK<VNTrackObjectRequest>("Vision_ff42ce03e691ab23", 2675300722794180, undefined, [observation, completionHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)VNTrackObjectRequest": true; "c:objc(cs)VNTrackingRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "inputObservation": true; "isLastFrame": true; "trackingLevel": true };
 }
@@ -9495,35 +9495,35 @@ export class VNTrackOpticalFlowRequest extends (VNStatefulRequest as unknown as 
    * init()
    * @availability iOS 17.0+
    */
-  static init(): VNTrackOpticalFlowRequest { return callSDK<VNTrackOpticalFlowRequest>("Vision_3864e7f38681b875", 3314673512106340, undefined, []); }
+  static init(): VNTrackOpticalFlowRequest { return callSDK<VNTrackOpticalFlowRequest>("Vision_ff42ce03e691ab23", 3314673512106340, undefined, []); }
   /**
    * init(completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 17.0+
    */
-  static initCompletionHandler(completionHandler?: $SDK155): VNTrackOpticalFlowRequest { return callSDK<VNTrackOpticalFlowRequest>("Vision_3864e7f38681b875", 3355218789411862, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static initCompletionHandler(completionHandler?: $SDK155): VNTrackOpticalFlowRequest { return callSDK<VNTrackOpticalFlowRequest>("Vision_ff42ce03e691ab23", 3355218789411862, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var computationAccuracy: VNTrackOpticalFlowRequest.ComputationAccuracy { get set }
    * @availability iOS 17.0+
    */
-  get computationAccuracy(): VNTrackOpticalFlowRequest_ComputationAccuracy { return callSDK<VNTrackOpticalFlowRequest_ComputationAccuracy>("Vision_3864e7f38681b875", 2341713862653857, this, []); }
-  set computationAccuracy(value: VNTrackOpticalFlowRequest_ComputationAccuracy) { callSDK<void>("Vision_3864e7f38681b875", 2698075633252591, this, [value]); }
+  get computationAccuracy(): VNTrackOpticalFlowRequest_ComputationAccuracy { return callSDK<VNTrackOpticalFlowRequest_ComputationAccuracy>("Vision_ff42ce03e691ab23", 2341713862653857, this, []); }
+  set computationAccuracy(value: VNTrackOpticalFlowRequest_ComputationAccuracy) { callSDK<void>("Vision_ff42ce03e691ab23", 2698075633252591, this, [value]); }
   /**
    * var keepNetworkOutput: Bool { get set }
    * @availability iOS 17.0+
    */
-  get keepNetworkOutput(): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 4304893026379199, this, []); }
-  set keepNetworkOutput(value: boolean) { callSDK<void>("Vision_3864e7f38681b875", 1737539750064880, this, [value]); }
+  get keepNetworkOutput(): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 4304893026379199, this, []); }
+  set keepNetworkOutput(value: boolean) { callSDK<void>("Vision_ff42ce03e691ab23", 1737539750064880, this, [value]); }
   /**
    * var outputPixelFormat: OSType { get set }
    * @availability iOS 17.0+
    */
-  get outputPixelFormat(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 2700308184670593, this, []); }
-  set outputPixelFormat(value: SDKHandle) { callSDK<void>("Vision_3864e7f38681b875", 1405754861972963, this, [value]); }
+  get outputPixelFormat(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 2700308184670593, this, []); }
+  set outputPixelFormat(value: SDKHandle) { callSDK<void>("Vision_ff42ce03e691ab23", 1405754861972963, this, [value]); }
   /**
    * var results: [VNPixelBufferObservation]? { get }
    * @availability iOS 17.0+
    */
-  get results(): $SDK188 { return callSDK<$SDK188>("Vision_3864e7f38681b875", 3770359505120227, this, []); }
+  get results(): $SDK188 { return callSDK<$SDK188>("Vision_ff42ce03e691ab23", 3770359505120227, this, []); }
   declare readonly $type: { "c:objc(cs)VNTrackOpticalFlowRequest": true; "c:objc(cs)VNStatefulRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "frameAnalysisSpacing": true; "minimumLatencyFrameCount": true; "computationAccuracy": true; "keepNetworkOutput": true; "outputPixelFormat": true };
 }
@@ -9539,7 +9539,7 @@ export const VNTrackOpticalFlowRequest_ComputationAccuracy = {
    * init?(rawValue: UInt)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (VNTrackOpticalFlowRequest_ComputationAccuracy) | null { return callSDK<(VNTrackOpticalFlowRequest_ComputationAccuracy) | null>("Vision_3864e7f38681b875", 4489338533209908, undefined, [rawValue]); }
+  init(rawValue: number): (VNTrackOpticalFlowRequest_ComputationAccuracy) | null { return callSDK<(VNTrackOpticalFlowRequest_ComputationAccuracy) | null>("Vision_ff42ce03e691ab23", 4489338533209908, undefined, [rawValue]); }
 };
 
 /**
@@ -9551,12 +9551,12 @@ export class VNTrackRectangleRequest extends VNTrackingRequest {
    * convenience init(rectangleObservation observation: VNRectangleObservation)
    * @availability iOS 11.0+
    */
-  static initRectangleObservation(observation: VNRectangleObservation): VNTrackRectangleRequest { return callSDK<VNTrackRectangleRequest>("Vision_3864e7f38681b875", 1103571194196902, undefined, [observation]); }
+  static initRectangleObservation(observation: VNRectangleObservation): VNTrackRectangleRequest { return callSDK<VNTrackRectangleRequest>("Vision_ff42ce03e691ab23", 1103571194196902, undefined, [observation]); }
   /**
    * init(rectangleObservation observation: VNRectangleObservation, completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 11.0+
    */
-  static initRectangleObservationCompletionHandler(observation: VNRectangleObservation, completionHandler?: $SDK155): VNTrackRectangleRequest { return callSDK<VNTrackRectangleRequest>("Vision_3864e7f38681b875", 1004171014948527, undefined, [observation, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static initRectangleObservationCompletionHandler(observation: VNRectangleObservation, completionHandler?: $SDK155): VNTrackRectangleRequest { return callSDK<VNTrackRectangleRequest>("Vision_ff42ce03e691ab23", 1004171014948527, undefined, [observation, completionHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)VNTrackRectangleRequest": true; "c:objc(cs)VNTrackingRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "inputObservation": true; "isLastFrame": true; "trackingLevel": true };
 }
@@ -9570,17 +9570,17 @@ export class VNTrackTranslationalImageRegistrationRequest extends (VNStatefulReq
    * init()
    * @availability iOS 17.0+
    */
-  static init(): VNTrackTranslationalImageRegistrationRequest { return callSDK<VNTrackTranslationalImageRegistrationRequest>("Vision_3864e7f38681b875", 2629225548259321, undefined, []); }
+  static init(): VNTrackTranslationalImageRegistrationRequest { return callSDK<VNTrackTranslationalImageRegistrationRequest>("Vision_ff42ce03e691ab23", 2629225548259321, undefined, []); }
   /**
    * init(completionHandler: VNRequestCompletionHandler? = nil)
    * @availability iOS 17.0+
    */
-  static initCompletionHandler(completionHandler?: $SDK155): VNTrackTranslationalImageRegistrationRequest { return callSDK<VNTrackTranslationalImageRegistrationRequest>("Vision_3864e7f38681b875", 1885805013930517, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static initCompletionHandler(completionHandler?: $SDK155): VNTrackTranslationalImageRegistrationRequest { return callSDK<VNTrackTranslationalImageRegistrationRequest>("Vision_ff42ce03e691ab23", 1885805013930517, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var results: [VNImageTranslationAlignmentObservation]? { get }
    * @availability iOS 17.0+
    */
-  get results(): $SDK203 { return callSDK<$SDK203>("Vision_3864e7f38681b875", 1179582591950410, this, []); }
+  get results(): $SDK203 { return callSDK<$SDK203>("Vision_ff42ce03e691ab23", 1179582591950410, this, []); }
   declare readonly $type: { "c:objc(cs)VNTrackTranslationalImageRegistrationRequest": true; "c:objc(cs)VNStatefulRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true; "frameAnalysisSpacing": true; "minimumLatencyFrameCount": true };
 }
@@ -9591,27 +9591,27 @@ export class VNTrackTranslationalImageRegistrationRequest extends (VNStatefulReq
  */
 export class VNTrajectoryObservation extends (VNObservation as unknown as Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation)) {
   /** init() */
-  static init(): VNTrajectoryObservation { return callSDK<VNTrajectoryObservation>("Vision_3864e7f38681b875", 4069550333855348, undefined, []); }
+  static init(): VNTrajectoryObservation { return callSDK<VNTrajectoryObservation>("Vision_ff42ce03e691ab23", 4069550333855348, undefined, []); }
   /**
    * var detectedPoints: [VNPoint] { get }
    * @availability iOS 14.0+
    */
-  get detectedPoints(): Array<VNPoint> { return callSDK<Array<VNPoint>>("Vision_3864e7f38681b875", 366978040108670, this, []); }
+  get detectedPoints(): Array<VNPoint> { return callSDK<Array<VNPoint>>("Vision_ff42ce03e691ab23", 366978040108670, this, []); }
   /**
    * var equationCoefficients: simd_float3 { get }
    * @availability iOS 14.0+
    */
-  get equationCoefficients(): SDKHandle { return callSDK<SDKHandle>("Vision_3864e7f38681b875", 3978546791800523, this, []); }
+  get equationCoefficients(): SDKHandle { return callSDK<SDKHandle>("Vision_ff42ce03e691ab23", 3978546791800523, this, []); }
   /**
    * var movingAverageRadius: CGFloat { get }
    * @availability iOS 15.0+
    */
-  get movingAverageRadius(): number { return callSDK<number>("Vision_3864e7f38681b875", 4468216082682169, this, []); }
+  get movingAverageRadius(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4468216082682169, this, []); }
   /**
    * var projectedPoints: [VNPoint] { get }
    * @availability iOS 14.0+
    */
-  get projectedPoints(): Array<VNPoint> { return callSDK<Array<VNPoint>>("Vision_3864e7f38681b875", 1640088837592221, this, []); }
+  get projectedPoints(): Array<VNPoint> { return callSDK<Array<VNPoint>>("Vision_ff42ce03e691ab23", 1640088837592221, this, []); }
   declare readonly $type: { "c:objc(cs)VNTrajectoryObservation": true; "c:objc(cs)VNObservation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidence": true; "timeRange": true; "uuid": true; "detectedPoints": true; "equationCoefficients": true; "movingAverageRadius": true; "projectedPoints": true };
 }
@@ -9625,7 +9625,7 @@ export class VNTranslationalImageRegistrationRequest extends (VNImageRegistratio
    * var results: [VNImageTranslationAlignmentObservation]? { get }
    * @availability iOS 11.0+
    */
-  get results(): $SDK203 { return callSDK<$SDK203>("Vision_3864e7f38681b875", 3496719050867652, this, []); }
+  get results(): $SDK203 { return callSDK<$SDK203>("Vision_ff42ce03e691ab23", 3496719050867652, this, []); }
   declare readonly $type: { "c:objc(cs)VNTranslationalImageRegistrationRequest": true; "c:objc(cs)VNImageRegistrationRequest": true; "c:objc(cs)VNTargetedImageRequest": true; "c:objc(cs)VNImageBasedRequest": true; "c:objc(cs)VNRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferBackgroundProcessing": true; "results": true; "revision": true; "usesCPUOnly": true; "regionOfInterest": true };
 }
@@ -9639,77 +9639,77 @@ export class VNVector extends SDKHandle {
    * class func dotProduct(of v1: VNVector, vector v2: VNVector) -> Double
    * @availability iOS 14.0+
    */
-  static dotProduct(v1: VNVector, v2: VNVector): number { return callSDK<number>("Vision_3864e7f38681b875", 4086478299182996, undefined, [v1, v2]); }
+  static dotProduct(v1: VNVector, v2: VNVector): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4086478299182996, undefined, [v1, v2]); }
   /**
    * class func unitVector(for vector: VNVector) -> VNVector
    * @availability iOS 14.0+
    */
-  static unitVector(vector: VNVector): VNVector { return callSDK<VNVector>("Vision_3864e7f38681b875", 4450442555545607, undefined, [vector]); }
+  static unitVector(vector: VNVector): VNVector { return callSDK<VNVector>("Vision_ff42ce03e691ab23", 4450442555545607, undefined, [vector]); }
   /**
    * init(byAdding v1: VNVector, to v2: VNVector)
    * @availability iOS 14.0+
    */
-  static initByAddingTo(v1: VNVector, v2: VNVector): VNVector { return callSDK<VNVector>("Vision_3864e7f38681b875", 2274172461073858, undefined, [v1, v2]); }
+  static initByAddingTo(v1: VNVector, v2: VNVector): VNVector { return callSDK<VNVector>("Vision_ff42ce03e691ab23", 2274172461073858, undefined, [v1, v2]); }
   /**
    * init(byMultiplying vector: VNVector, byScalar scalar: Double)
    * @availability iOS 14.0+
    */
-  static initByMultiplyingByScalar(vector: VNVector, scalar: number): VNVector { return callSDK<VNVector>("Vision_3864e7f38681b875", 3130626333812627, undefined, [vector, scalar]); }
+  static initByMultiplyingByScalar(vector: VNVector, scalar: number): VNVector { return callSDK<VNVector>("Vision_ff42ce03e691ab23", 3130626333812627, undefined, [vector, scalar]); }
   /**
    * init(bySubtracting v1: VNVector, from v2: VNVector)
    * @availability iOS 14.0+
    */
-  static initBySubtractingFrom(v1: VNVector, v2: VNVector): VNVector { return callSDK<VNVector>("Vision_3864e7f38681b875", 4030835918949155, undefined, [v1, v2]); }
+  static initBySubtractingFrom(v1: VNVector, v2: VNVector): VNVector { return callSDK<VNVector>("Vision_ff42ce03e691ab23", 4030835918949155, undefined, [v1, v2]); }
   /**
    * class var zero: VNVector { get }
    * @availability iOS 14.0+
    */
-  static get zero(): VNVector { return callSDK<VNVector>("Vision_3864e7f38681b875", 3808122503492853, undefined, []); }
+  static get zero(): VNVector { return callSDK<VNVector>("Vision_ff42ce03e691ab23", 3808122503492853, undefined, []); }
   /**
    * convenience init(r: Double, theta: Double)
    * @availability iOS 14.0+
    */
-  static initRTheta(r: number, theta: number): VNVector { return callSDK<VNVector>("Vision_3864e7f38681b875", 3201148558217656, undefined, [r, theta]); }
+  static initRTheta(r: number, theta: number): VNVector { return callSDK<VNVector>("Vision_ff42ce03e691ab23", 3201148558217656, undefined, [r, theta]); }
   /**
    * convenience init(vectorHead head: VNPoint, tail: VNPoint)
    * @availability iOS 14.0+
    */
-  static initVectorHeadTail(head: VNPoint, tail: VNPoint): VNVector { return callSDK<VNVector>("Vision_3864e7f38681b875", 1314247172526576, undefined, [head, tail]); }
+  static initVectorHeadTail(head: VNPoint, tail: VNPoint): VNVector { return callSDK<VNVector>("Vision_ff42ce03e691ab23", 1314247172526576, undefined, [head, tail]); }
   /**
    * init(xComponent x: Double, yComponent y: Double)
    * @availability iOS 14.0+
    */
-  static initXComponentYComponent(x: number, y: number): VNVector { return callSDK<VNVector>("Vision_3864e7f38681b875", 3004495924016990, undefined, [x, y]); }
+  static initXComponentYComponent(x: number, y: number): VNVector { return callSDK<VNVector>("Vision_ff42ce03e691ab23", 3004495924016990, undefined, [x, y]); }
   /**
    * var length: Double { get }
    * @availability iOS 14.0+
    */
-  get length(): number { return callSDK<number>("Vision_3864e7f38681b875", 1818119338879625, this, []); }
+  get length(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1818119338879625, this, []); }
   /**
    * var r: Double { get }
    * @availability iOS 14.0+
    */
-  get r(): number { return callSDK<number>("Vision_3864e7f38681b875", 2666386128421413, this, []); }
+  get r(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 2666386128421413, this, []); }
   /**
    * var squaredLength: Double { get }
    * @availability iOS 14.0+
    */
-  get squaredLength(): number { return callSDK<number>("Vision_3864e7f38681b875", 3187615063349404, this, []); }
+  get squaredLength(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3187615063349404, this, []); }
   /**
    * var theta: Double { get }
    * @availability iOS 14.0+
    */
-  get theta(): number { return callSDK<number>("Vision_3864e7f38681b875", 3323507761906558, this, []); }
+  get theta(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 3323507761906558, this, []); }
   /**
    * var x: Double { get }
    * @availability iOS 14.0+
    */
-  get x(): number { return callSDK<number>("Vision_3864e7f38681b875", 825818408870143, this, []); }
+  get x(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 825818408870143, this, []); }
   /**
    * var y: Double { get }
    * @availability iOS 14.0+
    */
-  get y(): number { return callSDK<number>("Vision_3864e7f38681b875", 4485884924470949, this, []); }
+  get y(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4485884924470949, this, []); }
   declare readonly $type: { "c:objc(cs)VNVector": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "length": true; "r": true; "squaredLength": true; "theta": true; "x": true; "y": true };
 }
@@ -9727,19 +9727,19 @@ export const VNVideoProcessingOption = {
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get frameCadence(): VNVideoProcessingOption { return callSDK<VNVideoProcessingOption>("Vision_3864e7f38681b875", 2589569640629394, undefined, []); },
+  get frameCadence(): VNVideoProcessingOption { return callSDK<VNVideoProcessingOption>("Vision_ff42ce03e691ab23", 2589569640629394, undefined, []); },
   /**
    * static let timeInterval: VNVideoProcessingOption
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get timeInterval(): VNVideoProcessingOption { return callSDK<VNVideoProcessingOption>("Vision_3864e7f38681b875", 1277836564260898, undefined, []); },
+  get timeInterval(): VNVideoProcessingOption { return callSDK<VNVideoProcessingOption>("Vision_ff42ce03e691ab23", 1277836564260898, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  init(rawValue: string): VNVideoProcessingOption { return callSDK<VNVideoProcessingOption>("Vision_3864e7f38681b875", 1616057678113236, undefined, [rawValue]); }
+  init(rawValue: string): VNVideoProcessingOption { return callSDK<VNVideoProcessingOption>("Vision_ff42ce03e691ab23", 1616057678113236, undefined, [rawValue]); }
 };
 
 /**
@@ -9751,39 +9751,39 @@ export class VNVideoProcessor extends SDKHandle {
    * func addRequest(_ request: VNRequest, processingOptions: VNVideoProcessor.RequestProcessingOptions) throws
    * @availability iOS 14.0+
    */
-  addRequest(request: VNRequest, processingOptions: VNVideoProcessor_RequestProcessingOptions): void { return callSDK<void>("Vision_3864e7f38681b875", 3860164585294163, this, [request, processingOptions]); }
+  addRequest(request: VNRequest, processingOptions: VNVideoProcessor_RequestProcessingOptions): void { return callSDK<void>("Vision_ff42ce03e691ab23", 3860164585294163, this, [request, processingOptions]); }
   /**
    * func add(_ request: VNRequest, withProcessingOptions processingOptions: [VNVideoProcessingOption : Any] = [:]) throws
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  add(request: VNRequest, processingOptions?: NativeMap<VNVideoProcessingOption, unknown>): void { return callSDK<void>("Vision_3864e7f38681b875", 2428599344045598, this, [request, processingOptions]); }
+  add(request: VNRequest, processingOptions?: NativeMap<VNVideoProcessingOption, unknown>): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2428599344045598, this, [request, processingOptions]); }
   /**
    * func analyze(_ timeRange: CMTimeRange) throws
    * @availability iOS 14.0+
    */
-  analyze(timeRange: _CoreMedia_CMTimeRange): void { return callSDK<void>("Vision_3864e7f38681b875", 2030834716010078, this, [timeRange]); }
+  analyze(timeRange: _CoreMedia_CMTimeRange): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2030834716010078, this, [timeRange]); }
   /**
    * func analyze(with timeRange: CMTimeRange) throws
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  analyzeWith(timeRange: _CoreMedia_CMTimeRange): void { return callSDK<void>("Vision_3864e7f38681b875", 1421456887158152, this, [timeRange]); }
+  analyzeWith(timeRange: _CoreMedia_CMTimeRange): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1421456887158152, this, [timeRange]); }
   /**
    * func cancel()
    * @availability iOS 14.0+
    */
-  cancel(): void { return callSDK<void>("Vision_3864e7f38681b875", 2698078164295726, this, []); }
+  cancel(): void { return callSDK<void>("Vision_ff42ce03e691ab23", 2698078164295726, this, []); }
   /**
    * init(url videoURL: URL)
    * @availability iOS 14.0+
    */
-  static init(videoURL: string): VNVideoProcessor { return callSDK<VNVideoProcessor>("Vision_3864e7f38681b875", 2878627489630872, undefined, [videoURL]); }
+  static init(videoURL: string): VNVideoProcessor { return callSDK<VNVideoProcessor>("Vision_ff42ce03e691ab23", 2878627489630872, undefined, [videoURL]); }
   /**
    * func removeRequest(_ request: VNRequest) throws
    * @availability iOS 14.0+
    */
-  removeRequest(request: VNRequest): void { return callSDK<void>("Vision_3864e7f38681b875", 1605781633417712, this, [request]); }
+  removeRequest(request: VNRequest): void { return callSDK<void>("Vision_ff42ce03e691ab23", 1605781633417712, this, [request]); }
   declare readonly $type: { "c:objc(cs)VNVideoProcessor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -9793,7 +9793,7 @@ export class VNVideoProcessor extends SDKHandle {
  */
 export class VNVideoProcessor_Cadence extends SDKHandle {
   /** init() */
-  static init(): VNVideoProcessor_Cadence { return callSDK<VNVideoProcessor_Cadence>("Vision_3864e7f38681b875", 1690106514163091, undefined, []); }
+  static init(): VNVideoProcessor_Cadence { return callSDK<VNVideoProcessor_Cadence>("Vision_ff42ce03e691ab23", 1690106514163091, undefined, []); }
   declare readonly $type: { "c:objc(cs)VNVideoProcessorCadence": true; "c:objc(cs)NSObject": true };
 }
 
@@ -9806,12 +9806,12 @@ export class VNVideoProcessor_FrameRateCadence extends (VNVideoProcessor_Cadence
    * init(_ frameRate: Int)
    * @availability iOS 14.0+
    */
-  static init(frameRate: number): VNVideoProcessor_FrameRateCadence { return callSDK<VNVideoProcessor_FrameRateCadence>("Vision_3864e7f38681b875", 1530300074444928, undefined, [frameRate]); }
+  static init(frameRate: number): VNVideoProcessor_FrameRateCadence { return callSDK<VNVideoProcessor_FrameRateCadence>("Vision_ff42ce03e691ab23", 1530300074444928, undefined, [frameRate]); }
   /**
    * var frameRate: Int { get }
    * @availability iOS 14.0+
    */
-  get frameRate(): number { return callSDK<number>("Vision_3864e7f38681b875", 4134057478288253, this, []); }
+  get frameRate(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4134057478288253, this, []); }
   declare readonly $type: { "c:objc(cs)VNVideoProcessorFrameRateCadence": true; "c:objc(cs)VNVideoProcessorCadence": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameRate": true };
 }
@@ -9822,13 +9822,13 @@ export class VNVideoProcessor_FrameRateCadence extends (VNVideoProcessor_Cadence
  */
 export class VNVideoProcessor_RequestProcessingOptions extends SDKHandle {
   /** init() */
-  static init(): VNVideoProcessor_RequestProcessingOptions { return callSDK<VNVideoProcessor_RequestProcessingOptions>("Vision_3864e7f38681b875", 4499004169844012, undefined, []); }
+  static init(): VNVideoProcessor_RequestProcessingOptions { return callSDK<VNVideoProcessor_RequestProcessingOptions>("Vision_ff42ce03e691ab23", 4499004169844012, undefined, []); }
   /**
    * @NSCopying var cadence: VNVideoProcessor.Cadence? { get set }
    * @availability iOS 14.0+
    */
-  get cadence(): $SDK205 { return callSDK<$SDK205>("Vision_3864e7f38681b875", 3383877484905532, this, []); }
-  set cadence(value: $SDK205) { callSDK<void>("Vision_3864e7f38681b875", 18410370127518, this, [value]); }
+  get cadence(): $SDK205 { return callSDK<$SDK205>("Vision_ff42ce03e691ab23", 3383877484905532, this, []); }
+  set cadence(value: $SDK205) { callSDK<void>("Vision_ff42ce03e691ab23", 18410370127518, this, [value]); }
   declare readonly $type: { "c:objc(cs)VNVideoProcessorRequestProcessingOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cadence": true };
 }
@@ -9842,12 +9842,12 @@ export class VNVideoProcessor_TimeIntervalCadence extends (VNVideoProcessor_Cade
    * init(_ timeInterval: CFTimeInterval)
    * @availability iOS 14.0+
    */
-  static init(timeInterval: number): VNVideoProcessor_TimeIntervalCadence { return callSDK<VNVideoProcessor_TimeIntervalCadence>("Vision_3864e7f38681b875", 1657761248843553, undefined, [timeInterval]); }
+  static init(timeInterval: number): VNVideoProcessor_TimeIntervalCadence { return callSDK<VNVideoProcessor_TimeIntervalCadence>("Vision_ff42ce03e691ab23", 1657761248843553, undefined, [timeInterval]); }
   /**
    * var timeInterval: CFTimeInterval { get }
    * @availability iOS 14.0+
    */
-  get timeInterval(): number { return callSDK<number>("Vision_3864e7f38681b875", 1951821483527776, this, []); }
+  get timeInterval(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1951821483527776, this, []); }
   declare readonly $type: { "c:objc(cs)VNVideoProcessorTimeIntervalCadence": true; "c:objc(cs)VNVideoProcessorCadence": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timeInterval": true };
 }
@@ -9856,619 +9856,619 @@ export class VNVideoProcessor_TimeIntervalCadence extends (VNVideoProcessor_Cade
  * func VNElementTypeSize(_ elementType: VNElementType) -> Int
  * @availability iOS 13.0+
  */
-export function VNElementTypeSize(elementType: VNElementType): number { return callSDK<number>("Vision_3864e7f38681b875", 4324929187897230, undefined, [elementType]); }
+export function VNElementTypeSize(elementType: VNElementType): number { return callSDK<number>("Vision_ff42ce03e691ab23", 4324929187897230, undefined, [elementType]); }
 
 /**
  * func VNImagePointForFaceLandmarkPoint(_ faceLandmarkPoint: vector_float2, _ faceBoundingBox: CGRect, _ imageWidth: Int, _ imageHeight: Int) -> CGPoint
  * @availability iOS 11.0+
  */
-export function VNImagePointForFaceLandmarkPoint(faceLandmarkPoint: SDKHandle, faceBoundingBox: $SDK115, imageWidth: number, imageHeight: number): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 1346430641218381, undefined, [faceLandmarkPoint, faceBoundingBox, imageWidth, imageHeight]); }
+export function VNImagePointForFaceLandmarkPoint(faceLandmarkPoint: SDKHandle, faceBoundingBox: $SDK115, imageWidth: number, imageHeight: number): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 1346430641218381, undefined, [faceLandmarkPoint, faceBoundingBox, imageWidth, imageHeight]); }
 
 /**
  * func VNImagePointForNormalizedPoint(_ normalizedPoint: CGPoint, _ imageWidth: Int, _ imageHeight: Int) -> CGPoint
  * @availability iOS 11.0+
  */
-export function VNImagePointForNormalizedPoint(normalizedPoint: $SDK114, imageWidth: number, imageHeight: number): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 2473215099021037, undefined, [normalizedPoint, imageWidth, imageHeight]); }
+export function VNImagePointForNormalizedPoint(normalizedPoint: $SDK114, imageWidth: number, imageHeight: number): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 2473215099021037, undefined, [normalizedPoint, imageWidth, imageHeight]); }
 
 /**
  * func VNImagePointForNormalizedPointUsingRegionOfInterest(_ normalizedPoint: CGPoint, _ imageWidth: Int, _ imageHeight: Int, _ roi: CGRect) -> CGPoint
  * @availability iOS 15.0+
  */
-export function VNImagePointForNormalizedPointUsingRegionOfInterest(normalizedPoint: $SDK114, imageWidth: number, imageHeight: number, roi: $SDK115): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 903843437942432, undefined, [normalizedPoint, imageWidth, imageHeight, roi]); }
+export function VNImagePointForNormalizedPointUsingRegionOfInterest(normalizedPoint: $SDK114, imageWidth: number, imageHeight: number, roi: $SDK115): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 903843437942432, undefined, [normalizedPoint, imageWidth, imageHeight, roi]); }
 
 /**
  * func VNImageRectForNormalizedRect(_ normalizedRect: CGRect, _ imageWidth: Int, _ imageHeight: Int) -> CGRect
  * @availability iOS 11.0+
  */
-export function VNImageRectForNormalizedRect(normalizedRect: $SDK115, imageWidth: number, imageHeight: number): $SDK115 { return callSDK<$SDK115>("Vision_3864e7f38681b875", 1813548771537124, undefined, [normalizedRect, imageWidth, imageHeight]); }
+export function VNImageRectForNormalizedRect(normalizedRect: $SDK115, imageWidth: number, imageHeight: number): $SDK115 { return callSDK<$SDK115>("Vision_ff42ce03e691ab23", 1813548771537124, undefined, [normalizedRect, imageWidth, imageHeight]); }
 
 /**
  * func VNImageRectForNormalizedRectUsingRegionOfInterest(_ normalizedRect: CGRect, _ imageWidth: Int, _ imageHeight: Int, _ roi: CGRect) -> CGRect
  * @availability iOS 15.0+
  */
-export function VNImageRectForNormalizedRectUsingRegionOfInterest(normalizedRect: $SDK115, imageWidth: number, imageHeight: number, roi: $SDK115): $SDK115 { return callSDK<$SDK115>("Vision_3864e7f38681b875", 3898791271979943, undefined, [normalizedRect, imageWidth, imageHeight, roi]); }
+export function VNImageRectForNormalizedRectUsingRegionOfInterest(normalizedRect: $SDK115, imageWidth: number, imageHeight: number, roi: $SDK115): $SDK115 { return callSDK<$SDK115>("Vision_ff42ce03e691ab23", 3898791271979943, undefined, [normalizedRect, imageWidth, imageHeight, roi]); }
 
 /**
  * func VNNormalizedFaceBoundingBoxPointForLandmarkPoint(_ faceLandmarkPoint: vector_float2, _ faceBoundingBox: CGRect, _ imageWidth: Int, _ imageHeight: Int) -> CGPoint
  * @availability iOS 11.0+
  */
-export function VNNormalizedFaceBoundingBoxPointForLandmarkPoint(faceLandmarkPoint: SDKHandle, faceBoundingBox: $SDK115, imageWidth: number, imageHeight: number): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 3651088016518264, undefined, [faceLandmarkPoint, faceBoundingBox, imageWidth, imageHeight]); }
+export function VNNormalizedFaceBoundingBoxPointForLandmarkPoint(faceLandmarkPoint: SDKHandle, faceBoundingBox: $SDK115, imageWidth: number, imageHeight: number): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 3651088016518264, undefined, [faceLandmarkPoint, faceBoundingBox, imageWidth, imageHeight]); }
 
 /**
  * func VNNormalizedPointForImagePoint(_ imagePoint: CGPoint, _ imageWidth: Int, _ imageHeight: Int) -> CGPoint
  * @availability iOS 14.0+
  */
-export function VNNormalizedPointForImagePoint(imagePoint: $SDK114, imageWidth: number, imageHeight: number): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 436491251241582, undefined, [imagePoint, imageWidth, imageHeight]); }
+export function VNNormalizedPointForImagePoint(imagePoint: $SDK114, imageWidth: number, imageHeight: number): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 436491251241582, undefined, [imagePoint, imageWidth, imageHeight]); }
 
 /**
  * func VNNormalizedPointForImagePointUsingRegionOfInterest(_ imagePoint: CGPoint, _ imageWidth: Int, _ imageHeight: Int, _ roi: CGRect) -> CGPoint
  * @availability iOS 15.0+
  */
-export function VNNormalizedPointForImagePointUsingRegionOfInterest(imagePoint: $SDK114, imageWidth: number, imageHeight: number, roi: $SDK115): $SDK114 { return callSDK<$SDK114>("Vision_3864e7f38681b875", 2834943052695012, undefined, [imagePoint, imageWidth, imageHeight, roi]); }
+export function VNNormalizedPointForImagePointUsingRegionOfInterest(imagePoint: $SDK114, imageWidth: number, imageHeight: number, roi: $SDK115): $SDK114 { return callSDK<$SDK114>("Vision_ff42ce03e691ab23", 2834943052695012, undefined, [imagePoint, imageWidth, imageHeight, roi]); }
 
 /**
  * func VNNormalizedRectForImageRect(_ imageRect: CGRect, _ imageWidth: Int, _ imageHeight: Int) -> CGRect
  * @availability iOS 11.0+
  */
-export function VNNormalizedRectForImageRect(imageRect: $SDK115, imageWidth: number, imageHeight: number): $SDK115 { return callSDK<$SDK115>("Vision_3864e7f38681b875", 2850139353248827, undefined, [imageRect, imageWidth, imageHeight]); }
+export function VNNormalizedRectForImageRect(imageRect: $SDK115, imageWidth: number, imageHeight: number): $SDK115 { return callSDK<$SDK115>("Vision_ff42ce03e691ab23", 2850139353248827, undefined, [imageRect, imageWidth, imageHeight]); }
 
 /**
  * func VNNormalizedRectForImageRectUsingRegionOfInterest(_ imageRect: CGRect, _ imageWidth: Int, _ imageHeight: Int, _ roi: CGRect) -> CGRect
  * @availability iOS 15.0+
  */
-export function VNNormalizedRectForImageRectUsingRegionOfInterest(imageRect: $SDK115, imageWidth: number, imageHeight: number, roi: $SDK115): $SDK115 { return callSDK<$SDK115>("Vision_3864e7f38681b875", 3547924579333296, undefined, [imageRect, imageWidth, imageHeight, roi]); }
+export function VNNormalizedRectForImageRectUsingRegionOfInterest(imageRect: $SDK115, imageWidth: number, imageHeight: number, roi: $SDK115): $SDK115 { return callSDK<$SDK115>("Vision_ff42ce03e691ab23", 3547924579333296, undefined, [imageRect, imageWidth, imageHeight, roi]); }
 
 /**
  * func VNNormalizedRectIsIdentityRect(_ normalizedRect: CGRect) -> Bool
  * @availability iOS 11.0+
  */
-export function VNNormalizedRectIsIdentityRect(normalizedRect: $SDK115): boolean { return callSDK<boolean>("Vision_3864e7f38681b875", 583023351521011, undefined, [normalizedRect]); }
+export function VNNormalizedRectIsIdentityRect(normalizedRect: $SDK115): boolean { return callSDK<boolean>("Vision_ff42ce03e691ab23", 583023351521011, undefined, [normalizedRect]); }
 
 /**
  * var VNCalculateImageAestheticsScoresRequestRevision1: Int { get }
  * @availability iOS 18.0+
  */
-export const VNCalculateImageAestheticsScoresRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3493636066879604, undefined, []);
+export const VNCalculateImageAestheticsScoresRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3493636066879604, undefined, []);
 
 /**
  * var VNClassifyImageRequestRevision1: Int { get }
  * @availability iOS 13.0+
  */
-export const VNClassifyImageRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 2238911150859693, undefined, []);
+export const VNClassifyImageRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 2238911150859693, undefined, []);
 
 /**
  * var VNClassifyImageRequestRevision2: Int { get }
  * @availability iOS 17.0+
  */
-export const VNClassifyImageRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 4430603072719786, undefined, []);
+export const VNClassifyImageRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 4430603072719786, undefined, []);
 
 /**
  * var VNCoreMLRequestRevision1: Int { get }
  * @availability iOS 12.0+
  */
-export const VNCoreMLRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3734587793998685, undefined, []);
+export const VNCoreMLRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3734587793998685, undefined, []);
 
 /**
  * var VNDetectAnimalBodyPoseRequestRevision1: Int { get }
  * @availability iOS 17.0+
  */
-export const VNDetectAnimalBodyPoseRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3243364463470125, undefined, []);
+export const VNDetectAnimalBodyPoseRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3243364463470125, undefined, []);
 
 /**
  * var VNDetectBarcodesRequestRevision1: Int { get }
  * @availability iOS 12.0+
  * @deprecated iOS 17.0
  */
-export const VNDetectBarcodesRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 1726459409575445, undefined, []);
+export const VNDetectBarcodesRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 1726459409575445, undefined, []);
 
 /**
  * var VNDetectBarcodesRequestRevision2: Int { get }
  * @availability iOS 15.0+
  * @deprecated iOS 18.0
  */
-export const VNDetectBarcodesRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 423494491962773, undefined, []);
+export const VNDetectBarcodesRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 423494491962773, undefined, []);
 
 /**
  * var VNDetectBarcodesRequestRevision3: Int { get }
  * @availability iOS 16.0+
  */
-export const VNDetectBarcodesRequestRevision3: number = callSDK<number>("Vision_3864e7f38681b875", 104355430948950, undefined, []);
+export const VNDetectBarcodesRequestRevision3: number = callSDK<number>("Vision_ff42ce03e691ab23", 104355430948950, undefined, []);
 
 /**
  * var VNDetectBarcodesRequestRevision4: Int { get }
  * @availability iOS 17.0+
  */
-export const VNDetectBarcodesRequestRevision4: number = callSDK<number>("Vision_3864e7f38681b875", 3740407789083632, undefined, []);
+export const VNDetectBarcodesRequestRevision4: number = callSDK<number>("Vision_ff42ce03e691ab23", 3740407789083632, undefined, []);
 
 /**
  * var VNDetectContourRequestRevision1: Int { get }
  * @availability iOS 14.0+
  */
-export const VNDetectContourRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 1584649346963605, undefined, []);
+export const VNDetectContourRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 1584649346963605, undefined, []);
 
 /**
  * var VNDetectDocumentSegmentationRequestRevision1: Int { get }
  * @availability iOS 15.0+
  */
-export const VNDetectDocumentSegmentationRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3348806971981613, undefined, []);
+export const VNDetectDocumentSegmentationRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3348806971981613, undefined, []);
 
 /**
  * var VNDetectFaceCaptureQualityRequestRevision1: Int { get }
  * @availability iOS 13.0+
  */
-export const VNDetectFaceCaptureQualityRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 133244828306504, undefined, []);
+export const VNDetectFaceCaptureQualityRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 133244828306504, undefined, []);
 
 /**
  * var VNDetectFaceCaptureQualityRequestRevision2: Int { get }
  * @availability iOS 14.0+
  */
-export const VNDetectFaceCaptureQualityRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 808442266636947, undefined, []);
+export const VNDetectFaceCaptureQualityRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 808442266636947, undefined, []);
 
 /**
  * var VNDetectFaceCaptureQualityRequestRevision3: Int { get }
  * @availability iOS 17.0+
  */
-export const VNDetectFaceCaptureQualityRequestRevision3: number = callSDK<number>("Vision_3864e7f38681b875", 66739001772940, undefined, []);
+export const VNDetectFaceCaptureQualityRequestRevision3: number = callSDK<number>("Vision_ff42ce03e691ab23", 66739001772940, undefined, []);
 
 /**
  * var VNDetectFaceLandmarksRequestRevision1: Int { get }
  * @availability iOS 12.0+
  * @deprecated iOS 16.0
  */
-export const VNDetectFaceLandmarksRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 4066725253095544, undefined, []);
+export const VNDetectFaceLandmarksRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 4066725253095544, undefined, []);
 
 /**
  * var VNDetectFaceLandmarksRequestRevision2: Int { get }
  * @availability iOS 12.0+
  */
-export const VNDetectFaceLandmarksRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 2207478059258025, undefined, []);
+export const VNDetectFaceLandmarksRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 2207478059258025, undefined, []);
 
 /**
  * var VNDetectFaceLandmarksRequestRevision3: Int { get }
  * @availability iOS 13.0+
  */
-export const VNDetectFaceLandmarksRequestRevision3: number = callSDK<number>("Vision_3864e7f38681b875", 2115810885504489, undefined, []);
+export const VNDetectFaceLandmarksRequestRevision3: number = callSDK<number>("Vision_ff42ce03e691ab23", 2115810885504489, undefined, []);
 
 /**
  * var VNDetectFaceRectanglesRequestRevision1: Int { get }
  * @availability iOS 12.0+
  * @deprecated iOS 16.0
  */
-export const VNDetectFaceRectanglesRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3736458008589300, undefined, []);
+export const VNDetectFaceRectanglesRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3736458008589300, undefined, []);
 
 /**
  * var VNDetectFaceRectanglesRequestRevision2: Int { get }
  * @availability iOS 12.0+
  */
-export const VNDetectFaceRectanglesRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 548335715627714, undefined, []);
+export const VNDetectFaceRectanglesRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 548335715627714, undefined, []);
 
 /**
  * var VNDetectFaceRectanglesRequestRevision3: Int { get }
  * @availability iOS 15.0+
  */
-export const VNDetectFaceRectanglesRequestRevision3: number = callSDK<number>("Vision_3864e7f38681b875", 1771369300515743, undefined, []);
+export const VNDetectFaceRectanglesRequestRevision3: number = callSDK<number>("Vision_ff42ce03e691ab23", 1771369300515743, undefined, []);
 
 /**
  * var VNDetectHorizonRequestRevision1: Int { get }
  * @availability iOS 12.0+
  */
-export const VNDetectHorizonRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 4265907404201025, undefined, []);
+export const VNDetectHorizonRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 4265907404201025, undefined, []);
 
 /**
  * var VNDetectHumanBodyPose3DRequestRevision1: Int { get }
  * @availability iOS 17.0+
  */
-export const VNDetectHumanBodyPose3DRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3499306624398079, undefined, []);
+export const VNDetectHumanBodyPose3DRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3499306624398079, undefined, []);
 
 /**
  * var VNDetectHumanBodyPoseRequestRevision1: Int { get }
  * @availability iOS 14.0+
  */
-export const VNDetectHumanBodyPoseRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 1251561948842493, undefined, []);
+export const VNDetectHumanBodyPoseRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 1251561948842493, undefined, []);
 
 /**
  * var VNDetectHumanHandPoseRequestRevision1: Int { get }
  * @availability iOS 14.0+
  */
-export const VNDetectHumanHandPoseRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 4410717932555469, undefined, []);
+export const VNDetectHumanHandPoseRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 4410717932555469, undefined, []);
 
 /**
  * var VNDetectHumanRectanglesRequestRevision1: Int { get }
  * @availability iOS 13.0+
  */
-export const VNDetectHumanRectanglesRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3764606386655215, undefined, []);
+export const VNDetectHumanRectanglesRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3764606386655215, undefined, []);
 
 /**
  * var VNDetectHumanRectanglesRequestRevision2: Int { get }
  * @availability iOS 15.0+
  */
-export const VNDetectHumanRectanglesRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 3663362964124451, undefined, []);
+export const VNDetectHumanRectanglesRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 3663362964124451, undefined, []);
 
 /**
  * var VNDetectRectanglesRequestRevision1: Int { get }
  * @availability iOS 12.0+
  */
-export const VNDetectRectanglesRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 631212461395946, undefined, []);
+export const VNDetectRectanglesRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 631212461395946, undefined, []);
 
 /**
  * var VNDetectTextRectanglesRequestRevision1: Int { get }
  * @availability iOS 12.0+
  */
-export const VNDetectTextRectanglesRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3741665362290486, undefined, []);
+export const VNDetectTextRectanglesRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3741665362290486, undefined, []);
 
 /**
  * var VNDetectTrajectoriesRequestRevision1: Int { get }
  * @availability iOS 14.0+
  */
-export const VNDetectTrajectoriesRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 1956734168971926, undefined, []);
+export const VNDetectTrajectoriesRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 1956734168971926, undefined, []);
 
 /**
  * let VNErrorDomain: String
  * @availability iOS 11.0+
  */
-export const VNErrorDomain: string = callSDK<string>("Vision_3864e7f38681b875", 111168896669491, undefined, []);
+export const VNErrorDomain: string = callSDK<string>("Vision_ff42ce03e691ab23", 111168896669491, undefined, []);
 
 /**
  * var VNGenerateAttentionBasedSaliencyImageRequestRevision1: Int { get }
  * @availability iOS 13.0+
  */
-export const VNGenerateAttentionBasedSaliencyImageRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3320719980760937, undefined, []);
+export const VNGenerateAttentionBasedSaliencyImageRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3320719980760937, undefined, []);
 
 /**
  * var VNGenerateAttentionBasedSaliencyImageRequestRevision2: Int { get }
  * @availability iOS 17.0+
  */
-export const VNGenerateAttentionBasedSaliencyImageRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 3763056853775857, undefined, []);
+export const VNGenerateAttentionBasedSaliencyImageRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 3763056853775857, undefined, []);
 
 /**
  * var VNGenerateForegroundInstanceMaskRequestRevision1: Int { get }
  * @availability iOS 17.0+
  */
-export const VNGenerateForegroundInstanceMaskRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 861814769639644, undefined, []);
+export const VNGenerateForegroundInstanceMaskRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 861814769639644, undefined, []);
 
 /**
  * var VNGenerateImageFeaturePrintRequestRevision1: Int { get }
  * @availability iOS 13.0+
  */
-export const VNGenerateImageFeaturePrintRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 65680198728102, undefined, []);
+export const VNGenerateImageFeaturePrintRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 65680198728102, undefined, []);
 
 /**
  * var VNGenerateImageFeaturePrintRequestRevision2: Int { get }
  * @availability iOS 17.0+
  */
-export const VNGenerateImageFeaturePrintRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 1731841484839125, undefined, []);
+export const VNGenerateImageFeaturePrintRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 1731841484839125, undefined, []);
 
 /**
  * var VNGenerateObjectnessBasedSaliencyImageRequestRevision1: Int { get }
  * @availability iOS 13.0+
  */
-export const VNGenerateObjectnessBasedSaliencyImageRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 2087665320722452, undefined, []);
+export const VNGenerateObjectnessBasedSaliencyImageRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 2087665320722452, undefined, []);
 
 /**
  * var VNGenerateObjectnessBasedSaliencyImageRequestRevision2: Int { get }
  * @availability iOS 17.0+
  */
-export const VNGenerateObjectnessBasedSaliencyImageRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 3413908301933062, undefined, []);
+export const VNGenerateObjectnessBasedSaliencyImageRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 3413908301933062, undefined, []);
 
 /**
  * var VNGenerateOpticalFlowRequestRevision1: Int { get }
  * @availability iOS 14.0+
  */
-export const VNGenerateOpticalFlowRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 4277783882348128, undefined, []);
+export const VNGenerateOpticalFlowRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 4277783882348128, undefined, []);
 
 /**
  * var VNGenerateOpticalFlowRequestRevision2: Int { get }
  * @availability iOS 16.0+
  */
-export const VNGenerateOpticalFlowRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 3625446942002040, undefined, []);
+export const VNGenerateOpticalFlowRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 3625446942002040, undefined, []);
 
 /**
  * var VNGeneratePersonInstanceMaskRequestRevision1: Int { get }
  * @availability iOS 17.0+
  */
-export const VNGeneratePersonInstanceMaskRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 1898792702363518, undefined, []);
+export const VNGeneratePersonInstanceMaskRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 1898792702363518, undefined, []);
 
 /**
  * var VNGeneratePersonSegmentationRequestRevision1: Int { get }
  * @availability iOS 15.0+
  */
-export const VNGeneratePersonSegmentationRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 452481479775762, undefined, []);
+export const VNGeneratePersonSegmentationRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 452481479775762, undefined, []);
 
 /**
  * var VNHomographicImageRegistrationRequestRevision1: Int { get }
  * @availability iOS 12.0+
  */
-export const VNHomographicImageRegistrationRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3967085288359806, undefined, []);
+export const VNHomographicImageRegistrationRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3967085288359806, undefined, []);
 
 /**
  * let VNNormalizedIdentityRect: CGRect
  * @availability iOS 11.0+
  */
-export const VNNormalizedIdentityRect: $SDK115 = callSDK<$SDK115>("Vision_3864e7f38681b875", 1726059634392756, undefined, []);
+export const VNNormalizedIdentityRect: $SDK115 = callSDK<$SDK115>("Vision_ff42ce03e691ab23", 1726059634392756, undefined, []);
 
 /**
  * var VNRecognizeAnimalsRequestRevision1: Int { get }
  * @availability iOS 13.0+
  */
-export const VNRecognizeAnimalsRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3832434713039429, undefined, []);
+export const VNRecognizeAnimalsRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3832434713039429, undefined, []);
 
 /**
  * var VNRecognizeAnimalsRequestRevision2: Int { get }
  * @availability iOS 15.0+
  */
-export const VNRecognizeAnimalsRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 203363708423550, undefined, []);
+export const VNRecognizeAnimalsRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 203363708423550, undefined, []);
 
 /**
  * var VNRecognizeTextRequestRevision1: Int { get }
  * @availability iOS 13.0+
  * @deprecated iOS 18.0
  */
-export const VNRecognizeTextRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 1170080045950518, undefined, []);
+export const VNRecognizeTextRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 1170080045950518, undefined, []);
 
 /**
  * var VNRecognizeTextRequestRevision2: Int { get }
  * @availability iOS 14.0+
  * @deprecated iOS 18.0
  */
-export const VNRecognizeTextRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 2292213512117525, undefined, []);
+export const VNRecognizeTextRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 2292213512117525, undefined, []);
 
 /**
  * var VNRecognizeTextRequestRevision3: Int { get }
  * @availability iOS 16.0+
  */
-export const VNRecognizeTextRequestRevision3: number = callSDK<number>("Vision_3864e7f38681b875", 51413424025785, undefined, []);
+export const VNRecognizeTextRequestRevision3: number = callSDK<number>("Vision_ff42ce03e691ab23", 51413424025785, undefined, []);
 
 /**
  * var VNRequestRevisionUnspecified: Int { get }
  * @availability iOS 12.0+
  */
-export const VNRequestRevisionUnspecified: number = callSDK<number>("Vision_3864e7f38681b875", 3368296166065205, undefined, []);
+export const VNRequestRevisionUnspecified: number = callSDK<number>("Vision_ff42ce03e691ab23", 3368296166065205, undefined, []);
 
 /**
  * var VNTrackHomographicImageRegistrationRequestRevision1: Int { get }
  * @availability iOS 17.0+
  */
-export const VNTrackHomographicImageRegistrationRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 2017372158613688, undefined, []);
+export const VNTrackHomographicImageRegistrationRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 2017372158613688, undefined, []);
 
 /**
  * var VNTrackObjectRequestRevision1: Int { get }
  * @availability iOS 12.0+
  */
-export const VNTrackObjectRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 1606057928576326, undefined, []);
+export const VNTrackObjectRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 1606057928576326, undefined, []);
 
 /**
  * var VNTrackObjectRequestRevision2: Int { get }
  * @availability iOS 13.0+
  */
-export const VNTrackObjectRequestRevision2: number = callSDK<number>("Vision_3864e7f38681b875", 333235354392824, undefined, []);
+export const VNTrackObjectRequestRevision2: number = callSDK<number>("Vision_ff42ce03e691ab23", 333235354392824, undefined, []);
 
 /**
  * var VNTrackOpticalFlowRequestRevision1: Int { get }
  * @availability iOS 17.0+
  */
-export const VNTrackOpticalFlowRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 680549825518160, undefined, []);
+export const VNTrackOpticalFlowRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 680549825518160, undefined, []);
 
 /**
  * var VNTrackRectangleRequestRevision1: Int { get }
  * @availability iOS 12.0+
  */
-export const VNTrackRectangleRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 4432667006223352, undefined, []);
+export const VNTrackRectangleRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 4432667006223352, undefined, []);
 
 /**
  * var VNTrackTranslationalImageRegistrationRequestRevision1: Int { get }
  * @availability iOS 17.0+
  */
-export const VNTrackTranslationalImageRegistrationRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 1220171261470134, undefined, []);
+export const VNTrackTranslationalImageRegistrationRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 1220171261470134, undefined, []);
 
 /**
  * var VNTranslationalImageRegistrationRequestRevision1: Int { get }
  * @availability iOS 12.0+
  */
-export const VNTranslationalImageRegistrationRequestRevision1: number = callSDK<number>("Vision_3864e7f38681b875", 3960492251141742, undefined, []);
+export const VNTranslationalImageRegistrationRequestRevision1: number = callSDK<number>("Vision_ff42ce03e691ab23", 3960492251141742, undefined, []);
 
 /**
  * var VNVisionVersionNumber: Double
  * @availability iOS 11.0+
  */
 export const VNVisionVersionNumber = {
-  get value(): number { return callSDK<number>("Vision_3864e7f38681b875", 1851350464551944, undefined, []); },
-  set value(value: number) { callSDK<void>("Vision_3864e7f38681b875", 412416678901635, undefined, [value]); }
+  get value(): number { return callSDK<number>("Vision_ff42ce03e691ab23", 1851350464551944, undefined, []); },
+  set value(value: number) { callSDK<void>("Vision_ff42ce03e691ab23", 412416678901635, undefined, [value]); }
 };
 
-registerSDKClass("Vision.AnimalBodyPoseObservation", AnimalBodyPoseObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"joint":{"id":2327280970264245},"allJoints":{"id":75309782630952}} });
-registerSDKClass("Vision.BarcodeObservation", BarcodeObservation, { module: "Vision_3864e7f38681b875", properties: {} });
+registerSDKClass("Vision.AnimalBodyPoseObservation", AnimalBodyPoseObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"joint":{"id":2327280970264245},"allJoints":{"id":75309782630952}} });
+registerSDKClass("Vision.BarcodeObservation", BarcodeObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
 registerSDKProtocol("s:6Vision20BoundingBoxProvidingP", {});
 registerSDKProtocol("s:6Vision23BoundingRegionProvidingP", {});
-registerSDKClass("Vision.CalculateImageAestheticsScoresRequest", CalculateImageAestheticsScoresRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":2758699106120043}} });
-registerSDKClass("CoreFoundation.CGPoint", CGPoint, { module: "Vision_3864e7f38681b875", properties: {} }, true);
-registerSDKClass("CoreFoundation.CGRect", CGRect, { module: "Vision_3864e7f38681b875", properties: {} }, true);
-registerSDKClass("CoreFoundation.CGSize", CGSize, { module: "Vision_3864e7f38681b875", properties: {} }, true);
-registerSDKClass("Vision.ClassificationObservation", ClassificationObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"hasMinimumRecall":{"id":4094877104977769},"hasMinimumPrecision":{"id":3464865256062488}} });
-registerSDKClass("Vision.ClassifyImageRequest", ClassifyImageRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":299182680307319}} });
-registerSDKClass("Vision.ContoursObservation", ContoursObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"contourAtIndex":{"id":2078808552878168},"countourAtIndexPath":{"id":2847141084662126}} });
-registerSDKClass("Vision.ContoursObservation.Contour", ContoursObservation_Contour, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"calculateArea":{"id":3675805667711693},"boundingCircle":{"id":3338050830563889},"calculatePerimeter":{"id":3663907345647782},"polygonApproximation":{"id":2501507288803571}} });
-registerSDKClass("Vision.CoreMLFeatureValueObservation", CoreMLFeatureValueObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.CoreMLModelContainer", CoreMLModelContainer, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.CoreMLRequest", CoreMLRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":80406765423444}} });
-registerSDKClass("Vision.DetectAnimalBodyPoseRequest", DetectAnimalBodyPoseRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":3990773753198821}} });
-registerSDKClass("Vision.DetectBarcodesRequest", DetectBarcodesRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":1189863294170830}} });
-registerSDKClass("Vision.DetectContoursRequest", DetectContoursRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":3091493276623529}} });
-registerSDKClass("Vision.DetectDocumentSegmentationRequest", DetectDocumentSegmentationRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":4414204278782543}} });
-registerSDKClass("Vision.DetectedDocumentObservation", DetectedDocumentObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.DetectedObjectObservation", DetectedObjectObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.DetectFaceCaptureQualityRequest", DetectFaceCaptureQualityRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":3385251629810080}} });
-registerSDKClass("Vision.DetectFaceLandmarksRequest", DetectFaceLandmarksRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":2347923047069535}} });
-registerSDKClass("Vision.DetectFaceRectanglesRequest", DetectFaceRectanglesRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":2298476749947254}} });
-registerSDKClass("Vision.DetectHorizonRequest", DetectHorizonRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":4248084938037581}} });
-registerSDKClass("Vision.DetectHumanBodyPose3DRequest", DetectHumanBodyPose3DRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":2380616237196990}} });
-registerSDKClass("Vision.DetectHumanBodyPoseRequest", DetectHumanBodyPoseRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":3296282139225092}} });
-registerSDKClass("Vision.DetectHumanHandPoseRequest", DetectHumanHandPoseRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":3876880682015504}} });
-registerSDKClass("Vision.DetectHumanRectanglesRequest", DetectHumanRectanglesRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":3141294088353724}} });
-registerSDKClass("Vision.DetectLensSmudgeRequest", DetectLensSmudgeRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":4308253559743758}} });
-registerSDKClass("Vision.DetectRectanglesRequest", DetectRectanglesRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":583713272161859}} });
-registerSDKClass("Vision.DetectTextRectanglesRequest", DetectTextRectanglesRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":4404936174378501}} });
-registerSDKClass("Vision.DetectTrajectoriesRequest", DetectTrajectoriesRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":1359124928107331}} });
-registerSDKClass("Vision.DocumentObservation", DocumentObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.DocumentObservation.Container", DocumentObservation_Container, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.DocumentObservation.Container.DataDetectorMatch", DocumentObservation_Container_DataDetectorMatch, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.DocumentObservation.Container.List", DocumentObservation_Container_List, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.DocumentObservation.Container.List.Item", DocumentObservation_Container_List_Item, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.DocumentObservation.Container.Table", DocumentObservation_Container_Table, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"cell":{"id":3773697708410691}} });
-registerSDKClass("Vision.DocumentObservation.Container.Table.Cell", DocumentObservation_Container_Table_Cell, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.DocumentObservation.Container.Text", DocumentObservation_Container_Text, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"boundingRegionFor":{"id":1362727197877255}} });
+registerSDKClass("Vision.CalculateImageAestheticsScoresRequest", CalculateImageAestheticsScoresRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":2758699106120043}} });
+registerSDKClass("CoreFoundation.CGPoint", CGPoint, { module: "Vision_ff42ce03e691ab23", properties: {} }, true);
+registerSDKClass("CoreFoundation.CGRect", CGRect, { module: "Vision_ff42ce03e691ab23", properties: {} }, true);
+registerSDKClass("CoreFoundation.CGSize", CGSize, { module: "Vision_ff42ce03e691ab23", properties: {} }, true);
+registerSDKClass("Vision.ClassificationObservation", ClassificationObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"hasMinimumRecall":{"id":4094877104977769},"hasMinimumPrecision":{"id":3464865256062488}} });
+registerSDKClass("Vision.ClassifyImageRequest", ClassifyImageRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":299182680307319}} });
+registerSDKClass("Vision.ContoursObservation", ContoursObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"contourAtIndex":{"id":2078808552878168},"countourAtIndexPath":{"id":2847141084662126}} });
+registerSDKClass("Vision.ContoursObservation.Contour", ContoursObservation_Contour, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"calculateArea":{"id":3675805667711693},"boundingCircle":{"id":3338050830563889},"calculatePerimeter":{"id":3663907345647782},"polygonApproximation":{"id":2501507288803571}} });
+registerSDKClass("Vision.CoreMLFeatureValueObservation", CoreMLFeatureValueObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.CoreMLModelContainer", CoreMLModelContainer, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.CoreMLRequest", CoreMLRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":80406765423444}} });
+registerSDKClass("Vision.DetectAnimalBodyPoseRequest", DetectAnimalBodyPoseRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":3990773753198821}} });
+registerSDKClass("Vision.DetectBarcodesRequest", DetectBarcodesRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":1189863294170830}} });
+registerSDKClass("Vision.DetectContoursRequest", DetectContoursRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":3091493276623529}} });
+registerSDKClass("Vision.DetectDocumentSegmentationRequest", DetectDocumentSegmentationRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":4414204278782543}} });
+registerSDKClass("Vision.DetectedDocumentObservation", DetectedDocumentObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.DetectedObjectObservation", DetectedObjectObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.DetectFaceCaptureQualityRequest", DetectFaceCaptureQualityRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":3385251629810080}} });
+registerSDKClass("Vision.DetectFaceLandmarksRequest", DetectFaceLandmarksRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":2347923047069535}} });
+registerSDKClass("Vision.DetectFaceRectanglesRequest", DetectFaceRectanglesRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":2298476749947254}} });
+registerSDKClass("Vision.DetectHorizonRequest", DetectHorizonRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":4248084938037581}} });
+registerSDKClass("Vision.DetectHumanBodyPose3DRequest", DetectHumanBodyPose3DRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":2380616237196990}} });
+registerSDKClass("Vision.DetectHumanBodyPoseRequest", DetectHumanBodyPoseRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":3296282139225092}} });
+registerSDKClass("Vision.DetectHumanHandPoseRequest", DetectHumanHandPoseRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":3876880682015504}} });
+registerSDKClass("Vision.DetectHumanRectanglesRequest", DetectHumanRectanglesRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":3141294088353724}} });
+registerSDKClass("Vision.DetectLensSmudgeRequest", DetectLensSmudgeRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":4308253559743758}} });
+registerSDKClass("Vision.DetectRectanglesRequest", DetectRectanglesRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":583713272161859}} });
+registerSDKClass("Vision.DetectTextRectanglesRequest", DetectTextRectanglesRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":4404936174378501}} });
+registerSDKClass("Vision.DetectTrajectoriesRequest", DetectTrajectoriesRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":1359124928107331}} });
+registerSDKClass("Vision.DocumentObservation", DocumentObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.DocumentObservation.Container", DocumentObservation_Container, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.DocumentObservation.Container.DataDetectorMatch", DocumentObservation_Container_DataDetectorMatch, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.DocumentObservation.Container.List", DocumentObservation_Container_List, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.DocumentObservation.Container.List.Item", DocumentObservation_Container_List_Item, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.DocumentObservation.Container.Table", DocumentObservation_Container_Table, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"cell":{"id":3773697708410691}} });
+registerSDKClass("Vision.DocumentObservation.Container.Table.Cell", DocumentObservation_Container_Table_Cell, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.DocumentObservation.Container.Text", DocumentObservation_Container_Text, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"boundingRegionFor":{"id":1362727197877255}} });
 registerSDKProtocol("s:6Vision25DownloadableAssetsRequestP", {"downloadAssets":"downloadAssets()","downloadAssetsProgress":"downloadAssets(progress:)"});
-registerSDKClass("Vision.DownloadableAssetsRequestStatus", DownloadableAssetsRequestStatus, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.FaceObservation", FaceObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.FaceObservation.CaptureQuality", FaceObservation_CaptureQuality, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.FaceObservation.Landmarks2D", FaceObservation_Landmarks2D, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.FaceObservation.Landmarks2D.Region", FaceObservation_Landmarks2D_Region, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"pointsInImageCoordinates":{"id":1407956423151500}} });
-registerSDKClass("Vision.FeaturePrintObservation", FeaturePrintObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"distance":{"id":4304272632642590}} });
-registerSDKClass("Vision.GenerateAttentionBasedSaliencyImageRequest", GenerateAttentionBasedSaliencyImageRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":1450789218494779}} });
-registerSDKClass("Vision.GenerateForegroundInstanceMaskRequest", GenerateForegroundInstanceMaskRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":486411184671973}} });
-registerSDKClass("Vision.GenerateImageFeaturePrintRequest", GenerateImageFeaturePrintRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":3657169061637196}} });
-registerSDKClass("Vision.GenerateIterativeSegmentationRequest", GenerateIterativeSegmentationRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"addExcludedPoint":{"id":614149559119406},"addIncludedPoint":{"id":911222502257155},"setComputeDevice":{"id":412779044627493}} });
-registerSDKClass("Vision.GenerateObjectnessBasedSaliencyImageRequest", GenerateObjectnessBasedSaliencyImageRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":2105923692840656}} });
-registerSDKClass("Vision.GeneratePersonInstanceMaskRequest", GeneratePersonInstanceMaskRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":2672370628000978}} });
-registerSDKClass("Vision.GeneratePersonSegmentationRequest", GeneratePersonSegmentationRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":3070898665538208}} });
-registerSDKClass("Vision.HorizonObservation", HorizonObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"transformFor":{"id":533226833616074}} });
-registerSDKClass("Vision.HumanBodyPose3DObservation", HumanBodyPose3DObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"pointInImage":{"id":2365194988370166},"parentJointName":{"id":1217047789159018},"cameraRelativePosition":{"id":3503000260736039},"joint":{"id":2696367389146348},"allJoints":{"id":621810926458278}} });
-registerSDKClass("Vision.HumanBodyPoseObservation", HumanBodyPoseObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"joint":{"id":2404054305936108},"allJoints":{"id":4090273028574439}} });
-registerSDKClass("Vision.HumanHandPoseObservation", HumanHandPoseObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"joint":{"id":2959484989008852},"allJoints":{"id":4039802817350947}} });
-registerSDKClass("Vision.HumanObservation", HumanObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.ImageAestheticsScoresObservation", ImageAestheticsScoresObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.ImageHomographicAlignmentObservation", ImageHomographicAlignmentObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"applyTransform":{"id":3570809475955084}} });
+registerSDKClass("Vision.DownloadableAssetsRequestStatus", DownloadableAssetsRequestStatus, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.FaceObservation", FaceObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.FaceObservation.CaptureQuality", FaceObservation_CaptureQuality, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.FaceObservation.Landmarks2D", FaceObservation_Landmarks2D, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.FaceObservation.Landmarks2D.Region", FaceObservation_Landmarks2D_Region, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"pointsInImageCoordinates":{"id":1407956423151500}} });
+registerSDKClass("Vision.FeaturePrintObservation", FeaturePrintObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"distance":{"id":4304272632642590}} });
+registerSDKClass("Vision.GenerateAttentionBasedSaliencyImageRequest", GenerateAttentionBasedSaliencyImageRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":1450789218494779}} });
+registerSDKClass("Vision.GenerateForegroundInstanceMaskRequest", GenerateForegroundInstanceMaskRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":486411184671973}} });
+registerSDKClass("Vision.GenerateImageFeaturePrintRequest", GenerateImageFeaturePrintRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":3657169061637196}} });
+registerSDKClass("Vision.GenerateIterativeSegmentationRequest", GenerateIterativeSegmentationRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"addExcludedPoint":{"id":614149559119406},"addIncludedPoint":{"id":911222502257155},"setComputeDevice":{"id":412779044627493}} });
+registerSDKClass("Vision.GenerateObjectnessBasedSaliencyImageRequest", GenerateObjectnessBasedSaliencyImageRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":2105923692840656}} });
+registerSDKClass("Vision.GeneratePersonInstanceMaskRequest", GeneratePersonInstanceMaskRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":2672370628000978}} });
+registerSDKClass("Vision.GeneratePersonSegmentationRequest", GeneratePersonSegmentationRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":3070898665538208}} });
+registerSDKClass("Vision.HorizonObservation", HorizonObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"transformFor":{"id":533226833616074}} });
+registerSDKClass("Vision.HumanBodyPose3DObservation", HumanBodyPose3DObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"pointInImage":{"id":2365194988370166},"parentJointName":{"id":1217047789159018},"cameraRelativePosition":{"id":3503000260736039},"joint":{"id":2696367389146348},"allJoints":{"id":621810926458278}} });
+registerSDKClass("Vision.HumanBodyPoseObservation", HumanBodyPoseObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"joint":{"id":2404054305936108},"allJoints":{"id":4090273028574439}} });
+registerSDKClass("Vision.HumanHandPoseObservation", HumanHandPoseObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"joint":{"id":2959484989008852},"allJoints":{"id":4039802817350947}} });
+registerSDKClass("Vision.HumanObservation", HumanObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.ImageAestheticsScoresObservation", ImageAestheticsScoresObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.ImageHomographicAlignmentObservation", ImageHomographicAlignmentObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"applyTransform":{"id":3570809475955084}} });
 registerSDKProtocol("s:6Vision22ImageProcessingRequestP", {"computeDeviceFor":"computeDevice(for:)","setComputeDeviceFor":"setComputeDevice(_:for:)","performOnOrientation":"perform(on:orientation:)"});
-registerSDKClass("Vision.ImageRequestHandler", ImageRequestHandler, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.ImageTranslationAlignmentObservation", ImageTranslationAlignmentObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"applyTransform":{"id":4064637057612252}} });
-registerSDKClass("Vision.InstanceMaskObservation", InstanceMaskObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"generateScaledMask":{"id":42689617147304},"generateMask":{"id":1463318093868238},"instanceAtPoint":{"id":3741625071663691},"generateMaskedImage":{"id":1587249115558000}} });
-registerSDKClass("Vision.Joint", Joint, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"distance":{"id":1617331033051772}} });
-registerSDKClass("Vision.Joint3D", Joint3D, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.NormalizedCircle", NormalizedCircle, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"containsInCircumferentialRingOfWidth":{"id":2143871658221656},"contains":{"id":3453266314529797}} });
-registerSDKClass("Vision.NormalizedPoint", NormalizedPoint, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"verticallyFlipped":{"id":3027591286199190},"toImageCoordinatesFromImageSizeOrigin":{"id":2839987993572304},"toImageCoordinatesOrigin":{"id":3860254737308674}} });
-registerSDKClass("Vision.NormalizedRect", NormalizedRect, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"verticallyFlipped":{"id":483820156810553},"toImageCoordinatesFromImageSizeOrigin":{"id":400773396472833},"toImageCoordinatesOrigin":{"id":2734135086669062}} });
-registerSDKClass("Vision.OpticalFlowObservation", OpticalFlowObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"flow":{"id":2155453001843316}} });
-registerSDKClass("Vision.PixelBufferObservation", PixelBufferObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"pixel":{"id":498749761005525}} });
+registerSDKClass("Vision.ImageRequestHandler", ImageRequestHandler, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.ImageTranslationAlignmentObservation", ImageTranslationAlignmentObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"applyTransform":{"id":4064637057612252}} });
+registerSDKClass("Vision.InstanceMaskObservation", InstanceMaskObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"generateScaledMask":{"id":42689617147304},"generateMask":{"id":1463318093868238},"instanceAtPoint":{"id":3741625071663691},"generateMaskedImage":{"id":1587249115558000}} });
+registerSDKClass("Vision.Joint", Joint, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"distance":{"id":1617331033051772}} });
+registerSDKClass("Vision.Joint3D", Joint3D, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.NormalizedCircle", NormalizedCircle, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"containsInCircumferentialRingOfWidth":{"id":2143871658221656},"contains":{"id":3453266314529797}} });
+registerSDKClass("Vision.NormalizedPoint", NormalizedPoint, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"verticallyFlipped":{"id":3027591286199190},"toImageCoordinatesFromImageSizeOrigin":{"id":2839987993572304},"toImageCoordinatesOrigin":{"id":3860254737308674}} });
+registerSDKClass("Vision.NormalizedRect", NormalizedRect, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"verticallyFlipped":{"id":483820156810553},"toImageCoordinatesFromImageSizeOrigin":{"id":400773396472833},"toImageCoordinatesOrigin":{"id":2734135086669062}} });
+registerSDKClass("Vision.OpticalFlowObservation", OpticalFlowObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"flow":{"id":2155453001843316}} });
+registerSDKClass("Vision.PixelBufferObservation", PixelBufferObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"pixel":{"id":498749761005525}} });
 registerSDKProtocol("s:6Vision13PoseProvidingP", {"jointFor":"joint(for:)","allJointsIn":"allJoints(in:)"});
 registerSDKProtocol("s:6Vision22QuadrilateralProvidingP", {});
-registerSDKClass("Vision.RecognizeAnimalsRequest", RecognizeAnimalsRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":3633380259645685}} });
-registerSDKClass("Vision.RecognizedObjectObservation", RecognizedObjectObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.RecognizeDocumentsRequest", RecognizeDocumentsRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":3128595783218491}} });
-registerSDKClass("Vision.RecognizeDocumentsRequest.BarcodeDetectionOptions", RecognizeDocumentsRequest_BarcodeDetectionOptions, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.RecognizeDocumentsRequest.TextRecognitionOptions", RecognizeDocumentsRequest_TextRecognitionOptions, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.RecognizedText", RecognizedText, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"boundingBox":{"id":2877013442486954}} });
-registerSDKClass("Vision.RecognizedTextObservation", RecognizedTextObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"topCandidates":{"id":732278850516376}} });
-registerSDKClass("Vision.RecognizeTextRequest", RecognizeTextRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":350375244891651}} });
-registerSDKClass("Vision.RectangleObservation", RectangleObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.RequestDescriptor", RequestDescriptor, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.SaliencyImageObservation", SaliencyImageObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.SmudgeObservation", SmudgeObservation, { module: "Vision_3864e7f38681b875", properties: {} });
+registerSDKClass("Vision.RecognizeAnimalsRequest", RecognizeAnimalsRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":3633380259645685}} });
+registerSDKClass("Vision.RecognizedObjectObservation", RecognizedObjectObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.RecognizeDocumentsRequest", RecognizeDocumentsRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":3128595783218491}} });
+registerSDKClass("Vision.RecognizeDocumentsRequest.BarcodeDetectionOptions", RecognizeDocumentsRequest_BarcodeDetectionOptions, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.RecognizeDocumentsRequest.TextRecognitionOptions", RecognizeDocumentsRequest_TextRecognitionOptions, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.RecognizedText", RecognizedText, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"boundingBox":{"id":2877013442486954}} });
+registerSDKClass("Vision.RecognizedTextObservation", RecognizedTextObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"topCandidates":{"id":732278850516376}} });
+registerSDKClass("Vision.RecognizeTextRequest", RecognizeTextRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":350375244891651}} });
+registerSDKClass("Vision.RectangleObservation", RectangleObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.RequestDescriptor", RequestDescriptor, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.SaliencyImageObservation", SaliencyImageObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.SmudgeObservation", SmudgeObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
 registerSDKProtocol("s:6Vision15StatefulRequestP", {"computeDeviceFor":"computeDevice(for:)","setComputeDeviceFor":"setComputeDevice(_:for:)"});
-registerSDKClass("Vision.TargetedImageRequestHandler", TargetedImageRequestHandler, { module: "Vision_3864e7f38681b875", properties: {} });
+registerSDKClass("Vision.TargetedImageRequestHandler", TargetedImageRequestHandler, { module: "Vision_ff42ce03e691ab23", properties: {} });
 registerSDKProtocol("s:6Vision15TargetedRequestP", {"computeDeviceFor":"computeDevice(for:)","setComputeDeviceFor":"setComputeDevice(_:for:)"});
-registerSDKClass("Vision.TextObservation", TextObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.TrackHomographicImageRegistrationRequest", TrackHomographicImageRegistrationRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":4258698316985069}} });
-registerSDKClass("Vision.TrackObjectRequest", TrackObjectRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":1019856679534095}} });
-registerSDKClass("Vision.TrackOpticalFlowRequest", TrackOpticalFlowRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":2031037180921446}} });
-registerSDKClass("Vision.TrackRectangleRequest", TrackRectangleRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":1662008294807853}} });
-registerSDKClass("Vision.TrackTranslationalImageRegistrationRequest", TrackTranslationalImageRegistrationRequest, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"setComputeDevice":{"id":2429461285976942}} });
-registerSDKClass("Vision.TrajectoryObservation", TrajectoryObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.VideoProcessor", VideoProcessor, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"removeRequest":{"id":133134235899882},"startAnalysis":{"id":3060666622994432},"cancel":{"id":891722821312882}} });
-registerSDKClass("Vision.VideoProcessor.Cadence", VideoProcessor_Cadence, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("Vision.VisionError", VisionError, { module: "Vision_3864e7f38681b875", properties: {} });
+registerSDKClass("Vision.TextObservation", TextObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.TrackHomographicImageRegistrationRequest", TrackHomographicImageRegistrationRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":4258698316985069}} });
+registerSDKClass("Vision.TrackObjectRequest", TrackObjectRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":1019856679534095}} });
+registerSDKClass("Vision.TrackOpticalFlowRequest", TrackOpticalFlowRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":2031037180921446}} });
+registerSDKClass("Vision.TrackRectangleRequest", TrackRectangleRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":1662008294807853}} });
+registerSDKClass("Vision.TrackTranslationalImageRegistrationRequest", TrackTranslationalImageRegistrationRequest, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"setComputeDevice":{"id":2429461285976942}} });
+registerSDKClass("Vision.TrajectoryObservation", TrajectoryObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.VideoProcessor", VideoProcessor, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"removeRequest":{"id":133134235899882},"startAnalysis":{"id":3060666622994432},"cancel":{"id":891722821312882}} });
+registerSDKClass("Vision.VideoProcessor.Cadence", VideoProcessor_Cadence, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Vision.VisionError", VisionError, { module: "Vision_ff42ce03e691ab23", properties: {} });
 registerSDKProtocol("s:6Vision0A11ObservationP", {"hashInto":"hash(into:)"});
 registerSDKProtocol("s:6Vision0A7RequestP", {"computeDeviceFor":"computeDevice(for:)","setComputeDeviceFor":"setComputeDevice(_:for:)"});
-registerSDKClass("Vision.VisionResult", VisionResult, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("VNObservation", VNObservation, { module: "Vision_3864e7f38681b875", properties: {"confidence":2607007627062694,"timeRange":4340196296363099,"uuid":322379984410952} });
-registerSDKClass("VNRecognizedPointsObservation", VNRecognizedPointsObservation, { module: "Vision_3864e7f38681b875", properties: {"availableGroupKeys":2544495195573469,"availableKeys":3738730692295750}, methods: {"keypointsMultiArray":{"id":1769264134251118},"recognizedPoint":{"id":2039352459655912},"recognizedPoints":{"id":2438378600831275}} });
-registerSDKClass("VNAnimalBodyPoseObservation", VNAnimalBodyPoseObservation, { module: "Vision_3864e7f38681b875", properties: {"availableJointGroupNames":4262293944949007,"availableJointNames":1222292878959158}, methods: {"recognizedPoint":{"id":2380762281032090},"recognizedPoints":{"id":2892676047575114}} });
-registerSDKClass("VNDetectedObjectObservation", VNDetectedObjectObservation, { module: "Vision_3864e7f38681b875", properties: {"boundingBox":4128796921733700,"globalSegmentationMask":1272509462571999} });
-registerSDKClass("VNRectangleObservation", VNRectangleObservation, { module: "Vision_3864e7f38681b875", properties: {"bottomLeft":3747357995832671,"bottomRight":3954574906211925,"topLeft":1060651380188708,"topRight":2345747929140419} });
-registerSDKClass("VNBarcodeObservation", VNBarcodeObservation, { module: "Vision_3864e7f38681b875", properties: {"barcodeDescriptor":1610475203999564,"isColorInverted":4015695504713736,"isGS1DataCarrier":3978942451275782,"payloadData":2358143158088403,"payloadStringValue":2793719431428224,"supplementalCompositeType":723662075066855,"supplementalPayloadData":1206272803653205,"supplementalPayloadString":1650269774839487,"symbology":3178550867207774} });
-registerSDKClass("VNRequest", VNRequest, { module: "Vision_3864e7f38681b875", properties: {"preferBackgroundProcessing":1962734379813849,"results":4129752776811536,"revision":3517568284956099,"usesCPUOnly":1720942009978306}, methods: {"cancel":{"id":2563800745229653},"computeDevice":{"id":598279450451096},"setComputeDevice":{"id":36471649926190}} });
-registerSDKClass("VNImageBasedRequest", VNImageBasedRequest, { module: "Vision_3864e7f38681b875", properties: {"regionOfInterest":1650242375663662} });
-registerSDKClass("VNCalculateImageAestheticsScoresRequest", VNCalculateImageAestheticsScoresRequest, { module: "Vision_3864e7f38681b875", properties: {"results":2144170557117346} });
-registerSDKClass("VNCircle", VNCircle, { module: "Vision_3864e7f38681b875", properties: {"center":328991293360002,"diameter":2925629885304597,"radius":3913768423319599}, methods: {"contains":{"id":123265319350760},"containsInCircumferentialRingOfWidth":{"id":4304179644948630}} });
-registerSDKClass("VNClassificationObservation", VNClassificationObservation, { module: "Vision_3864e7f38681b875", properties: {"hasPrecisionRecallCurve":3357037971032839,"identifier":3778750473727251}, methods: {"hasMinimumPrecision":{"id":2146634482274446},"hasMinimumRecall":{"id":1754981364070898}} });
-registerSDKClass("VNClassifyImageRequest", VNClassifyImageRequest, { module: "Vision_3864e7f38681b875", properties: {"results":2813350820515427}, methods: {"supportedIdentifiers":{"id":4054173420814113}} });
-registerSDKClass("VNContour", VNContour, { module: "Vision_3864e7f38681b875", properties: {"aspectRatio":4419883668469531,"childContourCount":2537962963082169,"childContours":3559823224797522,"indexPath":3585369440930354,"normalizedPath":3580142495638025,"pointCount":4420833957387257}, methods: {"childContour":{"id":3165054368302547},"polygonApproximation":{"id":506773705774844}} });
-registerSDKClass("VNContoursObservation", VNContoursObservation, { module: "Vision_3864e7f38681b875", properties: {"contourCount":2248937741641186,"normalizedPath":4313976232663073,"topLevelContourCount":1780325952914119,"topLevelContours":966765563006682}, methods: {"contourAt":{"id":3151291054641353},"contourAt8849":{"id":2043876199836342}} });
-registerSDKClass("VNCoreMLFeatureValueObservation", VNCoreMLFeatureValueObservation, { module: "Vision_3864e7f38681b875", properties: {"featureName":1892806344282925,"featureValue":322799936296395} });
-registerSDKClass("VNCoreMLModel", VNCoreMLModel, { module: "Vision_3864e7f38681b875", properties: {"featureProvider":3298118548810925,"inputImageFeatureName":4178143211362307} });
-registerSDKClass("VNCoreMLRequest", VNCoreMLRequest, { module: "Vision_3864e7f38681b875", properties: {"imageCropAndScaleOption":3546576821488842,"model":806255382700631} });
-registerSDKClass("VNDetectAnimalBodyPoseRequest", VNDetectAnimalBodyPoseRequest, { module: "Vision_3864e7f38681b875", properties: {"results":442263624601543} });
-registerSDKClass("VNDetectBarcodesRequest", VNDetectBarcodesRequest, { module: "Vision_3864e7f38681b875", properties: {"coalesceCompositeSymbologies":136086642440535,"results":1258164390985489,"symbologies":1371757705483387}, methods: {"supportedSymbologies15691":{"id":266082309344904}} });
-registerSDKClass("VNDetectContoursRequest", VNDetectContoursRequest, { module: "Vision_3864e7f38681b875", properties: {"contrastAdjustment":1531785977776861,"contrastPivot":1837839182074120,"detectDarkOnLight":205185731893695,"detectsDarkOnLight":2092306521709371,"maximumImageDimension":1402279412105963,"results":2260216159179648} });
-registerSDKClass("VNDetectDocumentSegmentationRequest", VNDetectDocumentSegmentationRequest, { module: "Vision_3864e7f38681b875", properties: {"results":948544427031827} });
-registerSDKClass("VNPoint", VNPoint, { module: "Vision_3864e7f38681b875", properties: {"location":1772418164610934,"x":2910339399558327,"y":953779088236771}, methods: {"distance13672":{"id":1219429068830870}} });
-registerSDKClass("VNDetectedPoint", VNDetectedPoint, { module: "Vision_3864e7f38681b875", properties: {"confidence":2169209159479900} });
-registerSDKClass("VNDetectFaceCaptureQualityRequest", VNDetectFaceCaptureQualityRequest, { module: "Vision_3864e7f38681b875", properties: {"results":2939497401149020} });
-registerSDKClass("VNDetectFaceLandmarksRequest", VNDetectFaceLandmarksRequest, { module: "Vision_3864e7f38681b875", properties: {"constellation":1684897420001182,"results":3026067403213904} });
-registerSDKClass("VNDetectFaceRectanglesRequest", VNDetectFaceRectanglesRequest, { module: "Vision_3864e7f38681b875", properties: {"results":4218713150077539} });
-registerSDKClass("VNDetectHorizonRequest", VNDetectHorizonRequest, { module: "Vision_3864e7f38681b875", properties: {"results":1506525343678666} });
-registerSDKClass("VNStatefulRequest", VNStatefulRequest, { module: "Vision_3864e7f38681b875", properties: {"frameAnalysisSpacing":1439310031487133,"minimumLatencyFrameCount":2710864702527982} });
-registerSDKClass("VNDetectHumanBodyPose3DRequest", VNDetectHumanBodyPose3DRequest, { module: "Vision_3864e7f38681b875", properties: {"results":3294905885989892} });
-registerSDKClass("VNDetectHumanBodyPoseRequest", VNDetectHumanBodyPoseRequest, { module: "Vision_3864e7f38681b875", properties: {"results":3586027097939442} });
-registerSDKClass("VNDetectHumanHandPoseRequest", VNDetectHumanHandPoseRequest, { module: "Vision_3864e7f38681b875", properties: {"maximumHandCount":2394826008061796,"results":254178659585008} });
-registerSDKClass("VNDetectHumanRectanglesRequest", VNDetectHumanRectanglesRequest, { module: "Vision_3864e7f38681b875", properties: {"results":1884347997062493,"upperBodyOnly":1561639353575959} });
-registerSDKClass("VNDetectRectanglesRequest", VNDetectRectanglesRequest, { module: "Vision_3864e7f38681b875", properties: {"maximumAspectRatio":3616106975729156,"maximumObservations":1355033153929142,"minimumAspectRatio":514328109239891,"minimumConfidence":756032272303465,"minimumSize":3232403944331574,"quadratureTolerance":2467848826161061,"results":3976181968762975} });
-registerSDKClass("VNDetectTextRectanglesRequest", VNDetectTextRectanglesRequest, { module: "Vision_3864e7f38681b875", properties: {"reportCharacterBoxes":4122913793125996,"results":3971837079548932} });
-registerSDKClass("VNDetectTrajectoriesRequest", VNDetectTrajectoriesRequest, { module: "Vision_3864e7f38681b875", properties: {"maximumObjectSize":929859763146206,"minimumObjectSize":3143692883792114,"objectMaximumNormalizedRadius":1097846608366152,"objectMinimumNormalizedRadius":4133034556866265,"results":613881963219154,"targetFrameTime":2232668808646275,"trajectoryLength":580581486705368} });
-registerSDKClass("VNFaceLandmarkRegion", VNFaceLandmarkRegion, { module: "Vision_3864e7f38681b875", properties: {"pointCount":1883014715720224} });
-registerSDKClass("VNFaceLandmarkRegion2D", VNFaceLandmarkRegion2D, { module: "Vision_3864e7f38681b875", properties: {"pointsClassification":4229177045282319}, methods: {"pointsInImage":{"id":2709414501651283}} });
-registerSDKClass("VNFaceLandmarks", VNFaceLandmarks, { module: "Vision_3864e7f38681b875", properties: {"confidence":1780969536040653} });
-registerSDKClass("VNFaceLandmarks2D", VNFaceLandmarks2D, { module: "Vision_3864e7f38681b875", properties: {"allPoints":481506704699516,"faceContour":3195145746695395,"innerLips":2677960080252132,"leftEye":3679745552470623,"leftEyebrow":903019086713261,"leftPupil":2560542294215396,"medianLine":3374436086751479,"nose":798685800113824,"noseCrest":1112548714179136,"outerLips":2969056870989994,"rightEye":4012629303988193,"rightEyebrow":2132934511117649,"rightPupil":3664901544838990} });
-registerSDKClass("VNFaceObservation", VNFaceObservation, { module: "Vision_3864e7f38681b875", properties: {"landmarks":4403933859641095,"pitch":1079255214664156,"roll":3640796753575156,"yaw":1947736879132278} });
+registerSDKClass("Vision.VisionResult", VisionResult, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("VNObservation", VNObservation, { module: "Vision_ff42ce03e691ab23", properties: {"confidence":2607007627062694,"timeRange":4340196296363099,"uuid":322379984410952} });
+registerSDKClass("VNRecognizedPointsObservation", VNRecognizedPointsObservation, { module: "Vision_ff42ce03e691ab23", properties: {"availableGroupKeys":2544495195573469,"availableKeys":3738730692295750}, methods: {"keypointsMultiArray":{"id":1769264134251118},"recognizedPoint":{"id":2039352459655912},"recognizedPoints":{"id":2438378600831275}} });
+registerSDKClass("VNAnimalBodyPoseObservation", VNAnimalBodyPoseObservation, { module: "Vision_ff42ce03e691ab23", properties: {"availableJointGroupNames":4262293944949007,"availableJointNames":1222292878959158}, methods: {"recognizedPoint":{"id":2380762281032090},"recognizedPoints":{"id":2892676047575114}} });
+registerSDKClass("VNDetectedObjectObservation", VNDetectedObjectObservation, { module: "Vision_ff42ce03e691ab23", properties: {"boundingBox":4128796921733700,"globalSegmentationMask":1272509462571999} });
+registerSDKClass("VNRectangleObservation", VNRectangleObservation, { module: "Vision_ff42ce03e691ab23", properties: {"bottomLeft":3747357995832671,"bottomRight":3954574906211925,"topLeft":1060651380188708,"topRight":2345747929140419} });
+registerSDKClass("VNBarcodeObservation", VNBarcodeObservation, { module: "Vision_ff42ce03e691ab23", properties: {"barcodeDescriptor":1610475203999564,"isColorInverted":4015695504713736,"isGS1DataCarrier":3978942451275782,"payloadData":2358143158088403,"payloadStringValue":2793719431428224,"supplementalCompositeType":723662075066855,"supplementalPayloadData":1206272803653205,"supplementalPayloadString":1650269774839487,"symbology":3178550867207774} });
+registerSDKClass("VNRequest", VNRequest, { module: "Vision_ff42ce03e691ab23", properties: {"preferBackgroundProcessing":1962734379813849,"results":4129752776811536,"revision":3517568284956099,"usesCPUOnly":1720942009978306}, methods: {"cancel":{"id":2563800745229653},"computeDevice":{"id":598279450451096},"setComputeDevice":{"id":36471649926190}} });
+registerSDKClass("VNImageBasedRequest", VNImageBasedRequest, { module: "Vision_ff42ce03e691ab23", properties: {"regionOfInterest":1650242375663662} });
+registerSDKClass("VNCalculateImageAestheticsScoresRequest", VNCalculateImageAestheticsScoresRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":2144170557117346} });
+registerSDKClass("VNCircle", VNCircle, { module: "Vision_ff42ce03e691ab23", properties: {"center":328991293360002,"diameter":2925629885304597,"radius":3913768423319599}, methods: {"contains":{"id":123265319350760},"containsInCircumferentialRingOfWidth":{"id":4304179644948630}} });
+registerSDKClass("VNClassificationObservation", VNClassificationObservation, { module: "Vision_ff42ce03e691ab23", properties: {"hasPrecisionRecallCurve":3357037971032839,"identifier":3778750473727251}, methods: {"hasMinimumPrecision":{"id":2146634482274446},"hasMinimumRecall":{"id":1754981364070898}} });
+registerSDKClass("VNClassifyImageRequest", VNClassifyImageRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":2813350820515427}, methods: {"supportedIdentifiers":{"id":4054173420814113}} });
+registerSDKClass("VNContour", VNContour, { module: "Vision_ff42ce03e691ab23", properties: {"aspectRatio":4419883668469531,"childContourCount":2537962963082169,"childContours":3559823224797522,"indexPath":3585369440930354,"normalizedPath":3580142495638025,"pointCount":4420833957387257}, methods: {"childContour":{"id":3165054368302547},"polygonApproximation":{"id":506773705774844}} });
+registerSDKClass("VNContoursObservation", VNContoursObservation, { module: "Vision_ff42ce03e691ab23", properties: {"contourCount":2248937741641186,"normalizedPath":4313976232663073,"topLevelContourCount":1780325952914119,"topLevelContours":966765563006682}, methods: {"contourAt":{"id":3151291054641353},"contourAt8849":{"id":2043876199836342}} });
+registerSDKClass("VNCoreMLFeatureValueObservation", VNCoreMLFeatureValueObservation, { module: "Vision_ff42ce03e691ab23", properties: {"featureName":1892806344282925,"featureValue":322799936296395} });
+registerSDKClass("VNCoreMLModel", VNCoreMLModel, { module: "Vision_ff42ce03e691ab23", properties: {"featureProvider":3298118548810925,"inputImageFeatureName":4178143211362307} });
+registerSDKClass("VNCoreMLRequest", VNCoreMLRequest, { module: "Vision_ff42ce03e691ab23", properties: {"imageCropAndScaleOption":3546576821488842,"model":806255382700631} });
+registerSDKClass("VNDetectAnimalBodyPoseRequest", VNDetectAnimalBodyPoseRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":442263624601543} });
+registerSDKClass("VNDetectBarcodesRequest", VNDetectBarcodesRequest, { module: "Vision_ff42ce03e691ab23", properties: {"coalesceCompositeSymbologies":136086642440535,"results":1258164390985489,"symbologies":1371757705483387}, methods: {"supportedSymbologies15691":{"id":266082309344904}} });
+registerSDKClass("VNDetectContoursRequest", VNDetectContoursRequest, { module: "Vision_ff42ce03e691ab23", properties: {"contrastAdjustment":1531785977776861,"contrastPivot":1837839182074120,"detectDarkOnLight":205185731893695,"detectsDarkOnLight":2092306521709371,"maximumImageDimension":1402279412105963,"results":2260216159179648} });
+registerSDKClass("VNDetectDocumentSegmentationRequest", VNDetectDocumentSegmentationRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":948544427031827} });
+registerSDKClass("VNPoint", VNPoint, { module: "Vision_ff42ce03e691ab23", properties: {"location":1772418164610934,"x":2910339399558327,"y":953779088236771}, methods: {"distance13672":{"id":1219429068830870}} });
+registerSDKClass("VNDetectedPoint", VNDetectedPoint, { module: "Vision_ff42ce03e691ab23", properties: {"confidence":2169209159479900} });
+registerSDKClass("VNDetectFaceCaptureQualityRequest", VNDetectFaceCaptureQualityRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":2939497401149020} });
+registerSDKClass("VNDetectFaceLandmarksRequest", VNDetectFaceLandmarksRequest, { module: "Vision_ff42ce03e691ab23", properties: {"constellation":1684897420001182,"results":3026067403213904} });
+registerSDKClass("VNDetectFaceRectanglesRequest", VNDetectFaceRectanglesRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":4218713150077539} });
+registerSDKClass("VNDetectHorizonRequest", VNDetectHorizonRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":1506525343678666} });
+registerSDKClass("VNStatefulRequest", VNStatefulRequest, { module: "Vision_ff42ce03e691ab23", properties: {"frameAnalysisSpacing":1439310031487133,"minimumLatencyFrameCount":2710864702527982} });
+registerSDKClass("VNDetectHumanBodyPose3DRequest", VNDetectHumanBodyPose3DRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":3294905885989892} });
+registerSDKClass("VNDetectHumanBodyPoseRequest", VNDetectHumanBodyPoseRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":3586027097939442} });
+registerSDKClass("VNDetectHumanHandPoseRequest", VNDetectHumanHandPoseRequest, { module: "Vision_ff42ce03e691ab23", properties: {"maximumHandCount":2394826008061796,"results":254178659585008} });
+registerSDKClass("VNDetectHumanRectanglesRequest", VNDetectHumanRectanglesRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":1884347997062493,"upperBodyOnly":1561639353575959} });
+registerSDKClass("VNDetectRectanglesRequest", VNDetectRectanglesRequest, { module: "Vision_ff42ce03e691ab23", properties: {"maximumAspectRatio":3616106975729156,"maximumObservations":1355033153929142,"minimumAspectRatio":514328109239891,"minimumConfidence":756032272303465,"minimumSize":3232403944331574,"quadratureTolerance":2467848826161061,"results":3976181968762975} });
+registerSDKClass("VNDetectTextRectanglesRequest", VNDetectTextRectanglesRequest, { module: "Vision_ff42ce03e691ab23", properties: {"reportCharacterBoxes":4122913793125996,"results":3971837079548932} });
+registerSDKClass("VNDetectTrajectoriesRequest", VNDetectTrajectoriesRequest, { module: "Vision_ff42ce03e691ab23", properties: {"maximumObjectSize":929859763146206,"minimumObjectSize":3143692883792114,"objectMaximumNormalizedRadius":1097846608366152,"objectMinimumNormalizedRadius":4133034556866265,"results":613881963219154,"targetFrameTime":2232668808646275,"trajectoryLength":580581486705368} });
+registerSDKClass("VNFaceLandmarkRegion", VNFaceLandmarkRegion, { module: "Vision_ff42ce03e691ab23", properties: {"pointCount":1883014715720224} });
+registerSDKClass("VNFaceLandmarkRegion2D", VNFaceLandmarkRegion2D, { module: "Vision_ff42ce03e691ab23", properties: {"pointsClassification":4229177045282319}, methods: {"pointsInImage":{"id":2709414501651283}} });
+registerSDKClass("VNFaceLandmarks", VNFaceLandmarks, { module: "Vision_ff42ce03e691ab23", properties: {"confidence":1780969536040653} });
+registerSDKClass("VNFaceLandmarks2D", VNFaceLandmarks2D, { module: "Vision_ff42ce03e691ab23", properties: {"allPoints":481506704699516,"faceContour":3195145746695395,"innerLips":2677960080252132,"leftEye":3679745552470623,"leftEyebrow":903019086713261,"leftPupil":2560542294215396,"medianLine":3374436086751479,"nose":798685800113824,"noseCrest":1112548714179136,"outerLips":2969056870989994,"rightEye":4012629303988193,"rightEyebrow":2132934511117649,"rightPupil":3664901544838990} });
+registerSDKClass("VNFaceObservation", VNFaceObservation, { module: "Vision_ff42ce03e691ab23", properties: {"landmarks":4403933859641095,"pitch":1079255214664156,"roll":3640796753575156,"yaw":1947736879132278} });
 registerSDKProtocol("c:objc(pl)VNFaceObservationAccepting", {});
-registerSDKClass("VNFeaturePrintObservation", VNFeaturePrintObservation, { module: "Vision_3864e7f38681b875", properties: {"data":307182515609312,"elementCount":1573139122619839,"elementType":2989212537102603}, methods: {"computeDistance":{"id":3419984045497747}} });
-registerSDKClass("VNGenerateAttentionBasedSaliencyImageRequest", VNGenerateAttentionBasedSaliencyImageRequest, { module: "Vision_3864e7f38681b875", properties: {"results":2767801899737125} });
-registerSDKClass("VNGenerateForegroundInstanceMaskRequest", VNGenerateForegroundInstanceMaskRequest, { module: "Vision_3864e7f38681b875", properties: {"results":3747877343107541} });
-registerSDKClass("VNGenerateImageFeaturePrintRequest", VNGenerateImageFeaturePrintRequest, { module: "Vision_3864e7f38681b875", properties: {"imageCropAndScaleOption":1209037299604466,"results":3886843738655947} });
-registerSDKClass("VNGenerateObjectnessBasedSaliencyImageRequest", VNGenerateObjectnessBasedSaliencyImageRequest, { module: "Vision_3864e7f38681b875", properties: {"results":4492810615515885} });
-registerSDKClass("VNTargetedImageRequest", VNTargetedImageRequest, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("VNGenerateOpticalFlowRequest", VNGenerateOpticalFlowRequest, { module: "Vision_3864e7f38681b875", properties: {"computationAccuracy":1263257443639062,"keepNetworkOutput":708431747816381,"outputPixelFormat":68271853873656,"results":3165690281524364} });
-registerSDKClass("VNGeneratePersonInstanceMaskRequest", VNGeneratePersonInstanceMaskRequest, { module: "Vision_3864e7f38681b875", properties: {"results":2925053614394605} });
-registerSDKClass("VNGeneratePersonSegmentationRequest", VNGeneratePersonSegmentationRequest, { module: "Vision_3864e7f38681b875", properties: {"outputPixelFormat":1905683545759652,"qualityLevel":1743042267923849,"results":3363721546650771}, methods: {"supportedOutputPixelFormats":{"id":4435684178005038}} });
-registerSDKClass("VNGeometryUtils", VNGeometryUtils, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("VNImageRegistrationRequest", VNImageRegistrationRequest, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("VNHomographicImageRegistrationRequest", VNHomographicImageRegistrationRequest, { module: "Vision_3864e7f38681b875", properties: {"results":1997592408650594} });
-registerSDKClass("VNHorizonObservation", VNHorizonObservation, { module: "Vision_3864e7f38681b875", properties: {"angle":1829343136273312,"transform":947609720343529}, methods: {"transformForImageWidthHeight":{"id":4333929322074806}} });
-registerSDKClass("VNRecognizedPoints3DObservation", VNRecognizedPoints3DObservation, { module: "Vision_3864e7f38681b875", properties: {"availableGroupKeys":973871184962305,"availableKeys":481537188685228}, methods: {"recognizedPoint":{"id":3255754927491988},"recognizedPoints":{"id":519113501939480}} });
-registerSDKClass("VNHumanBodyPose3DObservation", VNHumanBodyPose3DObservation, { module: "Vision_3864e7f38681b875", properties: {"availableJointNames":1586838401744632,"availableJointsGroupNames":3935063979296151,"bodyHeight":693392895701711,"cameraOriginMatrix":1234818154007064,"heightEstimation":796543339646077}, methods: {"parentJointName":{"id":3518703931673069},"pointInImage":{"id":3656147248945720},"recognizedPoint":{"id":4215227934782188},"recognizedPoints":{"id":1571196081978026},"cameraRelativePosition":{"id":950292400599358}} });
-registerSDKClass("VNHumanBodyPoseObservation", VNHumanBodyPoseObservation, { module: "Vision_3864e7f38681b875", properties: {"availableJointNames":1302832047192203,"availableJointsGroupNames":2213516991911503}, methods: {"recognizedPoint":{"id":3422001115090332},"recognizedPoints":{"id":4453235136979173}} });
-registerSDKClass("VNPoint3D", VNPoint3D, { module: "Vision_3864e7f38681b875", properties: {"position":2912863763737106} });
-registerSDKClass("VNRecognizedPoint3D", VNRecognizedPoint3D, { module: "Vision_3864e7f38681b875", properties: {"identifier":3470075413290746} });
-registerSDKClass("VNHumanBodyRecognizedPoint3D", VNHumanBodyRecognizedPoint3D, { module: "Vision_3864e7f38681b875", properties: {"localPosition":3505564099810866,"parentJoint":3704465831822892} });
-registerSDKClass("VNHumanHandPoseObservation", VNHumanHandPoseObservation, { module: "Vision_3864e7f38681b875", properties: {"availableJointNames":3127360750450533,"availableJointsGroupNames":2678787722026738,"chirality":1916557283070623}, methods: {"recognizedPoint":{"id":161552601829802},"recognizedPoints":{"id":2035857977544570}} });
-registerSDKClass("VNHumanObservation", VNHumanObservation, { module: "Vision_3864e7f38681b875", properties: {"upperBodyOnly":2590205453465710} });
-registerSDKClass("VNImageAestheticsScoresObservation", VNImageAestheticsScoresObservation, { module: "Vision_3864e7f38681b875", properties: {"isUtility":1184910607906080,"overallScore":536887027102409} });
-registerSDKClass("VNImageAlignmentObservation", VNImageAlignmentObservation, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("VNImageHomographicAlignmentObservation", VNImageHomographicAlignmentObservation, { module: "Vision_3864e7f38681b875", properties: {"warpTransform":879189261948343} });
-registerSDKClass("VNImageRequestHandler", VNImageRequestHandler, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"perform":{"id":297526796669580}} });
-registerSDKClass("VNImageTranslationAlignmentObservation", VNImageTranslationAlignmentObservation, { module: "Vision_3864e7f38681b875", properties: {"alignmentTransform":3880322493994007} });
-registerSDKClass("VNInstanceMaskObservation", VNInstanceMaskObservation, { module: "Vision_3864e7f38681b875", properties: {"allInstances":4226799369297302,"instanceMask":2345469745133991}, methods: {"generateMask":{"id":2949374010057059},"generateMaskedImage":{"id":871797121945662},"generateScaledMaskForImage":{"id":4296448445916349}} });
-registerSDKClass("VNPixelBufferObservation", VNPixelBufferObservation, { module: "Vision_3864e7f38681b875", properties: {"featureName":4020630439467498,"pixelBuffer":1291994531239343} });
-registerSDKClass("VNRecognizeAnimalsRequest", VNRecognizeAnimalsRequest, { module: "Vision_3864e7f38681b875", properties: {"results":4493154099876532}, methods: {"supportedIdentifiers":{"id":2317012079688464}} });
-registerSDKClass("VNRecognizedObjectObservation", VNRecognizedObjectObservation, { module: "Vision_3864e7f38681b875", properties: {"labels":690312114828637} });
-registerSDKClass("VNRecognizedPoint", VNRecognizedPoint, { module: "Vision_3864e7f38681b875", properties: {"identifier":2625786194746406} });
-registerSDKClass("VNRecognizedText", VNRecognizedText, { module: "Vision_3864e7f38681b875", properties: {"confidence":2934231909918268,"string":2636059041930509}, methods: {"boundingBox":{"id":2710801810833675}} });
-registerSDKClass("VNRecognizedTextObservation", VNRecognizedTextObservation, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"topCandidates":{"id":2562766646745467}} });
-registerSDKClass("VNRecognizeTextRequest", VNRecognizeTextRequest, { module: "Vision_3864e7f38681b875", properties: {"automaticallyDetectsLanguage":2165382523700992,"customWords":2602995273119435,"minimumTextHeight":727813368909018,"recognitionLanguages":343004537689499,"recognitionLevel":255355339594045,"results":4396598058813286,"usesLanguageCorrection":2672893540122575}, methods: {"supportedRecognitionLanguages":{"id":3716581322990121}} });
+registerSDKClass("VNFeaturePrintObservation", VNFeaturePrintObservation, { module: "Vision_ff42ce03e691ab23", properties: {"data":307182515609312,"elementCount":1573139122619839,"elementType":2989212537102603}, methods: {"computeDistance":{"id":3419984045497747}} });
+registerSDKClass("VNGenerateAttentionBasedSaliencyImageRequest", VNGenerateAttentionBasedSaliencyImageRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":2767801899737125} });
+registerSDKClass("VNGenerateForegroundInstanceMaskRequest", VNGenerateForegroundInstanceMaskRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":3747877343107541} });
+registerSDKClass("VNGenerateImageFeaturePrintRequest", VNGenerateImageFeaturePrintRequest, { module: "Vision_ff42ce03e691ab23", properties: {"imageCropAndScaleOption":1209037299604466,"results":3886843738655947} });
+registerSDKClass("VNGenerateObjectnessBasedSaliencyImageRequest", VNGenerateObjectnessBasedSaliencyImageRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":4492810615515885} });
+registerSDKClass("VNTargetedImageRequest", VNTargetedImageRequest, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("VNGenerateOpticalFlowRequest", VNGenerateOpticalFlowRequest, { module: "Vision_ff42ce03e691ab23", properties: {"computationAccuracy":1263257443639062,"keepNetworkOutput":708431747816381,"outputPixelFormat":68271853873656,"results":3165690281524364} });
+registerSDKClass("VNGeneratePersonInstanceMaskRequest", VNGeneratePersonInstanceMaskRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":2925053614394605} });
+registerSDKClass("VNGeneratePersonSegmentationRequest", VNGeneratePersonSegmentationRequest, { module: "Vision_ff42ce03e691ab23", properties: {"outputPixelFormat":1905683545759652,"qualityLevel":1743042267923849,"results":3363721546650771}, methods: {"supportedOutputPixelFormats":{"id":4435684178005038}} });
+registerSDKClass("VNGeometryUtils", VNGeometryUtils, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("VNImageRegistrationRequest", VNImageRegistrationRequest, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("VNHomographicImageRegistrationRequest", VNHomographicImageRegistrationRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":1997592408650594} });
+registerSDKClass("VNHorizonObservation", VNHorizonObservation, { module: "Vision_ff42ce03e691ab23", properties: {"angle":1829343136273312,"transform":947609720343529}, methods: {"transformForImageWidthHeight":{"id":4333929322074806}} });
+registerSDKClass("VNRecognizedPoints3DObservation", VNRecognizedPoints3DObservation, { module: "Vision_ff42ce03e691ab23", properties: {"availableGroupKeys":973871184962305,"availableKeys":481537188685228}, methods: {"recognizedPoint":{"id":3255754927491988},"recognizedPoints":{"id":519113501939480}} });
+registerSDKClass("VNHumanBodyPose3DObservation", VNHumanBodyPose3DObservation, { module: "Vision_ff42ce03e691ab23", properties: {"availableJointNames":1586838401744632,"availableJointsGroupNames":3935063979296151,"bodyHeight":693392895701711,"cameraOriginMatrix":1234818154007064,"heightEstimation":796543339646077}, methods: {"parentJointName":{"id":3518703931673069},"pointInImage":{"id":3656147248945720},"recognizedPoint":{"id":4215227934782188},"recognizedPoints":{"id":1571196081978026},"cameraRelativePosition":{"id":950292400599358}} });
+registerSDKClass("VNHumanBodyPoseObservation", VNHumanBodyPoseObservation, { module: "Vision_ff42ce03e691ab23", properties: {"availableJointNames":1302832047192203,"availableJointsGroupNames":2213516991911503}, methods: {"recognizedPoint":{"id":3422001115090332},"recognizedPoints":{"id":4453235136979173}} });
+registerSDKClass("VNPoint3D", VNPoint3D, { module: "Vision_ff42ce03e691ab23", properties: {"position":2912863763737106} });
+registerSDKClass("VNRecognizedPoint3D", VNRecognizedPoint3D, { module: "Vision_ff42ce03e691ab23", properties: {"identifier":3470075413290746} });
+registerSDKClass("VNHumanBodyRecognizedPoint3D", VNHumanBodyRecognizedPoint3D, { module: "Vision_ff42ce03e691ab23", properties: {"localPosition":3505564099810866,"parentJoint":3704465831822892} });
+registerSDKClass("VNHumanHandPoseObservation", VNHumanHandPoseObservation, { module: "Vision_ff42ce03e691ab23", properties: {"availableJointNames":3127360750450533,"availableJointsGroupNames":2678787722026738,"chirality":1916557283070623}, methods: {"recognizedPoint":{"id":161552601829802},"recognizedPoints":{"id":2035857977544570}} });
+registerSDKClass("VNHumanObservation", VNHumanObservation, { module: "Vision_ff42ce03e691ab23", properties: {"upperBodyOnly":2590205453465710} });
+registerSDKClass("VNImageAestheticsScoresObservation", VNImageAestheticsScoresObservation, { module: "Vision_ff42ce03e691ab23", properties: {"isUtility":1184910607906080,"overallScore":536887027102409} });
+registerSDKClass("VNImageAlignmentObservation", VNImageAlignmentObservation, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("VNImageHomographicAlignmentObservation", VNImageHomographicAlignmentObservation, { module: "Vision_ff42ce03e691ab23", properties: {"warpTransform":879189261948343} });
+registerSDKClass("VNImageRequestHandler", VNImageRequestHandler, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"perform":{"id":297526796669580}} });
+registerSDKClass("VNImageTranslationAlignmentObservation", VNImageTranslationAlignmentObservation, { module: "Vision_ff42ce03e691ab23", properties: {"alignmentTransform":3880322493994007} });
+registerSDKClass("VNInstanceMaskObservation", VNInstanceMaskObservation, { module: "Vision_ff42ce03e691ab23", properties: {"allInstances":4226799369297302,"instanceMask":2345469745133991}, methods: {"generateMask":{"id":2949374010057059},"generateMaskedImage":{"id":871797121945662},"generateScaledMaskForImage":{"id":4296448445916349}} });
+registerSDKClass("VNPixelBufferObservation", VNPixelBufferObservation, { module: "Vision_ff42ce03e691ab23", properties: {"featureName":4020630439467498,"pixelBuffer":1291994531239343} });
+registerSDKClass("VNRecognizeAnimalsRequest", VNRecognizeAnimalsRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":4493154099876532}, methods: {"supportedIdentifiers":{"id":2317012079688464}} });
+registerSDKClass("VNRecognizedObjectObservation", VNRecognizedObjectObservation, { module: "Vision_ff42ce03e691ab23", properties: {"labels":690312114828637} });
+registerSDKClass("VNRecognizedPoint", VNRecognizedPoint, { module: "Vision_ff42ce03e691ab23", properties: {"identifier":2625786194746406} });
+registerSDKClass("VNRecognizedText", VNRecognizedText, { module: "Vision_ff42ce03e691ab23", properties: {"confidence":2934231909918268,"string":2636059041930509}, methods: {"boundingBox":{"id":2710801810833675}} });
+registerSDKClass("VNRecognizedTextObservation", VNRecognizedTextObservation, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"topCandidates":{"id":2562766646745467}} });
+registerSDKClass("VNRecognizeTextRequest", VNRecognizeTextRequest, { module: "Vision_ff42ce03e691ab23", properties: {"automaticallyDetectsLanguage":2165382523700992,"customWords":2602995273119435,"minimumTextHeight":727813368909018,"recognitionLanguages":343004537689499,"recognitionLevel":255355339594045,"results":4396598058813286,"usesLanguageCorrection":2672893540122575}, methods: {"supportedRecognitionLanguages":{"id":3716581322990121}} });
 registerSDKProtocol("c:objc(pl)VNRequestProgressProviding", {});
 registerSDKProtocol("c:objc(pl)VNRequestRevisionProviding", {});
-registerSDKClass("VNSaliencyImageObservation", VNSaliencyImageObservation, { module: "Vision_3864e7f38681b875", properties: {"salientObjects":2143657707570196} });
-registerSDKClass("VNSequenceRequestHandler", VNSequenceRequestHandler, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"performOn":{"id":2119470878980702},"performOnOrientation":{"id":2892559731450202},"performOn59259":{"id":653031201771512},"performOnOrientation83887":{"id":1013330252939113},"performOn41956":{"id":4452172654182231},"performOnOrientation19828":{"id":966992569985417},"performOn16019":{"id":4119756151320362},"performOnOrientation71447":{"id":2177385242588286},"performOnImageData":{"id":2057466921109040},"performOnImageDataOrientation":{"id":1942884302433705},"performOnImageURL":{"id":1133291474947474},"performOnImageURLOrientation":{"id":1753180099395362}} });
-registerSDKClass("VNTextObservation", VNTextObservation, { module: "Vision_3864e7f38681b875", properties: {"characterBoxes":1549089035419787} });
-registerSDKClass("VNTrackHomographicImageRegistrationRequest", VNTrackHomographicImageRegistrationRequest, { module: "Vision_3864e7f38681b875", properties: {"results":3086201544599428} });
-registerSDKClass("VNTrackingRequest", VNTrackingRequest, { module: "Vision_3864e7f38681b875", properties: {"inputObservation":461898646905549,"isLastFrame":2707918741185203,"trackingLevel":2697482377976899}, methods: {"supportedNumber":{"id":781230375393998,"args":[null]}} });
-registerSDKClass("VNTrackObjectRequest", VNTrackObjectRequest, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("VNTrackOpticalFlowRequest", VNTrackOpticalFlowRequest, { module: "Vision_3864e7f38681b875", properties: {"computationAccuracy":2341713862653857,"keepNetworkOutput":4304893026379199,"outputPixelFormat":2700308184670593,"results":3770359505120227} });
-registerSDKClass("VNTrackRectangleRequest", VNTrackRectangleRequest, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("VNTrackTranslationalImageRegistrationRequest", VNTrackTranslationalImageRegistrationRequest, { module: "Vision_3864e7f38681b875", properties: {"results":1179582591950410} });
-registerSDKClass("VNTrajectoryObservation", VNTrajectoryObservation, { module: "Vision_3864e7f38681b875", properties: {"detectedPoints":366978040108670,"equationCoefficients":3978546791800523,"movingAverageRadius":4468216082682169,"projectedPoints":1640088837592221} });
-registerSDKClass("VNTranslationalImageRegistrationRequest", VNTranslationalImageRegistrationRequest, { module: "Vision_3864e7f38681b875", properties: {"results":3496719050867652} });
-registerSDKClass("VNVector", VNVector, { module: "Vision_3864e7f38681b875", properties: {"length":1818119338879625,"r":2666386128421413,"squaredLength":3187615063349404,"theta":3323507761906558,"x":825818408870143,"y":4485884924470949} });
-registerSDKClass("VNVideoProcessor", VNVideoProcessor, { module: "Vision_3864e7f38681b875", properties: {}, methods: {"addRequest":{"id":3860164585294163},"add":{"id":2428599344045598},"analyze":{"id":2030834716010078},"analyzeWith":{"id":1421456887158152},"cancel":{"id":2698078164295726},"removeRequest":{"id":1605781633417712}} });
-registerSDKClass("VNVideoProcessorCadence", VNVideoProcessor_Cadence, { module: "Vision_3864e7f38681b875", properties: {} });
-registerSDKClass("VNVideoProcessorFrameRateCadence", VNVideoProcessor_FrameRateCadence, { module: "Vision_3864e7f38681b875", properties: {"frameRate":4134057478288253} });
-registerSDKClass("VNVideoProcessorRequestProcessingOptions", VNVideoProcessor_RequestProcessingOptions, { module: "Vision_3864e7f38681b875", properties: {"cadence":3383877484905532} });
-registerSDKClass("VNVideoProcessorTimeIntervalCadence", VNVideoProcessor_TimeIntervalCadence, { module: "Vision_3864e7f38681b875", properties: {"timeInterval":1951821483527776} });
+registerSDKClass("VNSaliencyImageObservation", VNSaliencyImageObservation, { module: "Vision_ff42ce03e691ab23", properties: {"salientObjects":2143657707570196} });
+registerSDKClass("VNSequenceRequestHandler", VNSequenceRequestHandler, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"performOn":{"id":2119470878980702},"performOnOrientation":{"id":2892559731450202},"performOn59259":{"id":653031201771512},"performOnOrientation83887":{"id":1013330252939113},"performOn41956":{"id":4452172654182231},"performOnOrientation19828":{"id":966992569985417},"performOn16019":{"id":4119756151320362},"performOnOrientation71447":{"id":2177385242588286},"performOnImageData":{"id":2057466921109040},"performOnImageDataOrientation":{"id":1942884302433705},"performOnImageURL":{"id":1133291474947474},"performOnImageURLOrientation":{"id":1753180099395362}} });
+registerSDKClass("VNTextObservation", VNTextObservation, { module: "Vision_ff42ce03e691ab23", properties: {"characterBoxes":1549089035419787} });
+registerSDKClass("VNTrackHomographicImageRegistrationRequest", VNTrackHomographicImageRegistrationRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":3086201544599428} });
+registerSDKClass("VNTrackingRequest", VNTrackingRequest, { module: "Vision_ff42ce03e691ab23", properties: {"inputObservation":461898646905549,"isLastFrame":2707918741185203,"trackingLevel":2697482377976899}, methods: {"supportedNumber":{"id":781230375393998,"args":[null]}} });
+registerSDKClass("VNTrackObjectRequest", VNTrackObjectRequest, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("VNTrackOpticalFlowRequest", VNTrackOpticalFlowRequest, { module: "Vision_ff42ce03e691ab23", properties: {"computationAccuracy":2341713862653857,"keepNetworkOutput":4304893026379199,"outputPixelFormat":2700308184670593,"results":3770359505120227} });
+registerSDKClass("VNTrackRectangleRequest", VNTrackRectangleRequest, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("VNTrackTranslationalImageRegistrationRequest", VNTrackTranslationalImageRegistrationRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":1179582591950410} });
+registerSDKClass("VNTrajectoryObservation", VNTrajectoryObservation, { module: "Vision_ff42ce03e691ab23", properties: {"detectedPoints":366978040108670,"equationCoefficients":3978546791800523,"movingAverageRadius":4468216082682169,"projectedPoints":1640088837592221} });
+registerSDKClass("VNTranslationalImageRegistrationRequest", VNTranslationalImageRegistrationRequest, { module: "Vision_ff42ce03e691ab23", properties: {"results":3496719050867652} });
+registerSDKClass("VNVector", VNVector, { module: "Vision_ff42ce03e691ab23", properties: {"length":1818119338879625,"r":2666386128421413,"squaredLength":3187615063349404,"theta":3323507761906558,"x":825818408870143,"y":4485884924470949} });
+registerSDKClass("VNVideoProcessor", VNVideoProcessor, { module: "Vision_ff42ce03e691ab23", properties: {}, methods: {"addRequest":{"id":3860164585294163},"add":{"id":2428599344045598},"analyze":{"id":2030834716010078},"analyzeWith":{"id":1421456887158152},"cancel":{"id":2698078164295726},"removeRequest":{"id":1605781633417712}} });
+registerSDKClass("VNVideoProcessorCadence", VNVideoProcessor_Cadence, { module: "Vision_ff42ce03e691ab23", properties: {} });
+registerSDKClass("VNVideoProcessorFrameRateCadence", VNVideoProcessor_FrameRateCadence, { module: "Vision_ff42ce03e691ab23", properties: {"frameRate":4134057478288253} });
+registerSDKClass("VNVideoProcessorRequestProcessingOptions", VNVideoProcessor_RequestProcessingOptions, { module: "Vision_ff42ce03e691ab23", properties: {"cadence":3383877484905532} });
+registerSDKClass("VNVideoProcessorTimeIntervalCadence", VNVideoProcessor_TimeIntervalCadence, { module: "Vision_ff42ce03e691ab23", properties: {"timeInterval":1951821483527776} });

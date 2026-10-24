@@ -72,124 +72,124 @@ export class GKAccessPoint extends SDKHandle {
    * @objc(triggerAccessPointWithGameActivity:handler:) dynamic func trigger(gameActivity: GKGameActivity, handler: (@Sendable () -> Void)? = nil)
    * @availability iOS 26.0+
    */
-  triggerGameActivityHandler(gameActivity: GKGameActivity, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 1172781665925329, this, [gameActivity, handler], [null,{"callback":{"out":[]}}]); }
+  triggerGameActivityHandler(gameActivity: GKGameActivity, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1172781665925329, this, [gameActivity, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * @objc(triggerAccessPointWithGameActivityDefinitionID:handler:) dynamic func trigger(gameActivityDefinitionID: String, handler: (@Sendable () -> Void)? = nil)
    * @availability iOS 26.0+
    */
-  triggerGameActivityDefinitionIDHandler(gameActivityDefinitionID: string, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 2968355166734223, this, [gameActivityDefinitionID, handler], [null,{"callback":{"out":[]}}]); }
+  triggerGameActivityDefinitionIDHandler(gameActivityDefinitionID: string, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2968355166734223, this, [gameActivityDefinitionID, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * class var shared: GKAccessPoint { get }
    * @availability iOS 14.0+
    */
-  static get shared(): GKAccessPoint { return callSDK<GKAccessPoint>("GameKit_3864e7f38681b875", 1798228077742730, undefined, []); }
+  static get shared(): GKAccessPoint { return callSDK<GKAccessPoint>("GameKit_ff42ce03e691ab23", 1798228077742730, undefined, []); }
   /** init() */
-  static init(): GKAccessPoint { return callSDK<GKAccessPoint>("GameKit_3864e7f38681b875", 918692731992432, undefined, []); }
+  static init(): GKAccessPoint { return callSDK<GKAccessPoint>("GameKit_ff42ce03e691ab23", 918692731992432, undefined, []); }
   /**
    * func triggerForArcade() async
    * @availability iOS 26.2+
    */
-  triggerForArcade(handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 4137931377150862, this, [handler], [{"callback":{"out":[]}}]); }
+  triggerForArcade(handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4137931377150862, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func triggerForChallenges() async
    * @availability iOS 26.0+
    */
-  triggerForChallenges(handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 2128072375043185, this, [handler], [{"callback":{"out":[]}}]); }
+  triggerForChallenges(handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2128072375043185, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func triggerForFriending() async
    * @availability iOS 26.0+
    */
-  triggerForFriending(handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 2349886852022106, this, [handler], [{"callback":{"out":[]}}]); }
+  triggerForFriending(handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2349886852022106, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func triggerForPlayTogether() async
    * @availability iOS 26.0+
    */
-  triggerForPlayTogether(handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 1904059953356971, this, [handler], [{"callback":{"out":[]}}]); }
+  triggerForPlayTogether(handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1904059953356971, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func trigger(achievementID: String, handler: (() -> Void)? = nil)
    * @availability iOS 18.0+
    */
-  triggerAchievementIDHandler(achievementID: string, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 1242185808110289, this, [achievementID, handler], [null,{"callback":{"out":[]}}]); }
+  triggerAchievementIDHandler(achievementID: string, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1242185808110289, this, [achievementID, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func trigger(challengeDefinitionID: String) async
    * @availability iOS 26.0+
    */
-  triggerChallengeDefinitionIDHandler(challengeDefinitionID: string, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 1722404734782744, this, [challengeDefinitionID, handler], [null,{"callback":{"out":[]}}]); }
+  triggerChallengeDefinitionIDHandler(challengeDefinitionID: string, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1722404734782744, this, [challengeDefinitionID, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func trigger(gameActivity: GKGameActivity) async
    * @availability iOS 26.0+
    */
-  triggerGameActivityHandler53451(gameActivity: GKGameActivity, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 1514743193326085, this, [gameActivity, handler], [null,{"callback":{"out":[]}}]); }
+  triggerGameActivityHandler53451(gameActivity: GKGameActivity, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1514743193326085, this, [gameActivity, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func trigger(gameActivityDefinitionID: String) async
    * @availability iOS 26.0+
    */
-  triggerGameActivityDefinitionIDHandler47507(gameActivityDefinitionID: string, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 4329146673107097, this, [gameActivityDefinitionID, handler], [null,{"callback":{"out":[]}}]); }
+  triggerGameActivityDefinitionIDHandler47507(gameActivityDefinitionID: string, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4329146673107097, this, [gameActivityDefinitionID, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func trigger(handler: @escaping () -> Void)
    * @availability iOS 14.0+
    */
-  triggerHandler(handler: (() => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 325907226233015, this, [handler], [{"callback":{"out":[]}}]); }
+  triggerHandler(handler: (() => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 325907226233015, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func trigger(leaderboardID: String, playerScope: GKLeaderboard.PlayerScope, timeScope: GKLeaderboard.TimeScope, handler: (() -> Void)? = nil)
    * @availability iOS 18.0+
    */
-  triggerLeaderboardIDPlayerScopeTimeScopeHandler(leaderboardID: string, playerScope: GKLeaderboard_PlayerScope, timeScope: GKLeaderboard_TimeScope, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 2878898555898204, this, [leaderboardID, playerScope, timeScope, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  triggerLeaderboardIDPlayerScopeTimeScopeHandler(leaderboardID: string, playerScope: GKLeaderboard_PlayerScope, timeScope: GKLeaderboard_TimeScope, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2878898555898204, this, [leaderboardID, playerScope, timeScope, handler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func trigger(leaderboardSetID: String, handler: (() -> Void)? = nil)
    * @availability iOS 18.0+
    */
-  triggerLeaderboardSetIDHandler(leaderboardSetID: string, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 1409496957540889, this, [leaderboardSetID, handler], [null,{"callback":{"out":[]}}]); }
+  triggerLeaderboardSetIDHandler(leaderboardSetID: string, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1409496957540889, this, [leaderboardSetID, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func trigger(player: GKPlayer, handler: (() -> Void)? = nil)
    * @availability iOS 18.0+
    */
-  triggerPlayerHandler(player: GKPlayer, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 2105156268429448, this, [player, handler], [null,{"callback":{"out":[]}}]); }
+  triggerPlayerHandler(player: GKPlayer, handler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2105156268429448, this, [player, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func trigger(state: GKGameCenterViewControllerState, handler: @escaping () -> Void)
    * @availability iOS 14.0+
    */
-  triggerStateHandler(state: GKGameCenterViewControllerState, handler: (() => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 2308513775029427, this, [state, handler], [null,{"callback":{"out":[]}}]); }
+  triggerStateHandler(state: GKGameCenterViewControllerState, handler: (() => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2308513775029427, this, [state, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * var isActive: Bool { get set }
    * @availability iOS 14.0+
    */
-  get isActive(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 3424339152096257, this, []); }
-  set isActive(value: boolean) { callSDK<void>("GameKit_3864e7f38681b875", 3700427517129320, this, [value]); }
+  get isActive(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 3424339152096257, this, []); }
+  set isActive(value: boolean) { callSDK<void>("GameKit_ff42ce03e691ab23", 3700427517129320, this, [value]); }
   /**
    * var frameInScreenCoordinates: CGRect { get }
    * @availability iOS 14.0+
    */
-  get frameInScreenCoordinates(): { x: number; y: number; width: number; height: number } { return callSDK<{ x: number; y: number; width: number; height: number }>("GameKit_3864e7f38681b875", 418272227129404, this, []); }
+  get frameInScreenCoordinates(): { x: number; y: number; width: number; height: number } { return callSDK<{ x: number; y: number; width: number; height: number }>("GameKit_ff42ce03e691ab23", 418272227129404, this, []); }
   /**
    * var isPresentingGameCenter: Bool { get }
    * @availability iOS 14.0+
    */
-  get isPresentingGameCenter(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 61888821088858, this, []); }
+  get isPresentingGameCenter(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 61888821088858, this, []); }
   /**
    * var location: GKAccessPoint.Location { get set }
    * @availability iOS 14.0+
    */
-  get location(): GKAccessPoint_Location { return callSDK<GKAccessPoint_Location>("GameKit_3864e7f38681b875", 2586890183745783, this, []); }
-  set location(value: GKAccessPoint_Location) { callSDK<void>("GameKit_3864e7f38681b875", 3237149995482950, this, [value]); }
+  get location(): GKAccessPoint_Location { return callSDK<GKAccessPoint_Location>("GameKit_ff42ce03e691ab23", 2586890183745783, this, []); }
+  set location(value: GKAccessPoint_Location) { callSDK<void>("GameKit_ff42ce03e691ab23", 3237149995482950, this, [value]); }
   /**
    * weak var parentWindow: UIWindow? { get set }
    * @availability iOS 14.0+
    */
-  get parentWindow(): (_UIKit_UIWindow) | null { return callSDK<(_UIKit_UIWindow) | null>("GameKit_3864e7f38681b875", 1950212646549393, this, []); }
-  set parentWindow(value: (_UIKit_UIWindow) | null) { callSDK<void>("GameKit_3864e7f38681b875", 1605983001510969, this, [value]); }
+  get parentWindow(): (_UIKit_UIWindow) | null { return callSDK<(_UIKit_UIWindow) | null>("GameKit_ff42ce03e691ab23", 1950212646549393, this, []); }
+  set parentWindow(value: (_UIKit_UIWindow) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 1605983001510969, this, [value]); }
   /**
    * var showHighlights: Bool { get set }
    * @availability iOS 14.0+
    * @deprecated iOS 26.0
    */
-  get showHighlights(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 1064178196710165, this, []); }
-  set showHighlights(value: boolean) { callSDK<void>("GameKit_3864e7f38681b875", 1405210048911210, this, [value]); }
+  get showHighlights(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 1064178196710165, this, []); }
+  set showHighlights(value: boolean) { callSDK<void>("GameKit_ff42ce03e691ab23", 1405210048911210, this, [value]); }
   /**
    * var isVisible: Bool { get }
    * @availability iOS 14.0+
    */
-  get isVisible(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 4161915730412552, this, []); }
+  get isVisible(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 4161915730412552, this, []); }
   declare readonly $type: { "c:objc(cs)GKAccessPoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isActive": true; "frameInScreenCoordinates": true; "isPresentingGameCenter": true; "location": true; "parentWindow": true; "showHighlights": true; "isVisible": true };
 }
@@ -205,7 +205,7 @@ export const GKAccessPoint_Location = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (GKAccessPoint_Location) | null { return callSDK<(GKAccessPoint_Location) | null>("GameKit_3864e7f38681b875", 2399849547602250, undefined, [rawValue]); }
+  init(rawValue: number): (GKAccessPoint_Location) | null { return callSDK<(GKAccessPoint_Location) | null>("GameKit_ff42ce03e691ab23", 2399849547602250, undefined, [rawValue]); }
 };
 
 /**
@@ -217,108 +217,108 @@ export class GKAchievement extends SDKHandle {
    * class func loadAchievements() async throws -> [GKAchievement]
    * @availability iOS 4.1+
    */
-  static loadAchievements(completionHandler?: (((arg0: (Array<GKAchievement>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 877893029502113, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static loadAchievements(completionHandler?: (((arg0: (Array<GKAchievement>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 877893029502113, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func report(_ achievements: [GKAchievement]) async throws
    * @availability iOS 6.0+
    */
-  static reportWithCompletionHandler(achievements: Array<GKAchievement>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 1620429556994502, undefined, [achievements, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static reportWithCompletionHandler(achievements: Array<GKAchievement>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1620429556994502, undefined, [achievements, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func report(_ achievements: [GKAchievement], withEligibleChallenges challenges: [GKChallenge]) async throws
    * @availability iOS 7.0+
    * @deprecated iOS 26.0
    */
-  static reportWithEligibleChallengesWithCompletionHandler(achievements: Array<GKAchievement>, challenges: Array<GKChallenge>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 1739149529276201, undefined, [achievements, challenges, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static reportWithEligibleChallengesWithCompletionHandler(achievements: Array<GKAchievement>, challenges: Array<GKChallenge>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1739149529276201, undefined, [achievements, challenges, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func resetAchievements() async throws
    * @availability iOS 4.1+
    */
-  static resetAchievements(completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 1703165826740112, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static resetAchievements(completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1703165826740112, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func challengeComposeController(withMessage message: String?, players: [GKPlayer], completion completionHandler: GKChallengeComposeHandler? = nil) -> UIViewController
    * @availability iOS 17.0+
    * @deprecated iOS 26.0
    */
-  challengeComposeControllerWithMessagePlayersCompletion(message: (string) | null, players: Array<GKPlayer>, completionHandler?: $SDK4): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_3864e7f38681b875", 3218312602894918, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  challengeComposeControllerWithMessagePlayersCompletion(message: (string) | null, players: Array<GKPlayer>, completionHandler?: $SDK4): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_ff42ce03e691ab23", 3218312602894918, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func challengeComposeController(withMessage message: String?, players: [GKPlayer], completionHandler: GKChallengeComposeCompletionBlock? = nil) -> UIViewController
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  challengeComposeControllerWithMessagePlayersCompletionHandler(message: (string) | null, players: Array<GKPlayer>, completionHandler?: $SDK5): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_3864e7f38681b875", 679806026037757, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  challengeComposeControllerWithMessagePlayersCompletionHandler(message: (string) | null, players: Array<GKPlayer>, completionHandler?: $SDK5): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_ff42ce03e691ab23", 679806026037757, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func challengeComposeController(withPlayers playerIDs: [String]?, message: String?, completionHandler: GKChallengeComposeCompletionBlock? = nil) -> UIViewController?
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  challengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs?: (Array<string>) | null, message?: (string) | null, completionHandler?: $SDK5): $SDK6 { return callSDK<$SDK6>("GameKit_3864e7f38681b875", 2511461090455274, this, [playerIDs, message, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  challengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs?: (Array<string>) | null, message?: (string) | null, completionHandler?: $SDK5): $SDK6 { return callSDK<$SDK6>("GameKit_ff42ce03e691ab23", 2511461090455274, this, [playerIDs, message, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(identifier: String)
    * @availability iOS 4.1+
    */
-  static initIdentifier(identifier: string): GKAchievement { return callSDK<GKAchievement>("GameKit_3864e7f38681b875", 3387732621270251, undefined, [identifier]); }
+  static initIdentifier(identifier: string): GKAchievement { return callSDK<GKAchievement>("GameKit_ff42ce03e691ab23", 3387732621270251, undefined, [identifier]); }
   /**
    * init?(identifier: String?, forPlayer playerID: String)
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  static initIdentifierForPlayer(identifier: (string) | null, playerID: string): (GKAchievement) | null { return callSDK<(GKAchievement) | null>("GameKit_3864e7f38681b875", 2959671851412103, undefined, [identifier, playerID]); }
+  static initIdentifierForPlayer(identifier: (string) | null, playerID: string): (GKAchievement) | null { return callSDK<(GKAchievement) | null>("GameKit_ff42ce03e691ab23", 2959671851412103, undefined, [identifier, playerID]); }
   /**
    * init(identifier: String, player: GKPlayer)
    * @availability iOS 8.0+
    */
-  static initIdentifierPlayer(identifier: string, player: GKPlayer): GKAchievement { return callSDK<GKAchievement>("GameKit_3864e7f38681b875", 3758593268139326, undefined, [identifier, player]); }
+  static initIdentifierPlayer(identifier: string, player: GKPlayer): GKAchievement { return callSDK<GKAchievement>("GameKit_ff42ce03e691ab23", 3758593268139326, undefined, [identifier, player]); }
   /**
    * func selectChallengeablePlayerIDs(_ playerIDs: [String]?, withCompletionHandler completionHandler: (@Sendable ([String]?, (any Error)?) -> Void)? = nil)
    * @availability iOS 6.0+
    * @deprecated iOS 8.0
    */
-  selectChallengeablePlayerIDs(playerIDs?: (Array<string>) | null, completionHandler?: $SDK7): void { return callSDK<void>("GameKit_3864e7f38681b875", 2907261969888439, this, [playerIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
+  selectChallengeablePlayerIDs(playerIDs?: (Array<string>) | null, completionHandler?: $SDK7): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2907261969888439, this, [playerIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func selectChallengeablePlayers(_ players: [GKPlayer]) async throws -> [GKPlayer]
    * @availability iOS 8.0+
    * @deprecated iOS 26.0
    */
-  selectChallengeablePlayers(players: Array<GKPlayer>, completionHandler?: $SDK8): void { return callSDK<void>("GameKit_3864e7f38681b875", 2574938351941545, this, [players, completionHandler], [null,{"callback":{"out":[]}}]); }
+  selectChallengeablePlayers(players: Array<GKPlayer>, completionHandler?: $SDK8): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2574938351941545, this, [players, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var isCompleted: Bool { get }
    * @availability iOS 4.1+
    */
-  get isCompleted(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 1945601384437253, this, []); }
+  get isCompleted(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 1945601384437253, this, []); }
   /**
    * var identifier: String { get set }
    * @availability iOS 4.1+
    */
-  get identifier(): string { return callSDK<string>("GameKit_3864e7f38681b875", 3991432607715002, this, []); }
-  set identifier(value: string) { callSDK<void>("GameKit_3864e7f38681b875", 4112156983286493, this, [value]); }
+  get identifier(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 3991432607715002, this, []); }
+  set identifier(value: string) { callSDK<void>("GameKit_ff42ce03e691ab23", 4112156983286493, this, [value]); }
   /**
    * var lastReportedDate: Date { get }
    * @availability iOS 4.1+
    */
-  get lastReportedDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_3864e7f38681b875", 3789136640502743, this, []); }
+  get lastReportedDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_ff42ce03e691ab23", 3789136640502743, this, []); }
   /**
    * var percentComplete: Double { get set }
    * @availability iOS 4.1+
    */
-  get percentComplete(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2052988716913632, this, []); }
-  set percentComplete(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 1838538265704849, this, [value]); }
+  get percentComplete(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2052988716913632, this, []); }
+  set percentComplete(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 1838538265704849, this, [value]); }
   /**
    * var player: GKPlayer { get }
    * @availability iOS 8.0+
    */
-  get player(): GKPlayer { return callSDK<GKPlayer>("GameKit_3864e7f38681b875", 140087650535484, this, []); }
+  get player(): GKPlayer { return callSDK<GKPlayer>("GameKit_ff42ce03e691ab23", 140087650535484, this, []); }
   /**
    * var playerID: String? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  get playerID(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 781654885208612, this, []); }
+  get playerID(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 781654885208612, this, []); }
   /**
    * var showsCompletionBanner: Bool { get set }
    * @availability iOS 5.0+
    */
-  get showsCompletionBanner(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 730313965736153, this, []); }
-  set showsCompletionBanner(value: boolean) { callSDK<void>("GameKit_3864e7f38681b875", 3454721041342142, this, [value]); }
+  get showsCompletionBanner(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 730313965736153, this, []); }
+  set showsCompletionBanner(value: boolean) { callSDK<void>("GameKit_ff42ce03e691ab23", 3454721041342142, this, [value]); }
   declare readonly $type: { "c:objc(cs)GKAchievement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCompleted": true; "identifier": true; "lastReportedDate": true; "percentComplete": true; "player": true; "playerID": true; "showsCompletionBanner": true };
 }
@@ -334,63 +334,63 @@ export class GKChallenge extends SDKHandle {
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  static loadReceivedChallenges(completionHandler?: (((arg0: (Array<GKChallenge>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 181582225998691, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static loadReceivedChallenges(completionHandler?: (((arg0: (Array<GKChallenge>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 181582225998691, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func decline()
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  decline(): void { return callSDK<void>("GameKit_3864e7f38681b875", 3148229755210980, this, []); }
+  decline(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3148229755210980, this, []); }
   /** init() */
-  static init(): GKChallenge { return callSDK<GKChallenge>("GameKit_3864e7f38681b875", 3129991804977678, undefined, []); }
+  static init(): GKChallenge { return callSDK<GKChallenge>("GameKit_ff42ce03e691ab23", 3129991804977678, undefined, []); }
   /**
    * var completionDate: Date? { get }
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  get completionDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 1858340496194009, this, []); }
+  get completionDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 1858340496194009, this, []); }
   /**
    * var issueDate: Date { get }
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  get issueDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_3864e7f38681b875", 487545424623122, this, []); }
+  get issueDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_ff42ce03e691ab23", 487545424623122, this, []); }
   /**
    * @NSCopying var issuingPlayer: GKPlayer? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 26.0
    */
-  get issuingPlayer(): (GKPlayer) | null { return callSDK<(GKPlayer) | null>("GameKit_3864e7f38681b875", 4258054446920221, this, []); }
+  get issuingPlayer(): (GKPlayer) | null { return callSDK<(GKPlayer) | null>("GameKit_ff42ce03e691ab23", 4258054446920221, this, []); }
   /**
    * var issuingPlayerID: String? { get }
    * @availability iOS 6.0+
    * @deprecated iOS 8.0
    */
-  get issuingPlayerID(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 4221637978899750, this, []); }
+  get issuingPlayerID(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 4221637978899750, this, []); }
   /**
    * var message: String? { get }
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  get message(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 1795830213117792, this, []); }
+  get message(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 1795830213117792, this, []); }
   /**
    * @NSCopying var receivingPlayer: GKPlayer? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 26.0
    */
-  get receivingPlayer(): (GKPlayer) | null { return callSDK<(GKPlayer) | null>("GameKit_3864e7f38681b875", 136876109021060, this, []); }
+  get receivingPlayer(): (GKPlayer) | null { return callSDK<(GKPlayer) | null>("GameKit_ff42ce03e691ab23", 136876109021060, this, []); }
   /**
    * var receivingPlayerID: String? { get }
    * @availability iOS 6.0+
    * @deprecated iOS 8.0
    */
-  get receivingPlayerID(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 4004769299965265, this, []); }
+  get receivingPlayerID(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 4004769299965265, this, []); }
   /**
    * var state: GKChallengeState { get }
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  get state(): GKChallengeState { return callSDK<GKChallengeState>("GameKit_3864e7f38681b875", 4005884553248932, this, []); }
+  get state(): GKChallengeState { return callSDK<GKChallengeState>("GameKit_ff42ce03e691ab23", 4005884553248932, this, []); }
   declare readonly $type: { "c:objc(cs)GKChallenge": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "completionDate": true; "issueDate": true; "issuingPlayer": true; "issuingPlayerID": true; "message": true; "receivingPlayer": true; "receivingPlayerID": true; "state": true };
 }
@@ -402,13 +402,13 @@ export class GKChallenge extends SDKHandle {
  */
 export class GKAchievementChallenge extends (GKChallenge as unknown as Omit<typeof GKChallenge, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKChallenge)) {
   /** init() */
-  static init(): GKAchievementChallenge { return callSDK<GKAchievementChallenge>("GameKit_3864e7f38681b875", 2320918899731926, undefined, []); }
+  static init(): GKAchievementChallenge { return callSDK<GKAchievementChallenge>("GameKit_ff42ce03e691ab23", 2320918899731926, undefined, []); }
   /**
    * var achievement: GKAchievement? { get }
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  get achievement(): (GKAchievement) | null { return callSDK<(GKAchievement) | null>("GameKit_3864e7f38681b875", 1700549727955168, this, []); }
+  get achievement(): (GKAchievement) | null { return callSDK<(GKAchievement) | null>("GameKit_ff42ce03e691ab23", 1700549727955168, this, []); }
   declare readonly $type: { "c:objc(cs)GKAchievementChallenge": true; "c:objc(cs)GKChallenge": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "completionDate": true; "issueDate": true; "issuingPlayer": true; "issuingPlayerID": true; "message": true; "receivingPlayer": true; "receivingPlayerID": true; "state": true; "achievement": true };
 }
@@ -419,78 +419,78 @@ export class GKAchievementChallenge extends (GKChallenge as unknown as Omit<type
  */
 export class GKAchievementDescription extends SDKHandle {
   /** class func incompleteAchievementImage() -> UIImage */
-  static incompleteAchievementImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("GameKit_3864e7f38681b875", 3227837289097845, undefined, []); }
+  static incompleteAchievementImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("GameKit_ff42ce03e691ab23", 3227837289097845, undefined, []); }
   /**
    * class func loadAchievementDescriptions() async throws -> [GKAchievementDescription]
    * @availability iOS 4.1+
    */
-  static loadAchievementDescriptions(completionHandler?: (((arg0: (Array<GKAchievementDescription>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 1353759881407043, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static loadAchievementDescriptions(completionHandler?: (((arg0: (Array<GKAchievementDescription>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1353759881407043, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /** class func placeholderCompletedAchievementImage() -> UIImage */
-  static placeholderCompletedAchievementImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("GameKit_3864e7f38681b875", 2855105493855490, undefined, []); }
+  static placeholderCompletedAchievementImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("GameKit_ff42ce03e691ab23", 2855105493855490, undefined, []); }
   /** init() */
-  static init(): GKAchievementDescription { return callSDK<GKAchievementDescription>("GameKit_3864e7f38681b875", 901925454532348, undefined, []); }
+  static init(): GKAchievementDescription { return callSDK<GKAchievementDescription>("GameKit_ff42ce03e691ab23", 901925454532348, undefined, []); }
   /** func loadImage() async throws -> UIImage */
-  loadImage(completionHandler?: $SDK12): void { return callSDK<void>("GameKit_3864e7f38681b875", 2287336299416167, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadImage(completionHandler?: $SDK12): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2287336299416167, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var achievedDescription: String { get }
    * @availability iOS 4.1+
    */
-  get achievedDescription(): string { return callSDK<string>("GameKit_3864e7f38681b875", 3450858518665858, this, []); }
+  get achievedDescription(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 3450858518665858, this, []); }
   /**
    * var activityIdentifier: String { get }
    * @availability iOS 26.0+
    */
-  get activityIdentifier(): string { return callSDK<string>("GameKit_3864e7f38681b875", 2463741173482489, this, []); }
+  get activityIdentifier(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 2463741173482489, this, []); }
   /**
    * var activityProperties: [String : String] { get }
    * @availability iOS 26.0+
    */
-  get activityProperties(): Record<string, string> { return callSDK<Record<string, string>>("GameKit_3864e7f38681b875", 1136255856889234, this, []); }
+  get activityProperties(): Record<string, string> { return callSDK<Record<string, string>>("GameKit_ff42ce03e691ab23", 1136255856889234, this, []); }
   /**
    * var groupIdentifier: String? { get }
    * @availability iOS 6.0+
    */
-  get groupIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 2255550130832915, this, []); }
+  get groupIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 2255550130832915, this, []); }
   /**
    * var isHidden: Bool { get }
    * @availability iOS 4.1+
    */
-  get isHidden(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 1850618224161586, this, []); }
+  get isHidden(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 1850618224161586, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 4.1+
    */
-  get identifier(): string { return callSDK<string>("GameKit_3864e7f38681b875", 4291823411174666, this, []); }
+  get identifier(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 4291823411174666, this, []); }
   /**
    * var maximumPoints: Int { get }
    * @availability iOS 4.1+
    */
-  get maximumPoints(): number { return callSDK<number>("GameKit_3864e7f38681b875", 3125007614486869, this, []); }
+  get maximumPoints(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 3125007614486869, this, []); }
   /**
    * var releaseState: GKReleaseState { get }
    * @availability iOS 18.4+
    */
-  get releaseState(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_3864e7f38681b875", 3340410074678356, this, []); }
+  get releaseState(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_ff42ce03e691ab23", 3340410074678356, this, []); }
   /**
    * var isReplayable: Bool { get }
    * @availability iOS 6.0+
    */
-  get isReplayable(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 3973225279648698, this, []); }
+  get isReplayable(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 3973225279648698, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 4.1+
    */
-  get title(): string { return callSDK<string>("GameKit_3864e7f38681b875", 2136959634321498, this, []); }
+  get title(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 2136959634321498, this, []); }
   /**
    * var unachievedDescription: String { get }
    * @availability iOS 4.1+
    */
-  get unachievedDescription(): string { return callSDK<string>("GameKit_3864e7f38681b875", 1370838894839409, this, []); }
+  get unachievedDescription(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 1370838894839409, this, []); }
   /**
    * var rarityPercent: Double? { get }
    * @availability iOS 17.0+
    */
-  get rarityPercent(): (number) | null { return callSDK<(number) | null>("GameKit_3864e7f38681b875", 3566718356714593, this, []); }
+  get rarityPercent(): (number) | null { return callSDK<(number) | null>("GameKit_ff42ce03e691ab23", 3566718356714593, this, []); }
   declare readonly $type: { "c:objc(cs)GKAchievementDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "achievedDescription": true; "activityIdentifier": true; "activityProperties": true; "groupIdentifier": true; "isHidden": true; "identifier": true; "maximumPoints": true; "releaseState": true; "isReplayable": true; "title": true; "unachievedDescription": true };
 }
@@ -501,18 +501,18 @@ export class GKAchievementDescription extends SDKHandle {
  */
 export class GKBasePlayer extends SDKHandle {
   /** init() */
-  static init(): GKBasePlayer { return callSDK<GKBasePlayer>("GameKit_3864e7f38681b875", 2128716788421061, undefined, []); }
+  static init(): GKBasePlayer { return callSDK<GKBasePlayer>("GameKit_ff42ce03e691ab23", 2128716788421061, undefined, []); }
   /**
    * var displayName: String? { get }
    * @availability iOS 10.0+
    */
-  get displayName(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 4361333257595200, this, []); }
+  get displayName(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 4361333257595200, this, []); }
   /**
    * var playerID: String? { get }
    * @availability iOS 10.0+
    * @deprecated iOS 13.0
    */
-  get playerID(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 1160493588002933, this, []); }
+  get playerID(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 1160493588002933, this, []); }
   declare readonly $type: { "c:objc(cs)GKBasePlayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "displayName": true; "playerID": true };
 }
@@ -540,59 +540,59 @@ export class GKChallengeDefinition extends SDKHandle {
    * class var all: [GKChallengeDefinition] { get async throws }
    * @availability iOS 26.0+
    */
-  static loadChallengeDefinitions(completionHandler: ((arg0: (Array<GKChallengeDefinition>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 2773014346145970, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static loadChallengeDefinitions(completionHandler: ((arg0: (Array<GKChallengeDefinition>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2773014346145970, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var hasActiveChallenges: Bool { get async throws }
    * @availability iOS 26.0+
    */
-  hasActiveChallenges(completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 1022447088225320, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  hasActiveChallenges(completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1022447088225320, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): GKChallengeDefinition { return callSDK<GKChallengeDefinition>("GameKit_3864e7f38681b875", 2509933604341481, undefined, []); }
+  static init(): GKChallengeDefinition { return callSDK<GKChallengeDefinition>("GameKit_ff42ce03e691ab23", 2509933604341481, undefined, []); }
   /**
    * var image: UIImage? { get async throws }
    * @availability iOS 26.0+
    */
-  loadImage(completionHandler: $SDK17): void { return callSDK<void>("GameKit_3864e7f38681b875", 2587328834920705, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadImage(completionHandler: $SDK17): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2587328834920705, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var details: String? { get }
    * @availability iOS 26.0+
    */
-  get details(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 3956800277692479, this, []); }
+  get details(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 3956800277692479, this, []); }
   /**
    * var durationOptions: [DateComponents] { get }
    * @availability iOS 26.0+
    */
-  get durationOptions(): Array<_Foundation_DateComponents> { return callSDK<Array<_Foundation_DateComponents>>("GameKit_3864e7f38681b875", 2719848995699757, this, []); }
+  get durationOptions(): Array<_Foundation_DateComponents> { return callSDK<Array<_Foundation_DateComponents>>("GameKit_ff42ce03e691ab23", 2719848995699757, this, []); }
   /**
    * var groupIdentifier: String? { get }
    * @availability iOS 26.0+
    */
-  get groupIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 267005859751813, this, []); }
+  get groupIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 267005859751813, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 26.0+
    */
-  get identifier(): string { return callSDK<string>("GameKit_3864e7f38681b875", 3173441865280078, this, []); }
+  get identifier(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 3173441865280078, this, []); }
   /**
    * var isRepeatable: Bool { get }
    * @availability iOS 26.0+
    */
-  get isRepeatable(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 1575336842864378, this, []); }
+  get isRepeatable(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 1575336842864378, this, []); }
   /**
    * var leaderboard: GKLeaderboard? { get }
    * @availability iOS 26.0+
    */
-  get leaderboard(): (GKLeaderboard) | null { return callSDK<(GKLeaderboard) | null>("GameKit_3864e7f38681b875", 2127937039653783, this, []); }
+  get leaderboard(): (GKLeaderboard) | null { return callSDK<(GKLeaderboard) | null>("GameKit_ff42ce03e691ab23", 2127937039653783, this, []); }
   /**
    * var releaseState: GKReleaseState { get }
    * @availability iOS 26.0+
    */
-  get releaseState(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_3864e7f38681b875", 3696944441568501, this, []); }
+  get releaseState(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_ff42ce03e691ab23", 3696944441568501, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 26.0+
    */
-  get title(): string { return callSDK<string>("GameKit_3864e7f38681b875", 2116017412200059, this, []); }
+  get title(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 2116017412200059, this, []); }
   declare readonly $type: { "c:objc(cs)GKChallengeDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "details": true; "durationOptions": true; "groupIdentifier": true; "identifier": true; "isRepeatable": true; "leaderboard": true; "releaseState": true; "title": true };
 }
@@ -642,7 +642,7 @@ export const GKChallengeState = {
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  init(rawValue: number): (GKChallengeState) | null { return callSDK<(GKChallengeState) | null>("GameKit_3864e7f38681b875", 3760771353617515, undefined, [rawValue]); }
+  init(rawValue: number): (GKChallengeState) | null { return callSDK<(GKChallengeState) | null>("GameKit_ff42ce03e691ab23", 3760771353617515, undefined, [rawValue]); }
 };
 
 /**
@@ -656,9 +656,9 @@ export class GKCloudPlayer extends (GKBasePlayer as unknown as Omit<typeof GKBas
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static getCurrentSignedInPlayer(containerName: (string) | null, handler: ((arg0: (GKCloudPlayer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 412307385449430, undefined, [containerName, handler], [null,{"callback":{"out":[]}}]); }
+  static getCurrentSignedInPlayer(containerName: (string) | null, handler: ((arg0: (GKCloudPlayer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 412307385449430, undefined, [containerName, handler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): GKCloudPlayer { return callSDK<GKCloudPlayer>("GameKit_3864e7f38681b875", 3664579111216534, undefined, []); }
+  static init(): GKCloudPlayer { return callSDK<GKCloudPlayer>("GameKit_ff42ce03e691ab23", 3664579111216534, undefined, []); }
   declare readonly $type: { "c:objc(cs)GKCloudPlayer": true; "c:objc(cs)GKBasePlayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "displayName": true; "playerID": true };
 }
@@ -674,7 +674,7 @@ export const GKConnectionState = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (GKConnectionState) | null { return callSDK<(GKConnectionState) | null>("GameKit_3864e7f38681b875", 312386375847832, undefined, [rawValue]); }
+  init(rawValue: number): (GKConnectionState) | null { return callSDK<(GKConnectionState) | null>("GameKit_ff42ce03e691ab23", 312386375847832, undefined, [rawValue]); }
 };
 
 /**
@@ -686,218 +686,218 @@ export class GKError extends SDKHandle {
    * static var userDenied: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get userDenied(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 4138642506302711, undefined, []); }
+  static get userDenied(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 4138642506302711, undefined, []); }
   /**
    * static var apiObsolete: GKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get apiObsolete(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 4439760472766217, undefined, []); }
+  static get apiObsolete(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 4439760472766217, undefined, []); }
   /**
    * static var appUnlisted: GKError.Code { get }
    * @availability iOS 17.4+
    */
-  static get appUnlisted(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 2815819705918140, undefined, []); }
+  static get appUnlisted(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 2815819705918140, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 4.0+
    */
-  static get errorDomain(): string { return callSDK<string>("GameKit_3864e7f38681b875", 1413218176386061, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 1413218176386061, undefined, []); }
   /**
    * static var scoreNotSet: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get scoreNotSet(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 354388814649101, undefined, []); }
+  static get scoreNotSet(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 354388814649101, undefined, []); }
   /**
    * static var lockdownMode: GKError.Code { get }
    * @availability iOS 17.2+
    */
-  static get lockdownMode(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 1121950993975293, undefined, []); }
+  static get lockdownMode(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 1121950993975293, undefined, []); }
   /**
    * static var notSupported: GKError.Code { get }
    * @availability iOS 4.1+
    */
-  static get notSupported(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 885105907758775, undefined, []); }
+  static get notSupported(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 885105907758775, undefined, []); }
   /**
    * static var invalidPlayer: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get invalidPlayer(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3508286154449659, undefined, []); }
+  static get invalidPlayer(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3508286154449659, undefined, []); }
   /**
    * static var notAuthorized: GKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get notAuthorized(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 4250265464122069, undefined, []); }
+  static get notAuthorized(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 4250265464122069, undefined, []); }
   /**
    * static var apiNotAvailable: GKError.Code { get }
    * @availability iOS 13.0+
    */
-  static get apiNotAvailable(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 4113017487326407, undefined, []); }
+  static get apiNotAvailable(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 4113017487326407, undefined, []); }
   /**
    * static var challengeInvalid: GKError.Code { get }
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  static get challengeInvalid(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 837702012262273, undefined, []); }
+  static get challengeInvalid(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 837702012262273, undefined, []); }
   /**
    * static var friendListDenied: GKError.Code { get }
    * @availability iOS 14.5+
    */
-  static get friendListDenied(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3959743705594077, undefined, []); }
+  static get friendListDenied(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3959743705594077, undefined, []); }
   /**
    * static var gameUnrecognized: GKError.Code { get }
    * @availability iOS 4.1+
    */
-  static get gameUnrecognized(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 2820406450144680, undefined, []); }
+  static get gameUnrecognized(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 2820406450144680, undefined, []); }
   /**
    * static var invalidParameter: GKError.Code { get }
    * @availability iOS 4.2+
    */
-  static get invalidParameter(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 1550484954980759, undefined, []); }
+  static get invalidParameter(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 1550484954980759, undefined, []); }
   /**
    * static var notAuthenticated: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get notAuthenticated(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3679753089876795, undefined, []); }
+  static get notAuthenticated(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3679753089876795, undefined, []); }
   /**
    * static var connectionTimeout: GKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get connectionTimeout(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 2923429506843023, undefined, []); }
+  static get connectionTimeout(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 2923429506843023, undefined, []); }
   /**
    * static var iCloudUnavailable: GKError.Code { get }
    * @availability iOS 17.2+
    */
-  static get iCloudUnavailable(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 118802069192281, undefined, []); }
+  static get iCloudUnavailable(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 118802069192281, undefined, []); }
   /**
    * static var matchNotConnected: GKError.Code { get }
    * @availability iOS 10.0+
    */
-  static get matchNotConnected(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3020431010119436, undefined, []); }
+  static get matchNotConnected(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3020431010119436, undefined, []); }
   /**
    * static var invalidCredentials: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get invalidCredentials(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 2515972654467741, undefined, []); }
+  static get invalidCredentials(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 2515972654467741, undefined, []); }
   /**
    * static var playerPhotoFailure: GKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get playerPhotoFailure(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 1118812567787399, undefined, []); }
+  static get playerPhotoFailure(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 1118812567787399, undefined, []); }
   /**
    * static var invitationsDisabled: GKError.Code { get }
    * @availability iOS 7.0+
    */
-  static get invitationsDisabled(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3262897523005211, undefined, []); }
+  static get invitationsDisabled(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3262897523005211, undefined, []); }
   /**
    * static var matchRequestInvalid: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get matchRequestInvalid(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 4344748502138215, undefined, []); }
+  static get matchRequestInvalid(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 4344748502138215, undefined, []); }
   /**
    * static var playerStatusInvalid: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get playerStatusInvalid(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 1121334197675442, undefined, []); }
+  static get playerStatusInvalid(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 1121334197675442, undefined, []); }
   /**
    * static var friendListRestricted: GKError.Code { get }
    * @availability iOS 14.5+
    */
-  static get friendListRestricted(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3428585464711706, undefined, []); }
+  static get friendListRestricted(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3428585464711706, undefined, []); }
   /**
    * static var turnBasedInvalidTurn: GKError.Code { get }
    * @availability iOS 6.0+
    */
-  static get turnBasedInvalidTurn(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 2705393506739826, undefined, []); }
+  static get turnBasedInvalidTurn(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 2705393506739826, undefined, []); }
   /**
    * static var unexpectedConnection: GKError.Code { get }
    * @availability iOS 5.0+
    */
-  static get unexpectedConnection(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 2558464816309201, undefined, []); }
+  static get unexpectedConnection(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 2558464816309201, undefined, []); }
   /**
    * static var communicationsFailure: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get communicationsFailure(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3411201023679770, undefined, []); }
+  static get communicationsFailure(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3411201023679770, undefined, []); }
   /**
    * static var restrictedToAutomatch: GKError.Code { get }
    * @availability iOS 13.0+
    */
-  static get restrictedToAutomatch(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3626094030407644, undefined, []); }
+  static get restrictedToAutomatch(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3626094030407644, undefined, []); }
   /**
    * static var turnBasedInvalidState: GKError.Code { get }
    * @availability iOS 6.0+
    */
-  static get turnBasedInvalidState(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 926511569205829, undefined, []); }
+  static get turnBasedInvalidState(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 926511569205829, undefined, []); }
   /**
    * static var parentalControlsBlocked: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get parentalControlsBlocked(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 1585884179888029, undefined, []); }
+  static get parentalControlsBlocked(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 1585884179888029, undefined, []); }
   /**
    * static var authenticationInProgress: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get authenticationInProgress(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 1338282275152820, undefined, []); }
+  static get authenticationInProgress(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 1338282275152820, undefined, []); }
   /**
    * static var turnBasedTooManySessions: GKError.Code { get }
    * @availability iOS 6.0+
    */
-  static get turnBasedTooManySessions(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 2480430920347407, undefined, []); }
+  static get turnBasedTooManySessions(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 2480430920347407, undefined, []); }
   /**
    * static var friendRequestNotAvailable: GKError.Code { get }
    * @availability iOS 15.0+
    */
-  static get friendRequestNotAvailable(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 2660700904934795, undefined, []); }
+  static get friendRequestNotAvailable(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 2660700904934795, undefined, []); }
   /**
    * static var gameSessionRequestInvalid: GKError.Code { get }
    * @availability iOS 10.0+
    */
-  static get gameSessionRequestInvalid(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3015371995964139, undefined, []); }
+  static get gameSessionRequestInvalid(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3015371995964139, undefined, []); }
   /**
    * static var turnBasedMatchDataTooLarge: GKError.Code { get }
    * @availability iOS 6.0+
    */
-  static get turnBasedMatchDataTooLarge(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3290507826784023, undefined, []); }
+  static get turnBasedMatchDataTooLarge(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3290507826784023, undefined, []); }
   /**
    * static var turnBasedInvalidParticipant: GKError.Code { get }
    * @availability iOS 6.0+
    */
-  static get turnBasedInvalidParticipant(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 1549411706777139, undefined, []); }
+  static get turnBasedInvalidParticipant(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 1549411706777139, undefined, []); }
   /**
    * static var friendListDescriptionMissing: GKError.Code { get }
    * @availability iOS 14.5+
    */
-  static get friendListDescriptionMissing(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3519847290554946, undefined, []); }
+  static get friendListDescriptionMissing(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3519847290554946, undefined, []); }
   /**
    * static var ubiquityContainerUnavailable: GKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get ubiquityContainerUnavailable(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 42581371132171, undefined, []); }
+  static get ubiquityContainerUnavailable(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 42581371132171, undefined, []); }
   /**
    * static var playerStatusExceedsMaximumLength: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get playerStatusExceedsMaximumLength(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3500352226143413, undefined, []); }
+  static get playerStatusExceedsMaximumLength(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3500352226143413, undefined, []); }
   /**
    * static var unknown: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get unknown(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3792610977744849, undefined, []); }
+  static get unknown(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3792610977744849, undefined, []); }
   /**
    * static var underage: GKError.Code { get }
    * @availability iOS 4.1+
    */
-  static get underage(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 1668103973246306, undefined, []); }
+  static get underage(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 1668103973246306, undefined, []); }
   /**
    * static var cancelled: GKError.Code { get }
    * @availability iOS 4.0+
    */
-  static get cancelled(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 898270681685326, undefined, []); }
+  static get cancelled(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 898270681685326, undefined, []); }
   /**
    * static var debugMode: GKError.Code { get }
    * @availability iOS 18.4+
    */
-  static get debugMode(): GKError_Code { return callSDK<GKError_Code>("GameKit_3864e7f38681b875", 3379290738269476, undefined, []); }
+  static get debugMode(): GKError_Code { return callSDK<GKError_Code>("GameKit_ff42ce03e691ab23", 3379290738269476, undefined, []); }
   declare readonly $type: { "s:SC11GKErrorCodeLeV": true };
 }
 
@@ -912,7 +912,7 @@ export const GKError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 4.0+
    */
-  init(rawValue: number): (GKError_Code) | null { return callSDK<(GKError_Code) | null>("GameKit_3864e7f38681b875", 1494915111246977, undefined, [rawValue]); }
+  init(rawValue: number): (GKError_Code) | null { return callSDK<(GKError_Code) | null>("GameKit_ff42ce03e691ab23", 1494915111246977, undefined, [rawValue]); }
 };
 
 /**
@@ -926,40 +926,40 @@ export class GKFriendRequestComposeViewController extends SDKHandle {
    * @availability iOS 4.2+
    * @deprecated iOS 10.0
    */
-  static maxNumberOfRecipients(): Promise<number> { return callSDKAsync<number>("GameKit_3864e7f38681b875", 3504783330348850, undefined, []); }
+  static maxNumberOfRecipients(): Promise<number> { return callSDKAsync<number>("GameKit_ff42ce03e691ab23", 3504783330348850, undefined, []); }
   /**
    * func addRecipientPlayers(_ players: [GKPlayer])
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  addRecipientPlayers(players: Array<GKPlayer>): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 7265235373308, this, [players]); }
+  addRecipientPlayers(players: Array<GKPlayer>): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 7265235373308, this, [players]); }
   /**
    * func addRecipients(withEmailAddresses emailAddresses: [String])
    * @availability iOS 4.2+
    * @deprecated iOS 10.0
    */
-  addRecipientsWithEmailAddresses(emailAddresses: Array<string>): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 2769054018337355, this, [emailAddresses]); }
+  addRecipientsWithEmailAddresses(emailAddresses: Array<string>): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 2769054018337355, this, [emailAddresses]); }
   /**
    * func addRecipients(withPlayerIDs playerIDs: [String])
    * @availability iOS 4.2+
    * @deprecated iOS 8.0
    */
-  addRecipientsWithPlayerIDs(playerIDs: Array<string>): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 2313078674450615, this, [playerIDs]); }
+  addRecipientsWithPlayerIDs(playerIDs: Array<string>): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 2313078674450615, this, [playerIDs]); }
   /** init() */
-  static init(): Promise<GKFriendRequestComposeViewController> { return callSDKAsync<GKFriendRequestComposeViewController>("GameKit_3864e7f38681b875", 3583396467298485, undefined, []); }
+  static init(): Promise<GKFriendRequestComposeViewController> { return callSDKAsync<GKFriendRequestComposeViewController>("GameKit_ff42ce03e691ab23", 3583396467298485, undefined, []); }
   /**
    * func setMessage(_ message: String?)
    * @availability iOS 4.2+
    * @deprecated iOS 10.0
    */
-  setMessage(message?: (string) | null): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 1588787995358614, this, [message]); }
+  setMessage(message?: (string) | null): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 1588787995358614, this, [message]); }
   /**
    * weak var composeViewDelegate: (any GKFriendRequestComposeViewControllerDelegate)? { get set }
    * @availability iOS 4.2+
    * @deprecated iOS 10.0
    */
-  get composeViewDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GameKit_3864e7f38681b875", 81233410261632, this, []); }
-  setComposeViewDelegate(value?: (Implements<GKFriendRequestComposeViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 3594198080472908, this, [value], [{"protocol":"c:objc(pl)GKFriendRequestComposeViewControllerDelegate"}]); }
+  get composeViewDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GameKit_ff42ce03e691ab23", 81233410261632, this, []); }
+  setComposeViewDelegate(value?: (Implements<GKFriendRequestComposeViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 3594198080472908, this, [value], [{"protocol":"c:objc(pl)GKFriendRequestComposeViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)GKFriendRequestComposeViewController": true; "c:objc(cs)UINavigationController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "composeViewDelegate": true };
 }
@@ -989,7 +989,7 @@ export const GKFriendsAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 14.5+
    */
-  init(rawValue: number): (GKFriendsAuthorizationStatus) | null { return callSDK<(GKFriendsAuthorizationStatus) | null>("GameKit_3864e7f38681b875", 2729940288926907, undefined, [rawValue]); }
+  init(rawValue: number): (GKFriendsAuthorizationStatus) | null { return callSDK<(GKFriendsAuthorizationStatus) | null>("GameKit_ff42ce03e691ab23", 2729940288926907, undefined, [rawValue]); }
 };
 
 /**
@@ -1001,173 +1001,173 @@ export class GKGameActivity extends SDKHandle {
    * class var hasPendingGameActivities: Bool { get async }
    * @availability iOS 26.0+
    */
-  static checkPendingGameActivityExistence(completionHandler: ((arg0: boolean) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 743299399833688, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static checkPendingGameActivityExistence(completionHandler: ((arg0: boolean) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 743299399833688, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func isValidPartyCode(_ partyCode: String) -> Bool
    * @availability iOS 26.0+
    */
-  static isValidPartyCode(partyCode: string): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 656598501100111, undefined, [partyCode]); }
+  static isValidPartyCode(partyCode: string): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 656598501100111, undefined, [partyCode]); }
   /**
    * class func start(definition activityDefinition: GKGameActivityDefinition) throws -> GKGameActivity
    * @availability iOS 26.0+
    */
-  static startDefinition(activityDefinition: GKGameActivityDefinition): GKGameActivity { return callSDK<GKGameActivity>("GameKit_3864e7f38681b875", 859042792503910, undefined, [activityDefinition]); }
+  static startDefinition(activityDefinition: GKGameActivityDefinition): GKGameActivity { return callSDK<GKGameActivity>("GameKit_ff42ce03e691ab23", 859042792503910, undefined, [activityDefinition]); }
   /**
    * class func start(definition activityDefinition: GKGameActivityDefinition, partyCode: String) throws -> GKGameActivity
    * @availability iOS 26.0+
    */
-  static startDefinitionPartyCode(activityDefinition: GKGameActivityDefinition, partyCode: string): GKGameActivity { return callSDK<GKGameActivity>("GameKit_3864e7f38681b875", 577857746968567, undefined, [activityDefinition, partyCode]); }
+  static startDefinitionPartyCode(activityDefinition: GKGameActivityDefinition, partyCode: string): GKGameActivity { return callSDK<GKGameActivity>("GameKit_ff42ce03e691ab23", 577857746968567, undefined, [activityDefinition, partyCode]); }
   /**
    * class var validPartyCodeAlphabet: [String] { get }
    * @availability iOS 26.0+
    */
-  static get validPartyCodeAlphabet(): Array<string> { return callSDK<Array<string>>("GameKit_3864e7f38681b875", 1897392798044925, undefined, []); }
+  static get validPartyCodeAlphabet(): Array<string> { return callSDK<Array<string>>("GameKit_ff42ce03e691ab23", 1897392798044925, undefined, []); }
   /**
    * func end()
    * @availability iOS 26.0+
    */
-  end(): void { return callSDK<void>("GameKit_3864e7f38681b875", 3561397556578137, this, []); }
+  end(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3561397556578137, this, []); }
   /**
    * func findMatch() async throws -> GKMatch
    * @availability iOS 26.0+
    */
-  findMatch(completionHandler: ((arg0: (GKMatch) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 4051391286370230, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  findMatch(completionHandler: ((arg0: (GKMatch) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4051391286370230, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func findPlayersForHostedMatch() async throws -> [GKPlayer]
    * @availability iOS 26.0+
    */
-  findPlayersForHostedMatch(completionHandler: $SDK23): void { return callSDK<void>("GameKit_3864e7f38681b875", 3612570730827439, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  findPlayersForHostedMatch(completionHandler: $SDK23): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3612570730827439, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func progress(on achievement: GKAchievement) -> Double
    * @availability iOS 26.0+
    */
-  progress(achievement: GKAchievement): number { return callSDK<number>("GameKit_3864e7f38681b875", 2756367547063203, this, [achievement]); }
+  progress(achievement: GKAchievement): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2756367547063203, this, [achievement]); }
   /**
    * func score(on leaderboard: GKLeaderboard) -> GKLeaderboardScore?
    * @availability iOS 26.0+
    */
-  score(leaderboard: GKLeaderboard): (GKLeaderboardScore) | null { return callSDK<(GKLeaderboardScore) | null>("GameKit_3864e7f38681b875", 1127776855626651, this, [leaderboard]); }
+  score(leaderboard: GKLeaderboard): (GKLeaderboardScore) | null { return callSDK<(GKLeaderboardScore) | null>("GameKit_ff42ce03e691ab23", 1127776855626651, this, [leaderboard]); }
   /**
    * init(definition activityDefinition: GKGameActivityDefinition)
    * @availability iOS 26.0+
    */
-  static init(activityDefinition: GKGameActivityDefinition): GKGameActivity { return callSDK<GKGameActivity>("GameKit_3864e7f38681b875", 1661476351719412, undefined, [activityDefinition]); }
+  static init(activityDefinition: GKGameActivityDefinition): GKGameActivity { return callSDK<GKGameActivity>("GameKit_ff42ce03e691ab23", 1661476351719412, undefined, [activityDefinition]); }
   /**
    * func makeMatchRequest() -> GKMatchRequest?
    * @availability iOS 26.0+
    */
-  makeMatchRequest(): (GKMatchRequest) | null { return callSDK<(GKMatchRequest) | null>("GameKit_3864e7f38681b875", 2665263571742618, this, []); }
+  makeMatchRequest(): (GKMatchRequest) | null { return callSDK<(GKMatchRequest) | null>("GameKit_ff42ce03e691ab23", 2665263571742618, this, []); }
   /**
    * func pause()
    * @availability iOS 26.0+
    */
-  pause(): void { return callSDK<void>("GameKit_3864e7f38681b875", 526178961292313, this, []); }
+  pause(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 526178961292313, this, []); }
   /**
    * func removeAchievements(_ achievements: [GKAchievement])
    * @availability iOS 26.0+
    */
-  removeAchievements(achievements: Array<GKAchievement>): void { return callSDK<void>("GameKit_3864e7f38681b875", 2995321255277410, this, [achievements]); }
+  removeAchievements(achievements: Array<GKAchievement>): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2995321255277410, this, [achievements]); }
   /**
    * func removeScores(from leaderboards: [GKLeaderboard])
    * @availability iOS 26.0+
    */
-  removeScores(leaderboards: Array<GKLeaderboard>): void { return callSDK<void>("GameKit_3864e7f38681b875", 2073696895463047, this, [leaderboards]); }
+  removeScores(leaderboards: Array<GKLeaderboard>): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2073696895463047, this, [leaderboards]); }
   /**
    * func resume()
    * @availability iOS 26.0+
    */
-  resume(): void { return callSDK<void>("GameKit_3864e7f38681b875", 2111138376328089, this, []); }
+  resume(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2111138376328089, this, []); }
   /**
    * func setAchievementCompleted(_ achievement: GKAchievement)
    * @availability iOS 26.0+
    */
-  setAchievementCompleted(achievement: GKAchievement): void { return callSDK<void>("GameKit_3864e7f38681b875", 1117659355673322, this, [achievement]); }
+  setAchievementCompleted(achievement: GKAchievement): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1117659355673322, this, [achievement]); }
   /**
    * func setProgress(on achievement: GKAchievement, to percentComplete: Double)
    * @availability iOS 26.0+
    */
-  setProgress(achievement: GKAchievement, percentComplete: number): void { return callSDK<void>("GameKit_3864e7f38681b875", 1807999112888677, this, [achievement, percentComplete]); }
+  setProgress(achievement: GKAchievement, percentComplete: number): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1807999112888677, this, [achievement, percentComplete]); }
   /**
    * func setScore(on leaderboard: GKLeaderboard, to score: Int)
    * @availability iOS 26.0+
    */
-  setScoreOnTo(leaderboard: GKLeaderboard, score: number): void { return callSDK<void>("GameKit_3864e7f38681b875", 2633150889124633, this, [leaderboard, score]); }
+  setScoreOnTo(leaderboard: GKLeaderboard, score: number): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2633150889124633, this, [leaderboard, score]); }
   /**
    * func setScore(on leaderboard: GKLeaderboard, to score: Int, context: Int)
    * @availability iOS 26.0+
    */
-  setScoreOnToContext(leaderboard: GKLeaderboard, score: number, context: number): void { return callSDK<void>("GameKit_3864e7f38681b875", 1173210940356876, this, [leaderboard, score, context]); }
+  setScoreOnToContext(leaderboard: GKLeaderboard, score: number, context: number): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1173210940356876, this, [leaderboard, score, context]); }
   /**
    * func start()
    * @availability iOS 26.0+
    */
-  start(): void { return callSDK<void>("GameKit_3864e7f38681b875", 1472491014653094, this, []); }
+  start(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1472491014653094, this, []); }
   /**
    * var achievements: Set<GKAchievement> { get }
    * @availability iOS 26.0+
    */
-  get achievements(): Array<GKAchievement> { return callSDK<Array<GKAchievement>>("GameKit_3864e7f38681b875", 2482894512622755, this, []); }
+  get achievements(): Array<GKAchievement> { return callSDK<Array<GKAchievement>>("GameKit_ff42ce03e691ab23", 2482894512622755, this, []); }
   /**
    * var activityDefinition: GKGameActivityDefinition { get }
    * @availability iOS 26.0+
    */
-  get activityDefinition(): GKGameActivityDefinition { return callSDK<GKGameActivityDefinition>("GameKit_3864e7f38681b875", 1042553737890073, this, []); }
+  get activityDefinition(): GKGameActivityDefinition { return callSDK<GKGameActivityDefinition>("GameKit_ff42ce03e691ab23", 1042553737890073, this, []); }
   /**
    * var creationDate: Date { get }
    * @availability iOS 26.0+
    */
-  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_3864e7f38681b875", 4138460853648705, this, []); }
+  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_ff42ce03e691ab23", 4138460853648705, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 26.0+
    */
-  get duration(): number { return callSDK<number>("GameKit_3864e7f38681b875", 519507245529206, this, []); }
+  get duration(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 519507245529206, this, []); }
   /**
    * var endDate: Date? { get }
    * @availability iOS 26.0+
    */
-  get endDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 798482090829130, this, []); }
+  get endDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 798482090829130, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 26.0+
    */
-  get identifier(): string { return callSDK<string>("GameKit_3864e7f38681b875", 3080877829129623, this, []); }
+  get identifier(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 3080877829129623, this, []); }
   /**
    * var lastResumeDate: Date? { get }
    * @availability iOS 26.0+
    */
-  get lastResumeDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 1546662439851107, this, []); }
+  get lastResumeDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 1546662439851107, this, []); }
   /**
    * var leaderboardScores: Set<GKLeaderboardScore> { get }
    * @availability iOS 26.0+
    */
-  get leaderboardScores(): $SDK25 { return callSDK<$SDK25>("GameKit_3864e7f38681b875", 276540527452577, this, []); }
+  get leaderboardScores(): $SDK25 { return callSDK<$SDK25>("GameKit_ff42ce03e691ab23", 276540527452577, this, []); }
   /**
    * var partyCode: String? { get }
    * @availability iOS 26.0+
    */
-  get partyCode(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 2705930504148039, this, []); }
+  get partyCode(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 2705930504148039, this, []); }
   /**
    * var partyURL: URL? { get }
    * @availability iOS 26.0+
    */
-  get partyURL(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 920090284376554, this, []); }
+  get partyURL(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 920090284376554, this, []); }
   /**
    * var properties: [String : String] { get set }
    * @availability iOS 26.0+
    */
-  get properties(): Record<string, string> { return callSDK<Record<string, string>>("GameKit_3864e7f38681b875", 4050050467798390, this, []); }
-  set properties(value: Record<string, string>) { callSDK<void>("GameKit_3864e7f38681b875", 3217792124124097, this, [value]); }
+  get properties(): Record<string, string> { return callSDK<Record<string, string>>("GameKit_ff42ce03e691ab23", 4050050467798390, this, []); }
+  set properties(value: Record<string, string>) { callSDK<void>("GameKit_ff42ce03e691ab23", 3217792124124097, this, [value]); }
   /**
    * var startDate: Date? { get }
    * @availability iOS 26.0+
    */
-  get startDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 3198571988385646, this, []); }
+  get startDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 3198571988385646, this, []); }
   /**
    * var state: GKGameActivity.State { get }
    * @availability iOS 26.0+
    */
-  get state(): GKGameActivity_State { return callSDK<GKGameActivity_State>("GameKit_3864e7f38681b875", 4199784743257822, this, []); }
+  get state(): GKGameActivity_State { return callSDK<GKGameActivity_State>("GameKit_ff42ce03e691ab23", 4199784743257822, this, []); }
   declare readonly $type: { "c:objc(cs)GKGameActivity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "achievements": true; "activityDefinition": true; "creationDate": true; "duration": true; "endDate": true; "identifier": true; "lastResumeDate": true; "leaderboardScores": true; "partyCode": true; "partyURL": true; "properties": true; "startDate": true; "state": true };
 }
@@ -1183,7 +1183,7 @@ export const GKGameActivity_State = {
    * init?(rawValue: UInt)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (GKGameActivity_State) | null { return callSDK<(GKGameActivity_State) | null>("GameKit_3864e7f38681b875", 4499504445662981, undefined, [rawValue]); }
+  init(rawValue: number): (GKGameActivity_State) | null { return callSDK<(GKGameActivity_State) | null>("GameKit_ff42ce03e691ab23", 4499504445662981, undefined, [rawValue]); }
 };
 
 /**
@@ -1195,82 +1195,82 @@ export class GKGameActivityDefinition extends SDKHandle {
    * class var all: [GKGameActivityDefinition] { get async throws }
    * @availability iOS 26.0+
    */
-  static loadGameActivityDefinitionsCompletionHandler(completionHandler: $SDK26): void { return callSDK<void>("GameKit_3864e7f38681b875", 1784039799327068, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static loadGameActivityDefinitionsCompletionHandler(completionHandler: $SDK26): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1784039799327068, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func loadGameActivityDefinitions(IDs activityDefinitionIDs: [String]?) async throws -> [GKGameActivityDefinition]
    * @availability iOS 26.0+
    */
-  static loadGameActivityDefinitionsIDsCompletionHandler(activityDefinitionIDs: (Array<string>) | null, completionHandler: $SDK26): void { return callSDK<void>("GameKit_3864e7f38681b875", 1179276156247274, undefined, [activityDefinitionIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static loadGameActivityDefinitionsIDsCompletionHandler(activityDefinitionIDs: (Array<string>) | null, completionHandler: $SDK26): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1179276156247274, undefined, [activityDefinitionIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var achievementDescriptions: [GKAchievementDescription] { get async throws }
    * @availability iOS 26.0+
    */
-  loadAchievementDescriptions(completionHandler: ((arg0: (Array<GKAchievementDescription>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 740392377347068, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadAchievementDescriptions(completionHandler: ((arg0: (Array<GKAchievementDescription>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 740392377347068, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var image: UIImage? { get async throws }
    * @availability iOS 26.0+
    */
-  loadImage(completionHandler: $SDK17): void { return callSDK<void>("GameKit_3864e7f38681b875", 1719598434379557, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadImage(completionHandler: $SDK17): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1719598434379557, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var leaderboards: [GKLeaderboard] { get async throws }
    * @availability iOS 26.0+
    */
-  loadLeaderboards(completionHandler: $SDK28): void { return callSDK<void>("GameKit_3864e7f38681b875", 3611351017149300, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadLeaderboards(completionHandler: $SDK28): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3611351017149300, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var defaultProperties: [String : String] { get }
    * @availability iOS 26.0+
    */
-  get defaultProperties(): Record<string, string> { return callSDK<Record<string, string>>("GameKit_3864e7f38681b875", 3187348544630684, this, []); }
+  get defaultProperties(): Record<string, string> { return callSDK<Record<string, string>>("GameKit_ff42ce03e691ab23", 3187348544630684, this, []); }
   /**
    * var details: String? { get }
    * @availability iOS 26.0+
    */
-  get details(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 545148358193122, this, []); }
+  get details(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 545148358193122, this, []); }
   /**
    * var fallbackURL: URL? { get }
    * @availability iOS 26.0+
    */
-  get fallbackURL(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 2459948066722180, this, []); }
+  get fallbackURL(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 2459948066722180, this, []); }
   /**
    * var groupIdentifier: String? { get }
    * @availability iOS 26.0+
    */
-  get groupIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 3274456138199584, this, []); }
+  get groupIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 3274456138199584, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 26.0+
    */
-  get identifier(): string { return callSDK<string>("GameKit_3864e7f38681b875", 164332861067050, this, []); }
+  get identifier(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 164332861067050, this, []); }
   /**
    * var playStyle: GKGameActivityPlayStyle { get }
    * @availability iOS 26.0+
    */
-  get playStyle(): GKGameActivityPlayStyle { return callSDK<GKGameActivityPlayStyle>("GameKit_3864e7f38681b875", 763967885204133, this, []); }
+  get playStyle(): GKGameActivityPlayStyle { return callSDK<GKGameActivityPlayStyle>("GameKit_ff42ce03e691ab23", 763967885204133, this, []); }
   /**
    * var releaseState: GKReleaseState { get }
    * @availability iOS 26.0+
    */
-  get releaseState(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_3864e7f38681b875", 2215080966731682, this, []); }
+  get releaseState(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_ff42ce03e691ab23", 2215080966731682, this, []); }
   /**
    * var supportsPartyCode: Bool { get }
    * @availability iOS 26.0+
    */
-  get supportsPartyCode(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 1295722684020138, this, []); }
+  get supportsPartyCode(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 1295722684020138, this, []); }
   /**
    * var supportsUnlimitedPlayers: Bool { get }
    * @availability iOS 26.0+
    */
-  get supportsUnlimitedPlayers(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 2890555746208087, this, []); }
+  get supportsUnlimitedPlayers(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 2890555746208087, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 26.0+
    */
-  get title(): string { return callSDK<string>("GameKit_3864e7f38681b875", 1984607786178921, this, []); }
+  get title(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 1984607786178921, this, []); }
   /**
    * final var playerRange: (any RangeExpression)? { get }
    * @availability iOS 26.0+
    */
-  get playerRange(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameKit_3864e7f38681b875", 20969515868084, this, []); }
+  get playerRange(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameKit_ff42ce03e691ab23", 20969515868084, this, []); }
   declare readonly $type: { "c:objc(cs)GKGameActivityDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "defaultProperties": true; "details": true; "fallbackURL": true; "groupIdentifier": true; "identifier": true; "playStyle": true; "releaseState": true; "supportsPartyCode": true; "supportsUnlimitedPlayers": true; "title": true };
 }
@@ -1294,7 +1294,7 @@ export const GKGameActivityPlayStyle = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (GKGameActivityPlayStyle) | null { return callSDK<(GKGameActivityPlayStyle) | null>("GameKit_3864e7f38681b875", 4468279822631980, undefined, [rawValue]); }
+  init(rawValue: number): (GKGameActivityPlayStyle) | null { return callSDK<(GKGameActivityPlayStyle) | null>("GameKit_ff42ce03e691ab23", 4468279822631980, undefined, [rawValue]); }
 };
 
 /**
@@ -1321,56 +1321,56 @@ export class GKGameCenterViewController extends SDKHandle {
    * init(achievementID: String)
    * @availability iOS 14.0+
    */
-  static initAchievementID(achievementID: string): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_3864e7f38681b875", 123482921763117, undefined, [achievementID]); }
+  static initAchievementID(achievementID: string): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_ff42ce03e691ab23", 123482921763117, undefined, [achievementID]); }
   /**
    * init(leaderboard: GKLeaderboard, playerScope: GKLeaderboard.PlayerScope)
    * @availability iOS 14.0+
    */
-  static initLeaderboardPlayerScope(leaderboard: GKLeaderboard, playerScope: GKLeaderboard_PlayerScope): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_3864e7f38681b875", 2216625847931762, undefined, [leaderboard, playerScope]); }
+  static initLeaderboardPlayerScope(leaderboard: GKLeaderboard, playerScope: GKLeaderboard_PlayerScope): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_ff42ce03e691ab23", 2216625847931762, undefined, [leaderboard, playerScope]); }
   /**
    * init(leaderboardID: String, playerScope: GKLeaderboard.PlayerScope, timeScope: GKLeaderboard.TimeScope)
    * @availability iOS 14.0+
    */
-  static initLeaderboardIDPlayerScopeTimeScope(leaderboardID: string, playerScope: GKLeaderboard_PlayerScope, timeScope: GKLeaderboard_TimeScope): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_3864e7f38681b875", 3871626095725374, undefined, [leaderboardID, playerScope, timeScope]); }
+  static initLeaderboardIDPlayerScopeTimeScope(leaderboardID: string, playerScope: GKLeaderboard_PlayerScope, timeScope: GKLeaderboard_TimeScope): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_ff42ce03e691ab23", 3871626095725374, undefined, [leaderboardID, playerScope, timeScope]); }
   /**
    * init(leaderboardSetID: String)
    * @availability iOS 18.0+
    */
-  static initLeaderboardSetID(leaderboardSetID: string): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_3864e7f38681b875", 1922720901145322, undefined, [leaderboardSetID]); }
+  static initLeaderboardSetID(leaderboardSetID: string): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_ff42ce03e691ab23", 1922720901145322, undefined, [leaderboardSetID]); }
   /**
    * init(player: GKPlayer)
    * @availability iOS 18.0+
    */
-  static initPlayer(player: GKPlayer): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_3864e7f38681b875", 2062170316718900, undefined, [player]); }
+  static initPlayer(player: GKPlayer): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_ff42ce03e691ab23", 2062170316718900, undefined, [player]); }
   /**
    * init(state: GKGameCenterViewControllerState)
    * @availability iOS 14.0+
    */
-  static initState(state: GKGameCenterViewControllerState): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_3864e7f38681b875", 88052349395155, undefined, [state]); }
+  static initState(state: GKGameCenterViewControllerState): Promise<GKGameCenterViewController> { return callSDKAsync<GKGameCenterViewController>("GameKit_ff42ce03e691ab23", 88052349395155, undefined, [state]); }
   /** weak var gameCenterDelegate: (any GKGameCenterControllerDelegate)? { get set } */
-  get gameCenterDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GameKit_3864e7f38681b875", 2473139428168387, this, []); }
-  setGameCenterDelegate(value?: (Implements<GKGameCenterControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 950214307308295, this, [value], [{"protocol":"c:objc(pl)GKGameCenterControllerDelegate"}]); }
+  get gameCenterDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GameKit_ff42ce03e691ab23", 2473139428168387, this, []); }
+  setGameCenterDelegate(value?: (Implements<GKGameCenterControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 950214307308295, this, [value], [{"protocol":"c:objc(pl)GKGameCenterControllerDelegate"}]); }
   /**
    * var leaderboardIdentifier: String? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 14.0
    */
-  get leaderboardIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("GameKit_3864e7f38681b875", 3007991326946501, this, []); }
-  setLeaderboardIdentifier(value?: (string) | null): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 4408121220053914, this, [value]); }
+  get leaderboardIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("GameKit_ff42ce03e691ab23", 3007991326946501, this, []); }
+  setLeaderboardIdentifier(value?: (string) | null): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 4408121220053914, this, [value]); }
   /**
    * var leaderboardTimeScope: GKLeaderboard.TimeScope { get set }
    * @availability iOS 4.1+
    * @deprecated iOS 14.0
    */
-  get leaderboardTimeScope(): Promise<GKLeaderboard_TimeScope> { return callSDKAsync<GKLeaderboard_TimeScope>("GameKit_3864e7f38681b875", 2015787670204683, this, []); }
-  setLeaderboardTimeScope(value: GKLeaderboard_TimeScope): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 793642016512880, this, [value]); }
+  get leaderboardTimeScope(): Promise<GKLeaderboard_TimeScope> { return callSDKAsync<GKLeaderboard_TimeScope>("GameKit_ff42ce03e691ab23", 2015787670204683, this, []); }
+  setLeaderboardTimeScope(value: GKLeaderboard_TimeScope): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 793642016512880, this, [value]); }
   /**
    * var viewState: GKGameCenterViewControllerState { get set }
    * @availability iOS 6.0+
    * @deprecated iOS 14.0
    */
-  get viewState(): Promise<GKGameCenterViewControllerState> { return callSDKAsync<GKGameCenterViewControllerState>("GameKit_3864e7f38681b875", 3977315475556049, this, []); }
-  setViewState(value: GKGameCenterViewControllerState): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 4239994799642228, this, [value]); }
+  get viewState(): Promise<GKGameCenterViewControllerState> { return callSDKAsync<GKGameCenterViewControllerState>("GameKit_ff42ce03e691ab23", 3977315475556049, this, []); }
+  setViewState(value: GKGameCenterViewControllerState): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 4239994799642228, this, [value]); }
   declare readonly $type: { "c:objc(cs)GKGameCenterViewController": true; "c:objc(cs)UINavigationController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "gameCenterDelegate": true; "leaderboardIdentifier": true; "leaderboardTimeScope": true; "viewState": true };
 }
@@ -1386,7 +1386,7 @@ export const GKGameCenterViewControllerState = {
    * init?(rawValue: Int)
    * @availability iOS 6.0+
    */
-  init(rawValue: number): (GKGameCenterViewControllerState) | null { return callSDK<(GKGameCenterViewControllerState) | null>("GameKit_3864e7f38681b875", 2958412108659453, undefined, [rawValue]); }
+  init(rawValue: number): (GKGameCenterViewControllerState) | null { return callSDK<(GKGameCenterViewControllerState) | null>("GameKit_ff42ce03e691ab23", 2958412108659453, undefined, [rawValue]); }
 };
 
 /**
@@ -1400,135 +1400,135 @@ export class GKGameSession extends SDKHandle {
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static add(listener: $SDK30): void { return callSDK<void>("GameKit_3864e7f38681b875", 1537872909847811, undefined, [listener], [{"protocol":"c:objc(pl)GKGameSessionEventListener"}]); }
+  static add(listener: $SDK30): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1537872909847811, undefined, [listener], [{"protocol":"c:objc(pl)GKGameSessionEventListener"}]); }
   /**
    * class func createSession(inContainer containerName: String?, withTitle title: String, maxConnectedPlayers maxPlayers: Int) async throws -> GKGameSession
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static createSession(containerName: (string) | null, title: string, maxPlayers: number, completionHandler: $SDK31): void { return callSDK<void>("GameKit_3864e7f38681b875", 1875487772265110, undefined, [containerName, title, maxPlayers, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static createSession(containerName: (string) | null, title: string, maxPlayers: number, completionHandler: $SDK31): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1875487772265110, undefined, [containerName, title, maxPlayers, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * class func load(withIdentifier identifier: String) async throws -> GKGameSession
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static load(identifier: string, completionHandler: $SDK31): void { return callSDK<void>("GameKit_3864e7f38681b875", 1123287165700787, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static load(identifier: string, completionHandler: $SDK31): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1123287165700787, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func loadSessions(inContainer containerName: String?) async throws -> [GKGameSession]
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static loadSessions(containerName: (string) | null, completionHandler: ((arg0: (Array<GKGameSession>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 3571979263015496, undefined, [containerName, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static loadSessions(containerName: (string) | null, completionHandler: ((arg0: (Array<GKGameSession>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3571979263015496, undefined, [containerName, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func remove(listener: any GKGameSessionEventListener)
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static removeListener(listener: $SDK30): void { return callSDK<void>("GameKit_3864e7f38681b875", 524175793274778, undefined, [listener], [{"protocol":"c:objc(pl)GKGameSessionEventListener"}]); }
+  static removeListener(listener: $SDK30): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 524175793274778, undefined, [listener], [{"protocol":"c:objc(pl)GKGameSessionEventListener"}]); }
   /**
    * class func remove(withIdentifier identifier: String) async throws
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static removeWithIdentifierCompletionHandler(identifier: string, completionHandler: $SDK33): void { return callSDK<void>("GameKit_3864e7f38681b875", 4132534029087386, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static removeWithIdentifierCompletionHandler(identifier: string, completionHandler: $SDK33): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4132534029087386, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func clearBadge(for players: [GKCloudPlayer]) async throws
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  clearBadge(players: Array<GKCloudPlayer>, completionHandler: $SDK33): void { return callSDK<void>("GameKit_3864e7f38681b875", 2379969433522712, this, [players, completionHandler], [null,{"callback":{"out":[]}}]); }
+  clearBadge(players: Array<GKCloudPlayer>, completionHandler: $SDK33): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2379969433522712, this, [players, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func shareURL() async throws -> URL
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  getShareURL(completionHandler: ((arg0: (string) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 2065433427225746, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getShareURL(completionHandler: ((arg0: (string) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2065433427225746, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): GKGameSession { return callSDK<GKGameSession>("GameKit_3864e7f38681b875", 2125892822248644, undefined, []); }
+  static init(): GKGameSession { return callSDK<GKGameSession>("GameKit_ff42ce03e691ab23", 2125892822248644, undefined, []); }
   /**
    * func loadData() async throws -> Data
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  loadData(completionHandler: $SDK35): void { return callSDK<void>("GameKit_3864e7f38681b875", 3892652424056517, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadData(completionHandler: $SDK35): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3892652424056517, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func players(with state: GKConnectionState) -> [GKCloudPlayer]
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  playersWith(state: GKConnectionState): Array<GKCloudPlayer> { return callSDK<Array<GKCloudPlayer>>("GameKit_3864e7f38681b875", 3040081302163887, this, [state]); }
+  playersWith(state: GKConnectionState): Array<GKCloudPlayer> { return callSDK<Array<GKCloudPlayer>>("GameKit_ff42ce03e691ab23", 3040081302163887, this, [state]); }
   /**
    * func save(_ data: Data, completionHandler: @escaping (Data?, (any Error)?) -> Void)
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  save(data: ArrayBuffer, completionHandler: $SDK35): void { return callSDK<void>("GameKit_3864e7f38681b875", 2357495204062925, this, [data, completionHandler], [null,{"callback":{"out":[]}}]); }
+  save(data: ArrayBuffer, completionHandler: $SDK35): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2357495204062925, this, [data, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func send(_ data: Data, with transport: GKTransportType) async throws
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  send(data: ArrayBuffer, transport: GKTransportType, completionHandler: $SDK33): void { return callSDK<void>("GameKit_3864e7f38681b875", 1789803662104535, this, [data, transport, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  send(data: ArrayBuffer, transport: GKTransportType, completionHandler: $SDK33): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1789803662104535, this, [data, transport, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func sendMessage(withLocalizedFormatKey key: String, arguments: [String], data: Data?, to players: [GKCloudPlayer], badgePlayers: Bool) async throws
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  sendMessage(key: string, arguments_: Array<string>, data: (ArrayBuffer) | null, players: Array<GKCloudPlayer>, badgePlayers: boolean, completionHandler: $SDK33): void { return callSDK<void>("GameKit_3864e7f38681b875", 2034326003545656, this, [key, arguments_, data, players, badgePlayers, completionHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  sendMessage(key: string, arguments_: Array<string>, data: (ArrayBuffer) | null, players: Array<GKCloudPlayer>, badgePlayers: boolean, completionHandler: $SDK33): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2034326003545656, this, [key, arguments_, data, players, badgePlayers, completionHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func setConnectionState(_ state: GKConnectionState) async throws
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  setConnectionState(state: GKConnectionState, completionHandler: $SDK33): void { return callSDK<void>("GameKit_3864e7f38681b875", 45581361935544, this, [state, completionHandler], [null,{"callback":{"out":[]}}]); }
+  setConnectionState(state: GKConnectionState, completionHandler: $SDK33): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 45581361935544, this, [state, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var badgedPlayers: [GKCloudPlayer] { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get badgedPlayers(): Array<GKCloudPlayer> { return callSDK<Array<GKCloudPlayer>>("GameKit_3864e7f38681b875", 3959440459143099, this, []); }
+  get badgedPlayers(): Array<GKCloudPlayer> { return callSDK<Array<GKCloudPlayer>>("GameKit_ff42ce03e691ab23", 3959440459143099, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get identifier(): string { return callSDK<string>("GameKit_3864e7f38681b875", 2376165704140804, this, []); }
+  get identifier(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 2376165704140804, this, []); }
   /**
    * var lastModifiedDate: Date { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get lastModifiedDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_3864e7f38681b875", 274732928478152, this, []); }
+  get lastModifiedDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_ff42ce03e691ab23", 274732928478152, this, []); }
   /**
    * var lastModifiedPlayer: GKCloudPlayer { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get lastModifiedPlayer(): GKCloudPlayer { return callSDK<GKCloudPlayer>("GameKit_3864e7f38681b875", 1184701057257391, this, []); }
+  get lastModifiedPlayer(): GKCloudPlayer { return callSDK<GKCloudPlayer>("GameKit_ff42ce03e691ab23", 1184701057257391, this, []); }
   /**
    * var maxNumberOfConnectedPlayers: Int { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get maxNumberOfConnectedPlayers(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2485600010802204, this, []); }
+  get maxNumberOfConnectedPlayers(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2485600010802204, this, []); }
   /**
    * var owner: GKCloudPlayer { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get owner(): GKCloudPlayer { return callSDK<GKCloudPlayer>("GameKit_3864e7f38681b875", 3030722271718639, this, []); }
+  get owner(): GKCloudPlayer { return callSDK<GKCloudPlayer>("GameKit_ff42ce03e691ab23", 3030722271718639, this, []); }
   /**
    * var players: [GKCloudPlayer] { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get players(): Array<GKCloudPlayer> { return callSDK<Array<GKCloudPlayer>>("GameKit_3864e7f38681b875", 3252260784109269, this, []); }
+  get players(): Array<GKCloudPlayer> { return callSDK<Array<GKCloudPlayer>>("GameKit_ff42ce03e691ab23", 3252260784109269, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  get title(): string { return callSDK<string>("GameKit_3864e7f38681b875", 2950486616253463, this, []); }
+  get title(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 2950486616253463, this, []); }
   declare readonly $type: { "c:objc(cs)GKGameSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "badgedPlayers": true; "identifier": true; "lastModifiedDate": true; "lastModifiedPlayer": true; "maxNumberOfConnectedPlayers": true; "owner": true; "players": true; "title": true };
 }
@@ -1544,103 +1544,103 @@ export class GKGameSessionError extends SDKHandle {
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get invalidSession(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 960796934196783, undefined, []); }
+  static get invalidSession(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 960796934196783, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get errorDomain(): string { return callSDK<string>("GameKit_3864e7f38681b875", 3722831825409461, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 3722831825409461, undefined, []); }
   /**
    * static var badContainer: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get badContainer(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 1835122253372925, undefined, []); }
+  static get badContainer(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 1835122253372925, undefined, []); }
   /**
    * static var networkFailure: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get networkFailure(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 1791528764017431, undefined, []); }
+  static get networkFailure(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 1791528764017431, undefined, []); }
   /**
    * static var sessionConflict: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get sessionConflict(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 2054877092634183, undefined, []); }
+  static get sessionConflict(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 2054877092634183, undefined, []); }
   /**
    * static var connectionFailed: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get connectionFailed(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 429345007791295, undefined, []); }
+  static get connectionFailed(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 429345007791295, undefined, []); }
   /**
    * static var notAuthenticated: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get notAuthenticated(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 1351559235777249, undefined, []); }
+  static get notAuthenticated(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 1351559235777249, undefined, []); }
   /**
    * static var sessionNotShared: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get sessionNotShared(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 3669992527934650, undefined, []); }
+  static get sessionNotShared(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 3669992527934650, undefined, []); }
   /**
    * static var cloudDriveDisabled: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get cloudDriveDisabled(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 3046815634263094, undefined, []); }
+  static get cloudDriveDisabled(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 3046815634263094, undefined, []); }
   /**
    * static var cloudQuotaExceeded: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get cloudQuotaExceeded(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 4040563215334574, undefined, []); }
+  static get cloudQuotaExceeded(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 4040563215334574, undefined, []); }
   /**
    * static var sendDataNoRecipients: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get sendDataNoRecipients(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 1723631619877277, undefined, []); }
+  static get sendDataNoRecipients(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 1723631619877277, undefined, []); }
   /**
    * static var sendDataNotConnected: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get sendDataNotConnected(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 2040838550299301, undefined, []); }
+  static get sendDataNotConnected(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 2040838550299301, undefined, []); }
   /**
    * static var sendDataNotReachable: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get sendDataNotReachable(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 535765924158769, undefined, []); }
+  static get sendDataNotReachable(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 535765924158769, undefined, []); }
   /**
    * static var sendRateLimitReached: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get sendRateLimitReached(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 3124204613748758, undefined, []); }
+  static get sendRateLimitReached(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 3124204613748758, undefined, []); }
   /**
    * static var connectionCancelledByUser: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get connectionCancelledByUser(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 2549324398436827, undefined, []); }
+  static get connectionCancelledByUser(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 2549324398436827, undefined, []); }
   /**
    * static var sessionHasMaxConnectedPlayers: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get sessionHasMaxConnectedPlayers(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 3900762969606828, undefined, []); }
+  static get sessionHasMaxConnectedPlayers(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 3900762969606828, undefined, []); }
   /**
    * static var unknown: GKGameSessionError.Code { get }
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  static get unknown(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_3864e7f38681b875", 436286344097001, undefined, []); }
+  static get unknown(): GKGameSessionError_Code { return callSDK<GKGameSessionError_Code>("GameKit_ff42ce03e691ab23", 436286344097001, undefined, []); }
   declare readonly $type: { "s:SC22GKGameSessionErrorCodeLeV": true };
 }
 
@@ -1657,7 +1657,7 @@ export const GKGameSessionError_Code = {
    * @availability iOS 10.0+
    * @deprecated iOS 12.0
    */
-  init(rawValue: number): (GKGameSessionError_Code) | null { return callSDK<(GKGameSessionError_Code) | null>("GameKit_3864e7f38681b875", 3775752341431977, undefined, [rawValue]); }
+  init(rawValue: number): (GKGameSessionError_Code) | null { return callSDK<(GKGameSessionError_Code) | null>("GameKit_ff42ce03e691ab23", 3775752341431977, undefined, [rawValue]); }
 };
 
 /**
@@ -1710,33 +1710,33 @@ export interface GKGameSessionEventListener {
  */
 export class GKInvite extends SDKHandle {
   /** init() */
-  static init(): GKInvite { return callSDK<GKInvite>("GameKit_3864e7f38681b875", 1254462917302515, undefined, []); }
+  static init(): GKInvite { return callSDK<GKInvite>("GameKit_ff42ce03e691ab23", 1254462917302515, undefined, []); }
   /**
    * var isHosted: Bool { get }
    * @availability iOS 4.1+
    */
-  get isHosted(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 1322984185857705, this, []); }
+  get isHosted(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 1322984185857705, this, []); }
   /**
    * var inviter: String { get }
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  get inviter(): string { return callSDK<string>("GameKit_3864e7f38681b875", 2846906064436150, this, []); }
+  get inviter(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 2846906064436150, this, []); }
   /**
    * var playerAttributes: UInt32 { get }
    * @availability iOS 6.0+
    */
-  get playerAttributes(): number { return callSDK<number>("GameKit_3864e7f38681b875", 4332747505974718, this, []); }
+  get playerAttributes(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 4332747505974718, this, []); }
   /**
    * var playerGroup: Int { get }
    * @availability iOS 6.0+
    */
-  get playerGroup(): number { return callSDK<number>("GameKit_3864e7f38681b875", 621100094115191, this, []); }
+  get playerGroup(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 621100094115191, this, []); }
   /**
    * var sender: GKPlayer { get }
    * @availability iOS 8.0+
    */
-  get sender(): GKPlayer { return callSDK<GKPlayer>("GameKit_3864e7f38681b875", 4216053629221629, this, []); }
+  get sender(): GKPlayer { return callSDK<GKPlayer>("GameKit_ff42ce03e691ab23", 4216053629221629, this, []); }
   declare readonly $type: { "c:objc(cs)GKInvite": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isHosted": true; "inviter": true; "playerAttributes": true; "playerGroup": true; "sender": true };
 }
@@ -1783,42 +1783,42 @@ export const GKInviteRecipientResponse = {
    * @availability iOS 6.0+
    * @deprecated iOS 18.4
    */
-  get inviteeResponseAccepted(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_3864e7f38681b875", 2875842140937100, undefined, []); },
+  get inviteeResponseAccepted(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_ff42ce03e691ab23", 2875842140937100, undefined, []); },
   /**
    * static var inviteeResponseDeclined: GKInviteRecipientResponse { get }
    * @availability iOS 6.0+
    * @deprecated iOS 18.4
    */
-  get inviteeResponseDeclined(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_3864e7f38681b875", 1407958348753741, undefined, []); },
+  get inviteeResponseDeclined(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_ff42ce03e691ab23", 1407958348753741, undefined, []); },
   /**
    * static var inviteeResponseFailed: GKInviteRecipientResponse { get }
    * @availability iOS 6.0+
    * @deprecated iOS 18.4
    */
-  get inviteeResponseFailed(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_3864e7f38681b875", 3480127594115861, undefined, []); },
+  get inviteeResponseFailed(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_ff42ce03e691ab23", 3480127594115861, undefined, []); },
   /**
    * static var inviteeResponseIncompatible: GKInviteRecipientResponse { get }
    * @availability iOS 6.0+
    * @deprecated iOS 18.4
    */
-  get inviteeResponseIncompatible(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_3864e7f38681b875", 2394815545104525, undefined, []); },
+  get inviteeResponseIncompatible(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_ff42ce03e691ab23", 2394815545104525, undefined, []); },
   /**
    * static var inviteeResponseNoAnswer: GKInviteRecipientResponse { get }
    * @availability iOS 6.0+
    * @deprecated iOS 18.4
    */
-  get inviteeResponseNoAnswer(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_3864e7f38681b875", 4352724795265441, undefined, []); },
+  get inviteeResponseNoAnswer(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_ff42ce03e691ab23", 4352724795265441, undefined, []); },
   /**
    * static var inviteeResponseUnableToConnect: GKInviteRecipientResponse { get }
    * @availability iOS 6.0+
    * @deprecated iOS 18.4
    */
-  get inviteeResponseUnableToConnect(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_3864e7f38681b875", 222540391142115, undefined, []); },
+  get inviteeResponseUnableToConnect(): GKInviteRecipientResponse { return callSDK<GKInviteRecipientResponse>("GameKit_ff42ce03e691ab23", 222540391142115, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (GKInviteRecipientResponse) | null { return callSDK<(GKInviteRecipientResponse) | null>("GameKit_3864e7f38681b875", 2739321148095247, undefined, [rawValue]); }
+  init(rawValue: number): (GKInviteRecipientResponse) | null { return callSDK<(GKInviteRecipientResponse) | null>("GameKit_ff42ce03e691ab23", 2739321148095247, undefined, [rawValue]); }
 };
 
 /**
@@ -1831,172 +1831,172 @@ export class GKLeaderboard extends SDKHandle {
    * @availability iOS 6.0+
    * @deprecated iOS 14.0
    */
-  static loadLeaderboardsCompletionHandler(completionHandler?: $SDK36): void { return callSDK<void>("GameKit_3864e7f38681b875", 4017890326223476, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static loadLeaderboardsCompletionHandler(completionHandler?: $SDK36): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4017890326223476, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func loadLeaderboards(IDs leaderboardIDs: [String]?) async throws -> [GKLeaderboard]
    * @availability iOS 14.0+
    */
-  static loadLeaderboardsIDsCompletionHandler(leaderboardIDs: (Array<string>) | null, completionHandler: $SDK28): void { return callSDK<void>("GameKit_3864e7f38681b875", 297036624479514, undefined, [leaderboardIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static loadLeaderboardsIDsCompletionHandler(leaderboardIDs: (Array<string>) | null, completionHandler: $SDK28): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 297036624479514, undefined, [leaderboardIDs, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func submitScore(_ score: Int, context: Int, player: GKPlayer, leaderboardIDs: [String]) async throws
    * @availability iOS 14.0+
    */
-  static submitScoreContextPlayerLeaderboardIDsCompletionHandler(score: number, context: number, player: GKPlayer, leaderboardIDs: Array<string>, completionHandler: $SDK33): void { return callSDK<void>("GameKit_3864e7f38681b875", 116427896159434, undefined, [score, context, player, leaderboardIDs, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static submitScoreContextPlayerLeaderboardIDsCompletionHandler(score: number, context: number, player: GKPlayer, leaderboardIDs: Array<string>, completionHandler: $SDK33): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 116427896159434, undefined, [score, context, player, leaderboardIDs, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init?(playerIDs: [String]?)
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  static initPlayerIDs(playerIDs?: (Array<string>) | null): (GKLeaderboard) | null { return callSDK<(GKLeaderboard) | null>("GameKit_3864e7f38681b875", 2029659822003109, undefined, [playerIDs]); }
+  static initPlayerIDs(playerIDs?: (Array<string>) | null): (GKLeaderboard) | null { return callSDK<(GKLeaderboard) | null>("GameKit_ff42ce03e691ab23", 2029659822003109, undefined, [playerIDs]); }
   /**
    * init(players: [GKPlayer])
    * @availability iOS 8.0+
    * @deprecated iOS 14.0
    */
-  static initPlayers(players: Array<GKPlayer>): GKLeaderboard { return callSDK<GKLeaderboard>("GameKit_3864e7f38681b875", 680968825251576, undefined, [players]); }
+  static initPlayers(players: Array<GKPlayer>): GKLeaderboard { return callSDK<GKLeaderboard>("GameKit_ff42ce03e691ab23", 680968825251576, undefined, [players]); }
   /**
    * func loadEntries(for playerScope: GKLeaderboard.PlayerScope, timeScope: GKLeaderboard.TimeScope, range: NSRange) async throws -> (GKLeaderboard.Entry?, [GKLeaderboard.Entry], Int)
    * @availability iOS 14.0+
    */
-  loadEntriesForTimeScopeRangeCompletionHandler(playerScope: GKLeaderboard_PlayerScope, timeScope: GKLeaderboard_TimeScope, range: SDKHandle, completionHandler: ((arg0: (GKLeaderboard_Entry) | null, arg1: (Array<GKLeaderboard_Entry>) | null, arg2: number, arg3: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 3650524621109284, this, [playerScope, timeScope, range, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  loadEntriesForTimeScopeRangeCompletionHandler(playerScope: GKLeaderboard_PlayerScope, timeScope: GKLeaderboard_TimeScope, range: SDKHandle, completionHandler: ((arg0: (GKLeaderboard_Entry) | null, arg1: (Array<GKLeaderboard_Entry>) | null, arg2: number, arg3: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3650524621109284, this, [playerScope, timeScope, range, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func loadEntries(for players: [GKPlayer], timeScope: GKLeaderboard.TimeScope) async throws -> (GKLeaderboard.Entry?, [GKLeaderboard.Entry])
    * @availability iOS 14.0+
    */
-  loadEntriesForTimeScopeCompletionHandler(players: Array<GKPlayer>, timeScope: GKLeaderboard_TimeScope, completionHandler: ((arg0: (GKLeaderboard_Entry) | null, arg1: (Array<GKLeaderboard_Entry>) | null, arg2: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 3018502445578727, this, [players, timeScope, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  loadEntriesForTimeScopeCompletionHandler(players: Array<GKPlayer>, timeScope: GKLeaderboard_TimeScope, completionHandler: ((arg0: (GKLeaderboard_Entry) | null, arg1: (Array<GKLeaderboard_Entry>) | null, arg2: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3018502445578727, this, [players, timeScope, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func loadImage() async throws -> UIImage
    * @availability iOS 7.0+
    */
-  loadImage(completionHandler?: $SDK12): void { return callSDK<void>("GameKit_3864e7f38681b875", 93231989345849, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadImage(completionHandler?: $SDK12): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 93231989345849, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func loadPreviousOccurrence() async throws -> GKLeaderboard?
    * @availability iOS 14.0+
    */
-  loadPreviousOccurrence(completionHandler: ((arg0: (GKLeaderboard) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 2655794418957188, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadPreviousOccurrence(completionHandler: ((arg0: (GKLeaderboard) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2655794418957188, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func loadScores(completionHandler: (([GKScore]?, (any Error)?) -> Void)? = nil)
    * @availability iOS 4.0+
    * @deprecated iOS 14.0
    */
-  loadScores(completionHandler?: (((arg0: (Array<GKScore>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 3117850784606942, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadScores(completionHandler?: (((arg0: (Array<GKScore>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3117850784606942, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func submitScore(_ score: Int, context: Int, player: GKPlayer) async throws
    * @availability iOS 14.0+
    */
-  submitScoreContextPlayerCompletionHandler(score: number, context: number, player: GKPlayer, completionHandler: $SDK33): void { return callSDK<void>("GameKit_3864e7f38681b875", 4051825471149344, this, [score, context, player, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  submitScoreContextPlayerCompletionHandler(score: number, context: number, player: GKPlayer, completionHandler: $SDK33): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4051825471149344, this, [score, context, player, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * var activityIdentifier: String { get }
    * @availability iOS 26.0+
    */
-  get activityIdentifier(): string { return callSDK<string>("GameKit_3864e7f38681b875", 477610252293899, this, []); }
+  get activityIdentifier(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 477610252293899, this, []); }
   /**
    * var activityProperties: [String : String] { get }
    * @availability iOS 26.0+
    */
-  get activityProperties(): Record<string, string> { return callSDK<Record<string, string>>("GameKit_3864e7f38681b875", 3885934048070978, this, []); }
+  get activityProperties(): Record<string, string> { return callSDK<Record<string, string>>("GameKit_ff42ce03e691ab23", 3885934048070978, this, []); }
   /**
    * var baseLeaderboardID: String { get }
    * @availability iOS 14.0+
    */
-  get baseLeaderboardID(): string { return callSDK<string>("GameKit_3864e7f38681b875", 3767240227437406, this, []); }
+  get baseLeaderboardID(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 3767240227437406, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get duration(): number { return callSDK<number>("GameKit_3864e7f38681b875", 4029245094356176, this, []); }
+  get duration(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 4029245094356176, this, []); }
   /**
    * var groupIdentifier: String? { get }
    * @availability iOS 6.0+
    */
-  get groupIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 2436385481463681, this, []); }
+  get groupIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 2436385481463681, this, []); }
   /**
    * var identifier: String? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 14.0
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 791972192952065, this, []); }
-  set identifier(value: (string) | null) { callSDK<void>("GameKit_3864e7f38681b875", 322753559676142, this, [value]); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 791972192952065, this, []); }
+  set identifier(value: (string) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 322753559676142, this, [value]); }
   /**
    * var isHidden: Bool { get }
    * @availability iOS 26.0+
    */
-  get isHidden(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 2080007781641014, this, []); }
+  get isHidden(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 2080007781641014, this, []); }
   /**
    * var leaderboardDescription: String { get }
    * @availability iOS 26.0+
    */
-  get leaderboardDescription(): string { return callSDK<string>("GameKit_3864e7f38681b875", 2154130940594667, this, []); }
+  get leaderboardDescription(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 2154130940594667, this, []); }
   /**
    * var isLoading: Bool { get }
    * @availability iOS 4.1+
    * @deprecated iOS 14.0
    */
-  get isLoading(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 1946698039018002, this, []); }
+  get isLoading(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 1946698039018002, this, []); }
   /**
    * var localPlayerScore: GKScore? { get }
    * @availability iOS 4.0+
    * @deprecated iOS 14.0
    */
-  get localPlayerScore(): (GKScore) | null { return callSDK<(GKScore) | null>("GameKit_3864e7f38681b875", 2532279871681095, this, []); }
+  get localPlayerScore(): (GKScore) | null { return callSDK<(GKScore) | null>("GameKit_ff42ce03e691ab23", 2532279871681095, this, []); }
   /**
    * var maxRange: Int { get }
    * @availability iOS 4.0+
    * @deprecated iOS 14.0
    */
-  get maxRange(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2035630544186198, this, []); }
+  get maxRange(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2035630544186198, this, []); }
   /**
    * var nextStartDate: Date? { get }
    * @availability iOS 14.0+
    */
-  get nextStartDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 1094896896879452, this, []); }
+  get nextStartDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 1094896896879452, this, []); }
   /**
    * var playerScope: GKLeaderboard.PlayerScope { get set }
    * @availability iOS 4.0+
    * @deprecated iOS 14.0
    */
-  get playerScope(): GKLeaderboard_PlayerScope { return callSDK<GKLeaderboard_PlayerScope>("GameKit_3864e7f38681b875", 2026628522177312, this, []); }
-  set playerScope(value: GKLeaderboard_PlayerScope) { callSDK<void>("GameKit_3864e7f38681b875", 3428040761588275, this, [value]); }
+  get playerScope(): GKLeaderboard_PlayerScope { return callSDK<GKLeaderboard_PlayerScope>("GameKit_ff42ce03e691ab23", 2026628522177312, this, []); }
+  set playerScope(value: GKLeaderboard_PlayerScope) { callSDK<void>("GameKit_ff42ce03e691ab23", 3428040761588275, this, [value]); }
   /**
    * var range: NSRange { get set }
    * @availability iOS 4.0+
    * @deprecated iOS 14.0
    */
-  get range(): SDKHandle { return callSDK<SDKHandle>("GameKit_3864e7f38681b875", 2789695560181687, this, []); }
-  set range(value: SDKHandle) { callSDK<void>("GameKit_3864e7f38681b875", 1508252064015360, this, [value]); }
+  get range(): SDKHandle { return callSDK<SDKHandle>("GameKit_ff42ce03e691ab23", 2789695560181687, this, []); }
+  set range(value: SDKHandle) { callSDK<void>("GameKit_ff42ce03e691ab23", 1508252064015360, this, [value]); }
   /**
    * var releaseState: GKReleaseState { get }
    * @availability iOS 26.0+
    */
-  get releaseState(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_3864e7f38681b875", 1681432197145902, this, []); }
+  get releaseState(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_ff42ce03e691ab23", 1681432197145902, this, []); }
   /**
    * var scores: [GKScore]? { get }
    * @availability iOS 4.0+
    * @deprecated iOS 14.0
    */
-  get scores(): (Array<GKScore>) | null { return callSDK<(Array<GKScore>) | null>("GameKit_3864e7f38681b875", 2197511627178324, this, []); }
+  get scores(): (Array<GKScore>) | null { return callSDK<(Array<GKScore>) | null>("GameKit_ff42ce03e691ab23", 2197511627178324, this, []); }
   /**
    * var startDate: Date? { get }
    * @availability iOS 14.0+
    */
-  get startDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 821891834124902, this, []); }
+  get startDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 821891834124902, this, []); }
   /**
    * var timeScope: GKLeaderboard.TimeScope { get set }
    * @availability iOS 4.0+
    * @deprecated iOS 14.0
    */
-  get timeScope(): GKLeaderboard_TimeScope { return callSDK<GKLeaderboard_TimeScope>("GameKit_3864e7f38681b875", 3372198501200739, this, []); }
-  set timeScope(value: GKLeaderboard_TimeScope) { callSDK<void>("GameKit_3864e7f38681b875", 2740913932043795, this, [value]); }
+  get timeScope(): GKLeaderboard_TimeScope { return callSDK<GKLeaderboard_TimeScope>("GameKit_ff42ce03e691ab23", 3372198501200739, this, []); }
+  set timeScope(value: GKLeaderboard_TimeScope) { callSDK<void>("GameKit_ff42ce03e691ab23", 2740913932043795, this, [value]); }
   /**
    * var title: String? { get }
    * @availability iOS 4.1+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 1230420156288470, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 1230420156288470, this, []); }
   /**
    * var type: GKLeaderboard.LeaderboardType { get }
    * @availability iOS 14.0+
    */
-  get type(): GKLeaderboard_LeaderboardType { return callSDK<GKLeaderboard_LeaderboardType>("GameKit_3864e7f38681b875", 3723005643562207, this, []); }
+  get type(): GKLeaderboard_LeaderboardType { return callSDK<GKLeaderboard_LeaderboardType>("GameKit_ff42ce03e691ab23", 3723005643562207, this, []); }
   declare readonly $type: { "c:objc(cs)GKLeaderboard": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activityIdentifier": true; "activityProperties": true; "baseLeaderboardID": true; "duration": true; "groupIdentifier": true; "identifier": true; "isHidden": true; "leaderboardDescription": true; "isLoading": true; "localPlayerScore": true; "maxRange": true; "nextStartDate": true; "playerScope": true; "range": true; "releaseState": true; "scores": true; "startDate": true; "timeScope": true; "title": true; "type": true };
 }
@@ -2011,43 +2011,43 @@ export class GKLeaderboard_Entry extends SDKHandle {
    * @availability iOS 17.0+
    * @deprecated iOS 26.0
    */
-  challengeComposeControllerWithMessagePlayersCompletion(message?: (string) | null, players?: $SDK41, completionHandler?: $SDK4): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_3864e7f38681b875", 1680687792660243, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  challengeComposeControllerWithMessagePlayersCompletion(message?: (string) | null, players?: $SDK41, completionHandler?: $SDK4): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_ff42ce03e691ab23", 1680687792660243, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func challengeComposeController(withMessage message: String?, players: [GKPlayer]?, completionHandler: GKChallengeComposeCompletionBlock? = nil) -> UIViewController
    * @availability iOS 14.0+
    * @deprecated iOS 17.0
    */
-  challengeComposeControllerWithMessagePlayersCompletionHandler(message?: (string) | null, players?: $SDK41, completionHandler?: $SDK5): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_3864e7f38681b875", 3446040153422803, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  challengeComposeControllerWithMessagePlayersCompletionHandler(message?: (string) | null, players?: $SDK41, completionHandler?: $SDK5): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_ff42ce03e691ab23", 3446040153422803, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var context: Int { get }
    * @availability iOS 14.0+
    */
-  get context(): number { return callSDK<number>("GameKit_3864e7f38681b875", 7182729317174, this, []); }
+  get context(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 7182729317174, this, []); }
   /**
    * var date: Date { get }
    * @availability iOS 14.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_3864e7f38681b875", 1006265247363230, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_ff42ce03e691ab23", 1006265247363230, this, []); }
   /**
    * var formattedScore: String { get }
    * @availability iOS 14.0+
    */
-  get formattedScore(): string { return callSDK<string>("GameKit_3864e7f38681b875", 4317478273285420, this, []); }
+  get formattedScore(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 4317478273285420, this, []); }
   /**
    * var player: GKPlayer { get }
    * @availability iOS 14.0+
    */
-  get player(): GKPlayer { return callSDK<GKPlayer>("GameKit_3864e7f38681b875", 2366032479344289, this, []); }
+  get player(): GKPlayer { return callSDK<GKPlayer>("GameKit_ff42ce03e691ab23", 2366032479344289, this, []); }
   /**
    * var rank: Int { get }
    * @availability iOS 14.0+
    */
-  get rank(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2876631265345495, this, []); }
+  get rank(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2876631265345495, this, []); }
   /**
    * var score: Int { get }
    * @availability iOS 14.0+
    */
-  get score(): number { return callSDK<number>("GameKit_3864e7f38681b875", 801477928873183, this, []); }
+  get score(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 801477928873183, this, []); }
   declare readonly $type: { "c:objc(cs)GKLeaderboardEntry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "context": true; "date": true; "formattedScore": true; "player": true; "rank": true; "score": true };
 }
@@ -2063,7 +2063,7 @@ export const GKLeaderboard_LeaderboardType = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (GKLeaderboard_LeaderboardType) | null { return callSDK<(GKLeaderboard_LeaderboardType) | null>("GameKit_3864e7f38681b875", 3367697506020137, undefined, [rawValue]); }
+  init(rawValue: number): (GKLeaderboard_LeaderboardType) | null { return callSDK<(GKLeaderboard_LeaderboardType) | null>("GameKit_ff42ce03e691ab23", 3367697506020137, undefined, [rawValue]); }
 };
 
 /**
@@ -2077,7 +2077,7 @@ export const GKLeaderboard_PlayerScope = {
    * init?(rawValue: Int)
    * @availability iOS 4.0+
    */
-  init(rawValue: number): (GKLeaderboard_PlayerScope) | null { return callSDK<(GKLeaderboard_PlayerScope) | null>("GameKit_3864e7f38681b875", 3688878118047512, undefined, [rawValue]); }
+  init(rawValue: number): (GKLeaderboard_PlayerScope) | null { return callSDK<(GKLeaderboard_PlayerScope) | null>("GameKit_ff42ce03e691ab23", 3688878118047512, undefined, [rawValue]); }
 };
 
 /**
@@ -2091,7 +2091,7 @@ export const GKLeaderboard_TimeScope = {
    * init?(rawValue: Int)
    * @availability iOS 4.0+
    */
-  init(rawValue: number): (GKLeaderboard_TimeScope) | null { return callSDK<(GKLeaderboard_TimeScope) | null>("GameKit_3864e7f38681b875", 654015824359331, undefined, [rawValue]); }
+  init(rawValue: number): (GKLeaderboard_TimeScope) | null { return callSDK<(GKLeaderboard_TimeScope) | null>("GameKit_ff42ce03e691ab23", 654015824359331, undefined, [rawValue]); }
 };
 
 /**
@@ -2100,31 +2100,31 @@ export const GKLeaderboard_TimeScope = {
  */
 export class GKLeaderboardScore extends SDKHandle {
   /** init() */
-  static init(): GKLeaderboardScore { return callSDK<GKLeaderboardScore>("GameKit_3864e7f38681b875", 3305739755987592, undefined, []); }
+  static init(): GKLeaderboardScore { return callSDK<GKLeaderboardScore>("GameKit_ff42ce03e691ab23", 3305739755987592, undefined, []); }
   /**
    * var context: Int { get set }
    * @availability iOS 14.0+
    */
-  get context(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2377477246589037, this, []); }
-  set context(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 344049245185449, this, [value]); }
+  get context(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2377477246589037, this, []); }
+  set context(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 344049245185449, this, [value]); }
   /**
    * var leaderboardID: String { get set }
    * @availability iOS 14.0+
    */
-  get leaderboardID(): string { return callSDK<string>("GameKit_3864e7f38681b875", 453430291402714, this, []); }
-  set leaderboardID(value: string) { callSDK<void>("GameKit_3864e7f38681b875", 2850340764542285, this, [value]); }
+  get leaderboardID(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 453430291402714, this, []); }
+  set leaderboardID(value: string) { callSDK<void>("GameKit_ff42ce03e691ab23", 2850340764542285, this, [value]); }
   /**
    * var player: GKPlayer { get set }
    * @availability iOS 14.0+
    */
-  get player(): GKPlayer { return callSDK<GKPlayer>("GameKit_3864e7f38681b875", 1150295069017636, this, []); }
-  set player(value: GKPlayer) { callSDK<void>("GameKit_3864e7f38681b875", 1949879545240450, this, [value]); }
+  get player(): GKPlayer { return callSDK<GKPlayer>("GameKit_ff42ce03e691ab23", 1150295069017636, this, []); }
+  set player(value: GKPlayer) { callSDK<void>("GameKit_ff42ce03e691ab23", 1949879545240450, this, [value]); }
   /**
    * var value: Int { get set }
    * @availability iOS 14.0+
    */
-  get value(): number { return callSDK<number>("GameKit_3864e7f38681b875", 622220698362490, this, []); }
-  set value(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 2566152628051284, this, [value]); }
+  get value(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 622220698362490, this, []); }
+  set value(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 2566152628051284, this, [value]); }
   declare readonly $type: { "c:objc(cs)GKLeaderboardScore": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "context": true; "leaderboardID": true; "player": true; "value": true };
 }
@@ -2138,41 +2138,41 @@ export class GKLeaderboardSet extends SDKHandle {
    * class func loadLeaderboardSets() async throws -> [GKLeaderboardSet]
    * @availability iOS 7.0+
    */
-  static loadLeaderboardSets(completionHandler?: (((arg0: (Array<GKLeaderboardSet>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 2590343242616695, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static loadLeaderboardSets(completionHandler?: (((arg0: (Array<GKLeaderboardSet>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2590343242616695, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): GKLeaderboardSet { return callSDK<GKLeaderboardSet>("GameKit_3864e7f38681b875", 1359636775157235, undefined, []); }
+  static init(): GKLeaderboardSet { return callSDK<GKLeaderboardSet>("GameKit_ff42ce03e691ab23", 1359636775157235, undefined, []); }
   /**
    * func loadImage() async throws -> UIImage
    * @availability iOS 7.0+
    */
-  loadImage(completionHandler?: $SDK12): void { return callSDK<void>("GameKit_3864e7f38681b875", 3165969477026327, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadImage(completionHandler?: $SDK12): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3165969477026327, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func loadLeaderboards() async throws -> [GKLeaderboard]
    * @availability iOS 7.0+
    * @deprecated iOS 14.0
    */
-  loadLeaderboardsCompletionHandler(completionHandler?: $SDK36): void { return callSDK<void>("GameKit_3864e7f38681b875", 1267845315137065, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadLeaderboardsCompletionHandler(completionHandler?: $SDK36): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1267845315137065, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func loadLeaderboards(handler: @escaping ([GKLeaderboard]?, (any Error)?) -> Void)
    * @availability iOS 14.0+
    */
-  loadLeaderboardsHandler(handler: $SDK28): void { return callSDK<void>("GameKit_3864e7f38681b875", 4051676034022992, this, [handler], [{"callback":{"out":[]}}]); }
+  loadLeaderboardsHandler(handler: $SDK28): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4051676034022992, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * var groupIdentifier: String? { get }
    * @availability iOS 7.0+
    */
-  get groupIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 1529615594244047, this, []); }
+  get groupIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 1529615594244047, this, []); }
   /**
    * var identifier: String? { get set }
    * @availability iOS 7.0+
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 2995174804481970, this, []); }
-  set identifier(value: (string) | null) { callSDK<void>("GameKit_3864e7f38681b875", 2094552541235948, this, [value]); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 2995174804481970, this, []); }
+  set identifier(value: (string) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 2094552541235948, this, [value]); }
   /**
    * var title: String { get }
    * @availability iOS 7.0+
    */
-  get title(): string { return callSDK<string>("GameKit_3864e7f38681b875", 3676181818521940, this, []); }
+  get title(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 3676181818521940, this, []); }
   declare readonly $type: { "c:objc(cs)GKLeaderboardSet": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "groupIdentifier": true; "identifier": true; "title": true };
 }
@@ -2186,67 +2186,67 @@ export class GKPlayer extends (GKBasePlayer as unknown as Omit<typeof GKBasePlay
    * class func anonymousGuestPlayer(withIdentifier guestIdentifier: String) -> Self
    * @availability iOS 9.0+
    */
-  static anonymousGuestPlayer(guestIdentifier: string): GKPlayer { return callSDK<GKPlayer>("GameKit_3864e7f38681b875", 1696451980629278, undefined, [guestIdentifier]); }
+  static anonymousGuestPlayer(guestIdentifier: string): GKPlayer { return callSDK<GKPlayer>("GameKit_ff42ce03e691ab23", 1696451980629278, undefined, [guestIdentifier]); }
   /**
    * class func loadPlayers(forIdentifiers identifiers: [String], withCompletionHandler completionHandler: (([GKPlayer]?, (any Error)?) -> Void)? = nil)
    * @availability iOS 4.1+
    * @deprecated iOS 14.5
    */
-  static loadPlayers(identifiers: Array<string>, completionHandler?: $SDK8): void { return callSDK<void>("GameKit_3864e7f38681b875", 4113506541720591, undefined, [identifiers, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static loadPlayers(identifiers: Array<string>, completionHandler?: $SDK8): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4113506541720591, undefined, [identifiers, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): GKPlayer { return callSDK<GKPlayer>("GameKit_3864e7f38681b875", 1649995382016182, undefined, []); }
+  static init(): GKPlayer { return callSDK<GKPlayer>("GameKit_ff42ce03e691ab23", 1649995382016182, undefined, []); }
   /**
    * func loadPhoto(for size: GKPlayer.PhotoSize) async throws -> UIImage
    * @availability iOS 5.0+
    */
-  loadPhoto(size: GKPlayer_PhotoSize, completionHandler?: $SDK12): void { return callSDK<void>("GameKit_3864e7f38681b875", 2987659252476234, this, [size, completionHandler], [null,{"callback":{"out":[]}}]); }
+  loadPhoto(size: GKPlayer_PhotoSize, completionHandler?: $SDK12): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2987659252476234, this, [size, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func scopedIDsArePersistent() -> Bool
    * @availability iOS 13.0+
    */
-  scopedIDsArePersistent(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 4421765302135746, this, []); }
+  scopedIDsArePersistent(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 4421765302135746, this, []); }
   /**
    * var alias: String { get }
    * @availability iOS 4.1+
    */
-  get alias(): string { return callSDK<string>("GameKit_3864e7f38681b875", 3968624601331934, this, []); }
+  get alias(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 3968624601331934, this, []); }
   /**
    * var displayName: String { get }
    * @availability iOS 6.0+
    */
-  get displayName(): string { return callSDK<string>("GameKit_3864e7f38681b875", 197211638411422, this, []); }
+  get displayName(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 197211638411422, this, []); }
   /**
    * var gamePlayerID: String { get }
    * @availability iOS 12.4+
    */
-  get gamePlayerID(): string { return callSDK<string>("GameKit_3864e7f38681b875", 2519948911888645, this, []); }
+  get gamePlayerID(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 2519948911888645, this, []); }
   /**
    * var guestIdentifier: String? { get }
    * @availability iOS 9.0+
    */
-  get guestIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 1869317693545808, this, []); }
+  get guestIdentifier(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 1869317693545808, this, []); }
   /**
    * var isFriend: Bool { get }
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  get isFriend(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 4446686562932079, this, []); }
+  get isFriend(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 4446686562932079, this, []); }
   /**
    * var isInvitable: Bool { get }
    * @availability iOS 14.0+
    */
-  get isInvitable(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 3280840541231898, this, []); }
+  get isInvitable(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 3280840541231898, this, []); }
   /**
    * var playerID: String { get }
    * @availability iOS 4.1+
    * @deprecated iOS 13.0
    */
-  get playerID(): string { return callSDK<string>("GameKit_3864e7f38681b875", 2682188533849836, this, []); }
+  get playerID(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 2682188533849836, this, []); }
   /**
    * var teamPlayerID: String { get }
    * @availability iOS 12.4+
    */
-  get teamPlayerID(): string { return callSDK<string>("GameKit_3864e7f38681b875", 506014180044686, this, []); }
+  get teamPlayerID(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 506014180044686, this, []); }
   declare readonly $type: { "c:objc(cs)GKPlayer": true; "c:objc(cs)GKBasePlayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "displayName": true; "playerID": true; "alias": true; "gamePlayerID": true; "guestIdentifier": true; "isFriend": true; "isInvitable": true; "teamPlayerID": true };
 }
@@ -2260,146 +2260,146 @@ export class GKLocalPlayer extends (GKPlayer as unknown as Omit<typeof GKPlayer,
    * class var local: GKLocalPlayer { get }
    * @availability iOS 4.1+
    */
-  static get local(): GKLocalPlayer { return callSDK<GKLocalPlayer>("GameKit_3864e7f38681b875", 3242976060493038, undefined, []); }
+  static get local(): GKLocalPlayer { return callSDK<GKLocalPlayer>("GameKit_ff42ce03e691ab23", 3242976060493038, undefined, []); }
   /**
    * func deleteSavedGames(withName name: String) async throws
    * @availability iOS 8.0+
    */
-  deleteSavedGames(name: string, handler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 630779733742353, this, [name, handler], [null,{"callback":{"out":[]}}]); }
+  deleteSavedGames(name: string, handler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 630779733742353, this, [name, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func fetchItemsForIdentityVerificationSignature() async throws -> (URL, Data, Data, UInt64)
    * @availability iOS 13.5+
    */
-  fetchItems(completionHandler?: $SDK43): void { return callSDK<void>("GameKit_3864e7f38681b875", 3374061459826186, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchItems(completionHandler?: $SDK43): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3374061459826186, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func fetchSavedGames() async throws -> [GKSavedGame]
    * @availability iOS 8.0+
    */
-  fetchSavedGames(handler?: $SDK44): void { return callSDK<void>("GameKit_3864e7f38681b875", 4429501848499119, this, [handler], [{"callback":{"out":[]}}]); }
+  fetchSavedGames(handler?: $SDK44): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4429501848499119, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func generateIdentityVerificationSignature() async throws -> (URL, Data, Data, UInt64)
    * @availability iOS 7.0+
    * @deprecated iOS 13.5
    */
-  generateIdentityVerificationSignature(completionHandler?: $SDK43): void { return callSDK<void>("GameKit_3864e7f38681b875", 3051022927809390, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  generateIdentityVerificationSignature(completionHandler?: $SDK43): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3051022927809390, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): GKLocalPlayer { return callSDK<GKLocalPlayer>("GameKit_3864e7f38681b875", 3874770555544583, undefined, []); }
+  static init(): GKLocalPlayer { return callSDK<GKLocalPlayer>("GameKit_ff42ce03e691ab23", 3874770555544583, undefined, []); }
   /**
    * func loadChallengableFriends() async throws -> [GKPlayer]
    * @availability iOS 4.1+
    */
-  loadChallengableFriends(completionHandler?: $SDK8): void { return callSDK<void>("GameKit_3864e7f38681b875", 2283517974517923, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadChallengableFriends(completionHandler?: $SDK8): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2283517974517923, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func loadDefaultLeaderboardIdentifier() async throws -> String
    * @availability iOS 7.0+
    * @deprecated iOS 26.2
    */
-  loadDefaultLeaderboardIdentifier(completionHandler?: (((arg0: (string) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 124664254885309, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadDefaultLeaderboardIdentifier(completionHandler?: (((arg0: (string) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 124664254885309, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func loadFriendPlayers(completionHandler: (@Sendable ([GKPlayer]?, (any Error)?) -> Void)? = nil)
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  loadFriendPlayers(completionHandler?: $SDK8): void { return callSDK<void>("GameKit_3864e7f38681b875", 3564202369932541, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadFriendPlayers(completionHandler?: $SDK8): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3564202369932541, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func loadFriends() async throws -> [GKPlayer]
    * @availability iOS 14.5+
    */
-  loadFriends(completionHandler: $SDK23): void { return callSDK<void>("GameKit_3864e7f38681b875", 1844888404100374, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadFriends(completionHandler: $SDK23): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1844888404100374, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func loadFriendsAuthorizationStatus() async throws -> GKFriendsAuthorizationStatus
    * @availability iOS 14.5+
    */
-  loadFriendsAuthorizationStatus(completionHandler: ((arg0: GKFriendsAuthorizationStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 2160610707927205, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadFriendsAuthorizationStatus(completionHandler: ((arg0: GKFriendsAuthorizationStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2160610707927205, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func loadFriendsObsoleted(completionHandler: (@Sendable ([String]?, (any Error)?) -> Void)? = nil)
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  loadFriendsObsoleted(completionHandler?: $SDK7): void { return callSDK<void>("GameKit_3864e7f38681b875", 394220527313647, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadFriendsObsoleted(completionHandler?: $SDK7): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 394220527313647, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func loadFriends(identifiedBy identifiers: [String]) async throws -> [GKPlayer]
    * @availability iOS 14.5+
    */
-  loadFriendsIdentifiedByCompletionHandler(identifiers: Array<string>, completionHandler: $SDK23): void { return callSDK<void>("GameKit_3864e7f38681b875", 207413172544141, this, [identifiers, completionHandler], [null,{"callback":{"out":[]}}]); }
+  loadFriendsIdentifiedByCompletionHandler(identifiers: Array<string>, completionHandler: $SDK23): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 207413172544141, this, [identifiers, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func loadRecentPlayers() async throws -> [GKPlayer]
    * @availability iOS 10.0+
    */
-  loadRecentPlayers(completionHandler?: $SDK8): void { return callSDK<void>("GameKit_3864e7f38681b875", 1743318061794465, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadRecentPlayers(completionHandler?: $SDK8): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1743318061794465, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func presentFriendRequestCreator(from viewController: UIViewController) throws
    * @availability iOS 15.0+
    */
-  presentFriendRequestCreator(viewController: _UIKit_UIViewController): void { return callSDK<void>("GameKit_3864e7f38681b875", 3952518533560665, this, [viewController]); }
+  presentFriendRequestCreator(viewController: _UIKit_UIViewController): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3952518533560665, this, [viewController]); }
   /**
    * func register(_ listener: any GKLocalPlayerListener)
    * @availability iOS 7.0+
    */
-  register(listener: SDKHandle): void { return callSDK<void>("GameKit_3864e7f38681b875", 2600419121234174, this, [listener]); }
+  register(listener: SDKHandle): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2600419121234174, this, [listener]); }
   /**
    * func resolveConflictingSavedGames(_ conflictingSavedGames: [GKSavedGame], with data: Data) async throws -> [GKSavedGame]
    * @availability iOS 8.0+
    */
-  resolveConflictingSavedGames(conflictingSavedGames: Array<GKSavedGame>, data: ArrayBuffer, handler?: $SDK44): void { return callSDK<void>("GameKit_3864e7f38681b875", 2624643460534777, this, [conflictingSavedGames, data, handler], [null,null,{"callback":{"out":[]}}]); }
+  resolveConflictingSavedGames(conflictingSavedGames: Array<GKSavedGame>, data: ArrayBuffer, handler?: $SDK44): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2624643460534777, this, [conflictingSavedGames, data, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func saveGameData(_ data: Data, withName name: String) async throws -> GKSavedGame
    * @availability iOS 8.0+
    */
-  saveGameData(data: ArrayBuffer, name: string, handler?: (((arg0: (GKSavedGame) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 463530643543901, this, [data, name, handler], [null,null,{"callback":{"out":[]}}]); }
+  saveGameData(data: ArrayBuffer, name: string, handler?: (((arg0: (GKSavedGame) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 463530643543901, this, [data, name, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func setDefaultLeaderboardIdentifier(_ leaderboardIdentifier: String) async throws
    * @availability iOS 7.0+
    * @deprecated iOS 26.2
    */
-  setDefaultLeaderboardIdentifier(leaderboardIdentifier: string, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 412891943426995, this, [leaderboardIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  setDefaultLeaderboardIdentifier(leaderboardIdentifier: string, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 412891943426995, this, [leaderboardIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func unregisterAllListeners()
    * @availability iOS 7.0+
    */
-  unregisterAllListeners(): void { return callSDK<void>("GameKit_3864e7f38681b875", 3422508594170134, this, []); }
+  unregisterAllListeners(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3422508594170134, this, []); }
   /**
    * func unregisterListener(_ listener: any GKLocalPlayerListener)
    * @availability iOS 7.0+
    */
-  unregisterListener(listener: SDKHandle): void { return callSDK<void>("GameKit_3864e7f38681b875", 3139860346080951, this, [listener]); }
+  unregisterListener(listener: SDKHandle): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3139860346080951, this, [listener]); }
   /**
    * var authenticateHandler: ((UIViewController?, (any Error)?) -> Void)? { get set }
    * @availability iOS 6.0+
    */
-  get authenticateHandler(): (((arg0: (_UIKit_UIViewController) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (_UIKit_UIViewController) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("GameKit_3864e7f38681b875", 842594429095658, this, []); }
-  set authenticateHandler(value: (((arg0: (_UIKit_UIViewController) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("GameKit_3864e7f38681b875", 2032147313810904, this, [value], [{"callback":{"out":[]}}]); }
+  get authenticateHandler(): (((arg0: (_UIKit_UIViewController) | null, arg1: (NativeError) | null) => Promise<void>)) | null { return callSDK<(((arg0: (_UIKit_UIViewController) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("GameKit_ff42ce03e691ab23", 842594429095658, this, []); }
+  set authenticateHandler(value: (((arg0: (_UIKit_UIViewController) | null, arg1: (NativeError) | null) => void)) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 2032147313810904, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var isAuthenticated: Bool { get }
    * @availability iOS 4.1+
    */
-  get isAuthenticated(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 1987686180543835, this, []); }
+  get isAuthenticated(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 1987686180543835, this, []); }
   /**
    * var friends: [String]? { get }
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  get friends(): (Array<string>) | null { return callSDK<(Array<string>) | null>("GameKit_3864e7f38681b875", 3327590533328305, this, []); }
+  get friends(): (Array<string>) | null { return callSDK<(Array<string>) | null>("GameKit_ff42ce03e691ab23", 3327590533328305, this, []); }
   /**
    * var isPresentingFriendRequestViewController: Bool { get }
    * @availability iOS 15.0+
    */
-  get isPresentingFriendRequestViewController(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 1889913018330867, this, []); }
+  get isPresentingFriendRequestViewController(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 1889913018330867, this, []); }
   /**
    * var isMultiplayerGamingRestricted: Bool { get }
    * @availability iOS 13.0+
    */
-  get isMultiplayerGamingRestricted(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 517120086028695, this, []); }
+  get isMultiplayerGamingRestricted(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 517120086028695, this, []); }
   /**
    * var isPersonalizedCommunicationRestricted: Bool { get }
    * @availability iOS 14.0+
    */
-  get isPersonalizedCommunicationRestricted(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 3017214673855411, this, []); }
+  get isPersonalizedCommunicationRestricted(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 3017214673855411, this, []); }
   /**
    * var isUnderage: Bool { get }
    * @availability iOS 4.1+
    */
-  get isUnderage(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 3766579818786251, this, []); }
+  get isUnderage(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 3766579818786251, this, []); }
   declare readonly $type: { "c:objc(cs)GKLocalPlayer": true; "c:objc(cs)GKPlayer": true; "c:objc(cs)GKBasePlayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "displayName": true; "playerID": true; "alias": true; "gamePlayerID": true; "guestIdentifier": true; "isFriend": true; "isInvitable": true; "teamPlayerID": true; "isAuthenticated": true; "friends": true; "isPresentingFriendRequestViewController": true; "isMultiplayerGamingRestricted": true; "isPersonalizedCommunicationRestricted": true; "isUnderage": true };
 }
@@ -2505,78 +2505,78 @@ export class GKMatch extends SDKHandle {
    * @availability iOS 6.0+
    * @deprecated iOS 8.0
    */
-  chooseBestHostPlayer(completionHandler: ((arg0: (string) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 1926377896651710, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  chooseBestHostPlayer(completionHandler: ((arg0: (string) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1926377896651710, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func chooseBestHostingPlayer() async -> GKPlayer?
    * @availability iOS 8.0+
    */
-  chooseBestHostingPlayer(completionHandler: ((arg0: (GKPlayer) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 4320268977299447, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  chooseBestHostingPlayer(completionHandler: ((arg0: (GKPlayer) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4320268977299447, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func disconnect()
    * @availability iOS 4.1+
    */
-  disconnect(): void { return callSDK<void>("GameKit_3864e7f38681b875", 1659057016224039, this, []); }
+  disconnect(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1659057016224039, this, []); }
   /** init() */
-  static init(): GKMatch { return callSDK<GKMatch>("GameKit_3864e7f38681b875", 3513099335076957, undefined, []); }
+  static init(): GKMatch { return callSDK<GKMatch>("GameKit_ff42ce03e691ab23", 3513099335076957, undefined, []); }
   /**
    * func rematch() async throws -> GKMatch
    * @availability iOS 6.0+
    */
-  rematch(completionHandler?: $SDK53): void { return callSDK<void>("GameKit_3864e7f38681b875", 3868152685783680, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  rematch(completionHandler?: $SDK53): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3868152685783680, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func send(_ data: Data, to players: [GKPlayer], dataMode mode: GKMatch.SendDataMode) throws
    * @availability iOS 8.0+
    */
-  sendToDataMode(data: ArrayBuffer, players: Array<GKPlayer>, mode: GKMatch_SendDataMode): void { return callSDK<void>("GameKit_3864e7f38681b875", 1536570109149539, this, [data, players, mode]); }
+  sendToDataMode(data: ArrayBuffer, players: Array<GKPlayer>, mode: GKMatch_SendDataMode): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1536570109149539, this, [data, players, mode]); }
   /**
    * func send(_ data: Data, toPlayers playerIDs: [String], with mode: GKMatch.SendDataMode) throws
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  sendToPlayersWith(data: ArrayBuffer, playerIDs: Array<string>, mode: GKMatch_SendDataMode): void { return callSDK<void>("GameKit_3864e7f38681b875", 2152258614957709, this, [data, playerIDs, mode]); }
+  sendToPlayersWith(data: ArrayBuffer, playerIDs: Array<string>, mode: GKMatch_SendDataMode): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2152258614957709, this, [data, playerIDs, mode]); }
   /**
    * func sendData(toAllPlayers data: Data, with mode: GKMatch.SendDataMode) throws
    * @availability iOS 4.1+
    */
-  sendData(data: ArrayBuffer, mode: GKMatch_SendDataMode): void { return callSDK<void>("GameKit_3864e7f38681b875", 3587443712159998, this, [data, mode]); }
+  sendData(data: ArrayBuffer, mode: GKMatch_SendDataMode): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3587443712159998, this, [data, mode]); }
   /**
    * func voiceChat(withName name: String) -> GKVoiceChat?
    * @availability iOS 4.1+
    * @deprecated iOS 18.0
    */
-  voiceChat(name: string): (GKVoiceChat) | null { return callSDK<(GKVoiceChat) | null>("GameKit_3864e7f38681b875", 531803025305146, this, [name]); }
+  voiceChat(name: string): (GKVoiceChat) | null { return callSDK<(GKVoiceChat) | null>("GameKit_ff42ce03e691ab23", 531803025305146, this, [name]); }
   /**
    * weak var delegate: (any GKMatchDelegate)? { get set }
    * @availability iOS 4.1+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameKit_3864e7f38681b875", 1556602898255727, this, []); }
-  set delegate(value: (Implements<GKMatchDelegate> | SDKHandle) | null) { callSDK<void>("GameKit_3864e7f38681b875", 416287114376132, this, [value], [{"protocol":"c:objc(pl)GKMatchDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameKit_ff42ce03e691ab23", 1556602898255727, this, []); }
+  set delegate(value: (Implements<GKMatchDelegate> | SDKHandle) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 416287114376132, this, [value], [{"protocol":"c:objc(pl)GKMatchDelegate"}]); }
   /**
    * var expectedPlayerCount: Int { get }
    * @availability iOS 4.1+
    */
-  get expectedPlayerCount(): number { return callSDK<number>("GameKit_3864e7f38681b875", 1481820413325799, this, []); }
+  get expectedPlayerCount(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 1481820413325799, this, []); }
   /**
    * var playerIDs: [String]? { get }
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  get playerIDs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("GameKit_3864e7f38681b875", 676943090719872, this, []); }
+  get playerIDs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("GameKit_ff42ce03e691ab23", 676943090719872, this, []); }
   /**
    * var playerProperties: [GKPlayer : [String : Any]]? { get }
    * @availability iOS 17.2+
    */
-  get playerProperties(): $SDK55 { return callSDK<$SDK55>("GameKit_3864e7f38681b875", 479412408796555, this, []); }
+  get playerProperties(): $SDK55 { return callSDK<$SDK55>("GameKit_ff42ce03e691ab23", 479412408796555, this, []); }
   /**
    * var players: [GKPlayer] { get }
    * @availability iOS 8.0+
    */
-  get players(): Array<GKPlayer> { return callSDK<Array<GKPlayer>>("GameKit_3864e7f38681b875", 1746014660142952, this, []); }
+  get players(): Array<GKPlayer> { return callSDK<Array<GKPlayer>>("GameKit_ff42ce03e691ab23", 1746014660142952, this, []); }
   /**
    * var properties: [String : Any]? { get }
    * @availability iOS 17.2+
    */
-  get properties(): $SDK56 { return callSDK<$SDK56>("GameKit_3864e7f38681b875", 3391884411707012, this, []); }
+  get properties(): $SDK56 { return callSDK<$SDK56>("GameKit_ff42ce03e691ab23", 3391884411707012, this, []); }
   declare readonly $type: { "c:objc(cs)GKMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "expectedPlayerCount": true; "playerIDs": true; "playerProperties": true; "players": true; "properties": true };
 }
@@ -2592,7 +2592,7 @@ export const GKMatch_SendDataMode = {
    * init?(rawValue: Int)
    * @availability iOS 4.0+
    */
-  init(rawValue: number): (GKMatch_SendDataMode) | null { return callSDK<(GKMatch_SendDataMode) | null>("GameKit_3864e7f38681b875", 3231844526834059, undefined, [rawValue]); }
+  init(rawValue: number): (GKMatch_SendDataMode) | null { return callSDK<(GKMatch_SendDataMode) | null>("GameKit_ff42ce03e691ab23", 3231844526834059, undefined, [rawValue]); }
 };
 
 /**
@@ -2634,22 +2634,22 @@ export interface GKMatchDelegate {
  */
 export class GKMatchedPlayers extends SDKHandle {
   /** init() */
-  static init(): GKMatchedPlayers { return callSDK<GKMatchedPlayers>("GameKit_3864e7f38681b875", 2293557677380296, undefined, []); }
+  static init(): GKMatchedPlayers { return callSDK<GKMatchedPlayers>("GameKit_ff42ce03e691ab23", 2293557677380296, undefined, []); }
   /**
    * var playerProperties: [GKPlayer : [String : Any]]? { get }
    * @availability iOS 17.2+
    */
-  get playerProperties(): $SDK55 { return callSDK<$SDK55>("GameKit_3864e7f38681b875", 3595137262236848, this, []); }
+  get playerProperties(): $SDK55 { return callSDK<$SDK55>("GameKit_ff42ce03e691ab23", 3595137262236848, this, []); }
   /**
    * var players: [GKPlayer] { get }
    * @availability iOS 17.2+
    */
-  get players(): Array<GKPlayer> { return callSDK<Array<GKPlayer>>("GameKit_3864e7f38681b875", 3164263477638467, this, []); }
+  get players(): Array<GKPlayer> { return callSDK<Array<GKPlayer>>("GameKit_ff42ce03e691ab23", 3164263477638467, this, []); }
   /**
    * var properties: [String : Any]? { get }
    * @availability iOS 17.2+
    */
-  get properties(): $SDK56 { return callSDK<$SDK56>("GameKit_3864e7f38681b875", 3192176346503091, this, []); }
+  get properties(): $SDK56 { return callSDK<$SDK56>("GameKit_ff42ce03e691ab23", 3192176346503091, this, []); }
   declare readonly $type: { "c:objc(cs)GKMatchedPlayers": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "playerProperties": true; "players": true; "properties": true };
 }
@@ -2663,102 +2663,102 @@ export class GKMatchmaker extends SDKHandle {
    * class func shared() -> GKMatchmaker
    * @availability iOS 4.1+
    */
-  static shared(): GKMatchmaker { return callSDK<GKMatchmaker>("GameKit_3864e7f38681b875", 2497968775403653, undefined, []); }
+  static shared(): GKMatchmaker { return callSDK<GKMatchmaker>("GameKit_ff42ce03e691ab23", 2497968775403653, undefined, []); }
   /**
    * func addPlayers(to match: GKMatch, matchRequest: GKMatchRequest) async throws
    * @availability iOS 4.1+
    */
-  addPlayers(match: GKMatch, matchRequest: GKMatchRequest, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 109957129762036, this, [match, matchRequest, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  addPlayers(match: GKMatch, matchRequest: GKMatchRequest, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 109957129762036, this, [match, matchRequest, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func cancel()
    * @availability iOS 4.1+
    */
-  cancel(): void { return callSDK<void>("GameKit_3864e7f38681b875", 1893723464247942, this, []); }
+  cancel(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1893723464247942, this, []); }
   /**
    * func cancelInvite(toPlayer playerID: String)
    * @availability iOS 6.0+
    * @deprecated iOS 8.0
    */
-  cancelInvite(playerID: string): void { return callSDK<void>("GameKit_3864e7f38681b875", 485421540023779, this, [playerID]); }
+  cancelInvite(playerID: string): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 485421540023779, this, [playerID]); }
   /**
    * func cancelPendingInvite(to player: GKPlayer)
    * @availability iOS 8.0+
    */
-  cancelPendingInvite(player: GKPlayer): void { return callSDK<void>("GameKit_3864e7f38681b875", 3872324923380683, this, [player]); }
+  cancelPendingInvite(player: GKPlayer): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3872324923380683, this, [player]); }
   /**
    * func findMatch(for request: GKMatchRequest) async throws -> GKMatch
    * @availability iOS 4.1+
    */
-  findMatch(request: GKMatchRequest, completionHandler?: $SDK53): void { return callSDK<void>("GameKit_3864e7f38681b875", 3369416539380659, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
+  findMatch(request: GKMatchRequest, completionHandler?: $SDK53): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3369416539380659, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func findMatchedPlayers(_ request: GKMatchRequest) async throws -> GKMatchedPlayers
    * @availability iOS 17.2+
    */
-  findMatchedPlayers(request: GKMatchRequest, completionHandler: ((arg0: (GKMatchedPlayers) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 2909514970108781, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
+  findMatchedPlayers(request: GKMatchRequest, completionHandler: ((arg0: (GKMatchedPlayers) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2909514970108781, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func findPlayers(forHostedMatchRequest request: GKMatchRequest, withCompletionHandler completionHandler: (@Sendable ([String]?, (any Error)?) -> Void)? = nil)
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  findPlayersForHostedMatchRequestWithCompletionHandler(request: GKMatchRequest, completionHandler?: $SDK7): void { return callSDK<void>("GameKit_3864e7f38681b875", 3140937225095267, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
+  findPlayersForHostedMatchRequestWithCompletionHandler(request: GKMatchRequest, completionHandler?: $SDK7): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3140937225095267, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func findPlayers(forHostedRequest request: GKMatchRequest) async throws -> [GKPlayer]
    * @availability iOS 8.0+
    */
-  findPlayersForHostedRequestWithCompletionHandler(request: GKMatchRequest, completionHandler?: $SDK8): void { return callSDK<void>("GameKit_3864e7f38681b875", 3717121043614244, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
+  findPlayersForHostedRequestWithCompletionHandler(request: GKMatchRequest, completionHandler?: $SDK8): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3717121043614244, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func finishMatchmaking(for match: GKMatch)
    * @availability iOS 6.0+
    */
-  finishMatchmaking(match: GKMatch): void { return callSDK<void>("GameKit_3864e7f38681b875", 761953400885378, this, [match]); }
+  finishMatchmaking(match: GKMatch): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 761953400885378, this, [match]); }
   /** init() */
-  static init(): GKMatchmaker { return callSDK<GKMatchmaker>("GameKit_3864e7f38681b875", 1240255541259029, undefined, []); }
+  static init(): GKMatchmaker { return callSDK<GKMatchmaker>("GameKit_ff42ce03e691ab23", 1240255541259029, undefined, []); }
   /**
    * func match(for invite: GKInvite) async throws -> GKMatch
    * @availability iOS 6.0+
    */
-  match(invite: GKInvite, completionHandler?: $SDK53): void { return callSDK<void>("GameKit_3864e7f38681b875", 868110733199272, this, [invite, completionHandler], [null,{"callback":{"out":[]}}]); }
+  match(invite: GKInvite, completionHandler?: $SDK53): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 868110733199272, this, [invite, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func queryActivity() async throws -> Int
    * @availability iOS 4.1+
    */
-  queryActivity(completionHandler?: $SDK58): void { return callSDK<void>("GameKit_3864e7f38681b875", 2592197260589995, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  queryActivity(completionHandler?: $SDK58): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2592197260589995, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func queryPlayerGroupActivity(_ playerGroup: Int) async throws -> Int
    * @availability iOS 4.1+
    */
-  queryPlayerGroupActivity(playerGroup: number, completionHandler?: $SDK58): void { return callSDK<void>("GameKit_3864e7f38681b875", 2216265703334733, this, [playerGroup, completionHandler], [null,{"callback":{"out":[]}}]); }
+  queryPlayerGroupActivity(playerGroup: number, completionHandler?: $SDK58): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2216265703334733, this, [playerGroup, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func queryQueueActivity(_ queueName: String) async throws -> Int
    * @availability iOS 17.2+
    */
-  queryQueueActivity(queueName: string, completionHandler?: $SDK58): void { return callSDK<void>("GameKit_3864e7f38681b875", 4156184826438761, this, [queueName, completionHandler], [null,{"callback":{"out":[]}}]); }
+  queryQueueActivity(queueName: string, completionHandler?: $SDK58): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4156184826438761, this, [queueName, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func startBrowsingForNearbyPlayers(handler reachableHandler: ((GKPlayer, Bool) -> Void)? = nil)
    * @availability iOS 8.0+
    */
-  startBrowsingForNearbyPlayersHandler(reachableHandler?: (((arg0: GKPlayer, arg1: boolean) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 2294514861957637, this, [reachableHandler], [{"callback":{"out":[]}}]); }
+  startBrowsingForNearbyPlayersHandler(reachableHandler?: (((arg0: GKPlayer, arg1: boolean) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2294514861957637, this, [reachableHandler], [{"callback":{"out":[]}}]); }
   /**
    * func startBrowsingForNearbyPlayers(reachableHandler: ((String, Bool) -> Void)? = nil)
    * @availability iOS 6.0+
    * @deprecated iOS 8.0
    */
-  startBrowsingForNearbyPlayersReachableHandler(reachableHandler?: (((arg0: string, arg1: boolean) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 2530711066350947, this, [reachableHandler], [{"callback":{"out":[]}}]); }
+  startBrowsingForNearbyPlayersReachableHandler(reachableHandler?: (((arg0: string, arg1: boolean) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2530711066350947, this, [reachableHandler], [{"callback":{"out":[]}}]); }
   /**
    * func startGroupActivity(playerHandler handler: @escaping (GKPlayer) -> Void)
    * @availability iOS 16.2+
    */
-  startGroupActivity(handler: ((arg0: GKPlayer) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 3224982544450490, this, [handler], [{"callback":{"out":[]}}]); }
+  startGroupActivity(handler: ((arg0: GKPlayer) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3224982544450490, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func stopBrowsingForNearbyPlayers()
    * @availability iOS 6.0+
    */
-  stopBrowsingForNearbyPlayers(): void { return callSDK<void>("GameKit_3864e7f38681b875", 3401045361161828, this, []); }
+  stopBrowsingForNearbyPlayers(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3401045361161828, this, []); }
   /**
    * func stopGroupActivity()
    * @availability iOS 16.2+
    */
-  stopGroupActivity(): void { return callSDK<void>("GameKit_3864e7f38681b875", 3446582561719627, this, []); }
+  stopGroupActivity(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3446582561719627, this, []); }
   declare readonly $type: { "c:objc(cs)GKMatchmaker": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2771,57 +2771,57 @@ export class GKMatchmakerViewController extends SDKHandle {
    * func addPlayers(to match: GKMatch)
    * @availability iOS 5.0+
    */
-  addPlayers(match: GKMatch): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 100750731572010, this, [match]); }
+  addPlayers(match: GKMatch): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 100750731572010, this, [match]); }
   /**
    * init?(invite: GKInvite)
    * @availability iOS 4.1+
    */
-  static initInvite(invite: GKInvite): Promise<(GKMatchmakerViewController) | null> { return callSDKAsync<(GKMatchmakerViewController) | null>("GameKit_3864e7f38681b875", 2490934132239596, undefined, [invite]); }
+  static initInvite(invite: GKInvite): Promise<(GKMatchmakerViewController) | null> { return callSDKAsync<(GKMatchmakerViewController) | null>("GameKit_ff42ce03e691ab23", 2490934132239596, undefined, [invite]); }
   /**
    * init?(matchRequest request: GKMatchRequest)
    * @availability iOS 4.1+
    */
-  static initMatchRequest(request: GKMatchRequest): Promise<(GKMatchmakerViewController) | null> { return callSDKAsync<(GKMatchmakerViewController) | null>("GameKit_3864e7f38681b875", 329312842622052, undefined, [request]); }
+  static initMatchRequest(request: GKMatchRequest): Promise<(GKMatchmakerViewController) | null> { return callSDKAsync<(GKMatchmakerViewController) | null>("GameKit_ff42ce03e691ab23", 329312842622052, undefined, [request]); }
   /**
    * func setHostedPlayer(_ playerID: String, connected: Bool)
    * @availability iOS 5.0+
    * @deprecated iOS 8.0
    */
-  setHostedPlayerConnected(playerID: string, connected: boolean): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 1003888108798604, this, [playerID, connected]); }
+  setHostedPlayerConnected(playerID: string, connected: boolean): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 1003888108798604, this, [playerID, connected]); }
   /**
    * func setHostedPlayer(_ player: GKPlayer, didConnect connected: Bool)
    * @availability iOS 8.0+
    */
-  setHostedPlayerDidConnect(player: GKPlayer, connected: boolean): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 2511144738732108, this, [player, connected]); }
+  setHostedPlayerDidConnect(player: GKPlayer, connected: boolean): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 2511144738732108, this, [player, connected]); }
   /**
    * var canStartWithMinimumPlayers: Bool { get set }
    * @availability iOS 15.0+
    */
-  get canStartWithMinimumPlayers(): Promise<boolean> { return callSDKAsync<boolean>("GameKit_3864e7f38681b875", 3618616166042036, this, []); }
-  setCanStartWithMinimumPlayers(value: boolean): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 402745578850364, this, [value]); }
+  get canStartWithMinimumPlayers(): Promise<boolean> { return callSDKAsync<boolean>("GameKit_ff42ce03e691ab23", 3618616166042036, this, []); }
+  setCanStartWithMinimumPlayers(value: boolean): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 402745578850364, this, [value]); }
   /**
    * var isHosted: Bool { get set }
    * @availability iOS 4.1+
    */
-  get isHosted(): Promise<boolean> { return callSDKAsync<boolean>("GameKit_3864e7f38681b875", 1318949325180048, this, []); }
-  setIsHosted(value: boolean): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 3356450724089839, this, [value]); }
+  get isHosted(): Promise<boolean> { return callSDKAsync<boolean>("GameKit_ff42ce03e691ab23", 1318949325180048, this, []); }
+  setIsHosted(value: boolean): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 3356450724089839, this, [value]); }
   /**
    * var matchRequest: GKMatchRequest { get }
    * @availability iOS 4.1+
    */
-  get matchRequest(): Promise<GKMatchRequest> { return callSDKAsync<GKMatchRequest>("GameKit_3864e7f38681b875", 102039247519467, this, []); }
+  get matchRequest(): Promise<GKMatchRequest> { return callSDKAsync<GKMatchRequest>("GameKit_ff42ce03e691ab23", 102039247519467, this, []); }
   /**
    * weak var matchmakerDelegate: (any GKMatchmakerViewControllerDelegate)? { get set }
    * @availability iOS 4.1+
    */
-  get matchmakerDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GameKit_3864e7f38681b875", 3247490845333590, this, []); }
-  setMatchmakerDelegate(value?: (Implements<GKMatchmakerViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 4381645471930643, this, [value], [{"protocol":"c:objc(pl)GKMatchmakerViewControllerDelegate"}]); }
+  get matchmakerDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GameKit_ff42ce03e691ab23", 3247490845333590, this, []); }
+  setMatchmakerDelegate(value?: (Implements<GKMatchmakerViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 4381645471930643, this, [value], [{"protocol":"c:objc(pl)GKMatchmakerViewControllerDelegate"}]); }
   /**
    * var matchmakingMode: GKMatchmakingMode { get set }
    * @availability iOS 14.0+
    */
-  get matchmakingMode(): Promise<GKMatchmakingMode> { return callSDKAsync<GKMatchmakingMode>("GameKit_3864e7f38681b875", 499140882449071, this, []); }
-  setMatchmakingMode(value: GKMatchmakingMode): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 3262893813006065, this, [value]); }
+  get matchmakingMode(): Promise<GKMatchmakingMode> { return callSDKAsync<GKMatchmakingMode>("GameKit_ff42ce03e691ab23", 499140882449071, this, []); }
+  setMatchmakingMode(value: GKMatchmakingMode): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 3262893813006065, this, [value]); }
   declare readonly $type: { "c:objc(cs)GKMatchmakerViewController": true; "c:objc(cs)UINavigationController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "canStartWithMinimumPlayers": true; "isHosted": true; "matchRequest": true; "matchmakerDelegate": true; "matchmakingMode": true };
 }
@@ -2881,7 +2881,7 @@ export const GKMatchmakingMode = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (GKMatchmakingMode) | null { return callSDK<(GKMatchmakingMode) | null>("GameKit_3864e7f38681b875", 191146979961359, undefined, [rawValue]); }
+  init(rawValue: number): (GKMatchmakingMode) | null { return callSDK<(GKMatchmakingMode) | null>("GameKit_ff42ce03e691ab23", 191146979961359, undefined, [rawValue]); }
 };
 
 /**
@@ -2893,96 +2893,96 @@ export class GKMatchRequest extends SDKHandle {
    * class func maxPlayersAllowedForMatch(of matchType: GKMatchType) -> Int
    * @availability iOS 6.0+
    */
-  static maxPlayersAllowedForMatch(matchType: GKMatchType): number { return callSDK<number>("GameKit_3864e7f38681b875", 3134684804981177, undefined, [matchType]); }
+  static maxPlayersAllowedForMatch(matchType: GKMatchType): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 3134684804981177, undefined, [matchType]); }
   /** init() */
-  static init(): GKMatchRequest { return callSDK<GKMatchRequest>("GameKit_3864e7f38681b875", 2806166332932867, undefined, []); }
+  static init(): GKMatchRequest { return callSDK<GKMatchRequest>("GameKit_ff42ce03e691ab23", 2806166332932867, undefined, []); }
   /**
    * var defaultNumberOfPlayers: Int { get set }
    * @availability iOS 6.0+
    */
-  get defaultNumberOfPlayers(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2223091768304479, this, []); }
-  set defaultNumberOfPlayers(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 626422376392404, this, [value]); }
+  get defaultNumberOfPlayers(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2223091768304479, this, []); }
+  set defaultNumberOfPlayers(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 626422376392404, this, [value]); }
   /**
    * var inviteMessage: String? { get set }
    * @availability iOS 6.0+
    */
-  get inviteMessage(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 3221597140297959, this, []); }
-  set inviteMessage(value: (string) | null) { callSDK<void>("GameKit_3864e7f38681b875", 4324441011268020, this, [value]); }
+  get inviteMessage(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 3221597140297959, this, []); }
+  set inviteMessage(value: (string) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 4324441011268020, this, [value]); }
   /**
    * var inviteeResponseHandler: ((String, GKInviteeResponse) -> Void)? { get set }
    * @availability iOS 6.0+
    * @deprecated iOS 8.0
    */
-  get inviteeResponseHandler(): (((arg0: string, arg1: GKInviteRecipientResponse) => Promise<void>)) | null { return callSDK<(((arg0: string, arg1: GKInviteRecipientResponse) => Promise<void>)) | null>("GameKit_3864e7f38681b875", 4328512450185725, this, []); }
-  set inviteeResponseHandler(value: (((arg0: string, arg1: GKInviteRecipientResponse) => void)) | null) { callSDK<void>("GameKit_3864e7f38681b875", 2287637011102732, this, [value], [{"callback":{"out":[]}}]); }
+  get inviteeResponseHandler(): (((arg0: string, arg1: GKInviteRecipientResponse) => Promise<void>)) | null { return callSDK<(((arg0: string, arg1: GKInviteRecipientResponse) => Promise<void>)) | null>("GameKit_ff42ce03e691ab23", 4328512450185725, this, []); }
+  set inviteeResponseHandler(value: (((arg0: string, arg1: GKInviteRecipientResponse) => void)) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 2287637011102732, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var maxPlayers: Int { get set }
    * @availability iOS 4.1+
    */
-  get maxPlayers(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2586401444587046, this, []); }
-  set maxPlayers(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 509210401793773, this, [value]); }
+  get maxPlayers(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2586401444587046, this, []); }
+  set maxPlayers(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 509210401793773, this, [value]); }
   /**
    * var minPlayers: Int { get set }
    * @availability iOS 4.1+
    */
-  get minPlayers(): number { return callSDK<number>("GameKit_3864e7f38681b875", 3844145522806432, this, []); }
-  set minPlayers(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 4093335830065621, this, [value]); }
+  get minPlayers(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 3844145522806432, this, []); }
+  set minPlayers(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 4093335830065621, this, [value]); }
   /**
    * var playerAttributes: UInt32 { get set }
    * @availability iOS 4.1+
    */
-  get playerAttributes(): number { return callSDK<number>("GameKit_3864e7f38681b875", 301692979955242, this, []); }
-  set playerAttributes(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 399658084852973, this, [value]); }
+  get playerAttributes(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 301692979955242, this, []); }
+  set playerAttributes(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 399658084852973, this, [value]); }
   /**
    * var playerGroup: Int { get set }
    * @availability iOS 4.1+
    */
-  get playerGroup(): number { return callSDK<number>("GameKit_3864e7f38681b875", 663864459929650, this, []); }
-  set playerGroup(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 1527814596344679, this, [value]); }
+  get playerGroup(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 663864459929650, this, []); }
+  set playerGroup(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 1527814596344679, this, [value]); }
   /**
    * var playersToInvite: [String]? { get set }
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  get playersToInvite(): (Array<string>) | null { return callSDK<(Array<string>) | null>("GameKit_3864e7f38681b875", 3625453640186549, this, []); }
-  set playersToInvite(value: (Array<string>) | null) { callSDK<void>("GameKit_3864e7f38681b875", 1196215146038273, this, [value]); }
+  get playersToInvite(): (Array<string>) | null { return callSDK<(Array<string>) | null>("GameKit_ff42ce03e691ab23", 3625453640186549, this, []); }
+  set playersToInvite(value: (Array<string>) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 1196215146038273, this, [value]); }
   /**
    * var properties: [String : Any]? { get set }
    * @availability iOS 17.2+
    */
-  get properties(): $SDK56 { return callSDK<$SDK56>("GameKit_3864e7f38681b875", 3673491248488280, this, []); }
-  set properties(value: $SDK56) { callSDK<void>("GameKit_3864e7f38681b875", 3758818037623363, this, [value]); }
+  get properties(): $SDK56 { return callSDK<$SDK56>("GameKit_ff42ce03e691ab23", 3673491248488280, this, []); }
+  set properties(value: $SDK56) { callSDK<void>("GameKit_ff42ce03e691ab23", 3758818037623363, this, [value]); }
   /**
    * var queueName: String? { get set }
    * @availability iOS 17.2+
    */
-  get queueName(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 552098842364975, this, []); }
-  set queueName(value: (string) | null) { callSDK<void>("GameKit_3864e7f38681b875", 80357014045450, this, [value]); }
+  get queueName(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 552098842364975, this, []); }
+  set queueName(value: (string) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 80357014045450, this, [value]); }
   /**
    * var recipientProperties: [GKPlayer : [String : Any]]? { get set }
    * @availability iOS 17.2+
    */
-  get recipientProperties(): $SDK55 { return callSDK<$SDK55>("GameKit_3864e7f38681b875", 2821018689906860, this, []); }
-  set recipientProperties(value: $SDK55) { callSDK<void>("GameKit_3864e7f38681b875", 2431922083630606, this, [value]); }
+  get recipientProperties(): $SDK55 { return callSDK<$SDK55>("GameKit_ff42ce03e691ab23", 2821018689906860, this, []); }
+  set recipientProperties(value: $SDK55) { callSDK<void>("GameKit_ff42ce03e691ab23", 2431922083630606, this, [value]); }
   /**
    * var recipientResponseHandler: ((GKPlayer, GKInviteRecipientResponse) -> Void)? { get set }
    * @availability iOS 8.0+
    */
-  get recipientResponseHandler(): (((arg0: GKPlayer, arg1: GKInviteRecipientResponse) => Promise<void>)) | null { return callSDK<(((arg0: GKPlayer, arg1: GKInviteRecipientResponse) => Promise<void>)) | null>("GameKit_3864e7f38681b875", 1545533049079409, this, []); }
-  set recipientResponseHandler(value: (((arg0: GKPlayer, arg1: GKInviteRecipientResponse) => void)) | null) { callSDK<void>("GameKit_3864e7f38681b875", 3453400181819608, this, [value], [{"callback":{"out":[]}}]); }
+  get recipientResponseHandler(): (((arg0: GKPlayer, arg1: GKInviteRecipientResponse) => Promise<void>)) | null { return callSDK<(((arg0: GKPlayer, arg1: GKInviteRecipientResponse) => Promise<void>)) | null>("GameKit_ff42ce03e691ab23", 1545533049079409, this, []); }
+  set recipientResponseHandler(value: (((arg0: GKPlayer, arg1: GKInviteRecipientResponse) => void)) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 3453400181819608, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var recipients: [GKPlayer]? { get set }
    * @availability iOS 8.0+
    */
-  get recipients(): $SDK41 { return callSDK<$SDK41>("GameKit_3864e7f38681b875", 174632384723467, this, []); }
-  set recipients(value: $SDK41) { callSDK<void>("GameKit_3864e7f38681b875", 4438774016395992, this, [value]); }
+  get recipients(): $SDK41 { return callSDK<$SDK41>("GameKit_ff42ce03e691ab23", 174632384723467, this, []); }
+  set recipients(value: $SDK41) { callSDK<void>("GameKit_ff42ce03e691ab23", 4438774016395992, this, [value]); }
   /**
    * var restrictToAutomatch: Bool { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get restrictToAutomatch(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 3975470443417713, this, []); }
-  set restrictToAutomatch(value: boolean) { callSDK<void>("GameKit_3864e7f38681b875", 3111781725707390, this, [value]); }
+  get restrictToAutomatch(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 3975470443417713, this, []); }
+  set restrictToAutomatch(value: boolean) { callSDK<void>("GameKit_ff42ce03e691ab23", 3111781725707390, this, [value]); }
   declare readonly $type: { "c:objc(cs)GKMatchRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "defaultNumberOfPlayers": true; "inviteMessage": true; "maxPlayers": true; "minPlayers": true; "playerAttributes": true; "playerGroup": true; "playersToInvite": true; "properties": true; "queueName": true; "recipientProperties": true; "recipients": true; "restrictToAutomatch": true };
 }
@@ -2998,7 +2998,7 @@ export const GKMatchType = {
    * init?(rawValue: UInt)
    * @availability iOS 6.0+
    */
-  init(rawValue: number): (GKMatchType) | null { return callSDK<(GKMatchType) | null>("GameKit_3864e7f38681b875", 3193417057959291, undefined, [rawValue]); }
+  init(rawValue: number): (GKMatchType) | null { return callSDK<(GKMatchType) | null>("GameKit_ff42ce03e691ab23", 3193417057959291, undefined, [rawValue]); }
 };
 
 /**
@@ -3012,15 +3012,15 @@ export class GKNotificationBanner extends SDKHandle {
    * @availability iOS 5.0+
    * @deprecated iOS 16.1
    */
-  static showWithTitleMessageCompletionHandler(title?: (string) | null, message?: (string) | null, completionHandler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 2181267583799635, undefined, [title, message, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static showWithTitleMessageCompletionHandler(title?: (string) | null, message?: (string) | null, completionHandler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2181267583799635, undefined, [title, message, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func show(withTitle title: String?, message: String?, duration: TimeInterval) async
    * @availability iOS 5.0+
    * @deprecated iOS 16.1
    */
-  static showWithTitleMessageDurationCompletionHandler(title: (string) | null, message: (string) | null, duration: number, completionHandler?: ((() => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 598460726113752, undefined, [title, message, duration, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static showWithTitleMessageDurationCompletionHandler(title: (string) | null, message: (string) | null, duration: number, completionHandler?: ((() => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 598460726113752, undefined, [title, message, duration, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): GKNotificationBanner { return callSDK<GKNotificationBanner>("GameKit_3864e7f38681b875", 1705881421357750, undefined, []); }
+  static init(): GKNotificationBanner { return callSDK<GKNotificationBanner>("GameKit_ff42ce03e691ab23", 1705881421357750, undefined, []); }
   declare readonly $type: { "c:objc(cs)GKNotificationBanner": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3035,7 +3035,7 @@ export const GKPlayer_PhotoSize = {
    * init?(rawValue: Int)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GKPlayer_PhotoSize) | null { return callSDK<(GKPlayer_PhotoSize) | null>("GameKit_3864e7f38681b875", 2647628681402882, undefined, [rawValue]); }
+  init(rawValue: number): (GKPlayer_PhotoSize) | null { return callSDK<(GKPlayer_PhotoSize) | null>("GameKit_ff42ce03e691ab23", 2647628681402882, undefined, [rawValue]); }
 };
 
 /**
@@ -3049,7 +3049,7 @@ export const GKPlayerConnectionState = {
    * init?(rawValue: Int)
    * @availability iOS 4.0+
    */
-  init(rawValue: number): (GKPlayerConnectionState) | null { return callSDK<(GKPlayerConnectionState) | null>("GameKit_3864e7f38681b875", 3353182963405364, undefined, [rawValue]); }
+  init(rawValue: number): (GKPlayerConnectionState) | null { return callSDK<(GKPlayerConnectionState) | null>("GameKit_ff42ce03e691ab23", 3353182963405364, undefined, [rawValue]); }
 };
 
 /**
@@ -3063,17 +3063,17 @@ export const GKReleaseState = {
    * static var prereleased: GKReleaseState { get }
    * @availability iOS 18.4+
    */
-  get prereleased(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_3864e7f38681b875", 678325114065946, undefined, []); },
+  get prereleased(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_ff42ce03e691ab23", 678325114065946, undefined, []); },
   /**
    * static var released: GKReleaseState { get }
    * @availability iOS 18.4+
    */
-  get released(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_3864e7f38681b875", 2910673256564520, undefined, []); },
+  get released(): GKReleaseState { return callSDK<GKReleaseState>("GameKit_ff42ce03e691ab23", 2910673256564520, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): GKReleaseState { return callSDK<GKReleaseState>("GameKit_3864e7f38681b875", 1278080439110179, undefined, [rawValue]); }
+  init(rawValue: number): GKReleaseState { return callSDK<GKReleaseState>("GameKit_ff42ce03e691ab23", 1278080439110179, undefined, [rawValue]); }
 };
 
 /**
@@ -3082,27 +3082,27 @@ export const GKReleaseState = {
  */
 export class GKSavedGame extends SDKHandle {
   /** init() */
-  static init(): GKSavedGame { return callSDK<GKSavedGame>("GameKit_3864e7f38681b875", 2537968072323450, undefined, []); }
+  static init(): GKSavedGame { return callSDK<GKSavedGame>("GameKit_ff42ce03e691ab23", 2537968072323450, undefined, []); }
   /**
    * func loadData() async throws -> Data
    * @availability iOS 8.0+
    */
-  loadData(handler?: $SDK67): void { return callSDK<void>("GameKit_3864e7f38681b875", 690688610158019, this, [handler], [{"callback":{"out":[]}}]); }
+  loadData(handler?: $SDK67): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 690688610158019, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * var deviceName: String? { get }
    * @availability iOS 8.0+
    */
-  get deviceName(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 4465607655908737, this, []); }
+  get deviceName(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 4465607655908737, this, []); }
   /**
    * var modificationDate: Date? { get }
    * @availability iOS 8.0+
    */
-  get modificationDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 66849086660423, this, []); }
+  get modificationDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 66849086660423, this, []); }
   /**
    * var name: String? { get }
    * @availability iOS 8.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 1664100911702455, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 1664100911702455, this, []); }
   declare readonly $type: { "c:objc(cs)GKSavedGame": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deviceName": true; "modificationDate": true; "name": true };
 }
@@ -3135,113 +3135,113 @@ export class GKScore extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 26.0
    */
-  static reportWithEligibleChallengesWithCompletionHandler(scores: $SDK25, challenges: Array<GKChallenge>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 2642815175752052, undefined, [scores, challenges, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static reportWithEligibleChallengesWithCompletionHandler(scores: $SDK25, challenges: Array<GKChallenge>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2642815175752052, undefined, [scores, challenges, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func report(_ scores: [GKScore]) async throws
    * @availability iOS 6.0+
    * @deprecated iOS 14.0
    */
-  static reportWithCompletionHandler(scores: Array<GKScore>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 3844771153546794, undefined, [scores, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static reportWithCompletionHandler(scores: Array<GKScore>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3844771153546794, undefined, [scores, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func report(_ scores: [GKScore], withEligibleChallenges challenges: [GKChallenge]) async throws
    * @availability iOS 6.0+
    * @deprecated iOS 14.0
    */
-  static reportWithEligibleChallengesWithCompletionHandler70774(scores: Array<GKScore>, challenges: Array<GKChallenge>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 1779396765780862, undefined, [scores, challenges, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static reportWithEligibleChallengesWithCompletionHandler70774(scores: Array<GKScore>, challenges: Array<GKChallenge>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1779396765780862, undefined, [scores, challenges, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func challengeComposeController(withMessage message: String?, players: [GKPlayer]?, completion completionHandler: GKChallengeComposeHandler? = nil) -> UIViewController
    * @availability iOS 17.0+
    * @deprecated iOS 26.0
    */
-  challengeComposeControllerWithMessagePlayersCompletion(message?: (string) | null, players?: $SDK41, completionHandler?: $SDK4): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_3864e7f38681b875", 2213340752018218, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  challengeComposeControllerWithMessagePlayersCompletion(message?: (string) | null, players?: $SDK41, completionHandler?: $SDK4): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_ff42ce03e691ab23", 2213340752018218, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func challengeComposeController(withMessage message: String?, players: [GKPlayer]?, completionHandler: GKChallengeComposeCompletionBlock? = nil) -> UIViewController
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  challengeComposeControllerWithMessagePlayersCompletionHandler(message?: (string) | null, players?: $SDK41, completionHandler?: $SDK5): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_3864e7f38681b875", 2424027656382943, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  challengeComposeControllerWithMessagePlayersCompletionHandler(message?: (string) | null, players?: $SDK41, completionHandler?: $SDK5): _UIKit_UIViewController { return callSDK<_UIKit_UIViewController>("GameKit_ff42ce03e691ab23", 2424027656382943, this, [message, players, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func challengeComposeController(withPlayers playerIDs: [String]?, message: String?, completionHandler: GKChallengeComposeCompletionBlock? = nil) -> UIViewController?
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  challengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs?: (Array<string>) | null, message?: (string) | null, completionHandler?: $SDK5): $SDK6 { return callSDK<$SDK6>("GameKit_3864e7f38681b875", 854001629781022, this, [playerIDs, message, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  challengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs?: (Array<string>) | null, message?: (string) | null, completionHandler?: $SDK5): $SDK6 { return callSDK<$SDK6>("GameKit_ff42ce03e691ab23", 854001629781022, this, [playerIDs, message, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(leaderboardIdentifier identifier: String)
    * @availability iOS 4.1+
    * @deprecated iOS 14.0
    */
-  static initLeaderboardIdentifier(identifier: string): GKScore { return callSDK<GKScore>("GameKit_3864e7f38681b875", 1155679428989926, undefined, [identifier]); }
+  static initLeaderboardIdentifier(identifier: string): GKScore { return callSDK<GKScore>("GameKit_ff42ce03e691ab23", 1155679428989926, undefined, [identifier]); }
   /**
    * init?(leaderboardIdentifier identifier: String, forPlayer playerID: String)
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  static initLeaderboardIdentifierForPlayer(identifier: string, playerID: string): (GKScore) | null { return callSDK<(GKScore) | null>("GameKit_3864e7f38681b875", 2281247292193415, undefined, [identifier, playerID]); }
+  static initLeaderboardIdentifierForPlayer(identifier: string, playerID: string): (GKScore) | null { return callSDK<(GKScore) | null>("GameKit_ff42ce03e691ab23", 2281247292193415, undefined, [identifier, playerID]); }
   /**
    * init(leaderboardIdentifier identifier: String, player: GKPlayer)
    * @availability iOS 8.0+
    * @deprecated iOS 14.0
    */
-  static initLeaderboardIdentifierPlayer(identifier: string, player: GKPlayer): GKScore { return callSDK<GKScore>("GameKit_3864e7f38681b875", 3192807776088057, undefined, [identifier, player]); }
+  static initLeaderboardIdentifierPlayer(identifier: string, player: GKPlayer): GKScore { return callSDK<GKScore>("GameKit_ff42ce03e691ab23", 3192807776088057, undefined, [identifier, player]); }
   /**
    * var context: UInt64 { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 14.0
    */
-  get context(): number { return callSDK<number>("GameKit_3864e7f38681b875", 1981623082759152, this, []); }
-  set context(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 2052575595554930, this, [value]); }
+  get context(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 1981623082759152, this, []); }
+  set context(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 2052575595554930, this, [value]); }
   /**
    * var date: Date { get }
    * @availability iOS 4.1+
    * @deprecated iOS 14.0
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_3864e7f38681b875", 1825965550998455, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_ff42ce03e691ab23", 1825965550998455, this, []); }
   /**
    * var formattedValue: String? { get }
    * @availability iOS 4.1+
    * @deprecated iOS 14.0
    */
-  get formattedValue(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 2309368188386013, this, []); }
+  get formattedValue(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 2309368188386013, this, []); }
   /**
    * var leaderboardIdentifier: String { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 14.0
    */
-  get leaderboardIdentifier(): string { return callSDK<string>("GameKit_3864e7f38681b875", 246550738266555, this, []); }
-  set leaderboardIdentifier(value: string) { callSDK<void>("GameKit_3864e7f38681b875", 466668279103458, this, [value]); }
+  get leaderboardIdentifier(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 246550738266555, this, []); }
+  set leaderboardIdentifier(value: string) { callSDK<void>("GameKit_ff42ce03e691ab23", 466668279103458, this, [value]); }
   /**
    * var player: GKPlayer { get }
    * @availability iOS 8.0+
    * @deprecated iOS 14.0
    */
-  get player(): GKPlayer { return callSDK<GKPlayer>("GameKit_3864e7f38681b875", 1360925095851146, this, []); }
+  get player(): GKPlayer { return callSDK<GKPlayer>("GameKit_ff42ce03e691ab23", 1360925095851146, this, []); }
   /**
    * var playerID: String? { get }
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  get playerID(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 3675859411574023, this, []); }
+  get playerID(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 3675859411574023, this, []); }
   /**
    * var rank: Int { get }
    * @availability iOS 4.1+
    * @deprecated iOS 14.0
    */
-  get rank(): number { return callSDK<number>("GameKit_3864e7f38681b875", 529067206990278, this, []); }
+  get rank(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 529067206990278, this, []); }
   /**
    * var shouldSetDefaultLeaderboard: Bool { get set }
    * @availability iOS 5.0+
    * @deprecated iOS 14.0
    */
-  get shouldSetDefaultLeaderboard(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 4253541629650818, this, []); }
-  set shouldSetDefaultLeaderboard(value: boolean) { callSDK<void>("GameKit_3864e7f38681b875", 207649984465755, this, [value]); }
+  get shouldSetDefaultLeaderboard(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 4253541629650818, this, []); }
+  set shouldSetDefaultLeaderboard(value: boolean) { callSDK<void>("GameKit_ff42ce03e691ab23", 207649984465755, this, [value]); }
   /**
    * var value: Int64 { get set }
    * @availability iOS 4.1+
    * @deprecated iOS 14.0
    */
-  get value(): number { return callSDK<number>("GameKit_3864e7f38681b875", 528405580007736, this, []); }
-  set value(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 493568897136951, this, [value]); }
+  get value(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 528405580007736, this, []); }
+  set value(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 493568897136951, this, [value]); }
   declare readonly $type: { "c:objc(cs)GKScore": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "context": true; "date": true; "formattedValue": true; "leaderboardIdentifier": true; "player": true; "playerID": true; "rank": true; "shouldSetDefaultLeaderboard": true; "value": true };
 }
@@ -3253,19 +3253,19 @@ export class GKScore extends SDKHandle {
  */
 export class GKScoreChallenge extends (GKChallenge as unknown as Omit<typeof GKChallenge, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKChallenge)) {
   /** init() */
-  static init(): GKScoreChallenge { return callSDK<GKScoreChallenge>("GameKit_3864e7f38681b875", 3115994412828708, undefined, []); }
+  static init(): GKScoreChallenge { return callSDK<GKScoreChallenge>("GameKit_ff42ce03e691ab23", 3115994412828708, undefined, []); }
   /**
    * var leaderboardEntry: GKLeaderboard.Entry? { get }
    * @availability iOS 17.4+
    * @deprecated iOS 26.0
    */
-  get leaderboardEntry(): (GKLeaderboard_Entry) | null { return callSDK<(GKLeaderboard_Entry) | null>("GameKit_3864e7f38681b875", 191822112151804, this, []); }
+  get leaderboardEntry(): (GKLeaderboard_Entry) | null { return callSDK<(GKLeaderboard_Entry) | null>("GameKit_ff42ce03e691ab23", 191822112151804, this, []); }
   /**
    * var score: GKScore? { get }
    * @availability iOS 6.0+
    * @deprecated iOS 17.4
    */
-  get score(): (GKScore) | null { return callSDK<(GKScore) | null>("GameKit_3864e7f38681b875", 899575230467207, this, []); }
+  get score(): (GKScore) | null { return callSDK<(GKScore) | null>("GameKit_ff42ce03e691ab23", 899575230467207, this, []); }
   declare readonly $type: { "c:objc(cs)GKScoreChallenge": true; "c:objc(cs)GKChallenge": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "completionDate": true; "issueDate": true; "issuingPlayer": true; "issuingPlayerID": true; "message": true; "receivingPlayer": true; "receivingPlayerID": true; "state": true; "leaderboardEntry": true; "score": true };
 }
@@ -3281,7 +3281,7 @@ export const GKTransportType = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (GKTransportType) | null { return callSDK<(GKTransportType) | null>("GameKit_3864e7f38681b875", 2012976427517279, undefined, [rawValue]); }
+  init(rawValue: number): (GKTransportType) | null { return callSDK<(GKTransportType) | null>("GameKit_ff42ce03e691ab23", 2012976427517279, undefined, [rawValue]); }
 };
 
 /**
@@ -3341,64 +3341,64 @@ export class GKTurnBasedExchange extends SDKHandle {
    * func cancel(withLocalizableMessageKey key: String, arguments: [String]) async throws
    * @availability iOS 7.0+
    */
-  cancel(key: string, arguments_: Array<string>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 122386221581168, this, [key, arguments_, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  cancel(key: string, arguments_: Array<string>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 122386221581168, this, [key, arguments_, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): GKTurnBasedExchange { return callSDK<GKTurnBasedExchange>("GameKit_3864e7f38681b875", 440428801313873, undefined, []); }
+  static init(): GKTurnBasedExchange { return callSDK<GKTurnBasedExchange>("GameKit_ff42ce03e691ab23", 440428801313873, undefined, []); }
   /**
    * func reply(withLocalizableMessageKey key: String, arguments: [String], data: Data) async throws
    * @availability iOS 7.0+
    */
-  reply(key: string, arguments_: Array<string>, data: ArrayBuffer, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 3728638677237115, this, [key, arguments_, data, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  reply(key: string, arguments_: Array<string>, data: ArrayBuffer, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3728638677237115, this, [key, arguments_, data, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * var completionDate: Date? { get }
    * @availability iOS 7.0+
    */
-  get completionDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 4486254850365958, this, []); }
+  get completionDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 4486254850365958, this, []); }
   /**
    * var data: Data? { get }
    * @availability iOS 7.0+
    */
-  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameKit_3864e7f38681b875", 830700340330271, this, []); }
+  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameKit_ff42ce03e691ab23", 830700340330271, this, []); }
   /**
    * var exchangeID: String { get }
    * @availability iOS 7.0+
    */
-  get exchangeID(): string { return callSDK<string>("GameKit_3864e7f38681b875", 363271210748079, this, []); }
+  get exchangeID(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 363271210748079, this, []); }
   /**
    * var message: String? { get }
    * @availability iOS 7.0+
    */
-  get message(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 1313370155592535, this, []); }
+  get message(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 1313370155592535, this, []); }
   /**
    * var recipients: [GKTurnBasedParticipant] { get }
    * @availability iOS 7.0+
    */
-  get recipients(): $SDK69 { return callSDK<$SDK69>("GameKit_3864e7f38681b875", 1931537304144317, this, []); }
+  get recipients(): $SDK69 { return callSDK<$SDK69>("GameKit_ff42ce03e691ab23", 1931537304144317, this, []); }
   /**
    * var replies: [GKTurnBasedExchangeReply]? { get }
    * @availability iOS 7.0+
    */
-  get replies(): (Array<GKTurnBasedExchangeReply>) | null { return callSDK<(Array<GKTurnBasedExchangeReply>) | null>("GameKit_3864e7f38681b875", 108017004337628, this, []); }
+  get replies(): (Array<GKTurnBasedExchangeReply>) | null { return callSDK<(Array<GKTurnBasedExchangeReply>) | null>("GameKit_ff42ce03e691ab23", 108017004337628, this, []); }
   /**
    * var sendDate: Date { get }
    * @availability iOS 7.0+
    */
-  get sendDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_3864e7f38681b875", 255081224779150, this, []); }
+  get sendDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_ff42ce03e691ab23", 255081224779150, this, []); }
   /**
    * var sender: GKTurnBasedParticipant { get }
    * @availability iOS 7.0+
    */
-  get sender(): GKTurnBasedParticipant { return callSDK<GKTurnBasedParticipant>("GameKit_3864e7f38681b875", 4424321807773444, this, []); }
+  get sender(): GKTurnBasedParticipant { return callSDK<GKTurnBasedParticipant>("GameKit_ff42ce03e691ab23", 4424321807773444, this, []); }
   /**
    * var status: GKTurnBasedExchangeStatus { get }
    * @availability iOS 7.0+
    */
-  get status(): GKTurnBasedExchangeStatus { return callSDK<GKTurnBasedExchangeStatus>("GameKit_3864e7f38681b875", 2532979485989951, this, []); }
+  get status(): GKTurnBasedExchangeStatus { return callSDK<GKTurnBasedExchangeStatus>("GameKit_ff42ce03e691ab23", 2532979485989951, this, []); }
   /**
    * var timeoutDate: Date? { get }
    * @availability iOS 7.0+
    */
-  get timeoutDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 4224148189157232, this, []); }
+  get timeoutDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 4224148189157232, this, []); }
   declare readonly $type: { "c:objc(cs)GKTurnBasedExchange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "completionDate": true; "data": true; "exchangeID": true; "message": true; "recipients": true; "replies": true; "sendDate": true; "sender": true; "status": true; "timeoutDate": true };
 }
@@ -3409,27 +3409,27 @@ export class GKTurnBasedExchange extends SDKHandle {
  */
 export class GKTurnBasedExchangeReply extends SDKHandle {
   /** init() */
-  static init(): GKTurnBasedExchangeReply { return callSDK<GKTurnBasedExchangeReply>("GameKit_3864e7f38681b875", 3170286580866262, undefined, []); }
+  static init(): GKTurnBasedExchangeReply { return callSDK<GKTurnBasedExchangeReply>("GameKit_ff42ce03e691ab23", 3170286580866262, undefined, []); }
   /**
    * var data: Data? { get }
    * @availability iOS 7.0+
    */
-  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameKit_3864e7f38681b875", 226780619577112, this, []); }
+  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameKit_ff42ce03e691ab23", 226780619577112, this, []); }
   /**
    * var message: String? { get }
    * @availability iOS 7.0+
    */
-  get message(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 723253790292860, this, []); }
+  get message(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 723253790292860, this, []); }
   /**
    * var recipient: GKTurnBasedParticipant { get }
    * @availability iOS 7.0+
    */
-  get recipient(): GKTurnBasedParticipant { return callSDK<GKTurnBasedParticipant>("GameKit_3864e7f38681b875", 774302443601689, this, []); }
+  get recipient(): GKTurnBasedParticipant { return callSDK<GKTurnBasedParticipant>("GameKit_ff42ce03e691ab23", 774302443601689, this, []); }
   /**
    * var replyDate: Date { get }
    * @availability iOS 8.0+
    */
-  get replyDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_3864e7f38681b875", 1016392868742279, this, []); }
+  get replyDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_ff42ce03e691ab23", 1016392868742279, this, []); }
   declare readonly $type: { "c:objc(cs)GKTurnBasedExchangeReply": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "message": true; "recipient": true; "replyDate": true };
 }
@@ -3445,7 +3445,7 @@ export const GKTurnBasedExchangeStatus = {
    * init?(rawValue: Int8)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (GKTurnBasedExchangeStatus) | null { return callSDK<(GKTurnBasedExchangeStatus) | null>("GameKit_3864e7f38681b875", 3883820199660187, undefined, [rawValue]); }
+  init(rawValue: number): (GKTurnBasedExchangeStatus) | null { return callSDK<(GKTurnBasedExchangeStatus) | null>("GameKit_ff42ce03e691ab23", 3883820199660187, undefined, [rawValue]); }
 };
 
 /**
@@ -3457,166 +3457,166 @@ export class GKTurnBasedMatch extends SDKHandle {
    * class func find(for request: GKMatchRequest) async throws -> GKTurnBasedMatch
    * @availability iOS 5.0+
    */
-  static find(request: GKMatchRequest, completionHandler: ((arg0: (GKTurnBasedMatch) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_3864e7f38681b875", 3901864494304179, undefined, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static find(request: GKMatchRequest, completionHandler: ((arg0: (GKTurnBasedMatch) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3901864494304179, undefined, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func load(withID matchID: String) async throws -> GKTurnBasedMatch
    * @availability iOS 5.0+
    */
-  static load(matchID: string, completionHandler?: $SDK72): void { return callSDK<void>("GameKit_3864e7f38681b875", 2068321941411338, undefined, [matchID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static load(matchID: string, completionHandler?: $SDK72): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2068321941411338, undefined, [matchID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func loadMatches() async throws -> [GKTurnBasedMatch]
    * @availability iOS 5.0+
    */
-  static loadMatches(completionHandler?: (((arg0: (Array<GKTurnBasedMatch>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 492555627474912, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static loadMatches(completionHandler?: (((arg0: (Array<GKTurnBasedMatch>) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 492555627474912, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func acceptInvite() async throws -> GKTurnBasedMatch
    * @availability iOS 5.0+
    */
-  acceptInvite(completionHandler?: $SDK72): void { return callSDK<void>("GameKit_3864e7f38681b875", 549668054640732, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  acceptInvite(completionHandler?: $SDK72): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 549668054640732, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func declineInvite() async throws
    * @availability iOS 5.0+
    */
-  declineInvite(completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 3047380887246601, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  declineInvite(completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3047380887246601, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func endMatchInTurn(withMatch matchData: Data) async throws
    * @availability iOS 5.0+
    */
-  endMatchInTurnWithMatchCompletionHandler(matchData: ArrayBuffer, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 4424550692165863, this, [matchData, completionHandler], [null,{"callback":{"out":[]}}]); }
+  endMatchInTurnWithMatchCompletionHandler(matchData: ArrayBuffer, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4424550692165863, this, [matchData, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func endMatchInTurn(withMatch matchData: Data, leaderboardScores scores: [GKLeaderboardScore], achievements: [Any]) async throws
    * @availability iOS 14.0+
    */
-  endMatchInTurnWithMatchLeaderboardScoresAchievementsCompletionHandler(matchData: ArrayBuffer, scores: $SDK25, achievements: Array<unknown>, completionHandler: $SDK33): void { return callSDK<void>("GameKit_3864e7f38681b875", 2237849922750050, this, [matchData, scores, achievements, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  endMatchInTurnWithMatchLeaderboardScoresAchievementsCompletionHandler(matchData: ArrayBuffer, scores: $SDK25, achievements: Array<unknown>, completionHandler: $SDK33): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2237849922750050, this, [matchData, scores, achievements, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func endMatchInTurn(withMatch matchData: Data, scores: [GKScore]?, achievements: [GKAchievement]?) async throws
    * @availability iOS 6.0+
    * @deprecated iOS 14.0
    */
-  endMatchInTurnWithMatchScoresAchievementsCompletionHandler(matchData: ArrayBuffer, scores?: (Array<GKScore>) | null, achievements?: (Array<GKAchievement>) | null, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 3948321787243549, this, [matchData, scores, achievements, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  endMatchInTurnWithMatchScoresAchievementsCompletionHandler(matchData: ArrayBuffer, scores?: (Array<GKScore>) | null, achievements?: (Array<GKAchievement>) | null, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3948321787243549, this, [matchData, scores, achievements, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func endTurn(withNextParticipants nextParticipants: [GKTurnBasedParticipant], turnTimeout timeout: TimeInterval, match matchData: Data) async throws
    * @availability iOS 6.0+
    */
-  endTurn(nextParticipants: $SDK69, timeout: number, matchData: ArrayBuffer, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 4380953915031187, this, [nextParticipants, timeout, matchData, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  endTurn(nextParticipants: $SDK69, timeout: number, matchData: ArrayBuffer, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 4380953915031187, this, [nextParticipants, timeout, matchData, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): GKTurnBasedMatch { return callSDK<GKTurnBasedMatch>("GameKit_3864e7f38681b875", 2594889377555406, undefined, []); }
+  static init(): GKTurnBasedMatch { return callSDK<GKTurnBasedMatch>("GameKit_ff42ce03e691ab23", 2594889377555406, undefined, []); }
   /**
    * func loadMatchData() async throws -> Data?
    * @availability iOS 5.0+
    */
-  loadMatchData(completionHandler?: $SDK67): void { return callSDK<void>("GameKit_3864e7f38681b875", 162230967495615, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadMatchData(completionHandler?: $SDK67): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 162230967495615, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func participantQuitInTurn(with matchOutcome: GKTurnBasedMatch.Outcome, nextParticipants: [GKTurnBasedParticipant], turnTimeout timeout: TimeInterval, match matchData: Data) async throws
    * @availability iOS 6.0+
    */
-  participantQuitInTurn(matchOutcome: GKTurnBasedMatch_Outcome, nextParticipants: $SDK69, timeout: number, matchData: ArrayBuffer, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 747425459410236, this, [matchOutcome, nextParticipants, timeout, matchData, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  participantQuitInTurn(matchOutcome: GKTurnBasedMatch_Outcome, nextParticipants: $SDK69, timeout: number, matchData: ArrayBuffer, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 747425459410236, this, [matchOutcome, nextParticipants, timeout, matchData, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func participantQuitOutOfTurn(with matchOutcome: GKTurnBasedMatch.Outcome) async throws
    * @availability iOS 5.0+
    */
-  participantQuitOutOfTurn(matchOutcome: GKTurnBasedMatch_Outcome, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 2659078660837594, this, [matchOutcome, completionHandler], [null,{"callback":{"out":[]}}]); }
+  participantQuitOutOfTurn(matchOutcome: GKTurnBasedMatch_Outcome, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2659078660837594, this, [matchOutcome, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func rematch() async throws -> GKTurnBasedMatch
    * @availability iOS 6.0+
    */
-  rematch(completionHandler?: $SDK72): void { return callSDK<void>("GameKit_3864e7f38681b875", 3282690378593759, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  rematch(completionHandler?: $SDK72): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3282690378593759, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func remove() async throws
    * @availability iOS 5.0+
    */
-  remove(completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 3893228381655279, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  remove(completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3893228381655279, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func saveCurrentTurn(withMatch matchData: Data) async throws
    * @availability iOS 6.0+
    */
-  saveCurrentTurn(matchData: ArrayBuffer, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 2983442137194911, this, [matchData, completionHandler], [null,{"callback":{"out":[]}}]); }
+  saveCurrentTurn(matchData: ArrayBuffer, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 2983442137194911, this, [matchData, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func saveMergedMatch(_ matchData: Data, withResolvedExchanges exchanges: [GKTurnBasedExchange]) async throws
    * @availability iOS 7.0+
    */
-  saveMergedMatch(matchData: ArrayBuffer, exchanges: Array<GKTurnBasedExchange>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 46499616828181, this, [matchData, exchanges, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  saveMergedMatch(matchData: ArrayBuffer, exchanges: Array<GKTurnBasedExchange>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 46499616828181, this, [matchData, exchanges, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func sendExchange(to participants: [GKTurnBasedParticipant], data: Data, localizableMessageKey key: String, arguments: [String], timeout: TimeInterval) async throws -> GKTurnBasedExchange
    * @availability iOS 7.0+
    */
-  sendExchange(participants: $SDK69, data: ArrayBuffer, key: string, arguments_: Array<string>, timeout: number, completionHandler?: (((arg0: (GKTurnBasedExchange) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 896502898032073, this, [participants, data, key, arguments_, timeout, completionHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  sendExchange(participants: $SDK69, data: ArrayBuffer, key: string, arguments_: Array<string>, timeout: number, completionHandler?: (((arg0: (GKTurnBasedExchange) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 896502898032073, this, [participants, data, key, arguments_, timeout, completionHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func sendReminder(to participants: [GKTurnBasedParticipant], localizableMessageKey key: String, arguments: [String]) async throws
    * @availability iOS 7.0+
    */
-  sendReminder(participants: $SDK69, key: string, arguments_: Array<string>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_3864e7f38681b875", 149797180501443, this, [participants, key, arguments_, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  sendReminder(participants: $SDK69, key: string, arguments_: Array<string>, completionHandler?: $SDK3): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 149797180501443, this, [participants, key, arguments_, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func setLocalizableMessageWithKey(_ key: String, arguments: [String]?)
    * @availability iOS 7.0+
    */
-  setLocalizableMessageWithKey(key: string, arguments_?: (Array<string>) | null): void { return callSDK<void>("GameKit_3864e7f38681b875", 3206855568785692, this, [key, arguments_]); }
+  setLocalizableMessageWithKey(key: string, arguments_?: (Array<string>) | null): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 3206855568785692, this, [key, arguments_]); }
   /**
    * var activeExchanges: [GKTurnBasedExchange]? { get }
    * @availability iOS 7.0+
    */
-  get activeExchanges(): $SDK77 { return callSDK<$SDK77>("GameKit_3864e7f38681b875", 2392052484217401, this, []); }
+  get activeExchanges(): $SDK77 { return callSDK<$SDK77>("GameKit_ff42ce03e691ab23", 2392052484217401, this, []); }
   /**
    * var completedExchanges: [GKTurnBasedExchange]? { get }
    * @availability iOS 7.0+
    */
-  get completedExchanges(): $SDK77 { return callSDK<$SDK77>("GameKit_3864e7f38681b875", 3638705735158578, this, []); }
+  get completedExchanges(): $SDK77 { return callSDK<$SDK77>("GameKit_ff42ce03e691ab23", 3638705735158578, this, []); }
   /**
    * var creationDate: Date { get }
    * @availability iOS 5.0+
    */
-  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_3864e7f38681b875", 3565518329690191, this, []); }
+  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("GameKit_ff42ce03e691ab23", 3565518329690191, this, []); }
   /**
    * var currentParticipant: GKTurnBasedParticipant? { get }
    * @availability iOS 5.0+
    */
-  get currentParticipant(): (GKTurnBasedParticipant) | null { return callSDK<(GKTurnBasedParticipant) | null>("GameKit_3864e7f38681b875", 1160060717994972, this, []); }
+  get currentParticipant(): (GKTurnBasedParticipant) | null { return callSDK<(GKTurnBasedParticipant) | null>("GameKit_ff42ce03e691ab23", 1160060717994972, this, []); }
   /**
    * var exchangeDataMaximumSize: Int { get }
    * @availability iOS 7.0+
    */
-  get exchangeDataMaximumSize(): number { return callSDK<number>("GameKit_3864e7f38681b875", 3111893608419501, this, []); }
+  get exchangeDataMaximumSize(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 3111893608419501, this, []); }
   /**
    * var exchangeMaxInitiatedExchangesPerPlayer: Int { get }
    * @availability iOS 7.0+
    */
-  get exchangeMaxInitiatedExchangesPerPlayer(): number { return callSDK<number>("GameKit_3864e7f38681b875", 1332642227022230, this, []); }
+  get exchangeMaxInitiatedExchangesPerPlayer(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 1332642227022230, this, []); }
   /**
    * var exchanges: [GKTurnBasedExchange]? { get }
    * @availability iOS 7.0+
    */
-  get exchanges(): $SDK77 { return callSDK<$SDK77>("GameKit_3864e7f38681b875", 1931935719991226, this, []); }
+  get exchanges(): $SDK77 { return callSDK<$SDK77>("GameKit_ff42ce03e691ab23", 1931935719991226, this, []); }
   /**
    * var matchData: Data? { get }
    * @availability iOS 5.0+
    */
-  get matchData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameKit_3864e7f38681b875", 238686363537196, this, []); }
+  get matchData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameKit_ff42ce03e691ab23", 238686363537196, this, []); }
   /**
    * var matchDataMaximumSize: Int { get }
    * @availability iOS 6.0+
    */
-  get matchDataMaximumSize(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2353846240654217, this, []); }
+  get matchDataMaximumSize(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2353846240654217, this, []); }
   /**
    * var matchID: String { get }
    * @availability iOS 5.0+
    */
-  get matchID(): string { return callSDK<string>("GameKit_3864e7f38681b875", 4349468661189543, this, []); }
+  get matchID(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 4349468661189543, this, []); }
   /**
    * var message: String? { get set }
    * @availability iOS 5.0+
    */
-  get message(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 4439556000615234, this, []); }
-  set message(value: (string) | null) { callSDK<void>("GameKit_3864e7f38681b875", 3851129252197243, this, [value]); }
+  get message(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 4439556000615234, this, []); }
+  set message(value: (string) | null) { callSDK<void>("GameKit_ff42ce03e691ab23", 3851129252197243, this, [value]); }
   /**
    * var participants: [GKTurnBasedParticipant] { get }
    * @availability iOS 5.0+
    */
-  get participants(): $SDK69 { return callSDK<$SDK69>("GameKit_3864e7f38681b875", 3947870149989456, this, []); }
+  get participants(): $SDK69 { return callSDK<$SDK69>("GameKit_ff42ce03e691ab23", 3947870149989456, this, []); }
   /**
    * var status: GKTurnBasedMatch.Status { get }
    * @availability iOS 5.0+
    */
-  get status(): GKTurnBasedMatch_Status { return callSDK<GKTurnBasedMatch_Status>("GameKit_3864e7f38681b875", 3373841262532664, this, []); }
+  get status(): GKTurnBasedMatch_Status { return callSDK<GKTurnBasedMatch_Status>("GameKit_ff42ce03e691ab23", 3373841262532664, this, []); }
   declare readonly $type: { "c:objc(cs)GKTurnBasedMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activeExchanges": true; "completedExchanges": true; "creationDate": true; "currentParticipant": true; "exchangeDataMaximumSize": true; "exchangeMaxInitiatedExchangesPerPlayer": true; "exchanges": true; "matchData": true; "matchDataMaximumSize": true; "matchID": true; "message": true; "participants": true; "status": true };
 }
@@ -3632,7 +3632,7 @@ export const GKTurnBasedMatch_Outcome = {
    * init?(rawValue: Int)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GKTurnBasedMatch_Outcome) | null { return callSDK<(GKTurnBasedMatch_Outcome) | null>("GameKit_3864e7f38681b875", 1890177503300536, undefined, [rawValue]); }
+  init(rawValue: number): (GKTurnBasedMatch_Outcome) | null { return callSDK<(GKTurnBasedMatch_Outcome) | null>("GameKit_ff42ce03e691ab23", 1890177503300536, undefined, [rawValue]); }
 };
 
 /**
@@ -3646,7 +3646,7 @@ export const GKTurnBasedMatch_Status = {
    * init?(rawValue: Int)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GKTurnBasedMatch_Status) | null { return callSDK<(GKTurnBasedMatch_Status) | null>("GameKit_3864e7f38681b875", 4130579212300076, undefined, [rawValue]); }
+  init(rawValue: number): (GKTurnBasedMatch_Status) | null { return callSDK<(GKTurnBasedMatch_Status) | null>("GameKit_ff42ce03e691ab23", 4130579212300076, undefined, [rawValue]); }
 };
 
 /**
@@ -3655,19 +3655,19 @@ export const GKTurnBasedMatch_Status = {
  */
 export class GKTurnBasedMatchmakerViewController extends SDKHandle {
   /** init(matchRequest request: GKMatchRequest) */
-  static init(request: GKMatchRequest): Promise<GKTurnBasedMatchmakerViewController> { return callSDKAsync<GKTurnBasedMatchmakerViewController>("GameKit_3864e7f38681b875", 4380169964052110, undefined, [request]); }
+  static init(request: GKMatchRequest): Promise<GKTurnBasedMatchmakerViewController> { return callSDKAsync<GKTurnBasedMatchmakerViewController>("GameKit_ff42ce03e691ab23", 4380169964052110, undefined, [request]); }
   /**
    * var matchmakingMode: GKMatchmakingMode { get set }
    * @availability iOS 15.0+
    */
-  get matchmakingMode(): Promise<GKMatchmakingMode> { return callSDKAsync<GKMatchmakingMode>("GameKit_3864e7f38681b875", 919061569811619, this, []); }
-  setMatchmakingMode(value: GKMatchmakingMode): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 1074099270884805, this, [value]); }
+  get matchmakingMode(): Promise<GKMatchmakingMode> { return callSDKAsync<GKMatchmakingMode>("GameKit_ff42ce03e691ab23", 919061569811619, this, []); }
+  setMatchmakingMode(value: GKMatchmakingMode): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 1074099270884805, this, [value]); }
   /** var showExistingMatches: Bool { get set } */
-  get showExistingMatches(): Promise<boolean> { return callSDKAsync<boolean>("GameKit_3864e7f38681b875", 4068103433546645, this, []); }
-  setShowExistingMatches(value: boolean): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 1812607968742862, this, [value]); }
+  get showExistingMatches(): Promise<boolean> { return callSDKAsync<boolean>("GameKit_ff42ce03e691ab23", 4068103433546645, this, []); }
+  setShowExistingMatches(value: boolean): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 1812607968742862, this, [value]); }
   /** weak var turnBasedMatchmakerDelegate: (any GKTurnBasedMatchmakerViewControllerDelegate)? { get set } */
-  get turnBasedMatchmakerDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GameKit_3864e7f38681b875", 2902174297513318, this, []); }
-  setTurnBasedMatchmakerDelegate(value?: (Implements<GKTurnBasedMatchmakerViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GameKit_3864e7f38681b875", 3746188272440725, this, [value], [{"protocol":"c:objc(pl)GKTurnBasedMatchmakerViewControllerDelegate"}]); }
+  get turnBasedMatchmakerDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("GameKit_ff42ce03e691ab23", 2902174297513318, this, []); }
+  setTurnBasedMatchmakerDelegate(value?: (Implements<GKTurnBasedMatchmakerViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("GameKit_ff42ce03e691ab23", 3746188272440725, this, [value], [{"protocol":"c:objc(pl)GKTurnBasedMatchmakerViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)GKTurnBasedMatchmakerViewController": true; "c:objc(cs)UINavigationController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "matchmakingMode": true; "showExistingMatches": true; "turnBasedMatchmakerDelegate": true };
 }
@@ -3707,39 +3707,39 @@ export interface GKTurnBasedMatchmakerViewControllerDelegate {
  */
 export class GKTurnBasedParticipant extends SDKHandle {
   /** init() */
-  static init(): GKTurnBasedParticipant { return callSDK<GKTurnBasedParticipant>("GameKit_3864e7f38681b875", 3305050430280516, undefined, []); }
+  static init(): GKTurnBasedParticipant { return callSDK<GKTurnBasedParticipant>("GameKit_ff42ce03e691ab23", 3305050430280516, undefined, []); }
   /**
    * var lastTurnDate: Date? { get }
    * @availability iOS 5.0+
    */
-  get lastTurnDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 2757120045568003, this, []); }
+  get lastTurnDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 2757120045568003, this, []); }
   /**
    * var matchOutcome: GKTurnBasedMatch.Outcome { get set }
    * @availability iOS 5.0+
    */
-  get matchOutcome(): GKTurnBasedMatch_Outcome { return callSDK<GKTurnBasedMatch_Outcome>("GameKit_3864e7f38681b875", 2597601951025429, this, []); }
-  set matchOutcome(value: GKTurnBasedMatch_Outcome) { callSDK<void>("GameKit_3864e7f38681b875", 1546357549459463, this, [value]); }
+  get matchOutcome(): GKTurnBasedMatch_Outcome { return callSDK<GKTurnBasedMatch_Outcome>("GameKit_ff42ce03e691ab23", 2597601951025429, this, []); }
+  set matchOutcome(value: GKTurnBasedMatch_Outcome) { callSDK<void>("GameKit_ff42ce03e691ab23", 1546357549459463, this, [value]); }
   /**
    * var player: GKPlayer? { get }
    * @availability iOS 8.0+
    */
-  get player(): (GKPlayer) | null { return callSDK<(GKPlayer) | null>("GameKit_3864e7f38681b875", 1119519160437048, this, []); }
+  get player(): (GKPlayer) | null { return callSDK<(GKPlayer) | null>("GameKit_ff42ce03e691ab23", 1119519160437048, this, []); }
   /**
    * var playerID: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 8.0
    */
-  get playerID(): (string) | null { return callSDK<(string) | null>("GameKit_3864e7f38681b875", 145366087071937, this, []); }
+  get playerID(): (string) | null { return callSDK<(string) | null>("GameKit_ff42ce03e691ab23", 145366087071937, this, []); }
   /**
    * var status: GKTurnBasedParticipant.Status { get }
    * @availability iOS 5.0+
    */
-  get status(): GKTurnBasedParticipant_Status { return callSDK<GKTurnBasedParticipant_Status>("GameKit_3864e7f38681b875", 22953137231682, this, []); }
+  get status(): GKTurnBasedParticipant_Status { return callSDK<GKTurnBasedParticipant_Status>("GameKit_ff42ce03e691ab23", 22953137231682, this, []); }
   /**
    * var timeoutDate: Date? { get }
    * @availability iOS 6.0+
    */
-  get timeoutDate(): $SDK10 { return callSDK<$SDK10>("GameKit_3864e7f38681b875", 3457977559559779, this, []); }
+  get timeoutDate(): $SDK10 { return callSDK<$SDK10>("GameKit_ff42ce03e691ab23", 3457977559559779, this, []); }
   declare readonly $type: { "c:objc(cs)GKTurnBasedParticipant": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "lastTurnDate": true; "matchOutcome": true; "player": true; "playerID": true; "status": true; "timeoutDate": true };
 }
@@ -3755,7 +3755,7 @@ export const GKTurnBasedParticipant_Status = {
    * init?(rawValue: Int)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (GKTurnBasedParticipant_Status) | null { return callSDK<(GKTurnBasedParticipant_Status) | null>("GameKit_3864e7f38681b875", 4269635568427515, undefined, [rawValue]); }
+  init(rawValue: number): (GKTurnBasedParticipant_Status) | null { return callSDK<(GKTurnBasedParticipant_Status) | null>("GameKit_ff42ce03e691ab23", 4269635568427515, undefined, [rawValue]); }
 };
 
 /**
@@ -3769,79 +3769,79 @@ export class GKVoiceChat extends SDKHandle {
    * @availability iOS 4.1+
    * @deprecated iOS 18.0
    */
-  static isVoIPAllowed(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 1031712816687720, undefined, []); }
+  static isVoIPAllowed(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 1031712816687720, undefined, []); }
   /** init() */
-  static init(): GKVoiceChat { return callSDK<GKVoiceChat>("GameKit_3864e7f38681b875", 466916837538387, undefined, []); }
+  static init(): GKVoiceChat { return callSDK<GKVoiceChat>("GameKit_ff42ce03e691ab23", 466916837538387, undefined, []); }
   /**
    * func setMute(_ isMuted: Bool, forPlayer playerID: String)
    * @availability iOS 5.0+
    * @deprecated iOS 8.0
    */
-  setMute(isMuted: boolean, playerID: string): void { return callSDK<void>("GameKit_3864e7f38681b875", 1957698843924770, this, [isMuted, playerID]); }
+  setMute(isMuted: boolean, playerID: string): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 1957698843924770, this, [isMuted, playerID]); }
   /**
    * func setPlayer(_ player: GKPlayer, muted isMuted: Bool)
    * @availability iOS 8.0+
    * @deprecated iOS 18.0
    */
-  setPlayer(player: GKPlayer, isMuted: boolean): void { return callSDK<void>("GameKit_3864e7f38681b875", 625896055198748, this, [player, isMuted]); }
+  setPlayer(player: GKPlayer, isMuted: boolean): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 625896055198748, this, [player, isMuted]); }
   /**
    * func start()
    * @availability iOS 4.1+
    * @deprecated iOS 18.0
    */
-  start(): void { return callSDK<void>("GameKit_3864e7f38681b875", 207902400495895, this, []); }
+  start(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 207902400495895, this, []); }
   /**
    * func stop()
    * @availability iOS 4.1+
    * @deprecated iOS 18.0
    */
-  stop(): void { return callSDK<void>("GameKit_3864e7f38681b875", 832737597584874, this, []); }
+  stop(): void { return callSDK<void>("GameKit_ff42ce03e691ab23", 832737597584874, this, []); }
   /**
    * var isActive: Bool { get set }
    * @availability iOS 4.1+
    * @deprecated iOS 18.0
    */
-  get isActive(): boolean { return callSDK<boolean>("GameKit_3864e7f38681b875", 331613322796872, this, []); }
-  set isActive(value: boolean) { callSDK<void>("GameKit_3864e7f38681b875", 4430443981931572, this, [value]); }
+  get isActive(): boolean { return callSDK<boolean>("GameKit_ff42ce03e691ab23", 331613322796872, this, []); }
+  set isActive(value: boolean) { callSDK<void>("GameKit_ff42ce03e691ab23", 4430443981931572, this, [value]); }
   /**
    * var name: String { get }
    * @availability iOS 4.1+
    * @deprecated iOS 18.0
    */
-  get name(): string { return callSDK<string>("GameKit_3864e7f38681b875", 3959873423031664, this, []); }
+  get name(): string { return callSDK<string>("GameKit_ff42ce03e691ab23", 3959873423031664, this, []); }
   /**
    * var playerIDs: [String]? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 8.0
    */
-  get playerIDs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("GameKit_3864e7f38681b875", 2527658328972194, this, []); }
+  get playerIDs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("GameKit_ff42ce03e691ab23", 2527658328972194, this, []); }
   /**
    * var playerStateUpdateHandler: (String, GKVoiceChat.PlayerState) -> Void { get set }
    * @availability iOS 4.1+
    * @deprecated iOS 8.0
    */
-  get playerStateUpdateHandler(): ((arg0: string, arg1: GKVoiceChat_PlayerState) => Promise<void>) { return callSDK<((arg0: string, arg1: GKVoiceChat_PlayerState) => Promise<void>)>("GameKit_3864e7f38681b875", 1069800628012235, this, []); }
-  set playerStateUpdateHandler(value: ((arg0: string, arg1: GKVoiceChat_PlayerState) => void)) { callSDK<void>("GameKit_3864e7f38681b875", 2219387024025216, this, [value], [{"callback":{"out":[]}}]); }
+  get playerStateUpdateHandler(): ((arg0: string, arg1: GKVoiceChat_PlayerState) => Promise<void>) { return callSDK<((arg0: string, arg1: GKVoiceChat_PlayerState) => Promise<void>)>("GameKit_ff42ce03e691ab23", 1069800628012235, this, []); }
+  set playerStateUpdateHandler(value: ((arg0: string, arg1: GKVoiceChat_PlayerState) => void)) { callSDK<void>("GameKit_ff42ce03e691ab23", 2219387024025216, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var playerVoiceChatStateDidChangeHandler: (GKPlayer, GKVoiceChat.PlayerState) -> Void { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 18.0
    */
-  get playerVoiceChatStateDidChangeHandler(): ((arg0: GKPlayer, arg1: GKVoiceChat_PlayerState) => Promise<void>) { return callSDK<((arg0: GKPlayer, arg1: GKVoiceChat_PlayerState) => Promise<void>)>("GameKit_3864e7f38681b875", 2789464019860589, this, []); }
-  set playerVoiceChatStateDidChangeHandler(value: ((arg0: GKPlayer, arg1: GKVoiceChat_PlayerState) => void)) { callSDK<void>("GameKit_3864e7f38681b875", 1954750657993098, this, [value], [{"callback":{"out":[]}}]); }
+  get playerVoiceChatStateDidChangeHandler(): ((arg0: GKPlayer, arg1: GKVoiceChat_PlayerState) => Promise<void>) { return callSDK<((arg0: GKPlayer, arg1: GKVoiceChat_PlayerState) => Promise<void>)>("GameKit_ff42ce03e691ab23", 2789464019860589, this, []); }
+  set playerVoiceChatStateDidChangeHandler(value: ((arg0: GKPlayer, arg1: GKVoiceChat_PlayerState) => void)) { callSDK<void>("GameKit_ff42ce03e691ab23", 1954750657993098, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var players: [GKPlayer] { get }
    * @availability iOS 8.0+
    * @deprecated iOS 18.0
    */
-  get players(): Array<GKPlayer> { return callSDK<Array<GKPlayer>>("GameKit_3864e7f38681b875", 191207976207278, this, []); }
+  get players(): Array<GKPlayer> { return callSDK<Array<GKPlayer>>("GameKit_ff42ce03e691ab23", 191207976207278, this, []); }
   /**
    * var volume: Float { get set }
    * @availability iOS 4.1+
    * @deprecated iOS 18.0
    */
-  get volume(): number { return callSDK<number>("GameKit_3864e7f38681b875", 3249447064223660, this, []); }
-  set volume(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 2684314162701436, this, [value]); }
+  get volume(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 3249447064223660, this, []); }
+  set volume(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 2684314162701436, this, [value]); }
   declare readonly $type: { "c:objc(cs)GKVoiceChat": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isActive": true; "name": true; "playerIDs": true; "players": true; "volume": true };
 }
@@ -3859,37 +3859,37 @@ export const GKVoiceChat_PlayerState = {
    * @availability iOS 4.1+
    * @deprecated iOS 18.0
    */
-  init(rawValue: number): (GKVoiceChat_PlayerState) | null { return callSDK<(GKVoiceChat_PlayerState) | null>("GameKit_3864e7f38681b875", 1033659339873503, undefined, [rawValue]); }
+  init(rawValue: number): (GKVoiceChat_PlayerState) | null { return callSDK<(GKVoiceChat_PlayerState) | null>("GameKit_ff42ce03e691ab23", 1033659339873503, undefined, [rawValue]); }
 };
 
-export type NSNotification_Name = "AVAudioEngineConfigurationChange" | "AVAudioUnitComponentTagsDidChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderDomainDidChange" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMusicPlayerControllerQueueDidChange" | "MPMediaLibraryDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioEngineConfigurationChange" | "AVAudioUnitComponentTagsDidChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMediaLibraryDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 
 export const NSNotification_Name = {
   /**
    * static let GKPlayerAuthenticationDidChangeNotificationName: NSNotification.Name
    * @availability iOS 4.1+
    */
-  get GKPlayerAuthenticationDidChangeNotificationName(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameKit_3864e7f38681b875", 4443796718370621, undefined, []); },
+  get GKPlayerAuthenticationDidChangeNotificationName(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameKit_ff42ce03e691ab23", 4443796718370621, undefined, []); },
   /**
    * static let GKPlayerDidChangeNotificationName: NSNotification.Name
    * @availability iOS 4.0+
    */
-  get GKPlayerDidChangeNotificationName(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameKit_3864e7f38681b875", 4218012690500100, undefined, []); }
+  get GKPlayerDidChangeNotificationName(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameKit_ff42ce03e691ab23", 4218012690500100, undefined, []); }
 };
 
 /**
  * let GKErrorDomain: String
  * @availability iOS 4.0+
  */
-export const GKErrorDomain: string = callSDK<string>("GameKit_3864e7f38681b875", 689522798480737, undefined, []);
+export const GKErrorDomain: string = callSDK<string>("GameKit_ff42ce03e691ab23", 689522798480737, undefined, []);
 
 /**
  * var GKExchangeTimeoutDefault: TimeInterval
  * @availability iOS 7.0+
  */
 export const GKExchangeTimeoutDefault = {
-  get value(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2419481406575329, undefined, []); },
-  set value(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 4270117719121954, undefined, [value]); }
+  get value(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2419481406575329, undefined, []); },
+  set value(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 4270117719121954, undefined, [value]); }
 };
 
 /**
@@ -3897,8 +3897,8 @@ export const GKExchangeTimeoutDefault = {
  * @availability iOS 7.0+
  */
 export const GKExchangeTimeoutNone = {
-  get value(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2252296266159994, undefined, []); },
-  set value(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 2435898809345601, undefined, [value]); }
+  get value(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2252296266159994, undefined, []); },
+  set value(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 2435898809345601, undefined, [value]); }
 };
 
 /**
@@ -3906,28 +3906,28 @@ export const GKExchangeTimeoutNone = {
  * @availability iOS 10.0+
  * @deprecated iOS 12.0
  */
-export const GKGameSessionErrorDomain: string = callSDK<string>("GameKit_3864e7f38681b875", 2456558095342784, undefined, []);
+export const GKGameSessionErrorDomain: string = callSDK<string>("GameKit_ff42ce03e691ab23", 2456558095342784, undefined, []);
 
 /**
  * let GKPlayerIDNoLongerAvailable: String
  * @availability iOS 14.0+
  */
-export const GKPlayerIDNoLongerAvailable: string = callSDK<string>("GameKit_3864e7f38681b875", 1832500091302726, undefined, []);
+export const GKPlayerIDNoLongerAvailable: string = callSDK<string>("GameKit_ff42ce03e691ab23", 1832500091302726, undefined, []);
 
 /**
  * let GKSessionErrorDomain: String
  * @availability iOS 3.0+
  * @deprecated iOS 18.4
  */
-export const GKSessionErrorDomain: string = callSDK<string>("GameKit_3864e7f38681b875", 3801338067508194, undefined, []);
+export const GKSessionErrorDomain: string = callSDK<string>("GameKit_ff42ce03e691ab23", 3801338067508194, undefined, []);
 
 /**
  * var GKTurnTimeoutDefault: TimeInterval
  * @availability iOS 6.0+
  */
 export const GKTurnTimeoutDefault = {
-  get value(): number { return callSDK<number>("GameKit_3864e7f38681b875", 2515511639726910, undefined, []); },
-  set value(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 1744998471961825, undefined, [value]); }
+  get value(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 2515511639726910, undefined, []); },
+  set value(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 1744998471961825, undefined, [value]); }
 };
 
 /**
@@ -3935,8 +3935,8 @@ export const GKTurnTimeoutDefault = {
  * @availability iOS 6.0+
  */
 export const GKTurnTimeoutNone = {
-  get value(): number { return callSDK<number>("GameKit_3864e7f38681b875", 3439474447638285, undefined, []); },
-  set value(value: number) { callSDK<void>("GameKit_3864e7f38681b875", 1362617346456863, undefined, [value]); }
+  get value(): number { return callSDK<number>("GameKit_ff42ce03e691ab23", 3439474447638285, undefined, []); },
+  set value(value: number) { callSDK<void>("GameKit_ff42ce03e691ab23", 1362617346456863, undefined, [value]); }
 };
 
 /**
@@ -3944,54 +3944,54 @@ export const GKTurnTimeoutNone = {
  * @availability iOS 3.0+
  * @deprecated iOS 18.4
  */
-export const GKVoiceChatServiceErrorDomain: string = callSDK<string>("GameKit_3864e7f38681b875", 4231832778331646, undefined, []);
+export const GKVoiceChatServiceErrorDomain: string = callSDK<string>("GameKit_ff42ce03e691ab23", 4231832778331646, undefined, []);
 
-registerSDKClass("GKAccessPoint", GKAccessPoint, { module: "GameKit_3864e7f38681b875", properties: {"isActive":3424339152096257,"frameInScreenCoordinates":418272227129404,"isPresentingGameCenter":61888821088858,"location":2586890183745783,"parentWindow":1950212646549393,"showHighlights":1064178196710165,"isVisible":4161915730412552}, methods: {"triggerGameActivityHandler":{"id":1172781665925329,"hints":[null,{"callback":{"out":[]}}]},"triggerGameActivityDefinitionIDHandler":{"id":2968355166734223,"hints":[null,{"callback":{"out":[]}}]},"triggerForArcade":{"id":4137931377150862,"hints":[{"callback":{"out":[]}}]},"triggerForChallenges":{"id":2128072375043185,"hints":[{"callback":{"out":[]}}]},"triggerForFriending":{"id":2349886852022106,"hints":[{"callback":{"out":[]}}]},"triggerForPlayTogether":{"id":1904059953356971,"hints":[{"callback":{"out":[]}}]},"triggerAchievementIDHandler":{"id":1242185808110289,"hints":[null,{"callback":{"out":[]}}]},"triggerChallengeDefinitionIDHandler":{"id":1722404734782744,"hints":[null,{"callback":{"out":[]}}]},"triggerGameActivityHandler53451":{"id":1514743193326085,"hints":[null,{"callback":{"out":[]}}]},"triggerGameActivityDefinitionIDHandler47507":{"id":4329146673107097,"hints":[null,{"callback":{"out":[]}}]},"triggerHandler":{"id":325907226233015,"hints":[{"callback":{"out":[]}}]},"triggerLeaderboardIDPlayerScopeTimeScopeHandler":{"id":2878898555898204,"hints":[null,null,null,{"callback":{"out":[]}}]},"triggerLeaderboardSetIDHandler":{"id":1409496957540889,"hints":[null,{"callback":{"out":[]}}]},"triggerPlayerHandler":{"id":2105156268429448,"hints":[null,{"callback":{"out":[]}}]},"triggerStateHandler":{"id":2308513775029427,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("GKAchievement", GKAchievement, { module: "GameKit_3864e7f38681b875", properties: {"isCompleted":1945601384437253,"identifier":3991432607715002,"lastReportedDate":3789136640502743,"percentComplete":2052988716913632,"player":140087650535484,"playerID":781654885208612,"showsCompletionBanner":730313965736153}, methods: {"challengeComposeControllerWithMessagePlayersCompletion":{"id":3218312602894918,"hints":[null,null,{"callback":{"out":[]}}]},"challengeComposeControllerWithMessagePlayersCompletionHandler":{"id":679806026037757,"hints":[null,null,{"callback":{"out":[]}}]},"challengeComposeControllerWithPlayersMessageCompletionHandler":{"id":2511461090455274,"hints":[null,null,{"callback":{"out":[]}}]},"selectChallengeablePlayerIDs":{"id":2907261969888439,"hints":[null,{"callback":{"out":[]}}]},"selectChallengeablePlayers":{"id":2574938351941545,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("GKChallenge", GKChallenge, { module: "GameKit_3864e7f38681b875", properties: {"completionDate":1858340496194009,"issueDate":487545424623122,"issuingPlayer":4258054446920221,"issuingPlayerID":4221637978899750,"message":1795830213117792,"receivingPlayer":136876109021060,"receivingPlayerID":4004769299965265,"state":4005884553248932}, methods: {"decline":{"id":3148229755210980}} });
-registerSDKClass("GKAchievementChallenge", GKAchievementChallenge, { module: "GameKit_3864e7f38681b875", properties: {"achievement":1700549727955168} });
-registerSDKClass("GKAchievementDescription", GKAchievementDescription, { module: "GameKit_3864e7f38681b875", properties: {"achievedDescription":3450858518665858,"activityIdentifier":2463741173482489,"activityProperties":1136255856889234,"groupIdentifier":2255550130832915,"isHidden":1850618224161586,"identifier":4291823411174666,"maximumPoints":3125007614486869,"releaseState":3340410074678356,"isReplayable":3973225279648698,"title":2136959634321498,"unachievedDescription":1370838894839409}, methods: {"loadImage":{"id":2287336299416167,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("GKBasePlayer", GKBasePlayer, { module: "GameKit_3864e7f38681b875", properties: {"displayName":4361333257595200,"playerID":1160493588002933} });
-registerSDKClass("GKChallengeDefinition", GKChallengeDefinition, { module: "GameKit_3864e7f38681b875", properties: {"details":3956800277692479,"durationOptions":2719848995699757,"groupIdentifier":267005859751813,"identifier":3173441865280078,"isRepeatable":1575336842864378,"leaderboard":2127937039653783,"releaseState":3696944441568501,"title":2116017412200059}, methods: {"hasActiveChallenges":{"id":1022447088225320,"hints":[{"callback":{"out":[]}}]},"loadImage":{"id":2587328834920705,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("GKAccessPoint", GKAccessPoint, { module: "GameKit_ff42ce03e691ab23", properties: {"isActive":3424339152096257,"frameInScreenCoordinates":418272227129404,"isPresentingGameCenter":61888821088858,"location":2586890183745783,"parentWindow":1950212646549393,"showHighlights":1064178196710165,"isVisible":4161915730412552}, methods: {"triggerGameActivityHandler":{"id":1172781665925329,"hints":[null,{"callback":{"out":[]}}]},"triggerGameActivityDefinitionIDHandler":{"id":2968355166734223,"hints":[null,{"callback":{"out":[]}}]},"triggerForArcade":{"id":4137931377150862,"hints":[{"callback":{"out":[]}}]},"triggerForChallenges":{"id":2128072375043185,"hints":[{"callback":{"out":[]}}]},"triggerForFriending":{"id":2349886852022106,"hints":[{"callback":{"out":[]}}]},"triggerForPlayTogether":{"id":1904059953356971,"hints":[{"callback":{"out":[]}}]},"triggerAchievementIDHandler":{"id":1242185808110289,"hints":[null,{"callback":{"out":[]}}]},"triggerChallengeDefinitionIDHandler":{"id":1722404734782744,"hints":[null,{"callback":{"out":[]}}]},"triggerGameActivityHandler53451":{"id":1514743193326085,"hints":[null,{"callback":{"out":[]}}]},"triggerGameActivityDefinitionIDHandler47507":{"id":4329146673107097,"hints":[null,{"callback":{"out":[]}}]},"triggerHandler":{"id":325907226233015,"hints":[{"callback":{"out":[]}}]},"triggerLeaderboardIDPlayerScopeTimeScopeHandler":{"id":2878898555898204,"hints":[null,null,null,{"callback":{"out":[]}}]},"triggerLeaderboardSetIDHandler":{"id":1409496957540889,"hints":[null,{"callback":{"out":[]}}]},"triggerPlayerHandler":{"id":2105156268429448,"hints":[null,{"callback":{"out":[]}}]},"triggerStateHandler":{"id":2308513775029427,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("GKAchievement", GKAchievement, { module: "GameKit_ff42ce03e691ab23", properties: {"isCompleted":1945601384437253,"identifier":3991432607715002,"lastReportedDate":3789136640502743,"percentComplete":2052988716913632,"player":140087650535484,"playerID":781654885208612,"showsCompletionBanner":730313965736153}, methods: {"challengeComposeControllerWithMessagePlayersCompletion":{"id":3218312602894918,"hints":[null,null,{"callback":{"out":[]}}]},"challengeComposeControllerWithMessagePlayersCompletionHandler":{"id":679806026037757,"hints":[null,null,{"callback":{"out":[]}}]},"challengeComposeControllerWithPlayersMessageCompletionHandler":{"id":2511461090455274,"hints":[null,null,{"callback":{"out":[]}}]},"selectChallengeablePlayerIDs":{"id":2907261969888439,"hints":[null,{"callback":{"out":[]}}]},"selectChallengeablePlayers":{"id":2574938351941545,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("GKChallenge", GKChallenge, { module: "GameKit_ff42ce03e691ab23", properties: {"completionDate":1858340496194009,"issueDate":487545424623122,"issuingPlayer":4258054446920221,"issuingPlayerID":4221637978899750,"message":1795830213117792,"receivingPlayer":136876109021060,"receivingPlayerID":4004769299965265,"state":4005884553248932}, methods: {"decline":{"id":3148229755210980}} });
+registerSDKClass("GKAchievementChallenge", GKAchievementChallenge, { module: "GameKit_ff42ce03e691ab23", properties: {"achievement":1700549727955168} });
+registerSDKClass("GKAchievementDescription", GKAchievementDescription, { module: "GameKit_ff42ce03e691ab23", properties: {"achievedDescription":3450858518665858,"activityIdentifier":2463741173482489,"activityProperties":1136255856889234,"groupIdentifier":2255550130832915,"isHidden":1850618224161586,"identifier":4291823411174666,"maximumPoints":3125007614486869,"releaseState":3340410074678356,"isReplayable":3973225279648698,"title":2136959634321498,"unachievedDescription":1370838894839409}, methods: {"loadImage":{"id":2287336299416167,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("GKBasePlayer", GKBasePlayer, { module: "GameKit_ff42ce03e691ab23", properties: {"displayName":4361333257595200,"playerID":1160493588002933} });
+registerSDKClass("GKChallengeDefinition", GKChallengeDefinition, { module: "GameKit_ff42ce03e691ab23", properties: {"details":3956800277692479,"durationOptions":2719848995699757,"groupIdentifier":267005859751813,"identifier":3173441865280078,"isRepeatable":1575336842864378,"leaderboard":2127937039653783,"releaseState":3696944441568501,"title":2116017412200059}, methods: {"hasActiveChallenges":{"id":1022447088225320,"hints":[{"callback":{"out":[]}}]},"loadImage":{"id":2587328834920705,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)GKChallengeListener", {"playerWantsToPlay":"player(_:wantsToPlay:)","playerDidReceive":"player(_:didReceive:)","playerDidCompleteIssuedByFriend":"player(_:didComplete:issuedByFriend:)","playerIssuedChallengeWasCompletedByFriend":"player(_:issuedChallengeWasCompleted:byFriend:)"});
-registerSDKClass("GKCloudPlayer", GKCloudPlayer, { module: "GameKit_3864e7f38681b875", properties: {} });
-registerSDKClass("GameKit.GKError", GKError, { module: "GameKit_3864e7f38681b875", properties: {} });
-registerSDKClass("GKFriendRequestComposeViewController", GKFriendRequestComposeViewController, { module: "GameKit_3864e7f38681b875", properties: {"composeViewDelegate":81233410261632}, methods: {"addRecipientPlayers":{"id":7265235373308},"addRecipientsWithEmailAddresses":{"id":2769054018337355},"addRecipientsWithPlayerIDs":{"id":2313078674450615},"setMessage":{"id":1588787995358614}} });
+registerSDKClass("GKCloudPlayer", GKCloudPlayer, { module: "GameKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("GameKit.GKError", GKError, { module: "GameKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("GKFriendRequestComposeViewController", GKFriendRequestComposeViewController, { module: "GameKit_ff42ce03e691ab23", properties: {"composeViewDelegate":81233410261632}, methods: {"addRecipientPlayers":{"id":7265235373308},"addRecipientsWithEmailAddresses":{"id":2769054018337355},"addRecipientsWithPlayerIDs":{"id":2313078674450615},"setMessage":{"id":1588787995358614}} });
 registerSDKProtocol("c:objc(pl)GKFriendRequestComposeViewControllerDelegate", {"friendRequestComposeViewControllerDidFinish":"friendRequestComposeViewControllerDidFinish(_:)"});
-registerSDKClass("GKGameActivity", GKGameActivity, { module: "GameKit_3864e7f38681b875", properties: {"achievements":2482894512622755,"activityDefinition":1042553737890073,"creationDate":4138460853648705,"duration":519507245529206,"endDate":798482090829130,"identifier":3080877829129623,"lastResumeDate":1546662439851107,"leaderboardScores":276540527452577,"partyCode":2705930504148039,"partyURL":920090284376554,"properties":4050050467798390,"startDate":3198571988385646,"state":4199784743257822}, methods: {"end":{"id":3561397556578137},"findMatch":{"id":4051391286370230,"hints":[{"callback":{"out":[]}}]},"findPlayersForHostedMatch":{"id":3612570730827439,"hints":[{"callback":{"out":[]}}]},"progress":{"id":2756367547063203},"score":{"id":1127776855626651},"makeMatchRequest":{"id":2665263571742618},"pause":{"id":526178961292313},"removeAchievements":{"id":2995321255277410},"removeScores":{"id":2073696895463047},"resume":{"id":2111138376328089},"setAchievementCompleted":{"id":1117659355673322},"setProgress":{"id":1807999112888677},"setScoreOnTo":{"id":2633150889124633},"setScoreOnToContext":{"id":1173210940356876},"start":{"id":1472491014653094}} });
-registerSDKClass("GKGameActivityDefinition", GKGameActivityDefinition, { module: "GameKit_3864e7f38681b875", properties: {"defaultProperties":3187348544630684,"details":545148358193122,"fallbackURL":2459948066722180,"groupIdentifier":3274456138199584,"identifier":164332861067050,"playStyle":763967885204133,"releaseState":2215080966731682,"supportsPartyCode":1295722684020138,"supportsUnlimitedPlayers":2890555746208087,"title":1984607786178921}, methods: {"loadAchievementDescriptions":{"id":740392377347068,"hints":[{"callback":{"out":[]}}]},"loadImage":{"id":1719598434379557,"hints":[{"callback":{"out":[]}}]},"loadLeaderboards":{"id":3611351017149300,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("GKGameActivity", GKGameActivity, { module: "GameKit_ff42ce03e691ab23", properties: {"achievements":2482894512622755,"activityDefinition":1042553737890073,"creationDate":4138460853648705,"duration":519507245529206,"endDate":798482090829130,"identifier":3080877829129623,"lastResumeDate":1546662439851107,"leaderboardScores":276540527452577,"partyCode":2705930504148039,"partyURL":920090284376554,"properties":4050050467798390,"startDate":3198571988385646,"state":4199784743257822}, methods: {"end":{"id":3561397556578137},"findMatch":{"id":4051391286370230,"hints":[{"callback":{"out":[]}}]},"findPlayersForHostedMatch":{"id":3612570730827439,"hints":[{"callback":{"out":[]}}]},"progress":{"id":2756367547063203},"score":{"id":1127776855626651},"makeMatchRequest":{"id":2665263571742618},"pause":{"id":526178961292313},"removeAchievements":{"id":2995321255277410},"removeScores":{"id":2073696895463047},"resume":{"id":2111138376328089},"setAchievementCompleted":{"id":1117659355673322},"setProgress":{"id":1807999112888677},"setScoreOnTo":{"id":2633150889124633},"setScoreOnToContext":{"id":1173210940356876},"start":{"id":1472491014653094}} });
+registerSDKClass("GKGameActivityDefinition", GKGameActivityDefinition, { module: "GameKit_ff42ce03e691ab23", properties: {"defaultProperties":3187348544630684,"details":545148358193122,"fallbackURL":2459948066722180,"groupIdentifier":3274456138199584,"identifier":164332861067050,"playStyle":763967885204133,"releaseState":2215080966731682,"supportsPartyCode":1295722684020138,"supportsUnlimitedPlayers":2890555746208087,"title":1984607786178921}, methods: {"loadAchievementDescriptions":{"id":740392377347068,"hints":[{"callback":{"out":[]}}]},"loadImage":{"id":1719598434379557,"hints":[{"callback":{"out":[]}}]},"loadLeaderboards":{"id":3611351017149300,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)GKGameActivityListener", {});
 registerSDKProtocol("c:objc(pl)GKGameCenterControllerDelegate", {"gameCenterViewControllerDidFinish":"gameCenterViewControllerDidFinish(_:)"});
-registerSDKClass("GKGameCenterViewController", GKGameCenterViewController, { module: "GameKit_3864e7f38681b875", properties: {"gameCenterDelegate":2473139428168387,"leaderboardIdentifier":3007991326946501,"leaderboardTimeScope":2015787670204683,"viewState":3977315475556049} });
-registerSDKClass("GKGameSession", GKGameSession, { module: "GameKit_3864e7f38681b875", properties: {"badgedPlayers":3959440459143099,"identifier":2376165704140804,"lastModifiedDate":274732928478152,"lastModifiedPlayer":1184701057257391,"maxNumberOfConnectedPlayers":2485600010802204,"owner":3030722271718639,"players":3252260784109269,"title":2950486616253463}, methods: {"clearBadge":{"id":2379969433522712,"hints":[null,{"callback":{"out":[]}}]},"getShareURL":{"id":2065433427225746,"hints":[{"callback":{"out":[]}}]},"loadData":{"id":3892652424056517,"hints":[{"callback":{"out":[]}}]},"playersWith":{"id":3040081302163887},"save":{"id":2357495204062925,"hints":[null,{"callback":{"out":[]}}]},"send":{"id":1789803662104535,"hints":[null,null,{"callback":{"out":[]}}]},"sendMessage":{"id":2034326003545656,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"setConnectionState":{"id":45581361935544,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("GameKit.GKGameSessionError", GKGameSessionError, { module: "GameKit_3864e7f38681b875", properties: {} });
+registerSDKClass("GKGameCenterViewController", GKGameCenterViewController, { module: "GameKit_ff42ce03e691ab23", properties: {"gameCenterDelegate":2473139428168387,"leaderboardIdentifier":3007991326946501,"leaderboardTimeScope":2015787670204683,"viewState":3977315475556049} });
+registerSDKClass("GKGameSession", GKGameSession, { module: "GameKit_ff42ce03e691ab23", properties: {"badgedPlayers":3959440459143099,"identifier":2376165704140804,"lastModifiedDate":274732928478152,"lastModifiedPlayer":1184701057257391,"maxNumberOfConnectedPlayers":2485600010802204,"owner":3030722271718639,"players":3252260784109269,"title":2950486616253463}, methods: {"clearBadge":{"id":2379969433522712,"hints":[null,{"callback":{"out":[]}}]},"getShareURL":{"id":2065433427225746,"hints":[{"callback":{"out":[]}}]},"loadData":{"id":3892652424056517,"hints":[{"callback":{"out":[]}}]},"playersWith":{"id":3040081302163887},"save":{"id":2357495204062925,"hints":[null,{"callback":{"out":[]}}]},"send":{"id":1789803662104535,"hints":[null,null,{"callback":{"out":[]}}]},"sendMessage":{"id":2034326003545656,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"setConnectionState":{"id":45581361935544,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("GameKit.GKGameSessionError", GKGameSessionError, { module: "GameKit_ff42ce03e691ab23", properties: {} });
 registerSDKProtocol("c:objc(pl)GKGameSessionEventListener", {"sessionDidAdd":"session(_:didAdd:)","sessionDidRemove":"session(_:didRemove:)","sessionPlayerDidChange":"session(_:player:didChange:)","sessionPlayerDidSave":"session(_:player:didSave:)","sessionDidReceiveFrom":"session(_:didReceive:from:)","sessionDidReceiveMessageWithFrom":"session(_:didReceiveMessage:with:from:)"});
-registerSDKClass("GKInvite", GKInvite, { module: "GameKit_3864e7f38681b875", properties: {"isHosted":1322984185857705,"inviter":2846906064436150,"playerAttributes":4332747505974718,"playerGroup":621100094115191,"sender":4216053629221629} });
+registerSDKClass("GKInvite", GKInvite, { module: "GameKit_ff42ce03e691ab23", properties: {"isHosted":1322984185857705,"inviter":2846906064436150,"playerAttributes":4332747505974718,"playerGroup":621100094115191,"sender":4216053629221629} });
 registerSDKProtocol("c:objc(pl)GKInviteEventListener", {"playerDidAccept":"player(_:didAccept:)","playerDidRequestMatchWithRecipients":"player(_:didRequestMatchWithRecipients:)","playerDidRequestMatchWithPlayers":"player(_:didRequestMatchWithPlayers:)"});
-registerSDKClass("GKLeaderboard", GKLeaderboard, { module: "GameKit_3864e7f38681b875", properties: {"activityIdentifier":477610252293899,"activityProperties":3885934048070978,"baseLeaderboardID":3767240227437406,"duration":4029245094356176,"groupIdentifier":2436385481463681,"identifier":791972192952065,"isHidden":2080007781641014,"leaderboardDescription":2154130940594667,"isLoading":1946698039018002,"localPlayerScore":2532279871681095,"maxRange":2035630544186198,"nextStartDate":1094896896879452,"playerScope":2026628522177312,"range":2789695560181687,"releaseState":1681432197145902,"scores":2197511627178324,"startDate":821891834124902,"timeScope":3372198501200739,"title":1230420156288470,"type":3723005643562207}, methods: {"loadEntriesForTimeScopeRangeCompletionHandler":{"id":3650524621109284,"hints":[null,null,null,{"callback":{"out":[]}}]},"loadEntriesForTimeScopeCompletionHandler":{"id":3018502445578727,"hints":[null,null,{"callback":{"out":[]}}]},"loadImage":{"id":93231989345849,"hints":[{"callback":{"out":[]}}]},"loadPreviousOccurrence":{"id":2655794418957188,"hints":[{"callback":{"out":[]}}]},"loadScores":{"id":3117850784606942,"hints":[{"callback":{"out":[]}}]},"submitScoreContextPlayerCompletionHandler":{"id":4051825471149344,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("GKLeaderboardEntry", GKLeaderboard_Entry, { module: "GameKit_3864e7f38681b875", properties: {"context":7182729317174,"date":1006265247363230,"formattedScore":4317478273285420,"player":2366032479344289,"rank":2876631265345495,"score":801477928873183}, methods: {"challengeComposeControllerWithMessagePlayersCompletion":{"id":1680687792660243,"hints":[null,null,{"callback":{"out":[]}}]},"challengeComposeControllerWithMessagePlayersCompletionHandler":{"id":3446040153422803,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("GKLeaderboardScore", GKLeaderboardScore, { module: "GameKit_3864e7f38681b875", properties: {"context":2377477246589037,"leaderboardID":453430291402714,"player":1150295069017636,"value":622220698362490} });
-registerSDKClass("GKLeaderboardSet", GKLeaderboardSet, { module: "GameKit_3864e7f38681b875", properties: {"groupIdentifier":1529615594244047,"identifier":2995174804481970,"title":3676181818521940}, methods: {"loadImage":{"id":3165969477026327,"hints":[{"callback":{"out":[]}}]},"loadLeaderboardsCompletionHandler":{"id":1267845315137065,"hints":[{"callback":{"out":[]}}]},"loadLeaderboardsHandler":{"id":4051676034022992,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("GKPlayer", GKPlayer, { module: "GameKit_3864e7f38681b875", properties: {"alias":3968624601331934,"displayName":197211638411422,"gamePlayerID":2519948911888645,"guestIdentifier":1869317693545808,"isFriend":4446686562932079,"isInvitable":3280840541231898,"playerID":2682188533849836,"teamPlayerID":506014180044686}, methods: {"loadPhoto":{"id":2987659252476234,"hints":[null,{"callback":{"out":[]}}]},"scopedIDsArePersistent":{"id":4421765302135746}} });
-registerSDKClass("GKLocalPlayer", GKLocalPlayer, { module: "GameKit_3864e7f38681b875", properties: {"isAuthenticated":1987686180543835,"friends":3327590533328305,"isPresentingFriendRequestViewController":1889913018330867,"isMultiplayerGamingRestricted":517120086028695,"isPersonalizedCommunicationRestricted":3017214673855411,"isUnderage":3766579818786251}, methods: {"deleteSavedGames":{"id":630779733742353,"hints":[null,{"callback":{"out":[]}}]},"fetchItems":{"id":3374061459826186,"hints":[{"callback":{"out":[]}}]},"fetchSavedGames":{"id":4429501848499119,"hints":[{"callback":{"out":[]}}]},"generateIdentityVerificationSignature":{"id":3051022927809390,"hints":[{"callback":{"out":[]}}]},"loadChallengableFriends":{"id":2283517974517923,"hints":[{"callback":{"out":[]}}]},"loadDefaultLeaderboardIdentifier":{"id":124664254885309,"hints":[{"callback":{"out":[]}}]},"loadFriendPlayers":{"id":3564202369932541,"hints":[{"callback":{"out":[]}}]},"loadFriends":{"id":1844888404100374,"hints":[{"callback":{"out":[]}}]},"loadFriendsAuthorizationStatus":{"id":2160610707927205,"hints":[{"callback":{"out":[]}}]},"loadFriendsObsoleted":{"id":394220527313647,"hints":[{"callback":{"out":[]}}]},"loadFriendsIdentifiedByCompletionHandler":{"id":207413172544141,"hints":[null,{"callback":{"out":[]}}]},"loadRecentPlayers":{"id":1743318061794465,"hints":[{"callback":{"out":[]}}]},"presentFriendRequestCreator":{"id":3952518533560665},"register":{"id":2600419121234174},"resolveConflictingSavedGames":{"id":2624643460534777,"hints":[null,null,{"callback":{"out":[]}}]},"saveGameData":{"id":463530643543901,"hints":[null,null,{"callback":{"out":[]}}]},"setDefaultLeaderboardIdentifier":{"id":412891943426995,"hints":[null,{"callback":{"out":[]}}]},"unregisterAllListeners":{"id":3422508594170134},"unregisterListener":{"id":3139860346080951}} });
+registerSDKClass("GKLeaderboard", GKLeaderboard, { module: "GameKit_ff42ce03e691ab23", properties: {"activityIdentifier":477610252293899,"activityProperties":3885934048070978,"baseLeaderboardID":3767240227437406,"duration":4029245094356176,"groupIdentifier":2436385481463681,"identifier":791972192952065,"isHidden":2080007781641014,"leaderboardDescription":2154130940594667,"isLoading":1946698039018002,"localPlayerScore":2532279871681095,"maxRange":2035630544186198,"nextStartDate":1094896896879452,"playerScope":2026628522177312,"range":2789695560181687,"releaseState":1681432197145902,"scores":2197511627178324,"startDate":821891834124902,"timeScope":3372198501200739,"title":1230420156288470,"type":3723005643562207}, methods: {"loadEntriesForTimeScopeRangeCompletionHandler":{"id":3650524621109284,"hints":[null,null,null,{"callback":{"out":[]}}]},"loadEntriesForTimeScopeCompletionHandler":{"id":3018502445578727,"hints":[null,null,{"callback":{"out":[]}}]},"loadImage":{"id":93231989345849,"hints":[{"callback":{"out":[]}}]},"loadPreviousOccurrence":{"id":2655794418957188,"hints":[{"callback":{"out":[]}}]},"loadScores":{"id":3117850784606942,"hints":[{"callback":{"out":[]}}]},"submitScoreContextPlayerCompletionHandler":{"id":4051825471149344,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("GKLeaderboardEntry", GKLeaderboard_Entry, { module: "GameKit_ff42ce03e691ab23", properties: {"context":7182729317174,"date":1006265247363230,"formattedScore":4317478273285420,"player":2366032479344289,"rank":2876631265345495,"score":801477928873183}, methods: {"challengeComposeControllerWithMessagePlayersCompletion":{"id":1680687792660243,"hints":[null,null,{"callback":{"out":[]}}]},"challengeComposeControllerWithMessagePlayersCompletionHandler":{"id":3446040153422803,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("GKLeaderboardScore", GKLeaderboardScore, { module: "GameKit_ff42ce03e691ab23", properties: {"context":2377477246589037,"leaderboardID":453430291402714,"player":1150295069017636,"value":622220698362490} });
+registerSDKClass("GKLeaderboardSet", GKLeaderboardSet, { module: "GameKit_ff42ce03e691ab23", properties: {"groupIdentifier":1529615594244047,"identifier":2995174804481970,"title":3676181818521940}, methods: {"loadImage":{"id":3165969477026327,"hints":[{"callback":{"out":[]}}]},"loadLeaderboardsCompletionHandler":{"id":1267845315137065,"hints":[{"callback":{"out":[]}}]},"loadLeaderboardsHandler":{"id":4051676034022992,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("GKPlayer", GKPlayer, { module: "GameKit_ff42ce03e691ab23", properties: {"alias":3968624601331934,"displayName":197211638411422,"gamePlayerID":2519948911888645,"guestIdentifier":1869317693545808,"isFriend":4446686562932079,"isInvitable":3280840541231898,"playerID":2682188533849836,"teamPlayerID":506014180044686}, methods: {"loadPhoto":{"id":2987659252476234,"hints":[null,{"callback":{"out":[]}}]},"scopedIDsArePersistent":{"id":4421765302135746}} });
+registerSDKClass("GKLocalPlayer", GKLocalPlayer, { module: "GameKit_ff42ce03e691ab23", properties: {"isAuthenticated":1987686180543835,"friends":3327590533328305,"isPresentingFriendRequestViewController":1889913018330867,"isMultiplayerGamingRestricted":517120086028695,"isPersonalizedCommunicationRestricted":3017214673855411,"isUnderage":3766579818786251}, methods: {"deleteSavedGames":{"id":630779733742353,"hints":[null,{"callback":{"out":[]}}]},"fetchItems":{"id":3374061459826186,"hints":[{"callback":{"out":[]}}]},"fetchSavedGames":{"id":4429501848499119,"hints":[{"callback":{"out":[]}}]},"generateIdentityVerificationSignature":{"id":3051022927809390,"hints":[{"callback":{"out":[]}}]},"loadChallengableFriends":{"id":2283517974517923,"hints":[{"callback":{"out":[]}}]},"loadDefaultLeaderboardIdentifier":{"id":124664254885309,"hints":[{"callback":{"out":[]}}]},"loadFriendPlayers":{"id":3564202369932541,"hints":[{"callback":{"out":[]}}]},"loadFriends":{"id":1844888404100374,"hints":[{"callback":{"out":[]}}]},"loadFriendsAuthorizationStatus":{"id":2160610707927205,"hints":[{"callback":{"out":[]}}]},"loadFriendsObsoleted":{"id":394220527313647,"hints":[{"callback":{"out":[]}}]},"loadFriendsIdentifiedByCompletionHandler":{"id":207413172544141,"hints":[null,{"callback":{"out":[]}}]},"loadRecentPlayers":{"id":1743318061794465,"hints":[{"callback":{"out":[]}}]},"presentFriendRequestCreator":{"id":3952518533560665},"register":{"id":2600419121234174},"resolveConflictingSavedGames":{"id":2624643460534777,"hints":[null,null,{"callback":{"out":[]}}]},"saveGameData":{"id":463530643543901,"hints":[null,null,{"callback":{"out":[]}}]},"setDefaultLeaderboardIdentifier":{"id":412891943426995,"hints":[null,{"callback":{"out":[]}}]},"unregisterAllListeners":{"id":3422508594170134},"unregisterListener":{"id":3139860346080951}} });
 registerSDKProtocol("c:objc(pl)GKLocalPlayerListener", {"playerDidModifySavedGame":"player(_:didModifySavedGame:)","playerHasConflictingSavedGames":"player(_:hasConflictingSavedGames:)","playerDidRequestMatchWithOtherPlayers":"player(_:didRequestMatchWithOtherPlayers:)","playerReceivedTurnEventForDidBecomeActive":"player(_:receivedTurnEventFor:didBecomeActive:)","playerMatchEnded":"player(_:matchEnded:)","playerReceivedExchangeRequestFor":"player(_:receivedExchangeRequest:for:)","playerReceivedExchangeCancellationFor":"player(_:receivedExchangeCancellation:for:)","playerReceivedExchangeRepliesForCompletedExchangeFor":"player(_:receivedExchangeReplies:forCompletedExchange:for:)","playerWantsToQuitMatch":"player(_:wantsToQuitMatch:)","playerDidRequestMatchWithPlayers":"player(_:didRequestMatchWithPlayers:)","playerDidAccept":"player(_:didAccept:)","playerDidRequestMatchWithRecipients":"player(_:didRequestMatchWithRecipients:)","playerWantsToPlay":"player(_:wantsToPlay:)","playerDidReceive":"player(_:didReceive:)","playerDidCompleteIssuedByFriend":"player(_:didComplete:issuedByFriend:)","playerIssuedChallengeWasCompletedByFriend":"player(_:issuedChallengeWasCompleted:byFriend:)"});
-registerSDKClass("GKMatch", GKMatch, { module: "GameKit_3864e7f38681b875", properties: {"delegate":1556602898255727,"expectedPlayerCount":1481820413325799,"playerIDs":676943090719872,"playerProperties":479412408796555,"players":1746014660142952,"properties":3391884411707012}, methods: {"chooseBestHostPlayer":{"id":1926377896651710,"hints":[{"callback":{"out":[]}}]},"chooseBestHostingPlayer":{"id":4320268977299447,"hints":[{"callback":{"out":[]}}]},"disconnect":{"id":1659057016224039},"rematch":{"id":3868152685783680,"hints":[{"callback":{"out":[]}}]},"sendToDataMode":{"id":1536570109149539},"sendToPlayersWith":{"id":2152258614957709},"sendData":{"id":3587443712159998},"voiceChat":{"id":531803025305146}} });
+registerSDKClass("GKMatch", GKMatch, { module: "GameKit_ff42ce03e691ab23", properties: {"delegate":1556602898255727,"expectedPlayerCount":1481820413325799,"playerIDs":676943090719872,"playerProperties":479412408796555,"players":1746014660142952,"properties":3391884411707012}, methods: {"chooseBestHostPlayer":{"id":1926377896651710,"hints":[{"callback":{"out":[]}}]},"chooseBestHostingPlayer":{"id":4320268977299447,"hints":[{"callback":{"out":[]}}]},"disconnect":{"id":1659057016224039},"rematch":{"id":3868152685783680,"hints":[{"callback":{"out":[]}}]},"sendToDataMode":{"id":1536570109149539},"sendToPlayersWith":{"id":2152258614957709},"sendData":{"id":3587443712159998},"voiceChat":{"id":531803025305146}} });
 registerSDKProtocol("c:objc(pl)GKMatchDelegate", {"matchDidReceiveFromRemotePlayer":"match(_:didReceive:fromRemotePlayer:)","matchDidReceiveForRecipientFromRemotePlayer":"match(_:didReceive:forRecipient:fromRemotePlayer:)","matchPlayerDidChange":"match(_:player:didChange:)","matchDidFailWithError":"match(_:didFailWithError:)","matchDidReceiveFromPlayer":"match(_:didReceive:fromPlayer:)"});
-registerSDKClass("GKMatchedPlayers", GKMatchedPlayers, { module: "GameKit_3864e7f38681b875", properties: {"playerProperties":3595137262236848,"players":3164263477638467,"properties":3192176346503091} });
-registerSDKClass("GKMatchmaker", GKMatchmaker, { module: "GameKit_3864e7f38681b875", properties: {}, methods: {"addPlayers":{"id":109957129762036,"hints":[null,null,{"callback":{"out":[]}}]},"cancel":{"id":1893723464247942},"cancelInvite":{"id":485421540023779},"cancelPendingInvite":{"id":3872324923380683},"findMatch":{"id":3369416539380659,"hints":[null,{"callback":{"out":[]}}]},"findMatchedPlayers":{"id":2909514970108781,"hints":[null,{"callback":{"out":[]}}]},"findPlayersForHostedMatchRequestWithCompletionHandler":{"id":3140937225095267,"hints":[null,{"callback":{"out":[]}}]},"findPlayersForHostedRequestWithCompletionHandler":{"id":3717121043614244,"hints":[null,{"callback":{"out":[]}}]},"finishMatchmaking":{"id":761953400885378},"match":{"id":868110733199272,"hints":[null,{"callback":{"out":[]}}]},"queryActivity":{"id":2592197260589995,"hints":[{"callback":{"out":[]}}]},"queryPlayerGroupActivity":{"id":2216265703334733,"hints":[null,{"callback":{"out":[]}}]},"queryQueueActivity":{"id":4156184826438761,"hints":[null,{"callback":{"out":[]}}]},"startBrowsingForNearbyPlayersHandler":{"id":2294514861957637,"hints":[{"callback":{"out":[]}}]},"startBrowsingForNearbyPlayersReachableHandler":{"id":2530711066350947,"hints":[{"callback":{"out":[]}}]},"startGroupActivity":{"id":3224982544450490,"hints":[{"callback":{"out":[]}}]},"stopBrowsingForNearbyPlayers":{"id":3401045361161828},"stopGroupActivity":{"id":3446582561719627}} });
-registerSDKClass("GKMatchmakerViewController", GKMatchmakerViewController, { module: "GameKit_3864e7f38681b875", properties: {"canStartWithMinimumPlayers":3618616166042036,"isHosted":1318949325180048,"matchRequest":102039247519467,"matchmakerDelegate":3247490845333590,"matchmakingMode":499140882449071}, methods: {"addPlayers":{"id":100750731572010},"setHostedPlayerConnected":{"id":1003888108798604},"setHostedPlayerDidConnect":{"id":2511144738732108}} });
+registerSDKClass("GKMatchedPlayers", GKMatchedPlayers, { module: "GameKit_ff42ce03e691ab23", properties: {"playerProperties":3595137262236848,"players":3164263477638467,"properties":3192176346503091} });
+registerSDKClass("GKMatchmaker", GKMatchmaker, { module: "GameKit_ff42ce03e691ab23", properties: {}, methods: {"addPlayers":{"id":109957129762036,"hints":[null,null,{"callback":{"out":[]}}]},"cancel":{"id":1893723464247942},"cancelInvite":{"id":485421540023779},"cancelPendingInvite":{"id":3872324923380683},"findMatch":{"id":3369416539380659,"hints":[null,{"callback":{"out":[]}}]},"findMatchedPlayers":{"id":2909514970108781,"hints":[null,{"callback":{"out":[]}}]},"findPlayersForHostedMatchRequestWithCompletionHandler":{"id":3140937225095267,"hints":[null,{"callback":{"out":[]}}]},"findPlayersForHostedRequestWithCompletionHandler":{"id":3717121043614244,"hints":[null,{"callback":{"out":[]}}]},"finishMatchmaking":{"id":761953400885378},"match":{"id":868110733199272,"hints":[null,{"callback":{"out":[]}}]},"queryActivity":{"id":2592197260589995,"hints":[{"callback":{"out":[]}}]},"queryPlayerGroupActivity":{"id":2216265703334733,"hints":[null,{"callback":{"out":[]}}]},"queryQueueActivity":{"id":4156184826438761,"hints":[null,{"callback":{"out":[]}}]},"startBrowsingForNearbyPlayersHandler":{"id":2294514861957637,"hints":[{"callback":{"out":[]}}]},"startBrowsingForNearbyPlayersReachableHandler":{"id":2530711066350947,"hints":[{"callback":{"out":[]}}]},"startGroupActivity":{"id":3224982544450490,"hints":[{"callback":{"out":[]}}]},"stopBrowsingForNearbyPlayers":{"id":3401045361161828},"stopGroupActivity":{"id":3446582561719627}} });
+registerSDKClass("GKMatchmakerViewController", GKMatchmakerViewController, { module: "GameKit_ff42ce03e691ab23", properties: {"canStartWithMinimumPlayers":3618616166042036,"isHosted":1318949325180048,"matchRequest":102039247519467,"matchmakerDelegate":3247490845333590,"matchmakingMode":499140882449071}, methods: {"addPlayers":{"id":100750731572010},"setHostedPlayerConnected":{"id":1003888108798604},"setHostedPlayerDidConnect":{"id":2511144738732108}} });
 registerSDKProtocol("c:objc(pl)GKMatchmakerViewControllerDelegate", {"matchmakerViewControllerWasCancelled":"matchmakerViewControllerWasCancelled(_:)","matchmakerViewControllerDidFailWithError":"matchmakerViewController(_:didFailWithError:)","matchmakerViewControllerDidFind":"matchmakerViewController(_:didFind:)","matchmakerViewControllerDidFindHostedPlayers":"matchmakerViewController(_:didFindHostedPlayers:)","matchmakerViewControllerHostedPlayerDidAccept":"matchmakerViewController(_:hostedPlayerDidAccept:)","matchmakerViewControllerDidFindPlayers":"matchmakerViewController(_:didFindPlayers:)","matchmakerViewControllerDidReceiveAcceptFromHostedPlayer":"matchmakerViewController(_:didReceiveAcceptFromHostedPlayer:)"});
-registerSDKClass("GKMatchRequest", GKMatchRequest, { module: "GameKit_3864e7f38681b875", properties: {"defaultNumberOfPlayers":2223091768304479,"inviteMessage":3221597140297959,"maxPlayers":2586401444587046,"minPlayers":3844145522806432,"playerAttributes":301692979955242,"playerGroup":663864459929650,"playersToInvite":3625453640186549,"properties":3673491248488280,"queueName":552098842364975,"recipientProperties":2821018689906860,"recipients":174632384723467,"restrictToAutomatch":3975470443417713} });
-registerSDKClass("GKNotificationBanner", GKNotificationBanner, { module: "GameKit_3864e7f38681b875", properties: {} });
-registerSDKClass("GKSavedGame", GKSavedGame, { module: "GameKit_3864e7f38681b875", properties: {"deviceName":4465607655908737,"modificationDate":66849086660423,"name":1664100911702455}, methods: {"loadData":{"id":690688610158019,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("GKMatchRequest", GKMatchRequest, { module: "GameKit_ff42ce03e691ab23", properties: {"defaultNumberOfPlayers":2223091768304479,"inviteMessage":3221597140297959,"maxPlayers":2586401444587046,"minPlayers":3844145522806432,"playerAttributes":301692979955242,"playerGroup":663864459929650,"playersToInvite":3625453640186549,"properties":3673491248488280,"queueName":552098842364975,"recipientProperties":2821018689906860,"recipients":174632384723467,"restrictToAutomatch":3975470443417713} });
+registerSDKClass("GKNotificationBanner", GKNotificationBanner, { module: "GameKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("GKSavedGame", GKSavedGame, { module: "GameKit_ff42ce03e691ab23", properties: {"deviceName":4465607655908737,"modificationDate":66849086660423,"name":1664100911702455}, methods: {"loadData":{"id":690688610158019,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)GKSavedGameListener", {"playerDidModifySavedGame":"player(_:didModifySavedGame:)","playerHasConflictingSavedGames":"player(_:hasConflictingSavedGames:)"});
-registerSDKClass("GKScore", GKScore, { module: "GameKit_3864e7f38681b875", properties: {"context":1981623082759152,"date":1825965550998455,"formattedValue":2309368188386013,"leaderboardIdentifier":246550738266555,"player":1360925095851146,"playerID":3675859411574023,"rank":529067206990278,"shouldSetDefaultLeaderboard":4253541629650818,"value":528405580007736}, methods: {"challengeComposeControllerWithMessagePlayersCompletion":{"id":2213340752018218,"hints":[null,null,{"callback":{"out":[]}}]},"challengeComposeControllerWithMessagePlayersCompletionHandler":{"id":2424027656382943,"hints":[null,null,{"callback":{"out":[]}}]},"challengeComposeControllerWithPlayersMessageCompletionHandler":{"id":854001629781022,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("GKScoreChallenge", GKScoreChallenge, { module: "GameKit_3864e7f38681b875", properties: {"leaderboardEntry":191822112151804,"score":899575230467207} });
+registerSDKClass("GKScore", GKScore, { module: "GameKit_ff42ce03e691ab23", properties: {"context":1981623082759152,"date":1825965550998455,"formattedValue":2309368188386013,"leaderboardIdentifier":246550738266555,"player":1360925095851146,"playerID":3675859411574023,"rank":529067206990278,"shouldSetDefaultLeaderboard":4253541629650818,"value":528405580007736}, methods: {"challengeComposeControllerWithMessagePlayersCompletion":{"id":2213340752018218,"hints":[null,null,{"callback":{"out":[]}}]},"challengeComposeControllerWithMessagePlayersCompletionHandler":{"id":2424027656382943,"hints":[null,null,{"callback":{"out":[]}}]},"challengeComposeControllerWithPlayersMessageCompletionHandler":{"id":854001629781022,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("GKScoreChallenge", GKScoreChallenge, { module: "GameKit_ff42ce03e691ab23", properties: {"leaderboardEntry":191822112151804,"score":899575230467207} });
 registerSDKProtocol("c:objc(pl)GKTurnBasedEventListener", {"playerDidRequestMatchWithOtherPlayers":"player(_:didRequestMatchWithOtherPlayers:)","playerReceivedTurnEventForDidBecomeActive":"player(_:receivedTurnEventFor:didBecomeActive:)","playerMatchEnded":"player(_:matchEnded:)","playerReceivedExchangeRequestFor":"player(_:receivedExchangeRequest:for:)","playerReceivedExchangeCancellationFor":"player(_:receivedExchangeCancellation:for:)","playerReceivedExchangeRepliesForCompletedExchangeFor":"player(_:receivedExchangeReplies:forCompletedExchange:for:)","playerWantsToQuitMatch":"player(_:wantsToQuitMatch:)","playerDidRequestMatchWithPlayers":"player(_:didRequestMatchWithPlayers:)"});
-registerSDKClass("GKTurnBasedExchange", GKTurnBasedExchange, { module: "GameKit_3864e7f38681b875", properties: {"completionDate":4486254850365958,"data":830700340330271,"exchangeID":363271210748079,"message":1313370155592535,"recipients":1931537304144317,"replies":108017004337628,"sendDate":255081224779150,"sender":4424321807773444,"status":2532979485989951,"timeoutDate":4224148189157232}, methods: {"cancel":{"id":122386221581168,"hints":[null,null,{"callback":{"out":[]}}]},"reply":{"id":3728638677237115,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("GKTurnBasedExchangeReply", GKTurnBasedExchangeReply, { module: "GameKit_3864e7f38681b875", properties: {"data":226780619577112,"message":723253790292860,"recipient":774302443601689,"replyDate":1016392868742279} });
-registerSDKClass("GKTurnBasedMatch", GKTurnBasedMatch, { module: "GameKit_3864e7f38681b875", properties: {"activeExchanges":2392052484217401,"completedExchanges":3638705735158578,"creationDate":3565518329690191,"currentParticipant":1160060717994972,"exchangeDataMaximumSize":3111893608419501,"exchangeMaxInitiatedExchangesPerPlayer":1332642227022230,"exchanges":1931935719991226,"matchData":238686363537196,"matchDataMaximumSize":2353846240654217,"matchID":4349468661189543,"message":4439556000615234,"participants":3947870149989456,"status":3373841262532664}, methods: {"acceptInvite":{"id":549668054640732,"hints":[{"callback":{"out":[]}}]},"declineInvite":{"id":3047380887246601,"hints":[{"callback":{"out":[]}}]},"endMatchInTurnWithMatchCompletionHandler":{"id":4424550692165863,"hints":[null,{"callback":{"out":[]}}]},"endMatchInTurnWithMatchLeaderboardScoresAchievementsCompletionHandler":{"id":2237849922750050,"hints":[null,null,null,{"callback":{"out":[]}}]},"endMatchInTurnWithMatchScoresAchievementsCompletionHandler":{"id":3948321787243549,"hints":[null,null,null,{"callback":{"out":[]}}]},"endTurn":{"id":4380953915031187,"hints":[null,null,null,{"callback":{"out":[]}}]},"loadMatchData":{"id":162230967495615,"hints":[{"callback":{"out":[]}}]},"participantQuitInTurn":{"id":747425459410236,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"participantQuitOutOfTurn":{"id":2659078660837594,"hints":[null,{"callback":{"out":[]}}]},"rematch":{"id":3282690378593759,"hints":[{"callback":{"out":[]}}]},"remove":{"id":3893228381655279,"hints":[{"callback":{"out":[]}}]},"saveCurrentTurn":{"id":2983442137194911,"hints":[null,{"callback":{"out":[]}}]},"saveMergedMatch":{"id":46499616828181,"hints":[null,null,{"callback":{"out":[]}}]},"sendExchange":{"id":896502898032073,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"sendReminder":{"id":149797180501443,"hints":[null,null,null,{"callback":{"out":[]}}]},"setLocalizableMessageWithKey":{"id":3206855568785692}} });
-registerSDKClass("GKTurnBasedMatchmakerViewController", GKTurnBasedMatchmakerViewController, { module: "GameKit_3864e7f38681b875", properties: {"matchmakingMode":919061569811619,"showExistingMatches":4068103433546645,"turnBasedMatchmakerDelegate":2902174297513318} });
+registerSDKClass("GKTurnBasedExchange", GKTurnBasedExchange, { module: "GameKit_ff42ce03e691ab23", properties: {"completionDate":4486254850365958,"data":830700340330271,"exchangeID":363271210748079,"message":1313370155592535,"recipients":1931537304144317,"replies":108017004337628,"sendDate":255081224779150,"sender":4424321807773444,"status":2532979485989951,"timeoutDate":4224148189157232}, methods: {"cancel":{"id":122386221581168,"hints":[null,null,{"callback":{"out":[]}}]},"reply":{"id":3728638677237115,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("GKTurnBasedExchangeReply", GKTurnBasedExchangeReply, { module: "GameKit_ff42ce03e691ab23", properties: {"data":226780619577112,"message":723253790292860,"recipient":774302443601689,"replyDate":1016392868742279} });
+registerSDKClass("GKTurnBasedMatch", GKTurnBasedMatch, { module: "GameKit_ff42ce03e691ab23", properties: {"activeExchanges":2392052484217401,"completedExchanges":3638705735158578,"creationDate":3565518329690191,"currentParticipant":1160060717994972,"exchangeDataMaximumSize":3111893608419501,"exchangeMaxInitiatedExchangesPerPlayer":1332642227022230,"exchanges":1931935719991226,"matchData":238686363537196,"matchDataMaximumSize":2353846240654217,"matchID":4349468661189543,"message":4439556000615234,"participants":3947870149989456,"status":3373841262532664}, methods: {"acceptInvite":{"id":549668054640732,"hints":[{"callback":{"out":[]}}]},"declineInvite":{"id":3047380887246601,"hints":[{"callback":{"out":[]}}]},"endMatchInTurnWithMatchCompletionHandler":{"id":4424550692165863,"hints":[null,{"callback":{"out":[]}}]},"endMatchInTurnWithMatchLeaderboardScoresAchievementsCompletionHandler":{"id":2237849922750050,"hints":[null,null,null,{"callback":{"out":[]}}]},"endMatchInTurnWithMatchScoresAchievementsCompletionHandler":{"id":3948321787243549,"hints":[null,null,null,{"callback":{"out":[]}}]},"endTurn":{"id":4380953915031187,"hints":[null,null,null,{"callback":{"out":[]}}]},"loadMatchData":{"id":162230967495615,"hints":[{"callback":{"out":[]}}]},"participantQuitInTurn":{"id":747425459410236,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"participantQuitOutOfTurn":{"id":2659078660837594,"hints":[null,{"callback":{"out":[]}}]},"rematch":{"id":3282690378593759,"hints":[{"callback":{"out":[]}}]},"remove":{"id":3893228381655279,"hints":[{"callback":{"out":[]}}]},"saveCurrentTurn":{"id":2983442137194911,"hints":[null,{"callback":{"out":[]}}]},"saveMergedMatch":{"id":46499616828181,"hints":[null,null,{"callback":{"out":[]}}]},"sendExchange":{"id":896502898032073,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"sendReminder":{"id":149797180501443,"hints":[null,null,null,{"callback":{"out":[]}}]},"setLocalizableMessageWithKey":{"id":3206855568785692}} });
+registerSDKClass("GKTurnBasedMatchmakerViewController", GKTurnBasedMatchmakerViewController, { module: "GameKit_ff42ce03e691ab23", properties: {"matchmakingMode":919061569811619,"showExistingMatches":4068103433546645,"turnBasedMatchmakerDelegate":2902174297513318} });
 registerSDKProtocol("c:objc(pl)GKTurnBasedMatchmakerViewControllerDelegate", {"turnBasedMatchmakerViewControllerWasCancelled":"turnBasedMatchmakerViewControllerWasCancelled(_:)","turnBasedMatchmakerViewControllerDidFailWithError":"turnBasedMatchmakerViewController(_:didFailWithError:)","turnBasedMatchmakerViewControllerDidFind":"turnBasedMatchmakerViewController(_:didFind:)","turnBasedMatchmakerViewControllerPlayerQuitFor":"turnBasedMatchmakerViewController(_:playerQuitFor:)"});
-registerSDKClass("GKTurnBasedParticipant", GKTurnBasedParticipant, { module: "GameKit_3864e7f38681b875", properties: {"lastTurnDate":2757120045568003,"matchOutcome":2597601951025429,"player":1119519160437048,"playerID":145366087071937,"status":22953137231682,"timeoutDate":3457977559559779} });
-registerSDKClass("GKVoiceChat", GKVoiceChat, { module: "GameKit_3864e7f38681b875", properties: {"isActive":331613322796872,"name":3959873423031664,"playerIDs":2527658328972194,"players":191207976207278,"volume":3249447064223660}, methods: {"setMute":{"id":1957698843924770},"setPlayer":{"id":625896055198748},"start":{"id":207902400495895},"stop":{"id":832737597584874}} });
+registerSDKClass("GKTurnBasedParticipant", GKTurnBasedParticipant, { module: "GameKit_ff42ce03e691ab23", properties: {"lastTurnDate":2757120045568003,"matchOutcome":2597601951025429,"player":1119519160437048,"playerID":145366087071937,"status":22953137231682,"timeoutDate":3457977559559779} });
+registerSDKClass("GKVoiceChat", GKVoiceChat, { module: "GameKit_ff42ce03e691ab23", properties: {"isActive":331613322796872,"name":3959873423031664,"playerIDs":2527658328972194,"players":191207976207278,"volume":3249447064223660}, methods: {"setMute":{"id":1957698843924770},"setPlayer":{"id":625896055198748},"start":{"id":207902400495895},"stop":{"id":832737597584874}} });

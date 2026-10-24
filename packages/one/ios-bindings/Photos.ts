@@ -83,7 +83,7 @@ export const PHAccessLevel = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (PHAccessLevel) | null { return callSDK<(PHAccessLevel) | null>("Photos_3864e7f38681b875", 4195606768921167, undefined, [rawValue]); }
+  init(rawValue: number): (PHAccessLevel) | null { return callSDK<(PHAccessLevel) | null>("Photos_ff42ce03e691ab23", 4195606768921167, undefined, [rawValue]); }
 };
 
 /**
@@ -95,22 +95,22 @@ export class PHAdjustmentData extends SDKHandle {
    * init(formatIdentifier: String, formatVersion: String, data: Data)
    * @availability iOS 8.0+
    */
-  static init(formatIdentifier: string, formatVersion: string, data: ArrayBuffer): PHAdjustmentData { return callSDK<PHAdjustmentData>("Photos_3864e7f38681b875", 315022822571878, undefined, [formatIdentifier, formatVersion, data]); }
+  static init(formatIdentifier: string, formatVersion: string, data: ArrayBuffer): PHAdjustmentData { return callSDK<PHAdjustmentData>("Photos_ff42ce03e691ab23", 315022822571878, undefined, [formatIdentifier, formatVersion, data]); }
   /**
    * var data: Data { get }
    * @availability iOS 8.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("Photos_3864e7f38681b875", 1652091167741438, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("Photos_ff42ce03e691ab23", 1652091167741438, this, []); }
   /**
    * var formatIdentifier: String { get }
    * @availability iOS 8.0+
    */
-  get formatIdentifier(): string { return callSDK<string>("Photos_3864e7f38681b875", 877251366947339, this, []); }
+  get formatIdentifier(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 877251366947339, this, []); }
   /**
    * var formatVersion: String { get }
    * @availability iOS 8.0+
    */
-  get formatVersion(): string { return callSDK<string>("Photos_3864e7f38681b875", 2116147200596702, this, []); }
+  get formatVersion(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 2116147200596702, this, []); }
   declare readonly $type: { "c:objc(cs)PHAdjustmentData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "formatIdentifier": true; "formatVersion": true };
 }
@@ -121,12 +121,12 @@ export class PHAdjustmentData extends SDKHandle {
  */
 export class PHObject extends SDKHandle {
   /** init() */
-  static init(): PHObject { return callSDK<PHObject>("Photos_3864e7f38681b875", 3949526330483252, undefined, []); }
+  static init(): PHObject { return callSDK<PHObject>("Photos_ff42ce03e691ab23", 3949526330483252, undefined, []); }
   /**
    * var localIdentifier: String { get }
    * @availability iOS 8.0+
    */
-  get localIdentifier(): string { return callSDK<string>("Photos_3864e7f38681b875", 3388807973369197, this, []); }
+  get localIdentifier(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 3388807973369197, this, []); }
   declare readonly $type: { "c:objc(cs)PHObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localIdentifier": true };
 }
@@ -140,180 +140,180 @@ export class PHAsset extends (PHObject as unknown as Omit<typeof PHObject, "init
    * class func fetchAssets(in assetCollection: PHAssetCollection, options: PHFetchOptions?) -> PHFetchResult<PHAsset>
    * @availability iOS 8.0+
    */
-  static fetchAssetsInOptions(assetCollection: PHAssetCollection, options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_3864e7f38681b875", 2219516263058523, undefined, [assetCollection, options]); }
+  static fetchAssetsInOptions(assetCollection: PHAssetCollection, options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_ff42ce03e691ab23", 2219516263058523, undefined, [assetCollection, options]); }
   /**
    * class func fetchAssets(withALAssetURLs assetURLs: [URL], options: PHFetchOptions?) -> PHFetchResult<PHAsset>
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  static fetchAssetsWithALAssetURLsOptions(assetURLs: Array<string>, options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_3864e7f38681b875", 1594677398254019, undefined, [assetURLs, options]); }
+  static fetchAssetsWithALAssetURLsOptions(assetURLs: Array<string>, options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_ff42ce03e691ab23", 1594677398254019, undefined, [assetURLs, options]); }
   /**
    * class func fetchAssets(withBurstIdentifier burstIdentifier: String, options: PHFetchOptions?) -> PHFetchResult<PHAsset>
    * @availability iOS 8.0+
    */
-  static fetchAssetsWithBurstIdentifierOptions(burstIdentifier: string, options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_3864e7f38681b875", 2917506674622726, undefined, [burstIdentifier, options]); }
+  static fetchAssetsWithBurstIdentifierOptions(burstIdentifier: string, options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_ff42ce03e691ab23", 2917506674622726, undefined, [burstIdentifier, options]); }
   /**
    * class func fetchAssets(withLocalIdentifiers identifiers: [String], options: PHFetchOptions?) -> PHFetchResult<PHAsset>
    * @availability iOS 8.0+
    */
-  static fetchAssetsWithLocalIdentifiersOptions(identifiers: Array<string>, options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_3864e7f38681b875", 2540009698667869, undefined, [identifiers, options]); }
+  static fetchAssetsWithLocalIdentifiersOptions(identifiers: Array<string>, options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_ff42ce03e691ab23", 2540009698667869, undefined, [identifiers, options]); }
   /**
    * class func fetchAssets(with mediaType: PHAssetMediaType, options: PHFetchOptions?) -> PHFetchResult<PHAsset>
    * @availability iOS 8.0+
    */
-  static fetchAssetsWithOptions(mediaType: PHAssetMediaType, options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_3864e7f38681b875", 1009023513710376, undefined, [mediaType, options]); }
+  static fetchAssetsWithOptions(mediaType: PHAssetMediaType, options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_ff42ce03e691ab23", 1009023513710376, undefined, [mediaType, options]); }
   /**
    * class func fetchAssets(with options: PHFetchOptions?) -> PHFetchResult<PHAsset>
    * @availability iOS 8.0+
    */
-  static fetchAssetsWith(options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_3864e7f38681b875", 2269193655514349, undefined, [options]); }
+  static fetchAssetsWith(options?: (PHFetchOptions) | null): PHFetchResult<PHAsset> { return callSDK<PHFetchResult<PHAsset>>("Photos_ff42ce03e691ab23", 2269193655514349, undefined, [options]); }
   /**
    * class func fetchKeyAssets(in assetCollection: PHAssetCollection, options: PHFetchOptions?) -> PHFetchResult<PHAsset>?
    * @availability iOS 8.0+
    */
-  static fetchKeyAssets(assetCollection: PHAssetCollection, options?: (PHFetchOptions) | null): $SDK0 { return callSDK<$SDK0>("Photos_3864e7f38681b875", 4484932713382871, undefined, [assetCollection, options]); }
+  static fetchKeyAssets(assetCollection: PHAssetCollection, options?: (PHFetchOptions) | null): $SDK0 { return callSDK<$SDK0>("Photos_ff42ce03e691ab23", 4484932713382871, undefined, [assetCollection, options]); }
   /**
    * func canPerform(_ editOperation: PHAssetEditOperation) -> Bool
    * @availability iOS 8.0+
    */
-  canPerform(editOperation: PHAssetEditOperation): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3692250663099408, this, [editOperation]); }
+  canPerform(editOperation: PHAssetEditOperation): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3692250663099408, this, [editOperation]); }
   /**
    * func cancelContentEditingInputRequest(_ requestID: PHContentEditingInputRequestID)
    * @availability iOS 8.0+
    */
-  cancelContentEditingInputRequest(requestID: number): void { return callSDK<void>("Photos_3864e7f38681b875", 3943508286913695, this, [requestID]); }
+  cancelContentEditingInputRequest(requestID: number): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3943508286913695, this, [requestID]); }
   /** init() */
-  static init(): PHAsset { return callSDK<PHAsset>("Photos_3864e7f38681b875", 3408189075260882, undefined, []); }
+  static init(): PHAsset { return callSDK<PHAsset>("Photos_ff42ce03e691ab23", 3408189075260882, undefined, []); }
   /**
    * func requestContentEditingInput(with options: PHContentEditingInputRequestOptions?, completionHandler: @escaping (PHContentEditingInput?, [AnyHashable : Any]) -> Void) -> PHContentEditingInputRequestID
    * @availability iOS 8.0+
    */
-  requestContentEditingInput(options: (PHContentEditingInputRequestOptions) | null, completionHandler: ((arg0: (PHContentEditingInput) | null, arg1: NativeMap<unknown, unknown>) => void)): number { return callSDK<number>("Photos_3864e7f38681b875", 757948731181583, this, [options, completionHandler], [null,{"callback":{"out":[]}}]); }
+  requestContentEditingInput(options: (PHContentEditingInputRequestOptions) | null, completionHandler: ((arg0: (PHContentEditingInput) | null, arg1: NativeMap<unknown, unknown>) => void)): number { return callSDK<number>("Photos_ff42ce03e691ab23", 757948731181583, this, [options, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var addedDate: Date? { get }
    * @availability iOS 26.0+
    */
-  get addedDate(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 377299021446432, this, []); }
+  get addedDate(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 377299021446432, this, []); }
   /**
    * var adjustmentFormatIdentifier: String? { get }
    * @availability iOS 15.0+
    */
-  get adjustmentFormatIdentifier(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 1759242428690778, this, []); }
+  get adjustmentFormatIdentifier(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 1759242428690778, this, []); }
   /**
    * var adjustmentTimestamp: Date? { get }
    * @availability iOS 18.0+
    */
-  get adjustmentTimestamp(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 2097248430388685, this, []); }
+  get adjustmentTimestamp(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 2097248430388685, this, []); }
   /**
    * var adjustmentsState: PHAsset.AdjustmentsState { get }
    * @availability iOS 18.0+
    */
-  get adjustmentsState(): PHAsset_AdjustmentsState { return callSDK<PHAsset_AdjustmentsState>("Photos_3864e7f38681b875", 1934898183967680, this, []); }
+  get adjustmentsState(): PHAsset_AdjustmentsState { return callSDK<PHAsset_AdjustmentsState>("Photos_ff42ce03e691ab23", 1934898183967680, this, []); }
   /**
    * var burstIdentifier: String? { get }
    * @availability iOS 8.0+
    */
-  get burstIdentifier(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 4034658114100011, this, []); }
+  get burstIdentifier(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 4034658114100011, this, []); }
   /**
    * var burstSelectionTypes: PHAssetBurstSelectionType { get }
    * @availability iOS 8.0+
    */
-  get burstSelectionTypes(): PHAssetBurstSelectionType { return callSDK<PHAssetBurstSelectionType>("Photos_3864e7f38681b875", 3103419644301267, this, []); }
+  get burstSelectionTypes(): PHAssetBurstSelectionType { return callSDK<PHAssetBurstSelectionType>("Photos_ff42ce03e691ab23", 3103419644301267, this, []); }
   /**
    * var contentType: UTType { get }
    * @availability iOS 26.0+
    */
-  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("Photos_3864e7f38681b875", 2675457207356225, this, []); }
+  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("Photos_ff42ce03e691ab23", 2675457207356225, this, []); }
   /**
    * var creationDate: Date? { get }
    * @availability iOS 8.0+
    */
-  get creationDate(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 1098074900584063, this, []); }
+  get creationDate(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 1098074900584063, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 8.0+
    */
-  get duration(): number { return callSDK<number>("Photos_3864e7f38681b875", 744056968178659, this, []); }
+  get duration(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 744056968178659, this, []); }
   /**
    * var extendedMetadata: PHAssetExtendedMetadata { get }
    * @availability iOS 27.0+
    */
-  get extendedMetadata(): PHAssetExtendedMetadata { return callSDK<PHAssetExtendedMetadata>("Photos_3864e7f38681b875", 4147270291128110, this, []); }
+  get extendedMetadata(): PHAssetExtendedMetadata { return callSDK<PHAssetExtendedMetadata>("Photos_ff42ce03e691ab23", 4147270291128110, this, []); }
   /**
    * var isFavorite: Bool { get }
    * @availability iOS 8.0+
    */
-  get isFavorite(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 122614630767930, this, []); }
+  get isFavorite(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 122614630767930, this, []); }
   /**
    * var hasAdjustments: Bool { get }
    * @availability iOS 15.0+
    */
-  get hasAdjustments(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 1348636687570544, this, []); }
+  get hasAdjustments(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 1348636687570544, this, []); }
   /**
    * var isHidden: Bool { get }
    * @availability iOS 8.0+
    */
-  get isHidden(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 1778528768513268, this, []); }
+  get isHidden(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 1778528768513268, this, []); }
   /**
    * var location: CLLocation? { get }
    * @availability iOS 8.0+
    */
-  get location(): $SDK4 { return callSDK<$SDK4>("Photos_3864e7f38681b875", 3310693387725878, this, []); }
+  get location(): $SDK4 { return callSDK<$SDK4>("Photos_ff42ce03e691ab23", 3310693387725878, this, []); }
   /**
    * var mediaSubtypes: PHAssetMediaSubtype { get }
    * @availability iOS 8.0+
    */
-  get mediaSubtypes(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 1730207249865330, this, []); }
+  get mediaSubtypes(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 1730207249865330, this, []); }
   /**
    * var mediaType: PHAssetMediaType { get }
    * @availability iOS 8.0+
    */
-  get mediaType(): PHAssetMediaType { return callSDK<PHAssetMediaType>("Photos_3864e7f38681b875", 423191481984508, this, []); }
+  get mediaType(): PHAssetMediaType { return callSDK<PHAssetMediaType>("Photos_ff42ce03e691ab23", 423191481984508, this, []); }
   /**
    * var modificationDate: Date? { get }
    * @availability iOS 8.0+
    */
-  get modificationDate(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 4345121913422235, this, []); }
+  get modificationDate(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 4345121913422235, this, []); }
   /**
    * var originalResourceChoice: PHAsset.OriginalResourceChoice { get }
    * @availability iOS 27.0+
    */
-  get originalResourceChoice(): PHAsset_OriginalResourceChoice { return callSDK<PHAsset_OriginalResourceChoice>("Photos_3864e7f38681b875", 2179563054269841, this, []); }
+  get originalResourceChoice(): PHAsset_OriginalResourceChoice { return callSDK<PHAsset_OriginalResourceChoice>("Photos_ff42ce03e691ab23", 2179563054269841, this, []); }
   /**
    * var pixelHeight: Int { get }
    * @availability iOS 8.0+
    */
-  get pixelHeight(): number { return callSDK<number>("Photos_3864e7f38681b875", 3117842762230883, this, []); }
+  get pixelHeight(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 3117842762230883, this, []); }
   /**
    * var pixelWidth: Int { get }
    * @availability iOS 8.0+
    */
-  get pixelWidth(): number { return callSDK<number>("Photos_3864e7f38681b875", 1204379011964457, this, []); }
+  get pixelWidth(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 1204379011964457, this, []); }
   /**
    * var playbackStyle: PHAsset.PlaybackStyle { get }
    * @availability iOS 11.0+
    */
-  get playbackStyle(): PHAsset_PlaybackStyle { return callSDK<PHAsset_PlaybackStyle>("Photos_3864e7f38681b875", 2843363614303598, this, []); }
+  get playbackStyle(): PHAsset_PlaybackStyle { return callSDK<PHAsset_PlaybackStyle>("Photos_ff42ce03e691ab23", 2843363614303598, this, []); }
   /**
    * var playbackVariation: PHAsset.PlaybackVariation { get }
    * @availability iOS 11.0+
    */
-  get playbackVariation(): PHAsset_PlaybackVariation { return callSDK<PHAsset_PlaybackVariation>("Photos_3864e7f38681b875", 1945742946408195, this, []); }
+  get playbackVariation(): PHAsset_PlaybackVariation { return callSDK<PHAsset_PlaybackVariation>("Photos_ff42ce03e691ab23", 1945742946408195, this, []); }
   /**
    * var rating: PHAsset.Rating { get }
    * @availability iOS 27.0+
    */
-  get rating(): PHAsset_Rating { return callSDK<PHAsset_Rating>("Photos_3864e7f38681b875", 262084005737909, this, []); }
+  get rating(): PHAsset_Rating { return callSDK<PHAsset_Rating>("Photos_ff42ce03e691ab23", 262084005737909, this, []); }
   /**
    * var representsBurst: Bool { get }
    * @availability iOS 8.0+
    */
-  get representsBurst(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3485299728182734, this, []); }
+  get representsBurst(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3485299728182734, this, []); }
   /**
    * var sourceType: PHAssetSourceType { get }
    * @availability iOS 9.0+
    */
-  get sourceType(): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_3864e7f38681b875", 771499445792176, this, []); }
+  get sourceType(): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_ff42ce03e691ab23", 771499445792176, this, []); }
   declare readonly $type: { "c:objc(cs)PHAsset": true; "c:objc(cs)PHObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localIdentifier": true; "addedDate": true; "adjustmentFormatIdentifier": true; "adjustmentTimestamp": true; "adjustmentsState": true; "burstIdentifier": true; "burstSelectionTypes": true; "contentType": true; "creationDate": true; "duration": true; "extendedMetadata": true; "isFavorite": true; "hasAdjustments": true; "isHidden": true; "location": true; "mediaSubtypes": true; "mediaType": true; "modificationDate": true; "originalResourceChoice": true; "pixelHeight": true; "pixelWidth": true; "playbackStyle": true; "playbackVariation": true; "rating": true; "representsBurst": true; "sourceType": true };
 }
@@ -329,7 +329,7 @@ export const PHAsset_AdjustmentsState = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (PHAsset_AdjustmentsState) | null { return callSDK<(PHAsset_AdjustmentsState) | null>("Photos_3864e7f38681b875", 2015146596880469, undefined, [rawValue]); }
+  init(rawValue: number): (PHAsset_AdjustmentsState) | null { return callSDK<(PHAsset_AdjustmentsState) | null>("Photos_ff42ce03e691ab23", 2015146596880469, undefined, [rawValue]); }
 };
 
 /**
@@ -343,7 +343,7 @@ export const PHAsset_OriginalResourceChoice = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (PHAsset_OriginalResourceChoice) | null { return callSDK<(PHAsset_OriginalResourceChoice) | null>("Photos_3864e7f38681b875", 2893521383820060, undefined, [rawValue]); }
+  init(rawValue: number): (PHAsset_OriginalResourceChoice) | null { return callSDK<(PHAsset_OriginalResourceChoice) | null>("Photos_ff42ce03e691ab23", 2893521383820060, undefined, [rawValue]); }
 };
 
 /**
@@ -357,7 +357,7 @@ export const PHAsset_PlaybackStyle = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PHAsset_PlaybackStyle) | null { return callSDK<(PHAsset_PlaybackStyle) | null>("Photos_3864e7f38681b875", 414950651492010, undefined, [rawValue]); }
+  init(rawValue: number): (PHAsset_PlaybackStyle) | null { return callSDK<(PHAsset_PlaybackStyle) | null>("Photos_ff42ce03e691ab23", 414950651492010, undefined, [rawValue]); }
 };
 
 /**
@@ -371,7 +371,7 @@ export const PHAsset_PlaybackVariation = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PHAsset_PlaybackVariation) | null { return callSDK<(PHAsset_PlaybackVariation) | null>("Photos_3864e7f38681b875", 1385256053661667, undefined, [rawValue]); }
+  init(rawValue: number): (PHAsset_PlaybackVariation) | null { return callSDK<(PHAsset_PlaybackVariation) | null>("Photos_ff42ce03e691ab23", 1385256053661667, undefined, [rawValue]); }
 };
 
 /**
@@ -385,7 +385,7 @@ export const PHAsset_Rating = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (PHAsset_Rating) | null { return callSDK<(PHAsset_Rating) | null>("Photos_3864e7f38681b875", 3488909568570121, undefined, [rawValue]); }
+  init(rawValue: number): (PHAsset_Rating) | null { return callSDK<(PHAsset_Rating) | null>("Photos_ff42ce03e691ab23", 3488909568570121, undefined, [rawValue]); }
 };
 
 /**
@@ -399,17 +399,17 @@ export const PHAssetBurstSelectionType = {
    * static var autoPick: PHAssetBurstSelectionType { get }
    * @availability iOS 8.0+
    */
-  get autoPick(): PHAssetBurstSelectionType { return callSDK<PHAssetBurstSelectionType>("Photos_3864e7f38681b875", 347389291561081, undefined, []); },
+  get autoPick(): PHAssetBurstSelectionType { return callSDK<PHAssetBurstSelectionType>("Photos_ff42ce03e691ab23", 347389291561081, undefined, []); },
   /**
    * static var userPick: PHAssetBurstSelectionType { get }
    * @availability iOS 8.0+
    */
-  get userPick(): PHAssetBurstSelectionType { return callSDK<PHAssetBurstSelectionType>("Photos_3864e7f38681b875", 3755380559636779, undefined, []); },
+  get userPick(): PHAssetBurstSelectionType { return callSDK<PHAssetBurstSelectionType>("Photos_ff42ce03e691ab23", 3755380559636779, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): PHAssetBurstSelectionType { return callSDK<PHAssetBurstSelectionType>("Photos_3864e7f38681b875", 447948991309114, undefined, [rawValue]); }
+  init(rawValue: number): PHAssetBurstSelectionType { return callSDK<PHAssetBurstSelectionType>("Photos_ff42ce03e691ab23", 447948991309114, undefined, [rawValue]); }
 };
 
 /**
@@ -418,7 +418,7 @@ export const PHAssetBurstSelectionType = {
  */
 export class PHChangeRequest extends SDKHandle {
   /** init() */
-  static init(): PHChangeRequest { return callSDK<PHChangeRequest>("Photos_3864e7f38681b875", 3047247033631444, undefined, []); }
+  static init(): PHChangeRequest { return callSDK<PHChangeRequest>("Photos_ff42ce03e691ab23", 3047247033631444, undefined, []); }
   declare readonly $type: { "c:objc(cs)PHChangeRequest": true; "c:objc(cs)NSObject": true };
 }
 
@@ -431,99 +431,99 @@ export class PHAssetChangeRequest extends (PHChangeRequest as unknown as Omit<ty
    * convenience init(for asset: PHAsset)
    * @availability iOS 8.0+
    */
-  static init(asset: PHAsset): PHAssetChangeRequest { return callSDK<PHAssetChangeRequest>("Photos_3864e7f38681b875", 534578368623902, undefined, [asset]); }
+  static init(asset: PHAsset): PHAssetChangeRequest { return callSDK<PHAssetChangeRequest>("Photos_ff42ce03e691ab23", 534578368623902, undefined, [asset]); }
   /**
    * class func creationRequestForAsset(from image: UIImage) -> Self
    * @availability iOS 8.0+
    */
-  static creationRequestForAsset(image: _UIKit_UIImage): PHAssetChangeRequest { return callSDK<PHAssetChangeRequest>("Photos_3864e7f38681b875", 727901254286688, undefined, [image]); }
+  static creationRequestForAsset(image: _UIKit_UIImage): PHAssetChangeRequest { return callSDK<PHAssetChangeRequest>("Photos_ff42ce03e691ab23", 727901254286688, undefined, [image]); }
   /**
    * class func creationRequestForAssetFromImage(atFileURL fileURL: URL) -> Self?
    * @availability iOS 8.0+
    */
-  static creationRequestForAssetFromImage(fileURL: string): $SDK5 { return callSDK<$SDK5>("Photos_3864e7f38681b875", 3283393900418072, undefined, [fileURL]); }
+  static creationRequestForAssetFromImage(fileURL: string): $SDK5 { return callSDK<$SDK5>("Photos_ff42ce03e691ab23", 3283393900418072, undefined, [fileURL]); }
   /**
    * class func creationRequestForAssetFromVideo(atFileURL fileURL: URL) -> Self?
    * @availability iOS 8.0+
    */
-  static creationRequestForAssetFromVideo(fileURL: string): $SDK5 { return callSDK<$SDK5>("Photos_3864e7f38681b875", 3148917528519551, undefined, [fileURL]); }
+  static creationRequestForAssetFromVideo(fileURL: string): $SDK5 { return callSDK<$SDK5>("Photos_ff42ce03e691ab23", 3148917528519551, undefined, [fileURL]); }
   /**
    * class func deleteAssets(_ assets: any NSFastEnumeration)
    * @availability iOS 8.0+
    */
-  static deleteAssets(assets: SDKHandle): void { return callSDK<void>("Photos_3864e7f38681b875", 457011908715133, undefined, [assets]); }
+  static deleteAssets(assets: SDKHandle): void { return callSDK<void>("Photos_ff42ce03e691ab23", 457011908715133, undefined, [assets]); }
   /**
    * func addKeyword(_ keyword: String)
    * @availability iOS 27.0+
    */
-  addKeyword(keyword: string): void { return callSDK<void>("Photos_3864e7f38681b875", 2719896630958972, this, [keyword]); }
+  addKeyword(keyword: string): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2719896630958972, this, [keyword]); }
   /**
    * func removeKeyword(_ keyword: String)
    * @availability iOS 27.0+
    */
-  removeKeyword(keyword: string): void { return callSDK<void>("Photos_3864e7f38681b875", 1234891968265387, this, [keyword]); }
+  removeKeyword(keyword: string): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1234891968265387, this, [keyword]); }
   /**
    * func revertAssetContentToOriginal()
    * @availability iOS 8.0+
    */
-  revertAssetContentToOriginal(): void { return callSDK<void>("Photos_3864e7f38681b875", 3604652451174429, this, []); }
+  revertAssetContentToOriginal(): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3604652451174429, this, []); }
   /**
    * func revertAssetContent(to choice: PHAsset.OriginalResourceChoice)
    * @availability iOS 27.0+
    */
-  revertAssetContent(choice: PHAsset_OriginalResourceChoice): void { return callSDK<void>("Photos_3864e7f38681b875", 3036565762803814, this, [choice]); }
+  revertAssetContent(choice: PHAsset_OriginalResourceChoice): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3036565762803814, this, [choice]); }
   /**
    * func setLivePhotoVideoPlaybackEnabled(_ enabled: Bool)
    * @availability iOS 27.0+
    */
-  setLivePhotoVideoPlaybackEnabled(enabled: boolean): void { return callSDK<void>("Photos_3864e7f38681b875", 1500331283390651, this, [enabled]); }
+  setLivePhotoVideoPlaybackEnabled(enabled: boolean): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1500331283390651, this, [enabled]); }
   /**
    * var caption: String? { get set }
    * @availability iOS 27.0+
    */
-  get caption(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 2586070481117992, this, []); }
-  set caption(value: (string) | null) { callSDK<void>("Photos_3864e7f38681b875", 2432310291369204, this, [value]); }
+  get caption(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 2586070481117992, this, []); }
+  set caption(value: (string) | null) { callSDK<void>("Photos_ff42ce03e691ab23", 2432310291369204, this, [value]); }
   /**
    * var contentEditingOutput: PHContentEditingOutput? { get set }
    * @availability iOS 8.0+
    */
-  get contentEditingOutput(): $SDK6 { return callSDK<$SDK6>("Photos_3864e7f38681b875", 4185319283948616, this, []); }
-  set contentEditingOutput(value: $SDK6) { callSDK<void>("Photos_3864e7f38681b875", 2904974438640642, this, [value]); }
+  get contentEditingOutput(): $SDK6 { return callSDK<$SDK6>("Photos_ff42ce03e691ab23", 4185319283948616, this, []); }
+  set contentEditingOutput(value: $SDK6) { callSDK<void>("Photos_ff42ce03e691ab23", 2904974438640642, this, [value]); }
   /**
    * var creationDate: Date? { get set }
    * @availability iOS 8.0+
    */
-  get creationDate(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 2241015185625792, this, []); }
-  set creationDate(value: $SDK3) { callSDK<void>("Photos_3864e7f38681b875", 456334620818647, this, [value]); }
+  get creationDate(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 2241015185625792, this, []); }
+  set creationDate(value: $SDK3) { callSDK<void>("Photos_ff42ce03e691ab23", 456334620818647, this, [value]); }
   /**
    * var isFavorite: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isFavorite(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 1327760837320599, this, []); }
-  set isFavorite(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 383980741731001, this, [value]); }
+  get isFavorite(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 1327760837320599, this, []); }
+  set isFavorite(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 383980741731001, this, [value]); }
   /**
    * var isHidden: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isHidden(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 736160584741239, this, []); }
-  set isHidden(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 1745014442349733, this, [value]); }
+  get isHidden(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 736160584741239, this, []); }
+  set isHidden(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 1745014442349733, this, [value]); }
   /**
    * var location: CLLocation? { get set }
    * @availability iOS 8.0+
    */
-  get location(): $SDK4 { return callSDK<$SDK4>("Photos_3864e7f38681b875", 1843194750782631, this, []); }
-  set location(value: $SDK4) { callSDK<void>("Photos_3864e7f38681b875", 1350994821116904, this, [value]); }
+  get location(): $SDK4 { return callSDK<$SDK4>("Photos_ff42ce03e691ab23", 1843194750782631, this, []); }
+  set location(value: $SDK4) { callSDK<void>("Photos_ff42ce03e691ab23", 1350994821116904, this, [value]); }
   /**
    * var placeholderForCreatedAsset: PHObjectPlaceholder? { get }
    * @availability iOS 8.0+
    */
-  get placeholderForCreatedAsset(): $SDK7 { return callSDK<$SDK7>("Photos_3864e7f38681b875", 392481386990023, this, []); }
+  get placeholderForCreatedAsset(): $SDK7 { return callSDK<$SDK7>("Photos_ff42ce03e691ab23", 392481386990023, this, []); }
   /**
    * var rating: PHAsset.Rating { get set }
    * @availability iOS 27.0+
    */
-  get rating(): PHAsset_Rating { return callSDK<PHAsset_Rating>("Photos_3864e7f38681b875", 3714009439269295, this, []); }
-  set rating(value: PHAsset_Rating) { callSDK<void>("Photos_3864e7f38681b875", 3765015907137363, this, [value]); }
+  get rating(): PHAsset_Rating { return callSDK<PHAsset_Rating>("Photos_ff42ce03e691ab23", 3714009439269295, this, []); }
+  set rating(value: PHAsset_Rating) { callSDK<void>("Photos_ff42ce03e691ab23", 3765015907137363, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHAssetChangeRequest": true; "c:objc(cs)PHChangeRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "caption": true; "contentEditingOutput": true; "creationDate": true; "isFavorite": true; "isHidden": true; "location": true; "placeholderForCreatedAsset": true; "rating": true };
 }
@@ -537,39 +537,39 @@ export class PHCollection extends (PHObject as unknown as Omit<typeof PHObject, 
    * class func fetchCollections(in collectionList: PHCollectionList, options: PHFetchOptions?) -> PHFetchResult<PHCollection>
    * @availability iOS 8.0+
    */
-  static fetchCollections(collectionList: PHCollectionList, options?: (PHFetchOptions) | null): $SDK8 { return callSDK<$SDK8>("Photos_3864e7f38681b875", 1201046015554474, undefined, [collectionList, options]); }
+  static fetchCollections(collectionList: PHCollectionList, options?: (PHFetchOptions) | null): $SDK8 { return callSDK<$SDK8>("Photos_ff42ce03e691ab23", 1201046015554474, undefined, [collectionList, options]); }
   /**
    * class func fetchTopLevelUserCollections(with options: PHFetchOptions?) -> PHFetchResult<PHCollection>
    * @availability iOS 8.0+
    */
-  static fetchTopLevelUserCollections(options?: (PHFetchOptions) | null): $SDK8 { return callSDK<$SDK8>("Photos_3864e7f38681b875", 1584182805990162, undefined, [options]); }
+  static fetchTopLevelUserCollections(options?: (PHFetchOptions) | null): $SDK8 { return callSDK<$SDK8>("Photos_ff42ce03e691ab23", 1584182805990162, undefined, [options]); }
   /**
    * func canPerform(_ anOperation: PHCollectionEditOperation) -> Bool
    * @availability iOS 8.0+
    */
-  canPerform(anOperation: PHCollectionEditOperation): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3977834227087436, this, [anOperation]); }
+  canPerform(anOperation: PHCollectionEditOperation): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3977834227087436, this, [anOperation]); }
   /** init() */
-  static init(): PHCollection { return callSDK<PHCollection>("Photos_3864e7f38681b875", 3483584148439435, undefined, []); }
+  static init(): PHCollection { return callSDK<PHCollection>("Photos_ff42ce03e691ab23", 3483584148439435, undefined, []); }
   /**
    * var canContainAssets: Bool { get }
    * @availability iOS 8.0+
    */
-  get canContainAssets(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 4317687597754644, this, []); }
+  get canContainAssets(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 4317687597754644, this, []); }
   /**
    * var canContainCollections: Bool { get }
    * @availability iOS 8.0+
    */
-  get canContainCollections(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 1368721592607202, this, []); }
+  get canContainCollections(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 1368721592607202, this, []); }
   /**
    * var localizedTitle: String? { get }
    * @availability iOS 8.0+
    */
-  get localizedTitle(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 737382176068262, this, []); }
+  get localizedTitle(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 737382176068262, this, []); }
   /**
    * var modificationDate: Date? { get }
    * @availability iOS 26.0+
    */
-  get modificationDate(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 4448759092716969, this, []); }
+  get modificationDate(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 4448759092716969, this, []); }
   declare readonly $type: { "c:objc(cs)PHCollection": true; "c:objc(cs)PHObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localIdentifier": true; "canContainAssets": true; "canContainCollections": true; "localizedTitle": true; "modificationDate": true };
 }
@@ -583,82 +583,82 @@ export class PHAssetCollection extends (PHCollection as unknown as Omit<typeof P
    * class func fetchAssetCollectionsContaining(_ asset: PHAsset, with type: PHAssetCollectionType, options: PHFetchOptions?) -> PHFetchResult<PHAssetCollection>
    * @availability iOS 8.0+
    */
-  static fetchAssetCollectionsContaining(asset: PHAsset, type: PHAssetCollectionType, options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_3864e7f38681b875", 3271393275399177, undefined, [asset, type, options]); }
+  static fetchAssetCollectionsContaining(asset: PHAsset, type: PHAssetCollectionType, options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_ff42ce03e691ab23", 3271393275399177, undefined, [asset, type, options]); }
   /**
    * class func fetchAssetCollections(withALAssetGroupURLs assetGroupURLs: [URL], options: PHFetchOptions?) -> PHFetchResult<PHAssetCollection>
    * @availability iOS 8.0+
    * @deprecated iOS 16.0
    */
-  static fetchAssetCollectionsWithALAssetGroupURLsOptions(assetGroupURLs: Array<string>, options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_3864e7f38681b875", 4150456973680415, undefined, [assetGroupURLs, options]); }
+  static fetchAssetCollectionsWithALAssetGroupURLsOptions(assetGroupURLs: Array<string>, options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_ff42ce03e691ab23", 4150456973680415, undefined, [assetGroupURLs, options]); }
   /**
    * class func fetchAssetCollections(withLocalIdentifiers identifiers: [String], options: PHFetchOptions?) -> PHFetchResult<PHAssetCollection>
    * @availability iOS 8.0+
    */
-  static fetchAssetCollectionsWithLocalIdentifiersOptions(identifiers: Array<string>, options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_3864e7f38681b875", 1707314261545573, undefined, [identifiers, options]); }
+  static fetchAssetCollectionsWithLocalIdentifiersOptions(identifiers: Array<string>, options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_ff42ce03e691ab23", 1707314261545573, undefined, [identifiers, options]); }
   /**
    * class func fetchAssetCollections(with type: PHAssetCollectionType, subtype: PHAssetCollectionSubtype, options: PHFetchOptions?) -> PHFetchResult<PHAssetCollection>
    * @availability iOS 8.0+
    */
-  static fetchAssetCollectionsWithSubtypeOptions(type: PHAssetCollectionType, subtype: PHAssetCollectionSubtype, options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_3864e7f38681b875", 4455259430027104, undefined, [type, subtype, options]); }
+  static fetchAssetCollectionsWithSubtypeOptions(type: PHAssetCollectionType, subtype: PHAssetCollectionSubtype, options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_ff42ce03e691ab23", 4455259430027104, undefined, [type, subtype, options]); }
   /**
    * class func fetchMoments(inMomentList momentList: PHCollectionList, options: PHFetchOptions?) -> PHFetchResult<PHAssetCollection>
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  static fetchMomentsInMomentListOptions(momentList: PHCollectionList, options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_3864e7f38681b875", 2903390839861991, undefined, [momentList, options]); }
+  static fetchMomentsInMomentListOptions(momentList: PHCollectionList, options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_ff42ce03e691ab23", 2903390839861991, undefined, [momentList, options]); }
   /**
    * class func fetchMoments(with options: PHFetchOptions?) -> PHFetchResult<PHAssetCollection>
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  static fetchMomentsWith(options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_3864e7f38681b875", 3734129498545278, undefined, [options]); }
+  static fetchMomentsWith(options?: (PHFetchOptions) | null): $SDK9 { return callSDK<$SDK9>("Photos_ff42ce03e691ab23", 3734129498545278, undefined, [options]); }
   /**
    * class func transientAssetCollection(withAssetFetchResult fetchResult: PHFetchResult<PHAsset>, title: String?) -> PHAssetCollection
    * @availability iOS 8.0+
    */
-  static transientAssetCollectionWithAssetFetchResultTitle(fetchResult: PHFetchResult<PHAsset>, title?: (string) | null): PHAssetCollection { return callSDK<PHAssetCollection>("Photos_3864e7f38681b875", 2107676546157427, undefined, [fetchResult, title]); }
+  static transientAssetCollectionWithAssetFetchResultTitle(fetchResult: PHFetchResult<PHAsset>, title?: (string) | null): PHAssetCollection { return callSDK<PHAssetCollection>("Photos_ff42ce03e691ab23", 2107676546157427, undefined, [fetchResult, title]); }
   /**
    * class func transientAssetCollection(with assets: [PHAsset], title: String?) -> PHAssetCollection
    * @availability iOS 8.0+
    */
-  static transientAssetCollectionWithTitle(assets: Array<PHAsset>, title?: (string) | null): PHAssetCollection { return callSDK<PHAssetCollection>("Photos_3864e7f38681b875", 3416777940140920, undefined, [assets, title]); }
+  static transientAssetCollectionWithTitle(assets: Array<PHAsset>, title?: (string) | null): PHAssetCollection { return callSDK<PHAssetCollection>("Photos_ff42ce03e691ab23", 3416777940140920, undefined, [assets, title]); }
   /** init() */
-  static init(): PHAssetCollection { return callSDK<PHAssetCollection>("Photos_3864e7f38681b875", 802475464494695, undefined, []); }
+  static init(): PHAssetCollection { return callSDK<PHAssetCollection>("Photos_ff42ce03e691ab23", 802475464494695, undefined, []); }
   /**
    * var approximateLocation: CLLocation? { get }
    * @availability iOS 8.0+
    */
-  get approximateLocation(): $SDK4 { return callSDK<$SDK4>("Photos_3864e7f38681b875", 4370514784559536, this, []); }
+  get approximateLocation(): $SDK4 { return callSDK<$SDK4>("Photos_ff42ce03e691ab23", 4370514784559536, this, []); }
   /**
    * var assetCollectionSubtype: PHAssetCollectionSubtype { get }
    * @availability iOS 8.0+
    */
-  get assetCollectionSubtype(): PHAssetCollectionSubtype { return callSDK<PHAssetCollectionSubtype>("Photos_3864e7f38681b875", 1443814507933842, this, []); }
+  get assetCollectionSubtype(): PHAssetCollectionSubtype { return callSDK<PHAssetCollectionSubtype>("Photos_ff42ce03e691ab23", 1443814507933842, this, []); }
   /**
    * var assetCollectionType: PHAssetCollectionType { get }
    * @availability iOS 8.0+
    */
-  get assetCollectionType(): PHAssetCollectionType { return callSDK<PHAssetCollectionType>("Photos_3864e7f38681b875", 535550694153590, this, []); }
+  get assetCollectionType(): PHAssetCollectionType { return callSDK<PHAssetCollectionType>("Photos_ff42ce03e691ab23", 535550694153590, this, []); }
   /**
    * var endDate: Date? { get }
    * @availability iOS 8.0+
    */
-  get endDate(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 4444814151348272, this, []); }
+  get endDate(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 4444814151348272, this, []); }
   /**
    * var estimatedAssetCount: Int { get }
    * @availability iOS 8.0+
    */
-  get estimatedAssetCount(): number { return callSDK<number>("Photos_3864e7f38681b875", 174363686563460, this, []); }
+  get estimatedAssetCount(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 174363686563460, this, []); }
   /**
    * var localizedLocationNames: [String] { get }
    * @availability iOS 8.0+
    */
-  get localizedLocationNames(): Array<string> { return callSDK<Array<string>>("Photos_3864e7f38681b875", 996785800101634, this, []); }
+  get localizedLocationNames(): Array<string> { return callSDK<Array<string>>("Photos_ff42ce03e691ab23", 996785800101634, this, []); }
   /**
    * var startDate: Date? { get }
    * @availability iOS 8.0+
    */
-  get startDate(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 2793283956451964, this, []); }
+  get startDate(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 2793283956451964, this, []); }
   declare readonly $type: { "c:objc(cs)PHAssetCollection": true; "c:objc(cs)PHCollection": true; "c:objc(cs)PHObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localIdentifier": true; "canContainAssets": true; "canContainCollections": true; "localizedTitle": true; "modificationDate": true; "approximateLocation": true; "assetCollectionSubtype": true; "assetCollectionType": true; "endDate": true; "estimatedAssetCount": true; "localizedLocationNames": true; "startDate": true };
 }
@@ -672,63 +672,63 @@ export class PHAssetCollectionChangeRequest extends PHChangeRequest {
    * convenience init?(for assetCollection: PHAssetCollection)
    * @availability iOS 8.0+
    */
-  static initFor(assetCollection: PHAssetCollection): (PHAssetCollectionChangeRequest) | null { return callSDK<(PHAssetCollectionChangeRequest) | null>("Photos_3864e7f38681b875", 927541458023908, undefined, [assetCollection]); }
+  static initFor(assetCollection: PHAssetCollection): (PHAssetCollectionChangeRequest) | null { return callSDK<(PHAssetCollectionChangeRequest) | null>("Photos_ff42ce03e691ab23", 927541458023908, undefined, [assetCollection]); }
   /**
    * convenience init?(for assetCollection: PHAssetCollection, assets: PHFetchResult<PHAsset>?)
    * @availability iOS 8.0+
    */
-  static initForAssets(assetCollection: PHAssetCollection, assets?: $SDK0): (PHAssetCollectionChangeRequest) | null { return callSDK<(PHAssetCollectionChangeRequest) | null>("Photos_3864e7f38681b875", 4063340997489143, undefined, [assetCollection, assets]); }
+  static initForAssets(assetCollection: PHAssetCollection, assets?: $SDK0): (PHAssetCollectionChangeRequest) | null { return callSDK<(PHAssetCollectionChangeRequest) | null>("Photos_ff42ce03e691ab23", 4063340997489143, undefined, [assetCollection, assets]); }
   /**
    * class func creationRequestForAssetCollection(withTitle title: String) -> Self
    * @availability iOS 8.0+
    */
-  static creationRequestForAssetCollection(title: string): PHAssetCollectionChangeRequest { return callSDK<PHAssetCollectionChangeRequest>("Photos_3864e7f38681b875", 2143958446231719, undefined, [title]); }
+  static creationRequestForAssetCollection(title: string): PHAssetCollectionChangeRequest { return callSDK<PHAssetCollectionChangeRequest>("Photos_ff42ce03e691ab23", 2143958446231719, undefined, [title]); }
   /**
    * class func deleteAssetCollections(_ assetCollections: any NSFastEnumeration)
    * @availability iOS 8.0+
    */
-  static deleteAssetCollections(assetCollections: SDKHandle): void { return callSDK<void>("Photos_3864e7f38681b875", 1737493617182548, undefined, [assetCollections]); }
+  static deleteAssetCollections(assetCollections: SDKHandle): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1737493617182548, undefined, [assetCollections]); }
   /**
    * func addAssets(_ assets: any NSFastEnumeration)
    * @availability iOS 8.0+
    */
-  addAssets(assets: SDKHandle): void { return callSDK<void>("Photos_3864e7f38681b875", 650766997189814, this, [assets]); }
+  addAssets(assets: SDKHandle): void { return callSDK<void>("Photos_ff42ce03e691ab23", 650766997189814, this, [assets]); }
   /**
    * func insertAssets(_ assets: any NSFastEnumeration, at indexes: IndexSet)
    * @availability iOS 8.0+
    */
-  insertAssets(assets: SDKHandle, indexes: _Foundation_IndexSet): void { return callSDK<void>("Photos_3864e7f38681b875", 1531899887209695, this, [assets, indexes]); }
+  insertAssets(assets: SDKHandle, indexes: _Foundation_IndexSet): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1531899887209695, this, [assets, indexes]); }
   /**
    * func moveAssets(at fromIndexes: IndexSet, to toIndex: Int)
    * @availability iOS 8.0+
    */
-  moveAssets(fromIndexes: _Foundation_IndexSet, toIndex: number): void { return callSDK<void>("Photos_3864e7f38681b875", 781458769411395, this, [fromIndexes, toIndex]); }
+  moveAssets(fromIndexes: _Foundation_IndexSet, toIndex: number): void { return callSDK<void>("Photos_ff42ce03e691ab23", 781458769411395, this, [fromIndexes, toIndex]); }
   /**
    * func removeAssets(_ assets: any NSFastEnumeration)
    * @availability iOS 8.0+
    */
-  removeAssets(assets: SDKHandle): void { return callSDK<void>("Photos_3864e7f38681b875", 1707272039622981, this, [assets]); }
+  removeAssets(assets: SDKHandle): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1707272039622981, this, [assets]); }
   /**
    * func removeAssets(at indexes: IndexSet)
    * @availability iOS 8.0+
    */
-  removeAssetsAt(indexes: _Foundation_IndexSet): void { return callSDK<void>("Photos_3864e7f38681b875", 3278151384111431, this, [indexes]); }
+  removeAssetsAt(indexes: _Foundation_IndexSet): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3278151384111431, this, [indexes]); }
   /**
    * func replaceAssets(at indexes: IndexSet, withAssets assets: any NSFastEnumeration)
    * @availability iOS 8.0+
    */
-  replaceAssets(indexes: _Foundation_IndexSet, assets: SDKHandle): void { return callSDK<void>("Photos_3864e7f38681b875", 4089506563748327, this, [indexes, assets]); }
+  replaceAssets(indexes: _Foundation_IndexSet, assets: SDKHandle): void { return callSDK<void>("Photos_ff42ce03e691ab23", 4089506563748327, this, [indexes, assets]); }
   /**
    * var placeholderForCreatedAssetCollection: PHObjectPlaceholder { get }
    * @availability iOS 8.0+
    */
-  get placeholderForCreatedAssetCollection(): PHObjectPlaceholder { return callSDK<PHObjectPlaceholder>("Photos_3864e7f38681b875", 2118935320206297, this, []); }
+  get placeholderForCreatedAssetCollection(): PHObjectPlaceholder { return callSDK<PHObjectPlaceholder>("Photos_ff42ce03e691ab23", 2118935320206297, this, []); }
   /**
    * var title: String { get set }
    * @availability iOS 8.0+
    */
-  get title(): string { return callSDK<string>("Photos_3864e7f38681b875", 2005935426645826, this, []); }
-  set title(value: string) { callSDK<void>("Photos_3864e7f38681b875", 4353131162684559, this, [value]); }
+  get title(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 2005935426645826, this, []); }
+  set title(value: string) { callSDK<void>("Photos_ff42ce03e691ab23", 4353131162684559, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHAssetCollectionChangeRequest": true; "c:objc(cs)PHChangeRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "placeholderForCreatedAssetCollection": true; "title": true };
 }
@@ -744,7 +744,7 @@ export const PHAssetCollectionSubtype = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHAssetCollectionSubtype) | null { return callSDK<(PHAssetCollectionSubtype) | null>("Photos_3864e7f38681b875", 1820648245834322, undefined, [rawValue]); }
+  init(rawValue: number): (PHAssetCollectionSubtype) | null { return callSDK<(PHAssetCollectionSubtype) | null>("Photos_ff42ce03e691ab23", 1820648245834322, undefined, [rawValue]); }
 };
 
 /**
@@ -758,7 +758,7 @@ export const PHAssetCollectionType = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHAssetCollectionType) | null { return callSDK<(PHAssetCollectionType) | null>("Photos_3864e7f38681b875", 2603339924300883, undefined, [rawValue]); }
+  init(rawValue: number): (PHAssetCollectionType) | null { return callSDK<(PHAssetCollectionType) | null>("Photos_ff42ce03e691ab23", 2603339924300883, undefined, [rawValue]); }
 };
 
 /**
@@ -770,30 +770,30 @@ export class PHAssetCreationRequest extends (PHAssetChangeRequest as unknown as 
    * class func forAsset() -> Self
    * @availability iOS 9.0+
    */
-  static forAsset(): PHAssetCreationRequest { return callSDK<PHAssetCreationRequest>("Photos_3864e7f38681b875", 153075071802483, undefined, []); }
+  static forAsset(): PHAssetCreationRequest { return callSDK<PHAssetCreationRequest>("Photos_ff42ce03e691ab23", 153075071802483, undefined, []); }
   /**
    * class func supportsAssetResourceTypes(_ types: [NSNumber]) -> Bool
    * @availability iOS 9.0+
    */
-  static supportsAssetResourceTypes(types: Array<_Foundation_NSNumber>): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 1945963836302124, undefined, [types]); }
+  static supportsAssetResourceTypes(types: Array<_Foundation_NSNumber>): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 1945963836302124, undefined, [types]); }
   /**
    * func addResource(with type: PHAssetResourceType, data: Data, options: PHAssetResourceCreationOptions?)
    * @availability iOS 9.0+
    */
-  addResourceWithDataOptions(type: PHAssetResourceType, data: ArrayBuffer, options?: $SDK11): void { return callSDK<void>("Photos_3864e7f38681b875", 319191948549639, this, [type, data, options]); }
+  addResourceWithDataOptions(type: PHAssetResourceType, data: ArrayBuffer, options?: $SDK11): void { return callSDK<void>("Photos_ff42ce03e691ab23", 319191948549639, this, [type, data, options]); }
   /**
    * func addResource(with type: PHAssetResourceType, fileURL: URL, options: PHAssetResourceCreationOptions?)
    * @availability iOS 9.0+
    */
-  addResourceWithFileURLOptions(type: PHAssetResourceType, fileURL: string, options?: $SDK11): void { return callSDK<void>("Photos_3864e7f38681b875", 2512884379037325, this, [type, fileURL, options]); }
+  addResourceWithFileURLOptions(type: PHAssetResourceType, fileURL: string, options?: $SDK11): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2512884379037325, this, [type, fileURL, options]); }
   /** init() */
-  static init(): PHAssetCreationRequest { return callSDK<PHAssetCreationRequest>("Photos_3864e7f38681b875", 2932130444544315, undefined, []); }
+  static init(): PHAssetCreationRequest { return callSDK<PHAssetCreationRequest>("Photos_ff42ce03e691ab23", 2932130444544315, undefined, []); }
   /**
    * var originalResourceChoice: PHAsset.OriginalResourceChoice { get set }
    * @availability iOS 27.0+
    */
-  get originalResourceChoice(): PHAsset_OriginalResourceChoice { return callSDK<PHAsset_OriginalResourceChoice>("Photos_3864e7f38681b875", 2150098750314896, this, []); }
-  set originalResourceChoice(value: PHAsset_OriginalResourceChoice) { callSDK<void>("Photos_3864e7f38681b875", 2247193886233573, this, [value]); }
+  get originalResourceChoice(): PHAsset_OriginalResourceChoice { return callSDK<PHAsset_OriginalResourceChoice>("Photos_ff42ce03e691ab23", 2150098750314896, this, []); }
+  set originalResourceChoice(value: PHAsset_OriginalResourceChoice) { callSDK<void>("Photos_ff42ce03e691ab23", 2247193886233573, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHAssetCreationRequest": true; "c:objc(cs)PHAssetChangeRequest": true; "c:objc(cs)PHChangeRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "caption": true; "contentEditingOutput": true; "creationDate": true; "isFavorite": true; "isHidden": true; "location": true; "placeholderForCreatedAsset": true; "rating": true; "originalResourceChoice": true };
 }
@@ -809,7 +809,7 @@ export const PHAssetEditOperation = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHAssetEditOperation) | null { return callSDK<(PHAssetEditOperation) | null>("Photos_3864e7f38681b875", 3397723171113864, undefined, [rawValue]); }
+  init(rawValue: number): (PHAssetEditOperation) | null { return callSDK<(PHAssetEditOperation) | null>("Photos_ff42ce03e691ab23", 3397723171113864, undefined, [rawValue]); }
 };
 
 /**
@@ -818,22 +818,22 @@ export const PHAssetEditOperation = {
  */
 export class PHAssetExtendedMetadata extends SDKHandle {
   /** init() */
-  static init(): PHAssetExtendedMetadata { return callSDK<PHAssetExtendedMetadata>("Photos_3864e7f38681b875", 3304134137407405, undefined, []); }
+  static init(): PHAssetExtendedMetadata { return callSDK<PHAssetExtendedMetadata>("Photos_ff42ce03e691ab23", 3304134137407405, undefined, []); }
   /**
    * var caption: String? { get }
    * @availability iOS 27.0+
    */
-  get caption(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 1354315728738103, this, []); }
+  get caption(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 1354315728738103, this, []); }
   /**
    * var keywords: [String] { get }
    * @availability iOS 27.0+
    */
-  get keywords(): Array<string> { return callSDK<Array<string>>("Photos_3864e7f38681b875", 2038743706430719, this, []); }
+  get keywords(): Array<string> { return callSDK<Array<string>>("Photos_ff42ce03e691ab23", 2038743706430719, this, []); }
   /**
    * var originalFilename: String? { get }
    * @availability iOS 27.0+
    */
-  get originalFilename(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 3303108985441930, this, []); }
+  get originalFilename(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 3303108985441930, this, []); }
   declare readonly $type: { "c:objc(cs)PHAssetExtendedMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "caption": true; "keywords": true; "originalFilename": true };
 }
@@ -855,67 +855,67 @@ export const PHAssetMediaSubtype = {
    * static var photoAnimation: PHAssetMediaSubtype { get }
    * @availability iOS 11.0+
    */
-  get photoAnimation(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 2517784274152746, undefined, []); },
+  get photoAnimation(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 2517784274152746, undefined, []); },
   /**
    * static var photoDepthEffect: PHAssetMediaSubtype { get }
    * @availability iOS 10.2+
    */
-  get photoDepthEffect(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 2030983358720852, undefined, []); },
+  get photoDepthEffect(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 2030983358720852, undefined, []); },
   /**
    * static var photoHDR: PHAssetMediaSubtype { get }
    * @availability iOS 8.0+
    */
-  get photoHDR(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 753404836476943, undefined, []); },
+  get photoHDR(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 753404836476943, undefined, []); },
   /**
    * static var photoLive: PHAssetMediaSubtype { get }
    * @availability iOS 9.1+
    */
-  get photoLive(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 3853416546203967, undefined, []); },
+  get photoLive(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 3853416546203967, undefined, []); },
   /**
    * static var photoPanorama: PHAssetMediaSubtype { get }
    * @availability iOS 8.0+
    */
-  get photoPanorama(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 651583491983656, undefined, []); },
+  get photoPanorama(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 651583491983656, undefined, []); },
   /**
    * static var photoScreenshot: PHAssetMediaSubtype { get }
    * @availability iOS 9.0+
    */
-  get photoScreenshot(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 3559805816522700, undefined, []); },
+  get photoScreenshot(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 3559805816522700, undefined, []); },
   /**
    * static var spatialMedia: PHAssetMediaSubtype { get }
    * @availability iOS 16.0+
    */
-  get spatialMedia(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 2976145758275878, undefined, []); },
+  get spatialMedia(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 2976145758275878, undefined, []); },
   /**
    * static var videoCinematic: PHAssetMediaSubtype { get }
    * @availability iOS 15.0+
    */
-  get videoCinematic(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 413598397722571, undefined, []); },
+  get videoCinematic(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 413598397722571, undefined, []); },
   /**
    * static var videoHighFrameRate: PHAssetMediaSubtype { get }
    * @availability iOS 8.0+
    */
-  get videoHighFrameRate(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 3644386687914382, undefined, []); },
+  get videoHighFrameRate(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 3644386687914382, undefined, []); },
   /**
    * static var videoScreenRecording: PHAssetMediaSubtype { get }
    * @availability iOS 13.0+
    */
-  get videoScreenRecording(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 2823021549054314, undefined, []); },
+  get videoScreenRecording(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 2823021549054314, undefined, []); },
   /**
    * static var videoStreamed: PHAssetMediaSubtype { get }
    * @availability iOS 8.0+
    */
-  get videoStreamed(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 1314622751477751, undefined, []); },
+  get videoStreamed(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 1314622751477751, undefined, []); },
   /**
    * static var videoTimelapse: PHAssetMediaSubtype { get }
    * @availability iOS 8.0+
    */
-  get videoTimelapse(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 4103453054408111, undefined, []); },
+  get videoTimelapse(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 4103453054408111, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 3945088713226179, undefined, [rawValue]); }
+  init(rawValue: number): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 3945088713226179, undefined, [rawValue]); }
 };
 
 /**
@@ -929,7 +929,7 @@ export const PHAssetMediaType = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHAssetMediaType) | null { return callSDK<(PHAssetMediaType) | null>("Photos_3864e7f38681b875", 3118190147941250, undefined, [rawValue]); }
+  init(rawValue: number): (PHAssetMediaType) | null { return callSDK<(PHAssetMediaType) | null>("Photos_ff42ce03e691ab23", 3118190147941250, undefined, [rawValue]); }
 };
 
 /**
@@ -941,66 +941,66 @@ export class PHAssetResource extends SDKHandle {
    * class func assetResource(forUploadJob job: PHAssetResourceUploadJob) -> PHAssetResource?
    * @availability iOS 27.0+
    */
-  static assetResource(job: PHAssetResourceUploadJob): (PHAssetResource) | null { return callSDK<(PHAssetResource) | null>("Photos_3864e7f38681b875", 1980713435065515, undefined, [job]); }
+  static assetResource(job: PHAssetResourceUploadJob): (PHAssetResource) | null { return callSDK<(PHAssetResource) | null>("Photos_ff42ce03e691ab23", 1980713435065515, undefined, [job]); }
   /**
    * class func assetResources(for asset: PHAsset) -> [PHAssetResource]
    * @availability iOS 9.0+
    */
-  static assetResourcesFor(asset: PHAsset): Array<PHAssetResource> { return callSDK<Array<PHAssetResource>>("Photos_3864e7f38681b875", 885801638437178, undefined, [asset]); }
+  static assetResourcesFor(asset: PHAsset): Array<PHAssetResource> { return callSDK<Array<PHAssetResource>>("Photos_ff42ce03e691ab23", 885801638437178, undefined, [asset]); }
   /**
    * class func assetResources(for livePhoto: PHLivePhoto) -> [PHAssetResource]
    * @availability iOS 9.1+
    */
-  static assetResourcesFor23698(livePhoto: PHLivePhoto): Array<PHAssetResource> { return callSDK<Array<PHAssetResource>>("Photos_3864e7f38681b875", 3969159934649481, undefined, [livePhoto]); }
+  static assetResourcesFor23698(livePhoto: PHLivePhoto): Array<PHAssetResource> { return callSDK<Array<PHAssetResource>>("Photos_ff42ce03e691ab23", 3969159934649481, undefined, [livePhoto]); }
   /** init() */
-  static init(): PHAssetResource { return callSDK<PHAssetResource>("Photos_3864e7f38681b875", 1839339128500824, undefined, []); }
+  static init(): PHAssetResource { return callSDK<PHAssetResource>("Photos_ff42ce03e691ab23", 1839339128500824, undefined, []); }
   /**
    * var assetLocalIdentifier: String { get }
    * @availability iOS 9.0+
    */
-  get assetLocalIdentifier(): string { return callSDK<string>("Photos_3864e7f38681b875", 4064828979752762, this, []); }
+  get assetLocalIdentifier(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 4064828979752762, this, []); }
   /**
    * var contentType: UTType { get }
    * @availability iOS 26.0+
    */
-  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("Photos_3864e7f38681b875", 1003129090317261, this, []); }
+  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("Photos_ff42ce03e691ab23", 1003129090317261, this, []); }
   /**
    * var filename: String? { get }
    * @availability iOS 27.0+
    */
-  get filename(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 3284504785840028, this, []); }
+  get filename(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 3284504785840028, this, []); }
   /**
    * var originalFilename: String { get }
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  get originalFilename(): string { return callSDK<string>("Photos_3864e7f38681b875", 4319515270828000, this, []); }
+  get originalFilename(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 4319515270828000, this, []); }
   /**
    * var pixelHeight: Int { get }
    * @availability iOS 16.0+
    */
-  get pixelHeight(): number { return callSDK<number>("Photos_3864e7f38681b875", 2927651632362217, this, []); }
+  get pixelHeight(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 2927651632362217, this, []); }
   /**
    * var pixelWidth: Int { get }
    * @availability iOS 16.0+
    */
-  get pixelWidth(): number { return callSDK<number>("Photos_3864e7f38681b875", 1012579354448067, this, []); }
+  get pixelWidth(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 1012579354448067, this, []); }
   /**
    * var type: PHAssetResourceType { get }
    * @availability iOS 9.0+
    */
-  get type(): PHAssetResourceType { return callSDK<PHAssetResourceType>("Photos_3864e7f38681b875", 1977110468596060, this, []); }
+  get type(): PHAssetResourceType { return callSDK<PHAssetResourceType>("Photos_ff42ce03e691ab23", 1977110468596060, this, []); }
   /**
    * var uniformTypeIdentifier: String { get }
    * @availability iOS 9.0+
    * @deprecated iOS 100000.0
    */
-  get uniformTypeIdentifier(): string { return callSDK<string>("Photos_3864e7f38681b875", 4469646324572583, this, []); }
+  get uniformTypeIdentifier(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 4469646324572583, this, []); }
   /**
    * var dataSize: Int? { get }
    * @availability iOS 27.0+
    */
-  get dataSize(): (number) | null { return callSDK<(number) | null>("Photos_3864e7f38681b875", 278904572345566, this, []); }
+  get dataSize(): (number) | null { return callSDK<(number) | null>("Photos_ff42ce03e691ab23", 278904572345566, this, []); }
   declare readonly $type: { "c:objc(cs)PHAssetResource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "assetLocalIdentifier": true; "contentType": true; "filename": true; "originalFilename": true; "pixelHeight": true; "pixelWidth": true; "type": true; "uniformTypeIdentifier": true };
 }
@@ -1011,32 +1011,32 @@ export class PHAssetResource extends SDKHandle {
  */
 export class PHAssetResourceCreationOptions extends SDKHandle {
   /** init() */
-  static init(): PHAssetResourceCreationOptions { return callSDK<PHAssetResourceCreationOptions>("Photos_3864e7f38681b875", 4268045777697663, undefined, []); }
+  static init(): PHAssetResourceCreationOptions { return callSDK<PHAssetResourceCreationOptions>("Photos_ff42ce03e691ab23", 4268045777697663, undefined, []); }
   /**
    * var contentType: UTType? { get set }
    * @availability iOS 26.0+
    */
-  get contentType(): $SDK14 { return callSDK<$SDK14>("Photos_3864e7f38681b875", 325495249802941, this, []); }
-  set contentType(value: $SDK14) { callSDK<void>("Photos_3864e7f38681b875", 3788576290487445, this, [value]); }
+  get contentType(): $SDK14 { return callSDK<$SDK14>("Photos_ff42ce03e691ab23", 325495249802941, this, []); }
+  set contentType(value: $SDK14) { callSDK<void>("Photos_ff42ce03e691ab23", 3788576290487445, this, [value]); }
   /**
    * var originalFilename: String? { get set }
    * @availability iOS 9.0+
    */
-  get originalFilename(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 567328416373938, this, []); }
-  set originalFilename(value: (string) | null) { callSDK<void>("Photos_3864e7f38681b875", 116644750647609, this, [value]); }
+  get originalFilename(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 567328416373938, this, []); }
+  set originalFilename(value: (string) | null) { callSDK<void>("Photos_ff42ce03e691ab23", 116644750647609, this, [value]); }
   /**
    * var shouldMoveFile: Bool { get set }
    * @availability iOS 9.0+
    */
-  get shouldMoveFile(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 1443228201284552, this, []); }
-  set shouldMoveFile(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 1393062503315237, this, [value]); }
+  get shouldMoveFile(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 1443228201284552, this, []); }
+  set shouldMoveFile(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 1393062503315237, this, [value]); }
   /**
    * var uniformTypeIdentifier: String? { get set }
    * @availability iOS 9.0+
    * @deprecated iOS 100000.0
    */
-  get uniformTypeIdentifier(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 2135495053994516, this, []); }
-  set uniformTypeIdentifier(value: (string) | null) { callSDK<void>("Photos_3864e7f38681b875", 1852950500580627, this, [value]); }
+  get uniformTypeIdentifier(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 2135495053994516, this, []); }
+  set uniformTypeIdentifier(value: (string) | null) { callSDK<void>("Photos_ff42ce03e691ab23", 1852950500580627, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHAssetResourceCreationOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentType": true; "originalFilename": true; "shouldMoveFile": true; "uniformTypeIdentifier": true };
 }
@@ -1056,29 +1056,29 @@ export class PHAssetResourceManager extends SDKHandle {
    * class func `default`() -> PHAssetResourceManager
    * @availability iOS 9.0+
    */
-  static default(): PHAssetResourceManager { return callSDK<PHAssetResourceManager>("Photos_3864e7f38681b875", 197062410928697, undefined, []); }
+  static default(): PHAssetResourceManager { return callSDK<PHAssetResourceManager>("Photos_ff42ce03e691ab23", 197062410928697, undefined, []); }
   /**
    * func cancelDataRequest(_ requestID: PHAssetResourceDataRequestID)
    * @availability iOS 9.0+
    */
-  cancelDataRequest(requestID: number): void { return callSDK<void>("Photos_3864e7f38681b875", 1731481013293104, this, [requestID]); }
+  cancelDataRequest(requestID: number): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1731481013293104, this, [requestID]); }
   /** init() */
-  static init(): PHAssetResourceManager { return callSDK<PHAssetResourceManager>("Photos_3864e7f38681b875", 2593895266026184, undefined, []); }
+  static init(): PHAssetResourceManager { return callSDK<PHAssetResourceManager>("Photos_ff42ce03e691ab23", 2593895266026184, undefined, []); }
   /**
    * func requestData(for resource: PHAssetResource, options: PHAssetResourceRequestOptions?, dataReceivedHandler handler: @escaping (Data) -> Void, completionHandler: @escaping ((any Error)?) -> Void) -> PHAssetResourceDataRequestID
    * @availability iOS 9.0+
    */
-  requestData(resource: PHAssetResource, options: $SDK15, handler: ((arg0: ArrayBuffer) => void), completionHandler: $SDK17): number { return callSDK<number>("Photos_3864e7f38681b875", 1662573877610377, this, [resource, options, handler, completionHandler], [null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  requestData(resource: PHAssetResource, options: $SDK15, handler: ((arg0: ArrayBuffer) => void), completionHandler: $SDK17): number { return callSDK<number>("Photos_ff42ce03e691ab23", 1662573877610377, this, [resource, options, handler, completionHandler], [null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * func writeData(for resource: PHAssetResource, toFile fileURL: URL, options: PHAssetResourceRequestOptions?) async throws
    * @availability iOS 9.0+
    */
-  writeData(resource: PHAssetResource, fileURL: string, options: $SDK15, completionHandler: $SDK17): void { return callSDK<void>("Photos_3864e7f38681b875", 3432186905267643, this, [resource, fileURL, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  writeData(resource: PHAssetResource, fileURL: string, options: $SDK15, completionHandler: $SDK17): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3432186905267643, this, [resource, fileURL, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func exportedAssetID(for resource: PHAssetResource) async throws -> CKAsset.ExportedAssetID
    * @availability iOS 27.0+
    */
-  exportedAssetID(resource: PHAssetResource): Promise<_CloudKit_CKAsset_ExportedAssetID> { return callSDKAsync<_CloudKit_CKAsset_ExportedAssetID>("Photos_3864e7f38681b875", 3200528310936074, this, [resource]); }
+  exportedAssetID(resource: PHAssetResource): Promise<_CloudKit_CKAsset_ExportedAssetID> { return callSDKAsync<_CloudKit_CKAsset_ExportedAssetID>("Photos_ff42ce03e691ab23", 3200528310936074, this, [resource]); }
   declare readonly $type: { "c:objc(cs)PHAssetResourceManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1094,19 +1094,19 @@ export type PHAssetResourceProgressHandler = ((arg0: number) => Promise<void>);
  */
 export class PHAssetResourceRequestOptions extends SDKHandle {
   /** init() */
-  static init(): PHAssetResourceRequestOptions { return callSDK<PHAssetResourceRequestOptions>("Photos_3864e7f38681b875", 2348110644028671, undefined, []); }
+  static init(): PHAssetResourceRequestOptions { return callSDK<PHAssetResourceRequestOptions>("Photos_ff42ce03e691ab23", 2348110644028671, undefined, []); }
   /**
    * var isNetworkAccessAllowed: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isNetworkAccessAllowed(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3493898556630765, this, []); }
-  set isNetworkAccessAllowed(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 1660766484715961, this, [value]); }
+  get isNetworkAccessAllowed(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3493898556630765, this, []); }
+  set isNetworkAccessAllowed(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 1660766484715961, this, [value]); }
   /**
    * var progressHandler: PHAssetResourceProgressHandler? { get set }
    * @availability iOS 9.0+
    */
-  get progressHandler(): (((arg0: number) => Promise<void>)) | null { return callSDK<(((arg0: number) => Promise<void>)) | null>("Photos_3864e7f38681b875", 3051826312528674, this, []); }
-  set progressHandler(value: (((arg0: number) => void)) | null) { callSDK<void>("Photos_3864e7f38681b875", 4210487680021462, this, [value], [{"callback":{"out":[]}}]); }
+  get progressHandler(): (((arg0: number) => Promise<void>)) | null { return callSDK<(((arg0: number) => Promise<void>)) | null>("Photos_ff42ce03e691ab23", 3051826312528674, this, []); }
+  set progressHandler(value: (((arg0: number) => void)) | null) { callSDK<void>("Photos_ff42ce03e691ab23", 4210487680021462, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)PHAssetResourceRequestOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isNetworkAccessAllowed": true };
 }
@@ -1122,7 +1122,7 @@ export const PHAssetResourceType = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (PHAssetResourceType) | null { return callSDK<(PHAssetResourceType) | null>("Photos_3864e7f38681b875", 1216092083848343, undefined, [rawValue]); }
+  init(rawValue: number): (PHAssetResourceType) | null { return callSDK<(PHAssetResourceType) | null>("Photos_ff42ce03e691ab23", 1216092083848343, undefined, [rawValue]); }
 };
 
 /**
@@ -1134,45 +1134,45 @@ export class PHAssetResourceUploadJob extends (PHObject as unknown as Omit<typeo
    * class func fetchJobs(action: PHAssetResourceUploadJob.Action, options: PHFetchOptions?) -> PHFetchResult<PHAssetResourceUploadJob>
    * @availability iOS 26.1+
    */
-  static fetchJobs(action: PHAssetResourceUploadJob_Action, options?: (PHFetchOptions) | null): PHFetchResult<PHAssetResourceUploadJob> { return callSDK<PHFetchResult<PHAssetResourceUploadJob>>("Photos_3864e7f38681b875", 3119464305062977, undefined, [action, options]); }
+  static fetchJobs(action: PHAssetResourceUploadJob_Action, options?: (PHFetchOptions) | null): PHFetchResult<PHAssetResourceUploadJob> { return callSDK<PHFetchResult<PHAssetResourceUploadJob>>("Photos_ff42ce03e691ab23", 3119464305062977, undefined, [action, options]); }
   /**
    * class var jobLimit: Int { get }
    * @availability iOS 26.1+
    */
-  static get jobLimit(): number { return callSDK<number>("Photos_3864e7f38681b875", 2491653541199734, undefined, []); }
+  static get jobLimit(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 2491653541199734, undefined, []); }
   /** init() */
-  static init(): PHAssetResourceUploadJob { return callSDK<PHAssetResourceUploadJob>("Photos_3864e7f38681b875", 1317280243442394, undefined, []); }
+  static init(): PHAssetResourceUploadJob { return callSDK<PHAssetResourceUploadJob>("Photos_ff42ce03e691ab23", 1317280243442394, undefined, []); }
   /**
    * var destination: URLRequest { get }
    * @availability iOS 26.1+
    */
-  get destination(): _Foundation_URLRequest { return callSDK<_Foundation_URLRequest>("Photos_3864e7f38681b875", 2207789584791091, this, []); }
+  get destination(): _Foundation_URLRequest { return callSDK<_Foundation_URLRequest>("Photos_ff42ce03e691ab23", 2207789584791091, this, []); }
   /**
    * var error: (any Error)? { get }
    * @availability iOS 26.4+
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("Photos_3864e7f38681b875", 1077792746361922, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("Photos_ff42ce03e691ab23", 1077792746361922, this, []); }
   /**
    * var resource: PHAssetResource { get }
    * @availability iOS 26.1+
    * @deprecated iOS 100000.0
    */
-  get resource(): PHAssetResource { return callSDK<PHAssetResource>("Photos_3864e7f38681b875", 2357137161221062, this, []); }
+  get resource(): PHAssetResource { return callSDK<PHAssetResource>("Photos_ff42ce03e691ab23", 2357137161221062, this, []); }
   /**
    * var responseHeaderFields: [String : String]? { get }
    * @availability iOS 26.4+
    */
-  get responseHeaderFields(): (Record<string, string>) | null { return callSDK<(Record<string, string>) | null>("Photos_3864e7f38681b875", 1799840568613297, this, []); }
+  get responseHeaderFields(): (Record<string, string>) | null { return callSDK<(Record<string, string>) | null>("Photos_ff42ce03e691ab23", 1799840568613297, this, []); }
   /**
    * var state: PHAssetResourceUploadJob.State { get }
    * @availability iOS 26.1+
    */
-  get state(): PHAssetResourceUploadJob_State { return callSDK<PHAssetResourceUploadJob_State>("Photos_3864e7f38681b875", 3496188954655778, this, []); }
+  get state(): PHAssetResourceUploadJob_State { return callSDK<PHAssetResourceUploadJob_State>("Photos_ff42ce03e691ab23", 3496188954655778, this, []); }
   /**
    * var type: PHAssetResourceUploadJob.Type { get }
    * @availability iOS 26.1+
    */
-  get type(): PHAssetResourceUploadJob_Type { return callSDK<PHAssetResourceUploadJob_Type>("Photos_3864e7f38681b875", 788714261265825, this, []); }
+  get type(): PHAssetResourceUploadJob_Type { return callSDK<PHAssetResourceUploadJob_Type>("Photos_ff42ce03e691ab23", 788714261265825, this, []); }
   declare readonly $type: { "c:objc(cs)PHAssetResourceUploadJob": true; "c:objc(cs)PHObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localIdentifier": true; "destination": true; "error": true; "resource": true; "responseHeaderFields": true; "state": true; "type": true };
 }
@@ -1188,7 +1188,7 @@ export const PHAssetResourceUploadJob_Action = {
    * init?(rawValue: Int)
    * @availability iOS 26.1+
    */
-  init(rawValue: number): (PHAssetResourceUploadJob_Action) | null { return callSDK<(PHAssetResourceUploadJob_Action) | null>("Photos_3864e7f38681b875", 2940020014508792, undefined, [rawValue]); }
+  init(rawValue: number): (PHAssetResourceUploadJob_Action) | null { return callSDK<(PHAssetResourceUploadJob_Action) | null>("Photos_ff42ce03e691ab23", 2940020014508792, undefined, [rawValue]); }
 };
 
 /**
@@ -1202,7 +1202,7 @@ export const PHAssetResourceUploadJob_State = {
    * init?(rawValue: Int)
    * @availability iOS 26.1+
    */
-  init(rawValue: number): (PHAssetResourceUploadJob_State) | null { return callSDK<(PHAssetResourceUploadJob_State) | null>("Photos_3864e7f38681b875", 3187465485582745, undefined, [rawValue]); }
+  init(rawValue: number): (PHAssetResourceUploadJob_State) | null { return callSDK<(PHAssetResourceUploadJob_State) | null>("Photos_ff42ce03e691ab23", 3187465485582745, undefined, [rawValue]); }
 };
 
 /**
@@ -1220,43 +1220,43 @@ export class PHAssetResourceUploadJobChangeRequest extends (PHChangeRequest as u
    * convenience init?(for job: PHAssetResourceUploadJob)
    * @availability iOS 26.1+
    */
-  static init(job: PHAssetResourceUploadJob): (PHAssetResourceUploadJobChangeRequest) | null { return callSDK<(PHAssetResourceUploadJobChangeRequest) | null>("Photos_3864e7f38681b875", 3664940074193075, undefined, [job]); }
+  static init(job: PHAssetResourceUploadJob): (PHAssetResourceUploadJobChangeRequest) | null { return callSDK<(PHAssetResourceUploadJobChangeRequest) | null>("Photos_ff42ce03e691ab23", 3664940074193075, undefined, [job]); }
   /**
    * class func createJob(destination: URLRequest, resource: PHAssetResource)
    * @availability iOS 26.1+
    * @deprecated iOS 26.4
    */
-  static createJob(destination: _Foundation_URLRequest, resource: PHAssetResource): void { return callSDK<void>("Photos_3864e7f38681b875", 2861328015755549, undefined, [destination, resource]); }
+  static createJob(destination: _Foundation_URLRequest, resource: PHAssetResource): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2861328015755549, undefined, [destination, resource]); }
   /**
    * class func creationRequestForDownloadJob(resource: PHAssetResource) -> Self
    * @availability iOS 26.4+
    */
-  static creationRequestForDownloadJob(resource: PHAssetResource): PHAssetResourceUploadJobChangeRequest { return callSDK<PHAssetResourceUploadJobChangeRequest>("Photos_3864e7f38681b875", 2552087151647573, undefined, [resource]); }
+  static creationRequestForDownloadJob(resource: PHAssetResource): PHAssetResourceUploadJobChangeRequest { return callSDK<PHAssetResourceUploadJobChangeRequest>("Photos_ff42ce03e691ab23", 2552087151647573, undefined, [resource]); }
   /**
    * class func creationRequestForJob(destination: URLRequest, resource: PHAssetResource) -> Self
    * @availability iOS 26.4+
    */
-  static creationRequestForJob(destination: _Foundation_URLRequest, resource: PHAssetResource): PHAssetResourceUploadJobChangeRequest { return callSDK<PHAssetResourceUploadJobChangeRequest>("Photos_3864e7f38681b875", 3421728438719330, undefined, [destination, resource]); }
+  static creationRequestForJob(destination: _Foundation_URLRequest, resource: PHAssetResource): PHAssetResourceUploadJobChangeRequest { return callSDK<PHAssetResourceUploadJobChangeRequest>("Photos_ff42ce03e691ab23", 3421728438719330, undefined, [destination, resource]); }
   /**
    * func acknowledge()
    * @availability iOS 26.1+
    */
-  acknowledge(): void { return callSDK<void>("Photos_3864e7f38681b875", 2027125185074619, this, []); }
+  acknowledge(): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2027125185074619, this, []); }
   /**
    * func cancel()
    * @availability iOS 26.4+
    */
-  cancel(): void { return callSDK<void>("Photos_3864e7f38681b875", 3215768156753603, this, []); }
+  cancel(): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3215768156753603, this, []); }
   /**
    * func retry(destination: URLRequest?)
    * @availability iOS 26.1+
    */
-  retry(destination?: (_Foundation_URLRequest) | null): void { return callSDK<void>("Photos_3864e7f38681b875", 1059631046401327, this, [destination]); }
+  retry(destination?: (_Foundation_URLRequest) | null): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1059631046401327, this, [destination]); }
   /**
    * var placeholderForCreatedAssetResourceUploadJob: PHObjectPlaceholder? { get }
    * @availability iOS 26.1+
    */
-  get placeholderForCreatedAssetResourceUploadJob(): $SDK7 { return callSDK<$SDK7>("Photos_3864e7f38681b875", 2540325177327343, this, []); }
+  get placeholderForCreatedAssetResourceUploadJob(): $SDK7 { return callSDK<$SDK7>("Photos_ff42ce03e691ab23", 2540325177327343, this, []); }
   declare readonly $type: { "c:objc(cs)PHAssetResourceUploadJobChangeRequest": true; "c:objc(cs)PHChangeRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "placeholderForCreatedAssetResourceUploadJob": true };
 }
@@ -1267,13 +1267,13 @@ export class PHAssetResourceUploadJobChangeRequest extends (PHChangeRequest as u
  */
 export class PHAssetResourceUploadJobOptions extends SDKHandle {
   /** init() */
-  static init(): PHAssetResourceUploadJobOptions { return callSDK<PHAssetResourceUploadJobOptions>("Photos_3864e7f38681b875", 1648139585313992, undefined, []); }
+  static init(): PHAssetResourceUploadJobOptions { return callSDK<PHAssetResourceUploadJobOptions>("Photos_ff42ce03e691ab23", 1648139585313992, undefined, []); }
   /**
    * var preventsExpensiveNetworkAccess: Bool { get set }
    * @availability iOS 27.0+
    */
-  get preventsExpensiveNetworkAccess(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3028585957090493, this, []); }
-  set preventsExpensiveNetworkAccess(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 321980261905912, this, [value]); }
+  get preventsExpensiveNetworkAccess(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3028585957090493, this, []); }
+  set preventsExpensiveNetworkAccess(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 321980261905912, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHAssetResourceUploadJobOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preventsExpensiveNetworkAccess": true };
 }
@@ -1289,22 +1289,22 @@ export const PHAssetSourceType = {
    * static var typeCloudShared: PHAssetSourceType { get }
    * @availability iOS 8.0+
    */
-  get typeCloudShared(): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_3864e7f38681b875", 3654620098878719, undefined, []); },
+  get typeCloudShared(): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_ff42ce03e691ab23", 3654620098878719, undefined, []); },
   /**
    * static var typeUserLibrary: PHAssetSourceType { get }
    * @availability iOS 8.0+
    */
-  get typeUserLibrary(): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_3864e7f38681b875", 3185105111844687, undefined, []); },
+  get typeUserLibrary(): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_ff42ce03e691ab23", 3185105111844687, undefined, []); },
   /**
    * static var typeiTunesSynced: PHAssetSourceType { get }
    * @availability iOS 8.0+
    */
-  get typeiTunesSynced(): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_3864e7f38681b875", 3476572774323219, undefined, []); },
+  get typeiTunesSynced(): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_ff42ce03e691ab23", 3476572774323219, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_3864e7f38681b875", 2678332091225059, undefined, [rawValue]); }
+  init(rawValue: number): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_ff42ce03e691ab23", 2678332091225059, undefined, [rawValue]); }
 };
 
 /**
@@ -1324,7 +1324,7 @@ export const PHAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHAuthorizationStatus) | null { return callSDK<(PHAuthorizationStatus) | null>("Photos_3864e7f38681b875", 4215810221965318, undefined, [rawValue]); }
+  init(rawValue: number): (PHAuthorizationStatus) | null { return callSDK<(PHAuthorizationStatus) | null>("Photos_ff42ce03e691ab23", 4215810221965318, undefined, [rawValue]); }
 };
 
 /**
@@ -1377,12 +1377,12 @@ export const PHBackgroundResourceUploadProcessingResult = {
    * init?(rawValue: Int)
    * @availability iOS 26.1+
    */
-  init(rawValue: number): (PHBackgroundResourceUploadProcessingResult) | null { return callSDK<(PHBackgroundResourceUploadProcessingResult) | null>("Photos_3864e7f38681b875", 867720893842928, undefined, [rawValue]); },
+  init(rawValue: number): (PHBackgroundResourceUploadProcessingResult) | null { return callSDK<(PHBackgroundResourceUploadProcessingResult) | null>("Photos_ff42ce03e691ab23", 867720893842928, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 26.1+
    */
-  getRawValue($self: PHBackgroundResourceUploadProcessingResult): number { return callSDK<number>("Photos_3864e7f38681b875", 1774928043136575, $self, []); }
+  getRawValue($self: PHBackgroundResourceUploadProcessingResult): number { return callSDK<number>("Photos_ff42ce03e691ab23", 1774928043136575, $self, []); }
 };
 
 /**
@@ -1400,44 +1400,44 @@ export class PHImageManager extends SDKHandle {
    * class func `default`() -> PHImageManager
    * @availability iOS 8.0+
    */
-  static default(): PHImageManager { return callSDK<PHImageManager>("Photos_3864e7f38681b875", 3050688305523390, undefined, []); }
+  static default(): PHImageManager { return callSDK<PHImageManager>("Photos_ff42ce03e691ab23", 3050688305523390, undefined, []); }
   /**
    * func cancelImageRequest(_ requestID: PHImageRequestID)
    * @availability iOS 8.0+
    */
-  cancelImageRequest(requestID: number): void { return callSDK<void>("Photos_3864e7f38681b875", 3309833347591772, this, [requestID]); }
+  cancelImageRequest(requestID: number): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3309833347591772, this, [requestID]); }
   /** init() */
-  static init(): PHImageManager { return callSDK<PHImageManager>("Photos_3864e7f38681b875", 3308346540550691, undefined, []); }
+  static init(): PHImageManager { return callSDK<PHImageManager>("Photos_ff42ce03e691ab23", 3308346540550691, undefined, []); }
   /**
    * func requestAVAsset(forVideo asset: PHAsset, options: PHVideoRequestOptions?, resultHandler: @escaping (AVAsset?, AVAudioMix?, [AnyHashable : Any]?) -> Void) -> PHImageRequestID
    * @availability iOS 8.0+
    */
-  requestAVAsset(asset: PHAsset, options: $SDK24, resultHandler: ((arg0: (_AVFoundation_AVAsset) | null, arg1: (_AVFoundation_AVAudioMix) | null, arg2: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_3864e7f38681b875", 4226142495519492, this, [asset, options, resultHandler], [null,null,{"callback":{"out":[]}}]); }
+  requestAVAsset(asset: PHAsset, options: $SDK24, resultHandler: ((arg0: (_AVFoundation_AVAsset) | null, arg1: (_AVFoundation_AVAudioMix) | null, arg2: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_ff42ce03e691ab23", 4226142495519492, this, [asset, options, resultHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func requestExportSession(forVideo asset: PHAsset, options: PHVideoRequestOptions?, exportPreset: String, resultHandler: @escaping (AVAssetExportSession?, [AnyHashable : Any]?) -> Void) -> PHImageRequestID
    * @availability iOS 8.0+
    */
-  requestExportSession(asset: PHAsset, options: $SDK24, exportPreset: string, resultHandler: ((arg0: (_AVFoundation_AVAssetExportSession) | null, arg1: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_3864e7f38681b875", 3901265060970169, this, [asset, options, exportPreset, resultHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  requestExportSession(asset: PHAsset, options: $SDK24, exportPreset: string, resultHandler: ((arg0: (_AVFoundation_AVAssetExportSession) | null, arg1: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_ff42ce03e691ab23", 3901265060970169, this, [asset, options, exportPreset, resultHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func requestImageDataAndOrientation(for asset: PHAsset, options: PHImageRequestOptions?, resultHandler: @escaping (Data?, String?, CGImagePropertyOrientation, [AnyHashable : Any]?) -> Void) -> PHImageRequestID
    * @availability iOS 13.0+
    */
-  requestImageDataAndOrientation(asset: PHAsset, options: $SDK27, resultHandler: ((arg0: (ArrayBuffer) | null, arg1: (string) | null, arg2: _ImageIO_CGImagePropertyOrientation, arg3: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_3864e7f38681b875", 21639214698870, this, [asset, options, resultHandler], [null,null,{"callback":{"out":[]}}]); }
+  requestImageDataAndOrientation(asset: PHAsset, options: $SDK27, resultHandler: ((arg0: (ArrayBuffer) | null, arg1: (string) | null, arg2: _ImageIO_CGImagePropertyOrientation, arg3: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_ff42ce03e691ab23", 21639214698870, this, [asset, options, resultHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func requestImage(for asset: PHAsset, targetSize: CGSize, contentMode: PHImageContentMode, options: PHImageRequestOptions?, resultHandler: @escaping (UIImage?, [AnyHashable : Any]?) -> Void) -> PHImageRequestID
    * @availability iOS 8.0+
    */
-  requestImage(asset: PHAsset, targetSize: $SDK29, contentMode: PHImageContentMode, options: $SDK27, resultHandler: ((arg0: (_UIKit_UIImage) | null, arg1: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_3864e7f38681b875", 4285922827042653, this, [asset, targetSize, contentMode, options, resultHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  requestImage(asset: PHAsset, targetSize: $SDK29, contentMode: PHImageContentMode, options: $SDK27, resultHandler: ((arg0: (_UIKit_UIImage) | null, arg1: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_ff42ce03e691ab23", 4285922827042653, this, [asset, targetSize, contentMode, options, resultHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func requestLivePhoto(for asset: PHAsset, targetSize: CGSize, contentMode: PHImageContentMode, options: PHLivePhotoRequestOptions?, resultHandler: @escaping (PHLivePhoto?, [AnyHashable : Any]?) -> Void) -> PHImageRequestID
    * @availability iOS 9.1+
    */
-  requestLivePhoto(asset: PHAsset, targetSize: $SDK29, contentMode: PHImageContentMode, options: (PHLivePhotoRequestOptions) | null, resultHandler: ((arg0: (PHLivePhoto) | null, arg1: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_3864e7f38681b875", 746015069805090, this, [asset, targetSize, contentMode, options, resultHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  requestLivePhoto(asset: PHAsset, targetSize: $SDK29, contentMode: PHImageContentMode, options: (PHLivePhotoRequestOptions) | null, resultHandler: ((arg0: (PHLivePhoto) | null, arg1: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_ff42ce03e691ab23", 746015069805090, this, [asset, targetSize, contentMode, options, resultHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func requestPlayerItem(forVideo asset: PHAsset, options: PHVideoRequestOptions?, resultHandler: @escaping (AVPlayerItem?, [AnyHashable : Any]?) -> Void) -> PHImageRequestID
    * @availability iOS 8.0+
    */
-  requestPlayerItem(asset: PHAsset, options: $SDK24, resultHandler: ((arg0: (_AVFoundation_AVPlayerItem) | null, arg1: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_3864e7f38681b875", 263923768002185, this, [asset, options, resultHandler], [null,null,{"callback":{"out":[]}}]); }
+  requestPlayerItem(asset: PHAsset, options: $SDK24, resultHandler: ((arg0: (_AVFoundation_AVPlayerItem) | null, arg1: (NativeMap<unknown, unknown>) | null) => void)): number { return callSDK<number>("Photos_ff42ce03e691ab23", 263923768002185, this, [asset, options, resultHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)PHImageManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1447,29 +1447,29 @@ export class PHImageManager extends SDKHandle {
  */
 export class PHCachingImageManager extends (PHImageManager as unknown as Omit<typeof PHImageManager, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHImageManager)) {
   /** init() */
-  static init(): PHCachingImageManager { return callSDK<PHCachingImageManager>("Photos_3864e7f38681b875", 1082371744651631, undefined, []); }
+  static init(): PHCachingImageManager { return callSDK<PHCachingImageManager>("Photos_ff42ce03e691ab23", 1082371744651631, undefined, []); }
   /**
    * func startCachingImages(for assets: [PHAsset], targetSize: CGSize, contentMode: PHImageContentMode, options: PHImageRequestOptions?)
    * @availability iOS 8.0+
    */
-  startCachingImages(assets: Array<PHAsset>, targetSize: $SDK29, contentMode: PHImageContentMode, options?: $SDK27): void { return callSDK<void>("Photos_3864e7f38681b875", 2407331257284456, this, [assets, targetSize, contentMode, options]); }
+  startCachingImages(assets: Array<PHAsset>, targetSize: $SDK29, contentMode: PHImageContentMode, options?: $SDK27): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2407331257284456, this, [assets, targetSize, contentMode, options]); }
   /**
    * func stopCachingImagesForAllAssets()
    * @availability iOS 8.0+
    */
-  stopCachingImagesForAllAssets(): void { return callSDK<void>("Photos_3864e7f38681b875", 1382923202094705, this, []); }
+  stopCachingImagesForAllAssets(): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1382923202094705, this, []); }
   /**
    * func stopCachingImages(for assets: [PHAsset], targetSize: CGSize, contentMode: PHImageContentMode, options: PHImageRequestOptions?)
    * @availability iOS 8.0+
    */
-  stopCachingImages(assets: Array<PHAsset>, targetSize: $SDK29, contentMode: PHImageContentMode, options?: $SDK27): void { return callSDK<void>("Photos_3864e7f38681b875", 4148343540364519, this, [assets, targetSize, contentMode, options]); }
+  stopCachingImages(assets: Array<PHAsset>, targetSize: $SDK29, contentMode: PHImageContentMode, options?: $SDK27): void { return callSDK<void>("Photos_ff42ce03e691ab23", 4148343540364519, this, [assets, targetSize, contentMode, options]); }
   /**
    * var allowsCachingHighQualityImages: Bool { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 26.0
    */
-  get allowsCachingHighQualityImages(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3502089807237814, this, []); }
-  set allowsCachingHighQualityImages(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 2007454243343800, this, [value]); }
+  get allowsCachingHighQualityImages(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3502089807237814, this, []); }
+  set allowsCachingHighQualityImages(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 2007454243343800, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHCachingImageManager": true; "c:objc(cs)PHImageManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCachingHighQualityImages": true };
 }
@@ -1480,17 +1480,17 @@ export class PHCachingImageManager extends (PHImageManager as unknown as Omit<ty
  */
 export class PHChange extends SDKHandle {
   /** init() */
-  static init(): PHChange { return callSDK<PHChange>("Photos_3864e7f38681b875", 3148297022554792, undefined, []); }
+  static init(): PHChange { return callSDK<PHChange>("Photos_ff42ce03e691ab23", 3148297022554792, undefined, []); }
   /**
    * func changeDetails<T>(for object: T) -> PHObjectChangeDetails<T>? where T : PHObject
    * @availability iOS 8.0+
    */
-  changeDetailsFor(object: PHObject): (PHObjectChangeDetails<PHObject>) | null { return callSDK<(PHObjectChangeDetails<PHObject>) | null>("Photos_3864e7f38681b875", 1034270445277652, this, [object]); }
+  changeDetailsFor(object: PHObject): (PHObjectChangeDetails<PHObject>) | null { return callSDK<(PHObjectChangeDetails<PHObject>) | null>("Photos_ff42ce03e691ab23", 1034270445277652, this, [object]); }
   /**
    * func changeDetails<T>(for fetchResult: PHFetchResult<T>) -> PHFetchResultChangeDetails<T>? where T : PHObject
    * @availability iOS 8.0+
    */
-  changeDetailsFor25684(fetchResult: PHFetchResult<PHObject>): (PHFetchResultChangeDetails<PHObject>) | null { return callSDK<(PHFetchResultChangeDetails<PHObject>) | null>("Photos_3864e7f38681b875", 1521673448159152, this, [fetchResult]); }
+  changeDetailsFor25684(fetchResult: PHFetchResult<PHObject>): (PHFetchResultChangeDetails<PHObject>) | null { return callSDK<(PHFetchResultChangeDetails<PHObject>) | null>("Photos_ff42ce03e691ab23", 1521673448159152, this, [fetchResult]); }
   declare readonly $type: { "c:objc(cs)PHChange": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1503,24 +1503,24 @@ export class PHCloudIdentifier extends SDKHandle {
    * init?(archivalStringValue archivalString: String)
    * @availability iOS 18.2+
    */
-  static initArchivalStringValue(archivalString: string): (PHCloudIdentifier) | null { return callSDK<(PHCloudIdentifier) | null>("Photos_3864e7f38681b875", 2094102455024681, undefined, [archivalString]); }
+  static initArchivalStringValue(archivalString: string): (PHCloudIdentifier) | null { return callSDK<(PHCloudIdentifier) | null>("Photos_ff42ce03e691ab23", 2094102455024681, undefined, [archivalString]); }
   /**
    * init(stringValue: String)
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  static initStringValue(stringValue: string): PHCloudIdentifier { return callSDK<PHCloudIdentifier>("Photos_3864e7f38681b875", 3935718992103547, undefined, [stringValue]); }
+  static initStringValue(stringValue: string): PHCloudIdentifier { return callSDK<PHCloudIdentifier>("Photos_ff42ce03e691ab23", 3935718992103547, undefined, [stringValue]); }
   /**
    * var archivalStringValue: String { get }
    * @availability iOS 18.2+
    */
-  get archivalStringValue(): string { return callSDK<string>("Photos_3864e7f38681b875", 369010935596572, this, []); }
+  get archivalStringValue(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 369010935596572, this, []); }
   /**
    * var stringValue: String { get }
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  get stringValue(): string { return callSDK<string>("Photos_3864e7f38681b875", 3921845880383029, this, []); }
+  get stringValue(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 3921845880383029, this, []); }
   declare readonly $type: { "c:objc(cs)PHCloudIdentifier": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "archivalStringValue": true; "stringValue": true };
 }
@@ -1536,7 +1536,7 @@ export const PHCollectionEditOperation = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHCollectionEditOperation) | null { return callSDK<(PHCollectionEditOperation) | null>("Photos_3864e7f38681b875", 3689179203384614, undefined, [rawValue]); }
+  init(rawValue: number): (PHCollectionEditOperation) | null { return callSDK<(PHCollectionEditOperation) | null>("Photos_ff42ce03e691ab23", 3689179203384614, undefined, [rawValue]); }
 };
 
 /**
@@ -1548,66 +1548,66 @@ export class PHCollectionList extends (PHCollection as unknown as Omit<typeof PH
    * class func fetchCollectionListsContaining(_ collection: PHCollection, options: PHFetchOptions?) -> PHFetchResult<PHCollectionList>
    * @availability iOS 8.0+
    */
-  static fetchCollectionListsContaining(collection: PHCollection, options?: (PHFetchOptions) | null): $SDK36 { return callSDK<$SDK36>("Photos_3864e7f38681b875", 4134437839933844, undefined, [collection, options]); }
+  static fetchCollectionListsContaining(collection: PHCollection, options?: (PHFetchOptions) | null): $SDK36 { return callSDK<$SDK36>("Photos_ff42ce03e691ab23", 4134437839933844, undefined, [collection, options]); }
   /**
    * class func fetchCollectionLists(withLocalIdentifiers identifiers: [String], options: PHFetchOptions?) -> PHFetchResult<PHCollectionList>
    * @availability iOS 8.0+
    */
-  static fetchCollectionListsWithLocalIdentifiersOptions(identifiers: Array<string>, options?: (PHFetchOptions) | null): $SDK36 { return callSDK<$SDK36>("Photos_3864e7f38681b875", 3369309981781866, undefined, [identifiers, options]); }
+  static fetchCollectionListsWithLocalIdentifiersOptions(identifiers: Array<string>, options?: (PHFetchOptions) | null): $SDK36 { return callSDK<$SDK36>("Photos_ff42ce03e691ab23", 3369309981781866, undefined, [identifiers, options]); }
   /**
    * class func fetchCollectionLists(with collectionListType: PHCollectionListType, subtype: PHCollectionListSubtype, options: PHFetchOptions?) -> PHFetchResult<PHCollectionList>
    * @availability iOS 8.0+
    */
-  static fetchCollectionListsWithSubtypeOptions(collectionListType: PHCollectionListType, subtype: PHCollectionListSubtype, options?: (PHFetchOptions) | null): $SDK36 { return callSDK<$SDK36>("Photos_3864e7f38681b875", 546040758062609, undefined, [collectionListType, subtype, options]); }
+  static fetchCollectionListsWithSubtypeOptions(collectionListType: PHCollectionListType, subtype: PHCollectionListSubtype, options?: (PHFetchOptions) | null): $SDK36 { return callSDK<$SDK36>("Photos_ff42ce03e691ab23", 546040758062609, undefined, [collectionListType, subtype, options]); }
   /**
    * class func fetchMomentLists(with momentListSubtype: PHCollectionListSubtype, containingMoment moment: PHAssetCollection, options: PHFetchOptions?) -> PHFetchResult<PHCollectionList>
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  static fetchMomentListsWithContainingMomentOptions(momentListSubtype: PHCollectionListSubtype, moment: PHAssetCollection, options?: (PHFetchOptions) | null): $SDK36 { return callSDK<$SDK36>("Photos_3864e7f38681b875", 2108720916725624, undefined, [momentListSubtype, moment, options]); }
+  static fetchMomentListsWithContainingMomentOptions(momentListSubtype: PHCollectionListSubtype, moment: PHAssetCollection, options?: (PHFetchOptions) | null): $SDK36 { return callSDK<$SDK36>("Photos_ff42ce03e691ab23", 2108720916725624, undefined, [momentListSubtype, moment, options]); }
   /**
    * class func fetchMomentLists(with momentListSubtype: PHCollectionListSubtype, options: PHFetchOptions?) -> PHFetchResult<PHCollectionList>
    * @availability iOS 8.0+
    * @deprecated iOS 13.0
    */
-  static fetchMomentListsWithOptions(momentListSubtype: PHCollectionListSubtype, options?: (PHFetchOptions) | null): $SDK36 { return callSDK<$SDK36>("Photos_3864e7f38681b875", 303113441764533, undefined, [momentListSubtype, options]); }
+  static fetchMomentListsWithOptions(momentListSubtype: PHCollectionListSubtype, options?: (PHFetchOptions) | null): $SDK36 { return callSDK<$SDK36>("Photos_ff42ce03e691ab23", 303113441764533, undefined, [momentListSubtype, options]); }
   /**
    * class func transientCollectionList(with collections: [PHCollection], title: String?) -> PHCollectionList
    * @availability iOS 8.0+
    */
-  static transientCollectionListWithTitle(collections: Array<PHCollection>, title?: (string) | null): PHCollectionList { return callSDK<PHCollectionList>("Photos_3864e7f38681b875", 318392490796037, undefined, [collections, title]); }
+  static transientCollectionListWithTitle(collections: Array<PHCollection>, title?: (string) | null): PHCollectionList { return callSDK<PHCollectionList>("Photos_ff42ce03e691ab23", 318392490796037, undefined, [collections, title]); }
   /**
    * class func transientCollectionList(withCollectionsFetchResult fetchResult: PHFetchResult<PHCollection>, title: String?) -> PHCollectionList
    * @availability iOS 8.0+
    */
-  static transientCollectionListWithCollectionsFetchResultTitle(fetchResult: $SDK8, title?: (string) | null): PHCollectionList { return callSDK<PHCollectionList>("Photos_3864e7f38681b875", 3705895843101562, undefined, [fetchResult, title]); }
+  static transientCollectionListWithCollectionsFetchResultTitle(fetchResult: $SDK8, title?: (string) | null): PHCollectionList { return callSDK<PHCollectionList>("Photos_ff42ce03e691ab23", 3705895843101562, undefined, [fetchResult, title]); }
   /** init() */
-  static init(): PHCollectionList { return callSDK<PHCollectionList>("Photos_3864e7f38681b875", 872734143187605, undefined, []); }
+  static init(): PHCollectionList { return callSDK<PHCollectionList>("Photos_ff42ce03e691ab23", 872734143187605, undefined, []); }
   /**
    * var collectionListSubtype: PHCollectionListSubtype { get }
    * @availability iOS 8.0+
    */
-  get collectionListSubtype(): PHCollectionListSubtype { return callSDK<PHCollectionListSubtype>("Photos_3864e7f38681b875", 726300980260640, this, []); }
+  get collectionListSubtype(): PHCollectionListSubtype { return callSDK<PHCollectionListSubtype>("Photos_ff42ce03e691ab23", 726300980260640, this, []); }
   /**
    * var collectionListType: PHCollectionListType { get }
    * @availability iOS 8.0+
    */
-  get collectionListType(): PHCollectionListType { return callSDK<PHCollectionListType>("Photos_3864e7f38681b875", 609237617732676, this, []); }
+  get collectionListType(): PHCollectionListType { return callSDK<PHCollectionListType>("Photos_ff42ce03e691ab23", 609237617732676, this, []); }
   /**
    * var endDate: Date? { get }
    * @availability iOS 8.0+
    */
-  get endDate(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 221119962183876, this, []); }
+  get endDate(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 221119962183876, this, []); }
   /**
    * var localizedLocationNames: [String] { get }
    * @availability iOS 8.0+
    */
-  get localizedLocationNames(): Array<string> { return callSDK<Array<string>>("Photos_3864e7f38681b875", 3675653920878500, this, []); }
+  get localizedLocationNames(): Array<string> { return callSDK<Array<string>>("Photos_ff42ce03e691ab23", 3675653920878500, this, []); }
   /**
    * var startDate: Date? { get }
    * @availability iOS 8.0+
    */
-  get startDate(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 681105562437685, this, []); }
+  get startDate(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 681105562437685, this, []); }
   declare readonly $type: { "c:objc(cs)PHCollectionList": true; "c:objc(cs)PHCollection": true; "c:objc(cs)PHObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localIdentifier": true; "canContainAssets": true; "canContainCollections": true; "localizedTitle": true; "modificationDate": true; "collectionListSubtype": true; "collectionListType": true; "endDate": true; "localizedLocationNames": true; "startDate": true };
 }
@@ -1621,68 +1621,68 @@ export class PHCollectionListChangeRequest extends PHChangeRequest {
    * convenience init?(for collectionList: PHCollectionList)
    * @availability iOS 8.0+
    */
-  static initFor(collectionList: PHCollectionList): (PHCollectionListChangeRequest) | null { return callSDK<(PHCollectionListChangeRequest) | null>("Photos_3864e7f38681b875", 4015908557488148, undefined, [collectionList]); }
+  static initFor(collectionList: PHCollectionList): (PHCollectionListChangeRequest) | null { return callSDK<(PHCollectionListChangeRequest) | null>("Photos_ff42ce03e691ab23", 4015908557488148, undefined, [collectionList]); }
   /**
    * convenience init?(for collectionList: PHCollectionList, childCollections: PHFetchResult<PHCollection>)
    * @availability iOS 8.0+
    */
-  static initForChildCollections(collectionList: PHCollectionList, childCollections: $SDK8): (PHCollectionListChangeRequest) | null { return callSDK<(PHCollectionListChangeRequest) | null>("Photos_3864e7f38681b875", 4479956363299317, undefined, [collectionList, childCollections]); }
+  static initForChildCollections(collectionList: PHCollectionList, childCollections: $SDK8): (PHCollectionListChangeRequest) | null { return callSDK<(PHCollectionListChangeRequest) | null>("Photos_ff42ce03e691ab23", 4479956363299317, undefined, [collectionList, childCollections]); }
   /**
    * convenience init?(forTopLevelCollectionListUserCollections childCollections: PHFetchResult<PHCollection>)
    * @availability iOS 14.2+
    */
-  static initForTopLevelCollectionListUserCollections(childCollections: $SDK8): (PHCollectionListChangeRequest) | null { return callSDK<(PHCollectionListChangeRequest) | null>("Photos_3864e7f38681b875", 1311607225082848, undefined, [childCollections]); }
+  static initForTopLevelCollectionListUserCollections(childCollections: $SDK8): (PHCollectionListChangeRequest) | null { return callSDK<(PHCollectionListChangeRequest) | null>("Photos_ff42ce03e691ab23", 1311607225082848, undefined, [childCollections]); }
   /**
    * class func creationRequestForCollectionList(withTitle title: String) -> Self
    * @availability iOS 8.0+
    */
-  static creationRequestForCollectionList(title: string): PHCollectionListChangeRequest { return callSDK<PHCollectionListChangeRequest>("Photos_3864e7f38681b875", 2126417546090235, undefined, [title]); }
+  static creationRequestForCollectionList(title: string): PHCollectionListChangeRequest { return callSDK<PHCollectionListChangeRequest>("Photos_ff42ce03e691ab23", 2126417546090235, undefined, [title]); }
   /**
    * class func deleteCollectionLists(_ collectionLists: any NSFastEnumeration)
    * @availability iOS 8.0+
    */
-  static deleteCollectionLists(collectionLists: SDKHandle): void { return callSDK<void>("Photos_3864e7f38681b875", 3896387525533843, undefined, [collectionLists]); }
+  static deleteCollectionLists(collectionLists: SDKHandle): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3896387525533843, undefined, [collectionLists]); }
   /**
    * func addChildCollections(_ collections: any NSFastEnumeration)
    * @availability iOS 8.0+
    */
-  addChildCollections(collections: SDKHandle): void { return callSDK<void>("Photos_3864e7f38681b875", 2709268872334607, this, [collections]); }
+  addChildCollections(collections: SDKHandle): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2709268872334607, this, [collections]); }
   /**
    * func insertChildCollections(_ collections: any NSFastEnumeration, at indexes: IndexSet)
    * @availability iOS 8.0+
    */
-  insertChildCollections(collections: SDKHandle, indexes: _Foundation_IndexSet): void { return callSDK<void>("Photos_3864e7f38681b875", 4454190276786455, this, [collections, indexes]); }
+  insertChildCollections(collections: SDKHandle, indexes: _Foundation_IndexSet): void { return callSDK<void>("Photos_ff42ce03e691ab23", 4454190276786455, this, [collections, indexes]); }
   /**
    * func moveChildCollections(at indexes: IndexSet, to toIndex: Int)
    * @availability iOS 8.0+
    */
-  moveChildCollections(indexes: _Foundation_IndexSet, toIndex: number): void { return callSDK<void>("Photos_3864e7f38681b875", 3195213379831535, this, [indexes, toIndex]); }
+  moveChildCollections(indexes: _Foundation_IndexSet, toIndex: number): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3195213379831535, this, [indexes, toIndex]); }
   /**
    * func removeChildCollections(_ collections: any NSFastEnumeration)
    * @availability iOS 8.0+
    */
-  removeChildCollections(collections: SDKHandle): void { return callSDK<void>("Photos_3864e7f38681b875", 2826513866901962, this, [collections]); }
+  removeChildCollections(collections: SDKHandle): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2826513866901962, this, [collections]); }
   /**
    * func removeChildCollections(at indexes: IndexSet)
    * @availability iOS 8.0+
    */
-  removeChildCollectionsAt(indexes: _Foundation_IndexSet): void { return callSDK<void>("Photos_3864e7f38681b875", 2910441822039383, this, [indexes]); }
+  removeChildCollectionsAt(indexes: _Foundation_IndexSet): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2910441822039383, this, [indexes]); }
   /**
    * func replaceChildCollections(at indexes: IndexSet, withChildCollections collections: any NSFastEnumeration)
    * @availability iOS 8.0+
    */
-  replaceChildCollections(indexes: _Foundation_IndexSet, collections: SDKHandle): void { return callSDK<void>("Photos_3864e7f38681b875", 789860099427767, this, [indexes, collections]); }
+  replaceChildCollections(indexes: _Foundation_IndexSet, collections: SDKHandle): void { return callSDK<void>("Photos_ff42ce03e691ab23", 789860099427767, this, [indexes, collections]); }
   /**
    * var placeholderForCreatedCollectionList: PHObjectPlaceholder { get }
    * @availability iOS 8.0+
    */
-  get placeholderForCreatedCollectionList(): PHObjectPlaceholder { return callSDK<PHObjectPlaceholder>("Photos_3864e7f38681b875", 321547691907788, this, []); }
+  get placeholderForCreatedCollectionList(): PHObjectPlaceholder { return callSDK<PHObjectPlaceholder>("Photos_ff42ce03e691ab23", 321547691907788, this, []); }
   /**
    * var title: String { get set }
    * @availability iOS 8.0+
    */
-  get title(): string { return callSDK<string>("Photos_3864e7f38681b875", 1944889385225465, this, []); }
-  set title(value: string) { callSDK<void>("Photos_3864e7f38681b875", 2821114919056493, this, [value]); }
+  get title(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 1944889385225465, this, []); }
+  set title(value: string) { callSDK<void>("Photos_ff42ce03e691ab23", 2821114919056493, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHCollectionListChangeRequest": true; "c:objc(cs)PHChangeRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "placeholderForCreatedCollectionList": true; "title": true };
 }
@@ -1698,7 +1698,7 @@ export const PHCollectionListSubtype = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHCollectionListSubtype) | null { return callSDK<(PHCollectionListSubtype) | null>("Photos_3864e7f38681b875", 4321427339007310, undefined, [rawValue]); }
+  init(rawValue: number): (PHCollectionListSubtype) | null { return callSDK<(PHCollectionListSubtype) | null>("Photos_ff42ce03e691ab23", 4321427339007310, undefined, [rawValue]); }
 };
 
 /**
@@ -1712,7 +1712,7 @@ export const PHCollectionListType = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHCollectionListType) | null { return callSDK<(PHCollectionListType) | null>("Photos_3864e7f38681b875", 2814382745004525, undefined, [rawValue]); }
+  init(rawValue: number): (PHCollectionListType) | null { return callSDK<(PHCollectionListType) | null>("Photos_ff42ce03e691ab23", 2814382745004525, undefined, [rawValue]); }
 };
 
 /**
@@ -1721,79 +1721,79 @@ export const PHCollectionListType = {
  */
 export class PHContentEditingInput extends SDKHandle {
   /** init() */
-  static init(): PHContentEditingInput { return callSDK<PHContentEditingInput>("Photos_3864e7f38681b875", 2360658989711109, undefined, []); }
+  static init(): PHContentEditingInput { return callSDK<PHContentEditingInput>("Photos_ff42ce03e691ab23", 2360658989711109, undefined, []); }
   /**
    * var adjustmentData: PHAdjustmentData? { get }
    * @availability iOS 8.0+
    */
-  get adjustmentData(): $SDK37 { return callSDK<$SDK37>("Photos_3864e7f38681b875", 2342722583365732, this, []); }
+  get adjustmentData(): $SDK37 { return callSDK<$SDK37>("Photos_ff42ce03e691ab23", 2342722583365732, this, []); }
   /**
    * var audiovisualAsset: AVAsset? { get }
    * @availability iOS 9.0+
    */
-  get audiovisualAsset(): $SDK38 { return callSDK<$SDK38>("Photos_3864e7f38681b875", 4376257991760732, this, []); }
+  get audiovisualAsset(): $SDK38 { return callSDK<$SDK38>("Photos_ff42ce03e691ab23", 4376257991760732, this, []); }
   /**
    * var avAsset: AVAsset? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get avAsset(): $SDK38 { return callSDK<$SDK38>("Photos_3864e7f38681b875", 141033253223218, this, []); }
+  get avAsset(): $SDK38 { return callSDK<$SDK38>("Photos_ff42ce03e691ab23", 141033253223218, this, []); }
   /**
    * var contentType: UTType? { get }
    * @availability iOS 26.0+
    */
-  get contentType(): $SDK14 { return callSDK<$SDK14>("Photos_3864e7f38681b875", 425761288080257, this, []); }
+  get contentType(): $SDK14 { return callSDK<$SDK14>("Photos_ff42ce03e691ab23", 425761288080257, this, []); }
   /**
    * var creationDate: Date? { get }
    * @availability iOS 8.0+
    */
-  get creationDate(): $SDK3 { return callSDK<$SDK3>("Photos_3864e7f38681b875", 3395307835338778, this, []); }
+  get creationDate(): $SDK3 { return callSDK<$SDK3>("Photos_ff42ce03e691ab23", 3395307835338778, this, []); }
   /**
    * var displaySizeImage: UIImage? { get }
    * @availability iOS 8.0+
    */
-  get displaySizeImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("Photos_3864e7f38681b875", 999669696879047, this, []); }
+  get displaySizeImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("Photos_ff42ce03e691ab23", 999669696879047, this, []); }
   /**
    * var fullSizeImageOrientation: Int32 { get }
    * @availability iOS 8.0+
    */
-  get fullSizeImageOrientation(): number { return callSDK<number>("Photos_3864e7f38681b875", 4449011117990705, this, []); }
+  get fullSizeImageOrientation(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 4449011117990705, this, []); }
   /**
    * var fullSizeImageURL: URL? { get }
    * @availability iOS 8.0+
    */
-  get fullSizeImageURL(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 1584349943473433, this, []); }
+  get fullSizeImageURL(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 1584349943473433, this, []); }
   /**
    * var livePhoto: PHLivePhoto? { get }
    * @availability iOS 10.0+
    */
-  get livePhoto(): (PHLivePhoto) | null { return callSDK<(PHLivePhoto) | null>("Photos_3864e7f38681b875", 309897746421122, this, []); }
+  get livePhoto(): (PHLivePhoto) | null { return callSDK<(PHLivePhoto) | null>("Photos_ff42ce03e691ab23", 309897746421122, this, []); }
   /**
    * @NSCopying var location: CLLocation? { get }
    * @availability iOS 8.0+
    */
-  get location(): $SDK4 { return callSDK<$SDK4>("Photos_3864e7f38681b875", 2822546591857794, this, []); }
+  get location(): $SDK4 { return callSDK<$SDK4>("Photos_ff42ce03e691ab23", 2822546591857794, this, []); }
   /**
    * var mediaSubtypes: PHAssetMediaSubtype { get }
    * @availability iOS 8.0+
    */
-  get mediaSubtypes(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_3864e7f38681b875", 3100770367522281, this, []); }
+  get mediaSubtypes(): PHAssetMediaSubtype { return callSDK<PHAssetMediaSubtype>("Photos_ff42ce03e691ab23", 3100770367522281, this, []); }
   /**
    * var mediaType: PHAssetMediaType { get }
    * @availability iOS 8.0+
    */
-  get mediaType(): PHAssetMediaType { return callSDK<PHAssetMediaType>("Photos_3864e7f38681b875", 3094326071965194, this, []); }
+  get mediaType(): PHAssetMediaType { return callSDK<PHAssetMediaType>("Photos_ff42ce03e691ab23", 3094326071965194, this, []); }
   /**
    * var playbackStyle: PHAsset.PlaybackStyle { get }
    * @availability iOS 11.0+
    */
-  get playbackStyle(): PHAsset_PlaybackStyle { return callSDK<PHAsset_PlaybackStyle>("Photos_3864e7f38681b875", 3167785719316728, this, []); }
+  get playbackStyle(): PHAsset_PlaybackStyle { return callSDK<PHAsset_PlaybackStyle>("Photos_ff42ce03e691ab23", 3167785719316728, this, []); }
   /**
    * var uniformTypeIdentifier: String? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  get uniformTypeIdentifier(): (string) | null { return callSDK<(string) | null>("Photos_3864e7f38681b875", 123160229417739, this, []); }
+  get uniformTypeIdentifier(): (string) | null { return callSDK<(string) | null>("Photos_ff42ce03e691ab23", 123160229417739, this, []); }
   declare readonly $type: { "c:objc(cs)PHContentEditingInput": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "adjustmentData": true; "audiovisualAsset": true; "avAsset": true; "contentType": true; "creationDate": true; "displaySizeImage": true; "fullSizeImageOrientation": true; "fullSizeImageURL": true; "livePhoto": true; "location": true; "mediaSubtypes": true; "mediaType": true; "playbackStyle": true; "uniformTypeIdentifier": true };
 }
@@ -1810,35 +1810,35 @@ export type PHContentEditingInputRequestID = number;
  */
 export class PHContentEditingInputRequestOptions extends SDKHandle {
   /** init() */
-  static init(): PHContentEditingInputRequestOptions { return callSDK<PHContentEditingInputRequestOptions>("Photos_3864e7f38681b875", 2210170467720533, undefined, []); }
+  static init(): PHContentEditingInputRequestOptions { return callSDK<PHContentEditingInputRequestOptions>("Photos_ff42ce03e691ab23", 2210170467720533, undefined, []); }
   /**
    * var canHandleAdjustmentData: (PHAdjustmentData) -> Bool { get set }
    * @availability iOS 8.0+
    */
-  get canHandleAdjustmentData(): ((arg0: PHAdjustmentData) => Promise<boolean>) { return callSDK<((arg0: PHAdjustmentData) => Promise<boolean>)>("Photos_3864e7f38681b875", 2959386455474381, this, []); }
+  get canHandleAdjustmentData(): ((arg0: PHAdjustmentData) => Promise<boolean>) { return callSDK<((arg0: PHAdjustmentData) => Promise<boolean>)>("Photos_ff42ce03e691ab23", 2959386455474381, this, []); }
   /**
    * var isNetworkAccessAllowed: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isNetworkAccessAllowed(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3705850172923269, this, []); }
-  set isNetworkAccessAllowed(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 193143702089312, this, [value]); }
+  get isNetworkAccessAllowed(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3705850172923269, this, []); }
+  set isNetworkAccessAllowed(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 193143702089312, this, [value]); }
   /**
    * var originalResourceChoice: PHAsset.OriginalResourceChoice { get set }
    * @availability iOS 27.0+
    */
-  get originalResourceChoice(): PHAsset_OriginalResourceChoice { return callSDK<PHAsset_OriginalResourceChoice>("Photos_3864e7f38681b875", 3411055283781626, this, []); }
-  set originalResourceChoice(value: PHAsset_OriginalResourceChoice) { callSDK<void>("Photos_3864e7f38681b875", 2225496080287090, this, [value]); }
+  get originalResourceChoice(): PHAsset_OriginalResourceChoice { return callSDK<PHAsset_OriginalResourceChoice>("Photos_ff42ce03e691ab23", 3411055283781626, this, []); }
+  set originalResourceChoice(value: PHAsset_OriginalResourceChoice) { callSDK<void>("Photos_ff42ce03e691ab23", 2225496080287090, this, [value]); }
   /**
    * var progressHandler: ((Double, UnsafeMutablePointer<ObjCBool>) -> Void)? { get set }
    * @availability iOS 8.0+
    */
-  get progressHandler(): (((arg0: number, arg1: NativeOut<boolean>) => Promise<void>)) | null { return callSDK<(((arg0: number, arg1: NativeOut<boolean>) => Promise<void>)) | null>("Photos_3864e7f38681b875", 4271086071125848, this, []); }
+  get progressHandler(): (((arg0: number, arg1: NativeOut<boolean>) => Promise<void>)) | null { return callSDK<(((arg0: number, arg1: NativeOut<boolean>) => Promise<void>)) | null>("Photos_ff42ce03e691ab23", 4271086071125848, this, []); }
   /**
    * var skipsDisplaySizeImage: Bool { get set }
    * @availability iOS 27.0+
    */
-  get skipsDisplaySizeImage(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 417352776576513, this, []); }
-  set skipsDisplaySizeImage(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 1952114190110537, this, [value]); }
+  get skipsDisplaySizeImage(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 417352776576513, this, []); }
+  set skipsDisplaySizeImage(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 1952114190110537, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHContentEditingInputRequestOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isNetworkAccessAllowed": true; "originalResourceChoice": true; "skipsDisplaySizeImage": true };
 }
@@ -1852,38 +1852,38 @@ export class PHContentEditingOutput extends SDKHandle {
    * init(contentEditingInput: PHContentEditingInput)
    * @availability iOS 8.0+
    */
-  static initContentEditingInput(contentEditingInput: PHContentEditingInput): PHContentEditingOutput { return callSDK<PHContentEditingOutput>("Photos_3864e7f38681b875", 1706568291884024, undefined, [contentEditingInput]); }
+  static initContentEditingInput(contentEditingInput: PHContentEditingInput): PHContentEditingOutput { return callSDK<PHContentEditingOutput>("Photos_ff42ce03e691ab23", 1706568291884024, undefined, [contentEditingInput]); }
   /**
    * init(placeholderForCreatedAsset: PHObjectPlaceholder)
    * @availability iOS 8.0+
    */
-  static initPlaceholderForCreatedAsset(placeholderForCreatedAsset: PHObjectPlaceholder): PHContentEditingOutput { return callSDK<PHContentEditingOutput>("Photos_3864e7f38681b875", 1570801171482015, undefined, [placeholderForCreatedAsset]); }
+  static initPlaceholderForCreatedAsset(placeholderForCreatedAsset: PHObjectPlaceholder): PHContentEditingOutput { return callSDK<PHContentEditingOutput>("Photos_ff42ce03e691ab23", 1570801171482015, undefined, [placeholderForCreatedAsset]); }
   /**
    * func renderedContentURL(for type: UTType) throws -> URL
    * @availability iOS 17.0+
    */
-  renderedContentURLFor(type: _UniformTypeIdentifiers_UTType): string { return callSDK<string>("Photos_3864e7f38681b875", 3798445700713128, this, [type]); }
+  renderedContentURLFor(type: _UniformTypeIdentifiers_UTType): string { return callSDK<string>("Photos_ff42ce03e691ab23", 3798445700713128, this, [type]); }
   /**
    * var adjustmentData: PHAdjustmentData? { get set }
    * @availability iOS 8.0+
    */
-  get adjustmentData(): $SDK37 { return callSDK<$SDK37>("Photos_3864e7f38681b875", 1481007998497620, this, []); }
-  set adjustmentData(value: $SDK37) { callSDK<void>("Photos_3864e7f38681b875", 2289297417739138, this, [value]); }
+  get adjustmentData(): $SDK37 { return callSDK<$SDK37>("Photos_ff42ce03e691ab23", 1481007998497620, this, []); }
+  set adjustmentData(value: $SDK37) { callSDK<void>("Photos_ff42ce03e691ab23", 2289297417739138, this, [value]); }
   /**
    * var defaultRenderedContentType: UTType? { get }
    * @availability iOS 17.0+
    */
-  get defaultRenderedContentType(): $SDK14 { return callSDK<$SDK14>("Photos_3864e7f38681b875", 839515652718521, this, []); }
+  get defaultRenderedContentType(): $SDK14 { return callSDK<$SDK14>("Photos_ff42ce03e691ab23", 839515652718521, this, []); }
   /**
    * var renderedContentURL: URL { get }
    * @availability iOS 8.0+
    */
-  get renderedContentURL(): string { return callSDK<string>("Photos_3864e7f38681b875", 2816515965562455, this, []); }
+  get renderedContentURL(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 2816515965562455, this, []); }
   /**
    * var supportedRenderedContentTypes: [UTType] { get }
    * @availability iOS 17.0+
    */
-  get supportedRenderedContentTypes(): Array<_UniformTypeIdentifiers_UTType> { return callSDK<Array<_UniformTypeIdentifiers_UTType>>("Photos_3864e7f38681b875", 2489118320839678, this, []); }
+  get supportedRenderedContentTypes(): Array<_UniformTypeIdentifiers_UTType> { return callSDK<Array<_UniformTypeIdentifiers_UTType>>("Photos_ff42ce03e691ab23", 2489118320839678, this, []); }
   declare readonly $type: { "c:objc(cs)PHContentEditingOutput": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "adjustmentData": true; "defaultRenderedContentType": true; "renderedContentURL": true; "supportedRenderedContentTypes": true };
 }
@@ -1894,55 +1894,55 @@ export class PHContentEditingOutput extends SDKHandle {
  */
 export class PHFetchOptions extends SDKHandle {
   /** init() */
-  static init(): PHFetchOptions { return callSDK<PHFetchOptions>("Photos_3864e7f38681b875", 3758475822550103, undefined, []); }
+  static init(): PHFetchOptions { return callSDK<PHFetchOptions>("Photos_ff42ce03e691ab23", 3758475822550103, undefined, []); }
   /**
    * var fetchLimit: Int { get set }
    * @availability iOS 9.0+
    */
-  get fetchLimit(): number { return callSDK<number>("Photos_3864e7f38681b875", 3377571116286249, this, []); }
-  set fetchLimit(value: number) { callSDK<void>("Photos_3864e7f38681b875", 773237621855323, this, [value]); }
+  get fetchLimit(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 3377571116286249, this, []); }
+  set fetchLimit(value: number) { callSDK<void>("Photos_ff42ce03e691ab23", 773237621855323, this, [value]); }
   /**
    * var includeAllBurstAssets: Bool { get set }
    * @availability iOS 8.0+
    */
-  get includeAllBurstAssets(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 1864987909665897, this, []); }
-  set includeAllBurstAssets(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 1446327084430550, this, [value]); }
+  get includeAllBurstAssets(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 1864987909665897, this, []); }
+  set includeAllBurstAssets(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 1446327084430550, this, [value]); }
   /**
    * var includeAssetSourceTypes: PHAssetSourceType { get set }
    * @availability iOS 9.0+
    */
-  get includeAssetSourceTypes(): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_3864e7f38681b875", 2507700168401018, this, []); }
-  set includeAssetSourceTypes(value: PHAssetSourceType) { callSDK<void>("Photos_3864e7f38681b875", 620672905025233, this, [value]); }
+  get includeAssetSourceTypes(): PHAssetSourceType { return callSDK<PHAssetSourceType>("Photos_ff42ce03e691ab23", 2507700168401018, this, []); }
+  set includeAssetSourceTypes(value: PHAssetSourceType) { callSDK<void>("Photos_ff42ce03e691ab23", 620672905025233, this, [value]); }
   /**
    * var includeHiddenAssets: Bool { get set }
    * @availability iOS 8.0+
    */
-  get includeHiddenAssets(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 2758823502566244, this, []); }
-  set includeHiddenAssets(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 916172536060193, this, [value]); }
+  get includeHiddenAssets(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 2758823502566244, this, []); }
+  set includeHiddenAssets(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 916172536060193, this, [value]); }
   /**
    * var predicate: NSPredicate? { get set }
    * @availability iOS 8.0+
    */
-  get predicate(): $SDK42 { return callSDK<$SDK42>("Photos_3864e7f38681b875", 2336916350265491, this, []); }
-  set predicate(value: $SDK42) { callSDK<void>("Photos_3864e7f38681b875", 1230520320491062, this, [value]); }
+  get predicate(): $SDK42 { return callSDK<$SDK42>("Photos_ff42ce03e691ab23", 2336916350265491, this, []); }
+  set predicate(value: $SDK42) { callSDK<void>("Photos_ff42ce03e691ab23", 1230520320491062, this, [value]); }
   /**
    * var prefetchAssetExtendedMetadata: Bool { get set }
    * @availability iOS 27.0+
    */
-  get prefetchAssetExtendedMetadata(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 478828333433839, this, []); }
-  set prefetchAssetExtendedMetadata(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 1741151499709231, this, [value]); }
+  get prefetchAssetExtendedMetadata(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 478828333433839, this, []); }
+  set prefetchAssetExtendedMetadata(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 1741151499709231, this, [value]); }
   /**
    * var sortDescriptors: [NSSortDescriptor]? { get set }
    * @availability iOS 8.0+
    */
-  get sortDescriptors(): $SDK43 { return callSDK<$SDK43>("Photos_3864e7f38681b875", 3905663778642658, this, []); }
-  set sortDescriptors(value: $SDK43) { callSDK<void>("Photos_3864e7f38681b875", 1207820545357440, this, [value]); }
+  get sortDescriptors(): $SDK43 { return callSDK<$SDK43>("Photos_ff42ce03e691ab23", 3905663778642658, this, []); }
+  set sortDescriptors(value: $SDK43) { callSDK<void>("Photos_ff42ce03e691ab23", 1207820545357440, this, [value]); }
   /**
    * var wantsIncrementalChangeDetails: Bool { get set }
    * @availability iOS 8.0+
    */
-  get wantsIncrementalChangeDetails(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 136499746656000, this, []); }
-  set wantsIncrementalChangeDetails(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 4293654930293835, this, [value]); }
+  get wantsIncrementalChangeDetails(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 136499746656000, this, []); }
+  set wantsIncrementalChangeDetails(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 4293654930293835, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHFetchOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fetchLimit": true; "includeAllBurstAssets": true; "includeAssetSourceTypes": true; "includeHiddenAssets": true; "predicate": true; "prefetchAssetExtendedMetadata": true; "sortDescriptors": true; "wantsIncrementalChangeDetails": true };
 }
@@ -1956,54 +1956,54 @@ export class PHFetchResult<ObjectType = unknown> extends SDKHandle {
    * func contains(_ anObject: ObjectType) -> Bool
    * @availability iOS 8.0+
    */
-  contains(anObject: SDKHandle): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 2814769179689053, this, [anObject]); }
+  contains(anObject: SDKHandle): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 2814769179689053, this, [anObject]); }
   /**
    * func countOfAssets(with mediaType: PHAssetMediaType) -> Int
    * @availability iOS 8.0+
    */
-  countOfAssets(mediaType: PHAssetMediaType): number { return callSDK<number>("Photos_3864e7f38681b875", 3750159647524979, this, [mediaType]); }
+  countOfAssets(mediaType: PHAssetMediaType): number { return callSDK<number>("Photos_ff42ce03e691ab23", 3750159647524979, this, [mediaType]); }
   /**
    * func index(of anObject: ObjectType) -> Int
    * @availability iOS 8.0+
    */
-  indexOf(anObject: SDKHandle): number { return callSDK<number>("Photos_3864e7f38681b875", 4290444541935978, this, [anObject]); }
+  indexOf(anObject: SDKHandle): number { return callSDK<number>("Photos_ff42ce03e691ab23", 4290444541935978, this, [anObject]); }
   /**
    * func index(of anObject: ObjectType, in range: NSRange) -> Int
    * @availability iOS 8.0+
    */
-  indexOfIn(anObject: SDKHandle, range: SDKHandle): number { return callSDK<number>("Photos_3864e7f38681b875", 3216737233246372, this, [anObject, range]); }
+  indexOfIn(anObject: SDKHandle, range: SDKHandle): number { return callSDK<number>("Photos_ff42ce03e691ab23", 3216737233246372, this, [anObject, range]); }
   /** init() */
-  static init(): PHFetchResult<SDKHandle> { return callSDK<PHFetchResult<SDKHandle>>("Photos_3864e7f38681b875", 392118264339174, undefined, []); }
+  static init(): PHFetchResult<SDKHandle> { return callSDK<PHFetchResult<SDKHandle>>("Photos_ff42ce03e691ab23", 392118264339174, undefined, []); }
   /**
    * func object(at index: Int) -> ObjectType
    * @availability iOS 8.0+
    */
-  object(index: number): SDKHandle { return callSDK<SDKHandle>("Photos_3864e7f38681b875", 3138432725040339, this, [index]); }
+  object(index: number): SDKHandle { return callSDK<SDKHandle>("Photos_ff42ce03e691ab23", 3138432725040339, this, [index]); }
   /**
    * subscript(idx: Int) -> ObjectType { get }
    * @availability iOS 8.0+
    */
-  subscript(idx: number): SDKHandle { return callSDK<SDKHandle>("Photos_3864e7f38681b875", 2529239258030723, this, [idx]); }
+  subscript(idx: number): SDKHandle { return callSDK<SDKHandle>("Photos_ff42ce03e691ab23", 2529239258030723, this, [idx]); }
   /**
    * func objects(at indexes: IndexSet) -> [ObjectType]
    * @availability iOS 8.0+
    */
-  objects(indexes: _Foundation_IndexSet): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Photos_3864e7f38681b875", 3760521716198853, this, [indexes]); }
+  objects(indexes: _Foundation_IndexSet): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Photos_ff42ce03e691ab23", 3760521716198853, this, [indexes]); }
   /**
    * var count: Int { get }
    * @availability iOS 8.0+
    */
-  get count(): number { return callSDK<number>("Photos_3864e7f38681b875", 1003030389584173, this, []); }
+  get count(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 1003030389584173, this, []); }
   /**
    * var firstObject: ObjectType? { get }
    * @availability iOS 8.0+
    */
-  get firstObject(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Photos_3864e7f38681b875", 2496766205258179, this, []); }
+  get firstObject(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Photos_ff42ce03e691ab23", 2496766205258179, this, []); }
   /**
    * var lastObject: ObjectType? { get }
    * @availability iOS 8.0+
    */
-  get lastObject(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Photos_3864e7f38681b875", 4061719961389716, this, []); }
+  get lastObject(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Photos_ff42ce03e691ab23", 4061719961389716, this, []); }
   declare readonly $type: { "c:objc(cs)PHFetchResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "count": true; "firstObject": true; "lastObject": true };
 }
@@ -2017,62 +2017,62 @@ export class PHFetchResultChangeDetails<ObjectType = unknown> extends SDKHandle 
    * convenience init(from fromResult: PHFetchResult<ObjectType>, to toResult: PHFetchResult<ObjectType>, changedObjects: [ObjectType])
    * @availability iOS 8.0+
    */
-  static init(fromResult: PHFetchResult<PHObject>, toResult: PHFetchResult<PHObject>, changedObjects: Array<PHObject>): PHFetchResultChangeDetails<PHObject> { return callSDK<PHFetchResultChangeDetails<PHObject>>("Photos_3864e7f38681b875", 88242964446605, undefined, [fromResult, toResult, changedObjects]); }
+  static init(fromResult: PHFetchResult<PHObject>, toResult: PHFetchResult<PHObject>, changedObjects: Array<PHObject>): PHFetchResultChangeDetails<PHObject> { return callSDK<PHFetchResultChangeDetails<PHObject>>("Photos_ff42ce03e691ab23", 88242964446605, undefined, [fromResult, toResult, changedObjects]); }
   /**
    * func enumerateMoves(_ handler: @escaping (Int, Int) -> Void)
    * @availability iOS 8.0+
    */
-  enumerateMoves(handler: ((arg0: number, arg1: number) => void)): void { return callSDK<void>("Photos_3864e7f38681b875", 3850166677575366, this, [handler], [{"callback":{"out":[]}}]); }
+  enumerateMoves(handler: ((arg0: number, arg1: number) => void)): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3850166677575366, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * var changedIndexes: IndexSet? { get }
    * @availability iOS 8.0+
    */
-  get changedIndexes(): $SDK47 { return callSDK<$SDK47>("Photos_3864e7f38681b875", 3997937533920372, this, []); }
+  get changedIndexes(): $SDK47 { return callSDK<$SDK47>("Photos_ff42ce03e691ab23", 3997937533920372, this, []); }
   /**
    * var changedObjects: [ObjectType] { get }
    * @availability iOS 8.0+
    */
-  get changedObjects(): Array<PHObject> { return callSDK<Array<PHObject>>("Photos_3864e7f38681b875", 608422945865567, this, []); }
+  get changedObjects(): Array<PHObject> { return callSDK<Array<PHObject>>("Photos_ff42ce03e691ab23", 608422945865567, this, []); }
   /**
    * var fetchResultAfterChanges: PHFetchResult<ObjectType> { get }
    * @availability iOS 8.0+
    */
-  get fetchResultAfterChanges(): PHFetchResult<PHObject> { return callSDK<PHFetchResult<PHObject>>("Photos_3864e7f38681b875", 1262485383468166, this, []); }
+  get fetchResultAfterChanges(): PHFetchResult<PHObject> { return callSDK<PHFetchResult<PHObject>>("Photos_ff42ce03e691ab23", 1262485383468166, this, []); }
   /**
    * var fetchResultBeforeChanges: PHFetchResult<ObjectType> { get }
    * @availability iOS 8.0+
    */
-  get fetchResultBeforeChanges(): PHFetchResult<PHObject> { return callSDK<PHFetchResult<PHObject>>("Photos_3864e7f38681b875", 921380136348988, this, []); }
+  get fetchResultBeforeChanges(): PHFetchResult<PHObject> { return callSDK<PHFetchResult<PHObject>>("Photos_ff42ce03e691ab23", 921380136348988, this, []); }
   /**
    * var hasIncrementalChanges: Bool { get }
    * @availability iOS 8.0+
    */
-  get hasIncrementalChanges(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3643920819492179, this, []); }
+  get hasIncrementalChanges(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3643920819492179, this, []); }
   /**
    * var hasMoves: Bool { get }
    * @availability iOS 8.0+
    */
-  get hasMoves(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 828649228574167, this, []); }
+  get hasMoves(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 828649228574167, this, []); }
   /**
    * var insertedIndexes: IndexSet? { get }
    * @availability iOS 8.0+
    */
-  get insertedIndexes(): $SDK47 { return callSDK<$SDK47>("Photos_3864e7f38681b875", 75170811478502, this, []); }
+  get insertedIndexes(): $SDK47 { return callSDK<$SDK47>("Photos_ff42ce03e691ab23", 75170811478502, this, []); }
   /**
    * var insertedObjects: [ObjectType] { get }
    * @availability iOS 8.0+
    */
-  get insertedObjects(): Array<PHObject> { return callSDK<Array<PHObject>>("Photos_3864e7f38681b875", 2558371035205847, this, []); }
+  get insertedObjects(): Array<PHObject> { return callSDK<Array<PHObject>>("Photos_ff42ce03e691ab23", 2558371035205847, this, []); }
   /**
    * var removedIndexes: IndexSet? { get }
    * @availability iOS 8.0+
    */
-  get removedIndexes(): $SDK47 { return callSDK<$SDK47>("Photos_3864e7f38681b875", 3028046253952886, this, []); }
+  get removedIndexes(): $SDK47 { return callSDK<$SDK47>("Photos_ff42ce03e691ab23", 3028046253952886, this, []); }
   /**
    * var removedObjects: [ObjectType] { get }
    * @availability iOS 8.0+
    */
-  get removedObjects(): Array<PHObject> { return callSDK<Array<PHObject>>("Photos_3864e7f38681b875", 3453288268003840, this, []); }
+  get removedObjects(): Array<PHObject> { return callSDK<Array<PHObject>>("Photos_ff42ce03e691ab23", 3453288268003840, this, []); }
   declare readonly $type: { "c:objc(cs)PHFetchResultChangeDetails": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "changedIndexes": true; "changedObjects": true; "fetchResultAfterChanges": true; "fetchResultBeforeChanges": true; "hasIncrementalChanges": true; "hasMoves": true; "insertedIndexes": true; "insertedObjects": true; "removedIndexes": true; "removedObjects": true };
 }
@@ -2088,12 +2088,12 @@ export const PHImageContentMode = {
    * static var `default`: PHImageContentMode { get }
    * @availability iOS 8.0+
    */
-  get default(): PHImageContentMode { return callSDK<PHImageContentMode>("Photos_3864e7f38681b875", 2326288828219289, undefined, []); },
+  get default(): PHImageContentMode { return callSDK<PHImageContentMode>("Photos_ff42ce03e691ab23", 2326288828219289, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHImageContentMode) | null { return callSDK<(PHImageContentMode) | null>("Photos_3864e7f38681b875", 3826144946011967, undefined, [rawValue]); }
+  init(rawValue: number): (PHImageContentMode) | null { return callSDK<(PHImageContentMode) | null>("Photos_ff42ce03e691ab23", 3826144946011967, undefined, [rawValue]); }
 };
 
 /**
@@ -2108,66 +2108,66 @@ export type PHImageRequestID = number;
  */
 export class PHImageRequestOptions extends SDKHandle {
   /** init() */
-  static init(): PHImageRequestOptions { return callSDK<PHImageRequestOptions>("Photos_3864e7f38681b875", 1926948452479125, undefined, []); }
+  static init(): PHImageRequestOptions { return callSDK<PHImageRequestOptions>("Photos_ff42ce03e691ab23", 1926948452479125, undefined, []); }
   /**
    * var allowSecondaryDegradedImage: Bool { get set }
    * @availability iOS 17.0+
    */
-  get allowSecondaryDegradedImage(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 4164858355141956, this, []); }
-  set allowSecondaryDegradedImage(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 468385975514773, this, [value]); }
+  get allowSecondaryDegradedImage(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 4164858355141956, this, []); }
+  set allowSecondaryDegradedImage(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 468385975514773, this, [value]); }
   /**
    * var deliveryMode: PHImageRequestOptionsDeliveryMode { get set }
    * @availability iOS 8.0+
    */
-  get deliveryMode(): PHImageRequestOptionsDeliveryMode { return callSDK<PHImageRequestOptionsDeliveryMode>("Photos_3864e7f38681b875", 2738774273535807, this, []); }
-  set deliveryMode(value: PHImageRequestOptionsDeliveryMode) { callSDK<void>("Photos_3864e7f38681b875", 2461578995899760, this, [value]); }
+  get deliveryMode(): PHImageRequestOptionsDeliveryMode { return callSDK<PHImageRequestOptionsDeliveryMode>("Photos_ff42ce03e691ab23", 2738774273535807, this, []); }
+  set deliveryMode(value: PHImageRequestOptionsDeliveryMode) { callSDK<void>("Photos_ff42ce03e691ab23", 2461578995899760, this, [value]); }
   /**
    * var isNetworkAccessAllowed: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isNetworkAccessAllowed(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 41712826574740, this, []); }
-  set isNetworkAccessAllowed(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 3564505348148475, this, [value]); }
+  get isNetworkAccessAllowed(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 41712826574740, this, []); }
+  set isNetworkAccessAllowed(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 3564505348148475, this, [value]); }
   /**
    * var normalizedCropRect: CGRect { get set }
    * @availability iOS 8.0+
    */
-  get normalizedCropRect(): $SDK48 { return callSDK<$SDK48>("Photos_3864e7f38681b875", 871950355013328, this, []); }
-  set normalizedCropRect(value: $SDK48) { callSDK<void>("Photos_3864e7f38681b875", 2273559371170090, this, [value]); }
+  get normalizedCropRect(): $SDK48 { return callSDK<$SDK48>("Photos_ff42ce03e691ab23", 871950355013328, this, []); }
+  set normalizedCropRect(value: $SDK48) { callSDK<void>("Photos_ff42ce03e691ab23", 2273559371170090, this, [value]); }
   /**
    * var preferHDR: Bool { get set }
    * @availability iOS 17.0+
    */
-  get preferHDR(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 561393360617331, this, []); }
-  set preferHDR(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 677660640488563, this, [value]); }
+  get preferHDR(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 561393360617331, this, []); }
+  set preferHDR(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 677660640488563, this, [value]); }
   /**
    * var progressHandler: PHAssetImageProgressHandler? { get set }
    * @availability iOS 8.0+
    */
-  get progressHandler(): $SDK49 { return callSDK<$SDK49>("Photos_3864e7f38681b875", 3097962326846162, this, []); }
+  get progressHandler(): $SDK49 { return callSDK<$SDK49>("Photos_ff42ce03e691ab23", 3097962326846162, this, []); }
   /**
    * var resizeMode: PHImageRequestOptionsResizeMode { get set }
    * @availability iOS 8.0+
    */
-  get resizeMode(): PHImageRequestOptionsResizeMode { return callSDK<PHImageRequestOptionsResizeMode>("Photos_3864e7f38681b875", 540069196908116, this, []); }
-  set resizeMode(value: PHImageRequestOptionsResizeMode) { callSDK<void>("Photos_3864e7f38681b875", 1054252949023508, this, [value]); }
+  get resizeMode(): PHImageRequestOptionsResizeMode { return callSDK<PHImageRequestOptionsResizeMode>("Photos_ff42ce03e691ab23", 540069196908116, this, []); }
+  set resizeMode(value: PHImageRequestOptionsResizeMode) { callSDK<void>("Photos_ff42ce03e691ab23", 1054252949023508, this, [value]); }
   /**
    * var isSynchronous: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isSynchronous(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3707837692124913, this, []); }
-  set isSynchronous(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 2556933588040000, this, [value]); }
+  get isSynchronous(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3707837692124913, this, []); }
+  set isSynchronous(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 2556933588040000, this, [value]); }
   /**
    * var targetHDRHeadroom: CGFloat { get set }
    * @availability iOS 17.0+
    */
-  get targetHDRHeadroom(): number { return callSDK<number>("Photos_3864e7f38681b875", 2706429699255910, this, []); }
-  set targetHDRHeadroom(value: number) { callSDK<void>("Photos_3864e7f38681b875", 612713165229526, this, [value]); }
+  get targetHDRHeadroom(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 2706429699255910, this, []); }
+  set targetHDRHeadroom(value: number) { callSDK<void>("Photos_ff42ce03e691ab23", 612713165229526, this, [value]); }
   /**
    * var version: PHImageRequestOptionsVersion { get set }
    * @availability iOS 8.0+
    */
-  get version(): PHImageRequestOptionsVersion { return callSDK<PHImageRequestOptionsVersion>("Photos_3864e7f38681b875", 1466105451673331, this, []); }
-  set version(value: PHImageRequestOptionsVersion) { callSDK<void>("Photos_3864e7f38681b875", 107638443671108, this, [value]); }
+  get version(): PHImageRequestOptionsVersion { return callSDK<PHImageRequestOptionsVersion>("Photos_ff42ce03e691ab23", 1466105451673331, this, []); }
+  set version(value: PHImageRequestOptionsVersion) { callSDK<void>("Photos_ff42ce03e691ab23", 107638443671108, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHImageRequestOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowSecondaryDegradedImage": true; "deliveryMode": true; "isNetworkAccessAllowed": true; "normalizedCropRect": true; "preferHDR": true; "resizeMode": true; "isSynchronous": true; "targetHDRHeadroom": true; "version": true };
 }
@@ -2183,7 +2183,7 @@ export const PHImageRequestOptionsDeliveryMode = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHImageRequestOptionsDeliveryMode) | null { return callSDK<(PHImageRequestOptionsDeliveryMode) | null>("Photos_3864e7f38681b875", 2657325669144561, undefined, [rawValue]); }
+  init(rawValue: number): (PHImageRequestOptionsDeliveryMode) | null { return callSDK<(PHImageRequestOptionsDeliveryMode) | null>("Photos_ff42ce03e691ab23", 2657325669144561, undefined, [rawValue]); }
 };
 
 /**
@@ -2197,7 +2197,7 @@ export const PHImageRequestOptionsResizeMode = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHImageRequestOptionsResizeMode) | null { return callSDK<(PHImageRequestOptionsResizeMode) | null>("Photos_3864e7f38681b875", 867455951851827, undefined, [rawValue]); }
+  init(rawValue: number): (PHImageRequestOptionsResizeMode) | null { return callSDK<(PHImageRequestOptionsResizeMode) | null>("Photos_ff42ce03e691ab23", 867455951851827, undefined, [rawValue]); }
 };
 
 /**
@@ -2211,7 +2211,7 @@ export const PHImageRequestOptionsVersion = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHImageRequestOptionsVersion) | null { return callSDK<(PHImageRequestOptionsVersion) | null>("Photos_3864e7f38681b875", 4237322774604403, undefined, [rawValue]); }
+  init(rawValue: number): (PHImageRequestOptionsVersion) | null { return callSDK<(PHImageRequestOptionsVersion) | null>("Photos_ff42ce03e691ab23", 4237322774604403, undefined, [rawValue]); }
 };
 
 /**
@@ -2223,17 +2223,17 @@ export class PHLivePhoto extends SDKHandle {
    * class func cancelRequest(withRequestID requestID: PHLivePhotoRequestID)
    * @availability iOS 9.1+
    */
-  static cancelRequest(requestID: number): void { return callSDK<void>("Photos_3864e7f38681b875", 1366962984000563, undefined, [requestID]); }
+  static cancelRequest(requestID: number): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1366962984000563, undefined, [requestID]); }
   /**
    * class func request(withResourceFileURLs fileURLs: [URL], placeholderImage image: UIImage?, targetSize: CGSize, contentMode: PHImageContentMode, resultHandler: @escaping (PHLivePhoto?, [AnyHashable : Any]) -> Void) -> PHLivePhotoRequestID
    * @availability iOS 9.1+
    */
-  static request(fileURLs: Array<string>, image: (_UIKit_UIImage) | null, targetSize: $SDK29, contentMode: PHImageContentMode, resultHandler: ((arg0: (PHLivePhoto) | null, arg1: NativeMap<unknown, unknown>) => void)): number { return callSDK<number>("Photos_3864e7f38681b875", 1083620518838615, undefined, [fileURLs, image, targetSize, contentMode, resultHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static request(fileURLs: Array<string>, image: (_UIKit_UIImage) | null, targetSize: $SDK29, contentMode: PHImageContentMode, resultHandler: ((arg0: (PHLivePhoto) | null, arg1: NativeMap<unknown, unknown>) => void)): number { return callSDK<number>("Photos_ff42ce03e691ab23", 1083620518838615, undefined, [fileURLs, image, targetSize, contentMode, resultHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * var size: CGSize { get }
    * @availability iOS 9.1+
    */
-  get size(): $SDK29 { return callSDK<$SDK29>("Photos_3864e7f38681b875", 11293342201806, this, []); }
+  get size(): $SDK29 { return callSDK<$SDK29>("Photos_ff42ce03e691ab23", 11293342201806, this, []); }
   declare readonly $type: { "c:objc(cs)PHLivePhoto": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "size": true };
 }
@@ -2247,53 +2247,53 @@ export class PHLivePhotoEditingContext extends SDKHandle {
    * func cancel()
    * @availability iOS 10.0+
    */
-  cancel(): void { return callSDK<void>("Photos_3864e7f38681b875", 3117582013592253, this, []); }
+  cancel(): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3117582013592253, this, []); }
   /**
    * init?(livePhotoEditingInput livePhotoInput: PHContentEditingInput)
    * @availability iOS 10.0+
    */
-  static init(livePhotoInput: PHContentEditingInput): (PHLivePhotoEditingContext) | null { return callSDK<(PHLivePhotoEditingContext) | null>("Photos_3864e7f38681b875", 2885777206217906, undefined, [livePhotoInput]); }
+  static init(livePhotoInput: PHContentEditingInput): (PHLivePhotoEditingContext) | null { return callSDK<(PHLivePhotoEditingContext) | null>("Photos_ff42ce03e691ab23", 2885777206217906, undefined, [livePhotoInput]); }
   /**
    * func livePhotoForPlayback(targetSize: CGSize, options: [String : Any]? = nil) async throws -> PHLivePhoto
    * @availability iOS 10.0+
    */
-  prepareLivePhotoForPlayback(targetSize: $SDK29, options: $SDK51, handler: ((arg0: (PHLivePhoto) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("Photos_3864e7f38681b875", 2850325719118821, this, [targetSize, options, handler], [null,null,{"callback":{"out":[]}}]); }
+  prepareLivePhotoForPlayback(targetSize: $SDK29, options: $SDK51, handler: ((arg0: (PHLivePhoto) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2850325719118821, this, [targetSize, options, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func saveLivePhoto(to output: PHContentEditingOutput, options: [String : Any]? = nil) async throws
    * @availability iOS 10.0+
    */
-  saveLivePhoto(output: PHContentEditingOutput, options: $SDK51, handler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("Photos_3864e7f38681b875", 4111693763412957, this, [output, options, handler], [null,null,{"callback":{"out":[]}}]); }
+  saveLivePhoto(output: PHContentEditingOutput, options: $SDK51, handler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("Photos_ff42ce03e691ab23", 4111693763412957, this, [output, options, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var audioVolume: Float { get set }
    * @availability iOS 10.0+
    */
-  get audioVolume(): number { return callSDK<number>("Photos_3864e7f38681b875", 9441726380817, this, []); }
-  set audioVolume(value: number) { callSDK<void>("Photos_3864e7f38681b875", 2447840706196531, this, [value]); }
+  get audioVolume(): number { return callSDK<number>("Photos_ff42ce03e691ab23", 9441726380817, this, []); }
+  set audioVolume(value: number) { callSDK<void>("Photos_ff42ce03e691ab23", 2447840706196531, this, [value]); }
   /**
    * var duration: CMTime { get }
    * @availability iOS 10.0+
    */
-  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Photos_3864e7f38681b875", 4028509099579408, this, []); }
+  get duration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Photos_ff42ce03e691ab23", 4028509099579408, this, []); }
   /**
    * var frameProcessor: PHLivePhotoFrameProcessingBlock? { get set }
    * @availability iOS 10.0+
    */
-  get frameProcessor(): (((arg0: SDKHandle, arg1: (SDKHandle) | null) => Promise<(_CoreImage_CIImage) | null>)) | null { return callSDK<(((arg0: SDKHandle, arg1: (SDKHandle) | null) => Promise<(_CoreImage_CIImage) | null>)) | null>("Photos_3864e7f38681b875", 4090840524656746, this, []); }
+  get frameProcessor(): (((arg0: SDKHandle, arg1: (SDKHandle) | null) => Promise<(_CoreImage_CIImage) | null>)) | null { return callSDK<(((arg0: SDKHandle, arg1: (SDKHandle) | null) => Promise<(_CoreImage_CIImage) | null>)) | null>("Photos_ff42ce03e691ab23", 4090840524656746, this, []); }
   /**
    * var fullSizeImage: CIImage { get }
    * @availability iOS 10.0+
    */
-  get fullSizeImage(): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("Photos_3864e7f38681b875", 2924474074419398, this, []); }
+  get fullSizeImage(): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("Photos_ff42ce03e691ab23", 2924474074419398, this, []); }
   /**
    * var orientation: CGImagePropertyOrientation { get }
    * @availability iOS 10.0+
    */
-  get orientation(): _ImageIO_CGImagePropertyOrientation { return callSDK<_ImageIO_CGImagePropertyOrientation>("Photos_3864e7f38681b875", 3729233861154071, this, []); }
+  get orientation(): _ImageIO_CGImagePropertyOrientation { return callSDK<_ImageIO_CGImagePropertyOrientation>("Photos_ff42ce03e691ab23", 3729233861154071, this, []); }
   /**
    * var photoTime: CMTime { get }
    * @availability iOS 10.0+
    */
-  get photoTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Photos_3864e7f38681b875", 81238547797794, this, []); }
+  get photoTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("Photos_ff42ce03e691ab23", 81238547797794, this, []); }
   declare readonly $type: { "c:objc(cs)PHLivePhotoEditingContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "audioVolume": true; "duration": true; "fullSizeImage": true; "orientation": true; "photoTime": true };
 }
@@ -2309,12 +2309,12 @@ export const PHLivePhotoEditingOption = {
    * static let shouldRenderAtPlaybackTime: PHLivePhotoEditingOption
    * @availability iOS 11.0+
    */
-  get shouldRenderAtPlaybackTime(): PHLivePhotoEditingOption { return callSDK<PHLivePhotoEditingOption>("Photos_3864e7f38681b875", 1244483912749944, undefined, []); },
+  get shouldRenderAtPlaybackTime(): PHLivePhotoEditingOption { return callSDK<PHLivePhotoEditingOption>("Photos_ff42ce03e691ab23", 1244483912749944, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 10.0+
    */
-  init(rawValue: string): PHLivePhotoEditingOption { return callSDK<PHLivePhotoEditingOption>("Photos_3864e7f38681b875", 356871677841990, undefined, [rawValue]); }
+  init(rawValue: string): PHLivePhotoEditingOption { return callSDK<PHLivePhotoEditingOption>("Photos_ff42ce03e691ab23", 356871677841990, undefined, [rawValue]); }
 };
 
 /**
@@ -2342,7 +2342,7 @@ export const PHLivePhotoFrameType = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (PHLivePhotoFrameType) | null { return callSDK<(PHLivePhotoFrameType) | null>("Photos_3864e7f38681b875", 3651816917951034, undefined, [rawValue]); }
+  init(rawValue: number): (PHLivePhotoFrameType) | null { return callSDK<(PHLivePhotoFrameType) | null>("Photos_ff42ce03e691ab23", 3651816917951034, undefined, [rawValue]); }
 };
 
 /**
@@ -2357,36 +2357,36 @@ export type PHLivePhotoRequestID = number;
  */
 export class PHLivePhotoRequestOptions extends SDKHandle {
   /** init() */
-  static init(): PHLivePhotoRequestOptions { return callSDK<PHLivePhotoRequestOptions>("Photos_3864e7f38681b875", 2878453405509029, undefined, []); }
+  static init(): PHLivePhotoRequestOptions { return callSDK<PHLivePhotoRequestOptions>("Photos_ff42ce03e691ab23", 2878453405509029, undefined, []); }
   /**
    * var deliveryMode: PHImageRequestOptionsDeliveryMode { get set }
    * @availability iOS 9.1+
    */
-  get deliveryMode(): PHImageRequestOptionsDeliveryMode { return callSDK<PHImageRequestOptionsDeliveryMode>("Photos_3864e7f38681b875", 1650186325976662, this, []); }
-  set deliveryMode(value: PHImageRequestOptionsDeliveryMode) { callSDK<void>("Photos_3864e7f38681b875", 2811340773686801, this, [value]); }
+  get deliveryMode(): PHImageRequestOptionsDeliveryMode { return callSDK<PHImageRequestOptionsDeliveryMode>("Photos_ff42ce03e691ab23", 1650186325976662, this, []); }
+  set deliveryMode(value: PHImageRequestOptionsDeliveryMode) { callSDK<void>("Photos_ff42ce03e691ab23", 2811340773686801, this, [value]); }
   /**
    * var isNetworkAccessAllowed: Bool { get set }
    * @availability iOS 9.1+
    */
-  get isNetworkAccessAllowed(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 4001514844132877, this, []); }
-  set isNetworkAccessAllowed(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 3373116956652107, this, [value]); }
+  get isNetworkAccessAllowed(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 4001514844132877, this, []); }
+  set isNetworkAccessAllowed(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 3373116956652107, this, [value]); }
   /**
    * var preferHDR: Bool { get set }
    * @availability iOS 17.0+
    */
-  get preferHDR(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3329547099976625, this, []); }
-  set preferHDR(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 3884030442142676, this, [value]); }
+  get preferHDR(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3329547099976625, this, []); }
+  set preferHDR(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 3884030442142676, this, [value]); }
   /**
    * var progressHandler: PHAssetImageProgressHandler? { get set }
    * @availability iOS 9.1+
    */
-  get progressHandler(): $SDK49 { return callSDK<$SDK49>("Photos_3864e7f38681b875", 1126324202948465, this, []); }
+  get progressHandler(): $SDK49 { return callSDK<$SDK49>("Photos_ff42ce03e691ab23", 1126324202948465, this, []); }
   /**
    * var version: PHImageRequestOptionsVersion { get set }
    * @availability iOS 9.1+
    */
-  get version(): PHImageRequestOptionsVersion { return callSDK<PHImageRequestOptionsVersion>("Photos_3864e7f38681b875", 169521840175856, this, []); }
-  set version(value: PHImageRequestOptionsVersion) { callSDK<void>("Photos_3864e7f38681b875", 1707586644579236, this, [value]); }
+  get version(): PHImageRequestOptionsVersion { return callSDK<PHImageRequestOptionsVersion>("Photos_ff42ce03e691ab23", 169521840175856, this, []); }
+  set version(value: PHImageRequestOptionsVersion) { callSDK<void>("Photos_ff42ce03e691ab23", 1707586644579236, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHLivePhotoRequestOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deliveryMode": true; "isNetworkAccessAllowed": true; "preferHDR": true; "version": true };
 }
@@ -2397,27 +2397,27 @@ export class PHLivePhotoRequestOptions extends SDKHandle {
  */
 export class PHObjectChangeDetails<ObjectType = unknown> extends SDKHandle {
   /** init() */
-  static init(): PHObjectChangeDetails<PHObject> { return callSDK<PHObjectChangeDetails<PHObject>>("Photos_3864e7f38681b875", 3015539046096682, undefined, []); }
+  static init(): PHObjectChangeDetails<PHObject> { return callSDK<PHObjectChangeDetails<PHObject>>("Photos_ff42ce03e691ab23", 3015539046096682, undefined, []); }
   /**
    * var assetContentChanged: Bool { get }
    * @availability iOS 8.0+
    */
-  get assetContentChanged(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 3507709856049923, this, []); }
+  get assetContentChanged(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 3507709856049923, this, []); }
   /**
    * var objectAfterChanges: ObjectType? { get }
    * @availability iOS 8.0+
    */
-  get objectAfterChanges(): (PHObject) | null { return callSDK<(PHObject) | null>("Photos_3864e7f38681b875", 3927514378509470, this, []); }
+  get objectAfterChanges(): (PHObject) | null { return callSDK<(PHObject) | null>("Photos_ff42ce03e691ab23", 3927514378509470, this, []); }
   /**
    * var objectBeforeChanges: ObjectType { get }
    * @availability iOS 8.0+
    */
-  get objectBeforeChanges(): PHObject { return callSDK<PHObject>("Photos_3864e7f38681b875", 2239534859993704, this, []); }
+  get objectBeforeChanges(): PHObject { return callSDK<PHObject>("Photos_ff42ce03e691ab23", 2239534859993704, this, []); }
   /**
    * var objectWasDeleted: Bool { get }
    * @availability iOS 8.0+
    */
-  get objectWasDeleted(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 2868628349248157, this, []); }
+  get objectWasDeleted(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 2868628349248157, this, []); }
   declare readonly $type: { "c:objc(cs)PHObjectChangeDetails": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "assetContentChanged": true; "objectAfterChanges": true; "objectBeforeChanges": true; "objectWasDeleted": true };
 }
@@ -2428,7 +2428,7 @@ export class PHObjectChangeDetails<ObjectType = unknown> extends SDKHandle {
  */
 export class PHObjectPlaceholder extends (PHObject as unknown as Omit<typeof PHObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHObject)) {
   /** init() */
-  static init(): PHObjectPlaceholder { return callSDK<PHObjectPlaceholder>("Photos_3864e7f38681b875", 1668056799659049, undefined, []); }
+  static init(): PHObjectPlaceholder { return callSDK<PHObjectPlaceholder>("Photos_ff42ce03e691ab23", 1668056799659049, undefined, []); }
   declare readonly $type: { "c:objc(cs)PHObjectPlaceholder": true; "c:objc(cs)PHObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localIdentifier": true };
 }
@@ -2444,7 +2444,7 @@ export const PHObjectType = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (PHObjectType) | null { return callSDK<(PHObjectType) | null>("Photos_3864e7f38681b875", 1100075445530643, undefined, [rawValue]); }
+  init(rawValue: number): (PHObjectType) | null { return callSDK<(PHObjectType) | null>("Photos_ff42ce03e691ab23", 1100075445530643, undefined, [rawValue]); }
 };
 
 /**
@@ -2456,12 +2456,12 @@ export class PHPersistentChange extends SDKHandle {
    * func changeDetails(for objectType: PHObjectType) throws -> PHPersistentObjectChangeDetails
    * @availability iOS 16.0+
    */
-  changeDetails(objectType: PHObjectType): PHPersistentObjectChangeDetails { return callSDK<PHPersistentObjectChangeDetails>("Photos_3864e7f38681b875", 1843999014142114, this, [objectType]); }
+  changeDetails(objectType: PHObjectType): PHPersistentObjectChangeDetails { return callSDK<PHPersistentObjectChangeDetails>("Photos_ff42ce03e691ab23", 1843999014142114, this, [objectType]); }
   /**
    * var changeToken: PHPersistentChangeToken { get }
    * @availability iOS 16.0+
    */
-  get changeToken(): PHPersistentChangeToken { return callSDK<PHPersistentChangeToken>("Photos_3864e7f38681b875", 1699487815498360, this, []); }
+  get changeToken(): PHPersistentChangeToken { return callSDK<PHPersistentChangeToken>("Photos_ff42ce03e691ab23", 1699487815498360, this, []); }
   declare readonly $type: { "c:objc(cs)PHPersistentChange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "changeToken": true };
 }
@@ -2475,7 +2475,7 @@ export class PHPersistentChangeFetchResult extends SDKHandle {
    * func makeIterator() -> PHPersistentChangeFetchResult.Iterator
    * @availability iOS 16.0+
    */
-  makeIterator(): PHPersistentChangeFetchResult_Iterator { return callSDK<PHPersistentChangeFetchResult_Iterator>("Photos_3864e7f38681b875", 3260665003043030, this, []); }
+  makeIterator(): PHPersistentChangeFetchResult_Iterator { return callSDK<PHPersistentChangeFetchResult_Iterator>("Photos_ff42ce03e691ab23", 3260665003043030, this, []); }
   declare readonly $type: { "c:objc(cs)PHPersistentChangeFetchResult": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2494,12 +2494,12 @@ export class PHPersistentChangeFetchResult_Iterator extends SDKHandle {
    * init(fetchResult: PHPersistentChangeFetchResult)
    * @availability iOS 16.0+
    */
-  static init(fetchResult: PHPersistentChangeFetchResult): PHPersistentChangeFetchResult_Iterator { return callSDK<PHPersistentChangeFetchResult_Iterator>("Photos_3864e7f38681b875", 1664085467237576, undefined, [fetchResult]); }
+  static init(fetchResult: PHPersistentChangeFetchResult): PHPersistentChangeFetchResult_Iterator { return callSDK<PHPersistentChangeFetchResult_Iterator>("Photos_ff42ce03e691ab23", 1664085467237576, undefined, [fetchResult]); }
   /**
    * final func next() -> PHPersistentChangeFetchResult.Iterator.Element?
    * @availability iOS 16.0+
    */
-  next(): (PHPersistentChange) | null { return callSDK<(PHPersistentChange) | null>("Photos_3864e7f38681b875", 681349207399035, this, []); }
+  next(): (PHPersistentChange) | null { return callSDK<(PHPersistentChange) | null>("Photos_ff42ce03e691ab23", 681349207399035, this, []); }
   declare readonly $type: { "s:So29PHPersistentChangeFetchResultC6PhotosE8IteratorC": true };
 }
 
@@ -2526,22 +2526,22 @@ export class PHPersistentObjectChangeDetails extends SDKHandle {
    * var deletedLocalIdentifiers: Set<String> { get }
    * @availability iOS 16.0+
    */
-  get deletedLocalIdentifiers(): Array<string> { return callSDK<Array<string>>("Photos_3864e7f38681b875", 1558483429588587, this, []); }
+  get deletedLocalIdentifiers(): Array<string> { return callSDK<Array<string>>("Photos_ff42ce03e691ab23", 1558483429588587, this, []); }
   /**
    * var insertedLocalIdentifiers: Set<String> { get }
    * @availability iOS 16.0+
    */
-  get insertedLocalIdentifiers(): Array<string> { return callSDK<Array<string>>("Photos_3864e7f38681b875", 814219761965739, this, []); }
+  get insertedLocalIdentifiers(): Array<string> { return callSDK<Array<string>>("Photos_ff42ce03e691ab23", 814219761965739, this, []); }
   /**
    * var objectType: PHObjectType { get }
    * @availability iOS 16.0+
    */
-  get objectType(): PHObjectType { return callSDK<PHObjectType>("Photos_3864e7f38681b875", 2539446540660564, this, []); }
+  get objectType(): PHObjectType { return callSDK<PHObjectType>("Photos_ff42ce03e691ab23", 2539446540660564, this, []); }
   /**
    * var updatedLocalIdentifiers: Set<String> { get }
    * @availability iOS 16.0+
    */
-  get updatedLocalIdentifiers(): Array<string> { return callSDK<Array<string>>("Photos_3864e7f38681b875", 4076041733163718, this, []); }
+  get updatedLocalIdentifiers(): Array<string> { return callSDK<Array<string>>("Photos_ff42ce03e691ab23", 4076041733163718, this, []); }
   declare readonly $type: { "c:objc(cs)PHPersistentObjectChangeDetails": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deletedLocalIdentifiers": true; "insertedLocalIdentifiers": true; "objectType": true; "updatedLocalIdentifiers": true };
 }
@@ -2556,131 +2556,131 @@ export class PHPhotoLibrary extends SDKHandle {
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  static authorizationStatus(): PHAuthorizationStatus { return callSDK<PHAuthorizationStatus>("Photos_3864e7f38681b875", 3633087468839273, undefined, []); }
+  static authorizationStatus(): PHAuthorizationStatus { return callSDK<PHAuthorizationStatus>("Photos_ff42ce03e691ab23", 3633087468839273, undefined, []); }
   /**
    * class func authorizationStatus(for accessLevel: PHAccessLevel) -> PHAuthorizationStatus
    * @availability iOS 14.0+
    */
-  static authorizationStatusFor(accessLevel: PHAccessLevel): PHAuthorizationStatus { return callSDK<PHAuthorizationStatus>("Photos_3864e7f38681b875", 1134433183542598, undefined, [accessLevel]); }
+  static authorizationStatusFor(accessLevel: PHAccessLevel): PHAuthorizationStatus { return callSDK<PHAuthorizationStatus>("Photos_ff42ce03e691ab23", 1134433183542598, undefined, [accessLevel]); }
   /**
    * class func requestAuthorization(_ handler: @escaping (PHAuthorizationStatus) -> Void)
    * @availability iOS 8.0+
    * @deprecated iOS 100000.0
    */
-  static requestAuthorization(handler: $SDK58): void { return callSDK<void>("Photos_3864e7f38681b875", 2189903262040430, undefined, [handler], [{"callback":{"out":[]}}]); }
+  static requestAuthorization(handler: $SDK58): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2189903262040430, undefined, [handler], [{"callback":{"out":[]}}]); }
   /**
    * class func requestAuthorization(for accessLevel: PHAccessLevel) async -> PHAuthorizationStatus
    * @availability iOS 14.0+
    */
-  static requestAuthorizationForHandler(accessLevel: PHAccessLevel, handler: $SDK58): void { return callSDK<void>("Photos_3864e7f38681b875", 1286480472059419, undefined, [accessLevel, handler], [null,{"callback":{"out":[]}}]); }
+  static requestAuthorizationForHandler(accessLevel: PHAccessLevel, handler: $SDK58): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1286480472059419, undefined, [accessLevel, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func shared() -> PHPhotoLibrary
    * @availability iOS 8.0+
    */
-  static shared(): PHPhotoLibrary { return callSDK<PHPhotoLibrary>("Photos_3864e7f38681b875", 1173758756594885, undefined, []); }
+  static shared(): PHPhotoLibrary { return callSDK<PHPhotoLibrary>("Photos_ff42ce03e691ab23", 1173758756594885, undefined, []); }
   /**
    * func disableUploadJobExtension() throws
    * @availability iOS 27.0+
    */
-  disableUploadJobExtension(): void { return callSDK<void>("Photos_3864e7f38681b875", 2640026495255653, this, []); }
+  disableUploadJobExtension(): void { return callSDK<void>("Photos_ff42ce03e691ab23", 2640026495255653, this, []); }
   /**
    * func enableUploadJobExtension(with options: PHAssetResourceUploadJobOptions?) throws
    * @availability iOS 27.0+
    */
-  enableUploadJobExtension(options?: $SDK59): void { return callSDK<void>("Photos_3864e7f38681b875", 4290723649153115, this, [options]); }
+  enableUploadJobExtension(options?: $SDK59): void { return callSDK<void>("Photos_ff42ce03e691ab23", 4290723649153115, this, [options]); }
   /**
    * func fetchPersistentChanges(since token: PHPersistentChangeToken) throws -> PHPersistentChangeFetchResult
    * @availability iOS 16.0+
    */
-  fetchPersistentChanges(token: PHPersistentChangeToken): PHPersistentChangeFetchResult { return callSDK<PHPersistentChangeFetchResult>("Photos_3864e7f38681b875", 3610815481051730, this, [token]); }
+  fetchPersistentChanges(token: PHPersistentChangeToken): PHPersistentChangeFetchResult { return callSDK<PHPersistentChangeFetchResult>("Photos_ff42ce03e691ab23", 3610815481051730, this, [token]); }
   /** init() */
-  static init(): PHPhotoLibrary { return callSDK<PHPhotoLibrary>("Photos_3864e7f38681b875", 740154897056132, undefined, []); }
+  static init(): PHPhotoLibrary { return callSDK<PHPhotoLibrary>("Photos_ff42ce03e691ab23", 740154897056132, undefined, []); }
   /**
    * func performChanges(_ changeBlock: @escaping () -> Void) async throws
    * @availability iOS 8.0+
    */
-  performChanges(changeBlock: (() => void), completionHandler?: (((arg0: boolean, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("Photos_3864e7f38681b875", 3644196397843637, this, [changeBlock, completionHandler], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  performChanges(changeBlock: (() => void), completionHandler?: (((arg0: boolean, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3644196397843637, this, [changeBlock, completionHandler], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * func performChangesAndWait(_ changeBlock: @escaping () -> Void) throws
    * @availability iOS 8.0+
    */
-  performChangesAndWait(changeBlock: (() => void)): void { return callSDK<void>("Photos_3864e7f38681b875", 551286063066464, this, [changeBlock], [{"callback":{"out":[]}}]); }
+  performChangesAndWait(changeBlock: (() => void)): void { return callSDK<void>("Photos_ff42ce03e691ab23", 551286063066464, this, [changeBlock], [{"callback":{"out":[]}}]); }
   /**
    * func register(_ observer: any PHPhotoLibraryAvailabilityObserver)
    * @availability iOS 13.0+
    */
-  register(observer: $SDK61): void { return callSDK<void>("Photos_3864e7f38681b875", 500014370176001, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryAvailabilityObserver"}]); }
+  register(observer: $SDK61): void { return callSDK<void>("Photos_ff42ce03e691ab23", 500014370176001, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryAvailabilityObserver"}]); }
   /**
    * func register(_ observer: any PHPhotoLibraryChangeObserver)
    * @availability iOS 8.0+
    */
-  register69872(observer: $SDK62): void { return callSDK<void>("Photos_3864e7f38681b875", 3309712539465124, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryChangeObserver"}]); }
+  register69872(observer: $SDK62): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3309712539465124, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryChangeObserver"}]); }
   /**
    * func register(_ observer: any PHPhotoLibraryPersistentChangesObserver)
    * @availability iOS 27.0+
    */
-  register41946(observer: $SDK63): void { return callSDK<void>("Photos_3864e7f38681b875", 218613754712303, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryPersistentChangesObserver"}]); }
+  register41946(observer: $SDK63): void { return callSDK<void>("Photos_ff42ce03e691ab23", 218613754712303, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryPersistentChangesObserver"}]); }
   /**
    * func setUploadJobExtensionEnabled(_ enable: Bool) throws
    * @availability iOS 26.1+
    * @deprecated iOS 27.0
    */
-  setUploadJobExtensionEnabled(enable: boolean): void { return callSDK<void>("Photos_3864e7f38681b875", 1327261940236192, this, [enable]); }
+  setUploadJobExtensionEnabled(enable: boolean): void { return callSDK<void>("Photos_ff42ce03e691ab23", 1327261940236192, this, [enable]); }
   /**
    * func setUploadJobExtensionOptions(_ options: PHAssetResourceUploadJobOptions) throws
    * @availability iOS 27.0+
    */
-  setUploadJobExtensionOptions(options: PHAssetResourceUploadJobOptions): void { return callSDK<void>("Photos_3864e7f38681b875", 3804244806464146, this, [options]); }
+  setUploadJobExtensionOptions(options: PHAssetResourceUploadJobOptions): void { return callSDK<void>("Photos_ff42ce03e691ab23", 3804244806464146, this, [options]); }
   /**
    * func unregisterAvailabilityObserver(_ observer: any PHPhotoLibraryAvailabilityObserver)
    * @availability iOS 13.0+
    */
-  unregisterAvailabilityObserver(observer: $SDK61): void { return callSDK<void>("Photos_3864e7f38681b875", 249585648950813, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryAvailabilityObserver"}]); }
+  unregisterAvailabilityObserver(observer: $SDK61): void { return callSDK<void>("Photos_ff42ce03e691ab23", 249585648950813, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryAvailabilityObserver"}]); }
   /**
    * func unregisterChangeObserver(_ observer: any PHPhotoLibraryChangeObserver)
    * @availability iOS 8.0+
    */
-  unregisterChangeObserver(observer: $SDK62): void { return callSDK<void>("Photos_3864e7f38681b875", 4417723655575603, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryChangeObserver"}]); }
+  unregisterChangeObserver(observer: $SDK62): void { return callSDK<void>("Photos_ff42ce03e691ab23", 4417723655575603, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryChangeObserver"}]); }
   /**
    * func unregisterPersistentChangesObserver(_ observer: any PHPhotoLibraryPersistentChangesObserver)
    * @availability iOS 27.0+
    */
-  unregisterPersistentChangesObserver(observer: $SDK63): void { return callSDK<void>("Photos_3864e7f38681b875", 4032175959197769, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryPersistentChangesObserver"}]); }
+  unregisterPersistentChangesObserver(observer: $SDK63): void { return callSDK<void>("Photos_ff42ce03e691ab23", 4032175959197769, this, [observer], [{"protocol":"c:objc(pl)PHPhotoLibraryPersistentChangesObserver"}]); }
   /**
    * var currentChangeToken: PHPersistentChangeToken { get }
    * @availability iOS 16.0+
    */
-  get currentChangeToken(): PHPersistentChangeToken { return callSDK<PHPersistentChangeToken>("Photos_3864e7f38681b875", 2913111377007078, this, []); }
+  get currentChangeToken(): PHPersistentChangeToken { return callSDK<PHPersistentChangeToken>("Photos_ff42ce03e691ab23", 2913111377007078, this, []); }
   /**
    * var unavailabilityReason: (any Error)? { get }
    * @availability iOS 13.0+
    */
-  get unavailabilityReason(): (NativeError) | null { return callSDK<(NativeError) | null>("Photos_3864e7f38681b875", 833586920490635, this, []); }
+  get unavailabilityReason(): (NativeError) | null { return callSDK<(NativeError) | null>("Photos_ff42ce03e691ab23", 833586920490635, this, []); }
   /**
    * var uploadJobExtensionEnabled: Bool { get }
    * @availability iOS 26.1+
    */
-  get uploadJobExtensionEnabled(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 555502537187074, this, []); }
+  get uploadJobExtensionEnabled(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 555502537187074, this, []); }
   /**
    * var uploadJobExtensionOptions: PHAssetResourceUploadJobOptions? { get }
    * @availability iOS 27.0+
    */
-  get uploadJobExtensionOptions(): $SDK59 { return callSDK<$SDK59>("Photos_3864e7f38681b875", 2797664357302456, this, []); }
+  get uploadJobExtensionOptions(): $SDK59 { return callSDK<$SDK59>("Photos_ff42ce03e691ab23", 2797664357302456, this, []); }
   /**
    * func cloudIdentifierMappings(forLocalIdentifiers localIdentifiers: [String]) -> [String : Result<PHCloudIdentifier, any Error>]
    * @availability iOS 15.0+
    */
-  cloudIdentifierMappings(localIdentifiers: Array<string>): Record<string, SDKHandle> { return callSDK<Record<string, SDKHandle>>("Photos_3864e7f38681b875", 2095678828259692, this, [localIdentifiers]); }
+  cloudIdentifierMappings(localIdentifiers: Array<string>): Record<string, SDKHandle> { return callSDK<Record<string, SDKHandle>>("Photos_ff42ce03e691ab23", 2095678828259692, this, [localIdentifiers]); }
   /**
    * func localIdentifierMappings(for cloudIdentifiers: [PHCloudIdentifier]) -> [PHCloudIdentifier : Result<String, any Error>]
    * @availability iOS 15.0+
    */
-  localIdentifierMappingsFor(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK65 { return callSDK<$SDK65>("Photos_3864e7f38681b875", 1195607152358569, this, [cloudIdentifiers]); }
+  localIdentifierMappingsFor(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK65 { return callSDK<$SDK65>("Photos_ff42ce03e691ab23", 1195607152358569, this, [cloudIdentifiers]); }
   /**
    * func localIdentifierMappings(forSynced cloudIdentifiers: [PHCloudIdentifier]) -> [PHCloudIdentifier : Result<String, any Error>]
    * @availability iOS 27.0+
    */
-  localIdentifierMappingsForSynced(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK65 { return callSDK<$SDK65>("Photos_3864e7f38681b875", 364662922022759, this, [cloudIdentifiers]); }
+  localIdentifierMappingsForSynced(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK65 { return callSDK<$SDK65>("Photos_ff42ce03e691ab23", 364662922022759, this, [cloudIdentifiers]); }
   declare readonly $type: { "c:objc(cs)PHPhotoLibrary": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentChangeToken": true; "unavailabilityReason": true; "uploadJobExtensionEnabled": true; "uploadJobExtensionOptions": true };
 }
@@ -2730,118 +2730,118 @@ export class PHPhotosError extends SDKHandle {
    * static var networkError: PHPhotosError.Code { get }
    * @availability iOS 16.0+
    */
-  static get networkError(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 1718066263023267, undefined, []); }
+  static get networkError(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 1718066263023267, undefined, []); }
   /**
    * static var internalError: PHPhotosError.Code { get }
    * @availability iOS 13.0+
    */
-  static get internalError(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 1640402977510056, undefined, []); }
+  static get internalError(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 1640402977510056, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 13.0+
    */
-  static get errorDomain(): string { return callSDK<string>("Photos_3864e7f38681b875", 2506959756467754, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("Photos_ff42ce03e691ab23", 2506959756467754, undefined, []); }
   /**
    * static var limitExceeded: PHPhotosError.Code { get }
    * @availability iOS 26.1+
    */
-  static get limitExceeded(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 2580724776250789, undefined, []); }
+  static get limitExceeded(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 2580724776250789, undefined, []); }
   /**
    * static var userCancelled: PHPhotosError.Code { get }
    * @availability iOS 13.0+
    */
-  static get userCancelled(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 717526031807371, undefined, []); }
+  static get userCancelled(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 717526031807371, undefined, []); }
   /**
    * static var notEnoughSpace: PHPhotosError.Code { get }
    * @availability iOS 15.0+
    */
-  static get notEnoughSpace(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 3005835898057494, undefined, []); }
+  static get notEnoughSpace(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 3005835898057494, undefined, []); }
   /**
    * static var invalidResource: PHPhotosError.Code { get }
    * @availability iOS 15.0+
    */
-  static get invalidResource(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 23049492477244, undefined, []); }
+  static get invalidResource(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 23049492477244, undefined, []); }
   /**
    * static var missingResource: PHPhotosError.Code { get }
    * @availability iOS 15.0+
    */
-  static get missingResource(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 3229577923491201, undefined, []); }
+  static get missingResource(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 3229577923491201, undefined, []); }
   /**
    * static var accessRestricted: PHPhotosError.Code { get }
    * @availability iOS 15.0+
    */
-  static get accessRestricted(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 597373231255454, undefined, []); }
+  static get accessRestricted(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 597373231255454, undefined, []); }
   /**
    * static var accessUserDenied: PHPhotosError.Code { get }
    * @availability iOS 15.0+
    */
-  static get accessUserDenied(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 116490093670783, undefined, []); }
+  static get accessUserDenied(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 116490093670783, undefined, []); }
   /**
    * static var changeNotSupported: PHPhotosError.Code { get }
    * @availability iOS 15.0+
    */
-  static get changeNotSupported(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 3493261351934670, undefined, []); }
+  static get changeNotSupported(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 3493261351934670, undefined, []); }
   /**
    * static var identifierNotFound: PHPhotosError.Code { get }
    * @availability iOS 15.0+
    */
-  static get identifierNotFound(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 4454231052562040, undefined, []); }
+  static get identifierNotFound(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 4454231052562040, undefined, []); }
   /**
    * static var libraryVolumeOffline: PHPhotosError.Code { get }
    * @availability iOS 13.0+
    */
-  static get libraryVolumeOffline(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 2145928731139790, undefined, []); }
+  static get libraryVolumeOffline(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 2145928731139790, undefined, []); }
   /**
    * static var operationInterrupted: PHPhotosError.Code { get }
    * @availability iOS 15.0+
    */
-  static get operationInterrupted(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 97621462611079, undefined, []); }
+  static get operationInterrupted(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 97621462611079, undefined, []); }
   /**
    * static var networkAccessRequired: PHPhotosError.Code { get }
    * @availability iOS 14.0+
    */
-  static get networkAccessRequired(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 396743280473474, undefined, []); }
+  static get networkAccessRequired(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 396743280473474, undefined, []); }
   /**
    * static var multipleIdentifiersFound: PHPhotosError.Code { get }
    * @availability iOS 15.0+
    */
-  static get multipleIdentifiersFound(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 2255875272889346, undefined, []); }
+  static get multipleIdentifiersFound(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 2255875272889346, undefined, []); }
   /**
    * static var requestNotSupportedForAsset: PHPhotosError.Code { get }
    * @availability iOS 15.0+
    */
-  static get requestNotSupportedForAsset(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 1798813084947021, undefined, []); }
+  static get requestNotSupportedForAsset(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 1798813084947021, undefined, []); }
   /**
    * static var switchingSystemPhotoLibrary: PHPhotosError.Code { get }
    * @availability iOS 13.0+
    */
-  static get switchingSystemPhotoLibrary(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 1045904954552640, undefined, []); }
+  static get switchingSystemPhotoLibrary(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 1045904954552640, undefined, []); }
   /**
    * static var persistentChangeTokenExpired: PHPhotosError.Code { get }
    * @availability iOS 16.0+
    */
-  static get persistentChangeTokenExpired(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 3150150396681232, undefined, []); }
+  static get persistentChangeTokenExpired(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 3150150396681232, undefined, []); }
   /**
    * static var libraryInFileProviderSyncRoot: PHPhotosError.Code { get }
    * @availability iOS 15.4+
    */
-  static get libraryInFileProviderSyncRoot(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 2845850141230218, undefined, []); }
+  static get libraryInFileProviderSyncRoot(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 2845850141230218, undefined, []); }
   /**
    * static var persistentChangeDetailsUnavailable: PHPhotosError.Code { get }
    * @availability iOS 16.0+
    */
-  static get persistentChangeDetailsUnavailable(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 2296446927539258, undefined, []); }
+  static get persistentChangeDetailsUnavailable(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 2296446927539258, undefined, []); }
   /**
    * static var relinquishingLibraryBundleToWriter: PHPhotosError.Code { get }
    * @availability iOS 13.0+
    */
-  static get relinquishingLibraryBundleToWriter(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 1780359566397359, undefined, []); }
+  static get relinquishingLibraryBundleToWriter(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 1780359566397359, undefined, []); }
   /**
    * static var invalid: PHPhotosError.Code { get }
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  static get invalid(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 2787536009644338, undefined, []); }
+  static get invalid(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 2787536009644338, undefined, []); }
   declare readonly $type: { "s:SC13PHPhotosErrorLeV": true };
 }
 
@@ -2857,12 +2857,12 @@ export const PHPhotosError_Code = {
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  get invalid(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_3864e7f38681b875", 3309392480175493, undefined, []); },
+  get invalid(): PHPhotosError_Code { return callSDK<PHPhotosError_Code>("Photos_ff42ce03e691ab23", 3309392480175493, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (PHPhotosError_Code) | null { return callSDK<(PHPhotosError_Code) | null>("Photos_3864e7f38681b875", 1031970800620384, undefined, [rawValue]); }
+  init(rawValue: number): (PHPhotosError_Code) | null { return callSDK<(PHPhotosError_Code) | null>("Photos_ff42ce03e691ab23", 1031970800620384, undefined, [rawValue]); }
 };
 
 /**
@@ -2874,17 +2874,17 @@ export class PHReferenceImageInfo extends SDKHandle {
    * var imageContainsReferenceImageData: Bool { get }
    * @availability iOS 27.0+
    */
-  get imageContainsReferenceImageData(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 2131379257091926, this, []); }
+  get imageContainsReferenceImageData(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 2131379257091926, this, []); }
   /**
    * init(asset: PHAsset)
    * @availability iOS 27.0+
    */
-  static initAsset(asset: PHAsset): PHReferenceImageInfo { return callSDK<PHReferenceImageInfo>("Photos_3864e7f38681b875", 1269431967000955, undefined, [asset]); }
+  static initAsset(asset: PHAsset): PHReferenceImageInfo { return callSDK<PHReferenceImageInfo>("Photos_ff42ce03e691ab23", 1269431967000955, undefined, [asset]); }
   /**
    * init(fileURL: URL)
    * @availability iOS 27.0+
    */
-  static initFileURL(fileURL: string): PHReferenceImageInfo { return callSDK<PHReferenceImageInfo>("Photos_3864e7f38681b875", 2976696733882944, undefined, [fileURL]); }
+  static initFileURL(fileURL: string): PHReferenceImageInfo { return callSDK<PHReferenceImageInfo>("Photos_ff42ce03e691ab23", 2976696733882944, undefined, [fileURL]); }
   declare readonly $type: { "s:6Photos20PHReferenceImageInfoC": true };
 }
 
@@ -2894,30 +2894,30 @@ export class PHReferenceImageInfo extends SDKHandle {
  */
 export class PHVideoRequestOptions extends SDKHandle {
   /** init() */
-  static init(): PHVideoRequestOptions { return callSDK<PHVideoRequestOptions>("Photos_3864e7f38681b875", 2261486144200270, undefined, []); }
+  static init(): PHVideoRequestOptions { return callSDK<PHVideoRequestOptions>("Photos_ff42ce03e691ab23", 2261486144200270, undefined, []); }
   /**
    * var deliveryMode: PHVideoRequestOptionsDeliveryMode { get set }
    * @availability iOS 8.0+
    */
-  get deliveryMode(): PHVideoRequestOptionsDeliveryMode { return callSDK<PHVideoRequestOptionsDeliveryMode>("Photos_3864e7f38681b875", 1232934783034825, this, []); }
-  set deliveryMode(value: PHVideoRequestOptionsDeliveryMode) { callSDK<void>("Photos_3864e7f38681b875", 1285345632203816, this, [value]); }
+  get deliveryMode(): PHVideoRequestOptionsDeliveryMode { return callSDK<PHVideoRequestOptionsDeliveryMode>("Photos_ff42ce03e691ab23", 1232934783034825, this, []); }
+  set deliveryMode(value: PHVideoRequestOptionsDeliveryMode) { callSDK<void>("Photos_ff42ce03e691ab23", 1285345632203816, this, [value]); }
   /**
    * var isNetworkAccessAllowed: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isNetworkAccessAllowed(): boolean { return callSDK<boolean>("Photos_3864e7f38681b875", 2529334575343778, this, []); }
-  set isNetworkAccessAllowed(value: boolean) { callSDK<void>("Photos_3864e7f38681b875", 3583469328583106, this, [value]); }
+  get isNetworkAccessAllowed(): boolean { return callSDK<boolean>("Photos_ff42ce03e691ab23", 2529334575343778, this, []); }
+  set isNetworkAccessAllowed(value: boolean) { callSDK<void>("Photos_ff42ce03e691ab23", 3583469328583106, this, [value]); }
   /**
    * var progressHandler: PHAssetVideoProgressHandler? { get set }
    * @availability iOS 8.0+
    */
-  get progressHandler(): $SDK49 { return callSDK<$SDK49>("Photos_3864e7f38681b875", 575808049783690, this, []); }
+  get progressHandler(): $SDK49 { return callSDK<$SDK49>("Photos_ff42ce03e691ab23", 575808049783690, this, []); }
   /**
    * var version: PHVideoRequestOptionsVersion { get set }
    * @availability iOS 8.0+
    */
-  get version(): PHVideoRequestOptionsVersion { return callSDK<PHVideoRequestOptionsVersion>("Photos_3864e7f38681b875", 183908088768012, this, []); }
-  set version(value: PHVideoRequestOptionsVersion) { callSDK<void>("Photos_3864e7f38681b875", 2380235685702090, this, [value]); }
+  get version(): PHVideoRequestOptionsVersion { return callSDK<PHVideoRequestOptionsVersion>("Photos_ff42ce03e691ab23", 183908088768012, this, []); }
+  set version(value: PHVideoRequestOptionsVersion) { callSDK<void>("Photos_ff42ce03e691ab23", 2380235685702090, this, [value]); }
   declare readonly $type: { "c:objc(cs)PHVideoRequestOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deliveryMode": true; "isNetworkAccessAllowed": true; "version": true };
 }
@@ -2933,7 +2933,7 @@ export const PHVideoRequestOptionsDeliveryMode = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHVideoRequestOptionsDeliveryMode) | null { return callSDK<(PHVideoRequestOptionsDeliveryMode) | null>("Photos_3864e7f38681b875", 3758944152694240, undefined, [rawValue]); }
+  init(rawValue: number): (PHVideoRequestOptionsDeliveryMode) | null { return callSDK<(PHVideoRequestOptionsDeliveryMode) | null>("Photos_ff42ce03e691ab23", 3758944152694240, undefined, [rawValue]); }
 };
 
 /**
@@ -2947,193 +2947,193 @@ export const PHVideoRequestOptionsVersion = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (PHVideoRequestOptionsVersion) | null { return callSDK<(PHVideoRequestOptionsVersion) | null>("Photos_3864e7f38681b875", 3534118786125104, undefined, [rawValue]); }
+  init(rawValue: number): (PHVideoRequestOptionsVersion) | null { return callSDK<(PHVideoRequestOptionsVersion) | null>("Photos_ff42ce03e691ab23", 3534118786125104, undefined, [rawValue]); }
 };
 
 /**
  * let PHContentEditingInputCancelledKey: String
  * @availability iOS 8.0+
  */
-export const PHContentEditingInputCancelledKey: string = callSDK<string>("Photos_3864e7f38681b875", 3478201055403972, undefined, []);
+export const PHContentEditingInputCancelledKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 3478201055403972, undefined, []);
 
 /**
  * let PHContentEditingInputErrorKey: String
  * @availability iOS 8.0+
  */
-export const PHContentEditingInputErrorKey: string = callSDK<string>("Photos_3864e7f38681b875", 2876105167385041, undefined, []);
+export const PHContentEditingInputErrorKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 2876105167385041, undefined, []);
 
 /**
  * let PHContentEditingInputResultIsInCloudKey: String
  * @availability iOS 8.0+
  */
-export const PHContentEditingInputResultIsInCloudKey: string = callSDK<string>("Photos_3864e7f38681b875", 2842673861687755, undefined, []);
+export const PHContentEditingInputResultIsInCloudKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 2842673861687755, undefined, []);
 
 /**
  * let PHImageCancelledKey: String
  * @availability iOS 8.0+
  */
-export const PHImageCancelledKey: string = callSDK<string>("Photos_3864e7f38681b875", 936729664846014, undefined, []);
+export const PHImageCancelledKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 936729664846014, undefined, []);
 
 /**
  * let PHImageErrorKey: String
  * @availability iOS 8.0+
  */
-export const PHImageErrorKey: string = callSDK<string>("Photos_3864e7f38681b875", 1256274783570059, undefined, []);
+export const PHImageErrorKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 1256274783570059, undefined, []);
 
 /**
  * let PHImageManagerMaximumSize: CGSize
  * @availability iOS 8.0+
  */
-export const PHImageManagerMaximumSize: $SDK29 = callSDK<$SDK29>("Photos_3864e7f38681b875", 3773205997913882, undefined, []);
+export const PHImageManagerMaximumSize: $SDK29 = callSDK<$SDK29>("Photos_ff42ce03e691ab23", 3773205997913882, undefined, []);
 
 /**
  * let PHImageResultIsDegradedKey: String
  * @availability iOS 8.0+
  */
-export const PHImageResultIsDegradedKey: string = callSDK<string>("Photos_3864e7f38681b875", 4035270740327707, undefined, []);
+export const PHImageResultIsDegradedKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 4035270740327707, undefined, []);
 
 /**
  * let PHImageResultIsInCloudKey: String
  * @availability iOS 8.0+
  */
-export const PHImageResultIsInCloudKey: string = callSDK<string>("Photos_3864e7f38681b875", 4365686969298410, undefined, []);
+export const PHImageResultIsInCloudKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 4365686969298410, undefined, []);
 
 /**
  * let PHImageResultRequestIDKey: String
  * @availability iOS 8.0+
  */
-export const PHImageResultRequestIDKey: string = callSDK<string>("Photos_3864e7f38681b875", 1407155697033483, undefined, []);
+export const PHImageResultRequestIDKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 1407155697033483, undefined, []);
 
 /**
  * var PHInvalidAssetResourceDataRequestID: PHAssetResourceDataRequestID { get }
  * @availability iOS 9.0+
  */
-export const PHInvalidAssetResourceDataRequestID: number = callSDK<number>("Photos_3864e7f38681b875", 405218627762398, undefined, []);
+export const PHInvalidAssetResourceDataRequestID: number = callSDK<number>("Photos_ff42ce03e691ab23", 405218627762398, undefined, []);
 
 /**
  * var PHInvalidImageRequestID: PHImageRequestID { get }
  * @availability iOS 8.0+
  */
-export const PHInvalidImageRequestID: number = callSDK<number>("Photos_3864e7f38681b875", 3273309384785215, undefined, []);
+export const PHInvalidImageRequestID: number = callSDK<number>("Photos_ff42ce03e691ab23", 3273309384785215, undefined, []);
 
 /**
  * let PHLivePhotoInfoCancelledKey: String
  * @availability iOS 9.1+
  */
-export const PHLivePhotoInfoCancelledKey: string = callSDK<string>("Photos_3864e7f38681b875", 2980346842298511, undefined, []);
+export const PHLivePhotoInfoCancelledKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 2980346842298511, undefined, []);
 
 /**
  * let PHLivePhotoInfoErrorKey: String
  * @availability iOS 9.1+
  */
-export const PHLivePhotoInfoErrorKey: string = callSDK<string>("Photos_3864e7f38681b875", 3105710062093616, undefined, []);
+export const PHLivePhotoInfoErrorKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 3105710062093616, undefined, []);
 
 /**
  * let PHLivePhotoInfoIsDegradedKey: String
  * @availability iOS 9.1+
  */
-export const PHLivePhotoInfoIsDegradedKey: string = callSDK<string>("Photos_3864e7f38681b875", 26766516053079, undefined, []);
+export const PHLivePhotoInfoIsDegradedKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 26766516053079, undefined, []);
 
 /**
  * var PHLivePhotoRequestIDInvalid: PHLivePhotoRequestID { get }
  * @availability iOS 9.1+
  */
-export const PHLivePhotoRequestIDInvalid: number = callSDK<number>("Photos_3864e7f38681b875", 2842938460510824, undefined, []);
+export const PHLivePhotoRequestIDInvalid: number = callSDK<number>("Photos_ff42ce03e691ab23", 2842938460510824, undefined, []);
 
 /**
  * let PHLocalIdentifiersErrorKey: String
  * @availability iOS 15.0+
  */
-export const PHLocalIdentifiersErrorKey: string = callSDK<string>("Photos_3864e7f38681b875", 2188780910748731, undefined, []);
+export const PHLocalIdentifiersErrorKey: string = callSDK<string>("Photos_ff42ce03e691ab23", 2188780910748731, undefined, []);
 
 /**
  * let PHPhotosErrorDomain: String
  * @availability iOS 13.0+
  */
-export const PHPhotosErrorDomain: string = callSDK<string>("Photos_3864e7f38681b875", 799095999908178, undefined, []);
+export const PHPhotosErrorDomain: string = callSDK<string>("Photos_ff42ce03e691ab23", 799095999908178, undefined, []);
 
 /**
  * var PHPhotosErrorInvalid: Int { get }
  * @availability iOS 13.0+
  * @deprecated iOS 14.0
  */
-export const PHPhotosErrorInvalid: number = callSDK<number>("Photos_3864e7f38681b875", 3069954112514326, undefined, []);
+export const PHPhotosErrorInvalid: number = callSDK<number>("Photos_ff42ce03e691ab23", 3069954112514326, undefined, []);
 
 /**
  * var PHPhotosErrorLibraryVolumeOffline: Int { get }
  * @availability iOS 13.0+
  * @deprecated iOS 14.0
  */
-export const PHPhotosErrorLibraryVolumeOffline: number = callSDK<number>("Photos_3864e7f38681b875", 3814456624474832, undefined, []);
+export const PHPhotosErrorLibraryVolumeOffline: number = callSDK<number>("Photos_ff42ce03e691ab23", 3814456624474832, undefined, []);
 
 /**
  * var PHPhotosErrorRelinquishingLibraryBundleToWriter: Int { get }
  * @availability iOS 13.0+
  * @deprecated iOS 14.0
  */
-export const PHPhotosErrorRelinquishingLibraryBundleToWriter: number = callSDK<number>("Photos_3864e7f38681b875", 3109991221877038, undefined, []);
+export const PHPhotosErrorRelinquishingLibraryBundleToWriter: number = callSDK<number>("Photos_ff42ce03e691ab23", 3109991221877038, undefined, []);
 
 /**
  * var PHPhotosErrorSwitchingSystemPhotoLibrary: Int { get }
  * @availability iOS 13.0+
  * @deprecated iOS 14.0
  */
-export const PHPhotosErrorSwitchingSystemPhotoLibrary: number = callSDK<number>("Photos_3864e7f38681b875", 3243186240629848, undefined, []);
+export const PHPhotosErrorSwitchingSystemPhotoLibrary: number = callSDK<number>("Photos_ff42ce03e691ab23", 3243186240629848, undefined, []);
 
 /**
  * var PHPhotosErrorUserCancelled: Int { get }
  * @availability iOS 13.0+
  * @deprecated iOS 14.0
  */
-export const PHPhotosErrorUserCancelled: number = callSDK<number>("Photos_3864e7f38681b875", 1785277130323364, undefined, []);
+export const PHPhotosErrorUserCancelled: number = callSDK<number>("Photos_ff42ce03e691ab23", 1785277130323364, undefined, []);
 
-registerSDKClass("PHAdjustmentData", PHAdjustmentData, { module: "Photos_3864e7f38681b875", properties: {"data":1652091167741438,"formatIdentifier":877251366947339,"formatVersion":2116147200596702} });
-registerSDKClass("PHObject", PHObject, { module: "Photos_3864e7f38681b875", properties: {"localIdentifier":3388807973369197} });
-registerSDKClass("PHAsset", PHAsset, { module: "Photos_3864e7f38681b875", properties: {"addedDate":377299021446432,"adjustmentFormatIdentifier":1759242428690778,"adjustmentTimestamp":2097248430388685,"adjustmentsState":1934898183967680,"burstIdentifier":4034658114100011,"burstSelectionTypes":3103419644301267,"contentType":2675457207356225,"creationDate":1098074900584063,"duration":744056968178659,"extendedMetadata":4147270291128110,"isFavorite":122614630767930,"hasAdjustments":1348636687570544,"isHidden":1778528768513268,"location":3310693387725878,"mediaSubtypes":1730207249865330,"mediaType":423191481984508,"modificationDate":4345121913422235,"originalResourceChoice":2179563054269841,"pixelHeight":3117842762230883,"pixelWidth":1204379011964457,"playbackStyle":2843363614303598,"playbackVariation":1945742946408195,"rating":262084005737909,"representsBurst":3485299728182734,"sourceType":771499445792176}, methods: {"canPerform":{"id":3692250663099408},"cancelContentEditingInputRequest":{"id":3943508286913695},"requestContentEditingInput":{"id":757948731181583,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("PHChangeRequest", PHChangeRequest, { module: "Photos_3864e7f38681b875", properties: {} });
-registerSDKClass("PHAssetChangeRequest", PHAssetChangeRequest, { module: "Photos_3864e7f38681b875", properties: {"caption":2586070481117992,"contentEditingOutput":4185319283948616,"creationDate":2241015185625792,"isFavorite":1327760837320599,"isHidden":736160584741239,"location":1843194750782631,"placeholderForCreatedAsset":392481386990023,"rating":3714009439269295}, methods: {"addKeyword":{"id":2719896630958972},"removeKeyword":{"id":1234891968265387},"revertAssetContentToOriginal":{"id":3604652451174429},"revertAssetContent":{"id":3036565762803814},"setLivePhotoVideoPlaybackEnabled":{"id":1500331283390651}} });
-registerSDKClass("PHCollection", PHCollection, { module: "Photos_3864e7f38681b875", properties: {"canContainAssets":4317687597754644,"canContainCollections":1368721592607202,"localizedTitle":737382176068262,"modificationDate":4448759092716969}, methods: {"canPerform":{"id":3977834227087436}} });
-registerSDKClass("PHAssetCollection", PHAssetCollection, { module: "Photos_3864e7f38681b875", properties: {"approximateLocation":4370514784559536,"assetCollectionSubtype":1443814507933842,"assetCollectionType":535550694153590,"endDate":4444814151348272,"estimatedAssetCount":174363686563460,"localizedLocationNames":996785800101634,"startDate":2793283956451964} });
-registerSDKClass("PHAssetCollectionChangeRequest", PHAssetCollectionChangeRequest, { module: "Photos_3864e7f38681b875", properties: {"placeholderForCreatedAssetCollection":2118935320206297,"title":2005935426645826}, methods: {"addAssets":{"id":650766997189814},"insertAssets":{"id":1531899887209695},"moveAssets":{"id":781458769411395},"removeAssets":{"id":1707272039622981},"removeAssetsAt":{"id":3278151384111431},"replaceAssets":{"id":4089506563748327}} });
-registerSDKClass("PHAssetCreationRequest", PHAssetCreationRequest, { module: "Photos_3864e7f38681b875", properties: {"originalResourceChoice":2150098750314896}, methods: {"addResourceWithDataOptions":{"id":319191948549639},"addResourceWithFileURLOptions":{"id":2512884379037325}} });
-registerSDKClass("PHAssetExtendedMetadata", PHAssetExtendedMetadata, { module: "Photos_3864e7f38681b875", properties: {"caption":1354315728738103,"keywords":2038743706430719,"originalFilename":3303108985441930} });
-registerSDKClass("PHAssetResource", PHAssetResource, { module: "Photos_3864e7f38681b875", properties: {"assetLocalIdentifier":4064828979752762,"contentType":1003129090317261,"filename":3284504785840028,"originalFilename":4319515270828000,"pixelHeight":2927651632362217,"pixelWidth":1012579354448067,"type":1977110468596060,"uniformTypeIdentifier":4469646324572583} });
-registerSDKClass("PHAssetResourceCreationOptions", PHAssetResourceCreationOptions, { module: "Photos_3864e7f38681b875", properties: {"contentType":325495249802941,"originalFilename":567328416373938,"shouldMoveFile":1443228201284552,"uniformTypeIdentifier":2135495053994516} });
-registerSDKClass("PHAssetResourceManager", PHAssetResourceManager, { module: "Photos_3864e7f38681b875", properties: {}, methods: {"cancelDataRequest":{"id":1731481013293104},"requestData":{"id":1662573877610377,"hints":[null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]},"writeData":{"id":3432186905267643,"hints":[null,null,null,{"callback":{"out":[]}}]},"exportedAssetID":{"id":3200528310936074}} });
-registerSDKClass("PHAssetResourceRequestOptions", PHAssetResourceRequestOptions, { module: "Photos_3864e7f38681b875", properties: {"isNetworkAccessAllowed":3493898556630765} });
-registerSDKClass("PHAssetResourceUploadJob", PHAssetResourceUploadJob, { module: "Photos_3864e7f38681b875", properties: {"destination":2207789584791091,"error":1077792746361922,"resource":2357137161221062,"responseHeaderFields":1799840568613297,"state":3496188954655778,"type":788714261265825} });
-registerSDKClass("PHAssetResourceUploadJobChangeRequest", PHAssetResourceUploadJobChangeRequest, { module: "Photos_3864e7f38681b875", properties: {"placeholderForCreatedAssetResourceUploadJob":2540325177327343}, methods: {"acknowledge":{"id":2027125185074619},"cancel":{"id":3215768156753603},"retry":{"id":1059631046401327}} });
-registerSDKClass("PHAssetResourceUploadJobOptions", PHAssetResourceUploadJobOptions, { module: "Photos_3864e7f38681b875", properties: {"preventsExpensiveNetworkAccess":3028585957090493} });
+registerSDKClass("PHAdjustmentData", PHAdjustmentData, { module: "Photos_ff42ce03e691ab23", properties: {"data":1652091167741438,"formatIdentifier":877251366947339,"formatVersion":2116147200596702} });
+registerSDKClass("PHObject", PHObject, { module: "Photos_ff42ce03e691ab23", properties: {"localIdentifier":3388807973369197} });
+registerSDKClass("PHAsset", PHAsset, { module: "Photos_ff42ce03e691ab23", properties: {"addedDate":377299021446432,"adjustmentFormatIdentifier":1759242428690778,"adjustmentTimestamp":2097248430388685,"adjustmentsState":1934898183967680,"burstIdentifier":4034658114100011,"burstSelectionTypes":3103419644301267,"contentType":2675457207356225,"creationDate":1098074900584063,"duration":744056968178659,"extendedMetadata":4147270291128110,"isFavorite":122614630767930,"hasAdjustments":1348636687570544,"isHidden":1778528768513268,"location":3310693387725878,"mediaSubtypes":1730207249865330,"mediaType":423191481984508,"modificationDate":4345121913422235,"originalResourceChoice":2179563054269841,"pixelHeight":3117842762230883,"pixelWidth":1204379011964457,"playbackStyle":2843363614303598,"playbackVariation":1945742946408195,"rating":262084005737909,"representsBurst":3485299728182734,"sourceType":771499445792176}, methods: {"canPerform":{"id":3692250663099408},"cancelContentEditingInputRequest":{"id":3943508286913695},"requestContentEditingInput":{"id":757948731181583,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("PHChangeRequest", PHChangeRequest, { module: "Photos_ff42ce03e691ab23", properties: {} });
+registerSDKClass("PHAssetChangeRequest", PHAssetChangeRequest, { module: "Photos_ff42ce03e691ab23", properties: {"caption":2586070481117992,"contentEditingOutput":4185319283948616,"creationDate":2241015185625792,"isFavorite":1327760837320599,"isHidden":736160584741239,"location":1843194750782631,"placeholderForCreatedAsset":392481386990023,"rating":3714009439269295}, methods: {"addKeyword":{"id":2719896630958972},"removeKeyword":{"id":1234891968265387},"revertAssetContentToOriginal":{"id":3604652451174429},"revertAssetContent":{"id":3036565762803814},"setLivePhotoVideoPlaybackEnabled":{"id":1500331283390651}} });
+registerSDKClass("PHCollection", PHCollection, { module: "Photos_ff42ce03e691ab23", properties: {"canContainAssets":4317687597754644,"canContainCollections":1368721592607202,"localizedTitle":737382176068262,"modificationDate":4448759092716969}, methods: {"canPerform":{"id":3977834227087436}} });
+registerSDKClass("PHAssetCollection", PHAssetCollection, { module: "Photos_ff42ce03e691ab23", properties: {"approximateLocation":4370514784559536,"assetCollectionSubtype":1443814507933842,"assetCollectionType":535550694153590,"endDate":4444814151348272,"estimatedAssetCount":174363686563460,"localizedLocationNames":996785800101634,"startDate":2793283956451964} });
+registerSDKClass("PHAssetCollectionChangeRequest", PHAssetCollectionChangeRequest, { module: "Photos_ff42ce03e691ab23", properties: {"placeholderForCreatedAssetCollection":2118935320206297,"title":2005935426645826}, methods: {"addAssets":{"id":650766997189814},"insertAssets":{"id":1531899887209695},"moveAssets":{"id":781458769411395},"removeAssets":{"id":1707272039622981},"removeAssetsAt":{"id":3278151384111431},"replaceAssets":{"id":4089506563748327}} });
+registerSDKClass("PHAssetCreationRequest", PHAssetCreationRequest, { module: "Photos_ff42ce03e691ab23", properties: {"originalResourceChoice":2150098750314896}, methods: {"addResourceWithDataOptions":{"id":319191948549639},"addResourceWithFileURLOptions":{"id":2512884379037325}} });
+registerSDKClass("PHAssetExtendedMetadata", PHAssetExtendedMetadata, { module: "Photos_ff42ce03e691ab23", properties: {"caption":1354315728738103,"keywords":2038743706430719,"originalFilename":3303108985441930} });
+registerSDKClass("PHAssetResource", PHAssetResource, { module: "Photos_ff42ce03e691ab23", properties: {"assetLocalIdentifier":4064828979752762,"contentType":1003129090317261,"filename":3284504785840028,"originalFilename":4319515270828000,"pixelHeight":2927651632362217,"pixelWidth":1012579354448067,"type":1977110468596060,"uniformTypeIdentifier":4469646324572583} });
+registerSDKClass("PHAssetResourceCreationOptions", PHAssetResourceCreationOptions, { module: "Photos_ff42ce03e691ab23", properties: {"contentType":325495249802941,"originalFilename":567328416373938,"shouldMoveFile":1443228201284552,"uniformTypeIdentifier":2135495053994516} });
+registerSDKClass("PHAssetResourceManager", PHAssetResourceManager, { module: "Photos_ff42ce03e691ab23", properties: {}, methods: {"cancelDataRequest":{"id":1731481013293104},"requestData":{"id":1662573877610377,"hints":[null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]},"writeData":{"id":3432186905267643,"hints":[null,null,null,{"callback":{"out":[]}}]},"exportedAssetID":{"id":3200528310936074}} });
+registerSDKClass("PHAssetResourceRequestOptions", PHAssetResourceRequestOptions, { module: "Photos_ff42ce03e691ab23", properties: {"isNetworkAccessAllowed":3493898556630765} });
+registerSDKClass("PHAssetResourceUploadJob", PHAssetResourceUploadJob, { module: "Photos_ff42ce03e691ab23", properties: {"destination":2207789584791091,"error":1077792746361922,"resource":2357137161221062,"responseHeaderFields":1799840568613297,"state":3496188954655778,"type":788714261265825} });
+registerSDKClass("PHAssetResourceUploadJobChangeRequest", PHAssetResourceUploadJobChangeRequest, { module: "Photos_ff42ce03e691ab23", properties: {"placeholderForCreatedAssetResourceUploadJob":2540325177327343}, methods: {"acknowledge":{"id":2027125185074619},"cancel":{"id":3215768156753603},"retry":{"id":1059631046401327}} });
+registerSDKClass("PHAssetResourceUploadJobOptions", PHAssetResourceUploadJobOptions, { module: "Photos_ff42ce03e691ab23", properties: {"preventsExpensiveNetworkAccess":3028585957090493} });
 registerSDKProtocol("s:6Photos35PHBackgroundResourceUploadExtensionP", {"init":"init()","process":"process()","notifyTermination":"notifyTermination()"});
 registerSDKProtocol("s:6Photos38PHBackgroundResourceUploadJobExtensionP", {"init":"init()","processJobs":"processJobs()","willTerminate":"willTerminate()"});
-registerSDKClass("PHImageManager", PHImageManager, { module: "Photos_3864e7f38681b875", properties: {}, methods: {"cancelImageRequest":{"id":3309833347591772},"requestAVAsset":{"id":4226142495519492,"hints":[null,null,{"callback":{"out":[]}}]},"requestExportSession":{"id":3901265060970169,"hints":[null,null,null,{"callback":{"out":[]}}]},"requestImageDataAndOrientation":{"id":21639214698870,"hints":[null,null,{"callback":{"out":[]}}]},"requestImage":{"id":4285922827042653,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"requestLivePhoto":{"id":746015069805090,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"requestPlayerItem":{"id":263923768002185,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("PHCachingImageManager", PHCachingImageManager, { module: "Photos_3864e7f38681b875", properties: {"allowsCachingHighQualityImages":3502089807237814}, methods: {"startCachingImages":{"id":2407331257284456},"stopCachingImagesForAllAssets":{"id":1382923202094705},"stopCachingImages":{"id":4148343540364519}} });
-registerSDKClass("PHChange", PHChange, { module: "Photos_3864e7f38681b875", properties: {}, methods: {"changeDetailsFor":{"id":1034270445277652},"changeDetailsFor25684":{"id":1521673448159152}} });
-registerSDKClass("PHCloudIdentifier", PHCloudIdentifier, { module: "Photos_3864e7f38681b875", properties: {"archivalStringValue":369010935596572,"stringValue":3921845880383029} });
-registerSDKClass("PHCollectionList", PHCollectionList, { module: "Photos_3864e7f38681b875", properties: {"collectionListSubtype":726300980260640,"collectionListType":609237617732676,"endDate":221119962183876,"localizedLocationNames":3675653920878500,"startDate":681105562437685} });
-registerSDKClass("PHCollectionListChangeRequest", PHCollectionListChangeRequest, { module: "Photos_3864e7f38681b875", properties: {"placeholderForCreatedCollectionList":321547691907788,"title":1944889385225465}, methods: {"addChildCollections":{"id":2709268872334607},"insertChildCollections":{"id":4454190276786455},"moveChildCollections":{"id":3195213379831535},"removeChildCollections":{"id":2826513866901962},"removeChildCollectionsAt":{"id":2910441822039383},"replaceChildCollections":{"id":789860099427767}} });
-registerSDKClass("PHContentEditingInput", PHContentEditingInput, { module: "Photos_3864e7f38681b875", properties: {"adjustmentData":2342722583365732,"audiovisualAsset":4376257991760732,"avAsset":141033253223218,"contentType":425761288080257,"creationDate":3395307835338778,"displaySizeImage":999669696879047,"fullSizeImageOrientation":4449011117990705,"fullSizeImageURL":1584349943473433,"livePhoto":309897746421122,"location":2822546591857794,"mediaSubtypes":3100770367522281,"mediaType":3094326071965194,"playbackStyle":3167785719316728,"uniformTypeIdentifier":123160229417739} });
-registerSDKClass("PHContentEditingInputRequestOptions", PHContentEditingInputRequestOptions, { module: "Photos_3864e7f38681b875", properties: {"isNetworkAccessAllowed":3705850172923269,"originalResourceChoice":3411055283781626,"skipsDisplaySizeImage":417352776576513} });
-registerSDKClass("PHContentEditingOutput", PHContentEditingOutput, { module: "Photos_3864e7f38681b875", properties: {"adjustmentData":1481007998497620,"defaultRenderedContentType":839515652718521,"renderedContentURL":2816515965562455,"supportedRenderedContentTypes":2489118320839678}, methods: {"renderedContentURLFor":{"id":3798445700713128}} });
-registerSDKClass("PHFetchOptions", PHFetchOptions, { module: "Photos_3864e7f38681b875", properties: {"fetchLimit":3377571116286249,"includeAllBurstAssets":1864987909665897,"includeAssetSourceTypes":2507700168401018,"includeHiddenAssets":2758823502566244,"predicate":2336916350265491,"prefetchAssetExtendedMetadata":478828333433839,"sortDescriptors":3905663778642658,"wantsIncrementalChangeDetails":136499746656000} });
-registerSDKClass("PHFetchResult", PHFetchResult, { module: "Photos_3864e7f38681b875", properties: {"count":1003030389584173,"firstObject":2496766205258179,"lastObject":4061719961389716}, methods: {"contains":{"id":2814769179689053},"countOfAssets":{"id":3750159647524979},"indexOf":{"id":4290444541935978},"indexOfIn":{"id":3216737233246372},"object":{"id":3138432725040339},"subscript":{"id":2529239258030723},"objects":{"id":3760521716198853}} });
-registerSDKClass("PHFetchResultChangeDetails", PHFetchResultChangeDetails, { module: "Photos_3864e7f38681b875", properties: {"changedIndexes":3997937533920372,"changedObjects":608422945865567,"fetchResultAfterChanges":1262485383468166,"fetchResultBeforeChanges":921380136348988,"hasIncrementalChanges":3643920819492179,"hasMoves":828649228574167,"insertedIndexes":75170811478502,"insertedObjects":2558371035205847,"removedIndexes":3028046253952886,"removedObjects":3453288268003840}, methods: {"enumerateMoves":{"id":3850166677575366,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("PHImageRequestOptions", PHImageRequestOptions, { module: "Photos_3864e7f38681b875", properties: {"allowSecondaryDegradedImage":4164858355141956,"deliveryMode":2738774273535807,"isNetworkAccessAllowed":41712826574740,"normalizedCropRect":871950355013328,"preferHDR":561393360617331,"resizeMode":540069196908116,"isSynchronous":3707837692124913,"targetHDRHeadroom":2706429699255910,"version":1466105451673331} });
-registerSDKClass("PHLivePhoto", PHLivePhoto, { module: "Photos_3864e7f38681b875", properties: {"size":11293342201806} });
-registerSDKClass("PHLivePhotoEditingContext", PHLivePhotoEditingContext, { module: "Photos_3864e7f38681b875", properties: {"audioVolume":9441726380817,"duration":4028509099579408,"fullSizeImage":2924474074419398,"orientation":3729233861154071,"photoTime":81238547797794}, methods: {"cancel":{"id":3117582013592253},"prepareLivePhotoForPlayback":{"id":2850325719118821,"hints":[null,null,{"callback":{"out":[]}}]},"saveLivePhoto":{"id":4111693763412957,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("PHImageManager", PHImageManager, { module: "Photos_ff42ce03e691ab23", properties: {}, methods: {"cancelImageRequest":{"id":3309833347591772},"requestAVAsset":{"id":4226142495519492,"hints":[null,null,{"callback":{"out":[]}}]},"requestExportSession":{"id":3901265060970169,"hints":[null,null,null,{"callback":{"out":[]}}]},"requestImageDataAndOrientation":{"id":21639214698870,"hints":[null,null,{"callback":{"out":[]}}]},"requestImage":{"id":4285922827042653,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"requestLivePhoto":{"id":746015069805090,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"requestPlayerItem":{"id":263923768002185,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("PHCachingImageManager", PHCachingImageManager, { module: "Photos_ff42ce03e691ab23", properties: {"allowsCachingHighQualityImages":3502089807237814}, methods: {"startCachingImages":{"id":2407331257284456},"stopCachingImagesForAllAssets":{"id":1382923202094705},"stopCachingImages":{"id":4148343540364519}} });
+registerSDKClass("PHChange", PHChange, { module: "Photos_ff42ce03e691ab23", properties: {}, methods: {"changeDetailsFor":{"id":1034270445277652},"changeDetailsFor25684":{"id":1521673448159152}} });
+registerSDKClass("PHCloudIdentifier", PHCloudIdentifier, { module: "Photos_ff42ce03e691ab23", properties: {"archivalStringValue":369010935596572,"stringValue":3921845880383029} });
+registerSDKClass("PHCollectionList", PHCollectionList, { module: "Photos_ff42ce03e691ab23", properties: {"collectionListSubtype":726300980260640,"collectionListType":609237617732676,"endDate":221119962183876,"localizedLocationNames":3675653920878500,"startDate":681105562437685} });
+registerSDKClass("PHCollectionListChangeRequest", PHCollectionListChangeRequest, { module: "Photos_ff42ce03e691ab23", properties: {"placeholderForCreatedCollectionList":321547691907788,"title":1944889385225465}, methods: {"addChildCollections":{"id":2709268872334607},"insertChildCollections":{"id":4454190276786455},"moveChildCollections":{"id":3195213379831535},"removeChildCollections":{"id":2826513866901962},"removeChildCollectionsAt":{"id":2910441822039383},"replaceChildCollections":{"id":789860099427767}} });
+registerSDKClass("PHContentEditingInput", PHContentEditingInput, { module: "Photos_ff42ce03e691ab23", properties: {"adjustmentData":2342722583365732,"audiovisualAsset":4376257991760732,"avAsset":141033253223218,"contentType":425761288080257,"creationDate":3395307835338778,"displaySizeImage":999669696879047,"fullSizeImageOrientation":4449011117990705,"fullSizeImageURL":1584349943473433,"livePhoto":309897746421122,"location":2822546591857794,"mediaSubtypes":3100770367522281,"mediaType":3094326071965194,"playbackStyle":3167785719316728,"uniformTypeIdentifier":123160229417739} });
+registerSDKClass("PHContentEditingInputRequestOptions", PHContentEditingInputRequestOptions, { module: "Photos_ff42ce03e691ab23", properties: {"isNetworkAccessAllowed":3705850172923269,"originalResourceChoice":3411055283781626,"skipsDisplaySizeImage":417352776576513} });
+registerSDKClass("PHContentEditingOutput", PHContentEditingOutput, { module: "Photos_ff42ce03e691ab23", properties: {"adjustmentData":1481007998497620,"defaultRenderedContentType":839515652718521,"renderedContentURL":2816515965562455,"supportedRenderedContentTypes":2489118320839678}, methods: {"renderedContentURLFor":{"id":3798445700713128}} });
+registerSDKClass("PHFetchOptions", PHFetchOptions, { module: "Photos_ff42ce03e691ab23", properties: {"fetchLimit":3377571116286249,"includeAllBurstAssets":1864987909665897,"includeAssetSourceTypes":2507700168401018,"includeHiddenAssets":2758823502566244,"predicate":2336916350265491,"prefetchAssetExtendedMetadata":478828333433839,"sortDescriptors":3905663778642658,"wantsIncrementalChangeDetails":136499746656000} });
+registerSDKClass("PHFetchResult", PHFetchResult, { module: "Photos_ff42ce03e691ab23", properties: {"count":1003030389584173,"firstObject":2496766205258179,"lastObject":4061719961389716}, methods: {"contains":{"id":2814769179689053},"countOfAssets":{"id":3750159647524979},"indexOf":{"id":4290444541935978},"indexOfIn":{"id":3216737233246372},"object":{"id":3138432725040339},"subscript":{"id":2529239258030723},"objects":{"id":3760521716198853}} });
+registerSDKClass("PHFetchResultChangeDetails", PHFetchResultChangeDetails, { module: "Photos_ff42ce03e691ab23", properties: {"changedIndexes":3997937533920372,"changedObjects":608422945865567,"fetchResultAfterChanges":1262485383468166,"fetchResultBeforeChanges":921380136348988,"hasIncrementalChanges":3643920819492179,"hasMoves":828649228574167,"insertedIndexes":75170811478502,"insertedObjects":2558371035205847,"removedIndexes":3028046253952886,"removedObjects":3453288268003840}, methods: {"enumerateMoves":{"id":3850166677575366,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("PHImageRequestOptions", PHImageRequestOptions, { module: "Photos_ff42ce03e691ab23", properties: {"allowSecondaryDegradedImage":4164858355141956,"deliveryMode":2738774273535807,"isNetworkAccessAllowed":41712826574740,"normalizedCropRect":871950355013328,"preferHDR":561393360617331,"resizeMode":540069196908116,"isSynchronous":3707837692124913,"targetHDRHeadroom":2706429699255910,"version":1466105451673331} });
+registerSDKClass("PHLivePhoto", PHLivePhoto, { module: "Photos_ff42ce03e691ab23", properties: {"size":11293342201806} });
+registerSDKClass("PHLivePhotoEditingContext", PHLivePhotoEditingContext, { module: "Photos_ff42ce03e691ab23", properties: {"audioVolume":9441726380817,"duration":4028509099579408,"fullSizeImage":2924474074419398,"orientation":3729233861154071,"photoTime":81238547797794}, methods: {"cancel":{"id":3117582013592253},"prepareLivePhotoForPlayback":{"id":2850325719118821,"hints":[null,null,{"callback":{"out":[]}}]},"saveLivePhoto":{"id":4111693763412957,"hints":[null,null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)PHLivePhotoFrame", {});
-registerSDKClass("PHLivePhotoRequestOptions", PHLivePhotoRequestOptions, { module: "Photos_3864e7f38681b875", properties: {"deliveryMode":1650186325976662,"isNetworkAccessAllowed":4001514844132877,"preferHDR":3329547099976625,"version":169521840175856} });
-registerSDKClass("PHObjectChangeDetails", PHObjectChangeDetails, { module: "Photos_3864e7f38681b875", properties: {"assetContentChanged":3507709856049923,"objectAfterChanges":3927514378509470,"objectBeforeChanges":2239534859993704,"objectWasDeleted":2868628349248157} });
-registerSDKClass("PHObjectPlaceholder", PHObjectPlaceholder, { module: "Photos_3864e7f38681b875", properties: {} });
-registerSDKClass("PHPersistentChange", PHPersistentChange, { module: "Photos_3864e7f38681b875", properties: {"changeToken":1699487815498360}, methods: {"changeDetails":{"id":1843999014142114}} });
-registerSDKClass("PHPersistentChangeFetchResult", PHPersistentChangeFetchResult, { module: "Photos_3864e7f38681b875", properties: {}, methods: {"makeIterator":{"id":3260665003043030}} });
-registerSDKClass("Photos.PHPersistentChangeFetchResult.Iterator", PHPersistentChangeFetchResult_Iterator, { module: "Photos_3864e7f38681b875", properties: {}, methods: {"next":{"id":681349207399035}} });
-registerSDKClass("PHPersistentChangeToken", PHPersistentChangeToken, { module: "Photos_3864e7f38681b875", properties: {} });
-registerSDKClass("PHPersistentObjectChangeDetails", PHPersistentObjectChangeDetails, { module: "Photos_3864e7f38681b875", properties: {"deletedLocalIdentifiers":1558483429588587,"insertedLocalIdentifiers":814219761965739,"objectType":2539446540660564,"updatedLocalIdentifiers":4076041733163718} });
-registerSDKClass("PHPhotoLibrary", PHPhotoLibrary, { module: "Photos_3864e7f38681b875", properties: {"currentChangeToken":2913111377007078,"unavailabilityReason":833586920490635,"uploadJobExtensionEnabled":555502537187074,"uploadJobExtensionOptions":2797664357302456}, methods: {"disableUploadJobExtension":{"id":2640026495255653},"enableUploadJobExtension":{"id":4290723649153115},"fetchPersistentChanges":{"id":3610815481051730},"performChanges":{"id":3644196397843637,"hints":[{"callback":{"out":[]}},{"callback":{"out":[]}}]},"performChangesAndWait":{"id":551286063066464,"hints":[{"callback":{"out":[]}}]},"register":{"id":500014370176001,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryAvailabilityObserver"}]},"register69872":{"id":3309712539465124,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryChangeObserver"}]},"register41946":{"id":218613754712303,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryPersistentChangesObserver"}]},"setUploadJobExtensionEnabled":{"id":1327261940236192},"setUploadJobExtensionOptions":{"id":3804244806464146},"unregisterAvailabilityObserver":{"id":249585648950813,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryAvailabilityObserver"}]},"unregisterChangeObserver":{"id":4417723655575603,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryChangeObserver"}]},"unregisterPersistentChangesObserver":{"id":4032175959197769,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryPersistentChangesObserver"}]},"cloudIdentifierMappings":{"id":2095678828259692},"localIdentifierMappingsFor":{"id":1195607152358569},"localIdentifierMappingsForSynced":{"id":364662922022759}} });
+registerSDKClass("PHLivePhotoRequestOptions", PHLivePhotoRequestOptions, { module: "Photos_ff42ce03e691ab23", properties: {"deliveryMode":1650186325976662,"isNetworkAccessAllowed":4001514844132877,"preferHDR":3329547099976625,"version":169521840175856} });
+registerSDKClass("PHObjectChangeDetails", PHObjectChangeDetails, { module: "Photos_ff42ce03e691ab23", properties: {"assetContentChanged":3507709856049923,"objectAfterChanges":3927514378509470,"objectBeforeChanges":2239534859993704,"objectWasDeleted":2868628349248157} });
+registerSDKClass("PHObjectPlaceholder", PHObjectPlaceholder, { module: "Photos_ff42ce03e691ab23", properties: {} });
+registerSDKClass("PHPersistentChange", PHPersistentChange, { module: "Photos_ff42ce03e691ab23", properties: {"changeToken":1699487815498360}, methods: {"changeDetails":{"id":1843999014142114}} });
+registerSDKClass("PHPersistentChangeFetchResult", PHPersistentChangeFetchResult, { module: "Photos_ff42ce03e691ab23", properties: {}, methods: {"makeIterator":{"id":3260665003043030}} });
+registerSDKClass("Photos.PHPersistentChangeFetchResult.Iterator", PHPersistentChangeFetchResult_Iterator, { module: "Photos_ff42ce03e691ab23", properties: {}, methods: {"next":{"id":681349207399035}} });
+registerSDKClass("PHPersistentChangeToken", PHPersistentChangeToken, { module: "Photos_ff42ce03e691ab23", properties: {} });
+registerSDKClass("PHPersistentObjectChangeDetails", PHPersistentObjectChangeDetails, { module: "Photos_ff42ce03e691ab23", properties: {"deletedLocalIdentifiers":1558483429588587,"insertedLocalIdentifiers":814219761965739,"objectType":2539446540660564,"updatedLocalIdentifiers":4076041733163718} });
+registerSDKClass("PHPhotoLibrary", PHPhotoLibrary, { module: "Photos_ff42ce03e691ab23", properties: {"currentChangeToken":2913111377007078,"unavailabilityReason":833586920490635,"uploadJobExtensionEnabled":555502537187074,"uploadJobExtensionOptions":2797664357302456}, methods: {"disableUploadJobExtension":{"id":2640026495255653},"enableUploadJobExtension":{"id":4290723649153115},"fetchPersistentChanges":{"id":3610815481051730},"performChanges":{"id":3644196397843637,"hints":[{"callback":{"out":[]}},{"callback":{"out":[]}}]},"performChangesAndWait":{"id":551286063066464,"hints":[{"callback":{"out":[]}}]},"register":{"id":500014370176001,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryAvailabilityObserver"}]},"register69872":{"id":3309712539465124,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryChangeObserver"}]},"register41946":{"id":218613754712303,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryPersistentChangesObserver"}]},"setUploadJobExtensionEnabled":{"id":1327261940236192},"setUploadJobExtensionOptions":{"id":3804244806464146},"unregisterAvailabilityObserver":{"id":249585648950813,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryAvailabilityObserver"}]},"unregisterChangeObserver":{"id":4417723655575603,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryChangeObserver"}]},"unregisterPersistentChangesObserver":{"id":4032175959197769,"hints":[{"protocol":"c:objc(pl)PHPhotoLibraryPersistentChangesObserver"}]},"cloudIdentifierMappings":{"id":2095678828259692},"localIdentifierMappingsFor":{"id":1195607152358569},"localIdentifierMappingsForSynced":{"id":364662922022759}} });
 registerSDKProtocol("c:objc(pl)PHPhotoLibraryAvailabilityObserver", {"photoLibraryDidBecomeUnavailable":"photoLibraryDidBecomeUnavailable(_:)"});
 registerSDKProtocol("c:objc(pl)PHPhotoLibraryChangeObserver", {"photoLibraryDidChange":"photoLibraryDidChange(_:)"});
 registerSDKProtocol("c:objc(pl)PHPhotoLibraryPersistentChangesObserver", {"photoLibraryPersistentChangesDidUpdate":"photoLibraryPersistentChangesDidUpdate(_:)"});
-registerSDKClass("Photos.PHPhotosError", PHPhotosError, { module: "Photos_3864e7f38681b875", properties: {} });
-registerSDKClass("Photos.PHReferenceImageInfo", PHReferenceImageInfo, { module: "Photos_3864e7f38681b875", properties: {} });
-registerSDKClass("PHVideoRequestOptions", PHVideoRequestOptions, { module: "Photos_3864e7f38681b875", properties: {"deliveryMode":1232934783034825,"isNetworkAccessAllowed":2529334575343778,"version":183908088768012} });
+registerSDKClass("Photos.PHPhotosError", PHPhotosError, { module: "Photos_ff42ce03e691ab23", properties: {} });
+registerSDKClass("Photos.PHReferenceImageInfo", PHReferenceImageInfo, { module: "Photos_ff42ce03e691ab23", properties: {} });
+registerSDKClass("PHVideoRequestOptions", PHVideoRequestOptions, { module: "Photos_ff42ce03e691ab23", properties: {"deliveryMode":1232934783034825,"isNetworkAccessAllowed":2529334575343778,"version":183908088768012} });

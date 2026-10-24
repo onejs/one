@@ -5840,7 +5840,7 @@ export declare class CPWindow extends SDKHandle {
         "templateApplicationScene": true;
     };
 }
-export type UISceneSession_Role = "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "carTemplateApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});
+export type UISceneSession_Role = "carTemplateApplication" | "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});
 export declare const UISceneSession_Role: {
     /**
      * static let CPTemplateApplicationDashboardSceneSessionRoleApplication: UISceneSession.Role

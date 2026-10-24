@@ -51,27 +51,27 @@ export type ABRecord = unknown;
  */
 export class EKObject extends SDKHandle {
   /** init() */
-  static init(): EKObject { return callSDK<EKObject>("EventKit_3864e7f38681b875", 1505644604678729, undefined, []); }
+  static init(): EKObject { return callSDK<EKObject>("EventKit_ff42ce03e691ab23", 1505644604678729, undefined, []); }
   /**
    * func refresh() -> Bool
    * @availability iOS 13.0+
    */
-  refresh(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 4113217168603751, this, []); }
+  refresh(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 4113217168603751, this, []); }
   /**
    * func reset()
    * @availability iOS 13.0+
    */
-  reset(): void { return callSDK<void>("EventKit_3864e7f38681b875", 2618164993281859, this, []); }
+  reset(): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 2618164993281859, this, []); }
   /**
    * func rollback()
    * @availability iOS 13.0+
    */
-  rollback(): void { return callSDK<void>("EventKit_3864e7f38681b875", 4120998457231679, this, []); }
+  rollback(): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 4120998457231679, this, []); }
   /**
    * var hasChanges: Bool { get }
    * @availability iOS 13.0+
    */
-  get hasChanges(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 3577600418336977, this, []); }
+  get hasChanges(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 3577600418336977, this, []); }
   declare readonly $type: { "c:objc(cs)EKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasChanges": true };
 }
@@ -85,36 +85,36 @@ export class EKAlarm extends EKObject {
    * init(absoluteDate date: Date)
    * @availability iOS 4.0+
    */
-  static initAbsoluteDate(date: globalThis.Date): EKAlarm { return callSDK<EKAlarm>("EventKit_3864e7f38681b875", 2079946390702367, undefined, [date]); }
+  static initAbsoluteDate(date: globalThis.Date): EKAlarm { return callSDK<EKAlarm>("EventKit_ff42ce03e691ab23", 2079946390702367, undefined, [date]); }
   /**
    * init(relativeOffset offset: TimeInterval)
    * @availability iOS 4.0+
    */
-  static initRelativeOffset(offset: number): EKAlarm { return callSDK<EKAlarm>("EventKit_3864e7f38681b875", 2321697089407367, undefined, [offset]); }
+  static initRelativeOffset(offset: number): EKAlarm { return callSDK<EKAlarm>("EventKit_ff42ce03e691ab23", 2321697089407367, undefined, [offset]); }
   /**
    * var absoluteDate: Date? { get set }
    * @availability iOS 4.0+
    */
-  get absoluteDate(): $SDK0 { return callSDK<$SDK0>("EventKit_3864e7f38681b875", 1408936879016679, this, []); }
-  set absoluteDate(value: $SDK0) { callSDK<void>("EventKit_3864e7f38681b875", 1430237501347515, this, [value]); }
+  get absoluteDate(): $SDK0 { return callSDK<$SDK0>("EventKit_ff42ce03e691ab23", 1408936879016679, this, []); }
+  set absoluteDate(value: $SDK0) { callSDK<void>("EventKit_ff42ce03e691ab23", 1430237501347515, this, [value]); }
   /**
    * var proximity: EKAlarmProximity { get set }
    * @availability iOS 4.0+
    */
-  get proximity(): EKAlarmProximity { return callSDK<EKAlarmProximity>("EventKit_3864e7f38681b875", 721277534165335, this, []); }
-  set proximity(value: EKAlarmProximity) { callSDK<void>("EventKit_3864e7f38681b875", 821452533286605, this, [value]); }
+  get proximity(): EKAlarmProximity { return callSDK<EKAlarmProximity>("EventKit_ff42ce03e691ab23", 721277534165335, this, []); }
+  set proximity(value: EKAlarmProximity) { callSDK<void>("EventKit_ff42ce03e691ab23", 821452533286605, this, [value]); }
   /**
    * var relativeOffset: TimeInterval { get set }
    * @availability iOS 4.0+
    */
-  get relativeOffset(): number { return callSDK<number>("EventKit_3864e7f38681b875", 1776516010720225, this, []); }
-  set relativeOffset(value: number) { callSDK<void>("EventKit_3864e7f38681b875", 1832471808833954, this, [value]); }
+  get relativeOffset(): number { return callSDK<number>("EventKit_ff42ce03e691ab23", 1776516010720225, this, []); }
+  set relativeOffset(value: number) { callSDK<void>("EventKit_ff42ce03e691ab23", 1832471808833954, this, [value]); }
   /**
    * @NSCopying var structuredLocation: EKStructuredLocation? { get set }
    * @availability iOS 4.0+
    */
-  get structuredLocation(): $SDK1 { return callSDK<$SDK1>("EventKit_3864e7f38681b875", 3530217981978229, this, []); }
-  set structuredLocation(value: $SDK1) { callSDK<void>("EventKit_3864e7f38681b875", 3894624426461621, this, [value]); }
+  get structuredLocation(): $SDK1 { return callSDK<$SDK1>("EventKit_ff42ce03e691ab23", 3530217981978229, this, []); }
+  set structuredLocation(value: $SDK1) { callSDK<void>("EventKit_ff42ce03e691ab23", 3894624426461621, this, [value]); }
   declare readonly $type: { "c:objc(cs)EKAlarm": true; "c:objc(cs)EKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasChanges": true; "absoluteDate": true; "proximity": true; "relativeOffset": true; "structuredLocation": true };
 }
@@ -124,7 +124,7 @@ export type EKAlarmProximity = "none" | "enter" | "leave";
 
 export const EKAlarmProximity = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKAlarmProximity) | null { return callSDK<(EKAlarmProximity) | null>("EventKit_3864e7f38681b875", 3626189419185743, undefined, [rawValue]); }
+  init(rawValue: number): (EKAlarmProximity) | null { return callSDK<(EKAlarmProximity) | null>("EventKit_ff42ce03e691ab23", 3626189419185743, undefined, [rawValue]); }
 };
 
 /** enum EKAlarmType */
@@ -132,7 +132,7 @@ export type EKAlarmType = "display" | "audio" | "procedure" | "email";
 
 export const EKAlarmType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKAlarmType) | null { return callSDK<(EKAlarmType) | null>("EventKit_3864e7f38681b875", 1332559799764099, undefined, [rawValue]); }
+  init(rawValue: number): (EKAlarmType) | null { return callSDK<(EKAlarmType) | null>("EventKit_ff42ce03e691ab23", 1332559799764099, undefined, [rawValue]); }
 };
 
 /**
@@ -147,12 +147,12 @@ export const EKAuthorizationStatus = {
    * @availability iOS 6.0+
    * @deprecated iOS 17.0
    */
-  get authorized(): EKAuthorizationStatus { return callSDK<EKAuthorizationStatus>("EventKit_3864e7f38681b875", 1272871279197172, undefined, []); },
+  get authorized(): EKAuthorizationStatus { return callSDK<EKAuthorizationStatus>("EventKit_ff42ce03e691ab23", 1272871279197172, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 6.0+
    */
-  init(rawValue: number): (EKAuthorizationStatus) | null { return callSDK<(EKAuthorizationStatus) | null>("EventKit_3864e7f38681b875", 776679403766462, undefined, [rawValue]); }
+  init(rawValue: number): (EKAuthorizationStatus) | null { return callSDK<(EKAuthorizationStatus) | null>("EventKit_ff42ce03e691ab23", 776679403766462, undefined, [rawValue]); }
 };
 
 /**
@@ -164,60 +164,60 @@ export class EKCalendar extends (EKObject as unknown as Omit<typeof EKObject, "i
    * init(for entityType: EKEntityType, eventStore: EKEventStore)
    * @availability iOS 6.0+
    */
-  static init(entityType: EKEntityType, eventStore: EKEventStore): EKCalendar { return callSDK<EKCalendar>("EventKit_3864e7f38681b875", 3959200940839228, undefined, [entityType, eventStore]); }
+  static init(entityType: EKEntityType, eventStore: EKEventStore): EKCalendar { return callSDK<EKCalendar>("EventKit_ff42ce03e691ab23", 3959200940839228, undefined, [entityType, eventStore]); }
   /**
    * var cgColor: CGColor! { get set }
    * @availability iOS 4.0+
    */
-  get cgColor(): $SDK2 { return callSDK<$SDK2>("EventKit_3864e7f38681b875", 3553471572196077, this, []); }
-  set cgColor(value: $SDK2) { callSDK<void>("EventKit_3864e7f38681b875", 1437424621886488, this, [value]); }
+  get cgColor(): $SDK2 { return callSDK<$SDK2>("EventKit_ff42ce03e691ab23", 3553471572196077, this, []); }
+  set cgColor(value: $SDK2) { callSDK<void>("EventKit_ff42ce03e691ab23", 1437424621886488, this, [value]); }
   /**
    * var allowedEntityTypes: EKEntityMask { get }
    * @availability iOS 6.0+
    */
-  get allowedEntityTypes(): EKEntityMask { return callSDK<EKEntityMask>("EventKit_3864e7f38681b875", 175866321344711, this, []); }
+  get allowedEntityTypes(): EKEntityMask { return callSDK<EKEntityMask>("EventKit_ff42ce03e691ab23", 175866321344711, this, []); }
   /**
    * var allowsContentModifications: Bool { get }
    * @availability iOS 4.0+
    */
-  get allowsContentModifications(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 1807362914411684, this, []); }
+  get allowsContentModifications(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 1807362914411684, this, []); }
   /**
    * var calendarIdentifier: String { get }
    * @availability iOS 5.0+
    */
-  get calendarIdentifier(): string { return callSDK<string>("EventKit_3864e7f38681b875", 2029485857157829, this, []); }
+  get calendarIdentifier(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 2029485857157829, this, []); }
   /**
    * var isImmutable: Bool { get }
    * @availability iOS 5.0+
    */
-  get isImmutable(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 3958667300653996, this, []); }
+  get isImmutable(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 3958667300653996, this, []); }
   /**
    * var source: EKSource! { get set }
    * @availability iOS 4.0+
    */
-  get source(): (EKSource) | null { return callSDK<(EKSource) | null>("EventKit_3864e7f38681b875", 454186285348254, this, []); }
-  set source(value: (EKSource) | null) { callSDK<void>("EventKit_3864e7f38681b875", 758617551487096, this, [value]); }
+  get source(): (EKSource) | null { return callSDK<(EKSource) | null>("EventKit_ff42ce03e691ab23", 454186285348254, this, []); }
+  set source(value: (EKSource) | null) { callSDK<void>("EventKit_ff42ce03e691ab23", 758617551487096, this, [value]); }
   /**
    * var isSubscribed: Bool { get }
    * @availability iOS 5.0+
    */
-  get isSubscribed(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 1762899579358293, this, []); }
+  get isSubscribed(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 1762899579358293, this, []); }
   /**
    * var supportedEventAvailabilities: EKCalendarEventAvailabilityMask { get }
    * @availability iOS 4.0+
    */
-  get supportedEventAvailabilities(): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_3864e7f38681b875", 4341193541931653, this, []); }
+  get supportedEventAvailabilities(): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_ff42ce03e691ab23", 4341193541931653, this, []); }
   /**
    * var title: String { get set }
    * @availability iOS 4.0+
    */
-  get title(): string { return callSDK<string>("EventKit_3864e7f38681b875", 360065140797365, this, []); }
-  set title(value: string) { callSDK<void>("EventKit_3864e7f38681b875", 2981815839222764, this, [value]); }
+  get title(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 360065140797365, this, []); }
+  set title(value: string) { callSDK<void>("EventKit_ff42ce03e691ab23", 2981815839222764, this, [value]); }
   /**
    * var type: EKCalendarType { get }
    * @availability iOS 4.0+
    */
-  get type(): EKCalendarType { return callSDK<EKCalendarType>("EventKit_3864e7f38681b875", 1948688672913572, this, []); }
+  get type(): EKCalendarType { return callSDK<EKCalendarType>("EventKit_ff42ce03e691ab23", 1948688672913572, this, []); }
   declare readonly $type: { "c:objc(cs)EKCalendar": true; "c:objc(cs)EKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasChanges": true; "cgColor": true; "allowedEntityTypes": true; "allowsContentModifications": true; "calendarIdentifier": true; "isImmutable": true; "source": true; "isSubscribed": true; "supportedEventAvailabilities": true; "title": true; "type": true };
 }
@@ -227,15 +227,15 @@ export type EKCalendarEventAvailabilityMask = Array<"busy" | "free" | "tentative
 
 export const EKCalendarEventAvailabilityMask = {
   /** static var busy: EKCalendarEventAvailabilityMask { get } */
-  get busy(): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_3864e7f38681b875", 575425375594502, undefined, []); },
+  get busy(): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_ff42ce03e691ab23", 575425375594502, undefined, []); },
   /** static var free: EKCalendarEventAvailabilityMask { get } */
-  get free(): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_3864e7f38681b875", 1457049114494712, undefined, []); },
+  get free(): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_ff42ce03e691ab23", 1457049114494712, undefined, []); },
   /** static var tentative: EKCalendarEventAvailabilityMask { get } */
-  get tentative(): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_3864e7f38681b875", 1022642992392879, undefined, []); },
+  get tentative(): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_ff42ce03e691ab23", 1022642992392879, undefined, []); },
   /** static var unavailable: EKCalendarEventAvailabilityMask { get } */
-  get unavailable(): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_3864e7f38681b875", 1356963199903198, undefined, []); },
+  get unavailable(): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_ff42ce03e691ab23", 1356963199903198, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_3864e7f38681b875", 498554022988658, undefined, [rawValue]); }
+  init(rawValue: number): EKCalendarEventAvailabilityMask { return callSDK<EKCalendarEventAvailabilityMask>("EventKit_ff42ce03e691ab23", 498554022988658, undefined, [rawValue]); }
 };
 
 /**
@@ -247,117 +247,117 @@ export class EKCalendarItem extends (EKObject as unknown as Omit<typeof EKObject
    * func addAlarm(_ alarm: EKAlarm)
    * @availability iOS 5.0+
    */
-  addAlarm(alarm: EKAlarm): void { return callSDK<void>("EventKit_3864e7f38681b875", 954549919922914, this, [alarm]); }
+  addAlarm(alarm: EKAlarm): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 954549919922914, this, [alarm]); }
   /**
    * func addRecurrenceRule(_ rule: EKRecurrenceRule)
    * @availability iOS 5.0+
    */
-  addRecurrenceRule(rule: EKRecurrenceRule): void { return callSDK<void>("EventKit_3864e7f38681b875", 3651816622797449, this, [rule]); }
+  addRecurrenceRule(rule: EKRecurrenceRule): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 3651816622797449, this, [rule]); }
   /** init() */
-  static init(): EKCalendarItem { return callSDK<EKCalendarItem>("EventKit_3864e7f38681b875", 2135233146225150, undefined, []); }
+  static init(): EKCalendarItem { return callSDK<EKCalendarItem>("EventKit_ff42ce03e691ab23", 2135233146225150, undefined, []); }
   /**
    * func removeAlarm(_ alarm: EKAlarm)
    * @availability iOS 5.0+
    */
-  removeAlarm(alarm: EKAlarm): void { return callSDK<void>("EventKit_3864e7f38681b875", 37859025680448, this, [alarm]); }
+  removeAlarm(alarm: EKAlarm): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 37859025680448, this, [alarm]); }
   /**
    * func removeRecurrenceRule(_ rule: EKRecurrenceRule)
    * @availability iOS 5.0+
    */
-  removeRecurrenceRule(rule: EKRecurrenceRule): void { return callSDK<void>("EventKit_3864e7f38681b875", 54443868126820, this, [rule]); }
+  removeRecurrenceRule(rule: EKRecurrenceRule): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 54443868126820, this, [rule]); }
   /**
    * var url: URL? { get set }
    * @availability iOS 5.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 3534243475029433, this, []); }
-  set url(value: (string) | null) { callSDK<void>("EventKit_3864e7f38681b875", 2152477338163647, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 3534243475029433, this, []); }
+  set url(value: (string) | null) { callSDK<void>("EventKit_ff42ce03e691ab23", 2152477338163647, this, [value]); }
   /**
    * var alarms: [EKAlarm]? { get set }
    * @availability iOS 5.0+
    */
-  get alarms(): (Array<EKAlarm>) | null { return callSDK<(Array<EKAlarm>) | null>("EventKit_3864e7f38681b875", 3444048738577918, this, []); }
-  set alarms(value: (Array<EKAlarm>) | null) { callSDK<void>("EventKit_3864e7f38681b875", 3971400835683552, this, [value]); }
+  get alarms(): (Array<EKAlarm>) | null { return callSDK<(Array<EKAlarm>) | null>("EventKit_ff42ce03e691ab23", 3444048738577918, this, []); }
+  set alarms(value: (Array<EKAlarm>) | null) { callSDK<void>("EventKit_ff42ce03e691ab23", 3971400835683552, this, [value]); }
   /**
    * var attendees: [EKParticipant]? { get }
    * @availability iOS 5.0+
    */
-  get attendees(): (Array<EKParticipant>) | null { return callSDK<(Array<EKParticipant>) | null>("EventKit_3864e7f38681b875", 4162329345042085, this, []); }
+  get attendees(): (Array<EKParticipant>) | null { return callSDK<(Array<EKParticipant>) | null>("EventKit_ff42ce03e691ab23", 4162329345042085, this, []); }
   /**
    * var calendar: EKCalendar! { get set }
    * @availability iOS 5.0+
    */
-  get calendar(): (EKCalendar) | null { return callSDK<(EKCalendar) | null>("EventKit_3864e7f38681b875", 4411785085971631, this, []); }
-  set calendar(value: (EKCalendar) | null) { callSDK<void>("EventKit_3864e7f38681b875", 2273451455283953, this, [value]); }
+  get calendar(): (EKCalendar) | null { return callSDK<(EKCalendar) | null>("EventKit_ff42ce03e691ab23", 4411785085971631, this, []); }
+  set calendar(value: (EKCalendar) | null) { callSDK<void>("EventKit_ff42ce03e691ab23", 2273451455283953, this, [value]); }
   /**
    * var calendarItemExternalIdentifier: String! { get }
    * @availability iOS 6.0+
    */
-  get calendarItemExternalIdentifier(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 2045129453667450, this, []); }
+  get calendarItemExternalIdentifier(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 2045129453667450, this, []); }
   /**
    * var calendarItemIdentifier: String { get }
    * @availability iOS 6.0+
    */
-  get calendarItemIdentifier(): string { return callSDK<string>("EventKit_3864e7f38681b875", 3236331397227537, this, []); }
+  get calendarItemIdentifier(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 3236331397227537, this, []); }
   /**
    * var creationDate: Date? { get }
    * @availability iOS 5.0+
    */
-  get creationDate(): $SDK0 { return callSDK<$SDK0>("EventKit_3864e7f38681b875", 2529500213148343, this, []); }
+  get creationDate(): $SDK0 { return callSDK<$SDK0>("EventKit_ff42ce03e691ab23", 2529500213148343, this, []); }
   /**
    * var hasAlarms: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasAlarms(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 1345273275729422, this, []); }
+  get hasAlarms(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 1345273275729422, this, []); }
   /**
    * var hasAttendees: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasAttendees(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 2649113727178616, this, []); }
+  get hasAttendees(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 2649113727178616, this, []); }
   /**
    * var hasNotes: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasNotes(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 2172472369019680, this, []); }
+  get hasNotes(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 2172472369019680, this, []); }
   /**
    * var hasRecurrenceRules: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasRecurrenceRules(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 485243470196094, this, []); }
+  get hasRecurrenceRules(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 485243470196094, this, []); }
   /**
    * var lastModifiedDate: Date? { get }
    * @availability iOS 5.0+
    */
-  get lastModifiedDate(): $SDK0 { return callSDK<$SDK0>("EventKit_3864e7f38681b875", 678644661590335, this, []); }
+  get lastModifiedDate(): $SDK0 { return callSDK<$SDK0>("EventKit_ff42ce03e691ab23", 678644661590335, this, []); }
   /**
    * var location: String? { get set }
    * @availability iOS 5.0+
    */
-  get location(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 2974652386364971, this, []); }
-  set location(value: (string) | null) { callSDK<void>("EventKit_3864e7f38681b875", 46528116434414, this, [value]); }
+  get location(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 2974652386364971, this, []); }
+  set location(value: (string) | null) { callSDK<void>("EventKit_ff42ce03e691ab23", 46528116434414, this, [value]); }
   /**
    * var notes: String? { get set }
    * @availability iOS 5.0+
    */
-  get notes(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 731078407982377, this, []); }
-  set notes(value: (string) | null) { callSDK<void>("EventKit_3864e7f38681b875", 355310227890683, this, [value]); }
+  get notes(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 731078407982377, this, []); }
+  set notes(value: (string) | null) { callSDK<void>("EventKit_ff42ce03e691ab23", 355310227890683, this, [value]); }
   /**
    * var recurrenceRules: [EKRecurrenceRule]? { get set }
    * @availability iOS 5.0+
    */
-  get recurrenceRules(): $SDK4 { return callSDK<$SDK4>("EventKit_3864e7f38681b875", 3623729759499, this, []); }
-  set recurrenceRules(value: $SDK4) { callSDK<void>("EventKit_3864e7f38681b875", 3826878686296607, this, [value]); }
+  get recurrenceRules(): $SDK4 { return callSDK<$SDK4>("EventKit_ff42ce03e691ab23", 3623729759499, this, []); }
+  set recurrenceRules(value: $SDK4) { callSDK<void>("EventKit_ff42ce03e691ab23", 3826878686296607, this, [value]); }
   /**
    * var timeZone: TimeZone? { get set }
    * @availability iOS 5.0+
    */
-  get timeZone(): $SDK5 { return callSDK<$SDK5>("EventKit_3864e7f38681b875", 1836974363967219, this, []); }
-  set timeZone(value: $SDK5) { callSDK<void>("EventKit_3864e7f38681b875", 3032469165742310, this, [value]); }
+  get timeZone(): $SDK5 { return callSDK<$SDK5>("EventKit_ff42ce03e691ab23", 1836974363967219, this, []); }
+  set timeZone(value: $SDK5) { callSDK<void>("EventKit_ff42ce03e691ab23", 3032469165742310, this, [value]); }
   /**
    * var title: String! { get set }
    * @availability iOS 5.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 2547676850532865, this, []); }
-  set title(value: (string) | null) { callSDK<void>("EventKit_3864e7f38681b875", 2986179659825148, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 2547676850532865, this, []); }
+  set title(value: (string) | null) { callSDK<void>("EventKit_ff42ce03e691ab23", 2986179659825148, this, [value]); }
   declare readonly $type: { "c:objc(cs)EKCalendarItem": true; "c:objc(cs)EKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasChanges": true; "url": true; "alarms": true; "attendees": true; "calendar": true; "calendarItemExternalIdentifier": true; "calendarItemIdentifier": true; "creationDate": true; "hasAlarms": true; "hasAttendees": true; "hasNotes": true; "hasRecurrenceRules": true; "lastModifiedDate": true; "location": true; "notes": true; "recurrenceRules": true; "timeZone": true; "title": true };
 }
@@ -367,7 +367,7 @@ export type EKCalendarType = "local" | "calDAV" | "exchange" | "subscription" | 
 
 export const EKCalendarType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKCalendarType) | null { return callSDK<(EKCalendarType) | null>("EventKit_3864e7f38681b875", 951425993499251, undefined, [rawValue]); }
+  init(rawValue: number): (EKCalendarType) | null { return callSDK<(EKCalendarType) | null>("EventKit_ff42ce03e691ab23", 951425993499251, undefined, [rawValue]); }
 };
 
 /** struct EKEntityMask */
@@ -375,11 +375,11 @@ export type EKEntityMask = Array<"event" | "reminder">;
 
 export const EKEntityMask = {
   /** static var event: EKEntityMask { get } */
-  get event(): EKEntityMask { return callSDK<EKEntityMask>("EventKit_3864e7f38681b875", 1723888538426603, undefined, []); },
+  get event(): EKEntityMask { return callSDK<EKEntityMask>("EventKit_ff42ce03e691ab23", 1723888538426603, undefined, []); },
   /** static var reminder: EKEntityMask { get } */
-  get reminder(): EKEntityMask { return callSDK<EKEntityMask>("EventKit_3864e7f38681b875", 3516192701186756, undefined, []); },
+  get reminder(): EKEntityMask { return callSDK<EKEntityMask>("EventKit_ff42ce03e691ab23", 3516192701186756, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): EKEntityMask { return callSDK<EKEntityMask>("EventKit_3864e7f38681b875", 3499536568980397, undefined, [rawValue]); }
+  init(rawValue: number): EKEntityMask { return callSDK<EKEntityMask>("EventKit_ff42ce03e691ab23", 3499536568980397, undefined, [rawValue]); }
 };
 
 /** enum EKEntityType */
@@ -387,89 +387,89 @@ export type EKEntityType = "event" | "reminder";
 
 export const EKEntityType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (EKEntityType) | null { return callSDK<(EKEntityType) | null>("EventKit_3864e7f38681b875", 920653167602143, undefined, [rawValue]); }
+  init(rawValue: number): (EKEntityType) | null { return callSDK<(EKEntityType) | null>("EventKit_ff42ce03e691ab23", 920653167602143, undefined, [rawValue]); }
 };
 
 /** struct EKError */
 export class EKError extends SDKHandle {
   /** static var noCalendar: EKError.Code { get } */
-  static get noCalendar(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 3451665150315355, undefined, []); }
+  static get noCalendar(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 3451665150315355, undefined, []); }
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("EventKit_3864e7f38681b875", 3333628897083012, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 3333628897083012, undefined, []); }
   /** static var invalidSpan: EKError.Code { get } */
-  static get invalidSpan(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 3066591181969549, undefined, []); }
+  static get invalidSpan(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 3066591181969549, undefined, []); }
   /** static var noStartDate: EKError.Code { get } */
-  static get noStartDate(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 4016788800303347, undefined, []); }
+  static get noStartDate(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 4016788800303347, undefined, []); }
   /** static var datesInverted: EKError.Code { get } */
-  static get datesInverted(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 316583510437281, undefined, []); }
+  static get datesInverted(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 316583510437281, undefined, []); }
   /** static var osNotSupported: EKError.Code { get } */
-  static get osNotSupported(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 1113216405209553, undefined, []); }
+  static get osNotSupported(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 1113216405209553, undefined, []); }
   /** static var sourceMismatch: EKError.Code { get } */
-  static get sourceMismatch(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 4477876014642792, undefined, []); }
+  static get sourceMismatch(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 4477876014642792, undefined, []); }
   /** static var eventNotMutable: EKError.Code { get } */
-  static get eventNotMutable(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 3593401067965312, undefined, []); }
+  static get eventNotMutable(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 3593401067965312, undefined, []); }
   /** static var internalFailure: EKError.Code { get } */
-  static get internalFailure(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 1982526484487322, undefined, []); }
+  static get internalFailure(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 1982526484487322, undefined, []); }
   /** static var calendarReadOnly: EKError.Code { get } */
-  static get calendarReadOnly(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 1835258030788174, undefined, []); }
+  static get calendarReadOnly(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 1835258030788174, undefined, []); }
   /** static var invalidEntityType: EKError.Code { get } */
-  static get invalidEntityType(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 1720177738894137, undefined, []); }
+  static get invalidEntityType(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 1720177738894137, undefined, []); }
   /** static var priorityIsInvalid: EKError.Code { get } */
-  static get priorityIsInvalid(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 3793906770216777, undefined, []); }
+  static get priorityIsInvalid(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 3793906770216777, undefined, []); }
   /** static var calendarHasNoSource: EKError.Code { get } */
-  static get calendarHasNoSource(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 200188828473729, undefined, []); }
+  static get calendarHasNoSource(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 200188828473729, undefined, []); }
   /** static var calendarIsImmutable: EKError.Code { get } */
-  static get calendarIsImmutable(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 4134794031528307, undefined, []); }
+  static get calendarIsImmutable(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 4134794031528307, undefined, []); }
   /** static var invitesCannotBeMoved: EKError.Code { get } */
-  static get invitesCannotBeMoved(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 4040466615912498, undefined, []); }
+  static get invitesCannotBeMoved(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 4040466615912498, undefined, []); }
   /** static var eventStoreNotAuthorized: EKError.Code { get } */
-  static get eventStoreNotAuthorized(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 2455103615399102, undefined, []); }
+  static get eventStoreNotAuthorized(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 2455103615399102, undefined, []); }
   /** static var startDateTooFarInFuture: EKError.Code { get } */
-  static get startDateTooFarInFuture(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 3816393715349733, undefined, []); }
+  static get startDateTooFarInFuture(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 3816393715349733, undefined, []); }
   /** static var sourceDoesNotAllowEvents: EKError.Code { get } */
-  static get sourceDoesNotAllowEvents(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 3122274590344332, undefined, []); }
+  static get sourceDoesNotAllowEvents(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 3122274590344332, undefined, []); }
   /** static var procedureAlarmsNotMutable: EKError.Code { get } */
-  static get procedureAlarmsNotMutable(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 1794768756120636, undefined, []); }
+  static get procedureAlarmsNotMutable(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 1794768756120636, undefined, []); }
   /** static var alarmGreaterThanRecurrence: EKError.Code { get } */
-  static get alarmGreaterThanRecurrence(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 353040339255057, undefined, []); }
+  static get alarmGreaterThanRecurrence(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 353040339255057, undefined, []); }
   /** static var alarmProximityNotSupported: EKError.Code { get } */
-  static get alarmProximityNotSupported(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 3822148007357635, undefined, []); }
+  static get alarmProximityNotSupported(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 3822148007357635, undefined, []); }
   /** static var calendarDoesNotAllowEvents: EKError.Code { get } */
-  static get calendarDoesNotAllowEvents(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 3769371591775451, undefined, []); }
+  static get calendarDoesNotAllowEvents(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 3769371591775451, undefined, []); }
   /** static var invalidInviteReplyCalendar: EKError.Code { get } */
-  static get invalidInviteReplyCalendar(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 1456839106251160, undefined, []); }
+  static get invalidInviteReplyCalendar(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 1456839106251160, undefined, []); }
   /** static var sourceDoesNotAllowReminders: EKError.Code { get } */
-  static get sourceDoesNotAllowReminders(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 2767105864481699, undefined, []); }
+  static get sourceDoesNotAllowReminders(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 2767105864481699, undefined, []); }
   /** static var calendarDoesNotAllowReminders: EKError.Code { get } */
-  static get calendarDoesNotAllowReminders(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 2321507005937169, undefined, []); }
+  static get calendarDoesNotAllowReminders(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 2321507005937169, undefined, []); }
   /** static var durationGreaterThanRecurrence: EKError.Code { get } */
-  static get durationGreaterThanRecurrence(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 2273939404175029, undefined, []); }
+  static get durationGreaterThanRecurrence(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 2273939404175029, undefined, []); }
   /** static var objectBelongsToDifferentStore: EKError.Code { get } */
-  static get objectBelongsToDifferentStore(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 3702689703518761, undefined, []); }
+  static get objectBelongsToDifferentStore(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 3702689703518761, undefined, []); }
   /** static var reminderLocationsNotSupported: EKError.Code { get } */
-  static get reminderLocationsNotSupported(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 3114866152743127, undefined, []); }
+  static get reminderLocationsNotSupported(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 3114866152743127, undefined, []); }
   /** static var calendarSourceCannotBeModified: EKError.Code { get } */
-  static get calendarSourceCannotBeModified(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 2799355012227040, undefined, []); }
+  static get calendarSourceCannotBeModified(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 2799355012227040, undefined, []); }
   /** static var notificationCollectionMismatch: EKError.Code { get } */
-  static get notificationCollectionMismatch(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 2868088523674097, undefined, []); }
+  static get notificationCollectionMismatch(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 2868088523674097, undefined, []); }
   /** static var reminderAlarmContainsEmailOrUrl: EKError.Code { get } */
-  static get reminderAlarmContainsEmailOrUrl(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 4298398734123095, undefined, []); }
+  static get reminderAlarmContainsEmailOrUrl(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 4298398734123095, undefined, []); }
   /** static var structuredLocationsNotSupported: EKError.Code { get } */
-  static get structuredLocationsNotSupported(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 1688986222640002, undefined, []); }
+  static get structuredLocationsNotSupported(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 1688986222640002, undefined, []); }
   /** static var recurringReminderRequiresDueDate: EKError.Code { get } */
-  static get recurringReminderRequiresDueDate(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 1737494353086008, undefined, []); }
+  static get recurringReminderRequiresDueDate(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 1737494353086008, undefined, []); }
   /** static var notificationsCollectionFlagNotSet: EKError.Code { get } */
-  static get notificationsCollectionFlagNotSet(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 4112688039360376, undefined, []); }
+  static get notificationsCollectionFlagNotSet(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 4112688039360376, undefined, []); }
   /** static var notificationSavedWithoutCollection: EKError.Code { get } */
-  static get notificationSavedWithoutCollection(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 141763542413976, undefined, []); }
+  static get notificationSavedWithoutCollection(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 141763542413976, undefined, []); }
   /** static var sourceDoesNotAllowCalendarAddDelete: EKError.Code { get } */
-  static get sourceDoesNotAllowCalendarAddDelete(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 319031107117677, undefined, []); }
+  static get sourceDoesNotAllowCalendarAddDelete(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 319031107117677, undefined, []); }
   /** static var startDateCollidesWithOtherOccurrence: EKError.Code { get } */
-  static get startDateCollidesWithOtherOccurrence(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 1441886272132248, undefined, []); }
+  static get startDateCollidesWithOtherOccurrence(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 1441886272132248, undefined, []); }
   /** static var last: EKError.Code { get } */
-  static get last(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 1926755542922997, undefined, []); }
+  static get last(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 1926755542922997, undefined, []); }
   /** static var noEndDate: EKError.Code { get } */
-  static get noEndDate(): EKError_Code { return callSDK<EKError_Code>("EventKit_3864e7f38681b875", 4177367084759784, undefined, []); }
+  static get noEndDate(): EKError_Code { return callSDK<EKError_Code>("EventKit_ff42ce03e691ab23", 4177367084759784, undefined, []); }
   declare readonly $type: { "s:SC11EKErrorCodeLeV": true };
 }
 
@@ -478,7 +478,7 @@ export type EKError_Code = "eventNotMutable" | "noCalendar" | "noStartDate" | "n
 
 export const EKError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKError_Code) | null { return callSDK<(EKError_Code) | null>("EventKit_3864e7f38681b875", 2368408216146948, undefined, [rawValue]); }
+  init(rawValue: number): (EKError_Code) | null { return callSDK<(EKError_Code) | null>("EventKit_ff42ce03e691ab23", 2368408216146948, undefined, [rawValue]); }
 };
 
 /**
@@ -490,83 +490,83 @@ export class EKEvent extends (EKCalendarItem as unknown as Omit<typeof EKCalenda
    * init(eventStore: EKEventStore)
    * @availability iOS 4.0+
    */
-  static init(eventStore: EKEventStore): EKEvent { return callSDK<EKEvent>("EventKit_3864e7f38681b875", 3380120307307026, undefined, [eventStore]); }
+  static init(eventStore: EKEventStore): EKEvent { return callSDK<EKEvent>("EventKit_ff42ce03e691ab23", 3380120307307026, undefined, [eventStore]); }
   /**
    * func compareStartDate(with other: EKEvent) -> ComparisonResult
    * @availability iOS 4.0+
    */
-  compareStartDate(other: EKEvent): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("EventKit_3864e7f38681b875", 1647396529148404, this, [other]); }
+  compareStartDate(other: EKEvent): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("EventKit_ff42ce03e691ab23", 1647396529148404, this, [other]); }
   /**
    * func refresh() -> Bool
    * @availability iOS 4.0+
    */
-  refresh(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 1408694596861443, this, []); }
+  refresh(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 1408694596861443, this, []); }
   /**
    * var isAllDay: Bool { get set }
    * @availability iOS 4.0+
    */
-  get isAllDay(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 4197597597618240, this, []); }
-  set isAllDay(value: boolean) { callSDK<void>("EventKit_3864e7f38681b875", 390969180688915, this, [value]); }
+  get isAllDay(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 4197597597618240, this, []); }
+  set isAllDay(value: boolean) { callSDK<void>("EventKit_ff42ce03e691ab23", 390969180688915, this, [value]); }
   /**
    * var availability: EKEventAvailability { get set }
    * @availability iOS 4.0+
    */
-  get availability(): EKEventAvailability { return callSDK<EKEventAvailability>("EventKit_3864e7f38681b875", 1076988948706096, this, []); }
-  set availability(value: EKEventAvailability) { callSDK<void>("EventKit_3864e7f38681b875", 3911040405831734, this, [value]); }
+  get availability(): EKEventAvailability { return callSDK<EKEventAvailability>("EventKit_ff42ce03e691ab23", 1076988948706096, this, []); }
+  set availability(value: EKEventAvailability) { callSDK<void>("EventKit_ff42ce03e691ab23", 3911040405831734, this, [value]); }
   /**
    * var birthdayContactIdentifier: String? { get }
    * @availability iOS 9.0+
    */
-  get birthdayContactIdentifier(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 94034181830408, this, []); }
+  get birthdayContactIdentifier(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 94034181830408, this, []); }
   /**
    * var birthdayPersonID: Int { get }
    * @availability iOS 5.0+
    * @deprecated iOS 9.0
    */
-  get birthdayPersonID(): number { return callSDK<number>("EventKit_3864e7f38681b875", 1511995115493343, this, []); }
+  get birthdayPersonID(): number { return callSDK<number>("EventKit_ff42ce03e691ab23", 1511995115493343, this, []); }
   /**
    * var endDate: Date! { get set }
    * @availability iOS 4.0+
    */
-  get endDate(): $SDK0 { return callSDK<$SDK0>("EventKit_3864e7f38681b875", 3672934889465443, this, []); }
-  set endDate(value: $SDK0) { callSDK<void>("EventKit_3864e7f38681b875", 1402312116783178, this, [value]); }
+  get endDate(): $SDK0 { return callSDK<$SDK0>("EventKit_ff42ce03e691ab23", 3672934889465443, this, []); }
+  set endDate(value: $SDK0) { callSDK<void>("EventKit_ff42ce03e691ab23", 1402312116783178, this, [value]); }
   /**
    * var eventIdentifier: String! { get }
    * @availability iOS 4.0+
    */
-  get eventIdentifier(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 1455847712914103, this, []); }
+  get eventIdentifier(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 1455847712914103, this, []); }
   /**
    * var isDetached: Bool { get }
    * @availability iOS 4.0+
    */
-  get isDetached(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 719403694864674, this, []); }
+  get isDetached(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 719403694864674, this, []); }
   /**
    * var occurrenceDate: Date! { get }
    * @availability iOS 9.0+
    */
-  get occurrenceDate(): $SDK0 { return callSDK<$SDK0>("EventKit_3864e7f38681b875", 4312926928350701, this, []); }
+  get occurrenceDate(): $SDK0 { return callSDK<$SDK0>("EventKit_ff42ce03e691ab23", 4312926928350701, this, []); }
   /**
    * var organizer: EKParticipant? { get }
    * @availability iOS 4.0+
    */
-  get organizer(): (EKParticipant) | null { return callSDK<(EKParticipant) | null>("EventKit_3864e7f38681b875", 4207992715974388, this, []); }
+  get organizer(): (EKParticipant) | null { return callSDK<(EKParticipant) | null>("EventKit_ff42ce03e691ab23", 4207992715974388, this, []); }
   /**
    * var startDate: Date! { get set }
    * @availability iOS 4.0+
    */
-  get startDate(): $SDK0 { return callSDK<$SDK0>("EventKit_3864e7f38681b875", 788391058891852, this, []); }
-  set startDate(value: $SDK0) { callSDK<void>("EventKit_3864e7f38681b875", 2139407300876037, this, [value]); }
+  get startDate(): $SDK0 { return callSDK<$SDK0>("EventKit_ff42ce03e691ab23", 788391058891852, this, []); }
+  set startDate(value: $SDK0) { callSDK<void>("EventKit_ff42ce03e691ab23", 2139407300876037, this, [value]); }
   /**
    * var status: EKEventStatus { get }
    * @availability iOS 4.0+
    */
-  get status(): EKEventStatus { return callSDK<EKEventStatus>("EventKit_3864e7f38681b875", 2799920230442697, this, []); }
+  get status(): EKEventStatus { return callSDK<EKEventStatus>("EventKit_ff42ce03e691ab23", 2799920230442697, this, []); }
   /**
    * @NSCopying var structuredLocation: EKStructuredLocation? { get set }
    * @availability iOS 9.0+
    */
-  get structuredLocation(): $SDK1 { return callSDK<$SDK1>("EventKit_3864e7f38681b875", 1104894160164928, this, []); }
-  set structuredLocation(value: $SDK1) { callSDK<void>("EventKit_3864e7f38681b875", 2724038752176048, this, [value]); }
+  get structuredLocation(): $SDK1 { return callSDK<$SDK1>("EventKit_ff42ce03e691ab23", 1104894160164928, this, []); }
+  set structuredLocation(value: $SDK1) { callSDK<void>("EventKit_ff42ce03e691ab23", 2724038752176048, this, [value]); }
   declare readonly $type: { "c:objc(cs)EKEvent": true; "c:objc(cs)EKCalendarItem": true; "c:objc(cs)EKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasChanges": true; "url": true; "alarms": true; "attendees": true; "calendar": true; "calendarItemExternalIdentifier": true; "calendarItemIdentifier": true; "creationDate": true; "hasAlarms": true; "hasAttendees": true; "hasNotes": true; "hasRecurrenceRules": true; "lastModifiedDate": true; "location": true; "notes": true; "recurrenceRules": true; "timeZone": true; "title": true; "isAllDay": true; "availability": true; "birthdayContactIdentifier": true; "birthdayPersonID": true; "endDate": true; "eventIdentifier": true; "isDetached": true; "occurrenceDate": true; "organizer": true; "startDate": true; "status": true; "structuredLocation": true };
 }
@@ -576,7 +576,7 @@ export type EKEventAvailability = "notSupported" | "busy" | "free" | "tentative"
 
 export const EKEventAvailability = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKEventAvailability) | null { return callSDK<(EKEventAvailability) | null>("EventKit_3864e7f38681b875", 2677716357770615, undefined, [rawValue]); }
+  init(rawValue: number): (EKEventAvailability) | null { return callSDK<(EKEventAvailability) | null>("EventKit_ff42ce03e691ab23", 2677716357770615, undefined, [rawValue]); }
 };
 
 /** typealias EKEventSearchCallback = (EKEvent, UnsafeMutablePointer<ObjCBool>) -> Void */
@@ -587,7 +587,7 @@ export type EKEventStatus = "none" | "confirmed" | "tentative" | "canceled";
 
 export const EKEventStatus = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKEventStatus) | null { return callSDK<(EKEventStatus) | null>("EventKit_3864e7f38681b875", 3790280646381571, undefined, [rawValue]); }
+  init(rawValue: number): (EKEventStatus) | null { return callSDK<(EKEventStatus) | null>("EventKit_ff42ce03e691ab23", 3790280646381571, undefined, [rawValue]); }
 };
 
 /**
@@ -599,183 +599,183 @@ export class EKEventStore extends SDKHandle {
    * class func authorizationStatus(for entityType: EKEntityType) -> EKAuthorizationStatus
    * @availability iOS 6.0+
    */
-  static authorizationStatus(entityType: EKEntityType): EKAuthorizationStatus { return callSDK<EKAuthorizationStatus>("EventKit_3864e7f38681b875", 671086627783461, undefined, [entityType]); }
+  static authorizationStatus(entityType: EKEntityType): EKAuthorizationStatus { return callSDK<EKAuthorizationStatus>("EventKit_ff42ce03e691ab23", 671086627783461, undefined, [entityType]); }
   /**
    * func calendarItem(withIdentifier identifier: String) -> EKCalendarItem?
    * @availability iOS 6.0+
    */
-  calendarItem(identifier: string): (EKCalendarItem) | null { return callSDK<(EKCalendarItem) | null>("EventKit_3864e7f38681b875", 732421060283735, this, [identifier]); }
+  calendarItem(identifier: string): (EKCalendarItem) | null { return callSDK<(EKCalendarItem) | null>("EventKit_ff42ce03e691ab23", 732421060283735, this, [identifier]); }
   /**
    * func calendarItems(withExternalIdentifier externalIdentifier: String) -> [EKCalendarItem]
    * @availability iOS 6.0+
    */
-  calendarItems(externalIdentifier: string): Array<EKCalendarItem> { return callSDK<Array<EKCalendarItem>>("EventKit_3864e7f38681b875", 3187633975265314, this, [externalIdentifier]); }
+  calendarItems(externalIdentifier: string): Array<EKCalendarItem> { return callSDK<Array<EKCalendarItem>>("EventKit_ff42ce03e691ab23", 3187633975265314, this, [externalIdentifier]); }
   /**
    * func calendar(withIdentifier identifier: String) -> EKCalendar?
    * @availability iOS 5.0+
    */
-  calendar(identifier: string): (EKCalendar) | null { return callSDK<(EKCalendar) | null>("EventKit_3864e7f38681b875", 2361641911226445, this, [identifier]); }
+  calendar(identifier: string): (EKCalendar) | null { return callSDK<(EKCalendar) | null>("EventKit_ff42ce03e691ab23", 2361641911226445, this, [identifier]); }
   /**
    * func calendars(for entityType: EKEntityType) -> [EKCalendar]
    * @availability iOS 6.0+
    */
-  calendars(entityType: EKEntityType): Array<EKCalendar> { return callSDK<Array<EKCalendar>>("EventKit_3864e7f38681b875", 59754607546846, this, [entityType]); }
+  calendars(entityType: EKEntityType): Array<EKCalendar> { return callSDK<Array<EKCalendar>>("EventKit_ff42ce03e691ab23", 59754607546846, this, [entityType]); }
   /**
    * func cancelFetchRequest(_ fetchIdentifier: Any)
    * @availability iOS 6.0+
    */
-  cancelFetchRequest(fetchIdentifier: unknown): void { return callSDK<void>("EventKit_3864e7f38681b875", 1742767830771626, this, [fetchIdentifier]); }
+  cancelFetchRequest(fetchIdentifier: unknown): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 1742767830771626, this, [fetchIdentifier]); }
   /**
    * func commit() throws
    * @availability iOS 5.0+
    */
-  commit(): void { return callSDK<void>("EventKit_3864e7f38681b875", 2871640351760995, this, []); }
+  commit(): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 2871640351760995, this, []); }
   /**
    * func defaultCalendarForNewReminders() -> EKCalendar?
    * @availability iOS 6.0+
    */
-  defaultCalendarForNewReminders(): (EKCalendar) | null { return callSDK<(EKCalendar) | null>("EventKit_3864e7f38681b875", 3674525141028554, this, []); }
+  defaultCalendarForNewReminders(): (EKCalendar) | null { return callSDK<(EKCalendar) | null>("EventKit_ff42ce03e691ab23", 3674525141028554, this, []); }
   /**
    * func event(withIdentifier identifier: String) -> EKEvent?
    * @availability iOS 4.0+
    */
-  event(identifier: string): (EKEvent) | null { return callSDK<(EKEvent) | null>("EventKit_3864e7f38681b875", 1721412972253606, this, [identifier]); }
+  event(identifier: string): (EKEvent) | null { return callSDK<(EKEvent) | null>("EventKit_ff42ce03e691ab23", 1721412972253606, this, [identifier]); }
   /**
    * func events(matching predicate: NSPredicate) -> [EKEvent]
    * @availability iOS 4.0+
    */
-  events(predicate: _Foundation_NSPredicate): Array<EKEvent> { return callSDK<Array<EKEvent>>("EventKit_3864e7f38681b875", 3345005257635934, this, [predicate]); }
+  events(predicate: _Foundation_NSPredicate): Array<EKEvent> { return callSDK<Array<EKEvent>>("EventKit_ff42ce03e691ab23", 3345005257635934, this, [predicate]); }
   /**
    * func fetchReminders(matching predicate: NSPredicate, completion: @escaping ([EKReminder]?) -> Void) -> Any
    * @availability iOS 6.0+
    */
-  fetchReminders(predicate: _Foundation_NSPredicate, completion: ((arg0: (Array<EKReminder>) | null) => void)): unknown { return callSDK<unknown>("EventKit_3864e7f38681b875", 3669281186133133, this, [predicate, completion], [null,{"callback":{"out":[]}}]); }
+  fetchReminders(predicate: _Foundation_NSPredicate, completion: ((arg0: (Array<EKReminder>) | null) => void)): unknown { return callSDK<unknown>("EventKit_ff42ce03e691ab23", 3669281186133133, this, [predicate, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 4.0+
    */
-  static init(): EKEventStore { return callSDK<EKEventStore>("EventKit_3864e7f38681b875", 3696501966012837, undefined, []); }
+  static init(): EKEventStore { return callSDK<EKEventStore>("EventKit_ff42ce03e691ab23", 3696501966012837, undefined, []); }
   /**
    * init(sources: [EKSource])
    * @availability iOS 16.0+
    */
-  static initSources(sources: Array<EKSource>): EKEventStore { return callSDK<EKEventStore>("EventKit_3864e7f38681b875", 4129271487343073, undefined, [sources]); }
+  static initSources(sources: Array<EKSource>): EKEventStore { return callSDK<EKEventStore>("EventKit_ff42ce03e691ab23", 4129271487343073, undefined, [sources]); }
   /**
    * func predicateForCompletedReminders(withCompletionDateStarting startDate: Date?, ending endDate: Date?, calendars: [EKCalendar]?) -> NSPredicate
    * @availability iOS 6.0+
    */
-  predicateForCompletedReminders(startDate?: $SDK0, endDate?: $SDK0, calendars?: $SDK8): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("EventKit_3864e7f38681b875", 2943413716100778, this, [startDate, endDate, calendars]); }
+  predicateForCompletedReminders(startDate?: $SDK0, endDate?: $SDK0, calendars?: $SDK8): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("EventKit_ff42ce03e691ab23", 2943413716100778, this, [startDate, endDate, calendars]); }
   /**
    * func predicateForEvents(withStart startDate: Date, end endDate: Date, calendars: [EKCalendar]?) -> NSPredicate
    * @availability iOS 4.0+
    */
-  predicateForEvents(startDate: globalThis.Date, endDate: globalThis.Date, calendars?: $SDK8): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("EventKit_3864e7f38681b875", 2520652220065123, this, [startDate, endDate, calendars]); }
+  predicateForEvents(startDate: globalThis.Date, endDate: globalThis.Date, calendars?: $SDK8): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("EventKit_ff42ce03e691ab23", 2520652220065123, this, [startDate, endDate, calendars]); }
   /**
    * func predicateForIncompleteReminders(withDueDateStarting startDate: Date?, ending endDate: Date?, calendars: [EKCalendar]?) -> NSPredicate
    * @availability iOS 6.0+
    */
-  predicateForIncompleteReminders(startDate?: $SDK0, endDate?: $SDK0, calendars?: $SDK8): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("EventKit_3864e7f38681b875", 46950741377391, this, [startDate, endDate, calendars]); }
+  predicateForIncompleteReminders(startDate?: $SDK0, endDate?: $SDK0, calendars?: $SDK8): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("EventKit_ff42ce03e691ab23", 46950741377391, this, [startDate, endDate, calendars]); }
   /**
    * func predicateForReminders(in calendars: [EKCalendar]?) -> NSPredicate
    * @availability iOS 6.0+
    */
-  predicateForReminders(calendars?: $SDK8): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("EventKit_3864e7f38681b875", 842249786545625, this, [calendars]); }
+  predicateForReminders(calendars?: $SDK8): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("EventKit_ff42ce03e691ab23", 842249786545625, this, [calendars]); }
   /**
    * func refreshSourcesIfNecessary()
    * @availability iOS 5.0+
    */
-  refreshSourcesIfNecessary(): void { return callSDK<void>("EventKit_3864e7f38681b875", 525431562037104, this, []); }
+  refreshSourcesIfNecessary(): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 525431562037104, this, []); }
   /**
    * func removeCalendar(_ calendar: EKCalendar, commit: Bool) throws
    * @availability iOS 5.0+
    */
-  removeCalendar(calendar: EKCalendar, commit: boolean): void { return callSDK<void>("EventKit_3864e7f38681b875", 1791849613284148, this, [calendar, commit]); }
+  removeCalendar(calendar: EKCalendar, commit: boolean): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 1791849613284148, this, [calendar, commit]); }
   /**
    * func remove(_ event: EKEvent, span: EKSpan, commit: Bool) throws
    * @availability iOS 5.0+
    */
-  removeSpanCommit(event: EKEvent, span: EKSpan, commit: boolean): void { return callSDK<void>("EventKit_3864e7f38681b875", 250943123853943, this, [event, span, commit]); }
+  removeSpanCommit(event: EKEvent, span: EKSpan, commit: boolean): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 250943123853943, this, [event, span, commit]); }
   /**
    * func remove(_ event: EKEvent, span: EKSpan) throws
    * @availability iOS 4.0+
    */
-  removeSpan(event: EKEvent, span: EKSpan): void { return callSDK<void>("EventKit_3864e7f38681b875", 3171449716369112, this, [event, span]); }
+  removeSpan(event: EKEvent, span: EKSpan): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 3171449716369112, this, [event, span]); }
   /**
    * func remove(_ reminder: EKReminder, commit: Bool) throws
    * @availability iOS 6.0+
    */
-  removeCommit(reminder: EKReminder, commit: boolean): void { return callSDK<void>("EventKit_3864e7f38681b875", 510917379506551, this, [reminder, commit]); }
+  removeCommit(reminder: EKReminder, commit: boolean): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 510917379506551, this, [reminder, commit]); }
   /**
    * func requestAccess(to entityType: EKEntityType) async throws -> Bool
    * @availability iOS 6.0+
    * @deprecated iOS 17.0
    */
-  requestAccess(entityType: EKEntityType, completion: $SDK9): void { return callSDK<void>("EventKit_3864e7f38681b875", 3077645896337917, this, [entityType, completion], [null,{"callback":{"out":[]}}]); }
+  requestAccess(entityType: EKEntityType, completion: $SDK9): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 3077645896337917, this, [entityType, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func requestFullAccessToEvents() async throws -> Bool
    * @availability iOS 17.0+
    */
-  requestFullAccessToEvents(completion: $SDK9): void { return callSDK<void>("EventKit_3864e7f38681b875", 3371292468194147, this, [completion], [{"callback":{"out":[]}}]); }
+  requestFullAccessToEvents(completion: $SDK9): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 3371292468194147, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func requestFullAccessToReminders() async throws -> Bool
    * @availability iOS 17.0+
    */
-  requestFullAccessToReminders(completion: $SDK9): void { return callSDK<void>("EventKit_3864e7f38681b875", 3182019493593998, this, [completion], [{"callback":{"out":[]}}]); }
+  requestFullAccessToReminders(completion: $SDK9): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 3182019493593998, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func requestWriteOnlyAccessToEvents() async throws -> Bool
    * @availability iOS 17.0+
    */
-  requestWriteOnlyAccessToEvents(completion: $SDK9): void { return callSDK<void>("EventKit_3864e7f38681b875", 371837216876187, this, [completion], [{"callback":{"out":[]}}]); }
+  requestWriteOnlyAccessToEvents(completion: $SDK9): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 371837216876187, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func reset()
    * @availability iOS 5.0+
    */
-  reset(): void { return callSDK<void>("EventKit_3864e7f38681b875", 4254189876726096, this, []); }
+  reset(): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 4254189876726096, this, []); }
   /**
    * func saveCalendar(_ calendar: EKCalendar, commit: Bool) throws
    * @availability iOS 5.0+
    */
-  saveCalendar(calendar: EKCalendar, commit: boolean): void { return callSDK<void>("EventKit_3864e7f38681b875", 3985768523089102, this, [calendar, commit]); }
+  saveCalendar(calendar: EKCalendar, commit: boolean): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 3985768523089102, this, [calendar, commit]); }
   /**
    * func save(_ event: EKEvent, span: EKSpan, commit: Bool) throws
    * @availability iOS 5.0+
    */
-  saveSpanCommit(event: EKEvent, span: EKSpan, commit: boolean): void { return callSDK<void>("EventKit_3864e7f38681b875", 2127788341012593, this, [event, span, commit]); }
+  saveSpanCommit(event: EKEvent, span: EKSpan, commit: boolean): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 2127788341012593, this, [event, span, commit]); }
   /**
    * func save(_ event: EKEvent, span: EKSpan) throws
    * @availability iOS 4.0+
    */
-  saveSpan(event: EKEvent, span: EKSpan): void { return callSDK<void>("EventKit_3864e7f38681b875", 3785810991360048, this, [event, span]); }
+  saveSpan(event: EKEvent, span: EKSpan): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 3785810991360048, this, [event, span]); }
   /**
    * func save(_ reminder: EKReminder, commit: Bool) throws
    * @availability iOS 6.0+
    */
-  saveCommit(reminder: EKReminder, commit: boolean): void { return callSDK<void>("EventKit_3864e7f38681b875", 2128321113639740, this, [reminder, commit]); }
+  saveCommit(reminder: EKReminder, commit: boolean): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 2128321113639740, this, [reminder, commit]); }
   /**
    * func source(withIdentifier identifier: String) -> EKSource?
    * @availability iOS 5.0+
    */
-  source(identifier: string): (EKSource) | null { return callSDK<(EKSource) | null>("EventKit_3864e7f38681b875", 4151204663916320, this, [identifier]); }
+  source(identifier: string): (EKSource) | null { return callSDK<(EKSource) | null>("EventKit_ff42ce03e691ab23", 4151204663916320, this, [identifier]); }
   /**
    * var defaultCalendarForNewEvents: EKCalendar? { get }
    * @availability iOS 4.0+
    */
-  get defaultCalendarForNewEvents(): (EKCalendar) | null { return callSDK<(EKCalendar) | null>("EventKit_3864e7f38681b875", 2525271451286744, this, []); }
+  get defaultCalendarForNewEvents(): (EKCalendar) | null { return callSDK<(EKCalendar) | null>("EventKit_ff42ce03e691ab23", 2525271451286744, this, []); }
   /**
    * var delegateSources: [EKSource] { get }
    * @availability iOS 12.0+
    */
-  get delegateSources(): Array<EKSource> { return callSDK<Array<EKSource>>("EventKit_3864e7f38681b875", 2263767757302893, this, []); }
+  get delegateSources(): Array<EKSource> { return callSDK<Array<EKSource>>("EventKit_ff42ce03e691ab23", 2263767757302893, this, []); }
   /**
    * var eventStoreIdentifier: String { get }
    * @availability iOS 4.0+
    */
-  get eventStoreIdentifier(): string { return callSDK<string>("EventKit_3864e7f38681b875", 3474995499274711, this, []); }
+  get eventStoreIdentifier(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 3474995499274711, this, []); }
   /**
    * var sources: [EKSource] { get }
    * @availability iOS 5.0+
    */
-  get sources(): Array<EKSource> { return callSDK<Array<EKSource>>("EventKit_3864e7f38681b875", 2363888485644601, this, []); }
+  get sources(): Array<EKSource> { return callSDK<Array<EKSource>>("EventKit_ff42ce03e691ab23", 2363888485644601, this, []); }
   declare readonly $type: { "c:objc(cs)EKEventStore": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "defaultCalendarForNewEvents": true; "delegateSources": true; "eventStoreIdentifier": true; "sources": true };
 }
@@ -789,22 +789,22 @@ export class EKEventStore_EventStoreChanged extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> EKEventStore.EventStoreChanged?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(EKEventStore_EventStoreChanged) | null> { return callSDKAsync<(EKEventStore_EventStoreChanged) | null>("EventKit_3864e7f38681b875", 3128692201156269, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(EKEventStore_EventStoreChanged) | null> { return callSDKAsync<(EKEventStore_EventStoreChanged) | null>("EventKit_ff42ce03e691ab23", 3128692201156269, undefined, [notification]); }
   /**
    * @MainActor static func makeNotification(_ message: EKEventStore.EventStoreChanged) -> Notification
    * @availability iOS 26.0+
    */
-  static makeNotification(message: EKEventStore_EventStoreChanged): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("EventKit_3864e7f38681b875", 3949617772317916, undefined, [message]); }
+  static makeNotification(message: EKEventStore_EventStoreChanged): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("EventKit_ff42ce03e691ab23", 3949617772317916, undefined, [message]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("EventKit_3864e7f38681b875", 404837936396901, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("EventKit_ff42ce03e691ab23", 404837936396901, undefined, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): EKEventStore_EventStoreChanged { return callSDK<EKEventStore_EventStoreChanged>("EventKit_3864e7f38681b875", 1118876072760554, undefined, []); }
+  static init(): EKEventStore_EventStoreChanged { return callSDK<EKEventStore_EventStoreChanged>("EventKit_ff42ce03e691ab23", 1118876072760554, undefined, []); }
   declare readonly $type: { "s:So12EKEventStoreC8EventKitE0cB7ChangedV": true };
 }
 
@@ -826,44 +826,44 @@ export class EKParticipant extends (EKObject as unknown as Omit<typeof EKObject,
    * func abRecord(with addressBook: ABAddressBook) -> ABRecord?
    * @availability iOS 4.0+
    */
-  abRecord(addressBook: unknown): (unknown) | null { return callSDK<(unknown) | null>("EventKit_3864e7f38681b875", 543776893280770, this, [addressBook]); }
+  abRecord(addressBook: unknown): (unknown) | null { return callSDK<(unknown) | null>("EventKit_ff42ce03e691ab23", 543776893280770, this, [addressBook]); }
   /** init() */
-  static init(): EKParticipant { return callSDK<EKParticipant>("EventKit_3864e7f38681b875", 31142799635614, undefined, []); }
+  static init(): EKParticipant { return callSDK<EKParticipant>("EventKit_ff42ce03e691ab23", 31142799635614, undefined, []); }
   /**
    * var url: URL { get }
    * @availability iOS 4.0+
    */
-  get url(): string { return callSDK<string>("EventKit_3864e7f38681b875", 1929613123789274, this, []); }
+  get url(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 1929613123789274, this, []); }
   /**
    * var contactPredicate: NSPredicate { get }
    * @availability iOS 9.0+
    */
-  get contactPredicate(): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("EventKit_3864e7f38681b875", 2485982457332279, this, []); }
+  get contactPredicate(): _Foundation_NSPredicate { return callSDK<_Foundation_NSPredicate>("EventKit_ff42ce03e691ab23", 2485982457332279, this, []); }
   /**
    * var isCurrentUser: Bool { get }
    * @availability iOS 6.0+
    */
-  get isCurrentUser(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 1417976237599567, this, []); }
+  get isCurrentUser(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 1417976237599567, this, []); }
   /**
    * var name: String? { get }
    * @availability iOS 4.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 274276852774270, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 274276852774270, this, []); }
   /**
    * var participantRole: EKParticipantRole { get }
    * @availability iOS 4.0+
    */
-  get participantRole(): EKParticipantRole { return callSDK<EKParticipantRole>("EventKit_3864e7f38681b875", 3413599354674683, this, []); }
+  get participantRole(): EKParticipantRole { return callSDK<EKParticipantRole>("EventKit_ff42ce03e691ab23", 3413599354674683, this, []); }
   /**
    * var participantStatus: EKParticipantStatus { get }
    * @availability iOS 4.0+
    */
-  get participantStatus(): EKParticipantStatus { return callSDK<EKParticipantStatus>("EventKit_3864e7f38681b875", 3885311027593897, this, []); }
+  get participantStatus(): EKParticipantStatus { return callSDK<EKParticipantStatus>("EventKit_ff42ce03e691ab23", 3885311027593897, this, []); }
   /**
    * var participantType: EKParticipantType { get }
    * @availability iOS 4.0+
    */
-  get participantType(): EKParticipantType { return callSDK<EKParticipantType>("EventKit_3864e7f38681b875", 3674446223110706, this, []); }
+  get participantType(): EKParticipantType { return callSDK<EKParticipantType>("EventKit_ff42ce03e691ab23", 3674446223110706, this, []); }
   declare readonly $type: { "c:objc(cs)EKParticipant": true; "c:objc(cs)EKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasChanges": true; "url": true; "contactPredicate": true; "isCurrentUser": true; "name": true; "participantRole": true; "participantStatus": true; "participantType": true };
 }
@@ -873,7 +873,7 @@ export type EKParticipantRole = "unknown" | "required" | "optional" | "chair" | 
 
 export const EKParticipantRole = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKParticipantRole) | null { return callSDK<(EKParticipantRole) | null>("EventKit_3864e7f38681b875", 902310320941914, undefined, [rawValue]); }
+  init(rawValue: number): (EKParticipantRole) | null { return callSDK<(EKParticipantRole) | null>("EventKit_ff42ce03e691ab23", 902310320941914, undefined, [rawValue]); }
 };
 
 /** enum EKParticipantScheduleStatus */
@@ -881,7 +881,7 @@ export type EKParticipantScheduleStatus = "none" | "pending" | "sent" | "deliver
 
 export const EKParticipantScheduleStatus = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKParticipantScheduleStatus) | null { return callSDK<(EKParticipantScheduleStatus) | null>("EventKit_3864e7f38681b875", 1644147615316191, undefined, [rawValue]); }
+  init(rawValue: number): (EKParticipantScheduleStatus) | null { return callSDK<(EKParticipantScheduleStatus) | null>("EventKit_ff42ce03e691ab23", 1644147615316191, undefined, [rawValue]); }
 };
 
 /** enum EKParticipantStatus */
@@ -889,7 +889,7 @@ export type EKParticipantStatus = "unknown" | "pending" | "accepted" | "declined
 
 export const EKParticipantStatus = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKParticipantStatus) | null { return callSDK<(EKParticipantStatus) | null>("EventKit_3864e7f38681b875", 329879926068097, undefined, [rawValue]); }
+  init(rawValue: number): (EKParticipantStatus) | null { return callSDK<(EKParticipantStatus) | null>("EventKit_ff42ce03e691ab23", 329879926068097, undefined, [rawValue]); }
 };
 
 /** enum EKParticipantType */
@@ -897,7 +897,7 @@ export type EKParticipantType = "unknown" | "person" | "room" | "resource" | "gr
 
 export const EKParticipantType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKParticipantType) | null { return callSDK<(EKParticipantType) | null>("EventKit_3864e7f38681b875", 154214077068261, undefined, [rawValue]); }
+  init(rawValue: number): (EKParticipantType) | null { return callSDK<(EKParticipantType) | null>("EventKit_ff42ce03e691ab23", 154214077068261, undefined, [rawValue]); }
 };
 
 /**
@@ -909,27 +909,27 @@ export class EKRecurrenceDayOfWeek extends SDKHandle {
    * convenience init(_ dayOfTheWeek: EKWeekday)
    * @availability iOS 4.0+
    */
-  static init(dayOfTheWeek: EKWeekday): EKRecurrenceDayOfWeek { return callSDK<EKRecurrenceDayOfWeek>("EventKit_3864e7f38681b875", 2313660921179040, undefined, [dayOfTheWeek]); }
+  static init(dayOfTheWeek: EKWeekday): EKRecurrenceDayOfWeek { return callSDK<EKRecurrenceDayOfWeek>("EventKit_ff42ce03e691ab23", 2313660921179040, undefined, [dayOfTheWeek]); }
   /**
    * convenience init(_ dayOfTheWeek: EKWeekday, weekNumber: Int)
    * @availability iOS 4.0+
    */
-  static initWeekNumber(dayOfTheWeek: EKWeekday, weekNumber: number): EKRecurrenceDayOfWeek { return callSDK<EKRecurrenceDayOfWeek>("EventKit_3864e7f38681b875", 1835342364448233, undefined, [dayOfTheWeek, weekNumber]); }
+  static initWeekNumber(dayOfTheWeek: EKWeekday, weekNumber: number): EKRecurrenceDayOfWeek { return callSDK<EKRecurrenceDayOfWeek>("EventKit_ff42ce03e691ab23", 1835342364448233, undefined, [dayOfTheWeek, weekNumber]); }
   /**
    * init(dayOfTheWeek: EKWeekday, weekNumber: Int)
    * @availability iOS 4.0+
    */
-  static initDayOfTheWeekWeekNumber(dayOfTheWeek: EKWeekday, weekNumber: number): EKRecurrenceDayOfWeek { return callSDK<EKRecurrenceDayOfWeek>("EventKit_3864e7f38681b875", 1810920064420552, undefined, [dayOfTheWeek, weekNumber]); }
+  static initDayOfTheWeekWeekNumber(dayOfTheWeek: EKWeekday, weekNumber: number): EKRecurrenceDayOfWeek { return callSDK<EKRecurrenceDayOfWeek>("EventKit_ff42ce03e691ab23", 1810920064420552, undefined, [dayOfTheWeek, weekNumber]); }
   /**
    * var dayOfTheWeek: EKWeekday { get }
    * @availability iOS 4.0+
    */
-  get dayOfTheWeek(): EKWeekday { return callSDK<EKWeekday>("EventKit_3864e7f38681b875", 869619279685231, this, []); }
+  get dayOfTheWeek(): EKWeekday { return callSDK<EKWeekday>("EventKit_ff42ce03e691ab23", 869619279685231, this, []); }
   /**
    * var weekNumber: Int { get }
    * @availability iOS 4.0+
    */
-  get weekNumber(): number { return callSDK<number>("EventKit_3864e7f38681b875", 2146979261723650, this, []); }
+  get weekNumber(): number { return callSDK<number>("EventKit_ff42ce03e691ab23", 2146979261723650, this, []); }
   declare readonly $type: { "c:objc(cs)EKRecurrenceDayOfWeek": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dayOfTheWeek": true; "weekNumber": true };
 }
@@ -943,22 +943,22 @@ export class EKRecurrenceEnd extends SDKHandle {
    * convenience init(end endDate: Date)
    * @availability iOS 4.0+
    */
-  static initEnd(endDate: globalThis.Date): EKRecurrenceEnd { return callSDK<EKRecurrenceEnd>("EventKit_3864e7f38681b875", 2678490706904591, undefined, [endDate]); }
+  static initEnd(endDate: globalThis.Date): EKRecurrenceEnd { return callSDK<EKRecurrenceEnd>("EventKit_ff42ce03e691ab23", 2678490706904591, undefined, [endDate]); }
   /**
    * convenience init(occurrenceCount: Int)
    * @availability iOS 4.0+
    */
-  static initOccurrenceCount(occurrenceCount: number): EKRecurrenceEnd { return callSDK<EKRecurrenceEnd>("EventKit_3864e7f38681b875", 314862593628166, undefined, [occurrenceCount]); }
+  static initOccurrenceCount(occurrenceCount: number): EKRecurrenceEnd { return callSDK<EKRecurrenceEnd>("EventKit_ff42ce03e691ab23", 314862593628166, undefined, [occurrenceCount]); }
   /**
    * var endDate: Date? { get }
    * @availability iOS 4.0+
    */
-  get endDate(): $SDK0 { return callSDK<$SDK0>("EventKit_3864e7f38681b875", 2798417809556095, this, []); }
+  get endDate(): $SDK0 { return callSDK<$SDK0>("EventKit_ff42ce03e691ab23", 2798417809556095, this, []); }
   /**
    * var occurrenceCount: Int { get }
    * @availability iOS 4.0+
    */
-  get occurrenceCount(): number { return callSDK<number>("EventKit_3864e7f38681b875", 3698735009495519, this, []); }
+  get occurrenceCount(): number { return callSDK<number>("EventKit_ff42ce03e691ab23", 3698735009495519, this, []); }
   declare readonly $type: { "c:objc(cs)EKRecurrenceEnd": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endDate": true; "occurrenceCount": true };
 }
@@ -968,7 +968,7 @@ export type EKRecurrenceFrequency = "daily" | "weekly" | "monthly" | "yearly";
 
 export const EKRecurrenceFrequency = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKRecurrenceFrequency) | null { return callSDK<(EKRecurrenceFrequency) | null>("EventKit_3864e7f38681b875", 2973429437229136, undefined, [rawValue]); }
+  init(rawValue: number): (EKRecurrenceFrequency) | null { return callSDK<(EKRecurrenceFrequency) | null>("EventKit_ff42ce03e691ab23", 2973429437229136, undefined, [rawValue]); }
 };
 
 /**
@@ -980,68 +980,68 @@ export class EKRecurrenceRule extends EKObject {
    * init(recurrenceWith type: EKRecurrenceFrequency, interval: Int, daysOfTheWeek days: [EKRecurrenceDayOfWeek]?, daysOfTheMonth monthDays: [NSNumber]?, monthsOfTheYear months: [NSNumber]?, weeksOfTheYear: [NSNumber]?, daysOfTheYear: [NSNumber]?, setPositions: [NSNumber]?, end: EKRecurrenceEnd?)
    * @availability iOS 4.0+
    */
-  static initRecurrenceWithIntervalDaysOfTheWeekDaysOfTheMonthMonthsOfTheYearWeeksOfTheYearDaysOfTheYearSetPositionsEnd(type: EKRecurrenceFrequency, interval: number, days?: $SDK12, monthDays?: $SDK13, months?: $SDK13, weeksOfTheYear?: $SDK13, daysOfTheYear?: $SDK13, setPositions?: $SDK13, end?: $SDK14): EKRecurrenceRule { return callSDK<EKRecurrenceRule>("EventKit_3864e7f38681b875", 2870736736240331, undefined, [type, interval, days, monthDays, months, weeksOfTheYear, daysOfTheYear, setPositions, end]); }
+  static initRecurrenceWithIntervalDaysOfTheWeekDaysOfTheMonthMonthsOfTheYearWeeksOfTheYearDaysOfTheYearSetPositionsEnd(type: EKRecurrenceFrequency, interval: number, days?: $SDK12, monthDays?: $SDK13, months?: $SDK13, weeksOfTheYear?: $SDK13, daysOfTheYear?: $SDK13, setPositions?: $SDK13, end?: $SDK14): EKRecurrenceRule { return callSDK<EKRecurrenceRule>("EventKit_ff42ce03e691ab23", 2870736736240331, undefined, [type, interval, days, monthDays, months, weeksOfTheYear, daysOfTheYear, setPositions, end]); }
   /**
    * init(recurrenceWith type: EKRecurrenceFrequency, interval: Int, end: EKRecurrenceEnd?)
    * @availability iOS 4.0+
    */
-  static initRecurrenceWithIntervalEnd(type: EKRecurrenceFrequency, interval: number, end?: $SDK14): EKRecurrenceRule { return callSDK<EKRecurrenceRule>("EventKit_3864e7f38681b875", 262567405627852, undefined, [type, interval, end]); }
+  static initRecurrenceWithIntervalEnd(type: EKRecurrenceFrequency, interval: number, end?: $SDK14): EKRecurrenceRule { return callSDK<EKRecurrenceRule>("EventKit_ff42ce03e691ab23", 262567405627852, undefined, [type, interval, end]); }
   /**
    * var calendarIdentifier: String { get }
    * @availability iOS 4.0+
    */
-  get calendarIdentifier(): string { return callSDK<string>("EventKit_3864e7f38681b875", 3514703534594243, this, []); }
+  get calendarIdentifier(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 3514703534594243, this, []); }
   /**
    * var daysOfTheMonth: [NSNumber]? { get }
    * @availability iOS 4.0+
    */
-  get daysOfTheMonth(): $SDK13 { return callSDK<$SDK13>("EventKit_3864e7f38681b875", 148150766628350, this, []); }
+  get daysOfTheMonth(): $SDK13 { return callSDK<$SDK13>("EventKit_ff42ce03e691ab23", 148150766628350, this, []); }
   /**
    * var daysOfTheWeek: [EKRecurrenceDayOfWeek]? { get }
    * @availability iOS 4.0+
    */
-  get daysOfTheWeek(): $SDK12 { return callSDK<$SDK12>("EventKit_3864e7f38681b875", 2419302358470287, this, []); }
+  get daysOfTheWeek(): $SDK12 { return callSDK<$SDK12>("EventKit_ff42ce03e691ab23", 2419302358470287, this, []); }
   /**
    * var daysOfTheYear: [NSNumber]? { get }
    * @availability iOS 4.0+
    */
-  get daysOfTheYear(): $SDK13 { return callSDK<$SDK13>("EventKit_3864e7f38681b875", 1139264371097982, this, []); }
+  get daysOfTheYear(): $SDK13 { return callSDK<$SDK13>("EventKit_ff42ce03e691ab23", 1139264371097982, this, []); }
   /**
    * var firstDayOfTheWeek: Int { get }
    * @availability iOS 4.0+
    */
-  get firstDayOfTheWeek(): number { return callSDK<number>("EventKit_3864e7f38681b875", 1634087272800483, this, []); }
+  get firstDayOfTheWeek(): number { return callSDK<number>("EventKit_ff42ce03e691ab23", 1634087272800483, this, []); }
   /**
    * var frequency: EKRecurrenceFrequency { get }
    * @availability iOS 4.0+
    */
-  get frequency(): EKRecurrenceFrequency { return callSDK<EKRecurrenceFrequency>("EventKit_3864e7f38681b875", 4373466326062441, this, []); }
+  get frequency(): EKRecurrenceFrequency { return callSDK<EKRecurrenceFrequency>("EventKit_ff42ce03e691ab23", 4373466326062441, this, []); }
   /**
    * var interval: Int { get }
    * @availability iOS 4.0+
    */
-  get interval(): number { return callSDK<number>("EventKit_3864e7f38681b875", 3112681609724076, this, []); }
+  get interval(): number { return callSDK<number>("EventKit_ff42ce03e691ab23", 3112681609724076, this, []); }
   /**
    * var monthsOfTheYear: [NSNumber]? { get }
    * @availability iOS 4.0+
    */
-  get monthsOfTheYear(): $SDK13 { return callSDK<$SDK13>("EventKit_3864e7f38681b875", 4322112513933869, this, []); }
+  get monthsOfTheYear(): $SDK13 { return callSDK<$SDK13>("EventKit_ff42ce03e691ab23", 4322112513933869, this, []); }
   /**
    * @NSCopying var recurrenceEnd: EKRecurrenceEnd? { get set }
    * @availability iOS 4.0+
    */
-  get recurrenceEnd(): $SDK14 { return callSDK<$SDK14>("EventKit_3864e7f38681b875", 2224103953353924, this, []); }
-  set recurrenceEnd(value: $SDK14) { callSDK<void>("EventKit_3864e7f38681b875", 3145050705961080, this, [value]); }
+  get recurrenceEnd(): $SDK14 { return callSDK<$SDK14>("EventKit_ff42ce03e691ab23", 2224103953353924, this, []); }
+  set recurrenceEnd(value: $SDK14) { callSDK<void>("EventKit_ff42ce03e691ab23", 3145050705961080, this, [value]); }
   /**
    * var setPositions: [NSNumber]? { get }
    * @availability iOS 4.0+
    */
-  get setPositions(): $SDK13 { return callSDK<$SDK13>("EventKit_3864e7f38681b875", 3281909082241664, this, []); }
+  get setPositions(): $SDK13 { return callSDK<$SDK13>("EventKit_ff42ce03e691ab23", 3281909082241664, this, []); }
   /**
    * var weeksOfTheYear: [NSNumber]? { get }
    * @availability iOS 4.0+
    */
-  get weeksOfTheYear(): $SDK13 { return callSDK<$SDK13>("EventKit_3864e7f38681b875", 3893993587210563, this, []); }
+  get weeksOfTheYear(): $SDK13 { return callSDK<$SDK13>("EventKit_ff42ce03e691ab23", 3893993587210563, this, []); }
   declare readonly $type: { "c:objc(cs)EKRecurrenceRule": true; "c:objc(cs)EKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasChanges": true; "calendarIdentifier": true; "daysOfTheMonth": true; "daysOfTheWeek": true; "daysOfTheYear": true; "firstDayOfTheWeek": true; "frequency": true; "interval": true; "monthsOfTheYear": true; "recurrenceEnd": true; "setPositions": true; "weeksOfTheYear": true };
 }
@@ -1055,37 +1055,37 @@ export class EKReminder extends (EKCalendarItem as unknown as Omit<typeof EKCale
    * init(eventStore: EKEventStore)
    * @availability iOS 6.0+
    */
-  static init(eventStore: EKEventStore): EKReminder { return callSDK<EKReminder>("EventKit_3864e7f38681b875", 324905332625412, undefined, [eventStore]); }
+  static init(eventStore: EKEventStore): EKReminder { return callSDK<EKReminder>("EventKit_ff42ce03e691ab23", 324905332625412, undefined, [eventStore]); }
   /**
    * var isCompleted: Bool { get set }
    * @availability iOS 6.0+
    */
-  get isCompleted(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 1050014911676890, this, []); }
-  set isCompleted(value: boolean) { callSDK<void>("EventKit_3864e7f38681b875", 2662798715121410, this, [value]); }
+  get isCompleted(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 1050014911676890, this, []); }
+  set isCompleted(value: boolean) { callSDK<void>("EventKit_ff42ce03e691ab23", 2662798715121410, this, [value]); }
   /**
    * var completionDate: Date? { get set }
    * @availability iOS 6.0+
    */
-  get completionDate(): $SDK0 { return callSDK<$SDK0>("EventKit_3864e7f38681b875", 3431398720248145, this, []); }
-  set completionDate(value: $SDK0) { callSDK<void>("EventKit_3864e7f38681b875", 4362884991397031, this, [value]); }
+  get completionDate(): $SDK0 { return callSDK<$SDK0>("EventKit_ff42ce03e691ab23", 3431398720248145, this, []); }
+  set completionDate(value: $SDK0) { callSDK<void>("EventKit_ff42ce03e691ab23", 4362884991397031, this, [value]); }
   /**
    * var dueDateComponents: DateComponents? { get set }
    * @availability iOS 6.0+
    */
-  get dueDateComponents(): $SDK15 { return callSDK<$SDK15>("EventKit_3864e7f38681b875", 1244480125794781, this, []); }
-  set dueDateComponents(value: $SDK15) { callSDK<void>("EventKit_3864e7f38681b875", 1090065554884579, this, [value]); }
+  get dueDateComponents(): $SDK15 { return callSDK<$SDK15>("EventKit_ff42ce03e691ab23", 1244480125794781, this, []); }
+  set dueDateComponents(value: $SDK15) { callSDK<void>("EventKit_ff42ce03e691ab23", 1090065554884579, this, [value]); }
   /**
    * var priority: Int { get set }
    * @availability iOS 6.0+
    */
-  get priority(): number { return callSDK<number>("EventKit_3864e7f38681b875", 650934862690271, this, []); }
-  set priority(value: number) { callSDK<void>("EventKit_3864e7f38681b875", 210296686394179, this, [value]); }
+  get priority(): number { return callSDK<number>("EventKit_ff42ce03e691ab23", 650934862690271, this, []); }
+  set priority(value: number) { callSDK<void>("EventKit_ff42ce03e691ab23", 210296686394179, this, [value]); }
   /**
    * var startDateComponents: DateComponents? { get set }
    * @availability iOS 6.0+
    */
-  get startDateComponents(): $SDK15 { return callSDK<$SDK15>("EventKit_3864e7f38681b875", 3184994909428020, this, []); }
-  set startDateComponents(value: $SDK15) { callSDK<void>("EventKit_3864e7f38681b875", 3314980465799313, this, [value]); }
+  get startDateComponents(): $SDK15 { return callSDK<$SDK15>("EventKit_ff42ce03e691ab23", 3184994909428020, this, []); }
+  set startDateComponents(value: $SDK15) { callSDK<void>("EventKit_ff42ce03e691ab23", 3314980465799313, this, [value]); }
   declare readonly $type: { "c:objc(cs)EKReminder": true; "c:objc(cs)EKCalendarItem": true; "c:objc(cs)EKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasChanges": true; "url": true; "alarms": true; "attendees": true; "calendar": true; "calendarItemExternalIdentifier": true; "calendarItemIdentifier": true; "creationDate": true; "hasAlarms": true; "hasAttendees": true; "hasNotes": true; "hasRecurrenceRules": true; "lastModifiedDate": true; "location": true; "notes": true; "recurrenceRules": true; "timeZone": true; "title": true; "isCompleted": true; "completionDate": true; "dueDateComponents": true; "priority": true; "startDateComponents": true };
 }
@@ -1095,7 +1095,7 @@ export type EKReminderPriority = "none" | "high" | "medium" | "low";
 
 export const EKReminderPriority = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (EKReminderPriority) | null { return callSDK<(EKReminderPriority) | null>("EventKit_3864e7f38681b875", 1509995884468039, undefined, [rawValue]); }
+  init(rawValue: number): (EKReminderPriority) | null { return callSDK<(EKReminderPriority) | null>("EventKit_ff42ce03e691ab23", 1509995884468039, undefined, [rawValue]); }
 };
 
 /**
@@ -1107,29 +1107,29 @@ export class EKSource extends (EKObject as unknown as Omit<typeof EKObject, "ini
    * func calendars(for entityType: EKEntityType) -> Set<EKCalendar>
    * @availability iOS 6.0+
    */
-  calendars(entityType: EKEntityType): Array<EKCalendar> { return callSDK<Array<EKCalendar>>("EventKit_3864e7f38681b875", 502271638060054, this, [entityType]); }
+  calendars(entityType: EKEntityType): Array<EKCalendar> { return callSDK<Array<EKCalendar>>("EventKit_ff42ce03e691ab23", 502271638060054, this, [entityType]); }
   /** init() */
-  static init(): EKSource { return callSDK<EKSource>("EventKit_3864e7f38681b875", 242423094800524, undefined, []); }
+  static init(): EKSource { return callSDK<EKSource>("EventKit_ff42ce03e691ab23", 242423094800524, undefined, []); }
   /**
    * var isDelegate: Bool { get }
    * @availability iOS 16.0+
    */
-  get isDelegate(): boolean { return callSDK<boolean>("EventKit_3864e7f38681b875", 4123906189324592, this, []); }
+  get isDelegate(): boolean { return callSDK<boolean>("EventKit_ff42ce03e691ab23", 4123906189324592, this, []); }
   /**
    * var sourceIdentifier: String { get }
    * @availability iOS 5.0+
    */
-  get sourceIdentifier(): string { return callSDK<string>("EventKit_3864e7f38681b875", 4383544884679932, this, []); }
+  get sourceIdentifier(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 4383544884679932, this, []); }
   /**
    * var sourceType: EKSourceType { get }
    * @availability iOS 5.0+
    */
-  get sourceType(): EKSourceType { return callSDK<EKSourceType>("EventKit_3864e7f38681b875", 2134195968340169, this, []); }
+  get sourceType(): EKSourceType { return callSDK<EKSourceType>("EventKit_ff42ce03e691ab23", 2134195968340169, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 5.0+
    */
-  get title(): string { return callSDK<string>("EventKit_3864e7f38681b875", 4056416500147077, this, []); }
+  get title(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 4056416500147077, this, []); }
   declare readonly $type: { "c:objc(cs)EKSource": true; "c:objc(cs)EKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasChanges": true; "isDelegate": true; "sourceIdentifier": true; "sourceType": true; "title": true };
 }
@@ -1139,7 +1139,7 @@ export type EKSourceType = "local" | "exchange" | "calDAV" | "mobileMe" | "subsc
 
 export const EKSourceType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKSourceType) | null { return callSDK<(EKSourceType) | null>("EventKit_3864e7f38681b875", 196737097976805, undefined, [rawValue]); }
+  init(rawValue: number): (EKSourceType) | null { return callSDK<(EKSourceType) | null>("EventKit_ff42ce03e691ab23", 196737097976805, undefined, [rawValue]); }
 };
 
 /** enum EKSpan */
@@ -1147,7 +1147,7 @@ export type EKSpan = "thisEvent" | "futureEvents";
 
 export const EKSpan = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKSpan) | null { return callSDK<(EKSpan) | null>("EventKit_3864e7f38681b875", 1586392006395775, undefined, [rawValue]); }
+  init(rawValue: number): (EKSpan) | null { return callSDK<(EKSpan) | null>("EventKit_ff42ce03e691ab23", 1586392006395775, undefined, [rawValue]); }
 };
 
 /**
@@ -1159,30 +1159,30 @@ export class EKStructuredLocation extends EKObject {
    * convenience init(mapItem: MKMapItem)
    * @availability iOS 9.0+
    */
-  static initMapItem(mapItem: _MapKit_MKMapItem): EKStructuredLocation { return callSDK<EKStructuredLocation>("EventKit_3864e7f38681b875", 589600455183066, undefined, [mapItem]); }
+  static initMapItem(mapItem: _MapKit_MKMapItem): EKStructuredLocation { return callSDK<EKStructuredLocation>("EventKit_ff42ce03e691ab23", 589600455183066, undefined, [mapItem]); }
   /**
    * convenience init(title: String)
    * @availability iOS 6.0+
    */
-  static initTitle(title: string): EKStructuredLocation { return callSDK<EKStructuredLocation>("EventKit_3864e7f38681b875", 4330006715755863, undefined, [title]); }
+  static initTitle(title: string): EKStructuredLocation { return callSDK<EKStructuredLocation>("EventKit_ff42ce03e691ab23", 4330006715755863, undefined, [title]); }
   /**
    * var geoLocation: CLLocation? { get set }
    * @availability iOS 6.0+
    */
-  get geoLocation(): $SDK16 { return callSDK<$SDK16>("EventKit_3864e7f38681b875", 1654490786623563, this, []); }
-  set geoLocation(value: $SDK16) { callSDK<void>("EventKit_3864e7f38681b875", 2196316202934129, this, [value]); }
+  get geoLocation(): $SDK16 { return callSDK<$SDK16>("EventKit_ff42ce03e691ab23", 1654490786623563, this, []); }
+  set geoLocation(value: $SDK16) { callSDK<void>("EventKit_ff42ce03e691ab23", 2196316202934129, this, [value]); }
   /**
    * var radius: Double { get set }
    * @availability iOS 6.0+
    */
-  get radius(): number { return callSDK<number>("EventKit_3864e7f38681b875", 12753639679484, this, []); }
-  set radius(value: number) { callSDK<void>("EventKit_3864e7f38681b875", 3016195038281479, this, [value]); }
+  get radius(): number { return callSDK<number>("EventKit_ff42ce03e691ab23", 12753639679484, this, []); }
+  set radius(value: number) { callSDK<void>("EventKit_ff42ce03e691ab23", 3016195038281479, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 6.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 358821840138657, this, []); }
-  set title(value: (string) | null) { callSDK<void>("EventKit_3864e7f38681b875", 985169544042186, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 358821840138657, this, []); }
+  set title(value: (string) | null) { callSDK<void>("EventKit_ff42ce03e691ab23", 985169544042186, this, [value]); }
   declare readonly $type: { "c:objc(cs)EKStructuredLocation": true; "c:objc(cs)EKObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasChanges": true; "geoLocation": true; "radius": true; "title": true };
 }
@@ -1196,22 +1196,22 @@ export class EKVirtualConferenceDescriptor extends SDKHandle {
    * init(title: String?, urlDescriptors URLDescriptors: [EKVirtualConferenceURLDescriptor], conferenceDetails: String?)
    * @availability iOS 15.0+
    */
-  static init(title: (string) | null, URLDescriptors: $SDK17, conferenceDetails?: (string) | null): EKVirtualConferenceDescriptor { return callSDK<EKVirtualConferenceDescriptor>("EventKit_3864e7f38681b875", 2855625285210607, undefined, [title, URLDescriptors, conferenceDetails]); }
+  static init(title: (string) | null, URLDescriptors: $SDK17, conferenceDetails?: (string) | null): EKVirtualConferenceDescriptor { return callSDK<EKVirtualConferenceDescriptor>("EventKit_ff42ce03e691ab23", 2855625285210607, undefined, [title, URLDescriptors, conferenceDetails]); }
   /**
    * var urlDescriptors: [EKVirtualConferenceURLDescriptor] { get }
    * @availability iOS 15.0+
    */
-  get urlDescriptors(): $SDK17 { return callSDK<$SDK17>("EventKit_3864e7f38681b875", 2084283593419244, this, []); }
+  get urlDescriptors(): $SDK17 { return callSDK<$SDK17>("EventKit_ff42ce03e691ab23", 2084283593419244, this, []); }
   /**
    * var conferenceDetails: String? { get }
    * @availability iOS 15.0+
    */
-  get conferenceDetails(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 4038951802052995, this, []); }
+  get conferenceDetails(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 4038951802052995, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 15.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 1944353491957470, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 1944353491957470, this, []); }
   declare readonly $type: { "c:objc(cs)EKVirtualConferenceDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "urlDescriptors": true; "conferenceDetails": true; "title": true };
 }
@@ -1225,14 +1225,14 @@ export class EKVirtualConferenceProvider extends SDKHandle {
    * func fetchAvailableRoomTypes() async throws -> [EKVirtualConferenceRoomTypeDescriptor]
    * @availability iOS 15.0+
    */
-  fetchAvailableRoomTypes(completionHandler: ((arg0: (Array<EKVirtualConferenceRoomTypeDescriptor>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("EventKit_3864e7f38681b875", 248694891000376, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchAvailableRoomTypes(completionHandler: ((arg0: (Array<EKVirtualConferenceRoomTypeDescriptor>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 248694891000376, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func fetchVirtualConference(identifier: EKVirtualConferenceRoomTypeIdentifier) async throws -> EKVirtualConferenceDescriptor
    * @availability iOS 15.0+
    */
-  fetchVirtualConference(identifier: string, completionHandler: ((arg0: (EKVirtualConferenceDescriptor) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("EventKit_3864e7f38681b875", 1772139699079283, this, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchVirtualConference(identifier: string, completionHandler: ((arg0: (EKVirtualConferenceDescriptor) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("EventKit_ff42ce03e691ab23", 1772139699079283, this, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): EKVirtualConferenceProvider { return callSDK<EKVirtualConferenceProvider>("EventKit_3864e7f38681b875", 2715138092916715, undefined, []); }
+  static init(): EKVirtualConferenceProvider { return callSDK<EKVirtualConferenceProvider>("EventKit_ff42ce03e691ab23", 2715138092916715, undefined, []); }
   declare readonly $type: { "c:objc(cs)EKVirtualConferenceProvider": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1245,17 +1245,17 @@ export class EKVirtualConferenceRoomTypeDescriptor extends SDKHandle {
    * init(title: String, identifier: EKVirtualConferenceRoomTypeIdentifier)
    * @availability iOS 15.0+
    */
-  static init(title: string, identifier: string): EKVirtualConferenceRoomTypeDescriptor { return callSDK<EKVirtualConferenceRoomTypeDescriptor>("EventKit_3864e7f38681b875", 2055443254805473, undefined, [title, identifier]); }
+  static init(title: string, identifier: string): EKVirtualConferenceRoomTypeDescriptor { return callSDK<EKVirtualConferenceRoomTypeDescriptor>("EventKit_ff42ce03e691ab23", 2055443254805473, undefined, [title, identifier]); }
   /**
    * var identifier: EKVirtualConferenceRoomTypeIdentifier { get }
    * @availability iOS 15.0+
    */
-  get identifier(): string { return callSDK<string>("EventKit_3864e7f38681b875", 557136691651280, this, []); }
+  get identifier(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 557136691651280, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 15.0+
    */
-  get title(): string { return callSDK<string>("EventKit_3864e7f38681b875", 3564599423849381, this, []); }
+  get title(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 3564599423849381, this, []); }
   declare readonly $type: { "c:objc(cs)EKVirtualConferenceRoomTypeDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "title": true };
 }
@@ -1275,17 +1275,17 @@ export class EKVirtualConferenceURLDescriptor extends SDKHandle {
    * init(title: String?, url URL: URL)
    * @availability iOS 15.0+
    */
-  static init(title: (string) | null, URL: string): EKVirtualConferenceURLDescriptor { return callSDK<EKVirtualConferenceURLDescriptor>("EventKit_3864e7f38681b875", 1370627655958635, undefined, [title, URL]); }
+  static init(title: (string) | null, URL: string): EKVirtualConferenceURLDescriptor { return callSDK<EKVirtualConferenceURLDescriptor>("EventKit_ff42ce03e691ab23", 1370627655958635, undefined, [title, URL]); }
   /**
    * var url: URL { get }
    * @availability iOS 15.0+
    */
-  get url(): string { return callSDK<string>("EventKit_3864e7f38681b875", 3776748128148655, this, []); }
+  get url(): string { return callSDK<string>("EventKit_ff42ce03e691ab23", 3776748128148655, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 15.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("EventKit_3864e7f38681b875", 2139689412808509, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("EventKit_ff42ce03e691ab23", 2139689412808509, this, []); }
   declare readonly $type: { "c:objc(cs)EKVirtualConferenceURLDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "title": true };
 }
@@ -1299,79 +1299,79 @@ export const EKWeekday = {
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get EKFriday(): EKWeekday { return callSDK<EKWeekday>("EventKit_3864e7f38681b875", 3130411765224402, undefined, []); },
+  get EKFriday(): EKWeekday { return callSDK<EKWeekday>("EventKit_ff42ce03e691ab23", 3130411765224402, undefined, []); },
   /**
    * static var EKMonday: EKWeekday { get }
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get EKMonday(): EKWeekday { return callSDK<EKWeekday>("EventKit_3864e7f38681b875", 3823340567898112, undefined, []); },
+  get EKMonday(): EKWeekday { return callSDK<EKWeekday>("EventKit_ff42ce03e691ab23", 3823340567898112, undefined, []); },
   /**
    * static var EKSaturday: EKWeekday { get }
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get EKSaturday(): EKWeekday { return callSDK<EKWeekday>("EventKit_3864e7f38681b875", 3681064075024649, undefined, []); },
+  get EKSaturday(): EKWeekday { return callSDK<EKWeekday>("EventKit_ff42ce03e691ab23", 3681064075024649, undefined, []); },
   /**
    * static var EKSunday: EKWeekday { get }
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get EKSunday(): EKWeekday { return callSDK<EKWeekday>("EventKit_3864e7f38681b875", 639983335917786, undefined, []); },
+  get EKSunday(): EKWeekday { return callSDK<EKWeekday>("EventKit_ff42ce03e691ab23", 639983335917786, undefined, []); },
   /**
    * static var EKThursday: EKWeekday { get }
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get EKThursday(): EKWeekday { return callSDK<EKWeekday>("EventKit_3864e7f38681b875", 421795757130077, undefined, []); },
+  get EKThursday(): EKWeekday { return callSDK<EKWeekday>("EventKit_ff42ce03e691ab23", 421795757130077, undefined, []); },
   /**
    * static var EKTuesday: EKWeekday { get }
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get EKTuesday(): EKWeekday { return callSDK<EKWeekday>("EventKit_3864e7f38681b875", 3026379053403626, undefined, []); },
+  get EKTuesday(): EKWeekday { return callSDK<EKWeekday>("EventKit_ff42ce03e691ab23", 3026379053403626, undefined, []); },
   /**
    * static var EKWednesday: EKWeekday { get }
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get EKWednesday(): EKWeekday { return callSDK<EKWeekday>("EventKit_3864e7f38681b875", 480419823883052, undefined, []); },
+  get EKWednesday(): EKWeekday { return callSDK<EKWeekday>("EventKit_ff42ce03e691ab23", 480419823883052, undefined, []); },
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKWeekday) | null { return callSDK<(EKWeekday) | null>("EventKit_3864e7f38681b875", 4304599512932039, undefined, [rawValue]); }
+  init(rawValue: number): (EKWeekday) | null { return callSDK<(EKWeekday) | null>("EventKit_ff42ce03e691ab23", 4304599512932039, undefined, [rawValue]); }
 };
 
-export type NSNotification_Name = "AVAudioEngineConfigurationChange" | "AVAudioUnitComponentTagsDidChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderDomainDidChange" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMusicPlayerControllerQueueDidChange" | "MPMediaLibraryDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioEngineConfigurationChange" | "AVAudioUnitComponentTagsDidChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMediaLibraryDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 
 export const NSNotification_Name = {
   /**
    * static let EKEventStoreChanged: NSNotification.Name
    * @availability iOS 4.0+
    */
-  get EKEventStoreChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("EventKit_3864e7f38681b875", 3631384336263341, undefined, []); }
+  get EKEventStoreChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("EventKit_ff42ce03e691ab23", 3631384336263341, undefined, []); }
 };
 
 /**
  * let EKErrorDomain: String
  * @availability iOS 4.0+
  */
-export const EKErrorDomain: string = callSDK<string>("EventKit_3864e7f38681b875", 1727445216892317, undefined, []);
+export const EKErrorDomain: string = callSDK<string>("EventKit_ff42ce03e691ab23", 1727445216892317, undefined, []);
 
-registerSDKClass("EKObject", EKObject, { module: "EventKit_3864e7f38681b875", properties: {"hasChanges":3577600418336977}, methods: {"refresh":{"id":4113217168603751},"reset":{"id":2618164993281859},"rollback":{"id":4120998457231679}} });
-registerSDKClass("EKAlarm", EKAlarm, { module: "EventKit_3864e7f38681b875", properties: {"absoluteDate":1408936879016679,"proximity":721277534165335,"relativeOffset":1776516010720225,"structuredLocation":3530217981978229} });
-registerSDKClass("EKCalendar", EKCalendar, { module: "EventKit_3864e7f38681b875", properties: {"cgColor":3553471572196077,"allowedEntityTypes":175866321344711,"allowsContentModifications":1807362914411684,"calendarIdentifier":2029485857157829,"isImmutable":3958667300653996,"source":454186285348254,"isSubscribed":1762899579358293,"supportedEventAvailabilities":4341193541931653,"title":360065140797365,"type":1948688672913572} });
-registerSDKClass("EKCalendarItem", EKCalendarItem, { module: "EventKit_3864e7f38681b875", properties: {"url":3534243475029433,"alarms":3444048738577918,"attendees":4162329345042085,"calendar":4411785085971631,"calendarItemExternalIdentifier":2045129453667450,"calendarItemIdentifier":3236331397227537,"creationDate":2529500213148343,"hasAlarms":1345273275729422,"hasAttendees":2649113727178616,"hasNotes":2172472369019680,"hasRecurrenceRules":485243470196094,"lastModifiedDate":678644661590335,"location":2974652386364971,"notes":731078407982377,"recurrenceRules":3623729759499,"timeZone":1836974363967219,"title":2547676850532865}, methods: {"addAlarm":{"id":954549919922914},"addRecurrenceRule":{"id":3651816622797449},"removeAlarm":{"id":37859025680448},"removeRecurrenceRule":{"id":54443868126820}} });
-registerSDKClass("EventKit.EKError", EKError, { module: "EventKit_3864e7f38681b875", properties: {} });
-registerSDKClass("EKEvent", EKEvent, { module: "EventKit_3864e7f38681b875", properties: {"isAllDay":4197597597618240,"availability":1076988948706096,"birthdayContactIdentifier":94034181830408,"birthdayPersonID":1511995115493343,"endDate":3672934889465443,"eventIdentifier":1455847712914103,"isDetached":719403694864674,"occurrenceDate":4312926928350701,"organizer":4207992715974388,"startDate":788391058891852,"status":2799920230442697,"structuredLocation":1104894160164928}, methods: {"compareStartDate":{"id":1647396529148404},"refresh":{"id":1408694596861443}} });
-registerSDKClass("EKEventStore", EKEventStore, { module: "EventKit_3864e7f38681b875", properties: {"defaultCalendarForNewEvents":2525271451286744,"delegateSources":2263767757302893,"eventStoreIdentifier":3474995499274711,"sources":2363888485644601}, methods: {"calendarItem":{"id":732421060283735},"calendarItems":{"id":3187633975265314},"calendar":{"id":2361641911226445},"calendars":{"id":59754607546846},"cancelFetchRequest":{"id":1742767830771626},"commit":{"id":2871640351760995},"defaultCalendarForNewReminders":{"id":3674525141028554},"event":{"id":1721412972253606},"events":{"id":3345005257635934},"fetchReminders":{"id":3669281186133133,"hints":[null,{"callback":{"out":[]}}]},"predicateForCompletedReminders":{"id":2943413716100778},"predicateForEvents":{"id":2520652220065123},"predicateForIncompleteReminders":{"id":46950741377391},"predicateForReminders":{"id":842249786545625},"refreshSourcesIfNecessary":{"id":525431562037104},"removeCalendar":{"id":1791849613284148},"removeSpanCommit":{"id":250943123853943},"removeSpan":{"id":3171449716369112},"removeCommit":{"id":510917379506551},"requestAccess":{"id":3077645896337917,"hints":[null,{"callback":{"out":[]}}]},"requestFullAccessToEvents":{"id":3371292468194147,"hints":[{"callback":{"out":[]}}]},"requestFullAccessToReminders":{"id":3182019493593998,"hints":[{"callback":{"out":[]}}]},"requestWriteOnlyAccessToEvents":{"id":371837216876187,"hints":[{"callback":{"out":[]}}]},"reset":{"id":4254189876726096},"saveCalendar":{"id":3985768523089102},"saveSpanCommit":{"id":2127788341012593},"saveSpan":{"id":3785810991360048},"saveCommit":{"id":2128321113639740},"source":{"id":4151204663916320}} });
-registerSDKClass("EventKit.EKEventStore.EventStoreChanged", EKEventStore_EventStoreChanged, { module: "EventKit_3864e7f38681b875", properties: {} });
-registerSDKClass("EKParticipant", EKParticipant, { module: "EventKit_3864e7f38681b875", properties: {"url":1929613123789274,"contactPredicate":2485982457332279,"isCurrentUser":1417976237599567,"name":274276852774270,"participantRole":3413599354674683,"participantStatus":3885311027593897,"participantType":3674446223110706}, methods: {"abRecord":{"id":543776893280770}} });
-registerSDKClass("EKRecurrenceDayOfWeek", EKRecurrenceDayOfWeek, { module: "EventKit_3864e7f38681b875", properties: {"dayOfTheWeek":869619279685231,"weekNumber":2146979261723650} });
-registerSDKClass("EKRecurrenceEnd", EKRecurrenceEnd, { module: "EventKit_3864e7f38681b875", properties: {"endDate":2798417809556095,"occurrenceCount":3698735009495519} });
-registerSDKClass("EKRecurrenceRule", EKRecurrenceRule, { module: "EventKit_3864e7f38681b875", properties: {"calendarIdentifier":3514703534594243,"daysOfTheMonth":148150766628350,"daysOfTheWeek":2419302358470287,"daysOfTheYear":1139264371097982,"firstDayOfTheWeek":1634087272800483,"frequency":4373466326062441,"interval":3112681609724076,"monthsOfTheYear":4322112513933869,"recurrenceEnd":2224103953353924,"setPositions":3281909082241664,"weeksOfTheYear":3893993587210563} });
-registerSDKClass("EKReminder", EKReminder, { module: "EventKit_3864e7f38681b875", properties: {"isCompleted":1050014911676890,"completionDate":3431398720248145,"dueDateComponents":1244480125794781,"priority":650934862690271,"startDateComponents":3184994909428020} });
-registerSDKClass("EKSource", EKSource, { module: "EventKit_3864e7f38681b875", properties: {"isDelegate":4123906189324592,"sourceIdentifier":4383544884679932,"sourceType":2134195968340169,"title":4056416500147077}, methods: {"calendars":{"id":502271638060054}} });
-registerSDKClass("EKStructuredLocation", EKStructuredLocation, { module: "EventKit_3864e7f38681b875", properties: {"geoLocation":1654490786623563,"radius":12753639679484,"title":358821840138657} });
-registerSDKClass("EKVirtualConferenceDescriptor", EKVirtualConferenceDescriptor, { module: "EventKit_3864e7f38681b875", properties: {"urlDescriptors":2084283593419244,"conferenceDetails":4038951802052995,"title":1944353491957470} });
-registerSDKClass("EKVirtualConferenceProvider", EKVirtualConferenceProvider, { module: "EventKit_3864e7f38681b875", properties: {}, methods: {"fetchAvailableRoomTypes":{"id":248694891000376,"hints":[{"callback":{"out":[]}}]},"fetchVirtualConference":{"id":1772139699079283,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("EKVirtualConferenceRoomTypeDescriptor", EKVirtualConferenceRoomTypeDescriptor, { module: "EventKit_3864e7f38681b875", properties: {"identifier":557136691651280,"title":3564599423849381} });
-registerSDKClass("EKVirtualConferenceURLDescriptor", EKVirtualConferenceURLDescriptor, { module: "EventKit_3864e7f38681b875", properties: {"url":3776748128148655,"title":2139689412808509} });
+registerSDKClass("EKObject", EKObject, { module: "EventKit_ff42ce03e691ab23", properties: {"hasChanges":3577600418336977}, methods: {"refresh":{"id":4113217168603751},"reset":{"id":2618164993281859},"rollback":{"id":4120998457231679}} });
+registerSDKClass("EKAlarm", EKAlarm, { module: "EventKit_ff42ce03e691ab23", properties: {"absoluteDate":1408936879016679,"proximity":721277534165335,"relativeOffset":1776516010720225,"structuredLocation":3530217981978229} });
+registerSDKClass("EKCalendar", EKCalendar, { module: "EventKit_ff42ce03e691ab23", properties: {"cgColor":3553471572196077,"allowedEntityTypes":175866321344711,"allowsContentModifications":1807362914411684,"calendarIdentifier":2029485857157829,"isImmutable":3958667300653996,"source":454186285348254,"isSubscribed":1762899579358293,"supportedEventAvailabilities":4341193541931653,"title":360065140797365,"type":1948688672913572} });
+registerSDKClass("EKCalendarItem", EKCalendarItem, { module: "EventKit_ff42ce03e691ab23", properties: {"url":3534243475029433,"alarms":3444048738577918,"attendees":4162329345042085,"calendar":4411785085971631,"calendarItemExternalIdentifier":2045129453667450,"calendarItemIdentifier":3236331397227537,"creationDate":2529500213148343,"hasAlarms":1345273275729422,"hasAttendees":2649113727178616,"hasNotes":2172472369019680,"hasRecurrenceRules":485243470196094,"lastModifiedDate":678644661590335,"location":2974652386364971,"notes":731078407982377,"recurrenceRules":3623729759499,"timeZone":1836974363967219,"title":2547676850532865}, methods: {"addAlarm":{"id":954549919922914},"addRecurrenceRule":{"id":3651816622797449},"removeAlarm":{"id":37859025680448},"removeRecurrenceRule":{"id":54443868126820}} });
+registerSDKClass("EventKit.EKError", EKError, { module: "EventKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("EKEvent", EKEvent, { module: "EventKit_ff42ce03e691ab23", properties: {"isAllDay":4197597597618240,"availability":1076988948706096,"birthdayContactIdentifier":94034181830408,"birthdayPersonID":1511995115493343,"endDate":3672934889465443,"eventIdentifier":1455847712914103,"isDetached":719403694864674,"occurrenceDate":4312926928350701,"organizer":4207992715974388,"startDate":788391058891852,"status":2799920230442697,"structuredLocation":1104894160164928}, methods: {"compareStartDate":{"id":1647396529148404},"refresh":{"id":1408694596861443}} });
+registerSDKClass("EKEventStore", EKEventStore, { module: "EventKit_ff42ce03e691ab23", properties: {"defaultCalendarForNewEvents":2525271451286744,"delegateSources":2263767757302893,"eventStoreIdentifier":3474995499274711,"sources":2363888485644601}, methods: {"calendarItem":{"id":732421060283735},"calendarItems":{"id":3187633975265314},"calendar":{"id":2361641911226445},"calendars":{"id":59754607546846},"cancelFetchRequest":{"id":1742767830771626},"commit":{"id":2871640351760995},"defaultCalendarForNewReminders":{"id":3674525141028554},"event":{"id":1721412972253606},"events":{"id":3345005257635934},"fetchReminders":{"id":3669281186133133,"hints":[null,{"callback":{"out":[]}}]},"predicateForCompletedReminders":{"id":2943413716100778},"predicateForEvents":{"id":2520652220065123},"predicateForIncompleteReminders":{"id":46950741377391},"predicateForReminders":{"id":842249786545625},"refreshSourcesIfNecessary":{"id":525431562037104},"removeCalendar":{"id":1791849613284148},"removeSpanCommit":{"id":250943123853943},"removeSpan":{"id":3171449716369112},"removeCommit":{"id":510917379506551},"requestAccess":{"id":3077645896337917,"hints":[null,{"callback":{"out":[]}}]},"requestFullAccessToEvents":{"id":3371292468194147,"hints":[{"callback":{"out":[]}}]},"requestFullAccessToReminders":{"id":3182019493593998,"hints":[{"callback":{"out":[]}}]},"requestWriteOnlyAccessToEvents":{"id":371837216876187,"hints":[{"callback":{"out":[]}}]},"reset":{"id":4254189876726096},"saveCalendar":{"id":3985768523089102},"saveSpanCommit":{"id":2127788341012593},"saveSpan":{"id":3785810991360048},"saveCommit":{"id":2128321113639740},"source":{"id":4151204663916320}} });
+registerSDKClass("EventKit.EKEventStore.EventStoreChanged", EKEventStore_EventStoreChanged, { module: "EventKit_ff42ce03e691ab23", properties: {} });
+registerSDKClass("EKParticipant", EKParticipant, { module: "EventKit_ff42ce03e691ab23", properties: {"url":1929613123789274,"contactPredicate":2485982457332279,"isCurrentUser":1417976237599567,"name":274276852774270,"participantRole":3413599354674683,"participantStatus":3885311027593897,"participantType":3674446223110706}, methods: {"abRecord":{"id":543776893280770}} });
+registerSDKClass("EKRecurrenceDayOfWeek", EKRecurrenceDayOfWeek, { module: "EventKit_ff42ce03e691ab23", properties: {"dayOfTheWeek":869619279685231,"weekNumber":2146979261723650} });
+registerSDKClass("EKRecurrenceEnd", EKRecurrenceEnd, { module: "EventKit_ff42ce03e691ab23", properties: {"endDate":2798417809556095,"occurrenceCount":3698735009495519} });
+registerSDKClass("EKRecurrenceRule", EKRecurrenceRule, { module: "EventKit_ff42ce03e691ab23", properties: {"calendarIdentifier":3514703534594243,"daysOfTheMonth":148150766628350,"daysOfTheWeek":2419302358470287,"daysOfTheYear":1139264371097982,"firstDayOfTheWeek":1634087272800483,"frequency":4373466326062441,"interval":3112681609724076,"monthsOfTheYear":4322112513933869,"recurrenceEnd":2224103953353924,"setPositions":3281909082241664,"weeksOfTheYear":3893993587210563} });
+registerSDKClass("EKReminder", EKReminder, { module: "EventKit_ff42ce03e691ab23", properties: {"isCompleted":1050014911676890,"completionDate":3431398720248145,"dueDateComponents":1244480125794781,"priority":650934862690271,"startDateComponents":3184994909428020} });
+registerSDKClass("EKSource", EKSource, { module: "EventKit_ff42ce03e691ab23", properties: {"isDelegate":4123906189324592,"sourceIdentifier":4383544884679932,"sourceType":2134195968340169,"title":4056416500147077}, methods: {"calendars":{"id":502271638060054}} });
+registerSDKClass("EKStructuredLocation", EKStructuredLocation, { module: "EventKit_ff42ce03e691ab23", properties: {"geoLocation":1654490786623563,"radius":12753639679484,"title":358821840138657} });
+registerSDKClass("EKVirtualConferenceDescriptor", EKVirtualConferenceDescriptor, { module: "EventKit_ff42ce03e691ab23", properties: {"urlDescriptors":2084283593419244,"conferenceDetails":4038951802052995,"title":1944353491957470} });
+registerSDKClass("EKVirtualConferenceProvider", EKVirtualConferenceProvider, { module: "EventKit_ff42ce03e691ab23", properties: {}, methods: {"fetchAvailableRoomTypes":{"id":248694891000376,"hints":[{"callback":{"out":[]}}]},"fetchVirtualConference":{"id":1772139699079283,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("EKVirtualConferenceRoomTypeDescriptor", EKVirtualConferenceRoomTypeDescriptor, { module: "EventKit_ff42ce03e691ab23", properties: {"identifier":557136691651280,"title":3564599423849381} });
+registerSDKClass("EKVirtualConferenceURLDescriptor", EKVirtualConferenceURLDescriptor, { module: "EventKit_ff42ce03e691ab23", properties: {"url":3776748128148655,"title":2139689412808509} });
