@@ -139,8 +139,9 @@ rebuilds and relaunches `tests/macos-basic` once to prove the move.
   `NativePlatform` type; do not add a third ternary branch where an
   `ios`/`android` ternary already exists, since several treat "not ios" as
   android.
-- The Mac release bundle is plain JS for M1 (the Hermes bytecode step in
-  `reactNativeDevServer.ts` stays iOS only until M6).
+- The Mac dev server serves Hermes bytecode like iOS
+  (`&bytecode=hermes`, compiled with the npm `hermes-compiler`), and
+  release builds embed it (see the release startup section).
 - App and library resolution order: `.macos.*`, `.native.*`, then the plain
   file. No `.ios.*` fallback for app code or third-party packages: a Mac is
   not an iPhone, and silent iOS fallback is how UIKit-only JS sneaks in.
@@ -704,3 +705,8 @@ the main mount, median of interleaved launches (TESTED).
 - Remaining structural options, none taken yet: the AppKit shell above, and
   mounting before the window's first commit so the empty window is never
   drawn.
+- Debug builds request `&bytecode=hermes` from the dev server too. Mac apps
+  have no `hermes-engine` pod, so the dev server compiles with the npm
+  `hermes-compiler` React Native resolves; the first compile of the fixture
+  takes 0.7 s and cached requests 3 ms. Fast Refresh still applies edits
+  (TESTED, Debug `tests/macos-basic`).

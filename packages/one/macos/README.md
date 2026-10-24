@@ -87,8 +87,11 @@ recipes are in `tests/macos-basic/probe/GRADIENTS.md` in the repository.
 
 ## JavaScript bundle
 
-Debug builds load `/index.bundle?platform=macos&dev=true` from the dev server
-named by `OneDevServerURL` in `Info.plist` (default `http://localhost:8081`).
+Debug builds load `/index.bundle?platform=macos&dev=true&bytecode=hermes`
+from the dev server named by `OneDevServerURL` in `Info.plist` (default
+`http://localhost:8081`). The dev server compiles that bundle to Hermes
+bytecode with the `hermes-compiler` package React Native depends on, or
+`HERMESC_PATH` when set, so Hermes skips parsing it at launch.
 Release builds run `template/macos/scripts/bundle-js.sh` after linking: it
 bundles the app with the React Native CLI, which needs a
 `react-native.config.cjs` that re-exports `one/react-native-config`, compiles

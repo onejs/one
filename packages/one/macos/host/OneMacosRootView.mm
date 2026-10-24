@@ -498,7 +498,8 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   }
 #if DEBUG
   NSString *server = [NSBundle.mainBundle objectForInfoDictionaryKey:@"OneDevServerURL"] ?: @"http://localhost:8081";
-  return [NSURL URLWithString:[server stringByAppendingString:@"/index.bundle?platform=macos&dev=true"]];
+  // precompiled dev bytes: hermes skips parsing the whole bundle on its js thread
+  return [NSURL URLWithString:[server stringByAppendingString:@"/index.bundle?platform=macos&dev=true&bytecode=hermes"]];
 #else
   return [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"main.jsbundle"];
 #endif
