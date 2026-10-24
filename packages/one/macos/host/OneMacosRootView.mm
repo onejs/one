@@ -177,7 +177,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     OneMacosHost *strongSelf = weakSelf;
     return OneMacosWindowMetrics{strongSelf->_size.width, strongSelf->_size.height, strongSelf->_scale};
   };
-  _darkAppearance = [OneMacosColorSchemeName(NSApp.effectiveAppearance) isEqualToString:@"dark"];
+  _darkAppearance = [OneMacosColorSchemeName(_view.effectiveAppearance) isEqualToString:@"dark"];
   moduleContext.colorScheme = [weakSelf]() {
     OneMacosHost *strongSelf = weakSelf;
     return strongSelf && strongSelf->_darkAppearance ? "dark" : "light";
