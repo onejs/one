@@ -18,7 +18,7 @@ export function defineSDKFramework(
     protocols.map((i) => names[i]),
     () => initialize(module, module.exports)
   )
-  Object.defineProperty(target, '__esModule', { value: true })
+  // metro refresh skips accessors on commonjs namespaces. keep them lazy.
   for (let index = 0; index < exported.length; index++) {
     const name = names[exported[index]]
     Object.defineProperty(target, name, {
