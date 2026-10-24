@@ -5,6 +5,7 @@ interface NativeProps extends ViewProps {
     systemImage?: string;
     disabled?: boolean;
     bordered?: WithDefault<boolean, true>;
+    prominent?: boolean;
     onButtonPress?: DirectEventHandler<Readonly<{}>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;

@@ -6,6 +6,8 @@ export type ButtonProps = Omit<ViewProps, 'children'> & {
     disabled?: boolean;
     /** draws the rounded push button bezel; false keeps only the title and symbol. defaults to true. */
     bordered?: boolean;
+    /** fills the bezel with the accent color, for the button that confirms a dialog. */
+    prominent?: boolean;
     onPress?: () => void;
 };
 export declare function Button({ onPress, ...props }: ButtonProps): import("react").JSX.Element;

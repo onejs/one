@@ -4,6 +4,7 @@ import type { OneMacAppCommands } from './platform/mac/AppCommands.macos';
 import type { ImageProps as MacImageProps } from './platform/mac/Image.macos';
 import type { ButtonProps } from './platform/mac/Button.macos';
 import type { SegmentedControlProps } from './platform/mac/SegmentedControl.macos';
+import type { PopUpButtonProps } from './platform/mac/PopUpButton.macos';
 import type { ToggleProps } from './platform/mac/Toggle.macos';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'macos';
@@ -12,6 +13,7 @@ export type OneMacOS = {
     readonly Toggle: ComponentType<ToggleProps>;
     readonly Button: ComponentType<ButtonProps>;
     readonly SegmentedControl: ComponentType<SegmentedControlProps>;
+    readonly PopUpButton: ComponentType<PopUpButtonProps>;
     readonly AppCommands: OneMacAppCommands;
 };
 export type OneIOS = typeof Swift & {
