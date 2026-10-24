@@ -1,10 +1,13 @@
 # Builds Hermes for Windows from source at the revision the installed
 # react-native pins (the HERMES_VERSION_NAME the macOS build downloads as a
 # prebuilt and the Linux build compiles) into $Out/destroot:
-# include/hermes, lib/hermesvm.lib, bin/hermesvm.dll and bin/hermesc.exe, with
-# the compiler in CC and CXX. -HeadersOnly clones the source and lays out only
-# include/, which is all the core needs to compile. Reuses the destroot while
-# the version and config match.
+# include/hermes, lib/hermesvm.lib, bin/hermesvm.dll and bin/hermesc.exe.
+# Hermes builds with MSVC's cl, the compiler its own Windows CI uses: its CMake
+# treats clang-cl as GCC compatible and adds -Werror=undef, which its llvh
+# headers fail with clang-cl (`#if __GNUC__`). cl and clang-cl share the MSVC
+# C++ ABI the core links against. -HeadersOnly clones the source and lays out
+# only include/, which is all the core needs to compile. Reuses the destroot
+# while the version and config match.
 #   RN_ROOT  node_modules/react-native
 param(
   [Parameter(Mandatory)] [string] $Out,
@@ -17,7 +20,7 @@ $ErrorActionPreference = 'Stop'
 $version = HermesVersion
 $src = "$Cache/src/hermes-$version"
 $stamp = "$Out/.hermes-version"
-$key = "$version-$Config-$env:CXX"
+$key = "$version-$Config-cl"
 if ((Test-Path "$Out/destroot/bin/hermesvm.dll") -and ((Get-Content $stamp -ErrorAction SilentlyContinue) -eq $key)) { exit 0 }
 
 if (-not (Test-Path $src)) {
@@ -39,6 +42,8 @@ if ($Config -eq 'debug') { $buildType = 'Debug'; $debugger = 'ON' } else { $buil
 # comes from react-native, as it does for every other platform. Ninja drives
 # the build, so the Visual Studio /MP switch stays off.
 Run cmake -G Ninja -S $src -B "$Out/build" `
+  -DCMAKE_C_COMPILER=cl `
+  -DCMAKE_CXX_COMPILER=cl `
   "-DCMAKE_BUILD_TYPE=$buildType" `
   "-DHERMES_ENABLE_DEBUGGER=$debugger" `
   -DHERMES_ENABLE_INTL=OFF `
