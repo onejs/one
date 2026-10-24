@@ -233,6 +233,7 @@ struct App : mux::ApplicationT<App, mux::Markup::IXamlMetadataProvider> {
   std::vector<mux::FrameworkElement> m_elements;
   std::vector<Node> m_nodes;
   event_token m_rendered{};
+  event_token m_rendering{};
   std::function<void()> m_onFrame;
 
   mux::Markup::IXamlType GetXamlType(winrt::Windows::UI::Xaml::Interop::TypeName const& type) {
@@ -316,12 +317,20 @@ struct App : mux::ApplicationT<App, mux::Markup::IXamlMetadataProvider> {
     g_mountMs = static_cast<double>(b.QuadPart - a.QuadPart) * 1000.0 / static_cast<double>(f.QuadPart);
     mark("mount_end");
 
+    // the first frame is the first Rendered; after that Rendered stops when nothing is dirty,
+    // so updates are paced by Rendering, which xaml raises every frame while subscribed
     m_rendered = muxm::CompositionTarget::Rendered([this](auto&&, auto&&) {
-      if (m_onFrame) {
-        auto callback = std::move(m_onFrame);
-        m_onFrame = nullptr;
-        callback();
-      }
+      muxm::CompositionTarget::Rendered(m_rendered);
+      m_rendering = muxm::CompositionTarget::Rendering([this](auto&&, auto&&) {
+        if (m_onFrame) {
+          auto callback = std::move(m_onFrame);
+          m_onFrame = nullptr;
+          callback();
+        }
+      });
+      auto callback = std::move(m_onFrame);
+      m_onFrame = nullptr;
+      callback();
     });
     m_onFrame = [this]() {
       afterFirstFrame([this](std::function<void()> next) { m_onFrame = std::move(next); },
