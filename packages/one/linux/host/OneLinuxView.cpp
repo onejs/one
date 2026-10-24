@@ -65,6 +65,22 @@ static int control_baseline(GtkWidget *control, int width, int height)
   return naturalBaseline < 0 ? -1 : (height - natural) / 2 + naturalBaseline;
 }
 
+// where a child sits in its parent: the frame origin, then the view transform
+// about the view's center
+static GskTransform *child_transform(OneView *view)
+{
+  graphene_point_t origin = GRAPHENE_POINT_INIT(static_cast<float>(view->x), static_cast<float>(view->y));
+  GskTransform *transform = gsk_transform_translate(nullptr, &origin);
+  if (view->has_transform) {
+    graphene_point_t center = GRAPHENE_POINT_INIT(static_cast<float>(view->width / 2), static_cast<float>(view->height / 2));
+    graphene_point_t back = GRAPHENE_POINT_INIT(-center.x, -center.y);
+    transform = gsk_transform_translate(transform, &center);
+    transform = gsk_transform_matrix(transform, &view->transform);
+    transform = gsk_transform_translate(transform, &back);
+  }
+  return transform;
+}
+
 static void one_view_size_allocate(GtkWidget *widget, int width, int height, int)
 {
   OneView *view = ONE_VIEW(widget);
@@ -87,15 +103,7 @@ static void one_view_size_allocate(GtkWidget *widget, int width, int height, int
       continue;
     }
     OneView *childView = ONE_VIEW(child);
-    graphene_point_t origin = GRAPHENE_POINT_INIT(static_cast<float>(childView->x), static_cast<float>(childView->y));
-    GskTransform *transform = gsk_transform_translate(nullptr, &origin);
-    if (childView->has_transform) {
-      graphene_point_t center = GRAPHENE_POINT_INIT(static_cast<float>(childView->width / 2), static_cast<float>(childView->height / 2));
-      graphene_point_t back = GRAPHENE_POINT_INIT(-center.x, -center.y);
-      transform = gsk_transform_translate(transform, &center);
-      transform = gsk_transform_matrix(transform, &childView->transform);
-      transform = gsk_transform_translate(transform, &back);
-    }
+    GskTransform *transform = child_transform(childView);
     gtk_widget_allocate(
         child,
         static_cast<int>(std::ceil(childView->width)),
@@ -320,6 +328,25 @@ void one_view_set_transform(OneView *view, const float *matrix)
       gtk_widget_queue_allocate(parent);
     }
   }
+}
+
+gboolean one_view_map_from_parent(OneView *view, double x, double y, double *local_x, double *local_y)
+{
+  if (!view->has_transform) {
+    *local_x = x - view->x;
+    *local_y = y - view->y;
+    return TRUE;
+  }
+  GskTransform *inverse = gsk_transform_invert(child_transform(view));
+  if (!inverse) {
+    return FALSE;
+  }
+  graphene_point_t point = GRAPHENE_POINT_INIT(static_cast<float>(x), static_cast<float>(y)), mapped;
+  gsk_transform_transform_point(inverse, &point, &mapped);
+  gsk_transform_unref(inverse);
+  *local_x = mapped.x;
+  *local_y = mapped.y;
+  return TRUE;
 }
 
 void one_view_set_clips(OneView *view, gboolean clips)

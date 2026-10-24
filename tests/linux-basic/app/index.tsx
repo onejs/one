@@ -12,6 +12,7 @@ export default function Index() {
   const [focused, setFocused] = useState(false)
   const [hovered, setHovered] = useState('none')
   const [notes, setNotes] = useState('')
+  const [boxPress, setBoxPress] = useState('')
   const [images, setImages] = useState<Record<string, string>>({})
   const report = (key: string, value: string) => setImages((state) => ({ ...state, [key]: value }))
   const remote = { uri: 'http://127.0.0.1:8123/swatch.png' }
@@ -148,12 +149,13 @@ export default function Index() {
           ))}
         </View>
         <Text style={{ fontSize: 20, fontWeight: '700', marginTop: 24, color: '#1f1d1a' }}>
-          transform and opacity
+          {`transform and opacity ${boxPress}`}
         </Text>
         <View style={{ flexDirection: 'row', marginTop: 16, height: 96, alignItems: 'center' }}>
           {boxes.map((style, index) => (
-            <View
+            <Pressable
               key={index}
+              onPress={() => setBoxPress(`pressed ${'ABCDEF'[index]}`)}
               style={[
                 {
                   width: 56,
@@ -168,7 +170,7 @@ export default function Index() {
               ]}
             >
               <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff' }}>{'ABCDEF'[index]}</Text>
-            </View>
+            </Pressable>
           ))}
         </View>
         <Text style={{ fontSize: 20, fontWeight: '700', marginTop: 24, color: '#1f1d1a' }}>

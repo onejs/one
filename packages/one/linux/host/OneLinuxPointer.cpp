@@ -94,9 +94,11 @@ OneView *OneLinuxPointerHandler::hitChildren(
       continue;
     }
     OneView *childView = ONE_VIEW(child);
-    double childX, childY, childWidth, childHeight;
-    one_view_get_frame(childView, &childX, &childY, &childWidth, &childHeight);
-    if (OneView *hit = hitTest(childView, x - childX, y - childY, target, localX, localY)) {
+    double childX, childY;
+    if (!one_view_map_from_parent(childView, x, y, &childX, &childY)) {
+      continue;
+    }
+    if (OneView *hit = hitTest(childView, childX, childY, target, localX, localY)) {
       return hit;
     }
   }

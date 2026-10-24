@@ -26,6 +26,9 @@ void one_view_set_radius(OneView *view, double radius);
 // React's resolved transform, 16 floats in the row vector layout graphene
 // shares; it applies about the view's center. Null clears it.
 void one_view_set_transform(OneView *view, const float *matrix);
+// maps a point in the parent's coordinates into the view's own, undoing its
+// frame origin and transform; false when the transform cannot be inverted
+gboolean one_view_map_from_parent(OneView *view, double x, double y, double *local_x, double *local_y);
 void one_view_set_clips(OneView *view, gboolean clips);
 // takes its own reference to `layout`; origin is inside the view
 void one_view_set_text(OneView *view, PangoLayout *layout, double x, double y);

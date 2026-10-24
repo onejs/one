@@ -407,9 +407,12 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
 - **Transforms and opacity (M2):** `restyle` resolves RN's `transform` (already
   adjusted for the transform origin) and `one_view_set_transform` applies it as
   a `GskTransform` in `size_allocate`, anchored at the view's center like a
-  `CALayer`. Hit testing under a transform is not checked yet. Opacity maps to `gtk_widget_set_opacity`. Proof, translate, scale, rotate,
+  `CALayer`. Hit testing maps the pointer into each child through the inverse of its frame and transform (`one_view_map_from_parent`), so presses land on what is drawn. Opacity maps to `gtk_widget_set_opacity`. Proof, translate, scale, rotate,
   opacity and a rotate with `scaleX`:
-  [window](one-linux-native-transforms.png).
+  [window](one-linux-native-transforms.png). Hit proof, with pressable boxes: a
+  click on the empty spot a translated box left does nothing, and clicks inside
+  a scaled box and the translated one press them:
+  [window](one-linux-native-transform-hit.png).
 - **Hover and cursor (M2):** the pointer handler tracks the mouse over the
   OneView tree and sends W3C `pointerOver`, `pointerOut`, `pointerEnter` and
   `pointerLeave` to the views whose `ViewEvents` bits listen, entered outermost
@@ -431,6 +434,6 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   count following: [window](one-linux-native-multiline.png). Gaps: `maxLength`
   and `secureTextEntry` are not applied to the multiline field.
 
-**Next:** hit testing under a view transform, `Image` `blurRadius`,
+**Next:** `Image` `blurRadius`,
 `defaultSource` and the copy of assets by `one build --platform linux`, the
 portal color scheme, and the Networking gaps above.
