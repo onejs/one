@@ -192,12 +192,27 @@ How it fits the build, so the owner can judge the cost (INFERRED from reading `n
 
 Decisions for the owner: (a) which groups are default-off, since a default-on group keeps its cost (any one of Store, Account, Messaging, Photos, Charts or Wallet restores about 1 s on the simulator); (b) whether the saving justifies the prebuild work, because on a device the system frameworks live in the dyld shared cache with prebuilt loaders and the 1 s is probably far smaller (GUESSED, never measured; the owner chose not to run a device). System framework initializers still run on a device, so a smaller set helps there too, by an unmeasured amount.
 
-## what remains
+## results (branch tm/one-ios-linkset)
 
-1. Build `tests/rn-test-container` (prebuild then pods, `RCT_USE_PREBUILT_RNCORE` default, no instrumentation needed beyond an `app_delegate_init` mark) and take `otool -L` and `nm -u` of the real binary to confirm the table's "referenced" column.
-2. Prototype the Account and Messaging groups first (smallest, no generated-modifier work), then Wallet and Store.
-3. Interleaved One cold launches, current against prototype, at least 9 each. Only a prototype that removes all six triggers and PassKit can show a gain.
-4. Find the shared dependency edge (which private framework links all of them), to be sure the trigger list is complete for other apps' imports.
+Built in `tests/rn-test-container`, Release for iOS simulator, against `origin/main` as the baseline (RAN).
+
+- Release, no group used: `otool -L` drops from 242 to 200 lines. PassKit, StoreKit, AuthenticationServices, SafariServices, MessageUI, PhotosUI, Charts, QuickLook, RealityKit, MusicKit, ARKit and the `_X_SwiftUI` overlays and libswift libs are all gone.
+- Debug: `RNTestContainer.debug.dylib` links every trigger.
+- Release with `One.iOS.PayWithApplePayButton` on the first screen: link set is `["wallet"]`, only `_PassKit_SwiftUI` and `libswiftPassKit` of the triggers are linked, and the button renders (screenshot checked).
+- Cold launches on one simulator, interleaved base, new, wallet, warm-up round then 10 each. Process start to first log line (about `main`) median: base 1844 ms (1759 to 2416), new 588 ms (566 to 649), wallet 1719 ms (1681 to 2140). Process start to the key window: base 1938, new 677, wallet 1817. The host was busy (load average about 10 to 15, quiet window never admitted), so absolute numbers are inflated; the interleaving keeps the comparison fair. No `app_delegate_init` mark was added; the log line and key window are the proxies. Routed content was not measured. A plain React Native control was not rebuilt, so the "within 100 ms of plain RN" bar is not shown: the earlier probe had 195 ms to `main` for plain RN and 498 ms for One with the triggers removed.
+- A single group costs nearly the whole saving back (wallet 1719 versus new 588), as the sweep predicted: the first trigger framework pays the shared load.
+
+## how it works
+
+`ios-link-set.json` lists the groups. `one prebuild` writes `ios/one-link-set.json` from the production bundle (`src/cli/iosLinkSet.ts`). `One.podspec` defines `ONE_GROUP_X` conditions for those groups in Release and for all groups in Debug. Group sources, nitro registration and generated modifiers sit under those conditions. A compiled-out component keeps a stub class that renders nothing, and a compiled-out hybrid is not registered, so its call fails through the existing unsupported error. `OneStoreReview` moved to a Swift hybrid in the store group because its SDK import kept StoreKit linked in every app.
+
+## known gaps
+
+- Modifier keys that need a group's types are not used for detection.
+- The link set is captured at prebuild time. Adding a feature later needs `one prebuild` or `pod install` again.
+- Compiled-out view slots hit `unknown view slot`.
+- Detection reads names off the `One` and `iOS` namespace objects. A named-import use of a group API combined with `One` use elsewhere is missed, and a computed read (`One[x]`) keeps every group.
+- Do not edit `codegen/sdk/app.ts` or other fingerprinted files; the fingerprint is embedded in the published bindings.
 
 ## files
 
