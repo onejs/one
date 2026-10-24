@@ -246,6 +246,7 @@ test('lazy frameworks preserve registry lookups, cycles and cached failures', as
     'one/ios-runtime': runtime,
     Base: await lazyFacade(base, 'Base'),
     Extension: await lazyFacade(extension, 'Extension'),
+    Alpha: await lazyFacade(extension.replaceAll("'Extension'", "'Alpha'").replaceAll("'Extension', 3", "'Alpha', 3"), 'Alpha'),
     Broken: await lazyFacade(
       `
       import { SDKHandle, registerSDKClass } from 'one/ios-runtime';
@@ -356,6 +357,17 @@ test('lazy frameworks preserve registry lookups, cycles and cached failures', as
       e.wire.SDKHandle
     )
   }
+  const ordered = environment()
+  ordered.require('Extension')
+  ordered.require('Alpha')
+  ordered.require('Base')
+  expect(ordered.runs).toEqual([])
+  const later = ordered.require('Extension').Parent
+  expect(ordered.runs).toEqual(['Base', 'Alpha', 'Extension'])
+  const parent = ordered.require('Base').Parent
+  const alpha = ordered.require('Alpha').Parent
+  expect(parent.prototype.extra).toBe(alpha.prototype.extra)
+  expect(parent.prototype.extra).not.toBe(later.prototype.extra)
   const e = environment()
   const a = e.require('CycleA'),
     b = e.require('CycleB')

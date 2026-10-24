@@ -72,6 +72,7 @@ export async function lazyFacade(source: string, framework: string): Promise<str
   for (const edit of edits.sort((a, b) => b.start - a.start))
     source = source.slice(0, edit.start) + edit.text + source.slice(edit.end)
   const options = {
+    target: 'es2020',
     minifyWhitespace: true,
     minifySyntax: true,
     minifyIdentifiers: true,
