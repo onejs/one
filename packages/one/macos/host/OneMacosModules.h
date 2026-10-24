@@ -1,12 +1,9 @@
 #pragma once
 
-#include <ReactCommon/CallInvoker.h>
-#include <ReactCommon/TurboModule.h>
-#include <folly/dynamic.h>
-
-#include <functional>
 #include <memory>
 #include <string>
+
+#include "OneHostModules.h"
 
 // format for js console text in the unified log: readable in Debug builds,
 // redacted in Release so app logs never persist tokens or credentialed urls
@@ -18,26 +15,6 @@
 
 namespace facebook::react {
 
-struct OneMacosWindowMetrics {
-  double width{0};
-  double height{0};
-  double scale{1};
-};
-
-// What the TurboModules need from the host. Callbacks may run on any thread.
-struct OneMacosModuleContext {
-  std::string scriptURL;
-  std::function<OneMacosWindowMetrics()> windowMetrics;
-  // emits on RCTDeviceEventEmitter
-  std::function<void(const std::string &eventName, folly::dynamic payload)> emitDeviceEvent;
-  std::function<void()> reload;
-  std::function<bool()> isJavaScriptQueue;
-  // AppCommands.configure; returns an error for an invalid config
-  std::function<std::string(const folly::dynamic &config)> configureAppCommands;
-  // whether this runtime has an AppCommands listener
-  std::function<void(bool listening)> setAppCommandsListening;
-};
-
 // NativeAnimatedModule on RN's C++ animated renderer, frames from a display link
 std::shared_ptr<TurboModule> OneMacosCreateAnimatedModule(std::shared_ptr<CallInvoker> jsInvoker);
 
@@ -46,7 +23,7 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
     jsi::Runtime &runtime,
     const std::string &name,
     std::shared_ptr<CallInvoker> jsInvoker,
-    const OneMacosModuleContext &context);
+    const OneHostModuleContext &context);
 
 } // namespace facebook::react
 

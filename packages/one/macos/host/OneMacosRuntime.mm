@@ -1,7 +1,5 @@
 #import <Foundation/Foundation.h>
 
-#include <react/runtime/TimerManager.h>
-
 #import "OneMacosRuntime.h"
 
 namespace facebook::react {
@@ -66,20 +64,6 @@ void OneMacosMessageQueueThread::runOnQueue(std::function<void()> &&work)
   CFRunLoopWakeUp(state_->runLoop);
 }
 
-void OneMacosMessageQueueThread::runOnQueueSync(std::function<void()> &&work)
-{
-  if (isOnThread()) {
-    work();
-    return;
-  }
-  auto done = dispatch_semaphore_create(0);
-  runOnQueue([work = std::move(work), done]() {
-    work();
-    dispatch_semaphore_signal(done);
-  });
-  dispatch_semaphore_wait(done, DISPATCH_TIME_FOREVER);
-}
-
 void OneMacosMessageQueueThread::quitSynchronous()
 {
   {
@@ -106,26 +90,10 @@ OneMacosTimerRegistry::OneMacosTimerRegistry()
 
 OneMacosTimerRegistry::~OneMacosTimerRegistry()
 {
-  quit();
+  disarmAll();
 }
 
-void OneMacosTimerRegistry::setTimerManager(std::weak_ptr<TimerManager> timerManager)
-{
-  std::lock_guard<std::mutex> lock(mutex_);
-  timerManager_ = timerManager;
-}
-
-void OneMacosTimerRegistry::createTimer(uint32_t timerID, double delayMS)
-{
-  schedule(timerID, delayMS, false);
-}
-
-void OneMacosTimerRegistry::createRecurringTimer(uint32_t timerID, double delayMS)
-{
-  schedule(timerID, delayMS, true);
-}
-
-void OneMacosTimerRegistry::schedule(uint32_t timerID, double delayMS, bool repeats)
+void OneMacosTimerRegistry::arm(uint32_t timerID, double delayMS, bool repeats)
 {
   dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue_);
   int64_t delayNs = static_cast<int64_t>(std::max(delayMS, 1.0) * NSEC_PER_MSEC);
@@ -133,22 +101,7 @@ void OneMacosTimerRegistry::schedule(uint32_t timerID, double delayMS, bool repe
       source, dispatch_time(DISPATCH_TIME_NOW, delayNs), repeats ? delayNs : DISPATCH_TIME_FOREVER, NSEC_PER_MSEC);
 
   dispatch_source_set_event_handler(source, ^{
-    std::shared_ptr<TimerManager> manager;
-    {
-      std::lock_guard<std::mutex> lock(this->mutex_);
-      manager = this->timerManager_.lock();
-      if (!repeats) {
-        auto it = this->sources_.find(timerID);
-        if (it != this->sources_.end()) {
-          dispatch_source_cancel((__bridge dispatch_source_t)it->second);
-          CFRelease(it->second);
-          this->sources_.erase(it);
-        }
-      }
-    }
-    if (manager) {
-      manager->callTimer(timerID);
-    }
+    this->fire(timerID, repeats);
   });
 
   std::lock_guard<std::mutex> lock(mutex_);
@@ -156,7 +109,7 @@ void OneMacosTimerRegistry::schedule(uint32_t timerID, double delayMS, bool repe
   dispatch_resume(source);
 }
 
-void OneMacosTimerRegistry::deleteTimer(uint32_t timerID)
+void OneMacosTimerRegistry::disarm(uint32_t timerID)
 {
   std::lock_guard<std::mutex> lock(mutex_);
   auto it = sources_.find(timerID);
@@ -167,7 +120,7 @@ void OneMacosTimerRegistry::deleteTimer(uint32_t timerID)
   }
 }
 
-void OneMacosTimerRegistry::quit()
+void OneMacosTimerRegistry::disarmAll()
 {
   std::lock_guard<std::mutex> lock(mutex_);
   for (auto &entry : sources_) {

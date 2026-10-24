@@ -1,28 +1,10 @@
 #import <os/log.h>
 #import "OneMacosRootView.h"
 
-#include <ReactCommon/RuntimeExecutor.h>
-#include <ReactCommon/TurboModuleBinding.h>
 #include <cxxreact/JSBigString.h>
-#include <react/runtime/hermes/HermesInstance.h>
-#include <jsi/jsi.h>
 #include <react/renderer/componentregistry/ComponentDescriptorProviderRegistry.h>
-#include <react/renderer/componentregistry/native/NativeComponentRegistryBinding.h>
-#include <react/renderer/core/ReactRootViewTagGenerator.h>
 #include <react/renderer/runtimescheduler/RuntimeScheduler.h>
-#include <react/renderer/scheduler/Scheduler.h>
 #include <react/renderer/scheduler/SchedulerDelegate.h>
-#include <react/renderer/scheduler/SchedulerToolbox.h>
-#include <react/renderer/scheduler/SurfaceHandler.h>
-#include <react/runtime/JSRuntimeBindings.h>
-#include <react/runtime/JSRuntimeFactory.h>
-#include <react/runtime/ReactInstance.h>
-#include <react/runtime/TimerManager.h>
-#include <react/utils/ContextContainer.h>
-
-#include <mutex>
-#include <unordered_map>
-#include <unordered_set>
 
 #import "AppleEventBeat.h"
 #import "OneMacosAppCommands.h"
@@ -111,18 +93,10 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   __weak NSView *_view;
   OneMacosMountingManager *_mountingManager;
 
-  std::shared_ptr<OneMacosMessageQueueThread> _jsThread;
-  std::shared_ptr<ReactInstance> _instance;
   std::shared_ptr<ComponentDescriptorProviderRegistry> _providerRegistry;
-  std::unique_ptr<Scheduler> _scheduler;
+  std::shared_ptr<OneHostRuntime> _runtime;
   std::unique_ptr<OneMacosSchedulerDelegate> _schedulerDelegate;
-  std::optional<SurfaceHandler> _surface;
-  // the current runtime's modules. only its js thread touches the map, so a
-  // late call from a stopped runtime can never hand its modules to the next one
-  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<TurboModule>>> _turboModules;
 
-  std::mutex _mergeMutex;
-  std::unordered_set<SurfaceId> _pendingMerges;
   CGSize _size;
   CGFloat _scale;
   NSInteger _generation;
@@ -151,38 +125,48 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   _mountingManager = [OneMacosMountingManager new];
   _providerRegistry = [OneMacosMountingManager componentDescriptorProviderRegistry];
 
-  _jsThread = std::make_shared<OneMacosMessageQueueThread>();
-  auto timerRegistry = std::make_unique<OneMacosTimerRegistry>();
-  auto *timerRegistryPtr = timerRegistry.get();
-  auto timerManager = std::make_shared<TimerManager>(std::move(timerRegistry));
-  timerRegistryPtr->setTimerManager(timerManager);
-
-  auto onJsError = [](jsi::Runtime &, const JsErrorHandler::ProcessedError &error) {
-    os_log(OS_LOG_DEFAULT, "[one-macos] js error: " ONE_MACOS_JS_TEXT, error.message.c_str());
-  };
-
-  _instance = std::make_shared<ReactInstance>(
-      HermesInstance::createJSRuntime(nullptr, _jsThread, false), _jsThread, timerManager, onJsError);
-  timerManager->setRuntimeExecutor(_instance->getBufferedRuntimeExecutor());
-
-  std::weak_ptr<ReactInstance> weakInstance = _instance;
   __weak OneMacosHost *weakSelf = self;
 
-  OneMacosModuleContext moduleContext;
+  OneHostRuntimeOptions options;
+  options.jsThread = std::make_shared<OneMacosMessageQueueThread>();
+  options.timerRegistry = std::make_unique<OneMacosTimerRegistry>();
+  options.createTurboModule = OneMacosCreateTurboModule;
+  options.hasComponentProvider = [](const std::string &name) {
+    return [OneMacosMountingManager hasComponentNamed:name] == YES;
+  };
+  options.logJsError = [](const std::string &message) {
+    os_log(OS_LOG_DEFAULT, "[one-macos] js error: " ONE_MACOS_JS_TEXT, message.c_str());
+  };
+  options.logJsMessage = [](const std::string &message, unsigned int logLevel) {
+    os_log(OS_LOG_DEFAULT, "[one-macos] js log(%u): " ONE_MACOS_JS_TEXT, logLevel, message.c_str());
+  };
+
+  OneHostModuleContext &moduleContext = options.moduleContext;
   moduleContext.scriptURL = _bundleURL.absoluteString.UTF8String;
+  NSOperatingSystemVersion os = NSProcessInfo.processInfo.operatingSystemVersion;
+  moduleContext.osVersion = std::to_string(os.majorVersion) + "." + std::to_string(os.minorVersion) + "." +
+      std::to_string(os.patchVersion);
+  moduleContext.interfaceIdiom = "mac";
+  moduleContext.localeIdentifier = NSLocale.currentLocale.localeIdentifier.UTF8String;
+  moduleContext.cxxNativeAnimated = true;
   moduleContext.windowMetrics = [weakSelf]() {
     OneMacosHost *strongSelf = weakSelf;
-    return OneMacosWindowMetrics{strongSelf->_size.width, strongSelf->_size.height, strongSelf->_scale};
+    return OneHostWindowMetrics{strongSelf->_size.width, strongSelf->_size.height, strongSelf->_scale};
   };
-  moduleContext.emitDeviceEvent = [weakInstance](const std::string &name, folly::dynamic payload) {
-    if (auto instance = weakInstance.lock()) {
-      instance->callFunctionOnModule("RCTDeviceEventEmitter", "emit", folly::dynamic::array(name, std::move(payload)));
+  moduleContext.colorScheme = []() {
+    __block std::string name = "light";
+    void (^read)(void) = ^{
+      name = OneMacosColorSchemeName(NSApp.effectiveAppearance).UTF8String;
+    };
+    if ([NSThread isMainThread]) {
+      read();
+    } else {
+      dispatch_sync(dispatch_get_main_queue(), read);
     }
+    return name;
   };
-  std::weak_ptr<OneMacosMessageQueueThread> weakJsThread = _jsThread;
-  moduleContext.isJavaScriptQueue = [weakJsThread]() {
-    auto jsThread = weakJsThread.lock();
-    return jsThread && jsThread->isOnThread();
+  moduleContext.log = [](const std::string &line) {
+    os_log(OS_LOG_DEFAULT, "[one-macos] " ONE_MACOS_JS_TEXT, line.c_str());
   };
   moduleContext.configureAppCommands = [weakSelf, generation](const folly::dynamic &config) {
     std::string error;
@@ -212,111 +196,45 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     });
   };
 
-  auto jsCallInvoker = _instance->createJSCallInvoker();
+  _runtime = std::make_shared<OneHostRuntime>(std::move(options));
+  [_mountingManager setContextContainer:_runtime->contextContainer()];
 
-  auto contextContainer = std::make_shared<ContextContainer>();
-  contextContainer->insert(RuntimeSchedulerKey, std::weak_ptr<RuntimeScheduler>(_instance->getRuntimeScheduler()));
-  [_mountingManager setContextContainer:contextContainer];
-
-  [self createSchedulerWithContextContainer:contextContainer];
-
-  auto turboModules = std::make_shared<std::unordered_map<std::string, std::shared_ptr<TurboModule>>>();
-  _turboModules = turboModules;
-  _instance->initializeRuntime({}, [=](jsi::Runtime &runtime) {
-    TurboModuleBinding::install(
-        runtime,
-        [turboModules, jsCallInvoker, moduleContext](
-            jsi::Runtime &moduleRuntime, const std::string &name) -> std::shared_ptr<TurboModule> {
-          auto found = turboModules->find(name);
-          if (found != turboModules->end()) {
-            return found->second;
-          }
-          auto module = OneMacosCreateTurboModule(moduleRuntime, name, jsCallInvoker, moduleContext);
-          (*turboModules)[name] = module;
-          return module;
-        });
-    bindNativeLogger(runtime, [](const std::string &message, unsigned int logLevel) {
-      os_log(OS_LOG_DEFAULT, "[one-macos] js log(%u): " ONE_MACOS_JS_TEXT, logLevel, message.c_str());
-    });
-    // hermes has no console of its own, so route it through the native logger
-    // before the bundle's own empty console stubs can claim the names
-    runtime.evaluateJavaScript(
-        std::make_shared<jsi::StringBuffer>(
-            "globalThis.console = {};"
-            "['log', 'info', 'warn', 'error', 'debug', 'trace'].forEach(function (name, level) {"
-            "  console[name] = function () {"
-            "    nativeLoggingHook(Array.prototype.map.call(arguments, function (value) {"
-            "      return typeof value === 'string' ? value : (value && value.stack) || String(value);"
-            "    }).join(' '), level);"
-            "  };"
-            "});"),
-        "one-macos-console");
-    bindHasComponentProvider(runtime, [](const std::string &name) {
-      return [OneMacosMountingManager hasComponentNamed:name] == YES;
-    });
-  });
+  [self createScheduler];
+  _runtime->initializeRuntime();
 
   [self startSurface];
   [self loadBundleForGeneration:generation];
 }
 
-- (void)createSchedulerWithContextContainer:(std::shared_ptr<ContextContainer>)contextContainer
+- (void)createScheduler
 {
-  auto registry = _providerRegistry;
   OneMacosMountingManager *mountingManager = _mountingManager;
-  auto runtimeScheduler = _instance->getRuntimeScheduler();
-
-  SchedulerToolbox toolbox;
-  toolbox.contextContainer = contextContainer;
-  toolbox.componentRegistryFactory = [registry, mountingManager](
-                                         const EventDispatcher::Weak &eventDispatcher,
-                                         const std::shared_ptr<const ContextContainer> &container) {
-    auto descriptors = registry->createComponentDescriptorRegistry({.eventDispatcher = eventDispatcher, .contextContainer = container});
-    [mountingManager setComponentDescriptorRegistry:descriptors];
-    return descriptors;
-  };
-  // buffered so surface start waits for the bundle that installs RN$AppRegistry
-  toolbox.runtimeExecutor = _instance->getBufferedRuntimeExecutor();
-  toolbox.bridgelessBindingsExecutor = _instance->getUnbufferedRuntimeExecutor();
-  toolbox.eventBeatFactory = [runtimeScheduler](std::shared_ptr<EventBeat::OwnerBox> ownerBox) -> std::unique_ptr<EventBeat> {
-    auto observer = std::make_unique<const MainRunLoopObserver>(RunLoopObserver::Activity::BeforeWaiting, ownerBox->owner);
-    return std::make_unique<AppleEventBeat>(std::move(ownerBox), std::move(observer), *runtimeScheduler);
-  };
-
   _schedulerDelegate = std::make_unique<OneMacosSchedulerDelegate>(self);
-  _scheduler = std::make_unique<Scheduler>(toolbox, nullptr, _schedulerDelegate.get());
+  _runtime->createScheduler(
+      _providerRegistry,
+      [mountingManager](SharedComponentDescriptorRegistry descriptors) {
+        [mountingManager setComponentDescriptorRegistry:descriptors];
+      },
+      [](std::shared_ptr<EventBeat::OwnerBox> ownerBox, RuntimeScheduler &runtimeScheduler) -> std::unique_ptr<EventBeat> {
+        auto observer = std::make_unique<const MainRunLoopObserver>(RunLoopObserver::Activity::BeforeWaiting, ownerBox->owner);
+        return std::make_unique<AppleEventBeat>(std::move(ownerBox), std::move(observer), runtimeScheduler);
+      },
+      _schedulerDelegate.get());
 }
 
 - (void)startSurface
 {
-  _surface.emplace(_moduleName.UTF8String, getNextRootViewTag());
-  _surface->setProps(folly::dynamic::object());
-  _scheduler->registerSurface(*_surface);
-  [_mountingManager attachSurface:_surface->getSurfaceId() toView:_view];
-  [self applyLayout];
-  _surface->start();
-}
-
-- (void)applyLayout
-{
-  if (!_surface) {
-    return;
-  }
-  LayoutConstraints constraints = _surface->getLayoutConstraints();
-  LayoutContext context = _surface->getLayoutContext();
-  facebook::react::Size size{static_cast<Float>(_size.width), static_cast<Float>(_size.height)};
-  constraints.minimumSize = size;
-  constraints.maximumSize = size;
-  constraints.layoutDirection = LayoutDirection::LeftToRight;
-  context.pointScaleFactor = static_cast<Float>(_scale);
-  context.fontSizeMultiplier = 1;
-  context.viewportSize = size;
-  _surface->constraintLayout(constraints, context);
+  OneMacosMountingManager *mountingManager = _mountingManager;
+  __weak NSView *view = _view;
+  _runtime->updateLayout(_size.width, _size.height, _scale);
+  _runtime->startSurface(_moduleName.UTF8String, [mountingManager, view](SurfaceId surfaceId) {
+    [mountingManager attachSurface:surfaceId toView:view];
+  });
 }
 
 - (void)loadBundleForGeneration:(NSInteger)generation
 {
-  std::weak_ptr<ReactInstance> weakInstance = _instance;
+  std::weak_ptr<OneHostRuntime> weakRuntime = _runtime;
   NSURL *url = _bundleURL;
   __weak OneMacosHost *weakSelf = self;
   NSURLSessionDataTask *task = [NSURLSession.sharedSession
@@ -329,12 +247,12 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
       }
       dispatch_async(dispatch_get_main_queue(), ^{
         OneMacosHost *strongSelf = weakSelf;
-        auto instance = weakInstance.lock();
-        if (!strongSelf || !instance || strongSelf->_generation != generation) {
+        auto runtime = weakRuntime.lock();
+        if (!strongSelf || !runtime || strongSelf->_generation != generation) {
           return;
         }
         std::string source(static_cast<const char *>(data.bytes), data.length);
-        instance->loadScript(std::make_unique<JSBigStdString>(std::move(source)), url.absoluteString.UTF8String);
+        runtime->instance().loadScript(std::make_unique<JSBigStdString>(std::move(source)), url.absoluteString.UTF8String);
       });
     }];
   [task resume];
@@ -347,23 +265,14 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   _appCommandConfig = nil;
   _appCommandsListening = NO;
   OneMacosUpdateAppCommands();
-  if (_surface) {
-    _surface->stop();
-    _scheduler->unregisterSurface(*_surface);
-    [_mountingManager detachSurface:_surface->getSurfaceId() fromView:_view];
-    _surface.reset();
+  if (_runtime) {
+    OneMacosMountingManager *mountingManager = _mountingManager;
+    __weak NSView *view = _view;
+    _runtime->stopSurface([mountingManager, view](SurfaceId surfaceId) {
+      [mountingManager detachSurface:surfaceId fromView:view];
+    });
+    _runtime.reset();
   }
-  _scheduler.reset();
-
-  auto instance = std::move(_instance);
-  auto thread = std::move(_jsThread);
-  auto modules = std::move(_turboModules);
-  // the instance and its modules must die on the js thread
-  thread->runOnQueueSync([&] {
-    modules->clear();
-    instance.reset();
-  });
-  thread->quitSynchronous();
   // queued rendering updates capture the delegate directly; keep it alive until
   // the old runtime has finished dispatching commands.
   _schedulerDelegate.reset();
@@ -378,32 +287,18 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 
 - (void)updateLayoutWithSize:(CGSize)size scale:(CGFloat)scale
 {
-  BOOL changed = !CGSizeEqualToSize(_size, size) || _scale != scale;
   _size = size;
   _scale = scale;
-  if (!changed) {
-    return;
-  }
-  [self applyLayout];
-  if (_instance) {
-    folly::dynamic dims = folly::dynamic::object("width", size.width)("height", size.height)("scale", scale)(
-        "fontScale", 1);
-    _instance->callFunctionOnModule(
-        "RCTDeviceEventEmitter",
-        "emit",
-        folly::dynamic::array(
-            "didUpdateDimensions", folly::dynamic::object("window", dims)("screen", dims)));
+  if (_runtime && _runtime->updateLayout(size.width, size.height, scale)) {
+    _runtime->emitDimensions();
   }
 }
 
 - (void)appearanceDidChange:(NSAppearance *)appearance
 {
-  if (_instance) {
-    _instance->callFunctionOnModule(
-        "RCTDeviceEventEmitter",
-        "emit",
-        folly::dynamic::array(
-            "appearanceChanged", folly::dynamic::object("colorScheme", OneMacosColorSchemeName(appearance).UTF8String)));
+  if (_runtime) {
+    _runtime->emitDeviceEvent(
+        "appearanceChanged", folly::dynamic::object("colorScheme", OneMacosColorSchemeName(appearance).UTF8String));
   }
 }
 
@@ -414,14 +309,13 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 
 - (BOOL)canPerformAppCommand:(NSString *)commandId
 {
-  return _instance && _appCommandsListening && [_appCommandConfig.commandIds containsObject:commandId];
+  return _runtime && _appCommandsListening && [_appCommandConfig.commandIds containsObject:commandId];
 }
 
 - (void)performAppCommand:(NSString *)commandId
 {
   if ([self canPerformAppCommand:commandId]) {
-    _instance->callFunctionOnModule(
-        "RCTDeviceEventEmitter", "emit", folly::dynamic::array("oneMacAppCommand", commandId.UTF8String));
+    _runtime->emitDeviceEvent("oneMacAppCommand", commandId.UTF8String);
   }
 }
 
@@ -442,29 +336,13 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 
 - (void)mergeReactRevision:(SurfaceId)surfaceId
 {
-  bool needsDispatch = false;
-  {
-    std::lock_guard<std::mutex> lock(_mergeMutex);
-    needsDispatch = _pendingMerges.empty();
-    _pendingMerges.insert(surfaceId);
+  if (_runtime) {
+    _runtime->mergeReactRevision(surfaceId, [](std::function<void()> work) {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        work();
+      });
+    });
   }
-  if (!needsDispatch) {
-    return;
-  }
-  dispatch_async(dispatch_get_main_queue(), ^{
-    std::unordered_set<SurfaceId> pending;
-    {
-      std::lock_guard<std::mutex> lock(self->_mergeMutex);
-      pending.swap(self->_pendingMerges);
-    }
-    if (!self->_scheduler) {
-      return;
-    }
-    auto uiManager = self->_scheduler->getUIManager();
-    for (auto id : pending) {
-      uiManager->getShadowTreeRegistry().visit(id, [](const ShadowTree &tree) { tree.mergeReactRevision(); });
-    }
-  });
 }
 
 @end
