@@ -696,5 +696,11 @@ the main mount, median of interleaved launches (TESTED).
 - Creating the root view in the app's `init`, so JS runs while the shell
   launches: 195 ms on studio-64, better on a loaded M5 Pro. Main thread setup
   only moves earlier, so it is not taken.
-- Next targets: the post-mount layout and display pass, and the empty window
-  commit that the main mount waits behind.
+- The post-mount pass (TESTED, time profile attached during a startup
+  pause): about 40 ms in AppKit's display cycle with no single owner: SwiftUI
+  layout and text resolution inside the control hosting views, SF Symbol
+  rasterization, TextKit 1 layout at draw time, and the Core Animation
+  commit. The fixture is control heavy, so a plainer screen pays less.
+- Remaining structural options, none taken yet: the AppKit shell above, and
+  mounting before the window's first commit so the empty window is never
+  drawn.
