@@ -25,6 +25,9 @@ export default function SearchParamsTabsLayout() {
         <Link testID="go-two" href="/search-params/tabs/two">
           <Text>go two</Text>
         </Link>
+        <Link testID="go-two-page" href="/search-params/tabs/two?page=4">
+          <Text>go two with page</Text>
+        </Link>
         <Link testID="go-two-hash" href="/search-params/tabs/two#frag">
           <Text>go two with hash</Text>
         </Link>

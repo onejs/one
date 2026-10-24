@@ -346,10 +346,18 @@ function useSearchParamsSchema<Schema extends StandardSchemaV1<unknown, object>>
   schema: Schema,
   global: boolean
 ): UseSearchParamsSchemaResult<Schema> {
-  // biome-ignore lint/correctness/useHookAtTopLevel: global option is stable (validated above)
-  const params = global ? useActiveParams() : useParams()
-  const pathname = usePathname()
-  const { unstable_globalHref: href, pathname: routePathname } = useRouteInfo()
+  // global reads the active route even from an unfocused page, which has its own route info
+  const localInfo = useRouteInfo()
+  const storeInfo = useStoreRouteInfo()
+  const localParams = useParams()
+  const localPathname = usePathname()
+  const { unstable_globalHref: href, pathname: routePathname } = global
+    ? storeInfo
+    : localInfo
+  const params = global ? (storeInfo.params as Record<string, unknown>) : localParams
+  const pathname = global
+    ? getPathnameWithRecoveredDynamicSegment(storeInfo.pathname)
+    : localPathname
 
   // path params ride in the same params object as the query: keep only what the href queries
   const record = React.useMemo(() => toSearchRecord(params, href), [params, href])
