@@ -93,6 +93,7 @@ OneLinuxTextInput::OneLinuxTextInput(Tag tag) : tag_(tag)
   gtk_style_context_add_provider(gtk_widget_get_style_context(placeholder_), GTK_STYLE_PROVIDER(viewStyle_), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
   G_GNUC_END_IGNORE_DEPRECATIONS
   g_signal_connect(buffer_, "changed", G_CALLBACK(changed), this);
+  g_signal_connect(buffer_, "insert-text", G_CALLBACK(insertText), this);
   g_signal_connect(buffer_, "mark-set", G_CALLBACK(markSet), this);
   attachControllers(view_, 1);
   gtk_stack_add_named(GTK_STACK(stack_), overlay_, "multi");
@@ -304,7 +305,8 @@ void OneLinuxTextInput::update(
     GtkEditable *editable = GTK_EDITABLE(text_);
     gtk_editable_set_editable(editable, textProps.traits.editable && !textProps.readOnly);
     gtk_text_set_visibility(GTK_TEXT(text_), !textProps.traits.secureTextEntry);
-    gtk_text_set_max_length(GTK_TEXT(text_), textProps.maxLength == std::numeric_limits<int>::max() ? 0 : std::max(textProps.maxLength, 0));
+    maxLength_ = textProps.maxLength == std::numeric_limits<int>::max() ? 0 : std::max(textProps.maxLength, 0);
+    gtk_text_set_max_length(GTK_TEXT(text_), maxLength_);
     gtk_text_set_placeholder_text(GTK_TEXT(text_), textProps.placeholder.empty() ? nullptr : textProps.placeholder.c_str());
 
     auto attributes = textProps.getEffectiveTextAttributes(1);
@@ -319,7 +321,7 @@ void OneLinuxTextInput::update(
     gtk_editable_set_alignment(editable, alignment);
 
     // the multiline field takes its font and color from CSS, and reads the
-    // placeholder from its label; maxLength is not enforced there yet
+    // placeholder from its label; the buffer enforces maxLength
     gtk_text_view_set_editable(GTK_TEXT_VIEW(view_), textProps.traits.editable && !textProps.readOnly);
     gtk_text_view_set_justification(
         GTK_TEXT_VIEW(view_), alignment == 0.5f ? GTK_JUSTIFY_CENTER : alignment == 1.0f ? GTK_JUSTIFY_RIGHT : GTK_JUSTIFY_LEFT);
@@ -382,6 +384,27 @@ void OneLinuxTextInput::command(const std::string &name, const folly::dynamic &a
     if (start >= 0 && end >= 0) {
       setSelection(start, std::max(end, start));
     }
+  }
+}
+
+// keeps an insert inside maxLength: the part that fits goes in instead
+void OneLinuxTextInput::insertText(GtkTextBuffer *buffer, GtkTextIter *at, gchar *text, gint length, gpointer data)
+{
+  auto &self = *static_cast<OneLinuxTextInput *>(data);
+  if (self.maxLength_ <= 0) {
+    return;
+  }
+  int room = self.maxLength_ - gtk_text_buffer_get_char_count(buffer);
+  long incoming = g_utf8_strlen(text, length);
+  if (incoming <= room) {
+    return;
+  }
+  g_signal_stop_emission_by_name(buffer, "insert-text");
+  if (room > 0) {
+    const char *end = g_utf8_offset_to_pointer(text, room);
+    g_signal_handlers_block_by_func(buffer, reinterpret_cast<gpointer>(insertText), data);
+    gtk_text_buffer_insert(buffer, at, text, static_cast<gint>(end - text));
+    g_signal_handlers_unblock_by_func(buffer, reinterpret_cast<gpointer>(insertText), data);
   }
 }
 

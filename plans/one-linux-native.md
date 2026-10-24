@@ -432,8 +432,11 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   empty view. Enter adds a line when `submitBehavior` is `newline`, and
   otherwise submits (shift+Enter still adds one). Font and color come from CSS.
   Proof, a placeholder, then "hello", Enter, "world" with the line and character
-  count following: [window](one-linux-native-multiline.png). Gaps: `maxLength`
-  and `secureTextEntry` are not applied to the multiline field.
+  count following: [window](one-linux-native-multiline.png). `maxLength` is
+  enforced in the buffer's `insert-text` handler, which keeps the part of an
+  insert that fits; typing 21 characters into a 12 character field stops at 12:
+  [window](one-linux-native-multiline-maxlength.png). `secureTextEntry` is not
+  applied to the multiline field (iOS ignores it there too).
 
 **Next:** `Image` `blurRadius`,
 `defaultSource`, the

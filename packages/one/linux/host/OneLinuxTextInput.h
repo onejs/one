@@ -39,6 +39,7 @@ class OneLinuxTextInput {
  private:
   static void changed(gpointer, gpointer data);
   static void selectionMoved(GObject *, GParamSpec *, gpointer data);
+  static void insertText(GtkTextBuffer *, GtkTextIter *at, gchar *text, gint length, gpointer data);
   static void markSet(GtkTextBuffer *, GtkTextIter *, GtkTextMark *, gpointer data);
   static void activated(GtkText *, gpointer data);
   static void focusEntered(GtkEventControllerFocus *, gpointer data);
@@ -80,6 +81,8 @@ class OneLinuxTextInput {
   GtkEventController *focus_[2];
   GtkEventController *key_[2];
   bool multiline_{false};
+  // 0 for no limit; the multiline buffer enforces it, GtkText has its own
+  int maxLength_{0};
   std::shared_ptr<const EventEmitter> eventEmitter_;
   std::shared_ptr<const TextInputShadowNode::ConcreteState> state_;
   Props::Shared props_;

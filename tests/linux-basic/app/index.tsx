@@ -206,6 +206,7 @@ export default function Index() {
         <View style={{ flexDirection: 'row', marginTop: 8, alignItems: 'flex-start' }}>
           <TextInput
             multiline
+            maxLength={12}
             value={notes}
             onChangeText={setNotes}
             placeholder="notes, one per line"
