@@ -21,5 +21,6 @@ PangoLayout *OneLinuxCreateLayout(
 // The font and color of an editable field's text as one attribute list for
 // GtkText, covering the whole text. The caller owns the returned list.
 PangoAttrList *OneLinuxCreateFieldAttributes(const TextAttributes &attributes);
+std::string OneLinuxCreateFieldFontCss(const TextAttributes &attributes);
 
 } // namespace facebook::react

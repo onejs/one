@@ -57,6 +57,7 @@ class OneLinuxTextInput {
 
   Tag tag_;
   GtkWidget *text_;
+  GtkCssProvider *fontStyle_;
   GtkEventController *focus_;
   GtkEventController *key_;
   std::shared_ptr<const EventEmitter> eventEmitter_;

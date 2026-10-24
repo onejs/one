@@ -345,8 +345,14 @@ sway on the studio-64 VM.
   ever getting it.
 - Gaps: no multiline (`GtkTextView`), `placeholderTextColor`, `cursorColor`,
   `selectionColor`, `autoCapitalize`, input method position hints, or drag and
-  drop. Typed text sits about 6 px higher in a 40 px field than the placeholder
-  does; not yet understood.
+  drop.
+- Typed text and placeholder share one vertical position
+  ([both](one-linux-native-input-baseline.png), measured: ascender top row 280 and
+  baseline row 293 in both). A `GtkText` given no baseline sat its line at the
+  baseline of its smallest size, 6 px above center in a 40 px field, while the
+  placeholder label was centered. The surface view now allocates a `GtkText` with
+  its natural baseline centered in the box, and the field's font goes in its
+  style (CSS) so GTK's line metrics match the text.
 
 **M2 dark mode and resize, 2026-10-23.** `Appearance` follows the GTK theme and
 tells React when it changes. Proof, studio-64 VM under headless sway: the

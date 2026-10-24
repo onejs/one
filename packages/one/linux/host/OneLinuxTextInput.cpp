@@ -42,6 +42,10 @@ OneLinuxTextInput::OneLinuxTextInput(Tag tag) : tag_(tag)
 {
   text_ = gtk_text_new();
   g_object_ref_sink(text_);
+  fontStyle_ = gtk_css_provider_new();
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+  gtk_style_context_add_provider(gtk_widget_get_style_context(text_), GTK_STYLE_PROVIDER(fontStyle_), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  G_GNUC_END_IGNORE_DEPRECATIONS
   // the field takes whatever width its view gives it
   gtk_editable_set_width_chars(GTK_EDITABLE(text_), 1);
   g_signal_connect(text_, "changed", G_CALLBACK(changed), this);
@@ -65,6 +69,7 @@ OneLinuxTextInput::~OneLinuxTextInput()
   g_signal_handlers_disconnect_by_data(text_, this);
   g_signal_handlers_disconnect_by_data(focus_, this);
   g_signal_handlers_disconnect_by_data(key_, this);
+  g_object_unref(fontStyle_);
   g_object_unref(text_);
 }
 
@@ -197,6 +202,7 @@ void OneLinuxTextInput::update(
     gtk_text_set_placeholder_text(GTK_TEXT(text_), textProps.placeholder.empty() ? nullptr : textProps.placeholder.c_str());
 
     auto attributes = textProps.getEffectiveTextAttributes(1);
+    gtk_css_provider_load_from_string(fontStyle_, OneLinuxCreateFieldFontCss(attributes).c_str());
     PangoAttrList *list = OneLinuxCreateFieldAttributes(attributes);
     gtk_text_set_attributes(GTK_TEXT(text_), list);
     pango_attr_list_unref(list);

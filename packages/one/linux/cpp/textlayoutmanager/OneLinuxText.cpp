@@ -215,14 +215,25 @@ PangoLayout *OneLinuxCreateLayout(
 PangoAttrList *OneLinuxCreateFieldAttributes(const TextAttributes &attributes)
 {
   PangoAttrList *list = pango_attr_list_new();
-  PangoFontDescription *description = fontDescription(attributes);
-  pango_attr_list_insert(list, pango_attr_font_desc_new(description));
-  pango_font_description_free(description);
   if (attributes.foregroundColor) {
     double opacity = std::isnan(attributes.opacity) ? 1 : attributes.opacity;
     addColor(list, attributes.foregroundColor, opacity, 0, G_MAXUINT, true);
   }
   return list;
+}
+
+// a GtkText measures its line from the font its style gives it, so the field's
+// font goes in its style rather than in the text attributes; the placeholder
+// then shares it
+std::string OneLinuxCreateFieldFontCss(const TextAttributes &attributes)
+{
+  PangoFontDescription *description = fontDescription(attributes);
+  std::string css = "text { font-family: \"" + std::string(pango_font_description_get_family(description)) + "\"; font-size: " +
+      std::to_string(pango_font_description_get_size(description) / static_cast<double>(PANGO_SCALE)) + "px; font-weight: " +
+      std::to_string(static_cast<int>(pango_font_description_get_weight(description))) + "; font-style: " +
+      (pango_font_description_get_style(description) == PANGO_STYLE_ITALIC ? "italic" : "normal") + "; }";
+  pango_font_description_free(description);
+  return css;
 }
 
 } // namespace facebook::react

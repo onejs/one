@@ -41,6 +41,19 @@ static void one_view_measure(
   *natBaseline = -1;
 }
 
+// a single line field centers its line vertically like a UITextField does; a
+// GtkText given no baseline sits its line at the baseline of its smallest
+// size instead, so give it the baseline of its natural size centered in the box
+static int control_baseline(GtkWidget *control, int width, int height)
+{
+  if (!GTK_IS_TEXT(control)) {
+    return -1;
+  }
+  int minimum, natural, minimumBaseline, naturalBaseline;
+  gtk_widget_measure(control, GTK_ORIENTATION_VERTICAL, width, &minimum, &natural, &minimumBaseline, &naturalBaseline);
+  return naturalBaseline < 0 ? -1 : (height - natural) / 2 + naturalBaseline;
+}
+
 static void one_view_size_allocate(GtkWidget *widget, int width, int height, int)
 {
   OneView *view = ONE_VIEW(widget);
@@ -59,7 +72,7 @@ static void one_view_size_allocate(GtkWidget *widget, int width, int height, int
 
   for (GtkWidget *child = gtk_widget_get_first_child(widget); child; child = gtk_widget_get_next_sibling(child)) {
     if (child == view->control) {
-      gtk_widget_allocate(child, width, height, -1, nullptr);
+      gtk_widget_allocate(child, width, height, control_baseline(child, width, height), nullptr);
       continue;
     }
     OneView *childView = ONE_VIEW(child);
