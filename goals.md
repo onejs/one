@@ -21,3 +21,30 @@ The release also includes PR #974, which escapes literal dynamic SPA route paths
 Keep unsupported APIs and placement limitations explicit. Synchronous callbacks that escape the JavaScript-thread call, arbitrary app-authored Swift types and SwiftUI builders are not covered by these changes. API name coverage does not imply that every overload or callback shape is supported.
 
 After followup review, matching artifact checks and bounded native validation, prepare the followup PR for release approval. Publish the prepared stable version only after approval resumes publication, then verify the exact npm artifact's source revision and changed runtime bytes.
+
+## SDK bundle size candidate
+
+The approved scope is options a and c in Contrast's
+`plans/contrast/one-native-sdk-bundle-size.md`: compact generated SDK runtime
+facades and direct root hook exports. Keep typed declarations, framework-wide
+wrapper registration, native selector IDs, first-call errors and both bundlers
+compatible. Publish branch canaries for downstream validation, not a stable
+release.
+
+The current candidate passes the package build with declaration emit, 37 focused
+checks and differential exports, descriptors, registry metadata and call records
+for all 290 frameworks. Substituting its built files into the retaken production
+welcome artifact saves 3,587,189 SDK bytes with 2748 modules unchanged. This is
+exploratory evidence, not a rebuilt Metro or in-browser acceptance result.
+
+The candidate is not ready to merge: the measured framework execution time in
+Peach rises with table materialization, failing the plan's no-rise acceptance.
+The production homepage chunk comparison, exact canary artifact verification,
+local welcome rebuild and six capability calls on Peach and iOS remain open.
+Contrast's isolated worktree is held by the lead until lane capacity frees.
+
+Option b is not included. An exploratory graph-pruning probe removes 347 modules
+and every SDK binding, estimating 7,504,327 code bytes. It still needs actual
+native and homepage measurements and a documented root-to-subpath migration
+before inclusion. The lead owns any acceptance tradeoff; a different large model
+must approve the final PR before merge.
