@@ -11,7 +11,7 @@ using namespace facebook::react;
 
 @implementation OneNativePagerScrollView
 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated {
-  // descendant caret reveals must not interrupt paging or move it between pages.
+  // match UIPageViewController's paging scroll view: reveals never move it between pages.
 }
 @end
 
