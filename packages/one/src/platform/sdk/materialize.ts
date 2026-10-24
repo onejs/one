@@ -13,6 +13,7 @@ type Member = [
 // fixed arities keep the generated call's argument slots and ignore extra args.
 // these are methods so they remain nonconstructible, like class methods.
 function implementation(
+  name: string,
   module: string,
   id: number,
   flags: number,
@@ -25,51 +26,51 @@ function implementation(
   if (flags & 4) {
     if (flags & 1)
       return {
-        invoke(a: unknown) {
+        [name](a: unknown) {
           call(module, id, undefined, [a], hints, sync)
         },
-      }.invoke
+      }[name]
     return {
-      invoke(this: unknown, a: unknown) {
+      [name](this: unknown, a: unknown) {
         call(module, id, this, [a], hints, sync)
       },
-    }.invoke
+    }[name]
   }
   if (flags & 64) {
     switch (arity) {
       case 1:
         return {
-          invoke(self: unknown) {
+          [name](self: unknown) {
             return call(module, id, self, [], hints, sync)
           },
-        }.invoke
+        }[name]
       case 2:
         return {
-          invoke(self: unknown, a: unknown) {
+          [name](self: unknown, a: unknown) {
             return call(module, id, self, [a], hints, sync)
           },
-        }.invoke
+        }[name]
       case 3:
         return {
-          invoke(self: unknown, a: unknown, b: unknown) {
+          [name](self: unknown, a: unknown, b: unknown) {
             return call(module, id, self, [a, b], hints, sync)
           },
-        }.invoke
+        }[name]
       case 4:
         return {
-          invoke(self: unknown, a: unknown, b: unknown, c: unknown) {
+          [name](self: unknown, a: unknown, b: unknown, c: unknown) {
             return call(module, id, self, [a, b, c], hints, sync)
           },
-        }.invoke
+        }[name]
       case 5:
         return {
-          invoke(self: unknown, a: unknown, b: unknown, c: unknown, d: unknown) {
+          [name](self: unknown, a: unknown, b: unknown, c: unknown, d: unknown) {
             return call(module, id, self, [a, b, c, d], hints, sync)
           },
-        }.invoke
+        }[name]
       case 6:
         return {
-          invoke(
+          [name](
             self: unknown,
             a: unknown,
             b: unknown,
@@ -79,10 +80,10 @@ function implementation(
           ) {
             return call(module, id, self, [a, b, c, d, e], hints, sync)
           },
-        }.invoke
+        }[name]
       case 7:
         return {
-          invoke(
+          [name](
             self: unknown,
             a: unknown,
             b: unknown,
@@ -93,10 +94,10 @@ function implementation(
           ) {
             return call(module, id, self, [a, b, c, d, e, f], hints, sync)
           },
-        }.invoke
+        }[name]
       case 8:
         return {
-          invoke(
+          [name](
             self: unknown,
             a: unknown,
             b: unknown,
@@ -108,7 +109,7 @@ function implementation(
           ) {
             return call(module, id, self, [a, b, c, d, e, f, g], hints, sync)
           },
-        }.invoke
+        }[name]
       default:
         throw new Error('invalid SDK member arity')
     }
@@ -117,49 +118,49 @@ function implementation(
     switch (arity) {
       case 0:
         return {
-          invoke() {
+          [name]() {
             return call(module, id, undefined, [], hints, sync)
           },
-        }.invoke
+        }[name]
       case 1:
         return {
-          invoke(a: unknown) {
+          [name](a: unknown) {
             return call(module, id, undefined, [a], hints, sync)
           },
-        }.invoke
+        }[name]
       case 2:
         return {
-          invoke(a: unknown, b: unknown) {
+          [name](a: unknown, b: unknown) {
             return call(module, id, undefined, [a, b], hints, sync)
           },
-        }.invoke
+        }[name]
       case 3:
         return {
-          invoke(a: unknown, b: unknown, c: unknown) {
+          [name](a: unknown, b: unknown, c: unknown) {
             return call(module, id, undefined, [a, b, c], hints, sync)
           },
-        }.invoke
+        }[name]
       case 4:
         return {
-          invoke(a: unknown, b: unknown, c: unknown, d: unknown) {
+          [name](a: unknown, b: unknown, c: unknown, d: unknown) {
             return call(module, id, undefined, [a, b, c, d], hints, sync)
           },
-        }.invoke
+        }[name]
       case 5:
         return {
-          invoke(a: unknown, b: unknown, c: unknown, d: unknown, e: unknown) {
+          [name](a: unknown, b: unknown, c: unknown, d: unknown, e: unknown) {
             return call(module, id, undefined, [a, b, c, d, e], hints, sync)
           },
-        }.invoke
+        }[name]
       case 6:
         return {
-          invoke(a: unknown, b: unknown, c: unknown, d: unknown, e: unknown, f: unknown) {
+          [name](a: unknown, b: unknown, c: unknown, d: unknown, e: unknown, f: unknown) {
             return call(module, id, undefined, [a, b, c, d, e, f], hints, sync)
           },
-        }.invoke
+        }[name]
       case 7:
         return {
-          invoke(
+          [name](
             a: unknown,
             b: unknown,
             c: unknown,
@@ -170,10 +171,10 @@ function implementation(
           ) {
             return call(module, id, undefined, [a, b, c, d, e, f, g], hints, sync)
           },
-        }.invoke
+        }[name]
       case 8:
         return {
-          invoke(
+          [name](
             a: unknown,
             b: unknown,
             c: unknown,
@@ -185,7 +186,7 @@ function implementation(
           ) {
             return call(module, id, undefined, [a, b, c, d, e, f, g, h], hints, sync)
           },
-        }.invoke
+        }[name]
       default:
         throw new Error('invalid SDK member arity')
     }
@@ -193,37 +194,37 @@ function implementation(
   switch (arity) {
     case 0:
       return {
-        invoke(this: unknown) {
+        [name](this: unknown) {
           return call(module, id, this, [], hints, sync)
         },
-      }.invoke
+      }[name]
     case 1:
       return {
-        invoke(this: unknown, a: unknown) {
+        [name](this: unknown, a: unknown) {
           return call(module, id, this, [a], hints, sync)
         },
-      }.invoke
+      }[name]
     case 2:
       return {
-        invoke(this: unknown, a: unknown, b: unknown) {
+        [name](this: unknown, a: unknown, b: unknown) {
           return call(module, id, this, [a, b], hints, sync)
         },
-      }.invoke
+      }[name]
     case 3:
       return {
-        invoke(this: unknown, a: unknown, b: unknown, c: unknown) {
+        [name](this: unknown, a: unknown, b: unknown, c: unknown) {
           return call(module, id, this, [a, b, c], hints, sync)
         },
-      }.invoke
+      }[name]
     case 4:
       return {
-        invoke(this: unknown, a: unknown, b: unknown, c: unknown, d: unknown) {
+        [name](this: unknown, a: unknown, b: unknown, c: unknown, d: unknown) {
           return call(module, id, this, [a, b, c, d], hints, sync)
         },
-      }.invoke
+      }[name]
     case 5:
       return {
-        invoke(
+        [name](
           this: unknown,
           a: unknown,
           b: unknown,
@@ -233,10 +234,10 @@ function implementation(
         ) {
           return call(module, id, this, [a, b, c, d, e], hints, sync)
         },
-      }.invoke
+      }[name]
     case 6:
       return {
-        invoke(
+        [name](
           this: unknown,
           a: unknown,
           b: unknown,
@@ -247,10 +248,10 @@ function implementation(
         ) {
           return call(module, id, this, [a, b, c, d, e, f], hints, sync)
         },
-      }.invoke
+      }[name]
     case 7:
       return {
-        invoke(
+        [name](
           this: unknown,
           a: unknown,
           b: unknown,
@@ -262,10 +263,10 @@ function implementation(
         ) {
           return call(module, id, this, [a, b, c, d, e, f, g], hints, sync)
         },
-      }.invoke
+      }[name]
     case 8:
       return {
-        invoke(
+        [name](
           this: unknown,
           a: unknown,
           b: unknown,
@@ -278,7 +279,7 @@ function implementation(
         ) {
           return call(module, id, this, [a, b, c, d, e, f, g, h], hints, sync)
         },
-      }.invoke
+      }[name]
     default:
       throw new Error('invalid SDK member arity')
   }
@@ -298,8 +299,6 @@ export function defineSDKMembers(
   > = {}
   const retained = new Map<Member, PropertyDescriptor>()
   const prototype = value ? target : Reflect.get(target, 'prototype')
-  const instanceDescriptors: PropertyDescriptorMap = Object.create(null)
-  const staticDescriptors: PropertyDescriptorMap = Object.create(null)
   for (const member of members) {
     const [name, , flags = 0] = member
     if (!(flags & 32)) continue
@@ -317,28 +316,29 @@ export function defineSDKMembers(
       methods[name] = entry
     }
     const object = value || flags & 1 ? target : prototype
-    const descriptors = value || flags & 1 ? staticDescriptors : instanceDescriptors
     if (flags & 32) {
-      descriptors[name] = retained.get(member)!
+      Object.defineProperty(object, name, retained.get(member)!)
       continue
     }
-    const method = implementation(module, id, flags, arity, hints ?? undefined)
-    Object.defineProperty(method, 'name', {
-      value: `${flags & 2 ? 'get ' : flags & 4 ? 'set ' : ''}${name}`,
-      configurable: true,
-    })
+    const method = implementation(
+      `${flags & 2 ? 'get ' : flags & 4 ? 'set ' : ''}${name}`,
+      module,
+      id,
+      flags,
+      arity,
+      hints ?? undefined
+    )
     const descriptor: PropertyDescriptor = { configurable: true, enumerable: value }
     if (flags & 6) {
-      const previous = descriptors[name] ?? Object.getOwnPropertyDescriptor(object, name)
-      descriptor.get = flags & 2 ? method : previous?.get
-      descriptor.set = flags & 4 ? method : previous?.set
+      const previous = Object.getOwnPropertyDescriptor(object, name)
+      // the generator emits zero arguments for getters and one for setters.
+      descriptor.get = flags & 2 ? (method as () => unknown) : previous?.get
+      descriptor.set = flags & 4 ? (method as (value: unknown) => void) : previous?.set
     } else {
       descriptor.value = method
       descriptor.writable = true
     }
-    descriptors[name] = descriptor
+    Object.defineProperty(object, name, descriptor)
   }
-  if (!value) Object.defineProperties(prototype, instanceDescriptors)
-  Object.defineProperties(target, staticDescriptors)
   return { module, properties, ...(Object.keys(methods).length ? { methods } : {}) }
 }
