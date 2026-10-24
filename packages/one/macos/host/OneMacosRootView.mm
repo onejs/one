@@ -318,6 +318,11 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 {
   std::weak_ptr<ReactInstance> weakInstance = _instance;
   NSURL *url = _bundleURL;
+  if (url.isFileURL) {
+    // the embedded bundle is mapped in place; loadScript only queues the eval on the js thread
+    _instance->loadScript(JSBigFileString::fromPath(url.path.UTF8String), url.absoluteString.UTF8String);
+    return;
+  }
   __weak OneMacosHost *weakSelf = self;
   NSURLSessionDataTask *task = [NSURLSession.sharedSession
       dataTaskWithURL:url
@@ -484,8 +489,12 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   if (override.length > 0) {
     return [NSURL URLWithString:override];
   }
+#if DEBUG
   NSString *server = [NSBundle.mainBundle objectForInfoDictionaryKey:@"OneDevServerURL"] ?: @"http://localhost:8081";
   return [NSURL URLWithString:[server stringByAppendingString:@"/index.bundle?platform=macos&dev=true"]];
+#else
+  return [NSBundle.mainBundle URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
 }
 
 - (instancetype)initWithBundleURL:(NSURL *)bundleURL moduleName:(NSString *)moduleName

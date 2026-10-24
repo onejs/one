@@ -68,3 +68,8 @@ targets:
         basedOnDependencyAnalysis: false
         script: |
           "$ONE_MACOS/template/macos/scripts/embed-hermes.sh" "$ONE_HERMES" "$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
+      - name: Bundle JavaScript
+        basedOnDependencyAnalysis: false
+        script: |
+          export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+          "$ONE_MACOS/template/macos/scripts/bundle-js.sh" "$SRCROOT/.." "$RN_ROOT" "$CORE_OUT/hermes/destroot/bin/hermesc" "$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"
