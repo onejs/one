@@ -30,9 +30,11 @@ set(WITH_GFLAGS OFF CACHE BOOL "" FORCE)
 set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
 set(BUILD_SHARED_LIBS OFF)
 add_subdirectory(${TP_ROOT}/glog glog EXCLUDE_FROM_ALL)
-# consumers see the headers glog configures into its build directory, as they
-# would from an installed glog; its build interface also exports its private
-# src directories, whose demangle.h folly takes for libiberty's
+# consumers see glog's public headers, laid out as an installed glog has them:
+# the ones it configures into its build directory plus log_severity.h. Its
+# build interface also exports its private src directories, whose demangle.h
+# folly takes for libiberty's.
+configure_file(${TP_ROOT}/glog/src/glog/log_severity.h ${CMAKE_CURRENT_BINARY_DIR}/glog/glog/log_severity.h COPYONLY)
 set_target_properties(glog PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/glog>")
 
 set(F ${TP_ROOT}/folly/folly)
