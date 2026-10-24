@@ -5,37 +5,53 @@ import { WebSocket, WebSocketServer } from 'ws'
 import type { Plugin } from 'vite'
 
 // temporary, opt-in capture for an edit that never reaches the running app.
-export function nativeHmrTrace(path: string | undefined): Plugin {
-  if (!path) return { name: 'test-native-hmr-trace' }
+export function nativeHmrTrace(path: string | undefined): Plugin[] {
+  if (!path) return [{ name: 'test-native-hmr-trace' }]
   mkdirSync(dirname(path), { recursive: true })
+  const clients = new Set<string>()
+  const edits = new Map<string, number>()
+  let edit = 0
   const record = (event: string, detail: Record<string, unknown> = {}) => {
     appendFileSync(
       path,
       JSON.stringify({
         at: new Date().toISOString(),
         pid: process.pid,
+        monotonicMs: performance.now(),
+        cpu: process.cpuUsage(),
+        clients: [...clients],
         event,
         ...detail,
       }) + '\n'
     )
   }
-  return {
+  const plugin: Plugin = {
     name: 'test-native-hmr-trace',
     api: {
       vxrnNative: () => ({
         name: 'test-native-hmr-trace-native',
         watchChange(id: string, change: unknown) {
-          record('watch', { id, change })
+          if (!id.includes('/features/hmr/')) return
+          edits.set(id, ++edit)
+          record('watch', { id, edit, change })
         },
-        transform(code: string, id: string) {
-          if (id.includes('/features/hmr/')) {
-            record('transform', {
-              id,
-              bytes: Buffer.byteLength(code),
-              ready: code.includes('hmr-session-ready'),
-            })
-          }
-          return null
+        transform: {
+          order: 'post',
+          handler(code: string, id: string) {
+            if (id.includes('/features/hmr/')) {
+              record('transform', {
+                id,
+                edit: edits.get(id) ?? 0,
+                bytes: Buffer.byteLength(code),
+                ready: code.includes('hmr-session-ready'),
+              })
+            }
+            return null
+          },
+        },
+        moduleParsed({ id }: { id: string }) {
+          if (!id.includes('/features/hmr/')) return
+          record('moduleParsed', { id, edit: edits.get(id) ?? 0 })
         },
         generateBundle(_options: unknown, bundle: Record<string, any>) {
           for (const chunk of Object.values(bundle)) {
@@ -69,10 +85,20 @@ export function nativeHmrTrace(path: string | undefined): Plugin {
     configureServer(server) {
       // instrument the installed experimental engine only for this test process.
       let lastPulse = performance.now()
+      let lastCpu = process.cpuUsage()
       const pulse = setInterval(() => {
         const now = performance.now()
-        record('pulse', { gapMs: now - lastPulse, ...process.memoryUsage() })
+        const cpu = process.cpuUsage()
+        record('pulse', {
+          gapMs: now - lastPulse,
+          cpuDelta: {
+            user: cpu.user - lastCpu.user,
+            system: cpu.system - lastCpu.system,
+          },
+          ...process.memoryUsage(),
+        })
         lastPulse = now
+        lastCpu = cpu
       }, 1000)
       const restorers: Array<() => void> = [() => clearInterval(pulse)]
       for (const method of [
@@ -81,7 +107,10 @@ export function nativeHmrTrace(path: string | undefined): Plugin {
         'notifyPayloadDelivered',
       ] as const) {
         const original = DevEngine.prototype[method]
-        ;(DevEngine.prototype[method] as any) = function (this: DevEngine, ...args: any[]) {
+        ;(DevEngine.prototype[method] as any) = function (
+          this: DevEngine,
+          ...args: any[]
+        ) {
           const started = performance.now()
           record(`${method}:start`, { args })
           return (original as any).apply(this, args).then(
@@ -117,13 +146,19 @@ export function nativeHmrTrace(path: string | undefined): Plugin {
         WebSocket.prototype.send = send
       })
       const emit = WebSocketServer.prototype.emit
-      WebSocketServer.prototype.emit = function (this: WebSocketServer, event, ...args: any[]) {
+      WebSocketServer.prototype.emit = function (
+        this: WebSocketServer,
+        event,
+        ...args: any[]
+      ) {
         const socket = args[0]
         if (event === 'connection' && socket.vxrnClientId) {
           const clientId = socket.vxrnClientId
+          clients.add(clientId)
           record('connection', { clientId })
           socket.on('close', (code: number, reason: Buffer) => {
             record('disconnect', { clientId, code, reason: String(reason) })
+            clients.delete(clientId)
           })
           socket.on('message', (data: Buffer) => {
             const text = String(data)
@@ -142,4 +177,27 @@ export function nativeHmrTrace(path: string | undefined): Plugin {
       })
     },
   }
+  return [
+    {
+      name: 'test-native-hmr-trace-start',
+      api: {
+        vxrnNative: () => ({
+          name: 'test-native-hmr-trace-start-native',
+          // native codegen, background computation and client tree shaking ran first.
+          // watch-to-start includes those earlier pre-ordered hooks; normal-order
+          // transforms follow this marker.
+          transform: {
+            order: 'pre',
+            handler(_code: string, id: string) {
+              if (id.includes('/features/hmr/')) {
+                record('transform:start', { id, edit: edits.get(id) ?? 0 })
+              }
+              return null
+            },
+          },
+        }),
+      },
+    },
+    plugin,
+  ]
 }

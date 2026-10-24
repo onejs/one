@@ -582,6 +582,7 @@ jobs:
           if [ '${{ matrix.env }}' = dev ] && [ '${{ matrix.bundler }}' = rolldown ]; then
             export ONE_NATIVE_BUNDLE_TRACE="$RUNNER_TEMP/native-bundle-transport.jsonl"
             export ONE_NATIVE_HMR_TRACE="$RUNNER_TEMP/native-hmr-delivery.jsonl"
+            node tests/test/scripts/nativeHmrReceipt.mjs
             xcrun simctl spawn "$SIMULATOR_UDID" log stream \
               --style ndjson --level debug \
               --predicate 'process == "RNTestContainer" OR subsystem == "com.apple.CFNetwork"' \
