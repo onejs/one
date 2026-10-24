@@ -6,7 +6,7 @@ import { runInNewContext } from 'node:vm'
 import { rolldown } from 'rolldown'
 import { resolveConfig, type Plugin } from 'vite'
 import { describe, expect, test } from 'vitest'
-import type { createNativeDevEngine } from '../../../vxrn/src/utils/createNativeDevEngine'
+import type * as NativeDevEngine from '../../../vxrn/types/utils/createNativeDevEngine'
 import type { NativeAppManifest } from '../native/appManifest'
 import { one } from './one'
 
@@ -167,7 +167,9 @@ test('macos rejects a package with only mobile and web implementations at bundle
   )
   const originalCwd = process.cwd()
   const originalPlugins = globalThis.__vxrnAddNativePlugins
-  let native: Awaited<ReturnType<typeof createNativeDevEngine>> | undefined
+  let native:
+    | Awaited<ReturnType<typeof NativeDevEngine.createNativeDevEngine>>
+    | undefined
   try {
     const pkg = join(root, 'node_modules/expo-ghostty')
     await mkdir(pkg, { recursive: true })
@@ -189,8 +191,8 @@ test('macos rejects a package with only mobile and web implementations at bundle
     process.chdir(fixture)
     await one({ native: { app: { name: 'ProbeApp' } } })
     process.chdir(originalCwd)
-    const { createNativeDevEngine } =
-      await import('../../../vxrn/src/utils/createNativeDevEngine')
+    const { createNativeDevEngine }: typeof NativeDevEngine =
+      await import('../../../vxrn/dist/utils/createNativeDevEngine.mjs')
     native = await createNativeDevEngine({
       root,
       platform: 'macos',
