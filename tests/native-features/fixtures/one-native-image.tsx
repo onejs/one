@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
+// @ts-ignore react native ships no types for its dev server lookup
+import getDevServer from 'react-native/Libraries/Core/Devtools/getDevServer'
 
 const remoteSources = [
-  'https://picsum.photos/seed/one-native-image/120/80',
-  'https://picsum.photos/seed/one-native-image/60/40',
+  'assets/one-native-image-120x80.png',
+  'assets/one-native-image-60x40.png',
 ]
 
 // exercises One.UI.Image load reporting: a bundled asset and a reachable remote
@@ -32,7 +34,8 @@ export default function OneNativeImage() {
       />
       <Text>{`Asset: ${asset}`}</Text>
       <One.UI.Image
-        source={remoteSources[remoteIndex]}
+        // the bundle's reachable dev server serves these files over http.
+        source={`${getDevServer().url}${remoteSources[remoteIndex]}`}
         resizeMode="cover"
         style={styles.image}
         onLoad={({ nativeEvent }) => {
