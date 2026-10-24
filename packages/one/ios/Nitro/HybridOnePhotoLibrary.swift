@@ -2,6 +2,9 @@ import NitroModules
 import AVFoundation
 import ImageIO
 import Photos
+#if ONE_GROUP_PHOTOS
+import PhotosUI
+#endif
 import UIKit
 import UniformTypeIdentifiers
 
@@ -76,6 +79,7 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
           "PhotoLibrary.presentLimitedLibraryPicker: no active view controller"))
         return
       }
+#if ONE_GROUP_PHOTOS
       self.pendingLimitedPicker = promise
       PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: presenter) { [weak self] identifiers in
         DispatchQueue.main.async {
@@ -84,6 +88,12 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
           pending?.resolve(withResult: identifiers)
         }
       }
+#else
+      _ = presenter
+      promise.reject(withError: Self.error(
+        "E_PHOTO_LIBRARY_UNAVAILABLE",
+        "PhotoLibrary.presentLimitedLibraryPicker: this build does not link PhotosUI"))
+#endif
     }
     return promise
   }
