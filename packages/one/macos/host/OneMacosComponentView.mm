@@ -426,7 +426,7 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
     [self.window makeFirstResponder:nil];
   }
   [self applyTransform];
-  self.layer.masksToBounds = _clipsToBounds;
+  [self applyClip];
   [self setNeedsRender];
 }
 
@@ -449,7 +449,15 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
       layoutMetrics.frame.size.width,
       layoutMetrics.frame.size.height);
   [self applyTransform];
+  [self applyClip];
   [self setNeedsRender];
+}
+
+// children clip to the same rounded outline the view paints
+- (void)applyClip
+{
+  self.layer.masksToBounds = _clipsToBounds;
+  self.layer.cornerRadius = _clipsToBounds ? [self cornerRadius] : 0;
 }
 
 - (void)applyTransform
