@@ -246,6 +246,17 @@ export async function build(args: {
   // respect vite's build.outDir config, default to 'dist'
   const outDir = viteLoadedConfig?.config?.build?.outDir ?? 'dist'
 
+  // buildInfo retains route-to-client chunks even for modules merged into shared chunks
+  const previousBuildInfo: One.BuildInfo | undefined =
+    args.platform === 'web' && args.step === 'generate'
+      ? await FSExtra.readJSON(toAbsolute(`${outDir}/buildInfo.json`))
+      : undefined
+
+  if (previousBuildInfo) {
+    constants.setCacheKey(previousBuildInfo.constants.CACHE_KEY)
+    process.env.ONE_CACHE_KEY = constants.CACHE_KEY
+  }
+
   const manifest = getManifest({
     routerRoot,
     ignoredRouteFiles: oneOptions.router?.ignoredRouteFiles,
@@ -285,6 +296,33 @@ export async function build(args: {
   // vxrn's build already filled these. filling again would require the port it
   // picked to still be free after the bundle, which another process can take.
   const { options } = vxrnOutput
+
+  if (previousBuildInfo) {
+    const generatedFiles = new Set([
+      ...Object.values(previousBuildInfo.routeMap),
+      ...Object.keys(previousBuildInfo.preloads),
+      ...Object.keys(previousBuildInfo.cssPreloads),
+      ...Object.keys(previousBuildInfo.loaders),
+    ])
+    for (const loaderPath of Object.keys(previousBuildInfo.loaders)) {
+      if (!loaderPath) continue
+      generatedFiles.add(loaderPath.replace(/\.js$/, '.native.js'))
+      generatedFiles.add(
+        loaderPath.replace(
+          constants.LOADER_JS_POSTFIX,
+          constants.NATIVE_LOADER_JS_POSTFIX_UNCACHED
+        )
+      )
+    }
+    await Promise.all([
+      ...['api', 'middlewares', 'static'].map((folder) =>
+        FSExtra.remove(join(outDir, folder))
+      ),
+      ...[...generatedFiles]
+        .filter(Boolean)
+        .map((file) => FSExtra.remove(join(outDir, 'client', file))),
+    ])
+  }
 
   const { optimizeDeps } = getOptimizeDeps('build')
   const { rolldownOptions: _rolldownOptions, ...optimizeDepsNoRolldown } = optimizeDeps
@@ -543,11 +581,11 @@ export async function build(args: {
   // another route re-exports from stops being a dynamic entry and lands in a
   // plain shared chunk, which has no facade and so gets no source-path key in
   // the manifest either. the facade pass runs second so it wins where both hit.
-  const clientChunksBySource = new Map<string, { fileName: string; imports: string[] }>()
+  const clientChunksBySource = new Map<string, { fileName: string }>()
   if (vxrnOutput.clientOutput) {
     for (const chunk of vxrnOutput.clientOutput) {
       if (chunk.type !== 'chunk') continue
-      const info = { fileName: chunk.fileName, imports: chunk.imports || [] }
+      const info = { fileName: chunk.fileName }
       for (const moduleId of chunk.moduleIds ?? []) {
         clientChunksBySource.set(moduleId, info)
       }
@@ -556,7 +594,16 @@ export async function build(args: {
       if (chunk.type !== 'chunk' || !chunk.facadeModuleId) continue
       clientChunksBySource.set(chunk.facadeModuleId, {
         fileName: chunk.fileName,
-        imports: chunk.imports || [],
+      })
+    }
+  } else if (previousBuildInfo) {
+    for (const route of Object.values(previousBuildInfo.routeToBuildInfo)) {
+      if (!route.clientJsPath) continue
+      const modulePath = normalizePath(
+        join(resolve(process.cwd(), options.root), routerRoot, route.routeFile.slice(2))
+      )
+      clientChunksBySource.set(modulePath, {
+        fileName: normalizePath(relative(clientDir, route.clientJsPath)),
       })
     }
   }
