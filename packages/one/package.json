@@ -219,6 +219,7 @@
     "android/src",
     "cpp",
     "macos",
+    "native-core",
     "nitrogen",
     "One.podspec",
     "react-native.config.cjs",

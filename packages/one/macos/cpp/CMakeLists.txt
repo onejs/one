@@ -20,106 +20,12 @@ if(NOT RN_ROOT OR NOT RN_DEPS_ROOT OR NOT NITRO_ROOT OR NOT WORKLETS_ROOT OR NOT
   message(FATAL_ERROR "set RN_ROOT, RN_DEPS_ROOT, NITRO_ROOT, WORKLETS_ROOT, OPSQLITE_ROOT and HERMES_ROOT")
 endif()
 
-set(RC ${RN_ROOT}/ReactCommon)
 set(ONE_CPP ${CMAKE_CURRENT_LIST_DIR})
 set(ONE_HOST ${CMAKE_CURRENT_LIST_DIR}/../host)
 
 set(DEPS_HEADERS ${RN_DEPS_ROOT}/ReactNativeDependenciesHeaders.xcframework/macos-arm64_x86_64/Headers)
 
-# each entry is a directory under ReactCommon, compiled non recursively
-set(RN_DIRS
-  cxxreact
-  jserrorhandler
-  jsi/jsi
-  jsiexecutor/jsireact
-  jsinspector-modern
-  jsinspector-modern/cdp
-  jsinspector-modern/network
-  jsinspector-modern/tracing
-  jsitooling/react/runtime
-  logger
-  oscompat
-  reactperflogger/reactperflogger
-  reactperflogger/fusebox
-  yoga/yoga
-  yoga/yoga/algorithm
-  yoga/yoga/config
-  yoga/yoga/debug
-  yoga/yoga/event
-  yoga/yoga/node
-  react/bridging
-  react/cxxstableapi
-  react/debug
-  react/debug/redbox
-  react/featureflags
-  react/networking
-  react/utils
-  react/nativemodule/core/ReactCommon
-  react/nativemodule/dom
-  react/nativemodule/idlecallbacks
-  react/performance/cdpmetrics
-  react/performance/timeline
-  react/renderer/animated
-  react/renderer/animated/drivers
-  react/renderer/animated/event_drivers
-  react/renderer/animated/internal
-  react/renderer/animated/nodes
-  react/renderer/animationbackend
-  react/renderer/animations
-  react/renderer/attributedstring
-  react/renderer/componentregistry
-  react/renderer/componentregistry/native
-  react/renderer/components/image
-  react/renderer/components/legacyviewmanagerinterop
-  react/renderer/components/root
-  react/renderer/components/scrollview
-  react/renderer/components/text
-  react/renderer/components/textinput
-  react/renderer/components/textinput/platform/ios/react/renderer/components/iostextinput
-  react/renderer/components/unimplementedview
-  react/renderer/components/view
-  react/renderer/components/view/platform/cxx/react/renderer/components/view
-  react/renderer/consistency
-  react/renderer/core
-  react/renderer/css
-  react/renderer/debug
-  react/renderer/dom
-  react/renderer/element
-  react/renderer/graphics
-  react/renderer/imagemanager
-  react/renderer/leakchecker
-  react/renderer/mapbuffer
-  react/renderer/mounting
-  react/renderer/mounting/internal
-  react/renderer/observers/events
-  react/renderer/observers/intersection
-  react/renderer/observers/mutation
-  react/renderer/observers/resize
-  react/renderer/runtimescheduler
-  react/renderer/scheduler
-  react/renderer/telemetry
-  react/renderer/textlayoutmanager
-  react/renderer/uimanager
-  react/renderer/uimanager/consistency
-  react/renderer/viewtransition
-  react/runtime
-  react/runtime/nativeviewconfig
-  react/runtime/hermes
-  hermes/inspector-modern/chrome
-)
-
-set(RN_SOURCES "")
-foreach(dir ${RN_DIRS})
-  file(GLOB found CONFIGURE_DEPENDS ${RC}/${dir}/*.cpp)
-  list(APPEND RN_SOURCES ${found})
-endforeach()
-# runtimeexecutor ships its own cxx platform source
-file(GLOB found CONFIGURE_DEPENDS ${RC}/runtimeexecutor/platform/cxx/ReactCommon/*.cpp)
-list(APPEND RN_SOURCES ${found})
-
-list(FILTER RN_SOURCES EXCLUDE REGEX "/(tests|test|iostests|android|windows|fantom|samples)/")
-list(FILTER RN_SOURCES EXCLUDE REGEX "(Windows|CdpNetworkDummy)\\.cpp$")
-
+include(${CMAKE_CURRENT_LIST_DIR}/../../native-core/rn-core.cmake)
 
 file(GLOB ONE_SOURCES CONFIGURE_DEPENDS
   ${ONE_CPP}/*.cpp
