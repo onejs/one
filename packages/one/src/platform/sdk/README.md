@@ -24,6 +24,11 @@ The JavaScript and native parts must be rebuilt together after a bridge change.
 Regenerate Nitro bindings and the app SDK pod when rebuilding. Facades carry the
 same generation as their native tables, so stale combinations fail at the call.
 
+Native JavaScript facades retain ordinary class and member syntax. The package
+build removes comments and types and shares repeated framework call prefixes;
+class identity, descriptors, eager registration and native error timing stay as
+in the typed source. Editor signatures and documentation stay in `ios-types`.
+
 ## React content in UIKit
 
 `One.iOS.UIKitView` places a generated UIKit view in React Native.

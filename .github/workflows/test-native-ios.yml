@@ -364,10 +364,42 @@ jobs:
           SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
         run: |
           python3 - <<'PYTHON'
-          import os, pathlib, subprocess
+          import datetime, hashlib, json, os, pathlib, shutil, subprocess
           root = pathlib.Path('/tmp/one-native-zoom-e2e')
           root.mkdir(parents=True, exist_ok=True)
+          udid = os.environ.get('SIMULATOR_UDID', '')
+          axe = shutil.which('axe')
+          identity = {
+              'capturedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'simulatorUDID': udid,
+              'developerDir': os.environ.get('DEVELOPER_DIR'),
+              'axePath': axe,
+              'sourceRevision': os.environ.get('GITHUB_SHA'),
+              'runID': os.environ.get('GITHUB_RUN_ID'),
+              'runAttempt': os.environ.get('GITHUB_RUN_ATTEMPT'),
+          }
+          for name, path in {'axe': axe, 'axeArchive': str(pathlib.Path(os.environ['RUNNER_TEMP']) / 'axe.tgz')}.items():
+              try:
+                  identity[name + 'SHA256'] = hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
+              except (OSError, TypeError) as error:
+                  identity[name + 'Error'] = str(error)
+          (root / 'automation-identity.json').write_text(json.dumps(identity, indent=2) + '\n')
+          # query both sides of the remote session; app launch logs do not cover
+          # the host provider or simulator automation daemon exchange.
+          automation = (
+              'process IN {"testmanagerd", "automationd", "remoteautomationd", "remoted", "CoreSimulatorService", "Simulator", "DeviceHub", "axe"} '
+              'OR subsystem CONTAINS[c] "XCTest" OR subsystem CONTAINS[c] "CoreSimulator" '
+              'OR subsystem CONTAINS[c] "automation" OR subsystem CONTAINS[c] "DTX" '
+              'OR subsystem CONTAINS[c] "testmanager" OR eventMessage CONTAINS[c] "XCUI" '
+              'OR eventMessage CONTAINS[c] "RemoteAutomation" '
+              'OR eventMessage CONTAINS[c] "DaemonConnectionProvider"'
+          )
+          # collect the failed warmup first: older logs can exhaust the query
+          # before reaching the 90-second warmup's provider exchange.
+          log = ['log', 'show', '--last', '5m', '--style', 'compact', '--info', '--debug', '--predicate', automation]
           commands = {
+              'simulator-automation-log.txt': ['xcrun', 'simctl', 'spawn', udid, *log],
+              'host-automation-log.txt': ['/usr/bin/log', *log[1:]],
               'host-processes.txt': ['ps', '-axo', 'pid,ppid,state,comm'],
               # the app's own log keeps its javascript warnings, such as why the
               # metro socket closed, which never reach the dev server once it has.
@@ -376,13 +408,33 @@ jobs:
               # shortcuts that a native link opens late or never.
               'system-launch-log.txt': ['xcrun', 'simctl', 'spawn', os.environ.get('SIMULATOR_UDID') or 'booted', 'log', 'show', '--last', '60m', '--style', 'compact', '--predicate', 'process IN {"SpringBoard", "runningboardd", "lsd", "Shortcuts"} OR subsystem == "com.apple.launchservices"'],
           }
+          commands.update({
+              'xcode-selection.txt': ['xcode-select', '-p'],
+              'xcode-version.txt': ['xcodebuild', '-version'],
+              'host-version.txt': ['sw_vers'],
+              'simulator-runtimes.txt': ['xcrun', 'simctl', 'list', 'runtimes', '--json'],
+              'simulator-devices.txt': ['xcrun', 'simctl', 'list', 'devices', '--json'],
+              'simulator-version.txt': ['xcrun', 'simctl', 'spawn', udid, 'sw_vers'],
+              'axe-version.txt': ['axe', '--version'],
+          })
           for name, command in commands.items():
+              header = f'command={json.dumps(command)}\n'
+              # never attribute another booted device's automation evidence to
+              # this job when setup failed before publishing its selected udid.
+              if name.startswith('simulator-') and name not in ('simulator-runtimes.txt', 'simulator-devices.txt') and not udid:
+                  (root / name).write_text(header + 'skipped: selected simulator udid unavailable\n')
+                  continue
               try:
-                  result = subprocess.run(command, capture_output=True, text=True, timeout=120)
+                  result = subprocess.run(command, capture_output=True, text=True,
+                                          timeout=120 if name in ('host-processes.txt', 'app-log.txt', 'system-launch-log.txt') else 60)
                   output = f'exit={result.returncode}\n{result.stdout}\n{result.stderr}'
-              except (subprocess.TimeoutExpired, OSError) as error:
-                  output = str(error)
-              (root / name).write_text(output)
+              except subprocess.TimeoutExpired as error:
+                  def decode(value):
+                      return value.decode(errors='replace') if isinstance(value, bytes) else (value or '')
+                  output = f'timeout={error.timeout}\n{decode(error.stdout)}\n{decode(error.stderr)}'
+              except OSError as error:
+                  output = f'error={error!r}\n'
+              (root / name).write_text(header + output)
           PYTHON
 
       - name: Upload One Native runtime evidence
@@ -530,6 +582,7 @@ jobs:
           if [ '${{ matrix.env }}' = dev ] && [ '${{ matrix.bundler }}' = rolldown ]; then
             export ONE_NATIVE_BUNDLE_TRACE="$RUNNER_TEMP/native-bundle-transport.jsonl"
             export ONE_NATIVE_HMR_TRACE="$RUNNER_TEMP/native-hmr-delivery.jsonl"
+            node tests/test/scripts/nativeHmrReceipt.mjs
             xcrun simctl spawn "$SIMULATOR_UDID" log stream \
               --style ndjson --level debug \
               --predicate 'process == "RNTestContainer" OR subsystem == "com.apple.CFNetwork"' \

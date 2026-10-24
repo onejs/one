@@ -39,7 +39,7 @@ when the consumer enables the `react-native` condition. Native bundlers select
 dependency builds need neither One's Vite or Metro resolver hooks nor a
 TypeScript transform for `declare` fields. There is no browser or default
 runtime export. One's integrations still reject framework imports outside iOS
-and resolve the `ios-bindings` source facades for iOS. Native prebuild generates the matching
+and resolve the same compiled native facades for iOS. Native prebuild generates the matching
 framework tables; package resolution does not require an installed Apple SDK.
 
 Running `bun codegen/sdk/build.ts /path/to/output` builds only the standalone
@@ -127,3 +127,12 @@ The package adds 28,102,868 unpacked bytes, including its 138-byte manifest chan
 Removing the declarations and restoring the previous manifest from an otherwise
 identical deterministic gzip package archive reduced it by 2,657,605 bytes. The
 complete local npm archive was 11,232,074 bytes compressed and 77,652,081 unpacked.
+
+The package build strips types and comments from native facades and shares
+repeated framework prefixes through fixed call helpers. Class and member syntax
+stays intact, so JavaScript creates the descriptors and names directly. The
+native module count and eager framework registration stay unchanged. Editor
+documentation stays in `ios-types`. Both native package exports and One's
+Metro/Vite resolvers load these same compiled files. Native output remains ESM,
+letting Metro and the browser compiler emit ordinary CommonJS data exports
+without an extra export-getter layer.

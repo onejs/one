@@ -1,8 +1,16 @@
 export { createApp } from './createApp';
 export type { OneDevtoolsAction, OneDevtoolsActionContext, OneDevtoolsPanel, OneDevtoolsPanelContext, OneDevtoolsPlugin, } from './devtools';
 export { One } from './one';
-export { AESEncryptionKey, AESSealedData } from './platform';
-export { useFonts, useKeepAwake, useNativeState, useNetworkState, useLocales, useCalendars, usePreventScreenCapture, useAudioPlayer, useAudioPlayerStatus, useBatteryLevel, useBatteryState, useLowPowerMode, usePowerState, useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './platform';
+export { AESEncryptionKey, AESSealedData } from './platform/crypto/index';
+export { useFonts } from './platform/fonts';
+export { useKeepAwake } from './platform/keep-awake/index';
+export { useNativeState } from './platform/nativeState';
+export { useNetworkState } from './platform/network';
+export { useLocales, useCalendars } from './platform/localization';
+export { usePreventScreenCapture } from './platform/screen-capture/index';
+export { useAudioPlayer, useAudioPlayerStatus } from './platform/audio/hooks';
+export { useBatteryLevel, useBatteryState, useLowPowerMode, usePowerState, } from './platform/battery';
+export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './platform/adaptive/index';
 export type { PortalProps, PortalHostProps, AudioPlayer, AudioPlayerOptions, AudioPlayerSubscription, AudioSource, AudioSourceObject, AudioStatus, PitchCorrectionQuality, FontMap, FontSource, UseFontsResult, NativeState, NetworkState, NetworkStateType, BatteryLevelEvent, BatteryPowerModeEvent, BatteryPowerState, BatteryState, BatteryStateEvent, BatterySubscription, UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, SFSymbolName, ScrollViewProxy, ScrollViewReaderProps, UnitPoint, TimelineSchedule, TimelineCadence, TimelineViewContext, TimelineViewProps, OutlineGroupProps, CanvasColorMode, CanvasPoint, CanvasProps, CanvasRect, CanvasSize, CanvasSymbol, CanvasText, FillStyle, GraphicsContext, RoundedCornerStyle, StrokeStyle, TableColumn, TableProps, TableSort, TableSortDirection, ComposeSnackbarHostRef, ComposeSnackbarShowOptions, ComposeSnackbarResult, ComposeModalBottomSheetRef, CameraCapturedPicture, CameraPictureOptions, CameraViewRef, } from './platform';
 export type { OneRouter } from './interfaces/router';
 /**
@@ -45,6 +53,8 @@ export { onClientLoaderResolve } from './clientLoaderResolver';
 export { createMiddleware, type Middleware, type MiddlewareContext } from './createMiddleware';
 export { createAPIRoute, type APIRouteContext, type APIRouteHandler, type WorkerContext, type WorkerEnv, type WorkerExecutionContext, } from './createAPIRoute';
 export { getURL } from './getURL';
+export { setNativeApplicationContext } from './nativeApplicationContext';
+export type { NativeApplicationContext } from './nativeApplicationContext';
 export { Head } from './head';
 export { useActiveParams, useGlobalSearchParams, useLocalSearchParams, useNavigationContainerRef, useParams, usePathname, useRootNavigationState, useRouter, useSearchParams, useSegments, useUnstableGlobalHref, } from './hooks';
 export { href } from './href';

@@ -1,4 +1,5 @@
-import { MenuAction, ToolbarHost, ToolbarItem } from '../../platform'
+import { MenuAction } from '../../platform/menu/index'
+import { ToolbarHost, ToolbarItem } from '../../platform/toolbar'
 import type { ReactNode } from 'react'
 
 import {

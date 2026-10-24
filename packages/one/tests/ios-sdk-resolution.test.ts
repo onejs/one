@@ -14,12 +14,12 @@ function installedApp() {
   const root = realpathSync(mkdtempSync(join(tmpdir(), 'one-sdk-resolution-')))
   roots.push(root)
   const pkg = join(root, 'node_modules/one')
-  mkdirSync(join(pkg, 'ios-bindings'), { recursive: true })
+  mkdirSync(join(pkg, 'dist/esm/ios'), { recursive: true })
   writeFileSync(join(root, 'package.json'), '{"name":"eas-only-app"}')
   writeFileSync(join(pkg, 'package.json'), JSON.stringify({
     name: 'one', exports: { './package.json': './package.json' },
   }))
-  const facade = join(pkg, 'ios-bindings/Foundation.ts')
+  const facade = join(pkg, 'dist/esm/ios/Foundation.native.js')
   writeFileSync(facade, 'export const linkedFramework = "Foundation"\n')
   return { root, facade }
 }
