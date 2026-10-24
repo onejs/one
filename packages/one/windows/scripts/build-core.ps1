@@ -7,11 +7,16 @@
 #   RN_ROOT      node_modules/react-native
 #   NATIVE_CORE  packages/one/native-core, by default the sibling of windows/
 #   -Logs        directory for each phase's full output
+#   -Bundle      for the island phase, the Metro bundle of island/app
 # Prints the core build directory; run one-windows-smoke.exe smoke.hbc there.
+# The island phase, which 'all' leaves out, builds the window island prototype
+# after the others in release: its runtime DLL with clang-cl in the core build,
+# its bytecode, and its WinRT host with MSVC into island/host there.
 param(
-  [ValidateSet('all', 'deps', 'core', 'hermes', 'smoke')] [string] $Phase = 'all',
+  [ValidateSet('all', 'deps', 'core', 'hermes', 'smoke', 'island')] [string] $Phase = 'all',
   [ValidateSet('debug', 'release')] [string] $Config = 'release',
-  [string] $Logs = "$PSScriptRoot/../build-logs"
+  [string] $Logs = "$PSScriptRoot/../build-logs",
+  [string] $Bundle
 )
 $ErrorActionPreference = 'Stop'
 . "$PSScriptRoot/cache.ps1"
@@ -60,6 +65,23 @@ if ($Phase -in 'all', 'hermes') {
 if ($Phase -in 'all', 'smoke') {
   Logged smoke ninja -C $core one-windows-smoke
   Logged smoke "$hermes/destroot/bin/hermesc.exe" -emit-binary -O -out "$core/smoke.hbc" "$PSScriptRoot/../smoke/smoke.js"
+}
+
+if ($Phase -eq 'island') {
+  if (-not $Bundle) { throw 'the island phase needs -Bundle, the Metro bundle of island/app' }
+  if ($Config -ne 'release') { throw 'the island host builds only in release' }
+  $island = "$core/island"
+  # msbuild takes directories with a trailing backslash
+  $windowsIsland = $island.Replace('/', '\')
+  Logged island ninja -C $core OneWindowsIslandRuntime
+  Logged island "$hermes/destroot/bin/hermesc.exe" -emit-binary -O -out "$island/island.hbc" $Bundle
+  # Visual Studio 2026 ships the v145 toolset, 2022 v143
+  $toolset = if ($env:VisualStudioVersion -like '18*') { 'v145' } else { 'v143' }
+  Logged island msbuild "$PSScriptRoot/../island/host/OneWindowsIsland.vcxproj" /restore /m /v:m `
+    /p:Configuration=Release /p:Platform=x64 "/p:PlatformToolset=$toolset" `
+    "/p:OneWindowsIslandRuntimeLib=$windowsIsland\OneWindowsIslandRuntime.lib" `
+    "/p:OutDir=$windowsIsland\host\" "/p:IntDir=$windowsIsland\host-obj\"
+  Copy-Item "$island/OneWindowsIslandRuntime.dll", "$island/hermesvm.dll", "$island/island.hbc" "$island/host"
 }
 
 $core

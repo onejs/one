@@ -89,3 +89,6 @@ add_executable(one-windows-smoke ${ONE_WINDOWS}/smoke/main.cpp)
 target_link_libraries(one-windows-smoke PRIVATE OneWindowsCore)
 add_custom_command(TARGET one-windows-smoke POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_if_different ${HERMES_ROOT}/bin/hermesvm.dll $<TARGET_FILE_DIR:one-windows-smoke>)
+
+# the window island prototype's runtime, built only when its target is named
+add_subdirectory(${ONE_WINDOWS}/island/runtime ${CMAKE_CURRENT_BINARY_DIR}/island EXCLUDE_FROM_ALL)
