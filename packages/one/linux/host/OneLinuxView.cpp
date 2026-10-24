@@ -18,6 +18,9 @@ struct _OneView {
   PangoLayout *layout;
   double text_x, text_y;
 
+  gboolean has_transform;
+  graphene_matrix_t transform;
+
   GdkTexture *image;
   double image_scale;
   OneImageFit image_fit;
@@ -85,6 +88,13 @@ static void one_view_size_allocate(GtkWidget *widget, int width, int height, int
     OneView *childView = ONE_VIEW(child);
     graphene_point_t origin = GRAPHENE_POINT_INIT(static_cast<float>(childView->x), static_cast<float>(childView->y));
     GskTransform *transform = gsk_transform_translate(nullptr, &origin);
+    if (childView->has_transform) {
+      graphene_point_t center = GRAPHENE_POINT_INIT(static_cast<float>(childView->width / 2), static_cast<float>(childView->height / 2));
+      graphene_point_t back = GRAPHENE_POINT_INIT(-center.x, -center.y);
+      transform = gsk_transform_translate(transform, &center);
+      transform = gsk_transform_matrix(transform, &childView->transform);
+      transform = gsk_transform_translate(transform, &back);
+    }
     gtk_widget_allocate(
         child,
         static_cast<int>(std::ceil(childView->width)),
@@ -292,6 +302,23 @@ void one_view_set_radius(OneView *view, double radius)
 {
   view->radius = radius;
   gtk_widget_queue_draw(GTK_WIDGET(view));
+}
+
+void one_view_set_transform(OneView *view, const float *matrix)
+{
+  gboolean changed = view->has_transform != (matrix != nullptr);
+  if (matrix) {
+    graphene_matrix_t next;
+    graphene_matrix_init_from_float(&next, matrix);
+    changed = changed || !graphene_matrix_equal(&view->transform, &next);
+    view->transform = next;
+  }
+  view->has_transform = matrix != nullptr;
+  if (changed) {
+    if (GtkWidget *parent = gtk_widget_get_parent(GTK_WIDGET(view))) {
+      gtk_widget_queue_allocate(parent);
+    }
+  }
 }
 
 void one_view_set_clips(OneView *view, gboolean clips)

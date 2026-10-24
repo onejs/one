@@ -13,6 +13,14 @@ export default function Index() {
   const [images, setImages] = useState<Record<string, string>>({})
   const report = (key: string, value: string) => setImages((state) => ({ ...state, [key]: value }))
   const remote = { uri: 'http://127.0.0.1:8123/swatch.png' }
+  const boxes = [
+    {},
+    { transform: [{ translateX: 12 }, { translateY: 14 }] },
+    { transform: [{ scale: 1.4 }] },
+    { transform: [{ rotate: '30deg' }] },
+    { opacity: 0.4 },
+    { transform: [{ rotate: '-20deg' }, { scaleX: 1.3 }], backgroundColor: '#b58900' },
+  ]
   const modes = ['cover', 'contain', 'stretch', 'center'] as const
   return (
     <View style={{ flex: 1, flexDirection: 'row', padding: 24, backgroundColor: dark ? '#1f1d1a' : '#f4f1ea' }}>
@@ -134,6 +142,30 @@ export default function Index() {
                 style={{ width: 100, height: 100, backgroundColor: '#ebe6da', borderRadius: 12 }}
               />
               <Text style={{ fontSize: 12, color: '#5f5a50' }}>{mode}</Text>
+            </View>
+          ))}
+        </View>
+        <Text style={{ fontSize: 20, fontWeight: '700', marginTop: 24, color: '#1f1d1a' }}>
+          transform and opacity
+        </Text>
+        <View style={{ flexDirection: 'row', marginTop: 16, height: 120, alignItems: 'center' }}>
+          {boxes.map((style, index) => (
+            <View
+              key={index}
+              style={[
+                {
+                  width: 56,
+                  height: 56,
+                  marginRight: 32,
+                  borderRadius: 8,
+                  backgroundColor: '#2b6cb0',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                },
+                style,
+              ]}
+            >
+              <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff' }}>{'ABCDEF'[index]}</Text>
             </View>
           ))}
         </View>

@@ -23,6 +23,9 @@ void one_view_set_frame(OneView *view, double x, double y, double width, double 
 void one_view_set_background(OneView *view, const GdkRGBA *color);
 void one_view_set_border(OneView *view, double width, const GdkRGBA *color);
 void one_view_set_radius(OneView *view, double radius);
+// React's resolved transform, 16 floats in the row vector layout graphene
+// shares; it applies about the view's center. Null clears it.
+void one_view_set_transform(OneView *view, const float *matrix);
 void one_view_set_clips(OneView *view, gboolean clips);
 // takes its own reference to `layout`; origin is inside the view
 void one_view_set_text(OneView *view, PangoLayout *layout, double x, double y);

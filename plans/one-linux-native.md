@@ -404,6 +404,12 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   and the four modes in a 100 px rounded box:
   [window](one-linux-native-images.png). Gaps: `blurRadius`, `defaultSource`,
   progressive loading and the copy of assets into the app package.
+- **Transforms and opacity (M2):** `restyle` resolves RN's `transform` (already
+  adjusted for the transform origin) and `one_view_set_transform` applies it as
+  a `GskTransform` in `size_allocate`, anchored at the view's center like a
+  `CALayer`. Hit testing under a transform is not checked yet. Opacity maps to `gtk_widget_set_opacity`. Proof, translate, scale, rotate,
+  opacity and a rotate with `scaleX`:
+  [window](one-linux-native-transforms.png).
 
 **Next:** M2: hover and cursor events on views, transforms, images, multiline
 `TextInput`, the portal color scheme, and the Networking gaps above.

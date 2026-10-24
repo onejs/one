@@ -460,6 +460,8 @@ void OneLinuxMountingManager::restyle(Record &record)
   gtk_widget_set_visible(GTK_WIDGET(view), metrics.displayType != DisplayType::None);
   one_view_set_frame(view, metrics.frame.origin.x, metrics.frame.origin.y, metrics.frame.size.width, metrics.frame.size.height);
   gtk_widget_set_opacity(GTK_WIDGET(view), viewProps.opacity);
+  const Transform transform = viewProps.resolveTransform(metrics);
+  one_view_set_transform(view, transform == Transform::Identity() ? nullptr : transform.matrix.data());
 
   if (viewProps.backgroundColor) {
     GdkRGBA background = rgba(viewProps.backgroundColor);
