@@ -359,7 +359,16 @@ export function getPathDataFromState<ParamList extends {}>(
 
       // @modified - start
       // const query = queryString.stringify(focusedParams, { sort: false })
-      const query = new URLSearchParams(focusedParams).toString()
+      // an array is a repeated key, the inverse of how the query is parsed
+      const queryParams = new URLSearchParams()
+      for (const [key, value] of Object.entries(focusedParams)) {
+        if (Array.isArray(value)) {
+          for (const item of value) queryParams.append(key, String(item))
+        } else {
+          queryParams.append(key, String(value))
+        }
+      }
+      const query = queryParams.toString()
       // @modified - end
 
       if (query) {

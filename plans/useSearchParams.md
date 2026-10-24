@@ -1,5 +1,7 @@
 # useSearchParams with Validation
 
+The shipped feature (Standard Schema, discovery, typed `Link`) is specified in the Contrast plan `plans/contrast/one-search-params-schema.md`, for [issue 1039](https://github.com/onejs/one/issues/1039). The notes below predate it.
+
 ## Overview
 
 Add a `useSearchParams` hook that provides easy access to URL search parameters with optional TanStack-style validation/parsing. This would complement the existing `useParams` (for path params) and provide type-safe search param handling.

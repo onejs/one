@@ -106,6 +106,7 @@ declare module 'one' {
         | `/rn-features/platform-specific-extensions/test-route-1`
         | `/rn-features/platform-specific-extensions/test-route-2`
         | `/router/ignoredRouteFiles/route.normal`
+        | `/search-params`
         | `/server-data`
         | `/setup-file-test`
         | `/shared-cache`
@@ -150,6 +151,7 @@ declare module 'one' {
         | `/project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/router/ignoredRouteFiles/+not-found`
         | `/routes/subpath/${string}`
+        | `/search-params/item/${OneRouter.SingleRoutePart<T>}`
         | `/segments-stable-ids/${string}`
         | `/servers/${OneRouter.SingleRoutePart<T>}`
         | `/spa/${OneRouter.SingleRoutePart<T>}`
@@ -176,6 +178,7 @@ declare module 'one' {
         | `/project/[projectId]/[sessionId]`
         | `/router/ignoredRouteFiles/+not-found`
         | `/routes/subpath/[...subpath]`
+        | `/search-params/item/[id]`
         | `/segments-stable-ids/[...segments]`
         | `/servers/[serverId]`
         | `/spa/[spaparams]`
@@ -185,6 +188,10 @@ declare module 'one' {
         | `/ssr/[id]/request-test`
         | `/ssr/[param]`
       IsTyped: true
+      SearchParamTypes: {
+        '/search-params': OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardChart')['chartParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardTable')['tableParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/StrictSort')['sortParams']>
+        '/search-params/item/[id]': OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardTable')['tableParams']>
+      }
       RouteTypes: {
         '/(app)/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
         '/(app)/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }>
@@ -203,6 +210,7 @@ declare module 'one' {
         '/project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
         '/router/ignoredRouteFiles/+not-found': RouteInfo<{}>
         '/routes/subpath/[...subpath]': RouteInfo<{ subpath: string[] }>
+        '/search-params/item/[id]': RouteInfo<{ id: string }>
         '/segments-stable-ids/[...segments]': RouteInfo<{ segments: string[] }>
         '/servers/[serverId]': RouteInfo<{ serverId: string }>
         '/spa/[spaparams]': RouteInfo<{ spaparams: string }>

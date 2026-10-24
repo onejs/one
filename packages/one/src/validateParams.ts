@@ -6,6 +6,7 @@
  * to catch invalid routes early.
  */
 
+import { isStandardSchema, validateStandardSchemaSync } from './standardSchema'
 import type { StandardSchema, ZodLikeSchema, SearchValidatorFn } from './validateSearch'
 
 /**
@@ -95,18 +96,6 @@ export type RouteValidationFn = (
 ) => ValidationResult | Promise<ValidationResult> | void | Promise<void>
 
 /**
- * Check if a value is a Standard Schema
- */
-function isStandardSchema(value: unknown): value is StandardSchema {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    '~standard' in value &&
-    typeof (value as any)['~standard']?.validate === 'function'
-  )
-}
-
-/**
  * Check if a value is a Zod-like schema
  */
 function isZodLikeSchema(value: unknown): value is ZodLikeSchema {
@@ -137,7 +126,7 @@ export function validateParams<T extends ParamValidator>(
   input: Record<string, unknown>
 ): InferParamOutput<T> {
   if (isStandardSchema(validator)) {
-    const result = validator['~standard'].validate(input)
+    const result = validateStandardSchemaSync(validator, input)
     if (result.issues) {
       throw new ParamValidationError(
         'Route param validation failed',

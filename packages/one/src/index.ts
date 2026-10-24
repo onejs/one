@@ -268,6 +268,16 @@ export {
   type ValidateRouteProps,
   type ValidationResult,
 } from './validateParams'
+// search param schema
+export { SearchValidationError } from './validateSearch'
+export type {
+  SearchParamsOptions,
+  SearchParamsUpdate,
+  SearchParamsUpdateOptions,
+  SearchValue,
+  UseSearchParamsSchemaResult,
+} from './searchParams'
+export type { StandardSchemaV1 } from './standardSchema'
 // validation state hook
 export { useValidationState, type ValidationState } from './router/router'
 // React Navigation

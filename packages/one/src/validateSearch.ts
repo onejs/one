@@ -5,21 +5,20 @@
  * Zod, Valibot, and custom validation functions.
  */
 
+import {
+  isStandardSchema,
+  validateStandardSchemaSync,
+  type StandardSchemaV1,
+} from './standardSchema'
+
 /**
- * Standard Schema interface (from standard-schema.dev)
- * Used by Valibot, ArkType, and others for interop.
+ * Standard Schema interface (from standardschema.dev), used by Zod, Valibot,
+ * ArkType and others for interop.
  */
-export interface StandardSchema<Input = unknown, Output = unknown> {
-  readonly '~standard': {
-    readonly version: 1
-    readonly vendor: string
-    readonly validate: (
-      value: unknown
-    ) =>
-      | { readonly value: Output; readonly issues?: undefined }
-      | { readonly value?: undefined; readonly issues: readonly unknown[] }
-  }
-}
+export type StandardSchema<Input = unknown, Output = Input> = StandardSchemaV1<
+  Input,
+  Output
+>
 
 /**
  * Zod-like schema interface
@@ -83,18 +82,6 @@ export class SearchValidationError extends Error {
 }
 
 /**
- * Check if a value is a Standard Schema
- */
-function isStandardSchema(value: unknown): value is StandardSchema {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    '~standard' in value &&
-    typeof (value as any)['~standard']?.validate === 'function'
-  )
-}
-
-/**
  * Check if a value is a Zod-like schema
  */
 function isZodLikeSchema(value: unknown): value is ZodLikeSchema {
@@ -146,7 +133,7 @@ export function validateSearch<T extends SearchValidator>(
   input: Record<string, unknown>
 ): InferSearchOutput<T> {
   if (isStandardSchema(validator)) {
-    const result = validator['~standard'].validate(input)
+    const result = validateStandardSchemaSync(validator, input)
     if (result.issues) {
       throw new SearchValidationError(
         'Search param validation failed',

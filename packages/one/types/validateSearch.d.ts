@@ -4,23 +4,12 @@
  * Provides type-safe search param parsing and validation with support for
  * Zod, Valibot, and custom validation functions.
  */
+import { type StandardSchemaV1 } from './standardSchema';
 /**
- * Standard Schema interface (from standard-schema.dev)
- * Used by Valibot, ArkType, and others for interop.
+ * Standard Schema interface (from standardschema.dev), used by Zod, Valibot,
+ * ArkType and others for interop.
  */
-export interface StandardSchema<Input = unknown, Output = unknown> {
-    readonly '~standard': {
-        readonly version: 1;
-        readonly vendor: string;
-        readonly validate: (value: unknown) => {
-            readonly value: Output;
-            readonly issues?: undefined;
-        } | {
-            readonly value?: undefined;
-            readonly issues: readonly unknown[];
-        };
-    };
-}
+export type StandardSchema<Input = unknown, Output = Input> = StandardSchemaV1<Input, Output>;
 /**
  * Zod-like schema interface
  */

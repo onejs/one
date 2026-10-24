@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react'
 import { isNative } from './constants'
 import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
-import { RouteParamsContext, useRouteNode } from './router/Route'
+import { RouteParamsContext, useRouteNode, useRouteNodes } from './router/Route'
 import { mergeDynamicParams } from './router/params'
 import {
   getPathnameWithRecoveredDynamicSegment,
@@ -10,6 +10,18 @@ import {
 } from './router/path'
 import { RouteInfoContext } from './router/RouteInfoContext'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
+import {
+  mergeSearchRecord,
+  parseSearchRecord,
+  searchRecordKey,
+  stringifySearchRecord,
+  toSearchRecord,
+  type SearchParamsOptions,
+  type SearchParamsUpdate,
+  type SearchParamsUpdateOptions,
+  type UseSearchParamsSchemaResult,
+} from './searchParams'
+import { isStandardSchema, type StandardSchemaV1 } from './standardSchema'
 import { getServerContext } from './vite/one-server-only'
 
 type SearchParams = OneRouter.SearchParams
@@ -249,15 +261,68 @@ class ReadOnlyURLSearchParams extends URLSearchParams {
  * searchParams.getAll('tag')    // ['a', 'b'] for ?tag=a&tag=b
  * ```
  */
-export function useSearchParams({ global = false } = {}): URLSearchParams {
+export function useSearchParams(options?: SearchParamsOptions): URLSearchParams
+/**
+ * Reads the query through a Standard Schema (Zod, Valibot, ArkType, any library that
+ * implements https://standardschema.dev) and returns the schema's output with a
+ * function that writes changes back to the URL.
+ *
+ * The schema receives every query key as a string, or an array of strings when the
+ * key repeats. It must validate synchronously. A failed validation throws
+ * `SearchValidationError` during render, which the nearest error boundary catches;
+ * give the schema defaults (`.catch`, `.default`) to read a bad URL as a good one.
+ * Define the schema outside the component so its output stays stable between renders.
+ *
+ * `update` merges into the current URL: path params, other query keys and the hash
+ * are kept, and a key set to `null` or `undefined` is removed. Values are written as
+ * strings, numbers, booleans or arrays of those, with a repeated key per array item.
+ * It adds a history entry unless `{ replace: true }`.
+ *
+ * @example
+ * ```tsx
+ * const tableParams = z.object({ page: z.coerce.number().catch(1) })
+ *
+ * function Table() {
+ *   const [{ page }, update] = useSearchParams(tableParams)
+ *   return <button onClick={() => update({ page: page + 1 })}>Page {page}</button>
+ * }
+ * ```
+ */
+export function useSearchParams<Schema extends StandardSchemaV1<unknown, object>>(
+  schema: Schema,
+  options?: SearchParamsOptions
+): UseSearchParamsSchemaResult<Schema>
+export function useSearchParams(
+  schemaOrOptions?: StandardSchemaV1 | SearchParamsOptions,
+  schemaOptions?: SearchParamsOptions
+): URLSearchParams | UseSearchParamsSchemaResult<StandardSchemaV1<unknown, object>> {
+  const schema = isStandardSchema(schemaOrOptions) ? schemaOrOptions : undefined
+  const { global = false } =
+    (schema ? schemaOptions : (schemaOrOptions as SearchParamsOptions | undefined)) ?? {}
+
+  const schemaRef = React.useRef(schema)
   const globalRef = React.useRef(global)
 
   if (process.env.NODE_ENV !== 'production') {
     if (global !== globalRef.current) {
       console.warn("useSearchParams: the 'global' option cannot change between renders")
     }
+    if (!schema !== !schemaRef.current) {
+      console.warn('useSearchParams: pass a schema on every render or on none')
+    }
   }
 
+  // the schema form is a separate hook, chosen once by whether a schema was passed
+  // biome-ignore lint/correctness/useHookAtTopLevel: schema presence is stable (validated above)
+  return schemaRef.current
+    ? useSearchParamsSchema(
+        (schema ?? schemaRef.current) as StandardSchemaV1<unknown, object>,
+        global
+      )
+    : useSearchParamsRaw(global)
+}
+
+function useSearchParamsRaw(global: boolean): URLSearchParams {
   // biome-ignore lint/correctness/useHookAtTopLevel: global option is stable (validated above)
   const params = global ? useActiveParams() : useParams()
 
@@ -270,4 +335,57 @@ export function useSearchParams({ global = false } = {}): URLSearchParams {
     })
     return new ReadOnlyURLSearchParams(entries)
   }, [params])
+}
+
+function useSearchParamsSchema<Schema extends StandardSchemaV1<unknown, object>>(
+  schema: Schema,
+  global: boolean
+): UseSearchParamsSchemaResult<Schema> {
+  // biome-ignore lint/correctness/useHookAtTopLevel: global option is stable (validated above)
+  const params = global ? useActiveParams() : useParams()
+  const pathname = usePathname()
+  const routeNodes = useRouteNodes()
+
+  // path params ride in the same params object as the query: keep them out of the schema
+  const record = React.useMemo(() => {
+    const pathParamNames = new Set(
+      routeNodes.flatMap((node) => node.dynamic?.map((segment) => segment.name) ?? [])
+    )
+    return toSearchRecord(params, pathParamNames)
+  }, [params, routeNodes])
+  const recordKey = searchRecordKey(record)
+
+  const output = React.useMemo(
+    () => parseSearchRecord(schema, record),
+    // the record is rebuilt whenever route params change; only its content matters
+    // biome-ignore lint/correctness/useExhaustiveDependencies: keyed by content
+    [schema, recordKey]
+  )
+
+  // two updates in one tick both build on the first: the URL has not caught up yet
+  const latest = React.useRef({ key: recordKey, record })
+  if (latest.current.key !== recordKey) {
+    latest.current = { key: recordKey, record }
+  }
+
+  const update = React.useCallback(
+    (change: SearchParamsUpdate<Schema>, options?: SearchParamsUpdateOptions) => {
+      const next = mergeSearchRecord(
+        latest.current.record,
+        change as Record<string, unknown>
+      )
+      latest.current = { key: latest.current.key, record: next }
+      const query = stringifySearchRecord(next)
+      const hash = isNative ? '' : window.location.hash
+      const href = `${pathname}${query ? `?${query}` : ''}${hash}`
+      if (options?.replace) {
+        router.replace(href as OneRouter.Href)
+      } else {
+        router.push(href as OneRouter.Href)
+      }
+    },
+    [pathname]
+  )
+
+  return [output, update] as const
 }
