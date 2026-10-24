@@ -75,6 +75,7 @@ using namespace facebook::react;
 
 #else
 #import "OneNativePhotosPickerComponentView.h"
+#import "OneNativePhotosPickerShadowNode.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 using namespace facebook::react;
 @implementation OneNativePhotosPickerComponentView

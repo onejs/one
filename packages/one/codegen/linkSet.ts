@@ -63,8 +63,10 @@ export function componentStub(source: string): string {
   const name = source.match(/@implementation (\w+)/)?.[1]
   if (!name) throw new Error('component view has no implementation')
   const descriptor = source.match(/concreteComponentDescriptorProvider<(\w+)>/)?.[1]
+  // some descriptors are declared by the component's own shadow node header
+  const shadowNode = source.match(/#import "\w+ShadowNode\.h"/)?.[0]
   return `#import "${name}.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+${shadowNode ? `${shadowNode}\n` : ''}#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 using namespace facebook::react;
 @implementation ${name}
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${descriptor}>(); }

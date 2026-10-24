@@ -63,6 +63,7 @@ using namespace facebook::react;
 
 #else
 #import "OneNativePayWithApplePayButtonComponentView.h"
+#import "OneNativePayWithApplePayButtonShadowNode.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 using namespace facebook::react;
 @implementation OneNativePayWithApplePayButtonComponentView

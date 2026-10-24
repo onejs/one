@@ -74,6 +74,7 @@ using namespace facebook::react;
 
 #else
 #import "OneNativeSignInWithAppleButtonComponentView.h"
+#import "OneNativeSignInWithAppleButtonShadowNode.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 using namespace facebook::react;
 @implementation OneNativeSignInWithAppleButtonComponentView

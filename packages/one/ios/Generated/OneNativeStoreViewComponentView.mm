@@ -68,6 +68,7 @@ using namespace facebook::react;
 
 #else
 #import "OneNativeStoreViewComponentView.h"
+#import "OneNativeStoreViewShadowNode.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 using namespace facebook::react;
 @implementation OneNativeStoreViewComponentView
