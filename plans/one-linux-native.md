@@ -162,10 +162,55 @@ Reproduce: `packages/one/linux/scripts/lima-vm.sh` creates the VM, then
 `RN_ROOT=<node_modules/react-native> packages/one/linux/scripts/build-core.sh`
 builds everything into `~/.cache/ReactNative/linux`.
 
-**Next toward a window (M1):** a `GtkApplication` with one window and a
-surface root widget; the event beat on the GLib main loop and a GLib
-`MessageQueueThread` and timer registry (the shared host code the Mac host
-keeps in `OneMacosRuntime.mm`, moved to a directory both hosts compile);
-the mounting layer applying `ShadowViewMutation`s to a GTK view tree; and
-`TextLayoutManager` on Pango, replacing the cxx stub. The gtk4 and pango dev
-packages are already installed in the `one-linux` VM.
+**M1 window, 2026-10-23.** A GTK 4 window mounts a React Native app from
+embedded Hermes bytecode. Machine: studio-64, Lima VM as above, headless sway
+(pixman) and grim for the screenshot. Proof:
+[one-linux-native-m1.png](one-linux-native-m1.png), a release build showing
+nested views with colors, borders and radii, and Pango text (wrapping, fixed
+line height, italic, underline, letter spacing, uppercase).
+
+- **Shared host:** the plain C++ Mac host runtime (message queue thread,
+  timers, run loop observer, TurboModule context) moved to
+  `packages/one/native-core/host/`; both hosts compile it. The Mac app was not
+  rebuilt.
+- **Linux host** (`packages/one/linux/host/`): `OneView` is a GtkWidget
+  subclass (measure, size_allocate, snapshot with rounded clip, background,
+  border, Pango layout). `OneLinuxMountingManager` applies `ShadowViewMutation`
+  transactions on the GLib main loop. The event beat is a GSource whose prepare
+  step is the before waiting observer. `main.cpp` is a `GtkApplication` with an
+  800x600 window.
+- **Text:** `TextLayoutManager` on Pango replaces the cxx stub, with absolute
+  pixel sizes and hinting off, so measurement and painting share one layout.
+- **Startup, process start to first frame with content, ms** (kernel process
+  start, `ONE_LINUX_STARTUP_LOG=1`):
+
+  | build | runs | first frame |
+  | --- | --- | --- |
+  | release, bytecode | 126.0, 126.5, 127.0, 127.9, 130.6 | about 127 |
+  | debug, bytecode | 170.1, 175.7, 187.2 | about 175 |
+
+  Release timeline of one run: main 11, gtk activate 22, runtime ready 96,
+  first transaction mounted 103, first frame painted 128. The first cold run
+  after VM boot was about 650 ms (page cache). Target was 250 ms.
+- **Build times:** debug core incremental about 1 minute. Release full build
+  (third party, Hermes, core, host) 2m02s through `tm window run heavy`.
+
+Workarounds and gaps:
+
+1. The app is bundled for platform `ios` (Metro on the Mac, since the VM has no
+   node), because the `linux` JS platform does not exist yet. hermesc runs in
+   the VM. The bytecode in the release run came from the debug hermesc; the
+   format is the same, a release hermesc was not compared.
+2. The VM has no GPU, so GTK uses the software path and prints GL and a11y bus
+   warnings.
+3. `colorScheme` is fixed to light, and the module context reports idiom
+   `desktop` and the uname OS version.
+4. Pango `line_height_absolute` placement is not compared against iOS centering.
+5. No transforms, pointer events, images, scroll views, text input, dark mode
+   or GTK controls yet.
+6. The `-include cstdint` workaround from the core slice still applies.
+
+**Next:** the `linux` JS platform in vxrn (`.linux.*` resolution, dev bundle,
+HMR socket) so the app bundles without the ios platform; the dev server with
+Fast Refresh; one GTK control round-tripping state through the controlled
+protocol; then M2 (pointer events, scroll, text input, transforms, dark mode).
