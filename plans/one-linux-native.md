@@ -418,8 +418,9 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   `onHoverIn` and `onHoverOut` fire. The nearest `cursor` style sets the GTK
   cursor by CSS name on the surface. Proof, the mouse over the `text` button
   shows the hover color, "hovered text" and the I-beam:
-  [window](one-linux-native-hover.png). Moving out to empty space was not
-  checked, and event offsets are window coordinates.
+  [window](one-linux-native-hover.png). Moving out to empty space clears the
+  hover (the label returns to "hovered none" and the cursor to the default), and
+  event offsets are window coordinates.
 - **Multiline `TextInput` (M2):** `multiline` shows a `GtkTextView` (in a
   scrolled window, word wrapped) instead of the `GtkText`; both live in a
   `GtkStack` the view owns, and the same controlled protocol, focus, key,
@@ -432,5 +433,4 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
 
 **Next:** hit testing under a view transform, `Image` `blurRadius`,
 `defaultSource` and the copy of assets by `one build --platform linux`, the
-portal color scheme, the Networking gaps above, and a check that hover out to
-empty space fires `onHoverOut`.
+portal color scheme, and the Networking gaps above.
