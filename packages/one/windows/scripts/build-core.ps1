@@ -38,7 +38,7 @@ if ($Phase -in 'all', 'deps') {
     "-DCMAKE_BUILD_TYPE=$buildType" `
     "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" `
     "-DTP_ROOT=$sources"
-  Logged deps cmake --build $deps
+  Logged deps ninja -C $deps -k 0
 }
 
 if ($Phase -in 'all', 'core') {
