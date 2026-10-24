@@ -237,7 +237,7 @@ private struct OneNativeHostRoot: View {
   let content: AnyView
 
   var body: some View {
-    content.contentMargins(.bottom, insets.bottom, for: .scrollContent)
+    content.contentMargins(.bottom, insets.bottom > 0 ? insets.bottom : nil, for: .scrollContent)
   }
 }
 
@@ -391,12 +391,25 @@ private struct OneNativeHostRoot: View {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
 
-  // how far the box reaches into the home indicator's safe area, for a host in a sheet.
-  @nonobjc private func presentedSheetBottomOverlap() -> CGFloat {
-    guard !hostingScreenInsets, let window else { return 0 }
+  // the sheet this host is presented in: the nearest controller up the parent chain that
+  // is actually presented, when that presentation is a sheet. a controller configured as a
+  // sheet but never presented has no presenting controller, so it does not count.
+  @nonobjc private var presentingSheet: UISheetPresentationController? {
     var responder: UIResponder? = next
     while responder != nil && !(responder is UIViewController) { responder = responder?.next }
-    guard (responder as? UIViewController)?.sheetPresentationController != nil else { return 0 }
+    var controller = responder as? UIViewController
+    while let current = controller {
+      if current.presentingViewController != nil {
+        return current.presentationController as? UISheetPresentationController
+      }
+      controller = current.parent
+    }
+    return nil
+  }
+
+  // how far the box reaches into the home indicator's safe area, for a host in a sheet.
+  @nonobjc private func presentedSheetBottomOverlap() -> CGFloat {
+    guard !hostingScreenInsets, let window, presentingSheet != nil else { return 0 }
     let inset = window.safeAreaInsets.bottom
     let reach = convert(bounds, to: window).maxY - (window.bounds.maxY - inset)
     return min(inset, max(0, reach))

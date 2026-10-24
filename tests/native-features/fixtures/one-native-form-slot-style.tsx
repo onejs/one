@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One, type ScrollViewProxy } from 'one'
 
@@ -13,15 +13,43 @@ function ScrollToLast({ proxy }: { proxy: ScrollViewProxy }) {
   return null
 }
 
+function RowsReader({ kind, rows }: { kind: SheetKind; rows: ReactNode[] }) {
+  return (
+    <One.iOS.ScrollViewReader style={styles.sheetForm}>
+      {(proxy) => (
+        <>
+          <ScrollToLast proxy={proxy} />
+          {kind === 'form' ? (
+            <One.iOS.Form style={styles.sheetForm}>
+              <One.iOS.Section title="Rows">{rows}</One.iOS.Section>
+            </One.iOS.Form>
+          ) : kind === 'list' ? (
+            <One.iOS.List style={styles.sheetForm} listStyle="plain">
+              {rows}
+            </One.iOS.List>
+          ) : (
+            <One.iOS.ScrollView style={styles.sheetForm}>
+              <One.iOS.VStack spacing={0}>{rows}</One.iOS.VStack>
+            </One.iOS.ScrollView>
+          )}
+        </>
+      )}
+    </One.iOS.ScrollViewReader>
+  )
+}
+
 export default function OneNativeFormSlotStyle({
   initialCustom = false,
   initialSheet = false,
   sheetKind = 'form',
+  inline = false,
   resetAfterMs,
 }: {
   initialCustom?: boolean
   initialSheet?: boolean
   sheetKind?: SheetKind
+  // renders the rows edge to edge on the screen with no sheet, to show a non-sheet host keeps its insets
+  inline?: boolean
   // flips the Form and Slot styles back to default after this many milliseconds
   resetAfterMs?: number
 }) {
@@ -41,6 +69,15 @@ export default function OneNativeFormSlotStyle({
       swiftStyle={{ id: index === 39 ? 'row-last' : `row-${index}`, height: 44 }}
     />
   ))
+
+  if (inline) {
+    return (
+      <View style={styles.sheet} testID="one-native-form-slot-style-inline">
+        <RowsReader kind={sheetKind} rows={rows} />
+        <View style={styles.sheetEdge} />
+      </View>
+    )
+  }
 
   return (
     <View style={styles.screen} testID="one-native-form-slot-style-screen">
@@ -90,26 +127,7 @@ export default function OneNativeFormSlotStyle({
         presentationBackground="#FFE08A"
       >
         <View style={styles.sheet} testID="one-native-form-slot-style-sheet">
-          <One.iOS.ScrollViewReader style={styles.sheetForm}>
-            {(proxy) => (
-              <>
-                <ScrollToLast proxy={proxy} />
-                {sheetKind === 'form' ? (
-                  <One.iOS.Form style={styles.sheetForm}>
-                    <One.iOS.Section title="Rows">{rows}</One.iOS.Section>
-                  </One.iOS.Form>
-                ) : sheetKind === 'list' ? (
-                  <One.iOS.List style={styles.sheetForm} listStyle="plain">
-                    {rows}
-                  </One.iOS.List>
-                ) : (
-                  <One.iOS.ScrollView style={styles.sheetForm}>
-                    <One.iOS.VStack spacing={0}>{rows}</One.iOS.VStack>
-                  </One.iOS.ScrollView>
-                )}
-              </>
-            )}
-          </One.iOS.ScrollViewReader>
+          <RowsReader kind={sheetKind} rows={rows} />
           <View style={styles.sheetEdge} />
         </View>
       </One.iOS.Sheet>
