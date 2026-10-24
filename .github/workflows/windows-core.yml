@@ -1,0 +1,174 @@
+name: windows core
+
+# Compiles the unforked React Native core and its dependencies with clang-cl
+# and the MSVC STL, and Hermes with MSVC cl, on GitHub's Windows runner, then
+# runs the headless Fabric smoke. The shared native-core unit list and host
+# runtime come from the Linux foundation commit until it lands on main.
+on:
+  push:
+    branches: [tm/windows-core-m0]
+    paths: ['packages/one/windows/**', '.github/workflows/windows-core.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NATIVE_CORE_COMMIT: d35f3f285dde9d9617d415d2af35067644d49685
+  RN_VERSION: 0.88.0
+
+jobs:
+  core:
+    runs-on: windows-2025
+    timeout-minutes: 300
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      # the windows target and the root lockfile; the full tree has generated
+      # paths longer than Windows allows
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: packages/one/windows
+      - name: native-core foundation
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.NATIVE_CORE_COMMIT }}
+          path: foundation
+          sparse-checkout: packages/one/native-core
+      - name: react-native and toolchain
+        id: pins
+        run: |
+          New-Item -ItemType Directory -Force out | Out-Null
+          # forward slashes, so the paths read the same inside CMake
+          $temp = $env:RUNNER_TEMP.Replace('\', '/')
+          "ONE_WINDOWS_CACHE=$temp/one-windows-cache" >> $env:GITHUB_ENV
+          "NATIVE_CORE=$($env:GITHUB_WORKSPACE.Replace('\', '/'))/foundation/packages/one/native-core" >> $env:GITHUB_ENV
+
+          # the registry tarball the repo's lockfile pins, checked against its integrity
+          $line = Select-String -Path bun.lock -Pattern "`"react-native`": \[`"react-native@$env:RN_VERSION`"" | Select-Object -First 1
+          if ($line.Line -notmatch '"(sha512-[^"]+)"\],?\s*$') { throw 'no react-native integrity in bun.lock' }
+          $locked = $Matches[1]
+          $pack = npm pack "react-native@$env:RN_VERSION" --pack-destination $temp --json | ConvertFrom-Json
+          if ($pack[0].integrity -ne $locked) { throw "react-native integrity $($pack[0].integrity) is not the locked $locked" }
+          $tgz = "$temp/$($pack[0].filename)"
+          New-Item -ItemType Directory -Force "$temp/rn" | Out-Null
+          & "$env:SystemRoot/System32/tar.exe" -xzf $tgz -C "$temp/rn"
+          if ($LASTEXITCODE) { throw 'could not unpack react-native' }
+          $rnRoot = "$temp/rn/package"
+          "RN_ROOT=$rnRoot" >> $env:GITHUB_ENV
+          $hermes = (Select-String -Path "$rnRoot/sdks/hermes-engine/version.properties" -Pattern '^HERMES_VERSION_NAME=(.*)$').Matches[0].Groups[1].Value
+          "hermes=$hermes" >> $env:GITHUB_OUTPUT
+
+          # the x64 developer environment, with the clang-cl Visual Studio ships
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vs = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Llvm.Clang -property installationPath
+          if (-not $vs) { throw 'no Visual Studio with clang-cl' }
+          cmd /c "`"$vs\VC\Auxiliary\Build\vcvars64.bat`" >nul && set" | ForEach-Object {
+            if ($_ -match '^([A-Za-z_][A-Za-z0-9_]*)=(.*)$' -and [Environment]::GetEnvironmentVariable($Matches[1]) -ne $Matches[2]) {
+              "$($Matches[1])=$($Matches[2])" >> $env:GITHUB_ENV
+            }
+          }
+          $clang = "$vs\VC\Tools\Llvm\x64\bin\clang-cl.exe"
+          "CC=$clang" >> $env:GITHUB_ENV
+          "CXX=$clang" >> $env:GITHUB_ENV
+
+          & {
+            "react-native $env:RN_VERSION $locked"
+            "react-native tarball sha256 $((Get-FileHash $tgz).Hash)"
+            "hermes $hermes"
+            "native-core onejs/one@$env:NATIVE_CORE_COMMIT"
+            "one source $env:GITHUB_SHA"
+            "runner $env:ImageOS $env:ImageVersion"
+            "visual studio $(& $vswhere -latest -property catalog_productDisplayVersion) at $vs"
+            & $clang --version
+          } | Tee-Object out/versions.txt
+      - name: versions in the developer environment
+        run: |
+          & {
+            "msvc toolset $env:VCToolsVersion"
+            "windows sdk $env:WindowsSDKVersion"
+            "cmake $(cmake --version | Select-Object -First 1)"
+            "ninja $(ninja --version)"
+          } | Tee-Object -Append out/versions.txt
+      - name: restore hermes
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/one-windows-cache/hermes-${{ steps.pins.outputs.hermes }}-release
+          key: hermes-${{ steps.pins.outputs.hermes }}-release-cl-${{ hashFiles('packages/one/windows/scripts/prepare-hermes.ps1') }}
+      - name: dependencies
+        id: deps
+        continue-on-error: true
+        run: packages/one/windows/scripts/build-core.ps1 -Phase deps -Logs out
+      - name: react-native core
+        id: core
+        if: steps.deps.outcome == 'success'
+        continue-on-error: true
+        run: packages/one/windows/scripts/build-core.ps1 -Phase core -Logs out
+      - name: hermes
+        id: hermes
+        run: |
+          packages/one/windows/scripts/build-core.ps1 -Phase hermes -Logs out
+          Get-Content "$env:ONE_WINDOWS_CACHE/hermes-${{ steps.pins.outputs.hermes }}-release/.hermes-version"
+      - name: save hermes
+        if: steps.hermes.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/one-windows-cache/hermes-${{ steps.pins.outputs.hermes }}-release
+          key: hermes-${{ steps.pins.outputs.hermes }}-release-cl-${{ hashFiles('packages/one/windows/scripts/prepare-hermes.ps1') }}
+      - name: smoke
+        if: steps.core.outcome == 'success'
+        run: |
+          packages/one/windows/scripts/build-core.ps1 -Phase smoke -Logs out
+          $core = "$env:ONE_WINDOWS_CACHE/core-$env:RN_VERSION-release"
+          & "$core/one-windows-smoke.exe" "$core/smoke.hbc" 2>&1 | Tee-Object out/smoke.txt
+          $code = $LASTEXITCODE
+          $hermes = "$env:ONE_WINDOWS_CACHE/hermes-${{ steps.pins.outputs.hermes }}-release/destroot"
+
+          # controls: a tree laid out differently fails the frame checks, and
+          # JavaScript source fails the bytecode check; each has to fail for
+          # its own reason, since the smoke exits 1 for either
+          (Get-Content packages/one/windows/smoke/smoke.js -Raw).Replace('padding: 20', 'padding: 30') | Set-Content "$core/negative.js"
+          & "$hermes/bin/hermesc.exe" -emit-binary -O -out "$core/negative.hbc" "$core/negative.js"
+          if ($LASTEXITCODE) { throw "hermesc exited $LASTEXITCODE compiling the padding 30 control" }
+          & "$core/one-windows-smoke.exe" "$core/negative.hbc" 2>&1 | Tee-Object out/negative.txt
+          if ($LASTEXITCODE -ne 1) { throw "the padding 30 control exited $LASTEXITCODE, not 1" }
+          if (-not (Select-String -Quiet -SimpleMatch 'smoke FAILED with 3 failures' out/negative.txt)) { throw 'the padding 30 control did not fail on the 3 padded frames' }
+          & "$core/one-windows-smoke.exe" packages/one/windows/smoke/smoke.js 2>&1 | Tee-Object -Append out/negative.txt
+          if ($LASTEXITCODE -ne 1) { throw "the source control exited $LASTEXITCODE, not 1" }
+          if (-not (Select-String -Quiet -SimpleMatch 'smoke.js is not Hermes bytecode' out/negative.txt)) { throw 'the source control did not fail the bytecode check' }
+
+          New-Item -ItemType Directory -Force out/bin | Out-Null
+          Copy-Item "$core/one-windows-smoke.exe", "$core/smoke.hbc", "$hermes/bin/hermesvm.dll" out/bin/
+          Get-FileHash "$core/one-windows-smoke.exe", "$core/smoke.hbc", "$core/OneWindowsCore.lib", "$hermes/bin/hermesvm.dll", "$hermes/lib/hermesvm.lib", "$hermes/bin/hermesc.exe" |
+            ForEach-Object { "$($_.Hash) $(Split-Path -Leaf $_.Path) $((Get-Item $_.Path).Length)" } | Tee-Object out/hashes.txt
+          exit $code
+      - name: summary
+        if: always()
+        run: |
+          & {
+            '```'
+            Get-Content out/versions.txt
+            ''
+            foreach ($log in 'deps', 'core', 'hermes', 'smoke') {
+              if (Test-Path "out/$log.log") {
+                $text = Get-Content "out/$log.log"
+                "$log.log: $(($text | Select-String ': error').Count) errors, $(($text | Select-String ': warning').Count) warnings"
+              }
+            }
+            if (Test-Path out/smoke.txt) { ''; Get-Content out/smoke.txt }
+            if (Test-Path out/negative.txt) { ''; Get-Content out/negative.txt }
+            if (Test-Path out/hashes.txt) { ''; Get-Content out/hashes.txt }
+            '```'
+          } | Out-File -Append -Encoding utf8 $env:GITHUB_STEP_SUMMARY
+          if ("${{ steps.deps.outcome }}" -ne 'success') { Write-Error 'the dependencies did not build'; exit 1 }
+          if ("${{ steps.core.outcome }}" -ne 'success') { Write-Error 'the react-native core did not compile'; exit 1 }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-core
+          path: out/
