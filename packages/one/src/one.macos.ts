@@ -3,6 +3,7 @@ import { AppCommands } from './platform/mac/AppCommands.macos'
 import { Image } from './platform/mac/Image.macos'
 import { Button } from './platform/mac/Button.macos'
 import { SegmentedControl } from './platform/mac/SegmentedControl.macos'
+import { PopUpButton } from './platform/mac/PopUpButton.macos'
 import { Toggle } from './platform/mac/Toggle.macos'
 
 const macOS: Readonly<OneMacOS> = Object.freeze({
@@ -10,6 +11,7 @@ const macOS: Readonly<OneMacOS> = Object.freeze({
   Button,
   Image,
   SegmentedControl,
+  PopUpButton,
   AppCommands,
 })
 

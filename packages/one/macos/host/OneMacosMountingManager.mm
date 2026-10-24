@@ -16,6 +16,7 @@
 #include <OneMacButton/OneMacButtonComponentDescriptor.h>
 #include <OneMacImage/OneMacImageComponentDescriptor.h>
 #include <OneMacSegmentedControl/OneMacSegmentedControlComponentDescriptor.h>
+#include <OneMacPopUpButton/OneMacPopUpButtonComponentDescriptor.h>
 #include <OneMacToggle/OneMacToggleComponentDescriptor.h>
 
 #import "OneMacosImageComponentView.h"
@@ -25,6 +26,7 @@
 #import "OneMacosButtonComponentView.h"
 #import "OneMacosSymbolImageComponentView.h"
 #import "OneMacosSegmentedControlComponentView.h"
+#import "OneMacosPopUpButtonComponentView.h"
 #import "OneMacosToggleComponentView.h"
 
 using namespace facebook::react;
@@ -54,6 +56,7 @@ std::vector<ComponentEntry> &componentEntries()
       {concreteComponentDescriptorProvider<OneMacImageComponentDescriptor>(), [OneMacosSymbolImageComponentView class]},
       {concreteComponentDescriptorProvider<OneMacButtonComponentDescriptor>(), [OneMacosButtonComponentView class]},
       {concreteComponentDescriptorProvider<OneMacSegmentedControlComponentDescriptor>(), [OneMacosSegmentedControlComponentView class]},
+      {concreteComponentDescriptorProvider<OneMacPopUpButtonComponentDescriptor>(), [OneMacosPopUpButtonComponentView class]},
       {concreteComponentDescriptorProvider<OneMacToggleComponentDescriptor>(),
        [OneMacosToggleComponentView class]},
   };
