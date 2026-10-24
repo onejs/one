@@ -1,0 +1,65 @@
+name: windows host probe
+
+on:
+  push:
+    branches: [tm/one-windows-probe]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: windows-2025
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - name: environment
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path out | Out-Null
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          & {
+            Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, BuildNumber | Format-List
+            Get-CimInstance Win32_Processor | Select-Object Name, NumberOfCores, NumberOfLogicalProcessors | Format-List
+            Get-CimInstance Win32_VideoController | Select-Object Name, DriverVersion | Format-List
+            "visual studio: $(& $vswhere -latest -property installationVersion)"
+            "session: $([System.Diagnostics.Process]::GetCurrentProcess().SessionId) interactive: $([Environment]::UserInteractive)"
+            Add-Type -AssemblyName System.Windows.Forms
+            "screen: $([System.Windows.Forms.Screen]::PrimaryScreen.Bounds)"
+          } | Tee-Object out/environment.txt
+      - name: build
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vs = & $vswhere -latest -property installationVersion
+          $toolset = if ($vs.StartsWith('18')) { 'v145' } else { 'v143' }
+          $start = Get-Date
+          msbuild windows-probe/OneWindowsProbe.vcxproj /restore /m /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=$toolset /v:m /fl /flp:logfile=out/build.log
+          $code = $LASTEXITCODE
+          "build seconds: $(((Get-Date) - $start).TotalSeconds)" | Tee-Object -Append out/environment.txt
+          exit $code
+      - name: deployed payload
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Recurse -Filter OneWindowsProbe.exe windows-probe | Select-Object -First 1
+          $dir = $exe.Directory
+          "exe: $($exe.FullName)" | Tee-Object out/payload.txt
+          Get-ChildItem $dir -Recurse -File | Sort-Object Length -Descending | ForEach-Object { "{0,12} {1}" -f $_.Length, $_.FullName.Substring($dir.FullName.Length + 1) } | Tee-Object -Append out/payload.txt
+          "total bytes: $((Get-ChildItem $dir -Recurse -File | Measure-Object Length -Sum).Sum)" | Tee-Object -Append out/payload.txt
+          "EXE=$($exe.FullName)" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
+      - name: measure
+        shell: pwsh
+        run: windows-probe/run.ps1 -Exe $env:EXE -OutDir out -Reps 8
+      - name: summarize
+        if: always()
+        shell: pwsh
+        run: |
+          python windows-probe/summarize.py out/results.jsonl | Tee-Object out/summary.md
+          Get-Content out/summary.md | Out-File -Append -Encoding utf8 $env:GITHUB_STEP_SUMMARY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-probe
+          path: out/
