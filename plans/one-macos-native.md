@@ -672,3 +672,29 @@ different per-window layouts before the repair and passed after each owner got
 an independent identifier. The public option is named `controlRole`, leaving
 React Native's existing accessibility `role` intact. Non-default native roles
 use AppKit's automatic style; the existing rounded default stays unchanged.
+
+## 2026-10-23: release startup
+
+Owner target (Contrast `specs/one-macos-native.md`, 2026-10-24 UTC): main
+content in about 250 ms. All numbers are Release `tests/macos-basic` on
+studio-64 (M5 Max), process start to the first Core Animation commit after
+the main mount, median of interleaved launches (TESTED).
+
+- Served plain JS 624 ms, minified 529, Hermes bytecode 230, minified
+  bytecode 205. Release now embeds minified bytecode and maps it in place:
+  185 ms median, 141 best, at load about 5. M6's "Hermes for macOS" bundle
+  step is this.
+- Where the 185 ms goes: about 88 ms before the root view exists (the
+  NSApplication floor is about 40 ms; SwiftUI's `App` lifecycle adds about 25
+  and `WindowGroup` about 20, measured in bare shells), about 35 ms of JS
+  eval and first render overlapping the empty window's first commit, about
+  16 ms to mount 290 views, then about 40 ms of AppKit layout and display.
+  Drawing is about 1 ms.
+- An AppKit delegate shell with the root as the window's content view: 172
+  ms median, 118 best. It saves about 13 ms but would give up the SwiftUI
+  scene API from decision 1, so the shell stays SwiftUI.
+- Creating the root view in the app's `init`, so JS runs while the shell
+  launches: 195 ms on studio-64, better on a loaded M5 Pro. Main thread setup
+  only moves earlier, so it is not taken.
+- Next targets: the post-mount layout and display pass, and the empty window
+  commit that the main mount waits behind.
