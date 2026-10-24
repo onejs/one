@@ -191,6 +191,8 @@ class Mounting final : public SchedulerDelegate, public std::enable_shared_from_
 
   std::function<void(SurfaceId)> mergeReactRevision;
   std::unordered_map<Tag, std::shared_ptr<const OneWindowsToggleEventEmitter>> toggles;
+  // set while the surface stops, to trace its last transaction
+  std::atomic<bool> stopping{false};
 
   void schedulerDidFinishTransaction(const std::shared_ptr<const MountingCoordinator> &) override {}
   void schedulerShouldRenderTransactions(const std::shared_ptr<const MountingCoordinator> &coordinator) override
@@ -264,10 +266,6 @@ class Mounting final : public SchedulerDelegate, public std::enable_shared_from_
     host_.mount(transaction->getSurfaceId(), static_cast<int>(transaction->getNumber()), mutations);
   }
 
-  // set while the surface stops, to trace its last transaction
-  std::atomic<bool> stopping{false};
-
- private:
   IslandHost host_;
 };
 
