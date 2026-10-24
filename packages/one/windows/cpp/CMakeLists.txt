@@ -58,6 +58,7 @@ target_include_directories(OneWindowsCore PUBLIC
   ${RC}/react/renderer/imagemanager/platform/cxx
   ${RC}/react/renderer/textlayoutmanager/platform/cxx
   ${ONE_SHARED_HOST}
+  ${CMAKE_CURRENT_LIST_DIR}
   ${RC}/react/utils/platform/cxx
   ${RN_ROOT}/React/FBReactNativeSpec
 )
