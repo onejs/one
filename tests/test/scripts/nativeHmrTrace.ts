@@ -183,7 +183,9 @@ export function nativeHmrTrace(path: string | undefined): Plugin[] {
       api: {
         vxrnNative: () => ({
           name: 'test-native-hmr-trace-start-native',
-          // hook order brackets the unchanged production transform chain.
+          // native codegen, background computation and client tree shaking ran first.
+          // watch-to-start includes those earlier pre-ordered hooks; normal-order
+          // transforms follow this marker.
           transform: {
             order: 'pre',
             handler(_code: string, id: string) {
