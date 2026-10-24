@@ -2,7 +2,7 @@
 // mounted react native view is (a) a winui 3 xaml element, or (b) a lifted composition
 // visual inside a content island (the react-native-windows fabric model).
 //
-// usage: OneWindowsProbe.exe --mode xaml|xaml-grid|comp --nodes N --out results.jsonl
+// usage: OneWindowsProbe.exe --mode xaml|xaml-grid|comp|comp-shape --nodes N --out results.jsonl
 //                            [--controls K] [--updates U] [--hold MS] [--tag TEXT]
 // every time is milliseconds since the kernel created this process.
 
@@ -381,16 +381,35 @@ int runComposition() {
   QueryPerformanceCounter(&a);
   mark("mount_start");
   auto nodes = std::make_shared<std::vector<Node>>(buildTree(g_options.nodes));
-  auto visuals = std::make_shared<std::vector<mucomp::SpriteVisual>>();
+  // comp-shape draws what xaml-grid draws: a filled, 1px stroked, 6px rounded rectangle per view
+  bool shape = g_options.mode == L"comp-shape";
+  auto stroke = compositor.CreateColorBrush(winrt::Windows::UI::Color{255, 30, 30, 30});
+  auto visuals = std::make_shared<std::vector<mucomp::ContainerVisual>>();
   visuals->reserve(nodes->size());
   for (size_t i = 0; i < nodes->size(); ++i) {
     const Node& n = (*nodes)[i];
-    auto v = compositor.CreateSpriteVisual();
-    v.Brush(compositor.CreateColorBrush(n.color));
+    mucomp::ContainerVisual v{nullptr};
+    if (shape) {
+      auto geometry = compositor.CreateRoundedRectangleGeometry();
+      geometry.Offset({0.5f, 0.5f});
+      geometry.Size({n.w - 1, n.h - 1});
+      geometry.CornerRadius({6, 6});
+      auto sprite = compositor.CreateSpriteShape(geometry);
+      sprite.FillBrush(compositor.CreateColorBrush(n.color));
+      sprite.StrokeBrush(stroke);
+      sprite.StrokeThickness(1);
+      auto shapeVisual = compositor.CreateShapeVisual();
+      shapeVisual.Shapes().Append(sprite);
+      v = shapeVisual;
+    } else {
+      auto sprite = compositor.CreateSpriteVisual();
+      sprite.Brush(compositor.CreateColorBrush(n.color));
+      v = sprite;
+    }
     v.Size({n.w, n.h});
     v.Offset({n.x, n.y, 0});
     visuals->push_back(v);
-    mucomp::ContainerVisual parent = n.parent < 0 ? root.as<mucomp::ContainerVisual>() : (*visuals)[n.parent].as<mucomp::ContainerVisual>();
+    mucomp::ContainerVisual parent = n.parent < 0 ? root.as<mucomp::ContainerVisual>() : (*visuals)[n.parent];
     parent.Children().InsertAtTop(v);
   }
   QueryPerformanceCounter(&b);
@@ -445,6 +464,6 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR, int) {
   SetUnhandledExceptionFilter(onCrash);
   mark("main");
   init_apartment(apartment_type::single_threaded);
-  if (g_options.mode == L"comp") return runComposition();
+  if (g_options.mode == L"comp" || g_options.mode == L"comp-shape") return runComposition();
   return runXaml();
 }

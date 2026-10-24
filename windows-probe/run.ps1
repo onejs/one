@@ -41,10 +41,12 @@ $cases = @(
   @{ mode = 'comp'; nodes = 300; controls = 0 },
   @{ mode = 'xaml'; nodes = 300; controls = 0 },
   @{ mode = 'xaml-grid'; nodes = 300; controls = 0 },
+  @{ mode = 'comp-shape'; nodes = 300; controls = 0 },
   @{ mode = 'xaml'; nodes = 300; controls = 25 },
   @{ mode = 'comp'; nodes = 3000; controls = 0 },
   @{ mode = 'xaml'; nodes = 3000; controls = 0 },
-  @{ mode = 'xaml-grid'; nodes = 3000; controls = 0 }
+  @{ mode = 'xaml-grid'; nodes = 3000; controls = 0 },
+  @{ mode = 'comp-shape'; nodes = 3000; controls = 0 }
 )
 
 # interleaved repetitions; rep0 is the cold warmup and is dropped by the summary
@@ -64,6 +66,7 @@ $shots = @(
   @{ mode = 'comp'; nodes = 300; controls = 0 },
   @{ mode = 'xaml'; nodes = 300; controls = 0 },
   @{ mode = 'xaml-grid'; nodes = 300; controls = 0 },
+  @{ mode = 'comp-shape'; nodes = 300; controls = 0 },
   @{ mode = 'xaml'; nodes = 300; controls = 25 }
 )
 foreach ($s in $shots) {
