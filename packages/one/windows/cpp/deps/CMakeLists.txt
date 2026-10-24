@@ -33,7 +33,7 @@ add_subdirectory(${TP_ROOT}/glog glog EXCLUDE_FROM_ALL)
 # consumers see the headers glog configures into its build directory, as they
 # would from an installed glog; its build interface also exports its private
 # src directories, whose demangle.h folly takes for libiberty's
-set_target_properties(glog PROPERTIES INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}/glog)
+set_target_properties(glog PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/glog>")
 
 set(F ${TP_ROOT}/folly/folly)
 add_library(folly_runtime STATIC
