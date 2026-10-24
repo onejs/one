@@ -398,12 +398,13 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   `contain`, `stretch`, `center`, `repeat` and `none`, with `tintColor` as an
   alpha mask. A bundled asset resolves through RN's own `AssetSourceResolver`
   to `<bundle dir>/assets/<httpServerLocation>/<name>`, so the image must sit
-  there beside `main.jsbundle`; `one build --platform linux` does not copy assets
-  yet, so the proof copied `swatch.png` by hand. Proof, a local asset, a remote
+  there beside `main.jsbundle`; `one build --platform linux` now writes the
+  assets to `dist/assets/assets/` next to `dist/linux.js` (checked: `swatch.png`
+  lands there), while the proof had copied `swatch.png` by hand. Proof, a local asset, a remote
   URL (a `python -m http.server` in the VM), a missing URL that fires `onError`,
   and the four modes in a 100 px rounded box:
   [window](one-linux-native-images.png). Gaps: `blurRadius`, `defaultSource`,
-  progressive loading and the copy of assets into the app package.
+  progressive loading and packaging the assets with the app.
 - **Transforms and opacity (M2):** `restyle` resolves RN's `transform` (already
   adjusted for the transform origin) and `one_view_set_transform` applies it as
   a `GskTransform` in `size_allocate`, anchored at the view's center like a
@@ -435,5 +436,5 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   and `secureTextEntry` are not applied to the multiline field.
 
 **Next:** `Image` `blurRadius`,
-`defaultSource` and the copy of assets by `one build --platform linux`, the
+`defaultSource`, the
 portal color scheme, and the Networking gaps above.

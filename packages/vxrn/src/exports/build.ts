@@ -106,6 +106,8 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       {
         platform: buildArgs.platform,
         bundleOutput: `${outDir}${sep}${buildArgs.platform}.js`,
+        // linux has no packaging step that copies assets, so they land beside the bundle
+        assetsDest: buildArgs.platform === 'linux' ? outDir : undefined,
         dev: false,
         entryFile: '',
         resetCache: true,
