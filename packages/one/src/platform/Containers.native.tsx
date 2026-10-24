@@ -1382,7 +1382,7 @@ export const SwipeActions = Object.assign(SwipeActionsFn, {
   Actions: SwipeActionsActions,
 })
 
-export function Slot({ height, width = 0, children, style, ...props }: SlotProps) {
+export function Slot({ height, width = 0, children, style, swiftStyle, ...props }: SlotProps) {
   const inside = useContext(InsideContainer)
   if (!inside) throw new Error(`Swift.Slot must be a child of ${containers}`)
   if (!Number.isFinite(height) || height <= 0)
@@ -1390,7 +1390,13 @@ export function Slot({ height, width = 0, children, style, ...props }: SlotProps
   if (!Number.isFinite(width) || width < 0)
     throw new Error('Swift.Slot width must be a non-negative number')
   return (
-    <NativeContainerSlot {...props} style={style} height={height} width={width}>
+    <NativeContainerSlot
+      {...props}
+      {...swiftStyleProps(swiftStyle)}
+      style={style}
+      height={height}
+      width={width}
+    >
       <InsideContainer value={false}>{children}</InsideContainer>
     </NativeContainerSlot>
   )

@@ -14,6 +14,7 @@ private final class SlotModel: ObservableObject {
 
 private struct SlotContent: View {
   @ObservedObject var model: SlotModel
+  @ObservedObject var style: OneNativeContainerStyle
 
   var body: some View {
     if let content = model.content {
@@ -23,11 +24,14 @@ private struct SlotContent: View {
         content: content, mode: .presented, layoutHost: nil,
         onLayout: { frame in model.onLayout?(frame) }
       )
-      if model.width > 0 {
-        slot.frame(width: model.width, height: model.height)
-      } else {
-        slot.frame(maxWidth: .infinity, minHeight: model.height, maxHeight: model.height)
+      Group {
+        if model.width > 0 {
+          slot.frame(width: model.width, height: model.height)
+        } else {
+          slot.frame(maxWidth: .infinity, minHeight: model.height, maxHeight: model.height)
+        }
       }
+      .oneNativeContainerStyle(style)
     }
   }
 }
@@ -35,6 +39,8 @@ private struct SlotContent: View {
 @objcMembers
 public final class OneNativeContainerSlotView: UIView, OneNativeComposable, OneNativeFocusedContent {
   private let model = SlotModel()
+  @nonobjc private let style = OneNativeContainerStyle()
+  private weak var compositionParent: OneNativeCompositionParent?
 
   @nonobjc var containsComposedFocus: Bool {
     guard let content = model.content, content.window != nil else { return false }
@@ -56,22 +62,47 @@ public final class OneNativeContainerSlotView: UIView, OneNativeComposable, OneN
     set { model.onLayout = newValue }
   }
 
+  public var onSwiftStyleEvent: ((String, String) -> Void)? {
+    get { style.onSDKEvent }
+    set { style.onSDKEvent = newValue }
+  }
+
+  // list row modifiers are read when SwiftUI creates the row, so a change republishes it.
+  public func configureSwiftStyle(_ dictionary: [String: Any]) {
+    if style.update(dictionary, isRowModifier: OneNativeStyle.isListRowModifier) {
+      compositionParent?.refreshRow(for: self)
+    }
+  }
+
   public func configure(height: Double, width: Double) {
     if model.height != height { model.height = height }
     if model.width != width { model.width = width }
   }
 
-  public func compositionContent() -> AnyView { AnyView(SlotContent(model: model)) }
+  public func compositionContent() -> AnyView { AnyView(SlotContent(model: model, style: style)) }
 
-  // SwiftUI proposes the box, so publication tells the slot nothing it needs.
-  public func composeInto(_ parent: OneNativeCompositionParent) {}
+  // SwiftUI proposes the box, so publication tells the slot nothing it needs beyond
+  // whether swiftStyle events may fire.
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    compositionParent = parent
+    style.active = parent.compositionActive
+  }
+
+  public func propagateActive(_ active: Bool) { style.active = active }
 
   // React Native recycles the slot's view in the same transaction that unmounts it, and
   // asserts it has no superview. SwiftUI dismantles the representable later, so the view
   // has to leave the SwiftUI tree here.
-  public func decompose() { model.content?.removeFromSuperview() }
+  public func decompose() {
+    compositionParent = nil
+    style.active = false
+    model.content?.removeFromSuperview()
+  }
 
   public func reset() {
+    compositionParent = nil
+    style.active = false
+    style.reset()
     model.content?.removeFromSuperview()
     model.height = 0
     model.width = 0

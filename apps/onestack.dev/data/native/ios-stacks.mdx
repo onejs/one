@@ -238,6 +238,7 @@ none, so a slot in one takes an explicit width.
   data={[
     { name: 'height', required: true, type: 'number', description: 'The box height. Must be above zero.' },
     { name: 'width', type: 'number', default: '0', description: 'The box width. 0 fills the width offered; inside an HStack, set one.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view. Inside a `Form` or `List`, row modifiers such as `listRowInsets` and `listRowBackground` reach the hosted row.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The React Native content.' },
   ]}
 />

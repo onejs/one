@@ -91,5 +91,5 @@ declare function SwipeActionsFn({ children, style, ...props }: SwipeActionsProps
 export declare const SwipeActions: typeof SwipeActionsFn & {
     Actions: typeof SwipeActionsActions;
 };
-export declare function Slot({ height, width, children, style, ...props }: SlotProps): import("react").JSX.Element;
+export declare function Slot({ height, width, children, style, swiftStyle, ...props }: SlotProps): import("react").JSX.Element;
 //# sourceMappingURL=Containers.native.d.ts.map
