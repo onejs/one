@@ -46,6 +46,11 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
 
   void synchronouslyUpdateViewOnTag(Tag tag, const folly::dynamic &props);
 
+  // main thread; an image request's results for the Image view with this tag
+  void imageProgress(Tag tag, float progress, int64_t loaded, int64_t total);
+  void imageLoaded(Tag tag, std::shared_ptr<void> texture);
+  void imageFailed(Tag tag, const std::string &message);
+
  struct Record;
 
  private:
@@ -55,6 +60,7 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
   void initiateTransaction(const MountingCoordinator &coordinator);
   void performMutations(const ShadowViewMutationList &mutations);
   void restyle(Record &record);
+  void updateImageState(Record &record, const State::Shared &state);
 
   std::unordered_map<Tag, std::unique_ptr<Record>> records_;
   std::unique_ptr<OneLinuxPointerHandler> pointer_;

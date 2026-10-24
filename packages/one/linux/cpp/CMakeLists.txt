@@ -29,9 +29,9 @@ set(ONE_LINUX ${CMAKE_CURRENT_LIST_DIR}/..)
 set(ONE_SHARED_HOST ${CMAKE_CURRENT_LIST_DIR}/../../native-core/host)
 file(GLOB ONE_SHARED_HOST_SOURCES ${ONE_SHARED_HOST}/*.cpp)
 
-# the cxx text layout stub is replaced by the Pango one; images stay the cxx stub
+# the cxx text layout and image stubs are replaced by the Pango and GTK ones
 set(RN_LINUX_SOURCES
-  ${RC}/react/renderer/imagemanager/platform/cxx/react/renderer/imagemanager/ImageManager.cpp
+  ${ONE_LINUX}/cpp/imagemanager/OneLinuxImageManager.cpp
   ${RN_ROOT}/React/Fabric/AppleEventBeat.cpp
   ${ONE_LINUX}/cpp/textlayoutmanager/OneLinuxText.cpp
   ${ONE_LINUX}/cpp/textlayoutmanager/react/renderer/textlayoutmanager/TextLayoutManager.cpp

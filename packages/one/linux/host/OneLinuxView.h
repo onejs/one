@@ -27,6 +27,20 @@ void one_view_set_clips(OneView *view, gboolean clips);
 // takes its own reference to `layout`; origin is inside the view
 void one_view_set_text(OneView *view, PangoLayout *layout, double x, double y);
 
+typedef enum {
+  ONE_IMAGE_COVER,
+  ONE_IMAGE_CONTAIN,
+  ONE_IMAGE_STRETCH,
+  ONE_IMAGE_CENTER,
+  ONE_IMAGE_REPEAT,
+  ONE_IMAGE_NONE,
+} OneImageFit;
+
+// an image painted inside the view's frame under the radius clip; `scale` is
+// the asset's pixel density, `tint` recolors it when given, and a null texture
+// clears the image. Takes its own reference to `texture`.
+void one_view_set_image(OneView *view, GdkTexture *texture, double scale, OneImageFit fit, const GdkRGBA *tint);
+
 // a native control (a GtkSwitch) that fills the view's frame; the view owns it
 void one_view_set_control(OneView *view, GtkWidget *control);
 GtkWidget *one_view_get_control(OneView *view);

@@ -385,6 +385,25 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   is not read. GTK controls (switch, field) stay light in the VM because no dark
   GTK theme is installed. The window resize proof is a tiled-to-floating change;
   `swaymsg resize` on the floating window did not change its size.
+- **Images (M2):** `Image` mounts through React Native's own `ImageComponentDescriptor`
+  and the Fabric image contract. `cpp/imagemanager/OneLinuxImageManager.cpp`
+  replaces the cxx stub: it loads `http(s)` (libsoup, with the source's method and
+  headers), `file://` and absolute paths (GIO) and `data:` URIs, decodes them to a
+  `GdkTexture` off the main thread and delivers them through the request's
+  `ImageResponseObserverCoordinator`; a failure, including a non 2xx status, goes
+  to `nativeImageResponseFailed`. The mounting manager observes the request from
+  the `Image` state: `onLoadStart` when a new source arrives, `onProgress`,
+  `onLoad` with the source at its density, `onError` with the message, then
+  `onLoadEnd`. `OneView` paints the texture under the radius clip for `cover`,
+  `contain`, `stretch`, `center`, `repeat` and `none`, with `tintColor` as an
+  alpha mask. A bundled asset resolves through RN's own `AssetSourceResolver`
+  to `<bundle dir>/assets/<httpServerLocation>/<name>`, so the image must sit
+  there beside `main.jsbundle`; `one build --platform linux` does not copy assets
+  yet, so the proof copied `swatch.png` by hand. Proof, a local asset, a remote
+  URL (a `python -m http.server` in the VM), a missing URL that fires `onError`,
+  and the four modes in a 100 px rounded box:
+  [window](one-linux-native-images.png). Gaps: `blurRadius`, `defaultSource`,
+  progressive loading and the copy of assets into the app package.
 
 **Next:** M2: hover and cursor events on views, transforms, images, multiline
 `TextInput`, the portal color scheme, and the Networking gaps above.

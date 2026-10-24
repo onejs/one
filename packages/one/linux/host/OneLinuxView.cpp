@@ -1,5 +1,6 @@
 #include "OneLinuxView.h"
 
+#include <algorithm>
 #include <cmath>
 
 struct _OneView {
@@ -16,6 +17,12 @@ struct _OneView {
 
   PangoLayout *layout;
   double text_x, text_y;
+
+  GdkTexture *image;
+  double image_scale;
+  OneImageFit image_fit;
+  gboolean has_tint;
+  GdkRGBA tint;
 
   // a native GTK control that fills the view
   GtkWidget *control;
@@ -87,6 +94,62 @@ static void one_view_size_allocate(GtkWidget *widget, int width, int height, int
   }
 }
 
+// where the image goes inside the view for each resize mode; a tile for repeat
+static graphene_rect_t image_target(OneView *view, double width, double height)
+{
+  double naturalWidth = gdk_texture_get_width(view->image) / view->image_scale;
+  double naturalHeight = gdk_texture_get_height(view->image) / view->image_scale;
+  double factor = 1;
+  switch (view->image_fit) {
+    case ONE_IMAGE_COVER:
+      factor = std::max(width / naturalWidth, height / naturalHeight);
+      break;
+    case ONE_IMAGE_CONTAIN:
+      factor = std::min(width / naturalWidth, height / naturalHeight);
+      break;
+    case ONE_IMAGE_STRETCH:
+      return GRAPHENE_RECT_INIT(0, 0, static_cast<float>(width), static_cast<float>(height));
+    case ONE_IMAGE_CENTER:
+    case ONE_IMAGE_REPEAT:
+    case ONE_IMAGE_NONE:
+      break;
+  }
+  double targetWidth = naturalWidth * factor;
+  double targetHeight = naturalHeight * factor;
+  bool centered = view->image_fit != ONE_IMAGE_NONE && view->image_fit != ONE_IMAGE_REPEAT;
+  return GRAPHENE_RECT_INIT(
+      centered ? static_cast<float>((width - targetWidth) / 2) : 0,
+      centered ? static_cast<float>((height - targetHeight) / 2) : 0,
+      static_cast<float>(targetWidth),
+      static_cast<float>(targetHeight));
+}
+
+static void snapshot_image(OneView *view, GtkSnapshot *snapshot, const GskRoundedRect *outline)
+{
+  graphene_rect_t bounds = GRAPHENE_RECT_INIT(0, 0, static_cast<float>(view->width), static_cast<float>(view->height));
+  graphene_rect_t target = image_target(view, view->width, view->height);
+  if (target.size.width <= 0 || target.size.height <= 0 || bounds.size.width <= 0 || bounds.size.height <= 0) {
+    return;
+  }
+  gtk_snapshot_push_rounded_clip(snapshot, outline);
+  if (view->has_tint) {
+    gtk_snapshot_push_mask(snapshot, GSK_MASK_MODE_ALPHA);
+  }
+  if (view->image_fit == ONE_IMAGE_REPEAT) {
+    gtk_snapshot_push_repeat(snapshot, &bounds, &target);
+    gtk_snapshot_append_scaled_texture(snapshot, view->image, GSK_SCALING_FILTER_TRILINEAR, &target);
+    gtk_snapshot_pop(snapshot);
+  } else {
+    gtk_snapshot_append_scaled_texture(snapshot, view->image, GSK_SCALING_FILTER_TRILINEAR, &target);
+  }
+  if (view->has_tint) {
+    gtk_snapshot_pop(snapshot);
+    gtk_snapshot_append_color(snapshot, &view->tint, &bounds);
+    gtk_snapshot_pop(snapshot);
+  }
+  gtk_snapshot_pop(snapshot);
+}
+
 static void one_view_snapshot(GtkWidget *widget, GtkSnapshot *snapshot)
 {
   OneView *view = ONE_VIEW(widget);
@@ -115,6 +178,9 @@ static void one_view_snapshot(GtkWidget *widget, GtkSnapshot *snapshot)
         static_cast<float>(view->border_width)};
     GdkRGBA colors[4] = {view->border_color, view->border_color, view->border_color, view->border_color};
     gtk_snapshot_append_border(snapshot, &outline, widths, colors);
+  }
+  if (view->image) {
+    snapshot_image(view, snapshot, &outline);
   }
   if (view->layout) {
     GdkRGBA black = {0, 0, 0, 1};
@@ -157,6 +223,7 @@ static void one_view_dispose(GObject *object)
     gtk_widget_unparent(child);
   }
   g_clear_object(&view->layout);
+  g_clear_object(&view->image);
   G_OBJECT_CLASS(one_view_parent_class)->dispose(object);
 }
 
@@ -238,6 +305,18 @@ void one_view_set_text(OneView *view, PangoLayout *layout, double x, double y)
   g_set_object(&view->layout, layout);
   view->text_x = x;
   view->text_y = y;
+  gtk_widget_queue_draw(GTK_WIDGET(view));
+}
+
+void one_view_set_image(OneView *view, GdkTexture *texture, double scale, OneImageFit fit, const GdkRGBA *tint)
+{
+  g_set_object(&view->image, texture);
+  view->image_scale = scale > 0 ? scale : 1;
+  view->image_fit = fit;
+  view->has_tint = tint != nullptr;
+  if (tint) {
+    view->tint = *tint;
+  }
   gtk_widget_queue_draw(GTK_WIDGET(view));
 }
 

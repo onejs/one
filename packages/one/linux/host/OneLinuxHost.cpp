@@ -1,5 +1,7 @@
 #include "OneLinuxHost.h"
 
+#include <react/renderer/imagemanager/ImageManager.h>
+
 #include <AppleEventBeat.h>
 #include <cxxreact/JSBigString.h>
 #include <react/renderer/scheduler/SchedulerDelegate.h>
@@ -172,6 +174,7 @@ void OneLinuxHost::start()
 
   runtime_ = std::make_shared<OneHostRuntime>(std::move(options));
   mountingManager_->setContextContainer(runtime_->contextContainer());
+  runtime_->contextContainer()->insert("ImageManager", std::make_shared<ImageManager>(runtime_->contextContainer()));
   mountingManager_->didMount = [this, generation] {
     if (generation_ != generation) {
       return;

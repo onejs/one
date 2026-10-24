@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Platform, Pressable, ScrollView, Text, TextInput, useColorScheme, View } from 'react-native'
+import { Image, Platform, Pressable, ScrollView, Text, TextInput, useColorScheme, View } from 'react-native'
 import { One } from 'one'
 import { probe } from '../probe/resolution'
 
@@ -10,8 +10,13 @@ export default function Index() {
   const [offset, setOffset] = useState(0)
   const [name, setName] = useState('')
   const [focused, setFocused] = useState(false)
+  const [images, setImages] = useState<Record<string, string>>({})
+  const report = (key: string, value: string) => setImages((state) => ({ ...state, [key]: value }))
+  const remote = { uri: 'http://127.0.0.1:8123/swatch.png' }
+  const modes = ['cover', 'contain', 'stretch', 'center'] as const
   return (
-    <View style={{ flex: 1, padding: 24, backgroundColor: dark ? '#1f1d1a' : '#f4f1ea' }}>
+    <View style={{ flex: 1, flexDirection: 'row', padding: 24, backgroundColor: dark ? '#1f1d1a' : '#f4f1ea' }}>
+      <View style={{ width: 560 }}>
       <Text testID="linux-label" style={{ fontSize: 32, fontWeight: '700', color: dark ? '#f4f1ea' : '#1f1d1a' }}>
         One on Linux
       </Text>
@@ -86,6 +91,53 @@ export default function Index() {
           </View>
         ))}
       </ScrollView>
+      </View>
+      <View style={{ marginLeft: 48 }}>
+        <Text style={{ fontSize: 20, fontWeight: '700', color: '#1f1d1a' }}>images</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+          <Image
+            testID="linux-image-local"
+            source={require('../assets/swatch.png')}
+            onLoad={(event) => {
+              const { width, height } = event.nativeEvent.source
+              report('local', `local ${width}x${height}`)
+            }}
+            onError={(event) => report('local', `local error ${event.nativeEvent.error}`)}
+          />
+          <Image
+            testID="linux-image-remote"
+            source={remote}
+            style={{ width: 96, height: 64, marginLeft: 12 }}
+            onLoad={(event) => {
+              const { width, height } = event.nativeEvent.source
+              report('remote', `remote ${width}x${height}`)
+            }}
+            onError={(event) => report('remote', `remote error ${event.nativeEvent.error}`)}
+          />
+          <Image
+            testID="linux-image-missing"
+            source={{ uri: 'http://127.0.0.1:8123/missing.png' }}
+            style={{ width: 96, height: 64, marginLeft: 12, backgroundColor: '#ebe6da' }}
+            onError={() => report('missing', 'missing error')}
+            onLoadEnd={() => report('end', 'loadEnd')}
+          />
+        </View>
+        <Text testID="linux-image-status" style={{ fontSize: 14, marginTop: 4, color: '#5f5a50' }}>
+          {`${images.local ?? 'local loading'}, ${images.remote ?? 'remote loading'}, ${images.missing ?? 'missing loading'}`}
+        </Text>
+        <View style={{ flexDirection: 'row', marginTop: 8 }}>
+          {modes.map((mode) => (
+            <View key={mode} style={{ marginRight: 12 }}>
+              <Image
+                source={require('../assets/swatch.png')}
+                resizeMode={mode}
+                style={{ width: 100, height: 100, backgroundColor: '#ebe6da', borderRadius: 12 }}
+              />
+              <Text style={{ fontSize: 12, color: '#5f5a50' }}>{mode}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
     </View>
   )
 }

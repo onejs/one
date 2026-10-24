@@ -1,5 +1,9 @@
 #include "OneLinuxMountingManager.h"
 
+#include <react/renderer/components/image/ImageComponentDescriptor.h>
+#include <react/renderer/components/image/ImageEventEmitter.h>
+#include <react/renderer/components/image/ImageProps.h>
+#include <react/renderer/components/image/ImageShadowNode.h>
 #include <react/renderer/components/iostextinput/TextInputComponentDescriptor.h>
 #include <react/renderer/components/root/RootComponentDescriptor.h>
 #include <react/renderer/components/scrollview/ScrollViewComponentDescriptor.h>
@@ -13,6 +17,8 @@
 #include <react/renderer/components/view/ViewComponentDescriptor.h>
 #include <react/renderer/components/view/ViewProps.h>
 #include <react/renderer/graphics/Color.h>
+#include <react/renderer/imagemanager/ImageResponse.h>
+#include <react/renderer/imagemanager/ImageResponseObserver.h>
 #include <react/renderer/mounting/ShadowView.h>
 
 #include <algorithm>
@@ -36,6 +42,7 @@ const std::vector<ComponentDescriptorProvider> &componentProviders()
       concreteComponentDescriptorProvider<RootComponentDescriptor>(),
       concreteComponentDescriptorProvider<ViewComponentDescriptor>(),
       concreteComponentDescriptorProvider<ScrollViewComponentDescriptor>(),
+      concreteComponentDescriptorProvider<ImageComponentDescriptor>(),
       concreteComponentDescriptorProvider<ParagraphComponentDescriptor>(),
       concreteComponentDescriptorProvider<TextComponentDescriptor>(),
       concreteComponentDescriptorProvider<RawTextComponentDescriptor>(),
@@ -50,6 +57,45 @@ GdkRGBA rgba(SharedColor color)
   auto components = colorComponentsFromColor(color);
   return GdkRGBA{components.red, components.green, components.blue, components.alpha};
 }
+
+// the loader reports from the thread it finished on; the manager applies the
+// result on the main one
+class ImageObserver final : public ImageResponseObserver {
+ public:
+  ImageObserver(std::weak_ptr<OneLinuxMountingManager> manager, Tag tag) : manager_(std::move(manager)), tag_(tag) {}
+
+  void didReceiveProgress(float progress, int64_t loaded, int64_t total) const override
+  {
+    OneLinuxDispatchMain([manager = manager_, tag = tag_, progress, loaded, total] {
+      if (auto self = manager.lock()) {
+        self->imageProgress(tag, progress, loaded, total);
+      }
+    });
+  }
+
+  void didReceiveImage(const ImageResponse &imageResponse) const override
+  {
+    OneLinuxDispatchMain([manager = manager_, tag = tag_, texture = imageResponse.getImage()] {
+      if (auto self = manager.lock()) {
+        self->imageLoaded(tag, texture);
+      }
+    });
+  }
+
+  void didReceiveFailure(const ImageLoadError &error) const override
+  {
+    auto message = std::static_pointer_cast<std::string>(error.getError());
+    OneLinuxDispatchMain([manager = manager_, tag = tag_, text = message ? *message : std::string("image failed to load")] {
+      if (auto self = manager.lock()) {
+        self->imageFailed(tag, text);
+      }
+    });
+  }
+
+ private:
+  std::weak_ptr<OneLinuxMountingManager> manager_;
+  Tag tag_;
+};
 
 } // namespace
 
@@ -78,6 +124,10 @@ struct OneLinuxMountingManager::Record {
   guint commitSource{0};
   std::unique_ptr<OneLinuxTextInput> input;
   TextInputShadowNode::ConcreteState::Shared inputState;
+  ImageShadowNode::ConcreteState::Shared imageState;
+  std::shared_ptr<const ImageObserver> imageObserver;
+  std::shared_ptr<const ImageResponseObserverCoordinator> imageCoordinator;
+  GdkTexture *texture{nullptr};
 };
 
 // a user toggle counts as a native event, which React acknowledges through the
@@ -172,6 +222,10 @@ void OneLinuxMountingManager::releaseRecord(Record &record)
     g_signal_handlers_disconnect_by_data(gtk_scrolled_window_get_hadjustment(scrollWindow), &record);
     g_signal_handlers_disconnect_by_data(gtk_scrolled_window_get_vadjustment(scrollWindow), &record);
   }
+  if (record.imageCoordinator) {
+    record.imageCoordinator->removeObserver(record.imageObserver);
+  }
+  g_clear_object(&record.texture);
   record.input.reset();
   one_view_set_owner(record.view, nullptr);
   g_object_unref(record.view);
@@ -325,6 +379,75 @@ void OneLinuxMountingManager::synchronouslyUpdateViewOnTag(Tag tag, const folly:
   restyle(record);
 }
 
+// a new source starts a new request: the old texture goes and the view
+// observes the new request, which reports through the Image events
+void OneLinuxMountingManager::updateImageState(Record &record, const State::Shared &state)
+{
+  auto imageState = std::dynamic_pointer_cast<const ImageShadowNode::ConcreteState>(state);
+  if (!imageState) {
+    return;
+  }
+  bool sourceChanged = !record.imageState || record.imageState->getData().getImageSource() != imageState->getData().getImageSource();
+  record.imageState = imageState;
+  if (!sourceChanged) {
+    return;
+  }
+  if (record.imageCoordinator) {
+    record.imageCoordinator->removeObserver(record.imageObserver);
+  }
+  g_clear_object(&record.texture);
+  if (!record.imageObserver) {
+    record.imageObserver = std::make_shared<const ImageObserver>(weak_from_this(), record.tag);
+  }
+  record.imageCoordinator = imageState->getData().getImageRequest().getSharedObserverCoordinator();
+  if (auto emitter = std::static_pointer_cast<const ImageEventEmitter>(record.eventEmitter)) {
+    emitter->onLoadStart();
+  }
+  record.imageCoordinator->addObserver(record.imageObserver);
+}
+
+void OneLinuxMountingManager::imageProgress(Tag tag, float progress, int64_t loaded, int64_t total)
+{
+  auto it = records_.find(tag);
+  if (it != records_.end()) {
+    if (auto emitter = std::static_pointer_cast<const ImageEventEmitter>(it->second->eventEmitter)) {
+      emitter->onProgress(progress, loaded, total);
+    }
+  }
+}
+
+void OneLinuxMountingManager::imageLoaded(Tag tag, std::shared_ptr<void> texture)
+{
+  auto it = records_.find(tag);
+  if (it == records_.end() || !it->second->imageState) {
+    return;
+  }
+  Record &record = *it->second;
+  g_set_object(&record.texture, GDK_TEXTURE(texture.get()));
+  restyle(record);
+  if (auto emitter = std::static_pointer_cast<const ImageEventEmitter>(record.eventEmitter)) {
+    ImageSource source = record.imageState->getData().getImageSource();
+    double scale = source.scale > 0 ? source.scale : 1;
+    source.size = {
+        static_cast<Float>(gdk_texture_get_width(record.texture) / scale), static_cast<Float>(gdk_texture_get_height(record.texture) / scale)};
+    emitter->onLoad(source);
+    emitter->onLoadEnd();
+  }
+}
+
+void OneLinuxMountingManager::imageFailed(Tag tag, const std::string &message)
+{
+  auto it = records_.find(tag);
+  if (it != records_.end()) {
+    if (auto emitter = std::static_pointer_cast<const ImageEventEmitter>(it->second->eventEmitter)) {
+      ImageErrorInfo info;
+      info.error = message;
+      emitter->onError(info);
+      emitter->onLoadEnd();
+    }
+  }
+}
+
 void OneLinuxMountingManager::restyle(Record &record)
 {
   if (!record.props) {
@@ -394,6 +517,25 @@ void OneLinuxMountingManager::restyle(Record &record)
     record.scrollEnabled = scrollProps.scrollEnabled;
     auto contentSize = record.scrollState->getData().getContentSize();
     one_view_set_frame(record.container, 0, 0, contentSize.width, contentSize.height);
+  }
+
+  if (record.imageState) {
+    const auto &imageProps = static_cast<const ImageProps &>(*record.props);
+    OneImageFit fit = ONE_IMAGE_COVER;
+    switch (imageProps.resizeMode) {
+      case ImageResizeMode::Cover: fit = ONE_IMAGE_COVER; break;
+      case ImageResizeMode::Contain: fit = ONE_IMAGE_CONTAIN; break;
+      case ImageResizeMode::Stretch: fit = ONE_IMAGE_STRETCH; break;
+      case ImageResizeMode::Center: fit = ONE_IMAGE_CENTER; break;
+      case ImageResizeMode::Repeat: fit = ONE_IMAGE_REPEAT; break;
+      case ImageResizeMode::None: fit = ONE_IMAGE_NONE; break;
+    }
+    GdkRGBA tint;
+    bool tinted = imageProps.tintColor && *imageProps.tintColor;
+    if (tinted) {
+      tint = rgba(*imageProps.tintColor);
+    }
+    one_view_set_image(view, record.texture, record.imageState->getData().getImageSource().scale, fit, tinted ? &tint : nullptr);
   }
 
   if (record.paragraphState) {
@@ -485,6 +627,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         record.paragraphState = std::dynamic_pointer_cast<const ParagraphShadowNode::ConcreteState>(child.state);
         record.scrollState = std::dynamic_pointer_cast<const ScrollViewShadowNode::ConcreteState>(child.state);
         record.inputState = std::dynamic_pointer_cast<const TextInputShadowNode::ConcreteState>(child.state);
+        updateImageState(record, child.state);
         restyle(record);
         one_view_insert_child(parentIt->second->container, record.view, mutation.index);
         hasContent_ = true;
@@ -521,6 +664,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
           record.paragraphState = std::dynamic_pointer_cast<const ParagraphShadowNode::ConcreteState>(newChild.state);
           record.scrollState = std::dynamic_pointer_cast<const ScrollViewShadowNode::ConcreteState>(newChild.state);
           record.inputState = std::dynamic_pointer_cast<const TextInputShadowNode::ConcreteState>(newChild.state);
+          updateImageState(record, newChild.state);
           changed = true;
         }
         if (changed) {
