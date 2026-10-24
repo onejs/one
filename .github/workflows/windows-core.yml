@@ -29,7 +29,11 @@ jobs:
       run:
         shell: pwsh
     steps:
+      # the windows target and the root lockfile; the full tree has generated
+      # paths longer than Windows allows
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: packages/one/windows
       - name: native-core foundation
         uses: actions/checkout@v4
         with:
