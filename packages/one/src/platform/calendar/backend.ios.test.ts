@@ -28,8 +28,7 @@ async function loadHarness(): Promise<Harness> {
   const endMarker = '\n// harness-doubles-end'
   const start = testSource.indexOf(startMarker)
   const end = testSource.indexOf(endMarker)
-  if (start < 0 || end < 0 || end <= start)
-    throw new Error('doubles section missing')
+  if (start < 0 || end < 0 || end <= start) throw new Error('doubles section missing')
   const doublesTs = testSource.slice(start + startMarker.length, end)
   const backendSource = readFileSync(join(here, 'backend.ios.ts'), 'utf8')
   const rewritten = backendSource
@@ -94,7 +93,7 @@ describe('calendar ios production import closure', () => {
         'ios',
         join(here, 'backend.ios.ts')
       )
-      expect(file).toBe(join(packageRoot, 'ios-bindings', `${framework}.ts`))
+      expect(file).toBe(join(packageRoot, 'dist/esm/ios', `${framework}.native.js`))
       expect(existsSync(file!)).toBe(true)
     }
     expect(() =>
@@ -103,9 +102,7 @@ describe('calendar ios production import closure', () => {
   })
 
   it('proves relative dist imports would miss the shipped facade', () => {
-    expect(existsSync(join(packageRoot, 'ios-bindings', 'EventKit.ts'))).toBe(
-      true
-    )
+    expect(existsSync(join(packageRoot, 'ios-bindings', 'EventKit.ts'))).toBe(true)
     expect(existsSync(join(packageRoot, 'dist', 'ios-bindings'))).toBe(false)
   })
 })
@@ -150,12 +147,8 @@ describe('calendar ios background boundary', () => {
     ctx.host.FakeEventStore.requestDelayMs = 5
     const status = await cal.requestPermission()
     expect(status).toBe('fullAccess')
-    expect(ctx.host.FakeEventStore.syncInitiations).toContain(
-      'requestFullAccessToEvents'
-    )
-    expect(ctx.host.FakeEventStore.asyncCalls).not.toContain(
-      'requestFullAccessToEvents'
-    )
+    expect(ctx.host.FakeEventStore.syncInitiations).toContain('requestFullAccessToEvents')
+    expect(ctx.host.FakeEventStore.asyncCalls).not.toContain('requestFullAccessToEvents')
     ctx.host.FakeEventStore.authReminder = 'notDetermined'
     const reminderStatus = await cal.requestRemindersPermission()
     expect(reminderStatus).toBe('fullAccess')
@@ -172,12 +165,10 @@ describe('calendar ios background boundary', () => {
     ctx.host.FakeEventStore.authEvent = 'notDetermined'
     ctx.host.FakeEventStore.requestDelayMs = 60
     const request = cal.requestPermission()
-    const list = cal
-      .list(0, 1000, 10)
-      .then(
-        () => 'resolved',
-        (error: Error & { code?: string }) => error.code
-      )
+    const list = cal.list(0, 1000, 10).then(
+      () => 'resolved',
+      (error: Error & { code?: string }) => error.code
+    )
     expect(await list).toBe('E_CALENDAR_PERMISSION')
     expect(await request).toBe('fullAccess')
   })
@@ -295,12 +286,10 @@ describe('calendar ios background boundary', () => {
     await expect(
       cal.create({ title: '  ', startMs: 1000, endMs: 2000, allDay: false })
     ).rejects.toMatchObject({ code: 'E_CALENDAR_INPUT' })
-    await expect(cal.update('missing', 1000, { title: 'X' })).rejects.toMatchObject(
-      {
-        code: 'E_CALENDAR_NOT_FOUND',
-        message: 'Calendar.update: event occurrence was not found',
-      }
-    )
+    await expect(cal.update('missing', 1000, { title: 'X' })).rejects.toMatchObject({
+      code: 'E_CALENDAR_NOT_FOUND',
+      message: 'Calendar.update: event occurrence was not found',
+    })
     await expect(cal.remove('missing', 1000)).rejects.toMatchObject({
       code: 'E_CALENDAR_NOT_FOUND',
       message: 'Calendar.delete: event occurrence was not found',
@@ -333,9 +322,7 @@ describe('calendar ios background boundary', () => {
     await expect(cal.createReminder({ title: '' })).rejects.toMatchObject({
       code: 'E_REMINDERS_INPUT',
     })
-    await expect(
-      cal.setReminderCompleted('missing', true)
-    ).rejects.toMatchObject({
+    await expect(cal.setReminderCompleted('missing', true)).rejects.toMatchObject({
       code: 'E_REMINDERS_NOT_FOUND',
       message: 'Calendar.setReminderCompleted: reminder was not found',
     })
@@ -382,9 +369,7 @@ describe('calendar ios real entry and wire boundary', () => {
       subscribe: (() => () => {}) as never,
     }
     runtime.setSDKNative(fake as never)
-    const { EKEventStore: RealStore } = await import(
-      '../../../ios-bindings/EventKit'
-    )
+    const { EKEventStore: RealStore } = await import('../../../ios-bindings/EventKit')
     const store = RealStore.init()
     const predicate = store.predicateForEvents(new Date(0), new Date(1000))
     const events = await runtime.callSDKMethodAsync(store, 'events', predicate)
@@ -448,9 +433,7 @@ const FakeBundle = {
 const FakeCalendar = {
   current: {
     dateFrom: (components: { ms?: number } | null): Date | null =>
-      components && typeof components.ms === 'number'
-        ? new Date(components.ms)
-        : null,
+      components && typeof components.ms === 'number' ? new Date(components.ms) : null,
     dateComponentsFrom: (_units: string[], date: Date) => ({
       ms: date.getTime(),
     }),
@@ -592,9 +575,7 @@ class FakeEventStore {
     FakeEventStore.syncInitiations.push('fetchReminders')
     const all = [...FakeEventStore.reminders]
     const filtered =
-      predicate?.kind === 'incomplete'
-        ? all.filter((item) => !item.isCompleted)
-        : all
+      predicate?.kind === 'incomplete' ? all.filter((item) => !item.isCompleted) : all
     setTimeout(() => completion(filtered), FakeEventStore.fetchDelayMs)
     return 1
   }
@@ -661,9 +642,7 @@ class FakeEventStore {
       }
     }, FakeEventStore.requestDelayMs)
   }
-  requestFullAccessToReminders(
-    completion: (granted: boolean, error: unknown) => void
-  ) {
+  requestFullAccessToReminders(completion: (granted: boolean, error: unknown) => void) {
     FakeEventStore.syncInitiations.push('requestFullAccessToReminders')
     setTimeout(() => {
       if (FakeEventStore.requestNextError) {
@@ -671,8 +650,7 @@ class FakeEventStore {
         FakeEventStore.requestNextError = null
         completion(false, error)
       } else {
-        FakeEventStore.authReminder =
-          FakeEventStore.requestNextAuth ?? 'fullAccess'
+        FakeEventStore.authReminder = FakeEventStore.requestNextAuth ?? 'fullAccess'
         FakeEventStore.requestNextAuth = null
         completion(true, null)
       }
@@ -689,9 +667,7 @@ async function fakeCallSDKMethodAsync(
   overlap.start()
   asyncDepth += 1
   try {
-    await new Promise((resolve) =>
-      setTimeout(resolve, FakeEventStore.delayMs)
-    )
+    await new Promise((resolve) => setTimeout(resolve, FakeEventStore.delayMs))
     const fn = object[method]
     if (typeof fn !== 'function')
       throw new TypeError(`unregistered asynchronous SDK method ${method}`)

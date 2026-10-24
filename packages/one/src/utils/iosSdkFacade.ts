@@ -22,7 +22,9 @@ export function resolveIosSdkImport(
       `[one] ${source} is an iOS framework; import it from an .ios.ts file (imported by ${importer ?? 'an entry'})`
     )
   }
-  const packageRoot = dirname(createRequire(join(root, 'package.json')).resolve('one/package.json'))
+  const packageRoot = dirname(
+    createRequire(join(root, 'package.json')).resolve('one/package.json')
+  )
   const file = join(packageRoot, IOS_FACADES, `${match[1]}.native.js`)
   if (!existsSync(file)) {
     throw new Error(
