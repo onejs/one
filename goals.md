@@ -31,14 +31,27 @@ wrapper registration, native selector IDs, first-call errors and both bundlers
 compatible. Publish branch canaries for downstream validation, not a stable
 release.
 
-The current candidate passes the package build with declaration emit, 37 focused
-checks and differential exports, descriptors, registry metadata and call records
-for all 290 frameworks. Substituting its built files into the retaken production
-welcome artifact saves 3,587,189 SDK bytes with 2748 modules unchanged. This is
-exploratory evidence, not a rebuilt Metro or in-browser acceptance result.
+The compact candidate now uses cached framework initializers behind enumerable
+CommonJS getters. A manifest resolves native class names, extension names and
+protocol USRs before registry reads. Initializers preserve constructors and
+prototypes, run bases before extensions, and cache failures. Generated native
+constant errors move from import to the first framework use.
 
-The candidate is not ready to merge: the measured framework execution time in
-Peach rises with table materialization, failing the plan's no-rise acceptance.
+The all-framework differential passed for 290 frameworks before the latest
+ES2020 output adjustment. Focused runtime checks cover extension ordering,
+cycles, sticky failures, protocol lookup and native-handle-first access. Both
+actual Metro and browser transforms pass named, star and namespace imports,
+descriptors and identity with React Refresh disabled. The real Contrast package
+compiler emits 1,467,795 bytes for the ten reached SDK framework bodies, versus
+5,059,583 original factory bytes. Wrapper overhead and the complete consumer
+artifact still need measurement.
+
+The candidate is not ready to merge: Metro React Refresh reads every SDK export
+getter and defeats lazy initialization in the welcome project. The captured
+initializer work is about 49 ms against the 14.57 ms paired baseline. Timing
+only the outer module factories would incorrectly omit this work. The lead's
+reviewer is considering a narrow Refresh opt-out before implementation.
+SDK regeneration is running because wire changes alter the native generation.
 The production homepage chunk comparison, exact canary artifact verification,
 local welcome rebuild and six capability calls on Peach and iOS remain open.
 Contrast's isolated worktree is held by the lead until lane capacity frees.

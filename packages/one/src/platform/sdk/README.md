@@ -24,6 +24,14 @@ The JavaScript and native parts must be rebuilt together after a bridge change.
 Regenerate Nitro bindings and the app SDK pod when rebuilding. Facades carry the
 same generation as their native tables, so stale combinations fail at the call.
 
+Native JavaScript facades use compact member tables and cached framework
+initializers. Reading an export or resolving a returned native handle initializes
+the framework, its base classes and reached extensions before exposing wrappers.
+Class and prototype identity remain stable. An initializer failure is cached and
+later access rethrows the same error. A native error from a generated constant
+initializer occurs at first framework use rather than at import. Typed source
+facades and declarations retain their generated signatures and documentation.
+
 ## React content in UIKit
 
 `One.iOS.UIKitView` places a generated UIKit view in React Native.
