@@ -7,8 +7,9 @@ NS_ASSUME_NONNULL_BEGIN
 // mounted React tree.
 @interface OneMacosRootView : NSView
 
-// Info.plist `OneDevServerURL` (default http://localhost:8081) plus the macos
-// dev bundle path; `ONE_MACOS_BUNDLE_URL` in the environment overrides it.
+// Debug builds use Info.plist `OneDevServerURL` (default http://localhost:8081)
+// plus the macos dev bundle path; other builds use the embedded main.jsbundle.
+// `ONE_MACOS_BUNDLE_URL` in the environment overrides either.
 + (NSURL *)defaultBundleURL;
 
 - (instancetype)initWithBundleURL:(NSURL *)bundleURL moduleName:(NSString *)moduleName NS_DESIGNATED_INITIALIZER;

@@ -24,6 +24,6 @@ trap 'rm -rf "$work"' EXIT
 source "$rn_root/scripts/node-binary.sh"
 
 cd "$root"
-"$NODE_BINARY" "$rn_root/cli.js" bundle --entry-file index.js --platform macos --dev false --minify true \
+"$NODE_BINARY" "$rn_root/cli.js" bundle --platform macos --dev false --minify true \
   --bundle-output "$work/main.js" --assets-dest "$resources"
 "$hermesc" -emit-binary -max-diagnostic-width=80 -O -out "$resources/main.jsbundle" "$work/main.js"

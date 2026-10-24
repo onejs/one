@@ -320,7 +320,14 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   NSURL *url = _bundleURL;
   if (url.isFileURL) {
     // the embedded bundle is mapped in place; loadScript only queues the eval on the js thread
-    _instance->loadScript(JSBigFileString::fromPath(url.path.UTF8String), url.absoluteString.UTF8String);
+    std::unique_ptr<const JSBigString> script;
+    try {
+      script = JSBigFileString::fromPath(url.path.UTF8String);
+    } catch (const std::exception &error) {
+      NSLog(@"[one-macos] bundle load failed: %s", error.what());
+      return;
+    }
+    _instance->loadScript(std::move(script), url.absoluteString.UTF8String);
     return;
   }
   __weak OneMacosHost *weakSelf = self;
@@ -493,7 +500,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   NSString *server = [NSBundle.mainBundle objectForInfoDictionaryKey:@"OneDevServerURL"] ?: @"http://localhost:8081";
   return [NSURL URLWithString:[server stringByAppendingString:@"/index.bundle?platform=macos&dev=true"]];
 #else
-  return [NSBundle.mainBundle URLForResource:@"main" withExtension:@"jsbundle"];
+  return [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"main.jsbundle"];
 #endif
 }
 
