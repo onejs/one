@@ -31,6 +31,8 @@ Ensure your `.env` file has a `ONE_SERVER_URL` set to your production URL, like:
 ONE_SERVER_URL=https://onestack.dev
 ```
 
+After a successful web build, `one build --step generate` reuses the existing client assets and Vite manifest while rebuilding the server and generating pages. Run a full build first, and run it again when client code changes.
+
 We provide a production server based on Hono with `one serve` that handles loaders, SSR, and API routes for you. You can choose a deploy target for that server. This can be chosen via your Vite configuration:
 
 ```tsx fileName=vite.config.ts
