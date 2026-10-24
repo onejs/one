@@ -31,6 +31,12 @@ void one_view_set_text(OneView *view, PangoLayout *layout, double x, double y);
 void one_view_set_control(OneView *view, GtkWidget *control);
 GtkWidget *one_view_get_control(OneView *view);
 
+// a scroll view: a GtkScrolledWindow control whose content view holds the React
+// children, laid out in content coordinates; the view owns both
+void one_view_set_scroll(OneView *view, GtkScrolledWindow *scrolled, OneView *content);
+OneView *one_view_get_scroll_content(OneView *view);
+void one_view_get_scroll_offset(OneView *view, double *x, double *y);
+
 // the host's own record for this view, which pointer hit testing reads
 void one_view_set_owner(OneView *view, gpointer owner);
 gpointer one_view_get_owner(OneView *view);

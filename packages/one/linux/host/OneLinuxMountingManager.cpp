@@ -1,6 +1,9 @@
 #include "OneLinuxMountingManager.h"
 
 #include <react/renderer/components/root/RootComponentDescriptor.h>
+#include <react/renderer/components/scrollview/ScrollViewComponentDescriptor.h>
+#include <react/renderer/components/scrollview/ScrollViewEventEmitter.h>
+#include <react/renderer/components/scrollview/ScrollViewProps.h>
 #include <react/renderer/components/text/ParagraphComponentDescriptor.h>
 #include <react/renderer/components/text/ParagraphProps.h>
 #include <react/renderer/components/text/ParagraphShadowNode.h>
@@ -29,6 +32,7 @@ const std::vector<ComponentDescriptorProvider> &componentProviders()
   static const std::vector<ComponentDescriptorProvider> providers = {
       concreteComponentDescriptorProvider<RootComponentDescriptor>(),
       concreteComponentDescriptorProvider<ViewComponentDescriptor>(),
+      concreteComponentDescriptorProvider<ScrollViewComponentDescriptor>(),
       concreteComponentDescriptorProvider<ParagraphComponentDescriptor>(),
       concreteComponentDescriptorProvider<TextComponentDescriptor>(),
       concreteComponentDescriptorProvider<RawTextComponentDescriptor>(),
@@ -62,6 +66,12 @@ struct OneLinuxMountingManager::Record {
   int controlEventCount{0};
   int controlRevision{0};
   bool applyingControl{false};
+  // where React children go: the view itself, or a scroll view's content view
+  OneView *container;
+  ScrollViewShadowNode::ConcreteState::Shared scrollState;
+  bool scrollEnabled{true};
+  gint64 lastScrollEvent{0};
+  guint commitSource{0};
 };
 
 // a user toggle counts as a native event, which React acknowledges through the
@@ -78,6 +88,53 @@ static void switchToggled(GObject *control, GParamSpec *, gpointer data)
   if (auto emitter = std::static_pointer_cast<const OneLinuxSwitchEventEmitter>(record.eventEmitter)) {
     emitter->onIsOnChange({.isOn = active, .eventCount = record.controlEventCount, .revision = record.controlRevision});
   }
+}
+
+static ScrollEvent scrollEventFor(OneLinuxMountingManager::Record &record);
+
+// the offset reaches React's state shortly after scrolling settles, which is
+// where measure() reads it; scrollEventThrottle is in milliseconds and 0 sends
+// every change
+static gboolean commitScrollOffset(gpointer data)
+{
+  auto &record = *static_cast<OneLinuxMountingManager::Record *>(data);
+  record.commitSource = 0;
+  if (record.scrollState) {
+    double x, y;
+    one_view_get_scroll_offset(record.view, &x, &y);
+    auto stateData = record.scrollState->getData();
+    Point offset{static_cast<Float>(x), static_cast<Float>(y)};
+    if (stateData.contentOffset != offset) {
+      stateData.contentOffset = offset;
+      record.scrollState->updateState(std::move(stateData));
+    }
+  }
+  return G_SOURCE_REMOVE;
+}
+
+static void scrolled(GtkAdjustment *, gpointer data)
+{
+  auto &record = *static_cast<OneLinuxMountingManager::Record *>(data);
+  if (!record.props) {
+    return;
+  }
+  if (auto emitter = std::static_pointer_cast<const ScrollViewEventEmitter>(record.eventEmitter)) {
+    gint64 now = g_get_monotonic_time();
+    double throttle = static_cast<const ScrollViewProps &>(*record.props).scrollEventThrottle * 1000.0;
+    if (record.lastScrollEvent == 0 || now - record.lastScrollEvent > throttle) {
+      record.lastScrollEvent = now;
+      emitter->onScroll(scrollEventFor(record));
+    }
+  }
+  if (record.commitSource) {
+    g_source_remove(record.commitSource);
+  }
+  record.commitSource = g_timeout_add(100, commitScrollOffset, &record);
+}
+
+static gboolean blockScroll(GtkEventControllerScroll *, double, double, gpointer data)
+{
+  return !static_cast<OneLinuxMountingManager::Record *>(data)->scrollEnabled;
 }
 
 std::shared_ptr<ComponentDescriptorProviderRegistry> OneLinuxMountingManager::componentDescriptorProviderRegistry()
@@ -98,10 +155,25 @@ bool OneLinuxMountingManager::hasComponentNamed(const std::string &name)
 
 OneLinuxMountingManager::OneLinuxMountingManager() = default;
 
+void OneLinuxMountingManager::releaseRecord(Record &record)
+{
+  if (record.commitSource) {
+    g_source_remove(record.commitSource);
+    record.commitSource = 0;
+  }
+  if (GtkWidget *control = one_view_get_control(record.view); control && GTK_IS_SCROLLED_WINDOW(control)) {
+    auto *scrollWindow = GTK_SCROLLED_WINDOW(control);
+    g_signal_handlers_disconnect_by_data(gtk_scrolled_window_get_hadjustment(scrollWindow), &record);
+    g_signal_handlers_disconnect_by_data(gtk_scrolled_window_get_vadjustment(scrollWindow), &record);
+  }
+  one_view_set_owner(record.view, nullptr);
+  g_object_unref(record.view);
+}
+
 OneLinuxMountingManager::~OneLinuxMountingManager()
 {
   for (auto &entry : records_) {
-    g_object_unref(entry.second->view);
+    releaseRecord(*entry.second);
   }
 }
 
@@ -124,10 +196,24 @@ OneLinuxMountingManager::Record &OneLinuxMountingManager::createView(ComponentHa
   g_object_ref_sink(record->view);
   auto &stored = *record;
   one_view_set_owner(record->view, &stored);
+  record->container = record->view;
   if (handle == OneLinuxSwitchShadowNode::Handle()) {
     record->control = gtk_switch_new();
     one_view_set_control(record->view, record->control);
     g_signal_connect(record->control, "notify::active", G_CALLBACK(switchToggled), &stored);
+  }
+  if (handle == ScrollViewShadowNode::Handle()) {
+    GtkWidget *scrollWindow = gtk_scrolled_window_new();
+    OneView *content = one_view_new();
+    one_view_set_scroll(record->view, GTK_SCROLLED_WINDOW(scrollWindow), content);
+    record->container = content;
+    GtkEventController *wheel = gtk_event_controller_scroll_new(
+        static_cast<GtkEventControllerScrollFlags>(GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES | GTK_EVENT_CONTROLLER_SCROLL_KINETIC));
+    gtk_event_controller_set_propagation_phase(wheel, GTK_PHASE_CAPTURE);
+    g_signal_connect(wheel, "scroll", G_CALLBACK(blockScroll), &stored);
+    gtk_widget_add_controller(scrollWindow, wheel);
+    g_signal_connect(gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW(scrollWindow)), "value-changed", G_CALLBACK(scrolled), &stored);
+    g_signal_connect(gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW(scrollWindow)), "value-changed", G_CALLBACK(scrolled), &stored);
   }
   records_[tag] = std::move(record);
   return stored;
@@ -164,7 +250,7 @@ void OneLinuxMountingManager::detachSurface(SurfaceId surfaceId)
     if (gtk_widget_get_parent(GTK_WIDGET(it->second->view))) {
       one_view_remove_child(it->second->view);
     }
-    g_object_unref(it->second->view);
+    releaseRecord(*it->second);
     records_.erase(it);
   }
   surfaceView_ = nullptr;
@@ -273,12 +359,66 @@ void OneLinuxMountingManager::restyle(Record &record)
     record.applyingControl = false;
   }
 
+  if (record.scrollState) {
+    const auto &scrollProps = static_cast<const ScrollViewProps &>(*record.props);
+    auto *scrollWindow = GTK_SCROLLED_WINDOW(record.control ? record.control : one_view_get_control(view));
+    // the axis that does not scroll is external, so the scrolled window never
+    // asks for the content's full size
+    gtk_scrolled_window_set_policy(
+        scrollWindow,
+        scrollProps.horizontal && scrollProps.showsHorizontalScrollIndicator ? GTK_POLICY_AUTOMATIC : GTK_POLICY_EXTERNAL,
+        !scrollProps.horizontal && scrollProps.showsVerticalScrollIndicator ? GTK_POLICY_AUTOMATIC : GTK_POLICY_EXTERNAL);
+    record.scrollEnabled = scrollProps.scrollEnabled;
+    auto contentSize = record.scrollState->getData().getContentSize();
+    one_view_set_frame(record.container, 0, 0, contentSize.width, contentSize.height);
+  }
+
   if (record.paragraphState) {
     const auto &data = record.paragraphState->getData();
     const auto frame = metrics.getContentFrame();
     PangoLayout *layout = OneLinuxCreateLayout(data.attributedString, data.paragraphAttributes, frame.size.width, true);
     one_view_set_text(view, layout, frame.origin.x, frame.origin.y);
     g_object_unref(layout);
+  }
+}
+
+static ScrollEvent scrollEventFor(OneLinuxMountingManager::Record &record)
+{
+  ScrollEvent event;
+  double x, y, frameX, frameY, width, height;
+  one_view_get_scroll_offset(record.view, &x, &y);
+  one_view_get_frame(record.view, &frameX, &frameY, &width, &height);
+  auto contentSize = record.scrollState ? record.scrollState->getData().getContentSize() : Size{};
+  event.contentSize = contentSize;
+  event.contentOffset = {static_cast<Float>(x), static_cast<Float>(y)};
+  event.contentInset = {};
+  event.containerSize = {static_cast<Float>(width), static_cast<Float>(height)};
+  event.zoomScale = 1;
+  event.timestamp = static_cast<Float>(g_get_monotonic_time() / 1e6);
+  return event;
+}
+
+void OneLinuxMountingManager::dispatchCommand(Tag tag, const std::string &name, const folly::dynamic &args)
+{
+  auto it = records_.find(tag);
+  if (it == records_.end() || !it->second->scrollState) {
+    return;
+  }
+  Record &record = *it->second;
+  auto *scrollWindow = GTK_SCROLLED_WINDOW(one_view_get_control(record.view));
+  GtkAdjustment *horizontal = gtk_scrolled_window_get_hadjustment(scrollWindow);
+  GtkAdjustment *vertical = gtk_scrolled_window_get_vadjustment(scrollWindow);
+  auto clampedSet = [](GtkAdjustment *adjustment, double value) {
+    double most = std::max(0.0, gtk_adjustment_get_upper(adjustment) - gtk_adjustment_get_page_size(adjustment));
+    gtk_adjustment_set_value(adjustment, std::clamp(value, 0.0, most));
+  };
+  // animated scrolls jump, as the other desktop host's non animated path does
+  if (name == "scrollTo" && args.size() >= 3) {
+    clampedSet(horizontal, args[0].asDouble());
+    clampedSet(vertical, args[1].asDouble());
+  } else if (name == "scrollToEnd" && args.size() >= 1) {
+    bool isHorizontal = static_cast<const ScrollViewProps &>(*record.props).horizontal;
+    clampedSet(isHorizontal ? horizontal : vertical, G_MAXDOUBLE);
   }
 }
 
@@ -295,8 +435,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
       case ShadowViewMutation::Delete: {
         auto it = records_.find(mutation.oldChildShadowView.tag);
         if (it != records_.end()) {
-          one_view_set_owner(it->second->view, nullptr);
-          g_object_unref(it->second->view);
+          releaseRecord(*it->second);
           records_.erase(it);
         }
         break;
@@ -314,8 +453,9 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         record.eventEmitter = child.eventEmitter;
         record.layoutMetrics = child.layoutMetrics;
         record.paragraphState = std::dynamic_pointer_cast<const ParagraphShadowNode::ConcreteState>(child.state);
+        record.scrollState = std::dynamic_pointer_cast<const ScrollViewShadowNode::ConcreteState>(child.state);
         restyle(record);
-        one_view_insert_child(parentIt->second->view, record.view, mutation.index);
+        one_view_insert_child(parentIt->second->container, record.view, mutation.index);
         hasContent_ = true;
         break;
       }
@@ -348,6 +488,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         }
         if (oldChild.state != newChild.state) {
           record.paragraphState = std::dynamic_pointer_cast<const ParagraphShadowNode::ConcreteState>(newChild.state);
+          record.scrollState = std::dynamic_pointer_cast<const ScrollViewShadowNode::ConcreteState>(newChild.state);
           changed = true;
         }
         if (changed) {

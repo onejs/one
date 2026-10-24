@@ -20,6 +20,7 @@ struct _OneView {
   // a native GTK control that fills the view
   GtkWidget *control;
   gpointer owner;
+  OneView *scroll_content;
 
   gboolean surface;
   OneViewSurfaceCallback surface_callback;
@@ -235,6 +236,25 @@ void one_view_set_control(OneView *view, GtkWidget *control)
 GtkWidget *one_view_get_control(OneView *view)
 {
   return view->control;
+}
+
+void one_view_set_scroll(OneView *view, GtkScrolledWindow *scrolled, OneView *content)
+{
+  one_view_set_control(view, GTK_WIDGET(scrolled));
+  view->scroll_content = content;
+  gtk_scrolled_window_set_child(scrolled, GTK_WIDGET(content));
+}
+
+OneView *one_view_get_scroll_content(OneView *view)
+{
+  return view->scroll_content;
+}
+
+void one_view_get_scroll_offset(OneView *view, double *x, double *y)
+{
+  GtkScrolledWindow *scrolled = GTK_SCROLLED_WINDOW(view->control);
+  *x = gtk_adjustment_get_value(gtk_scrolled_window_get_hadjustment(scrolled));
+  *y = gtk_adjustment_get_value(gtk_scrolled_window_get_vadjustment(scrolled));
 }
 
 void one_view_set_owner(OneView *view, gpointer owner)

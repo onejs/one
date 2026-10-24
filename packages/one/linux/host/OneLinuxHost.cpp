@@ -40,7 +40,16 @@ class OneLinuxHost::SchedulerDelegate final : public facebook::react::SchedulerD
     }
   }
   void schedulerDidRequestPreliminaryViewAllocation(const ShadowNode &) override {}
-  void schedulerDidDispatchCommand(const ShadowView &, const std::string &, const folly::dynamic &) override {}
+  void schedulerDidDispatchCommand(const ShadowView &view, const std::string &name, const folly::dynamic &args) override
+  {
+    std::weak_ptr<OneLinuxMountingManager> weakManager = manager_;
+    Tag tag = view.tag;
+    OneLinuxDispatchMain([weakManager, tag, name, args] {
+      if (auto manager = weakManager.lock()) {
+        manager->dispatchCommand(tag, name, args);
+      }
+    });
+  }
   void schedulerDidSendAccessibilityEvent(const ShadowView &, const std::string &) override {}
   void schedulerDidSetIsJSResponder(const ShadowView &, bool, bool) override {}
   void schedulerShouldSynchronouslyUpdateViewOnUIThread(Tag tag, const folly::dynamic &props) override

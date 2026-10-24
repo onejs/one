@@ -32,6 +32,7 @@ class OneLinuxPointerHandler {
  private:
   static gboolean onEvent(GtkEventControllerLegacy *controller, GdkEvent *event, gpointer data);
   bool handle(GdkEvent *event);
+  OneView *hitChildren(OneView *parent, double x, double y, OneLinuxPointerTarget &target, double &localX, double &localY);
   OneView *hitTest(OneView *view, double x, double y, OneLinuxPointerTarget &target, double &localX, double &localY);
   void send(const char *phase, double x, double y, bool stillDown);
 

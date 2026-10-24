@@ -303,5 +303,23 @@ pointer. Proof: [before](one-linux-native-press-before.png) and
   touchscreen sequences, and `screenPoint` equals the window point because Wayland
   gives clients no global position.
 
+**M2 scrolling, 2026-10-23.** `ScrollView` runs on a `GtkScrolledWindow`. Proof:
+[top](one-linux-native-scroll-before.png) and [after four wheel notches](one-linux-native-scroll-after.png)
+(offset 224 reported to JS through `onScroll`, overlay scrollbar showing). Same
+machine and build as the press proof; the wheel is a uinput device.
+
+- The `ScrollView` Fabric component gets a `OneView` whose control is the
+  `GtkScrolledWindow` and whose content `OneView` holds the React children, sized
+  to the state's content size. Scrollbar indicator props map to the policies (the
+  axis that does not scroll is external so the window never asks for the content's
+  size), `scrollEnabled` blocks wheel input, `onScroll` honors
+  `scrollEventThrottle`, the offset commits to state 100 ms after scrolling settles
+  (where `measure()` reads it), and `scrollTo` and `scrollToEnd` commands apply
+  without animation.
+- Pointer hit testing descends into a scroll view's content shifted by the offset.
+- Gaps: no `contentOffset` prop at mount, `onScrollBeginDrag`, `onScrollEndDrag`
+  or momentum events, content insets, animated `scrollTo`, `RefreshControl`, or
+  sticky headers.
+
 **Next:** M2: pointer events on views, scroll, text input, transforms, images,
 dark mode, and the Networking gaps above.

@@ -31,6 +31,29 @@ gboolean OneLinuxPointerHandler::onEvent(GtkEventControllerLegacy *, GdkEvent *e
   return static_cast<OneLinuxPointerHandler *>(data)->handle(event);
 }
 
+OneView *OneLinuxPointerHandler::hitChildren(
+    OneView *parent,
+    double x,
+    double y,
+    OneLinuxPointerTarget &target,
+    double &localX,
+    double &localY)
+{
+  GtkWidget *control = one_view_get_control(parent);
+  for (GtkWidget *child = gtk_widget_get_last_child(GTK_WIDGET(parent)); child; child = gtk_widget_get_prev_sibling(child)) {
+    if (child == control) {
+      continue;
+    }
+    OneView *childView = ONE_VIEW(child);
+    double childX, childY, childWidth, childHeight;
+    one_view_get_frame(childView, &childX, &childY, &childWidth, &childHeight);
+    if (OneView *hit = hitTest(childView, x - childX, y - childY, target, localX, localY)) {
+      return hit;
+    }
+  }
+  return nullptr;
+}
+
 OneView *OneLinuxPointerHandler::hitTest(
     OneView *view,
     double x,
@@ -51,18 +74,15 @@ OneView *OneLinuxPointerHandler::hitTest(
     return nullptr;
   }
 
-  if (mode != PointerEventsMode::BoxOnly && (inside || !one_view_get_clips(view))) {
-    GtkWidget *control = GTK_WIDGET(one_view_get_control(view));
-    for (GtkWidget *child = gtk_widget_get_last_child(GTK_WIDGET(view)); child; child = gtk_widget_get_prev_sibling(child)) {
-      if (child == control) {
-        continue;
-      }
-      OneView *childView = ONE_VIEW(child);
-      double childX, childY, childWidth, childHeight;
-      one_view_get_frame(childView, &childX, &childY, &childWidth, &childHeight);
-      if (OneView *hit = hitTest(childView, x - childX, y - childY, target, localX, localY)) {
+  if (mode != PointerEventsMode::BoxOnly && (inside || (!one_view_get_clips(view) && !one_view_get_scroll_content(view)))) {
+    if (OneView *content = one_view_get_scroll_content(view)) {
+      double scrollX, scrollY;
+      one_view_get_scroll_offset(view, &scrollX, &scrollY);
+      if (OneView *hit = hitChildren(content, x + scrollX, y + scrollY, target, localX, localY)) {
         return hit;
       }
+    } else if (OneView *hit = hitChildren(view, x, y, target, localX, localY)) {
+      return hit;
     }
   }
 

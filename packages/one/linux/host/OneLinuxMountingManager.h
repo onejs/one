@@ -41,12 +41,16 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
   // any thread
   void scheduleTransaction(std::shared_ptr<const MountingCoordinator> coordinator);
 
+  // main thread; scrollTo and scrollToEnd on scroll views
+  void dispatchCommand(Tag tag, const std::string &name, const folly::dynamic &args);
+
   void synchronouslyUpdateViewOnTag(Tag tag, const folly::dynamic &props);
 
  struct Record;
 
  private:
 
+  void releaseRecord(Record &record);
   Record &createView(ComponentHandle handle, Tag tag);
   void initiateTransaction(const MountingCoordinator &coordinator);
   void performMutations(const ShadowViewMutationList &mutations);

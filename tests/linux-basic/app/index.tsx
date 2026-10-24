@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { Platform, Pressable, Text, View } from 'react-native'
+import { Platform, Pressable, ScrollView, Text, View } from 'react-native'
 import { One } from 'one'
 import { probe } from '../probe/resolution'
 
 export default function Index() {
   const [isOn, setIsOn] = useState(false)
   const [count, setCount] = useState(0)
+  const [offset, setOffset] = useState(0)
   return (
     <View style={{ flex: 1, padding: 24, backgroundColor: '#f4f1ea' }}>
       <Text testID="linux-label" style={{ fontSize: 32, fontWeight: '700', color: '#1f1d1a' }}>
@@ -37,6 +38,24 @@ export default function Index() {
           {`pressed ${count} times`}
         </Text>
       </View>
+      <Text testID="linux-offset" style={{ fontSize: 16, marginTop: 24, color: '#5f5a50' }}>
+        {`scroll offset ${Math.round(offset)}`}
+      </Text>
+      <ScrollView
+        testID="linux-scroll"
+        scrollEventThrottle={16}
+        onScroll={(event) => setOffset(event.nativeEvent.contentOffset.y)}
+        style={{ height: 200, marginTop: 8, borderWidth: 1, borderColor: '#c9c2b2', borderRadius: 8 }}
+      >
+        {Array.from({ length: 40 }, (_, index) => (
+          <View
+            key={index}
+            style={{ padding: 10, backgroundColor: index % 2 ? '#ebe6da' : '#f9f7f2' }}
+          >
+            <Text style={{ fontSize: 16, color: '#1f1d1a' }}>{`row ${index}`}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   )
 }
