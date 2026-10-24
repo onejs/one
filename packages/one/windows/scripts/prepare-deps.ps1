@@ -4,7 +4,9 @@
 # double-conversion, fmt and fast_float get the CMake files react-native's
 # Android build uses; glog keeps its own CMake build, which has the Windows port,
 # and folly is compiled by cpp/deps/CMakeLists.txt. Tarballs are cached and
-# reused per react-native version.
+# reused per react-native version. The sources are laid out beside $Out and
+# moved into place whole, so a stamped $Out is complete and reused; anything
+# else already at $Out is left untouched and the script refuses to continue.
 #   RN_ROOT  node_modules/react-native
 param([Parameter(Mandatory)] [string] $Out)
 $ErrorActionPreference = 'Stop'
@@ -27,9 +29,18 @@ $folly = Pinned folly
 $glog = Pinned glog
 
 $stamp = "$Out/.react-native-version"
-if ((Test-Path $stamp) -and ((Get-Content $stamp) -eq $rnVersion)) { exit 0 }
-if (Test-Path $Out) { Remove-Item -Recurse -Force $Out }
-New-Item -ItemType Directory -Force "$Out", "$Cache/downloads" | Out-Null
+if (Test-Path $stamp) {
+  $stamped = Get-Content $stamp
+  if ($stamped -eq $rnVersion) { exit 0 }
+  throw "$Out is laid out for react-native $stamped, not $rnVersion; move it aside to lay out the sources again"
+}
+if (Test-Path $Out) {
+  if (Get-ChildItem -Force $Out | Select-Object -First 1) {
+    throw "$Out has content but no $rnVersion stamp, so it may be incomplete or not this script's; move it aside to lay out the sources again"
+  }
+  # only an empty directory, which the move below would otherwise land inside
+  [IO.Directory]::Delete($Out)
+}
 
 function Fetch($file, $url) {
   $path = "$Cache/downloads/$file"
@@ -49,33 +60,38 @@ function Unpack($tarball, $dest) {
   if ($LASTEXITCODE) { throw "unpack failed: $tarball" }
 }
 
+$part = "$Out.part-$PID"
 $work = Join-Path ([IO.Path]::GetTempPath()) "one-windows-deps-$PID"
+New-Item -ItemType Directory -Force $part, "$Cache/downloads" | Out-Null
 try {
   $tarball = Fetch "boost_$boost.tar.gz" "https://archives.boost.io/release/$($boost -replace '_', '.')/source/boost_$boost.tar.gz"
-  Unpack $tarball "$Out/boost/boost_$boost" "boost_$boost/boost"
+  Unpack $tarball "$part/boost/boost_$boost" "boost_$boost/boost"
 
   $tarball = Fetch "double-conversion-$doubleConversion.tar.gz" "https://github.com/google/double-conversion/archive/v$doubleConversion.tar.gz"
   Unpack $tarball "$work/double-conversion"
-  New-Item -ItemType Directory -Force "$Out/double-conversion/double-conversion" | Out-Null
-  Copy-Item "$work/double-conversion/src/*.cc", "$work/double-conversion/src/*.h" "$Out/double-conversion/double-conversion/"
-  Copy-Item "$jni/double-conversion/CMakeLists.txt" "$Out/double-conversion/"
+  New-Item -ItemType Directory -Force "$part/double-conversion/double-conversion" | Out-Null
+  Copy-Item "$work/double-conversion/src/*.cc", "$work/double-conversion/src/*.h" "$part/double-conversion/double-conversion/"
+  Copy-Item "$jni/double-conversion/CMakeLists.txt" "$part/double-conversion/"
 
   $tarball = Fetch "folly-$folly.tar.gz" "https://github.com/facebook/folly/archive/v$folly.tar.gz"
-  Unpack $tarball "$Out/folly" "folly-$folly/folly"
+  Unpack $tarball "$part/folly" "folly-$folly/folly"
 
   $tarball = Fetch "fast_float-$fastFloat.tar.gz" "https://github.com/fastfloat/fast_float/archive/v$fastFloat.tar.gz"
-  Unpack $tarball "$Out/fast_float" "fast_float-$fastFloat/include"
-  Copy-Item "$jni/fast_float/CMakeLists.txt" "$Out/fast_float/"
+  Unpack $tarball "$part/fast_float" "fast_float-$fastFloat/include"
+  Copy-Item "$jni/fast_float/CMakeLists.txt" "$part/fast_float/"
 
   $tarball = Fetch "fmt-$fmt.tar.gz" "https://github.com/fmtlib/fmt/archive/$fmt.tar.gz"
-  Unpack $tarball "$Out/fmt" "fmt-$fmt/src" "fmt-$fmt/include"
-  Copy-Item "$jni/fmt/CMakeLists.txt" "$Out/fmt/"
+  Unpack $tarball "$part/fmt" "fmt-$fmt/src" "fmt-$fmt/include"
+  Copy-Item "$jni/fmt/CMakeLists.txt" "$part/fmt/"
 
   $tarball = Fetch "glog-$glog.tar.gz" "https://github.com/google/glog/archive/v$glog.tar.gz"
-  Unpack $tarball "$Out/glog"
-} finally {
-  if (Test-Path $work) { Remove-Item -Recurse -Force $work }
-}
+  Unpack $tarball "$part/glog"
 
-"boost $boost`ndouble-conversion $doubleConversion`nfast_float $fastFloat`nfmt $fmt`nfolly $folly`nglog $glog" | Set-Content "$Out/versions.txt"
-Set-Content $stamp $rnVersion
+  "boost $boost`ndouble-conversion $doubleConversion`nfast_float $fastFloat`nfmt $fmt`nfolly $folly`nglog $glog" | Set-Content "$part/versions.txt"
+  Set-Content "$part/.react-native-version" $rnVersion
+  Move-Item $part $Out
+} finally {
+  foreach ($dir in $work, $part) {
+    if (Test-Path $dir) { Remove-Item -Recurse -Force $dir }
+  }
+}

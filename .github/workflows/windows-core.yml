@@ -1,9 +1,9 @@
 name: windows core
 
-# Compiles the unforked React Native core, its dependencies and Hermes with
-# clang-cl and the MSVC STL on GitHub's Windows runner, then runs the headless
-# Fabric smoke. The shared native-core unit list and host runtime come from
-# the Linux foundation commit until it lands on main.
+# Compiles the unforked React Native core and its dependencies with clang-cl
+# and the MSVC STL, and Hermes with MSVC cl, on GitHub's Windows runner, then
+# runs the headless Fabric smoke. The shared native-core unit list and host
+# runtime come from the Linux foundation commit until it lands on main.
 on:
   push:
     branches: [tm/windows-core-m0]
@@ -130,13 +130,17 @@ jobs:
           $hermes = "$env:ONE_WINDOWS_CACHE/hermes-${{ steps.pins.outputs.hermes }}-release/destroot"
 
           # controls: a tree laid out differently fails the frame checks, and
-          # JavaScript source fails the bytecode check
+          # JavaScript source fails the bytecode check; each has to fail for
+          # its own reason, since the smoke exits 1 for either
           (Get-Content packages/one/windows/smoke/smoke.js -Raw).Replace('padding: 20', 'padding: 30') | Set-Content "$core/negative.js"
           & "$hermes/bin/hermesc.exe" -emit-binary -O -out "$core/negative.hbc" "$core/negative.js"
+          if ($LASTEXITCODE) { throw "hermesc exited $LASTEXITCODE compiling the padding 30 control" }
           & "$core/one-windows-smoke.exe" "$core/negative.hbc" 2>&1 | Tee-Object out/negative.txt
           if ($LASTEXITCODE -ne 1) { throw "the padding 30 control exited $LASTEXITCODE, not 1" }
+          if (-not (Select-String -Quiet -SimpleMatch 'smoke FAILED with 3 failures' out/negative.txt)) { throw 'the padding 30 control did not fail on the 3 padded frames' }
           & "$core/one-windows-smoke.exe" packages/one/windows/smoke/smoke.js 2>&1 | Tee-Object -Append out/negative.txt
           if ($LASTEXITCODE -ne 1) { throw "the source control exited $LASTEXITCODE, not 1" }
+          if (-not (Select-String -Quiet -SimpleMatch 'smoke.js is not Hermes bytecode' out/negative.txt)) { throw 'the source control did not fail the bytecode check' }
 
           New-Item -ItemType Directory -Force out/bin | Out-Null
           Copy-Item "$core/one-windows-smoke.exe", "$core/smoke.hbc", "$hermes/bin/hermesvm.dll" out/bin/
