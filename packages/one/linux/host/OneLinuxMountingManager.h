@@ -11,6 +11,7 @@
 #include <string>
 #include <unordered_map>
 
+#include "OneLinuxPointer.h"
 #include "OneLinuxView.h"
 
 namespace facebook::react {
@@ -52,6 +53,7 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
   void restyle(Record &record);
 
   std::unordered_map<Tag, std::unique_ptr<Record>> records_;
+  std::unique_ptr<OneLinuxPointerHandler> pointer_;
   std::shared_ptr<const ContextContainer> contextContainer_;
   SharedComponentDescriptorRegistry componentDescriptorRegistry_;
   SurfaceId surfaceId_{0};

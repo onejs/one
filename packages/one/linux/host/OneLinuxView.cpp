@@ -19,6 +19,7 @@ struct _OneView {
 
   // a native GTK control that fills the view
   GtkWidget *control;
+  gpointer owner;
 
   gboolean surface;
   OneViewSurfaceCallback surface_callback;
@@ -234,6 +235,29 @@ void one_view_set_control(OneView *view, GtkWidget *control)
 GtkWidget *one_view_get_control(OneView *view)
 {
   return view->control;
+}
+
+void one_view_set_owner(OneView *view, gpointer owner)
+{
+  view->owner = owner;
+}
+
+gpointer one_view_get_owner(OneView *view)
+{
+  return view->owner;
+}
+
+void one_view_get_frame(OneView *view, double *x, double *y, double *width, double *height)
+{
+  *x = view->x;
+  *y = view->y;
+  *width = view->width;
+  *height = view->height;
+}
+
+gboolean one_view_get_clips(OneView *view)
+{
+  return view->clips;
 }
 
 void one_view_insert_child(OneView *parent, OneView *child, int index)

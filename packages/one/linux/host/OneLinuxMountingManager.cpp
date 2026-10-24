@@ -123,6 +123,7 @@ OneLinuxMountingManager::Record &OneLinuxMountingManager::createView(ComponentHa
   record->view = one_view_new();
   g_object_ref_sink(record->view);
   auto &stored = *record;
+  one_view_set_owner(record->view, &stored);
   if (handle == OneLinuxSwitchShadowNode::Handle()) {
     record->control = gtk_switch_new();
     one_view_set_control(record->view, record->control);
@@ -138,10 +139,26 @@ void OneLinuxMountingManager::attachSurface(SurfaceId surfaceId, OneView *surfac
   surfaceView_ = surfaceView;
   auto &root = createView(RootShadowNode::Handle(), surfaceId);
   one_view_insert_child(surfaceView, root.view, 0);
+  pointer_ = std::make_unique<OneLinuxPointerHandler>(
+      surfaceView,
+      [this](OneView *view, OneLinuxPointerTarget &target) {
+        auto *record = static_cast<Record *>(one_view_get_owner(view));
+        if (!record || !record->props) {
+          return false;
+        }
+        target.tag = record->tag;
+        target.pointerEvents = static_cast<const ViewProps &>(*record->props).pointerEvents;
+        return true;
+      },
+      [this](Tag tag) -> std::shared_ptr<const EventEmitter> {
+        auto it = records_.find(tag);
+        return it == records_.end() ? nullptr : it->second->eventEmitter;
+      });
 }
 
 void OneLinuxMountingManager::detachSurface(SurfaceId surfaceId)
 {
+  pointer_.reset();
   auto it = records_.find(surfaceId);
   if (it != records_.end()) {
     if (gtk_widget_get_parent(GTK_WIDGET(it->second->view))) {
@@ -278,6 +295,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
       case ShadowViewMutation::Delete: {
         auto it = records_.find(mutation.oldChildShadowView.tag);
         if (it != records_.end()) {
+          one_view_set_owner(it->second->view, nullptr);
           g_object_unref(it->second->view);
           records_.erase(it);
         }

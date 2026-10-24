@@ -31,6 +31,12 @@ void one_view_set_text(OneView *view, PangoLayout *layout, double x, double y);
 void one_view_set_control(OneView *view, GtkWidget *control);
 GtkWidget *one_view_get_control(OneView *view);
 
+// the host's own record for this view, which pointer hit testing reads
+void one_view_set_owner(OneView *view, gpointer owner);
+gpointer one_view_get_owner(OneView *view);
+void one_view_get_frame(OneView *view, double *x, double *y, double *width, double *height);
+gboolean one_view_get_clips(OneView *view);
+
 void one_view_insert_child(OneView *parent, OneView *child, int index);
 void one_view_remove_child(OneView *child);
 

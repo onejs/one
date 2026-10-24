@@ -136,6 +136,7 @@ add_executable(one-linux
   ${ONE_LINUX}/host/OneLinuxNetwork.cpp
   ${ONE_LINUX}/host/OneLinuxNitro.cpp
   ${ONE_LINUX}/host/OneLinuxOpSqlite.cpp
+  ${ONE_LINUX}/host/OneLinuxPointer.cpp
   ${ONE_LINUX}/host/OneLinuxRuntime.cpp
   ${ONE_LINUX}/host/OneLinuxStartup.cpp
   ${ONE_LINUX}/host/OneLinuxWorklets.cpp

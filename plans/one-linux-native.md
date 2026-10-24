@@ -284,5 +284,24 @@ Workarounds and gaps:
    at `~/.lima/one-linux` (studio-64 internal disk was at its floor). The VM
    booted from the moved disk and kept its caches.
 
+**M2 pointer press, 2026-10-23.** `Pressable` and `onPress` on views work on the
+Linux host. Machine: studio-64 VM, release build, headless sway with a uinput
+pointer. Proof: [before](one-linux-native-press-before.png) and
+[after three clicks](one-linux-native-press-after.png) on the counter in
+`tests/linux-basic`; the switch still toggles in the same build.
+
+- `OneLinuxPointerHandler` (`packages/one/linux/host/OneLinuxPointer.*`) is a
+  capture phase `GtkEventControllerLegacy` on the surface view that never claims
+  an event, so controls keep their own clicks. It hit tests the `OneView` tree by
+  React's frames (last sibling first, `pointerEvents` honored, clipping honored)
+  and sends `onTouchStart`, `onTouchMove` and `onTouchEnd` (`onTouchCancel` on a
+  broken grab) through the target's `TouchEventEmitter`, the path the Mac host
+  feeds. Pressability and the responder system run unchanged.
+- It does not use GTK picking, because the `contains` override only answers over
+  children and a leaf view has none.
+- Gaps: no hover or pointer events (`onPointerDown`, `onPointerEnter`, cursor), no
+  touchscreen sequences, and `screenPoint` equals the window point because Wayland
+  gives clients no global position.
+
 **Next:** M2: pointer events on views, scroll, text input, transforms, images,
 dark mode, and the Networking gaps above.
