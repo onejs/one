@@ -8,22 +8,26 @@
     "store": {
       "frameworks": ["StoreKit"],
       "components": ["OneNativeProductView", "OneNativeStoreView", "OneNativeSubscriptionStoreView"],
-      "hybrids": ["OnePurchases", "OneStoreReview"]
+      "hybrids": ["OnePurchases", "OneStoreReview"],
+      "uses": ["Purchases", "StoreReview"]
     },
     "account": {
       "frameworks": ["AuthenticationServices", "SafariServices"],
       "components": ["OneNativeSignInWithAppleButton"],
-      "hybrids": ["OneAppleAuth", "OneBrowser"]
+      "hybrids": ["OneAppleAuth", "OneBrowser"],
+      "uses": ["Auth", "Browser"]
     },
     "messaging": {
       "frameworks": ["MessageUI"],
       "components": [],
-      "hybrids": ["OneMailCompose", "OneMessageCompose"]
+      "hybrids": ["OneMailCompose", "OneMessageCompose"],
+      "uses": ["MFMailComposeViewController", "MFMessageComposeViewController"]
     },
     "photos": {
       "frameworks": ["PhotosUI"],
       "components": ["OneNativePhotosPicker", "OneNativeLivePhotoView"],
-      "hybrids": ["OneImagePicker"]
+      "hybrids": ["OneImagePicker"],
+      "uses": ["ImagePicker"]
     },
     "charts": {
       "frameworks": ["Charts"],

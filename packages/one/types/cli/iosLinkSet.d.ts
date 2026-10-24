@@ -2,6 +2,7 @@ type Catalog = {
     groups: Record<string, {
         components: string[];
         hybrids: string[];
+        uses?: string[];
     }>;
 };
 export declare const IOS_LINK_SET_FILE = "ios/one-link-set.json";

@@ -6,7 +6,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 type Catalog = {
-  groups: Record<string, { components: string[]; hybrids: string[] }>
+  groups: Record<string, { components: string[]; hybrids: string[]; uses?: string[] }>
 }
 
 // the file the pod reads at install time: the groups a release build links.
@@ -22,12 +22,28 @@ function readCatalog(): Catalog {
   return JSON.parse(readFileSync(join(dir, 'ios-link-set.json'), 'utf8'))
 }
 
-// the groups whose native names the production bundle references. a name the bundle
-// drops with tree shaking costs nothing, so an unused feature stays out of the binary.
+// the groups whose features the production bundle uses. without the `One` or
+// `One.iOS` namespace objects the bundle names a hybrid or component only where
+// tree shaking kept its use, so the name is the signal. those objects hold every
+// feature, so once the bundle keeps one, a group counts as used when the bundle
+// reads one of its public names off it (`One.Purchases`, `One.iOS.Chart`,
+// `{ Chart } = One.iOS`). the `Swift.Chart requires an iOS native build` strings
+// of the unavailable stubs are not reads, and a computed read (`One.iOS[name]`)
+// keeps every group.
 export function groupsInBundle(bundle: string, catalog = readCatalog()): string[] {
-  const named = (name: string) => new RegExp(`(?<![A-Za-z0-9_])${name}(?![A-Za-z0-9_])`).test(bundle)
+  const named = (name: string) => new RegExp(`(?<![A-Za-z0-9_$])${name}(?![A-Za-z0-9_$])`).test(bundle)
+  const namespaced =
+    /get platform\(\)\s*\{\s*return currentPlatform\(\)/.test(bundle) || /Swift\.\w+ requires an iOS native build/.test(bundle)
+  const computed = /\b(?:One|iOS)\s*\[/.test(bundle)
+  const read = (name: string) =>
+    new RegExp(`(?<!Swift)\\.${name}(?![A-Za-z0-9_$])`).test(bundle) ||
+    new RegExp(`\\{[^{}]*(?<![A-Za-z0-9_$.])${name}(?![A-Za-z0-9_$])[^{}]*\\}\\s*=\\s*[A-Za-z0-9_$.]*\\b(?:One|iOS)\\b`).test(bundle)
   return Object.entries(catalog.groups)
-    .filter(([, { components, hybrids }]) => [...components, ...hybrids].some(named))
+    .filter(([, { components, hybrids, uses = [] }]) =>
+      namespaced
+        ? computed || [...components.map((component) => component.replace(/^OneNative/, '')), ...uses].some(read)
+        : [...components, ...hybrids].some(named)
+    )
     .map(([group]) => group)
 }
 
