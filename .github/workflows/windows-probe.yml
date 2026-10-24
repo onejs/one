@@ -11,7 +11,7 @@ permissions:
 jobs:
   probe:
     runs-on: windows-2025
-    timeout-minutes: 45
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: microsoft/setup-msbuild@v2
@@ -56,6 +56,7 @@ jobs:
         if: always()
         shell: pwsh
         run: |
+          Get-ChildItem out -Filter *.trace | ForEach-Object { "== $($_.Name)"; Get-Content $_.FullName | Select-Object -First 40 }
           python windows-probe/summarize.py out/results.jsonl | Tee-Object out/summary.md
           Get-Content out/summary.md | Out-File -Append -Encoding utf8 $env:GITHUB_STEP_SUMMARY
       - uses: actions/upload-artifact@v4

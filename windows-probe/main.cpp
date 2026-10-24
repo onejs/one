@@ -45,6 +45,8 @@ SIZE_T g_privateBeforeMount = 0;
 SIZE_T g_privateAfterFrame = 0;
 SIZE_T g_workingSetAfterFrame = 0;
 
+std::string narrow(const std::wstring& s);
+
 double nowMs() {
   FILETIME ft;
   GetSystemTimePreciseAsFileTime(&ft);
@@ -52,8 +54,29 @@ double nowMs() {
   return static_cast<double>(t - g_creation100ns) / 10000.0;
 }
 
+// appends one line per mark to <out>.trace as it happens, so a hung or crashed run
+// still shows how far it got
+void trace(const std::string& line) {
+  FILE* file = nullptr;
+  if (_wfopen_s(&file, (g_options.out + L".trace").c_str(), L"ab") == 0 && file) {
+    std::string text = narrow(g_options.mode) + " " + std::to_string(g_options.nodes) + " " + narrow(g_options.tag) + " " + line + "\n";
+    fwrite(text.data(), 1, text.size(), file);
+    fclose(file);
+  }
+}
+
 void mark(const char* name) {
   g_marks.emplace_back(name, nowMs());
+  char buffer[96];
+  snprintf(buffer, sizeof(buffer), "%s %.1f", name, g_marks.back().second);
+  trace(buffer);
+}
+
+LONG WINAPI onCrash(EXCEPTION_POINTERS* info) {
+  char buffer[96];
+  snprintf(buffer, sizeof(buffer), "crash 0x%08lx", info->ExceptionRecord->ExceptionCode);
+  trace(buffer);
+  ExitProcess(3);
 }
 
 void readMemory(SIZE_T& privateBytes, SIZE_T* workingSet = nullptr) {
@@ -198,6 +221,14 @@ void afterFirstFrame(std::function<void(std::function<void()>)> nextFrame, std::
 
 struct App : mux::ApplicationT<App, mux::Markup::IXamlMetadataProvider> {
   mux::XamlTypeInfo::XamlControlsXamlMetaDataProvider m_provider;
+
+  App() {
+    mark("app");
+    UnhandledException([](auto&&, mux::UnhandledExceptionEventArgs const& e) {
+      trace("xaml unhandled 0x" + std::to_string(static_cast<uint32_t>(e.Exception())) + " " + narrow(std::wstring(e.Message())));
+      ExitProcess(4);
+    });
+  }
   mux::Window m_window{nullptr};
   std::vector<mux::FrameworkElement> m_elements;
   std::vector<Node> m_nodes;
@@ -302,7 +333,16 @@ struct App : mux::ApplicationT<App, mux::Markup::IXamlMetadataProvider> {
 };
 
 int runXaml() {
-  mux::Application::Start([](auto&&) { make<App>(); });
+  mark("xaml_start");
+  try {
+    mux::Application::Start([](auto&&) { make<App>(); });
+  } catch (hresult_error const& e) {
+    char buffer[32];
+    snprintf(buffer, sizeof(buffer), "0x%08x ", static_cast<uint32_t>(e.code()));
+    trace(std::string("start threw ") + buffer + narrow(std::wstring(e.message())));
+    ExitProcess(5);
+  }
+  trace("start returned");
   return 0;
 }
 
@@ -391,8 +431,10 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR, int) {
   FILETIME creation, exitTime, kernel, user;
   GetProcessTimes(GetCurrentProcess(), &creation, &exitTime, &kernel, &user);
   g_creation100ns = (static_cast<ULONGLONG>(creation.dwHighDateTime) << 32) | creation.dwLowDateTime;
-  mark("main");
   parseArgs();
+  SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX);
+  SetUnhandledExceptionFilter(onCrash);
+  mark("main");
   init_apartment(apartment_type::single_threaded);
   if (g_options.mode == L"comp") return runComposition();
   return runXaml();

@@ -14,6 +14,27 @@ function Invoke-Probe([string]$mode, [int]$nodes, [int]$controls, [string]$tag, 
   return $p
 }
 
+Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+function Save-Screen([string]$name) {
+  $bounds = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+  $bitmap = New-Object System.Drawing.Bitmap $bounds.Width, $bounds.Height
+  $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
+  $graphics.CopyFromScreen($bounds.Location, [System.Drawing.Point]::Empty, $bounds.Size)
+  $bitmap.Save((Join-Path $OutDir $name))
+  $graphics.Dispose()
+  $bitmap.Dispose()
+}
+
+# one xaml launch first: if it does not finish, keep a screenshot of what it shows and skip the
+# xaml cases instead of spending a timeout on each
+$diag = Invoke-Probe 'xaml' 0 0 'diag' (Join-Path $OutDir 'diag.jsonl')
+$xamlWorks = $diag.WaitForExit(30000)
+if (-not $xamlWorks) {
+  Save-Screen 'diag-xaml-hang.png'
+  $diag.Kill()
+  Write-Host 'xaml diagnosis launch did not finish in 30s'
+}
+
 $cases = @(
   @{ mode = 'comp'; nodes = 0; controls = 0 },
   @{ mode = 'xaml'; nodes = 0; controls = 0 },
@@ -29,8 +50,9 @@ $cases = @(
 # interleaved repetitions; rep0 is the cold warmup and is dropped by the summary
 for ($r = 0; $r -lt $Reps; $r++) {
   foreach ($c in $cases) {
+    if (-not $xamlWorks -and $c.mode -ne 'comp') { continue }
     $p = Invoke-Probe $c.mode $c.nodes $c.controls "rep$r" $results
-    if (-not $p.WaitForExit(60000)) {
+    if (-not $p.WaitForExit(30000)) {
       $p.Kill()
       Write-Host "timeout: $($c.mode) nodes=$($c.nodes) controls=$($c.controls) rep=$r"
     }
@@ -38,7 +60,6 @@ for ($r = 0; $r -lt $Reps; $r++) {
 }
 
 # screenshots prove each mode actually drew its tree in a real desktop session
-Add-Type -AssemblyName System.Windows.Forms, System.Drawing
 $shots = @(
   @{ mode = 'comp'; nodes = 300; controls = 0 },
   @{ mode = 'xaml'; nodes = 300; controls = 0 },
@@ -46,14 +67,9 @@ $shots = @(
   @{ mode = 'xaml'; nodes = 300; controls = 25 }
 )
 foreach ($s in $shots) {
+  if (-not $xamlWorks -and $s.mode -ne 'comp') { continue }
   $p = Invoke-Probe $s.mode $s.nodes $s.controls 'shot' (Join-Path $OutDir 'shots.jsonl') 0 5000
   Start-Sleep -Milliseconds 3000
-  $bounds = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
-  $bitmap = New-Object System.Drawing.Bitmap $bounds.Width, $bounds.Height
-  $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
-  $graphics.CopyFromScreen($bounds.Location, [System.Drawing.Point]::Empty, $bounds.Size)
-  $bitmap.Save((Join-Path $OutDir "shot-$($s.mode)-$($s.nodes)-c$($s.controls).png"))
-  $graphics.Dispose()
-  $bitmap.Dispose()
+  Save-Screen "shot-$($s.mode)-$($s.nodes)-c$($s.controls).png"
   $p.WaitForExit(20000) | Out-Null
 }
