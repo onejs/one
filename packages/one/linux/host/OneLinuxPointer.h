@@ -31,8 +31,9 @@ class OneLinuxPointerHandler {
  public:
   using Describe = std::function<bool(OneView *, OneLinuxPointerTarget &)>;
   using EmitterFor = std::function<std::shared_ptr<const EventEmitter>(Tag)>;
+  using ViewFor = std::function<OneView *(Tag)>;
 
-  OneLinuxPointerHandler(OneView *surface, Describe describe, EmitterFor emitterFor);
+  OneLinuxPointerHandler(OneView *surface, Describe describe, EmitterFor emitterFor, ViewFor viewFor);
   ~OneLinuxPointerHandler();
 
  private:
@@ -40,6 +41,7 @@ class OneLinuxPointerHandler {
   bool handle(GdkEvent *event);
   OneView *hitChildren(OneView *parent, double x, double y, OneLinuxPointerTarget &target, double &localX, double &localY);
   OneView *hitTest(OneView *view, double x, double y, OneLinuxPointerTarget &target, double &localX, double &localY);
+  bool localPoint(Tag tag, double x, double y, double &localX, double &localY);
   void send(const char *phase, double x, double y, bool stillDown);
   void updateHover(double x, double y, bool inside);
   void sendPointer(Tag tag, const char *type, double x, double y);
@@ -48,6 +50,7 @@ class OneLinuxPointerHandler {
   GtkEventController *controller_;
   Describe describe_;
   EmitterFor emitterFor_;
+  ViewFor viewFor_;
 
   // what the pointer is over, outermost view first
   struct Hovered {
@@ -59,8 +62,6 @@ class OneLinuxPointerHandler {
 
   bool touching_{false};
   Tag touchTarget_{0};
-  double targetOriginX_{0};
-  double targetOriginY_{0};
 };
 
 } // namespace facebook::react

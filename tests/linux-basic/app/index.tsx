@@ -13,6 +13,8 @@ export default function Index() {
   const [hovered, setHovered] = useState('none')
   const [notes, setNotes] = useState('')
   const [boxPress, setBoxPress] = useState('')
+  const [touchCoords, setTouchCoords] = useState('')
+  const [pointerCoords, setPointerCoords] = useState('')
   const [images, setImages] = useState<Record<string, string>>({})
   const report = (key: string, value: string) => setImages((state) => ({ ...state, [key]: value }))
   const remote = { uri: 'http://127.0.0.1:8123/swatch.png' }
@@ -24,6 +26,15 @@ export default function Index() {
     { opacity: 0.4 },
     { transform: [{ rotate: '-20deg' }, { scaleX: 1.3 }], backgroundColor: '#b58900' },
   ]
+  const round = (value: number) => Math.round(value * 10) / 10
+  const readTouch = (name: string, event: any) => {
+    const { locationX, locationY, pageX, pageY } = event.nativeEvent
+    setTouchCoords(`${name} touch ${round(locationX)},${round(locationY)} page ${round(pageX)},${round(pageY)}`)
+  }
+  const readPointer = (name: string, event: any) => {
+    const { offsetX, offsetY, clientX, clientY } = event.nativeEvent
+    setPointerCoords(`${name} pointer offset ${round(offsetX)},${round(offsetY)} client ${round(clientX)},${round(clientY)}`)
+  }
   const modes = ['cover', 'contain', 'stretch', 'center'] as const
   return (
     <View style={{ flex: 1, flexDirection: 'row', padding: 24, backgroundColor: dark ? '#1f1d1a' : '#f4f1ea' }}>
@@ -157,6 +168,7 @@ export default function Index() {
             <Pressable
               key={index}
               onPress={() => setBoxPress(`pressed ${'ABCDEF'[index]}`)}
+              onTouchStart={(event) => readTouch('ABCDEF'[index], event)}
               style={[
                 {
                   width: 56,
@@ -170,10 +182,25 @@ export default function Index() {
                 style,
               ]}
             >
-              <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff' }}>{'ABCDEF'[index]}</Text>
+              <View
+                onPointerEnter={(event) => readPointer('ABCDEF'[index], event)}
+                style={{ width: 56, height: 56, alignItems: 'center', justifyContent: 'center' }}
+              >
+                <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff' }}>{'ABCDEF'[index]}</Text>
+              </View>
             </Pressable>
           ))}
+          <View style={{ width: 80, height: 80, padding: 20, backgroundColor: '#d9d3c3' }}>
+            <View
+              onTouchStart={(event) => readTouch('N', event)}
+              onPointerEnter={(event) => readPointer('N', event)}
+              style={{ width: 40, height: 40, backgroundColor: '#2f9e44' }}
+            />
+          </View>
         </View>
+        <Text testID="linux-coords" style={{ fontSize: 12, color: '#5f5a50' }}>
+          {`${touchCoords} / ${pointerCoords}`}
+        </Text>
         <Text style={{ fontSize: 20, fontWeight: '700', marginTop: 24, color: '#1f1d1a' }}>
           hover and cursor
         </Text>

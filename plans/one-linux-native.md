@@ -428,8 +428,20 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   cursor by CSS name on the surface. Proof, the mouse over the `text` button
   shows the hover color, "hovered text" and the I-beam:
   [window](one-linux-native-hover.png). Moving out to empty space clears the
-  hover (the label returns to "hovered none" and the cursor to the default), and
-  event offsets are window coordinates.
+  hover (the label returns to "hovered none" and the cursor to the default).
+  Touch `locationX`/`locationY` and pointer `offsetX`/`offsetY` are local to the
+  target view (through frames, transforms and scroll offsets, the steps hit
+  testing takes, in `localPoint`); `pageX`/`pageY` and `clientX`/`clientY` are
+  window coordinates. Proof on the scaled box C, the rotated box D and a view
+  nested in a padded one (studio-64 VM): C touch 37.8,27.8 and pointer offset
+  38.7,28.7 where the transform gives 38,28 and 38.7,28.7; D pointer offset
+  46.6,18.4 against 46.7,18.4 from the rotation;
+  nested view touch 7.7,9.7 and pointer offset 9,11 from a known origin.
+  [scaled](one-linux-native-pointer-coords-scaled.png),
+  [rotated](one-linux-native-pointer-coords-rotated.png),
+  [nested](one-linux-native-pointer-coords-nested.png). The host sends no
+  `pointerdown`, `pointermove` or `pointerup` yet, only over, out, enter and
+  leave.
 - **Multiline `TextInput` (M2):** `multiline` shows a `GtkTextView` (in a
   scrolled window, word wrapped) instead of the `GtkText`; both live in a
   `GtkStack` the view owns, and the same controlled protocol, focus, key,

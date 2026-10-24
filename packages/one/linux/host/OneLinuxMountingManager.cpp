@@ -308,6 +308,10 @@ void OneLinuxMountingManager::attachSurface(SurfaceId surfaceId, OneView *surfac
       [this](Tag tag) -> std::shared_ptr<const EventEmitter> {
         auto it = records_.find(tag);
         return it == records_.end() ? nullptr : it->second->eventEmitter;
+      },
+      [this](Tag tag) -> OneView * {
+        auto it = records_.find(tag);
+        return it == records_.end() ? nullptr : it->second->view;
       });
 }
 

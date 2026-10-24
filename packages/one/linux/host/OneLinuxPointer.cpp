@@ -5,6 +5,7 @@
 
 #include <cstring>
 #include <string>
+#include <vector>
 
 namespace facebook::react {
 
@@ -56,8 +57,8 @@ const char *cursorName(Cursor cursor)
 
 } // namespace
 
-OneLinuxPointerHandler::OneLinuxPointerHandler(OneView *surface, Describe describe, EmitterFor emitterFor)
-    : surface_(surface), describe_(std::move(describe)), emitterFor_(std::move(emitterFor))
+OneLinuxPointerHandler::OneLinuxPointerHandler(OneView *surface, Describe describe, EmitterFor emitterFor, ViewFor viewFor)
+    : surface_(surface), describe_(std::move(describe)), emitterFor_(std::move(emitterFor)), viewFor_(std::move(viewFor))
 {
   // capture phase and never claims the event, so controls inside a view (the
   // switch) still get their own clicks
@@ -146,6 +147,38 @@ OneView *OneLinuxPointerHandler::hitTest(
   return nullptr;
 }
 
+// a window point in the coordinates of the view with `tag`: down from the
+// surface through each view's frame and transform, plus the scroll offset where
+// the step enters a scroll view's content, the same steps hit testing takes
+bool OneLinuxPointerHandler::localPoint(Tag tag, double x, double y, double &localX, double &localY)
+{
+  OneView *view = viewFor_(tag);
+  if (!view) {
+    return false;
+  }
+  std::vector<OneView *> path;
+  for (GtkWidget *widget = GTK_WIDGET(view); widget && widget != GTK_WIDGET(surface_); widget = gtk_widget_get_parent(widget)) {
+    if (ONE_IS_VIEW(widget)) {
+      path.push_back(ONE_VIEW(widget));
+    }
+  }
+  OneView *parent = surface_;
+  for (auto step = path.rbegin(); step != path.rend(); ++step) {
+    if (one_view_get_scroll_content(parent) == *step) {
+      double scrollX, scrollY;
+      one_view_get_scroll_offset(parent, &scrollX, &scrollY);
+      x += scrollX;
+      y += scrollY;
+    } else if (!one_view_map_from_parent(*step, x, y, &x, &y)) {
+      return false;
+    }
+    parent = *step;
+  }
+  localX = x;
+  localY = y;
+  return true;
+}
+
 void OneLinuxPointerHandler::sendPointer(Tag tag, const char *type, double x, double y)
 {
   auto emitter = std::static_pointer_cast<const TouchEventEmitter>(emitterFor_(tag));
@@ -158,7 +191,9 @@ void OneLinuxPointerHandler::sendPointer(Tag tag, const char *type, double x, do
   event.pressure = touching_ ? 0.5f : 0.0f;
   event.clientPoint = {static_cast<Float>(x), static_cast<Float>(y)};
   event.screenPoint = event.clientPoint;
-  event.offsetPoint = event.clientPoint;
+  double localX = x, localY = y;
+  localPoint(tag, x, y, localX, localY);
+  event.offsetPoint = {static_cast<Float>(localX), static_cast<Float>(localY)};
   event.width = 1;
   event.height = 1;
   event.buttons = touching_ ? 1 : 0;
@@ -239,7 +274,9 @@ void OneLinuxPointerHandler::send(const char *phase, double x, double y, bool st
   Touch touch;
   touch.target = touchTarget_;
   touch.pagePoint = {static_cast<Float>(x), static_cast<Float>(y)};
-  touch.offsetPoint = {static_cast<Float>(x - targetOriginX_), static_cast<Float>(y - targetOriginY_)};
+  double localX = x, localY = y;
+  localPoint(touchTarget_, x, y, localX, localY);
+  touch.offsetPoint = {static_cast<Float>(localX), static_cast<Float>(localY)};
   // wayland gives clients no global position, so the screen point is the window point
   touch.screenPoint = touch.pagePoint;
   touch.identifier = 0;
@@ -304,8 +341,6 @@ bool OneLinuxPointerHandler::handle(GdkEvent *event)
     }
     touching_ = true;
     touchTarget_ = target.tag;
-    targetOriginX_ = x - localX;
-    targetOriginY_ = y - localY;
     send("start", x, y, true);
   } else if (touching_ && type == GDK_MOTION_NOTIFY) {
     send("move", x, y, true);
