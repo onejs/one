@@ -8,22 +8,22 @@ export type {
   OneDevtoolsPlugin,
 } from './devtools'
 export { One } from './one'
-export { AESEncryptionKey, AESSealedData } from './platform'
+export { AESEncryptionKey, AESSealedData } from './platform/crypto/index'
 // native hooks and adaptive reads are named exports for react-hooks lint.
+export { useFonts } from './platform/fonts'
+export { useKeepAwake } from './platform/keep-awake/index'
+export { useNativeState } from './platform/nativeState'
+export { useNetworkState } from './platform/network'
+export { useLocales, useCalendars } from './platform/localization'
+export { usePreventScreenCapture } from './platform/screen-capture/index'
+export { useAudioPlayer, useAudioPlayerStatus } from './platform/audio/hooks'
 export {
-  useFonts,
-  useKeepAwake,
-  useNativeState,
-  useNetworkState,
-  useLocales,
-  useCalendars,
-  usePreventScreenCapture,
-  useAudioPlayer,
-  useAudioPlayerStatus,
   useBatteryLevel,
   useBatteryState,
   useLowPowerMode,
   usePowerState,
+} from './platform/battery'
+export {
   useSizeClass,
   getSizeClass,
   useHinge,
@@ -33,7 +33,7 @@ export {
   useReservedRegionsReady,
   useWindowSegments,
   useSpanning,
-} from './platform'
+} from './platform/adaptive/index'
 export type {
   PortalProps,
   PortalHostProps,

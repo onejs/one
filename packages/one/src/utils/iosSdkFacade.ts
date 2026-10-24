@@ -4,7 +4,7 @@ import { dirname, join } from 'node:path'
 
 // these generated facades ship with One. prebuild compiles the native tables
 // on the Mac builder; bundling javascript does not need that builder's SDK.
-export const IOS_FACADES = 'ios-bindings'
+export const IOS_FACADES = 'dist/esm/ios'
 
 const IMPORT = /^one\/ios\/([A-Za-z_][A-Za-z0-9_]*)$/
 
@@ -23,7 +23,7 @@ export function resolveIosSdkImport(
     )
   }
   const packageRoot = dirname(createRequire(join(root, 'package.json')).resolve('one/package.json'))
-  const file = join(packageRoot, IOS_FACADES, `${match[1]}.ts`)
+  const file = join(packageRoot, IOS_FACADES, `${match[1]}.native.js`)
   if (!existsSync(file)) {
     throw new Error(
       `[one] ${source} is not included in the installed One SDK bindings (imported by ${importer ?? 'an entry'})`
