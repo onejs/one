@@ -8,7 +8,7 @@
     "store": {
       "frameworks": ["StoreKit"],
       "components": ["OneNativeProductView", "OneNativeStoreView", "OneNativeSubscriptionStoreView"],
-      "hybrids": ["OnePurchases"]
+      "hybrids": ["OnePurchases", "OneStoreReview"]
     },
     "account": {
       "frameworks": ["AuthenticationServices", "SafariServices"],

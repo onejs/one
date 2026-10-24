@@ -34,6 +34,7 @@
 #include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
 #include "HybridOneStorage.hpp"
+#include "HybridOneStoreReviewSpecSwift.hpp"
 #include "HybridOneQuickActionsSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
 #include "HybridOneFileSystemSpecSwift.hpp"
@@ -246,6 +247,15 @@
       return std::make_shared<HybridOneStorage>();
     }
   );
+#if ONE_GROUP_STORE
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneStoreReview",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneStoreReviewSpec> hybridObject = One::OneAutolinking::createOneStoreReview();
+      return hybridObject;
+    }
+  );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneQuickActions",
     []() -> std::shared_ptr<HybridObject> {
