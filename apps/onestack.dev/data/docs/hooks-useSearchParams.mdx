@@ -88,11 +88,11 @@ export function Table() {
 }
 ```
 
-The schema receives every query key as a string, or as an array of strings when the key repeats, so a schema that wants an array should accept both forms. Path params are not included. The `{ global }` option works the same as above.
+The schema receives every query key as a string, or as an array of strings when the key repeats, so a schema that wants an array should accept both forms. Only keys that are in the route's query are included. Path params (including a catch-all) and the hash are left out, whether the hook is in a page or in a layout. The `{ global }` option works the same as above.
 
 ### Updating
 
-`update(partial, { replace? })` merges into the current URL and navigates with `router.push`, or `router.replace` with `{ replace: true }`. Path params, other query keys and the hash are kept. A value of `null` or `undefined` removes that key.
+`update(partial, { replace? })` merges into the current URL and navigates with `router.push`, or `router.replace` with `{ replace: true }`. Path params, other query keys and the hash are kept. A value of `null` or `undefined` removes that key. A screen that is mounted but not focused, such as a hidden tab, writes to its own route and does not carry the focused screen's hash.
 
 A schema cannot turn a value back into text, so values are written by one rule: a string, number or boolean is written as is, and an array of those becomes a repeated key. For a field whose output is not one of these (a `Date` for instance) the update takes the schema's input type, which is the text the schema reads. Anything else throws a `TypeError`.
 
@@ -100,7 +100,7 @@ A schema cannot turn a value back into text, so values are written by one rule: 
 
 If the schema rejects the URL, `useSearchParams` throws a `SearchValidationError` while rendering, so the nearest error boundary handles it and the rest of the page is unaffected. Schemas that use `.default` or `.catch` read a bad URL as a good one.
 
-Validation is synchronous. A schema that returns a promise throws a `TypeError`.
+Validation is synchronous. A schema that returns a promise throws a `TypeError`. Earlier drafts let an async schema pass silently.
 
 ### Typed Link
 
@@ -119,6 +119,14 @@ A route's keys come from the schemas used by that route file, its layouts, and e
 Discovery reads source text and does not run your code, so a schema has to be an exported `const` (or imported from one) for One to see it. A call it cannot follow, such as an inline schema, is reported once in the terminal and leaves that route's links untyped. Dynamic `href` strings are untyped as well.
 
 Keys are plain and flat (`?page=2`), and arrays are repeated keys (`?tags=a&tags=b`).
+
+### URL encoding of arrays
+
+An array search param is now written as repeated keys everywhere the router builds a URL, because that is the only form that reads back as the same array. Before, `router.push({ pathname, params: { tags: ['a', 'b'] } })` could not round-trip through the address bar. This is a visible URL change for apps that pass arrays as search params, so it ships in a minor release.
+
+`Link` `params` is unchanged and still joins an array with commas, so `params={{ tags: ['a', 'b'] }}` is the single string `a,b`. Use `searchParams` on `Link` for repeated keys.
+
+Typed `Link` discovery reads `paths` from your tsconfig and from a tsconfig it extends by relative path, but not from one it extends from a package.
 
 ## Global Option
 

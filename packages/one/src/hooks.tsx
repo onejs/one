@@ -2,14 +2,19 @@ import React, { createContext, useContext } from 'react'
 import { isNative } from './constants'
 import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
-import { RouteParamsContext, useRouteNode, useRouteNodes } from './router/Route'
+import { RouteParamsContext, useRouteNode } from './router/Route'
 import { mergeDynamicParams } from './router/params'
 import {
   getPathnameWithRecoveredDynamicSegment,
   normalizeRoutePathname,
 } from './router/path'
 import { RouteInfoContext } from './router/RouteInfoContext'
-import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
+import {
+  navigationRef,
+  routeInfo as activeRouteInfo,
+  useStoreRootState,
+  useStoreRouteInfo,
+} from './router/router'
 import {
   mergeSearchRecord,
   parseSearchRecord,
@@ -344,15 +349,10 @@ function useSearchParamsSchema<Schema extends StandardSchemaV1<unknown, object>>
   // biome-ignore lint/correctness/useHookAtTopLevel: global option is stable (validated above)
   const params = global ? useActiveParams() : useParams()
   const pathname = usePathname()
-  const routeNodes = useRouteNodes()
+  const { unstable_globalHref: href, pathname: routePathname } = useRouteInfo()
 
-  // path params ride in the same params object as the query: keep them out of the schema
-  const record = React.useMemo(() => {
-    const pathParamNames = new Set(
-      routeNodes.flatMap((node) => node.dynamic?.map((segment) => segment.name) ?? [])
-    )
-    return toSearchRecord(params, pathParamNames)
-  }, [params, routeNodes])
+  // path params ride in the same params object as the query: keep only what the href queries
+  const record = React.useMemo(() => toSearchRecord(params, href), [params, href])
   const recordKey = searchRecordKey(record)
 
   const output = React.useMemo(
@@ -376,7 +376,8 @@ function useSearchParamsSchema<Schema extends StandardSchemaV1<unknown, object>>
       )
       latest.current = { key: latest.current.key, record: next }
       const query = stringifySearchRecord(next)
-      const hash = isNative ? '' : window.location.hash
+      // the hash belongs to the focused url: an unfocused screen writes its own route without it
+      const hash = isNative || activeRouteInfo?.pathname !== routePathname ? '' : window.location.hash
       const href = `${pathname}${query ? `?${query}` : ''}${hash}`
       if (options?.replace) {
         router.replace(href as OneRouter.Href)
@@ -384,7 +385,7 @@ function useSearchParamsSchema<Schema extends StandardSchemaV1<unknown, object>>
         router.push(href as OneRouter.Href)
       }
     },
-    [pathname]
+    [pathname, routePathname]
   )
 
   return [output, update] as const

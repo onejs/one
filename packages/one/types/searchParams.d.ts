@@ -34,8 +34,12 @@ export type UseSearchParamsSchemaResult<Schema extends StandardSchemaV1> = reado
     StandardSchemaV1.InferOutput<Schema>,
     (update: SearchParamsUpdate<Schema>, options?: SearchParamsUpdateOptions) => void
 ];
-/** Keeps the query of a params object: drops path params and unset values. */
-export declare function toSearchRecord(params: Record<string, unknown>, pathParamNames: ReadonlySet<string>): SearchRecord;
+/**
+ * Keeps the query of a params object. Path params, the hash and navigator keys ride
+ * in the same object, but the route's href only carries the query, so its keys say
+ * which entries to keep.
+ */
+export declare function toSearchRecord(params: Record<string, unknown>, href: string): SearchRecord;
 export declare function searchRecordKey(record: SearchRecord): string;
 export declare function parseSearchRecord<Schema extends StandardSchemaV1>(schema: Schema, record: SearchRecord): StandardSchemaV1.InferOutput<Schema>;
 /**
