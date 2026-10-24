@@ -13,3 +13,40 @@ const url = getURL()
 ```
 
 For example, in dev-mode by default this would be a string of `http://127.0.0.1:8081`. In non-development environments you will need to set `process.env.ONE_SERVER_URL` to your production URL with no trailing `/`.
+
+## Hosting a native application
+
+A native host that runs one application at a time can set that application's
+server URL before evaluating its modules. Both applications must share the same
+`one` module instance. Calls to native `getURL()`, including calls in module
+initializers, use the active context until cleanup restores the host's normal
+URL behavior. Web and server `getURL()` are unaffected.
+
+```tsx
+import { setNativeApplicationContext } from 'one'
+
+const cleanup = setNativeApplicationContext({ serverURL: 'https://guest.example.com' })
+try {
+  // evaluate and mount the guest with the context already active
+  evaluateAndMountGuest()
+} catch (error) {
+  cleanup()
+  throw error
+}
+
+// on exit or before evaluating a reload:
+unmountAndStopGuest()
+cleanup()
+```
+
+`serverURL` must be an absolute HTTP(S) base URL without a query or fragment.
+Trailing slashes are removed. A second activation throws until the first context
+is cleaned up. Cleanup is safe to call more than once; an old cleanup cannot
+clear a later application's context.
+
+The host must unmount its own root and stop its application work before activation,
+then unmount the guest and stop its work before cleanup. This is a runtime-wide
+URL scope, so it does not isolate concurrent roots, background tasks, captured
+URLs, authentication, data clients, or router state. Dispose application-owned
+clients and subscriptions as part of stopping the application. Cleanup cannot
+change a URL already captured by a module; reloads must evaluate fresh guest modules.
