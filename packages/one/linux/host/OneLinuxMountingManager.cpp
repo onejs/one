@@ -1,5 +1,6 @@
 #include "OneLinuxMountingManager.h"
 
+#include <react/renderer/components/iostextinput/TextInputComponentDescriptor.h>
 #include <react/renderer/components/root/RootComponentDescriptor.h>
 #include <react/renderer/components/scrollview/ScrollViewComponentDescriptor.h>
 #include <react/renderer/components/scrollview/ScrollViewEventEmitter.h>
@@ -15,12 +16,14 @@
 #include <react/renderer/mounting/ShadowView.h>
 
 #include <algorithm>
+#include <cmath>
 #include <vector>
 
 #include <OneLinuxSwitch/OneLinuxSwitchComponentDescriptor.h>
 
 #include "OneLinuxRuntime.h"
 #include "OneLinuxText.h"
+#include "OneLinuxTextInput.h"
 
 namespace facebook::react {
 
@@ -37,6 +40,7 @@ const std::vector<ComponentDescriptorProvider> &componentProviders()
       concreteComponentDescriptorProvider<TextComponentDescriptor>(),
       concreteComponentDescriptorProvider<RawTextComponentDescriptor>(),
       concreteComponentDescriptorProvider<OneLinuxSwitchComponentDescriptor>(),
+      concreteComponentDescriptorProvider<TextInputComponentDescriptor>(),
   };
   return providers;
 }
@@ -72,6 +76,8 @@ struct OneLinuxMountingManager::Record {
   bool scrollEnabled{true};
   gint64 lastScrollEvent{0};
   guint commitSource{0};
+  std::unique_ptr<OneLinuxTextInput> input;
+  TextInputShadowNode::ConcreteState::Shared inputState;
 };
 
 // a user toggle counts as a native event, which React acknowledges through the
@@ -166,6 +172,7 @@ void OneLinuxMountingManager::releaseRecord(Record &record)
     g_signal_handlers_disconnect_by_data(gtk_scrolled_window_get_hadjustment(scrollWindow), &record);
     g_signal_handlers_disconnect_by_data(gtk_scrolled_window_get_vadjustment(scrollWindow), &record);
   }
+  record.input.reset();
   one_view_set_owner(record.view, nullptr);
   g_object_unref(record.view);
 }
@@ -201,6 +208,11 @@ OneLinuxMountingManager::Record &OneLinuxMountingManager::createView(ComponentHa
     record->control = gtk_switch_new();
     one_view_set_control(record->view, record->control);
     g_signal_connect(record->control, "notify::active", G_CALLBACK(switchToggled), &stored);
+  }
+  if (handle == TextInputShadowNode::Handle()) {
+    record->input = std::make_unique<OneLinuxTextInput>(tag);
+    record->control = record->input->widget();
+    one_view_set_control(record->view, record->control);
   }
   if (handle == ScrollViewShadowNode::Handle()) {
     GtkWidget *scrollWindow = gtk_scrolled_window_new();
@@ -345,7 +357,7 @@ void OneLinuxMountingManager::restyle(Record &record)
   }
   one_view_set_clips(view, viewProps.getClipsContentToBounds());
 
-  if (record.control) {
+  if (record.handle == OneLinuxSwitchShadowNode::Handle()) {
     const auto &switchProps = static_cast<const OneLinuxSwitchProps &>(*record.props);
     if (switchProps.revision != record.controlRevision) {
       record.controlRevision = switchProps.revision;
@@ -357,6 +369,17 @@ void OneLinuxMountingManager::restyle(Record &record)
     record.applyingControl = true;
     gtk_switch_set_active(GTK_SWITCH(record.control), record.controlValue);
     record.applyingControl = false;
+  }
+
+  if (record.input) {
+    // the field sits in the content frame, inside the padding and border
+    const auto content = metrics.getContentFrame();
+    GtkWidget *field = record.input->widget();
+    gtk_widget_set_margin_start(field, std::lround(content.origin.x));
+    gtk_widget_set_margin_top(field, std::lround(content.origin.y));
+    gtk_widget_set_margin_end(field, std::max<long>(0, std::lround(metrics.frame.size.width - content.origin.x - content.size.width)));
+    gtk_widget_set_margin_bottom(field, std::max<long>(0, std::lround(metrics.frame.size.height - content.origin.y - content.size.height)));
+    record.input->update(record.props, record.eventEmitter, record.inputState, {static_cast<Float>(metrics.frame.size.width), static_cast<Float>(metrics.frame.size.height)});
   }
 
   if (record.scrollState) {
@@ -401,10 +424,17 @@ static ScrollEvent scrollEventFor(OneLinuxMountingManager::Record &record)
 void OneLinuxMountingManager::dispatchCommand(Tag tag, const std::string &name, const folly::dynamic &args)
 {
   auto it = records_.find(tag);
-  if (it == records_.end() || !it->second->scrollState) {
+  if (it == records_.end()) {
     return;
   }
   Record &record = *it->second;
+  if (record.input) {
+    record.input->command(name, args);
+    return;
+  }
+  if (!record.scrollState) {
+    return;
+  }
   auto *scrollWindow = GTK_SCROLLED_WINDOW(one_view_get_control(record.view));
   GtkAdjustment *horizontal = gtk_scrolled_window_get_hadjustment(scrollWindow);
   GtkAdjustment *vertical = gtk_scrolled_window_get_vadjustment(scrollWindow);
@@ -454,6 +484,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         record.layoutMetrics = child.layoutMetrics;
         record.paragraphState = std::dynamic_pointer_cast<const ParagraphShadowNode::ConcreteState>(child.state);
         record.scrollState = std::dynamic_pointer_cast<const ScrollViewShadowNode::ConcreteState>(child.state);
+        record.inputState = std::dynamic_pointer_cast<const TextInputShadowNode::ConcreteState>(child.state);
         restyle(record);
         one_view_insert_child(parentIt->second->container, record.view, mutation.index);
         hasContent_ = true;
@@ -489,6 +520,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         if (oldChild.state != newChild.state) {
           record.paragraphState = std::dynamic_pointer_cast<const ParagraphShadowNode::ConcreteState>(newChild.state);
           record.scrollState = std::dynamic_pointer_cast<const ScrollViewShadowNode::ConcreteState>(newChild.state);
+          record.inputState = std::dynamic_pointer_cast<const TextInputShadowNode::ConcreteState>(newChild.state);
           changed = true;
         }
         if (changed) {

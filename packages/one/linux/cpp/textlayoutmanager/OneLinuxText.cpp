@@ -212,4 +212,17 @@ PangoLayout *OneLinuxCreateLayout(
   return layout;
 }
 
+PangoAttrList *OneLinuxCreateFieldAttributes(const TextAttributes &attributes)
+{
+  PangoAttrList *list = pango_attr_list_new();
+  PangoFontDescription *description = fontDescription(attributes);
+  pango_attr_list_insert(list, pango_attr_font_desc_new(description));
+  pango_font_description_free(description);
+  if (attributes.foregroundColor) {
+    double opacity = std::isnan(attributes.opacity) ? 1 : attributes.opacity;
+    addColor(list, attributes.foregroundColor, opacity, 0, G_MAXUINT, true);
+  }
+  return list;
+}
+
 } // namespace facebook::react

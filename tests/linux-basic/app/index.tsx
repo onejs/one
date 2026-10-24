@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Platform, Pressable, ScrollView, Text, View } from 'react-native'
+import { Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native'
 import { One } from 'one'
 import { probe } from '../probe/resolution'
 
@@ -7,6 +7,8 @@ export default function Index() {
   const [isOn, setIsOn] = useState(false)
   const [count, setCount] = useState(0)
   const [offset, setOffset] = useState(0)
+  const [name, setName] = useState('')
+  const [focused, setFocused] = useState(false)
   return (
     <View style={{ flex: 1, padding: 24, backgroundColor: '#f4f1ea' }}>
       <Text testID="linux-label" style={{ fontSize: 32, fontWeight: '700', color: '#1f1d1a' }}>
@@ -36,6 +38,30 @@ export default function Index() {
         </Pressable>
         <Text testID="linux-count" style={{ fontSize: 20, marginLeft: 12, color: '#1f1d1a' }}>
           {`pressed ${count} times`}
+        </Text>
+      </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 24 }}>
+        <TextInput
+          testID="linux-input"
+          value={name}
+          onChangeText={setName}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          placeholder="type here"
+          style={{
+            width: 200,
+            height: 40,
+            paddingHorizontal: 10,
+            fontSize: 18,
+            color: '#1f1d1a',
+            borderWidth: 1,
+            borderRadius: 8,
+            borderColor: focused ? '#2b6cb0' : '#c9c2b2',
+            backgroundColor: '#ffffff',
+          }}
+        />
+        <Text testID="linux-echo" style={{ fontSize: 20, marginLeft: 12, color: '#1f1d1a' }}>
+          {`typed "${name}"`}
         </Text>
       </View>
       <Text testID="linux-offset" style={{ fontSize: 16, marginTop: 24, color: '#5f5a50' }}>

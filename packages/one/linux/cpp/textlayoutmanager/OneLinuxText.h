@@ -4,6 +4,7 @@
 
 #include <react/renderer/attributedstring/AttributedString.h>
 #include <react/renderer/attributedstring/ParagraphAttributes.h>
+#include <react/renderer/attributedstring/TextAttributes.h>
 
 namespace facebook::react {
 
@@ -16,5 +17,9 @@ PangoLayout *OneLinuxCreateLayout(
     const ParagraphAttributes &paragraphAttributes,
     double width,
     bool applyAlignment);
+
+// The font and color of an editable field's text as one attribute list for
+// GtkText, covering the whole text. The caller owns the returned list.
+PangoAttrList *OneLinuxCreateFieldAttributes(const TextAttributes &attributes);
 
 } // namespace facebook::react

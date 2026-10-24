@@ -139,6 +139,7 @@ add_executable(one-linux
   ${ONE_LINUX}/host/OneLinuxPointer.cpp
   ${ONE_LINUX}/host/OneLinuxRuntime.cpp
   ${ONE_LINUX}/host/OneLinuxStartup.cpp
+  ${ONE_LINUX}/host/OneLinuxTextInput.cpp
   ${ONE_LINUX}/host/OneLinuxWorklets.cpp
   ${ONE_LINUX}/host/OneLinuxView.cpp
 )

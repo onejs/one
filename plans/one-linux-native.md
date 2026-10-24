@@ -321,5 +321,32 @@ machine and build as the press proof; the wheel is a uinput device.
   or momentum events, content insets, animated `scrollTo`, `RefreshControl`, or
   sticky headers.
 
+**M2 text input, 2026-10-23.** `TextInput` runs on a `GtkText`. Proof:
+[before](one-linux-native-input-before.png) and
+[after typing "hello world", two backspaces and Enter](one-linux-native-input-after.png)
+(the echo label reads `typed "hello wor"`, the border went blue on focus and back
+to grey when Enter blurred it). Real key events came from a uinput keyboard under
+sway on the studio-64 VM.
+
+- `OneLinuxTextInput` follows the controlled protocol the Mac host follows: each
+  user edit bumps an event count, calls `onChange`, and writes the text into the
+  shadow node state with that count; React's text only replaces the field's when the
+  state carries the same count, and programmatic changes never report.
+- Events: `onFocus`, `onEndEditing` then `onBlur`, `onSelectionChange` (utf16
+  ranges), `onKeyPress` (Backspace, Enter, Tab, Escape or the typed character),
+  `onSubmitEditing` honoring `submitBehavior` (BlurAndSubmit blurs), and
+  `onContentSizeChange`. Commands: `focus`, `blur`, `setTextAndSelection`.
+  Props: `editable`, `readOnly`, `secureTextEntry`, `maxLength` (counted in
+  characters, not utf16 units), `placeholder`, `selection`, `autoFocus`, font,
+  color and alignment. The field sits in the content frame, so padding and borders
+  from the style apply.
+- A view is no longer `can-focus` false, only not `focusable`: GTK 4 treats
+  `can-focus` false as "no descendant takes focus", which stopped the field from
+  ever getting it.
+- Gaps: no multiline (`GtkTextView`), `placeholderTextColor`, `cursorColor`,
+  `selectionColor`, `autoCapitalize`, input method position hints, or drag and
+  drop. Typed text sits about 6 px higher in a 40 px field than the placeholder
+  does; not yet understood.
+
 **Next:** M2: pointer events on views, scroll, text input, transforms, images,
 dark mode, and the Networking gaps above.

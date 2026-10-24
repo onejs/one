@@ -159,7 +159,8 @@ static void one_view_class_init(OneViewClass *klass)
 
 static void one_view_init(OneView *view)
 {
-  gtk_widget_set_can_focus(GTK_WIDGET(view), FALSE);
+  // a view is never the focus itself, but a field inside it must still be able to take it
+  gtk_widget_set_focusable(GTK_WIDGET(view), FALSE);
 }
 
 OneView *one_view_new(void)
