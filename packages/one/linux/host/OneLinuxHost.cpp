@@ -118,6 +118,9 @@ void OneLinuxHost::start()
     if (name == "WorkletsModule") {
       return OneLinuxCreateWorkletsModule(runtime, std::move(jsInvoker), moduleContext.isJavaScriptQueue);
     }
+    if (name == "Networking") {
+      return OneLinuxCreateNetworkingModule(std::move(jsInvoker), moduleContext);
+    }
     if (name == "WebSocketModule") {
       return OneLinuxCreateWebSocketModule(std::move(jsInvoker), moduleContext);
     }

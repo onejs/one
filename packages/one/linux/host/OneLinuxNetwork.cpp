@@ -2,6 +2,7 @@
 
 #include <libsoup/soup.h>
 
+#include <atomic>
 #include <map>
 #include <vector>
 
@@ -234,6 +235,172 @@ class WebSockets : public std::enable_shared_from_this<WebSockets> {
   std::map<int, std::unique_ptr<Socket>> sockets_;
 };
 
+// XMLHttpRequest and fetch requests on libsoup. Responses arrive whole, so
+// incremental updates and blob responses are not provided. Main thread only.
+class HttpRequests : public std::enable_shared_from_this<HttpRequests> {
+ public:
+  explicit HttpRequests(std::function<void(const std::string &, folly::dynamic)> emit) : emit_(std::move(emit)) {}
+
+  ~HttpRequests()
+  {
+    auto pending = std::make_shared<decltype(pending_)>(std::move(pending_));
+    OneLinuxDispatchMain([pending] {
+      for (auto &entry : *pending) {
+        g_cancellable_cancel(entry.second);
+        g_object_unref(entry.second);
+      }
+    });
+  }
+
+  int nextId() { return ++nextId_; }
+
+  void send(int id, folly::dynamic query)
+  {
+    OneLinuxDispatchMain([weak = weak_from_this(), id, query = std::move(query)] {
+      if (auto self = weak.lock()) {
+        self->sendOnMain(id, query);
+      }
+    });
+  }
+
+  void abort(int id)
+  {
+    OneLinuxDispatchMain([weak = weak_from_this(), id] {
+      if (auto self = weak.lock()) {
+        auto it = self->pending_.find(id);
+        if (it != self->pending_.end()) {
+          g_cancellable_cancel(it->second);
+        }
+      }
+    });
+  }
+
+ private:
+  struct Request {
+    std::weak_ptr<HttpRequests> owner;
+    int id;
+    SoupMessage *message;
+    std::string responseType;
+  };
+
+  void complete(int id, const folly::dynamic &error, bool timedOut)
+  {
+    emit_("didCompleteNetworkResponse", folly::dynamic::array(id, error, timedOut));
+  }
+
+  void sendOnMain(int id, const folly::dynamic &query)
+  {
+    std::string url = query.getDefault("url", "").asString();
+    std::string type = query.getDefault("responseType", "text").asString();
+    SoupMessage *message = nullptr;
+    if (url.rfind("http://", 0) == 0 || url.rfind("https://", 0) == 0) {
+      message = soup_message_new(query.getDefault("method", "GET").asString().c_str(), url.c_str());
+    }
+    if (!message) {
+      complete(id, "Invalid HTTP URL", false);
+      return;
+    }
+    if (type != "text" && type != "base64") {
+      g_object_unref(message);
+      complete(id, "Unsupported networking response type", false);
+      return;
+    }
+    SoupMessageHeaders *headers = soup_message_get_request_headers(message);
+    if (auto it = query.find("headers"); it != query.items().end() && it->second.isObject()) {
+      for (const auto &header : it->second.items()) {
+        soup_message_headers_replace(headers, header.first.asString().c_str(), header.second.asString().c_str());
+      }
+    }
+    if (auto it = query.find("data"); it != query.items().end() && it->second.isObject()) {
+      const auto &body = it->second;
+      GBytes *bytes = nullptr;
+      if (auto text = body.find("string"); text != body.items().end() && text->second.isString()) {
+        bytes = g_bytes_new(text->second.getString().data(), text->second.getString().size());
+      } else if (auto data = body.find("base64"); data != body.items().end() && data->second.isString()) {
+        gsize length = 0;
+        guchar *decoded = g_base64_decode(data->second.getString().c_str(), &length);
+        bytes = g_bytes_new_take(decoded, length);
+      } else if (body.find("blob") != body.items().end() || body.find("uri") != body.items().end() ||
+                 body.find("formData") != body.items().end()) {
+        g_object_unref(message);
+        complete(id, "Unsupported networking request body", false);
+        return;
+      }
+      if (bytes) {
+        const char *contentType = soup_message_headers_get_one(headers, "Content-Type");
+        soup_message_set_request_body_from_bytes(message, contentType, bytes);
+        g_bytes_unref(bytes);
+      }
+    }
+    GCancellable *cancellable = g_cancellable_new();
+    pending_[id] = cancellable;
+    soup_session_send_and_read_async(
+        session(), message, G_PRIORITY_DEFAULT, cancellable,
+        [](GObject *, GAsyncResult *result, gpointer data) {
+          std::unique_ptr<Request> request(static_cast<Request *>(data));
+          GError *error = nullptr;
+          GBytes *bytes = soup_session_send_and_read_finish(session(), result, &error);
+          auto owner = request->owner.lock();
+          if (owner) {
+            if (auto it = owner->pending_.find(request->id); it != owner->pending_.end()) {
+              g_object_unref(it->second);
+              owner->pending_.erase(it);
+            }
+          }
+          if (owner && bytes) {
+            owner->finish(*request, bytes);
+          } else if (owner) {
+            bool timedOut = g_error_matches(error, G_IO_ERROR, G_IO_ERROR_TIMED_OUT);
+            owner->complete(request->id, error->message, timedOut);
+          }
+          if (error) {
+            g_error_free(error);
+          }
+          if (bytes) {
+            g_bytes_unref(bytes);
+          }
+          g_object_unref(request->message);
+        },
+        new Request{weak_from_this(), id, message, type});
+  }
+
+  void finish(const Request &request, GBytes *bytes)
+  {
+    SoupMessage *message = request.message;
+    folly::dynamic headers = folly::dynamic::object();
+    soup_message_headers_foreach(
+        soup_message_get_response_headers(message),
+        [](const char *name, const char *value, gpointer data) {
+          auto &map = *static_cast<folly::dynamic *>(data);
+          map[name] = value;
+        },
+        &headers);
+    GUri *uri = soup_message_get_uri(message);
+    gchar *responseUrl = g_uri_to_string(uri);
+    emit_(
+        "didReceiveNetworkResponse",
+        folly::dynamic::array(request.id, static_cast<int>(soup_message_get_status(message)), std::move(headers), std::string(responseUrl)));
+    g_free(responseUrl);
+    gsize length = 0;
+    const char *body = static_cast<const char *>(g_bytes_get_data(bytes, &length));
+    if (request.responseType == "base64") {
+      gchar *encoded = g_base64_encode(reinterpret_cast<const guchar *>(body), length);
+      emit_("didReceiveNetworkData", folly::dynamic::array(request.id, std::string(encoded)));
+      g_free(encoded);
+      complete(request.id, nullptr, false);
+    } else if (g_utf8_validate(body, length, nullptr)) {
+      emit_("didReceiveNetworkData", folly::dynamic::array(request.id, std::string(body, length)));
+      complete(request.id, nullptr, false);
+    } else {
+      complete(request.id, "Response text could not be decoded", false);
+    }
+  }
+
+  std::function<void(const std::string &, folly::dynamic)> emit_;
+  std::map<int, GCancellable *> pending_;
+  std::atomic<int> nextId_{0};
+};
+
 } // namespace
 
 GCancellable *OneLinuxFetchScript(
@@ -286,6 +453,36 @@ std::shared_ptr<OneHostModule> OneLinuxCreateWebSocketModule(
     return jsi::Value::undefined();
   });
   addEventEmitterStubs(*module);
+  return module;
+}
+
+std::shared_ptr<OneHostModule> OneLinuxCreateNetworkingModule(
+    std::shared_ptr<CallInvoker> jsInvoker,
+    const OneHostModuleContext &context)
+{
+  auto module = std::make_shared<OneHostModule>("Networking", std::move(jsInvoker));
+  auto requests = std::make_shared<HttpRequests>(context.emitDeviceEvent);
+  addEventEmitterStubs(*module);
+  module->method("sendRequest", 2, [requests](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    if (count < 2) {
+      throw jsi::JSError(rt, "Networking.sendRequest requires a query and callback");
+    }
+    folly::dynamic query = jsi::dynamicFromValue(rt, args[0]);
+    int id = requests->nextId();
+    args[1].getObject(rt).getFunction(rt).call(rt, static_cast<double>(id));
+    requests->send(id, std::move(query));
+    return jsi::Value::undefined();
+  });
+  module->method("abortRequest", 1, [requests](jsi::Runtime &, const jsi::Value *args, size_t count) {
+    requests->abort(static_cast<int>(numberArg(args, count, 0)));
+    return jsi::Value::undefined();
+  });
+  module->method("clearCookies", 1, [](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    if (count) {
+      args[0].getObject(rt).getFunction(rt).call(rt, false);
+    }
+    return jsi::Value::undefined();
+  });
   return module;
 }
 

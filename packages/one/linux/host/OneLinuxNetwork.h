@@ -22,4 +22,10 @@ std::shared_ptr<OneHostModule> OneLinuxCreateWebSocketModule(
     std::shared_ptr<CallInvoker> jsInvoker,
     const OneHostModuleContext &context);
 
+// XMLHttpRequest and fetch over libsoup: text and base64 responses, string and
+// base64 bodies
+std::shared_ptr<OneHostModule> OneLinuxCreateNetworkingModule(
+    std::shared_ptr<CallInvoker> jsInvoker,
+    const OneHostModuleContext &context);
+
 } // namespace facebook::react

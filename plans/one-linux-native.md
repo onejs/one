@@ -197,9 +197,8 @@ line height, italic, underline, letter spacing, uppercase).
 
 Workarounds and gaps:
 
-1. The app is bundled for platform `ios` (Metro on the Mac, since the VM has no
-   node), because the `linux` JS platform does not exist yet. hermesc runs in
-   the VM. The bytecode in the release run came from the debug hermesc; the
+1. The app was bundled for platform `ios` (Metro on the Mac) at this point; the
+   real `linux` platform replaced it below. hermesc runs in the VM. The bytecode in the release run came from the debug hermesc; the
    format is the same, a release hermesc was not compared.
 2. The VM has no GPU, so GTK uses the software path and prints GL and a11y bus
    warnings.
@@ -210,7 +209,68 @@ Workarounds and gaps:
    or GTK controls yet.
 6. The `-include cstdint` workaround from the core slice still applies.
 
-**Next:** the `linux` JS platform in vxrn (`.linux.*` resolution, dev bundle,
-HMR socket) so the app bundles without the ios platform; the dev server with
-Fast Refresh; one GTK control round-tripping state through the controlled
-protocol; then M2 (pointer events, scroll, text input, transforms, dark mode).
+**M1 on the real `linux` platform, 2026-10-23.** The app bundles for platform
+`linux`, loads from the dev server with Fast Refresh, and a GTK switch
+round-trips React state. Machine: studio-64, Lima VM, headless sway and grim.
+Proof: [switch off](one-linux-native-linux-switch-off.png),
+[switch on](one-linux-native-linux-switch-on.png) (a pointer click on the GTK
+switch, then React renders "switch on"), and the debug host on the dev server
+[before](one-linux-native-linux-dev-before.png) and
+[after](one-linux-native-linux-dev-after.png) an edit to `app/index.tsx`
+(screenshotted after the first painted frame; Fast Refresh applied the edit
+without a restart). Mac host check after the shared host move:
+[one-linux-native-mac-host.png](one-linux-native-mac-host.png), a Release build
+of `tests/macos-basic` launched against its dev server.
+
+- **JS platform:** `linux` follows the `macos` change (484d81cd54). The shared
+  `NativePlatform` type, `.linux.*` then `.native.*` resolution, the react-native
+  internals resolve (the macOS resolver is now `desktopReactNativeResolve`), an
+  owned `Platform` with `Platform.OS === 'linux'`, `One.platform` including
+  `'linux'`, `/index.bundle?platform=linux`, and `one build --platform linux`.
+  The `.linux` counterparts of the `.macos` layout, split view, image and
+  adaptive files re-export the `.macos` ones. `tests/linux-basic` is the test
+  app. iOS, Android, web and macOS bundles were checked by diff review only,
+  no byte-for-byte bundle comparison; `one build --platform macos` still builds.
+  `bundle-js.sh js` now runs `one build --platform linux`, so the Metro proof app
+  `packages/one/linux/app/` is gone.
+- **Native modules the app needed:** the host now provides NitroModules, worklets
+  (TurboModule, UI scheduler on the GLib main context, 16 ms animation frames,
+  an unavailable networking backend), op-sqlite on the system sqlite
+  (`$XDG_DATA_HOME/one`), Linking through GIO, an ImageLoader that rejects,
+  WebSocketModule and Networking on libsoup 3 (text and base64 responses, string
+  and base64 bodies; no blob responses, form data, incremental updates or
+  timeouts), and the dev bundle URL download.
+- **Switch:** `OneLinuxSwitch` Fabric component with a `GtkSwitch` as the
+  OneView control, using the controlled protocol (`src/platform/controlled.ts`).
+  `OneView` takes pointer hits only over its children (a `contains` override),
+  because a non-targetable parent hid the switch from GTK picking.
+- **Startup of the real `linux` bundle** (release, bytecode, process start to
+  first frame with content, studio-64 VM, ms): 164.0, 172.7, 174.5, 179.6. The
+  first run after a VM boot was 3.0 s (cold page cache). That is about 45 ms
+  over the `ios` stand-in bundle (127 ms), from Nitro, worklets, op-sqlite and
+  the navigation modules in the bundle. The debug host on the dev server
+  downloads the bundle in about 6 s and mounts at about 21 s, nearly all of it
+  Hermes evaluating the unminified dev bundle.
+
+Workarounds and gaps:
+
+1. libstdc++ transitive headers: Nitro, worklets and op-sqlite sources compile
+   with `-include memory`, `unordered_map`, `iterator`, `algorithm` and a
+   `nullptr_t` shim (`cpp/compat/OneLinuxStdCompat.h`), on top of `cstdint`.
+   worklets `AsyncQueueImpl.cpp` uses Apple's one-argument `pthread_setname_np`,
+   so a force-included `cpp/compat/OneLinuxThreadName.h` maps it for that file.
+2. New VM packages: `libsoup-3.0-dev` and `libsqlite3-dev` (and sway, grim).
+3. The dev server rejects the hostname `host.lima.internal` (Vite
+   `allowedHosts`); the VM reaches it as `http://192.168.5.2:8098`.
+4. The switch measures at a fixed 46x26. A sway headless session has no pointer,
+   so the click test runs sway as root with the libinput backend and a uinput
+   device (ydotool), and moves and presses through `swaymsg seat - cursor`.
+5. No Blob, FileReader, ImageLoader, XHR timeout or form data modules. No
+   transforms, scroll views, text input, dark mode, or general pointer events
+   (a view's `onPress` does not work yet; only controls inside it do).
+6. The VM disk moved to `/Volumes/Samsung-1TB-990/lima/one-linux` with a symlink
+   at `~/.lima/one-linux` (studio-64 internal disk was at its floor). The VM
+   booted from the moved disk and kept its caches.
+
+**Next:** M2: pointer events on views, scroll, text input, transforms, images,
+dark mode, and the Networking gaps above.
