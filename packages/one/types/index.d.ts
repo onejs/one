@@ -53,6 +53,8 @@ export { onClientLoaderResolve } from './clientLoaderResolver';
 export { createMiddleware, type Middleware, type MiddlewareContext, } from './createMiddleware';
 export { createAPIRoute, type APIRouteContext, type APIRouteHandler, type WorkerContext, type WorkerEnv, type WorkerExecutionContext, } from './createAPIRoute';
 export { getURL } from './getURL';
+export { setNativeApplicationContext } from './nativeApplicationContext';
+export type { NativeApplicationContext } from './nativeApplicationContext';
 export { Head } from './head';
 export { useActiveParams, useGlobalSearchParams, useLocalSearchParams, useNavigationContainerRef, useParams, usePathname, useRootNavigationState, useRouter, useSearchParams, useSegments, useUnstableGlobalHref, } from './hooks';
 export { href } from './href';

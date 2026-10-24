@@ -163,6 +163,8 @@ export {
   type WorkerExecutionContext,
 } from './createAPIRoute'
 export { getURL } from './getURL'
+export { setNativeApplicationContext } from './nativeApplicationContext'
+export type { NativeApplicationContext } from './nativeApplicationContext'
 export { Head } from './head'
 // for easier expo-router migration
 export {

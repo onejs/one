@@ -6,6 +6,15 @@
 
 using namespace facebook::react;
 
+@interface OneNativePagerScrollView : UIScrollView
+@end
+
+@implementation OneNativePagerScrollView
+- (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated {
+  // match UIPageViewController's paging scroll view: reveals never move it between pages.
+}
+@end
+
 @interface OneNativePagerComponentView () <UIScrollViewDelegate, RCTOneNativePagerViewProtocol>
 @end
 
@@ -29,7 +38,7 @@ using namespace facebook::react;
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativePagerProps>();
     _pages = [NSMutableArray new];
-    _scroll = [UIScrollView new];
+    _scroll = [OneNativePagerScrollView new];
     _scroll.delegate = self;
     _scroll.pagingEnabled = YES;
     _scroll.directionalLockEnabled = YES;
