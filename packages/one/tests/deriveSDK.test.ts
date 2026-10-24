@@ -28,7 +28,7 @@ describe('SDK modifier derivation', () => {
     ).toEqual([
       { name: 'hidden', kind: 'boolean', type: '', ios: 0, zeroArgument: true },
       {
-        name: 'productIconBorder',
+        name: 'productIconBorder', frameworks: ['_StoreKit_SwiftUI'],
         kind: 'boolean',
         type: '',
         ios: 0,
@@ -229,7 +229,7 @@ describe('SDK modifier derivation', () => {
     expect(deriveModifiers([task, session, request], 27, [])).toEqual([])
     expect(deriveModifiers([task, session, request, response, sourceText, targetText], 27, []))
       .toEqual([{
-        name: 'translationTask', kind: 'sessionRequest', type: task.parameters[2].type,
+        name: 'translationTask', frameworks: ['_Translation_SwiftUI'], kind: 'sessionRequest', type: task.parameters[2].type,
         ios: 0, framework: 'Translation',
         sessionRequest: { method: 'translate', inputField: 'sourceText',
           outputFields: ['sourceText', 'targetText'], actionLabel: 'action',
@@ -277,7 +277,7 @@ describe('SDK modifier derivation', () => {
       kind: 'var', owner: 'PhotosPickerItem', type: 'Swift.String?' }
     expect(deriveModifiers([picker, item, types], 27, [])).toEqual([])
     expect(deriveModifiers([picker, item, load, types, identifier], 27, [])).toEqual([{
-      name: 'photosPicker', kind: 'transferSelection',
+      name: 'photosPicker', frameworks: ['_PhotosUI_SwiftUI'], kind: 'transferSelection',
       type: '_PhotosUI_SwiftUI.PhotosPickerItem', framework: 'PhotosUI', ios: 0,
       transferSelection: { itemType: '_PhotosUI_SwiftUI.PhotosPickerItem',
         presentedLabel: 'isPresented', selectionLabel: 'selection',
@@ -325,7 +325,7 @@ describe('SDK modifier derivation', () => {
       method('payLaterViewAction', '_PassKit_SwiftUI', [{ label: '_', name: 'action', type: '_PassKit_SwiftUI.PayLaterViewAction' }]),
       { ...method('learnMore', '_PassKit_SwiftUI'), kind: 'static', owner: 'PayLaterViewAction', type: 'PayLaterViewAction' },
     ], 27, [])).toEqual([
-      { name: 'payLaterViewAction', kind: 'string', type: '_PassKit_SwiftUI.PayLaterViewAction', ios: 0, framework: 'PassKit', cases: [{ name: 'learnMore', ios: 0 }] },
+      { name: 'payLaterViewAction', frameworks: ['_PassKit_SwiftUI'], kind: 'string', type: '_PassKit_SwiftUI.PayLaterViewAction', ios: 0, framework: 'PassKit', cases: [{ name: 'learnMore', ios: 0 }] },
       { name: 'textCase', kind: 'optionalEnum', type: 'SwiftUICore.Text.Case?', ios: 0, cases: [{ name: 'uppercase', ios: 0 }] },
       { name: 'truncationMode', kind: 'string', type: 'SwiftUICore.Text.TruncationMode', ios: 0, cases: [{ name: 'tail', ios: 0 }] },
     ])
@@ -509,11 +509,11 @@ describe('SDK modifier derivation', () => {
     ], 27, [])).toEqual([
       { name: 'fileDialogDefaultDirectory', kind: 'optionalURL', type: 'Foundation.URL?', ios: 0 },
       { name: 'navigationDocument', kind: 'url', type: 'Foundation.URL', ios: 0 },
-      { name: 'subscriptionStorePolicyDestination', kind: 'record', type: '', ios: 0, framework: 'StoreKit', arguments: [
+      { name: 'subscriptionStorePolicyDestination', frameworks: ['_StoreKit_SwiftUI'], kind: 'record', type: '', ios: 0, framework: 'StoreKit', arguments: [
         { field: 'url', label: 'url', kind: 'url', type: 'Foundation.URL', optional: false },
         { field: 'button', label: 'for', kind: 'enum', type: '_StoreKit_SwiftUI.SubscriptionStorePolicyKind', optional: false, cases: [{ name: 'privacyPolicy', ios: 0 }] },
       ] },
-      { name: 'subscriptionStoreSignInAction', kind: 'event', type: '(() -> ())?', label: '_', ios: 0, framework: 'StoreKit' },
+      { name: 'subscriptionStoreSignInAction', frameworks: ['_StoreKit_SwiftUI'], kind: 'event', type: '(() -> ())?', label: '_', ios: 0, framework: 'StoreKit' },
     ])
   })
 
@@ -633,7 +633,7 @@ describe('SDK modifier derivation', () => {
       ]), owner: 'AppStoreMerchandisingKind', type: 'StoreKit.AppStoreMerchandisingKind', isStatic: true },
     ]
     expect(deriveModifiers(declarations, 27, [])).toEqual([{
-      name: 'appStoreMerchandising', kind: 'record', type: '', ios: 0, framework: 'StoreKit',
+      name: 'appStoreMerchandising', frameworks: ['_StoreKit_SwiftUI'], kind: 'record', type: '', ios: 0, framework: 'StoreKit',
       arguments: [
         { field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false },
         { field: 'kind', label: 'kind', type: 'StoreKit.AppStoreMerchandisingKind', kind: 'string', optional: false,
@@ -652,7 +652,7 @@ describe('SDK modifier derivation', () => {
       ]),
       { ...method('ID', 'StoreKit'), kind: 'typealias', owner: 'Transaction', type: 'Swift.UInt64' },
     ], 27, [])).toEqual([{
-      name: 'refundRequestSheet', kind: 'record', type: '', ios: 0, framework: 'StoreKit',
+      name: 'refundRequestSheet', frameworks: ['_StoreKit_SwiftUI'], kind: 'record', type: '', ios: 0, framework: 'StoreKit',
       arguments: [
         { field: 'transactionID', label: 'for', type: 'StoreKit.Transaction.ID', kind: 'string', optional: false,
           swiftExpression: 'UInt64($value) ?? { () -> UInt64 in preconditionFailure("invalid UInt64") }()' },
@@ -673,7 +673,7 @@ describe('SDK modifier derivation', () => {
         { label: 'from', name: 'data', type: 'Foundation.Data' },
       ]), kind: 'init', owner: 'WorkoutPlan' },
     ], 27, [])).toEqual([{
-      name: 'workoutPreview', kind: 'record', type: '', ios: 0, framework: 'WorkoutKit',
+      name: 'workoutPreview', frameworks: ['_WorkoutKit_SwiftUI'], kind: 'record', type: '', ios: 0, framework: 'WorkoutKit',
       arguments: [
         { field: 'plan', label: '_', type: 'WorkoutKit.WorkoutPlan', kind: 'string', optional: false,
           swiftExpression: '({ () -> WorkoutKit.WorkoutPlan in guard let data = Foundation.Data(base64Encoded: $value), let result = try? WorkoutKit.WorkoutPlan(from: data) else { preconditionFailure("invalid WorkoutKit.WorkoutPlan data") }; return result })()' },
@@ -691,7 +691,7 @@ describe('SDK modifier derivation', () => {
       { ...method('SubscriptionInfo', 'StoreKit'), kind: 'typealias', owner: '', type: 'StoreKit.Product.SubscriptionInfo' },
       { ...method('pricingTerms', 'StoreKit'), kind: 'var', owner: 'StoreKit.Product.SubscriptionInfo', type: '[StoreKit.Product.SubscriptionInfo.PricingTerms]' },
     ], 27, [])).toEqual([{
-      name: 'preferredSubscriptionPricingTerms', kind: 'selectionIndex', type: '@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.SubscriptionInfo) -> StoreKit.SubscriptionInfo.PricingTerms?',
+      name: 'preferredSubscriptionPricingTerms', frameworks: ['_StoreKit_SwiftUI'], kind: 'selectionIndex', type: '@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.SubscriptionInfo) -> StoreKit.SubscriptionInfo.PricingTerms?',
       label: '_', selectionMember: 'pricingTerms', ios: 0, framework: 'StoreKit',
     }])
   })
@@ -732,7 +732,7 @@ describe('SDK modifier derivation', () => {
       { ...method('SubscriptionInfo', 'StoreKit'), kind: 'struct', owner: product },
       { ...method('subscriptionGroupID', 'StoreKit'), kind: 'var', owner: info, type: 'Swift.String', stored: true },
     ], 27, [])).toEqual([{
-      name: 'subscriptionIntroductoryOffer', kind: 'eventAsyncString', type: asyncType,
+      name: 'subscriptionIntroductoryOffer', frameworks: ['_StoreKit_SwiftUI'], kind: 'eventAsyncString', type: asyncType,
       ios: 0, framework: 'StoreKit', predicateLabel: 'applyOffer', callbackLabel: 'compactJWS',
       eventInputs: ['product', 'subscriptionInfo'],
       eventValue: { kind: 'object', fields: [
@@ -761,7 +761,7 @@ describe('SDK modifier derivation', () => {
       { ...method('SubscriptionOffer', 'StoreKit'), kind: 'struct', owner: product },
       { ...method('id', 'StoreKit'), kind: 'var', owner: offer, type: 'Swift.String?', stored: true },
     ], 27, [])).toEqual([{
-      name: 'subscriptionPromotionalOffer', kind: 'eventAsyncString', type: asyncType,
+      name: 'subscriptionPromotionalOffer', frameworks: ['_StoreKit_SwiftUI'], kind: 'eventAsyncString', type: asyncType,
       ios: 0, framework: 'StoreKit', predicateLabel: 'offer', callbackLabel: 'compactJWS',
       selectionMember: 'promotionalOffers', selectionInputIndex: 1,
       eventInputs: ['product', 'subscriptionInfo', 'promotionalOffer'],
@@ -836,7 +836,7 @@ describe('SDK modifier derivation', () => {
       { ...method('scene', 'MapKit'), kind: 'var', owner: 'MKLookAroundSceneRequest',
         type: 'MapKit.MKLookAroundScene?', attributes: ['@async'] },
     ], 27, [])).toEqual([{
-      name: 'lookAroundViewer', kind: 'asyncObjectRequest',
+      name: 'lookAroundViewer', frameworks: ['_MapKit_SwiftUI'], kind: 'asyncObjectRequest',
       type: 'MapKit.MKLookAroundScene?', ios: 0, framework: 'MapKit',
       requestType: 'MapKit.MKLookAroundSceneRequest', requestProperty: 'scene',
       predicateLabel: 'isPresented', label: 'initialScene',

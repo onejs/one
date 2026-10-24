@@ -2133,9 +2133,17 @@ export function deriveModifiers(
     method.parameters[0].type === 'some UIGestureRecognizerRepresentable'))
     result.push({ name: `${method.name}WithUITapRecognizer`, sdkName: method.name,
       kind: 'event', type: method.parameters[0].type, ios: ios(method), uiRecognizer: true })
-  // the declaring framework decides which link set group a modifier belongs to
+  // the declaring framework decides which link set group a modifier belongs to; a
+  // modifier that only swiftui declares carries none
+  const declaringFrameworks = (modifier: DerivedModifier) => [
+    ...new Set(methods.filter((method) => method.name === (modifier.sdkName ?? modifier.name)).map((method) => method.module)),
+  ]
   return result
-    .map((modifier) => modifier.module ? modifier : { ...modifier, frameworks: [...new Set(methods.filter((method) => method.name === (modifier.sdkName ?? modifier.name)).map((method) => method.module))] })
+    .map((modifier) => {
+      if (modifier.module) return modifier
+      const frameworks = declaringFrameworks(modifier)
+      return frameworks.every((framework) => framework === 'SwiftUI' || framework === 'SwiftUICore') ? modifier : { ...modifier, frameworks }
+    })
     .sort((a, b) => a.name.localeCompare(b.name))
 }
 
