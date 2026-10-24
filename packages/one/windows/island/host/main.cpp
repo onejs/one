@@ -212,8 +212,17 @@ class Host {
     host.width = width_;
     host.height = height_;
     host.scale = scale_;
-    host.postToUi = [queue = queue_](std::function<void()> work) {
-      queue.TryEnqueue([work = std::move(work)] { work(); });
+    // the dispatcher queue drops a callback's exception without a trace
+    host.postToUi = [this](std::function<void()> work) {
+      queue_.TryEnqueue([this, work = std::move(work)] {
+        try {
+          work();
+        } catch (hresult_error const &e) {
+          fail(std::format("FAIL ui work threw 0x{:08x} {}", static_cast<uint32_t>(e.code()), narrow(std::wstring_view(e.message()))));
+        } catch (std::exception const &e) {
+          fail(std::format("FAIL ui work threw {}", e.what()));
+        }
+      });
     };
     host.mount = [this](int surfaceId, int transaction, const std::vector<IslandMutation> &mutations) {
       mount(surfaceId, transaction, mutations);
@@ -614,6 +623,12 @@ class Host {
     if (closing_ && views_.size() <= 1) {
       queue_.TryEnqueue([this] { finishTeardown(); });
     }
+  }
+
+  void fail(const std::string &line)
+  {
+    trace(line);
+    failed_ = true;
   }
 
   void beginTeardown()

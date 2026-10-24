@@ -21,6 +21,7 @@
 #include <react/renderer/scheduler/SchedulerDelegate.h>
 
 #include <algorithm>
+#include <atomic>
 #include <chrono>
 #include <cmath>
 #include <condition_variable>
@@ -194,6 +195,9 @@ class Mounting final : public SchedulerDelegate, public std::enable_shared_from_
   void schedulerDidFinishTransaction(const std::shared_ptr<const MountingCoordinator> &) override {}
   void schedulerShouldRenderTransactions(const std::shared_ptr<const MountingCoordinator> &coordinator) override
   {
+    if (stopping) {
+      host_.log("the stopping surface " + std::to_string(coordinator->getSurfaceId()) + " requests its last transaction");
+    }
     host_.postToUi([weak = weak_from_this(), coordinator] {
       if (auto self = weak.lock()) {
         self->pull(*coordinator);
@@ -219,6 +223,7 @@ class Mounting final : public SchedulerDelegate, public std::enable_shared_from_
   {
     auto transaction = coordinator.pullTransaction();
     if (!transaction) {
+      host_.log("surface " + std::to_string(coordinator.getSurfaceId()) + " had no transaction to pull");
       return;
     }
     std::vector<IslandMutation> mutations;
@@ -259,6 +264,10 @@ class Mounting final : public SchedulerDelegate, public std::enable_shared_from_
     host_.mount(transaction->getSurfaceId(), static_cast<int>(transaction->getNumber()), mutations);
   }
 
+  // set while the surface stops, to trace its last transaction
+  std::atomic<bool> stopping{false};
+
+ private:
   IslandHost host_;
 };
 
@@ -367,7 +376,10 @@ class Runtime final : public IslandRuntime {
 
   void stopSurface() override
   {
-    runtime_->stopSurface([](SurfaceId) {});
+    mounting_->stopping = true;
+    runtime_->stopSurface([this](SurfaceId surfaceId) {
+      host_.log("surface " + std::to_string(surfaceId) + " stopped and unregistered");
+    });
   }
 
  private:
