@@ -68,7 +68,7 @@ using namespace facebook::react;
 
 #else
 #import "OneNativeStoreViewComponentView.h"
-undefined
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 using namespace facebook::react;
 @implementation OneNativeStoreViewComponentView
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeStoreViewComponentDescriptor>(); }

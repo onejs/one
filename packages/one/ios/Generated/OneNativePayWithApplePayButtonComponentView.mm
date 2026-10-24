@@ -63,7 +63,7 @@ using namespace facebook::react;
 
 #else
 #import "OneNativePayWithApplePayButtonComponentView.h"
-undefined
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 using namespace facebook::react;
 @implementation OneNativePayWithApplePayButtonComponentView
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativePayWithApplePayButtonComponentDescriptor>(); }

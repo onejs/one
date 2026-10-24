@@ -63,9 +63,8 @@ export function componentStub(source: string): string {
   const name = source.match(/@implementation (\w+)/)?.[1]
   if (!name) throw new Error('component view has no implementation')
   const descriptor = source.match(/concreteComponentDescriptorProvider<(\w+)>/)?.[1]
-  const include = source.match(/#import <react\/renderer\/components\/OneNativeSpec\/ComponentDescriptors\.h>/)?.[0]
   return `#import "${name}.h"
-${include}
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 using namespace facebook::react;
 @implementation ${name}
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${descriptor}>(); }

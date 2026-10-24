@@ -61,7 +61,7 @@ using namespace facebook::react;
 
 #else
 #import "OneNativeAddPassToWalletButtonComponentView.h"
-undefined
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 using namespace facebook::react;
 @implementation OneNativeAddPassToWalletButtonComponentView
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeAddPassToWalletButtonComponentDescriptor>(); }
