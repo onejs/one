@@ -84,7 +84,11 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     buildArgs.step === 'generate' && !isNativeBuild ? `${outDir}/server` : outDir
   await rm(cleanDir, { recursive: true, force: true })
 
-  if (buildArgs.platform === 'ios' || buildArgs.platform === 'android') {
+  if (
+    buildArgs.platform === 'ios' ||
+    buildArgs.platform === 'android' ||
+    buildArgs.platform === 'macos'
+  ) {
     const { buildBundle } = await import('../rn-commands/bundle/buildBundle')
 
     return buildBundle(

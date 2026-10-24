@@ -42,3 +42,15 @@ export const androidExtensions = [
   '.native.js',
   ...viteDefaultExtensions,
 ]
+
+export const macosExtensions = [
+  '.macos.tsx',
+  '.macos.ts',
+  '.macos.mjs',
+  '.macos.js',
+  '.native.tsx',
+  '.native.ts',
+  '.native.mjs',
+  '.native.js',
+  ...viteDefaultExtensions,
+]

@@ -20,14 +20,14 @@ interface OneEnvVariables {
   ONE_RENDER_MODE: 'ssr' | 'ssg' | 'spa'
 
   // Platform detection
-  /** "client" for client-side web, "ssr" for server-side web, "ios" or "android" for native */
-  VITE_ENVIRONMENT: 'client' | 'ssr' | 'ios' | 'android'
-  /** "1" for native platforms (iOS and Android), "" for web (client and SSR). Truthy/falsy for tree-shaking native-only code. */
+  /** "client" for client-side web, "ssr" for server-side web, or a native platform */
+  VITE_ENVIRONMENT: 'client' | 'ssr' | 'ios' | 'android' | 'macos'
+  /** "1" for native platforms, "" for web (client and SSR). Truthy/falsy for tree-shaking native-only code. */
   VITE_NATIVE: '' | '1'
-  /** "web" for web builds, "ios" or "android" for native. The One platform contract. */
-  ONE_PLATFORM: 'web' | 'ios' | 'android'
+  /** "web" for web builds, or a native platform. The One platform contract. */
+  ONE_PLATFORM: 'web' | 'ios' | 'android' | 'macos'
   /** Expo-compatible native platform. Undefined on web. */
-  EXPO_OS: 'ios' | 'android'
+  EXPO_OS: 'ios' | 'android' | 'macos'
   /** "web" for web builds, "native" for native builds. Used by Tamagui and One native route branches. */
   TAMAGUI_TARGET: 'web' | 'native'
 

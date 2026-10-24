@@ -5,6 +5,7 @@ import {
   expoClientFromNativeApp,
   type NativeAppManifest,
 } from '@vxrn/utils/nativeAppManifest'
+import type { NativePlatform } from '@vxrn/utils/platformEnv'
 import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
@@ -35,7 +36,7 @@ type ClientMessage = {
 
 type NativeHmrSocket = WebSocket & {
   vxrnClientId: string
-  vxrnPlatform: 'ios' | 'android'
+  vxrnPlatform: NativePlatform
 }
 
 // metro's asset server answers `/assets/<path>` for any asset file inside the
@@ -102,9 +103,10 @@ export function createReactNativeDevServerPlugin(
       const hmrWSS = new WebSocketServer({ noServer: true })
       const clientWSS = new WebSocketServer({ noServer: true })
       const messageWSS = createMessageSocket()
-      const validPlatforms: Record<string, 'ios' | 'android' | undefined> = {
+      const validPlatforms: Record<string, NativePlatform | undefined> = {
         ios: 'ios',
         android: 'android',
+        macos: 'macos',
       }
       const devEngines: Record<
         string,
@@ -112,8 +114,10 @@ export function createReactNativeDevServerPlugin(
       > = {}
       const devEngineCreating: Record<string, Promise<unknown> | null> = {}
       const warnedProdBundleRequest = new Set<string>()
-      const pendingReloadPlatforms = new Set<'ios' | 'android'>()
-      let compileBytecode: ReturnType<typeof nativeDevBytecodeCompiler> | undefined
+      const pendingReloadPlatforms = new Set<NativePlatform>()
+      const compileBytecode: Partial<
+        Record<'ios' | 'macos', ReturnType<typeof nativeDevBytecodeCompiler>>
+      > = {}
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
       const reactNativeDevToolsUrl = `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${getBoundPort(server)}`
@@ -491,7 +495,7 @@ export function createReactNativeDevServerPlugin(
         })
       })
 
-      const getDevEngine = async (platform: 'ios' | 'android') => {
+      const getDevEngine = async (platform: NativePlatform) => {
         while (!devEngines[platform]) {
           // prevent duplicate creation from concurrent requests
           if (!devEngineCreating[platform]) {
@@ -612,9 +616,15 @@ export function createReactNativeDevServerPlugin(
         try {
           const bundle = await (await getDevEngine(platform)).getBundle()
           let body: string | Buffer = bundle.code
-          if (platform === 'ios' && url.searchParams.get('bytecode') === 'hermes') {
-            compileBytecode ||= nativeDevBytecodeCompiler(root)
-            body = await compileBytecode(
+          if (
+            (platform === 'ios' || platform === 'macos') &&
+            url.searchParams.get('bytecode') === 'hermes'
+          ) {
+            const compile = (compileBytecode[platform] ||= nativeDevBytecodeCompiler(
+              root,
+              platform
+            ))
+            body = await compile(
               bundle,
               `${url.origin}/index.bundle?platform=${platform}`
             )

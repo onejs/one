@@ -129,7 +129,7 @@ const buildCommand = defineCommand({
     },
     platform: {
       type: 'string',
-      description: `One of: web, ios, android`,
+      description: `One of: web, ios, android, macos`,
       default: 'web',
       required: false,
     },
@@ -146,6 +146,7 @@ const buildCommand = defineCommand({
       ios: 'ios',
       web: 'web',
       android: 'android',
+      macos: 'macos',
     } as const
 
     if (args.platform && !platforms[args.platform]) {

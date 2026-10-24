@@ -18,13 +18,15 @@ import { emitViewConfig, isViewSpecFile } from './emitViewConfig'
 
 const CODEGEN_CALL_RE = /codegenNativeComponent\s*[<(]/
 
-export function mirrorPaths(distDir: string, stem: string): string[] {
+const SPECS_SUBDIR = join('platform', 'specs')
+
+export function mirrorPaths(distDir: string, stem: string, subdir = SPECS_SUBDIR): string[] {
   return [
-    join('esm', 'platform', 'specs', `${stem}.mjs`),
-    join('esm', 'platform', 'specs', `${stem}.native.js`),
-    join('cjs', 'platform', 'specs', `${stem}.cjs`),
-    join('cjs', 'platform', 'specs', `${stem}.native.cjs`),
-    join('cjs', 'platform', 'specs', `${stem}.native.js`),
+    join('esm', subdir, `${stem}.mjs`),
+    join('esm', subdir, `${stem}.native.js`),
+    join('cjs', subdir, `${stem}.cjs`),
+    join('cjs', subdir, `${stem}.native.cjs`),
+    join('cjs', subdir, `${stem}.native.js`),
   ]
     .map((relativePath) => join(distDir, relativePath))
     .filter((path) => existsSync(path))
@@ -36,7 +38,8 @@ export function formatForMirror(mirrorPath: string): 'esm' | 'cjs' {
 
 export function rewriteDistSpecs(
   specsDir: string,
-  distDir: string
+  distDir: string,
+  subdir = SPECS_SUBDIR
 ): { specs: number; mirrors: number } {
   const root = dirname(distDir)
   const specs = readdirSync(specsDir)
@@ -54,7 +57,7 @@ export function rewriteDistSpecs(
       throw new Error(`staticSpecs: ${name} still contains a codegen call`)
     }
     const stem = basename(name, '.ts')
-    const found = mirrorPaths(distDir, stem)
+    const found = mirrorPaths(distDir, stem, subdir)
     if (!found.length) {
       throw new Error(
         `staticSpecs: ${name} has no dist mirror (run tamagui-build first, or the build layout changed)`
@@ -93,9 +96,14 @@ export function rewriteDistSpecs(
 
 if (import.meta.main) {
   const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-  const { specs, mirrors } = rewriteDistSpecs(
-    join(root, 'src', 'platform', 'specs'),
-    join(root, 'dist')
-  )
-  console.log(`staticSpecs: ${specs} specs, ${mirrors} dist mirrors rewritten`)
+  // platform/mac holds the macOS specs. they stay out of codegenConfig's
+  // jsSrcsDir so ios and android native codegen never sees them.
+  for (const subdir of [SPECS_SUBDIR, join('platform', 'mac')]) {
+    const { specs, mirrors } = rewriteDistSpecs(
+      join(root, 'src', subdir),
+      join(root, 'dist'),
+      subdir
+    )
+    console.log(`staticSpecs: ${subdir} ${specs} specs, ${mirrors} dist mirrors rewritten`)
+  }
 }

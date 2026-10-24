@@ -14,6 +14,7 @@ import {
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import { join, relative, resolve, sep } from 'node:path'
+import { resolveNpmHermesc } from 'vxrn'
 import { validateNativeApp } from '../native/appManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
@@ -94,23 +95,6 @@ function resolveCliJs(root: string): string {
   const require = createRequire(join(root, 'package.json'))
   const packageJson = require.resolve('react-native/package.json')
   return join(packageJson.slice(0, -'package.json'.length), 'cli.js')
-}
-
-function resolveNpmHermesc(root: string): string {
-  // through react-native's own dependency graph: it pins the compiler whose
-  // bytecode its hermes vm runs.
-  const require = createRequire(join(root, 'package.json'))
-  const reactNativeJson = require.resolve('react-native/package.json')
-  const nested = createRequire(reactNativeJson)
-  const compilerJson = nested.resolve('hermes-compiler/package.json')
-  const dir = compilerJson.slice(0, -'package.json'.length)
-  const bin =
-    process.platform === 'darwin'
-      ? 'osx-bin'
-      : process.platform === 'win32'
-        ? 'win64-bin'
-        : 'linux64-bin'
-  return join(dir, 'hermesc', bin, process.platform === 'win32' ? 'hermesc.exe' : 'hermesc')
 }
 
 function resolveHermesc(root: string, platform: string): string {

@@ -3,7 +3,10 @@ import { renderKotlinSourceModule } from './kotlinSourceModule'
 
 // the contract parser loads on the first .kt import, so an app without one
 // never evaluates it.
-export function kotlinSourcePlugin(platform: 'ios' | 'android', root: string): Plugin {
+export function kotlinSourcePlugin(
+  platform: 'ios' | 'android' | 'macos',
+  root: string
+): Plugin {
   return {
     name: 'one:kotlin-source',
     load: {

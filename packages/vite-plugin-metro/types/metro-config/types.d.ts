@@ -2,7 +2,7 @@ import type { ConfigT } from 'metro-config';
 export type MetroConfig = ConfigT;
 export type ExtraConfig = {
     getResolveMainModuleName?: (p: {
-        platform: 'ios' | 'android';
+        platform: 'ios' | 'android' | 'macos';
     }) => string;
 };
 export type MetroConfigExtended = MetroConfig & ExtraConfig;

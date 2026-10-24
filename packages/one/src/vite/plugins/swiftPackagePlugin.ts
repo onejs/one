@@ -7,7 +7,10 @@ import { renderSwiftPackageModule } from './swiftPackageModule'
 // file whose @main type is an App is a whole swift app, so its root fills the
 // screen instead of sizing to its content. the contract parser loads on the
 // first .swift import, so an app without one never evaluates it.
-export function swiftPackagePlugin(platform: 'ios' | 'android', root: string): Plugin {
+export function swiftPackagePlugin(
+  platform: 'ios' | 'android' | 'macos',
+  root: string
+): Plugin {
   return {
     name: 'one:swift-package',
     load: {

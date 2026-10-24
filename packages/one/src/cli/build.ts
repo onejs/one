@@ -186,7 +186,7 @@ function clonePluginHooks(config: InlineConfig): InlineConfig {
 export async function build(args: {
   step?: string
   only?: string
-  platform?: 'ios' | 'web' | 'android'
+  platform?: 'ios' | 'web' | 'android' | 'macos'
   skipEnv?: boolean
 }) {
   installBuildErrorHandlers()

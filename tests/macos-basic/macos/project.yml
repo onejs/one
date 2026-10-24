@@ -1,0 +1,75 @@
+name: MacosBasic
+options:
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CLANG_CXX_LANGUAGE_STANDARD: gnu++20
+    ONE_MACOS: $(SRCROOT)/../../../packages/one/macos
+    RN_ROOT: $(SRCROOT)/../../../node_modules/react-native
+    CORE_OUT: $(OBJROOT)/OneMacosCore
+    ONE_DEPS: $(CORE_OUT)/deps/packages/react-native/third-party
+    ONE_HERMES: $(CORE_OUT)/hermes/destroot/Library/Frameworks/macosx
+targets:
+  MacosBasic:
+    type: application
+    platform: macOS
+    sources:
+      - path: ../../../packages/one/macos/template/macos/OneApp
+        excludes:
+          - OneApp-Bridging-Header.h
+      - path: ../../../packages/one/macos/host/swift
+      - path: ../../../packages/one/ios/OneNativeControlled.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.onestack.macos-basic
+        INFOPLIST_FILE: ../../../packages/one/macos/template/macos/OneApp/Info.plist
+        SWIFT_OBJC_BRIDGING_HEADER: ../../../packages/one/macos/template/macos/OneApp/OneApp-Bridging-Header.h
+        HEADER_SEARCH_PATHS:
+          - $(ONE_MACOS)/host
+        LIBRARY_SEARCH_PATHS:
+          - $(CORE_OUT)/build
+        FRAMEWORK_SEARCH_PATHS:
+          - $(ONE_DEPS)/ReactNativeDependencies.xcframework/macos-arm64_x86_64
+          - $(ONE_HERMES)
+        OTHER_LDFLAGS:
+          - -lOneMacosCore
+          - -lc++
+          - -lsqlite3
+          - -framework
+          - ReactNativeDependencies
+          - -framework
+          - hermesvm
+          - -framework
+          - QuartzCore
+        LD_RUNPATH_SEARCH_PATHS:
+          - "@executable_path/../Frameworks"
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        ARCHS: arm64
+        ONLY_ACTIVE_ARCH: YES
+    preBuildScripts:
+      - name: Build One macOS core
+        basedOnDependencyAnalysis: false
+        script: |
+          export RN_ROOT="$(cd "$RN_ROOT" && pwd)" ONE_MACOS="$(cd "$ONE_MACOS" && pwd)" CORE_OUT="$CORE_OUT"
+          export CORE_CONFIG="$CONFIGURATION"
+          export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+          "$ONE_MACOS/template/macos/scripts/build-core.sh"
+    postBuildScripts:
+      - name: Embed ReactNativeDependencies
+        basedOnDependencyAnalysis: false
+        script: |
+          "$ONE_MACOS/template/macos/scripts/embed-deps.sh" "$ONE_DEPS" "$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
+      - name: Embed hermesvm
+        basedOnDependencyAnalysis: false
+        script: |
+          "$ONE_MACOS/template/macos/scripts/embed-hermes.sh" "$ONE_HERMES" "$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
+      - name: Bundle JavaScript
+        basedOnDependencyAnalysis: false
+        script: |
+          export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+          "$ONE_MACOS/template/macos/scripts/bundle-js.sh" "$SRCROOT/.." "$RN_ROOT" "$CORE_OUT/hermes/destroot/bin/hermesc" "$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"

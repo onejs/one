@@ -22,7 +22,12 @@ export const clientTreeShakePlugin = (opts?: {
 
     ...(runtime === 'vite' && {
       applyToEnvironment(env: { name: string }) {
-        return env.name === 'client' || env.name === 'ios' || env.name === 'android'
+        return (
+          env.name === 'client' ||
+          env.name === 'ios' ||
+          env.name === 'android' ||
+          env.name === 'macos'
+        )
       },
     }),
 
