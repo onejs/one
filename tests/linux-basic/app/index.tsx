@@ -68,6 +68,7 @@ export default function Index() {
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           placeholder="type here"
+            selectionColor="#f1c40f"
           style={{
             width: 200,
             height: 40,
@@ -210,6 +211,8 @@ export default function Index() {
             value={notes}
             onChangeText={setNotes}
             placeholder="notes, one per line"
+            placeholderTextColor="#c0392b"
+            selectionColor="#f1c40f"
             style={{
               width: 300,
               height: 72,

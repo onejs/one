@@ -236,16 +236,20 @@ std::string OneLinuxCreateFieldFontCss(const TextAttributes &attributes, const c
   return css;
 }
 
-std::string OneLinuxCreateFieldColorCss(const TextAttributes &attributes, const char *selector)
+std::string OneLinuxCreateColorCss(const SharedColor &color, double opacity, const char *selector, const char *property)
 {
-  if (!attributes.foregroundColor) {
+  if (!color) {
     return "";
   }
-  auto components = colorComponentsFromColor(attributes.foregroundColor);
-  double opacity = std::isnan(attributes.opacity) ? 1 : attributes.opacity;
-  return std::string(selector) + " { color: rgba(" + std::to_string(static_cast<int>(std::lround(components.red * 255))) + ", " +
+  auto components = colorComponentsFromColor(color);
+  return std::string(selector) + " { " + property + ": rgba(" + std::to_string(static_cast<int>(std::lround(components.red * 255))) + ", " +
       std::to_string(static_cast<int>(std::lround(components.green * 255))) + ", " +
       std::to_string(static_cast<int>(std::lround(components.blue * 255))) + ", " + std::to_string(components.alpha * opacity) + "); }";
+}
+
+std::string OneLinuxCreateFieldColorCss(const TextAttributes &attributes, const char *selector)
+{
+  return OneLinuxCreateColorCss(attributes.foregroundColor, std::isnan(attributes.opacity) ? 1 : attributes.opacity, selector, "color");
 }
 
 } // namespace facebook::react

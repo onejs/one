@@ -343,9 +343,14 @@ sway on the studio-64 VM.
 - A view is no longer `can-focus` false, only not `focusable`: GTK 4 treats
   `can-focus` false as "no descendant takes focus", which stopped the field from
   ever getting it.
-- Gaps: `placeholderTextColor`, `cursorColor`,
-  `selectionColor`, `autoCapitalize`, input method position hints, or drag and
-  drop.
+- `selectionColor` sets the selection background through the `selection` CSS
+  node on both fields ([window](one-linux-native-selection-color.png)), and
+  `placeholderTextColor` colors the multiline placeholder
+  ([window](one-linux-native-placeholder-color.png)). Gaps: `placeholderTextColor`
+  on the single line field (a provider on the placeholder child and label
+  attributes both left it dark, cause not found), `cursorColor` (`caret-color`
+  was set but the caret was never seen in a capture), `autoCapitalize`, input
+  method position hints, or drag and drop.
 - Typed text and placeholder share one vertical position
   ([both](one-linux-native-input-baseline.png), measured: ascender top row 280 and
   baseline row 293 in both). A `GtkText` given no baseline sat its line at the

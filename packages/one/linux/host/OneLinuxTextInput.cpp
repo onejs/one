@@ -310,7 +310,8 @@ void OneLinuxTextInput::update(
     gtk_text_set_placeholder_text(GTK_TEXT(text_), textProps.placeholder.empty() ? nullptr : textProps.placeholder.c_str());
 
     auto attributes = textProps.getEffectiveTextAttributes(1);
-    gtk_css_provider_load_from_string(fontStyle_, OneLinuxCreateFieldFontCss(attributes).c_str());
+    std::string fieldCss = OneLinuxCreateFieldFontCss(attributes) + OneLinuxCreateColorCss(textProps.selectionColor, 1, "text selection", "background-color");
+    gtk_css_provider_load_from_string(fontStyle_, fieldCss.c_str());
     PangoAttrList *list = OneLinuxCreateFieldAttributes(attributes);
     gtk_text_set_attributes(GTK_TEXT(text_), list);
     pango_attr_list_unref(list);
@@ -328,7 +329,10 @@ void OneLinuxTextInput::update(
     gtk_widget_set_halign(placeholder_, alignment == 0.5f ? GTK_ALIGN_CENTER : alignment == 1.0f ? GTK_ALIGN_END : GTK_ALIGN_START);
     gtk_label_set_text(GTK_LABEL(placeholder_), textProps.placeholder.c_str());
     std::string css = OneLinuxCreateFieldFontCss(attributes, "textview, textview text") + OneLinuxCreateFieldFontCss(attributes, "label") +
-        OneLinuxCreateFieldColorCss(attributes, "textview text") + "label { opacity: 0.5; }";
+        OneLinuxCreateFieldColorCss(attributes, "textview text") +
+        OneLinuxCreateColorCss(textProps.placeholderTextColor, 1, "label", "color") +
+        (textProps.placeholderTextColor ? "label { opacity: 1; }" : "label { opacity: 0.5; }") +
+        OneLinuxCreateColorCss(textProps.selectionColor, 1, "textview text selection", "background-color");
     gtk_css_provider_load_from_string(viewStyle_, css.c_str());
     updatePlaceholder();
   }

@@ -24,6 +24,8 @@ PangoAttrList *OneLinuxCreateFieldAttributes(const TextAttributes &attributes);
 // the same font and the color as CSS for the node `selector` names, for a
 // GtkTextView, which takes no attribute list
 std::string OneLinuxCreateFieldFontCss(const TextAttributes &attributes, const char *selector = "text");
+// one color as a CSS rule for `property`; empty when the color is unset
+std::string OneLinuxCreateColorCss(const SharedColor &color, double opacity, const char *selector, const char *property);
 std::string OneLinuxCreateFieldColorCss(const TextAttributes &attributes, const char *selector);
 
 } // namespace facebook::react
