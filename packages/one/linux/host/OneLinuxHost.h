@@ -2,6 +2,7 @@
 
 #include <glib.h>
 
+#include <atomic>
 #include <memory>
 #include <mutex>
 #include <string>
@@ -31,6 +32,9 @@ class OneLinuxHost {
   void updateLayout(double width, double height, double scale);
 
  private:
+  static bool prefersDark();
+  void appearanceChanged();
+
   class SchedulerDelegate;
 
   std::string bundlePath_;
@@ -45,8 +49,11 @@ class OneLinuxHost {
   double width_{0};
   double height_{0};
   double scale_{1};
+  // the appearance last seen on the main thread, so getColorScheme never waits for it
+  std::atomic<bool> dark_{false};
   guint generation_{0};
   GCancellable *download_{nullptr};
+  gulong settingsHandlers_[2]{0, 0};
 };
 
 } // namespace facebook::react

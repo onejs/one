@@ -1,6 +1,8 @@
 #import <os/log.h>
 #import "OneMacosRootView.h"
 
+#include <atomic>
+
 #include <cxxreact/JSBigString.h>
 #include <react/renderer/componentregistry/ComponentDescriptorProviderRegistry.h>
 #include <react/renderer/runtimescheduler/RuntimeScheduler.h>
@@ -103,6 +105,8 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   // what the current runtime configured, reset with it
   OneMacosAppCommandConfig *_appCommandConfig;
   BOOL _appCommandsListening;
+  // the appearance last seen on the main thread, so getColorScheme never waits for it
+  std::atomic<bool> _darkAppearance;
 }
 
 - (instancetype)initWithBundleURL:(NSURL *)bundleURL moduleName:(NSString *)moduleName view:(NSView *)view
@@ -153,17 +157,10 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     OneMacosHost *strongSelf = weakSelf;
     return OneHostWindowMetrics{strongSelf->_size.width, strongSelf->_size.height, strongSelf->_scale};
   };
-  moduleContext.colorScheme = []() {
-    __block std::string name = "light";
-    void (^read)(void) = ^{
-      name = OneMacosColorSchemeName(NSApp.effectiveAppearance).UTF8String;
-    };
-    if ([NSThread isMainThread]) {
-      read();
-    } else {
-      dispatch_sync(dispatch_get_main_queue(), read);
-    }
-    return name;
+  _darkAppearance = [OneMacosColorSchemeName(_view.effectiveAppearance) isEqualToString:@"dark"];
+  moduleContext.colorScheme = [weakSelf]() {
+    OneMacosHost *strongSelf = weakSelf;
+    return std::string(strongSelf && strongSelf->_darkAppearance ? "dark" : "light");
   };
   moduleContext.log = [](const std::string &line) {
     os_log(OS_LOG_DEFAULT, "[one-macos] " ONE_MACOS_JS_TEXT, line.c_str());
@@ -296,9 +293,10 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 
 - (void)appearanceDidChange:(NSAppearance *)appearance
 {
+  NSString *name = OneMacosColorSchemeName(appearance);
+  _darkAppearance = [name isEqualToString:@"dark"];
   if (_runtime) {
-    _runtime->emitDeviceEvent(
-        "appearanceChanged", folly::dynamic::object("colorScheme", OneMacosColorSchemeName(appearance).UTF8String));
+    _runtime->emitDeviceEvent("appearanceChanged", folly::dynamic::object("colorScheme", name.UTF8String));
   }
 }
 

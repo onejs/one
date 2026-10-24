@@ -202,11 +202,11 @@ Workarounds and gaps:
    format is the same, a release hermesc was not compared.
 2. The VM has no GPU, so GTK uses the software path and prints GL and a11y bus
    warnings.
-3. `colorScheme` is fixed to light, and the module context reports idiom
-   `desktop` and the uname OS version.
+3. The module context reports idiom `desktop` and the uname OS version.
 4. Pango `line_height_absolute` placement is not compared against iOS centering.
 5. No transforms, pointer events, images, scroll views, text input, dark mode
-   or GTK controls yet.
+   or GTK controls yet (pointer events, scroll views, text input and dark mode
+   landed in M2 below).
 6. The `-include cstdint` workaround from the core slice still applies.
 
 **M1 on the real `linux` platform, 2026-10-23.** The app bundles for platform
@@ -348,5 +348,34 @@ sway on the studio-64 VM.
   drop. Typed text sits about 6 px higher in a 40 px field than the placeholder
   does; not yet understood.
 
-**Next:** M2: pointer events on views, scroll, text input, transforms, images,
-dark mode, and the Networking gaps above.
+**M2 dark mode and resize, 2026-10-23.** `Appearance` follows the GTK theme and
+tells React when it changes. Proof, studio-64 VM under headless sway: the
+test app on the [light](one-linux-native-scheme-light.png) default, then
+[dark](one-linux-native-scheme-dark.png) 1.5 s after
+`gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark` with no
+restart (the app's `useColorScheme()` flipped through the `appearanceChanged`
+event). Floating the window changes its size from 1280x720 to 804x602 and React
+relays out to it: [resized](one-linux-native-resize-floating.png).
+
+- `getColorScheme` reads an atomic the host keeps (`OneLinuxHost::dark_`), so
+  the JS thread never waits for the main thread. The host seeds it at launch and
+  updates it from `notify::gtk-application-prefer-dark-theme` and
+  `notify::gtk-theme-name` on `GtkSettings`; dark means the prefer-dark flag or a
+  theme name ending in `-dark` or `:dark`. A change emits `appearanceChanged`.
+- The Mac host uses the same shape (`_darkAppearance`, seeded from the root
+  view's appearance and updated in `appearanceDidChange:`) instead of a blocking
+  hop to the main thread on every `getColorScheme`; the unused
+  `colorSchemeName()` in `OneMacosModules.mm` is gone. Same change as
+  `6af9445f59` and `5538cf4111` on `tm/one-macos-startup`, adapted to the shared
+  host module context. A Release build of `tests/macos-basic` with the change
+  builds and renders against its dev server
+  ([window](one-linux-native-mac-host-m2.png)); the scheme itself was not
+  toggled on the Mac, so the Mac path is checked only for launch and render.
+- Gaps: GTK 4.14 has no color scheme setting and the VM has no
+  xdg-desktop-portal, so the XDG `org.freedesktop.appearance color-scheme` value
+  is not read. GTK controls (switch, field) stay light in the VM because no dark
+  GTK theme is installed. The window resize proof is a tiled-to-floating change;
+  `swaymsg resize` on the floating window did not change its size.
+
+**Next:** M2: hover and cursor events on views, transforms, images, multiline
+`TextInput`, the portal color scheme, and the Networking gaps above.

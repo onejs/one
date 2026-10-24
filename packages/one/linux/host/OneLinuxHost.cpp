@@ -92,10 +92,19 @@ void firstFrame(GdkFrameClock *clock, gpointer)
 OneLinuxHost::OneLinuxHost(std::string bundlePath, std::string moduleName, OneView *surface)
     : bundlePath_(std::move(bundlePath)), moduleName_(std::move(moduleName)), surface_(surface)
 {
+  dark_ = prefersDark();
+  GtkSettings *settings = gtk_settings_get_default();
+  auto changed = [](GObject *, GParamSpec *, gpointer data) { static_cast<OneLinuxHost *>(data)->appearanceChanged(); };
+  settingsHandlers_[0] = g_signal_connect(settings, "notify::gtk-application-prefer-dark-theme", G_CALLBACK(+changed), this);
+  settingsHandlers_[1] = g_signal_connect(settings, "notify::gtk-theme-name", G_CALLBACK(+changed), this);
 }
 
 OneLinuxHost::~OneLinuxHost()
 {
+  GtkSettings *settings = gtk_settings_get_default();
+  for (gulong handler : settingsHandlers_) {
+    g_signal_handler_disconnect(settings, handler);
+  }
   stop();
 }
 
@@ -151,7 +160,7 @@ void OneLinuxHost::start()
     std::lock_guard<std::mutex> lock(metricsMutex_);
     return OneHostWindowMetrics{width_, height_, scale_};
   };
-  context.colorScheme = []() { return std::string("light"); };
+  context.colorScheme = [this]() { return std::string(dark_ ? "dark" : "light"); };
   context.log = [](const std::string &line) { std::fprintf(stderr, "[one-linux] %s\n", line.c_str()); };
   context.reload = [this, generation]() {
     OneLinuxDispatchMain([this, generation] {
@@ -245,6 +254,34 @@ void OneLinuxHost::reload()
 {
   stop();
   start();
+}
+
+// the dark preference or a theme named for a dark variant, such as Adwaita-dark
+bool OneLinuxHost::prefersDark()
+{
+  GtkSettings *settings = gtk_settings_get_default();
+  gboolean dark = FALSE;
+  gchar *theme = nullptr;
+  g_object_get(settings, "gtk-application-prefer-dark-theme", &dark, "gtk-theme-name", &theme, nullptr);
+  if (theme) {
+    gchar *lower = g_ascii_strdown(theme, -1);
+    dark = dark || g_str_has_suffix(lower, "-dark") || g_str_has_suffix(lower, ":dark");
+    g_free(lower);
+    g_free(theme);
+  }
+  return dark;
+}
+
+void OneLinuxHost::appearanceChanged()
+{
+  bool dark = prefersDark();
+  if (dark == dark_) {
+    return;
+  }
+  dark_ = dark;
+  if (runtime_) {
+    runtime_->emitDeviceEvent("appearanceChanged", folly::dynamic::object("colorScheme", dark ? "dark" : "light"));
+  }
 }
 
 void OneLinuxHost::updateLayout(double width, double height, double scale)

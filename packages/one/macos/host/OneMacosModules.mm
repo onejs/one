@@ -18,20 +18,6 @@
 namespace facebook::react {
 
 namespace {
-NSString *colorSchemeName()
-{
-  __block NSString *name = @"light";
-  void (^read)(void) = ^{
-    name = OneMacosColorSchemeName(NSApp.effectiveAppearance);
-  };
-  if ([NSThread isMainThread]) {
-    read();
-  } else {
-    dispatch_sync(dispatch_get_main_queue(), read);
-  }
-  return name;
-}
-
 // urls open in the default app through NSWorkspace; the app has no initial url
 std::shared_ptr<OneHostModule> linkingManager(std::shared_ptr<CallInvoker> invoker)
 {
