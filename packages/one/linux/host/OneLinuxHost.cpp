@@ -9,8 +9,14 @@
 #include <cstdio>
 
 #include "OneHostRuntime.h"
+#include "OneHostModules.h"
+#include "OneLinuxModules.h"
+#include "OneLinuxNetwork.h"
+#include "OneLinuxNitro.h"
+#include "OneLinuxOpSqlite.h"
 #include "OneLinuxRuntime.h"
 #include "OneLinuxStartup.h"
+#include "OneLinuxWorklets.h"
 
 #include <gtk/gtk.h>
 
@@ -95,6 +101,28 @@ void OneLinuxHost::start()
   OneHostRuntimeOptions options;
   options.jsThread = std::make_shared<OneLinuxMessageQueueThread>();
   options.timerRegistry = std::make_unique<OneLinuxTimerRegistry>();
+  options.createTurboModule = [](jsi::Runtime &runtime, const std::string &name, std::shared_ptr<CallInvoker> jsInvoker, const OneHostModuleContext &moduleContext)
+      -> std::shared_ptr<TurboModule> {
+    if (name == "ImageLoader") {
+      return OneLinuxCreateImageLoaderModule(std::move(jsInvoker));
+    }
+    if (name == "LinkingManager") {
+      return OneLinuxCreateLinkingModule(std::move(jsInvoker));
+    }
+    if (name == "OPSQLite") {
+      return OneLinuxCreateOpSqliteModule(runtime, std::move(jsInvoker));
+    }
+    if (name == "NitroModules") {
+      return OneLinuxCreateNitroModule(std::move(jsInvoker));
+    }
+    if (name == "WorkletsModule") {
+      return OneLinuxCreateWorkletsModule(runtime, std::move(jsInvoker), moduleContext.isJavaScriptQueue);
+    }
+    if (name == "WebSocketModule") {
+      return OneLinuxCreateWebSocketModule(std::move(jsInvoker), moduleContext);
+    }
+    return OneHostCreateTurboModule(name, std::move(jsInvoker), moduleContext);
+  };
   options.hasComponentProvider = [](const std::string &name) { return OneLinuxMountingManager::hasComponentNamed(name); };
   options.logJsError = [](const std::string &message) { std::fprintf(stderr, "[one-linux] js error: %s\n", message.c_str()); };
   options.logJsMessage = [](const std::string &message, unsigned int level) {
@@ -102,7 +130,8 @@ void OneLinuxHost::start()
   };
 
   OneHostModuleContext &context = options.moduleContext;
-  context.scriptURL = "file://" + bundlePath_;
+  bool remote = bundlePath_.rfind("http://", 0) == 0 || bundlePath_.rfind("https://", 0) == 0;
+  context.scriptURL = remote ? bundlePath_ : "file://" + bundlePath_;
   context.osVersion = osVersion();
   context.interfaceIdiom = "desktop";
   context.localeIdentifier = g_get_language_names()[0];
@@ -159,6 +188,24 @@ void OneLinuxHost::start()
   runtime_->startSurface(moduleName_, [manager, surface](SurfaceId surfaceId) { manager->attachSurface(surfaceId, surface); });
   manager->setSurfaceSize(runtime_->width(), runtime_->height());
 
+  if (remote) {
+    std::weak_ptr<OneHostRuntime> weakRuntime = runtime_;
+    std::string url = bundlePath_;
+    download_ = OneLinuxFetchScript(url, [this, generation, weakRuntime, url](const std::string &body, const std::string &error) {
+      auto runtime = weakRuntime.lock();
+      if (!runtime || generation_ != generation) {
+        return;
+      }
+      if (!error.empty()) {
+        std::fprintf(stderr, "[one-linux] could not load %s: %s\n", url.c_str(), error.c_str());
+        return;
+      }
+      runtime->instance().loadScript(std::make_unique<JSBigStdString>(std::string(body)), url);
+      OneLinuxStartupMark("downloaded bundle handed to the js thread");
+    });
+    return;
+  }
+
   auto bundle = JSBigFileString::fromPath(bundlePath_);
   runtime_->instance().loadScript(std::move(bundle), "file://" + bundlePath_);
   OneLinuxStartupMark("bundle handed to the js thread");
@@ -167,6 +214,10 @@ void OneLinuxHost::start()
 void OneLinuxHost::stop()
 {
   generation_++;
+  if (download_) {
+    g_cancellable_cancel(download_);
+    g_clear_object(&download_);
+  }
   if (runtime_) {
     auto manager = mountingManager_;
     runtime_->stopSurface([manager](SurfaceId surfaceId) { manager->detachSurface(surfaceId); });

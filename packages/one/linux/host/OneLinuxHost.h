@@ -18,7 +18,8 @@ class OneHostRuntime;
 // pairs with a fresh `start`.
 class OneLinuxHost {
  public:
-  // `bundlePath` is a Hermes bytecode bundle or plain JavaScript file
+  // `bundlePath` is a Hermes bytecode bundle or plain JavaScript file, or the
+  // http URL of a dev server bundle
   OneLinuxHost(std::string bundlePath, std::string moduleName, OneView *surface);
   ~OneLinuxHost();
 
@@ -45,6 +46,7 @@ class OneLinuxHost {
   double height_{0};
   double scale_{1};
   guint generation_{0};
+  GCancellable *download_{nullptr};
 };
 
 } // namespace facebook::react

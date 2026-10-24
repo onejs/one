@@ -17,6 +17,9 @@ struct _OneView {
   PangoLayout *layout;
   double text_x, text_y;
 
+  // a native GTK control that fills the view
+  GtkWidget *control;
+
   gboolean surface;
   OneViewSurfaceCallback surface_callback;
   gpointer surface_data;
@@ -53,6 +56,10 @@ static void one_view_size_allocate(GtkWidget *widget, int width, int height, int
   }
 
   for (GtkWidget *child = gtk_widget_get_first_child(widget); child; child = gtk_widget_get_next_sibling(child)) {
+    if (child == view->control) {
+      gtk_widget_allocate(child, width, height, -1, nullptr);
+      continue;
+    }
     OneView *childView = ONE_VIEW(child);
     graphene_point_t origin = GRAPHENE_POINT_INIT(static_cast<float>(childView->x), static_cast<float>(childView->y));
     GskTransform *transform = gsk_transform_translate(nullptr, &origin);
@@ -114,6 +121,20 @@ static void one_view_snapshot(GtkWidget *widget, GtkSnapshot *snapshot)
   }
 }
 
+// a view only takes pointer hits over its children, so a view that spans its
+// siblings never shadows them and a control inside it still gets its clicks
+static gboolean one_view_contains(GtkWidget *widget, double x, double y)
+{
+  for (GtkWidget *child = gtk_widget_get_first_child(widget); child; child = gtk_widget_get_next_sibling(child)) {
+    graphene_rect_t bounds;
+    graphene_point_t point = {static_cast<float>(x), static_cast<float>(y)};
+    if (gtk_widget_compute_bounds(child, widget, &bounds) && graphene_rect_contains_point(&bounds, &point)) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
 static void one_view_dispose(GObject *object)
 {
   OneView *view = ONE_VIEW(object);
@@ -130,13 +151,12 @@ static void one_view_class_init(OneViewClass *klass)
   widgetClass->measure = one_view_measure;
   widgetClass->size_allocate = one_view_size_allocate;
   widgetClass->snapshot = one_view_snapshot;
+  widgetClass->contains = one_view_contains;
   G_OBJECT_CLASS(klass)->dispose = one_view_dispose;
 }
 
 static void one_view_init(OneView *view)
 {
-  // a view lets its children draw wherever React positioned them
-  gtk_widget_set_can_target(GTK_WIDGET(view), FALSE);
   gtk_widget_set_can_focus(GTK_WIDGET(view), FALSE);
 }
 
@@ -203,6 +223,17 @@ void one_view_set_text(OneView *view, PangoLayout *layout, double x, double y)
   view->text_x = x;
   view->text_y = y;
   gtk_widget_queue_draw(GTK_WIDGET(view));
+}
+
+void one_view_set_control(OneView *view, GtkWidget *control)
+{
+  view->control = control;
+  gtk_widget_set_parent(control, GTK_WIDGET(view));
+}
+
+GtkWidget *one_view_get_control(OneView *view)
+{
+  return view->control;
 }
 
 void one_view_insert_child(OneView *parent, OneView *child, int index)

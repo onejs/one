@@ -42,8 +42,9 @@ class OneLinuxMountingManager : public std::enable_shared_from_this<OneLinuxMoun
 
   void synchronouslyUpdateViewOnTag(Tag tag, const folly::dynamic &props);
 
+ struct Record;
+
  private:
-  struct Record;
 
   Record &createView(ComponentHandle handle, Tag tag);
   void initiateTransaction(const MountingCoordinator &coordinator);

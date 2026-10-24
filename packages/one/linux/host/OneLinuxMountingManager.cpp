@@ -14,6 +14,8 @@
 #include <algorithm>
 #include <vector>
 
+#include <OneLinuxSwitch/OneLinuxSwitchComponentDescriptor.h>
+
 #include "OneLinuxRuntime.h"
 #include "OneLinuxText.h"
 
@@ -30,6 +32,7 @@ const std::vector<ComponentDescriptorProvider> &componentProviders()
       concreteComponentDescriptorProvider<ParagraphComponentDescriptor>(),
       concreteComponentDescriptorProvider<TextComponentDescriptor>(),
       concreteComponentDescriptorProvider<RawTextComponentDescriptor>(),
+      concreteComponentDescriptorProvider<OneLinuxSwitchComponentDescriptor>(),
   };
   return providers;
 }
@@ -51,7 +54,31 @@ struct OneLinuxMountingManager::Record {
   Props::Shared props;
   LayoutMetrics layoutMetrics = EmptyLayoutMetrics;
   ParagraphShadowNode::ConcreteState::Shared paragraphState;
+  EventEmitter::Shared eventEmitter;
+  // the switch, when this view is one; its value follows the controlled
+  // protocol of ios/OneNativeControlled.swift
+  GtkWidget *control{nullptr};
+  bool controlValue{false};
+  int controlEventCount{0};
+  int controlRevision{0};
+  bool applyingControl{false};
 };
+
+// a user toggle counts as a native event, which React acknowledges through the
+// props it sends back; a programmatic change from props never reports
+static void switchToggled(GObject *control, GParamSpec *, gpointer data)
+{
+  auto &record = *static_cast<OneLinuxMountingManager::Record *>(data);
+  bool active = gtk_switch_get_active(GTK_SWITCH(control));
+  if (record.applyingControl || active == record.controlValue) {
+    return;
+  }
+  record.controlValue = active;
+  record.controlEventCount += 1;
+  if (auto emitter = std::static_pointer_cast<const OneLinuxSwitchEventEmitter>(record.eventEmitter)) {
+    emitter->onIsOnChange({.isOn = active, .eventCount = record.controlEventCount, .revision = record.controlRevision});
+  }
+}
 
 std::shared_ptr<ComponentDescriptorProviderRegistry> OneLinuxMountingManager::componentDescriptorProviderRegistry()
 {
@@ -96,6 +123,11 @@ OneLinuxMountingManager::Record &OneLinuxMountingManager::createView(ComponentHa
   record->view = one_view_new();
   g_object_ref_sink(record->view);
   auto &stored = *record;
+  if (handle == OneLinuxSwitchShadowNode::Handle()) {
+    record->control = gtk_switch_new();
+    one_view_set_control(record->view, record->control);
+    g_signal_connect(record->control, "notify::active", G_CALLBACK(switchToggled), &stored);
+  }
   records_[tag] = std::move(record);
   return stored;
 }
@@ -210,6 +242,20 @@ void OneLinuxMountingManager::restyle(Record &record)
   }
   one_view_set_clips(view, viewProps.getClipsContentToBounds());
 
+  if (record.control) {
+    const auto &switchProps = static_cast<const OneLinuxSwitchProps &>(*record.props);
+    if (switchProps.revision != record.controlRevision) {
+      record.controlRevision = switchProps.revision;
+      record.controlEventCount = 0;
+      record.controlValue = switchProps.isOn;
+    } else if (switchProps.acknowledgedEvent >= record.controlEventCount) {
+      record.controlValue = switchProps.isOn;
+    }
+    record.applyingControl = true;
+    gtk_switch_set_active(GTK_SWITCH(record.control), record.controlValue);
+    record.applyingControl = false;
+  }
+
   if (record.paragraphState) {
     const auto &data = record.paragraphState->getData();
     const auto frame = metrics.getContentFrame();
@@ -247,6 +293,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         }
         Record &record = *childIt->second;
         record.props = child.props;
+        record.eventEmitter = child.eventEmitter;
         record.layoutMetrics = child.layoutMetrics;
         record.paragraphState = std::dynamic_pointer_cast<const ParagraphShadowNode::ConcreteState>(child.state);
         restyle(record);
@@ -272,6 +319,7 @@ void OneLinuxMountingManager::performMutations(const ShadowViewMutationList &mut
         }
         Record &record = *it->second;
         bool changed = false;
+        record.eventEmitter = newChild.eventEmitter;
         if (oldChild.props != newChild.props) {
           record.props = newChild.props;
           changed = true;

@@ -27,6 +27,10 @@ void one_view_set_clips(OneView *view, gboolean clips);
 // takes its own reference to `layout`; origin is inside the view
 void one_view_set_text(OneView *view, PangoLayout *layout, double x, double y);
 
+// a native control (a GtkSwitch) that fills the view's frame; the view owns it
+void one_view_set_control(OneView *view, GtkWidget *control);
+GtkWidget *one_view_get_control(OneView *view);
+
 void one_view_insert_child(OneView *parent, OneView *child, int index);
 void one_view_remove_child(OneView *child);
 

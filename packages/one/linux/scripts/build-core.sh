@@ -38,6 +38,9 @@ cmake --build "$deps" -j "$cores"
 cmake -G Ninja -S "$here/../cpp" -B "$core" \
   -DCMAKE_BUILD_TYPE="$build_type" \
   -DRN_ROOT="$RN_ROOT" \
+  -DWORKLETS_ROOT="${WORKLETS_ROOT:-$(cd "$RN_ROOT/.." && pwd)/react-native-worklets}" \
+  -DOPSQLITE_ROOT="${OPSQLITE_ROOT:-$(cd "$RN_ROOT/.." && pwd)/@op-engineering/op-sqlite}" \
+  -DNITRO_ROOT="${NITRO_ROOT:-$(cd "$RN_ROOT/.." && pwd)/react-native-nitro-modules}" \
   -DHERMES_ROOT="$hermes/destroot" \
   -DDEPS_CMAKE="$deps/OneLinuxDeps.cmake"
 cmake --build "$core" -j "$cores"
