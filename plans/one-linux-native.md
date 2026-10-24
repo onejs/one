@@ -375,8 +375,11 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   `6af9445f59` and `5538cf4111` on `tm/one-macos-startup`, adapted to the shared
   host module context. A Release build of `tests/macos-basic` with the change
   builds and renders against its dev server
-  ([window](one-linux-native-mac-host-m2.png)); the scheme itself was not
-  toggled on the Mac, so the Mac path is checked only for launch and render.
+  ([window](one-linux-native-mac-host-m2.png)); a temporary probe then set the
+  view's appearance to dark six seconds after launch (the desktop appearance was
+  not touched): the native `getColorScheme` read through `TurboModuleRegistry`
+  returned dark, `Appearance.addChangeListener` fired once, and `useColorScheme`
+  followed, so the cached scheme and the `appearanceChanged` event work on the Mac.
 - Gaps: GTK 4.14 has no color scheme setting and the VM has no
   xdg-desktop-portal, so the XDG `org.freedesktop.appearance color-scheme` value
   is not read. GTK controls (switch, field) stay light in the VM because no dark
