@@ -201,8 +201,13 @@ void afterFirstFrame(std::function<void(std::function<void()>)> nextFrame, std::
   auto step = std::make_shared<std::function<void()>>();
   *step = [=]() {
     if (*remaining <= 0) {
-      if (g_options.holdMs > 0) Sleep(static_cast<DWORD>(g_options.holdMs));
-      writeResultsAndExit();
+      if (g_options.holdMs <= 0) writeResultsAndExit();
+      // hold with a timer so the ui thread keeps presenting for the screenshot
+      auto timer = mudisp::DispatcherQueue::GetForCurrentThread().CreateTimer();
+      timer.Interval(std::chrono::milliseconds(g_options.holdMs));
+      timer.IsRepeating(false);
+      timer.Tick([timer](auto&&, auto&&) { writeResultsAndExit(); });
+      timer.Start();
       return;
     }
     int k = g_options.updates - *remaining;
@@ -319,18 +324,26 @@ struct App : mux::ApplicationT<App, mux::Markup::IXamlMetadataProvider> {
 
     // the first frame is the first Rendered; after that Rendered stops when nothing is dirty,
     // so updates are paced by Rendering, which xaml raises every frame while subscribed
-    m_rendered = muxm::CompositionTarget::Rendered([this](auto&&, auto&&) {
+    // Rendered fires before xaml's frame reaches the compositor, so the first frame is
+    // marked when a composition commit after it completes, as in comp mode
+    m_rendered = muxm::CompositionTarget::Rendered([this, root](auto&&, auto&&) {
       muxm::CompositionTarget::Rendered(m_rendered);
-      m_rendering = muxm::CompositionTarget::Rendering([this](auto&&, auto&&) {
-        if (m_onFrame) {
+      auto queue = mudisp::DispatcherQueue::GetForCurrentThread();
+      auto compositor = mux::Hosting::ElementCompositionPreview::GetElementVisual(root).Compositor();
+      compositor.RequestCommitAsync().Completed([this, queue](auto&&, auto&&) {
+        queue.TryEnqueue([this]() {
+          m_rendering = muxm::CompositionTarget::Rendering([this](auto&&, auto&&) {
+            if (m_onFrame) {
+              auto callback = std::move(m_onFrame);
+              m_onFrame = nullptr;
+              callback();
+            }
+          });
           auto callback = std::move(m_onFrame);
           m_onFrame = nullptr;
           callback();
-        }
+        });
       });
-      auto callback = std::move(m_onFrame);
-      m_onFrame = nullptr;
-      callback();
     });
     m_onFrame = [this]() {
       afterFirstFrame([this](std::function<void()> next) { m_onFrame = std::move(next); },
