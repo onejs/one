@@ -12,6 +12,7 @@
 #include "pch.h"
 
 #include <format>
+#include <share.h>
 
 #include "OneWindowsIslandRuntime.h"
 
@@ -688,7 +689,8 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR, int)
     return 2;
   }
   std::string bundle = narrow(argv[1]);
-  _wfopen_s(&g_trace, argv[2], L"ab");
+  // shared, so the driver reads the trace while the host appends to it
+  g_trace = _wfsopen(argv[2], L"ab", _SH_DENYNO);
   LocalFree(argv);
   SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX);
   SetUnhandledExceptionFilter(onCrash);
