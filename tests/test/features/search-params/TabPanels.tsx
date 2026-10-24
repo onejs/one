@@ -1,6 +1,7 @@
 import { Pressable, Text, View } from 'react-native'
 import { useParams, usePathname, useSearchParams } from 'one'
 import { z } from 'zod'
+import { GlobalReader } from './GlobalReader'
 
 export const tabOneParams = z.object({ a: z.coerce.number().int().catch(0) })
 export const tabTwoParams = z.object({ b: z.coerce.number().int().catch(0) })
@@ -33,7 +34,12 @@ function Panel({
 // each tab stays mounted while another tab is focused, and writes only its own query
 export function TabOne() {
   const [{ a }, update] = useSearchParams(tabOneParams)
-  return <Panel id="tab-one" value={a} onNext={() => update({ a: a + 1 })} />
+  return (
+    <>
+      <Panel id="tab-one" value={a} onNext={() => update({ a: a + 1 })} />
+      <GlobalReader id="tab-one-global" />
+    </>
+  )
 }
 
 export function TabTwo() {
