@@ -107,6 +107,11 @@ declare module 'one' {
         | `/rn-features/platform-specific-extensions/test-route-2`
         | `/router/ignoredRouteFiles/route.normal`
         | `/search-params`
+        | `/search-params/docs`
+        | `/search-params/item`
+        | `/search-params/tabs`
+        | `/search-params/tabs/one`
+        | `/search-params/tabs/two`
         | `/server-data`
         | `/setup-file-test`
         | `/shared-cache`
@@ -151,7 +156,9 @@ declare module 'one' {
         | `/project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/router/ignoredRouteFiles/+not-found`
         | `/routes/subpath/${string}`
+        | `/search-params/docs/${string}`
         | `/search-params/item/${OneRouter.SingleRoutePart<T>}`
+        | `/search-params/tabs/three/${OneRouter.SingleRoutePart<T>}`
         | `/segments-stable-ids/${string}`
         | `/servers/${OneRouter.SingleRoutePart<T>}`
         | `/spa/${OneRouter.SingleRoutePart<T>}`
@@ -178,7 +185,9 @@ declare module 'one' {
         | `/project/[projectId]/[sessionId]`
         | `/router/ignoredRouteFiles/+not-found`
         | `/routes/subpath/[...subpath]`
+        | `/search-params/docs/[...slug]`
         | `/search-params/item/[id]`
+        | `/search-params/tabs/three/[id]`
         | `/segments-stable-ids/[...segments]`
         | `/servers/[serverId]`
         | `/spa/[spaparams]`
@@ -190,7 +199,11 @@ declare module 'one' {
       IsTyped: true
       SearchParamTypes: {
         '/search-params': OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardChart')['chartParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardTable')['tableParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/StrictSort')['sortParams']>
-        '/search-params/item/[id]': OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardTable')['tableParams']>
+        '/search-params/docs/[...slug]': OneRouter.SearchParamsOf<typeof import('../features/search-params/GlobalReader')['globalParams']>
+        '/search-params/item/[id]': OneRouter.SearchParamsOf<typeof import('../features/search-params/DashboardTable')['tableParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/GlobalReader')['globalParams']>
+        '/search-params/tabs/one': OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabOneParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabThreeParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabTwoParams']>
+        '/search-params/tabs/three/[id]': OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabOneParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabThreeParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabTwoParams']>
+        '/search-params/tabs/two': OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabOneParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabThreeParams']> & OneRouter.SearchParamsOf<typeof import('../features/search-params/TabPanels')['tabTwoParams']>
       }
       RouteTypes: {
         '/(app)/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
@@ -210,7 +223,9 @@ declare module 'one' {
         '/project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
         '/router/ignoredRouteFiles/+not-found': RouteInfo<{}>
         '/routes/subpath/[...subpath]': RouteInfo<{ subpath: string[] }>
+        '/search-params/docs/[...slug]': RouteInfo<{ slug: string[] }>
         '/search-params/item/[id]': RouteInfo<{ id: string }>
+        '/search-params/tabs/three/[id]': RouteInfo<{ id: string }>
         '/segments-stable-ids/[...segments]': RouteInfo<{ segments: string[] }>
         '/servers/[serverId]': RouteInfo<{ serverId: string }>
         '/spa/[spaparams]': RouteInfo<{ spaparams: string }>

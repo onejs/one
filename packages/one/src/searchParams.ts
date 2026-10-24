@@ -51,14 +51,20 @@ export type UseSearchParamsSchemaResult<Schema extends StandardSchemaV1> = reado
   (update: SearchParamsUpdate<Schema>, options?: SearchParamsUpdateOptions) => void,
 ]
 
-/** Keeps the query of a params object: drops path params and unset values. */
+/**
+ * Keeps the query of a params object. Path params, the hash and navigator keys ride
+ * in the same object, but the route's href only carries the query, so its keys say
+ * which entries to keep.
+ */
 export function toSearchRecord(
   params: Record<string, unknown>,
-  pathParamNames: ReadonlySet<string>
+  href: string
 ): SearchRecord {
+  const search = href.split('#')[0].split('?')[1] ?? ''
+  const queryKeys = new Set(new URLSearchParams(search).keys())
   const record: SearchRecord = {}
   for (const [key, value] of Object.entries(params)) {
-    if (value == null || pathParamNames.has(key)) continue
+    if (value == null || !queryKeys.has(key)) continue
     record[key] = Array.isArray(value) ? value.map(String) : String(value)
   }
   return record
