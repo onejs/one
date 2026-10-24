@@ -29,9 +29,10 @@ import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import {
-  macosReactNativeFile,
-  requireOneMacosPackageRoot,
-} from '@vxrn/utils/macosReactNativeResolve'
+  desktopReactNativeFile,
+  requireOnePackageRoot,
+  type DesktopPlatform,
+} from '@vxrn/utils/desktopReactNativeResolve'
 import { nativeAppDefines } from '@vxrn/utils/nativeAppManifest'
 import type { NativePlatform } from '@vxrn/utils/platformEnv'
 import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
@@ -118,6 +119,7 @@ const NATIVE_PLATFORM_EXTENSIONS: Record<NativePlatform, string[]> = {
   ios: ['.ios.tsx', '.ios.ts', '.ios.jsx', '.ios.js'],
   android: ['.android.tsx', '.android.ts', '.android.jsx', '.android.js'],
   macos: ['.macos.tsx', '.macos.ts', '.macos.jsx', '.macos.js'],
+  linux: ['.linux.tsx', '.linux.ts', '.linux.jsx', '.linux.js'],
 }
 
 const NATIVE_SHARED_EXTENSIONS = [
@@ -129,7 +131,7 @@ const NATIVE_SHARED_EXTENSIONS = [
 
 const PLAIN_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json']
 
-// shared resolve extensions for native builds. macos does not list .ios:
+// shared resolve extensions for native builds. macos and linux do not list .ios:
 // that fallback is only for files inside the react-native package.
 function getResolveExtensions(platform: NativePlatform): string[] {
   return [
@@ -273,20 +275,20 @@ export function getNativeTransformConfig(
   }
 }
 
-function macosReactNativeResolvePlugin(root: string): Plugin {
-  const oneMacosRoot = requireOneMacosPackageRoot(root)
+function desktopReactNativeResolvePlugin(root: string, platform: DesktopPlatform): Plugin {
+  const oneRoot = requireOnePackageRoot(root, platform)
   return {
-    name: 'vxrn:macos-react-native-resolve',
+    name: `vxrn:${platform}-react-native-resolve`,
     resolveId(source, importer) {
       if (!importer) return
-      const file = macosReactNativeFile(importer, source, oneMacosRoot)
+      const file = desktopReactNativeFile(importer, source, oneRoot, platform)
       if (file) return file
     },
   }
 }
 
 // third-party packages often ship a component as .ios and .android only.
-// macos must fail at bundle time when no supported implementation exists.
+// desktop platforms must fail at bundle time when no supported implementation exists.
 const PLATFORM_VARIANT_EXTS = [
   '.ios.tsx',
   '.ios.ts',
@@ -302,9 +304,13 @@ const PLATFORM_VARIANT_EXTS = [
   '.web.js',
 ]
 
-function macosNormalFile(target: string, source: string): boolean {
+function desktopNormalFile(
+  target: string,
+  source: string,
+  platform: DesktopPlatform
+): boolean {
   if (/\.(?:tsx|ts|jsx|js|mjs|cjs|json)$/.test(source)) return existsSync(target)
-  const extensions = getResolveExtensions('macos')
+  const extensions = getResolveExtensions(platform)
   for (const ext of extensions) {
     if (existsSync(target + ext)) return true
     if (existsSync(join(target, 'index' + ext))) return true
@@ -312,7 +318,7 @@ function macosNormalFile(target: string, source: string): boolean {
   return false
 }
 
-function macosVariantSource(target: string): string | null {
+function desktopVariantSource(target: string): string | null {
   for (const ext of PLATFORM_VARIANT_EXTS) {
     const file = target + ext
     if (existsSync(file)) return file
@@ -320,7 +326,7 @@ function macosVariantSource(target: string): string | null {
   return null
 }
 
-function macosPackageImportLabel(variantFile: string): string {
+function desktopPackageImportLabel(variantFile: string): string {
   let dir = dirname(variantFile)
   for (let i = 0; i < 8; i++) {
     const manifest = join(dir, 'package.json')
@@ -345,16 +351,17 @@ function macosPackageImportLabel(variantFile: string): string {
   return variantFile
 }
 
-function macosUnsupportedImportPlugin(): Plugin {
+function desktopUnsupportedImportPlugin(platform: DesktopPlatform): Plugin {
+  const label = platform === 'macos' ? 'macOS' : 'Linux'
   return {
-    name: 'vxrn:macos-unsupported-import',
+    name: `vxrn:${platform}-unsupported-import`,
     onLog(_level, log) {
       // rolldown otherwise warns and emits an external ESM import. native
       // hosts evaluate scripts and cannot load that import at runtime.
       if (log.code === 'UNRESOLVED_IMPORT') {
         this.error({
           ...log,
-          message: `[vxrn] macOS bundle cannot resolve an import: ${log.message}`,
+          message: `[vxrn] ${label} bundle cannot resolve an import: ${log.message}`,
         })
       }
     },
@@ -362,28 +369,28 @@ function macosUnsupportedImportPlugin(): Plugin {
       if (!importer || !source.startsWith('.') || source.includes('\0')) return
       if (source.includes('?') || source.includes('#')) return
       const target = resolve(dirname(importer), source)
-      if (macosNormalFile(target, source)) return
-      const variant = macosVariantSource(target)
+      if (desktopNormalFile(target, source, platform)) return
+      const variant = desktopVariantSource(target)
       if (!variant) return
       this.error(
-        `[vxrn] ${macosPackageImportLabel(variant)} has no macOS implementation: cannot resolve import "${source}" from "${importer}". Add a .macos, .native or plain file.`
+        `[vxrn] ${desktopPackageImportLabel(variant)} has no ${label} implementation: cannot resolve import "${source}" from "${importer}". Add a .${platform}, .native or plain file.`
       )
     },
   }
 }
 
 // built packages import siblings by their full name (./one.native.js), so
-// .macos resolution never sees them. when the build emitted a .macos.native.js
-// beside the target, macos loads that file instead. the variant itself still
-// imports the shared file.
-function macosDistVariantPlugin(): Plugin {
+// .macos and .linux resolution never sees them. when the build emitted a
+// .<platform>.native.js beside the target, that platform loads that file
+// instead. the variant itself still imports the shared file.
+function desktopDistVariantPlugin(platform: DesktopPlatform): Plugin {
   return {
-    name: 'vxrn:macos-dist-variant',
+    name: `vxrn:${platform}-dist-variant`,
     resolveId(source, importer) {
       if (!importer || !source.startsWith('.') || !source.endsWith('.native.js')) return
-      if (source.endsWith('.macos.native.js')) return
+      if (source.endsWith(`.${platform}.native.js`)) return
       const target = resolve(dirname(importer), source)
-      const variant = target.replace(/\.native\.js$/, '.macos.native.js')
+      const variant = target.replace(/\.native\.js$/, `.${platform}.native.js`)
       if (variant === importer || !existsSync(variant)) return
       return variant
     },
@@ -404,11 +411,11 @@ function getNativePlugins(
 ): Plugin[] {
   const context: NativePluginContext = { root, platform, dev }
   return [
-    ...(platform === 'macos'
+    ...(platform === 'macos' || platform === 'linux'
       ? [
-          macosReactNativeResolvePlugin(root),
-          macosDistVariantPlugin(),
-          macosUnsupportedImportPlugin(),
+          desktopReactNativeResolvePlugin(root, platform),
+          desktopDistVariantPlugin(platform),
+          desktopUnsupportedImportPlugin(platform),
         ]
       : []),
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
@@ -1382,15 +1389,20 @@ function nativeVirtualEntryPlugin(
   const setupFileImport = (() => {
     const sf = entryConfig.setupFile
     if (!sf) return ''
-    // string and native apply to every native platform. macos does not borrow the ios file.
-    const perPlatform = sf as { ios?: string; android?: string; macos?: string }
+    // string and native apply to every native platform. macos and linux do not borrow the ios file.
+    const perPlatform = sf as {
+      ios?: string
+      android?: string
+      macos?: string
+      linux?: string
+    }
     const file =
       typeof sf === 'string'
         ? sf
         : 'native' in sf
           ? sf.native
-          : opts.platform === 'macos'
-            ? perPlatform.macos
+          : opts.platform === 'macos' || opts.platform === 'linux'
+            ? perPlatform[opts.platform]
             : sf.ios
     if (!file) return ''
     // file:// URL is the canonical specifier; bare Windows absolute path is not
@@ -2027,8 +2039,8 @@ export function vxrnCompilerPlugin(
         code,
         projectRoot,
         development: dev,
-        // the compiler's native gate is ios or android. macos uses the ios
-        // transforms. module resolution stays .macos and does not follow .ios.
+        // the compiler's native gate is ios or android. macos and linux use the
+        // ios transforms. module resolution stays .<platform> and does not follow .ios.
         environment: (platform === 'android' ? 'android' : 'ios') as 'ios' | 'android',
         reactForRNVersion: '19' as const,
       }

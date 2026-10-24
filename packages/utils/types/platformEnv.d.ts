@@ -1,4 +1,4 @@
-export type NativePlatform = 'ios' | 'android' | 'macos';
+export type NativePlatform = 'ios' | 'android' | 'macos' | 'linux';
 export type Platform = NativePlatform | 'web';
 export type ViteEnvironment = 'client' | 'ssr' | NativePlatform;
 export type PlatformEnv = {

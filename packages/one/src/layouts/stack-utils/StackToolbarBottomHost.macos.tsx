@@ -8,10 +8,10 @@ export interface BottomToolbarHostProps {
   animated?: boolean
 }
 
-// the ios host writes UIKit toolbar items. macos has no bottom toolbar host yet.
+// the ios host writes UIKit toolbar items. macos and linux have no bottom toolbar host yet.
 export function BottomToolbarHost({ children }: BottomToolbarHostProps) {
   if (toolbarChildrenToBottomData(children).length) {
-    throw new Error('Stack.Toolbar with bottom placement has no macOS implementation yet')
+    throw new Error('Stack.Toolbar with bottom placement has no macOS or Linux implementation yet')
   }
   return null
 }

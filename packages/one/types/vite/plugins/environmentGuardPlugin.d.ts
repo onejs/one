@@ -9,8 +9,8 @@
  * |-----------------|------------------|----------------------------|
  * | server-only     | any server env   | any client env             |
  * | client-only     | any client env   | any server env             |
- * | native-only     | ios, android, macos | other names             |
- * | web-only        | client, ssr      | ios, android, macos        |
+ * | native-only     | ios, android, macos, linux | other names      |
+ * | web-only        | client, ssr      | ios, android, macos, linux |
  *
  * server-only / client-only key off `env.config.consumer` so they work
  * uniformly across `ssr`, custom names like `worker` (cloudflare deploy),

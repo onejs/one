@@ -21,6 +21,7 @@ const PLATFORM_EXTENSIONS_BY_ENVIRONMENT = {
   ios: ['ios', 'native'],
   android: ['android', 'native'],
   macos: ['macos', 'native'],
+  linux: ['linux', 'native'],
 }
 
 export function getBaseVitePlugins(): PluginOption[] {

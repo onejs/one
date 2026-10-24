@@ -10,7 +10,8 @@ export function isNativeEnvironment(environment: PartialEnvironment) {
   return (
     environment.name === 'ios' ||
     environment.name === 'android' ||
-    environment.name === 'macos'
+    environment.name === 'macos' ||
+    environment.name === 'linux'
   )
 }
 

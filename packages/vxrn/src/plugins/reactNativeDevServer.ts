@@ -107,6 +107,7 @@ export function createReactNativeDevServerPlugin(
         ios: 'ios',
         android: 'android',
         macos: 'macos',
+        linux: 'linux',
       }
       const devEngines: Record<
         string,

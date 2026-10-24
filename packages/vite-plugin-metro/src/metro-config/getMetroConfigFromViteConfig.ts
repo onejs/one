@@ -10,9 +10,10 @@ import type { loadConfig as loadConfigT } from 'metro'
 
 import { findUserBabelConfig } from '@vxrn/compiler'
 import {
-  macosReactNativeFile,
-  requireOneMacosPackageRoot,
-} from '@vxrn/utils/macosReactNativeResolve'
+  desktopReactNativeFile,
+  requireOnePackageRoot,
+  type DesktopPlatform,
+} from '@vxrn/utils/desktopReactNativeResolve'
 import { projectImport, projectResolve } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
 import type { MetroPluginOptions } from '../plugins/metroPlugin'
@@ -84,42 +85,46 @@ function getReactNativeDefaultConfig(projectRoot: string): MetroInputConfig {
   }
 }
 
-const oneMacosRoots = new Map<string, string>()
+const oneRoots = new Map<string, string>()
 
-function redirectMacosReactNative(
+function redirectDesktopReactNative(
   projectRoot: string,
   origin: string | undefined,
   moduleName: string,
   platform: string | null | undefined
 ) {
-  if (platform !== 'macos') return null
-  const file = macosReactNativeFile(
+  if (platform !== 'macos' && platform !== 'linux') return null
+  const file = desktopReactNativeFile(
     origin,
     moduleName,
-    oneMacosRootFor(projectRoot)
+    oneRootFor(projectRoot, platform),
+    platform
   )
   if (!file) return null
   return { type: 'sourceFile' as const, filePath: file }
 }
 
-function oneMacosRootFor(projectRoot: string) {
-  let root = oneMacosRoots.get(projectRoot)
+function oneRootFor(projectRoot: string, platform: DesktopPlatform) {
+  let root = oneRoots.get(projectRoot)
   if (!root) {
-    root = requireOneMacosPackageRoot(projectRoot)
-    oneMacosRoots.set(projectRoot, root)
+    root = requireOnePackageRoot(projectRoot, platform)
+    oneRoots.set(projectRoot, root)
   }
   return root
 }
 
-function getPlatformFromBundleUrl(url: string): 'ios' | 'android' | 'macos' {
-  const platform = url.match(/[?&]platform=(ios|android|macos)(?:&|$)/)?.[1]
-  if (platform === 'ios' || platform === 'android' || platform === 'macos') return platform
+function getPlatformFromBundleUrl(url: string): 'ios' | 'android' | 'macos' | 'linux' {
+  const platform = url.match(/[?&]platform=(ios|android|macos|linux)(?:&|$)/)?.[1]
+  if (platform === 'ios' || platform === 'android' || platform === 'macos' || platform === 'linux')
+    return platform
   return 'ios'
 }
 
 function rewriteMainModuleBundleUrl(
   url: string,
-  resolveMainModuleName: (p: { platform: 'ios' | 'android' | 'macos' }) => string
+  resolveMainModuleName: (p: {
+    platform: 'ios' | 'android' | 'macos' | 'linux'
+  }) => string
 ) {
   const resolvedMainModulePath = resolveMainModuleName({
     platform: getPlatformFromBundleUrl(url),
@@ -360,7 +365,11 @@ export async function buildMetroConfigInputFromViteConfig(
       blockList,
       sourceExts: metroSourceExts,
       platforms: [
-        ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos']),
+        ...new Set([
+          ...(_defaultConfig?.resolver?.platforms ?? []),
+          'macos',
+          'linux',
+        ]),
       ],
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
@@ -388,13 +397,13 @@ export async function buildMetroConfigInputFromViteConfig(
           return origResolveRequestFn(contextOverride, moduleName, platform)
         }
 
-        const macosRedirect = redirectMacosReactNative(
+        const desktopRedirect = redirectDesktopReactNative(
           projectRoot,
           context.originModulePath,
           moduleName,
           platform
         )
-        if (macosRedirect) return macosRedirect
+        if (desktopRedirect) return desktopRedirect
 
         return origResolveRequestFn(context, moduleName, platform)
       },
@@ -518,7 +527,11 @@ export async function getMetroConfigFromViteConfig(
       blockList,
       sourceExts: metroSourceExts,
       platforms: [
-        ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos']),
+        ...new Set([
+          ...(_defaultConfig?.resolver?.platforms ?? []),
+          'macos',
+          'linux',
+        ]),
       ],
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
@@ -554,13 +567,13 @@ export async function getMetroConfigFromViteConfig(
           return origResolveRequestFn(contextOverride, moduleName, platform)
         }
 
-        const macosRedirect = redirectMacosReactNative(
+        const desktopRedirect = redirectDesktopReactNative(
           projectRoot,
           context.originModulePath,
           moduleName,
           platform
         )
-        if (macosRedirect) return macosRedirect
+        if (desktopRedirect) return desktopRedirect
 
         return origResolveRequestFn(context, moduleName, platform)
       },

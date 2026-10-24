@@ -35,7 +35,7 @@ type DirectoryNode = {
   renderMode?: One.RouteRenderMode | 'api'
 }
 
-const validPlatforms = new Set(['android', 'ios', 'macos', 'native', 'web'])
+const validPlatforms = new Set(['android', 'ios', 'linux', 'macos', 'native', 'web'])
 
 /**
  * Given a Metro context module, return an array of nested routes.

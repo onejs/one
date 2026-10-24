@@ -24,10 +24,10 @@
       "import": "./dist/esm/platformEnv.mjs",
       "require": "./dist/cjs/platformEnv.cjs"
     },
-    "./macosReactNativeResolve": {
-      "types": "./types/macosReactNativeResolve.d.ts",
-      "import": "./dist/esm/macosReactNativeResolve.mjs",
-      "require": "./dist/cjs/macosReactNativeResolve.cjs"
+    "./desktopReactNativeResolve": {
+      "types": "./types/desktopReactNativeResolve.d.ts",
+      "import": "./dist/esm/desktopReactNativeResolve.mjs",
+      "require": "./dist/cjs/desktopReactNativeResolve.cjs"
     },
     "./empty": {
       "import": "./empty.js",

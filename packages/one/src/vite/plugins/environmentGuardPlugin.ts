@@ -9,8 +9,8 @@
  * |-----------------|------------------|----------------------------|
  * | server-only     | any server env   | any client env             |
  * | client-only     | any client env   | any server env             |
- * | native-only     | ios, android, macos | other names             |
- * | web-only        | client, ssr      | ios, android, macos        |
+ * | native-only     | ios, android, macos, linux | other names      |
+ * | web-only        | client, ssr      | ios, android, macos, linux |
  *
  * server-only / client-only key off `env.config.consumer` so they work
  * uniformly across `ssr`, custom names like `worker` (cloudflare deploy),
@@ -35,10 +35,10 @@ const GUARD_SPECIFIERS = [
 const GUARD_SPECIFIERS_RE = new RegExp(`^(?:${GUARD_SPECIFIERS.join('|')})$`)
 
 type GuardSpecifier = (typeof GUARD_SPECIFIERS)[number]
-type ViteEnvironment = 'client' | 'ssr' | 'ios' | 'android' | 'macos' | 'worker'
+type ViteEnvironment = 'client' | 'ssr' | 'ios' | 'android' | 'macos' | 'linux' | 'worker'
 
 const ALLOWED_BY_NAME: Partial<Record<GuardSpecifier, readonly ViteEnvironment[]>> = {
-  'native-only': ['ios', 'android', 'macos'],
+  'native-only': ['ios', 'android', 'macos', 'linux'],
   'web-only': ['client', 'ssr', 'worker'],
 }
 

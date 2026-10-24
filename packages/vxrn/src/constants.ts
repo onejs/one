@@ -54,3 +54,15 @@ export const macosExtensions = [
   '.native.js',
   ...viteDefaultExtensions,
 ]
+
+export const linuxExtensions = [
+  '.linux.tsx',
+  '.linux.ts',
+  '.linux.mjs',
+  '.linux.js',
+  '.native.tsx',
+  '.native.ts',
+  '.native.mjs',
+  '.native.js',
+  ...viteDefaultExtensions,
+]

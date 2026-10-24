@@ -776,6 +776,22 @@
         "webdriverio": "^9.5.4",
       },
     },
+    "tests/linux-basic": {
+      "name": "test-linux-basic",
+      "version": "2.10.0",
+      "dependencies": {
+        "one": "workspace:*",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "react-native": "0.88.0",
+        "react-native-web": "^0.21.2",
+      },
+      "devDependencies": {
+        "@types/react": "^19.3.0",
+        "typescript": "7.0.2",
+        "vite": "^8.2.2",
+      },
+    },
     "tests/macos-basic": {
       "name": "test-macos-basic",
       "version": "2.10.0",
@@ -5198,6 +5214,7 @@
 
     "test-loaders": ["test-loaders@workspace:tests/test-loaders"],
 
+    "test-linux-basic": ["test-linux-basic@workspace:tests/linux-basic"],
     "test-macos-basic": ["test-macos-basic@workspace:tests/macos-basic"],
 
     "test-native-features": ["test-native-features@workspace:tests/native-features"],

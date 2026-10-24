@@ -5,7 +5,7 @@ import { resolveIosSdkImport } from '../../utils/iosSdkFacade'
 // framework's native table. One ships the facades; native prebuild uses the
 // same generator ABI and signature-based entry ids on the builder's SDK.
 export function iosSdkPlugin(
-  platform: 'ios' | 'android' | 'macos',
+  platform: 'ios' | 'android' | 'macos' | 'linux',
   root: string
 ): Plugin {
   return {

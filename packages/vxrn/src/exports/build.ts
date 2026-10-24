@@ -92,7 +92,8 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   if (
     buildArgs.platform === 'ios' ||
     buildArgs.platform === 'android' ||
-    buildArgs.platform === 'macos'
+    buildArgs.platform === 'macos' ||
+    buildArgs.platform === 'linux'
   ) {
     const { buildBundle } = await import('../rn-commands/bundle/buildBundle')
 

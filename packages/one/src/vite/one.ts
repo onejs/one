@@ -319,7 +319,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // native bundler, which has no vite environment and so is told its platform
   const createAliasPlugin = (
     alias: NonNullable<One.PluginOptions['alias']>,
-    nativePlatform?: 'ios' | 'android' | 'macos'
+    nativePlatform?: 'ios' | 'android' | 'macos' | 'linux'
   ) => {
     const resolveMap = (map?: Record<string, string>) => {
       if (!map) return null
@@ -795,6 +795,16 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 }),
               },
             },
+            linux: {
+              define: {
+                ...getPlatformEnvDefine('linux'),
+                ...(nativeOptions?.suspendRoutes !== undefined && {
+                  'process.env.ONE_SUSPEND_ROUTES_NATIVE': JSON.stringify(
+                    nativeOptions.suspendRoutes ? '1' : '0'
+                  ),
+                }),
+              },
+            },
           },
 
           ssr: {
@@ -832,6 +842,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               },
             },
             macos: {
+              define: {
+                'process.env.TAMAGUI_KEEP_THEMES': '"1"',
+              },
+            },
+            linux: {
               define: {
                 'process.env.TAMAGUI_KEEP_THEMES': '"1"',
               },
@@ -938,7 +953,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         ? undefined
         : (nativeOptions?.bundlerOptions as any)
 
-    globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android' | 'macos') => {
+    globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android' | 'macos' | 'linux') => {
       const listed: Plugin[] = [
         backgroundComputationPlugin('native'),
         workletImportsPlugin({}),
@@ -950,9 +965,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                   // native.app binaries have no expo runtime, even when the
                   // workspace hoists an expo package used by another app.
                   if (/^(?:expo(?:-[^/]+)?|@expo\/[^/]+)(?:\/|$)/.test(source)) {
-                    // macos must resolve static imports so unsupported packages fail
+                    // macos and linux must resolve static imports so unsupported packages fail
                     // during bundling. optional require calls still use the runtime guard.
-                    if (platform === 'macos' && options.kind !== 'require-call') return
+                    if (
+                      (platform === 'macos' || platform === 'linux') &&
+                      options.kind !== 'require-call'
+                    )
+                      return
                     return { id: source, external: true }
                   }
                 },

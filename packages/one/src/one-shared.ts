@@ -86,9 +86,10 @@ import type { ImageProps as MacImageProps } from './platform/mac/Image.macos'
 import type { ButtonProps } from './platform/mac/Button.macos'
 import type { SegmentedControlProps } from './platform/mac/SegmentedControl.macos'
 import type { ToggleProps } from './platform/mac/Toggle.macos'
+import type { SwitchProps } from './platform/linux/Switch.linux'
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context'
 
-export type OnePlatform = 'web' | 'ios' | 'android' | 'macos'
+export type OnePlatform = 'web' | 'ios' | 'android' | 'macos' | 'linux'
 
 export type OneMacOS = {
   readonly Image: ComponentType<MacImageProps>
@@ -96,6 +97,10 @@ export type OneMacOS = {
   readonly Button: ComponentType<ButtonProps>
   readonly SegmentedControl: ComponentType<SegmentedControlProps>
   readonly AppCommands: OneMacAppCommands
+}
+
+export type OneLinux = {
+  readonly Switch: ComponentType<SwitchProps>
 }
 
 export type OneIOS = typeof Swift & {
@@ -183,6 +188,8 @@ export type OneAPI = {
   readonly iOS: Readonly<OneIOS>
   // present on the macos entry only, so ios, android and web bundles omit it
   readonly macOS?: Readonly<OneMacOS>
+  // present on the linux entry only, for the same reason
+  readonly linux?: Readonly<OneLinux>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
   readonly Notifications: Readonly<OneNotifications>
@@ -210,6 +217,12 @@ export type OneAPI = {
 export type OneMacAPI = OneAPI & {
   readonly platform: 'macos'
   readonly macOS: Readonly<OneMacOS>
+}
+
+// the One object of the linux entry, which always has its native namespace
+export type OneLinuxAPI = OneAPI & {
+  readonly platform: 'linux'
+  readonly linux: Readonly<OneLinux>
 }
 
 function currentPlatform(): OnePlatform {

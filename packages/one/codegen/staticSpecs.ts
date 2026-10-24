@@ -96,9 +96,9 @@ export function rewriteDistSpecs(
 
 if (import.meta.main) {
   const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-  // platform/mac holds the macOS specs. they stay out of codegenConfig's
-  // jsSrcsDir so ios and android native codegen never sees them.
-  for (const subdir of [SPECS_SUBDIR, join('platform', 'mac')]) {
+  // platform/mac and platform/linux hold the desktop specs. they stay out of
+  // codegenConfig's jsSrcsDir so ios and android native codegen never sees them.
+  for (const subdir of [SPECS_SUBDIR, join('platform', 'mac'), join('platform', 'linux')]) {
     const { specs, mirrors } = rewriteDistSpecs(
       join(root, 'src', subdir),
       join(root, 'dist'),

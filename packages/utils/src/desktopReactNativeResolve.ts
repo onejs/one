@@ -2,12 +2,14 @@ import { existsSync, readFileSync, realpathSync, statSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { dirname, join, relative, resolve } from 'node:path'
 
+export type DesktopPlatform = 'macos' | 'linux'
+
 const IOS_EXTENSIONS = ['.ios.tsx', '.ios.ts', '.ios.jsx', '.ios.js']
 const OVERRIDE_EXTENSIONS = ['', '.tsx', '.ts', '.jsx', '.js']
 
 const reactNativeRootCache = new Map<string, string | null>()
 
-export function findOneMacosPackageRoot(appRoot: string): string | null {
+export function findOnePackageRoot(appRoot: string): string | null {
   try {
     const req = createRequire(join(appRoot, 'package.json'))
     return dirname(req.resolve('one/package.json'))
@@ -16,11 +18,11 @@ export function findOneMacosPackageRoot(appRoot: string): string | null {
   }
 }
 
-export function requireOneMacosPackageRoot(appRoot: string): string {
-  const root = findOneMacosPackageRoot(appRoot)
+export function requireOnePackageRoot(appRoot: string, platform: DesktopPlatform): string {
+  const root = findOnePackageRoot(appRoot)
   if (!root) {
     throw new Error(
-      `macos build cannot resolve one from ${appRoot}. Add "one" as a dependency.`
+      `${platform} build cannot resolve one from ${appRoot}. Add "one" as a dependency.`
     )
   }
   return root
@@ -80,24 +82,25 @@ function isPlatformTarget(rnRoot: string, target: string): boolean {
   return rel === PLATFORM_MODULE
 }
 
-function platformOverrideFile(oneMacosRoot: string): string | null {
-  return fileIfPresent(join(oneMacosRoot, 'macos/react-native', PLATFORM_MODULE + '.js'))
+function platformOverrideFile(oneRoot: string, platform: DesktopPlatform): string | null {
+  return fileIfPresent(join(oneRoot, platform, 'react-native', PLATFORM_MODULE + '.js'))
 }
 
 /**
- * macOS loads react-native's iOS files, and only for importers inside that
- * package. React Native's own modules keep Platform.ios.js, so Platform.OS
- * stays ios there. The package entry and every importer outside react-native
- * get the one Platform override, where OS is macos. Returns an absolute
- * file, or null to keep the normal resolver.
+ * The desktop platforms load react-native's iOS files, and only for importers
+ * inside that package. React Native's own modules keep Platform.ios.js, so
+ * Platform.OS stays ios there. The package entry and every importer outside
+ * react-native get the one Platform override, where OS is the desktop
+ * platform. Returns an absolute file, or null to keep the normal resolver.
  */
-export function macosReactNativeFile(
+export function desktopReactNativeFile(
   importerFile: string | undefined,
   source: string,
-  oneMacosRoot: string | null
+  oneRoot: string | null,
+  platform: DesktopPlatform
 ): string | null {
   if (BARE_PLATFORM.test(source)) {
-    if (!oneMacosRoot) return null
+    if (!oneRoot) return null
     if (importerFile) {
       const rnRoot = reactNativeRootOf(importerFile)
       if (rnRoot && !isPackageEntry(importerFile, rnRoot)) {
@@ -111,7 +114,7 @@ export function macosReactNativeFile(
         if (!inside.startsWith('..')) return null
       }
     }
-    return platformOverrideFile(oneMacosRoot)
+    return platformOverrideFile(oneRoot, platform)
   }
 
   if (!importerFile || !source.startsWith('.')) return null
@@ -130,8 +133,8 @@ export function macosReactNativeFile(
   // the package entry re-exports Platform. its importer is index.js, so the
   // public Platform is the override, while library files keep the ios one.
   const internalPlatform = isPlatformTarget(rnRoot, target) && !isPackageEntry(importerFile, rnRoot)
-  if (oneMacosRoot && !internalPlatform) {
-    const overrideBase = join(oneMacosRoot, 'macos/react-native', relative(rnRoot, target))
+  if (oneRoot && !internalPlatform) {
+    const overrideBase = join(oneRoot, platform, 'react-native', relative(rnRoot, target))
     for (const ext of OVERRIDE_EXTENSIONS) {
       const file = fileIfPresent(overrideBase + ext)
       if (file) return file

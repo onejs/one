@@ -1,4 +1,4 @@
-export type NativePlatform = 'ios' | 'android' | 'macos'
+export type NativePlatform = 'ios' | 'android' | 'macos' | 'linux'
 export type Platform = NativePlatform | 'web'
 export type ViteEnvironment = 'client' | 'ssr' | NativePlatform
 
@@ -50,9 +50,17 @@ const platformEnvMap: Record<ViteEnvironment, PlatformEnv> = {
     TAMAGUI_TARGET: 'native',
     TAMAGUI_ENVIRONMENT: 'macos',
   },
+  linux: {
+    VITE_ENVIRONMENT: 'linux',
+    VITE_NATIVE: '1',
+    ONE_PLATFORM: 'linux',
+    EXPO_OS: 'linux',
+    TAMAGUI_TARGET: 'native',
+    TAMAGUI_ENVIRONMENT: 'linux',
+  },
 }
 
-const nativePlatforms = new Set<string>(['ios', 'android', 'macos'])
+const nativePlatforms = new Set<string>(['ios', 'android', 'macos', 'linux'])
 
 export function isNativePlatform(platform: string | null | undefined): platform is NativePlatform {
   return platform != null && nativePlatforms.has(platform)

@@ -26,7 +26,8 @@ export const clientTreeShakePlugin = (opts?: {
           env.name === 'client' ||
           env.name === 'ios' ||
           env.name === 'android' ||
-          env.name === 'macos'
+          env.name === 'macos' ||
+          env.name === 'linux'
         )
       },
     }),

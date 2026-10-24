@@ -12,7 +12,7 @@ import { isNativeEnvironment } from '../utils/environmentUtils'
  * * https://reactnative.dev/docs/platform-specific-code#platform-specific-extensions
  * * https://v5.vite.dev/config/shared-options.html#resolve-extensions
  */
-const getNativeExtensions = (platform: 'ios' | 'android' | 'macos') => {
+const getNativeExtensions = (platform: 'ios' | 'android' | 'macos' | 'linux') => {
   return [
     `.${platform}.tsx`,
     `.${platform}.ts`,
