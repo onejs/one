@@ -40,13 +40,26 @@ at 62.07 ms versus 19.64 ms paired baseline. The lead replaced the plan's 3.5 MB
 estimate with the measured class result, keeping no startup rise as the priority.
 Neither route is claimed to meet the original two requirements together.
 
-All 290 framework differentials and the Metro/Hermes and browser transform
-probes pass names, descriptors, registry metadata, call records and identity for
-the class route. Final source build, focused checks, published canary content,
-isolated welcome consumer and production homepage chunk proof are still pending.
-Intercepted artifact measurements are exploratory, not rebuilt consumer proof.
-A large model other than the author must review the final PR before merge.
-No stable release is authorized.
+All 290 framework differentials and Metro/Hermes/browser probes pass names,
+descriptors, registry metadata, call records and identity. No facade contains
+private members or static blocks, and ES2020 emits no class-lowering helpers.
+The full package build and 37 focused checks passed. Reviewer r122897 approved
+the source; the published canary is 2.0.0-0.canary.1792822660841 from f3dfce7dd49.
+Its tarball contains all 290 facades, and installed resolution passes for each.
+Later source changes only remove formatting and merge a main workflow change.
+
+The rebuilt welcome consumer saves 2,208,935 SDK bytes with 2748 modules unchanged.
+The actual React Native Babel pipeline differs from the exploratory commonjs-only
+probe. Five pairs give 14.020 ms original and 14.065 ms candidate medians, with
+median paired delta -0.320 ms; both are below historical 14.57 ms. First native
+frame medians are 8933.745/7589.605 ms with rebuilt payload interception.
+Local prebuilt GET bodies shrink from 13,821,072/2,162,935 zstd bytes to
+11,542,076/2,096,910; loopback GET medians 10.902/9.761 ms are not production
+network latency. Six first-use capabilities and UIApplication/UIWindow wrappers
+match on Peach and a freshly built iOS 27 simulator app. Homepage router bytes
+fall 450,074 to 160,758, gzip 140,208 to 53,478; hydration and Explore/back work
+without page errors. Production rollout checks belong to Contrast's consumer
+lane and CI owner. No stable release is authorized.
 
 Option b is excluded. The exploratory root-edge pruning estimate is 7,504,327
 bytes with 347 modules removed. The class route retains One's root public API.
