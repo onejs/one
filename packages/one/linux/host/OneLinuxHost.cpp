@@ -1,5 +1,7 @@
 #include "OneLinuxHost.h"
 
+#include <react/featureflags/ReactNativeFeatureFlags.h>
+#include <react/featureflags/ReactNativeFeatureFlagsDefaults.h>
 #include <react/renderer/imagemanager/ImageManager.h>
 
 #include <AppleEventBeat.h>
@@ -89,11 +91,22 @@ void firstFrame(GdkFrameClock *clock, gpointer)
   g_signal_handlers_disconnect_by_func(clock, reinterpret_cast<gpointer>(firstFrame), nullptr);
 }
 
+// Pressable reads hover from W3C pointer enter and leave only with this flag
+// on; the host's pointer handler emits those events
+class OneLinuxFeatureFlags : public ReactNativeFeatureFlagsDefaults {
+ public:
+  bool shouldPressibilityUseW3CPointerEventsForHover() override
+  {
+    return true;
+  }
+};
+
 } // namespace
 
 OneLinuxHost::OneLinuxHost(std::string bundlePath, std::string moduleName, OneView *surface)
     : bundlePath_(std::move(bundlePath)), moduleName_(std::move(moduleName)), surface_(surface)
 {
+  ReactNativeFeatureFlags::override(std::make_unique<OneLinuxFeatureFlags>());
   dark_ = prefersDark();
   GtkSettings *settings = gtk_settings_get_default();
   auto changed = [](GObject *, GParamSpec *, gpointer data) { static_cast<OneLinuxHost *>(data)->appearanceChanged(); };

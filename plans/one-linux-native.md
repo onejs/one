@@ -410,6 +410,16 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   `CALayer`. Hit testing under a transform is not checked yet. Opacity maps to `gtk_widget_set_opacity`. Proof, translate, scale, rotate,
   opacity and a rotate with `scaleX`:
   [window](one-linux-native-transforms.png).
+- **Hover and cursor (M2):** the pointer handler tracks the mouse over the
+  OneView tree and sends W3C `pointerOver`, `pointerOut`, `pointerEnter` and
+  `pointerLeave` to the views whose `ViewEvents` bits listen, entered outermost
+  first and left innermost first. The host turns on the
+  `shouldPressibilityUseW3CPointerEventsForHover` feature flag so `Pressable`
+  `onHoverIn` and `onHoverOut` fire. The nearest `cursor` style sets the GTK
+  cursor by CSS name on the surface. Proof, the mouse over the `text` button
+  shows the hover color, "hovered text" and the I-beam:
+  [window](one-linux-native-hover.png). Moving out to empty space was not
+  checked, and event offsets are window coordinates.
 
 **Next:** M2: hover and cursor events on views, transforms, images, multiline
 `TextInput`, the portal color scheme, and the Networking gaps above.

@@ -4,8 +4,57 @@
 #include <react/timing/primitives.h>
 
 #include <cstring>
+#include <string>
 
 namespace facebook::react {
+
+namespace {
+
+// GTK takes CSS cursor names, which are what the style names come from
+const char *cursorName(Cursor cursor)
+{
+  switch (cursor) {
+    case Cursor::Alias: return "alias";
+    case Cursor::AllScroll: return "all-scroll";
+    case Cursor::Cell: return "cell";
+    case Cursor::ColResize: return "col-resize";
+    case Cursor::ContextMenu: return "context-menu";
+    case Cursor::Copy: return "copy";
+    case Cursor::Crosshair: return "crosshair";
+    case Cursor::EResize: return "e-resize";
+    case Cursor::EWResize: return "ew-resize";
+    case Cursor::Grab: return "grab";
+    case Cursor::Grabbing: return "grabbing";
+    case Cursor::Help: return "help";
+    case Cursor::Move: return "move";
+    case Cursor::NEResize: return "ne-resize";
+    case Cursor::NESWResize: return "nesw-resize";
+    case Cursor::NResize: return "n-resize";
+    case Cursor::NSResize: return "ns-resize";
+    case Cursor::NWResize: return "nw-resize";
+    case Cursor::NWSEResize: return "nwse-resize";
+    case Cursor::NoDrop: return "no-drop";
+    case Cursor::None: return "none";
+    case Cursor::NotAllowed: return "not-allowed";
+    case Cursor::Pointer: return "pointer";
+    case Cursor::Progress: return "progress";
+    case Cursor::RowResize: return "row-resize";
+    case Cursor::SResize: return "s-resize";
+    case Cursor::SEResize: return "se-resize";
+    case Cursor::SWResize: return "sw-resize";
+    case Cursor::Text: return "text";
+    case Cursor::WResize: return "w-resize";
+    case Cursor::Wait: return "wait";
+    case Cursor::ZoomIn: return "zoom-in";
+    case Cursor::ZoomOut: return "zoom-out";
+    case Cursor::Auto:
+    case Cursor::Default:
+    case Cursor::Url: return "default";
+  }
+  return "default";
+}
+
+} // namespace
 
 OneLinuxPointerHandler::OneLinuxPointerHandler(OneView *surface, Describe describe, EmitterFor emitterFor)
     : surface_(surface), describe_(std::move(describe)), emitterFor_(std::move(emitterFor))
@@ -95,6 +144,90 @@ OneView *OneLinuxPointerHandler::hitTest(
   return nullptr;
 }
 
+void OneLinuxPointerHandler::sendPointer(Tag tag, const char *type, double x, double y)
+{
+  auto emitter = std::static_pointer_cast<const TouchEventEmitter>(emitterFor_(tag));
+  if (!emitter) {
+    return;
+  }
+  PointerEvent event{};
+  event.pointerId = 1;
+  event.pointerType = "mouse";
+  event.pressure = touching_ ? 0.5f : 0.0f;
+  event.clientPoint = {static_cast<Float>(x), static_cast<Float>(y)};
+  event.screenPoint = event.clientPoint;
+  event.offsetPoint = event.clientPoint;
+  event.width = 1;
+  event.height = 1;
+  event.buttons = touching_ ? 1 : 0;
+  event.button = -1;
+  event.isPrimary = true;
+  event.timeStamp = HighResTimeStamp::now();
+  if (!std::strcmp(type, "over")) {
+    emitter->onPointerOver(std::move(event));
+  } else if (!std::strcmp(type, "out")) {
+    emitter->onPointerOut(std::move(event));
+  } else if (!std::strcmp(type, "enter")) {
+    emitter->onPointerEnter(std::move(event));
+  } else {
+    emitter->onPointerLeave(std::move(event));
+  }
+}
+
+// moves the hover chain to what is under (x, y): out and leave for the views
+// left (innermost first), then over and enter for the views entered
+// (outermost first), each only for views that listen
+void OneLinuxPointerHandler::updateHover(double x, double y, bool inside)
+{
+  std::vector<Hovered> chain;
+  Cursor cursor = Cursor::Auto;
+  if (inside) {
+    OneLinuxPointerTarget target{};
+    double localX = 0, localY = 0;
+    if (OneView *hit = hitTest(surface_, x, y, target, localX, localY)) {
+      for (GtkWidget *widget = GTK_WIDGET(hit); widget; widget = gtk_widget_get_parent(widget)) {
+        OneLinuxPointerTarget ancestor{};
+        if (ONE_IS_VIEW(widget) && describe_(ONE_VIEW(widget), ancestor)) {
+          chain.insert(chain.begin(), {ancestor.tag, ancestor.events});
+          if (cursor == Cursor::Auto) {
+            cursor = ancestor.cursor;
+          }
+        }
+      }
+    }
+  }
+
+  size_t common = 0;
+  while (common < hover_.size() && common < chain.size() && hover_[common].tag == chain[common].tag) {
+    common++;
+  }
+  bool sameTarget = common == hover_.size() && common == chain.size();
+  if (!sameTarget) {
+    if (!hover_.empty() && hover_.back().events[ViewEvents::Offset::PointerOut]) {
+      sendPointer(hover_.back().tag, "out", x, y);
+    }
+    for (size_t i = hover_.size(); i > common; i--) {
+      if (hover_[i - 1].events[ViewEvents::Offset::PointerLeave]) {
+        sendPointer(hover_[i - 1].tag, "leave", x, y);
+      }
+    }
+    if (!chain.empty() && chain.back().events[ViewEvents::Offset::PointerOver]) {
+      sendPointer(chain.back().tag, "over", x, y);
+    }
+    for (size_t i = common; i < chain.size(); i++) {
+      if (chain[i].events[ViewEvents::Offset::PointerEnter]) {
+        sendPointer(chain[i].tag, "enter", x, y);
+      }
+    }
+    hover_ = std::move(chain);
+  }
+
+  if (cursor != cursor_) {
+    cursor_ = cursor;
+    gtk_widget_set_cursor_from_name(GTK_WIDGET(surface_), cursorName(cursor));
+  }
+}
+
 void OneLinuxPointerHandler::send(const char *phase, double x, double y, bool stillDown)
 {
   auto emitter = std::static_pointer_cast<const TouchEventEmitter>(emitterFor_(touchTarget_));
@@ -132,7 +265,11 @@ void OneLinuxPointerHandler::send(const char *phase, double x, double y, bool st
 bool OneLinuxPointerHandler::handle(GdkEvent *event)
 {
   GdkEventType type = gdk_event_get_event_type(event);
-  if (type != GDK_BUTTON_PRESS && type != GDK_BUTTON_RELEASE && type != GDK_MOTION_NOTIFY && type != GDK_GRAB_BROKEN) {
+  if (type != GDK_BUTTON_PRESS && type != GDK_BUTTON_RELEASE && type != GDK_MOTION_NOTIFY && type != GDK_GRAB_BROKEN &&
+      type != GDK_ENTER_NOTIFY && type != GDK_LEAVE_NOTIFY) {
+    return false;
+  }
+  if ((type == GDK_ENTER_NOTIFY || type == GDK_LEAVE_NOTIFY) && gdk_crossing_event_get_detail(event) == GDK_NOTIFY_INFERIOR) {
     return false;
   }
   if ((type == GDK_BUTTON_PRESS || type == GDK_BUTTON_RELEASE) && gdk_button_event_get_button(event) != GDK_BUTTON_PRIMARY) {
@@ -152,6 +289,10 @@ bool OneLinuxPointerHandler::handle(GdkEvent *event)
   }
   x = point.x;
   y = point.y;
+
+  if (type == GDK_MOTION_NOTIFY || type == GDK_ENTER_NOTIFY || type == GDK_LEAVE_NOTIFY) {
+    updateHover(x, y, type != GDK_LEAVE_NOTIFY);
+  }
 
   if (type == GDK_BUTTON_PRESS) {
     OneLinuxPointerTarget target{};

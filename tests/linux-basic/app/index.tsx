@@ -10,6 +10,7 @@ export default function Index() {
   const [offset, setOffset] = useState(0)
   const [name, setName] = useState('')
   const [focused, setFocused] = useState(false)
+  const [hovered, setHovered] = useState('none')
   const [images, setImages] = useState<Record<string, string>>({})
   const report = (key: string, value: string) => setImages((state) => ({ ...state, [key]: value }))
   const remote = { uri: 'http://127.0.0.1:8123/swatch.png' }
@@ -169,6 +170,33 @@ export default function Index() {
             </View>
           ))}
         </View>
+        <Text style={{ fontSize: 20, fontWeight: '700', marginTop: 24, color: '#1f1d1a' }}>
+          hover and cursor
+        </Text>
+        <View style={{ flexDirection: 'row', marginTop: 16, alignItems: 'center' }}>
+          {(['pointer', 'text', 'crosshair', 'not-allowed'] as const).map((cursor) => (
+            <Pressable
+              key={cursor}
+              onHoverIn={() => setHovered(cursor)}
+              onHoverOut={() => setHovered('none')}
+              style={{
+                width: 120,
+                height: 40,
+                marginRight: 12,
+                borderRadius: 8,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: hovered === cursor ? '#b58900' : '#2b6cb0',
+                cursor,
+              }}
+            >
+              <Text style={{ color: '#ffffff', fontSize: 14 }}>{cursor}</Text>
+            </Pressable>
+          ))}
+        </View>
+        <Text style={{ fontSize: 14, color: '#5f5a50', marginTop: 8 }}>
+          hovered {hovered}
+        </Text>
       </View>
     </View>
   )

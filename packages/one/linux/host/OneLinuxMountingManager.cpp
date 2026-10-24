@@ -299,7 +299,10 @@ void OneLinuxMountingManager::attachSurface(SurfaceId surfaceId, OneView *surfac
           return false;
         }
         target.tag = record->tag;
-        target.pointerEvents = static_cast<const ViewProps &>(*record->props).pointerEvents;
+        const auto &props = static_cast<const ViewProps &>(*record->props);
+        target.pointerEvents = props.pointerEvents;
+        target.events = props.events;
+        target.cursor = props.cursor;
         return true;
       },
       [this](Tag tag) -> std::shared_ptr<const EventEmitter> {
