@@ -672,11 +672,15 @@ export function useLinking(
 
       let path = getPathForRoute(route, state)
 
+      const pendingNavigationAction = consumePendingNavigationAction()
+
       // when navigators mount late (e.g. during spa-shell hydration), the
       // focused route may have no params yet. if the pathname matches the
       // current URL but search params were lost, preserve them so query
       // params like ?disableZero aren't stripped during the transition.
-      if (typeof window !== 'undefined' && !route?.params) {
+      // an explicit navigation names its own search, so a replace to the
+      // current pathname must be able to drop it.
+      if (typeof window !== 'undefined' && !route?.params && !pendingNavigationAction) {
         const currentSearch = window.location.search
         if (currentSearch && !path.includes('?') && window.location.pathname === path) {
           path = path + currentSearch
@@ -703,7 +707,6 @@ export function useLinking(
       }
       const unmaskOnReload = maskOptions?.unmaskOnReload
 
-      const pendingNavigationAction = consumePendingNavigationAction()
       previousStateRef.current = refState
       pendingPopStatePathRef.current = undefined
 
