@@ -394,8 +394,12 @@ jobs:
               'OR eventMessage CONTAINS[c] "RemoteAutomation" '
               'OR eventMessage CONTAINS[c] "DaemonConnectionProvider"'
           )
-          log = ['log', 'show', '--last', '60m', '--style', 'compact', '--info', '--debug', '--predicate', automation]
+          # collect the failed warmup first: older logs can exhaust the query
+          # before reaching the 90-second warmup's provider exchange.
+          log = ['log', 'show', '--last', '5m', '--style', 'compact', '--info', '--debug', '--predicate', automation]
           commands = {
+              'simulator-automation-log.txt': ['xcrun', 'simctl', 'spawn', udid, *log],
+              'host-automation-log.txt': ['/usr/bin/log', *log[1:]],
               'host-processes.txt': ['ps', '-axo', 'pid,ppid,state,comm'],
               # the app's own log keeps its javascript warnings, such as why the
               # metro socket closed, which never reach the dev server once it has.
@@ -405,8 +409,6 @@ jobs:
               'system-launch-log.txt': ['xcrun', 'simctl', 'spawn', os.environ.get('SIMULATOR_UDID') or 'booted', 'log', 'show', '--last', '60m', '--style', 'compact', '--predicate', 'process IN {"SpringBoard", "runningboardd", "lsd", "Shortcuts"} OR subsystem == "com.apple.launchservices"'],
           }
           commands.update({
-              'host-automation-log.txt': ['/usr/bin/log', *log[1:]],
-              'simulator-automation-log.txt': ['xcrun', 'simctl', 'spawn', udid, *log],
               'xcode-selection.txt': ['xcode-select', '-p'],
               'xcode-version.txt': ['xcodebuild', '-version'],
               'host-version.txt': ['sw_vers'],
