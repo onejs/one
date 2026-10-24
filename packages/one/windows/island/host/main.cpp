@@ -427,7 +427,8 @@ class Host {
     return false;
   }
 
-  // the switch track's center on screen, from XAML's own layout, for input
+  // the switch track's center in the bridge's client pixels, from XAML's own
+  // layout, for input
   void traceTrack(int tag)
   {
     auto found = views_.find(tag);
@@ -441,11 +442,9 @@ class Host {
     }
     auto origin = track.TransformToVisual(nullptr).TransformPoint({0, 0});
     auto [x, y] = absoluteOrigin(tag);
-    POINT client{0, 0};
-    ClientToScreen(bridgeHwnd_, &client);
-    int screenX = client.x + static_cast<int>(std::lround((x + origin.X + track.ActualWidth() / 2) * scale_));
-    int screenY = client.y + static_cast<int>(std::lround((y + origin.Y + track.ActualHeight() / 2) * scale_));
-    auto line = std::format("toggle {} track at screen {} {}", tag, screenX, screenY);
+    int clientX = static_cast<int>(std::lround((x + origin.X + track.ActualWidth() / 2) * scale_));
+    int clientY = static_cast<int>(std::lround((y + origin.Y + track.ActualHeight() / 2) * scale_));
+    auto line = std::format("toggle {} track at client {} {}", tag, clientX, clientY);
     if (line != toggle.track) {
       toggle.track = line;
       trace(line);

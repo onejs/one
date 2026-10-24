@@ -37,6 +37,14 @@ public static class Desktop {
   [DllImport("user32.dll")] public static extern bool SetWindowPos(IntPtr hwnd, IntPtr after, int x, int y, int cx, int cy, uint flags);
   [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
   [DllImport("user32.dll")] public static extern int GetSystemMetrics(int index);
+  [StructLayout(LayoutKind.Sequential)] struct POINT { public int X, Y; }
+  [DllImport("user32.dll")] static extern bool ClientToScreen(IntPtr hwnd, ref POINT point);
+
+  public static int[] ToScreen(IntPtr hwnd, int x, int y) {
+    var point = new POINT { X = x, Y = y };
+    if (!ClientToScreen(hwnd, ref point)) throw new Exception("ClientToScreen failed");
+    return new[] { point.X, point.Y };
+  }
   [DllImport("dwmapi.dll")] static extern int DwmGetWindowAttribute(IntPtr hwnd, int attribute, out RECT rect, int size);
 
   public static void PerMonitorAware() { SetProcessDpiAwarenessContext(new IntPtr(-4)); }
@@ -131,13 +139,11 @@ function Shot($name) {
   Note "shot $name.png $size px at dpi $([Desktop]::GetDpiForWindow($script:hwnd)), foreground $([Desktop]::GetForegroundWindow() -eq $script:hwnd)"
 }
 
+# the switch track's latest center, on screen where the window is now
 function Track($tag) {
-  $hit = (TraceLines | Select-Object -Skip $script:mark) -match "toggle $tag track at screen (-?\d+) (-?\d+)$" | Select-Object -Last 1
-  if (-not $hit) {
-    $hit = (TraceLines) -match "toggle $tag track at screen (-?\d+) (-?\d+)$" | Select-Object -Last 1
-  }
-  if ($hit -notmatch 'at screen (-?\d+) (-?\d+)$') { throw "no track position for toggle $tag" }
-  return @([int]$Matches[1], [int]$Matches[2])
+  $hit = (TraceLines) -match "toggle $tag track at client (-?\d+) (-?\d+)$" | Select-Object -Last 1
+  if ($hit -notmatch 'at client (-?\d+) (-?\d+)$') { throw "no track position for toggle $tag" }
+  return [Desktop]::ToScreen($script:bridge, [int]$Matches[1], [int]$Matches[2])
 }
 
 function Acknowledged($what, $tag, $event, $isOn, $label) {
@@ -159,9 +165,13 @@ Note "host pid $($process.Id)"
 
 try {
   # launch: the React tree mounts with the switch in its own island
-  $shown = Expect 'window shown' 'window shown: app hwnd 0x([0-9a-f]+)'
+  $shown = Expect 'window shown' 'window shown: app hwnd 0x([0-9a-f]+), bridge hwnd 0x([0-9a-f]+)'
   if (-not $shown) { throw 'the window never showed' }
   $script:hwnd = [IntPtr][Convert]::ToInt64($shown[1], 16)
+  $script:bridge = [IntPtr][Convert]::ToInt64($shown[2], 16)
+  # the screen's origin, so the whole window is on screen for its captures;
+  # no size or z-order change, no activation
+  [Desktop]::SetWindowPos($script:hwnd, [IntPtr]::Zero, 0, 0, 0, 0, 0x0015) | Out-Null
   Expect 'bytecode bundle' 'bytes of Hermes bytecode'
   Expect 'surface started' 'surface \d+ started for OneWindowsIsland'
   Expect 'xaml loads lazily' 'Microsoft.UI.Xaml.dll loaded before: false'
@@ -169,7 +179,7 @@ try {
   if (-not $connected) { throw 'the switch island never connected' }
   $tag = $connected[1]
   Expect 'initial props' "toggle $tag props isOn=false revision=1 acknowledgedEvent=0 label=`"React: off, 0 changes, switch 1`""
-  Expect 'track position' "toggle $tag track at screen"
+  Expect 'track position' "toggle $tag track at client"
   Shot '1-launch'
 
   # a click on the track toggles the native switch and takes pointer focus
@@ -215,7 +225,8 @@ try {
   # a larger window, still on screen, lays the surface out again and moves
   # the island with it
   Mark
-  $before = Track $tag
+  $before = (TraceLines) -match "toggle $tag track at client" | Select-Object -Last 1
+  $before = $before.Substring($before.IndexOf('track at client'))
   $bounds = [Desktop]::Bounds($script:hwnd)
   $width = [Math]::Min($bounds.Right - $bounds.Left + 320, [Desktop]::GetSystemMetrics(0))
   $height = [Math]::Min($bounds.Bottom - $bounds.Top + 200, [Desktop]::GetSystemMetrics(1) - 60)
@@ -224,7 +235,7 @@ try {
   [Desktop]::SetWindowPos($script:hwnd, [IntPtr]::Zero, 0, 0, $width, $height, 0x0014) | Out-Null
   Expect 'surface resized' 'surface \d+(\.\d+)?x\d+(\.\d+)? DIPs'
   Expect 'layout transaction' 'transaction \d+ mounted: 0 create, 0 delete, 0 insert, 0 remove, [1-9]\d* update'
-  Expect 'island moved' "toggle $tag track at screen (?!$($before[0]) $($before[1])$)"
+  Expect 'island moved' "toggle $tag (?!$([regex]::Escape($before))$)track at client"
   $x, $y = Track $tag
   Shot '6-resize'
   Mark
@@ -249,7 +260,7 @@ try {
   $next = $remounted[1]
   if ($next -eq $tag) { $script:failures++; Note "FAIL remount reused tag $tag" }
   Expect 'new switch props' "toggle $next props isOn=true revision=2 acknowledgedEvent=0 label=`"React: on, 3 changes, switch 2`""
-  Expect 'new track position' "toggle $next track at screen"
+  Expect 'new track position' "toggle $next track at client"
   Shot '9-remount'
   Mark
   $x, $y = Track $next
