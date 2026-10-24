@@ -50,7 +50,7 @@ export { useHeaderHeight } from './useHeaderHeight';
 export * from '@vxrn/color-scheme';
 export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context';
 export { onClientLoaderResolve } from './clientLoaderResolver';
-export { createMiddleware, type Middleware, type MiddlewareContext, } from './createMiddleware';
+export { createMiddleware, type Middleware, type MiddlewareContext } from './createMiddleware';
 export { createAPIRoute, type APIRouteContext, type APIRouteHandler, type WorkerContext, type WorkerEnv, type WorkerExecutionContext, } from './createAPIRoute';
 export { getURL } from './getURL';
 export { setNativeApplicationContext } from './nativeApplicationContext';
@@ -107,5 +107,5 @@ export type { SuspenseFallbackProps } from './views/SuspenseFallback';
 export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try';
 export { useScrollGroup } from './useScrollGroup';
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only';
-export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent, } from './platform/ui/pagerTypes';
+export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './platform/ui/pagerTypes';
 //# sourceMappingURL=index.d.ts.map
