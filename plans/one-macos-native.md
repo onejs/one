@@ -119,7 +119,7 @@ The host worker moves `packages/one-macos/{macos,cpp,template,src}` to
 `packages/one/macos/{host,cpp,template,react-native}` as one rename commit
 after its in-flight M2 slice is committed and before the next one, updating
 `project.yml`, the committed Xcode project, `build-core.sh`,
-`utils/src/macosReactNativeResolve.ts` (resolve `one/package.json`),
+`utils/src/desktopReactNativeResolve.ts` (resolve `one/package.json`),
 `tests/macos-basic/package.json`, `bun.lock` and `one`'s `files`, then
 rebuilds and relaunches `tests/macos-basic` once to prove the move.
 
