@@ -98,7 +98,7 @@ bundles the app with the React Native CLI, which needs a
 the result with the app's own `hermesc -O`, and embeds it as `main.jsbundle`.
 The host maps that file in place, with no copy and no main thread hop.
 `ONE_MACOS_BUNDLE_URL` overrides either. A Release build of
-`tests/macos-basic` on an M5 Max shows its main content about 185 ms after
+`tests/macos-basic` on an M5 Max shows its main content about 140 ms after
 process start, against 624 ms from served plain JS.
 
 ## Logs

@@ -104,20 +104,6 @@ folly::dynamic dimensions(const OneMacosWindowMetrics &metrics)
   return folly::dynamic::object("window", size)("screen", size);
 }
 
-NSString *colorSchemeName()
-{
-  __block NSString *name = @"light";
-  void (^read)(void) = ^{
-    name = OneMacosColorSchemeName(NSApp.effectiveAppearance);
-  };
-  if ([NSThread isMainThread]) {
-    read();
-  } else {
-    dispatch_sync(dispatch_get_main_queue(), read);
-  }
-  return name;
-}
-
 std::shared_ptr<OneMacosModule> platformConstants(std::shared_ptr<CallInvoker> invoker)
 {
   auto module = std::make_shared<OneMacosModule>("PlatformConstants", std::move(invoker));
@@ -239,11 +225,13 @@ std::shared_ptr<OneMacosModule> sourceCode(std::shared_ptr<CallInvoker> invoker,
   return module;
 }
 
-std::shared_ptr<OneMacosModule> appearance(std::shared_ptr<CallInvoker> invoker)
+std::shared_ptr<OneMacosModule> appearance(
+    std::shared_ptr<CallInvoker> invoker,
+    const OneMacosModuleContext &context)
 {
   auto module = std::make_shared<OneMacosModule>("Appearance", std::move(invoker));
-  module->method("getColorScheme", 0, [](jsi::Runtime &rt, const jsi::Value *, size_t) {
-    return jsi::String::createFromUtf8(rt, colorSchemeName().UTF8String);
+  module->method("getColorScheme", 0, [context](jsi::Runtime &rt, const jsi::Value *, size_t) {
+    return jsi::String::createFromUtf8(rt, context.colorScheme());
   });
   module->method("setColorScheme", 1, [](jsi::Runtime &, const jsi::Value *, size_t) {
     return jsi::Value::undefined();
@@ -657,7 +645,7 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
     return sourceCode(std::move(jsInvoker), context);
   }
   if (name == "Appearance") {
-    return appearance(std::move(jsInvoker));
+    return appearance(std::move(jsInvoker), context);
   }
   if (name == "AppState") {
     return appState(std::move(jsInvoker));

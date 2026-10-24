@@ -28,6 +28,8 @@ struct OneMacosWindowMetrics {
 struct OneMacosModuleContext {
   std::string scriptURL;
   std::function<OneMacosWindowMetrics()> windowMetrics;
+  // "light" or "dark", kept by the host on the main thread so js never waits for it
+  std::function<const char *()> colorScheme;
   // emits on RCTDeviceEventEmitter
   std::function<void(const std::string &eventName, folly::dynamic payload)> emitDeviceEvent;
   std::function<void()> reload;

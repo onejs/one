@@ -705,6 +705,15 @@ the main mount, median of interleaved launches (TESTED).
 - Remaining structural options, none taken yet: the AppKit shell above, and
   mounting before the window's first commit so the empty window is never
   drawn.
+- The bundle's own evaluation was 27 ms, and 17 ms of it was one call:
+  `color-scheme` reads `Appearance.getColorScheme()` at module load, and the
+  host answered it with a synchronous hop to the main thread, which was busy
+  creating the window (TESTED, per-module init timing of the release bundle).
+  The host now keeps the scheme in an atomic written on the main thread at
+  start and on appearance changes. Evaluation dropped to 10 ms and main content
+  to 139 ms median from 195 (12 interleaved rounds each way, two runs, load
+  about 6). The rest of evaluation is spread across 1047 module inits, the
+  largest under 2 ms (worklets setup and the React scheduler).
 - Debug builds request `&bytecode=hermes` from the dev server too. Mac apps
   have no `hermes-engine` pod, so the dev server compiles with the npm
   `hermes-compiler` React Native resolves; the first compile of the fixture

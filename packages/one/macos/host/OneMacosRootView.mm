@@ -20,6 +20,7 @@
 #include <react/runtime/TimerManager.h>
 #include <react/utils/ContextContainer.h>
 
+#include <atomic>
 #include <mutex>
 #include <unordered_map>
 #include <unordered_set>
@@ -125,6 +126,8 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   std::unordered_set<SurfaceId> _pendingMerges;
   CGSize _size;
   CGFloat _scale;
+  // written on the main thread, read by the appearance module on the js thread
+  std::atomic<bool> _darkAppearance;
   NSInteger _generation;
   // what the current runtime configured, reset with it
   OneMacosAppCommandConfig *_appCommandConfig;
@@ -173,6 +176,11 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   moduleContext.windowMetrics = [weakSelf]() {
     OneMacosHost *strongSelf = weakSelf;
     return OneMacosWindowMetrics{strongSelf->_size.width, strongSelf->_size.height, strongSelf->_scale};
+  };
+  _darkAppearance = [OneMacosColorSchemeName(NSApp.effectiveAppearance) isEqualToString:@"dark"];
+  moduleContext.colorScheme = [weakSelf]() {
+    OneMacosHost *strongSelf = weakSelf;
+    return strongSelf && strongSelf->_darkAppearance ? "dark" : "light";
   };
   moduleContext.emitDeviceEvent = [weakInstance](const std::string &name, folly::dynamic payload) {
     if (auto instance = weakInstance.lock()) {
@@ -410,6 +418,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 
 - (void)appearanceDidChange:(NSAppearance *)appearance
 {
+  _darkAppearance = [OneMacosColorSchemeName(appearance) isEqualToString:@"dark"];
   if (_instance) {
     _instance->callFunctionOnModule(
         "RCTDeviceEventEmitter",
