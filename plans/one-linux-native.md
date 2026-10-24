@@ -252,6 +252,18 @@ of `tests/macos-basic` launched against its dev server.
   downloads the bundle in about 6 s and mounts at about 21 s, nearly all of it
   Hermes evaluating the unminified dev bundle.
 
+**Startup breakdown of the real `linux` bundle, 2026-10-23** (release, bytecode,
+studio-64 VM, warm, ms, temporary marks in the host and the app, since removed).
+One marked run: main 12, gtk activate 24, runtime ready 91, TurboModules created
+92 to 101 (worklets init about 4), index module eval 101.5, first transaction
+mounted 106, first frame painted 143. Nine interleaved warm runs painted at 128 to
+149 ms (mean about 140), against the 164 to 180 ms in the table above, so the
+earlier runs sat in a noisier VM state. Runtime ready (80 to 95 ms) is the same as
+the ios stand-in's 96 ms; the JS side (TurboModule setup about 9, bundle eval and
+mount about 15) adds about 25 ms and the rest is the 35 to 40 ms from mounted to
+painted. No single cause dominates and nothing has a clean fix at its owner, so
+no source changed. The ios stand-in was not re-measured interleaved.
+
 Workarounds and gaps:
 
 1. libstdc++ transitive headers: Nitro, worklets and op-sqlite sources compile
