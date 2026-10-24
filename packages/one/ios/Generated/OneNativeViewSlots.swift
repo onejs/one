@@ -617,6 +617,8 @@ extension View {
         return AnyView(self.subscriptionStoreControlIcon(icon: { _, _ in content() }))
       }
       return AnyView(self)
+#else
+    case OneNativeViewSlotName.subscriptionStoreControlIcon: preconditionFailure("view slot subscriptionStoreControlIcon needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
     case OneNativeViewSlotName.subscriptionStorePolicyDestination:      if #available(iOS 17, *) {
@@ -633,6 +635,8 @@ extension View {
         return AnyView(self.subscriptionStorePolicyDestination(for: argument0, destination: content))
       }
       return AnyView(self)
+#else
+    case OneNativeViewSlotName.subscriptionStorePolicyDestination: preconditionFailure("view slot subscriptionStorePolicyDestination needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
     case OneNativeViewSlotName.swipeActions:      if #available(iOS 15, *) {
         guard let data = values.data(using: .utf8),

@@ -659,6 +659,8 @@ extension View {
       case "actionSheet": view = AnyView(view.oneNativeSDKActionSheet(value, emit: emit))
 #if ONE_GROUP_WALLET
       case "addPassToWalletButtonStyle": view = AnyView(view.oneNativeSDKAddPassToWalletButtonStyle(value, emit: emit))
+#else
+      case "addPassToWalletButtonStyle": preconditionFailure("modifier addPassToWalletButtonStyle needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "alert": view = AnyView(view.oneNativeSDKAlert(value, emit: emit))
       case "alignmentGuideWithHorizontalAlignment": view = AnyView(view.oneNativeSDKAlignmentGuideWithHorizontalAlignment(value, emit: emit))
@@ -674,12 +676,18 @@ extension View {
       case "appEntityUIElements": view = AnyView(view.oneNativeSDKAppEntityUIElements(value, emit: emit))
 #if ONE_GROUP_STORE
       case "appStoreMerchandising": view = AnyView(view.oneNativeSDKAppStoreMerchandising(value, emit: emit))
+#else
+      case "appStoreMerchandising": preconditionFailure("modifier appStoreMerchandising needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "appStoreOverlayWithAppClipConfiguration": view = AnyView(view.oneNativeSDKAppStoreOverlayWithAppClipConfiguration(value, emit: emit))
+#else
+      case "appStoreOverlayWithAppClipConfiguration": preconditionFailure("modifier appStoreOverlayWithAppClipConfiguration needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "appStoreOverlayWithAppConfiguration": view = AnyView(view.oneNativeSDKAppStoreOverlayWithAppConfiguration(value, emit: emit))
+#else
+      case "appStoreOverlayWithAppConfiguration": preconditionFailure("modifier appStoreOverlayWithAppConfiguration needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "aspectRatio": view = AnyView(view.oneNativeSDKAspectRatio(value, emit: emit))
       case "assistiveAccessNavigationIconWithImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithImage(value, emit: emit))
@@ -727,6 +735,8 @@ extension View {
       case "cornerRadiusWithRadiusAndAntialiased": view = AnyView(view.oneNativeSDKCornerRadiusWithRadiusAndAntialiased(value, emit: emit))
 #if ONE_GROUP_STORE
       case "currentEntitlementTask": view = AnyView(view.oneNativeSDKCurrentEntitlementTask(value, emit: emit))
+#else
+      case "currentEntitlementTask": preconditionFailure("modifier currentEntitlementTask needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "cuttable": view = AnyView(view.oneNativeSDKCuttable(value, emit: emit))
       case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
@@ -806,6 +816,8 @@ extension View {
       case "environmentObject": view = AnyView(view.oneNativeSDKEnvironmentObject(value, emit: emit))
 #if ONE_GROUP_PREVIEW3D
       case "environmentRealityViewCameraControls": view = AnyView(view.oneNativeSDKEnvironmentRealityViewCameraControls(value, emit: emit))
+#else
+      case "environmentRealityViewCameraControls": preconditionFailure("modifier environmentRealityViewCameraControls needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "environmentRedactionReasons": view = AnyView(view.oneNativeSDKEnvironmentRedactionReasons(value, emit: emit))
       case "environmentScenePhase": view = AnyView(view.oneNativeSDKEnvironmentScenePhase(value, emit: emit))
@@ -890,6 +902,8 @@ extension View {
       case "imageScale": view = AnyView(view.oneNativeSDKImageScale(value, emit: emit))
 #if ONE_GROUP_STORE
       case "inAppPurchaseOptions": view = AnyView(view.oneNativeSDKInAppPurchaseOptions(value, emit: emit))
+#else
+      case "inAppPurchaseOptions": preconditionFailure("modifier inAppPurchaseOptions needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "indexViewStyle": view = AnyView(view.oneNativeSDKIndexViewStyle(value, emit: emit))
       case "inspectorColumnWidthWithCGFloat": view = AnyView(view.oneNativeSDKInspectorColumnWidthWithCGFloat(value, emit: emit))
@@ -940,9 +954,13 @@ extension View {
       case "luminanceToAlpha": view = AnyView(view.oneNativeSDKLuminanceToAlpha(value, emit: emit))
 #if ONE_GROUP_STORE
       case "manageSubscriptionsSheet": view = AnyView(view.oneNativeSDKManageSubscriptionsSheet(value, emit: emit))
+#else
+      case "manageSubscriptionsSheet": preconditionFailure("modifier manageSubscriptionsSheet needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID": view = AnyView(view.oneNativeSDKManageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID(value, emit: emit))
+#else
+      case "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID": preconditionFailure("modifier manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "mapCameraKeyframeAnimator": view = AnyView(view.oneNativeSDKMapCameraKeyframeAnimator(value, emit: emit))
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
@@ -972,15 +990,23 @@ extension View {
       case "multilineTextAlignmentWithTextAlignment": view = AnyView(view.oneNativeSDKMultilineTextAlignmentWithTextAlignment(value, emit: emit))
 #if ONE_GROUP_PREVIEW3D
       case "musicPickerWithMusicVideo": view = AnyView(view.oneNativeSDKMusicPickerWithMusicVideo(value, emit: emit))
+#else
+      case "musicPickerWithMusicVideo": preconditionFailure("modifier musicPickerWithMusicVideo needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PREVIEW3D
       case "musicPickerWithSong": view = AnyView(view.oneNativeSDKMusicPickerWithSong(value, emit: emit))
+#else
+      case "musicPickerWithSong": preconditionFailure("modifier musicPickerWithSong needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PREVIEW3D
       case "musicPickerWithTrack": view = AnyView(view.oneNativeSDKMusicPickerWithTrack(value, emit: emit))
+#else
+      case "musicPickerWithTrack": preconditionFailure("modifier musicPickerWithTrack needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PREVIEW3D
       case "musicSubscriptionOffer": view = AnyView(view.oneNativeSDKMusicSubscriptionOffer(value, emit: emit))
+#else
+      case "musicSubscriptionOffer": preconditionFailure("modifier musicSubscriptionOffer needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "navigationBarBackButtonHidden": view = AnyView(view.oneNativeSDKNavigationBarBackButtonHidden(value, emit: emit))
       case "navigationBarHidden": view = AnyView(view.oneNativeSDKNavigationBarHidden(value, emit: emit))
@@ -999,21 +1025,31 @@ extension View {
       case "navigationViewStyle": view = AnyView(view.oneNativeSDKNavigationViewStyle(value, emit: emit))
 #if ONE_GROUP_STORE
       case "offerCodeRedemption": view = AnyView(view.oneNativeSDKOfferCodeRedemption(value, emit: emit))
+#else
+      case "offerCodeRedemption": preconditionFailure("modifier offerCodeRedemption needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "offset": view = AnyView(view.oneNativeSDKOffset(value, emit: emit))
       case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
       case "onAppIntentExecution": view = AnyView(view.oneNativeSDKOnAppIntentExecution(value, emit: emit))
 #if ONE_GROUP_WALLET
       case "onApplePayCouponCodeChange": view = AnyView(view.oneNativeSDKOnApplePayCouponCodeChange(value, emit: emit))
+#else
+      case "onApplePayCouponCodeChange": preconditionFailure("modifier onApplePayCouponCodeChange needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_WALLET
       case "onApplePayPaymentMethodChange": view = AnyView(view.oneNativeSDKOnApplePayPaymentMethodChange(value, emit: emit))
+#else
+      case "onApplePayPaymentMethodChange": preconditionFailure("modifier onApplePayPaymentMethodChange needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_WALLET
       case "onApplePayShippingContactChange": view = AnyView(view.oneNativeSDKOnApplePayShippingContactChange(value, emit: emit))
+#else
+      case "onApplePayShippingContactChange": preconditionFailure("modifier onApplePayShippingContactChange needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_WALLET
       case "onApplePayShippingMethodChange": view = AnyView(view.oneNativeSDKOnApplePayShippingMethodChange(value, emit: emit))
+#else
+      case "onApplePayShippingMethodChange": preconditionFailure("modifier onApplePayShippingMethodChange needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "onCameraCaptureEvent": view = AnyView(view.oneNativeSDKOnCameraCaptureEvent(value, emit: emit))
       case "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
@@ -1030,9 +1066,13 @@ extension View {
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
 #if ONE_GROUP_STORE
       case "onInAppPurchaseCompletion": view = AnyView(view.oneNativeSDKOnInAppPurchaseCompletion(value, emit: emit))
+#else
+      case "onInAppPurchaseCompletion": preconditionFailure("modifier onInAppPurchaseCompletion needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "onInAppPurchaseStart": view = AnyView(view.oneNativeSDKOnInAppPurchaseStart(value, emit: emit))
+#else
+      case "onInAppPurchaseStart": preconditionFailure("modifier onInAppPurchaseStart needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
       case "onKeyPress": view = AnyView(view.oneNativeSDKOnKeyPress(value, emit: emit))
@@ -1061,62 +1101,96 @@ extension View {
       case "payLaterViewAction":
         precondition(!ProcessInfo.processInfo.isiOSAppOnMac, "payLaterViewAction is unavailable on macOS")
         view = AnyView(view.oneNativeSDKPayLaterViewAction(value, emit: emit))
+#else
+      case "payLaterViewAction": preconditionFailure("modifier payLaterViewAction needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_WALLET
       case "payLaterViewDisplayStyle":
         precondition(!ProcessInfo.processInfo.isiOSAppOnMac, "payLaterViewDisplayStyle is unavailable on macOS")
         view = AnyView(view.oneNativeSDKPayLaterViewDisplayStyle(value, emit: emit))
+#else
+      case "payLaterViewDisplayStyle": preconditionFailure("modifier payLaterViewDisplayStyle needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_WALLET
       case "payWithApplePayButtonDisableCardArt": view = AnyView(view.oneNativeSDKPayWithApplePayButtonDisableCardArt(value, emit: emit))
+#else
+      case "payWithApplePayButtonDisableCardArt": preconditionFailure("modifier payWithApplePayButtonDisableCardArt needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_WALLET
       case "payWithApplePayButtonStyle": view = AnyView(view.oneNativeSDKPayWithApplePayButtonStyle(value, emit: emit))
+#else
+      case "payWithApplePayButtonStyle": preconditionFailure("modifier payWithApplePayButtonStyle needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "persistentSystemOverlays": view = AnyView(view.oneNativeSDKPersistentSystemOverlays(value, emit: emit))
       case "phaseAnimator": view = AnyView(view.oneNativeSDKPhaseAnimator(value, emit: emit))
 #if ONE_GROUP_PHOTOS
       case "photosPicker": view = AnyView(view.oneNativeSDKPhotosPicker(value, emit: emit))
+#else
+      case "photosPicker": preconditionFailure("modifier photosPicker needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PHOTOS
       case "photosPickerAccessoryVisibility": view = AnyView(view.oneNativeSDKPhotosPickerAccessoryVisibility(value, emit: emit))
+#else
+      case "photosPickerAccessoryVisibility": preconditionFailure("modifier photosPickerAccessoryVisibility needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PHOTOS
       case "photosPickerDisabledCapabilities": view = AnyView(view.oneNativeSDKPhotosPickerDisabledCapabilities(value, emit: emit))
+#else
+      case "photosPickerDisabledCapabilities": preconditionFailure("modifier photosPickerDisabledCapabilities needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PHOTOS
       case "photosPickerMetadataOptions": view = AnyView(view.oneNativeSDKPhotosPickerMetadataOptions(value, emit: emit))
+#else
+      case "photosPickerMetadataOptions": preconditionFailure("modifier photosPickerMetadataOptions needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PHOTOS
       case "photosPickerSearchText": view = AnyView(view.oneNativeSDKPhotosPickerSearchText(value, emit: emit))
+#else
+      case "photosPickerSearchText": preconditionFailure("modifier photosPickerSearchText needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PHOTOS
       case "photosPickerStyle": view = AnyView(view.oneNativeSDKPhotosPickerStyle(value, emit: emit))
+#else
+      case "photosPickerStyle": preconditionFailure("modifier photosPickerStyle needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PHOTOS
       case "photosReferenceImageViewer": view = AnyView(view.oneNativeSDKPhotosReferenceImageViewer(value, emit: emit))
+#else
+      case "photosReferenceImageViewer": preconditionFailure("modifier photosReferenceImageViewer needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PHOTOS
       case "photosSharedAlbumCreationSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumCreationSheet(value, emit: emit))
+#else
+      case "photosSharedAlbumCreationSheet": preconditionFailure("modifier photosSharedAlbumCreationSheet needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PHOTOS
       case "photosSharedAlbumCustomizationSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumCustomizationSheet(value, emit: emit))
+#else
+      case "photosSharedAlbumCustomizationSheet": preconditionFailure("modifier photosSharedAlbumCustomizationSheet needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PHOTOS
       case "photosSharedAlbumPostingSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumPostingSheet(value, emit: emit))
+#else
+      case "photosSharedAlbumPostingSheet": preconditionFailure("modifier photosSharedAlbumPostingSheet needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "pickerStyle": view = AnyView(view.oneNativeSDKPickerStyle(value, emit: emit))
       case "position": view = AnyView(view.oneNativeSDKPosition(value, emit: emit))
 #if ONE_GROUP_PHOTOS
       case "postToPhotosSharedAlbumSheet": view = AnyView(view.oneNativeSDKPostToPhotosSharedAlbumSheet(value, emit: emit))
+#else
+      case "postToPhotosSharedAlbumSheet": preconditionFailure("modifier postToPhotosSharedAlbumSheet needs the photos feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "preferencePreferredColorScheme": view = AnyView(view.oneNativeSDKPreferencePreferredColorScheme(value, emit: emit))
       case "preferredColorScheme": view = AnyView(view.oneNativeSDKPreferredColorScheme(value, emit: emit))
 #if ONE_GROUP_STORE
       case "preferredSubscriptionOffer": view = AnyView(view.oneNativeSDKPreferredSubscriptionOffer(value, emit: emit))
+#else
+      case "preferredSubscriptionOffer": preconditionFailure("modifier preferredSubscriptionOffer needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "preferredSubscriptionPricingTerms": view = AnyView(view.oneNativeSDKPreferredSubscriptionPricingTerms(value, emit: emit))
+#else
+      case "preferredSubscriptionPricingTerms": preconditionFailure("modifier preferredSubscriptionPricingTerms needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "presentationBackground": view = AnyView(view.oneNativeSDKPresentationBackground(value, emit: emit))
       case "presentationBackgroundInteraction": view = AnyView(view.oneNativeSDKPresentationBackgroundInteraction(value, emit: emit))
@@ -1136,28 +1210,42 @@ extension View {
       case "privacySensitive": view = AnyView(view.oneNativeSDKPrivacySensitive(value, emit: emit))
 #if ONE_GROUP_STORE
       case "productDescription": view = AnyView(view.oneNativeSDKProductDescription(value, emit: emit))
+#else
+      case "productDescription": preconditionFailure("modifier productDescription needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "productIconBorder": view = AnyView(view.oneNativeSDKProductIconBorder(value, emit: emit))
+#else
+      case "productIconBorder": preconditionFailure("modifier productIconBorder needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "productViewStyle": view = AnyView(view.oneNativeSDKProductViewStyle(value, emit: emit))
+#else
+      case "productViewStyle": preconditionFailure("modifier productViewStyle needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "progressViewStyle": view = AnyView(view.oneNativeSDKProgressViewStyle(value, emit: emit))
       case "projectionEffect": view = AnyView(view.oneNativeSDKProjectionEffect(value, emit: emit))
 #if ONE_GROUP_PREVIEW3D
       case "quickLookPreview": view = AnyView(view.oneNativeSDKQuickLookPreview(value, emit: emit))
+#else
+      case "quickLookPreview": preconditionFailure("modifier quickLookPreview needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PREVIEW3D
       case "realityViewCameraControls": view = AnyView(view.oneNativeSDKRealityViewCameraControls(value, emit: emit))
+#else
+      case "realityViewCameraControls": preconditionFailure("modifier realityViewCameraControls needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_PREVIEW3D
       case "realityViewLayoutBehavior": view = AnyView(view.oneNativeSDKRealityViewLayoutBehavior(value, emit: emit))
+#else
+      case "realityViewLayoutBehavior": preconditionFailure("modifier realityViewLayoutBehavior needs the preview3d feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
       case "refreshable": view = AnyView(view.oneNativeSDKRefreshable(value, emit: emit))
 #if ONE_GROUP_STORE
       case "refundRequestSheet": view = AnyView(view.oneNativeSDKRefundRequestSheet(value, emit: emit))
+#else
+      case "refundRequestSheet": preconditionFailure("modifier refundRequestSheet needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "renameAction": view = AnyView(view.oneNativeSDKRenameAction(value, emit: emit))
       case "reorderContainer": view = AnyView(view.oneNativeSDKReorderContainer(value, emit: emit))
@@ -1202,6 +1290,8 @@ extension View {
       case "shortcutsLinkStyle": view = AnyView(view.oneNativeSDKShortcutsLinkStyle(value, emit: emit))
 #if ONE_GROUP_ACCOUNT
       case "signInWithAppleButtonStyle": view = AnyView(view.oneNativeSDKSignInWithAppleButtonStyle(value, emit: emit))
+#else
+      case "signInWithAppleButtonStyle": preconditionFailure("modifier signInWithAppleButtonStyle needs the account feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "simultaneousGesture": view = AnyView(view.oneNativeSDKSimultaneousGesture(value, emit: emit))
       case "siriTipViewStyle": view = AnyView(view.oneNativeSDKSiriTipViewStyle(value, emit: emit))
@@ -1215,57 +1305,91 @@ extension View {
       case "statusBarHidden": view = AnyView(view.oneNativeSDKStatusBarHidden(value, emit: emit))
 #if ONE_GROUP_STORE
       case "storeButton": view = AnyView(view.oneNativeSDKStoreButton(value, emit: emit))
+#else
+      case "storeButton": preconditionFailure("modifier storeButton needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "storeProductsTask": view = AnyView(view.oneNativeSDKStoreProductsTask(value, emit: emit))
+#else
+      case "storeProductsTask": preconditionFailure("modifier storeProductsTask needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "storeProductTask": view = AnyView(view.oneNativeSDKStoreProductTask(value, emit: emit))
+#else
+      case "storeProductTask": preconditionFailure("modifier storeProductTask needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "strikethrough": view = AnyView(view.oneNativeSDKStrikethrough(value, emit: emit))
       case "submitLabel": view = AnyView(view.oneNativeSDKSubmitLabel(value, emit: emit))
       case "submitScope": view = AnyView(view.oneNativeSDKSubmitScope(value, emit: emit))
 #if ONE_GROUP_STORE
       case "subscriptionIntroductoryOffer": view = AnyView(view.oneNativeSDKSubscriptionIntroductoryOffer(value, emit: emit))
+#else
+      case "subscriptionIntroductoryOffer": preconditionFailure("modifier subscriptionIntroductoryOffer needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionOfferViewButtonVisibility": view = AnyView(view.oneNativeSDKSubscriptionOfferViewButtonVisibility(value, emit: emit))
+#else
+      case "subscriptionOfferViewButtonVisibility": preconditionFailure("modifier subscriptionOfferViewButtonVisibility needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionOfferViewDetailAction": view = AnyView(view.oneNativeSDKSubscriptionOfferViewDetailAction(value, emit: emit))
+#else
+      case "subscriptionOfferViewDetailAction": preconditionFailure("modifier subscriptionOfferViewDetailAction needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionOfferViewStyle": view = AnyView(view.oneNativeSDKSubscriptionOfferViewStyle(value, emit: emit))
+#else
+      case "subscriptionOfferViewStyle": preconditionFailure("modifier subscriptionOfferViewStyle needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionPromotionalOffer": view = AnyView(view.oneNativeSDKSubscriptionPromotionalOffer(value, emit: emit))
+#else
+      case "subscriptionPromotionalOffer": preconditionFailure("modifier subscriptionPromotionalOffer needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionStatusTask": view = AnyView(view.oneNativeSDKSubscriptionStatusTask(value, emit: emit))
+#else
+      case "subscriptionStatusTask": preconditionFailure("modifier subscriptionStatusTask needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionStoreButtonLabel": view = AnyView(view.oneNativeSDKSubscriptionStoreButtonLabel(value, emit: emit))
+#else
+      case "subscriptionStoreButtonLabel": preconditionFailure("modifier subscriptionStoreButtonLabel needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionStoreControlBackground": view = AnyView(view.oneNativeSDKSubscriptionStoreControlBackground(value, emit: emit))
+#else
+      case "subscriptionStoreControlBackground": preconditionFailure("modifier subscriptionStoreControlBackground needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionStoreControlStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreControlStyle(value, emit: emit))
+#else
+      case "subscriptionStoreControlStyle": preconditionFailure("modifier subscriptionStoreControlStyle needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionStoreOptionGroupStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreOptionGroupStyle(value, emit: emit))
+#else
+      case "subscriptionStoreOptionGroupStyle": preconditionFailure("modifier subscriptionStoreOptionGroupStyle needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionStorePickerItemBackground": view = AnyView(view.oneNativeSDKSubscriptionStorePickerItemBackground(value, emit: emit))
+#else
+      case "subscriptionStorePickerItemBackground": preconditionFailure("modifier subscriptionStorePickerItemBackground needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionStorePolicyDestination": view = AnyView(view.oneNativeSDKSubscriptionStorePolicyDestination(value, emit: emit))
+#else
+      case "subscriptionStorePolicyDestination": preconditionFailure("modifier subscriptionStorePolicyDestination needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionStorePolicyForegroundStyle": view = AnyView(view.oneNativeSDKSubscriptionStorePolicyForegroundStyle(value, emit: emit))
+#else
+      case "subscriptionStorePolicyForegroundStyle": preconditionFailure("modifier subscriptionStorePolicyForegroundStyle needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
 #if ONE_GROUP_STORE
       case "subscriptionStoreSignInAction": view = AnyView(view.oneNativeSDKSubscriptionStoreSignInAction(value, emit: emit))
+#else
+      case "subscriptionStoreSignInAction": preconditionFailure("modifier subscriptionStoreSignInAction needs the store feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value, emit: emit))
       case "symbolColorRenderingMode": view = AnyView(view.oneNativeSDKSymbolColorRenderingMode(value, emit: emit))
@@ -1340,6 +1464,8 @@ extension View {
       case "userActivity": view = AnyView(view.oneNativeSDKUserActivity(value, emit: emit))
 #if ONE_GROUP_WALLET
       case "verifyIdentityWithWalletButtonStyle": view = AnyView(view.oneNativeSDKVerifyIdentityWithWalletButtonStyle(value, emit: emit))
+#else
+      case "verifyIdentityWithWalletButtonStyle": preconditionFailure("modifier verifyIdentityWithWalletButtonStyle needs the wallet feature group, which this build compiled out; run one prebuild --platform ios and rebuild")
 #endif
       case "visualEffect": view = AnyView(view.oneNativeSDKVisualEffect(value, emit: emit))
       case "webViewBackForwardNavigationGestures": view = AnyView(view.oneNativeSDKWebViewBackForwardNavigationGestures(value, emit: emit))

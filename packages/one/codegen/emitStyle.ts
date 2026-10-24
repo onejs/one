@@ -2,11 +2,15 @@ import type { StyleField } from './catalog'
 import type { DerivedModifier, DerivedViewSlot, EventValueSchema } from './deriveSDK'
 import { continuousNumber, eventValueType } from './emitControls'
 import { sdkGuard } from './sdkGuard'
-import { frameworkGroups, gate, modifierGroups } from './linkSet'
+import { frameworkGroups, gate, linkSetGroups, modifierGroups } from './linkSet'
 import { callArguments, collectValues, emitValueDecoders, hasRecords, recordSwitchSwift, shapeParameters, valueKey, valueShapesTS, valueValidatorTS } from './emitValues'
 
 // the one gesture that can bind a native state: its translation moves the entry.
 const dragGesture = 'SwiftUI.DragGesture'
+
+// what a call into a compiled-out group reports: the group and the command that links it
+const compiledOut = (groups: readonly string[], what: string) =>
+  `preconditionFailure("${what} needs the ${groups.join(' and ')} feature group, which this build compiled out; run one prebuild --platform ios and rebuild")`
 const eventValueSwift = (value: EventValueSchema, expression: string): string => {
   if (value.kind === 'number') return `Double(${expression})`
   if (value.kind === 'description') return `String(describing: ${expression})`
@@ -178,7 +182,7 @@ ${decode}
             emit(${JSON.stringify(slot.name)}, encoded)
           })` : normalCall}
       }`, '')}
-      return AnyView(self)`)
+      return AnyView(self)`, `    case OneNativeViewSlotName.${slot.name}: ${compiledOut(modifierGroups(slot), `view slot ${slot.name}`)}`)
 }).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")
     }
@@ -207,11 +211,28 @@ ${decode}
   const generatedCalls = derived
     .map(
       (modifier) =>
-        gated(modifier, `      case ${JSON.stringify(modifier.name)}:${payLaterModifiers.has(modifier.name) ? `
+        gate(modifierGroups(modifier), `      case ${JSON.stringify(modifier.name)}:${payLaterModifiers.has(modifier.name) ? `
         precondition(!ProcessInfo.processInfo.isiOSAppOnMac, "${modifier.name} is unavailable on macOS")
-       ` : ''} view = AnyView(view.oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}(value, emit: emit))`)
+       ` : ''} view = AnyView(view.oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}(value, emit: emit))`, `      case ${JSON.stringify(modifier.name)}: ${compiledOut(modifierGroups(modifier), `modifier ${modifier.name}`)}`)
     )
     .join('\n')
+  // the js names whose use needs a group: its derived modifier and view slot keys and
+  // the store group's subscription store cases. a key needs every group that gates it.
+  const keys: Record<string, { modifiers: Set<string>; slots: Set<string>; values: Set<string> }> = Object.fromEntries(
+    Object.keys(linkSetGroups).map((group) => [group, { modifiers: new Set(), slots: new Set(), values: new Set() }])
+  )
+  for (const modifier of derived) for (const group of modifierGroups(modifier)) keys[group].modifiers.add(modifier.name)
+  for (const slot of slots) {
+    for (const group of modifierGroups(slot)) keys[group].slots.add(slot.name)
+    for (const argument of slot.arguments)
+      for (const item of argument.cases ?? []) if (/^subscriptionStore/.test(item.name)) keys.store.values.add(item.name)
+  }
+  outputs.set('ios-link-set.json', JSON.stringify({
+    groups: Object.fromEntries(Object.entries(linkSetGroups).map(([group, { modifiers: _m, slots: _s, values: _v, ...catalog }]: [string, any]) => [
+      group,
+      { ...catalog, modifiers: [...keys[group].modifiers].sort(), slots: [...keys[group].slots].sort(), values: [...keys[group].values].sort() },
+    ])),
+  }, null, 2) + '\n')
   const generatedMethods = derived
     .map((modifier) => {
       const helper = `oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}`
