@@ -202,16 +202,60 @@ Built in `tests/rn-test-container`, Release for iOS simulator, against `origin/m
 - Cold launches on one simulator, interleaved base, new, wallet, warm-up round then 10 each. Process start to first log line (about `main`) median: base 1844 ms (1759 to 2416), new 588 ms (566 to 649), wallet 1719 ms (1681 to 2140). Process start to the key window: base 1938, new 677, wallet 1817. The host was busy (load average about 10 to 15, quiet window never admitted), so absolute numbers are inflated; the interleaving keeps the comparison fair. No `app_delegate_init` mark was added; the log line and key window are the proxies. Routed content was not measured. A plain React Native control was not rebuilt, so the "within 100 ms of plain RN" bar is not shown: the earlier probe had 195 ms to `main` for plain RN and 498 ms for One with the triggers removed.
 - A single group costs nearly the whole saving back (wallet 1719 versus new 588), as the sweep predicted: the first trigger framework pays the shared load.
 
+## round two: detection, staleness, measurement (branch tm/one-ios-linkset)
+
+### detection (RAN)
+
+`src/vite/plugins/iosLinkSetPlugin.ts` is a rolldown plugin that One adds to the native plugin list (`globalThis.__vxrnAddNativePlugins`). It does nothing for dev or android and runs on the production ios bundle only. Its `transform` hook (order pre) hands every module of the bundler's own module graph to `src/cli/iosLinkSetAnalysis.ts`, except One's own sources, so third-party packages that use One count. The analysis parses each module with oxc and records:
+
+- named imports from `one` and `one/*`, including `import { Purchases }` and `export { X } from 'one'`;
+- member reads and destructuring on the `One` object and on `One.iOS`, through aliases (`const i = One.iOS`), `import * as`, `require('one')`, `await import('one')` and JSX member tags;
+- string literals, property names and JSX attribute names equal to a group's modifier, slot or value key.
+
+`ios-link-set.json` now carries those keys per group, and `bun run generate` derives them from the SwiftUI modifier table (`codegen/emitStyle.ts`) so they are not hand written. A computed read on a namespace (`One.iOS[name]`), or a namespace that escapes (passed as an argument, returned, spread, `export *`) keeps every group. A module that does not parse and names `one` keeps every group.
+
+Production bundles of `tests/rn-test-container` (RAN): plain app gives `[]`; `<One.iOS.PayWithApplePayButton/>` gives `["wallet"]`; a node_modules package that calls `One.Browser.open` gives `["account"]`. Assumption from the owner: no eval, no `new Function`, no runtime built names.
+
+Gaps: the module graph includes modules the bundler later drops, so an unused import of a group API counts (safe direction). A Metro bundle has no plugin, so `one prebuild` links every group with a warning there.
+
+### staleness (RAN)
+
+`one prebuild` runs the bundler with `ONE_IOS_LINK_SET_REPORT=<file>`; the plugin writes the groups there and `ios/one-link-set.json` is written from it. In an Xcode Release bundle phase the same plugin reads `PODS_ROOT` and `CONFIGURATION`, reads the groups the pod compiled from `Pods/Target Support Files/One/One.<configuration>.xcconfig`, and fails the bundle when the shipped bundle needs a group the binary lacks. Debug is skipped.
+
+Failure shown with the test container (RAN). A Release app built with link set `[]`, then `<One.iOS.PayWithApplePayButton/>` added to the first screen and xcodebuild run again without prebuild: it exits 65 with
+
+`[one] this Release build compiled out the wallet feature group that the app's JavaScript uses (compiled: none). The iOS link set is fixed when pods install. Run `one prebuild --platform ios` and build again.`
+
+Running `one prebuild --platform ios` and building again succeeds (BUILD SUCCEEDED), writes `["wallet"]` and the binary links `_PassKit_SwiftUI` and `libswiftPassKit`.
+
+Why not compute the set before the pod compiles in the same build: xcodebuild fixes the build settings (`SWIFT_ACTIVE_COMPILATION_CONDITIONS`) when it starts, from the pod install, so a script phase running earlier in the same build could only fail sooner, not change what the pod compiles. A pod `script_phase` with `execution_position: :before_compile` running the same analysis would fail the build before the pods compile, not after the app is compiled. That is a follow-up; it saves time on the failure path only.
+
+### compiled-out slots and modifiers
+
+A compiled-out view slot or modifier case now ends in `preconditionFailure("<name> needs the <group> feature group, which this build compiled out; run one prebuild --platform ios and rebuild")` instead of `unknown view slot` (generated from `codegen/emitStyle.ts`).
+
+### measurement (RAN, 10 interleaved cold launches each after a warm-up round, one simulator)
+
+Marks are `NSLog("startup_mark ...")` lines: `app_delegate_init` in `AppDelegate.init`, `routed_content` on `RCTContentDidAppearNotification` (the first routed screen for One, the first screen for plain RN). Times are milliseconds from process start (`sysctl` start time) to the log line. All four apps are Release for iOS simulator, same react-native 0.88.0. The plain RN control is m55831's `rn-rival` sources (`patches/rn-rival-sources.tgz`) with the startup trace calls replaced by the same two NSLog marks, built in `tests/rn-control` (not committed). The quiet window was not admitted in 50 minutes; load average was 6 before and 14 after the run, so read the ratios.
+
+| app | app_delegate_init median (min to max) | routed_content median (min to max) |
+|---|---|---|
+| plain RN control | 253 (241 to 270) | 1716 (1650 to 1959) |
+| One before (origin/main) | 1812 (1759 to 2123) | 2001 (1938 to 2351) |
+| One after, no group | 608 (552 to 633) | 1853 (1740 to 1887) |
+| One after, wallet group | 1689 (1545 to 1803) | 2171 (2011 to 2299) |
+
+The acceptance bar (within about 100 ms of plain RN before `AppDelegate.init`) is not met: One with no group is 355 ms behind the control. The remaining difference is the frameworks One still links. `otool -L` shows 204 images for One against 74 for the control, including SwiftUI, AVKit, WebKit, MapKit, VisionKit, Translation, LinkPresentation, ContactsUI, EventKit, Photos, SwiftData, WorkoutKit and their overlays. The probe sweep above put the nine mid-weight frameworks at about 100 ms (P2), which does not cover 355 ms; the rest is SwiftUI and the libswift libraries. Nothing here is trimmed yet. One group still costs back nearly all of the gain (wallet 1689 against 608). Routed content is dominated by React Native and One startup, and shows One after no group 137 ms behind the control.
+
 ## how it works
 
 `ios-link-set.json` lists the groups. `one prebuild` writes `ios/one-link-set.json` from the production bundle (`src/cli/iosLinkSet.ts`). `One.podspec` defines `ONE_GROUP_X` conditions for those groups in Release and for all groups in Debug. Group sources, nitro registration and generated modifiers sit under those conditions. A compiled-out component keeps a stub class that renders nothing, and a compiled-out hybrid is not registered, so its call fails through the existing unsupported error. `OneStoreReview` moved to a Swift hybrid in the store group because its SDK import kept StoreKit linked in every app.
 
 ## known gaps
 
-- Modifier keys that need a group's types are not used for detection.
-- The link set is captured at prebuild time. Adding a feature later needs `one prebuild` or `pod install` again.
-- Compiled-out view slots hit `unknown view slot`.
-- Detection reads names off the `One` and `iOS` namespace objects. A named-import use of a group API combined with `One` use elsewhere is missed, and a computed read (`One[x]`) keeps every group.
+- The link set is captured at pod install. Adding a feature later needs `one prebuild`; a Release build that needs a missing group fails (see round two).
+- A computed read or an escaping namespace keeps every group. A Metro bundle has no analysis plugin, so prebuild links every group there.
+- The acceptance bar of 100 ms over plain RN is not met (355 ms at `app_delegate_init`); mid-weight frameworks and SwiftUI remain linked.
 - Do not edit `codegen/sdk/app.ts` or other fingerprinted files; the fingerprint is embedded in the published bindings.
 
 ## files
