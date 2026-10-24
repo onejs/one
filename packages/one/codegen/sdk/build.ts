@@ -7,8 +7,8 @@
 import { mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { build, transform } from 'esbuild'
-import { compactFacade } from './compact'
+import { build } from 'esbuild'
+import { lazyFacade } from './lazy'
 
 const dir = dirname(fileURLToPath(import.meta.url))
 const fingerprintPath = join(dir, 'fingerprint.ts')
@@ -55,18 +55,9 @@ export async function buildIosFacades(
   mkdirSync(outdir, { recursive: true })
   await Promise.all(
     facades.map(async (name) => {
-      const { code } = await transform(
-        compactFacade(readFileSync(join(bindings, name), 'utf8')),
-        {
-          loader: 'ts',
-          format: 'esm',
-          sourcefile: `ios-bindings/${name}`,
-          minifyWhitespace: true,
-          minifySyntax: true,
-          minifyIdentifiers: true,
-          keepNames: true,
-          legalComments: 'none',
-        }
+      const code = await lazyFacade(
+        readFileSync(join(bindings, name), 'utf8'),
+        name.slice(0, -3)
       )
       writeFileSync(join(outdir, `${name.slice(0, -3)}.native.js`), code)
     })

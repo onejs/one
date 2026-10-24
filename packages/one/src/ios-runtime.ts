@@ -1,2 +1,2 @@
 export * from './platform/sdk/wire'
-export { defineSDKMembers } from './platform/sdk/materialize'
+export { defineSDKMembers, defineSDKFramework } from './platform/sdk/materialize'

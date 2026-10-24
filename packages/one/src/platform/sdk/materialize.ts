@@ -1,4 +1,35 @@
-import { callSDK, callSDKAsync, type WireHint } from './wire'
+import { callSDK, callSDKAsync, registerSDKFramework, type WireHint } from './wire'
+
+export function defineSDKFramework(
+  target: object,
+  framework: string,
+  names: string[],
+  exported: number[],
+  classes: number[],
+  extensions: number[],
+  protocols: number[],
+  initialize: (module: { exports: (() => unknown)[] }, exports: (() => unknown)[]) => void
+) {
+  const module = { exports: [] as (() => unknown)[] }
+  const ensure = registerSDKFramework(
+    framework,
+    classes.map((i) => names[i]),
+    extensions.map((i) => names[i]),
+    protocols.map((i) => names[i]),
+    () => initialize(module, module.exports)
+  )
+  Object.defineProperty(target, '__esModule', { value: true })
+  for (let index = 0; index < exported.length; index++) {
+    const name = names[exported[index]]
+    Object.defineProperty(target, name, {
+      enumerable: true,
+      get() {
+        ensure()
+        return module.exports[index]?.()
+      },
+    })
+  }
+}
 
 // flags: static, getter, setter, async, sync callbacks, retained, value receiver, observable, background method.
 type Member = [

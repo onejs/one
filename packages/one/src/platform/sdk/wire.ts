@@ -8,8 +8,17 @@ import type {
   OneSDKValue,
 } from '../specs/OneSDK.nitro'
 
-export type { OneSDKHandle, OneSDKPoint, OneSDKRect, OneSDKResult, OneSDKValue } from '../specs/OneSDK.nitro'
-export type SDKNative = Pick<OneSDK, 'call' | 'callSync' | 'callAsync' | 'callFunction' | 'observe' | 'subscribe'>
+export type {
+  OneSDKHandle,
+  OneSDKPoint,
+  OneSDKRect,
+  OneSDKResult,
+  OneSDKValue,
+} from '../specs/OneSDK.nitro'
+export type SDKNative = Pick<
+  OneSDK,
+  'call' | 'callSync' | 'callAsync' | 'callFunction' | 'observe' | 'subscribe'
+>
 export type Implements<P> = Partial<P>
 export type NativeOut<T> = { value: T }
 export type NativeError = SDKHandle & { readonly message?: string }
@@ -22,7 +31,10 @@ const unhandled = Symbol('one.sdk.unhandled')
 export class SDKHandle {
   // type-only: generated classes list the properties react can observe
   declare readonly $observable: {}
-  constructor(readonly $handle: OneSDKHandle, readonly $identity: string | OneSDKHandle = $handle) {}
+  constructor(
+    readonly $handle: OneSDKHandle,
+    readonly $identity: string | OneSDKHandle = $handle
+  ) {}
 }
 // a handle to an AsyncSequence or Combine publisher delivering T
 export type SDKSequence<T> = SDKHandle & { readonly $element: T }
@@ -31,11 +43,12 @@ type Wrapper = new (handle: OneSDKHandle, identity?: string) => SDKHandle
 const classes = new Map<string, Wrapper>()
 const wrappers = new WeakMap<OneSDKHandle, SDKHandle>()
 const identifiedWrappers = new Map<string, WeakRef<SDKHandle>>()
-const releasedWrappers = new FinalizationRegistry<{ identity: string; reference: WeakRef<SDKHandle> }>(
-  ({ identity, reference }) => {
-    if (identifiedWrappers.get(identity) === reference) identifiedWrappers.delete(identity)
-  }
-)
+const releasedWrappers = new FinalizationRegistry<{
+  identity: string
+  reference: WeakRef<SDKHandle>
+}>(({ identity, reference }) => {
+  if (identifiedWrappers.get(identity) === reference) identifiedWrappers.delete(identity)
+})
 type Method = { id: number; args?: (number | null)[]; hints?: (WireHint | null)[] }
 type PropertyTable = { module: string; properties: Record<string, number> }
 type ClassTable = PropertyTable & { methods?: Record<string, Method> }
@@ -43,6 +56,95 @@ type RegisteredMethod = { module: string; entry: Method; implementation: unknown
 const methodTables = new WeakMap<object, Map<string, RegisteredMethod>>()
 const propertyTables = new WeakMap<object, PropertyTable[]>()
 const protocols = new Map<string, Record<string, string>>()
+type Framework = {
+  name: string
+  classes: string[]
+  extensions: string[]
+  initialize: () => void
+  state: 'pending' | 'initializing' | 'ready' | 'failed'
+  failure?: unknown
+}
+const frameworkClasses = new Map<string, Framework[]>()
+const frameworkExtensions = new Map<string, Framework[]>()
+const frameworkProtocols = new Map<string, Framework[]>()
+const prototypeNames = new WeakMap<object, string>()
+let registrationDepth = 0
+
+function orderedFrameworks(map: Map<string, Framework[]>, name: string) {
+  return [...(map.get(name) ?? [])].sort((a, b) =>
+    a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+  )
+}
+
+function ensureFramework(framework: Framework) {
+  if (framework.state === 'ready' || framework.state === 'initializing') return
+  if (framework.state === 'failed') throw framework.failure
+  framework.state = 'initializing'
+  try {
+    for (const name of framework.extensions) {
+      for (const base of orderedFrameworks(frameworkClasses, name)) ensureFramework(base)
+      for (const extension of orderedFrameworks(frameworkExtensions, name)) {
+        if (extension.name < framework.name) ensureFramework(extension)
+      }
+    }
+    framework.initialize()
+    framework.state = 'ready'
+    for (const name of framework.classes) ensureClass(name)
+  } catch (error) {
+    framework.failure = error
+    framework.state = 'failed'
+    throw error
+  }
+}
+
+// only reached modules register loaders; unknown types keep their bare handles.
+export function registerSDKFramework(
+  name: string,
+  classes: string[],
+  extensions: string[],
+  protocols: string[],
+  initialize: () => void
+) {
+  const framework: Framework = { name, classes, extensions, initialize, state: 'pending' }
+  for (const [map, names] of [
+    [frameworkClasses, classes],
+    [frameworkExtensions, extensions],
+    [frameworkProtocols, protocols],
+  ] as const) {
+    for (const key of names) map.set(key, [...(map.get(key) ?? []), framework])
+  }
+  return () => ensureFramework(framework)
+}
+
+function ensureClass(name: string) {
+  for (const framework of orderedFrameworks(frameworkClasses, name))
+    ensureFramework(framework)
+  // registration copies fully defined members atomically. don't start another
+  // extension in the middle of that copy and reverse its collision precedence.
+  if (registrationDepth) return
+  for (const framework of orderedFrameworks(frameworkExtensions, name))
+    ensureFramework(framework)
+}
+
+function classForName(name: string) {
+  ensureClass(name)
+  return classes.get(name)
+}
+
+function ensurePrototype(prototype: object) {
+  const name = prototypeNames.get(prototype)
+  if (name) ensureClass(name)
+}
+
+function methodsForPrototype(prototype: object) {
+  ensurePrototype(prototype)
+  return methodTables.get(prototype)
+}
+
+function propertiesForPrototype(prototype: object) {
+  ensurePrototype(prototype)
+  return propertyTables.get(prototype)
+}
 let nativeSource: SDKNative | (() => SDKNative) | undefined
 
 export function setSDKNative(native: SDKNative | (() => SDKNative)) {
@@ -68,16 +170,19 @@ function extend(target: Wrapper, extension: Wrapper) {
       if (!(skipped as readonly PropertyKey[]).includes(key) && !Object.hasOwn(to, key)) {
         Object.defineProperty(to, key, Object.getOwnPropertyDescriptor(from, key)!)
         if (from === extension.prototype && typeof key === 'string') {
-          const method = methodTables.get(from)?.get(key)
+          const method = methodsForPrototype(from)?.get(key)
           if (method) {
-            let methods = methodTables.get(to)
-            if (!methods) methodTables.set(to, methods = new Map())
+            let methods = methodsForPrototype(to)
+            if (!methods) methodTables.set(to, (methods = new Map()))
             methods.set(key, method)
           }
         }
       }
-  const added = propertyTables.get(extension.prototype) ?? []
-  propertyTables.set(target.prototype, [...(propertyTables.get(target.prototype) ?? []), ...added])
+  const added = propertiesForPrototype(extension.prototype) ?? []
+  propertyTables.set(target.prototype, [
+    ...(propertiesForPrototype(target.prototype) ?? []),
+    ...added,
+  ])
 }
 
 // a framework's own class is the wrapper for its values. an extension from another
@@ -88,25 +193,40 @@ export function registerSDKClass(
   properties?: ClassTable,
   extension = false
 ) {
-  if (properties) {
-    propertyTables.set(wrapper.prototype, [{ module: properties.module, properties: properties.properties }])
-    const methods = new Map<string, RegisteredMethod>()
-    for (const [name, entry] of Object.entries(properties.methods ?? {})) {
-      const descriptor = Object.getOwnPropertyDescriptor(wrapper.prototype, name)
-      if (typeof descriptor?.value === 'function')
-        methods.set(name, { module: properties.module, entry, implementation: descriptor.value })
+  registrationDepth++
+  try {
+    ensureClass(swiftName)
+    prototypeNames.set(wrapper.prototype, swiftName)
+    if (properties) {
+      propertyTables.set(wrapper.prototype, [
+        { module: properties.module, properties: properties.properties },
+      ])
+      const methods = new Map<string, RegisteredMethod>()
+      for (const [name, entry] of Object.entries(properties.methods ?? {})) {
+        const descriptor = Object.getOwnPropertyDescriptor(wrapper.prototype, name)
+        if (typeof descriptor?.value === 'function')
+          methods.set(name, {
+            module: properties.module,
+            entry,
+            implementation: descriptor.value,
+          })
+      }
+      methodTables.set(wrapper.prototype, methods)
     }
-    methodTables.set(wrapper.prototype, methods)
+    const current = classForName(swiftName)
+    if (extension) {
+      ensureClass(swiftName)
+      extensions.set(swiftName, [...(extensions.get(swiftName) ?? []), wrapper])
+      if (current) extend(current, wrapper)
+      else classes.set(swiftName, wrapper)
+      return
+    }
+    classes.set(swiftName, wrapper)
+    ensureClass(swiftName)
+    for (const added of extensions.get(swiftName) ?? []) extend(wrapper, added)
+  } finally {
+    registrationDepth--
   }
-  const current = classes.get(swiftName)
-  if (extension) {
-    extensions.set(swiftName, [...(extensions.get(swiftName) ?? []), wrapper])
-    if (current) extend(current, wrapper)
-    else classes.set(swiftName, wrapper)
-    return
-  }
-  classes.set(swiftName, wrapper)
-  for (const added of extensions.get(swiftName) ?? []) extend(wrapper, added)
 }
 
 export function registerSDKProtocol(usr: string, methods: Record<string, string>) {
@@ -133,16 +253,24 @@ function handleOf(value: unknown): OneSDKHandle | undefined {
 }
 
 function toArrayBuffer(view: ArrayBufferView): ArrayBuffer {
-  if (view.byteOffset === 0 && view.byteLength === view.buffer.byteLength && view.buffer instanceof ArrayBuffer) {
+  if (
+    view.byteOffset === 0 &&
+    view.byteLength === view.buffer.byteLength &&
+    view.buffer instanceof ArrayBuffer
+  ) {
     return view.buffer
   }
-  return view.buffer.slice(view.byteOffset, view.byteOffset + view.byteLength) as ArrayBuffer
+  return view.buffer.slice(
+    view.byteOffset,
+    view.byteOffset + view.byteLength
+  ) as ArrayBuffer
 }
 
 function toDirectValue(value: unknown): OneSDKValue | typeof unhandled {
   if (value == null) return null
   const t = typeof value
-  if (t === 'string' || t === 'number' || t === 'boolean') return value as string | number | boolean
+  if (t === 'string' || t === 'number' || t === 'boolean')
+    return value as string | number | boolean
   if (t === 'object') {
     if (value instanceof SDKHandle) return value.$handle
     if (value instanceof ArrayBuffer || value instanceof Date) return value
@@ -213,6 +341,8 @@ function encode(value: unknown, ctx: Context, hint?: WireHint): Wire {
   }
   if (typeof value === 'object') {
     if (hint?.protocol) {
+      for (const framework of orderedFrameworks(frameworkProtocols, hint.protocol))
+        ensureFramework(framework)
       const titles = protocols.get(hint.protocol)
       if (!titles) throw new TypeError(`unregistered SDK protocol ${hint.protocol}`)
       const methods: Record<string, Wire> = {}
@@ -231,7 +361,12 @@ function encode(value: unknown, ctx: Context, hint?: WireHint): Wire {
       ])
     )
   }
-  if (typeof value === 'string' || typeof value === 'boolean' || typeof value === 'number') return value
+  if (
+    typeof value === 'string' ||
+    typeof value === 'boolean' ||
+    typeof value === 'number'
+  )
+    return value
   throw new TypeError(`cannot encode SDK value of type ${typeof value}`)
 }
 
@@ -255,7 +390,9 @@ function callFunctionSDK(handle: OneSDKHandle, args: unknown[]): Promise<any> {
     }
   }
   const call = encodeCall(undefined, args)
-  return (sdk.callFunction as any)(handle, call.envelope, undefined, call.dispatch).then(decodeSDKResult)
+  return (sdk.callFunction as any)(handle, call.envelope, undefined, call.dispatch).then(
+    decodeSDKResult
+  )
 }
 
 function wrapHandle(
@@ -271,17 +408,21 @@ function wrapHandle(
     return fn
   }
   const identity = identityHint ?? handle.identity
-  const existing = identity ? identifiedWrappers.get(identity)?.deref() : wrappers.get(handle)
+  const type = typeHint ?? handle.typeName
+  ensureClass(type)
+  ensureClass(type.replace(/<.*>/g, ''))
+  const existing = identity
+    ? identifiedWrappers.get(identity)?.deref()
+    : wrappers.get(handle)
   if (existing && existing.constructor !== SDKHandle && !typeHint && !superclassesHint) {
     return existing
   }
-  const type = typeHint ?? handle.typeName
-  let Wrapper = classes.get(type) ?? classes.get(type.replace(/<.*>/g, ''))
+  let Wrapper = classForName(type) ?? classForName(type.replace(/<.*>/g, ''))
   if (!Wrapper) {
     const superclasses = superclassesHint ?? handle.superclasses
     if (superclasses) {
       for (const name of superclasses) {
-        Wrapper = classes.get(name) ?? classes.get(name.replace(/<.*>/g, ''))
+        Wrapper = classForName(name) ?? classForName(name.replace(/<.*>/g, ''))
         if (Wrapper) break
       }
     }
@@ -376,14 +517,24 @@ function encodeCall(receiver: unknown, args: unknown[], hints: (WireHint | null)
   if (!ctx.callbacks.length) {
     return { envelope, data: root, ctx, dispatch: undefined, syncDispatch: undefined }
   }
-  const callback = (index: number, data: AnyMap, handles: OneSDKHandle[], buffers?: ArrayBuffer[]) => {
+  const callback = (
+    index: number,
+    data: AnyMap,
+    handles: OneSDKHandle[],
+    buffers?: ArrayBuffer[]
+  ) => {
     const cb = ctx.callbacks[index]
     if (!cb) throw new TypeError(`missing SDK callback ${index}`)
     const values: unknown[] = decode(data.args as Wire, handles, buffers)
     for (const at of cb.out) values[at] = { value: values[at] }
     return { cb, values }
   }
-  const dispatch = (index: number, data: AnyMap, handles: OneSDKHandle[], buffers?: ArrayBuffer[]) => {
+  const dispatch = (
+    index: number,
+    data: AnyMap,
+    handles: OneSDKHandle[],
+    buffers?: ArrayBuffer[]
+  ) => {
     if (data.$reply !== undefined) {
       const respond = decode(data.$reply as Wire, handles, buffers)
       if (typeof respond !== 'function') throw new TypeError('invalid SDK callback reply')
@@ -394,8 +545,11 @@ function encodeCall(receiver: unknown, args: unknown[], hints: (WireHint | null)
           return cb.fn(...values)
         })
         .then((value) => {
-          try { return respond(value) }
-          catch (error) { return fail(error) }
+          try {
+            return respond(value)
+          } catch (error) {
+            return fail(error)
+          }
         }, fail)
       return
     }
@@ -470,13 +624,20 @@ export function callSDK<T>(
         id,
         call.envelope,
         call.dispatch ?? unexpectedCallback,
-        call.syncDispatch ?? ((index: number) => ({ data: { error: `missing SDK callback ${index}` }, handles: [] }))
+        call.syncDispatch ??
+          ((index: number) => ({
+            data: { error: `missing SDK callback ${index}` },
+            handles: [],
+          }))
       )
     : (sdk.call as any)(module, id, undefined, call.envelope, undefined, call.dispatch)
   return decodeSDKResult<T>(result)
 }
 
-type MethodKey<T> = { [K in keyof T]-?: T[K] extends (...args: any[]) => any ? K : never }[keyof T] & string
+type MethodKey<T> = {
+  [K in keyof T]-?: T[K] extends (...args: any[]) => any ? K : never
+}[keyof T] &
+  string
 type MethodFunction<T, K extends keyof T> = Extract<T[K], (...args: any[]) => any>
 
 // generated metadata preserves overload names, out slots and protocol hints.
@@ -489,13 +650,26 @@ export async function callSDKMethodAsync<T extends SDKHandle, K extends MethodKe
   if (!Object.hasOwn(object, method)) {
     let prototype = Object.getPrototypeOf(object)
     while (prototype) {
+      ensurePrototype(prototype)
       const descriptor = Object.getOwnPropertyDescriptor(prototype, method)
       if (descriptor) {
-        const registered = methodTables.get(prototype)?.get(method)
-        if (registered && typeof descriptor.value === 'function' && registered.implementation === descriptor.value) {
+        const registered = methodsForPrototype(prototype)?.get(method)
+        if (
+          registered &&
+          typeof descriptor.value === 'function' &&
+          registered.implementation === descriptor.value
+        ) {
           const { module, entry } = registered
-          const nativeArgs = entry.args ? entry.args.map((at) => at === null ? null : args[at]) : args
-          return callSDKAsync<Awaited<ReturnType<MethodFunction<T, K>>>>(module, entry.id, object, nativeArgs, entry.hints)
+          const nativeArgs = entry.args
+            ? entry.args.map((at) => (at === null ? null : args[at]))
+            : args
+          return callSDKAsync<Awaited<ReturnType<MethodFunction<T, K>>>>(
+            module,
+            entry.id,
+            object,
+            nativeArgs,
+            entry.hints
+          )
         }
         break
       }
@@ -529,7 +703,9 @@ export async function callSDKAsync<T>(
           }
           const a1 = toDirectValue(args[1])
           if (a1 !== unhandled) {
-            return decodeSDKResult<T>(await (sdk.callAsync as any)(module, id, recv, a0, a1))
+            return decodeSDKResult<T>(
+              await (sdk.callAsync as any)(module, id, recv, a0, a1)
+            )
           }
         }
       }
@@ -537,7 +713,14 @@ export async function callSDKAsync<T>(
   }
   const call = encodeCall(receiver, args, hints)
   return decodeSDKResult<T>(
-    await (sdk.callAsync as any)(module, id, undefined, call.envelope, undefined, call.dispatch)
+    await (sdk.callAsync as any)(
+      module,
+      id,
+      undefined,
+      call.envelope,
+      undefined,
+      call.dispatch
+    )
   )
 }
 
@@ -551,11 +734,19 @@ export function observeSDKProperty<T>(
 ): () => void {
   let prototype = Object.getPrototypeOf(object)
   while (prototype) {
-    const table = propertyTables.get(prototype)?.find((t) => Object.hasOwn(t.properties, property))
+    const table = propertiesForPrototype(prototype)?.find((t) =>
+      Object.hasOwn(t.properties, property)
+    )
     const id = table?.properties[property]
     if (table && id !== undefined) {
       const call = encodeCall(object, [])
-      return native().observe(table.module, id, call.envelope.data, call.ctx.handles, observationDispatch(value, error))
+      return native().observe(
+        table.module,
+        id,
+        call.envelope.data,
+        call.ctx.handles,
+        observationDispatch(value, error)
+      )
     }
     prototype = Object.getPrototypeOf(prototype)
   }
@@ -571,11 +762,15 @@ export function subscribeSDK<T>(
   return native().subscribe(object.$handle, observationDispatch(value, error))
 }
 
-function observationDispatch<T>(value: (value: T) => void, error: (error: Error) => void) {
+function observationDispatch<T>(
+  value: (value: T) => void,
+  error: (error: Error) => void
+) {
   return (result: OneSDKResult) => {
     let decoded: T
-    try { decoded = decodeSDKResult<T>(result) }
-    catch (cause) {
+    try {
+      decoded = decodeSDKResult<T>(result)
+    } catch (cause) {
       error(cause instanceof Error ? cause : new Error(String(cause)))
       return
     }
