@@ -56,7 +56,8 @@ static void one_view_measure(
 // size instead, so give it the baseline of its natural size centered in the box
 static int control_baseline(GtkWidget *control, int width, int height)
 {
-  if (!GTK_IS_TEXT(control)) {
+  GtkWidget *field = GTK_IS_STACK(control) ? gtk_stack_get_visible_child(GTK_STACK(control)) : control;
+  if (!GTK_IS_TEXT(field)) {
     return -1;
   }
   int minimum, natural, minimumBaseline, naturalBaseline;

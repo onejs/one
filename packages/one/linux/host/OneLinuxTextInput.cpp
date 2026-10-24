@@ -38,10 +38,28 @@ struct FocusIdle {
   GtkWidget *widget;
 };
 
+void OneLinuxTextInput::attachControllers(GtkWidget *widget, int index)
+{
+  focus_[index] = gtk_event_controller_focus_new();
+  g_signal_connect(focus_[index], "enter", G_CALLBACK(focusEntered), this);
+  g_signal_connect(focus_[index], "leave", G_CALLBACK(focusLeft), this);
+  gtk_widget_add_controller(widget, focus_[index]);
+
+  key_[index] = gtk_event_controller_key_new();
+  gtk_event_controller_set_propagation_phase(key_[index], GTK_PHASE_CAPTURE);
+  g_signal_connect(key_[index], "key-pressed", G_CALLBACK(keyPressed), this);
+  gtk_widget_add_controller(widget, key_[index]);
+}
+
 OneLinuxTextInput::OneLinuxTextInput(Tag tag) : tag_(tag)
 {
+  stack_ = gtk_stack_new();
+  g_object_ref_sink(stack_);
+  // only the visible field counts toward the input's size
+  gtk_stack_set_hhomogeneous(GTK_STACK(stack_), FALSE);
+  gtk_stack_set_vhomogeneous(GTK_STACK(stack_), FALSE);
+
   text_ = gtk_text_new();
-  g_object_ref_sink(text_);
   fontStyle_ = gtk_css_provider_new();
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   gtk_style_context_add_provider(gtk_widget_get_style_context(text_), GTK_STYLE_PROVIDER(fontStyle_), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -52,25 +70,90 @@ OneLinuxTextInput::OneLinuxTextInput(Tag tag) : tag_(tag)
   g_signal_connect(text_, "notify::cursor-position", G_CALLBACK(selectionMoved), this);
   g_signal_connect(text_, "notify::selection-bound", G_CALLBACK(selectionMoved), this);
   g_signal_connect(text_, "activate", G_CALLBACK(activated), this);
+  attachControllers(text_, 0);
+  gtk_stack_add_named(GTK_STACK(stack_), text_, "single");
 
-  focus_ = gtk_event_controller_focus_new();
-  g_signal_connect(focus_, "enter", G_CALLBACK(focusEntered), this);
-  g_signal_connect(focus_, "leave", G_CALLBACK(focusLeft), this);
-  gtk_widget_add_controller(text_, focus_);
+  // a GtkTextView has no placeholder, so a label over it stands in
+  view_ = gtk_text_view_new();
+  buffer_ = gtk_text_view_get_buffer(GTK_TEXT_VIEW(view_));
+  gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view_), GTK_WRAP_WORD_CHAR);
+  GtkWidget *scroll = gtk_scrolled_window_new();
+  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scroll), view_);
+  overlay_ = gtk_overlay_new();
+  gtk_overlay_set_child(GTK_OVERLAY(overlay_), scroll);
+  placeholder_ = gtk_label_new("");
+  gtk_widget_set_halign(placeholder_, GTK_ALIGN_START);
+  gtk_widget_set_valign(placeholder_, GTK_ALIGN_START);
+  gtk_widget_set_can_target(placeholder_, FALSE);
+  gtk_overlay_add_overlay(GTK_OVERLAY(overlay_), placeholder_);
+  viewStyle_ = gtk_css_provider_new();
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+  gtk_style_context_add_provider(gtk_widget_get_style_context(view_), GTK_STYLE_PROVIDER(viewStyle_), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  gtk_style_context_add_provider(gtk_widget_get_style_context(placeholder_), GTK_STYLE_PROVIDER(viewStyle_), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  G_GNUC_END_IGNORE_DEPRECATIONS
+  g_signal_connect(buffer_, "changed", G_CALLBACK(changed), this);
+  g_signal_connect(buffer_, "mark-set", G_CALLBACK(markSet), this);
+  attachControllers(view_, 1);
+  gtk_stack_add_named(GTK_STACK(stack_), overlay_, "multi");
 
-  key_ = gtk_event_controller_key_new();
-  gtk_event_controller_set_propagation_phase(key_, GTK_PHASE_CAPTURE);
-  g_signal_connect(key_, "key-pressed", G_CALLBACK(keyPressed), this);
-  gtk_widget_add_controller(text_, key_);
+  gtk_stack_set_visible_child(GTK_STACK(stack_), text_);
 }
 
 OneLinuxTextInput::~OneLinuxTextInput()
 {
   g_signal_handlers_disconnect_by_data(text_, this);
-  g_signal_handlers_disconnect_by_data(focus_, this);
-  g_signal_handlers_disconnect_by_data(key_, this);
+  g_signal_handlers_disconnect_by_data(buffer_, this);
+  for (int i = 0; i < 2; i++) {
+    g_signal_handlers_disconnect_by_data(focus_[i], this);
+    g_signal_handlers_disconnect_by_data(key_[i], this);
+  }
   g_object_unref(fontStyle_);
-  g_object_unref(text_);
+  g_object_unref(viewStyle_);
+  g_object_unref(stack_);
+}
+
+void OneLinuxTextInput::setMultiline(bool multiline)
+{
+  if (multiline == multiline_) {
+    return;
+  }
+  // the text carries over so a field that switches keeps what was typed
+  std::string text = currentText();
+  multiline_ = multiline;
+  comingFromJS_ = true;
+  if (multiline_) {
+    gtk_text_buffer_set_text(buffer_, text.c_str(), -1);
+  } else {
+    gtk_editable_set_text(GTK_EDITABLE(text_), text.c_str());
+  }
+  comingFromJS_ = false;
+  gtk_stack_set_visible_child(GTK_STACK(stack_), multiline_ ? overlay_ : text_);
+  updatePlaceholder();
+}
+
+void OneLinuxTextInput::updatePlaceholder()
+{
+  gtk_widget_set_visible(placeholder_, multiline_ && gtk_text_buffer_get_char_count(buffer_) == 0);
+}
+
+// the selection as character offsets; an empty one is the caret
+void OneLinuxTextInput::selectionBounds(int &start, int &end) const
+{
+  if (multiline_) {
+    GtkTextIter first, last;
+    if (gtk_text_buffer_get_selection_bounds(buffer_, &first, &last)) {
+      start = gtk_text_iter_get_offset(&first);
+      end = gtk_text_iter_get_offset(&last);
+    } else {
+      start = end = gtk_text_iter_get_offset(&first);
+    }
+    return;
+  }
+  gtk_editable_get_selection_bounds(GTK_EDITABLE(text_), &start, &end);
+  if (start == end) {
+    start = end = gtk_editable_get_position(GTK_EDITABLE(text_));
+  }
 }
 
 const TextInputProps &OneLinuxTextInput::props() const
@@ -85,7 +168,15 @@ const TextInputEventEmitter *OneLinuxTextInput::emitter() const
 
 std::string OneLinuxTextInput::currentText() const
 {
-  return gtk_editable_get_text(GTK_EDITABLE(text_));
+  if (!multiline_) {
+    return gtk_editable_get_text(GTK_EDITABLE(text_));
+  }
+  GtkTextIter start, end;
+  gtk_text_buffer_get_bounds(buffer_, &start, &end);
+  gchar *text = gtk_text_buffer_get_text(buffer_, &start, &end, FALSE);
+  std::string result = text;
+  g_free(text);
+  return result;
 }
 
 AttributedString OneLinuxTextInput::attributedText(const std::string &text) const
@@ -99,7 +190,7 @@ AttributedString OneLinuxTextInput::attributedText(const std::string &text) cons
 
 Size OneLinuxTextInput::contentSize() const
 {
-  PangoLayout *layout = OneLinuxCreateLayout(attributedText(currentText()), ParagraphAttributes{}, -1, false);
+  PangoLayout *layout = OneLinuxCreateLayout(attributedText(currentText()), ParagraphAttributes{}, multiline_ ? size_.width : -1, false);
   int width, height;
   pango_layout_get_pixel_size(layout, &width, &height);
   g_object_unref(layout);
@@ -111,10 +202,7 @@ TextInputEventEmitter::Metrics OneLinuxTextInput::metrics() const
   TextInputEventEmitter::Metrics result;
   result.text = currentText();
   int start, end;
-  gtk_editable_get_selection_bounds(GTK_EDITABLE(text_), &start, &end);
-  if (start == end) {
-    start = end = gtk_editable_get_position(GTK_EDITABLE(text_));
-  }
+  selectionBounds(start, end);
   int first = utf16Offset(result.text, start);
   result.selectionRange = {first, utf16Offset(result.text, end) - first};
   result.contentSize = contentSize();
@@ -131,18 +219,35 @@ void OneLinuxTextInput::setText(const std::string &text)
   if (currentText() == text) {
     return;
   }
-  int position = gtk_editable_get_position(GTK_EDITABLE(text_));
+  int position, unused;
+  selectionBounds(position, unused);
+  int length = g_utf8_strlen(text.c_str(), -1);
   comingFromJS_ = true;
-  gtk_editable_set_text(GTK_EDITABLE(text_), text.c_str());
-  gtk_editable_set_position(GTK_EDITABLE(text_), std::min<int>(position, g_utf8_strlen(text.c_str(), -1)));
+  if (multiline_) {
+    gtk_text_buffer_set_text(buffer_, text.c_str(), -1);
+    GtkTextIter caret;
+    gtk_text_buffer_get_iter_at_offset(buffer_, &caret, std::min(position, length));
+    gtk_text_buffer_place_cursor(buffer_, &caret);
+  } else {
+    gtk_editable_set_text(GTK_EDITABLE(text_), text.c_str());
+    gtk_editable_set_position(GTK_EDITABLE(text_), std::min(position, length));
+  }
   comingFromJS_ = false;
+  updatePlaceholder();
 }
 
 void OneLinuxTextInput::setSelection(int start, int end)
 {
   std::string text = currentText();
   comingFromJS_ = true;
-  gtk_editable_select_region(GTK_EDITABLE(text_), characterOffset(text, start), characterOffset(text, end));
+  if (multiline_) {
+    GtkTextIter first, last;
+    gtk_text_buffer_get_iter_at_offset(buffer_, &first, characterOffset(text, start));
+    gtk_text_buffer_get_iter_at_offset(buffer_, &last, characterOffset(text, end));
+    gtk_text_buffer_select_range(buffer_, &last, &first);
+  } else {
+    gtk_editable_select_region(GTK_EDITABLE(text_), characterOffset(text, start), characterOffset(text, end));
+  }
   comingFromJS_ = false;
 }
 
@@ -195,6 +300,7 @@ void OneLinuxTextInput::update(
   const auto &textProps = this->props();
 
   if (propsChanged) {
+    setMultiline(textProps.multiline);
     GtkEditable *editable = GTK_EDITABLE(text_);
     gtk_editable_set_editable(editable, textProps.traits.editable && !textProps.readOnly);
     gtk_text_set_visibility(GTK_TEXT(text_), !textProps.traits.secureTextEntry);
@@ -211,6 +317,18 @@ void OneLinuxTextInput::update(
       alignment = *attributes.alignment == TextAlignment::Center ? 0.5f : *attributes.alignment == TextAlignment::Right ? 1.0f : 0.0f;
     }
     gtk_editable_set_alignment(editable, alignment);
+
+    // the multiline field takes its font and color from CSS, and reads the
+    // placeholder from its label; maxLength is not enforced there yet
+    gtk_text_view_set_editable(GTK_TEXT_VIEW(view_), textProps.traits.editable && !textProps.readOnly);
+    gtk_text_view_set_justification(
+        GTK_TEXT_VIEW(view_), alignment == 0.5f ? GTK_JUSTIFY_CENTER : alignment == 1.0f ? GTK_JUSTIFY_RIGHT : GTK_JUSTIFY_LEFT);
+    gtk_widget_set_halign(placeholder_, alignment == 0.5f ? GTK_ALIGN_CENTER : alignment == 1.0f ? GTK_ALIGN_END : GTK_ALIGN_START);
+    gtk_label_set_text(GTK_LABEL(placeholder_), textProps.placeholder.c_str());
+    std::string css = OneLinuxCreateFieldFontCss(attributes, "textview, textview text") + OneLinuxCreateFieldFontCss(attributes, "label") +
+        OneLinuxCreateFieldColorCss(attributes, "textview text") + "label { opacity: 0.5; }";
+    gtk_css_provider_load_from_string(viewStyle_, css.c_str());
+    updatePlaceholder();
   }
 
   if (state && state != state_) {
@@ -224,7 +342,7 @@ void OneLinuxTextInput::update(
 
   if (!didAutoFocus_ && textProps.autoFocus) {
     didAutoFocus_ = true;
-    auto *idle = new FocusIdle{GTK_WIDGET(g_object_ref(text_))};
+    auto *idle = new FocusIdle{GTK_WIDGET(g_object_ref(field()))};
     g_idle_add(
         [](gpointer data) -> gboolean {
           auto *focus = static_cast<FocusIdle *>(data);
@@ -239,8 +357,8 @@ void OneLinuxTextInput::update(
 
 void OneLinuxTextInput::blur()
 {
-  if (gtk_widget_has_focus(text_)) {
-    if (GtkRoot *root = gtk_widget_get_root(text_)) {
+  if (gtk_widget_has_focus(field())) {
+    if (GtkRoot *root = gtk_widget_get_root(field())) {
       gtk_root_set_focus(root, nullptr);
     }
   }
@@ -249,7 +367,7 @@ void OneLinuxTextInput::blur()
 void OneLinuxTextInput::command(const std::string &name, const folly::dynamic &args)
 {
   if (name == "focus") {
-    gtk_widget_grab_focus(text_);
+    gtk_widget_grab_focus(field());
   } else if (name == "blur") {
     blur();
   } else if (name == "setTextAndSelection" && args.size() >= 4) {
@@ -269,9 +387,10 @@ void OneLinuxTextInput::command(const std::string &name, const folly::dynamic &a
 
 // edits that originate in the field bump the event count and tell React; the
 // state carries the new text so the shadow node measures what is on screen
-void OneLinuxTextInput::changed(GtkEditable *, gpointer data)
+void OneLinuxTextInput::changed(gpointer, gpointer data)
 {
   auto &self = *static_cast<OneLinuxTextInput *>(data);
+  self.updatePlaceholder();
   if (self.comingFromJS_ || !self.props_) {
     return;
   }
@@ -287,37 +406,49 @@ void OneLinuxTextInput::changed(GtkEditable *, gpointer data)
   }
 }
 
+void OneLinuxTextInput::reportSelection()
+{
+  if (comingFromJS_ || !props_) {
+    return;
+  }
+  auto metrics = this->metrics();
+  if (metrics.selectionRange.location == lastSelection_.location && metrics.selectionRange.length == lastSelection_.length) {
+    return;
+  }
+  lastSelection_ = metrics.selectionRange;
+  if (auto *emitter = this->emitter()) {
+    emitter->onSelectionChange(metrics);
+  }
+}
+
 void OneLinuxTextInput::selectionMoved(GObject *, GParamSpec *, gpointer data)
 {
-  auto &self = *static_cast<OneLinuxTextInput *>(data);
-  if (self.comingFromJS_ || !self.props_) {
+  static_cast<OneLinuxTextInput *>(data)->reportSelection();
+}
+
+void OneLinuxTextInput::markSet(GtkTextBuffer *, GtkTextIter *, GtkTextMark *, gpointer data)
+{
+  static_cast<OneLinuxTextInput *>(data)->reportSelection();
+}
+
+void OneLinuxTextInput::submit()
+{
+  if (!props_) {
     return;
   }
-  auto metrics = self.metrics();
-  if (metrics.selectionRange.location == self.lastSelection_.location && metrics.selectionRange.length == self.lastSelection_.length) {
-    return;
+  if (auto *emitter = this->emitter()) {
+    emitter->onSubmitEditing(metrics());
   }
-  self.lastSelection_ = metrics.selectionRange;
-  if (auto *emitter = self.emitter()) {
-    emitter->onSelectionChange(metrics);
+  if (props().submitBehavior == SubmitBehavior::BlurAndSubmit) {
+    blur();
   }
 }
 
 void OneLinuxTextInput::activated(GtkText *, gpointer data)
 {
   auto &self = *static_cast<OneLinuxTextInput *>(data);
-  if (!self.props_) {
-    return;
-  }
-  SubmitBehavior behavior = self.props().submitBehavior;
-  if (behavior == SubmitBehavior::Newline) {
-    return;
-  }
-  if (auto *emitter = self.emitter()) {
-    emitter->onSubmitEditing(self.metrics());
-  }
-  if (behavior == SubmitBehavior::BlurAndSubmit) {
-    self.blur();
+  if (self.props_ && self.props().submitBehavior != SubmitBehavior::Newline) {
+    self.submit();
   }
 }
 
@@ -363,6 +494,12 @@ gboolean OneLinuxTextInput::keyPressed(GtkEventControllerKey *, guint keyval, gu
     return FALSE;
   }
   emitter->onKeyPress({key, static_cast<int>(self.mostRecentEventCount_)});
+  // Enter in a multiline field adds a line unless the input submits on it;
+  // shift+Enter always adds one
+  if (self.multiline_ && key == "Enter" && !(modifiers & GDK_SHIFT_MASK) && self.props().submitBehavior != SubmitBehavior::Newline) {
+    self.submit();
+    return TRUE;
+  }
   return FALSE;
 }
 

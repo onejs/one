@@ -225,15 +225,27 @@ PangoAttrList *OneLinuxCreateFieldAttributes(const TextAttributes &attributes)
 // a GtkText measures its line from the font its style gives it, so the field's
 // font goes in its style rather than in the text attributes; the placeholder
 // then shares it
-std::string OneLinuxCreateFieldFontCss(const TextAttributes &attributes)
+std::string OneLinuxCreateFieldFontCss(const TextAttributes &attributes, const char *selector)
 {
   PangoFontDescription *description = fontDescription(attributes);
-  std::string css = "text { font-family: \"" + std::string(pango_font_description_get_family(description)) + "\"; font-size: " +
+  std::string css = std::string(selector) + " { font-family: \"" + std::string(pango_font_description_get_family(description)) + "\"; font-size: " +
       std::to_string(pango_font_description_get_size(description) / static_cast<double>(PANGO_SCALE)) + "px; font-weight: " +
       std::to_string(static_cast<int>(pango_font_description_get_weight(description))) + "; font-style: " +
       (pango_font_description_get_style(description) == PANGO_STYLE_ITALIC ? "italic" : "normal") + "; }";
   pango_font_description_free(description);
   return css;
+}
+
+std::string OneLinuxCreateFieldColorCss(const TextAttributes &attributes, const char *selector)
+{
+  if (!attributes.foregroundColor) {
+    return "";
+  }
+  auto components = colorComponentsFromColor(attributes.foregroundColor);
+  double opacity = std::isnan(attributes.opacity) ? 1 : attributes.opacity;
+  return std::string(selector) + " { color: rgba(" + std::to_string(static_cast<int>(std::lround(components.red * 255))) + ", " +
+      std::to_string(static_cast<int>(std::lround(components.green * 255))) + ", " +
+      std::to_string(static_cast<int>(std::lround(components.blue * 255))) + ", " + std::to_string(components.alpha * opacity) + "); }";
 }
 
 } // namespace facebook::react

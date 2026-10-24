@@ -343,7 +343,7 @@ sway on the studio-64 VM.
 - A view is no longer `can-focus` false, only not `focusable`: GTK 4 treats
   `can-focus` false as "no descendant takes focus", which stopped the field from
   ever getting it.
-- Gaps: no multiline (`GtkTextView`), `placeholderTextColor`, `cursorColor`,
+- Gaps: `placeholderTextColor`, `cursorColor`,
   `selectionColor`, `autoCapitalize`, input method position hints, or drag and
   drop.
 - Typed text and placeholder share one vertical position
@@ -420,6 +420,17 @@ relays out to it: [resized](one-linux-native-resize-floating.png).
   shows the hover color, "hovered text" and the I-beam:
   [window](one-linux-native-hover.png). Moving out to empty space was not
   checked, and event offsets are window coordinates.
+- **Multiline `TextInput` (M2):** `multiline` shows a `GtkTextView` (in a
+  scrolled window, word wrapped) instead of the `GtkText`; both live in a
+  `GtkStack` the view owns, and the same controlled protocol, focus, key,
+  selection and submit paths serve either. The placeholder is a label over the
+  empty view. Enter adds a line when `submitBehavior` is `newline`, and
+  otherwise submits (shift+Enter still adds one). Font and color come from CSS.
+  Proof, a placeholder, then "hello", Enter, "world" with the line and character
+  count following: [window](one-linux-native-multiline.png). Gaps: `maxLength`
+  and `secureTextEntry` are not applied to the multiline field.
 
-**Next:** M2: hover and cursor events on views, transforms, images, multiline
-`TextInput`, the portal color scheme, and the Networking gaps above.
+**Next:** hit testing under a view transform, `Image` `blurRadius`,
+`defaultSource` and the copy of assets by `one build --platform linux`, the
+portal color scheme, the Networking gaps above, and a check that hover out to
+empty space fires `onHoverOut`.

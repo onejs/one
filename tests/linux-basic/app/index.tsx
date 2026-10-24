@@ -11,6 +11,7 @@ export default function Index() {
   const [name, setName] = useState('')
   const [focused, setFocused] = useState(false)
   const [hovered, setHovered] = useState('none')
+  const [notes, setNotes] = useState('')
   const [images, setImages] = useState<Record<string, string>>({})
   const report = (key: string, value: string) => setImages((state) => ({ ...state, [key]: value }))
   const remote = { uri: 'http://127.0.0.1:8123/swatch.png' }
@@ -149,7 +150,7 @@ export default function Index() {
         <Text style={{ fontSize: 20, fontWeight: '700', marginTop: 24, color: '#1f1d1a' }}>
           transform and opacity
         </Text>
-        <View style={{ flexDirection: 'row', marginTop: 16, height: 120, alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', marginTop: 16, height: 96, alignItems: 'center' }}>
           {boxes.map((style, index) => (
             <View
               key={index}
@@ -197,6 +198,31 @@ export default function Index() {
         <Text style={{ fontSize: 14, color: '#5f5a50', marginTop: 8 }}>
           hovered {hovered}
         </Text>
+        <Text style={{ fontSize: 20, fontWeight: '700', marginTop: 16, color: '#1f1d1a' }}>
+          multiline
+        </Text>
+        <View style={{ flexDirection: 'row', marginTop: 8, alignItems: 'flex-start' }}>
+          <TextInput
+            multiline
+            value={notes}
+            onChangeText={setNotes}
+            placeholder="notes, one per line"
+            style={{
+              width: 300,
+              height: 72,
+              padding: 8,
+              fontSize: 16,
+              color: '#1f1d1a',
+              backgroundColor: '#ffffff',
+              borderWidth: 1,
+              borderColor: '#bfb8a8',
+              borderRadius: 6,
+            }}
+          />
+          <Text style={{ fontSize: 14, color: '#5f5a50', marginLeft: 12 }}>
+            {`${notes.split('\n').length} lines, ${notes.length} chars`}
+          </Text>
+        </View>
       </View>
     </View>
   )
