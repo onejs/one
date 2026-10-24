@@ -39,6 +39,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
+  frameworks?: readonly string[]
   kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'chartDescriptor' | 'phaseAnimation' | 'keyframeAnimation' | 'seedKeyframeAnimation' | 'registeredValue' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint' | 'bindingTextSelection'
   ios: number
   type: string
@@ -2132,7 +2133,10 @@ export function deriveModifiers(
     method.parameters[0].type === 'some UIGestureRecognizerRepresentable'))
     result.push({ name: `${method.name}WithUITapRecognizer`, sdkName: method.name,
       kind: 'event', type: method.parameters[0].type, ios: ios(method), uiRecognizer: true })
-  return result.sort((a, b) => a.name.localeCompare(b.name))
+  // the declaring framework decides which link set group a modifier belongs to
+  return result
+    .map((modifier) => modifier.module ? modifier : { ...modifier, frameworks: [...new Set(methods.filter((method) => method.name === (modifier.sdkName ?? modifier.name)).map((method) => method.module))] })
+    .sort((a, b) => a.name.localeCompare(b.name))
 }
 
 // a view constructor argument the generated host can supply from a prop.

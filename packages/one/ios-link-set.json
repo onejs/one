@@ -1,0 +1,39 @@
+{
+  "groups": {
+    "wallet": {
+      "frameworks": ["PassKit"],
+      "components": ["OneNativePayWithApplePayButton", "OneNativeAddPassToWalletButton"],
+      "hybrids": []
+    },
+    "store": {
+      "frameworks": ["StoreKit"],
+      "components": ["OneNativeProductView", "OneNativeStoreView", "OneNativeSubscriptionStoreView"],
+      "hybrids": ["OnePurchases"]
+    },
+    "account": {
+      "frameworks": ["AuthenticationServices", "SafariServices"],
+      "components": ["OneNativeSignInWithAppleButton"],
+      "hybrids": ["OneAppleAuth", "OneBrowser"]
+    },
+    "messaging": {
+      "frameworks": ["MessageUI"],
+      "components": [],
+      "hybrids": ["OneMailCompose", "OneMessageCompose"]
+    },
+    "photos": {
+      "frameworks": ["PhotosUI"],
+      "components": ["OneNativePhotosPicker", "OneNativeLivePhotoView"],
+      "hybrids": ["OneImagePicker"]
+    },
+    "charts": {
+      "frameworks": ["Charts"],
+      "components": ["OneNativeChart"],
+      "hybrids": []
+    },
+    "preview3d": {
+      "frameworks": ["QuickLook", "RealityKit", "RealityFoundation", "MusicKit"],
+      "components": ["OneNativeQuickLook"],
+      "hybrids": []
+    }
+  }
+}

@@ -460,7 +460,10 @@
           "ios": 13
         }
       ],
-      "value": "Color"
+      "value": "Color",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "accessibilityAction",
@@ -477,6 +480,10 @@
           "label": "_",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "SwiftUI",
+        "_AppIntents_SwiftUI"
       ]
     },
     {
@@ -681,7 +688,10 @@
           "ios": 17
         }
       ],
-      "value": "AccessibilityTraits"
+      "value": "AccessibilityTraits",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityAdjustableAction",
@@ -698,6 +708,9 @@
           "name": "decrement",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -705,7 +718,10 @@
       "kind": "chartDescriptor",
       "type": "R",
       "ios": 15,
-      "framework": "Accessibility"
+      "framework": "Accessibility",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityCustomContent",
@@ -727,13 +743,19 @@
           "field": "value",
           "label": "_"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "accessibilityDefaultFocus",
       "kind": "defaultFocusBoolean",
       "type": "SwiftUI.AccessibilityFocusState<Value>.Binding",
-      "ios": 26
+      "ios": 26,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityDirectTouch",
@@ -765,6 +787,9 @@
           "field": "options",
           "label": "options"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -1064,14 +1089,20 @@
           "ios": 13
         }
       ],
-      "label": "children"
+      "label": "children",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityFocused",
       "kind": "bindingFocusBoolean",
       "type": "SwiftUI.AccessibilityFocusState<Swift.Bool>.Binding",
       "label": "_",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityHeading",
@@ -1107,6 +1138,9 @@
           "name": "h6",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -1209,7 +1243,10 @@
       "name": "accessibilityIgnoresInvertColors",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 14
+      "ios": 14,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "accessibilityInputLabels",
@@ -1231,6 +1268,9 @@
           "field": "isEnabled",
           "label": "isEnabled"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -1268,7 +1308,10 @@
       "namespaceParameter": {
         "index": 2,
         "label": "in"
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityLabelWithLabelAndIsEnabled",
@@ -1320,7 +1363,10 @@
       "namespaceParameter": {
         "index": 1,
         "label": "in"
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityRemoveTraits",
@@ -1397,7 +1443,10 @@
           "ios": 17
         }
       ],
-      "value": "AccessibilityTraits"
+      "value": "AccessibilityTraits",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityRespondsToUserInteractionWithBool",
@@ -1460,7 +1509,10 @@
         "label": "entryLabel",
         "type": "Swift.KeyPath<EntryModel, Swift.String>",
         "expression": "\\OneNativeRotorEntry.label"
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityRotorEntry",
@@ -1480,7 +1532,10 @@
       "namespaceParameter": {
         "index": 1,
         "label": "in"
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityScrollAction",
@@ -1505,6 +1560,9 @@
           "name": "trailing",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -1527,6 +1585,9 @@
           "field": "isEnabled",
           "label": "isEnabled"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -1534,13 +1595,19 @@
       "kind": "boolean",
       "type": "",
       "ios": 15,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "accessibilitySortPriority",
       "kind": "number",
       "type": "Swift.Double",
-      "ios": 14
+      "ios": 14,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "accessibilityTextContentType",
@@ -1580,6 +1647,9 @@
           "name": "wordProcessing",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -1925,7 +1995,10 @@
             }
           }
         ]
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "actionSheet",
@@ -1954,7 +2027,10 @@
         "type": "SwiftUI.ActionSheet",
         "returnType": "SwiftUI.ActionSheet",
         "argumentOffset": 1
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "addPassToWalletButtonStyle",
@@ -1971,6 +2047,9 @@
           "name": "blackOutline",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -2000,7 +2079,10 @@
         "type": "SwiftUI.Alert",
         "returnType": "SwiftUI.Alert",
         "argumentOffset": 1
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "alignmentGuideWithHorizontalAlignment",
@@ -2118,19 +2200,28 @@
           "name": "high",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
       "name": "allowsHitTesting",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "allowsTightening",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "allowsWindowActivationEventsWithNoArguments",
@@ -2172,7 +2263,10 @@
             }
           }
         ]
-      }
+      },
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "animation",
@@ -2225,7 +2319,10 @@
           "ios": 13
         }
       ],
-      "value": "Animation"
+      "value": "Animation",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "appEntityIdentifier",
@@ -2237,7 +2334,10 @@
         "label": "activityIdentifier",
         "type": "Swift.String",
         "failable": true
-      }
+      },
+      "frameworks": [
+        "_AppIntents_SwiftUI"
+      ]
     },
     {
       "name": "appEntityUIElements",
@@ -2247,7 +2347,10 @@
       "registeredCallbackType": "@escaping @MainActor (AppIntents.AppEntityUIElementsContext) -> [AppIntents.AppEntityUIElement]",
       "registeredCallbackLabel": "_",
       "ios": 18.4,
-      "framework": "AppIntents"
+      "framework": "AppIntents",
+      "frameworks": [
+        "_AppIntents_SwiftUI"
+      ]
     },
     {
       "name": "appStoreMerchandising",
@@ -2271,7 +2374,10 @@
           "label": "kind"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "appStoreOverlayWithAppClipConfiguration",
@@ -2396,6 +2502,9 @@
           "field": "contentMode",
           "label": "contentMode"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -2425,6 +2534,9 @@
           "name": "shared",
           "ios": 7
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -2432,7 +2544,10 @@
       "kind": "registeredValue",
       "type": "D",
       "registeredProtocol": "SwiftUICore.AttributedTextFormattingDefinition",
-      "ios": 26
+      "ios": 26,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "autocapitalization",
@@ -2456,13 +2571,19 @@
           "name": "words",
           "ios": 0
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "autocorrectionDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "backgroundExtensionEffectWithIsEnabled",
@@ -2632,6 +2753,9 @@
           "name": "tint",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -2652,6 +2776,9 @@
           "name": "increased",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -2674,7 +2801,10 @@
       "name": "baselineOffset",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "blendMode",
@@ -2766,6 +2896,9 @@
           "name": "plusLighter",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -2788,19 +2921,28 @@
           "field": "opaque",
           "label": "opaque"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
       "name": "bold",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "brightness",
       "kind": "number",
       "type": "Swift.Double",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "buttonBorderShape",
@@ -2825,7 +2967,10 @@
           "ios": 17
         }
       ],
-      "value": "ButtonBorderShape"
+      "value": "ButtonBorderShape",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "buttonRepeatBehavior",
@@ -2845,6 +2990,9 @@
           "name": "disabled",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -2865,6 +3013,9 @@
           "name": "fitted",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -2901,6 +3052,9 @@
           "name": "borderedProminent",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -2908,7 +3062,10 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 13,
-      "label": "antialiased"
+      "label": "antialiased",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "clipShape",
@@ -2944,6 +3101,9 @@
           "name": "textInputBorder",
           "ios": 27
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -2967,6 +3127,9 @@
           "field": "isEnabled",
           "label": "isEnabled"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -2974,7 +3137,10 @@
       "kind": "boolean",
       "type": "",
       "ios": 13,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "colorMultiply",
@@ -3059,7 +3225,10 @@
           "ios": 13
         }
       ],
-      "value": "Color"
+      "value": "Color",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "colorScheme",
@@ -3075,6 +3244,9 @@
           "name": "dark",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -3082,7 +3254,10 @@
       "kind": "boolean",
       "type": "",
       "ios": 13,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "containerCornerOffset",
@@ -3134,6 +3309,9 @@
           "field": "sizeToFit",
           "label": "sizeToFit"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -3383,6 +3561,9 @@
           "name": "textInputBorder",
           "ios": 27
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -3390,7 +3571,10 @@
       "kind": "registeredValue",
       "type": "Swift.WritableKeyPath<SwiftUICore.ContainerValues, V>",
       "registeredFactory": "containerValue",
-      "ios": 18
+      "ios": 18,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "contentMarginsWithEdgesAndLengthAndPlacement",
@@ -3539,6 +3723,9 @@
           "name": "textInputBorder",
           "ios": 27
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -3564,13 +3751,19 @@
           "ios": 16
         }
       ],
-      "value": "ContentTransition"
+      "value": "ContentTransition",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "contrast",
       "kind": "number",
       "type": "Swift.Double",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "controlGroupStyle",
@@ -3598,6 +3791,9 @@
           "name": "compactMenu",
           "ios": 16.4
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -3626,6 +3822,9 @@
           "name": "extraLarge",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -3633,7 +3832,10 @@
       "kind": "string",
       "type": "T",
       "ios": 13,
-      "label": "name"
+      "label": "name",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "copyable",
@@ -3649,6 +3851,9 @@
           "kind": "stringArray",
           "optional": false
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -3720,7 +3925,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "cuttable",
@@ -3736,7 +3944,10 @@
           "bridge": true
         }
       ],
-      "ios": 27
+      "ios": 27,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "dataDetection",
@@ -3744,7 +3955,10 @@
       "type": "",
       "ios": 27,
       "zeroArgument": true,
-      "framework": "DataDetection"
+      "framework": "DataDetection",
+      "frameworks": [
+        "_DataDetection_SwiftUI"
+      ]
     },
     {
       "name": "datePickerStyle",
@@ -3768,6 +3982,9 @@
           "name": "compact",
           "ios": 14
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -3788,6 +4005,9 @@
           "name": "sidebar",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -3800,13 +4020,19 @@
           "name": "standard",
           "ios": 0
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "defaultFocus",
       "kind": "defaultFocusBoolean",
       "type": "SwiftUI.FocusState<V>.Binding",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "defaultHoverEffect",
@@ -3826,6 +4052,9 @@
           "name": "lift",
           "ios": 13.4
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -3976,6 +4205,9 @@
           "name": "sidebar",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -4013,26 +4245,38 @@
           "ios": 13
         }
       ],
-      "label": "on"
+      "label": "on",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "deleteDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "dialogIcon",
       "kind": "optionalString",
       "type": "SwiftUICore.Image?",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "dialogSuppressionToggle",
       "kind": "bindingBoolean",
       "type": "SwiftUICore.Binding<Swift.Bool>",
       "label": "isSuppressed",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "dialogSuppressionToggleWithLabelAndIsSuppressed",
@@ -4062,13 +4306,19 @@
       "name": "disableAutocorrection",
       "kind": "optionalBoolean",
       "type": "Swift.Bool?",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "disabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "disclosureGroupStyle",
@@ -4080,6 +4330,9 @@
           "name": "automatic",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -4122,19 +4375,28 @@
           "field": "isEnabled",
           "label": "isEnabled"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
       "name": "documentLaunchSubtitle",
       "kind": "string",
       "type": "SwiftUICore.Text",
-      "ios": 27
+      "ios": 27,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "documentLaunchTitle",
       "kind": "string",
       "type": "SwiftUICore.Text",
-      "ios": 27
+      "ios": 27,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "dragConfiguration",
@@ -4144,19 +4406,28 @@
       "scalarConstructor": {
         "label": "allowMove",
         "type": "Swift.Bool"
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "dragContainer",
       "kind": "dragContainer",
       "type": "@escaping (_ draggedItemIDs: Swift.Array<ItemID>) -> Data",
-      "ios": 27
+      "ios": 27,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "dragContainerSelection",
       "kind": "dragSelection",
       "type": "@autoclosure @escaping () -> Swift.Array<ItemID>",
-      "ios": 27
+      "ios": 27,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "draggable",
@@ -4172,6 +4443,9 @@
           "kind": "string",
           "optional": false
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -4179,7 +4453,10 @@
       "sdkName": "draggable",
       "kind": "dragItemID",
       "type": "ItemID",
-      "ios": 27
+      "ios": 27,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "drawingGroup",
@@ -4215,6 +4492,9 @@
           "field": "colorMode",
           "label": "colorMode"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -4283,7 +4563,10 @@
           "ios": 13.4
         }
       ],
-      "ios": 27
+      "ios": 27,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "dropDestination",
@@ -4362,7 +4645,10 @@
           "bridge": true
         }
       ],
-      "ios": 26
+      "ios": 26,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "dynamicTypeSize",
@@ -4418,6 +4704,9 @@
           "name": "accessibility5",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -4454,6 +4743,9 @@
           "name": "vertical",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -4461,7 +4753,10 @@
       "kind": "registeredValue",
       "type": "T?",
       "registeredProtocol": "Observation.Observable & AnyObject",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "environmentAccessibilityEnabled",
@@ -5267,7 +5562,10 @@
       "kind": "registeredValue",
       "type": "T",
       "registeredProtocol": "Combine.ObservableObject",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "environmentRealityViewCameraControls",
@@ -5726,7 +6024,10 @@
       "name": "equatable",
       "kind": "equatableKey",
       "type": "SwiftUI.EquatableView<Self>",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "fileDialogBrowserOptions",
@@ -5746,44 +6047,65 @@
           "name": "displayFileExtensions",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "fileDialogConfirmationLabel",
       "kind": "optionalString",
       "type": "SwiftUICore.Text?",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "fileDialogCustomizationID",
       "kind": "string",
       "type": "Swift.String",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "fileDialogDefaultDirectory",
       "kind": "optionalURL",
       "type": "Foundation.URL?",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "fileDialogImportsUnresolvedAliases",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "fileDialogMessage",
       "kind": "optionalString",
       "type": "SwiftUICore.Text?",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "fileDialogURLEnabled",
       "kind": "boolean",
       "type": "Foundation.Predicate<Foundation.URL>",
       "predicateInput": "Foundation.URL",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "fileExporter",
@@ -5813,13 +6135,19 @@
           "kind": "resultURL",
           "optional": false
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "fileExporterFilenameLabel",
       "kind": "optionalString",
       "type": "SwiftUICore.Text?",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion",
@@ -5919,20 +6247,29 @@
           "field": "onCompletion",
           "label": "onCompletion"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "findDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "findNavigator",
       "kind": "bindingBoolean",
       "type": "SwiftUICore.Binding<Swift.Bool>",
       "label": "isPresented",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "fixedSizeWithHorizontalAndVertical",
@@ -5971,7 +6308,10 @@
       "name": "flipsForRightToLeftLayoutDirection",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "focusableWithBool",
@@ -6024,41 +6364,59 @@
       "kind": "bindingFocusBoolean",
       "type": "SwiftUI.FocusState<Swift.Bool>.Binding",
       "label": "_",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "focusedObject",
       "kind": "registeredValue",
       "type": "T",
       "registeredProtocol": "Combine.ObservableObject",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "focusedSceneObject",
       "kind": "registeredValue",
       "type": "T",
       "registeredProtocol": "Combine.ObservableObject",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "focusedSceneValue",
       "kind": "registeredValue",
       "type": "T?",
       "registeredProtocol": "Observation.Observable & AnyObject",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "focusedValue",
       "kind": "registeredValue",
       "type": "T?",
       "registeredProtocol": "Observation.Observable & AnyObject",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "focusEffectDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "font",
@@ -6115,7 +6473,10 @@
           "ios": 26
         }
       ],
-      "value": "Font"
+      "value": "Font",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "fontDesignWithOptionalDesign",
@@ -6211,6 +6572,9 @@
           "name": "expanded",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -6296,7 +6660,10 @@
           "ios": 13
         }
       ],
-      "value": "Color"
+      "value": "Color",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "formStyle",
@@ -6316,6 +6683,9 @@
           "name": "automatic",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -6571,6 +6941,9 @@
           "name": "accessoryCircular",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -6578,7 +6951,10 @@
       "kind": "boolean",
       "type": "",
       "ios": 17,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "gesture",
@@ -6848,7 +7224,11 @@
           ]
         }
       ],
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI",
+        "SwiftUICore"
+      ]
     },
     {
       "name": "gestureWithUITapRecognizer",
@@ -6856,7 +7236,11 @@
       "kind": "event",
       "type": "some UIGestureRecognizerRepresentable",
       "ios": 18,
-      "uiRecognizer": true
+      "uiRecognizer": true,
+      "frameworks": [
+        "SwiftUI",
+        "SwiftUICore"
+      ]
     },
     {
       "name": "glassEffectID",
@@ -6876,7 +7260,10 @@
       "namespaceParameter": {
         "index": 1,
         "label": "in"
-      }
+      },
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "glassEffectTransition",
@@ -6896,6 +7283,9 @@
           "name": "identity",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -6916,7 +7306,10 @@
       "namespaceParameter": {
         "index": 1,
         "label": "namespace"
-      }
+      },
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "glassEffectWithGlass",
@@ -6945,7 +7338,10 @@
       "name": "grayscale",
       "kind": "number",
       "type": "Swift.Double",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "gridCellAnchor",
@@ -6993,13 +7389,19 @@
           "name": "bottomTrailing",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "gridCellColumns",
       "kind": "number",
       "type": "Swift.Int",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "gridCellUnsizedAxes",
@@ -7015,6 +7417,9 @@
           "name": "vertical",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -7043,6 +7448,9 @@
           "name": "listRowSeparatorTrailing",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -7055,6 +7463,9 @@
           "name": "automatic",
           "ios": 14
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -7083,6 +7494,9 @@
           "field": "isEnabled",
           "label": "isEnabled"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -7105,6 +7519,9 @@
           "field": "allowing",
           "label": "allowing"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -7119,7 +7536,10 @@
           "ios": 18
         }
       ],
-      "label": "matching"
+      "label": "matching",
+      "frameworks": [
+        "_GameController_SwiftUI"
+      ]
     },
     {
       "name": "headerProminence",
@@ -7135,20 +7555,29 @@
           "name": "increased",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
       "name": "help",
       "kind": "string",
       "type": "SwiftUICore.Text",
-      "ios": 14
+      "ios": 14,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "hidden",
       "kind": "boolean",
       "type": "",
       "ios": 13,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "highPriorityGesture",
@@ -7418,13 +7847,19 @@
           ]
         }
       ],
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "hoverEffectDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "hoverEffectWithHoverEffect",
@@ -7483,13 +7918,19 @@
           "ios": 13
         }
       ],
-      "value": "Angle"
+      "value": "Angle",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "id",
       "kind": "string",
       "type": "ID",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "ignoresSafeAreaWithRegionsAndEdgesAndAlignment",
@@ -7668,6 +8109,9 @@
           "name": "large",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -7699,6 +8143,9 @@
           "kind": "string",
           "optional": true
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -7726,6 +8173,9 @@
             }
           ]
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -7771,38 +8221,56 @@
       "name": "interactionActivityTrackingTag",
       "kind": "string",
       "type": "Swift.String",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "interactiveDismissDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "invalidatableContent",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "italic",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "itemProvider",
       "kind": "string",
       "type": "Swift.Optional<() -> Foundation.NSItemProvider?>",
       "swiftExpression": "{ Foundation.NSItemProvider(object: $value as NSString) }",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "kerning",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "keyboardShortcutWithKeyAndModifiers",
@@ -8159,13 +8627,19 @@
           "name": "webSearch",
           "ios": 7
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "keyframeAnimator",
       "kind": "keyframeAnimation",
       "type": "Value",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "labeledContentStyle",
@@ -8177,26 +8651,38 @@
           "name": "automatic",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "labelIconToTitleSpacing",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
-      "ios": 26
+      "ios": 26,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "labelReservedIconWidth",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
-      "ios": 26
+      "ios": 26,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "labelsHidden",
       "kind": "boolean",
       "type": "",
       "ios": 13,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "labelStyle",
@@ -8220,6 +8706,9 @@
           "name": "titleOnly",
           "ios": 14
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -8240,6 +8729,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -8282,6 +8774,9 @@
           "field": "isEnabled",
           "label": "isEnabled"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -8298,20 +8793,29 @@
           "name": "mirrors",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
       "name": "layoutPriority",
       "kind": "number",
       "type": "Swift.Double",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "layoutValue",
       "kind": "registeredValue",
       "type": "K.Type",
       "registeredFactory": "layoutValue",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "lineHeight",
@@ -8336,7 +8840,10 @@
           "ios": 26
         }
       ],
-      "value": "AttributedStringLineHeight"
+      "value": "AttributedStringLineHeight",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "lineLimitWithClosedRange",
@@ -8454,7 +8961,10 @@
       "name": "lineSpacing",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "listItemTintWithOptionalColor",
@@ -8608,6 +9118,9 @@
           "field": "length",
           "label": "_"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -8658,6 +9171,9 @@
           "field": "edges",
           "label": "edges"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -8773,13 +9289,19 @@
           "field": "edges",
           "label": "edges"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "listRowSpacing",
       "kind": "optionalNumber",
       "type": "CoreFoundation.CGFloat?",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "listSectionIndexVisibility",
@@ -8799,6 +9321,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -8851,6 +9376,9 @@
           "field": "length",
           "label": "_"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -8901,6 +9429,9 @@
           "field": "edges",
           "label": "edges"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -9016,6 +9547,9 @@
           "field": "edges",
           "label": "edges"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -9075,6 +9609,9 @@
           "name": "plain",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -9086,14 +9623,20 @@
       "requestProperty": "scene",
       "predicateLabel": "isPresented",
       "label": "initialScene",
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "luminanceToAlpha",
       "kind": "boolean",
       "type": "",
       "ios": 13,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "manageSubscriptionsSheet",
@@ -9101,7 +9644,10 @@
       "type": "SwiftUICore.Binding<Swift.Bool>",
       "label": "isPresented",
       "ios": 15,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID",
@@ -9147,7 +9693,10 @@
         }
       ],
       "ios": 17,
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapControlVisibility",
@@ -9168,6 +9717,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "_MapKit_SwiftUI"
       ]
     },
     {
@@ -9194,7 +9746,10 @@
           "ios": 18
         }
       ],
-      "value": "MapItemDetailSelectionAccessoryStyle"
+      "value": "MapItemDetailSelectionAccessoryStyle",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapFeatureSelectionContent",
@@ -9202,7 +9757,10 @@
       "type": "@escaping (_MapKit_SwiftUI.MapFeature) -> some MapContent",
       "registeredFactory": "mapFeatureSelectionContent",
       "ios": 17,
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapFeatureSelectionDisabled",
@@ -9210,7 +9768,10 @@
       "type": "@escaping (_MapKit_SwiftUI.MapFeature) -> Swift.Bool",
       "predicateInput": "_MapKit_SwiftUI.MapFeature",
       "ios": 17,
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapItemDetailPopoverWithCurrentLocation",
@@ -9322,7 +9883,10 @@
         "index": 0,
         "label": "_"
       },
-      "framework": "MapKit"
+      "framework": "MapKit",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "mapStyle",
@@ -9344,7 +9908,10 @@
           "ios": 17
         }
       ],
-      "value": "MapStyle"
+      "value": "MapStyle",
+      "frameworks": [
+        "_MapKit_SwiftUI"
+      ]
     },
     {
       "name": "matchedGeometryEffect",
@@ -9364,7 +9931,10 @@
       "namespaceParameter": {
         "index": 1,
         "label": "in"
-      }
+      },
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "matchedTransitionSource",
@@ -9384,7 +9954,10 @@
       "namespaceParameter": {
         "index": 1,
         "label": "in"
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "materialActiveAppearance",
@@ -9404,6 +9977,9 @@
           "name": "matchWindow",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -9424,6 +10000,9 @@
           "name": "disabled",
           "ios": 16.4
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -9444,6 +10023,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -9464,6 +10046,9 @@
           "name": "fixed",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -9484,13 +10069,19 @@
           "name": "borderlessButton",
           "ios": 14
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "minimumScaleFactor",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "modelContainer",
@@ -9498,7 +10089,10 @@
       "type": "SwiftData.ModelContainer",
       "registeredType": "SwiftData.ModelContainer",
       "ios": 17,
-      "framework": "SwiftData"
+      "framework": "SwiftData",
+      "frameworks": [
+        "_SwiftData_SwiftUI"
+      ]
     },
     {
       "name": "modelContext",
@@ -9506,33 +10100,48 @@
       "type": "SwiftData.ModelContext",
       "registeredType": "SwiftData.ModelContext",
       "ios": 17,
-      "framework": "SwiftData"
+      "framework": "SwiftData",
+      "frameworks": [
+        "_SwiftData_SwiftUI"
+      ]
     },
     {
       "name": "modifier",
       "kind": "registeredValue",
       "type": "T",
       "registeredProtocol": "SwiftUICore.ViewModifier",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "monospaced",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "monospacedDigit",
       "kind": "boolean",
       "type": "",
       "ios": 15,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "moveDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "multilineTextAlignmentWithStrategy",
@@ -9653,19 +10262,28 @@
           "label": "onLoadCompletion",
           "defaultValue": "{ _ in }"
         }
+      ],
+      "frameworks": [
+        "_MusicKit_SwiftUI"
       ]
     },
     {
       "name": "navigationBarBackButtonHidden",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "navigationBarHidden",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "navigationBarTitleDisplayMode",
@@ -9685,6 +10303,9 @@
           "name": "large",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -9737,7 +10358,10 @@
       "name": "navigationDocument",
       "kind": "url",
       "type": "Foundation.URL",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "navigationLinkIndicatorVisibility",
@@ -9757,6 +10381,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -9816,13 +10443,19 @@
           "name": "automatic",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "navigationSubtitle",
       "kind": "string",
       "type": "SwiftUICore.Text",
-      "ios": 26
+      "ios": 26,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "navigationTitleWithBindingString",
@@ -9855,6 +10488,9 @@
           "name": "crossFade",
           "ios": 27
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -9875,6 +10511,9 @@
           "name": "stack",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -9893,6 +10532,9 @@
           "label": "onCompletion",
           "defaultValue": "{ _ in }"
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -9915,6 +10557,9 @@
           "field": "y",
           "label": "y"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -9922,7 +10567,10 @@
       "kind": "event",
       "type": "(() -> Swift.Void)?",
       "label": "perform",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "onAppIntentExecution",
@@ -9930,7 +10578,10 @@
       "type": "I.Type",
       "registeredFactory": "onAppIntentExecution",
       "ios": 26,
-      "framework": "AppIntents"
+      "framework": "AppIntents",
+      "frameworks": [
+        "_AppIntents_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayCouponCodeChange",
@@ -9940,7 +10591,10 @@
       "registeredCallbackType": "@escaping (Swift.String) async -> PassKit.PKPaymentRequestCouponCodeUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayPaymentMethodChange",
@@ -9950,7 +10604,10 @@
       "registeredCallbackType": "@escaping (PassKit.PKPaymentMethod) async -> PassKit.PKPaymentRequestPaymentMethodUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayShippingContactChange",
@@ -9960,7 +10617,10 @@
       "registeredCallbackType": "@escaping (PassKit.PKContact) async -> PassKit.PKPaymentRequestShippingContactUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onApplePayShippingMethodChange",
@@ -9970,7 +10630,10 @@
       "registeredCallbackType": "@escaping (PassKit.PKShippingMethod) async -> PassKit.PKPaymentRequestShippingMethodUpdate",
       "registeredCallbackLabel": "perform",
       "ios": 15.5,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "onCameraCaptureEvent",
@@ -10005,6 +10668,9 @@
           "label": "action",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "_AVKit_SwiftUI"
       ]
     },
     {
@@ -10164,7 +10830,10 @@
       "type": "V",
       "label": "of",
       "callbackLabel": "perform",
-      "ios": 14
+      "ios": 14,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "onContinueUserActivity",
@@ -10251,6 +10920,9 @@
           "field": "action",
           "label": "perform"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -10282,6 +10954,9 @@
           "label": "perform",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -10289,14 +10964,20 @@
       "kind": "event",
       "type": "(() -> Swift.Void)?",
       "label": "perform",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "onDrag",
       "kind": "string",
       "type": "@escaping () -> Foundation.NSItemProvider",
       "swiftExpression": "{ Foundation.NSItemProvider(object: $value as NSString) }",
-      "ios": 13.4
+      "ios": 13.4,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "onDragSessionUpdated",
@@ -10314,7 +10995,10 @@
             }
           }
         ]
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "onDrop",
@@ -10337,7 +11021,10 @@
             }
           }
         ]
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "onDropSessionUpdated",
@@ -10381,7 +11068,10 @@
             }
           }
         ]
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "onGeometryChangeWithSize",
@@ -10430,7 +11120,10 @@
       "kind": "eventBoolean",
       "type": "@escaping (Swift.Bool) -> Swift.Void",
       "label": "perform",
-      "ios": 13.4
+      "ios": 13.4,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "onInAppPurchaseCompletion",
@@ -10527,7 +11220,10 @@
         ]
       },
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "onInAppPurchaseStart",
@@ -10585,14 +11281,20 @@
         ]
       },
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "onInteractiveResizeChange",
       "kind": "eventBoolean",
       "type": "@escaping (_ isResizing: Swift.Bool) -> Swift.Void",
       "label": "_",
-      "ios": 26
+      "ios": 26,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "onKeyPress",
@@ -10636,7 +11338,10 @@
           "ios": 17
         }
       ],
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "onLongPressGesture",
@@ -10661,6 +11366,9 @@
           "label": "onPressingChanged",
           "defaultValue": "nil"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -10679,6 +11387,9 @@
           "label": "_",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "_MapKit_SwiftUI"
       ]
     },
     {
@@ -10845,7 +11556,10 @@
             }
           }
         ]
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "onPencilSqueeze",
@@ -11048,6 +11762,9 @@
           "name": "failed",
           "values": []
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -11075,7 +11792,10 @@
       "name": "onReceive",
       "kind": "eventNotification",
       "type": "P",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "onScrollGeometryChangeWithContainerSize",
@@ -11230,6 +11950,9 @@
           "name": "animating",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -11257,7 +11980,10 @@
           "bridge": true
         }
       ],
-      "ios": 18
+      "ios": 18,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "onScrollVisibilityChange",
@@ -11274,6 +12000,9 @@
           "label": "_",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -11291,6 +12020,9 @@
           "label": "_",
           "bridge": true
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -11391,7 +12123,10 @@
           "ios": 17
         }
       ],
-      "value": "PaletteSelectionEffect"
+      "value": "PaletteSelectionEffect",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "pasteDestination",
@@ -11418,7 +12153,10 @@
           "defaultValue": "{ $0 }"
         }
       ],
-      "ios": 27
+      "ios": 27,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "payLaterViewAction",
@@ -11435,6 +12173,9 @@
           "name": "calculator",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -11460,6 +12201,9 @@
           "name": "price",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -11468,7 +12212,10 @@
       "type": "",
       "ios": 26,
       "zeroArgument": true,
-      "framework": "PassKit"
+      "framework": "PassKit",
+      "frameworks": [
+        "_PassKit_SwiftUI"
+      ]
     },
     {
       "name": "payWithApplePayButtonStyle",
@@ -11493,6 +12240,9 @@
           "name": "automatic",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -11513,13 +12263,19 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "phaseAnimator",
       "kind": "phaseAnimation",
       "type": "some Sequence<Phase>",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "photosPicker",
@@ -11533,7 +12289,10 @@
         "selectionLabel": "selection",
         "contentTypesField": "supportedContentTypes",
         "identifierField": "itemIdentifier"
-      }
+      },
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosPickerAccessoryVisibility",
@@ -11600,7 +12359,10 @@
           "label": "edges"
         }
       ],
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosPickerDisabledCapabilities",
@@ -11629,6 +12391,9 @@
           "name": "stagingArea",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
       ]
     },
     {
@@ -11646,6 +12411,9 @@
           "name": "removeLocation",
           "ios": 27
         }
+      ],
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
       ]
     },
     {
@@ -11653,7 +12421,10 @@
       "kind": "optionalString",
       "type": "Swift.String?",
       "ios": 27,
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosPickerStyle",
@@ -11674,6 +12445,9 @@
           "name": "compact",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
       ]
     },
     {
@@ -11697,7 +12471,10 @@
           "label": "onProcessingCompletion"
         }
       ],
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosSharedAlbumCreationSheet",
@@ -11718,7 +12495,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosSharedAlbumCustomizationSheet",
@@ -11746,7 +12526,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "photosSharedAlbumPostingSheet",
@@ -11775,7 +12558,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "pickerStyle",
@@ -11815,6 +12601,9 @@
           "name": "menu",
           "ios": 14
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -11837,6 +12626,9 @@
           "field": "y",
           "label": "y"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -11866,7 +12658,10 @@
         "label": "photoLibrary",
         "type": "Photos.PHPhotoLibrary"
       },
-      "framework": "PhotosUI"
+      "framework": "PhotosUI",
+      "frameworks": [
+        "_PhotosUI_SwiftUI"
+      ]
     },
     {
       "name": "preferencePreferredColorScheme",
@@ -11902,6 +12697,9 @@
           "name": "dark",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -11910,7 +12708,10 @@
       "type": "@escaping (_ product: StoreKit.Product, _ subscription: StoreKit.Product.SubscriptionInfo, _ eligibleOffers: [StoreKit.Product.SubscriptionOffer]) -> StoreKit.Product.SubscriptionOffer?",
       "label": "_",
       "ios": 18,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "preferredSubscriptionPricingTerms",
@@ -11919,7 +12720,10 @@
       "label": "_",
       "selectionMember": "pricingTerms",
       "ios": 26.4,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "presentationBackground",
@@ -12071,6 +12875,9 @@
           "name": "tint",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -12092,7 +12899,10 @@
           "ios": 16.4
         }
       ],
-      "value": "PresentationBackgroundInteraction"
+      "value": "PresentationBackgroundInteraction",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation",
@@ -12210,13 +13020,19 @@
           "name": "scrolls",
           "ios": 16.4
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "presentationCornerRadius",
       "kind": "optionalNumber",
       "type": "CoreFoundation.CGFloat?",
-      "ios": 16.4
+      "ios": 16.4,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "presentationDetents",
@@ -12234,7 +13050,10 @@
           "ios": 16
         }
       ],
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "presentationDragIndicator",
@@ -12254,6 +13073,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -12278,6 +13100,9 @@
           "name": "trailing",
           "ios": 27
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -12302,6 +13127,9 @@
           "name": "automatic",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -12356,6 +13184,9 @@
           "field": "family",
           "label": "family"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -12363,13 +13194,19 @@
       "kind": "optionalString",
       "type": "SwiftUI.PreviewDevice?",
       "rawString": true,
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "previewDisplayName",
       "kind": "optionalString",
       "type": "Swift.String?",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "previewInterfaceOrientation",
@@ -12393,6 +13230,9 @@
           "name": "landscapeRight",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -12409,13 +13249,19 @@
           "name": "sizeThatFits",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "privacySensitive",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "productDescription",
@@ -12436,6 +13282,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -12444,7 +13293,10 @@
       "type": "",
       "ios": 17,
       "zeroArgument": true,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "productViewStyle",
@@ -12469,7 +13321,10 @@
           "ios": 17
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "progressViewStyle",
@@ -12489,6 +13344,9 @@
           "name": "automatic",
           "ios": 14
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -12537,6 +13395,9 @@
           "field": "transform",
           "label": "_"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -12545,7 +13406,10 @@
       "type": "SwiftUICore.Binding<Foundation.URL?>",
       "label": "_",
       "ios": 14,
-      "framework": "QuickLook"
+      "framework": "QuickLook",
+      "frameworks": [
+        "_QuickLook_SwiftUI"
+      ]
     },
     {
       "name": "realityViewCameraControls",
@@ -12574,6 +13438,9 @@
           "name": "tilt",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "_RealityKit_SwiftUI"
       ]
     },
     {
@@ -12595,6 +13462,9 @@
           "name": "fixedSize",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_RealityKit_SwiftUI"
       ]
     },
     {
@@ -12616,14 +13486,20 @@
           "ios": 17
         }
       ],
-      "label": "reason"
+      "label": "reason",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "refreshable",
       "kind": "eventAsync",
       "type": "@escaping @Sendable () async -> Swift.Void",
       "label": "action",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "refundRequestSheet",
@@ -12647,27 +13523,39 @@
           "label": "isPresented"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "renameAction",
       "kind": "event",
       "type": "@escaping () -> Swift.Void",
       "label": "_",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "reorderContainer",
       "kind": "registeredValue",
       "type": "Item.Type",
       "registeredFactory": "reorderContainer",
-      "ios": 27
+      "ios": 27,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "replaceDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "rotation3DEffect",
@@ -12776,6 +13664,9 @@
           "field": "perspective",
           "label": "perspective"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -12847,6 +13738,9 @@
           "field": "anchor",
           "label": "anchor"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -12899,21 +13793,30 @@
       "name": "saturation",
       "kind": "number",
       "type": "Swift.Double",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "scaledToFill",
       "kind": "boolean",
       "type": "",
       "ios": 13,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "scaledToFit",
       "kind": "boolean",
       "type": "",
       "ios": 13,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "scaleEffectWithSAndAnchor",
@@ -13196,13 +14099,19 @@
           "field": "axes",
           "label": "axes"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "scrollClipDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "scrollContentBackground",
@@ -13222,13 +14131,19 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "scrollDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "scrollDismissesKeyboard",
@@ -13252,6 +14167,9 @@
           "name": "never",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -13304,6 +14222,9 @@
           "field": "edges",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -13370,6 +14291,9 @@
           "field": "edges",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -13420,6 +14344,9 @@
           "field": "axes",
           "label": "axes"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -13427,7 +14354,10 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 17,
-      "label": "onAppear"
+      "label": "onAppear",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "scrollPositionWithBindingPoint",
@@ -13482,6 +14412,9 @@
           "name": "viewAligned",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -13489,7 +14422,10 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 17,
-      "label": "isEnabled"
+      "label": "isEnabled",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "scrollTransition",
@@ -13506,7 +14442,10 @@
         }
       ],
       "ios": 17,
-      "visualPhase": true
+      "visualPhase": true,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "searchable",
@@ -13527,13 +14466,19 @@
           "label": "prompt",
           "defaultValue": "nil"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "searchCompletion",
       "kind": "string",
       "type": "Swift.String",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "searchDictationBehavior",
@@ -13546,14 +14491,20 @@
           "ios": 17
         }
       ],
-      "value": "TextInputDictationBehavior"
+      "value": "TextInputDictationBehavior",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "searchFocused",
       "kind": "bindingFocusBoolean",
       "type": "SwiftUI.FocusState<Swift.Bool>.Binding",
       "label": "_",
-      "ios": 18
+      "ios": 18,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "searchPresentationToolbarBehavior",
@@ -13569,6 +14520,9 @@
           "name": "avoidHidingContent",
           "ios": 17.1
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -13585,7 +14539,10 @@
         "rangeLabel": "range",
         "rangesLabel": "ranges",
         "insertionLabel": "insertionPoint"
-      }
+      },
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "searchSuggestions",
@@ -13631,6 +14588,9 @@
           "field": "placements",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -13647,19 +14607,28 @@
           "name": "minimize",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "sectionIndexLabel",
       "kind": "optionalString",
       "type": "SwiftUICore.Text?",
-      "ios": 26
+      "ios": 26,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "selectionDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "sensoryFeedback",
@@ -13733,6 +14702,9 @@
           "field": "trigger",
           "label": "trigger"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -13848,6 +14820,9 @@
           "field": "y",
           "label": "y"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -13881,6 +14856,9 @@
           "name": "darkOutline",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_AppIntents_SwiftUI"
       ]
     },
     {
@@ -13902,6 +14880,9 @@
           "name": "whiteOutline",
           "ios": 14
         }
+      ],
+      "frameworks": [
+        "_AuthenticationServices_SwiftUI"
       ]
     },
     {
@@ -14172,7 +15153,10 @@
           ]
         }
       ],
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "siriTipViewStyle",
@@ -14193,6 +15177,9 @@
           "name": "dark",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_AppIntents_SwiftUI"
       ]
     },
     {
@@ -14213,31 +15200,46 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "speechAdjustedPitch",
       "kind": "number",
       "type": "Swift.Double",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "speechAlwaysIncludesPunctuation",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "speechAnnouncementsQueued",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "speechSpellsOutCharacters",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "springLoadingBehavior",
@@ -14257,6 +15259,9 @@
           "name": "disabled",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -14264,13 +15269,19 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 13,
-      "label": "hidden"
+      "label": "hidden",
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "statusBarHidden",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "storeButton",
@@ -14329,7 +15340,10 @@
           "label": "for"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "storeProductsTask",
@@ -14428,7 +15442,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "storeProductTask",
@@ -14522,7 +15539,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "strikethrough",
@@ -14652,6 +15672,9 @@
           "field": "color",
           "label": "color"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -14696,13 +15719,19 @@
           "name": "continue",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "submitScope",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "subscriptionIntroductoryOffer",
@@ -14786,7 +15815,10 @@
         ]
       },
       "ios": 26,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionOfferViewButtonVisibility",
@@ -14829,7 +15861,10 @@
           "label": "for"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionOfferViewDetailAction",
@@ -14837,7 +15872,10 @@
       "type": "(() -> ())?",
       "label": "_",
       "ios": 26,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionOfferViewStyle",
@@ -14854,7 +15892,10 @@
           "ios": 26
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionPromotionalOffer",
@@ -14998,7 +16039,10 @@
         ]
       },
       "ios": 26,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStatusTask",
@@ -15073,7 +16117,10 @@
         }
       ],
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStoreButtonLabel",
@@ -15106,6 +16153,9 @@
           "name": "price",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -15127,6 +16177,9 @@
           "name": "gradientMaterialOnScroll",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "_StoreKit_SwiftUI"
       ]
     },
     {
@@ -15164,7 +16217,10 @@
           "ios": 17
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStoreOptionGroupStyle",
@@ -15185,7 +16241,10 @@
           "ios": 18
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStorePickerItemBackground",
@@ -15338,7 +16397,10 @@
           "ios": 15
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStorePolicyDestination",
@@ -15371,7 +16433,10 @@
           "label": "for"
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStorePolicyForegroundStyle",
@@ -15524,7 +16589,10 @@
           "ios": 15
         }
       ],
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "subscriptionStoreSignInAction",
@@ -15532,14 +16600,20 @@
       "type": "(() -> ())?",
       "label": "_",
       "ios": 17,
-      "framework": "StoreKit"
+      "framework": "StoreKit",
+      "frameworks": [
+        "_StoreKit_SwiftUI"
+      ]
     },
     {
       "name": "swipeActionsContainer",
       "kind": "boolean",
       "type": "",
       "ios": 27,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "symbolColorRenderingMode",
@@ -15555,6 +16629,9 @@
           "name": "gradient",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -15592,13 +16669,19 @@
           "ios": 18
         }
       ],
-      "framework": "Symbols"
+      "framework": "Symbols",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "symbolEffectsRemoved",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "symbolRenderingMode",
@@ -15622,6 +16705,9 @@
           "name": "palette",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -15638,6 +16724,9 @@
           "name": "draw",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -15670,6 +16759,9 @@
           "name": "slash",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -15694,6 +16786,9 @@
           "name": "never",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -15714,6 +16809,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -15730,6 +16828,9 @@
           "name": "automatic",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -15739,7 +16840,10 @@
       "label": "_",
       "ios": 18,
       "bindingType": "SwiftUI.TabViewCustomization",
-      "bindingDefault": true
+      "bindingDefault": true,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "tabViewSearchActivation",
@@ -15755,6 +16859,9 @@
           "name": "searchTabSelection",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -15794,20 +16901,29 @@
             }
           ]
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "tag",
       "kind": "string",
       "type": "V",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "task",
       "kind": "eventAsync",
       "type": "sending @escaping @isolated(any) () async -> Swift.Void",
       "label": "_",
-      "ios": 15
+      "ios": 15,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "textCase",
@@ -15823,6 +16939,9 @@
           "name": "lowercase",
           "ios": 14
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -16023,6 +17142,9 @@
           "name": "username",
           "ios": 11
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16039,6 +17161,9 @@
           "name": "plain",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16063,6 +17188,9 @@
           "name": "plain",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16087,6 +17215,9 @@
           "name": "characters",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16107,6 +17238,9 @@
           "name": "roundedRectangle",
           "ios": 27
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -16161,6 +17295,9 @@
           "field": "placement",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16168,7 +17305,10 @@
       "kind": "registeredValue",
       "type": "T",
       "registeredProtocol": "SwiftUICore.TextRenderer",
-      "ios": 18
+      "ios": 18,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "textScale",
@@ -16200,6 +17340,9 @@
           "field": "isEnabled",
           "label": "isEnabled"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -16216,6 +17359,9 @@
           "name": "disabled",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16236,6 +17382,9 @@
           "name": "downstream",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16343,6 +17492,9 @@
           "name": "switch",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16401,6 +17553,9 @@
           "field": "bars",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16459,6 +17614,9 @@
           "field": "bars",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16513,6 +17671,9 @@
           "field": "bars",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16575,6 +17736,9 @@
           "field": "bars",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16629,6 +17793,9 @@
           "field": "bars",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16687,6 +17854,9 @@
           "field": "bars",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16711,6 +17881,9 @@
           "name": "editor",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16735,6 +17908,9 @@
           "name": "inline",
           "ios": 17
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16793,6 +17969,9 @@
           "field": "bars",
           "label": "for"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -16882,7 +18061,10 @@
       "name": "tracking",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "transaction",
@@ -16923,6 +18105,9 @@
             }
           ]
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -16931,7 +18116,10 @@
       "type": "_SecureElementCredential_SwiftUI.CredentialTransaction.Configuration?",
       "registeredFactory": "transactionTask",
       "ios": 18.1,
-      "framework": "SecureElementCredential"
+      "framework": "SecureElementCredential",
+      "frameworks": [
+        "_SecureElementCredential_SwiftUI"
+      ]
     },
     {
       "name": "transformAnchorPreference",
@@ -16956,7 +18144,10 @@
             }
           }
         ]
-      }
+      },
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "transformEffect",
@@ -17003,6 +18194,9 @@
           "field": "transform",
           "label": "_"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -17218,7 +18412,10 @@
           "ios": 13
         }
       ],
-      "value": "AnyTransition"
+      "value": "AnyTransition",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "translationPresentation",
@@ -17241,7 +18438,10 @@
           "label": "text"
         }
       ],
-      "framework": "Translation"
+      "framework": "Translation",
+      "frameworks": [
+        "_Translation_SwiftUI"
+      ]
     },
     {
       "name": "translationTask",
@@ -17267,7 +18467,10 @@
             "value": "nil"
           }
         ]
-      }
+      },
+      "frameworks": [
+        "_Translation_SwiftUI"
+      ]
     },
     {
       "name": "truncationMode",
@@ -17287,13 +18490,19 @@
           "name": "middle",
           "ios": 13
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
       "name": "typeSelectEquivalent",
       "kind": "optionalString",
       "type": "SwiftUICore.Text?",
-      "ios": 16
+      "ios": 16,
+      "frameworks": [
+        "SwiftUI"
+      ]
     },
     {
       "name": "typesettingLanguage",
@@ -17321,6 +18530,9 @@
           "field": "isEnabled",
           "label": "isEnabled"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -17451,6 +18663,9 @@
           "field": "color",
           "label": "color"
         }
+      ],
+      "frameworks": [
+        "SwiftUICore"
       ]
     },
     {
@@ -17458,7 +18673,10 @@
       "kind": "boolean",
       "type": "",
       "ios": 14,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "userActivity",
@@ -17529,6 +18747,9 @@
           "field": "update",
           "label": "_"
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -17546,6 +18767,9 @@
           "name": "blackOutline",
           "ios": 16
         }
+      ],
+      "frameworks": [
+        "_PassKit_SwiftUI"
       ]
     },
     {
@@ -17562,7 +18786,10 @@
           "ios": 17
         }
       ],
-      "ios": 17
+      "ios": 17,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "webViewBackForwardNavigationGestures",
@@ -17583,6 +18810,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17604,6 +18834,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17625,6 +18858,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17646,6 +18882,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17667,6 +18906,9 @@
           "name": "disabled",
           "ios": 26
         }
+      ],
+      "frameworks": [
+        "_WebKit_SwiftUI"
       ]
     },
     {
@@ -17805,7 +19047,10 @@
       "label": "_",
       "ios": 26,
       "framework": "WebKit",
-      "bindingType": "SwiftUICore.ScrollPosition"
+      "bindingType": "SwiftUICore.ScrollPosition",
+      "frameworks": [
+        "_WebKit_SwiftUI"
+      ]
     },
     {
       "name": "webViewTextSelection",
@@ -17822,7 +19067,10 @@
           "ios": 15
         }
       ],
-      "framework": "WebKit"
+      "framework": "WebKit",
+      "frameworks": [
+        "_WebKit_SwiftUI"
+      ]
     },
     {
       "name": "windowToolbarFullScreenVisibility",
@@ -17834,6 +19082,9 @@
           "name": "automatic",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -17858,7 +19109,10 @@
           "label": "isPresented"
         }
       ],
-      "framework": "WorkoutKit"
+      "framework": "WorkoutKit",
+      "frameworks": [
+        "_WorkoutKit_SwiftUI"
+      ]
     },
     {
       "name": "writingDirection",
@@ -17879,7 +19133,10 @@
           "ios": 26
         }
       ],
-      "label": "strategy"
+      "label": "strategy",
+      "frameworks": [
+        "SwiftUICore"
+      ]
     },
     {
       "name": "writingToolsAffordanceVisibility",
@@ -17899,6 +19156,9 @@
           "name": "hidden",
           "ios": 15
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
@@ -17923,13 +19183,19 @@
           "name": "disabled",
           "ios": 18
         }
+      ],
+      "frameworks": [
+        "SwiftUI"
       ]
     },
     {
       "name": "zIndex",
       "kind": "number",
       "type": "Swift.Double",
-      "ios": 13
+      "ios": 13,
+      "frameworks": [
+        "SwiftUICore"
+      ]
     }
   ],
   "values": {

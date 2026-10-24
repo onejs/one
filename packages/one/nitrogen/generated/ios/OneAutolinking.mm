@@ -99,6 +99,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_MESSAGING
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneMailCompose",
     []() -> std::shared_ptr<HybridObject> {
@@ -106,6 +107,8 @@
       return hybridObject;
     }
   );
+#endif
+#if ONE_GROUP_MESSAGING
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneMessageCompose",
     []() -> std::shared_ptr<HybridObject> {
@@ -113,6 +116,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneDocumentCamera",
     []() -> std::shared_ptr<HybridObject> {
@@ -157,6 +161,7 @@
       return std::make_shared<HybridOneCrypto>();
     }
   );
+#if ONE_GROUP_ACCOUNT
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneBrowser",
     []() -> std::shared_ptr<HybridObject> {
@@ -164,6 +169,8 @@
       return hybridObject;
     }
   );
+#endif
+#if ONE_GROUP_PHOTOS
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneImagePicker",
     []() -> std::shared_ptr<HybridObject> {
@@ -171,6 +178,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneFonts",
     []() -> std::shared_ptr<HybridObject> {
@@ -213,6 +221,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_ACCOUNT
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneAppleAuth",
     []() -> std::shared_ptr<HybridObject> {
@@ -220,6 +229,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneProtectedStore",
     []() -> std::shared_ptr<HybridObject> {
@@ -320,6 +330,7 @@
       return hybridObject;
     }
   );
+#if ONE_GROUP_STORE
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OnePurchases",
     []() -> std::shared_ptr<HybridObject> {
@@ -327,6 +338,7 @@
       return hybridObject;
     }
   );
+#endif
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneContacts",
     []() -> std::shared_ptr<HybridObject> {
